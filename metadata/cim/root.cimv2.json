@@ -1,0 +1,1590 @@
+{
+  "namespace": "root\\cimv2",
+  "provenance": {
+    "osBuild": "26200",
+    "captured": "2026-07-14"
+  },
+  "classes": [
+    {
+      "name": "Win32_BIOS",
+      "properties": [
+        {
+          "name": "BIOSVersion",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "BiosCharacteristics",
+          "cimType": 18,
+          "array": true
+        },
+        {
+          "name": "BuildNumber",
+          "cimType": 8
+        },
+        {
+          "name": "Caption",
+          "cimType": 8
+        },
+        {
+          "name": "CodeSet",
+          "cimType": 8
+        },
+        {
+          "name": "CurrentLanguage",
+          "cimType": 8
+        },
+        {
+          "name": "Description",
+          "cimType": 8
+        },
+        {
+          "name": "EmbeddedControllerMajorVersion",
+          "cimType": 17
+        },
+        {
+          "name": "EmbeddedControllerMinorVersion",
+          "cimType": 17
+        },
+        {
+          "name": "IdentificationCode",
+          "cimType": 8
+        },
+        {
+          "name": "InstallDate",
+          "cimType": 101
+        },
+        {
+          "name": "InstallableLanguages",
+          "cimType": 18
+        },
+        {
+          "name": "LanguageEdition",
+          "cimType": 8
+        },
+        {
+          "name": "ListOfLanguages",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "Manufacturer",
+          "cimType": 8
+        },
+        {
+          "name": "Name",
+          "cimType": 8
+        },
+        {
+          "name": "OtherTargetOS",
+          "cimType": 8
+        },
+        {
+          "name": "PrimaryBIOS",
+          "cimType": 11
+        },
+        {
+          "name": "ReleaseDate",
+          "cimType": 101
+        },
+        {
+          "name": "SMBIOSBIOSVersion",
+          "cimType": 8
+        },
+        {
+          "name": "SMBIOSMajorVersion",
+          "cimType": 18
+        },
+        {
+          "name": "SMBIOSMinorVersion",
+          "cimType": 18
+        },
+        {
+          "name": "SMBIOSPresent",
+          "cimType": 11
+        },
+        {
+          "name": "SerialNumber",
+          "cimType": 8
+        },
+        {
+          "name": "SoftwareElementID",
+          "cimType": 8
+        },
+        {
+          "name": "SoftwareElementState",
+          "cimType": 18
+        },
+        {
+          "name": "Status",
+          "cimType": 8
+        },
+        {
+          "name": "SystemBiosMajorVersion",
+          "cimType": 17
+        },
+        {
+          "name": "SystemBiosMinorVersion",
+          "cimType": 17
+        },
+        {
+          "name": "TargetOperatingSystem",
+          "cimType": 18
+        },
+        {
+          "name": "Version",
+          "cimType": 8
+        }
+      ]
+    },
+    {
+      "name": "Win32_ComputerSystem",
+      "properties": [
+        {
+          "name": "AdminPasswordStatus",
+          "cimType": 18
+        },
+        {
+          "name": "AutomaticManagedPagefile",
+          "cimType": 11
+        },
+        {
+          "name": "AutomaticResetBootOption",
+          "cimType": 11
+        },
+        {
+          "name": "AutomaticResetCapability",
+          "cimType": 11
+        },
+        {
+          "name": "BootOptionOnLimit",
+          "cimType": 18
+        },
+        {
+          "name": "BootOptionOnWatchDog",
+          "cimType": 18
+        },
+        {
+          "name": "BootROMSupported",
+          "cimType": 11
+        },
+        {
+          "name": "BootStatus",
+          "cimType": 18,
+          "array": true
+        },
+        {
+          "name": "BootupState",
+          "cimType": 8
+        },
+        {
+          "name": "Caption",
+          "cimType": 8
+        },
+        {
+          "name": "ChassisBootupState",
+          "cimType": 18
+        },
+        {
+          "name": "ChassisSKUNumber",
+          "cimType": 8
+        },
+        {
+          "name": "CreationClassName",
+          "cimType": 8
+        },
+        {
+          "name": "CurrentTimeZone",
+          "cimType": 2
+        },
+        {
+          "name": "DNSHostName",
+          "cimType": 8
+        },
+        {
+          "name": "DaylightInEffect",
+          "cimType": 11
+        },
+        {
+          "name": "Description",
+          "cimType": 8
+        },
+        {
+          "name": "Domain",
+          "cimType": 8
+        },
+        {
+          "name": "DomainRole",
+          "cimType": 18
+        },
+        {
+          "name": "EnableDaylightSavingsTime",
+          "cimType": 11
+        },
+        {
+          "name": "FrontPanelResetStatus",
+          "cimType": 18
+        },
+        {
+          "name": "HypervisorPresent",
+          "cimType": 11
+        },
+        {
+          "name": "InfraredSupported",
+          "cimType": 11
+        },
+        {
+          "name": "InitialLoadInfo",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "InstallDate",
+          "cimType": 101
+        },
+        {
+          "name": "KeyboardPasswordStatus",
+          "cimType": 18
+        },
+        {
+          "name": "LastLoadInfo",
+          "cimType": 8
+        },
+        {
+          "name": "Manufacturer",
+          "cimType": 8
+        },
+        {
+          "name": "Model",
+          "cimType": 8
+        },
+        {
+          "name": "Name",
+          "cimType": 8
+        },
+        {
+          "name": "NameFormat",
+          "cimType": 8
+        },
+        {
+          "name": "NetworkServerModeEnabled",
+          "cimType": 11
+        },
+        {
+          "name": "NumberOfLogicalProcessors",
+          "cimType": 19
+        },
+        {
+          "name": "NumberOfProcessors",
+          "cimType": 19
+        },
+        {
+          "name": "OEMLogoBitmap",
+          "cimType": 17,
+          "array": true
+        },
+        {
+          "name": "OEMStringArray",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "PCSystemType",
+          "cimType": 18
+        },
+        {
+          "name": "PCSystemTypeEx",
+          "cimType": 18
+        },
+        {
+          "name": "PartOfDomain",
+          "cimType": 11
+        },
+        {
+          "name": "PauseAfterReset",
+          "cimType": 20
+        },
+        {
+          "name": "PowerManagementCapabilities",
+          "cimType": 18,
+          "array": true
+        },
+        {
+          "name": "PowerManagementSupported",
+          "cimType": 11
+        },
+        {
+          "name": "PowerOnPasswordStatus",
+          "cimType": 18
+        },
+        {
+          "name": "PowerState",
+          "cimType": 18
+        },
+        {
+          "name": "PowerSupplyState",
+          "cimType": 18
+        },
+        {
+          "name": "PrimaryOwnerContact",
+          "cimType": 8
+        },
+        {
+          "name": "PrimaryOwnerName",
+          "cimType": 8
+        },
+        {
+          "name": "ResetCapability",
+          "cimType": 18
+        },
+        {
+          "name": "ResetCount",
+          "cimType": 2
+        },
+        {
+          "name": "ResetLimit",
+          "cimType": 2
+        },
+        {
+          "name": "Roles",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "Status",
+          "cimType": 8
+        },
+        {
+          "name": "SupportContactDescription",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "SystemFamily",
+          "cimType": 8
+        },
+        {
+          "name": "SystemSKUNumber",
+          "cimType": 8
+        },
+        {
+          "name": "SystemStartupDelay",
+          "cimType": 18
+        },
+        {
+          "name": "SystemStartupOptions",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "SystemStartupSetting",
+          "cimType": 17
+        },
+        {
+          "name": "SystemType",
+          "cimType": 8
+        },
+        {
+          "name": "ThermalState",
+          "cimType": 18
+        },
+        {
+          "name": "TotalPhysicalMemory",
+          "cimType": 21
+        },
+        {
+          "name": "UserName",
+          "cimType": 8
+        },
+        {
+          "name": "WakeUpType",
+          "cimType": 18
+        },
+        {
+          "name": "Workgroup",
+          "cimType": 8
+        }
+      ]
+    },
+    {
+      "name": "Win32_LogicalDisk",
+      "properties": [
+        {
+          "name": "Access",
+          "cimType": 18
+        },
+        {
+          "name": "Availability",
+          "cimType": 18
+        },
+        {
+          "name": "BlockSize",
+          "cimType": 21
+        },
+        {
+          "name": "Caption",
+          "cimType": 8
+        },
+        {
+          "name": "Compressed",
+          "cimType": 11
+        },
+        {
+          "name": "ConfigManagerErrorCode",
+          "cimType": 19
+        },
+        {
+          "name": "ConfigManagerUserConfig",
+          "cimType": 11
+        },
+        {
+          "name": "CreationClassName",
+          "cimType": 8
+        },
+        {
+          "name": "Description",
+          "cimType": 8
+        },
+        {
+          "name": "DeviceID",
+          "cimType": 8
+        },
+        {
+          "name": "DriveType",
+          "cimType": 19
+        },
+        {
+          "name": "ErrorCleared",
+          "cimType": 11
+        },
+        {
+          "name": "ErrorDescription",
+          "cimType": 8
+        },
+        {
+          "name": "ErrorMethodology",
+          "cimType": 8
+        },
+        {
+          "name": "FileSystem",
+          "cimType": 8
+        },
+        {
+          "name": "FreeSpace",
+          "cimType": 21
+        },
+        {
+          "name": "InstallDate",
+          "cimType": 101
+        },
+        {
+          "name": "LastErrorCode",
+          "cimType": 19
+        },
+        {
+          "name": "MaximumComponentLength",
+          "cimType": 19
+        },
+        {
+          "name": "MediaType",
+          "cimType": 19
+        },
+        {
+          "name": "Name",
+          "cimType": 8
+        },
+        {
+          "name": "NumberOfBlocks",
+          "cimType": 21
+        },
+        {
+          "name": "PNPDeviceID",
+          "cimType": 8
+        },
+        {
+          "name": "PowerManagementCapabilities",
+          "cimType": 18,
+          "array": true
+        },
+        {
+          "name": "PowerManagementSupported",
+          "cimType": 11
+        },
+        {
+          "name": "ProviderName",
+          "cimType": 8
+        },
+        {
+          "name": "Purpose",
+          "cimType": 8
+        },
+        {
+          "name": "QuotasDisabled",
+          "cimType": 11
+        },
+        {
+          "name": "QuotasIncomplete",
+          "cimType": 11
+        },
+        {
+          "name": "QuotasRebuilding",
+          "cimType": 11
+        },
+        {
+          "name": "Size",
+          "cimType": 21
+        },
+        {
+          "name": "Status",
+          "cimType": 8
+        },
+        {
+          "name": "StatusInfo",
+          "cimType": 18
+        },
+        {
+          "name": "SupportsDiskQuotas",
+          "cimType": 11
+        },
+        {
+          "name": "SupportsFileBasedCompression",
+          "cimType": 11
+        },
+        {
+          "name": "SystemCreationClassName",
+          "cimType": 8
+        },
+        {
+          "name": "SystemName",
+          "cimType": 8
+        },
+        {
+          "name": "VolumeDirty",
+          "cimType": 11
+        },
+        {
+          "name": "VolumeName",
+          "cimType": 8
+        },
+        {
+          "name": "VolumeSerialNumber",
+          "cimType": 8
+        }
+      ]
+    },
+    {
+      "name": "Win32_NetworkAdapterConfiguration",
+      "properties": [
+        {
+          "name": "ArpAlwaysSourceRoute",
+          "cimType": 11
+        },
+        {
+          "name": "ArpUseEtherSNAP",
+          "cimType": 11
+        },
+        {
+          "name": "Caption",
+          "cimType": 8
+        },
+        {
+          "name": "DHCPEnabled",
+          "cimType": 11
+        },
+        {
+          "name": "DHCPLeaseExpires",
+          "cimType": 101
+        },
+        {
+          "name": "DHCPLeaseObtained",
+          "cimType": 101
+        },
+        {
+          "name": "DHCPServer",
+          "cimType": 8
+        },
+        {
+          "name": "DNSDomain",
+          "cimType": 8
+        },
+        {
+          "name": "DNSDomainSuffixSearchOrder",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "DNSEnabledForWINSResolution",
+          "cimType": 11
+        },
+        {
+          "name": "DNSHostName",
+          "cimType": 8
+        },
+        {
+          "name": "DNSServerSearchOrder",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "DatabasePath",
+          "cimType": 8
+        },
+        {
+          "name": "DeadGWDetectEnabled",
+          "cimType": 11
+        },
+        {
+          "name": "DefaultIPGateway",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "DefaultTOS",
+          "cimType": 17
+        },
+        {
+          "name": "DefaultTTL",
+          "cimType": 17
+        },
+        {
+          "name": "Description",
+          "cimType": 8
+        },
+        {
+          "name": "DomainDNSRegistrationEnabled",
+          "cimType": 11
+        },
+        {
+          "name": "ForwardBufferMemory",
+          "cimType": 19
+        },
+        {
+          "name": "FullDNSRegistrationEnabled",
+          "cimType": 11
+        },
+        {
+          "name": "GatewayCostMetric",
+          "cimType": 18,
+          "array": true
+        },
+        {
+          "name": "IGMPLevel",
+          "cimType": 17
+        },
+        {
+          "name": "IPAddress",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "IPConnectionMetric",
+          "cimType": 19
+        },
+        {
+          "name": "IPEnabled",
+          "cimType": 11
+        },
+        {
+          "name": "IPFilterSecurityEnabled",
+          "cimType": 11
+        },
+        {
+          "name": "IPPortSecurityEnabled",
+          "cimType": 11
+        },
+        {
+          "name": "IPSecPermitIPProtocols",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "IPSecPermitTCPPorts",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "IPSecPermitUDPPorts",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "IPSubnet",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "IPUseZeroBroadcast",
+          "cimType": 11
+        },
+        {
+          "name": "IPXAddress",
+          "cimType": 8
+        },
+        {
+          "name": "IPXEnabled",
+          "cimType": 11
+        },
+        {
+          "name": "IPXFrameType",
+          "cimType": 19,
+          "array": true
+        },
+        {
+          "name": "IPXMediaType",
+          "cimType": 19
+        },
+        {
+          "name": "IPXNetworkNumber",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "IPXVirtualNetNumber",
+          "cimType": 8
+        },
+        {
+          "name": "Index",
+          "cimType": 19
+        },
+        {
+          "name": "InterfaceIndex",
+          "cimType": 19
+        },
+        {
+          "name": "KeepAliveInterval",
+          "cimType": 19
+        },
+        {
+          "name": "KeepAliveTime",
+          "cimType": 19
+        },
+        {
+          "name": "MACAddress",
+          "cimType": 8
+        },
+        {
+          "name": "MTU",
+          "cimType": 19
+        },
+        {
+          "name": "NumForwardPackets",
+          "cimType": 19
+        },
+        {
+          "name": "PMTUBHDetectEnabled",
+          "cimType": 11
+        },
+        {
+          "name": "PMTUDiscoveryEnabled",
+          "cimType": 11
+        },
+        {
+          "name": "ServiceName",
+          "cimType": 8
+        },
+        {
+          "name": "SettingID",
+          "cimType": 8
+        },
+        {
+          "name": "TcpMaxConnectRetransmissions",
+          "cimType": 19
+        },
+        {
+          "name": "TcpMaxDataRetransmissions",
+          "cimType": 19
+        },
+        {
+          "name": "TcpNumConnections",
+          "cimType": 19
+        },
+        {
+          "name": "TcpUseRFC1122UrgentPointer",
+          "cimType": 11
+        },
+        {
+          "name": "TcpWindowSize",
+          "cimType": 18
+        },
+        {
+          "name": "TcpipNetbiosOptions",
+          "cimType": 19
+        },
+        {
+          "name": "WINSEnableLMHostsLookup",
+          "cimType": 11
+        },
+        {
+          "name": "WINSHostLookupFile",
+          "cimType": 8
+        },
+        {
+          "name": "WINSPrimaryServer",
+          "cimType": 8
+        },
+        {
+          "name": "WINSScopeID",
+          "cimType": 8
+        },
+        {
+          "name": "WINSSecondaryServer",
+          "cimType": 8
+        }
+      ]
+    },
+    {
+      "name": "Win32_OperatingSystem",
+      "properties": [
+        {
+          "name": "BootDevice",
+          "cimType": 8
+        },
+        {
+          "name": "BuildNumber",
+          "cimType": 8
+        },
+        {
+          "name": "BuildType",
+          "cimType": 8
+        },
+        {
+          "name": "CSCreationClassName",
+          "cimType": 8
+        },
+        {
+          "name": "CSDVersion",
+          "cimType": 8
+        },
+        {
+          "name": "CSName",
+          "cimType": 8
+        },
+        {
+          "name": "Caption",
+          "cimType": 8
+        },
+        {
+          "name": "CodeSet",
+          "cimType": 8
+        },
+        {
+          "name": "CountryCode",
+          "cimType": 8
+        },
+        {
+          "name": "CreationClassName",
+          "cimType": 8
+        },
+        {
+          "name": "CurrentTimeZone",
+          "cimType": 2
+        },
+        {
+          "name": "DataExecutionPrevention_32BitApplications",
+          "cimType": 11
+        },
+        {
+          "name": "DataExecutionPrevention_Available",
+          "cimType": 11
+        },
+        {
+          "name": "DataExecutionPrevention_Drivers",
+          "cimType": 11
+        },
+        {
+          "name": "DataExecutionPrevention_SupportPolicy",
+          "cimType": 17
+        },
+        {
+          "name": "Debug",
+          "cimType": 11
+        },
+        {
+          "name": "Description",
+          "cimType": 8
+        },
+        {
+          "name": "Distributed",
+          "cimType": 11
+        },
+        {
+          "name": "EncryptionLevel",
+          "cimType": 19
+        },
+        {
+          "name": "ForegroundApplicationBoost",
+          "cimType": 17
+        },
+        {
+          "name": "FreePhysicalMemory",
+          "cimType": 21
+        },
+        {
+          "name": "FreeSpaceInPagingFiles",
+          "cimType": 21
+        },
+        {
+          "name": "FreeVirtualMemory",
+          "cimType": 21
+        },
+        {
+          "name": "InstallDate",
+          "cimType": 101
+        },
+        {
+          "name": "LargeSystemCache",
+          "cimType": 19
+        },
+        {
+          "name": "LastBootUpTime",
+          "cimType": 101
+        },
+        {
+          "name": "LocalDateTime",
+          "cimType": 101
+        },
+        {
+          "name": "Locale",
+          "cimType": 8
+        },
+        {
+          "name": "MUILanguages",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "Manufacturer",
+          "cimType": 8
+        },
+        {
+          "name": "MaxNumberOfProcesses",
+          "cimType": 19
+        },
+        {
+          "name": "MaxProcessMemorySize",
+          "cimType": 21
+        },
+        {
+          "name": "Name",
+          "cimType": 8
+        },
+        {
+          "name": "NumberOfLicensedUsers",
+          "cimType": 19
+        },
+        {
+          "name": "NumberOfProcesses",
+          "cimType": 19
+        },
+        {
+          "name": "NumberOfUsers",
+          "cimType": 19
+        },
+        {
+          "name": "OSArchitecture",
+          "cimType": 8
+        },
+        {
+          "name": "OSLanguage",
+          "cimType": 19
+        },
+        {
+          "name": "OSProductSuite",
+          "cimType": 19
+        },
+        {
+          "name": "OSType",
+          "cimType": 18
+        },
+        {
+          "name": "OperatingSystemSKU",
+          "cimType": 19
+        },
+        {
+          "name": "Organization",
+          "cimType": 8
+        },
+        {
+          "name": "OtherTypeDescription",
+          "cimType": 8
+        },
+        {
+          "name": "PAEEnabled",
+          "cimType": 11
+        },
+        {
+          "name": "PlusProductID",
+          "cimType": 8
+        },
+        {
+          "name": "PlusVersionNumber",
+          "cimType": 8
+        },
+        {
+          "name": "PortableOperatingSystem",
+          "cimType": 11
+        },
+        {
+          "name": "Primary",
+          "cimType": 11
+        },
+        {
+          "name": "ProductType",
+          "cimType": 19
+        },
+        {
+          "name": "RegisteredUser",
+          "cimType": 8
+        },
+        {
+          "name": "SerialNumber",
+          "cimType": 8
+        },
+        {
+          "name": "ServicePackMajorVersion",
+          "cimType": 18
+        },
+        {
+          "name": "ServicePackMinorVersion",
+          "cimType": 18
+        },
+        {
+          "name": "SizeStoredInPagingFiles",
+          "cimType": 21
+        },
+        {
+          "name": "Status",
+          "cimType": 8
+        },
+        {
+          "name": "SuiteMask",
+          "cimType": 19
+        },
+        {
+          "name": "SystemDevice",
+          "cimType": 8
+        },
+        {
+          "name": "SystemDirectory",
+          "cimType": 8
+        },
+        {
+          "name": "SystemDrive",
+          "cimType": 8
+        },
+        {
+          "name": "TotalSwapSpaceSize",
+          "cimType": 21
+        },
+        {
+          "name": "TotalVirtualMemorySize",
+          "cimType": 21
+        },
+        {
+          "name": "TotalVisibleMemorySize",
+          "cimType": 21
+        },
+        {
+          "name": "Version",
+          "cimType": 8
+        },
+        {
+          "name": "WindowsDirectory",
+          "cimType": 8
+        }
+      ]
+    },
+    {
+      "name": "Win32_PhysicalMemory",
+      "properties": [
+        {
+          "name": "Attributes",
+          "cimType": 19
+        },
+        {
+          "name": "BankLabel",
+          "cimType": 8
+        },
+        {
+          "name": "Capacity",
+          "cimType": 21
+        },
+        {
+          "name": "Caption",
+          "cimType": 8
+        },
+        {
+          "name": "ConfiguredClockSpeed",
+          "cimType": 19
+        },
+        {
+          "name": "ConfiguredVoltage",
+          "cimType": 19
+        },
+        {
+          "name": "CreationClassName",
+          "cimType": 8
+        },
+        {
+          "name": "DataWidth",
+          "cimType": 18
+        },
+        {
+          "name": "Description",
+          "cimType": 8
+        },
+        {
+          "name": "DeviceLocator",
+          "cimType": 8
+        },
+        {
+          "name": "FormFactor",
+          "cimType": 18
+        },
+        {
+          "name": "HotSwappable",
+          "cimType": 11
+        },
+        {
+          "name": "InstallDate",
+          "cimType": 101
+        },
+        {
+          "name": "InterleaveDataDepth",
+          "cimType": 18
+        },
+        {
+          "name": "InterleavePosition",
+          "cimType": 19
+        },
+        {
+          "name": "Manufacturer",
+          "cimType": 8
+        },
+        {
+          "name": "MaxVoltage",
+          "cimType": 19
+        },
+        {
+          "name": "MemoryType",
+          "cimType": 18
+        },
+        {
+          "name": "MinVoltage",
+          "cimType": 19
+        },
+        {
+          "name": "Model",
+          "cimType": 8
+        },
+        {
+          "name": "Name",
+          "cimType": 8
+        },
+        {
+          "name": "OtherIdentifyingInfo",
+          "cimType": 8
+        },
+        {
+          "name": "PartNumber",
+          "cimType": 8
+        },
+        {
+          "name": "PositionInRow",
+          "cimType": 19
+        },
+        {
+          "name": "PoweredOn",
+          "cimType": 11
+        },
+        {
+          "name": "Removable",
+          "cimType": 11
+        },
+        {
+          "name": "Replaceable",
+          "cimType": 11
+        },
+        {
+          "name": "SKU",
+          "cimType": 8
+        },
+        {
+          "name": "SMBIOSMemoryType",
+          "cimType": 19
+        },
+        {
+          "name": "SerialNumber",
+          "cimType": 8
+        },
+        {
+          "name": "Speed",
+          "cimType": 19
+        },
+        {
+          "name": "Status",
+          "cimType": 8
+        },
+        {
+          "name": "Tag",
+          "cimType": 8
+        },
+        {
+          "name": "TotalWidth",
+          "cimType": 18
+        },
+        {
+          "name": "TypeDetail",
+          "cimType": 18
+        },
+        {
+          "name": "Version",
+          "cimType": 8
+        }
+      ]
+    },
+    {
+      "name": "Win32_Processor",
+      "properties": [
+        {
+          "name": "AddressWidth",
+          "cimType": 18
+        },
+        {
+          "name": "Architecture",
+          "cimType": 18
+        },
+        {
+          "name": "AssetTag",
+          "cimType": 8
+        },
+        {
+          "name": "Availability",
+          "cimType": 18
+        },
+        {
+          "name": "Caption",
+          "cimType": 8
+        },
+        {
+          "name": "Characteristics",
+          "cimType": 19
+        },
+        {
+          "name": "ConfigManagerErrorCode",
+          "cimType": 19
+        },
+        {
+          "name": "ConfigManagerUserConfig",
+          "cimType": 11
+        },
+        {
+          "name": "CpuStatus",
+          "cimType": 18
+        },
+        {
+          "name": "CreationClassName",
+          "cimType": 8
+        },
+        {
+          "name": "CurrentClockSpeed",
+          "cimType": 19
+        },
+        {
+          "name": "CurrentVoltage",
+          "cimType": 18
+        },
+        {
+          "name": "DataWidth",
+          "cimType": 18
+        },
+        {
+          "name": "Description",
+          "cimType": 8
+        },
+        {
+          "name": "DeviceID",
+          "cimType": 8
+        },
+        {
+          "name": "ErrorCleared",
+          "cimType": 11
+        },
+        {
+          "name": "ErrorDescription",
+          "cimType": 8
+        },
+        {
+          "name": "ExtClock",
+          "cimType": 19
+        },
+        {
+          "name": "Family",
+          "cimType": 18
+        },
+        {
+          "name": "InstallDate",
+          "cimType": 101
+        },
+        {
+          "name": "L2CacheSize",
+          "cimType": 19
+        },
+        {
+          "name": "L2CacheSpeed",
+          "cimType": 19
+        },
+        {
+          "name": "L3CacheSize",
+          "cimType": 19
+        },
+        {
+          "name": "L3CacheSpeed",
+          "cimType": 19
+        },
+        {
+          "name": "LastErrorCode",
+          "cimType": 19
+        },
+        {
+          "name": "Level",
+          "cimType": 18
+        },
+        {
+          "name": "LoadPercentage",
+          "cimType": 18
+        },
+        {
+          "name": "Manufacturer",
+          "cimType": 8
+        },
+        {
+          "name": "MaxClockSpeed",
+          "cimType": 19
+        },
+        {
+          "name": "Name",
+          "cimType": 8
+        },
+        {
+          "name": "NumberOfCores",
+          "cimType": 19
+        },
+        {
+          "name": "NumberOfEnabledCore",
+          "cimType": 19
+        },
+        {
+          "name": "NumberOfLogicalProcessors",
+          "cimType": 19
+        },
+        {
+          "name": "OtherFamilyDescription",
+          "cimType": 8
+        },
+        {
+          "name": "PNPDeviceID",
+          "cimType": 8
+        },
+        {
+          "name": "PartNumber",
+          "cimType": 8
+        },
+        {
+          "name": "PowerManagementCapabilities",
+          "cimType": 18,
+          "array": true
+        },
+        {
+          "name": "PowerManagementSupported",
+          "cimType": 11
+        },
+        {
+          "name": "ProcessorId",
+          "cimType": 8
+        },
+        {
+          "name": "ProcessorType",
+          "cimType": 18
+        },
+        {
+          "name": "Revision",
+          "cimType": 18
+        },
+        {
+          "name": "Role",
+          "cimType": 8
+        },
+        {
+          "name": "SecondLevelAddressTranslationExtensions",
+          "cimType": 11
+        },
+        {
+          "name": "SerialNumber",
+          "cimType": 8
+        },
+        {
+          "name": "SocketDesignation",
+          "cimType": 8
+        },
+        {
+          "name": "Status",
+          "cimType": 8
+        },
+        {
+          "name": "StatusInfo",
+          "cimType": 18
+        },
+        {
+          "name": "Stepping",
+          "cimType": 8
+        },
+        {
+          "name": "SystemCreationClassName",
+          "cimType": 8
+        },
+        {
+          "name": "SystemName",
+          "cimType": 8
+        },
+        {
+          "name": "ThreadCount",
+          "cimType": 19
+        },
+        {
+          "name": "UniqueId",
+          "cimType": 8
+        },
+        {
+          "name": "UpgradeMethod",
+          "cimType": 18
+        },
+        {
+          "name": "VMMonitorModeExtensions",
+          "cimType": 11
+        },
+        {
+          "name": "Version",
+          "cimType": 8
+        },
+        {
+          "name": "VirtualizationFirmwareEnabled",
+          "cimType": 11
+        },
+        {
+          "name": "VoltageCaps",
+          "cimType": 19
+        }
+      ]
+    },
+    {
+      "name": "Win32_Service",
+      "properties": [
+        {
+          "name": "AcceptPause",
+          "cimType": 11
+        },
+        {
+          "name": "AcceptStop",
+          "cimType": 11
+        },
+        {
+          "name": "Caption",
+          "cimType": 8
+        },
+        {
+          "name": "CheckPoint",
+          "cimType": 19
+        },
+        {
+          "name": "CreationClassName",
+          "cimType": 8
+        },
+        {
+          "name": "DelayedAutoStart",
+          "cimType": 11
+        },
+        {
+          "name": "Description",
+          "cimType": 8
+        },
+        {
+          "name": "DesktopInteract",
+          "cimType": 11
+        },
+        {
+          "name": "DisplayName",
+          "cimType": 8
+        },
+        {
+          "name": "ErrorControl",
+          "cimType": 8
+        },
+        {
+          "name": "ExitCode",
+          "cimType": 19
+        },
+        {
+          "name": "InstallDate",
+          "cimType": 101
+        },
+        {
+          "name": "Name",
+          "cimType": 8
+        },
+        {
+          "name": "PathName",
+          "cimType": 8
+        },
+        {
+          "name": "ProcessId",
+          "cimType": 19
+        },
+        {
+          "name": "ServiceSpecificExitCode",
+          "cimType": 19
+        },
+        {
+          "name": "ServiceType",
+          "cimType": 8
+        },
+        {
+          "name": "StartMode",
+          "cimType": 8
+        },
+        {
+          "name": "StartName",
+          "cimType": 8
+        },
+        {
+          "name": "Started",
+          "cimType": 11
+        },
+        {
+          "name": "State",
+          "cimType": 8
+        },
+        {
+          "name": "Status",
+          "cimType": 8
+        },
+        {
+          "name": "SystemCreationClassName",
+          "cimType": 8
+        },
+        {
+          "name": "SystemName",
+          "cimType": 8
+        },
+        {
+          "name": "TagId",
+          "cimType": 19
+        },
+        {
+          "name": "WaitHint",
+          "cimType": 19
+        }
+      ]
+    }
+  ]
+}

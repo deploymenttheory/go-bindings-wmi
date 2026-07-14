@@ -1,0 +1,54 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Build & test
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+          cache: true
+
+      - name: Build
+        run: go build ./...
+
+      - name: Vet (non-generated packages)
+        run: go vet ./cmd/... ./internal/... ./runtime/... ./acceptance/
+
+      # Live WMI queries against the runner's CIM repository.
+      - name: Acceptance tests (live WMI)
+        run: go test ./runtime/... ./acceptance/
+
+  regen:
+    name: Regeneration determinism gate
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+          cache: true
+
+      # Codegen is offline and deterministic from the committed snapshot
+      # (capture is a separate, manual step — schema varies by host).
+      - name: Regenerate from the committed snapshot
+        run: go run ./cmd/generate
+
+      - name: Generated output must match the committed tree
+        shell: bash
+        run: |
+          git add -N bindings
+          git diff --exit-code --stat -- bindings
