@@ -42,10 +42,40 @@ func TestQueryLogicalDisks(t *testing.T) {
 	if err != nil {
 		t.Fatalf("QueryWin32LogicalDisk: %v", err)
 	}
+	if len(disks) == 0 {
+		t.Skip("no fixed disks")
+	}
 	for _, d := range disks {
 		t.Logf("%s size=%d free=%d", d.DeviceID, d.Size, d.FreeSpace)
 		if d.DeviceID == "" {
 			t.Error("logical disk with empty DeviceID")
 		}
+		// Size is a CIM uint64 that WMI returns as a BSTR string; a zero here
+		// would mean the coercion regressed to a failed type assertion.
+		if d.Size == 0 {
+			t.Errorf("disk %s has zero Size (uint64 coercion regressed?)", d.DeviceID)
+		}
 	}
+}
+
+func TestNumericFieldsCoerced(t *testing.T) {
+	svc, err := wmi.Connect(`root\cimv2`)
+	if err != nil {
+		t.Fatalf("Connect: %v", err)
+	}
+	defer svc.Close()
+
+	cpus, err := cimv2.QueryWin32Processor(svc, "")
+	if err != nil {
+		t.Fatalf("QueryWin32Processor: %v", err)
+	}
+	if len(cpus) == 0 {
+		t.Fatal("no processors")
+	}
+	// NumberOfCores is a CIM uint32 returned by WMI as VT_I4; a zero would mean
+	// the width coercion regressed.
+	if cpus[0].NumberOfCores == 0 {
+		t.Errorf("processor NumberOfCores is 0 (uint32 coercion regressed?)")
+	}
+	t.Logf("%s: %d cores, %d logical", cpus[0].Name, cpus[0].NumberOfCores, cpus[0].NumberOfLogicalProcessors)
 }

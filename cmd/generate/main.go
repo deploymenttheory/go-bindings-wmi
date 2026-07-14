@@ -87,12 +87,34 @@ func renderPackage(pkg string, snapshot *cimschema.Snapshot) ([]byte, error) {
 	fmt.Fprintf(&b, "package %s\n\n", pkg)
 	b.WriteString("import wmi \"github.com/deploymenttheory/go-bindings-wmi/runtime/wmi\"\n\n")
 
+	seenClass := map[string]bool{}
 	for _, class := range snapshot.Classes {
 		goName := exportName(class.Name)
+		if goName == "" || seenClass[goName] {
+			continue // unnameable or a Go-name collision across CIM classes
+		}
+		seenClass[goName] = true
+
+		// Deduplicate fields by exported Go name (CIM property names can
+		// collapse to the same identifier); first occurrence wins.
+		type field struct {
+			name, goType, cim string
+		}
+		var fields []field
+		seenField := map[string]bool{}
+		for _, p := range class.Properties {
+			fn := exportName(p.Name)
+			if fn == "" || fn == goName || seenField[fn] {
+				continue
+			}
+			seenField[fn] = true
+			fields = append(fields, field{fn, cimschema.GoType(p), p.Name})
+		}
+
 		fmt.Fprintf(&b, "// %s is the %s CIM class.\n", goName, class.Name)
 		fmt.Fprintf(&b, "type %s struct {\n", goName)
-		for _, p := range class.Properties {
-			fmt.Fprintf(&b, "\t%s %s `cim:%q`\n", exportName(p.Name), cimschema.GoType(p), p.Name)
+		for _, f := range fields {
+			fmt.Fprintf(&b, "\t%s %s `cim:%q`\n", f.name, f.goType, f.cim)
 		}
 		b.WriteString("}\n\n")
 
@@ -104,16 +126,42 @@ func renderPackage(pkg string, snapshot *cimschema.Snapshot) ([]byte, error) {
 		b.WriteString("\tif where != \"\" {\n\t\tq += \" WHERE \" + where\n\t}\n")
 		b.WriteString("\trows, err := svc.Query(q)\n\tif err != nil {\n\t\treturn nil, err\n\t}\n")
 		fmt.Fprintf(&b, "\tout := make([]%s, len(rows))\n", goName)
-		b.WriteString("\tfor i, row := range rows {\n")
-		for _, p := range class.Properties {
-			field := exportName(p.Name)
-			fmt.Fprintf(&b, "\t\tif v, ok := row[%q].(%s); ok {\n\t\t\tout[i].%s = v\n\t\t}\n",
-				p.Name, cimschema.GoType(p), field)
+		if len(fields) > 0 {
+			b.WriteString("\tfor i, row := range rows {\n")
+			for _, f := range fields {
+				if coercer, ok := scalarCoercers[f.goType]; ok {
+					// WMI returns values in a different width/shape than the
+					// CIM-declared type; coerce rather than assert.
+					fmt.Fprintf(&b, "\t\tout[i].%s = wmi.%s(row[%q])\n", f.name, coercer, f.cim)
+				} else {
+					// Slices and `any`: assert, leave zero on mismatch.
+					fmt.Fprintf(&b, "\t\tif v, ok := row[%q].(%s); ok {\n\t\t\tout[i].%s = v\n\t\t}\n",
+						f.cim, f.goType, f.name)
+				}
+			}
+			b.WriteString("\t}\n")
 		}
-		b.WriteString("\t}\n\treturn out, nil\n}\n\n")
+		b.WriteString("\treturn out, nil\n}\n\n")
 	}
 
 	return format.Source([]byte(b.String()))
+}
+
+// scalarCoercers maps a scalar Go field type to its runtime coercion helper.
+// Types absent here (slices, any) fall back to a type assertion.
+var scalarCoercers = map[string]string{
+	"string":  "AsString",
+	"bool":    "AsBool",
+	"int8":    "AsInt8",
+	"int16":   "AsInt16",
+	"int32":   "AsInt32",
+	"int64":   "AsInt64",
+	"uint8":   "AsUint8",
+	"uint16":  "AsUint16",
+	"uint32":  "AsUint32",
+	"uint64":  "AsUint64",
+	"float32": "AsFloat32",
+	"float64": "AsFloat64",
 }
 
 // exportName upper-cases the first letter and strips characters Go rejects in

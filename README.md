@@ -60,13 +60,22 @@ shape to detect end-of-enumeration), and decodes result `VARIANT`s into Go
 values. This is also the seed of a general OLE-automation ergonomics layer
 (VARIANT/BSTR/SAFEARRAY handling).
 
-## Scope (v0)
+## Coverage
 
-A curated set of core `root\cimv2` inventory classes (OS, ComputerSystem,
-BIOS, Processor, LogicalDisk, PhysicalMemory, NetworkAdapterConfiguration,
-Service). Grow coverage by extending the curated list in `cmd/capture` and
-re-capturing; other namespaces (`root\StandardCimv2`, MDM bridge classes) are
-additive.
+The committed snapshot captures **every class in `root\cimv2`** (~1,300):
+`go run ./cmd/capture` enumerates the whole namespace by default (`-classes a,b`
+narrows it). Other namespaces (`root\StandardCimv2`, `root\Microsoft\Windows\*`,
+MDM bridge classes) are additive — capture with `-namespace` and each becomes
+its own package.
+
+## Examples & docs
+
+- [`examples/inventory`](examples/inventory) — runnable: OS, CPU, disks, and
+  running auto-start services via typed queries.
+- [Getting started](docs/getting-started.md)
+- [Capture and generate](docs/capture-and-generate.md) — the metadata pipeline
+- [WQL and VARIANTs](docs/wql-and-variants.md) — types, coercion, decoding
+- [`CLAUDE.md`](CLAUDE.md) — the capture doctrine and why the CLI is minimal
 
 ## License
 

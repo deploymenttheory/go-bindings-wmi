@@ -5,6 +5,7 @@ package wmi
 import (
 	"fmt"
 	"sort"
+	"unsafe"
 
 	win32 "github.com/deploymenttheory/go-bindings-win32/bindings/runtime/win32"
 	"github.com/deploymenttheory/go-bindings-win32/bindings/win32/foundation"
@@ -20,8 +21,66 @@ type PropertyInfo struct {
 
 const (
 	wbemFlagUseAmendedQualifiers = 0x20000
+	wbemFlagDeep                 = 0x0
 	cimFlagArray                 = 0x2000
 )
+
+// ClassNames enumerates every class in the connected namespace (deep), sorted
+// for deterministic snapshots. Use with ClassProperties to capture a whole
+// namespace.
+func (s *Service) ClassNames() ([]string, error) {
+	var enum *wmi.IEnumWbemClassObject
+	if err := s.services.CreateClassEnum(nil,
+		wbemFlagDeep|wbemFlagForwardOnly|wbemFlagReturnImmediately, nil, &enum); err != nil {
+		return nil, fmt.Errorf("wmi: CreateClassEnum: %w", err)
+	}
+	defer enum.Release()
+
+	var names []string
+	for {
+		var obj *wmi.IWbemClassObject
+		var returned uint32
+		objects := []*wmi.IWbemClassObject{obj}
+		hr, err := enum.Next(-1, objects, &returned)
+		if err != nil {
+			return nil, fmt.Errorf("wmi: enumerate classes: %w", err)
+		}
+		if returned == 0 || hr == win32.HRESULT(wmi.WBEM_S_FALSE) {
+			break
+		}
+		name := classNameOf(objects[0])
+		objects[0].Release()
+		if name != "" {
+			names = append(names, name)
+		}
+	}
+	sort.Strings(names)
+	return names, nil
+}
+
+// classNameOf reads the __CLASS system property of a class object.
+func classNameOf(obj *wmi.IWbemClassObject) string {
+	var value variant.VARIANT
+	variant.VariantInit(&value)
+	defer variant.VariantClear(&value)
+	if err := obj.Get("__CLASS", 0, &value, nil, nil); err != nil {
+		return ""
+	}
+	p := (*classNameVariant)(unsafe.Pointer(&value.Anonymous))
+	if p.Vt != vtBSTR {
+		return ""
+	}
+	return win32.UTF16ToString((*uint16)(p.P))
+}
+
+const vtBSTR = 8
+
+type classNameVariant struct {
+	Vt uint16
+	_  [6]byte
+	P  unsafe.Pointer
+	_  uint64
+}
 
 // ClassProperties returns the schema (property name + CIM type) of a class,
 // sorted by name for deterministic snapshots.

@@ -22,40 +22,41 @@ import (
 	"github.com/deploymenttheory/go-bindings-wmi/runtime/wmi"
 )
 
-// curatedClasses is the v0 capture set: the core root\cimv2 inventory
-// classes. Grow this list rather than capturing all ~1,100 cimv2 classes.
-var curatedClasses = []string{
-	"Win32_OperatingSystem",
-	"Win32_ComputerSystem",
-	"Win32_BIOS",
-	"Win32_Processor",
-	"Win32_LogicalDisk",
-	"Win32_PhysicalMemory",
-	"Win32_NetworkAdapterConfiguration",
-	"Win32_Service",
-}
-
 func main() {
 	namespace := flag.String("namespace", `root\cimv2`, "CIM namespace")
+	classFilter := flag.String("classes", "", "comma-separated class list; empty = every class in the namespace")
 	osBuild := flag.String("osbuild", "", "OS build recorded in provenance (informational)")
 	captured := flag.String("captured", "", "capture date (YYYY-MM-DD) recorded in provenance")
 	outDir := flag.String("out", filepath.Join("metadata", "cim"), "snapshot output directory")
 	flag.Parse()
 
-	if err := run(*namespace, *osBuild, *captured, *outDir); err != nil {
+	if err := run(*namespace, *classFilter, *osBuild, *captured, *outDir); err != nil {
 		fmt.Fprintln(os.Stderr, "capture:", err)
 		os.Exit(1)
 	}
 }
 
-func run(namespace, osBuild, captured, outDir string) error {
+func run(namespace, classFilter, osBuild, captured, outDir string) error {
 	svc, err := wmi.Connect(namespace)
 	if err != nil {
 		return err
 	}
 	defer svc.Close()
 
-	classes := append([]string(nil), curatedClasses...)
+	var classes []string
+	if classFilter != "" {
+		for _, name := range strings.Split(classFilter, ",") {
+			if name = strings.TrimSpace(name); name != "" {
+				classes = append(classes, name)
+			}
+		}
+	} else {
+		// Default: the entire namespace.
+		classes, err = svc.ClassNames()
+		if err != nil {
+			return err
+		}
+	}
 	sort.Strings(classes)
 
 	snapshot := cimschema.Snapshot{
