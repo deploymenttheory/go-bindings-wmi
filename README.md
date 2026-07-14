@@ -77,6 +77,16 @@ its own package.
 - [WQL and VARIANTs](docs/wql-and-variants.md) — types, coercion, decoding
 - [`CLAUDE.md`](CLAUDE.md) — the capture doctrine and why the CLI is minimal
 
+## Related projects
+
+Part of the deploymenttheory Windows bindings family:
+
+- [go-winmd](https://github.com/deploymenttheory/go-winmd) — the shared ECMA-335 `.winmd` metadata reader
+- [go-bindings-win32](https://github.com/deploymenttheory/go-bindings-win32) — the Win32 API surface — functions, structs, enums, COM
+- [go-bindings-wdk](https://github.com/deploymenttheory/go-bindings-wdk) — the Windows Driver Kit / user-mode Native API surface
+- **go-bindings-wmi** — typed WMI/CIM classes *(this repo)*
+- [go-bindings-winrt](https://github.com/deploymenttheory/go-bindings-winrt) — WinRT bindings (in progress)
+
 ## License
 
 [MIT](LICENSE).
