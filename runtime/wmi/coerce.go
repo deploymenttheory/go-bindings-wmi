@@ -133,7 +133,17 @@ func asSlice[T any](v any, coerce func(any) T) []T {
 // Slice coercers used by the generated Query<Class> decoders for CIM array
 // properties.
 
+// AsRow returns v as a Row (embedded CIM objects decode to nested Rows);
+// nil for anything else.
+func AsRow(v any) Row {
+	if row, ok := v.(Row); ok {
+		return row
+	}
+	return nil
+}
+
 func AsStringSlice(v any) []string   { return asSlice(v, AsString) }
+func AsRowSlice(v any) []Row         { return asSlice(v, AsRow) }
 func AsBoolSlice(v any) []bool       { return asSlice(v, AsBool) }
 func AsInt8Slice(v any) []int8       { return asSlice(v, AsInt8) }
 func AsInt16Slice(v any) []int16     { return asSlice(v, AsInt16) }

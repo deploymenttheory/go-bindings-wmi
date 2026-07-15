@@ -27,7 +27,7 @@
         },
         {
           "name": "Exotic",
-          "cimType": 102
+          "cimType": 999
         },
         {
           "name": "FooBar",
@@ -47,12 +47,25 @@
           "key": true
         },
         {
+          "name": "Owner",
+          "cimType": 102
+        },
+        {
+          "name": "Parts",
+          "cimType": 13,
+          "array": true
+        },
+        {
           "name": "Ratio",
           "cimType": 4
         },
         {
           "name": "Size",
           "cimType": 21
+        },
+        {
+          "name": "Startup",
+          "cimType": 13
         },
         {
           "name": "Tags",
@@ -72,6 +85,10 @@
             {
               "name": "Timeout",
               "cimType": 19
+            },
+            {
+              "name": "StartupInformation",
+              "cimType": 13
             }
           ],
           "out": [

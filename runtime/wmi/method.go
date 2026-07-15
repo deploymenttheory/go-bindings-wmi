@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"sort"
 	"strings"
+	"unsafe"
 
 	"github.com/deploymenttheory/go-bindings-win32/bindings/win32/foundation"
 	"github.com/deploymenttheory/go-bindings-win32/bindings/win32/system/variant"
@@ -79,20 +80,84 @@ func (s *Service) spawnInParameters(className, method string, in map[string]any)
 	}
 	sort.Strings(params)
 	for _, param := range params {
-		value := in[param]
-		if value == nil {
+		if in[param] == nil {
 			continue
 		}
-		var v variant.VARIANT
-		variant.VariantInit(&v)
-		err := encodeVariant(value, &v)
-		if err == nil {
-			err = instance.Put(param, 0, &v, 0)
-		}
-		variant.VariantClear(&v)
-		if err != nil {
+		if err := s.putValue(instance, param, in[param]); err != nil {
 			instance.Release()
 			return nil, fmt.Errorf("wmi: %s.%s parameter %s: %w", className, method, param, err)
+		}
+	}
+	return instance, nil
+}
+
+// putValue encodes one value onto an instance property. Rows (and plain
+// maps) become spawned embedded instances — their __CLASS key names the
+// class; everything else goes through encodeVariant.
+func (s *Service) putValue(target *wmi.IWbemClassObject, property string, value any) error {
+	var v variant.VARIANT
+	variant.VariantInit(&v)
+	defer variant.VariantClear(&v)
+
+	switch t := value.(type) {
+	case Row:
+		embedded, err := s.embeddedInstance(t)
+		if err != nil {
+			return err
+		}
+		// The VARIANT owns our reference now; VariantClear releases it.
+		pointer := (*variantPtr)(unsafe.Pointer(&v.Anonymous))
+		pointer.Vt = uint16(variant.VT_UNKNOWN)
+		pointer.P = unsafe.Pointer(embedded)
+	case map[string]any:
+		return s.putValue(target, property, Row(t))
+	default:
+		if err := encodeVariant(value, &v); err != nil {
+			return err
+		}
+	}
+	if err := target.Put(property, 0, &v, 0); err != nil {
+		return fmt.Errorf("Put: %w", err)
+	}
+	return nil
+}
+
+// embeddedInstance spawns an instance of an embedded class described by a
+// Row: __CLASS names the class (wmi.Instance sets it; queried rows carry
+// it), the remaining non-system keys become properties — recursively, so
+// embedded objects can nest.
+func (s *Service) embeddedInstance(row Row) (*wmi.IWbemClassObject, error) {
+	class, _ := row["__CLASS"].(string)
+	if class == "" {
+		return nil, fmt.Errorf("wmi: embedded object row has no __CLASS (build it with wmi.Instance)")
+	}
+
+	name := foundation.SysAllocString(class)
+	defer foundation.SysFreeString(name)
+	var classObj *wmi.IWbemClassObject
+	var callResult *wmi.IWbemCallResult
+	if err := s.services.GetObject(name, 0, nil, &classObj, &callResult); err != nil {
+		return nil, fmt.Errorf("wmi: GetObject(%s): %w", class, err)
+	}
+	defer classObj.Release()
+
+	var instance *wmi.IWbemClassObject
+	if err := classObj.SpawnInstance(0, &instance); err != nil {
+		return nil, fmt.Errorf("wmi: SpawnInstance(%s): %w", class, err)
+	}
+
+	properties := make([]string, 0, len(row))
+	for property := range row {
+		if row[property] == nil || strings.HasPrefix(property, "__") {
+			continue // system properties travel implicitly
+		}
+		properties = append(properties, property)
+	}
+	sort.Strings(properties)
+	for _, property := range properties {
+		if err := s.putValue(instance, property, row[property]); err != nil {
+			instance.Release()
+			return nil, fmt.Errorf("wmi: %s.%s: %w", class, property, err)
 		}
 	}
 	return instance, nil

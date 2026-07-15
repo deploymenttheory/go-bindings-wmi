@@ -361,7 +361,7 @@ func nonZeroExpr(ident, goType string) string {
 		return ident
 	case goType == "string":
 		return ident + ` != ""`
-	case goType == "any" || strings.HasPrefix(goType, "[]"):
+	case goType == "any" || goType == "wmi.Row" || strings.HasPrefix(goType, "[]"):
 		return ident + " != nil"
 	default:
 		return ident + " != 0"
@@ -444,6 +444,7 @@ var sliceCoercers = map[string]string{
 	"[]uint64":  "AsUint64Slice",
 	"[]float32": "AsFloat32Slice",
 	"[]float64": "AsFloat64Slice",
+	"[]wmi.Row": "AsRowSlice",
 }
 
 // exportName upper-cases the first letter and strips characters Go rejects in

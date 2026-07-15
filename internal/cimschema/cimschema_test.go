@@ -65,7 +65,10 @@ func TestGoType(t *testing.T) {
 		{Property{CIMType: CIMChar16}, "uint16"},
 		{Property{CIMType: CIMString, Array: true}, "[]string"},
 		{Property{CIMType: CIMUint16 | CIMFlagArray}, "[]uint16"}, // legacy un-normalized shape
-		{Property{CIMType: 102}, "any"},                           // unknown degrades, never fails
+		{Property{CIMType: CIMReference}, "string"},               // REF = object path
+		{Property{CIMType: CIMObject}, "wmi.Row"},                 // embedded object
+		{Property{CIMType: CIMObject, Array: true}, "[]wmi.Row"},
+		{Property{CIMType: 999}, "any"}, // unknown degrades, never fails
 	}
 	for _, c := range cases {
 		if got := GoType(c.p); got != c.want {

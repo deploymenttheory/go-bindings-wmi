@@ -82,6 +82,8 @@ func decodeArrayElement(vt variant.VARENUM, p unsafe.Pointer) any {
 		return float64(*(*float32)(p))
 	case variant.VT_R8:
 		return *(*float64)(p)
+	case variant.VT_UNKNOWN, variant.VT_DISPATCH:
+		return decodeEmbedded(*(*unsafe.Pointer)(p))
 	}
 	return nil
 }

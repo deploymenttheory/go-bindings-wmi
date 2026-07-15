@@ -166,10 +166,6 @@ func (s *Service) Close() {
 	runtime.UnlockOSThread()
 }
 
-// Row is one WMI instance: property name → decoded Go value (string, int64,
-// uint64, bool, float64, []any of those for array properties, or nil).
-type Row map[string]any
-
 // Query runs a WQL query and returns every instance's decoded properties.
 func (s *Service) Query(wql string) ([]Row, error) {
 	enum, err := s.execQuery(wql)
@@ -336,7 +332,8 @@ func decodeObject(obj *wmi.IWbemClassObject) (Row, error) {
 
 // decodeVariant converts a VARIANT to a Go value: scalars widen to string,
 // int64, uint64, bool, or float64; SAFEARRAYs decode to []any of those
-// widened elements. Unsupported types return nil.
+// widened elements; embedded CIM objects (VT_UNKNOWN/VT_DISPATCH) decode to
+// a nested Row. Unsupported types return nil.
 func decodeVariant(v *variant.VARIANT) any {
 	s := (*variantScalar)(unsafe.Pointer(&v.Anonymous))
 	if s.Vt&uint16(variant.VT_ARRAY) != 0 {
@@ -349,6 +346,9 @@ func decodeVariant(v *variant.VARIANT) any {
 	case uint16(variant.VT_BSTR):
 		p := (*variantPtr)(unsafe.Pointer(&v.Anonymous))
 		return win32.UTF16ToString((*uint16)(p.P))
+	case uint16(variant.VT_UNKNOWN), uint16(variant.VT_DISPATCH):
+		p := (*variantPtr)(unsafe.Pointer(&v.Anonymous))
+		return decodeEmbedded(p.P)
 	case uint16(variant.VT_BOOL):
 		return int16(s.U64) != 0
 	case uint16(variant.VT_I1):
@@ -373,4 +373,18 @@ func decodeVariant(v *variant.VARIANT) any {
 		return math.Float64frombits(s.U64)
 	}
 	return nil
+}
+
+// decodeEmbedded decodes an embedded CIM object (WMI hands them out as
+// IWbemClassObject behind IUnknown/IDispatch) into a Row without taking
+// ownership — the VARIANT (or locked SAFEARRAY) keeps the reference.
+func decodeEmbedded(p unsafe.Pointer) any {
+	if p == nil {
+		return nil
+	}
+	row, err := decodeObject((*wmi.IWbemClassObject)(p))
+	if err != nil {
+		return nil
+	}
+	return row
 }

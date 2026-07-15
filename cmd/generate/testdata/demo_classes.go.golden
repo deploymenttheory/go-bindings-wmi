@@ -28,15 +28,18 @@ func QueryDemoEmpty(svc *wmi.Service, where string) ([]DemoEmpty, error) {
 
 // DemoWidget is the Demo_Widget CIM class.
 type DemoWidget struct {
-	Caps      []uint16 `cim:"Caps"`
-	Enabled   bool     `cim:"Enabled"`
-	Exotic    any      `cim:"Exotic"`
-	FooBar    int32    `cim:"FooBar"`
-	Installed string   `cim:"Installed"`
-	Name      string   `cim:"Name"`
-	Ratio     float32  `cim:"Ratio"`
-	Size      uint64   `cim:"Size"`
-	Tags      []string `cim:"Tags"`
+	Caps      []uint16  `cim:"Caps"`
+	Enabled   bool      `cim:"Enabled"`
+	Exotic    any       `cim:"Exotic"`
+	FooBar    int32     `cim:"FooBar"`
+	Installed string    `cim:"Installed"`
+	Name      string    `cim:"Name"`
+	Owner     string    `cim:"Owner"`
+	Parts     []wmi.Row `cim:"Parts"`
+	Ratio     float32   `cim:"Ratio"`
+	Size      uint64    `cim:"Size"`
+	Startup   wmi.Row   `cim:"Startup"`
+	Tags      []string  `cim:"Tags"`
 }
 
 // QueryDemoWidget runs the WQL query against the class and decodes each
@@ -60,8 +63,13 @@ func QueryDemoWidget(svc *wmi.Service, where string) ([]DemoWidget, error) {
 		out[i].FooBar = wmi.AsInt32(row["FooBar"])
 		out[i].Installed = wmi.AsString(row["Installed"])
 		out[i].Name = wmi.AsString(row["Name"])
+		out[i].Owner = wmi.AsString(row["Owner"])
+		out[i].Parts = wmi.AsRowSlice(row["Parts"])
 		out[i].Ratio = wmi.AsFloat32(row["Ratio"])
 		out[i].Size = wmi.AsUint64(row["Size"])
+		if v, ok := row["Startup"].(wmi.Row); ok {
+			out[i].Startup = v
+		}
 		out[i].Tags = wmi.AsStringSlice(row["Tags"])
 	}
 	return out, nil
@@ -75,13 +83,16 @@ type DemoWidgetCreateResult struct {
 
 // DemoWidgetCreate invokes the static Demo_Widget.Create method. Zero-valued
 // in-parameters are omitted so the provider applies its defaults.
-func DemoWidgetCreate(svc *wmi.Service, commandLine string, timeout uint32) (*DemoWidgetCreateResult, error) {
+func DemoWidgetCreate(svc *wmi.Service, commandLine string, timeout uint32, startupInformation wmi.Row) (*DemoWidgetCreateResult, error) {
 	in := map[string]any{}
 	if commandLine != "" {
 		in["CommandLine"] = commandLine
 	}
 	if timeout != 0 {
 		in["Timeout"] = timeout
+	}
+	if startupInformation != nil {
+		in["StartupInformation"] = startupInformation
 	}
 	row, err := svc.ExecMethod("Demo_Widget", "Create", in)
 	if err != nil {
