@@ -6,6 +6,25 @@
   },
   "classes": [
     {
+      "name": "Demo_Binding",
+      "properties": [
+        {
+          "name": "Antecedent",
+          "cimType": 102,
+          "key": true
+        },
+        {
+          "name": "Index",
+          "cimType": 19,
+          "key": true
+        },
+        {
+          "name": "Weight",
+          "cimType": 5
+        }
+      ]
+    },
+    {
       "name": "Demo_Empty",
       "properties": null
     },

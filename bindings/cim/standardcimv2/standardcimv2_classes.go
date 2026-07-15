@@ -32,6 +32,21 @@ func QueryCIMBindsTo(svc *wmi.Service, where string) ([]CIMBindsTo, error) {
 	return out, nil
 }
 
+// GetCIMBindsTo returns the CIM_BindsTo instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetCIMBindsTo(svc *wmi.Service, antecedent string, dependent string) (*CIMBindsTo, error) {
+	where := "Antecedent = " + wmi.WQLValue(antecedent) +
+		" AND " + "Dependent = " + wmi.WQLValue(dependent)
+	out, err := QueryCIMBindsTo(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // CIMBindsToLANEndpoint is the CIM_BindsToLANEndpoint CIM class.
 type CIMBindsToLANEndpoint struct {
 	Antecedent string `cim:"Antecedent"`
@@ -57,6 +72,21 @@ func QueryCIMBindsToLANEndpoint(svc *wmi.Service, where string) ([]CIMBindsToLAN
 		out[i].FrameType = wmi.AsUint16(row["FrameType"])
 	}
 	return out, nil
+}
+
+// GetCIMBindsToLANEndpoint returns the CIM_BindsToLANEndpoint instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetCIMBindsToLANEndpoint(svc *wmi.Service, antecedent string, dependent string) (*CIMBindsToLANEndpoint, error) {
+	where := "Antecedent = " + wmi.WQLValue(antecedent) +
+		" AND " + "Dependent = " + wmi.WQLValue(dependent)
+	out, err := QueryCIMBindsToLANEndpoint(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // CIMClassCreation is the CIM_ClassCreation CIM class.
@@ -252,6 +282,21 @@ func QueryCIMComponent(svc *wmi.Service, where string) ([]CIMComponent, error) {
 	return out, nil
 }
 
+// GetCIMComponent returns the CIM_Component instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetCIMComponent(svc *wmi.Service, groupComponent string, partComponent string) (*CIMComponent, error) {
+	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
+		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+	out, err := QueryCIMComponent(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // CIMConcreteJob is the CIM_ConcreteJob CIM class.
 type CIMConcreteJob struct {
 	Caption               string   `cim:"Caption"`
@@ -347,6 +392,20 @@ func QueryCIMConcreteJob(svc *wmi.Service, where string) ([]CIMConcreteJob, erro
 		out[i].UntilTime = wmi.AsString(row["UntilTime"])
 	}
 	return out, nil
+}
+
+// GetCIMConcreteJob returns the CIM_ConcreteJob instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetCIMConcreteJob(svc *wmi.Service, instanceID string) (*CIMConcreteJob, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryCIMConcreteJob(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // CIMConcreteJobGetErrorResult holds the out-parameters of CIM_ConcreteJob.GetError.
@@ -457,6 +516,20 @@ func QueryCIMDNSGeneralSettingData(svc *wmi.Service, where string) ([]CIMDNSGene
 	return out, nil
 }
 
+// GetCIMDNSGeneralSettingData returns the CIM_DNSGeneralSettingData instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetCIMDNSGeneralSettingData(svc *wmi.Service, instanceID string) (*CIMDNSGeneralSettingData, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryCIMDNSGeneralSettingData(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // CIMDNSProtocolEndpoint is the CIM_DNSProtocolEndpoint CIM class.
 type CIMDNSProtocolEndpoint struct {
 	AvailableRequestedStates []uint16 `cim:"AvailableRequestedStates"`
@@ -538,6 +611,23 @@ func QueryCIMDNSProtocolEndpoint(svc *wmi.Service, where string) ([]CIMDNSProtoc
 	return out, nil
 }
 
+// GetCIMDNSProtocolEndpoint returns the CIM_DNSProtocolEndpoint instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetCIMDNSProtocolEndpoint(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*CIMDNSProtocolEndpoint, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "Name = " + wmi.WQLValue(name) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	out, err := QueryCIMDNSProtocolEndpoint(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // CIMDNSProtocolEndpointRequestStateChangeResult holds the out-parameters of CIM_DNSProtocolEndpoint.RequestStateChange.
 type CIMDNSProtocolEndpointRequestStateChangeResult struct {
 	Job         string
@@ -590,6 +680,21 @@ func QueryCIMDependency(svc *wmi.Service, where string) ([]CIMDependency, error)
 	return out, nil
 }
 
+// GetCIMDependency returns the CIM_Dependency instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetCIMDependency(svc *wmi.Service, antecedent string, dependent string) (*CIMDependency, error) {
+	where := "Antecedent = " + wmi.WQLValue(antecedent) +
+		" AND " + "Dependent = " + wmi.WQLValue(dependent)
+	out, err := QueryCIMDependency(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // CIMDeviceSAPImplementation is the CIM_DeviceSAPImplementation CIM class.
 type CIMDeviceSAPImplementation struct {
 	Antecedent string `cim:"Antecedent"`
@@ -613,6 +718,21 @@ func QueryCIMDeviceSAPImplementation(svc *wmi.Service, where string) ([]CIMDevic
 		out[i].Dependent = wmi.AsString(row["Dependent"])
 	}
 	return out, nil
+}
+
+// GetCIMDeviceSAPImplementation returns the CIM_DeviceSAPImplementation instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetCIMDeviceSAPImplementation(svc *wmi.Service, antecedent string, dependent string) (*CIMDeviceSAPImplementation, error) {
+	where := "Antecedent = " + wmi.WQLValue(antecedent) +
+		" AND " + "Dependent = " + wmi.WQLValue(dependent)
+	out, err := QueryCIMDeviceSAPImplementation(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // CIMElementSettingData is the CIM_ElementSettingData CIM class.
@@ -644,6 +764,21 @@ func QueryCIMElementSettingData(svc *wmi.Service, where string) ([]CIMElementSet
 		out[i].SettingData = wmi.AsString(row["SettingData"])
 	}
 	return out, nil
+}
+
+// GetCIMElementSettingData returns the CIM_ElementSettingData instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetCIMElementSettingData(svc *wmi.Service, managedElement string, settingData string) (*CIMElementSettingData, error) {
+	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
+		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+	out, err := QueryCIMElementSettingData(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // CIMEnabledLogicalElement is the CIM_EnabledLogicalElement CIM class.
@@ -844,6 +979,23 @@ func QueryCIMFilterEntryBase(svc *wmi.Service, where string) ([]CIMFilterEntryBa
 	return out, nil
 }
 
+// GetCIMFilterEntryBase returns the CIM_FilterEntryBase instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetCIMFilterEntryBase(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*CIMFilterEntryBase, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "Name = " + wmi.WQLValue(name) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	out, err := QueryCIMFilterEntryBase(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // CIMIKEAction is the CIM_IKEAction CIM class.
 type CIMIKEAction struct {
 	AggressiveModeGroupID       uint16   `cim:"AggressiveModeGroupID"`
@@ -907,6 +1059,25 @@ func QueryCIMIKEAction(svc *wmi.Service, where string) ([]CIMIKEAction, error) {
 	return out, nil
 }
 
+// GetCIMIKEAction returns the CIM_IKEAction instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetCIMIKEAction(svc *wmi.Service, creationClassName string, policyActionName string, policyRuleCreationClassName string, policyRuleName string, systemCreationClassName string, systemName string) (*CIMIKEAction, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "PolicyActionName = " + wmi.WQLValue(policyActionName) +
+		" AND " + "PolicyRuleCreationClassName = " + wmi.WQLValue(policyRuleCreationClassName) +
+		" AND " + "PolicyRuleName = " + wmi.WQLValue(policyRuleName) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	out, err := QueryCIMIKEAction(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // CIMIKEProposal is the CIM_IKEProposal CIM class.
 type CIMIKEProposal struct {
 	AuthenticationMethod      uint16 `cim:"AuthenticationMethod"`
@@ -954,6 +1125,20 @@ func QueryCIMIKEProposal(svc *wmi.Service, where string) ([]CIMIKEProposal, erro
 		out[i].VendorID = wmi.AsString(row["VendorID"])
 	}
 	return out, nil
+}
+
+// GetCIMIKEProposal returns the CIM_IKEProposal instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetCIMIKEProposal(svc *wmi.Service, instanceID string) (*CIMIKEProposal, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryCIMIKEProposal(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // CIMIKESAEndpoint is the CIM_IKESAEndpoint CIM class.
@@ -1065,6 +1250,23 @@ func QueryCIMIKESAEndpoint(svc *wmi.Service, where string) ([]CIMIKESAEndpoint, 
 	return out, nil
 }
 
+// GetCIMIKESAEndpoint returns the CIM_IKESAEndpoint instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetCIMIKESAEndpoint(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*CIMIKESAEndpoint, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "Name = " + wmi.WQLValue(name) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	out, err := QueryCIMIKESAEndpoint(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // CIMIKESAEndpointRequestStateChangeResult holds the out-parameters of CIM_IKESAEndpoint.RequestStateChange.
 type CIMIKESAEndpointRequestStateChangeResult struct {
 	Job         string
@@ -1123,6 +1325,20 @@ func QueryCIMIPAssignmentSettingData(svc *wmi.Service, where string) ([]CIMIPAss
 		out[i].ProtocolIFType = wmi.AsUint16(row["ProtocolIFType"])
 	}
 	return out, nil
+}
+
+// GetCIMIPAssignmentSettingData returns the CIM_IPAssignmentSettingData instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetCIMIPAssignmentSettingData(svc *wmi.Service, instanceID string) (*CIMIPAssignmentSettingData, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryCIMIPAssignmentSettingData(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // CIMIPProtocolEndpoint is the CIM_IPProtocolEndpoint CIM class.
@@ -1216,6 +1432,23 @@ func QueryCIMIPProtocolEndpoint(svc *wmi.Service, where string) ([]CIMIPProtocol
 		out[i].TransitioningToState = wmi.AsUint16(row["TransitioningToState"])
 	}
 	return out, nil
+}
+
+// GetCIMIPProtocolEndpoint returns the CIM_IPProtocolEndpoint instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetCIMIPProtocolEndpoint(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*CIMIPProtocolEndpoint, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "Name = " + wmi.WQLValue(name) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	out, err := QueryCIMIPProtocolEndpoint(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // CIMIPProtocolEndpointRequestStateChangeResult holds the out-parameters of CIM_IPProtocolEndpoint.RequestStateChange.
@@ -1342,6 +1575,23 @@ func QueryCIMIPsecSAEndpoint(svc *wmi.Service, where string) ([]CIMIPsecSAEndpoi
 		out[i].TransitioningToState = wmi.AsUint16(row["TransitioningToState"])
 	}
 	return out, nil
+}
+
+// GetCIMIPsecSAEndpoint returns the CIM_IPsecSAEndpoint instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetCIMIPsecSAEndpoint(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*CIMIPsecSAEndpoint, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "Name = " + wmi.WQLValue(name) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	out, err := QueryCIMIPsecSAEndpoint(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // CIMIPsecSAEndpointRequestStateChangeResult holds the out-parameters of CIM_IPsecSAEndpoint.RequestStateChange.
@@ -1796,6 +2046,23 @@ func QueryCIMLANEndpoint(svc *wmi.Service, where string) ([]CIMLANEndpoint, erro
 	return out, nil
 }
 
+// GetCIMLANEndpoint returns the CIM_LANEndpoint instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetCIMLANEndpoint(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*CIMLANEndpoint, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "Name = " + wmi.WQLValue(name) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	out, err := QueryCIMLANEndpoint(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // CIMLANEndpointRequestStateChangeResult holds the out-parameters of CIM_LANEndpoint.RequestStateChange.
 type CIMLANEndpointRequestStateChangeResult struct {
 	Job         string
@@ -1918,6 +2185,23 @@ func QueryCIMLogicalDevice(svc *wmi.Service, where string) ([]CIMLogicalDevice, 
 		out[i].TransitioningToState = wmi.AsUint16(row["TransitioningToState"])
 	}
 	return out, nil
+}
+
+// GetCIMLogicalDevice returns the CIM_LogicalDevice instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetCIMLogicalDevice(svc *wmi.Service, creationClassName string, deviceID string, systemCreationClassName string, systemName string) (*CIMLogicalDevice, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "DeviceID = " + wmi.WQLValue(deviceID) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	out, err := QueryCIMLogicalDevice(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // CIMLogicalDeviceEnableDeviceResult holds the out-parameters of CIM_LogicalDevice.EnableDevice.
@@ -2250,6 +2534,23 @@ func QueryCIMLogicalPort(svc *wmi.Service, where string) ([]CIMLogicalPort, erro
 	return out, nil
 }
 
+// GetCIMLogicalPort returns the CIM_LogicalPort instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetCIMLogicalPort(svc *wmi.Service, creationClassName string, deviceID string, systemCreationClassName string, systemName string) (*CIMLogicalPort, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "DeviceID = " + wmi.WQLValue(deviceID) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	out, err := QueryCIMLogicalPort(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // CIMLogicalPortEnableDeviceResult holds the out-parameters of CIM_LogicalPort.EnableDevice.
 type CIMLogicalPortEnableDeviceResult struct {
 	ReturnValue uint32
@@ -2567,6 +2868,20 @@ func QueryCIMNetworkPipe(svc *wmi.Service, where string) ([]CIMNetworkPipe, erro
 	return out, nil
 }
 
+// GetCIMNetworkPipe returns the CIM_NetworkPipe instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetCIMNetworkPipe(svc *wmi.Service, instanceID string) (*CIMNetworkPipe, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryCIMNetworkPipe(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // CIMNetworkPipeRequestStateChangeResult holds the out-parameters of CIM_NetworkPipe.RequestStateChange.
 type CIMNetworkPipeRequestStateChangeResult struct {
 	Job         string
@@ -2721,6 +3036,23 @@ func QueryCIMNetworkPort(svc *wmi.Service, where string) ([]CIMNetworkPort, erro
 		out[i].UsageRestriction = wmi.AsUint16(row["UsageRestriction"])
 	}
 	return out, nil
+}
+
+// GetCIMNetworkPort returns the CIM_NetworkPort instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetCIMNetworkPort(svc *wmi.Service, creationClassName string, deviceID string, systemCreationClassName string, systemName string) (*CIMNetworkPort, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "DeviceID = " + wmi.WQLValue(deviceID) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	out, err := QueryCIMNetworkPort(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // CIMNetworkPortEnableDeviceResult holds the out-parameters of CIM_NetworkPort.EnableDevice.
@@ -2934,6 +3266,20 @@ func QueryCIMNextHopRoute(svc *wmi.Service, where string) ([]CIMNextHopRoute, er
 	return out, nil
 }
 
+// GetCIMNextHopRoute returns the CIM_NextHopRoute instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetCIMNextHopRoute(svc *wmi.Service, instanceID string) (*CIMNextHopRoute, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryCIMNextHopRoute(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // CIMPhase1SAUsedForPhase2 is the CIM_Phase1SAUsedForPhase2 CIM class.
 type CIMPhase1SAUsedForPhase2 struct {
 	Antecedent string `cim:"Antecedent"`
@@ -2957,6 +3303,21 @@ func QueryCIMPhase1SAUsedForPhase2(svc *wmi.Service, where string) ([]CIMPhase1S
 		out[i].Dependent = wmi.AsString(row["Dependent"])
 	}
 	return out, nil
+}
+
+// GetCIMPhase1SAUsedForPhase2 returns the CIM_Phase1SAUsedForPhase2 instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetCIMPhase1SAUsedForPhase2(svc *wmi.Service, antecedent string, dependent string) (*CIMPhase1SAUsedForPhase2, error) {
+	where := "Antecedent = " + wmi.WQLValue(antecedent) +
+		" AND " + "Dependent = " + wmi.WQLValue(dependent)
+	out, err := QueryCIMPhase1SAUsedForPhase2(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // CIMPolicy is the CIM_Policy CIM class.
@@ -3039,6 +3400,25 @@ func QueryCIMPolicyAction(svc *wmi.Service, where string) ([]CIMPolicyAction, er
 	return out, nil
 }
 
+// GetCIMPolicyAction returns the CIM_PolicyAction instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetCIMPolicyAction(svc *wmi.Service, creationClassName string, policyActionName string, policyRuleCreationClassName string, policyRuleName string, systemCreationClassName string, systemName string) (*CIMPolicyAction, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "PolicyActionName = " + wmi.WQLValue(policyActionName) +
+		" AND " + "PolicyRuleCreationClassName = " + wmi.WQLValue(policyRuleCreationClassName) +
+		" AND " + "PolicyRuleName = " + wmi.WQLValue(policyRuleName) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	out, err := QueryCIMPolicyAction(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // CIMPolicyActionInPolicyRule is the CIM_PolicyActionInPolicyRule CIM class.
 type CIMPolicyActionInPolicyRule struct {
 	ActionOrder    uint16 `cim:"ActionOrder"`
@@ -3064,6 +3444,21 @@ func QueryCIMPolicyActionInPolicyRule(svc *wmi.Service, where string) ([]CIMPoli
 		out[i].PartComponent = wmi.AsString(row["PartComponent"])
 	}
 	return out, nil
+}
+
+// GetCIMPolicyActionInPolicyRule returns the CIM_PolicyActionInPolicyRule instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetCIMPolicyActionInPolicyRule(svc *wmi.Service, groupComponent string, partComponent string) (*CIMPolicyActionInPolicyRule, error) {
+	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
+		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+	out, err := QueryCIMPolicyActionInPolicyRule(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // CIMPolicyActionStructure is the CIM_PolicyActionStructure CIM class.
@@ -3093,6 +3488,21 @@ func QueryCIMPolicyActionStructure(svc *wmi.Service, where string) ([]CIMPolicyA
 	return out, nil
 }
 
+// GetCIMPolicyActionStructure returns the CIM_PolicyActionStructure instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetCIMPolicyActionStructure(svc *wmi.Service, groupComponent string, partComponent string) (*CIMPolicyActionStructure, error) {
+	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
+		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+	out, err := QueryCIMPolicyActionStructure(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // CIMPolicyComponent is the CIM_PolicyComponent CIM class.
 type CIMPolicyComponent struct {
 	GroupComponent string `cim:"GroupComponent"`
@@ -3116,6 +3526,21 @@ func QueryCIMPolicyComponent(svc *wmi.Service, where string) ([]CIMPolicyCompone
 		out[i].PartComponent = wmi.AsString(row["PartComponent"])
 	}
 	return out, nil
+}
+
+// GetCIMPolicyComponent returns the CIM_PolicyComponent instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetCIMPolicyComponent(svc *wmi.Service, groupComponent string, partComponent string) (*CIMPolicyComponent, error) {
+	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
+		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+	out, err := QueryCIMPolicyComponent(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // CIMPolicyRule is the CIM_PolicyRule CIM class.
@@ -3175,6 +3600,23 @@ func QueryCIMPolicyRule(svc *wmi.Service, where string) ([]CIMPolicyRule, error)
 		out[i].SystemName = wmi.AsString(row["SystemName"])
 	}
 	return out, nil
+}
+
+// GetCIMPolicyRule returns the CIM_PolicyRule instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetCIMPolicyRule(svc *wmi.Service, creationClassName string, policyRuleName string, systemCreationClassName string, systemName string) (*CIMPolicyRule, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "PolicyRuleName = " + wmi.WQLValue(policyRuleName) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	out, err := QueryCIMPolicyRule(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // CIMPolicySet is the CIM_PolicySet CIM class.
@@ -3243,6 +3685,21 @@ func QueryCIMPolicySetComponent(svc *wmi.Service, where string) ([]CIMPolicySetC
 	return out, nil
 }
 
+// GetCIMPolicySetComponent returns the CIM_PolicySetComponent instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetCIMPolicySetComponent(svc *wmi.Service, groupComponent string, partComponent string) (*CIMPolicySetComponent, error) {
+	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
+		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+	out, err := QueryCIMPolicySetComponent(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // CIMPortImplementsEndpoint is the CIM_PortImplementsEndpoint CIM class.
 type CIMPortImplementsEndpoint struct {
 	Antecedent string `cim:"Antecedent"`
@@ -3266,6 +3723,21 @@ func QueryCIMPortImplementsEndpoint(svc *wmi.Service, where string) ([]CIMPortIm
 		out[i].Dependent = wmi.AsString(row["Dependent"])
 	}
 	return out, nil
+}
+
+// GetCIMPortImplementsEndpoint returns the CIM_PortImplementsEndpoint instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetCIMPortImplementsEndpoint(svc *wmi.Service, antecedent string, dependent string) (*CIMPortImplementsEndpoint, error) {
+	where := "Antecedent = " + wmi.WQLValue(antecedent) +
+		" AND " + "Dependent = " + wmi.WQLValue(dependent)
+	out, err := QueryCIMPortImplementsEndpoint(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // CIMProtocolEndpoint is the CIM_ProtocolEndpoint CIM class.
@@ -3343,6 +3815,23 @@ func QueryCIMProtocolEndpoint(svc *wmi.Service, where string) ([]CIMProtocolEndp
 		out[i].TransitioningToState = wmi.AsUint16(row["TransitioningToState"])
 	}
 	return out, nil
+}
+
+// GetCIMProtocolEndpoint returns the CIM_ProtocolEndpoint instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetCIMProtocolEndpoint(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*CIMProtocolEndpoint, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "Name = " + wmi.WQLValue(name) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	out, err := QueryCIMProtocolEndpoint(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // CIMProtocolEndpointRequestStateChangeResult holds the out-parameters of CIM_ProtocolEndpoint.RequestStateChange.
@@ -3451,6 +3940,23 @@ func QueryCIMRemoteServiceAccessPoint(svc *wmi.Service, where string) ([]CIMRemo
 	return out, nil
 }
 
+// GetCIMRemoteServiceAccessPoint returns the CIM_RemoteServiceAccessPoint instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetCIMRemoteServiceAccessPoint(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*CIMRemoteServiceAccessPoint, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "Name = " + wmi.WQLValue(name) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	out, err := QueryCIMRemoteServiceAccessPoint(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // CIMRemoteServiceAccessPointRequestStateChangeResult holds the out-parameters of CIM_RemoteServiceAccessPoint.RequestStateChange.
 type CIMRemoteServiceAccessPointRequestStateChangeResult struct {
 	Job         string
@@ -3503,6 +4009,21 @@ func QueryCIMRouteUsesEndpoint(svc *wmi.Service, where string) ([]CIMRouteUsesEn
 	return out, nil
 }
 
+// GetCIMRouteUsesEndpoint returns the CIM_RouteUsesEndpoint instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetCIMRouteUsesEndpoint(svc *wmi.Service, antecedent string, dependent string) (*CIMRouteUsesEndpoint, error) {
+	where := "Antecedent = " + wmi.WQLValue(antecedent) +
+		" AND " + "Dependent = " + wmi.WQLValue(dependent)
+	out, err := QueryCIMRouteUsesEndpoint(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // CIMSAAction is the CIM_SAAction CIM class.
 type CIMSAAction struct {
 	Caption                     string   `cim:"Caption"`
@@ -3550,6 +4071,25 @@ func QueryCIMSAAction(svc *wmi.Service, where string) ([]CIMSAAction, error) {
 		out[i].SystemName = wmi.AsString(row["SystemName"])
 	}
 	return out, nil
+}
+
+// GetCIMSAAction returns the CIM_SAAction instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetCIMSAAction(svc *wmi.Service, creationClassName string, policyActionName string, policyRuleCreationClassName string, policyRuleName string, systemCreationClassName string, systemName string) (*CIMSAAction, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "PolicyActionName = " + wmi.WQLValue(policyActionName) +
+		" AND " + "PolicyRuleCreationClassName = " + wmi.WQLValue(policyRuleCreationClassName) +
+		" AND " + "PolicyRuleName = " + wmi.WQLValue(policyRuleName) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	out, err := QueryCIMSAAction(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // CIMSANegotiationAction is the CIM_SANegotiationAction CIM class.
@@ -3607,6 +4147,25 @@ func QueryCIMSANegotiationAction(svc *wmi.Service, where string) ([]CIMSANegotia
 	return out, nil
 }
 
+// GetCIMSANegotiationAction returns the CIM_SANegotiationAction instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetCIMSANegotiationAction(svc *wmi.Service, creationClassName string, policyActionName string, policyRuleCreationClassName string, policyRuleName string, systemCreationClassName string, systemName string) (*CIMSANegotiationAction, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "PolicyActionName = " + wmi.WQLValue(policyActionName) +
+		" AND " + "PolicyRuleCreationClassName = " + wmi.WQLValue(policyRuleCreationClassName) +
+		" AND " + "PolicyRuleName = " + wmi.WQLValue(policyRuleName) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	out, err := QueryCIMSANegotiationAction(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // CIMSAPSAPDependency is the CIM_SAPSAPDependency CIM class.
 type CIMSAPSAPDependency struct {
 	Antecedent string `cim:"Antecedent"`
@@ -3630,6 +4189,21 @@ func QueryCIMSAPSAPDependency(svc *wmi.Service, where string) ([]CIMSAPSAPDepend
 		out[i].Dependent = wmi.AsString(row["Dependent"])
 	}
 	return out, nil
+}
+
+// GetCIMSAPSAPDependency returns the CIM_SAPSAPDependency instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetCIMSAPSAPDependency(svc *wmi.Service, antecedent string, dependent string) (*CIMSAPSAPDependency, error) {
+	where := "Antecedent = " + wmi.WQLValue(antecedent) +
+		" AND " + "Dependent = " + wmi.WQLValue(dependent)
+	out, err := QueryCIMSAPSAPDependency(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // CIMSAProposal is the CIM_SAProposal CIM class.
@@ -3659,6 +4233,20 @@ func QueryCIMSAProposal(svc *wmi.Service, where string) ([]CIMSAProposal, error)
 		out[i].InstanceID = wmi.AsString(row["InstanceID"])
 	}
 	return out, nil
+}
+
+// GetCIMSAProposal returns the CIM_SAProposal instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetCIMSAProposal(svc *wmi.Service, instanceID string) (*CIMSAProposal, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryCIMSAProposal(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // CIMSARule is the CIM_SARule CIM class.
@@ -3722,6 +4310,23 @@ func QueryCIMSARule(svc *wmi.Service, where string) ([]CIMSARule, error) {
 	return out, nil
 }
 
+// GetCIMSARule returns the CIM_SARule instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetCIMSARule(svc *wmi.Service, creationClassName string, policyRuleName string, systemCreationClassName string, systemName string) (*CIMSARule, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "PolicyRuleName = " + wmi.WQLValue(policyRuleName) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	out, err := QueryCIMSARule(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // CIMScopedSettingData is the CIM_ScopedSettingData CIM class.
 type CIMScopedSettingData struct {
 	Caption     string `cim:"Caption"`
@@ -3749,6 +4354,20 @@ func QueryCIMScopedSettingData(svc *wmi.Service, where string) ([]CIMScopedSetti
 		out[i].InstanceID = wmi.AsString(row["InstanceID"])
 	}
 	return out, nil
+}
+
+// GetCIMScopedSettingData returns the CIM_ScopedSettingData instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetCIMScopedSettingData(svc *wmi.Service, instanceID string) (*CIMScopedSettingData, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryCIMScopedSettingData(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // CIMSecurityAssociationEndpoint is the CIM_SecurityAssociationEndpoint CIM class.
@@ -3838,6 +4457,23 @@ func QueryCIMSecurityAssociationEndpoint(svc *wmi.Service, where string) ([]CIMS
 		out[i].TransitioningToState = wmi.AsUint16(row["TransitioningToState"])
 	}
 	return out, nil
+}
+
+// GetCIMSecurityAssociationEndpoint returns the CIM_SecurityAssociationEndpoint instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetCIMSecurityAssociationEndpoint(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*CIMSecurityAssociationEndpoint, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "Name = " + wmi.WQLValue(name) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	out, err := QueryCIMSecurityAssociationEndpoint(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // CIMSecurityAssociationEndpointRequestStateChangeResult holds the out-parameters of CIM_SecurityAssociationEndpoint.RequestStateChange.
@@ -3936,6 +4572,23 @@ func QueryCIMServiceAccessPoint(svc *wmi.Service, where string) ([]CIMServiceAcc
 	return out, nil
 }
 
+// GetCIMServiceAccessPoint returns the CIM_ServiceAccessPoint instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetCIMServiceAccessPoint(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*CIMServiceAccessPoint, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "Name = " + wmi.WQLValue(name) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	out, err := QueryCIMServiceAccessPoint(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // CIMServiceAccessPointRequestStateChangeResult holds the out-parameters of CIM_ServiceAccessPoint.RequestStateChange.
 type CIMServiceAccessPointRequestStateChangeResult struct {
 	Job         string
@@ -3990,6 +4643,20 @@ func QueryCIMSettingData(svc *wmi.Service, where string) ([]CIMSettingData, erro
 		out[i].InstanceID = wmi.AsString(row["InstanceID"])
 	}
 	return out, nil
+}
+
+// GetCIMSettingData returns the CIM_SettingData instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetCIMSettingData(svc *wmi.Service, instanceID string) (*CIMSettingData, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryCIMSettingData(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFT3DPrinter is the MSFT_3DPrinter CIM class.
@@ -4089,6 +4756,23 @@ func QueryMSFT3DPrinter(svc *wmi.Service, where string) ([]MSFT3DPrinter, error)
 		out[i].WorkflowPolicy = wmi.AsUint32(row["WorkflowPolicy"])
 	}
 	return out, nil
+}
+
+// GetMSFT3DPrinter returns the MSFT_3DPrinter instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFT3DPrinter(svc *wmi.Service, computerName string, deviceType uint32, name string, typeArg uint32) (*MSFT3DPrinter, error) {
+	where := "ComputerName = " + wmi.WQLValue(computerName) +
+		" AND " + "DeviceType = " + wmi.WQLValue(deviceType) +
+		" AND " + "Name = " + wmi.WQLValue(name) +
+		" AND " + "Type = " + wmi.WQLValue(typeArg)
+	out, err := QueryMSFT3DPrinter(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFT3DPrinterAddByAdaptivePortResult holds the out-parameters of MSFT_3DPrinter.AddByAdaptivePort.
@@ -4389,6 +5073,22 @@ func QueryMSFTAdaptivePrinterPort(svc *wmi.Service, where string) ([]MSFTAdaptiv
 	return out, nil
 }
 
+// GetMSFTAdaptivePrinterPort returns the MSFT_AdaptivePrinterPort instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTAdaptivePrinterPort(svc *wmi.Service, computerName string, name string, portMonitor string) (*MSFTAdaptivePrinterPort, error) {
+	where := "ComputerName = " + wmi.WQLValue(computerName) +
+		" AND " + "Name = " + wmi.WQLValue(name) +
+		" AND " + "PortMonitor = " + wmi.WQLValue(portMonitor)
+	out, err := QueryMSFTAdaptivePrinterPort(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTDAClientExperienceConfiguration is the MSFT_DAClientExperienceConfiguration CIM class.
 type MSFTDAClientExperienceConfiguration struct {
 	Caption                          string   `cim:"Caption"`
@@ -4440,6 +5140,20 @@ func QueryMSFTDAClientExperienceConfiguration(svc *wmi.Service, where string) ([
 		out[i].UserInterface = wmi.AsBool(row["UserInterface"])
 	}
 	return out, nil
+}
+
+// GetMSFTDAClientExperienceConfiguration returns the MSFT_DAClientExperienceConfiguration instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTDAClientExperienceConfiguration(svc *wmi.Service, instanceID string) (*MSFTDAClientExperienceConfiguration, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTDAClientExperienceConfiguration(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTDAClientExperienceConfigurationResetResult holds the out-parameters of MSFT_DAClientExperienceConfiguration.Reset.
@@ -4534,6 +5248,20 @@ func QueryMSFTDAConnectionStatus(svc *wmi.Service, where string) ([]MSFTDAConnec
 	return out, nil
 }
 
+// GetMSFTDAConnectionStatus returns the MSFT_DAConnectionStatus instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTDAConnectionStatus(svc *wmi.Service, instanceID string) (*MSFTDAConnectionStatus, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTDAConnectionStatus(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTDASettingsIndication is the MSFT_DASettingsIndication CIM class.
 type MSFTDASettingsIndication struct {
 }
@@ -4598,6 +5326,20 @@ func QueryMSFTDASiteTableEntry(svc *wmi.Service, where string) ([]MSFTDASiteTabl
 		out[i].TeredoServerIP = wmi.AsString(row["TeredoServerIP"])
 	}
 	return out, nil
+}
+
+// GetMSFTDASiteTableEntry returns the MSFT_DASiteTableEntry instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTDASiteTableEntry(svc *wmi.Service, instanceID string) (*MSFTDASiteTableEntry, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTDASiteTableEntry(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTDASiteTableEntryDisableResult holds the out-parameters of MSFT_DASiteTableEntry.Disable.
@@ -4795,6 +5537,23 @@ func QueryMSFTDNSClient(svc *wmi.Service, where string) ([]MSFTDNSClient, error)
 	return out, nil
 }
 
+// GetMSFTDNSClient returns the MSFT_DNSClient instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTDNSClient(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*MSFTDNSClient, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "Name = " + wmi.WQLValue(name) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	out, err := QueryMSFTDNSClient(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTDNSClientRegisterResult holds the out-parameters of MSFT_DNSClient.Register.
 type MSFTDNSClientRegisterResult struct {
 	ReturnValue uint32
@@ -4882,6 +5641,21 @@ func QueryMSFTDNSClientCache(svc *wmi.Service, where string) ([]MSFTDNSClientCac
 		out[i].Type = wmi.AsUint16(row["Type"])
 	}
 	return out, nil
+}
+
+// GetMSFTDNSClientCache returns the MSFT_DNSClientCache instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTDNSClientCache(svc *wmi.Service, entry string, name string) (*MSFTDNSClientCache, error) {
+	where := "Entry = " + wmi.WQLValue(entry) +
+		" AND " + "Name = " + wmi.WQLValue(name)
+	out, err := QueryMSFTDNSClientCache(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTDNSClientCacheClearResult holds the out-parameters of MSFT_DNSClientCache.Clear.
@@ -4988,6 +5762,23 @@ func QueryMSFTDNSClientDohServerAddress(svc *wmi.Service, where string) ([]MSFTD
 	return out, nil
 }
 
+// GetMSFTDNSClientDohServerAddress returns the MSFT_DNSClientDohServerAddress instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTDNSClientDohServerAddress(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*MSFTDNSClientDohServerAddress, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "Name = " + wmi.WQLValue(name) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	out, err := QueryMSFTDNSClientDohServerAddress(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTDNSClientDohServerAddressRequestStateChangeResult holds the out-parameters of MSFT_DNSClientDohServerAddress.RequestStateChange.
 type MSFTDNSClientDohServerAddressRequestStateChangeResult struct {
 	Job         string
@@ -5060,6 +5851,20 @@ func QueryMSFTDNSClientGlobalSetting(svc *wmi.Service, where string) ([]MSFTDNSC
 		out[i].UseSuffixSearchList = wmi.AsBool(row["UseSuffixSearchList"])
 	}
 	return out, nil
+}
+
+// GetMSFTDNSClientGlobalSetting returns the MSFT_DNSClientGlobalSetting instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTDNSClientGlobalSetting(svc *wmi.Service, instanceID string) (*MSFTDNSClientGlobalSetting, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTDNSClientGlobalSetting(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTDNSClientServerAddress is the MSFT_DNSClientServerAddress CIM class.
@@ -5147,6 +5952,23 @@ func QueryMSFTDNSClientServerAddress(svc *wmi.Service, where string) ([]MSFTDNSC
 		out[i].TransitioningToState = wmi.AsUint16(row["TransitioningToState"])
 	}
 	return out, nil
+}
+
+// GetMSFTDNSClientServerAddress returns the MSFT_DNSClientServerAddress instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTDNSClientServerAddress(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*MSFTDNSClientServerAddress, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "Name = " + wmi.WQLValue(name) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	out, err := QueryMSFTDNSClientServerAddress(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTDNSClientServerAddressRequestStateChangeResult holds the out-parameters of MSFT_DNSClientServerAddress.RequestStateChange.
@@ -5290,6 +6112,22 @@ func QueryMSFTLocalPrinterPort(svc *wmi.Service, where string) ([]MSFTLocalPrint
 	return out, nil
 }
 
+// GetMSFTLocalPrinterPort returns the MSFT_LocalPrinterPort instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTLocalPrinterPort(svc *wmi.Service, computerName string, name string, portMonitor string) (*MSFTLocalPrinterPort, error) {
+	where := "ComputerName = " + wmi.WQLValue(computerName) +
+		" AND " + "Name = " + wmi.WQLValue(name) +
+		" AND " + "PortMonitor = " + wmi.WQLValue(portMonitor)
+	out, err := QueryMSFTLocalPrinterPort(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTLprPrinterPort is the MSFT_LprPrinterPort CIM class.
 type MSFTLprPrinterPort struct {
 	Caption             string   `cim:"Caption"`
@@ -5347,6 +6185,22 @@ func QueryMSFTLprPrinterPort(svc *wmi.Service, where string) ([]MSFTLprPrinterPo
 	return out, nil
 }
 
+// GetMSFTLprPrinterPort returns the MSFT_LprPrinterPort instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTLprPrinterPort(svc *wmi.Service, computerName string, name string, portMonitor string) (*MSFTLprPrinterPort, error) {
+	where := "ComputerName = " + wmi.WQLValue(computerName) +
+		" AND " + "Name = " + wmi.WQLValue(name) +
+		" AND " + "PortMonitor = " + wmi.WQLValue(portMonitor)
+	out, err := QueryMSFTLprPrinterPort(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNCSIPolicyConfiguration is the MSFT_NCSIPolicyConfiguration CIM class.
 type MSFTNCSIPolicyConfiguration struct {
 	Caption                        string   `cim:"Caption"`
@@ -5386,6 +6240,20 @@ func QueryMSFTNCSIPolicyConfiguration(svc *wmi.Service, where string) ([]MSFTNCS
 		out[i].PolicyStore = wmi.AsString(row["PolicyStore"])
 	}
 	return out, nil
+}
+
+// GetMSFTNCSIPolicyConfiguration returns the MSFT_NCSIPolicyConfiguration instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNCSIPolicyConfiguration(svc *wmi.Service, instanceID string) (*MSFTNCSIPolicyConfiguration, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNCSIPolicyConfiguration(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNCSIPolicyConfigurationResetResult holds the out-parameters of MSFT_NCSIPolicyConfiguration.Reset.
@@ -5470,6 +6338,20 @@ func QueryMSFTNet6to4Configuration(svc *wmi.Service, where string) ([]MSFTNet6to
 	return out, nil
 }
 
+// GetMSFTNet6to4Configuration returns the MSFT_Net6to4Configuration instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNet6to4Configuration(svc *wmi.Service, instanceID string) (*MSFTNet6to4Configuration, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNet6to4Configuration(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNet6to4ConfigurationResetResult holds the out-parameters of MSFT_Net6to4Configuration.Reset.
 type MSFTNet6to4ConfigurationResetResult struct {
 	OutputObject wmi.Row
@@ -5540,6 +6422,21 @@ func QueryMSFTNet6to4State(svc *wmi.Service, where string) ([]MSFTNet6to4State, 
 		out[i].SettingData = wmi.AsString(row["SettingData"])
 	}
 	return out, nil
+}
+
+// GetMSFTNet6to4State returns the MSFT_Net6to4State instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNet6to4State(svc *wmi.Service, managedElement string, settingData string) (*MSFTNet6to4State, error) {
+	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
+		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+	out, err := QueryMSFTNet6to4State(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetAdapter is the MSFT_NetAdapter CIM class.
@@ -5767,6 +6664,23 @@ func QueryMSFTNetAdapter(svc *wmi.Service, where string) ([]MSFTNetAdapter, erro
 		out[i].ISCSIInterface = wmi.AsBool(row["iSCSIInterface"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetAdapter returns the MSFT_NetAdapter instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapter(svc *wmi.Service, creationClassName string, deviceID string, systemCreationClassName string, systemName string) (*MSFTNetAdapter, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "DeviceID = " + wmi.WQLValue(deviceID) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	out, err := QueryMSFTNetAdapter(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetAdapterDisableResult holds the out-parameters of MSFT_NetAdapter.Disable.
@@ -6108,6 +7022,21 @@ func QueryMSFTNetAdapterAdvancedPropertyElementSetting(svc *wmi.Service, where s
 	return out, nil
 }
 
+// GetMSFTNetAdapterAdvancedPropertyElementSetting returns the MSFT_NetAdapterAdvancedPropertyElementSetting instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterAdvancedPropertyElementSetting(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetAdapterAdvancedPropertyElementSetting, error) {
+	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
+		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+	out, err := QueryMSFTNetAdapterAdvancedPropertyElementSetting(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetAdapterAdvancedPropertySettingData is the MSFT_NetAdapterAdvancedPropertySettingData CIM class.
 type MSFTNetAdapterAdvancedPropertySettingData struct {
 	Caption                   string   `cim:"Caption"`
@@ -6175,6 +7104,20 @@ func QueryMSFTNetAdapterAdvancedPropertySettingData(svc *wmi.Service, where stri
 	return out, nil
 }
 
+// GetMSFTNetAdapterAdvancedPropertySettingData returns the MSFT_NetAdapterAdvancedPropertySettingData instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterAdvancedPropertySettingData(svc *wmi.Service, instanceID string) (*MSFTNetAdapterAdvancedPropertySettingData, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetAdapterAdvancedPropertySettingData(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetAdapterAdvancedPropertySettingDataResetResult holds the out-parameters of MSFT_NetAdapterAdvancedPropertySettingData.Reset.
 type MSFTNetAdapterAdvancedPropertySettingDataResetResult struct {
 	CmdletOutput wmi.Row
@@ -6228,6 +7171,21 @@ func QueryMSFTNetAdapterBindingElementSetting(svc *wmi.Service, where string) ([
 	return out, nil
 }
 
+// GetMSFTNetAdapterBindingElementSetting returns the MSFT_NetAdapterBindingElementSetting instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterBindingElementSetting(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetAdapterBindingElementSetting, error) {
+	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
+		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+	out, err := QueryMSFTNetAdapterBindingElementSetting(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetAdapterBindingSettingData is the MSFT_NetAdapterBindingSettingData CIM class.
 type MSFTNetAdapterBindingSettingData struct {
 	BindName             string `cim:"BindName"`
@@ -6277,6 +7235,20 @@ func QueryMSFTNetAdapterBindingSettingData(svc *wmi.Service, where string) ([]MS
 		out[i].SystemName = wmi.AsString(row["SystemName"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetAdapterBindingSettingData returns the MSFT_NetAdapterBindingSettingData instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterBindingSettingData(svc *wmi.Service, instanceID string) (*MSFTNetAdapterBindingSettingData, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetAdapterBindingSettingData(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetAdapterBindingSettingDataDisableResult holds the out-parameters of MSFT_NetAdapterBindingSettingData.Disable.
@@ -6427,6 +7399,21 @@ func QueryMSFTNetAdapterChecksumOffloadElementSetting(svc *wmi.Service, where st
 	return out, nil
 }
 
+// GetMSFTNetAdapterChecksumOffloadElementSetting returns the MSFT_NetAdapterChecksumOffloadElementSetting instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterChecksumOffloadElementSetting(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetAdapterChecksumOffloadElementSetting, error) {
+	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
+		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+	out, err := QueryMSFTNetAdapterChecksumOffloadElementSetting(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetAdapterChecksumOffloadEncapsulationTypes is the MSFT_NetAdapterChecksumOffloadEncapsulationTypes CIM class.
 type MSFTNetAdapterChecksumOffloadEncapsulationTypes struct {
 	NdisEncapsulationIeeLlcSnapRouted   bool `cim:"NdisEncapsulationIeeLlcSnapRouted"`
@@ -6509,6 +7496,20 @@ func QueryMSFTNetAdapterChecksumOffloadSettingData(svc *wmi.Service, where strin
 		out[i].UdpIPv6Enabled = wmi.AsUint32(row["UdpIPv6Enabled"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetAdapterChecksumOffloadSettingData returns the MSFT_NetAdapterChecksumOffloadSettingData instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterChecksumOffloadSettingData(svc *wmi.Service, instanceID string) (*MSFTNetAdapterChecksumOffloadSettingData, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetAdapterChecksumOffloadSettingData(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetAdapterChecksumOffloadSettingDataDisableResult holds the out-parameters of MSFT_NetAdapterChecksumOffloadSettingData.Disable.
@@ -6624,6 +7625,21 @@ func QueryMSFTNetAdapterDataPathConfigurationElementSetting(svc *wmi.Service, wh
 	return out, nil
 }
 
+// GetMSFTNetAdapterDataPathConfigurationElementSetting returns the MSFT_NetAdapterDataPathConfigurationElementSetting instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterDataPathConfigurationElementSetting(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetAdapterDataPathConfigurationElementSetting, error) {
+	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
+		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+	out, err := QueryMSFTNetAdapterDataPathConfigurationElementSetting(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetAdapterDataPathConfigurationSettingData is the MSFT_NetAdapterDataPathConfigurationSettingData CIM class.
 type MSFTNetAdapterDataPathConfigurationSettingData struct {
 	Caption              string `cim:"Caption"`
@@ -6665,6 +7681,20 @@ func QueryMSFTNetAdapterDataPathConfigurationSettingData(svc *wmi.Service, where
 	return out, nil
 }
 
+// GetMSFTNetAdapterDataPathConfigurationSettingData returns the MSFT_NetAdapterDataPathConfigurationSettingData instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterDataPathConfigurationSettingData(svc *wmi.Service, instanceID string) (*MSFTNetAdapterDataPathConfigurationSettingData, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetAdapterDataPathConfigurationSettingData(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetAdapterElementSettingData is the MSFT_NetAdapterElementSettingData CIM class.
 type MSFTNetAdapterElementSettingData struct {
 	IsCurrent      uint16 `cim:"IsCurrent"`
@@ -6694,6 +7724,21 @@ func QueryMSFTNetAdapterElementSettingData(svc *wmi.Service, where string) ([]MS
 		out[i].SettingData = wmi.AsString(row["SettingData"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetAdapterElementSettingData returns the MSFT_NetAdapterElementSettingData instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterElementSettingData(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetAdapterElementSettingData, error) {
+	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
+		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+	out, err := QueryMSFTNetAdapterElementSettingData(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetAdapterEncapsulatedPacketTaskOffloadCapabilities is the MSFT_NetAdapterEncapsulatedPacketTaskOffloadCapabilities CIM class.
@@ -6793,6 +7838,21 @@ func QueryMSFTNetAdapterEncapsulatedPacketTaskOffloadElementSetting(svc *wmi.Ser
 	return out, nil
 }
 
+// GetMSFTNetAdapterEncapsulatedPacketTaskOffloadElementSetting returns the MSFT_NetAdapterEncapsulatedPacketTaskOffloadElementSetting instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterEncapsulatedPacketTaskOffloadElementSetting(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetAdapterEncapsulatedPacketTaskOffloadElementSetting, error) {
+	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
+		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+	out, err := QueryMSFTNetAdapterEncapsulatedPacketTaskOffloadElementSetting(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetAdapterEncapsulatedPacketTaskOffloadSettingData is the MSFT_NetAdapterEncapsulatedPacketTaskOffloadSettingData CIM class.
 type MSFTNetAdapterEncapsulatedPacketTaskOffloadSettingData struct {
 	Caption                                                string  `cim:"Caption"`
@@ -6846,6 +7906,20 @@ func QueryMSFTNetAdapterEncapsulatedPacketTaskOffloadSettingData(svc *wmi.Servic
 		out[i].VxlanUDPPortNumber = wmi.AsUint16(row["VxlanUDPPortNumber"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetAdapterEncapsulatedPacketTaskOffloadSettingData returns the MSFT_NetAdapterEncapsulatedPacketTaskOffloadSettingData instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterEncapsulatedPacketTaskOffloadSettingData(svc *wmi.Service, instanceID string) (*MSFTNetAdapterEncapsulatedPacketTaskOffloadSettingData, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetAdapterEncapsulatedPacketTaskOffloadSettingData(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetAdapterEncapsulatedPacketTaskOffloadSettingDataDisableResult holds the out-parameters of MSFT_NetAdapterEncapsulatedPacketTaskOffloadSettingData.Disable.
@@ -6929,6 +8003,21 @@ func QueryMSFTNetAdapterHardwareInfoElementSetting(svc *wmi.Service, where strin
 		out[i].SettingData = wmi.AsString(row["SettingData"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetAdapterHardwareInfoElementSetting returns the MSFT_NetAdapterHardwareInfoElementSetting instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterHardwareInfoElementSetting(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetAdapterHardwareInfoElementSetting, error) {
+	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
+		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+	out, err := QueryMSFTNetAdapterHardwareInfoElementSetting(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetAdapterHardwareInfoSettingData is the MSFT_NetAdapterHardwareInfoSettingData CIM class.
@@ -7040,6 +8129,20 @@ func QueryMSFTNetAdapterHardwareInfoSettingData(svc *wmi.Service, where string) 
 	return out, nil
 }
 
+// GetMSFTNetAdapterHardwareInfoSettingData returns the MSFT_NetAdapterHardwareInfoSettingData instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterHardwareInfoSettingData(svc *wmi.Service, instanceID string) (*MSFTNetAdapterHardwareInfoSettingData, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetAdapterHardwareInfoSettingData(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetAdapterIPsecOffloadV2ElementSetting is the MSFT_NetAdapterIPsecOffloadV2ElementSetting CIM class.
 type MSFTNetAdapterIPsecOffloadV2ElementSetting struct {
 	IsCurrent      uint16 `cim:"IsCurrent"`
@@ -7069,6 +8172,21 @@ func QueryMSFTNetAdapterIPsecOffloadV2ElementSetting(svc *wmi.Service, where str
 		out[i].SettingData = wmi.AsString(row["SettingData"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetAdapterIPsecOffloadV2ElementSetting returns the MSFT_NetAdapterIPsecOffloadV2ElementSetting instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterIPsecOffloadV2ElementSetting(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetAdapterIPsecOffloadV2ElementSetting, error) {
+	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
+		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+	out, err := QueryMSFTNetAdapterIPsecOffloadV2ElementSetting(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetAdapterIPsecOffloadV2SettingData is the MSFT_NetAdapterIPsecOffloadV2SettingData CIM class.
@@ -7160,6 +8278,20 @@ func QueryMSFTNetAdapterIPsecOffloadV2SettingData(svc *wmi.Service, where string
 		out[i].UdpEspSupported = wmi.AsUint32(row["UdpEspSupported"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetAdapterIPsecOffloadV2SettingData returns the MSFT_NetAdapterIPsecOffloadV2SettingData instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterIPsecOffloadV2SettingData(svc *wmi.Service, instanceID string) (*MSFTNetAdapterIPsecOffloadV2SettingData, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetAdapterIPsecOffloadV2SettingData(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetAdapterIPsecOffloadV2SettingDataDisableResult holds the out-parameters of MSFT_NetAdapterIPsecOffloadV2SettingData.Disable.
@@ -7357,6 +8489,21 @@ func QueryMSFTNetAdapterLsoElementSetting(svc *wmi.Service, where string) ([]MSF
 	return out, nil
 }
 
+// GetMSFTNetAdapterLsoElementSetting returns the MSFT_NetAdapterLsoElementSetting instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterLsoElementSetting(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetAdapterLsoElementSetting, error) {
+	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
+		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+	out, err := QueryMSFTNetAdapterLsoElementSetting(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetAdapterLsoEncapsulationTypes is the MSFT_NetAdapterLsoEncapsulationTypes CIM class.
 type MSFTNetAdapterLsoEncapsulationTypes struct {
 	NdisEncapsulationIeeLlcSnapRouted   bool `cim:"NdisEncapsulationIeeLlcSnapRouted"`
@@ -7441,6 +8588,20 @@ func QueryMSFTNetAdapterLsoSettingData(svc *wmi.Service, where string) ([]MSFTNe
 		out[i].V1IPv4Enabled = wmi.AsBool(row["V1IPv4Enabled"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetAdapterLsoSettingData returns the MSFT_NetAdapterLsoSettingData instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterLsoSettingData(svc *wmi.Service, instanceID string) (*MSFTNetAdapterLsoSettingData, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetAdapterLsoSettingData(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetAdapterLsoSettingDataDisableResult holds the out-parameters of MSFT_NetAdapterLsoSettingData.Disable.
@@ -7532,6 +8693,21 @@ func QueryMSFTNetAdapterPacketDirectElementSetting(svc *wmi.Service, where strin
 	return out, nil
 }
 
+// GetMSFTNetAdapterPacketDirectElementSetting returns the MSFT_NetAdapterPacketDirectElementSetting instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterPacketDirectElementSetting(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetAdapterPacketDirectElementSetting, error) {
+	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
+		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+	out, err := QueryMSFTNetAdapterPacketDirectElementSetting(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetAdapterPacketDirectSettingData is the MSFT_NetAdapterPacketDirectSettingData CIM class.
 type MSFTNetAdapterPacketDirectSettingData struct {
 	Capabilities         wmi.Row `cim:"Capabilities"`
@@ -7581,6 +8757,20 @@ func QueryMSFTNetAdapterPacketDirectSettingData(svc *wmi.Service, where string) 
 		out[i].SystemName = wmi.AsString(row["SystemName"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetAdapterPacketDirectSettingData returns the MSFT_NetAdapterPacketDirectSettingData instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterPacketDirectSettingData(svc *wmi.Service, instanceID string) (*MSFTNetAdapterPacketDirectSettingData, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetAdapterPacketDirectSettingData(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetAdapterPacketDirectSettingDataDisableResult holds the out-parameters of MSFT_NetAdapterPacketDirectSettingData.Disable.
@@ -7658,6 +8848,21 @@ func QueryMSFTNetAdapterPowerManagementElementSetting(svc *wmi.Service, where st
 	return out, nil
 }
 
+// GetMSFTNetAdapterPowerManagementElementSetting returns the MSFT_NetAdapterPowerManagementElementSetting instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterPowerManagementElementSetting(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetAdapterPowerManagementElementSetting, error) {
+	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
+		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+	out, err := QueryMSFTNetAdapterPowerManagementElementSetting(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetAdapterPowerManagementSettingData is the MSFT_NetAdapterPowerManagementSettingData CIM class.
 type MSFTNetAdapterPowerManagementSettingData struct {
 	AllowComputerToTurnOffDevice uint32    `cim:"AllowComputerToTurnOffDevice"`
@@ -7715,6 +8920,20 @@ func QueryMSFTNetAdapterPowerManagementSettingData(svc *wmi.Service, where strin
 		out[i].WakePatterns = wmi.AsRowSlice(row["WakePatterns"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetAdapterPowerManagementSettingData returns the MSFT_NetAdapterPowerManagementSettingData instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterPowerManagementSettingData(svc *wmi.Service, instanceID string) (*MSFTNetAdapterPowerManagementSettingData, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetAdapterPowerManagementSettingData(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetAdapterPowerManagementSettingDataDisableResult holds the out-parameters of MSFT_NetAdapterPowerManagementSettingData.Disable.
@@ -8164,6 +9383,21 @@ func QueryMSFTNetAdapterQosElementSetting(svc *wmi.Service, where string) ([]MSF
 	return out, nil
 }
 
+// GetMSFTNetAdapterQosElementSetting returns the MSFT_NetAdapterQosElementSetting instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterQosElementSetting(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetAdapterQosElementSetting, error) {
+	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
+		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+	out, err := QueryMSFTNetAdapterQosElementSetting(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetAdapterQosSettingData is the MSFT_NetAdapterQosSettingData CIM class.
 type MSFTNetAdapterQosSettingData struct {
 	Caption              string  `cim:"Caption"`
@@ -8217,6 +9451,20 @@ func QueryMSFTNetAdapterQosSettingData(svc *wmi.Service, where string) ([]MSFTNe
 		out[i].SystemName = wmi.AsString(row["SystemName"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetAdapterQosSettingData returns the MSFT_NetAdapterQosSettingData instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterQosSettingData(svc *wmi.Service, instanceID string) (*MSFTNetAdapterQosSettingData, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetAdapterQosSettingData(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetAdapterQosSettingDataDisableResult holds the out-parameters of MSFT_NetAdapterQosSettingData.Disable.
@@ -8294,6 +9542,21 @@ func QueryMSFTNetAdapterRdmaElementSetting(svc *wmi.Service, where string) ([]MS
 	return out, nil
 }
 
+// GetMSFTNetAdapterRdmaElementSetting returns the MSFT_NetAdapterRdmaElementSetting instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterRdmaElementSetting(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetAdapterRdmaElementSetting, error) {
+	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
+		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+	out, err := QueryMSFTNetAdapterRdmaElementSetting(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetAdapterRdmaSettingData is the MSFT_NetAdapterRdmaSettingData CIM class.
 type MSFTNetAdapterRdmaSettingData struct {
 	Caption                    string  `cim:"Caption"`
@@ -8361,6 +9624,20 @@ func QueryMSFTNetAdapterRdmaSettingData(svc *wmi.Service, where string) ([]MSFTN
 		out[i].SystemName = wmi.AsString(row["SystemName"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetAdapterRdmaSettingData returns the MSFT_NetAdapterRdmaSettingData instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterRdmaSettingData(svc *wmi.Service, instanceID string) (*MSFTNetAdapterRdmaSettingData, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetAdapterRdmaSettingData(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetAdapterRdmaSettingDataDisableResult holds the out-parameters of MSFT_NetAdapterRdmaSettingData.Disable.
@@ -8463,6 +9740,21 @@ func QueryMSFTNetAdapterRscElementSetting(svc *wmi.Service, where string) ([]MSF
 	return out, nil
 }
 
+// GetMSFTNetAdapterRscElementSetting returns the MSFT_NetAdapterRscElementSetting instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterRscElementSetting(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetAdapterRscElementSetting, error) {
+	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
+		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+	out, err := QueryMSFTNetAdapterRscElementSetting(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetAdapterRscSettingData is the MSFT_NetAdapterRscSettingData CIM class.
 type MSFTNetAdapterRscSettingData struct {
 	Caption                 string  `cim:"Caption"`
@@ -8514,6 +9806,20 @@ func QueryMSFTNetAdapterRscSettingData(svc *wmi.Service, where string) ([]MSFTNe
 		out[i].SystemName = wmi.AsString(row["SystemName"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetAdapterRscSettingData returns the MSFT_NetAdapterRscSettingData instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterRscSettingData(svc *wmi.Service, instanceID string) (*MSFTNetAdapterRscSettingData, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetAdapterRscSettingData(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetAdapterRscSettingDataDisableResult holds the out-parameters of MSFT_NetAdapterRscSettingData.Disable.
@@ -8603,6 +9909,21 @@ func QueryMSFTNetAdapterRssElementSetting(svc *wmi.Service, where string) ([]MSF
 		out[i].SettingData = wmi.AsString(row["SettingData"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetAdapterRssElementSetting returns the MSFT_NetAdapterRssElementSetting instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterRssElementSetting(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetAdapterRssElementSetting, error) {
+	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
+		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+	out, err := QueryMSFTNetAdapterRssElementSetting(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetAdapterRssSettingData is the MSFT_NetAdapterRssSettingData CIM class.
@@ -8718,6 +10039,20 @@ func QueryMSFTNetAdapterRssSettingData(svc *wmi.Service, where string) ([]MSFTNe
 	return out, nil
 }
 
+// GetMSFTNetAdapterRssSettingData returns the MSFT_NetAdapterRssSettingData instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterRssSettingData(svc *wmi.Service, instanceID string) (*MSFTNetAdapterRssSettingData, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetAdapterRssSettingData(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetAdapterRssSettingDataDisableResult holds the out-parameters of MSFT_NetAdapterRssSettingData.Disable.
 type MSFTNetAdapterRssSettingDataDisableResult struct {
 	CmdletOutput wmi.Row
@@ -8799,6 +10134,20 @@ func QueryMSFTNetAdapterSettingData(svc *wmi.Service, where string) ([]MSFTNetAd
 	return out, nil
 }
 
+// GetMSFTNetAdapterSettingData returns the MSFT_NetAdapterSettingData instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterSettingData(svc *wmi.Service, instanceID string) (*MSFTNetAdapterSettingData, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetAdapterSettingData(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetAdapterSriovCapabilities is the MSFT_NetAdapterSriovCapabilities CIM class.
 type MSFTNetAdapterSriovCapabilities struct {
 	AsymmetricQueuePairsForNonDefaultVPortsSupported bool   `cim:"AsymmetricQueuePairsForNonDefaultVPortsSupported"`
@@ -8873,6 +10222,21 @@ func QueryMSFTNetAdapterSriovElementSetting(svc *wmi.Service, where string) ([]M
 	return out, nil
 }
 
+// GetMSFTNetAdapterSriovElementSetting returns the MSFT_NetAdapterSriovElementSetting instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterSriovElementSetting(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetAdapterSriovElementSetting, error) {
+	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
+		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+	out, err := QueryMSFTNetAdapterSriovElementSetting(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetAdapterSriovSettingData is the MSFT_NetAdapterSriovSettingData CIM class.
 type MSFTNetAdapterSriovSettingData struct {
 	Caption                              string  `cim:"Caption"`
@@ -8944,6 +10308,20 @@ func QueryMSFTNetAdapterSriovSettingData(svc *wmi.Service, where string) ([]MSFT
 		out[i].SystemName = wmi.AsString(row["SystemName"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetAdapterSriovSettingData returns the MSFT_NetAdapterSriovSettingData instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterSriovSettingData(svc *wmi.Service, instanceID string) (*MSFTNetAdapterSriovSettingData, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetAdapterSriovSettingData(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetAdapterSriovSettingDataDisableResult holds the out-parameters of MSFT_NetAdapterSriovSettingData.Disable.
@@ -9021,6 +10399,21 @@ func QueryMSFTNetAdapterSriovVfElementSetting(svc *wmi.Service, where string) ([
 	return out, nil
 }
 
+// GetMSFTNetAdapterSriovVfElementSetting returns the MSFT_NetAdapterSriovVfElementSetting instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterSriovVfElementSetting(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetAdapterSriovVfElementSetting, error) {
+	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
+		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+	out, err := QueryMSFTNetAdapterSriovVfElementSetting(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetAdapterSriovVfSettingData is the MSFT_NetAdapterSriovVfSettingData CIM class.
 type MSFTNetAdapterSriovVfSettingData struct {
 	Caption              string   `cim:"Caption"`
@@ -9074,6 +10467,20 @@ func QueryMSFTNetAdapterSriovVfSettingData(svc *wmi.Service, where string) ([]MS
 	return out, nil
 }
 
+// GetMSFTNetAdapterSriovVfSettingData returns the MSFT_NetAdapterSriovVfSettingData instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterSriovVfSettingData(svc *wmi.Service, instanceID string) (*MSFTNetAdapterSriovVfSettingData, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetAdapterSriovVfSettingData(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetAdapterStatisticsElementSetting is the MSFT_NetAdapterStatisticsElementSetting CIM class.
 type MSFTNetAdapterStatisticsElementSetting struct {
 	IsCurrent      uint16 `cim:"IsCurrent"`
@@ -9103,6 +10510,21 @@ func QueryMSFTNetAdapterStatisticsElementSetting(svc *wmi.Service, where string)
 		out[i].SettingData = wmi.AsString(row["SettingData"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetAdapterStatisticsElementSetting returns the MSFT_NetAdapterStatisticsElementSetting instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterStatisticsElementSetting(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetAdapterStatisticsElementSetting, error) {
+	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
+		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+	out, err := QueryMSFTNetAdapterStatisticsElementSetting(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetAdapterStatisticsSettingData is the MSFT_NetAdapterStatisticsSettingData CIM class.
@@ -9186,6 +10608,20 @@ func QueryMSFTNetAdapterStatisticsSettingData(svc *wmi.Service, where string) ([
 		out[i].SystemName = wmi.AsString(row["SystemName"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetAdapterStatisticsSettingData returns the MSFT_NetAdapterStatisticsSettingData instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterStatisticsSettingData(svc *wmi.Service, instanceID string) (*MSFTNetAdapterStatisticsSettingData, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetAdapterStatisticsSettingData(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetAdapterUdpSegmentationOffloadCapabilities is the MSFT_NetAdapterUdpSegmentationOffloadCapabilities CIM class.
@@ -9281,6 +10717,21 @@ func QueryMSFTNetAdapterUroElementSetting(svc *wmi.Service, where string) ([]MSF
 	return out, nil
 }
 
+// GetMSFTNetAdapterUroElementSetting returns the MSFT_NetAdapterUroElementSetting instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterUroElementSetting(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetAdapterUroElementSetting, error) {
+	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
+		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+	out, err := QueryMSFTNetAdapterUroElementSetting(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetAdapterUroSettingData is the MSFT_NetAdapterUroSettingData CIM class.
 type MSFTNetAdapterUroSettingData struct {
 	Caption                 string  `cim:"Caption"`
@@ -9326,6 +10777,20 @@ func QueryMSFTNetAdapterUroSettingData(svc *wmi.Service, where string) ([]MSFTNe
 		}
 	}
 	return out, nil
+}
+
+// GetMSFTNetAdapterUroSettingData returns the MSFT_NetAdapterUroSettingData instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterUroSettingData(svc *wmi.Service, instanceID string) (*MSFTNetAdapterUroSettingData, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetAdapterUroSettingData(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetAdapterUroSettingDataDisableResult holds the out-parameters of MSFT_NetAdapterUroSettingData.Disable.
@@ -9411,6 +10876,21 @@ func QueryMSFTNetAdapterUsoElementSetting(svc *wmi.Service, where string) ([]MSF
 	return out, nil
 }
 
+// GetMSFTNetAdapterUsoElementSetting returns the MSFT_NetAdapterUsoElementSetting instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterUsoElementSetting(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetAdapterUsoElementSetting, error) {
+	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
+		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+	out, err := QueryMSFTNetAdapterUsoElementSetting(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetAdapterUsoEncapsulationTypes is the MSFT_NetAdapterUsoEncapsulationTypes CIM class.
 type MSFTNetAdapterUsoEncapsulationTypes struct {
 	NdisEncapsulationIeeLlcSnapRouted   bool `cim:"NdisEncapsulationIeeLlcSnapRouted"`
@@ -9487,6 +10967,20 @@ func QueryMSFTNetAdapterUsoSettingData(svc *wmi.Service, where string) ([]MSFTNe
 		}
 	}
 	return out, nil
+}
+
+// GetMSFTNetAdapterUsoSettingData returns the MSFT_NetAdapterUsoSettingData instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterUsoSettingData(svc *wmi.Service, instanceID string) (*MSFTNetAdapterUsoSettingData, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetAdapterUsoSettingData(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetAdapterUsoSettingDataDisableResult holds the out-parameters of MSFT_NetAdapterUsoSettingData.Disable.
@@ -9578,6 +11072,21 @@ func QueryMSFTNetAdapterVPortElementSetting(svc *wmi.Service, where string) ([]M
 	return out, nil
 }
 
+// GetMSFTNetAdapterVPortElementSetting returns the MSFT_NetAdapterVPortElementSetting instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterVPortElementSetting(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetAdapterVPortElementSetting, error) {
+	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
+		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+	out, err := QueryMSFTNetAdapterVPortElementSetting(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetAdapterVPortSettingData is the MSFT_NetAdapterVPortSettingData CIM class.
 type MSFTNetAdapterVPortSettingData struct {
 	Caption               string    `cim:"Caption"`
@@ -9637,6 +11146,20 @@ func QueryMSFTNetAdapterVPortSettingData(svc *wmi.Service, where string) ([]MSFT
 	return out, nil
 }
 
+// GetMSFTNetAdapterVPortSettingData returns the MSFT_NetAdapterVPortSettingData instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterVPortSettingData(svc *wmi.Service, instanceID string) (*MSFTNetAdapterVPortSettingData, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetAdapterVPortSettingData(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetAdapterVmqElementSetting is the MSFT_NetAdapterVmqElementSetting CIM class.
 type MSFTNetAdapterVmqElementSetting struct {
 	IsCurrent      uint16 `cim:"IsCurrent"`
@@ -9668,6 +11191,21 @@ func QueryMSFTNetAdapterVmqElementSetting(svc *wmi.Service, where string) ([]MSF
 	return out, nil
 }
 
+// GetMSFTNetAdapterVmqElementSetting returns the MSFT_NetAdapterVmqElementSetting instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterVmqElementSetting(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetAdapterVmqElementSetting, error) {
+	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
+		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+	out, err := QueryMSFTNetAdapterVmqElementSetting(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetAdapterVmqQueueElementSetting is the MSFT_NetAdapterVmqQueueElementSetting CIM class.
 type MSFTNetAdapterVmqQueueElementSetting struct {
 	IsCurrent      uint16 `cim:"IsCurrent"`
@@ -9697,6 +11235,21 @@ func QueryMSFTNetAdapterVmqQueueElementSetting(svc *wmi.Service, where string) (
 		out[i].SettingData = wmi.AsString(row["SettingData"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetAdapterVmqQueueElementSetting returns the MSFT_NetAdapterVmqQueueElementSetting instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterVmqQueueElementSetting(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetAdapterVmqQueueElementSetting, error) {
+	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
+		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+	out, err := QueryMSFTNetAdapterVmqQueueElementSetting(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetAdapterVmqQueueSettingData is the MSFT_NetAdapterVmqQueueSettingData CIM class.
@@ -9752,6 +11305,20 @@ func QueryMSFTNetAdapterVmqQueueSettingData(svc *wmi.Service, where string) ([]M
 		out[i].VmID = wmi.AsString(row["VmID"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetAdapterVmqQueueSettingData returns the MSFT_NetAdapterVmqQueueSettingData instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterVmqQueueSettingData(svc *wmi.Service, instanceID string) (*MSFTNetAdapterVmqQueueSettingData, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetAdapterVmqQueueSettingData(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetAdapterVmqSettingData is the MSFT_NetAdapterVmqSettingData CIM class.
@@ -9823,6 +11390,20 @@ func QueryMSFTNetAdapterVmqSettingData(svc *wmi.Service, where string) ([]MSFTNe
 		out[i].VlanFilteringSupported = wmi.AsBool(row["VlanFilteringSupported"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetAdapterVmqSettingData returns the MSFT_NetAdapterVmqSettingData instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterVmqSettingData(svc *wmi.Service, instanceID string) (*MSFTNetAdapterVmqSettingData, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetAdapterVmqSettingData(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetAdapterVmqSettingDataDisableResult holds the out-parameters of MSFT_NetAdapterVmqSettingData.Disable.
@@ -10374,6 +11955,23 @@ func QueryMSFTNetAddressFilter(svc *wmi.Service, where string) ([]MSFTNetAddress
 	return out, nil
 }
 
+// GetMSFTNetAddressFilter returns the MSFT_NetAddressFilter instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAddressFilter(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*MSFTNetAddressFilter, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "Name = " + wmi.WQLValue(name) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	out, err := QueryMSFTNetAddressFilter(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetAddressFilterQueryIsolationTypeResult holds the out-parameters of MSFT_NetAddressFilter.QueryIsolationType.
 type MSFTNetAddressFilterQueryIsolationTypeResult struct {
 	IsolationType uint32
@@ -10459,6 +12057,23 @@ func QueryMSFTNetApplicationFilter(svc *wmi.Service, where string) ([]MSFTNetApp
 		out[i].SystemName = wmi.AsString(row["SystemName"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetApplicationFilter returns the MSFT_NetApplicationFilter instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetApplicationFilter(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*MSFTNetApplicationFilter, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "Name = " + wmi.WQLValue(name) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	out, err := QueryMSFTNetApplicationFilter(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetBaseIPProtocol is the MSFT_NetBaseIPProtocol CIM class.
@@ -10568,6 +12183,23 @@ func QueryMSFTNetBaseIPProtocol(svc *wmi.Service, where string) ([]MSFTNetBaseIP
 	return out, nil
 }
 
+// GetMSFTNetBaseIPProtocol returns the MSFT_NetBaseIPProtocol instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetBaseIPProtocol(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*MSFTNetBaseIPProtocol, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "Name = " + wmi.WQLValue(name) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	out, err := QueryMSFTNetBaseIPProtocol(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetBaseIPProtocolRequestStateChangeResult holds the out-parameters of MSFT_NetBaseIPProtocol.RequestStateChange.
 type MSFTNetBaseIPProtocolRequestStateChangeResult struct {
 	Job         string
@@ -10652,6 +12284,20 @@ func QueryMSFTNetBranchCacheCache(svc *wmi.Service, where string) ([]MSFTNetBran
 	return out, nil
 }
 
+// GetMSFTNetBranchCacheCache returns the MSFT_NetBranchCacheCache instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetBranchCacheCache(svc *wmi.Service, instanceID string) (*MSFTNetBranchCacheCache, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetBranchCacheCache(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetBranchCacheClientSettingData is the MSFT_NetBranchCacheClientSettingData CIM class.
 type MSFTNetBranchCacheClientSettingData struct {
 	Caption                                    string   `cim:"Caption"`
@@ -10697,6 +12343,20 @@ func QueryMSFTNetBranchCacheClientSettingData(svc *wmi.Service, where string) ([
 	return out, nil
 }
 
+// GetMSFTNetBranchCacheClientSettingData returns the MSFT_NetBranchCacheClientSettingData instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetBranchCacheClientSettingData(svc *wmi.Service, instanceID string) (*MSFTNetBranchCacheClientSettingData, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetBranchCacheClientSettingData(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetBranchCacheContentServerSettingData is the MSFT_NetBranchCacheContentServerSettingData CIM class.
 type MSFTNetBranchCacheContentServerSettingData struct {
 	Caption                string `cim:"Caption"`
@@ -10726,6 +12386,20 @@ func QueryMSFTNetBranchCacheContentServerSettingData(svc *wmi.Service, where str
 		out[i].InstanceID = wmi.AsString(row["InstanceID"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetBranchCacheContentServerSettingData returns the MSFT_NetBranchCacheContentServerSettingData instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetBranchCacheContentServerSettingData(svc *wmi.Service, instanceID string) (*MSFTNetBranchCacheContentServerSettingData, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetBranchCacheContentServerSettingData(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetBranchCacheDataCache is the MSFT_NetBranchCacheDataCache CIM class.
@@ -10789,6 +12463,20 @@ func QueryMSFTNetBranchCacheDataCache(svc *wmi.Service, where string) ([]MSFTNet
 	return out, nil
 }
 
+// GetMSFTNetBranchCacheDataCache returns the MSFT_NetBranchCacheDataCache instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetBranchCacheDataCache(svc *wmi.Service, instanceID string) (*MSFTNetBranchCacheDataCache, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetBranchCacheDataCache(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetBranchCacheDataCacheExtension is the MSFT_NetBranchCacheDataCacheExtension CIM class.
 type MSFTNetBranchCacheDataCacheExtension struct {
 	CacheFileDirectoryPath               string   `cim:"CacheFileDirectoryPath"`
@@ -10844,6 +12532,20 @@ func QueryMSFTNetBranchCacheDataCacheExtension(svc *wmi.Service, where string) (
 		out[i].StatusDescriptions = wmi.AsStringSlice(row["StatusDescriptions"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetBranchCacheDataCacheExtension returns the MSFT_NetBranchCacheDataCacheExtension instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetBranchCacheDataCacheExtension(svc *wmi.Service, instanceID string) (*MSFTNetBranchCacheDataCacheExtension, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetBranchCacheDataCacheExtension(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetBranchCacheHashCache is the MSFT_NetBranchCacheHashCache CIM class.
@@ -10905,6 +12607,20 @@ func QueryMSFTNetBranchCacheHashCache(svc *wmi.Service, where string) ([]MSFTNet
 	return out, nil
 }
 
+// GetMSFTNetBranchCacheHashCache returns the MSFT_NetBranchCacheHashCache instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetBranchCacheHashCache(svc *wmi.Service, instanceID string) (*MSFTNetBranchCacheHashCache, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetBranchCacheHashCache(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetBranchCacheHostedCacheServerSettingData is the MSFT_NetBranchCacheHostedCacheServerSettingData CIM class.
 type MSFTNetBranchCacheHostedCacheServerSettingData struct {
 	Caption                           string `cim:"Caption"`
@@ -10938,6 +12654,20 @@ func QueryMSFTNetBranchCacheHostedCacheServerSettingData(svc *wmi.Service, where
 		out[i].InstanceID = wmi.AsString(row["InstanceID"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetBranchCacheHostedCacheServerSettingData returns the MSFT_NetBranchCacheHostedCacheServerSettingData instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetBranchCacheHostedCacheServerSettingData(svc *wmi.Service, instanceID string) (*MSFTNetBranchCacheHostedCacheServerSettingData, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetBranchCacheHostedCacheServerSettingData(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetBranchCacheNetworkSettingData is the MSFT_NetBranchCacheNetworkSettingData CIM class.
@@ -10993,6 +12723,20 @@ func QueryMSFTNetBranchCacheNetworkSettingData(svc *wmi.Service, where string) (
 		out[i].PeerDiscoveryFirewallRulesEnabled = wmi.AsBool(row["PeerDiscoveryFirewallRulesEnabled"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetBranchCacheNetworkSettingData returns the MSFT_NetBranchCacheNetworkSettingData instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetBranchCacheNetworkSettingData(svc *wmi.Service, instanceID string) (*MSFTNetBranchCacheNetworkSettingData, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetBranchCacheNetworkSettingData(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetBranchCacheOrchestrator is the MSFT_NetBranchCacheOrchestrator CIM class.
@@ -11865,6 +13609,20 @@ func QueryMSFTNetBranchCachePrimaryCache(svc *wmi.Service, where string) ([]MSFT
 	return out, nil
 }
 
+// GetMSFTNetBranchCachePrimaryCache returns the MSFT_NetBranchCachePrimaryCache instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetBranchCachePrimaryCache(svc *wmi.Service, instanceID string) (*MSFTNetBranchCachePrimaryCache, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetBranchCachePrimaryCache(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetBranchCacheSecondaryCache is the MSFT_NetBranchCacheSecondaryCache CIM class.
 type MSFTNetBranchCacheSecondaryCache struct {
 	CacheFileDirectoryPath               string   `cim:"CacheFileDirectoryPath"`
@@ -11922,6 +13680,20 @@ func QueryMSFTNetBranchCacheSecondaryCache(svc *wmi.Service, where string) ([]MS
 	return out, nil
 }
 
+// GetMSFTNetBranchCacheSecondaryCache returns the MSFT_NetBranchCacheSecondaryCache instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetBranchCacheSecondaryCache(svc *wmi.Service, instanceID string) (*MSFTNetBranchCacheSecondaryCache, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetBranchCacheSecondaryCache(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetBranchCacheSettingData is the MSFT_NetBranchCacheSettingData CIM class.
 type MSFTNetBranchCacheSettingData struct {
 	Caption     string `cim:"Caption"`
@@ -11949,6 +13721,20 @@ func QueryMSFTNetBranchCacheSettingData(svc *wmi.Service, where string) ([]MSFTN
 		out[i].InstanceID = wmi.AsString(row["InstanceID"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetBranchCacheSettingData returns the MSFT_NetBranchCacheSettingData instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetBranchCacheSettingData(svc *wmi.Service, instanceID string) (*MSFTNetBranchCacheSettingData, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetBranchCacheSettingData(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetBranchCacheStatus is the MSFT_NetBranchCacheStatus CIM class.
@@ -12030,6 +13816,20 @@ func QueryMSFTNetBranchCacheStatus(svc *wmi.Service, where string) ([]MSFTNetBra
 	return out, nil
 }
 
+// GetMSFTNetBranchCacheStatus returns the MSFT_NetBranchCacheStatus instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetBranchCacheStatus(svc *wmi.Service, instanceID string) (*MSFTNetBranchCacheStatus, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetBranchCacheStatus(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetCompartment is the MSFT_NetCompartment CIM class.
 type MSFTNetCompartment struct {
 	Caption                string `cim:"Caption"`
@@ -12065,6 +13865,20 @@ func QueryMSFTNetCompartment(svc *wmi.Service, where string) ([]MSFTNetCompartme
 		out[i].InstanceID = wmi.AsString(row["InstanceID"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetCompartment returns the MSFT_NetCompartment instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetCompartment(svc *wmi.Service, instanceID string) (*MSFTNetCompartment, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetCompartment(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetConSecRule is the MSFT_NetConSecRule CIM class.
@@ -12190,6 +14004,23 @@ func QueryMSFTNetConSecRule(svc *wmi.Service, where string) ([]MSFTNetConSecRule
 		out[i].Users = wmi.AsString(row["Users"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetConSecRule returns the MSFT_NetConSecRule instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetConSecRule(svc *wmi.Service, creationClassName string, policyRuleName string, systemCreationClassName string, systemName string) (*MSFTNetConSecRule, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "PolicyRuleName = " + wmi.WQLValue(policyRuleName) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	out, err := QueryMSFTNetConSecRule(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetConSecRuleCloneObjectResult holds the out-parameters of MSFT_NetConSecRule.CloneObject.
@@ -12431,6 +14262,21 @@ func QueryMSFTNetConSecRuleEMAuthSet(svc *wmi.Service, where string) ([]MSFTNetC
 	return out, nil
 }
 
+// GetMSFTNetConSecRuleEMAuthSet returns the MSFT_NetConSecRuleEMAuthSet instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetConSecRuleEMAuthSet(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetConSecRuleEMAuthSet, error) {
+	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
+		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+	out, err := QueryMSFTNetConSecRuleEMAuthSet(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetConSecRuleFilterByAddress is the MSFT_NetConSecRuleFilterByAddress CIM class.
 type MSFTNetConSecRuleFilterByAddress struct {
 	GroupComponent string `cim:"GroupComponent"`
@@ -12454,6 +14300,21 @@ func QueryMSFTNetConSecRuleFilterByAddress(svc *wmi.Service, where string) ([]MS
 		out[i].PartComponent = wmi.AsString(row["PartComponent"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetConSecRuleFilterByAddress returns the MSFT_NetConSecRuleFilterByAddress instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetConSecRuleFilterByAddress(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetConSecRuleFilterByAddress, error) {
+	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
+		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+	out, err := QueryMSFTNetConSecRuleFilterByAddress(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetConSecRuleFilterByInterface is the MSFT_NetConSecRuleFilterByInterface CIM class.
@@ -12481,6 +14342,21 @@ func QueryMSFTNetConSecRuleFilterByInterface(svc *wmi.Service, where string) ([]
 	return out, nil
 }
 
+// GetMSFTNetConSecRuleFilterByInterface returns the MSFT_NetConSecRuleFilterByInterface instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetConSecRuleFilterByInterface(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetConSecRuleFilterByInterface, error) {
+	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
+		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+	out, err := QueryMSFTNetConSecRuleFilterByInterface(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetConSecRuleFilterByInterfaceType is the MSFT_NetConSecRuleFilterByInterfaceType CIM class.
 type MSFTNetConSecRuleFilterByInterfaceType struct {
 	GroupComponent string `cim:"GroupComponent"`
@@ -12504,6 +14380,21 @@ func QueryMSFTNetConSecRuleFilterByInterfaceType(svc *wmi.Service, where string)
 		out[i].PartComponent = wmi.AsString(row["PartComponent"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetConSecRuleFilterByInterfaceType returns the MSFT_NetConSecRuleFilterByInterfaceType instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetConSecRuleFilterByInterfaceType(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetConSecRuleFilterByInterfaceType, error) {
+	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
+		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+	out, err := QueryMSFTNetConSecRuleFilterByInterfaceType(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetConSecRuleFilterByProtocolPort is the MSFT_NetConSecRuleFilterByProtocolPort CIM class.
@@ -12531,6 +14422,21 @@ func QueryMSFTNetConSecRuleFilterByProtocolPort(svc *wmi.Service, where string) 
 	return out, nil
 }
 
+// GetMSFTNetConSecRuleFilterByProtocolPort returns the MSFT_NetConSecRuleFilterByProtocolPort instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetConSecRuleFilterByProtocolPort(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetConSecRuleFilterByProtocolPort, error) {
+	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
+		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+	out, err := QueryMSFTNetConSecRuleFilterByProtocolPort(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetConSecRuleFilters is the MSFT_NetConSecRuleFilters CIM class.
 type MSFTNetConSecRuleFilters struct {
 	GroupComponent string `cim:"GroupComponent"`
@@ -12554,6 +14460,21 @@ func QueryMSFTNetConSecRuleFilters(svc *wmi.Service, where string) ([]MSFTNetCon
 		out[i].PartComponent = wmi.AsString(row["PartComponent"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetConSecRuleFilters returns the MSFT_NetConSecRuleFilters instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetConSecRuleFilters(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetConSecRuleFilters, error) {
+	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
+		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+	out, err := QueryMSFTNetConSecRuleFilters(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetConSecRuleInProfile is the MSFT_NetConSecRuleInProfile CIM class.
@@ -12583,6 +14504,21 @@ func QueryMSFTNetConSecRuleInProfile(svc *wmi.Service, where string) ([]MSFTNetC
 	return out, nil
 }
 
+// GetMSFTNetConSecRuleInProfile returns the MSFT_NetConSecRuleInProfile instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetConSecRuleInProfile(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetConSecRuleInProfile, error) {
+	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
+		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+	out, err := QueryMSFTNetConSecRuleInProfile(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetConSecRuleMMAuthSet is the MSFT_NetConSecRuleMMAuthSet CIM class.
 type MSFTNetConSecRuleMMAuthSet struct {
 	ActionOrder    uint16 `cim:"ActionOrder"`
@@ -12610,6 +14546,21 @@ func QueryMSFTNetConSecRuleMMAuthSet(svc *wmi.Service, where string) ([]MSFTNetC
 	return out, nil
 }
 
+// GetMSFTNetConSecRuleMMAuthSet returns the MSFT_NetConSecRuleMMAuthSet instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetConSecRuleMMAuthSet(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetConSecRuleMMAuthSet, error) {
+	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
+		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+	out, err := QueryMSFTNetConSecRuleMMAuthSet(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetConSecRuleQMCryptoSet is the MSFT_NetConSecRuleQMCryptoSet CIM class.
 type MSFTNetConSecRuleQMCryptoSet struct {
 	ActionOrder    uint16 `cim:"ActionOrder"`
@@ -12635,6 +14586,21 @@ func QueryMSFTNetConSecRuleQMCryptoSet(svc *wmi.Service, where string) ([]MSFTNe
 		out[i].PartComponent = wmi.AsString(row["PartComponent"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetConSecRuleQMCryptoSet returns the MSFT_NetConSecRuleQMCryptoSet instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetConSecRuleQMCryptoSet(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetConSecRuleQMCryptoSet, error) {
+	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
+		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+	out, err := QueryMSFTNetConSecRuleQMCryptoSet(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetConnectionProfile is the MSFT_NetConnectionProfile CIM class.
@@ -12680,6 +14646,20 @@ func QueryMSFTNetConnectionProfile(svc *wmi.Service, where string) ([]MSFTNetCon
 	return out, nil
 }
 
+// GetMSFTNetConnectionProfile returns the MSFT_NetConnectionProfile instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetConnectionProfile(svc *wmi.Service, instanceID string) (*MSFTNetConnectionProfile, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetConnectionProfile(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetDnsTransitionConfiguration is the MSFT_NetDnsTransitionConfiguration CIM class.
 type MSFTNetDnsTransitionConfiguration struct {
 	AcceptInterface  []string `cim:"AcceptInterface"`
@@ -12723,6 +14703,20 @@ func QueryMSFTNetDnsTransitionConfiguration(svc *wmi.Service, where string) ([]M
 		out[i].State = wmi.AsUint32(row["State"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetDnsTransitionConfiguration returns the MSFT_NetDnsTransitionConfiguration instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetDnsTransitionConfiguration(svc *wmi.Service, instanceID string) (*MSFTNetDnsTransitionConfiguration, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetDnsTransitionConfiguration(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetDnsTransitionConfigurationDisableResult holds the out-parameters of MSFT_NetDnsTransitionConfiguration.Disable.
@@ -12858,6 +14852,21 @@ func QueryMSFTNetDnsTransitionInterfaceAssociation(svc *wmi.Service, where strin
 	return out, nil
 }
 
+// GetMSFTNetDnsTransitionInterfaceAssociation returns the MSFT_NetDnsTransitionInterfaceAssociation instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetDnsTransitionInterfaceAssociation(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetDnsTransitionInterfaceAssociation, error) {
+	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
+		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+	out, err := QueryMSFTNetDnsTransitionInterfaceAssociation(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetDnsTransitionMonitoring is the MSFT_NetDnsTransitionMonitoring CIM class.
 type MSFTNetDnsTransitionMonitoring struct {
 	Caption                   string `cim:"Caption"`
@@ -12899,6 +14908,20 @@ func QueryMSFTNetDnsTransitionMonitoring(svc *wmi.Service, where string) ([]MSFT
 	return out, nil
 }
 
+// GetMSFTNetDnsTransitionMonitoring returns the MSFT_NetDnsTransitionMonitoring instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetDnsTransitionMonitoring(svc *wmi.Service, instanceID string) (*MSFTNetDnsTransitionMonitoring, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetDnsTransitionMonitoring(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetEventCaptureTargetCaptureProvider is the MSFT_NetEventCaptureTarget_CaptureProvider CIM class.
 type MSFTNetEventCaptureTargetCaptureProvider struct {
 	GroupComponent string `cim:"GroupComponent"`
@@ -12922,6 +14945,21 @@ func QueryMSFTNetEventCaptureTargetCaptureProvider(svc *wmi.Service, where strin
 		out[i].PartComponent = wmi.AsString(row["PartComponent"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetEventCaptureTargetCaptureProvider returns the MSFT_NetEventCaptureTarget_CaptureProvider instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetEventCaptureTargetCaptureProvider(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetEventCaptureTargetCaptureProvider, error) {
+	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
+		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+	out, err := QueryMSFTNetEventCaptureTargetCaptureProvider(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetEventNetworkAdapter is the MSFT_NetEventNetworkAdapter CIM class.
@@ -12981,6 +15019,20 @@ func QueryMSFTNetEventNetworkAdapter(svc *wmi.Service, where string) ([]MSFTNetE
 		out[i].StatusDescriptions = wmi.AsStringSlice(row["StatusDescriptions"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetEventNetworkAdapter returns the MSFT_NetEventNetworkAdapter instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetEventNetworkAdapter(svc *wmi.Service, id string) (*MSFTNetEventNetworkAdapter, error) {
+	where := "Id = " + wmi.WQLValue(id)
+	out, err := QueryMSFTNetEventNetworkAdapter(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetEventPacketCaptureProvider is the MSFT_NetEventPacketCaptureProvider CIM class.
@@ -13060,6 +15112,21 @@ func QueryMSFTNetEventPacketCaptureProvider(svc *wmi.Service, where string) ([]M
 	return out, nil
 }
 
+// GetMSFTNetEventPacketCaptureProvider returns the MSFT_NetEventPacketCaptureProvider instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetEventPacketCaptureProvider(svc *wmi.Service, guid string, sessionGuid string) (*MSFTNetEventPacketCaptureProvider, error) {
+	where := "Guid = " + wmi.WQLValue(guid) +
+		" AND " + "SessionGuid = " + wmi.WQLValue(sessionGuid)
+	out, err := QueryMSFTNetEventPacketCaptureProvider(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetEventPacketCaptureTarget is the MSFT_NetEventPacketCaptureTarget CIM class.
 type MSFTNetEventPacketCaptureTarget struct {
 	Caption             string   `cim:"Caption"`
@@ -13113,6 +15180,20 @@ func QueryMSFTNetEventPacketCaptureTarget(svc *wmi.Service, where string) ([]MSF
 		out[i].StatusDescriptions = wmi.AsStringSlice(row["StatusDescriptions"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetEventPacketCaptureTarget returns the MSFT_NetEventPacketCaptureTarget instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetEventPacketCaptureTarget(svc *wmi.Service, id string) (*MSFTNetEventPacketCaptureTarget, error) {
+	where := "Id = " + wmi.WQLValue(id)
+	out, err := QueryMSFTNetEventPacketCaptureTarget(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetEventProvider is the MSFT_NetEventProvider CIM class.
@@ -13176,6 +15257,21 @@ func QueryMSFTNetEventProvider(svc *wmi.Service, where string) ([]MSFTNetEventPr
 	return out, nil
 }
 
+// GetMSFTNetEventProvider returns the MSFT_NetEventProvider instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetEventProvider(svc *wmi.Service, guid string, sessionGuid string) (*MSFTNetEventProvider, error) {
+	where := "Guid = " + wmi.WQLValue(guid) +
+		" AND " + "SessionGuid = " + wmi.WQLValue(sessionGuid)
+	out, err := QueryMSFTNetEventProvider(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetEventProviderBase is the MSFT_NetEventProviderBase CIM class.
 type MSFTNetEventProviderBase struct {
 	Caption             string   `cim:"Caption"`
@@ -13235,6 +15331,21 @@ func QueryMSFTNetEventProviderBase(svc *wmi.Service, where string) ([]MSFTNetEve
 		out[i].StatusDescriptions = wmi.AsStringSlice(row["StatusDescriptions"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetEventProviderBase returns the MSFT_NetEventProviderBase instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetEventProviderBase(svc *wmi.Service, guid string, sessionGuid string) (*MSFTNetEventProviderBase, error) {
+	where := "Guid = " + wmi.WQLValue(guid) +
+		" AND " + "SessionGuid = " + wmi.WQLValue(sessionGuid)
+	out, err := QueryMSFTNetEventProviderBase(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetEventSession is the MSFT_NetEventSession CIM class.
@@ -13300,6 +15411,20 @@ func QueryMSFTNetEventSession(svc *wmi.Service, where string) ([]MSFTNetEventSes
 	return out, nil
 }
 
+// GetMSFTNetEventSession returns the MSFT_NetEventSession instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetEventSession(svc *wmi.Service, guid string) (*MSFTNetEventSession, error) {
+	where := "Guid = " + wmi.WQLValue(guid)
+	out, err := QueryMSFTNetEventSession(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetEventSessionStartResult holds the out-parameters of MSFT_NetEventSession.Start.
 type MSFTNetEventSessionStartResult struct {
 	ReturnValue uint32
@@ -13359,6 +15484,21 @@ func QueryMSFTNetEventSessionProvider(svc *wmi.Service, where string) ([]MSFTNet
 		out[i].PartComponent = wmi.AsString(row["PartComponent"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetEventSessionProvider returns the MSFT_NetEventSession_Provider instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetEventSessionProvider(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetEventSessionProvider, error) {
+	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
+		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+	out, err := QueryMSFTNetEventSessionProvider(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetEventVFPProvider is the MSFT_NetEventVFPProvider CIM class.
@@ -13448,6 +15588,21 @@ func QueryMSFTNetEventVFPProvider(svc *wmi.Service, where string) ([]MSFTNetEven
 	return out, nil
 }
 
+// GetMSFTNetEventVFPProvider returns the MSFT_NetEventVFPProvider instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetEventVFPProvider(svc *wmi.Service, guid string, sessionGuid string) (*MSFTNetEventVFPProvider, error) {
+	where := "Guid = " + wmi.WQLValue(guid) +
+		" AND " + "SessionGuid = " + wmi.WQLValue(sessionGuid)
+	out, err := QueryMSFTNetEventVFPProvider(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetEventVmNetworkAdapter is the MSFT_NetEventVmNetworkAdapter CIM class.
 type MSFTNetEventVmNetworkAdapter struct {
 	Caption             string   `cim:"Caption"`
@@ -13513,6 +15668,20 @@ func QueryMSFTNetEventVmNetworkAdapter(svc *wmi.Service, where string) ([]MSFTNe
 	return out, nil
 }
 
+// GetMSFTNetEventVmNetworkAdapter returns the MSFT_NetEventVmNetworkAdapter instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetEventVmNetworkAdapter(svc *wmi.Service, id string) (*MSFTNetEventVmNetworkAdapter, error) {
+	where := "Id = " + wmi.WQLValue(id)
+	out, err := QueryMSFTNetEventVmNetworkAdapter(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetEventVmSwitch is the MSFT_NetEventVmSwitch CIM class.
 type MSFTNetEventVmSwitch struct {
 	Caption             string   `cim:"Caption"`
@@ -13566,6 +15735,20 @@ func QueryMSFTNetEventVmSwitch(svc *wmi.Service, where string) ([]MSFTNetEventVm
 		out[i].StatusDescriptions = wmi.AsStringSlice(row["StatusDescriptions"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetEventVmSwitch returns the MSFT_NetEventVmSwitch instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetEventVmSwitch(svc *wmi.Service, id string) (*MSFTNetEventVmSwitch, error) {
+	where := "Id = " + wmi.WQLValue(id)
+	out, err := QueryMSFTNetEventVmSwitch(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetEventVmSwitchProvider is the MSFT_NetEventVmSwitchProvider CIM class.
@@ -13631,6 +15814,21 @@ func QueryMSFTNetEventVmSwitchProvider(svc *wmi.Service, where string) ([]MSFTNe
 		out[i].SwitchName = wmi.AsString(row["SwitchName"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetEventVmSwitchProvider returns the MSFT_NetEventVmSwitchProvider instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetEventVmSwitchProvider(svc *wmi.Service, guid string, sessionGuid string) (*MSFTNetEventVmSwitchProvider, error) {
+	where := "Guid = " + wmi.WQLValue(guid) +
+		" AND " + "SessionGuid = " + wmi.WQLValue(sessionGuid)
+	out, err := QueryMSFTNetEventVmSwitchProvider(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetEventWFPCaptureProvider is the MSFT_NetEventWFPCaptureProvider CIM class.
@@ -13704,6 +15902,21 @@ func QueryMSFTNetEventWFPCaptureProvider(svc *wmi.Service, where string) ([]MSFT
 	return out, nil
 }
 
+// GetMSFTNetEventWFPCaptureProvider returns the MSFT_NetEventWFPCaptureProvider instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetEventWFPCaptureProvider(svc *wmi.Service, guid string, sessionGuid string) (*MSFTNetEventWFPCaptureProvider, error) {
+	where := "Guid = " + wmi.WQLValue(guid) +
+		" AND " + "SessionGuid = " + wmi.WQLValue(sessionGuid)
+	out, err := QueryMSFTNetEventWFPCaptureProvider(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetFirewallDynamicKeywordAddress is the MSFT_NetFirewallDynamicKeywordAddress CIM class.
 type MSFTNetFirewallDynamicKeywordAddress struct {
 	Addresses             string `cim:"Addresses"`
@@ -13743,6 +15956,21 @@ func QueryMSFTNetFirewallDynamicKeywordAddress(svc *wmi.Service, where string) (
 		out[i].PolicyStoreSourceType = wmi.AsUint16(row["PolicyStoreSourceType"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetFirewallDynamicKeywordAddress returns the MSFT_NetFirewallDynamicKeywordAddress instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetFirewallDynamicKeywordAddress(svc *wmi.Service, id string, instanceID string) (*MSFTNetFirewallDynamicKeywordAddress, error) {
+	where := "Id = " + wmi.WQLValue(id) +
+		" AND " + "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetFirewallDynamicKeywordAddress(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetFirewallDynamicKeywordAddressUpdateDynamicKeywordAddressResult holds the out-parameters of MSFT_NetFirewallDynamicKeywordAddress.UpdateDynamicKeywordAddress.
@@ -13817,6 +16045,20 @@ func QueryMSFTNetFirewallHyperVPort(svc *wmi.Service, where string) ([]MSFTNetFi
 	return out, nil
 }
 
+// GetMSFTNetFirewallHyperVPort returns the MSFT_NetFirewallHyperVPort instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetFirewallHyperVPort(svc *wmi.Service, instanceID string) (*MSFTNetFirewallHyperVPort, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetFirewallHyperVPort(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetFirewallHyperVProfile is the MSFT_NetFirewallHyperVProfile CIM class.
 type MSFTNetFirewallHyperVProfile struct {
 	AllowLocalFirewallRules uint16 `cim:"AllowLocalFirewallRules"`
@@ -13856,6 +16098,20 @@ func QueryMSFTNetFirewallHyperVProfile(svc *wmi.Service, where string) ([]MSFTNe
 		out[i].Profile = wmi.AsUint16(row["Profile"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetFirewallHyperVProfile returns the MSFT_NetFirewallHyperVProfile instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetFirewallHyperVProfile(svc *wmi.Service, instanceID string) (*MSFTNetFirewallHyperVProfile, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetFirewallHyperVProfile(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetFirewallHyperVRule is the MSFT_NetFirewallHyperVRule CIM class.
@@ -13943,6 +16199,23 @@ func QueryMSFTNetFirewallHyperVRule(svc *wmi.Service, where string) ([]MSFTNetFi
 		out[i].VMCreatorId = wmi.AsString(row["VMCreatorId"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetFirewallHyperVRule returns the MSFT_NetFirewallHyperVRule instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetFirewallHyperVRule(svc *wmi.Service, creationClassName string, policyRuleName string, systemCreationClassName string, systemName string) (*MSFTNetFirewallHyperVRule, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "PolicyRuleName = " + wmi.WQLValue(policyRuleName) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	out, err := QueryMSFTNetFirewallHyperVRule(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetFirewallHyperVRuleDisableResult holds the out-parameters of MSFT_NetFirewallHyperVRule.Disable.
@@ -14082,6 +16355,20 @@ func QueryMSFTNetFirewallHyperVVMCreator(svc *wmi.Service, where string) ([]MSFT
 	return out, nil
 }
 
+// GetMSFTNetFirewallHyperVVMCreator returns the MSFT_NetFirewallHyperVVMCreator instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetFirewallHyperVVMCreator(svc *wmi.Service, instanceID string) (*MSFTNetFirewallHyperVVMCreator, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetFirewallHyperVVMCreator(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetFirewallHyperVVMCreatorRegisterHyperVVMCreatorResult holds the out-parameters of MSFT_NetFirewallHyperVVMCreator.RegisterHyperVVMCreator.
 type MSFTNetFirewallHyperVVMCreatorRegisterHyperVVMCreatorResult struct {
 	ReturnValue uint32
@@ -14168,6 +16455,20 @@ func QueryMSFTNetFirewallHyperVVMSetting(svc *wmi.Service, where string) ([]MSFT
 	return out, nil
 }
 
+// GetMSFTNetFirewallHyperVVMSetting returns the MSFT_NetFirewallHyperVVMSetting instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetFirewallHyperVVMSetting(svc *wmi.Service, instanceID string) (*MSFTNetFirewallHyperVVMSetting, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetFirewallHyperVVMSetting(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetFirewallProfile is the MSFT_NetFirewallProfile CIM class.
 type MSFTNetFirewallProfile struct {
 	AllowInboundRules               uint16   `cim:"AllowInboundRules"`
@@ -14231,6 +16532,20 @@ func QueryMSFTNetFirewallProfile(svc *wmi.Service, where string) ([]MSFTNetFirew
 		out[i].NotifyOnListen = wmi.AsUint16(row["NotifyOnListen"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetFirewallProfile returns the MSFT_NetFirewallProfile instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetFirewallProfile(svc *wmi.Service, instanceID string) (*MSFTNetFirewallProfile, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetFirewallProfile(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetFirewallRule is the MSFT_NetFirewallRule CIM class.
@@ -14330,6 +16645,23 @@ func QueryMSFTNetFirewallRule(svc *wmi.Service, where string) ([]MSFTNetFirewall
 		out[i].SystemName = wmi.AsString(row["SystemName"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetFirewallRule returns the MSFT_NetFirewallRule instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetFirewallRule(svc *wmi.Service, creationClassName string, policyRuleName string, systemCreationClassName string, systemName string) (*MSFTNetFirewallRule, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "PolicyRuleName = " + wmi.WQLValue(policyRuleName) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	out, err := QueryMSFTNetFirewallRule(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetFirewallRuleCloneObjectResult holds the out-parameters of MSFT_NetFirewallRule.CloneObject.
@@ -14462,6 +16794,21 @@ func QueryMSFTNetFirewallRuleFilterByAddress(svc *wmi.Service, where string) ([]
 	return out, nil
 }
 
+// GetMSFTNetFirewallRuleFilterByAddress returns the MSFT_NetFirewallRuleFilterByAddress instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetFirewallRuleFilterByAddress(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetFirewallRuleFilterByAddress, error) {
+	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
+		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+	out, err := QueryMSFTNetFirewallRuleFilterByAddress(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetFirewallRuleFilterByApplication is the MSFT_NetFirewallRuleFilterByApplication CIM class.
 type MSFTNetFirewallRuleFilterByApplication struct {
 	GroupComponent string `cim:"GroupComponent"`
@@ -14485,6 +16832,21 @@ func QueryMSFTNetFirewallRuleFilterByApplication(svc *wmi.Service, where string)
 		out[i].PartComponent = wmi.AsString(row["PartComponent"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetFirewallRuleFilterByApplication returns the MSFT_NetFirewallRuleFilterByApplication instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetFirewallRuleFilterByApplication(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetFirewallRuleFilterByApplication, error) {
+	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
+		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+	out, err := QueryMSFTNetFirewallRuleFilterByApplication(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetFirewallRuleFilterByInterface is the MSFT_NetFirewallRuleFilterByInterface CIM class.
@@ -14512,6 +16874,21 @@ func QueryMSFTNetFirewallRuleFilterByInterface(svc *wmi.Service, where string) (
 	return out, nil
 }
 
+// GetMSFTNetFirewallRuleFilterByInterface returns the MSFT_NetFirewallRuleFilterByInterface instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetFirewallRuleFilterByInterface(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetFirewallRuleFilterByInterface, error) {
+	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
+		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+	out, err := QueryMSFTNetFirewallRuleFilterByInterface(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetFirewallRuleFilterByInterfaceType is the MSFT_NetFirewallRuleFilterByInterfaceType CIM class.
 type MSFTNetFirewallRuleFilterByInterfaceType struct {
 	GroupComponent string `cim:"GroupComponent"`
@@ -14535,6 +16912,21 @@ func QueryMSFTNetFirewallRuleFilterByInterfaceType(svc *wmi.Service, where strin
 		out[i].PartComponent = wmi.AsString(row["PartComponent"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetFirewallRuleFilterByInterfaceType returns the MSFT_NetFirewallRuleFilterByInterfaceType instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetFirewallRuleFilterByInterfaceType(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetFirewallRuleFilterByInterfaceType, error) {
+	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
+		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+	out, err := QueryMSFTNetFirewallRuleFilterByInterfaceType(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetFirewallRuleFilterByProtocolPort is the MSFT_NetFirewallRuleFilterByProtocolPort CIM class.
@@ -14562,6 +16954,21 @@ func QueryMSFTNetFirewallRuleFilterByProtocolPort(svc *wmi.Service, where string
 	return out, nil
 }
 
+// GetMSFTNetFirewallRuleFilterByProtocolPort returns the MSFT_NetFirewallRuleFilterByProtocolPort instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetFirewallRuleFilterByProtocolPort(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetFirewallRuleFilterByProtocolPort, error) {
+	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
+		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+	out, err := QueryMSFTNetFirewallRuleFilterByProtocolPort(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetFirewallRuleFilterBySecurity is the MSFT_NetFirewallRuleFilterBySecurity CIM class.
 type MSFTNetFirewallRuleFilterBySecurity struct {
 	GroupComponent string `cim:"GroupComponent"`
@@ -14585,6 +16992,21 @@ func QueryMSFTNetFirewallRuleFilterBySecurity(svc *wmi.Service, where string) ([
 		out[i].PartComponent = wmi.AsString(row["PartComponent"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetFirewallRuleFilterBySecurity returns the MSFT_NetFirewallRuleFilterBySecurity instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetFirewallRuleFilterBySecurity(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetFirewallRuleFilterBySecurity, error) {
+	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
+		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+	out, err := QueryMSFTNetFirewallRuleFilterBySecurity(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetFirewallRuleFilterByService is the MSFT_NetFirewallRuleFilterByService CIM class.
@@ -14612,6 +17034,21 @@ func QueryMSFTNetFirewallRuleFilterByService(svc *wmi.Service, where string) ([]
 	return out, nil
 }
 
+// GetMSFTNetFirewallRuleFilterByService returns the MSFT_NetFirewallRuleFilterByService instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetFirewallRuleFilterByService(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetFirewallRuleFilterByService, error) {
+	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
+		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+	out, err := QueryMSFTNetFirewallRuleFilterByService(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetFirewallRuleFilters is the MSFT_NetFirewallRuleFilters CIM class.
 type MSFTNetFirewallRuleFilters struct {
 	GroupComponent string `cim:"GroupComponent"`
@@ -14635,6 +17072,21 @@ func QueryMSFTNetFirewallRuleFilters(svc *wmi.Service, where string) ([]MSFTNetF
 		out[i].PartComponent = wmi.AsString(row["PartComponent"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetFirewallRuleFilters returns the MSFT_NetFirewallRuleFilters instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetFirewallRuleFilters(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetFirewallRuleFilters, error) {
+	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
+		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+	out, err := QueryMSFTNetFirewallRuleFilters(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetFirewallRuleInProfile is the MSFT_NetFirewallRuleInProfile CIM class.
@@ -14664,6 +17116,21 @@ func QueryMSFTNetFirewallRuleInProfile(svc *wmi.Service, where string) ([]MSFTNe
 	return out, nil
 }
 
+// GetMSFTNetFirewallRuleInProfile returns the MSFT_NetFirewallRuleInProfile instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetFirewallRuleInProfile(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetFirewallRuleInProfile, error) {
+	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
+		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+	out, err := QueryMSFTNetFirewallRuleInProfile(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetGPO is the MSFT_NetGPO CIM class.
 type MSFTNetGPO struct {
 	Caption     string `cim:"Caption"`
@@ -14691,6 +17158,20 @@ func QueryMSFTNetGPO(svc *wmi.Service, where string) ([]MSFTNetGPO, error) {
 		out[i].InstanceID = wmi.AsString(row["InstanceID"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetGPO returns the MSFT_NetGPO instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetGPO(svc *wmi.Service, instanceID string) (*MSFTNetGPO, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetGPO(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetGPOOpenResult holds the out-parameters of MSFT_NetGPO.Open.
@@ -14789,6 +17270,20 @@ func QueryMSFTNetIKEAuthProposal(svc *wmi.Service, where string) ([]MSFTNetIKEAu
 	return out, nil
 }
 
+// GetMSFTNetIKEAuthProposal returns the MSFT_NetIKEAuthProposal instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetIKEAuthProposal(svc *wmi.Service, instanceID string) (*MSFTNetIKEAuthProposal, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetIKEAuthProposal(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetIKEAuthSet is the MSFT_NetIKEAuthSet CIM class.
 type MSFTNetIKEAuthSet struct {
 	AggressiveModeGroupID       uint16    `cim:"AggressiveModeGroupID"`
@@ -14872,6 +17367,25 @@ func QueryMSFTNetIKEAuthSet(svc *wmi.Service, where string) ([]MSFTNetIKEAuthSet
 	return out, nil
 }
 
+// GetMSFTNetIKEAuthSet returns the MSFT_NetIKEAuthSet instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetIKEAuthSet(svc *wmi.Service, creationClassName string, policyActionName string, policyRuleCreationClassName string, policyRuleName string, systemCreationClassName string, systemName string) (*MSFTNetIKEAuthSet, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "PolicyActionName = " + wmi.WQLValue(policyActionName) +
+		" AND " + "PolicyRuleCreationClassName = " + wmi.WQLValue(policyRuleCreationClassName) +
+		" AND " + "PolicyRuleName = " + wmi.WQLValue(policyRuleName) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	out, err := QueryMSFTNetIKEAuthSet(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetIKEBasicAuthProposal is the MSFT_NetIKEBasicAuthProposal CIM class.
 type MSFTNetIKEBasicAuthProposal struct {
 	AuthenticationMethod      uint16 `cim:"AuthenticationMethod"`
@@ -14919,6 +17433,20 @@ func QueryMSFTNetIKEBasicAuthProposal(svc *wmi.Service, where string) ([]MSFTNet
 		out[i].VendorID = wmi.AsString(row["VendorID"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetIKEBasicAuthProposal returns the MSFT_NetIKEBasicAuthProposal instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetIKEBasicAuthProposal(svc *wmi.Service, instanceID string) (*MSFTNetIKEBasicAuthProposal, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetIKEBasicAuthProposal(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetIKECertAuthProposal is the MSFT_NetIKECertAuthProposal CIM class.
@@ -14994,6 +17522,20 @@ func QueryMSFTNetIKECertAuthProposal(svc *wmi.Service, where string) ([]MSFTNetI
 	return out, nil
 }
 
+// GetMSFTNetIKECertAuthProposal returns the MSFT_NetIKECertAuthProposal instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetIKECertAuthProposal(svc *wmi.Service, instanceID string) (*MSFTNetIKECertAuthProposal, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetIKECertAuthProposal(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetIKECryptoProposal is the MSFT_NetIKECryptoProposal CIM class.
 type MSFTNetIKECryptoProposal struct {
 	AuthenticationMethod      uint16 `cim:"AuthenticationMethod"`
@@ -15041,6 +17583,20 @@ func QueryMSFTNetIKECryptoProposal(svc *wmi.Service, where string) ([]MSFTNetIKE
 		out[i].VendorID = wmi.AsString(row["VendorID"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetIKECryptoProposal returns the MSFT_NetIKECryptoProposal instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetIKECryptoProposal(svc *wmi.Service, instanceID string) (*MSFTNetIKECryptoProposal, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetIKECryptoProposal(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetIKECryptoSet is the MSFT_NetIKECryptoSet CIM class.
@@ -15126,6 +17682,25 @@ func QueryMSFTNetIKECryptoSet(svc *wmi.Service, where string) ([]MSFTNetIKECrypt
 	return out, nil
 }
 
+// GetMSFTNetIKECryptoSet returns the MSFT_NetIKECryptoSet instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetIKECryptoSet(svc *wmi.Service, creationClassName string, policyActionName string, policyRuleCreationClassName string, policyRuleName string, systemCreationClassName string, systemName string) (*MSFTNetIKECryptoSet, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "PolicyActionName = " + wmi.WQLValue(policyActionName) +
+		" AND " + "PolicyRuleCreationClassName = " + wmi.WQLValue(policyRuleCreationClassName) +
+		" AND " + "PolicyRuleName = " + wmi.WQLValue(policyRuleName) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	out, err := QueryMSFTNetIKECryptoSet(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetIKEKerbAuthProposal is the MSFT_NetIKEKerbAuthProposal CIM class.
 type MSFTNetIKEKerbAuthProposal struct {
 	AuthenticationMethod      uint16 `cim:"AuthenticationMethod"`
@@ -15177,6 +17752,20 @@ func QueryMSFTNetIKEKerbAuthProposal(svc *wmi.Service, where string) ([]MSFTNetI
 	return out, nil
 }
 
+// GetMSFTNetIKEKerbAuthProposal returns the MSFT_NetIKEKerbAuthProposal instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetIKEKerbAuthProposal(svc *wmi.Service, instanceID string) (*MSFTNetIKEKerbAuthProposal, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetIKEKerbAuthProposal(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetIKEMMCryptoProposal is the MSFT_NetIKEMMCryptoProposal CIM class.
 type MSFTNetIKEMMCryptoProposal struct {
 	AuthenticationMethod      uint16 `cim:"AuthenticationMethod"`
@@ -15224,6 +17813,20 @@ func QueryMSFTNetIKEMMCryptoProposal(svc *wmi.Service, where string) ([]MSFTNetI
 		out[i].VendorID = wmi.AsString(row["VendorID"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetIKEMMCryptoProposal returns the MSFT_NetIKEMMCryptoProposal instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetIKEMMCryptoProposal(svc *wmi.Service, instanceID string) (*MSFTNetIKEMMCryptoProposal, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetIKEMMCryptoProposal(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetIKEMMCryptoSet is the MSFT_NetIKEMMCryptoSet CIM class.
@@ -15313,6 +17916,25 @@ func QueryMSFTNetIKEMMCryptoSet(svc *wmi.Service, where string) ([]MSFTNetIKEMMC
 		out[i].VendorID = wmi.AsString(row["VendorID"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetIKEMMCryptoSet returns the MSFT_NetIKEMMCryptoSet instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetIKEMMCryptoSet(svc *wmi.Service, creationClassName string, policyActionName string, policyRuleCreationClassName string, policyRuleName string, systemCreationClassName string, systemName string) (*MSFTNetIKEMMCryptoSet, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "PolicyActionName = " + wmi.WQLValue(policyActionName) +
+		" AND " + "PolicyRuleCreationClassName = " + wmi.WQLValue(policyRuleCreationClassName) +
+		" AND " + "PolicyRuleName = " + wmi.WQLValue(policyRuleName) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	out, err := QueryMSFTNetIKEMMCryptoSet(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetIKEMMCryptoSetCloneObjectResult holds the out-parameters of MSFT_NetIKEMMCryptoSet.CloneObject.
@@ -15451,6 +18073,25 @@ func QueryMSFTNetIKEP1AuthSet(svc *wmi.Service, where string) ([]MSFTNetIKEP1Aut
 	return out, nil
 }
 
+// GetMSFTNetIKEP1AuthSet returns the MSFT_NetIKEP1AuthSet instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetIKEP1AuthSet(svc *wmi.Service, creationClassName string, policyActionName string, policyRuleCreationClassName string, policyRuleName string, systemCreationClassName string, systemName string) (*MSFTNetIKEP1AuthSet, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "PolicyActionName = " + wmi.WQLValue(policyActionName) +
+		" AND " + "PolicyRuleCreationClassName = " + wmi.WQLValue(policyRuleCreationClassName) +
+		" AND " + "PolicyRuleName = " + wmi.WQLValue(policyRuleName) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	out, err := QueryMSFTNetIKEP1AuthSet(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetIKEP1AuthSetCloneObjectResult holds the out-parameters of MSFT_NetIKEP1AuthSet.CloneObject.
 type MSFTNetIKEP1AuthSetCloneObjectResult struct {
 	ReturnValue uint32
@@ -15587,6 +18228,25 @@ func QueryMSFTNetIKEP2AuthSet(svc *wmi.Service, where string) ([]MSFTNetIKEP2Aut
 	return out, nil
 }
 
+// GetMSFTNetIKEP2AuthSet returns the MSFT_NetIKEP2AuthSet instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetIKEP2AuthSet(svc *wmi.Service, creationClassName string, policyActionName string, policyRuleCreationClassName string, policyRuleName string, systemCreationClassName string, systemName string) (*MSFTNetIKEP2AuthSet, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "PolicyActionName = " + wmi.WQLValue(policyActionName) +
+		" AND " + "PolicyRuleCreationClassName = " + wmi.WQLValue(policyRuleCreationClassName) +
+		" AND " + "PolicyRuleName = " + wmi.WQLValue(policyRuleName) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	out, err := QueryMSFTNetIKEP2AuthSet(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetIKEP2AuthSetCloneObjectResult holds the out-parameters of MSFT_NetIKEP2AuthSet.CloneObject.
 type MSFTNetIKEP2AuthSetCloneObjectResult struct {
 	ReturnValue uint32
@@ -15691,6 +18351,20 @@ func QueryMSFTNetIKEPSKAuthProposal(svc *wmi.Service, where string) ([]MSFTNetIK
 	return out, nil
 }
 
+// GetMSFTNetIKEPSKAuthProposal returns the MSFT_NetIKEPSKAuthProposal instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetIKEPSKAuthProposal(svc *wmi.Service, instanceID string) (*MSFTNetIKEPSKAuthProposal, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetIKEPSKAuthProposal(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetIKEQMCryptoProposal is the MSFT_NetIKEQMCryptoProposal CIM class.
 type MSFTNetIKEQMCryptoProposal struct {
 	AuthenticationMethod      uint16 `cim:"AuthenticationMethod"`
@@ -15746,6 +18420,20 @@ func QueryMSFTNetIKEQMCryptoProposal(svc *wmi.Service, where string) ([]MSFTNetI
 		out[i].VendorID = wmi.AsString(row["VendorID"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetIKEQMCryptoProposal returns the MSFT_NetIKEQMCryptoProposal instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetIKEQMCryptoProposal(svc *wmi.Service, instanceID string) (*MSFTNetIKEQMCryptoProposal, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetIKEQMCryptoProposal(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetIKEQMCryptoSet is the MSFT_NetIKEQMCryptoSet CIM class.
@@ -15831,6 +18519,25 @@ func QueryMSFTNetIKEQMCryptoSet(svc *wmi.Service, where string) ([]MSFTNetIKEQMC
 		out[i].VendorID = wmi.AsString(row["VendorID"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetIKEQMCryptoSet returns the MSFT_NetIKEQMCryptoSet instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetIKEQMCryptoSet(svc *wmi.Service, creationClassName string, policyActionName string, policyRuleCreationClassName string, policyRuleName string, systemCreationClassName string, systemName string) (*MSFTNetIKEQMCryptoSet, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "PolicyActionName = " + wmi.WQLValue(policyActionName) +
+		" AND " + "PolicyRuleCreationClassName = " + wmi.WQLValue(policyRuleCreationClassName) +
+		" AND " + "PolicyRuleName = " + wmi.WQLValue(policyRuleName) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	out, err := QueryMSFTNetIKEQMCryptoSet(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetIKEQMCryptoSetCloneObjectResult holds the out-parameters of MSFT_NetIKEQMCryptoSet.CloneObject.
@@ -16003,6 +18710,23 @@ func QueryMSFTNetIPAddress(svc *wmi.Service, where string) ([]MSFTNetIPAddress, 
 	return out, nil
 }
 
+// GetMSFTNetIPAddress returns the MSFT_NetIPAddress instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetIPAddress(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*MSFTNetIPAddress, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "Name = " + wmi.WQLValue(name) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	out, err := QueryMSFTNetIPAddress(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetIPAddressCreateResult holds the out-parameters of MSFT_NetIPAddress.Create.
 type MSFTNetIPAddressCreateResult struct {
 	CmdletOutput []wmi.Row
@@ -16140,6 +18864,20 @@ func QueryMSFTNetIPHttpsConfiguration(svc *wmi.Service, where string) ([]MSFTNet
 		out[i].Type = wmi.AsUint32(row["Type"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetIPHttpsConfiguration returns the MSFT_NetIPHttpsConfiguration instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetIPHttpsConfiguration(svc *wmi.Service, instanceID string) (*MSFTNetIPHttpsConfiguration, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetIPHttpsConfiguration(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetIPHttpsConfigurationAddCertBindingResult holds the out-parameters of MSFT_NetIPHttpsConfiguration.AddCertBinding.
@@ -16329,6 +19067,21 @@ func QueryMSFTNetIPHttpsState(svc *wmi.Service, where string) ([]MSFTNetIPHttpsS
 	return out, nil
 }
 
+// GetMSFTNetIPHttpsState returns the MSFT_NetIPHttpsState instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetIPHttpsState(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetIPHttpsState, error) {
+	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
+		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+	out, err := QueryMSFTNetIPHttpsState(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetIPInterface is the MSFT_NetIPInterface CIM class.
 type MSFTNetIPInterface struct {
 	AddressFamily                   uint16   `cim:"AddressFamily"`
@@ -16488,6 +19241,23 @@ func QueryMSFTNetIPInterface(svc *wmi.Service, where string) ([]MSFTNetIPInterfa
 	return out, nil
 }
 
+// GetMSFTNetIPInterface returns the MSFT_NetIPInterface instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetIPInterface(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*MSFTNetIPInterface, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "Name = " + wmi.WQLValue(name) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	out, err := QueryMSFTNetIPInterface(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetIPInterfaceRequestStateChangeResult holds the out-parameters of MSFT_NetIPInterface.RequestStateChange.
 type MSFTNetIPInterfaceRequestStateChangeResult struct {
 	Job         string
@@ -16540,6 +19310,21 @@ func QueryMSFTNetIPInterfaceAdapter(svc *wmi.Service, where string) ([]MSFTNetIP
 	return out, nil
 }
 
+// GetMSFTNetIPInterfaceAdapter returns the MSFT_NetIPInterfaceAdapter instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetIPInterfaceAdapter(svc *wmi.Service, antecedent string, dependent string) (*MSFTNetIPInterfaceAdapter, error) {
+	where := "Antecedent = " + wmi.WQLValue(antecedent) +
+		" AND " + "Dependent = " + wmi.WQLValue(dependent)
+	out, err := QueryMSFTNetIPInterfaceAdapter(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetIPInterfaceIPAddress is the MSFT_NetIPInterfaceIPAddress CIM class.
 type MSFTNetIPInterfaceIPAddress struct {
 	Antecedent string `cim:"Antecedent"`
@@ -16565,6 +19350,21 @@ func QueryMSFTNetIPInterfaceIPAddress(svc *wmi.Service, where string) ([]MSFTNet
 		out[i].FrameType = wmi.AsUint16(row["FrameType"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetIPInterfaceIPAddress returns the MSFT_NetIPInterfaceIPAddress instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetIPInterfaceIPAddress(svc *wmi.Service, antecedent string, dependent string) (*MSFTNetIPInterfaceIPAddress, error) {
+	where := "Antecedent = " + wmi.WQLValue(antecedent) +
+		" AND " + "Dependent = " + wmi.WQLValue(dependent)
+	out, err := QueryMSFTNetIPInterfaceIPAddress(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetIPInterfaceNeighbor is the MSFT_NetIPInterfaceNeighbor CIM class.
@@ -16594,6 +19394,21 @@ func QueryMSFTNetIPInterfaceNeighbor(svc *wmi.Service, where string) ([]MSFTNetI
 	return out, nil
 }
 
+// GetMSFTNetIPInterfaceNeighbor returns the MSFT_NetIPInterfaceNeighbor instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetIPInterfaceNeighbor(svc *wmi.Service, antecedent string, dependent string) (*MSFTNetIPInterfaceNeighbor, error) {
+	where := "Antecedent = " + wmi.WQLValue(antecedent) +
+		" AND " + "Dependent = " + wmi.WQLValue(dependent)
+	out, err := QueryMSFTNetIPInterfaceNeighbor(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetIPInterfaceRoute is the MSFT_NetIPInterfaceRoute CIM class.
 type MSFTNetIPInterfaceRoute struct {
 	Antecedent string `cim:"Antecedent"`
@@ -16617,6 +19432,21 @@ func QueryMSFTNetIPInterfaceRoute(svc *wmi.Service, where string) ([]MSFTNetIPIn
 		out[i].Dependent = wmi.AsString(row["Dependent"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetIPInterfaceRoute returns the MSFT_NetIPInterfaceRoute instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetIPInterfaceRoute(svc *wmi.Service, antecedent string, dependent string) (*MSFTNetIPInterfaceRoute, error) {
+	where := "Antecedent = " + wmi.WQLValue(antecedent) +
+		" AND " + "Dependent = " + wmi.WQLValue(dependent)
+	out, err := QueryMSFTNetIPInterfaceRoute(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetIPsecDoSPSetting is the MSFT_NetIPsecDoSPSetting CIM class.
@@ -16690,6 +19520,20 @@ func QueryMSFTNetIPsecDoSPSetting(svc *wmi.Service, where string) ([]MSFTNetIPse
 		out[i].StateIdleTimeoutSeconds = wmi.AsUint32(row["StateIdleTimeoutSeconds"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetIPsecDoSPSetting returns the MSFT_NetIPsecDoSPSetting instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetIPsecDoSPSetting(svc *wmi.Service, instanceID string) (*MSFTNetIPsecDoSPSetting, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetIPsecDoSPSetting(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetIPsecIdentity is the MSFT_NetIPsecIdentity CIM class.
@@ -16830,6 +19674,23 @@ func QueryMSFTNetIPv4Protocol(svc *wmi.Service, where string) ([]MSFTNetIPv4Prot
 		out[i].TransitioningToState = wmi.AsUint16(row["TransitioningToState"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetIPv4Protocol returns the MSFT_NetIPv4Protocol instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetIPv4Protocol(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*MSFTNetIPv4Protocol, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "Name = " + wmi.WQLValue(name) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	out, err := QueryMSFTNetIPv4Protocol(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetIPv4ProtocolRequestStateChangeResult holds the out-parameters of MSFT_NetIPv4Protocol.RequestStateChange.
@@ -16978,6 +19839,23 @@ func QueryMSFTNetIPv6Protocol(svc *wmi.Service, where string) ([]MSFTNetIPv6Prot
 	return out, nil
 }
 
+// GetMSFTNetIPv6Protocol returns the MSFT_NetIPv6Protocol instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetIPv6Protocol(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*MSFTNetIPv6Protocol, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "Name = " + wmi.WQLValue(name) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	out, err := QueryMSFTNetIPv6Protocol(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetIPv6ProtocolRequestStateChangeResult holds the out-parameters of MSFT_NetIPv6Protocol.RequestStateChange.
 type MSFTNetIPv6ProtocolRequestStateChangeResult struct {
 	Job         string
@@ -17042,6 +19920,20 @@ func QueryMSFTNetISATAPConfiguration(svc *wmi.Service, where string) ([]MSFTNetI
 		out[i].State = wmi.AsUint32(row["State"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetISATAPConfiguration returns the MSFT_NetISATAPConfiguration instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetISATAPConfiguration(svc *wmi.Service, instanceID string) (*MSFTNetISATAPConfiguration, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetISATAPConfiguration(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetISATAPConfigurationResetResult holds the out-parameters of MSFT_NetISATAPConfiguration.Reset.
@@ -17111,6 +20003,21 @@ func QueryMSFTNetISATAPState(svc *wmi.Service, where string) ([]MSFTNetISATAPSta
 		out[i].SettingData = wmi.AsString(row["SettingData"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetISATAPState returns the MSFT_NetISATAPState instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetISATAPState(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetISATAPState, error) {
+	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
+		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+	out, err := QueryMSFTNetISATAPState(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetImPlatAdapter is the MSFT_NetImPlatAdapter CIM class.
@@ -17188,6 +20095,20 @@ func QueryMSFTNetImPlatAdapter(svc *wmi.Service, where string) ([]MSFTNetImPlatA
 	return out, nil
 }
 
+// GetMSFTNetImPlatAdapter returns the MSFT_NetImPlatAdapter instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetImPlatAdapter(svc *wmi.Service, instanceID string) (*MSFTNetImPlatAdapter, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetImPlatAdapter(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetImPlatAdapterRequestStateChangeResult holds the out-parameters of MSFT_NetImPlatAdapter.RequestStateChange.
 type MSFTNetImPlatAdapterRequestStateChangeResult struct {
 	Job         string
@@ -17246,6 +20167,20 @@ func QueryMSFTNetImPlatProvider(svc *wmi.Service, where string) ([]MSFTNetImPlat
 	return out, nil
 }
 
+// GetMSFTNetImPlatProvider returns the MSFT_NetImPlatProvider instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetImPlatProvider(svc *wmi.Service, instanceID string) (*MSFTNetImPlatProvider, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetImPlatProvider(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetImPlatTeam is the MSFT_NetImPlatTeam CIM class.
 type MSFTNetImPlatTeam struct {
 	Caption     string `cim:"Caption"`
@@ -17275,6 +20210,20 @@ func QueryMSFTNetImPlatTeam(svc *wmi.Service, where string) ([]MSFTNetImPlatTeam
 		out[i].Name = wmi.AsString(row["Name"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetImPlatTeam returns the MSFT_NetImPlatTeam instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetImPlatTeam(svc *wmi.Service, instanceID string) (*MSFTNetImPlatTeam, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetImPlatTeam(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetInterfaceFilter is the MSFT_NetInterfaceFilter CIM class.
@@ -17336,6 +20285,23 @@ func QueryMSFTNetInterfaceFilter(svc *wmi.Service, where string) ([]MSFTNetInter
 	return out, nil
 }
 
+// GetMSFTNetInterfaceFilter returns the MSFT_NetInterfaceFilter instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetInterfaceFilter(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*MSFTNetInterfaceFilter, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "Name = " + wmi.WQLValue(name) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	out, err := QueryMSFTNetInterfaceFilter(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetInterfaceTypeFilter is the MSFT_NetInterfaceTypeFilter CIM class.
 type MSFTNetInterfaceTypeFilter struct {
 	Caption                 string   `cim:"Caption"`
@@ -17395,6 +20361,23 @@ func QueryMSFTNetInterfaceTypeFilter(svc *wmi.Service, where string) ([]MSFTNetI
 	return out, nil
 }
 
+// GetMSFTNetInterfaceTypeFilter returns the MSFT_NetInterfaceTypeFilter instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetInterfaceTypeFilter(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*MSFTNetInterfaceTypeFilter, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "Name = " + wmi.WQLValue(name) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	out, err := QueryMSFTNetInterfaceTypeFilter(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetLbfoProvider is the MSFT_NetLbfoProvider CIM class.
 type MSFTNetLbfoProvider struct {
 	Caption     string `cim:"Caption"`
@@ -17424,6 +20407,20 @@ func QueryMSFTNetLbfoProvider(svc *wmi.Service, where string) ([]MSFTNetLbfoProv
 		out[i].Name = wmi.AsString(row["Name"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetLbfoProvider returns the MSFT_NetLbfoProvider instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetLbfoProvider(svc *wmi.Service, instanceID string) (*MSFTNetLbfoProvider, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetLbfoProvider(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetLbfoTeam is the MSFT_NetLbfoTeam CIM class.
@@ -17463,6 +20460,20 @@ func QueryMSFTNetLbfoTeam(svc *wmi.Service, where string) ([]MSFTNetLbfoTeam, er
 		out[i].TeamingMode = wmi.AsUint32(row["TeamingMode"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetLbfoTeam returns the MSFT_NetLbfoTeam instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetLbfoTeam(svc *wmi.Service, instanceID string) (*MSFTNetLbfoTeam, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetLbfoTeam(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetLbfoTeamRenameResult holds the out-parameters of MSFT_NetLbfoTeam.Rename.
@@ -17570,6 +20581,20 @@ func QueryMSFTNetLbfoTeamMember(svc *wmi.Service, where string) ([]MSFTNetLbfoTe
 		out[i].TransmitLinkSpeed = wmi.AsUint64(row["TransmitLinkSpeed"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetLbfoTeamMember returns the MSFT_NetLbfoTeamMember instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetLbfoTeamMember(svc *wmi.Service, instanceID string) (*MSFTNetLbfoTeamMember, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetLbfoTeamMember(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetLbfoTeamMemberRequestStateChangeResult holds the out-parameters of MSFT_NetLbfoTeamMember.RequestStateChange.
@@ -17680,6 +20705,20 @@ func QueryMSFTNetLbfoTeamNic(svc *wmi.Service, where string) ([]MSFTNetLbfoTeamN
 	return out, nil
 }
 
+// GetMSFTNetLbfoTeamNic returns the MSFT_NetLbfoTeamNic instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetLbfoTeamNic(svc *wmi.Service, instanceID string) (*MSFTNetLbfoTeamNic, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetLbfoTeamNic(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetLbfoTeamNicRequestStateChangeResult holds the out-parameters of MSFT_NetLbfoTeamNic.RequestStateChange.
 type MSFTNetLbfoTeamNicRequestStateChangeResult struct {
 	Job         string
@@ -17732,6 +20771,21 @@ func QueryMSFTNetLbfoTeamProvider(svc *wmi.Service, where string) ([]MSFTNetLbfo
 	return out, nil
 }
 
+// GetMSFTNetLbfoTeamProvider returns the MSFT_NetLbfoTeam_Provider instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetLbfoTeamProvider(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetLbfoTeamProvider, error) {
+	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
+		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+	out, err := QueryMSFTNetLbfoTeamProvider(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetLbfoTeamTeamMember is the MSFT_NetLbfoTeam_TeamMember CIM class.
 type MSFTNetLbfoTeamTeamMember struct {
 	GroupComponent string `cim:"GroupComponent"`
@@ -17757,6 +20811,21 @@ func QueryMSFTNetLbfoTeamTeamMember(svc *wmi.Service, where string) ([]MSFTNetLb
 	return out, nil
 }
 
+// GetMSFTNetLbfoTeamTeamMember returns the MSFT_NetLbfoTeam_TeamMember instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetLbfoTeamTeamMember(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetLbfoTeamTeamMember, error) {
+	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
+		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+	out, err := QueryMSFTNetLbfoTeamTeamMember(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetLbfoTeamTeamNic is the MSFT_NetLbfoTeam_TeamNic CIM class.
 type MSFTNetLbfoTeamTeamNic struct {
 	GroupComponent string `cim:"GroupComponent"`
@@ -17780,6 +20849,21 @@ func QueryMSFTNetLbfoTeamTeamNic(svc *wmi.Service, where string) ([]MSFTNetLbfoT
 		out[i].PartComponent = wmi.AsString(row["PartComponent"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetLbfoTeamTeamNic returns the MSFT_NetLbfoTeam_TeamNic instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetLbfoTeamTeamNic(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetLbfoTeamTeamNic, error) {
+	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
+		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+	out, err := QueryMSFTNetLbfoTeamTeamNic(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetMainModeRule is the MSFT_NetMainModeRule CIM class.
@@ -17871,6 +20955,23 @@ func QueryMSFTNetMainModeRule(svc *wmi.Service, where string) ([]MSFTNetMainMode
 		out[i].SystemName = wmi.AsString(row["SystemName"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetMainModeRule returns the MSFT_NetMainModeRule instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetMainModeRule(svc *wmi.Service, creationClassName string, policyRuleName string, systemCreationClassName string, systemName string) (*MSFTNetMainModeRule, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "PolicyRuleName = " + wmi.WQLValue(policyRuleName) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	out, err := QueryMSFTNetMainModeRule(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetMainModeRuleCloneObjectResult holds the out-parameters of MSFT_NetMainModeRule.CloneObject.
@@ -17984,6 +21085,21 @@ func QueryMSFTNetMainModeRuleFilterByAddress(svc *wmi.Service, where string) ([]
 	return out, nil
 }
 
+// GetMSFTNetMainModeRuleFilterByAddress returns the MSFT_NetMainModeRuleFilterByAddress instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetMainModeRuleFilterByAddress(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetMainModeRuleFilterByAddress, error) {
+	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
+		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+	out, err := QueryMSFTNetMainModeRuleFilterByAddress(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetMainModeRuleFilters is the MSFT_NetMainModeRuleFilters CIM class.
 type MSFTNetMainModeRuleFilters struct {
 	GroupComponent string `cim:"GroupComponent"`
@@ -18007,6 +21123,21 @@ func QueryMSFTNetMainModeRuleFilters(svc *wmi.Service, where string) ([]MSFTNetM
 		out[i].PartComponent = wmi.AsString(row["PartComponent"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetMainModeRuleFilters returns the MSFT_NetMainModeRuleFilters instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetMainModeRuleFilters(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetMainModeRuleFilters, error) {
+	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
+		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+	out, err := QueryMSFTNetMainModeRuleFilters(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetMainModeRuleInProfile is the MSFT_NetMainModeRuleInProfile CIM class.
@@ -18036,6 +21167,21 @@ func QueryMSFTNetMainModeRuleInProfile(svc *wmi.Service, where string) ([]MSFTNe
 	return out, nil
 }
 
+// GetMSFTNetMainModeRuleInProfile returns the MSFT_NetMainModeRuleInProfile instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetMainModeRuleInProfile(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetMainModeRuleInProfile, error) {
+	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
+		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+	out, err := QueryMSFTNetMainModeRuleInProfile(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetMainModeRuleMMAuthSet is the MSFT_NetMainModeRuleMMAuthSet CIM class.
 type MSFTNetMainModeRuleMMAuthSet struct {
 	ActionOrder    uint16 `cim:"ActionOrder"`
@@ -18063,6 +21209,21 @@ func QueryMSFTNetMainModeRuleMMAuthSet(svc *wmi.Service, where string) ([]MSFTNe
 	return out, nil
 }
 
+// GetMSFTNetMainModeRuleMMAuthSet returns the MSFT_NetMainModeRuleMMAuthSet instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetMainModeRuleMMAuthSet(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetMainModeRuleMMAuthSet, error) {
+	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
+		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+	out, err := QueryMSFTNetMainModeRuleMMAuthSet(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetMainModeRuleMMCryptoSet is the MSFT_NetMainModeRuleMMCryptoSet CIM class.
 type MSFTNetMainModeRuleMMCryptoSet struct {
 	ActionOrder    uint16 `cim:"ActionOrder"`
@@ -18088,6 +21249,21 @@ func QueryMSFTNetMainModeRuleMMCryptoSet(svc *wmi.Service, where string) ([]MSFT
 		out[i].PartComponent = wmi.AsString(row["PartComponent"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetMainModeRuleMMCryptoSet returns the MSFT_NetMainModeRuleMMCryptoSet instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetMainModeRuleMMCryptoSet(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetMainModeRuleMMCryptoSet, error) {
+	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
+		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+	out, err := QueryMSFTNetMainModeRuleMMCryptoSet(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetMainModeSA is the MSFT_NetMainModeSA CIM class.
@@ -18235,6 +21411,23 @@ func QueryMSFTNetMainModeSA(svc *wmi.Service, where string) ([]MSFTNetMainModeSA
 	return out, nil
 }
 
+// GetMSFTNetMainModeSA returns the MSFT_NetMainModeSA instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetMainModeSA(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*MSFTNetMainModeSA, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "Name = " + wmi.WQLValue(name) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	out, err := QueryMSFTNetMainModeSA(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetMainModeSARequestStateChangeResult holds the out-parameters of MSFT_NetMainModeSA.RequestStateChange.
 type MSFTNetMainModeSARequestStateChangeResult struct {
 	Job         string
@@ -18317,6 +21510,20 @@ func QueryMSFTNetNat(svc *wmi.Service, where string) ([]MSFTNetNat, error) {
 	return out, nil
 }
 
+// GetMSFTNetNat returns the MSFT_NetNat instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetNat(svc *wmi.Service, instanceID string) (*MSFTNetNat, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetNat(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetNatExternalAddress is the MSFT_NetNatExternalAddress CIM class.
 type MSFTNetNatExternalAddress struct {
 	Active            uint8  `cim:"Active"`
@@ -18358,6 +21565,20 @@ func QueryMSFTNetNatExternalAddress(svc *wmi.Service, where string) ([]MSFTNetNa
 	return out, nil
 }
 
+// GetMSFTNetNatExternalAddress returns the MSFT_NetNatExternalAddress instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetNatExternalAddress(svc *wmi.Service, instanceID string) (*MSFTNetNatExternalAddress, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetNatExternalAddress(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetNatGlobal is the MSFT_NetNatGlobal CIM class.
 type MSFTNetNatGlobal struct {
 	Caption                           string `cim:"Caption"`
@@ -18387,6 +21608,20 @@ func QueryMSFTNetNatGlobal(svc *wmi.Service, where string) ([]MSFTNetNatGlobal, 
 		out[i].InterRoutingDomainHairpinningMode = wmi.AsUint32(row["InterRoutingDomainHairpinningMode"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetNatGlobal returns the MSFT_NetNatGlobal instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetNatGlobal(svc *wmi.Service, instanceID string) (*MSFTNetNatGlobal, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetNatGlobal(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetNatSession is the MSFT_NetNatSession CIM class.
@@ -18442,6 +21677,20 @@ func QueryMSFTNetNatSession(svc *wmi.Service, where string) ([]MSFTNetNatSession
 	return out, nil
 }
 
+// GetMSFTNetNatSession returns the MSFT_NetNatSession instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetNatSession(svc *wmi.Service, instanceID string) (*MSFTNetNatSession, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetNatSession(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetNatStaticMapping is the MSFT_NetNatStaticMapping CIM class.
 type MSFTNetNatStaticMapping struct {
 	Active                        uint8  `cim:"Active"`
@@ -18491,6 +21740,20 @@ func QueryMSFTNetNatStaticMapping(svc *wmi.Service, where string) ([]MSFTNetNatS
 	return out, nil
 }
 
+// GetMSFTNetNatStaticMapping returns the MSFT_NetNatStaticMapping instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetNatStaticMapping(svc *wmi.Service, instanceID string) (*MSFTNetNatStaticMapping, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetNatStaticMapping(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetNatTransitionConfiguration is the MSFT_NetNatTransitionConfiguration CIM class.
 type MSFTNetNatTransitionConfiguration struct {
 	Caption             string   `cim:"Caption"`
@@ -18534,6 +21797,20 @@ func QueryMSFTNetNatTransitionConfiguration(svc *wmi.Service, where string) ([]M
 		out[i].TcpMappingTimeout = wmi.AsUint32(row["TcpMappingTimeout"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetNatTransitionConfiguration returns the MSFT_NetNatTransitionConfiguration instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetNatTransitionConfiguration(svc *wmi.Service, instanceID string) (*MSFTNetNatTransitionConfiguration, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetNatTransitionConfiguration(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetNatTransitionConfigurationDisableResult holds the out-parameters of MSFT_NetNatTransitionConfiguration.Disable.
@@ -18619,6 +21896,21 @@ func QueryMSFTNetNatTransitionInterfaceAssociation(svc *wmi.Service, where strin
 	return out, nil
 }
 
+// GetMSFTNetNatTransitionInterfaceAssociation returns the MSFT_NetNatTransitionInterfaceAssociation instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetNatTransitionInterfaceAssociation(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetNatTransitionInterfaceAssociation, error) {
+	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
+		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+	out, err := QueryMSFTNetNatTransitionInterfaceAssociation(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetNatTransitionMonitoring is the MSFT_NetNatTransitionMonitoring CIM class.
 type MSFTNetNatTransitionMonitoring struct {
 	Caption            string `cim:"Caption"`
@@ -18654,6 +21946,20 @@ func QueryMSFTNetNatTransitionMonitoring(svc *wmi.Service, where string) ([]MSFT
 		out[i].TransportProtocol = wmi.AsUint32(row["TransportProtocol"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetNatTransitionMonitoring returns the MSFT_NetNatTransitionMonitoring instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetNatTransitionMonitoring(svc *wmi.Service, instanceID string) (*MSFTNetNatTransitionMonitoring, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetNatTransitionMonitoring(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetNeighbor is the MSFT_NetNeighbor CIM class.
@@ -18747,6 +22053,23 @@ func QueryMSFTNetNeighbor(svc *wmi.Service, where string) ([]MSFTNetNeighbor, er
 		out[i].TransitioningToState = wmi.AsUint16(row["TransitioningToState"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetNeighbor returns the MSFT_NetNeighbor instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetNeighbor(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*MSFTNetNeighbor, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "Name = " + wmi.WQLValue(name) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	out, err := QueryMSFTNetNeighbor(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetNeighborCreateResult holds the out-parameters of MSFT_NetNeighbor.Create.
@@ -18889,6 +22212,23 @@ func QueryMSFTNetNetworkLayerSecurityFilter(svc *wmi.Service, where string) ([]M
 	return out, nil
 }
 
+// GetMSFTNetNetworkLayerSecurityFilter returns the MSFT_NetNetworkLayerSecurityFilter instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetNetworkLayerSecurityFilter(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*MSFTNetNetworkLayerSecurityFilter, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "Name = " + wmi.WQLValue(name) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	out, err := QueryMSFTNetNetworkLayerSecurityFilter(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetOffloadGlobalSetting is the MSFT_NetOffloadGlobalSetting CIM class.
 type MSFTNetOffloadGlobalSetting struct {
 	Caption                      string `cim:"Caption"`
@@ -18932,6 +22272,20 @@ func QueryMSFTNetOffloadGlobalSetting(svc *wmi.Service, where string) ([]MSFTNet
 	return out, nil
 }
 
+// GetMSFTNetOffloadGlobalSetting returns the MSFT_NetOffloadGlobalSetting instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetOffloadGlobalSetting(svc *wmi.Service, instanceID string) (*MSFTNetOffloadGlobalSetting, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetOffloadGlobalSetting(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetPolicyRuleFilters is the MSFT_NetPolicyRuleFilters CIM class.
 type MSFTNetPolicyRuleFilters struct {
 	GroupComponent string `cim:"GroupComponent"`
@@ -18955,6 +22309,21 @@ func QueryMSFTNetPolicyRuleFilters(svc *wmi.Service, where string) ([]MSFTNetPol
 		out[i].PartComponent = wmi.AsString(row["PartComponent"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetPolicyRuleFilters returns the MSFT_NetPolicyRuleFilters instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetPolicyRuleFilters(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetPolicyRuleFilters, error) {
+	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
+		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+	out, err := QueryMSFTNetPolicyRuleFilters(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetPrefixPolicy is the MSFT_NetPrefixPolicy CIM class.
@@ -18992,6 +22361,21 @@ func QueryMSFTNetPrefixPolicy(svc *wmi.Service, where string) ([]MSFTNetPrefixPo
 		out[i].Store = wmi.AsUint8(row["Store"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetPrefixPolicy returns the MSFT_NetPrefixPolicy instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetPrefixPolicy(svc *wmi.Service, prefix string, store uint8) (*MSFTNetPrefixPolicy, error) {
+	where := "Prefix = " + wmi.WQLValue(prefix) +
+		" AND " + "Store = " + wmi.WQLValue(store)
+	out, err := QueryMSFTNetPrefixPolicy(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetPrefixPolicyCreateResult holds the out-parameters of MSFT_NetPrefixPolicy.Create.
@@ -19096,6 +22480,23 @@ func QueryMSFTNetProtocolPortFilter(svc *wmi.Service, where string) ([]MSFTNetPr
 	return out, nil
 }
 
+// GetMSFTNetProtocolPortFilter returns the MSFT_NetProtocolPortFilter instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetProtocolPortFilter(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*MSFTNetProtocolPortFilter, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "Name = " + wmi.WQLValue(name) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	out, err := QueryMSFTNetProtocolPortFilter(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetQosPolicySettingData is the MSFT_NetQosPolicySettingData CIM class.
 type MSFTNetQosPolicySettingData struct {
 	AppPathNameMatchCondition    string `cim:"AppPathNameMatchCondition"`
@@ -19171,6 +22572,20 @@ func QueryMSFTNetQosPolicySettingData(svc *wmi.Service, where string) ([]MSFTNet
 		out[i].Version = wmi.AsString(row["Version"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetQosPolicySettingData returns the MSFT_NetQosPolicySettingData instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetQosPolicySettingData(svc *wmi.Service, instanceID string) (*MSFTNetQosPolicySettingData, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetQosPolicySettingData(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetQuickModeSA is the MSFT_NetQuickModeSA CIM class.
@@ -19336,6 +22751,23 @@ func QueryMSFTNetQuickModeSA(svc *wmi.Service, where string) ([]MSFTNetQuickMode
 	return out, nil
 }
 
+// GetMSFTNetQuickModeSA returns the MSFT_NetQuickModeSA instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetQuickModeSA(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*MSFTNetQuickModeSA, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "Name = " + wmi.WQLValue(name) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	out, err := QueryMSFTNetQuickModeSA(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetQuickModeSARequestStateChangeResult holds the out-parameters of MSFT_NetQuickModeSA.RequestStateChange.
 type MSFTNetQuickModeSARequestStateChangeResult struct {
 	Job         string
@@ -19426,6 +22858,20 @@ func QueryMSFTNetRoute(svc *wmi.Service, where string) ([]MSFTNetRoute, error) {
 		out[i].ValidLifetime = wmi.AsString(row["ValidLifetime"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetRoute returns the MSFT_NetRoute instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetRoute(svc *wmi.Service, instanceID string) (*MSFTNetRoute, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetRoute(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetRouteCreateResult holds the out-parameters of MSFT_NetRoute.Create.
@@ -19543,6 +22989,21 @@ func QueryMSFTNetRuleInProfile(svc *wmi.Service, where string) ([]MSFTNetRuleInP
 	return out, nil
 }
 
+// GetMSFTNetRuleInProfile returns the MSFT_NetRuleInProfile instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetRuleInProfile(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetRuleInProfile, error) {
+	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
+		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+	out, err := QueryMSFTNetRuleInProfile(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetSAActionInSARule is the MSFT_NetSAActionInSARule CIM class.
 type MSFTNetSAActionInSARule struct {
 	ActionOrder    uint16 `cim:"ActionOrder"`
@@ -19570,6 +23031,21 @@ func QueryMSFTNetSAActionInSARule(svc *wmi.Service, where string) ([]MSFTNetSAAc
 	return out, nil
 }
 
+// GetMSFTNetSAActionInSARule returns the MSFT_NetSAActionInSARule instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetSAActionInSARule(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetSAActionInSARule, error) {
+	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
+		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+	out, err := QueryMSFTNetSAActionInSARule(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetSAAssociation is the MSFT_NetSAAssociation CIM class.
 type MSFTNetSAAssociation struct {
 	Antecedent string `cim:"Antecedent"`
@@ -19593,6 +23069,21 @@ func QueryMSFTNetSAAssociation(svc *wmi.Service, where string) ([]MSFTNetSAAssoc
 		out[i].Dependent = wmi.AsString(row["Dependent"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetSAAssociation returns the MSFT_NetSAAssociation instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetSAAssociation(svc *wmi.Service, antecedent string, dependent string) (*MSFTNetSAAssociation, error) {
+	where := "Antecedent = " + wmi.WQLValue(antecedent) +
+		" AND " + "Dependent = " + wmi.WQLValue(dependent)
+	out, err := QueryMSFTNetSAAssociation(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetSARule is the MSFT_NetSARule CIM class.
@@ -19686,6 +23177,23 @@ func QueryMSFTNetSARule(svc *wmi.Service, where string) ([]MSFTNetSARule, error)
 	return out, nil
 }
 
+// GetMSFTNetSARule returns the MSFT_NetSARule instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetSARule(svc *wmi.Service, creationClassName string, policyRuleName string, systemCreationClassName string, systemName string) (*MSFTNetSARule, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "PolicyRuleName = " + wmi.WQLValue(policyRuleName) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	out, err := QueryMSFTNetSARule(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetSARuleEMAuth is the MSFT_NetSARuleEMAuth CIM class.
 type MSFTNetSARuleEMAuth struct {
 	ActionOrder    uint16 `cim:"ActionOrder"`
@@ -19711,6 +23219,21 @@ func QueryMSFTNetSARuleEMAuth(svc *wmi.Service, where string) ([]MSFTNetSARuleEM
 		out[i].PartComponent = wmi.AsString(row["PartComponent"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetSARuleEMAuth returns the MSFT_NetSARuleEMAuth instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetSARuleEMAuth(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetSARuleEMAuth, error) {
+	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
+		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+	out, err := QueryMSFTNetSARuleEMAuth(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetSARuleMMAuth is the MSFT_NetSARuleMMAuth CIM class.
@@ -19740,6 +23263,21 @@ func QueryMSFTNetSARuleMMAuth(svc *wmi.Service, where string) ([]MSFTNetSARuleMM
 	return out, nil
 }
 
+// GetMSFTNetSARuleMMAuth returns the MSFT_NetSARuleMMAuth instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetSARuleMMAuth(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetSARuleMMAuth, error) {
+	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
+		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+	out, err := QueryMSFTNetSARuleMMAuth(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetSARuleMMCrypto is the MSFT_NetSARuleMMCrypto CIM class.
 type MSFTNetSARuleMMCrypto struct {
 	ActionOrder    uint16 `cim:"ActionOrder"`
@@ -19767,6 +23305,21 @@ func QueryMSFTNetSARuleMMCrypto(svc *wmi.Service, where string) ([]MSFTNetSARule
 	return out, nil
 }
 
+// GetMSFTNetSARuleMMCrypto returns the MSFT_NetSARuleMMCrypto instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetSARuleMMCrypto(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetSARuleMMCrypto, error) {
+	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
+		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+	out, err := QueryMSFTNetSARuleMMCrypto(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetSARuleQMCrypto is the MSFT_NetSARuleQMCrypto CIM class.
 type MSFTNetSARuleQMCrypto struct {
 	ActionOrder    uint16 `cim:"ActionOrder"`
@@ -19792,6 +23345,21 @@ func QueryMSFTNetSARuleQMCrypto(svc *wmi.Service, where string) ([]MSFTNetSARule
 		out[i].PartComponent = wmi.AsString(row["PartComponent"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetSARuleQMCrypto returns the MSFT_NetSARuleQMCrypto instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetSARuleQMCrypto(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetSARuleQMCrypto, error) {
+	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
+		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+	out, err := QueryMSFTNetSARuleQMCrypto(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetSecDeltaCollection is the MSFT_NetSecDeltaCollection CIM class.
@@ -19837,6 +23405,20 @@ func QueryMSFTNetSecDeltaCollection(svc *wmi.Service, where string) ([]MSFTNetSe
 		out[i].PolicyStore = wmi.AsString(row["PolicyStore"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetSecDeltaCollection returns the MSFT_NetSecDeltaCollection instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetSecDeltaCollection(svc *wmi.Service, instanceID string) (*MSFTNetSecDeltaCollection, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetSecDeltaCollection(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetSecuritySettingData is the MSFT_NetSecuritySettingData CIM class.
@@ -19894,6 +23476,20 @@ func QueryMSFTNetSecuritySettingData(svc *wmi.Service, where string) ([]MSFTNetS
 		out[i].RequireFullAuthSupport = wmi.AsUint16(row["RequireFullAuthSupport"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetSecuritySettingData returns the MSFT_NetSecuritySettingData instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetSecuritySettingData(svc *wmi.Service, instanceID string) (*MSFTNetSecuritySettingData, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetSecuritySettingData(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetServiceFilter is the MSFT_NetServiceFilter CIM class.
@@ -19955,6 +23551,23 @@ func QueryMSFTNetServiceFilter(svc *wmi.Service, where string) ([]MSFTNetService
 	return out, nil
 }
 
+// GetMSFTNetServiceFilter returns the MSFT_NetServiceFilter instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetServiceFilter(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*MSFTNetServiceFilter, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "Name = " + wmi.WQLValue(name) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	out, err := QueryMSFTNetServiceFilter(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetSettingData is the MSFT_NetSettingData CIM class.
 type MSFTNetSettingData struct {
 	Caption     string `cim:"Caption"`
@@ -19982,6 +23595,20 @@ func QueryMSFTNetSettingData(svc *wmi.Service, where string) ([]MSFTNetSettingDa
 		out[i].InstanceID = wmi.AsString(row["InstanceID"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetSettingData returns the MSFT_NetSettingData instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetSettingData(svc *wmi.Service, instanceID string) (*MSFTNetSettingData, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetSettingData(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetSwitchTeam is the MSFT_NetSwitchTeam CIM class.
@@ -20013,6 +23640,20 @@ func QueryMSFTNetSwitchTeam(svc *wmi.Service, where string) ([]MSFTNetSwitchTeam
 		out[i].Name = wmi.AsString(row["Name"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetSwitchTeam returns the MSFT_NetSwitchTeam instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetSwitchTeam(svc *wmi.Service, instanceID string) (*MSFTNetSwitchTeam, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetSwitchTeam(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetSwitchTeamAddMemberResult holds the out-parameters of MSFT_NetSwitchTeam.AddMember.
@@ -20186,6 +23827,20 @@ func QueryMSFTNetSwitchTeamMember(svc *wmi.Service, where string) ([]MSFTNetSwit
 	return out, nil
 }
 
+// GetMSFTNetSwitchTeamMember returns the MSFT_NetSwitchTeamMember instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetSwitchTeamMember(svc *wmi.Service, instanceID string) (*MSFTNetSwitchTeamMember, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetSwitchTeamMember(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetSwitchTeamMemberRequestStateChangeResult holds the out-parameters of MSFT_NetSwitchTeamMember.RequestStateChange.
 type MSFTNetSwitchTeamMemberRequestStateChangeResult struct {
 	Job         string
@@ -20236,6 +23891,21 @@ func QueryMSFTNetSwitchTeamTeamMember(svc *wmi.Service, where string) ([]MSFTNet
 		out[i].TeamOfTheMember = wmi.AsString(row["TeamOfTheMember"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetSwitchTeamTeamMember returns the MSFT_NetSwitchTeam_TeamMember instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetSwitchTeamTeamMember(svc *wmi.Service, memberOfTheTeam string, teamOfTheMember string) (*MSFTNetSwitchTeamTeamMember, error) {
+	where := "MemberOfTheTeam = " + wmi.WQLValue(memberOfTheTeam) +
+		" AND " + "TeamOfTheMember = " + wmi.WQLValue(teamOfTheMember)
+	out, err := QueryMSFTNetSwitchTeamTeamMember(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetTCPConnection is the MSFT_NetTCPConnection CIM class.
@@ -20321,6 +23991,20 @@ func QueryMSFTNetTCPConnection(svc *wmi.Service, where string) ([]MSFTNetTCPConn
 		out[i].TransitioningToState = wmi.AsUint16(row["TransitioningToState"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetTCPConnection returns the MSFT_NetTCPConnection instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetTCPConnection(svc *wmi.Service, instanceID string) (*MSFTNetTCPConnection, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetTCPConnection(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetTCPConnectionRequestStateChangeResult holds the out-parameters of MSFT_NetTCPConnection.RequestStateChange.
@@ -20443,6 +24127,25 @@ func QueryMSFTNetTCPSetting(svc *wmi.Service, where string) ([]MSFTNetTCPSetting
 	return out, nil
 }
 
+// GetMSFTNetTCPSetting returns the MSFT_NetTCPSetting instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetTCPSetting(svc *wmi.Service, creationClassName string, policyActionName string, policyRuleCreationClassName string, policyRuleName string, systemCreationClassName string, systemName string) (*MSFTNetTCPSetting, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "PolicyActionName = " + wmi.WQLValue(policyActionName) +
+		" AND " + "PolicyRuleCreationClassName = " + wmi.WQLValue(policyRuleCreationClassName) +
+		" AND " + "PolicyRuleName = " + wmi.WQLValue(policyRuleName) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	out, err := QueryMSFTNetTCPSetting(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetTeredoConfiguration is the MSFT_NetTeredoConfiguration CIM class.
 type MSFTNetTeredoConfiguration struct {
 	Caption          string `cim:"Caption"`
@@ -20486,6 +24189,20 @@ func QueryMSFTNetTeredoConfiguration(svc *wmi.Service, where string) ([]MSFTNetT
 		out[i].Type = wmi.AsUint32(row["Type"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetTeredoConfiguration returns the MSFT_NetTeredoConfiguration instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetTeredoConfiguration(svc *wmi.Service, instanceID string) (*MSFTNetTeredoConfiguration, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetTeredoConfiguration(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetTeredoConfigurationResetResult holds the out-parameters of MSFT_NetTeredoConfiguration.Reset.
@@ -20570,6 +24287,21 @@ func QueryMSFTNetTeredoState(svc *wmi.Service, where string) ([]MSFTNetTeredoSta
 	return out, nil
 }
 
+// GetMSFTNetTeredoState returns the MSFT_NetTeredoState instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetTeredoState(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetTeredoState, error) {
+	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
+		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+	out, err := QueryMSFTNetTeredoState(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetTransportConnection is the MSFT_NetTransportConnection CIM class.
 type MSFTNetTransportConnection struct {
 	AggregationBehavior      uint16   `cim:"AggregationBehavior"`
@@ -20643,6 +24375,20 @@ func QueryMSFTNetTransportConnection(svc *wmi.Service, where string) ([]MSFTNetT
 		out[i].TransitioningToState = wmi.AsUint16(row["TransitioningToState"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetTransportConnection returns the MSFT_NetTransportConnection instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetTransportConnection(svc *wmi.Service, instanceID string) (*MSFTNetTransportConnection, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetTransportConnection(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetTransportConnectionRequestStateChangeResult holds the out-parameters of MSFT_NetTransportConnection.RequestStateChange.
@@ -20743,6 +24489,23 @@ func QueryMSFTNetTransportFilter(svc *wmi.Service, where string) ([]MSFTNetTrans
 	return out, nil
 }
 
+// GetMSFTNetTransportFilter returns the MSFT_NetTransportFilter instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetTransportFilter(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*MSFTNetTransportFilter, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "Name = " + wmi.WQLValue(name) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	out, err := QueryMSFTNetTransportFilter(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTNetTransportFilterTCPSetting is the MSFT_NetTransportFilterTCPSetting CIM class.
 type MSFTNetTransportFilterTCPSetting struct {
 	Antecedent string `cim:"Antecedent"`
@@ -20766,6 +24529,21 @@ func QueryMSFTNetTransportFilterTCPSetting(svc *wmi.Service, where string) ([]MS
 		out[i].Dependent = wmi.AsString(row["Dependent"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetTransportFilterTCPSetting returns the MSFT_NetTransportFilterTCPSetting instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetTransportFilterTCPSetting(svc *wmi.Service, antecedent string, dependent string) (*MSFTNetTransportFilterTCPSetting, error) {
+	where := "Antecedent = " + wmi.WQLValue(antecedent) +
+		" AND " + "Dependent = " + wmi.WQLValue(dependent)
+	out, err := QueryMSFTNetTransportFilterTCPSetting(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetUDPEndpoint is the MSFT_NetUDPEndpoint CIM class.
@@ -20841,6 +24619,20 @@ func QueryMSFTNetUDPEndpoint(svc *wmi.Service, where string) ([]MSFTNetUDPEndpoi
 		out[i].TransitioningToState = wmi.AsUint16(row["TransitioningToState"])
 	}
 	return out, nil
+}
+
+// GetMSFTNetUDPEndpoint returns the MSFT_NetUDPEndpoint instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetUDPEndpoint(svc *wmi.Service, instanceID string) (*MSFTNetUDPEndpoint, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMSFTNetUDPEndpoint(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTNetUDPEndpointRequestStateChangeResult holds the out-parameters of MSFT_NetUDPEndpoint.RequestStateChange.
@@ -20921,6 +24713,25 @@ func QueryMSFTNetUDPSetting(svc *wmi.Service, where string) ([]MSFTNetUDPSetting
 	return out, nil
 }
 
+// GetMSFTNetUDPSetting returns the MSFT_NetUDPSetting instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetUDPSetting(svc *wmi.Service, creationClassName string, policyActionName string, policyRuleCreationClassName string, policyRuleName string, systemCreationClassName string, systemName string) (*MSFTNetUDPSetting, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "PolicyActionName = " + wmi.WQLValue(policyActionName) +
+		" AND " + "PolicyRuleCreationClassName = " + wmi.WQLValue(policyRuleCreationClassName) +
+		" AND " + "PolicyRuleName = " + wmi.WQLValue(policyRuleName) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	out, err := QueryMSFTNetUDPSetting(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTPrintJob is the MSFT_PrintJob CIM class.
 type MSFTPrintJob struct {
 	Caption             string   `cim:"Caption"`
@@ -20996,6 +24807,21 @@ func QueryMSFTPrintJob(svc *wmi.Service, where string) ([]MSFTPrintJob, error) {
 		out[i].UserName = wmi.AsString(row["UserName"])
 	}
 	return out, nil
+}
+
+// GetMSFTPrintJob returns the MSFT_PrintJob instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTPrintJob(svc *wmi.Service, id uint32, printerName string) (*MSFTPrintJob, error) {
+	where := "Id = " + wmi.WQLValue(id) +
+		" AND " + "PrinterName = " + wmi.WQLValue(printerName)
+	out, err := QueryMSFTPrintJob(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MSFTPrintJobDeleteJobByIdResult holds the out-parameters of MSFT_PrintJob.DeleteJobById.
@@ -21440,6 +25266,23 @@ func QueryMSFTPrinter(svc *wmi.Service, where string) ([]MSFTPrinter, error) {
 	return out, nil
 }
 
+// GetMSFTPrinter returns the MSFT_Printer instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTPrinter(svc *wmi.Service, computerName string, deviceType uint32, name string, typeArg uint32) (*MSFTPrinter, error) {
+	where := "ComputerName = " + wmi.WQLValue(computerName) +
+		" AND " + "DeviceType = " + wmi.WQLValue(deviceType) +
+		" AND " + "Name = " + wmi.WQLValue(name) +
+		" AND " + "Type = " + wmi.WQLValue(typeArg)
+	out, err := QueryMSFTPrinter(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTPrinterAddByAdaptivePortResult holds the out-parameters of MSFT_Printer.AddByAdaptivePort.
 type MSFTPrinterAddByAdaptivePortResult struct {
 	ReturnValue uint32
@@ -21714,6 +25557,21 @@ func QueryMSFTPrinterConfiguration(svc *wmi.Service, where string) ([]MSFTPrinte
 	return out, nil
 }
 
+// GetMSFTPrinterConfiguration returns the MSFT_PrinterConfiguration instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTPrinterConfiguration(svc *wmi.Service, computerName string, printerName string) (*MSFTPrinterConfiguration, error) {
+	where := "ComputerName = " + wmi.WQLValue(computerName) +
+		" AND " + "PrinterName = " + wmi.WQLValue(printerName)
+	out, err := QueryMSFTPrinterConfiguration(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTPrinterConfigurationGetByPrinterNameResult holds the out-parameters of MSFT_PrinterConfiguration.GetByPrinterName.
 type MSFTPrinterConfigurationGetByPrinterNameResult struct {
 	CmdletOutput wmi.Row
@@ -21958,6 +25816,23 @@ func QueryMSFTPrinterDriver(svc *wmi.Service, where string) ([]MSFTPrinterDriver
 	return out, nil
 }
 
+// GetMSFTPrinterDriver returns the MSFT_PrinterDriver instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTPrinterDriver(svc *wmi.Service, computerName string, infPath string, name string, printerEnvironment string) (*MSFTPrinterDriver, error) {
+	where := "ComputerName = " + wmi.WQLValue(computerName) +
+		" AND " + "InfPath = " + wmi.WQLValue(infPath) +
+		" AND " + "Name = " + wmi.WQLValue(name) +
+		" AND " + "PrinterEnvironment = " + wmi.WQLValue(printerEnvironment)
+	out, err := QueryMSFTPrinterDriver(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTPrinterDriverAddResult holds the out-parameters of MSFT_PrinterDriver.Add.
 type MSFTPrinterDriverAddResult struct {
 	ReturnValue uint32
@@ -22156,6 +26031,22 @@ func QueryMSFTPrinterPort(svc *wmi.Service, where string) ([]MSFTPrinterPort, er
 	return out, nil
 }
 
+// GetMSFTPrinterPort returns the MSFT_PrinterPort instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTPrinterPort(svc *wmi.Service, computerName string, name string, portMonitor string) (*MSFTPrinterPort, error) {
+	where := "ComputerName = " + wmi.WQLValue(computerName) +
+		" AND " + "Name = " + wmi.WQLValue(name) +
+		" AND " + "PortMonitor = " + wmi.WQLValue(portMonitor)
+	out, err := QueryMSFTPrinterPort(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTPrinterPortTasks is the MSFT_PrinterPortTasks CIM class.
 type MSFTPrinterPortTasks struct {
 }
@@ -22343,6 +26234,23 @@ func QueryMSFTPrinterProperty(svc *wmi.Service, where string) ([]MSFTPrinterProp
 	return out, nil
 }
 
+// GetMSFTPrinterProperty returns the MSFT_PrinterProperty instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTPrinterProperty(svc *wmi.Service, computerName string, printerName string, propertyName string, typeArg uint32) (*MSFTPrinterProperty, error) {
+	where := "ComputerName = " + wmi.WQLValue(computerName) +
+		" AND " + "PrinterName = " + wmi.WQLValue(printerName) +
+		" AND " + "PropertyName = " + wmi.WQLValue(propertyName) +
+		" AND " + "Type = " + wmi.WQLValue(typeArg)
+	out, err := QueryMSFTPrinterProperty(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTPrinterPropertySetByPrinterNameResult holds the out-parameters of MSFT_PrinterProperty.SetByPrinterName.
 type MSFTPrinterPropertySetByPrinterNameResult struct {
 	ReturnValue uint32
@@ -22492,6 +26400,22 @@ func QueryMSFTTcpIpPrinterPort(svc *wmi.Service, where string) ([]MSFTTcpIpPrint
 	return out, nil
 }
 
+// GetMSFTTcpIpPrinterPort returns the MSFT_TcpIpPrinterPort instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTTcpIpPrinterPort(svc *wmi.Service, computerName string, name string, portMonitor string) (*MSFTTcpIpPrinterPort, error) {
+	where := "ComputerName = " + wmi.WQLValue(computerName) +
+		" AND " + "Name = " + wmi.WQLValue(name) +
+		" AND " + "PortMonitor = " + wmi.WQLValue(portMonitor)
+	out, err := QueryMSFTTcpIpPrinterPort(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTWmiError is the MSFT_WmiError CIM class.
 type MSFTWmiError struct {
 	CIMStatusCode            uint32   `cim:"CIMStatusCode"`
@@ -22611,6 +26535,20 @@ func QueryAbsoluteTimerInstruction(svc *wmi.Service, where string) ([]AbsoluteTi
 		out[i].TimerId = wmi.AsString(row["TimerId"])
 	}
 	return out, nil
+}
+
+// GetAbsoluteTimerInstruction returns the __AbsoluteTimerInstruction instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetAbsoluteTimerInstruction(svc *wmi.Service, timerId string) (*AbsoluteTimerInstruction, error) {
+	where := "TimerId = " + wmi.WQLValue(timerId)
+	out, err := QueryAbsoluteTimerInstruction(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // AggregateEvent is the __AggregateEvent CIM class.
@@ -22813,6 +26751,20 @@ func QueryClassProviderRegistration(svc *wmi.Service, where string) ([]ClassProv
 	return out, nil
 }
 
+// GetClassProviderRegistration returns the __ClassProviderRegistration instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetClassProviderRegistration(svc *wmi.Service, provider string) (*ClassProviderRegistration, error) {
+	where := "provider = " + wmi.WQLValue(provider)
+	out, err := QueryClassProviderRegistration(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // ConsumerFailureEvent is the __ConsumerFailureEvent CIM class.
 type ConsumerFailureEvent struct {
 	ErrorCode          uint32  `cim:"ErrorCode"`
@@ -22929,6 +26881,20 @@ func QueryEventConsumerProviderRegistration(svc *wmi.Service, where string) ([]E
 	return out, nil
 }
 
+// GetEventConsumerProviderRegistration returns the __EventConsumerProviderRegistration instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetEventConsumerProviderRegistration(svc *wmi.Service, provider string) (*EventConsumerProviderRegistration, error) {
+	where := "provider = " + wmi.WQLValue(provider)
+	out, err := QueryEventConsumerProviderRegistration(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // EventDroppedEvent is the __EventDroppedEvent CIM class.
 type EventDroppedEvent struct {
 	Event              wmi.Row `cim:"Event"`
@@ -22993,6 +26959,20 @@ func QueryEventFilter(svc *wmi.Service, where string) ([]EventFilter, error) {
 	return out, nil
 }
 
+// GetEventFilter returns the __EventFilter instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetEventFilter(svc *wmi.Service, name string) (*EventFilter, error) {
+	where := "Name = " + wmi.WQLValue(name)
+	out, err := QueryEventFilter(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // EventGenerator is the __EventGenerator CIM class.
 type EventGenerator struct {
 }
@@ -23035,6 +27015,20 @@ func QueryEventProviderRegistration(svc *wmi.Service, where string) ([]EventProv
 		out[i].Provider = wmi.AsString(row["provider"])
 	}
 	return out, nil
+}
+
+// GetEventProviderRegistration returns the __EventProviderRegistration instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetEventProviderRegistration(svc *wmi.Service, provider string) (*EventProviderRegistration, error) {
+	where := "provider = " + wmi.WQLValue(provider)
+	out, err := QueryEventProviderRegistration(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // EventQueueOverflowEvent is the __EventQueueOverflowEvent CIM class.
@@ -23159,6 +27153,21 @@ func QueryFilterToConsumerBinding(svc *wmi.Service, where string) ([]FilterToCon
 		out[i].SlowDownProviders = wmi.AsBool(row["SlowDownProviders"])
 	}
 	return out, nil
+}
+
+// GetFilterToConsumerBinding returns the __FilterToConsumerBinding instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetFilterToConsumerBinding(svc *wmi.Service, consumer string, filter string) (*FilterToConsumerBinding, error) {
+	where := "Consumer = " + wmi.WQLValue(consumer) +
+		" AND " + "Filter = " + wmi.WQLValue(filter)
+	out, err := QueryFilterToConsumerBinding(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // IndicationRelated is the __IndicationRelated CIM class.
@@ -23339,6 +27348,20 @@ func QueryInstanceProviderRegistration(svc *wmi.Service, where string) ([]Instan
 	return out, nil
 }
 
+// GetInstanceProviderRegistration returns the __InstanceProviderRegistration instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetInstanceProviderRegistration(svc *wmi.Service, provider string) (*InstanceProviderRegistration, error) {
+	where := "provider = " + wmi.WQLValue(provider)
+	out, err := QueryInstanceProviderRegistration(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // IntervalTimerInstruction is the __IntervalTimerInstruction CIM class.
 type IntervalTimerInstruction struct {
 	IntervalBetweenEvents uint32 `cim:"IntervalBetweenEvents"`
@@ -23364,6 +27387,20 @@ func QueryIntervalTimerInstruction(svc *wmi.Service, where string) ([]IntervalTi
 		out[i].TimerId = wmi.AsString(row["TimerId"])
 	}
 	return out, nil
+}
+
+// GetIntervalTimerInstruction returns the __IntervalTimerInstruction instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetIntervalTimerInstruction(svc *wmi.Service, timerId string) (*IntervalTimerInstruction, error) {
+	where := "TimerId = " + wmi.WQLValue(timerId)
+	out, err := QueryIntervalTimerInstruction(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MethodInvocationEvent is the __MethodInvocationEvent CIM class.
@@ -23426,6 +27463,20 @@ func QueryMethodProviderRegistration(svc *wmi.Service, where string) ([]MethodPr
 	return out, nil
 }
 
+// GetMethodProviderRegistration returns the __MethodProviderRegistration instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMethodProviderRegistration(svc *wmi.Service, provider string) (*MethodProviderRegistration, error) {
+	where := "provider = " + wmi.WQLValue(provider)
+	out, err := QueryMethodProviderRegistration(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // NAMESPACE is the __NAMESPACE CIM class.
 type NAMESPACE struct {
 	Name string `cim:"Name"`
@@ -23447,6 +27498,20 @@ func QueryNAMESPACE(svc *wmi.Service, where string) ([]NAMESPACE, error) {
 		out[i].Name = wmi.AsString(row["Name"])
 	}
 	return out, nil
+}
+
+// GetNAMESPACE returns the __NAMESPACE instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetNAMESPACE(svc *wmi.Service, name string) (*NAMESPACE, error) {
+	where := "Name = " + wmi.WQLValue(name)
+	out, err := QueryNAMESPACE(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // NTLMUser9X is the __NTLMUser9X CIM class.
@@ -23708,6 +27773,20 @@ func QueryPropertyProviderRegistration(svc *wmi.Service, where string) ([]Proper
 	return out, nil
 }
 
+// GetPropertyProviderRegistration returns the __PropertyProviderRegistration instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetPropertyProviderRegistration(svc *wmi.Service, provider string) (*PropertyProviderRegistration, error) {
+	where := "provider = " + wmi.WQLValue(provider)
+	out, err := QueryPropertyProviderRegistration(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // Provider is the __Provider CIM class.
 type Provider struct {
 	Name string `cim:"Name"`
@@ -23729,6 +27808,20 @@ func QueryProvider(svc *wmi.Service, where string) ([]Provider, error) {
 		out[i].Name = wmi.AsString(row["Name"])
 	}
 	return out, nil
+}
+
+// GetProvider returns the __Provider instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetProvider(svc *wmi.Service, name string) (*Provider, error) {
+	where := "Name = " + wmi.WQLValue(name)
+	out, err := QueryProvider(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // ProviderRegistration is the __ProviderRegistration CIM class.
@@ -24103,6 +28196,20 @@ func QueryTimerInstruction(svc *wmi.Service, where string) ([]TimerInstruction, 
 	return out, nil
 }
 
+// GetTimerInstruction returns the __TimerInstruction instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetTimerInstruction(svc *wmi.Service, timerId string) (*TimerInstruction, error) {
+	where := "TimerId = " + wmi.WQLValue(timerId)
+	out, err := QueryTimerInstruction(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // TimerNextFiring is the __TimerNextFiring CIM class.
 type TimerNextFiring struct {
 	NextEvent64BitTime int64  `cim:"NextEvent64BitTime"`
@@ -24126,6 +28233,20 @@ func QueryTimerNextFiring(svc *wmi.Service, where string) ([]TimerNextFiring, er
 		out[i].TimerId = wmi.AsString(row["TimerId"])
 	}
 	return out, nil
+}
+
+// GetTimerNextFiring returns the __TimerNextFiring instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetTimerNextFiring(svc *wmi.Service, timerId string) (*TimerNextFiring, error) {
+	where := "TimerId = " + wmi.WQLValue(timerId)
+	out, err := QueryTimerNextFiring(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // Trustee is the __Trustee CIM class.
@@ -24228,6 +28349,20 @@ func QueryWin32Provider(svc *wmi.Service, where string) ([]Win32Provider, error)
 		out[i].Version = wmi.AsUint32(row["Version"])
 	}
 	return out, nil
+}
+
+// GetWin32Provider returns the __Win32Provider instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetWin32Provider(svc *wmi.Service, name string) (*Win32Provider, error) {
+	where := "Name = " + wmi.WQLValue(name)
+	out, err := QueryWin32Provider(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // ThisNAMESPACE is the __thisNAMESPACE CIM class.

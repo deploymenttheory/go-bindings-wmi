@@ -251,12 +251,65 @@ func renderPackage(pkg string, snapshot *cimschema.Snapshot) ([]byte, error) {
 		}
 		b.WriteString("\treturn out, nil\n}\n\n")
 
+		renderGetByKey(&b, claimed, goName, class)
 		for _, method := range class.Methods {
 			renderMethod(&b, claimed, goName, class.Name, method)
 		}
 	}
 
 	return format.Source([]byte(b.String()))
+}
+
+// renderGetByKey emits Get<Class>, a lookup by the class's [key] properties
+// returning the single matching instance or wmi.ErrNotFound. Classes
+// without keys (abstract/association-less classes) get no helper. Key
+// values render as WQL literals via wmi.WQLValue.
+func renderGetByKey(b *strings.Builder, claimed map[string]bool, goName string, class cimschema.Class) {
+	type key struct {
+		ident, cim string
+		goType     string
+	}
+	var keys []key
+	usedIdents := map[string]bool{"svc": true, "where": true, "out": true, "err": true, "wmi": true}
+	for _, p := range class.Properties {
+		if !p.Key {
+			continue
+		}
+		ident := paramIdent(p.Name, usedIdents)
+		if ident == "" {
+			return // an unnameable key makes the lookup unusable
+		}
+		usedIdents[ident] = true
+		keys = append(keys, key{ident, p.Name, cimschema.GoType(p)})
+	}
+	if len(keys) == 0 {
+		return
+	}
+	funcName := "Get" + goName
+	if claimed[funcName] {
+		return // symbol collision; the first claimant wins
+	}
+	claimed[funcName] = true
+
+	fmt.Fprintf(b, "// %s returns the %s instance identified by its key\n", funcName, class.Name)
+	b.WriteString("// properties, or wmi.ErrNotFound.\n")
+	fmt.Fprintf(b, "func %s(svc *wmi.Service", funcName)
+	for _, k := range keys {
+		fmt.Fprintf(b, ", %s %s", k.ident, k.goType)
+	}
+	fmt.Fprintf(b, ") (*%s, error) {\n", goName)
+	b.WriteString("\twhere := ")
+	for i, k := range keys {
+		if i > 0 {
+			b.WriteString(" +\n\t\t\" AND \" + ")
+		}
+		fmt.Fprintf(b, "%q + wmi.WQLValue(%s)", k.cim+" = ", k.ident)
+	}
+	b.WriteString("\n")
+	fmt.Fprintf(b, "\tout, err := Query%s(svc, where)\n", goName)
+	b.WriteString("\tif err != nil {\n\t\treturn nil, err\n\t}\n")
+	b.WriteString("\tif len(out) == 0 {\n\t\treturn nil, wmi.ErrNotFound\n\t}\n")
+	b.WriteString("\treturn &out[0], nil\n}\n\n")
 }
 
 // renderMethod emits a result struct and a typed wrapper for one CIM method.
