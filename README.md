@@ -33,7 +33,17 @@ for _, d := range disks {
 
 No stringly-typed WQL result maps: one Go struct per CIM class with typed
 fields (CIM types → Go types, arrays → slices), plus a generated
-`Query<Class>` helper that runs the WQL and unmarshals each instance.
+`Query<Class>` helper that runs the WQL and unmarshals each instance — and
+one typed wrapper per CIM method:
+
+```go
+owner, _ := cimv2.Win32ProcessGetOwner(svc, path)   // instance method via __PATH
+res, _ := cimv2.Win32ProcessCreate(svc, "notepad.exe", "", nil) // static method
+```
+
+The runtime also provides event subscriptions (`SubscribeEvents`), streaming
+(`QuerySeq`) and cancellable (`QueryContext`) queries, remote connections
+(`ConnectWith`), and DMTF datetime parsing (`ParseDMTF`).
 
 ## How it's built
 
@@ -41,15 +51,19 @@ Unlike the winmd sisters, the metadata source is the **live CIM repository**,
 so acquisition is a capture step rather than a NuGet download:
 
 ```sh
-go run ./cmd/capture     # introspect the live repository → metadata/cim/<ns>.json (committed)
-go run ./cmd/generate    # snapshot → bindings/cim/<ns> (self-cleaning, byte-deterministic)
+go run ./cmd/capture                    # introspect the live repository → metadata/cim/<ns>.json (committed)
+go run ./cmd/generate                   # snapshot → bindings/cim/<ns> (validated, self-cleaning, byte-deterministic)
+go run ./cmd/generate validate          # snapshot structural invariants
+go run ./cmd/generate diff old new      # semantic schema diff (markdown)
 ```
 
 The committed snapshot (`metadata/cim/root.cimv2.json`) is the winmd
 equivalent: codegen is fully offline and deterministic from it, and CI
 regenerates and diffs to enforce that. Capturing a fresh snapshot is a
 deliberate, reviewed act (schema varies by host OS build — recorded in the
-snapshot's provenance).
+snapshot's provenance, auto-filled from the capture host). A weekly
+`schema-update` workflow captures on the CI runner and opens a PR — body: the
+semantic diff — only when the schema actually changed.
 
 ## Runtime
 
@@ -62,11 +76,20 @@ values. This is also the seed of a general OLE-automation ergonomics layer
 
 ## Coverage
 
-The committed snapshot captures **every class in `root\cimv2`** (~1,300):
-`go run ./cmd/capture` enumerates the whole namespace by default (`-classes a,b`
-narrows it). Other namespaces (`root\StandardCimv2`, `root\Microsoft\Windows\*`,
-MDM bridge classes) are additive — capture with `-namespace` and each becomes
-its own package.
+Three namespaces are captured, each its own generated package
+(`go run ./cmd/capture` enumerates a whole namespace by default; `-classes a,b`
+narrows):
+
+- **`root\cimv2`** (~1,300 classes) → `bindings/cim/cimv2` — the classic
+  inventory surface (Win32_*, CIM_*).
+- **`root\StandardCimv2`** (372) → `bindings/cim/standardcimv2` — modern
+  networking (MSFT_NetAdapter, MSFT_NetIPAddress, MSFT_NetRoute, …).
+- **`root\SecurityCenter2`** (69) → `bindings/cim/securitycenter2` —
+  registered AV / firewall / anti-spyware products (client SKUs only).
+
+Other namespaces (`root\Microsoft\Windows\*`, the `root\cimv2\mdm\dmmap` MDM
+bridge — which requires an elevated/SYSTEM capture context) are additive:
+capture with `-namespace` and regenerate.
 
 ## Examples & docs
 
@@ -75,6 +98,8 @@ its own package.
 - [Getting started](docs/getting-started.md)
 - [Capture and generate](docs/capture-and-generate.md) — the metadata pipeline
 - [WQL and VARIANTs](docs/wql-and-variants.md) — types, coercion, decoding
+- [Methods, events, and query shapes](docs/methods-and-events.md) — ExecMethod,
+  subscriptions, streaming, remote
 - [`CLAUDE.md`](CLAUDE.md) — the capture doctrine and why the CLI is minimal
 
 ## Related projects

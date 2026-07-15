@@ -1,0 +1,115 @@
+{
+  "namespace": "root\\demo",
+  "provenance": {
+    "osBuild": "26200",
+    "captured": "2026-07-14"
+  },
+  "classes": [
+    {
+      "name": "Demo_Empty",
+      "properties": null
+    },
+    {
+      "name": "Demo_Widget",
+      "properties": [
+        {
+          "name": "Caps",
+          "cimType": 18,
+          "array": true
+        },
+        {
+          "name": "DemoWidget",
+          "cimType": 8
+        },
+        {
+          "name": "Enabled",
+          "cimType": 11
+        },
+        {
+          "name": "Exotic",
+          "cimType": 102
+        },
+        {
+          "name": "FooBar",
+          "cimType": 3
+        },
+        {
+          "name": "Foo_Bar",
+          "cimType": 8
+        },
+        {
+          "name": "Installed",
+          "cimType": 101
+        },
+        {
+          "name": "Name",
+          "cimType": 8,
+          "key": true
+        },
+        {
+          "name": "Ratio",
+          "cimType": 4
+        },
+        {
+          "name": "Size",
+          "cimType": 21
+        },
+        {
+          "name": "Tags",
+          "cimType": 8,
+          "array": true
+        }
+      ],
+      "methods": [
+        {
+          "name": "Create",
+          "static": true,
+          "in": [
+            {
+              "name": "CommandLine",
+              "cimType": 8
+            },
+            {
+              "name": "Timeout",
+              "cimType": 19
+            }
+          ],
+          "out": [
+            {
+              "name": "ProcessId",
+              "cimType": 19
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "Stop",
+          "in": [
+            {
+              "name": "Force",
+              "cimType": 11
+            }
+          ],
+          "out": [
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Demo_widget",
+      "properties": [
+        {
+          "name": "Shadowed",
+          "cimType": 8
+        }
+      ]
+    }
+  ]
+}

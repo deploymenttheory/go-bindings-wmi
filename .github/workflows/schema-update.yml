@@ -1,0 +1,70 @@
+name: CIM schema update
+
+on:
+  schedule:
+    - cron: "0 7 * * 1" # Mondays 07:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+          cache: true
+
+      - name: Keep the committed snapshot for the diff
+        shell: bash
+        run: cp metadata/cim/root.cimv2.json old-root.cimv2.json
+
+      # Captures the runner's live CIM repository; provenance (OS build,
+      # date) fills from the host automatically.
+      - name: Capture the live schema
+        run: go run ./cmd/capture
+
+      - name: Validate the fresh snapshot
+        run: go run ./cmd/generate validate
+
+      # A capture always changes the provenance date; only schema changes
+      # warrant a PR. The diff's "No schema changes." sentinel gates it.
+      - name: Diff against the committed snapshot
+        id: diff
+        shell: bash
+        run: |
+          go run ./cmd/generate diff old-root.cimv2.json metadata/cim/root.cimv2.json | head -c 60000 > pr-body.md
+          if grep -q "No schema changes." pr-body.md; then
+            echo "updated=false" >> "$GITHUB_OUTPUT"
+            git checkout -- metadata/cim
+          else
+            echo "updated=true" >> "$GITHUB_OUTPUT"
+            echo "build=$(python -c "import json;print(json.load(open('metadata/cim/root.cimv2.json'))['provenance']['osBuild'])")" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Regenerate bindings
+        if: steps.diff.outputs.updated == 'true'
+        run: go run ./cmd/generate
+
+      - name: Build and test
+        if: steps.diff.outputs.updated == 'true'
+        run: |
+          go build ./...
+          go test ./cmd/... ./internal/... ./runtime/... ./acceptance/
+
+      - name: Open the update PR
+        if: steps.diff.outputs.updated == 'true'
+        uses: peter-evans/create-pull-request@v7
+        with:
+          branch: chore/schema-update
+          title: "chore(metadata): refresh root\\cimv2 snapshot (build ${{ steps.diff.outputs.build }})"
+          body-path: pr-body.md
+          commit-message: "chore(metadata): refresh root\\cimv2 snapshot (build ${{ steps.diff.outputs.build }})"
+          add-paths: |
+            metadata/cim/
+            bindings/

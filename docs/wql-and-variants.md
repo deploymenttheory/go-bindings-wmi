@@ -26,17 +26,23 @@ The generator maps CIM property types to Go field types:
 | (array of the above) | `[]T` |
 | unknown / object refs | `any` |
 
-`datetime` is currently surfaced as its raw DMTF string (e.g.
-`20260714120000.000000+000`); parse at the call site if you need a `time.Time`.
+`datetime` is surfaced as its raw DMTF string (e.g.
+`20260714120000.000000+060`). The runtime provides parsers:
+`wmi.ParseDMTF` → `time.Time` (offset preserved as a fixed zone) and
+`wmi.ParseDMTFInterval` → `time.Duration` for interval values
+(`ddddddddHHMMSS.mmmmmm:000`).
 
 ## VARIANT decoding
 
-WMI returns values as COM `VARIANT`s. The runtime decodes the common scalar
-types into Go values (`string`, `int64`, `uint64`, `bool`, `float64`, or `nil`
-for `VT_EMPTY`/`VT_NULL`); unsupported or array VARIANTs decode to `nil`. The
-typed `Query<Class>` helpers then type-assert each property into its struct
-field, so a value that doesn't match its declared type is simply left zero
-rather than erroring.
+WMI returns values as COM `VARIANT`s. The runtime decodes every scalar type
+WMI produces into widened Go values (`string`, `int64`, `uint64`, `bool`,
+`float64`, or `nil` for `VT_EMPTY`/`VT_NULL`), and decodes SAFEARRAY values
+into `[]any` of those widened elements. The typed `Query<Class>` helpers then
+*coerce* each property into its declared struct field (`wmi.AsUint32`,
+`wmi.AsStringSlice`, …) rather than type-asserting — necessary because WMI
+does not return values in the CIM-declared width: most integers arrive as
+`VT_I4` and 64-bit values (disk sizes, memory) arrive as BSTR strings. A
+value that cannot be coerced is left zero rather than erroring.
 
 ## End-of-enumeration
 
