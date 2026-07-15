@@ -115,12 +115,18 @@ DDF v2 zip (pinned) → committed snapshots → deterministic codegen → typed 
   values, deprecation) plus typed enum constants. Self-cleaning,
   byte-deterministic; CI regenerates and diffs both pipelines.
 - **`runtime/csp`** — the hand-written `csp.Policy` descriptor types the
-  generated bindings reference. Pure data — the CSP bindings have **no
-  Windows dependency** and build/test on any OS.
+  generated bindings reference (pure data, any OS) plus a Windows-only
+  execution layer (`exec_windows.go`): `Connect`/`Read`/`ReadDesired`/`Set`/
+  `Delete` drive a policy through the bridge via `runtime/wmi`'s instance
+  CRUD. Only bridge-backed policies (`Executable()`) can be driven.
 
 The DDF is the canonical *schema*; the MDM WMI bridge (`root\cimv2\mdm\dmmap`)
-is the local *runtime* for driving those policies. Complementary, not
-redundant.
+is the local *runtime* for driving those policies. `cmd/gencsp` joins them —
+cross-checking DDF policy areas against the bridge classes captured into
+`metadata/csp/bridge-policy-classes.json` — so each policy's `csp.Bridge`
+mapping (`MDM_Policy_Config01_<Area>02`, keyed `ParentID`+`InstanceID`) is
+grounded in a real capture, not a guessed convention. Execution needs the
+SYSTEM account and mutates device config.
 
 ## Growing coverage
 

@@ -27,4 +27,14 @@ go run ./examples/inventory
   process-creation events (`SubscribeEvents`), decoding each event's
   embedded `TargetInstance`.
 
-WMI is a Windows service, so the examples require Windows to run.
+The WMI examples above require Windows. The CSP examples below use the
+DDF-sourced policy catalog:
+
+- **[`csp-catalog`](csp-catalog)** — explore the policy catalog: list an
+  area's policies, read a policy's schema (type, applicability, allowed
+  values), typed enum constants, and which policies are executable via the
+  bridge. **Pure metadata — runs on any OS.**
+- **[`csp-policy`](csp-policy)** — drive a policy through the MDM bridge:
+  read its value, and (with `-write`) set and restore it — the R/U/D of
+  policy values. Requires the **SYSTEM** account; read-only unless `-write`
+  is passed, and self-restoring.
