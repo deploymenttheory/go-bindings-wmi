@@ -11,4 +11,7 @@
 *.yaml text eol=lf
 *.json text eol=lf
 
+# Generator golden files are compared byte-for-byte against LF output.
+*.golden text eol=lf
+
 *.winmd binary
