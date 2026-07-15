@@ -40,6 +40,20 @@ func QueryAntiSpywareProduct(svc *wmi.Service, where string) ([]AntiSpywareProdu
 	return out, nil
 }
 
+// GetAntiSpywareProduct returns the AntiSpywareProduct instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetAntiSpywareProduct(svc *wmi.Service, instanceGuid string) (*AntiSpywareProduct, error) {
+	where := "instanceGuid = " + wmi.WQLValue(instanceGuid)
+	out, err := QueryAntiSpywareProduct(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // AntiVirusProduct is the AntiVirusProduct CIM class.
 type AntiVirusProduct struct {
 	DisplayName              string `cim:"displayName"`
@@ -71,6 +85,20 @@ func QueryAntiVirusProduct(svc *wmi.Service, where string) ([]AntiVirusProduct, 
 		out[i].Timestamp = wmi.AsString(row["timestamp"])
 	}
 	return out, nil
+}
+
+// GetAntiVirusProduct returns the AntiVirusProduct instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetAntiVirusProduct(svc *wmi.Service, instanceGuid string) (*AntiVirusProduct, error) {
+	where := "instanceGuid = " + wmi.WQLValue(instanceGuid)
+	out, err := QueryAntiVirusProduct(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // CIMClassCreation is the CIM_ClassCreation CIM class.
@@ -546,6 +574,20 @@ func QueryFirewallProduct(svc *wmi.Service, where string) ([]FirewallProduct, er
 	return out, nil
 }
 
+// GetFirewallProduct returns the FirewallProduct instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetFirewallProduct(svc *wmi.Service, instanceGuid string) (*FirewallProduct, error) {
+	where := "instanceGuid = " + wmi.WQLValue(instanceGuid)
+	out, err := QueryFirewallProduct(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // MSFTExtendedStatus is the MSFT_ExtendedStatus CIM class.
 type MSFTExtendedStatus struct {
 	CIMStatusCode            uint32   `cim:"CIMStatusCode"`
@@ -699,6 +741,20 @@ func QueryWSCCallerAMPPLData(svc *wmi.Service, where string) ([]WSCCallerAMPPLDa
 	return out, nil
 }
 
+// GetWSCCallerAMPPLData returns the WSC_CallerAMPPLData instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetWSCCallerAMPPLData(svc *wmi.Service, instanceGuid string) (*WSCCallerAMPPLData, error) {
+	where := "instanceGuid = " + wmi.WQLValue(instanceGuid)
+	out, err := QueryWSCCallerAMPPLData(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // ACE is the __ACE CIM class.
 type ACE struct {
 	AccessMask              uint32  `cim:"AccessMask"`
@@ -761,6 +817,20 @@ func QueryAbsoluteTimerInstruction(svc *wmi.Service, where string) ([]AbsoluteTi
 		out[i].TimerId = wmi.AsString(row["TimerId"])
 	}
 	return out, nil
+}
+
+// GetAbsoluteTimerInstruction returns the __AbsoluteTimerInstruction instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetAbsoluteTimerInstruction(svc *wmi.Service, timerId string) (*AbsoluteTimerInstruction, error) {
+	where := "TimerId = " + wmi.WQLValue(timerId)
+	out, err := QueryAbsoluteTimerInstruction(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // AggregateEvent is the __AggregateEvent CIM class.
@@ -963,6 +1033,20 @@ func QueryClassProviderRegistration(svc *wmi.Service, where string) ([]ClassProv
 	return out, nil
 }
 
+// GetClassProviderRegistration returns the __ClassProviderRegistration instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetClassProviderRegistration(svc *wmi.Service, provider string) (*ClassProviderRegistration, error) {
+	where := "provider = " + wmi.WQLValue(provider)
+	out, err := QueryClassProviderRegistration(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // ConsumerFailureEvent is the __ConsumerFailureEvent CIM class.
 type ConsumerFailureEvent struct {
 	ErrorCode          uint32  `cim:"ErrorCode"`
@@ -1079,6 +1163,20 @@ func QueryEventConsumerProviderRegistration(svc *wmi.Service, where string) ([]E
 	return out, nil
 }
 
+// GetEventConsumerProviderRegistration returns the __EventConsumerProviderRegistration instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetEventConsumerProviderRegistration(svc *wmi.Service, provider string) (*EventConsumerProviderRegistration, error) {
+	where := "provider = " + wmi.WQLValue(provider)
+	out, err := QueryEventConsumerProviderRegistration(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // EventDroppedEvent is the __EventDroppedEvent CIM class.
 type EventDroppedEvent struct {
 	Event              wmi.Row `cim:"Event"`
@@ -1143,6 +1241,20 @@ func QueryEventFilter(svc *wmi.Service, where string) ([]EventFilter, error) {
 	return out, nil
 }
 
+// GetEventFilter returns the __EventFilter instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetEventFilter(svc *wmi.Service, name string) (*EventFilter, error) {
+	where := "Name = " + wmi.WQLValue(name)
+	out, err := QueryEventFilter(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // EventGenerator is the __EventGenerator CIM class.
 type EventGenerator struct {
 }
@@ -1185,6 +1297,20 @@ func QueryEventProviderRegistration(svc *wmi.Service, where string) ([]EventProv
 		out[i].Provider = wmi.AsString(row["provider"])
 	}
 	return out, nil
+}
+
+// GetEventProviderRegistration returns the __EventProviderRegistration instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetEventProviderRegistration(svc *wmi.Service, provider string) (*EventProviderRegistration, error) {
+	where := "provider = " + wmi.WQLValue(provider)
+	out, err := QueryEventProviderRegistration(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // EventQueueOverflowEvent is the __EventQueueOverflowEvent CIM class.
@@ -1309,6 +1435,21 @@ func QueryFilterToConsumerBinding(svc *wmi.Service, where string) ([]FilterToCon
 		out[i].SlowDownProviders = wmi.AsBool(row["SlowDownProviders"])
 	}
 	return out, nil
+}
+
+// GetFilterToConsumerBinding returns the __FilterToConsumerBinding instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetFilterToConsumerBinding(svc *wmi.Service, consumer string, filter string) (*FilterToConsumerBinding, error) {
+	where := "Consumer = " + wmi.WQLValue(consumer) +
+		" AND " + "Filter = " + wmi.WQLValue(filter)
+	out, err := QueryFilterToConsumerBinding(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // IndicationRelated is the __IndicationRelated CIM class.
@@ -1489,6 +1630,20 @@ func QueryInstanceProviderRegistration(svc *wmi.Service, where string) ([]Instan
 	return out, nil
 }
 
+// GetInstanceProviderRegistration returns the __InstanceProviderRegistration instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetInstanceProviderRegistration(svc *wmi.Service, provider string) (*InstanceProviderRegistration, error) {
+	where := "provider = " + wmi.WQLValue(provider)
+	out, err := QueryInstanceProviderRegistration(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // IntervalTimerInstruction is the __IntervalTimerInstruction CIM class.
 type IntervalTimerInstruction struct {
 	IntervalBetweenEvents uint32 `cim:"IntervalBetweenEvents"`
@@ -1514,6 +1669,20 @@ func QueryIntervalTimerInstruction(svc *wmi.Service, where string) ([]IntervalTi
 		out[i].TimerId = wmi.AsString(row["TimerId"])
 	}
 	return out, nil
+}
+
+// GetIntervalTimerInstruction returns the __IntervalTimerInstruction instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetIntervalTimerInstruction(svc *wmi.Service, timerId string) (*IntervalTimerInstruction, error) {
+	where := "TimerId = " + wmi.WQLValue(timerId)
+	out, err := QueryIntervalTimerInstruction(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // MethodInvocationEvent is the __MethodInvocationEvent CIM class.
@@ -1576,6 +1745,20 @@ func QueryMethodProviderRegistration(svc *wmi.Service, where string) ([]MethodPr
 	return out, nil
 }
 
+// GetMethodProviderRegistration returns the __MethodProviderRegistration instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMethodProviderRegistration(svc *wmi.Service, provider string) (*MethodProviderRegistration, error) {
+	where := "provider = " + wmi.WQLValue(provider)
+	out, err := QueryMethodProviderRegistration(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // NAMESPACE is the __NAMESPACE CIM class.
 type NAMESPACE struct {
 	Name string `cim:"Name"`
@@ -1597,6 +1780,20 @@ func QueryNAMESPACE(svc *wmi.Service, where string) ([]NAMESPACE, error) {
 		out[i].Name = wmi.AsString(row["Name"])
 	}
 	return out, nil
+}
+
+// GetNAMESPACE returns the __NAMESPACE instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetNAMESPACE(svc *wmi.Service, name string) (*NAMESPACE, error) {
+	where := "Name = " + wmi.WQLValue(name)
+	out, err := QueryNAMESPACE(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // NTLMUser9X is the __NTLMUser9X CIM class.
@@ -1858,6 +2055,20 @@ func QueryPropertyProviderRegistration(svc *wmi.Service, where string) ([]Proper
 	return out, nil
 }
 
+// GetPropertyProviderRegistration returns the __PropertyProviderRegistration instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetPropertyProviderRegistration(svc *wmi.Service, provider string) (*PropertyProviderRegistration, error) {
+	where := "provider = " + wmi.WQLValue(provider)
+	out, err := QueryPropertyProviderRegistration(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // Provider is the __Provider CIM class.
 type Provider struct {
 	Name string `cim:"Name"`
@@ -1879,6 +2090,20 @@ func QueryProvider(svc *wmi.Service, where string) ([]Provider, error) {
 		out[i].Name = wmi.AsString(row["Name"])
 	}
 	return out, nil
+}
+
+// GetProvider returns the __Provider instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetProvider(svc *wmi.Service, name string) (*Provider, error) {
+	where := "Name = " + wmi.WQLValue(name)
+	out, err := QueryProvider(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // ProviderRegistration is the __ProviderRegistration CIM class.
@@ -2253,6 +2478,20 @@ func QueryTimerInstruction(svc *wmi.Service, where string) ([]TimerInstruction, 
 	return out, nil
 }
 
+// GetTimerInstruction returns the __TimerInstruction instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetTimerInstruction(svc *wmi.Service, timerId string) (*TimerInstruction, error) {
+	where := "TimerId = " + wmi.WQLValue(timerId)
+	out, err := QueryTimerInstruction(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // TimerNextFiring is the __TimerNextFiring CIM class.
 type TimerNextFiring struct {
 	NextEvent64BitTime int64  `cim:"NextEvent64BitTime"`
@@ -2276,6 +2515,20 @@ func QueryTimerNextFiring(svc *wmi.Service, where string) ([]TimerNextFiring, er
 		out[i].TimerId = wmi.AsString(row["TimerId"])
 	}
 	return out, nil
+}
+
+// GetTimerNextFiring returns the __TimerNextFiring instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetTimerNextFiring(svc *wmi.Service, timerId string) (*TimerNextFiring, error) {
+	where := "TimerId = " + wmi.WQLValue(timerId)
+	out, err := QueryTimerNextFiring(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // Trustee is the __Trustee CIM class.
@@ -2378,6 +2631,20 @@ func QueryWin32Provider(svc *wmi.Service, where string) ([]Win32Provider, error)
 		out[i].Version = wmi.AsUint32(row["Version"])
 	}
 	return out, nil
+}
+
+// GetWin32Provider returns the __Win32Provider instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetWin32Provider(svc *wmi.Service, name string) (*Win32Provider, error) {
+	where := "Name = " + wmi.WQLValue(name)
+	out, err := QueryWin32Provider(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // ThisNAMESPACE is the __thisNAMESPACE CIM class.
