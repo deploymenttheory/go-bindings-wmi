@@ -38,3 +38,16 @@ func loadBridgeAreas(metadataDir string) (map[string]string, error) {
 	}
 	return out, nil
 }
+
+// bridgeParentID converts a DDF OMA-DM area path to the bridge's ParentID
+// key, which is scope-relative: the bridge (running as SYSTEM) drops the
+// ./Device or ./User prefix. "./Device/Vendor/MSFT/Policy/Config" →
+// "./Vendor/MSFT/Policy/Config".
+func bridgeParentID(cspPath string) string {
+	for _, scope := range []string{"./Device/", "./User/"} {
+		if strings.HasPrefix(cspPath, scope) {
+			return "./" + cspPath[len(scope):]
+		}
+	}
+	return cspPath
+}

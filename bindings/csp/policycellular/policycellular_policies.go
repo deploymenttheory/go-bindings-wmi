@@ -15,7 +15,7 @@ var LetAppsAccessCellularData = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "User is in control"}, {Value: "1", Description: "Force Allow"}, {Value: "2", Description: "Force Deny"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Cellular02", ResultClass: "MDM_Policy_Result01_Cellular02", InstanceID: "Cellular", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessCellularData"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Cellular02", ResultClass: "MDM_Policy_Result01_Cellular02", InstanceID: "Cellular", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessCellularData"},
 }
 
 // LetAppsAccessCellularDataForceAllowTheseApps: List of semi-colon delimited Package Family Names of Windows Store Apps. Listed apps are allowed access to cellular data. This setting overrides the default LetAppsAccessCellularData policy setting for the specified apps.
@@ -28,7 +28,7 @@ var LetAppsAccessCellularDataForceAllowTheseApps = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Cellular02", ResultClass: "MDM_Policy_Result01_Cellular02", InstanceID: "Cellular", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessCellularData_ForceAllowTheseApps"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Cellular02", ResultClass: "MDM_Policy_Result01_Cellular02", InstanceID: "Cellular", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessCellularData_ForceAllowTheseApps"},
 }
 
 // LetAppsAccessCellularDataForceDenyTheseApps: List of semi-colon delimited Package Family Names of Microsoft Store Apps. Listed apps are denied access to cellular data. This setting overrides the default LetAppsAccessCellularData policy setting for the specified apps.
@@ -41,7 +41,7 @@ var LetAppsAccessCellularDataForceDenyTheseApps = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Cellular02", ResultClass: "MDM_Policy_Result01_Cellular02", InstanceID: "Cellular", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessCellularData_ForceDenyTheseApps"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Cellular02", ResultClass: "MDM_Policy_Result01_Cellular02", InstanceID: "Cellular", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessCellularData_ForceDenyTheseApps"},
 }
 
 // LetAppsAccessCellularDataUserInControlOfTheseApps: List of semi-colon delimited Package Family Names of Microsoft Store Apps. The user is able to control the cellular data access setting for the listed apps. This setting overrides the default LetAppsAccessCellularData policy setting for the specified apps.
@@ -54,7 +54,7 @@ var LetAppsAccessCellularDataUserInControlOfTheseApps = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Cellular02", ResultClass: "MDM_Policy_Result01_Cellular02", InstanceID: "Cellular", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessCellularData_UserInControlOfTheseApps"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Cellular02", ResultClass: "MDM_Policy_Result01_Cellular02", InstanceID: "Cellular", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessCellularData_UserInControlOfTheseApps"},
 }
 
 var ShowAppCellularAccessUI = csp.Policy{
@@ -66,7 +66,7 @@ var ShowAppCellularAccessUI = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "wwansvc~AT~Network~WwanSvc_Category~UISettings_Category", Name: "ShowAppCellularAccessUI", File: "wwansvc.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Cellular02", ResultClass: "MDM_Policy_Result01_Cellular02", InstanceID: "Cellular", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ShowAppCellularAccessUI"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Cellular02", ResultClass: "MDM_Policy_Result01_Cellular02", InstanceID: "Cellular", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ShowAppCellularAccessUI"},
 }
 
 // All lists every policy in this CSP area.

@@ -15,7 +15,7 @@ var AllowHibernate = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Disable hibernate."}, {Value: "1", Description: "Allow hibernate."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Power02", ResultClass: "MDM_Policy_Result01_Power02", InstanceID: "Power", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowHibernate"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Power02", ResultClass: "MDM_Policy_Result01_Power02", InstanceID: "Power", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowHibernate"},
 }
 
 var AllowStandbyStatesWhenSleepingOnBattery = csp.Policy{
@@ -27,7 +27,7 @@ var AllowStandbyStatesWhenSleepingOnBattery = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "Power~AT~System~PowerManagementCat~PowerSleepSettingsCat", Name: "AllowStandbyStatesDC_2", File: "power.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Power02", ResultClass: "MDM_Policy_Result01_Power02", InstanceID: "Power", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowStandbyStatesWhenSleepingOnBattery"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Power02", ResultClass: "MDM_Policy_Result01_Power02", InstanceID: "Power", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowStandbyStatesWhenSleepingOnBattery"},
 }
 
 var AllowStandbyWhenSleepingPluggedIn = csp.Policy{
@@ -39,7 +39,7 @@ var AllowStandbyWhenSleepingPluggedIn = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "Power~AT~System~PowerManagementCat~PowerSleepSettingsCat", Name: "AllowStandbyStatesAC_2", File: "power.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Power02", ResultClass: "MDM_Policy_Result01_Power02", InstanceID: "Power", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowStandbyWhenSleepingPluggedIn"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Power02", ResultClass: "MDM_Policy_Result01_Power02", InstanceID: "Power", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowStandbyWhenSleepingPluggedIn"},
 }
 
 var DisplayOffTimeoutOnBattery = csp.Policy{
@@ -51,7 +51,7 @@ var DisplayOffTimeoutOnBattery = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "Power~AT~System~PowerManagementCat~PowerVideoSettingsCat", Name: "VideoPowerDownTimeOutDC_2", File: "power.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Power02", ResultClass: "MDM_Policy_Result01_Power02", InstanceID: "Power", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisplayOffTimeoutOnBattery"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Power02", ResultClass: "MDM_Policy_Result01_Power02", InstanceID: "Power", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DisplayOffTimeoutOnBattery"},
 }
 
 var DisplayOffTimeoutPluggedIn = csp.Policy{
@@ -63,7 +63,7 @@ var DisplayOffTimeoutPluggedIn = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "Power~AT~System~PowerManagementCat~PowerVideoSettingsCat", Name: "VideoPowerDownTimeOutAC_2", File: "power.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Power02", ResultClass: "MDM_Policy_Result01_Power02", InstanceID: "Power", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisplayOffTimeoutPluggedIn"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Power02", ResultClass: "MDM_Policy_Result01_Power02", InstanceID: "Power", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DisplayOffTimeoutPluggedIn"},
 }
 
 // EnableEnergySaver: This policy will extend battery life and reduce energy consumption by enabling Energy Saver to always be on. Energy Saver will always be on for desktops as well as laptops regardless of battery level for both AC and DC. If you disable or don't configure this policy setting, then Energy Saver will turn on based on the EnergySaverBatteryThreshold group policy.
@@ -77,7 +77,7 @@ var EnableEnergySaver = csp.Policy{
 	CSPVersion: "9.9",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Disable energy saver policy"}, {Value: "1", Description: "Enable energy saver always-on mode."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Power02", ResultClass: "MDM_Policy_Result01_Power02", InstanceID: "Power", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "EnableEnergySaver"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Power02", ResultClass: "MDM_Policy_Result01_Power02", InstanceID: "Power", ParentID: "./Vendor/MSFT/Policy/Config", Property: "EnableEnergySaver"},
 }
 
 // EnergySaverBatteryThresholdOnBattery: This policy setting allows you to specify battery charge level at which Energy Saver is turned on.  If you enable this policy setting, you must provide a percent value, indicating the battery charge level. Energy Saver will be automatically turned on at (and below) the specified level.  If you disable or do not configure this policy setting, users control this setting.
@@ -91,7 +91,7 @@ var EnergySaverBatteryThresholdOnBattery = csp.Policy{
 	CSPVersion: "9.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Power02", ResultClass: "MDM_Policy_Result01_Power02", InstanceID: "Power", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "EnergySaverBatteryThresholdOnBattery"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Power02", ResultClass: "MDM_Policy_Result01_Power02", InstanceID: "Power", ParentID: "./Vendor/MSFT/Policy/Config", Property: "EnergySaverBatteryThresholdOnBattery"},
 }
 
 // EnergySaverBatteryThresholdPluggedIn: This policy setting allows you to specify battery charge level at which Energy Saver is turned on.  If you enable this policy setting, you must provide a percent value, indicating the battery charge level. Energy Saver will be automatically turned on at (and below) the specified level.  If you disable or do not configure this policy setting, users control this setting.
@@ -105,7 +105,7 @@ var EnergySaverBatteryThresholdPluggedIn = csp.Policy{
 	CSPVersion: "9.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Power02", ResultClass: "MDM_Policy_Result01_Power02", InstanceID: "Power", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "EnergySaverBatteryThresholdPluggedIn"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Power02", ResultClass: "MDM_Policy_Result01_Power02", InstanceID: "Power", ParentID: "./Vendor/MSFT/Policy/Config", Property: "EnergySaverBatteryThresholdPluggedIn"},
 }
 
 var HibernateTimeoutOnBattery = csp.Policy{
@@ -117,7 +117,7 @@ var HibernateTimeoutOnBattery = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "Power~AT~System~PowerManagementCat~PowerSleepSettingsCat", Name: "DCHibernateTimeOut_2", File: "power.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Power02", ResultClass: "MDM_Policy_Result01_Power02", InstanceID: "Power", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "HibernateTimeoutOnBattery"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Power02", ResultClass: "MDM_Policy_Result01_Power02", InstanceID: "Power", ParentID: "./Vendor/MSFT/Policy/Config", Property: "HibernateTimeoutOnBattery"},
 }
 
 var HibernateTimeoutPluggedIn = csp.Policy{
@@ -129,7 +129,7 @@ var HibernateTimeoutPluggedIn = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "Power~AT~System~PowerManagementCat~PowerSleepSettingsCat", Name: "ACHibernateTimeOut_2", File: "power.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Power02", ResultClass: "MDM_Policy_Result01_Power02", InstanceID: "Power", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "HibernateTimeoutPluggedIn"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Power02", ResultClass: "MDM_Policy_Result01_Power02", InstanceID: "Power", ParentID: "./Vendor/MSFT/Policy/Config", Property: "HibernateTimeoutPluggedIn"},
 }
 
 var RequirePasswordWhenComputerWakesOnBattery = csp.Policy{
@@ -141,7 +141,7 @@ var RequirePasswordWhenComputerWakesOnBattery = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "Power~AT~System~PowerManagementCat~PowerSleepSettingsCat", Name: "DCPromptForPasswordOnResume_2", File: "power.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Power02", ResultClass: "MDM_Policy_Result01_Power02", InstanceID: "Power", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "RequirePasswordWhenComputerWakesOnBattery"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Power02", ResultClass: "MDM_Policy_Result01_Power02", InstanceID: "Power", ParentID: "./Vendor/MSFT/Policy/Config", Property: "RequirePasswordWhenComputerWakesOnBattery"},
 }
 
 var RequirePasswordWhenComputerWakesPluggedIn = csp.Policy{
@@ -153,7 +153,7 @@ var RequirePasswordWhenComputerWakesPluggedIn = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "Power~AT~System~PowerManagementCat~PowerSleepSettingsCat", Name: "ACPromptForPasswordOnResume_2", File: "power.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Power02", ResultClass: "MDM_Policy_Result01_Power02", InstanceID: "Power", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "RequirePasswordWhenComputerWakesPluggedIn"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Power02", ResultClass: "MDM_Policy_Result01_Power02", InstanceID: "Power", ParentID: "./Vendor/MSFT/Policy/Config", Property: "RequirePasswordWhenComputerWakesPluggedIn"},
 }
 
 // SelectLidCloseActionOnBattery: This policy setting specifies the action that Windows takes when a user closes the lid on a mobile PC.  Possible actions include: 0 - Take no action 1 - Sleep 2 - Hibernate 3 - Shut down  If you enable this policy setting, you must select the desired action.  If you disable this policy setting or do not configure it, users can see and change this setting.
@@ -167,7 +167,7 @@ var SelectLidCloseActionOnBattery = csp.Policy{
 	CSPVersion: "9.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Take no action"}, {Value: "1", Description: "Sleep"}, {Value: "2", Description: "System hibernate sleep state"}, {Value: "3", Description: "System shutdown"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Power02", ResultClass: "MDM_Policy_Result01_Power02", InstanceID: "Power", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "SelectLidCloseActionOnBattery"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Power02", ResultClass: "MDM_Policy_Result01_Power02", InstanceID: "Power", ParentID: "./Vendor/MSFT/Policy/Config", Property: "SelectLidCloseActionOnBattery"},
 }
 
 // SelectLidCloseActionPluggedIn: This policy setting specifies the action that Windows takes when a user closes the lid on a mobile PC.  Possible actions include: 0 - Take no action 1 - Sleep 2 - Hibernate 3 - Shut down  If you enable this policy setting, you must select the desired action.  If you disable this policy setting or do not configure it, users can see and change this setting.
@@ -181,7 +181,7 @@ var SelectLidCloseActionPluggedIn = csp.Policy{
 	CSPVersion: "9.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Take no action"}, {Value: "1", Description: "Sleep"}, {Value: "2", Description: "System hibernate sleep state"}, {Value: "3", Description: "System shutdown"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Power02", ResultClass: "MDM_Policy_Result01_Power02", InstanceID: "Power", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "SelectLidCloseActionPluggedIn"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Power02", ResultClass: "MDM_Policy_Result01_Power02", InstanceID: "Power", ParentID: "./Vendor/MSFT/Policy/Config", Property: "SelectLidCloseActionPluggedIn"},
 }
 
 // SelectPowerButtonActionOnBattery: This policy setting specifies the action that Windows takes when a user presses the power button.   Possible actions include: 0 - Take no action 1 - Sleep 2 - Hibernate 3 - Shut down  If you enable this policy setting, you must select the desired action.  If you disable this policy setting or do not configure it, users can see and change this setting.
@@ -195,7 +195,7 @@ var SelectPowerButtonActionOnBattery = csp.Policy{
 	CSPVersion: "9.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Take no action"}, {Value: "1", Description: "Sleep"}, {Value: "2", Description: "System hibernate sleep state"}, {Value: "3", Description: "System shutdown"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Power02", ResultClass: "MDM_Policy_Result01_Power02", InstanceID: "Power", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "SelectPowerButtonActionOnBattery"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Power02", ResultClass: "MDM_Policy_Result01_Power02", InstanceID: "Power", ParentID: "./Vendor/MSFT/Policy/Config", Property: "SelectPowerButtonActionOnBattery"},
 }
 
 // SelectPowerButtonActionPluggedIn: This policy setting specifies the action that Windows takes when a user presses the power button.   Possible actions include: 0 - Take no action 1 - Sleep 2 - Hibernate 3 - Shut down  If you enable this policy setting, you must select the desired action.  If you disable this policy setting or do not configure it, users can see and change this setting.
@@ -209,7 +209,7 @@ var SelectPowerButtonActionPluggedIn = csp.Policy{
 	CSPVersion: "9.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Take no action"}, {Value: "1", Description: "Sleep"}, {Value: "2", Description: "System hibernate sleep state"}, {Value: "3", Description: "System shutdown"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Power02", ResultClass: "MDM_Policy_Result01_Power02", InstanceID: "Power", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "SelectPowerButtonActionPluggedIn"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Power02", ResultClass: "MDM_Policy_Result01_Power02", InstanceID: "Power", ParentID: "./Vendor/MSFT/Policy/Config", Property: "SelectPowerButtonActionPluggedIn"},
 }
 
 // SelectSleepButtonActionOnBattery: This policy setting specifies the action that Windows takes when a user presses the sleep button.  Possible actions include: 0 - Take no action 1 - Sleep 2 - Hibernate 3 - Shut down  If you enable this policy setting, you must select the desired action.  If you disable this policy setting or do not configure it, users can see and change this setting.
@@ -223,7 +223,7 @@ var SelectSleepButtonActionOnBattery = csp.Policy{
 	CSPVersion: "9.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Take no action"}, {Value: "1", Description: "Sleep"}, {Value: "2", Description: "System hibernate sleep state"}, {Value: "3", Description: "System shutdown"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Power02", ResultClass: "MDM_Policy_Result01_Power02", InstanceID: "Power", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "SelectSleepButtonActionOnBattery"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Power02", ResultClass: "MDM_Policy_Result01_Power02", InstanceID: "Power", ParentID: "./Vendor/MSFT/Policy/Config", Property: "SelectSleepButtonActionOnBattery"},
 }
 
 // SelectSleepButtonActionPluggedIn: This policy setting specifies the action that Windows takes when a user presses the sleep button.  Possible actions include: 0 - Take no action 1 - Sleep 2 - Hibernate 3 - Shut down  If you enable this policy setting, you must select the desired action.  If you disable this policy setting or do not configure it, users can see and change this setting.
@@ -237,7 +237,7 @@ var SelectSleepButtonActionPluggedIn = csp.Policy{
 	CSPVersion: "9.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Take no action"}, {Value: "1", Description: "Sleep"}, {Value: "2", Description: "System hibernate sleep state"}, {Value: "3", Description: "System shutdown"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Power02", ResultClass: "MDM_Policy_Result01_Power02", InstanceID: "Power", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "SelectSleepButtonActionPluggedIn"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Power02", ResultClass: "MDM_Policy_Result01_Power02", InstanceID: "Power", ParentID: "./Vendor/MSFT/Policy/Config", Property: "SelectSleepButtonActionPluggedIn"},
 }
 
 var StandbyTimeoutOnBattery = csp.Policy{
@@ -249,7 +249,7 @@ var StandbyTimeoutOnBattery = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "Power~AT~System~PowerManagementCat~PowerSleepSettingsCat", Name: "DCStandbyTimeOut_2", File: "power.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Power02", ResultClass: "MDM_Policy_Result01_Power02", InstanceID: "Power", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "StandbyTimeoutOnBattery"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Power02", ResultClass: "MDM_Policy_Result01_Power02", InstanceID: "Power", ParentID: "./Vendor/MSFT/Policy/Config", Property: "StandbyTimeoutOnBattery"},
 }
 
 var StandbyTimeoutPluggedIn = csp.Policy{
@@ -261,7 +261,7 @@ var StandbyTimeoutPluggedIn = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "Power~AT~System~PowerManagementCat~PowerSleepSettingsCat", Name: "ACStandbyTimeOut_2", File: "power.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Power02", ResultClass: "MDM_Policy_Result01_Power02", InstanceID: "Power", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "StandbyTimeoutPluggedIn"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Power02", ResultClass: "MDM_Policy_Result01_Power02", InstanceID: "Power", ParentID: "./Vendor/MSFT/Policy/Config", Property: "StandbyTimeoutPluggedIn"},
 }
 
 // TurnOffHybridSleepOnBattery: This policy setting allows you to turn off hybrid sleep.  If you set this to 0, a hiberfile is not generated when the system transitions to sleep (Stand By).  If you do not configure this policy setting, users control this setting.
@@ -275,7 +275,7 @@ var TurnOffHybridSleepOnBattery = csp.Policy{
 	CSPVersion: "9.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: ""}, {Value: "1", Description: "hybrid sleep"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Power02", ResultClass: "MDM_Policy_Result01_Power02", InstanceID: "Power", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "TurnOffHybridSleepOnBattery"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Power02", ResultClass: "MDM_Policy_Result01_Power02", InstanceID: "Power", ParentID: "./Vendor/MSFT/Policy/Config", Property: "TurnOffHybridSleepOnBattery"},
 }
 
 // TurnOffHybridSleepPluggedIn: This policy setting allows you to turn off hybrid sleep.  If you set this to 0, a hiberfile is not generated when the system transitions to sleep (Stand By).  If you do not configure this policy setting, users control this setting.
@@ -289,7 +289,7 @@ var TurnOffHybridSleepPluggedIn = csp.Policy{
 	CSPVersion: "9.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: ""}, {Value: "1", Description: "hybrid sleep"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Power02", ResultClass: "MDM_Policy_Result01_Power02", InstanceID: "Power", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "TurnOffHybridSleepPluggedIn"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Power02", ResultClass: "MDM_Policy_Result01_Power02", InstanceID: "Power", ParentID: "./Vendor/MSFT/Policy/Config", Property: "TurnOffHybridSleepPluggedIn"},
 }
 
 // UnattendedSleepTimeoutOnBattery: This policy setting allows you to specify the period of inactivity before Windows transitions to sleep automatically when a user is not present at the computer.  If you enable this policy setting, you must provide a value, in seconds, indicating how much idle time should elapse before Windows automatically transitions to sleep when left unattended.  If you specify 0 seconds, Windows does not automatically transition to sleep.  If you disable or do not configure this policy setting, users control this setting.  If the user has configured a slide show to run on the lock screen when the machine is locked, this can prevent the sleep transition from occuring.  The "Prevent enabling lock screen slide show" policy setting can be used to disable the slide show feature.
@@ -303,7 +303,7 @@ var UnattendedSleepTimeoutOnBattery = csp.Policy{
 	CSPVersion: "9.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Power02", ResultClass: "MDM_Policy_Result01_Power02", InstanceID: "Power", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "UnattendedSleepTimeoutOnBattery"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Power02", ResultClass: "MDM_Policy_Result01_Power02", InstanceID: "Power", ParentID: "./Vendor/MSFT/Policy/Config", Property: "UnattendedSleepTimeoutOnBattery"},
 }
 
 // UnattendedSleepTimeoutPluggedIn: This policy setting allows you to specify the period of inactivity before Windows transitions to sleep automatically when a user is not present at the computer.  If you enable this policy setting, you must provide a value, in seconds, indicating how much idle time should elapse before Windows automatically transitions to sleep when left unattended.  If you specify 0 seconds, Windows does not automatically transition to sleep.  If you disable or do not configure this policy setting, users control this setting.  If the user has configured a slide show to run on the lock screen when the machine is locked, this can prevent the sleep transition from occuring.  The "Prevent enabling lock screen slide show" policy setting can be used to disable the slide show feature.
@@ -317,7 +317,7 @@ var UnattendedSleepTimeoutPluggedIn = csp.Policy{
 	CSPVersion: "9.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Power02", ResultClass: "MDM_Policy_Result01_Power02", InstanceID: "Power", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "UnattendedSleepTimeoutPluggedIn"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Power02", ResultClass: "MDM_Policy_Result01_Power02", InstanceID: "Power", ParentID: "./Vendor/MSFT/Policy/Config", Property: "UnattendedSleepTimeoutPluggedIn"},
 }
 
 // All lists every policy in this CSP area.

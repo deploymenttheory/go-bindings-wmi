@@ -13,7 +13,7 @@ var AccountLockoutPolicy = csp.Policy{
 	MinOSBuild: "10.0.26100, 10.0.22621.5126",
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeviceLock02", ResultClass: "MDM_Policy_Result01_DeviceLock02", InstanceID: "DeviceLock", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AccountLockoutPolicy"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeviceLock02", ResultClass: "MDM_Policy_Result01_DeviceLock02", InstanceID: "DeviceLock", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AccountLockoutPolicy"},
 }
 
 // AllowAdministratorLockout: Allow Administrator account lockout  This security setting determines whether the builtin Administrator account is subject to account lockout policy.
@@ -27,7 +27,7 @@ var AllowAdministratorLockout = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeviceLock02", ResultClass: "MDM_Policy_Result01_DeviceLock02", InstanceID: "DeviceLock", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowAdministratorLockout"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeviceLock02", ResultClass: "MDM_Policy_Result01_DeviceLock02", InstanceID: "DeviceLock", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowAdministratorLockout"},
 }
 
 // AllowIdleReturnWithoutPassword: Specifies whether the user must input a PIN or password when the device resumes from an idle state.
@@ -41,7 +41,7 @@ var AllowIdleReturnWithoutPassword = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x87;0x88;0x88*",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeviceLock02", ResultClass: "MDM_Policy_Result01_DeviceLock02", InstanceID: "DeviceLock", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowIdleReturnWithoutPassword"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeviceLock02", ResultClass: "MDM_Policy_Result01_DeviceLock02", InstanceID: "DeviceLock", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowIdleReturnWithoutPassword"},
 }
 
 // AllowScreenTimeoutWhileLockedUserConfig: Specifies whether to show a user-configurable setting to control the screen timeout while on the lock screen of Windows 10 Mobile devices.
@@ -55,7 +55,7 @@ var AllowScreenTimeoutWhileLockedUserConfig = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "1", Description: "Allow"}, {Value: "0", Description: "Block"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeviceLock02", ResultClass: "MDM_Policy_Result01_DeviceLock02", InstanceID: "DeviceLock", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowScreenTimeoutWhileLockedUserConfig"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeviceLock02", ResultClass: "MDM_Policy_Result01_DeviceLock02", InstanceID: "DeviceLock", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowScreenTimeoutWhileLockedUserConfig"},
 }
 
 // AllowSimpleDevicePassword: Specifies whether PINs or passwords such as 1111 or 1234 are allowed. For the desktop, it also controls the use of picture passwords.
@@ -69,7 +69,7 @@ var AllowSimpleDevicePassword = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeviceLock02", ResultClass: "MDM_Policy_Result01_DeviceLock02", InstanceID: "DeviceLock", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowSimpleDevicePassword"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeviceLock02", ResultClass: "MDM_Policy_Result01_DeviceLock02", InstanceID: "DeviceLock", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowSimpleDevicePassword"},
 }
 
 // AlphanumericDevicePasswordRequired: Determines the type of PIN or password required. This policy only applies if the DeviceLock/DevicePasswordEnabled policy is set to 0
@@ -83,7 +83,7 @@ var AlphanumericDevicePasswordRequired = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Password or Alphanumeric PIN required."}, {Value: "1", Description: "Password or Numeric PIN required."}, {Value: "2", Description: "Password, Numeric PIN, or Alphanumeric PIN required."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeviceLock02", ResultClass: "MDM_Policy_Result01_DeviceLock02", InstanceID: "DeviceLock", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AlphanumericDevicePasswordRequired"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeviceLock02", ResultClass: "MDM_Policy_Result01_DeviceLock02", InstanceID: "DeviceLock", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AlphanumericDevicePasswordRequired"},
 }
 
 // ClearTextPassword: Store passwords using reversible encryption                                      This security setting determines whether the operating system stores passwords using reversible encryption.  This policy provides support for applications that use protocols that require knowledge of the user's password for authentication purposes. Storing passwords using reversible encryption is essentially the same as storing plaintext versions of the passwords. For this reason, this policy should never be enabled unless application requirements outweigh the need to protect password information.  This policy is required when using Challenge-Handshake Authentication Protocol (CHAP) authentication through remote access or Internet Authentication Services (IAS). It is also required when using Digest Authentication in Internet Information Services (IIS).
@@ -97,7 +97,7 @@ var ClearTextPassword = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeviceLock02", ResultClass: "MDM_Policy_Result01_DeviceLock02", InstanceID: "DeviceLock", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ClearTextPassword"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeviceLock02", ResultClass: "MDM_Policy_Result01_DeviceLock02", InstanceID: "DeviceLock", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ClearTextPassword"},
 }
 
 // DevicePasswordEnabled: Specifies whether device lock is enabled.
@@ -111,7 +111,7 @@ var DevicePasswordEnabled = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Enabled"}, {Value: "1", Description: "Disabled"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeviceLock02", ResultClass: "MDM_Policy_Result01_DeviceLock02", InstanceID: "DeviceLock", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DevicePasswordEnabled"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeviceLock02", ResultClass: "MDM_Policy_Result01_DeviceLock02", InstanceID: "DeviceLock", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DevicePasswordEnabled"},
 }
 
 // DevicePasswordExpiration: Specifies when the password expires (in days).
@@ -125,7 +125,7 @@ var DevicePasswordExpiration = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeviceLock02", ResultClass: "MDM_Policy_Result01_DeviceLock02", InstanceID: "DeviceLock", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DevicePasswordExpiration"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeviceLock02", ResultClass: "MDM_Policy_Result01_DeviceLock02", InstanceID: "DeviceLock", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DevicePasswordExpiration"},
 }
 
 // DevicePasswordHistory: Specifies how many passwords can be stored in the history that can’t be used.
@@ -139,7 +139,7 @@ var DevicePasswordHistory = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeviceLock02", ResultClass: "MDM_Policy_Result01_DeviceLock02", InstanceID: "DeviceLock", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DevicePasswordHistory"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeviceLock02", ResultClass: "MDM_Policy_Result01_DeviceLock02", InstanceID: "DeviceLock", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DevicePasswordHistory"},
 }
 
 // EnforceLockScreenAndLogonImage: Specifies the default lock screen and logon image shown when no user is signed in. It also sets the specified image for all users, which replaces the default image. The same image is used for both the lock and logon screens. Users will not be able to change this image.  Value type is a string, which is the full image filepath and filename.
@@ -151,7 +151,7 @@ var EnforceLockScreenAndLogonImage = csp.Policy{
 	MinOSBuild: "10.0.14393",
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeviceLock02", ResultClass: "MDM_Policy_Result01_DeviceLock02", InstanceID: "DeviceLock", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "EnforceLockScreenAndLogonImage"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeviceLock02", ResultClass: "MDM_Policy_Result01_DeviceLock02", InstanceID: "DeviceLock", ParentID: "./Vendor/MSFT/Policy/Config", Property: "EnforceLockScreenAndLogonImage"},
 }
 
 var EnforceLockScreenProvider = csp.Policy{
@@ -162,7 +162,7 @@ var EnforceLockScreenProvider = csp.Policy{
 	MinOSBuild: "10.0.14393",
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeviceLock02", ResultClass: "MDM_Policy_Result01_DeviceLock02", InstanceID: "DeviceLock", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "EnforceLockScreenProvider"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeviceLock02", ResultClass: "MDM_Policy_Result01_DeviceLock02", InstanceID: "DeviceLock", ParentID: "./Vendor/MSFT/Policy/Config", Property: "EnforceLockScreenProvider"},
 }
 
 // MaxDevicePasswordFailedAttempts: The number of authentication failures allowed before the device will be wiped. A value of 0 disables device wipe functionality. Note This policy must be wrapped in an Atomic command. This policy has different behaviors on the mobile device and desktop. On a mobile device, when the user reaches the value set by this policy, then the device is wiped. On a desktop, when the user reaches the value set by this policy, it is not wiped. Instead, the desktop is put on BitLocker recovery mode, which makes the data inaccessible but recoverable. If BitLocker is not enabled, then the policy cannot be enforced. Prior to reaching the failed attempts limit, the user is sent to the lock screen and warned that more failed attempts will lock their computer. When the user reaches the limit, the device automatically reboots and shows the BitLocker recovery page. This page prompts the user for the BitLocker recovery key. Most secure value is 0 if all policy values = 0; otherwise, Min policy value is the most secure value. For additional information about this policy, see Exchange ActiveSync Policy Engine Overview.
@@ -176,7 +176,7 @@ var MaxDevicePasswordFailedAttempts = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeviceLock02", ResultClass: "MDM_Policy_Result01_DeviceLock02", InstanceID: "DeviceLock", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "MaxDevicePasswordFailedAttempts"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeviceLock02", ResultClass: "MDM_Policy_Result01_DeviceLock02", InstanceID: "DeviceLock", ParentID: "./Vendor/MSFT/Policy/Config", Property: "MaxDevicePasswordFailedAttempts"},
 }
 
 // MaxInactivityTimeDeviceLock: The number of authentication failures allowed before the device will be wiped. A value of 0 disables device wipe functionality.
@@ -190,7 +190,7 @@ var MaxInactivityTimeDeviceLock = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeviceLock02", ResultClass: "MDM_Policy_Result01_DeviceLock02", InstanceID: "DeviceLock", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "MaxInactivityTimeDeviceLock"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeviceLock02", ResultClass: "MDM_Policy_Result01_DeviceLock02", InstanceID: "DeviceLock", ParentID: "./Vendor/MSFT/Policy/Config", Property: "MaxInactivityTimeDeviceLock"},
 }
 
 // MaxInactivityTimeDeviceLockWithExternalDisplay: Sets the maximum timeout value for the external display.
@@ -203,7 +203,7 @@ var MaxInactivityTimeDeviceLockWithExternalDisplay = csp.Policy{
 	MinOSBuild: "10.0.16299",
 	CSPVersion: "6.0",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeviceLock02", ResultClass: "MDM_Policy_Result01_DeviceLock02", InstanceID: "DeviceLock", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "MaxInactivityTimeDeviceLockWithExternalDisplay"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeviceLock02", ResultClass: "MDM_Policy_Result01_DeviceLock02", InstanceID: "DeviceLock", ParentID: "./Vendor/MSFT/Policy/Config", Property: "MaxInactivityTimeDeviceLockWithExternalDisplay"},
 }
 
 // MaximumPasswordAge: This security setting determines the period of time (in days) that a password can be used before the system requires the user to change it. You can set passwords to expire after a number of days between 1 and 999, or you can specify that passwords never expire by setting the number of days to 0. If the maximum password age is between 1 and 999 days, the Minimum password age must be less than the maximum password age. If the maximum password age is set to 0, the minimum password age can be any value between 0 and 998 days.  Note: It is a security best practice to have passwords expire every 30 to 90 days, depending on your environment. This way, an attacker has a limited amount of time in which to crack a user's password and have access to your network resources.  Default: 42.
@@ -217,7 +217,7 @@ var MaximumPasswordAge = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeviceLock02", ResultClass: "MDM_Policy_Result01_DeviceLock02", InstanceID: "DeviceLock", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "MaximumPasswordAge"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeviceLock02", ResultClass: "MDM_Policy_Result01_DeviceLock02", InstanceID: "DeviceLock", ParentID: "./Vendor/MSFT/Policy/Config", Property: "MaximumPasswordAge"},
 }
 
 // MinDevicePasswordComplexCharacters: The number of complex element types (uppercase and lowercase letters, numbers, and punctuation) required for a strong PIN or password.
@@ -231,7 +231,7 @@ var MinDevicePasswordComplexCharacters = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "1", Description: "Digits only"}, {Value: "2", Description: "Digits and lowercase letters are required"}, {Value: "3", Description: "Digits lowercase letters and uppercase letters are required. Not supported in desktop Microsoft accounts and domain accounts"}, {Value: "4", Description: "Digits lowercase letters uppercase letters and special characters are required. Not supported in desktop"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeviceLock02", ResultClass: "MDM_Policy_Result01_DeviceLock02", InstanceID: "DeviceLock", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "MinDevicePasswordComplexCharacters"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeviceLock02", ResultClass: "MDM_Policy_Result01_DeviceLock02", InstanceID: "DeviceLock", ParentID: "./Vendor/MSFT/Policy/Config", Property: "MinDevicePasswordComplexCharacters"},
 }
 
 // MinDevicePasswordLength: Specifies the minimum number or characters required in the PIN or password.
@@ -245,7 +245,7 @@ var MinDevicePasswordLength = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeviceLock02", ResultClass: "MDM_Policy_Result01_DeviceLock02", InstanceID: "DeviceLock", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "MinDevicePasswordLength"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeviceLock02", ResultClass: "MDM_Policy_Result01_DeviceLock02", InstanceID: "DeviceLock", ParentID: "./Vendor/MSFT/Policy/Config", Property: "MinDevicePasswordLength"},
 }
 
 // MinimumPasswordAge: This security setting determines the period of time (in days) that a password must be used before the user can change it. You can set a value between 1 and 998 days, or you can allow changes immediately by setting the number of days to 0.  The minimum password age must be less than the Maximum password age, unless the maximum password age is set to 0, indicating that passwords will never expire. If the maximum password age is set to 0, the minimum password age can be set to any value between 0 and 998.  Configure the minimum password age to be more than 0 if you want Enforce password history to be effective. Without a minimum password age, users can cycle through passwords repeatedly until they get to an old favorite. The default setting does not follow this recommendation, so that an administrator can specify a password for a user and then require the user to change the administrator-defined password when the user logs on. If the password history is set to 0, the user does not have to choose a new password. For this reason, Enforce password history is set to 1 by default.
@@ -259,7 +259,7 @@ var MinimumPasswordAge = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeviceLock02", ResultClass: "MDM_Policy_Result01_DeviceLock02", InstanceID: "DeviceLock", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "MinimumPasswordAge"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeviceLock02", ResultClass: "MDM_Policy_Result01_DeviceLock02", InstanceID: "DeviceLock", ParentID: "./Vendor/MSFT/Policy/Config", Property: "MinimumPasswordAge"},
 }
 
 // MinimumPasswordLength: This security setting determines the least number of characters that a password for a user account may contain. The maximum value for this setting depends on the value of the Relax minimum password length limits setting. If the Relax minimum password length limits setting is not defined, this setting may be configured from 0 to 14. If the Relax minimum password length limits setting is defined and disabled, this setting may be configured from 0 to 14. If the Relax minimum password length limits setting is defined and enabled, this setting may be configured from 0 to 128. Setting the required number of characters to 0 means that no password is required. Note By default, member computers follow the configuration of their domain controllers. Default values: 7 on domain controllers  0 on stand-alone servers  Configuring this setting larger than 14 may affect compatibility with clients, services, and applications. We recommend that you only configure this setting larger than 14 after you use the Minimum password length audit setting to test for potential incompatibilities at the new setting.
@@ -273,7 +273,7 @@ var MinimumPasswordLength = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeviceLock02", ResultClass: "MDM_Policy_Result01_DeviceLock02", InstanceID: "DeviceLock", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "MinimumPasswordLength"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeviceLock02", ResultClass: "MDM_Policy_Result01_DeviceLock02", InstanceID: "DeviceLock", ParentID: "./Vendor/MSFT/Policy/Config", Property: "MinimumPasswordLength"},
 }
 
 // MinimumPasswordLengthAudit: This security setting determines the minimum password length for which password length audit warning events are issued. This setting may be configured from 1 to 128. You should only enable and configure this setting when you try to determine the potential effect of increasing the minimum password length setting in your environment. If this setting is not defined, audit events will not be issued. If this setting is defined and is less than or equal to the minimum password length setting, audit events will not be issued. If this setting is defined and is greater than the minimum password length setting, and the length of a new account password is less than this setting, an audit event will be issued.
@@ -287,7 +287,7 @@ var MinimumPasswordLengthAudit = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeviceLock02", ResultClass: "MDM_Policy_Result01_DeviceLock02", InstanceID: "DeviceLock", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "MinimumPasswordLengthAudit"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeviceLock02", ResultClass: "MDM_Policy_Result01_DeviceLock02", InstanceID: "DeviceLock", ParentID: "./Vendor/MSFT/Policy/Config", Property: "MinimumPasswordLengthAudit"},
 }
 
 // PasswordComplexity: Password must meet complexity requirements                    This security setting determines whether passwords must meet complexity requirements.  If this policy is enabled, passwords must meet the following minimum requirements:  Not contain the user's account name or parts of the user's full name that exceed two consecutive characters Be at least six characters in length Contain characters from three of the following four categories: English uppercase characters (A through Z) English lowercase characters (a through z) Base 10 digits (0 through 9) Non-alphabetic characters (for example, !, $, #, %) Complexity requirements are enforced when passwords are changed or created.
@@ -301,7 +301,7 @@ var PasswordComplexity = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeviceLock02", ResultClass: "MDM_Policy_Result01_DeviceLock02", InstanceID: "DeviceLock", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "PasswordComplexity"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeviceLock02", ResultClass: "MDM_Policy_Result01_DeviceLock02", InstanceID: "DeviceLock", ParentID: "./Vendor/MSFT/Policy/Config", Property: "PasswordComplexity"},
 }
 
 // PasswordHistorySize: Enforce password history                    This security setting determines the number of unique new passwords that have to be associated with a user account before an old password can be reused. The value must be between 0 and 24 passwords.  This policy enables administrators to enhance security by ensuring that old passwords are not reused continually.  Default:  24 on domain controllers. 0 on stand-alone servers.  Note: By default, member computers follow the configuration of their domain controllers. To maintain the effectiveness of the password history, do not allow passwords to be changed immediately after they were just changed by also enabling the Minimum password age security policy setting. For information about the minimum password age security policy setting, see Minimum password age.
@@ -315,7 +315,7 @@ var PasswordHistorySize = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeviceLock02", ResultClass: "MDM_Policy_Result01_DeviceLock02", InstanceID: "DeviceLock", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "PasswordHistorySize"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeviceLock02", ResultClass: "MDM_Policy_Result01_DeviceLock02", InstanceID: "DeviceLock", ParentID: "./Vendor/MSFT/Policy/Config", Property: "PasswordHistorySize"},
 }
 
 var PreventEnablingLockScreenCamera = csp.Policy{
@@ -327,7 +327,7 @@ var PreventEnablingLockScreenCamera = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "ControlPanelDisplay~AT~ControlPanel~Personalization", Name: "CPL_Personalization_NoLockScreenCamera", File: "ControlPanelDisplay.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeviceLock02", ResultClass: "MDM_Policy_Result01_DeviceLock02", InstanceID: "DeviceLock", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "PreventEnablingLockScreenCamera"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeviceLock02", ResultClass: "MDM_Policy_Result01_DeviceLock02", InstanceID: "DeviceLock", ParentID: "./Vendor/MSFT/Policy/Config", Property: "PreventEnablingLockScreenCamera"},
 }
 
 var PreventLockScreenSlideShow = csp.Policy{
@@ -339,7 +339,7 @@ var PreventLockScreenSlideShow = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "ControlPanelDisplay~AT~ControlPanel~Personalization", Name: "CPL_Personalization_NoLockScreenSlideshow", File: "ControlPanelDisplay.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeviceLock02", ResultClass: "MDM_Policy_Result01_DeviceLock02", InstanceID: "DeviceLock", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "PreventLockScreenSlideShow"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeviceLock02", ResultClass: "MDM_Policy_Result01_DeviceLock02", InstanceID: "DeviceLock", ParentID: "./Vendor/MSFT/Policy/Config", Property: "PreventLockScreenSlideShow"},
 }
 
 // RelaxMinimumPasswordLengthLimits: This setting controls whether the minimum password length setting can be increased beyond the legacy limit of 14. If this setting is not defined, minimum password length may be configured to no more than 14. If this setting is defined and disabled, minimum password length may be configured to no more than 14. If this setting is defined and enabled, minimum password length may be configured more than 14.
@@ -353,7 +353,7 @@ var RelaxMinimumPasswordLengthLimits = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Disabled"}, {Value: "1", Description: "Enabled"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeviceLock02", ResultClass: "MDM_Policy_Result01_DeviceLock02", InstanceID: "DeviceLock", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "RelaxMinimumPasswordLengthLimits"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeviceLock02", ResultClass: "MDM_Policy_Result01_DeviceLock02", InstanceID: "DeviceLock", ParentID: "./Vendor/MSFT/Policy/Config", Property: "RelaxMinimumPasswordLengthLimits"},
 }
 
 // ScreenTimeoutWhileLocked: Specifies whether to show a user-configurable setting to control the screen timeout while on the lock screen of Windows 10 Mobile devices.
@@ -367,7 +367,7 @@ var ScreenTimeoutWhileLocked = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeviceLock02", ResultClass: "MDM_Policy_Result01_DeviceLock02", InstanceID: "DeviceLock", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ScreenTimeoutWhileLocked"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeviceLock02", ResultClass: "MDM_Policy_Result01_DeviceLock02", InstanceID: "DeviceLock", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ScreenTimeoutWhileLocked"},
 }
 
 // All lists every policy in this CSP area.

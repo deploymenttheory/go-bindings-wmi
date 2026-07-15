@@ -15,7 +15,7 @@ var AllowAutoConnectToWiFiSenseHotspots = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Wifi02", ResultClass: "MDM_Policy_Result01_Wifi02", InstanceID: "Wifi", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowAutoConnectToWiFiSenseHotspots"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Wifi02", ResultClass: "MDM_Policy_Result01_Wifi02", InstanceID: "Wifi", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowAutoConnectToWiFiSenseHotspots"},
 }
 
 // AllowInternetSharing: Allow or disallow internet sharing. Most restricted value is 0.
@@ -29,7 +29,7 @@ var AllowInternetSharing = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Wifi02", ResultClass: "MDM_Policy_Result01_Wifi02", InstanceID: "Wifi", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowInternetSharing"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Wifi02", ResultClass: "MDM_Policy_Result01_Wifi02", InstanceID: "Wifi", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowInternetSharing"},
 }
 
 // AllowManualWiFiConfiguration: Allow or block connections to Wi-Fi outside of MDM server-installed networks. If you change this setting to Block, you must deploy enterprise Wi-Fi profiles to the device using the Wi-Fi CSP before you apply this setting. Otherwise, the device will go offline since it won't be able to connect to Wi-Fi. Note that choosing to block Wi-Fi connections will delete any previously installed user-configured Wi-Fi profiles from the device, though not all non-MDM profiles will be deleted.
@@ -43,7 +43,7 @@ var AllowManualWiFiConfiguration = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "No Wi-Fi connection outside of MDM provisioned network is allowed."}, {Value: "1", Description: "Adding new network SSIDs beyond the already MDM provisioned ones is allowed."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Wifi02", ResultClass: "MDM_Policy_Result01_Wifi02", InstanceID: "Wifi", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowManualWiFiConfiguration"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Wifi02", ResultClass: "MDM_Policy_Result01_Wifi02", InstanceID: "Wifi", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowManualWiFiConfiguration"},
 }
 
 // AllowWFAQosManagementDSCPToUPMapping: Allow or disallow the device to use the DSCP to UP Mapping feature from the Wi-Fi Alliance QOS Management Suite 2020.  This policy requires a reboot to take effect.
@@ -57,7 +57,7 @@ var AllowWFAQosManagementDSCPToUPMapping = csp.Policy{
 	CSPVersion: "9.9",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "DSCP to UP Mapping will be disabled."}, {Value: "1", Description: "DSCP to UP Mapping will be enabled."}, {Value: "2", Description: "DSCP to UP Mapping will be enabled only if it is enabled in the network profile."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Wifi02", ResultClass: "MDM_Policy_Result01_Wifi02", InstanceID: "Wifi", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowWFAQosManagementDSCPToUPMapping"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Wifi02", ResultClass: "MDM_Policy_Result01_Wifi02", InstanceID: "Wifi", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowWFAQosManagementDSCPToUPMapping"},
 }
 
 // AllowWFAQosManagementMSCS: Allow or disallow the device to automatically request to enable Mirrored Stream Classification Service when connecting to a MSCS capable network.   This is a Quality of Service feature associated with Wi-Fi Alliance QoS Management Suite 2020.  This policy requires a reboot to take effect.
@@ -71,7 +71,7 @@ var AllowWFAQosManagementMSCS = csp.Policy{
 	CSPVersion: "9.9",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "The device will not automatically request to enable MSCS when connecting to a MSCS capable network."}, {Value: "1", Description: "The device will automatically request to enable MSCS when connecting to a MSCS capable network."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Wifi02", ResultClass: "MDM_Policy_Result01_Wifi02", InstanceID: "Wifi", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowWFAQosManagementMSCS"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Wifi02", ResultClass: "MDM_Policy_Result01_Wifi02", InstanceID: "Wifi", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowWFAQosManagementMSCS"},
 }
 
 // AllowWiFi: Allow or disallow WiFi connection.
@@ -85,7 +85,7 @@ var AllowWiFi = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Wifi02", ResultClass: "MDM_Policy_Result01_Wifi02", InstanceID: "Wifi", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowWiFi"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Wifi02", ResultClass: "MDM_Policy_Result01_Wifi02", InstanceID: "Wifi", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowWiFi"},
 }
 
 // AllowWiFiDirect: Allow WiFi Direct connection. .
@@ -99,7 +99,7 @@ var AllowWiFiDirect = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Wifi02", ResultClass: "MDM_Policy_Result01_Wifi02", InstanceID: "Wifi", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowWiFiDirect"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Wifi02", ResultClass: "MDM_Policy_Result01_Wifi02", InstanceID: "Wifi", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowWiFiDirect"},
 }
 
 // WLANScanMode: Allow an enterprise to control the WLAN scanning behavior and how aggressively devices should be actively scanning for Wi-Fi networks to get devices connected. Supported values are 0-500, where 100 = normal scan frequency and 500 = low scan frequency. The default value is 0. Supported operations are Add, Delete, Get, and Replace.
@@ -113,7 +113,7 @@ var WLANScanMode = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Wifi02", ResultClass: "MDM_Policy_Result01_Wifi02", InstanceID: "Wifi", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "WLANScanMode"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Wifi02", ResultClass: "MDM_Policy_Result01_Wifi02", InstanceID: "Wifi", ParentID: "./Vendor/MSFT/Policy/Config", Property: "WLANScanMode"},
 }
 
 // All lists every policy in this CSP area.

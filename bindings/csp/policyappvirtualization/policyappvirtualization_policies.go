@@ -13,7 +13,7 @@ var AllowAppVClient = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0xAB;0xAC;0xBC;0xBF;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "appv~AT~System~CAT_AppV", Name: "EnableAppV", File: "appv.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_AppVirtualization02", ResultClass: "MDM_Policy_Result01_AppVirtualization02", InstanceID: "AppVirtualization", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowAppVClient"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_AppVirtualization02", ResultClass: "MDM_Policy_Result01_AppVirtualization02", InstanceID: "AppVirtualization", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowAppVClient"},
 }
 
 var AllowDynamicVirtualization = csp.Policy{
@@ -25,7 +25,7 @@ var AllowDynamicVirtualization = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0xAB;0xAC;0xBC;0xBF;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "appv~AT~System~CAT_AppV~CAT_Virtualization", Name: "Virtualization_JITVEnable", File: "appv.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_AppVirtualization02", ResultClass: "MDM_Policy_Result01_AppVirtualization02", InstanceID: "AppVirtualization", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowDynamicVirtualization"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_AppVirtualization02", ResultClass: "MDM_Policy_Result01_AppVirtualization02", InstanceID: "AppVirtualization", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowDynamicVirtualization"},
 }
 
 var AllowPackageCleanup = csp.Policy{
@@ -37,7 +37,7 @@ var AllowPackageCleanup = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0xAB;0xAC;0xBC;0xBF;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "appv~AT~System~CAT_AppV~CAT_PackageManagement", Name: "PackageManagement_AutoCleanupEnable", File: "appv.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_AppVirtualization02", ResultClass: "MDM_Policy_Result01_AppVirtualization02", InstanceID: "AppVirtualization", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowPackageCleanup"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_AppVirtualization02", ResultClass: "MDM_Policy_Result01_AppVirtualization02", InstanceID: "AppVirtualization", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowPackageCleanup"},
 }
 
 var AllowPackageScripts = csp.Policy{
@@ -49,7 +49,7 @@ var AllowPackageScripts = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0xAB;0xAC;0xBC;0xBF;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "appv~AT~System~CAT_AppV~CAT_Scripting", Name: "Scripting_Enable_Package_Scripts", File: "appv.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_AppVirtualization02", ResultClass: "MDM_Policy_Result01_AppVirtualization02", InstanceID: "AppVirtualization", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowPackageScripts"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_AppVirtualization02", ResultClass: "MDM_Policy_Result01_AppVirtualization02", InstanceID: "AppVirtualization", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowPackageScripts"},
 }
 
 var AllowPublishingRefreshUX = csp.Policy{
@@ -61,7 +61,7 @@ var AllowPublishingRefreshUX = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0xAB;0xAC;0xBC;0xBF;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "appv~AT~System~CAT_AppV~CAT_Publishing", Name: "Enable_Publishing_Refresh_UX", File: "appv.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_AppVirtualization02", ResultClass: "MDM_Policy_Result01_AppVirtualization02", InstanceID: "AppVirtualization", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowPublishingRefreshUX"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_AppVirtualization02", ResultClass: "MDM_Policy_Result01_AppVirtualization02", InstanceID: "AppVirtualization", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowPublishingRefreshUX"},
 }
 
 var AllowReportingServer = csp.Policy{
@@ -73,7 +73,7 @@ var AllowReportingServer = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0xAB;0xAC;0xBC;0xBF;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "appv~AT~System~CAT_AppV~CAT_Reporting", Name: "Reporting_Server_Policy", File: "appv.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_AppVirtualization02", ResultClass: "MDM_Policy_Result01_AppVirtualization02", InstanceID: "AppVirtualization", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowReportingServer"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_AppVirtualization02", ResultClass: "MDM_Policy_Result01_AppVirtualization02", InstanceID: "AppVirtualization", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowReportingServer"},
 }
 
 var AllowRoamingFileExclusions = csp.Policy{
@@ -85,7 +85,7 @@ var AllowRoamingFileExclusions = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0xAB;0xAC;0xBC;0xBF;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "appv~AT~System~CAT_AppV~CAT_Integration", Name: "Integration_Roaming_File_Exclusions", File: "appv.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_AppVirtualization02", ResultClass: "MDM_Policy_Result01_AppVirtualization02", InstanceID: "AppVirtualization", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowRoamingFileExclusions"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_AppVirtualization02", ResultClass: "MDM_Policy_Result01_AppVirtualization02", InstanceID: "AppVirtualization", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowRoamingFileExclusions"},
 }
 
 var AllowRoamingRegistryExclusions = csp.Policy{
@@ -97,7 +97,7 @@ var AllowRoamingRegistryExclusions = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0xAB;0xAC;0xBC;0xBF;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "appv~AT~System~CAT_AppV~CAT_Integration", Name: "Integration_Roaming_Registry_Exclusions", File: "appv.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_AppVirtualization02", ResultClass: "MDM_Policy_Result01_AppVirtualization02", InstanceID: "AppVirtualization", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowRoamingRegistryExclusions"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_AppVirtualization02", ResultClass: "MDM_Policy_Result01_AppVirtualization02", InstanceID: "AppVirtualization", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowRoamingRegistryExclusions"},
 }
 
 var AllowStreamingAutoload = csp.Policy{
@@ -109,7 +109,7 @@ var AllowStreamingAutoload = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0xAB;0xAC;0xBC;0xBF;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "appv~AT~System~CAT_AppV~CAT_Streaming", Name: "Steaming_Autoload", File: "appv.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_AppVirtualization02", ResultClass: "MDM_Policy_Result01_AppVirtualization02", InstanceID: "AppVirtualization", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowStreamingAutoload"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_AppVirtualization02", ResultClass: "MDM_Policy_Result01_AppVirtualization02", InstanceID: "AppVirtualization", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowStreamingAutoload"},
 }
 
 var ClientCoexistenceAllowMigrationmode = csp.Policy{
@@ -121,7 +121,7 @@ var ClientCoexistenceAllowMigrationmode = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0xAB;0xAC;0xBC;0xBF;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "appv~AT~System~CAT_AppV~CAT_Client_Coexistence", Name: "Client_Coexistence_Enable_Migration_mode", File: "appv.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_AppVirtualization02", ResultClass: "MDM_Policy_Result01_AppVirtualization02", InstanceID: "AppVirtualization", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ClientCoexistenceAllowMigrationmode"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_AppVirtualization02", ResultClass: "MDM_Policy_Result01_AppVirtualization02", InstanceID: "AppVirtualization", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ClientCoexistenceAllowMigrationmode"},
 }
 
 var IntegrationAllowRootGlobal = csp.Policy{
@@ -133,7 +133,7 @@ var IntegrationAllowRootGlobal = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0xAB;0xAC;0xBC;0xBF;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "appv~AT~System~CAT_AppV~CAT_Integration", Name: "Integration_Root_User", File: "appv.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_AppVirtualization02", ResultClass: "MDM_Policy_Result01_AppVirtualization02", InstanceID: "AppVirtualization", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "IntegrationAllowRootGlobal"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_AppVirtualization02", ResultClass: "MDM_Policy_Result01_AppVirtualization02", InstanceID: "AppVirtualization", ParentID: "./Vendor/MSFT/Policy/Config", Property: "IntegrationAllowRootGlobal"},
 }
 
 var IntegrationAllowRootUser = csp.Policy{
@@ -145,7 +145,7 @@ var IntegrationAllowRootUser = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0xAB;0xAC;0xBC;0xBF;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "appv~AT~System~CAT_AppV~CAT_Integration", Name: "Integration_Root_Global", File: "appv.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_AppVirtualization02", ResultClass: "MDM_Policy_Result01_AppVirtualization02", InstanceID: "AppVirtualization", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "IntegrationAllowRootUser"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_AppVirtualization02", ResultClass: "MDM_Policy_Result01_AppVirtualization02", InstanceID: "AppVirtualization", ParentID: "./Vendor/MSFT/Policy/Config", Property: "IntegrationAllowRootUser"},
 }
 
 var PublishingAllowServer1 = csp.Policy{
@@ -157,7 +157,7 @@ var PublishingAllowServer1 = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0xAB;0xAC;0xBC;0xBF;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "appv~AT~System~CAT_AppV~CAT_Publishing", Name: "Publishing_Server1_Policy", File: "appv.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_AppVirtualization02", ResultClass: "MDM_Policy_Result01_AppVirtualization02", InstanceID: "AppVirtualization", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "PublishingAllowServer1"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_AppVirtualization02", ResultClass: "MDM_Policy_Result01_AppVirtualization02", InstanceID: "AppVirtualization", ParentID: "./Vendor/MSFT/Policy/Config", Property: "PublishingAllowServer1"},
 }
 
 var PublishingAllowServer2 = csp.Policy{
@@ -169,7 +169,7 @@ var PublishingAllowServer2 = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0xAB;0xAC;0xBC;0xBF;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "appv~AT~System~CAT_AppV~CAT_Publishing", Name: "Publishing_Server2_Policy", File: "appv.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_AppVirtualization02", ResultClass: "MDM_Policy_Result01_AppVirtualization02", InstanceID: "AppVirtualization", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "PublishingAllowServer2"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_AppVirtualization02", ResultClass: "MDM_Policy_Result01_AppVirtualization02", InstanceID: "AppVirtualization", ParentID: "./Vendor/MSFT/Policy/Config", Property: "PublishingAllowServer2"},
 }
 
 var PublishingAllowServer3 = csp.Policy{
@@ -181,7 +181,7 @@ var PublishingAllowServer3 = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0xAB;0xAC;0xBC;0xBF;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "appv~AT~System~CAT_AppV~CAT_Publishing", Name: "Publishing_Server3_Policy", File: "appv.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_AppVirtualization02", ResultClass: "MDM_Policy_Result01_AppVirtualization02", InstanceID: "AppVirtualization", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "PublishingAllowServer3"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_AppVirtualization02", ResultClass: "MDM_Policy_Result01_AppVirtualization02", InstanceID: "AppVirtualization", ParentID: "./Vendor/MSFT/Policy/Config", Property: "PublishingAllowServer3"},
 }
 
 var PublishingAllowServer4 = csp.Policy{
@@ -193,7 +193,7 @@ var PublishingAllowServer4 = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0xAB;0xAC;0xBC;0xBF;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "appv~AT~System~CAT_AppV~CAT_Publishing", Name: "Publishing_Server4_Policy", File: "appv.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_AppVirtualization02", ResultClass: "MDM_Policy_Result01_AppVirtualization02", InstanceID: "AppVirtualization", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "PublishingAllowServer4"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_AppVirtualization02", ResultClass: "MDM_Policy_Result01_AppVirtualization02", InstanceID: "AppVirtualization", ParentID: "./Vendor/MSFT/Policy/Config", Property: "PublishingAllowServer4"},
 }
 
 var PublishingAllowServer5 = csp.Policy{
@@ -205,7 +205,7 @@ var PublishingAllowServer5 = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0xAB;0xAC;0xBC;0xBF;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "appv~AT~System~CAT_AppV~CAT_Publishing", Name: "Publishing_Server5_Policy", File: "appv.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_AppVirtualization02", ResultClass: "MDM_Policy_Result01_AppVirtualization02", InstanceID: "AppVirtualization", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "PublishingAllowServer5"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_AppVirtualization02", ResultClass: "MDM_Policy_Result01_AppVirtualization02", InstanceID: "AppVirtualization", ParentID: "./Vendor/MSFT/Policy/Config", Property: "PublishingAllowServer5"},
 }
 
 var StreamingAllowCertificateFilterForClientSSL = csp.Policy{
@@ -217,7 +217,7 @@ var StreamingAllowCertificateFilterForClientSSL = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0xAB;0xAC;0xBC;0xBF;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "appv~AT~System~CAT_AppV~CAT_Streaming", Name: "Streaming_Certificate_Filter_For_Client_SSL", File: "appv.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_AppVirtualization02", ResultClass: "MDM_Policy_Result01_AppVirtualization02", InstanceID: "AppVirtualization", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "StreamingAllowCertificateFilterForClient_SSL"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_AppVirtualization02", ResultClass: "MDM_Policy_Result01_AppVirtualization02", InstanceID: "AppVirtualization", ParentID: "./Vendor/MSFT/Policy/Config", Property: "StreamingAllowCertificateFilterForClient_SSL"},
 }
 
 var StreamingAllowHighCostLaunch = csp.Policy{
@@ -229,7 +229,7 @@ var StreamingAllowHighCostLaunch = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0xAB;0xAC;0xBC;0xBF;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "appv~AT~System~CAT_AppV~CAT_Streaming", Name: "Streaming_Allow_High_Cost_Launch", File: "appv.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_AppVirtualization02", ResultClass: "MDM_Policy_Result01_AppVirtualization02", InstanceID: "AppVirtualization", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "StreamingAllowHighCostLaunch"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_AppVirtualization02", ResultClass: "MDM_Policy_Result01_AppVirtualization02", InstanceID: "AppVirtualization", ParentID: "./Vendor/MSFT/Policy/Config", Property: "StreamingAllowHighCostLaunch"},
 }
 
 var StreamingAllowLocationProvider = csp.Policy{
@@ -241,7 +241,7 @@ var StreamingAllowLocationProvider = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0xAB;0xAC;0xBC;0xBF;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "appv~AT~System~CAT_AppV~CAT_Streaming", Name: "Streaming_Location_Provider", File: "appv.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_AppVirtualization02", ResultClass: "MDM_Policy_Result01_AppVirtualization02", InstanceID: "AppVirtualization", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "StreamingAllowLocationProvider"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_AppVirtualization02", ResultClass: "MDM_Policy_Result01_AppVirtualization02", InstanceID: "AppVirtualization", ParentID: "./Vendor/MSFT/Policy/Config", Property: "StreamingAllowLocationProvider"},
 }
 
 var StreamingAllowPackageInstallationRoot = csp.Policy{
@@ -253,7 +253,7 @@ var StreamingAllowPackageInstallationRoot = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0xAB;0xAC;0xBC;0xBF;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "appv~AT~System~CAT_AppV~CAT_Streaming", Name: "Streaming_Package_Installation_Root", File: "appv.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_AppVirtualization02", ResultClass: "MDM_Policy_Result01_AppVirtualization02", InstanceID: "AppVirtualization", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "StreamingAllowPackageInstallationRoot"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_AppVirtualization02", ResultClass: "MDM_Policy_Result01_AppVirtualization02", InstanceID: "AppVirtualization", ParentID: "./Vendor/MSFT/Policy/Config", Property: "StreamingAllowPackageInstallationRoot"},
 }
 
 var StreamingAllowPackageSourceRoot = csp.Policy{
@@ -265,7 +265,7 @@ var StreamingAllowPackageSourceRoot = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0xAB;0xAC;0xBC;0xBF;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "appv~AT~System~CAT_AppV~CAT_Streaming", Name: "Streaming_Package_Source_Root", File: "appv.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_AppVirtualization02", ResultClass: "MDM_Policy_Result01_AppVirtualization02", InstanceID: "AppVirtualization", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "StreamingAllowPackageSourceRoot"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_AppVirtualization02", ResultClass: "MDM_Policy_Result01_AppVirtualization02", InstanceID: "AppVirtualization", ParentID: "./Vendor/MSFT/Policy/Config", Property: "StreamingAllowPackageSourceRoot"},
 }
 
 var StreamingAllowReestablishmentInterval = csp.Policy{
@@ -277,7 +277,7 @@ var StreamingAllowReestablishmentInterval = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0xAB;0xAC;0xBC;0xBF;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "appv~AT~System~CAT_AppV~CAT_Streaming", Name: "Streaming_Reestablishment_Interval", File: "appv.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_AppVirtualization02", ResultClass: "MDM_Policy_Result01_AppVirtualization02", InstanceID: "AppVirtualization", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "StreamingAllowReestablishmentInterval"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_AppVirtualization02", ResultClass: "MDM_Policy_Result01_AppVirtualization02", InstanceID: "AppVirtualization", ParentID: "./Vendor/MSFT/Policy/Config", Property: "StreamingAllowReestablishmentInterval"},
 }
 
 var StreamingAllowReestablishmentRetries = csp.Policy{
@@ -289,7 +289,7 @@ var StreamingAllowReestablishmentRetries = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0xAB;0xAC;0xBC;0xBF;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "appv~AT~System~CAT_AppV~CAT_Streaming", Name: "Streaming_Reestablishment_Retries", File: "appv.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_AppVirtualization02", ResultClass: "MDM_Policy_Result01_AppVirtualization02", InstanceID: "AppVirtualization", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "StreamingAllowReestablishmentRetries"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_AppVirtualization02", ResultClass: "MDM_Policy_Result01_AppVirtualization02", InstanceID: "AppVirtualization", ParentID: "./Vendor/MSFT/Policy/Config", Property: "StreamingAllowReestablishmentRetries"},
 }
 
 var StreamingSharedContentStoreMode = csp.Policy{
@@ -301,7 +301,7 @@ var StreamingSharedContentStoreMode = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0xAB;0xAC;0xBC;0xBF;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "appv~AT~System~CAT_AppV~CAT_Streaming", Name: "Streaming_Shared_Content_Store_Mode", File: "appv.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_AppVirtualization02", ResultClass: "MDM_Policy_Result01_AppVirtualization02", InstanceID: "AppVirtualization", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "StreamingSharedContentStoreMode"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_AppVirtualization02", ResultClass: "MDM_Policy_Result01_AppVirtualization02", InstanceID: "AppVirtualization", ParentID: "./Vendor/MSFT/Policy/Config", Property: "StreamingSharedContentStoreMode"},
 }
 
 var StreamingSupportBranchCache = csp.Policy{
@@ -313,7 +313,7 @@ var StreamingSupportBranchCache = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0xAB;0xAC;0xBC;0xBF;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "appv~AT~System~CAT_AppV~CAT_Streaming", Name: "Streaming_Support_Branch_Cache", File: "appv.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_AppVirtualization02", ResultClass: "MDM_Policy_Result01_AppVirtualization02", InstanceID: "AppVirtualization", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "StreamingSupportBranchCache"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_AppVirtualization02", ResultClass: "MDM_Policy_Result01_AppVirtualization02", InstanceID: "AppVirtualization", ParentID: "./Vendor/MSFT/Policy/Config", Property: "StreamingSupportBranchCache"},
 }
 
 var StreamingVerifyCertificateRevocationList = csp.Policy{
@@ -325,7 +325,7 @@ var StreamingVerifyCertificateRevocationList = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0xAB;0xAC;0xBC;0xBF;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "appv~AT~System~CAT_AppV~CAT_Streaming", Name: "Streaming_Verify_Certificate_Revocation_List", File: "appv.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_AppVirtualization02", ResultClass: "MDM_Policy_Result01_AppVirtualization02", InstanceID: "AppVirtualization", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "StreamingVerifyCertificateRevocationList"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_AppVirtualization02", ResultClass: "MDM_Policy_Result01_AppVirtualization02", InstanceID: "AppVirtualization", ParentID: "./Vendor/MSFT/Policy/Config", Property: "StreamingVerifyCertificateRevocationList"},
 }
 
 var VirtualComponentsAllowList = csp.Policy{
@@ -337,7 +337,7 @@ var VirtualComponentsAllowList = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0xAB;0xAC;0xBC;0xBF;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "appv~AT~System~CAT_AppV~CAT_Virtualization", Name: "Virtualization_JITVAllowList", File: "appv.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_AppVirtualization02", ResultClass: "MDM_Policy_Result01_AppVirtualization02", InstanceID: "AppVirtualization", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "VirtualComponentsAllowList"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_AppVirtualization02", ResultClass: "MDM_Policy_Result01_AppVirtualization02", InstanceID: "AppVirtualization", ParentID: "./Vendor/MSFT/Policy/Config", Property: "VirtualComponentsAllowList"},
 }
 
 // All lists every policy in this CSP area.

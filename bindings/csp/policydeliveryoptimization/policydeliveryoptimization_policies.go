@@ -15,7 +15,7 @@ var DOAbsoluteMaxCacheSize = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeliveryOptimization02", ResultClass: "MDM_Policy_Result01_DeliveryOptimization02", InstanceID: "DeliveryOptimization", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DOAbsoluteMaxCacheSize"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeliveryOptimization02", ResultClass: "MDM_Policy_Result01_DeliveryOptimization02", InstanceID: "DeliveryOptimization", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DOAbsoluteMaxCacheSize"},
 }
 
 // DOAllowVPNPeerCaching: Specifies whether the device, with an active VPN connection, is allowed to participate in P2P or not.
@@ -29,7 +29,7 @@ var DOAllowVPNPeerCaching = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed"}, {Value: "1", Description: "Allowed"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeliveryOptimization02", ResultClass: "MDM_Policy_Result01_DeliveryOptimization02", InstanceID: "DeliveryOptimization", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DOAllowVPNPeerCaching"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeliveryOptimization02", ResultClass: "MDM_Policy_Result01_DeliveryOptimization02", InstanceID: "DeliveryOptimization", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DOAllowVPNPeerCaching"},
 }
 
 // DOCacheHost: Specifies one or more Microsoft Connected Cache servers that will be used by your client(s). One or more values can be added as either fully qualified domain names (FQDN) or IP addresses. To add multiple values, separate each FQDN or IP address by commas.
@@ -42,7 +42,7 @@ var DOCacheHost = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeliveryOptimization02", ResultClass: "MDM_Policy_Result01_DeliveryOptimization02", InstanceID: "DeliveryOptimization", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DOCacheHost"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeliveryOptimization02", ResultClass: "MDM_Policy_Result01_DeliveryOptimization02", InstanceID: "DeliveryOptimization", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DOCacheHost"},
 }
 
 // DOCacheHostSource: Specifies how your client(s) can discover Microsoft Connected Cache servers dynamically.
@@ -56,7 +56,7 @@ var DOCacheHostSource = csp.Policy{
 	CSPVersion: "10.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "1", Description: "DHCP Option 235"}, {Value: "2", Description: "DHCP Option 235 Force"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeliveryOptimization02", ResultClass: "MDM_Policy_Result01_DeliveryOptimization02", InstanceID: "DeliveryOptimization", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DOCacheHostSource"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeliveryOptimization02", ResultClass: "MDM_Policy_Result01_DeliveryOptimization02", InstanceID: "DeliveryOptimization", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DOCacheHostSource"},
 }
 
 // DODelayBackgroundDownloadFromHttp: For background downloads that use P2P, specifies the time to wait before starting to download from the HTTP source.
@@ -70,7 +70,7 @@ var DODelayBackgroundDownloadFromHttp = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeliveryOptimization02", ResultClass: "MDM_Policy_Result01_DeliveryOptimization02", InstanceID: "DeliveryOptimization", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DODelayBackgroundDownloadFromHttp"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeliveryOptimization02", ResultClass: "MDM_Policy_Result01_DeliveryOptimization02", InstanceID: "DeliveryOptimization", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DODelayBackgroundDownloadFromHttp"},
 }
 
 // DODelayCacheServerFallbackBackground: For background downloads that use a cache server, specifies the time to wait before falling back to download from the original HTTP source.
@@ -84,7 +84,7 @@ var DODelayCacheServerFallbackBackground = csp.Policy{
 	CSPVersion: "9.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeliveryOptimization02", ResultClass: "MDM_Policy_Result01_DeliveryOptimization02", InstanceID: "DeliveryOptimization", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DODelayCacheServerFallbackBackground"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeliveryOptimization02", ResultClass: "MDM_Policy_Result01_DeliveryOptimization02", InstanceID: "DeliveryOptimization", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DODelayCacheServerFallbackBackground"},
 }
 
 // DODelayCacheServerFallbackForeground: For foreground downloads that use a cache server, specifies the time to wait before falling back to download from the original HTTP source.
@@ -98,7 +98,7 @@ var DODelayCacheServerFallbackForeground = csp.Policy{
 	CSPVersion: "9.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeliveryOptimization02", ResultClass: "MDM_Policy_Result01_DeliveryOptimization02", InstanceID: "DeliveryOptimization", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DODelayCacheServerFallbackForeground"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeliveryOptimization02", ResultClass: "MDM_Policy_Result01_DeliveryOptimization02", InstanceID: "DeliveryOptimization", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DODelayCacheServerFallbackForeground"},
 }
 
 // DODelayForegroundDownloadFromHttp: For foreground downloads that use P2P, specifies the time to wait before starting to download from the HTTP source.
@@ -112,7 +112,7 @@ var DODelayForegroundDownloadFromHttp = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeliveryOptimization02", ResultClass: "MDM_Policy_Result01_DeliveryOptimization02", InstanceID: "DeliveryOptimization", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DODelayForegroundDownloadFromHttp"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeliveryOptimization02", ResultClass: "MDM_Policy_Result01_DeliveryOptimization02", InstanceID: "DeliveryOptimization", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DODelayForegroundDownloadFromHttp"},
 }
 
 // DODisallowCacheServerDownloadsOnVPN: Specify to disallow downloads from Microsoft Connected Cache servers when the device has an active VPN connection. By default, the button is 'Not Set'. This means the device is allowed to download from Microsoft Connected Cache when the device has an active VPN connection. To block these downloads, turn the button on to 'Enabled'.
@@ -126,7 +126,7 @@ var DODisallowCacheServerDownloadsOnVPN = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not Set"}, {Value: "1", Description: "Enabled"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeliveryOptimization02", ResultClass: "MDM_Policy_Result01_DeliveryOptimization02", InstanceID: "DeliveryOptimization", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DODisallowCacheServerDownloadsOnVPN"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeliveryOptimization02", ResultClass: "MDM_Policy_Result01_DeliveryOptimization02", InstanceID: "DeliveryOptimization", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DODisallowCacheServerDownloadsOnVPN"},
 }
 
 // DODownloadMode: Specifies the method that Delivery Optimization can use to download content on behalf of various Microsoft products.
@@ -140,7 +140,7 @@ var DODownloadMode = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "HTTP only, no peering"}, {Value: "1", Description: "HTTP blended with peering behind the same NAT"}, {Value: "2", Description: "HTTP blended with peering across a private group"}, {Value: "3", Description: "HTTP blended with Internet peering"}, {Value: "99", Description: "HTTP only, no peering, no use of DO cloud service"}, {Value: "100", Description: "Bypass mode, deprecated in Windows 11"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeliveryOptimization02", ResultClass: "MDM_Policy_Result01_DeliveryOptimization02", InstanceID: "DeliveryOptimization", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DODownloadMode"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeliveryOptimization02", ResultClass: "MDM_Policy_Result01_DeliveryOptimization02", InstanceID: "DeliveryOptimization", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DODownloadMode"},
 }
 
 // DOGroupId: Specifies an arbitrary group ID that the device belongs to. A GUID must be used.
@@ -152,7 +152,7 @@ var DOGroupId = csp.Policy{
 	MinOSBuild: "10.0.14393",
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeliveryOptimization02", ResultClass: "MDM_Policy_Result01_DeliveryOptimization02", InstanceID: "DeliveryOptimization", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DOGroupId"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeliveryOptimization02", ResultClass: "MDM_Policy_Result01_DeliveryOptimization02", InstanceID: "DeliveryOptimization", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DOGroupId"},
 }
 
 // DOGroupIdSource: Specifies the source of group ID used for peer selection.
@@ -166,7 +166,7 @@ var DOGroupIdSource = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not Set"}, {Value: "1", Description: "AD site"}, {Value: "2", Description: "Authenticated domain SID"}, {Value: "3", Description: "DHCP Option ID"}, {Value: "4", Description: "DNS Suffix"}, {Value: "5", Description: "Entra ID Tenant ID"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeliveryOptimization02", ResultClass: "MDM_Policy_Result01_DeliveryOptimization02", InstanceID: "DeliveryOptimization", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DOGroupIdSource"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeliveryOptimization02", ResultClass: "MDM_Policy_Result01_DeliveryOptimization02", InstanceID: "DeliveryOptimization", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DOGroupIdSource"},
 }
 
 // DOMaxBackgroundDownloadBandwidth: Specifies the maximum background download bandwidth in KiloBytes/second that the device can use across all concurrent download activities using Delivery Optimization.
@@ -180,7 +180,7 @@ var DOMaxBackgroundDownloadBandwidth = csp.Policy{
 	CSPVersion: "10.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeliveryOptimization02", ResultClass: "MDM_Policy_Result01_DeliveryOptimization02", InstanceID: "DeliveryOptimization", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DOMaxBackgroundDownloadBandwidth"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeliveryOptimization02", ResultClass: "MDM_Policy_Result01_DeliveryOptimization02", InstanceID: "DeliveryOptimization", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DOMaxBackgroundDownloadBandwidth"},
 }
 
 // DOMaxCacheAge: Specifies the maximum time in seconds that each file is held in the Delivery Optimization cache after downloading successfully.
@@ -194,7 +194,7 @@ var DOMaxCacheAge = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeliveryOptimization02", ResultClass: "MDM_Policy_Result01_DeliveryOptimization02", InstanceID: "DeliveryOptimization", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DOMaxCacheAge"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeliveryOptimization02", ResultClass: "MDM_Policy_Result01_DeliveryOptimization02", InstanceID: "DeliveryOptimization", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DOMaxCacheAge"},
 }
 
 // DOMaxCacheSize: Specifies the maximum cache size that Delivery Optimization can utilize, as a percentage of the available drive space.
@@ -208,7 +208,7 @@ var DOMaxCacheSize = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeliveryOptimization02", ResultClass: "MDM_Policy_Result01_DeliveryOptimization02", InstanceID: "DeliveryOptimization", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DOMaxCacheSize"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeliveryOptimization02", ResultClass: "MDM_Policy_Result01_DeliveryOptimization02", InstanceID: "DeliveryOptimization", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DOMaxCacheSize"},
 }
 
 // DOMaxForegroundDownloadBandwidth: Specifies the maximum foreground download bandwidth in KiloBytes/second that the device can use across all concurrent download activities using Delivery Optimization.
@@ -222,7 +222,7 @@ var DOMaxForegroundDownloadBandwidth = csp.Policy{
 	CSPVersion: "10.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeliveryOptimization02", ResultClass: "MDM_Policy_Result01_DeliveryOptimization02", InstanceID: "DeliveryOptimization", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DOMaxForegroundDownloadBandwidth"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeliveryOptimization02", ResultClass: "MDM_Policy_Result01_DeliveryOptimization02", InstanceID: "DeliveryOptimization", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DOMaxForegroundDownloadBandwidth"},
 }
 
 // DOMinBackgroundQos: Specifies the minimum download QoS (Quality of Service) in KiloBytes/sec for background downloads.
@@ -236,7 +236,7 @@ var DOMinBackgroundQos = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeliveryOptimization02", ResultClass: "MDM_Policy_Result01_DeliveryOptimization02", InstanceID: "DeliveryOptimization", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DOMinBackgroundQos"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeliveryOptimization02", ResultClass: "MDM_Policy_Result01_DeliveryOptimization02", InstanceID: "DeliveryOptimization", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DOMinBackgroundQos"},
 }
 
 // DOMinBatteryPercentageAllowedToUpload: Specifies the minimum battery level required for uploading to peers, while on battery power.
@@ -250,7 +250,7 @@ var DOMinBatteryPercentageAllowedToUpload = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeliveryOptimization02", ResultClass: "MDM_Policy_Result01_DeliveryOptimization02", InstanceID: "DeliveryOptimization", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DOMinBatteryPercentageAllowedToUpload"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeliveryOptimization02", ResultClass: "MDM_Policy_Result01_DeliveryOptimization02", InstanceID: "DeliveryOptimization", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DOMinBatteryPercentageAllowedToUpload"},
 }
 
 // DOMinDiskSizeAllowedToPeer: Specifies the required minimum total disk size in GB for the device to use P2P.
@@ -264,7 +264,7 @@ var DOMinDiskSizeAllowedToPeer = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeliveryOptimization02", ResultClass: "MDM_Policy_Result01_DeliveryOptimization02", InstanceID: "DeliveryOptimization", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DOMinDiskSizeAllowedToPeer"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeliveryOptimization02", ResultClass: "MDM_Policy_Result01_DeliveryOptimization02", InstanceID: "DeliveryOptimization", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DOMinDiskSizeAllowedToPeer"},
 }
 
 // DOMinFileSizeToCache: Specifies the minimum content file size in MB eligible to use P2P.
@@ -278,7 +278,7 @@ var DOMinFileSizeToCache = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeliveryOptimization02", ResultClass: "MDM_Policy_Result01_DeliveryOptimization02", InstanceID: "DeliveryOptimization", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DOMinFileSizeToCache"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeliveryOptimization02", ResultClass: "MDM_Policy_Result01_DeliveryOptimization02", InstanceID: "DeliveryOptimization", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DOMinFileSizeToCache"},
 }
 
 // DOMinRAMAllowedToPeer: Specifies the minimum total RAM size in GB required to use P2P.
@@ -292,7 +292,7 @@ var DOMinRAMAllowedToPeer = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeliveryOptimization02", ResultClass: "MDM_Policy_Result01_DeliveryOptimization02", InstanceID: "DeliveryOptimization", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DOMinRAMAllowedToPeer"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeliveryOptimization02", ResultClass: "MDM_Policy_Result01_DeliveryOptimization02", InstanceID: "DeliveryOptimization", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DOMinRAMAllowedToPeer"},
 }
 
 // DOModifyCacheDrive: Specifies the drive that Delivery Optimization should use for its cache. The drive location can be specified using environment variables, drive letter or using a full path.
@@ -304,7 +304,7 @@ var DOModifyCacheDrive = csp.Policy{
 	MinOSBuild: "10.0.14393",
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeliveryOptimization02", ResultClass: "MDM_Policy_Result01_DeliveryOptimization02", InstanceID: "DeliveryOptimization", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DOModifyCacheDrive"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeliveryOptimization02", ResultClass: "MDM_Policy_Result01_DeliveryOptimization02", InstanceID: "DeliveryOptimization", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DOModifyCacheDrive"},
 }
 
 // DOMonthlyUploadDataCap: Specifies the maximum bytes in GB that Delivery Optimization is allowed to upload to Internet peers in each calendar month.
@@ -318,7 +318,7 @@ var DOMonthlyUploadDataCap = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeliveryOptimization02", ResultClass: "MDM_Policy_Result01_DeliveryOptimization02", InstanceID: "DeliveryOptimization", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DOMonthlyUploadDataCap"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeliveryOptimization02", ResultClass: "MDM_Policy_Result01_DeliveryOptimization02", InstanceID: "DeliveryOptimization", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DOMonthlyUploadDataCap"},
 }
 
 // DOPercentageMaxBackgroundBandwidth: Specifies the maximum background download bandwidth that Delivery Optimization uses across all concurrent download activities as a percentage of available download bandwidth.
@@ -332,7 +332,7 @@ var DOPercentageMaxBackgroundBandwidth = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeliveryOptimization02", ResultClass: "MDM_Policy_Result01_DeliveryOptimization02", InstanceID: "DeliveryOptimization", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DOPercentageMaxBackgroundBandwidth"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeliveryOptimization02", ResultClass: "MDM_Policy_Result01_DeliveryOptimization02", InstanceID: "DeliveryOptimization", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DOPercentageMaxBackgroundBandwidth"},
 }
 
 // DOPercentageMaxForegroundBandwidth: Specifies the maximum foreground download bandwidth that Delivery Optimization uses across all concurrent download activities as a percentage of available download bandwidth.
@@ -346,7 +346,7 @@ var DOPercentageMaxForegroundBandwidth = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeliveryOptimization02", ResultClass: "MDM_Policy_Result01_DeliveryOptimization02", InstanceID: "DeliveryOptimization", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DOPercentageMaxForegroundBandwidth"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeliveryOptimization02", ResultClass: "MDM_Policy_Result01_DeliveryOptimization02", InstanceID: "DeliveryOptimization", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DOPercentageMaxForegroundBandwidth"},
 }
 
 // DORestrictPeerSelectionBy: Specifies to restrict peer selection using the selected method, in addition to the DownloadMode policy.
@@ -360,7 +360,7 @@ var DORestrictPeerSelectionBy = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "None"}, {Value: "1", Description: "Subnet mask"}, {Value: "2", Description: "Local discovery (DNS-SD)"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeliveryOptimization02", ResultClass: "MDM_Policy_Result01_DeliveryOptimization02", InstanceID: "DeliveryOptimization", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DORestrictPeerSelectionBy"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeliveryOptimization02", ResultClass: "MDM_Policy_Result01_DeliveryOptimization02", InstanceID: "DeliveryOptimization", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DORestrictPeerSelectionBy"},
 }
 
 var DOSetHoursToLimitBackgroundDownloadBandwidth = csp.Policy{
@@ -372,7 +372,7 @@ var DOSetHoursToLimitBackgroundDownloadBandwidth = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "DeliveryOptimization~AT~WindowsComponents~DeliveryOptimizationCat", Name: "SetHoursToLimitBackgroundDownloadBandwidth", File: "DeliveryOptimization.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeliveryOptimization02", ResultClass: "MDM_Policy_Result01_DeliveryOptimization02", InstanceID: "DeliveryOptimization", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DOSetHoursToLimitBackgroundDownloadBandwidth"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeliveryOptimization02", ResultClass: "MDM_Policy_Result01_DeliveryOptimization02", InstanceID: "DeliveryOptimization", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DOSetHoursToLimitBackgroundDownloadBandwidth"},
 }
 
 var DOSetHoursToLimitForegroundDownloadBandwidth = csp.Policy{
@@ -384,7 +384,7 @@ var DOSetHoursToLimitForegroundDownloadBandwidth = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "DeliveryOptimization~AT~WindowsComponents~DeliveryOptimizationCat", Name: "SetHoursToLimitForegroundDownloadBandwidth", File: "DeliveryOptimization.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeliveryOptimization02", ResultClass: "MDM_Policy_Result01_DeliveryOptimization02", InstanceID: "DeliveryOptimization", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DOSetHoursToLimitForegroundDownloadBandwidth"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeliveryOptimization02", ResultClass: "MDM_Policy_Result01_DeliveryOptimization02", InstanceID: "DeliveryOptimization", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DOSetHoursToLimitForegroundDownloadBandwidth"},
 }
 
 // DOVpnKeywords: Specifies one or more keywords used to recognize VPN connections. To add multiple keywords, separate each by a comma.
@@ -397,7 +397,7 @@ var DOVpnKeywords = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeliveryOptimization02", ResultClass: "MDM_Policy_Result01_DeliveryOptimization02", InstanceID: "DeliveryOptimization", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DOVpnKeywords"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeliveryOptimization02", ResultClass: "MDM_Policy_Result01_DeliveryOptimization02", InstanceID: "DeliveryOptimization", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DOVpnKeywords"},
 }
 
 // All lists every policy in this CSP area.

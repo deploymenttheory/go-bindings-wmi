@@ -15,7 +15,7 @@ var AllowHardwareKeyboardTextSuggestions = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_TextInput02", ResultClass: "MDM_Policy_Result01_TextInput02", InstanceID: "TextInput", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowHardwareKeyboardTextSuggestions"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_TextInput02", ResultClass: "MDM_Policy_Result01_TextInput02", InstanceID: "TextInput", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowHardwareKeyboardTextSuggestions"},
 }
 
 // AllowIMELogging: Note The policy is only enforced in Windows 10 for desktop. Allows the user to turn on and off the logging for incorrect conversion and saving auto-tuning result to a file and history-based predictive input. Most restricted value is 0.
@@ -29,7 +29,7 @@ var AllowIMELogging = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_TextInput02", ResultClass: "MDM_Policy_Result01_TextInput02", InstanceID: "TextInput", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowIMELogging"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_TextInput02", ResultClass: "MDM_Policy_Result01_TextInput02", InstanceID: "TextInput", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowIMELogging"},
 }
 
 // AllowIMENetworkAccess: Allows the user to turn on Open Extended Dictionary, Internet search integration, or cloud candidate features to provide input suggestions that do not exist in the device's local dictionary. Most restricted value is 0. In Windows 10, version 1803, we introduced new suggestion services in Japanese IME in addition to cloud suggestion. When AllowIMENetworkAccess is set to 1, all suggestion services are available as predictive input.
@@ -43,7 +43,7 @@ var AllowIMENetworkAccess = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_TextInput02", ResultClass: "MDM_Policy_Result01_TextInput02", InstanceID: "TextInput", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowIMENetworkAccess"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_TextInput02", ResultClass: "MDM_Policy_Result01_TextInput02", InstanceID: "TextInput", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowIMENetworkAccess"},
 }
 
 // AllowInputPanel: Note The policy is only enforced in Windows 10 for desktop. Allows the IT admin to disable the touch/handwriting keyboard on Windows. Most restricted value is 0.
@@ -57,7 +57,7 @@ var AllowInputPanel = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_TextInput02", ResultClass: "MDM_Policy_Result01_TextInput02", InstanceID: "TextInput", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowInputPanel"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_TextInput02", ResultClass: "MDM_Policy_Result01_TextInput02", InstanceID: "TextInput", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowInputPanel"},
 }
 
 // AllowJapaneseIMESurrogatePairCharacters: Note The policy is only enforced in Windows 10 for desktop. Allows the Japanese IME surrogate pair characters. Most restricted value is 0.
@@ -71,7 +71,7 @@ var AllowJapaneseIMESurrogatePairCharacters = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_TextInput02", ResultClass: "MDM_Policy_Result01_TextInput02", InstanceID: "TextInput", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowJapaneseIMESurrogatePairCharacters"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_TextInput02", ResultClass: "MDM_Policy_Result01_TextInput02", InstanceID: "TextInput", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowJapaneseIMESurrogatePairCharacters"},
 }
 
 // AllowJapaneseIVSCharacters: Note The policy is only enforced in Windows 10 for desktop. Allows Japanese Ideographic Variation Sequence (IVS) characters. Most restricted value is 0.
@@ -85,7 +85,7 @@ var AllowJapaneseIVSCharacters = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_TextInput02", ResultClass: "MDM_Policy_Result01_TextInput02", InstanceID: "TextInput", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowJapaneseIVSCharacters"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_TextInput02", ResultClass: "MDM_Policy_Result01_TextInput02", InstanceID: "TextInput", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowJapaneseIVSCharacters"},
 }
 
 // AllowJapaneseNonPublishingStandardGlyph: Note The policy is only enforced in Windows 10 for desktop. Allows the Japanese non-publishing standard glyph. Most restricted value is 0.
@@ -99,7 +99,7 @@ var AllowJapaneseNonPublishingStandardGlyph = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_TextInput02", ResultClass: "MDM_Policy_Result01_TextInput02", InstanceID: "TextInput", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowJapaneseNonPublishingStandardGlyph"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_TextInput02", ResultClass: "MDM_Policy_Result01_TextInput02", InstanceID: "TextInput", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowJapaneseNonPublishingStandardGlyph"},
 }
 
 // AllowJapaneseUserDictionary: Note The policy is only enforced in Windows 10 for desktop. Allows the Japanese user dictionary. Most restricted value is 0.
@@ -113,7 +113,7 @@ var AllowJapaneseUserDictionary = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_TextInput02", ResultClass: "MDM_Policy_Result01_TextInput02", InstanceID: "TextInput", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowJapaneseUserDictionary"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_TextInput02", ResultClass: "MDM_Policy_Result01_TextInput02", InstanceID: "TextInput", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowJapaneseUserDictionary"},
 }
 
 // AllowKeyboardTextSuggestions: Note The policy is only enforced in Windows 10 for desktop.  Specifies whether text prediction is enabled or disabled for the on-screen keyboard, touch keyboard, and handwriting recognition tool. When this policy is set to disabled, text prediction is disabled. Most restricted value is 0.
@@ -127,7 +127,7 @@ var AllowKeyboardTextSuggestions = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Disabled."}, {Value: "1", Description: "Enabled."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_TextInput02", ResultClass: "MDM_Policy_Result01_TextInput02", InstanceID: "TextInput", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowKeyboardTextSuggestions"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_TextInput02", ResultClass: "MDM_Policy_Result01_TextInput02", InstanceID: "TextInput", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowKeyboardTextSuggestions"},
 }
 
 // AllowLanguageFeaturesUninstall: Note The policy is only enforced in Windows 10 for desktop. Allows the uninstall of language features, such as spell checkers, on a device. Most restricted value is 0.
@@ -141,7 +141,7 @@ var AllowLanguageFeaturesUninstall = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_TextInput02", ResultClass: "MDM_Policy_Result01_TextInput02", InstanceID: "TextInput", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowLanguageFeaturesUninstall"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_TextInput02", ResultClass: "MDM_Policy_Result01_TextInput02", InstanceID: "TextInput", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowLanguageFeaturesUninstall"},
 }
 
 // AllowLinguisticDataCollection: This policy setting controls the ability to send inking and typing data to Microsoft to improve the language recognition and suggestion capabilities of apps and services running on Windows.
@@ -155,7 +155,7 @@ var AllowLinguisticDataCollection = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_TextInput02", ResultClass: "MDM_Policy_Result01_TextInput02", InstanceID: "TextInput", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowLinguisticDataCollection"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_TextInput02", ResultClass: "MDM_Policy_Result01_TextInput02", InstanceID: "TextInput", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowLinguisticDataCollection"},
 }
 
 // AllowTextInputSuggestionUpdate: Allows the user to turn on or off the automatic downloading of newer versions of the Expressive Input UI. When downloading is not allowed the Expressive Input panel will always display the initial UI included with the base Windows image. Most restricted value is 0. The following list shows the supported values: 0 - Not allowed. 1 (default) - Allowed.
@@ -169,7 +169,7 @@ var AllowTextInputSuggestionUpdate = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_TextInput02", ResultClass: "MDM_Policy_Result01_TextInput02", InstanceID: "TextInput", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowTextInputSuggestionUpdate"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_TextInput02", ResultClass: "MDM_Policy_Result01_TextInput02", InstanceID: "TextInput", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowTextInputSuggestionUpdate"},
 }
 
 // ConfigureJapaneseIMEVersion: This policy allows the IT admin to configure the Microsoft Japanese IME version in the desktop. The following list shows the supported values: 0 (default) – The new Microsoft Japanese IME is on by default. Allow to control Microsoft Japanese IME version to use. 1 - The previous version of Microsoft Japanese IME is always selected.  Not allowed to control Microsoft Japanese IME version to use. 2 - The new Microsoft Japanese IME is always selected.  Not allowed to control Microsoft Japanese IME version to use.
@@ -183,7 +183,7 @@ var ConfigureJapaneseIMEVersion = csp.Policy{
 	CSPVersion: "10.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Allows you to configure which Microsoft Japanese IME version to use. The new Microsoft Japanese IME version is configured by default."}, {Value: "1", Description: "Does not allow you to configure which Microsoft Japanese IME version to use. The previous version of Microsoft Japanese IME is always selected."}, {Value: "2", Description: "Does not allow you to configure which Microsoft Japanese IME version to use. The new Microsoft Japanese IME version is always selected."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_TextInput02", ResultClass: "MDM_Policy_Result01_TextInput02", InstanceID: "TextInput", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ConfigureJapaneseIMEVersion"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_TextInput02", ResultClass: "MDM_Policy_Result01_TextInput02", InstanceID: "TextInput", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ConfigureJapaneseIMEVersion"},
 }
 
 // ConfigureKoreanIMEVersion: This policy allows the IT admin to configure the Microsoft Korean IME version in the desktop. The following list shows the supported values: 0 (default) – The new Microsoft Korean IME is on by default. Allow to control Microsoft Korean IME version to use. 1 - The previous version of Microsoft Korean IME is always selected.  Not allowed to control Microsoft Korean IME version to use. 2 - The new Microsoft Korean IME is always selected.  Not allowed to control Microsoft Korean IME version to use.
@@ -197,7 +197,7 @@ var ConfigureKoreanIMEVersion = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_TextInput02", ResultClass: "MDM_Policy_Result01_TextInput02", InstanceID: "TextInput", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ConfigureKoreanIMEVersion"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_TextInput02", ResultClass: "MDM_Policy_Result01_TextInput02", InstanceID: "TextInput", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ConfigureKoreanIMEVersion"},
 }
 
 // ConfigureSimplifiedChineseIMEVersion: This policy allows the IT admin to configure the Microsoft Simplified Chinese IME version in the desktop. The following list shows the supported values: 0 (default) – The new Microsoft Simplified Chinese IME is on by default. Allow to control Microsoft Simplified Chinese IME version to use. 1 - The previous version of Microsoft Simplified Chinese IME is always selected.  Not allowed to control Microsoft Simplified Chinese IME version to use. 2 - The new Microsoft Simplified Chinese IME is always selected.  Not allowed to control Microsoft Simplified Chinese IME version to use.
@@ -211,7 +211,7 @@ var ConfigureSimplifiedChineseIMEVersion = csp.Policy{
 	CSPVersion: "10.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Allows you to configure which Microsoft Simplified Chinese IME version to use. The new Microsoft Simplified Chinese IME version is configured by default."}, {Value: "1", Description: "Does not allow you to configure which Microsoft Simplified Chinese IME version to use. The previous version of Microsoft Simplified Chinese IME is always selected."}, {Value: "2", Description: "Does not allow you to configure which Microsoft Simplified Chinese IME version to use. The new Microsoft Simplified Chinese IME version is always selected."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_TextInput02", ResultClass: "MDM_Policy_Result01_TextInput02", InstanceID: "TextInput", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ConfigureSimplifiedChineseIMEVersion"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_TextInput02", ResultClass: "MDM_Policy_Result01_TextInput02", InstanceID: "TextInput", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ConfigureSimplifiedChineseIMEVersion"},
 }
 
 // ConfigureTraditionalChineseIMEVersion: This policy allows the IT admin to configure the Microsoft Traditional Chinese IME version in the desktop. The following list shows the supported values: 0 (default) – The new Microsoft Traditional Chinese IME is on by default. Allow to control Microsoft Traditional Chinese IME version to use. 1 - The previous version of Microsoft Traditional Chinese IME is always selected.  Not allowed to control Microsoft Traditional Chinese IME version to use. 2 - The new Microsoft Traditional Chinese IME is always selected.  Not allowed to control Microsoft Traditional Chinese IME version to use.
@@ -225,7 +225,7 @@ var ConfigureTraditionalChineseIMEVersion = csp.Policy{
 	CSPVersion: "10.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Allows you to configure which Microsoft Traditional Chinese IME version to use. The new Microsoft Traditional Chinese IME version is configured by default."}, {Value: "1", Description: "Does not allow you to configure which Microsoft Traditional Chinese IME version to use. The previous version of Microsoft Traditional Chinese IME is always selected."}, {Value: "2", Description: "Does not allow you to configure which Microsoft Traditional Chinese IME version to use. The new Microsoft Traditional Chinese IME version is always selected."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_TextInput02", ResultClass: "MDM_Policy_Result01_TextInput02", InstanceID: "TextInput", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ConfigureTraditionalChineseIMEVersion"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_TextInput02", ResultClass: "MDM_Policy_Result01_TextInput02", InstanceID: "TextInput", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ConfigureTraditionalChineseIMEVersion"},
 }
 
 // EnableTouchKeyboardAutoInvokeInDesktopMode: This policy allows the IT admin to control whether the touch keyboard should show up on tapping an edit control. By default, when you tap a textbox, the touch keyboard automatically shows up when there's no keyboard attached. When this policy is enabled, the touch keyboard can be shown or suppressed regardless of the hardware keyboard availability. This policy corresponds to Show the touch keyboard setting in the Settings app.
@@ -239,7 +239,7 @@ var EnableTouchKeyboardAutoInvokeInDesktopMode = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Never."}, {Value: "1", Description: "When no keyboard attached."}, {Value: "2", Description: "Always."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_TextInput02", ResultClass: "MDM_Policy_Result01_TextInput02", InstanceID: "TextInput", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "EnableTouchKeyboardAutoInvokeInDesktopMode"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_TextInput02", ResultClass: "MDM_Policy_Result01_TextInput02", InstanceID: "TextInput", ParentID: "./Vendor/MSFT/Policy/Config", Property: "EnableTouchKeyboardAutoInvokeInDesktopMode"},
 }
 
 // ExcludeJapaneseIMEExceptJIS0208: Note The policy is only enforced in Windows 10 for desktop. Allows the users to restrict character code range of conversion by setting the character filter.
@@ -253,7 +253,7 @@ var ExcludeJapaneseIMEExceptJIS0208 = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "No characters are filtered."}, {Value: "1", Description: "All characters except JIS0208 are filtered."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_TextInput02", ResultClass: "MDM_Policy_Result01_TextInput02", InstanceID: "TextInput", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ExcludeJapaneseIMEExceptJIS0208"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_TextInput02", ResultClass: "MDM_Policy_Result01_TextInput02", InstanceID: "TextInput", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ExcludeJapaneseIMEExceptJIS0208"},
 }
 
 // ExcludeJapaneseIMEExceptJIS0208andEUDC: Note The policy is only enforced in Windows 10 for desktop. Allows the users to restrict character code range of conversion by setting the character filter.
@@ -267,7 +267,7 @@ var ExcludeJapaneseIMEExceptJIS0208andEUDC = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "No characters are filtered."}, {Value: "1", Description: "All characters except JIS0208 and EUDC are filtered."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_TextInput02", ResultClass: "MDM_Policy_Result01_TextInput02", InstanceID: "TextInput", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ExcludeJapaneseIMEExceptJIS0208andEUDC"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_TextInput02", ResultClass: "MDM_Policy_Result01_TextInput02", InstanceID: "TextInput", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ExcludeJapaneseIMEExceptJIS0208andEUDC"},
 }
 
 // ExcludeJapaneseIMEExceptShiftJIS: Note The policy is only enforced in Windows 10 for desktop. Allows the users to restrict character code range of conversion by setting the character filter.
@@ -281,7 +281,7 @@ var ExcludeJapaneseIMEExceptShiftJIS = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "No characters are filtered."}, {Value: "1", Description: "All characters except ShiftJIS are filtered."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_TextInput02", ResultClass: "MDM_Policy_Result01_TextInput02", InstanceID: "TextInput", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ExcludeJapaneseIMEExceptShiftJIS"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_TextInput02", ResultClass: "MDM_Policy_Result01_TextInput02", InstanceID: "TextInput", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ExcludeJapaneseIMEExceptShiftJIS"},
 }
 
 // ForceTouchKeyboardDockedState: Specifies the touch keyboard is always docked. When this policy is set to enabled, the touch keyboard is always docked.
@@ -295,7 +295,7 @@ var ForceTouchKeyboardDockedState = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "The OS determines when it's most appropriate to be available."}, {Value: "1", Description: "Touch keyboard is always docked."}, {Value: "2", Description: "Touch keyboard docking can be changed."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_TextInput02", ResultClass: "MDM_Policy_Result01_TextInput02", InstanceID: "TextInput", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ForceTouchKeyboardDockedState"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_TextInput02", ResultClass: "MDM_Policy_Result01_TextInput02", InstanceID: "TextInput", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ForceTouchKeyboardDockedState"},
 }
 
 // TouchKeyboardControllerModeAvailability: Specifies whether the controller keyboard mode is enabled or disabled for the touch keyboard. When this policy is set to disabled, the controller keyboard mode for touch keyboard is disabled.
@@ -309,7 +309,7 @@ var TouchKeyboardControllerModeAvailability = csp.Policy{
 	CSPVersion: "9.9",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "The OS determines when it's most appropriate to be available."}, {Value: "1", Description: "Controller keyboard is always available."}, {Value: "2", Description: "Controller keyboard is always disabled."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_TextInput02", ResultClass: "MDM_Policy_Result01_TextInput02", InstanceID: "TextInput", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "TouchKeyboardControllerModeAvailability"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_TextInput02", ResultClass: "MDM_Policy_Result01_TextInput02", InstanceID: "TextInput", ParentID: "./Vendor/MSFT/Policy/Config", Property: "TouchKeyboardControllerModeAvailability"},
 }
 
 // TouchKeyboardDictationButtonAvailability: Specifies whether the dictation input button is enabled or disabled for the touch keyboard. When this policy is set to disabled, the dictation input button on touch keyboard is disabled.
@@ -323,7 +323,7 @@ var TouchKeyboardDictationButtonAvailability = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "The OS determines when it's most appropriate to be available."}, {Value: "1", Description: "Dictation button on the keyboard is always available."}, {Value: "2", Description: "Dictation button on the keyboard is always disabled."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_TextInput02", ResultClass: "MDM_Policy_Result01_TextInput02", InstanceID: "TextInput", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "TouchKeyboardDictationButtonAvailability"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_TextInput02", ResultClass: "MDM_Policy_Result01_TextInput02", InstanceID: "TextInput", ParentID: "./Vendor/MSFT/Policy/Config", Property: "TouchKeyboardDictationButtonAvailability"},
 }
 
 // TouchKeyboardEmojiButtonAvailability: Specifies whether the emoji button is enabled or disabled for the touch keyboard. When this policy is set to disabled, the emoji button on touch keyboard is disabled.
@@ -337,7 +337,7 @@ var TouchKeyboardEmojiButtonAvailability = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "The OS determines when it's most appropriate to be available."}, {Value: "1", Description: "Emoji button on keyboard is always available."}, {Value: "2", Description: "Emoji button on keyboard is always disabled."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_TextInput02", ResultClass: "MDM_Policy_Result01_TextInput02", InstanceID: "TextInput", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "TouchKeyboardEmojiButtonAvailability"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_TextInput02", ResultClass: "MDM_Policy_Result01_TextInput02", InstanceID: "TextInput", ParentID: "./Vendor/MSFT/Policy/Config", Property: "TouchKeyboardEmojiButtonAvailability"},
 }
 
 // TouchKeyboardFullModeAvailability: Specifies whether the full keyboard mode is enabled or disabled for the touch keyboard. When this policy is set to disabled, the full keyboard mode for touch keyboard is disabled.
@@ -351,7 +351,7 @@ var TouchKeyboardFullModeAvailability = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "The OS determines when it's most appropriate to be available."}, {Value: "1", Description: "Full keyboard is always available."}, {Value: "2", Description: "Full keyboard is always disabled."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_TextInput02", ResultClass: "MDM_Policy_Result01_TextInput02", InstanceID: "TextInput", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "TouchKeyboardFullModeAvailability"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_TextInput02", ResultClass: "MDM_Policy_Result01_TextInput02", InstanceID: "TextInput", ParentID: "./Vendor/MSFT/Policy/Config", Property: "TouchKeyboardFullModeAvailability"},
 }
 
 // TouchKeyboardHandwritingModeAvailability: Specifies whether the handwriting input panel is enabled or disabled. When this policy is set to disabled, the handwriting input panel is disabled.
@@ -365,7 +365,7 @@ var TouchKeyboardHandwritingModeAvailability = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "The OS determines when it's most appropriate to be available."}, {Value: "1", Description: "Handwriting input panel is always available."}, {Value: "2", Description: "Handwriting input panel is always disabled."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_TextInput02", ResultClass: "MDM_Policy_Result01_TextInput02", InstanceID: "TextInput", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "TouchKeyboardHandwritingModeAvailability"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_TextInput02", ResultClass: "MDM_Policy_Result01_TextInput02", InstanceID: "TextInput", ParentID: "./Vendor/MSFT/Policy/Config", Property: "TouchKeyboardHandwritingModeAvailability"},
 }
 
 // TouchKeyboardNarrowModeAvailability: Specifies whether the narrow keyboard mode is enabled or disabled for the touch keyboard. When this policy is set to disabled, the narrow keyboard mode for touch keyboard is disabled.
@@ -379,7 +379,7 @@ var TouchKeyboardNarrowModeAvailability = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "The OS determines when it's most appropriate to be available."}, {Value: "1", Description: "Narrow keyboard is always available."}, {Value: "2", Description: "Narrow keyboard is always disabled."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_TextInput02", ResultClass: "MDM_Policy_Result01_TextInput02", InstanceID: "TextInput", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "TouchKeyboardNarrowModeAvailability"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_TextInput02", ResultClass: "MDM_Policy_Result01_TextInput02", InstanceID: "TextInput", ParentID: "./Vendor/MSFT/Policy/Config", Property: "TouchKeyboardNarrowModeAvailability"},
 }
 
 // TouchKeyboardSplitModeAvailability: Specifies whether the split keyboard mode is enabled or disabled for the touch keyboard. When this policy is set to disabled, the split keyboard mode for touch keyboard is disabled.
@@ -393,7 +393,7 @@ var TouchKeyboardSplitModeAvailability = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "The OS determines when it's most appropriate to be available."}, {Value: "1", Description: "Split keyboard is always available."}, {Value: "2", Description: "Split keyboard is always disabled."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_TextInput02", ResultClass: "MDM_Policy_Result01_TextInput02", InstanceID: "TextInput", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "TouchKeyboardSplitModeAvailability"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_TextInput02", ResultClass: "MDM_Policy_Result01_TextInput02", InstanceID: "TextInput", ParentID: "./Vendor/MSFT/Policy/Config", Property: "TouchKeyboardSplitModeAvailability"},
 }
 
 // TouchKeyboardWideModeAvailability: Specifies whether the wide keyboard mode is enabled or disabled for the touch keyboard. When this policy is set to disabled, the wide keyboard mode for touch keyboard is disabled.
@@ -407,7 +407,7 @@ var TouchKeyboardWideModeAvailability = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "The OS determines when it's most appropriate to be available."}, {Value: "1", Description: "Wide keyboard is always available."}, {Value: "2", Description: "Wide keyboard is always disabled."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_TextInput02", ResultClass: "MDM_Policy_Result01_TextInput02", InstanceID: "TextInput", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "TouchKeyboardWideModeAvailability"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_TextInput02", ResultClass: "MDM_Policy_Result01_TextInput02", InstanceID: "TextInput", ParentID: "./Vendor/MSFT/Policy/Config", Property: "TouchKeyboardWideModeAvailability"},
 }
 
 // All lists every policy in this CSP area.

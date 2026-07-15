@@ -15,7 +15,7 @@ var AllowOptionToShowNetwork = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not Allowed."}, {Value: "1", Description: "Allowed."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_FileExplorer02", ResultClass: "MDM_Policy_Result01_FileExplorer02", InstanceID: "FileExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowOptionToShowNetwork"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_FileExplorer02", ResultClass: "MDM_Policy_Result01_FileExplorer02", InstanceID: "FileExplorer", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowOptionToShowNetwork"},
 }
 
 // AllowOptionToShowThisPC: When This PC location is restricted, give the user the option to enumerate and navigate into it.
@@ -29,7 +29,7 @@ var AllowOptionToShowThisPC = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not Allowed."}, {Value: "1", Description: "Allowed."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_FileExplorer02", ResultClass: "MDM_Policy_Result01_FileExplorer02", InstanceID: "FileExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowOptionToShowThisPC"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_FileExplorer02", ResultClass: "MDM_Policy_Result01_FileExplorer02", InstanceID: "FileExplorer", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowOptionToShowThisPC"},
 }
 
 // DisableFileExplorerPrelaunch: This policy prevents users from enabling the Prelaunch feature in File Explorer, which creates a window in the background to accelerate the launch experience and improve responsiveness.
@@ -43,7 +43,7 @@ var DisableFileExplorerPrelaunch = csp.Policy{
 	CSPVersion: "9.9",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "File Explorer will attempt prelaunch of windows in the background to improve performance when possible."}, {Value: "1", Description: "File Explorer will not allow prelaunch of windows in the background."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_FileExplorer02", ResultClass: "MDM_Policy_Result01_FileExplorer02", InstanceID: "FileExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisableFileExplorerPrelaunch"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_FileExplorer02", ResultClass: "MDM_Policy_Result01_FileExplorer02", InstanceID: "FileExplorer", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DisableFileExplorerPrelaunch"},
 }
 
 // DisableGraphRecentItems: Turning off this setting will prevent File Explorer from displaying files based on account and cloud provider activity.
@@ -57,7 +57,7 @@ var DisableGraphRecentItems = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "File Explorer will request cloud file metadata and display it in the homepage and other views."}, {Value: "1", Description: "File Explorer will not request cloud file metadata or display it in the homepage or other views."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_FileExplorer02", ResultClass: "MDM_Policy_Result01_FileExplorer02", InstanceID: "FileExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisableGraphRecentItems"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_FileExplorer02", ResultClass: "MDM_Policy_Result01_FileExplorer02", InstanceID: "FileExplorer", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DisableGraphRecentItems"},
 }
 
 // SetAllowedFolderLocations: A value that can represent one or more folder locations in File Explorer. If not specified, the default is access to all folder locations.
@@ -71,7 +71,7 @@ var SetAllowedFolderLocations = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Access to all folder locations."}, {Value: "13", Description: "Documents, Pictures, Downloads"}, {Value: "15", Description: "Desktop, Documents, Pictures, Downloads"}, {Value: "31", Description: "Desktop, Documents, Pictures, Downloads, Network"}, {Value: "47", Description: "This PC, Desktop, Documents, Pictures, Downloads"}, {Value: "63", Description: "This PC, Desktop, Documents, Pictures, Downloads, Network"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_FileExplorer02", ResultClass: "MDM_Policy_Result01_FileExplorer02", InstanceID: "FileExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "SetAllowedFolderLocations"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_FileExplorer02", ResultClass: "MDM_Policy_Result01_FileExplorer02", InstanceID: "FileExplorer", ParentID: "./Vendor/MSFT/Policy/Config", Property: "SetAllowedFolderLocations"},
 }
 
 // SetAllowedStorageLocations: A value that can represent one or more storage locations in File Explorer. If not specified, the default is access to all storage locations.
@@ -85,7 +85,7 @@ var SetAllowedStorageLocations = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Access to all storage locations."}, {Value: "1", Description: "Removable Drives"}, {Value: "2", Description: "Sync roots"}, {Value: "3", Description: "Removable Drives, Sync roots"}, {Value: "4", Description: "Local Drives"}, {Value: "5", Description: "Removable Drives, Local Drives"}, {Value: "6", Description: "Sync Roots, Local Drives"}, {Value: "7", Description: "Removable Drives, Sync Roots, Local Drives"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_FileExplorer02", ResultClass: "MDM_Policy_Result01_FileExplorer02", InstanceID: "FileExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "SetAllowedStorageLocations"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_FileExplorer02", ResultClass: "MDM_Policy_Result01_FileExplorer02", InstanceID: "FileExplorer", ParentID: "./Vendor/MSFT/Policy/Config", Property: "SetAllowedStorageLocations"},
 }
 
 var TurnOffDataExecutionPreventionForExplorer = csp.Policy{
@@ -97,7 +97,7 @@ var TurnOffDataExecutionPreventionForExplorer = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "Explorer~AT~WindowsExplorer", Name: "NoDataExecutionPrevention", File: "Explorer.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_FileExplorer02", ResultClass: "MDM_Policy_Result01_FileExplorer02", InstanceID: "FileExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "TurnOffDataExecutionPreventionForExplorer"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_FileExplorer02", ResultClass: "MDM_Policy_Result01_FileExplorer02", InstanceID: "FileExplorer", ParentID: "./Vendor/MSFT/Policy/Config", Property: "TurnOffDataExecutionPreventionForExplorer"},
 }
 
 var TurnOffHeapTerminationOnCorruption = csp.Policy{
@@ -109,7 +109,7 @@ var TurnOffHeapTerminationOnCorruption = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "Explorer~AT~WindowsExplorer", Name: "NoHeapTerminationOnCorruption", File: "Explorer.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_FileExplorer02", ResultClass: "MDM_Policy_Result01_FileExplorer02", InstanceID: "FileExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "TurnOffHeapTerminationOnCorruption"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_FileExplorer02", ResultClass: "MDM_Policy_Result01_FileExplorer02", InstanceID: "FileExplorer", ParentID: "./Vendor/MSFT/Policy/Config", Property: "TurnOffHeapTerminationOnCorruption"},
 }
 
 // All lists every policy in this CSP area.

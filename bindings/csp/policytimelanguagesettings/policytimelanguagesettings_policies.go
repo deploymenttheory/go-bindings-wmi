@@ -16,7 +16,7 @@ var AllowSet24HourClock = csp.Policy{
 	MinOSBuild:        "10.0.15063",
 	CSPVersion:        "5.0",
 	Allowed:           &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
-	Bridge:            &csp.Bridge{ConfigClass: "MDM_Policy_Config01_TimeLanguageSettings02", ResultClass: "MDM_Policy_Result01_TimeLanguageSettings02", InstanceID: "TimeLanguageSettings", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowSet24HourClock"},
+	Bridge:            &csp.Bridge{ConfigClass: "MDM_Policy_Config01_TimeLanguageSettings02", ResultClass: "MDM_Policy_Result01_TimeLanguageSettings02", InstanceID: "TimeLanguageSettings", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowSet24HourClock"},
 }
 
 // BlockCleanupOfUnusedPreinstalledLangPacks: This policy setting controls whether the LPRemove or Language Packs Uninstaller task will run to clean up language packs installed on a machine but are not used by any users on that machine.
@@ -30,7 +30,7 @@ var BlockCleanupOfUnusedPreinstalledLangPacks = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not blocked."}, {Value: "1", Description: "Blocked."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_TimeLanguageSettings02", ResultClass: "MDM_Policy_Result01_TimeLanguageSettings02", InstanceID: "TimeLanguageSettings", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "BlockCleanupOfUnusedPreinstalledLangPacks"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_TimeLanguageSettings02", ResultClass: "MDM_Policy_Result01_TimeLanguageSettings02", InstanceID: "TimeLanguageSettings", ParentID: "./Vendor/MSFT/Policy/Config", Property: "BlockCleanupOfUnusedPreinstalledLangPacks"},
 }
 
 // ConfigureTimeZone: Specifies the time zone to be applied to the device.  This is the standard Windows name for the target time zone.
@@ -42,7 +42,7 @@ var ConfigureTimeZone = csp.Policy{
 	MinOSBuild: "10.0.18362",
 	CSPVersion: "9.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_TimeLanguageSettings02", ResultClass: "MDM_Policy_Result01_TimeLanguageSettings02", InstanceID: "TimeLanguageSettings", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ConfigureTimeZone"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_TimeLanguageSettings02", ResultClass: "MDM_Policy_Result01_TimeLanguageSettings02", InstanceID: "TimeLanguageSettings", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ConfigureTimeZone"},
 }
 
 // MachineUILanguageOverwrite: This policy setting controls which UI language is used for computers with more than one UI language installed. If you enable this setting, the UI language of Windows menus and dialogs for systems with more than one language is restricted to the machine language.
@@ -56,7 +56,7 @@ var MachineUILanguageOverwrite = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Disabled."}, {Value: "1", Description: "Enabled."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_TimeLanguageSettings02", ResultClass: "MDM_Policy_Result01_TimeLanguageSettings02", InstanceID: "TimeLanguageSettings", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "MachineUILanguageOverwrite"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_TimeLanguageSettings02", ResultClass: "MDM_Policy_Result01_TimeLanguageSettings02", InstanceID: "TimeLanguageSettings", ParentID: "./Vendor/MSFT/Policy/Config", Property: "MachineUILanguageOverwrite"},
 }
 
 // RestrictLanguagePacksAndFeaturesInstall: This policy setting restricts the install of language packs and language features, such as spell checkers, on a device.
@@ -70,7 +70,7 @@ var RestrictLanguagePacksAndFeaturesInstall = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not restricted."}, {Value: "1", Description: "Restricted."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_TimeLanguageSettings02", ResultClass: "MDM_Policy_Result01_TimeLanguageSettings02", InstanceID: "TimeLanguageSettings", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "RestrictLanguagePacksAndFeaturesInstall"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_TimeLanguageSettings02", ResultClass: "MDM_Policy_Result01_TimeLanguageSettings02", InstanceID: "TimeLanguageSettings", ParentID: "./Vendor/MSFT/Policy/Config", Property: "RestrictLanguagePacksAndFeaturesInstall"},
 }
 
 // All lists every policy in this CSP area.

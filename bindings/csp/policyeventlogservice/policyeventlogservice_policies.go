@@ -13,7 +13,7 @@ var ControlEventLogBehavior = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "EventLog~AT~WindowsComponents~EventLogCategory~EventLog_Application", Name: "Channel_Log_Retention_1", File: "eventlog.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_EventLogService02", ResultClass: "MDM_Policy_Result01_EventLogService02", InstanceID: "EventLogService", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ControlEventLogBehavior"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_EventLogService02", ResultClass: "MDM_Policy_Result01_EventLogService02", InstanceID: "EventLogService", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ControlEventLogBehavior"},
 }
 
 var SpecifyMaximumFileSizeApplicationLog = csp.Policy{
@@ -25,7 +25,7 @@ var SpecifyMaximumFileSizeApplicationLog = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "EventLog~AT~WindowsComponents~EventLogCategory~EventLog_Application", Name: "Channel_LogMaxSize_1", File: "eventlog.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_EventLogService02", ResultClass: "MDM_Policy_Result01_EventLogService02", InstanceID: "EventLogService", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "SpecifyMaximumFileSizeApplicationLog"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_EventLogService02", ResultClass: "MDM_Policy_Result01_EventLogService02", InstanceID: "EventLogService", ParentID: "./Vendor/MSFT/Policy/Config", Property: "SpecifyMaximumFileSizeApplicationLog"},
 }
 
 var SpecifyMaximumFileSizeSecurityLog = csp.Policy{
@@ -37,7 +37,7 @@ var SpecifyMaximumFileSizeSecurityLog = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "EventLog~AT~WindowsComponents~EventLogCategory~EventLog_Security", Name: "Channel_LogMaxSize_2", File: "eventlog.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_EventLogService02", ResultClass: "MDM_Policy_Result01_EventLogService02", InstanceID: "EventLogService", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "SpecifyMaximumFileSizeSecurityLog"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_EventLogService02", ResultClass: "MDM_Policy_Result01_EventLogService02", InstanceID: "EventLogService", ParentID: "./Vendor/MSFT/Policy/Config", Property: "SpecifyMaximumFileSizeSecurityLog"},
 }
 
 var SpecifyMaximumFileSizeSystemLog = csp.Policy{
@@ -49,7 +49,7 @@ var SpecifyMaximumFileSizeSystemLog = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "EventLog~AT~WindowsComponents~EventLogCategory~EventLog_System", Name: "Channel_LogMaxSize_4", File: "eventlog.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_EventLogService02", ResultClass: "MDM_Policy_Result01_EventLogService02", InstanceID: "EventLogService", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "SpecifyMaximumFileSizeSystemLog"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_EventLogService02", ResultClass: "MDM_Policy_Result01_EventLogService02", InstanceID: "EventLogService", ParentID: "./Vendor/MSFT/Policy/Config", Property: "SpecifyMaximumFileSizeSystemLog"},
 }
 
 // All lists every policy in this CSP area.

@@ -14,7 +14,7 @@ var EnterpriseCloudResources = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_NetworkIsolation02", ResultClass: "MDM_Policy_Result01_NetworkIsolation02", InstanceID: "NetworkIsolation", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "EnterpriseCloudResources"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_NetworkIsolation02", ResultClass: "MDM_Policy_Result01_NetworkIsolation02", InstanceID: "NetworkIsolation", ParentID: "./Vendor/MSFT/Policy/Config", Property: "EnterpriseCloudResources"},
 }
 
 // EnterpriseIPRange: Sets the enterprise IP ranges that define the computers in the enterprise network. Data that comes from those computers will be considered part of the enterprise and protected. These locations will be considered a safe destination for enterprise data to be shared to. This is a comma-separated list of IPv4 and IPv6 ranges.
@@ -27,7 +27,7 @@ var EnterpriseIPRange = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_NetworkIsolation02", ResultClass: "MDM_Policy_Result01_NetworkIsolation02", InstanceID: "NetworkIsolation", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "EnterpriseIPRange"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_NetworkIsolation02", ResultClass: "MDM_Policy_Result01_NetworkIsolation02", InstanceID: "NetworkIsolation", ParentID: "./Vendor/MSFT/Policy/Config", Property: "EnterpriseIPRange"},
 }
 
 // EnterpriseIPRangesAreAuthoritative: Boolean value that tells the client to accept the configured list and not to use heuristics to attempt to find other subnets.
@@ -41,7 +41,7 @@ var EnterpriseIPRangesAreAuthoritative = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "1", Description: "Enable"}, {Value: "0", Description: "Disable"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_NetworkIsolation02", ResultClass: "MDM_Policy_Result01_NetworkIsolation02", InstanceID: "NetworkIsolation", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "EnterpriseIPRangesAreAuthoritative"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_NetworkIsolation02", ResultClass: "MDM_Policy_Result01_NetworkIsolation02", InstanceID: "NetworkIsolation", ParentID: "./Vendor/MSFT/Policy/Config", Property: "EnterpriseIPRangesAreAuthoritative"},
 }
 
 // EnterpriseInternalProxyServers: This is the comma-separated list of internal proxy servers. For example 157.54.14.28, 157.54.11.118, 10.202.14.167, 157.53.14.163, 157.69.210.59. These proxies have been configured by the admin to connect to specific resources on the Internet. They are considered to be enterprise network locations. The proxies are only leveraged in configuring the EnterpriseCloudResources policy to force traffic to the matched cloud resources through these proxies.
@@ -54,7 +54,7 @@ var EnterpriseInternalProxyServers = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_NetworkIsolation02", ResultClass: "MDM_Policy_Result01_NetworkIsolation02", InstanceID: "NetworkIsolation", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "EnterpriseInternalProxyServers"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_NetworkIsolation02", ResultClass: "MDM_Policy_Result01_NetworkIsolation02", InstanceID: "NetworkIsolation", ParentID: "./Vendor/MSFT/Policy/Config", Property: "EnterpriseInternalProxyServers"},
 }
 
 // EnterpriseNetworkDomainNames: This is the list of domains that comprise the boundaries of the enterprise. Data from one of these domains that is sent to a device will be considered enterprise data and protected These locations will be considered a safe destination for enterprise data to be shared to. This is a comma-separated list of domains, for example contoso. sharepoint. com, Fabrikam. com. Note The client requires domain name to be canonical, otherwise the setting will be rejected by the client.  Here are the steps to create canonical domain names:Transform the ASCII characters (A-Z only) to lower case. For example, Microsoft. COM -> microsoft. com. Call IdnToAscii with IDN_USE_STD3_ASCII_RULES as the flags. Call IdnToUnicode with no flags set (dwFlags = 0).
@@ -67,7 +67,7 @@ var EnterpriseNetworkDomainNames = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_NetworkIsolation02", ResultClass: "MDM_Policy_Result01_NetworkIsolation02", InstanceID: "NetworkIsolation", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "EnterpriseNetworkDomainNames"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_NetworkIsolation02", ResultClass: "MDM_Policy_Result01_NetworkIsolation02", InstanceID: "NetworkIsolation", ParentID: "./Vendor/MSFT/Policy/Config", Property: "EnterpriseNetworkDomainNames"},
 }
 
 // EnterpriseProxyServers: This is a comma-separated list of proxy servers. Any server on this list is considered non-enterprise. For example 157.54.14.28, 157.54.11.118, 10.202.14.167, 157.53.14.163, 157.69.210.59.
@@ -80,7 +80,7 @@ var EnterpriseProxyServers = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_NetworkIsolation02", ResultClass: "MDM_Policy_Result01_NetworkIsolation02", InstanceID: "NetworkIsolation", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "EnterpriseProxyServers"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_NetworkIsolation02", ResultClass: "MDM_Policy_Result01_NetworkIsolation02", InstanceID: "NetworkIsolation", ParentID: "./Vendor/MSFT/Policy/Config", Property: "EnterpriseProxyServers"},
 }
 
 // EnterpriseProxyServersAreAuthoritative: Boolean value that tells the client to accept the configured list of proxies and not try to detect other work proxies.
@@ -94,7 +94,7 @@ var EnterpriseProxyServersAreAuthoritative = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "1", Description: "Enable"}, {Value: "0", Description: "Disable"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_NetworkIsolation02", ResultClass: "MDM_Policy_Result01_NetworkIsolation02", InstanceID: "NetworkIsolation", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "EnterpriseProxyServersAreAuthoritative"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_NetworkIsolation02", ResultClass: "MDM_Policy_Result01_NetworkIsolation02", InstanceID: "NetworkIsolation", ParentID: "./Vendor/MSFT/Policy/Config", Property: "EnterpriseProxyServersAreAuthoritative"},
 }
 
 // NeutralResources: List of domain names that can used for work or personal resource.
@@ -107,7 +107,7 @@ var NeutralResources = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_NetworkIsolation02", ResultClass: "MDM_Policy_Result01_NetworkIsolation02", InstanceID: "NetworkIsolation", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "NeutralResources"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_NetworkIsolation02", ResultClass: "MDM_Policy_Result01_NetworkIsolation02", InstanceID: "NetworkIsolation", ParentID: "./Vendor/MSFT/Policy/Config", Property: "NeutralResources"},
 }
 
 // All lists every policy in this CSP area.

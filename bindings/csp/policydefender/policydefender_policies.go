@@ -15,7 +15,7 @@ var AllowArchiveScanning = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed. Turns off scanning on archived files."}, {Value: "1", Description: "Allowed. Scans the archive files."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowArchiveScanning"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowArchiveScanning"},
 }
 
 // AllowBehaviorMonitoring: Allows or disallows Windows Defender Behavior Monitoring functionality.
@@ -29,7 +29,7 @@ var AllowBehaviorMonitoring = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed. Turns off behavior monitoring."}, {Value: "1", Description: "Allowed. Turns on real-time behavior monitoring."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowBehaviorMonitoring"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowBehaviorMonitoring"},
 }
 
 // AllowCloudProtection: To best protect your PC, Windows Defender will send information to Microsoft about any problems it finds. Microsoft will analyze that information, learn more about problems affecting you and other customers, and offer improved solutions.
@@ -43,7 +43,7 @@ var AllowCloudProtection = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed. Turns off the Microsoft Active Protection Service."}, {Value: "1", Description: "Allowed. Turns on the Microsoft Active Protection Service."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowCloudProtection"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowCloudProtection"},
 }
 
 // AllowEmailScanning: Allows or disallows scanning of email.
@@ -57,7 +57,7 @@ var AllowEmailScanning = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed. Turns off email scanning."}, {Value: "1", Description: "Allowed. Turns on email scanning."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowEmailScanning"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowEmailScanning"},
 }
 
 // AllowFullScanOnMappedNetworkDrives: Allows or disallows a full scan of mapped network drives.
@@ -71,7 +71,7 @@ var AllowFullScanOnMappedNetworkDrives = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed. Disables scanning on mapped network drives."}, {Value: "1", Description: "Allowed. Scans mapped network drives."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowFullScanOnMappedNetworkDrives"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowFullScanOnMappedNetworkDrives"},
 }
 
 // AllowFullScanRemovableDriveScanning: Allows or disallows a full scan of removable drives. During a quick scan, removable drives may still be scanned.
@@ -85,7 +85,7 @@ var AllowFullScanRemovableDriveScanning = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed. Turns off scanning on removable drives."}, {Value: "1", Description: "Allowed. Scans removable drives."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowFullScanRemovableDriveScanning"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowFullScanRemovableDriveScanning"},
 }
 
 // AllowIOAVProtection: Allows or disallows Windows Defender IOAVP Protection functionality.
@@ -99,7 +99,7 @@ var AllowIOAVProtection = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowIOAVProtection"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowIOAVProtection"},
 }
 
 // AllowIntrusionPreventionSystem: Allows or disallows Windows Defender Intrusion Prevention functionality.
@@ -115,7 +115,7 @@ var AllowIntrusionPreventionSystem = csp.Policy{
 	CSPVersion:        "4.1",
 	Editions:          "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:           &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
-	Bridge:            &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowIntrusionPreventionSystem"},
+	Bridge:            &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowIntrusionPreventionSystem"},
 }
 
 // AllowOnAccessProtection: Allows or disallows Windows Defender On Access Protection functionality.
@@ -129,7 +129,7 @@ var AllowOnAccessProtection = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowOnAccessProtection"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowOnAccessProtection"},
 }
 
 // AllowRealtimeMonitoring: Allows or disallows Windows Defender Realtime Monitoring functionality.
@@ -143,7 +143,7 @@ var AllowRealtimeMonitoring = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed. Turns off the real-time monitoring service."}, {Value: "1", Description: "Allowed. Turns on and runs the real-time monitoring service."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowRealtimeMonitoring"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowRealtimeMonitoring"},
 }
 
 // AllowScanningNetworkFiles: Allows or disallows a scanning of network files.
@@ -157,7 +157,7 @@ var AllowScanningNetworkFiles = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed. Turns off scanning of network files."}, {Value: "1", Description: "Allowed. Scans network files."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowScanningNetworkFiles"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowScanningNetworkFiles"},
 }
 
 // AllowScriptScanning: Allows or disallows Windows Defender Script Scanning functionality.
@@ -171,7 +171,7 @@ var AllowScriptScanning = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowScriptScanning"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowScriptScanning"},
 }
 
 // AllowUserUIAccess: Allows or disallows user access to the Windows Defender UI. If disallowed, all Windows Defender notifications will also be suppressed.
@@ -185,7 +185,7 @@ var AllowUserUIAccess = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed. Prevents users from accessing UI."}, {Value: "1", Description: "Allowed. Lets users access UI."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowUserUIAccess"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowUserUIAccess"},
 }
 
 // AttackSurfaceReductionOnlyExclusions: This policy setting allows you to prevent Attack Surface reduction rules from matching on files under the paths specified or for the fully qualified resources specified. Paths should be added under the Options for this setting. Each entry must be listed as a name value pair, where the name should be a string representation of a path or a fully qualified resource name. As an example, a path might be defined as: c:\Windows to exclude all files in this directory. A fully qualified resource name might be defined as: C:\Windows\App.exe. Value type is string.
@@ -198,7 +198,7 @@ var AttackSurfaceReductionOnlyExclusions = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AttackSurfaceReductionOnlyExclusions"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AttackSurfaceReductionOnlyExclusions"},
 }
 
 // AttackSurfaceReductionRules: This policy setting enables setting the state (Block/Audit/Off) for each Attack surface reduction (ASR) rule. Each ASR rule listed can be set to one of the following states (Block/Audit/Off). The ASR rule ID and state should be added under the Options for this setting. Each entry must be listed as a name value pair. The name defines a valid ASR rule ID, while the value contains the status ID indicating the status of the rule. For more information about ASR rule ID and status ID, see Enable Attack Surface Reduction. Value type is string.
@@ -210,7 +210,7 @@ var AttackSurfaceReductionRules = csp.Policy{
 	MinOSBuild: "10.0.16299",
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AttackSurfaceReductionRules"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AttackSurfaceReductionRules"},
 }
 
 // AvgCPULoadFactor: Represents the average CPU load factor for the Windows Defender scan (in percent). The default value is 50.
@@ -224,7 +224,7 @@ var AvgCPULoadFactor = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AvgCPULoadFactor"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AvgCPULoadFactor"},
 }
 
 // CheckForSignaturesBeforeRunningScan: This policy setting allows you to manage whether a check for new virus and spyware definitions will occur before running a scan. This setting applies to scheduled scans as well as the command line mpcmdrun -SigUpdate, but it has no effect on scans initiated manually from the user interface. If you enable this setting, a check for new definitions will occur before running a scan. If you disable this setting or do not configure this setting, the scan will start using the existing definitions. Supported values:0 (default) - Disabled1 - EnabledOMA-URI Path: ./Vendor/MSFT/Policy/Config/Defender/CheckForSignaturesBeforeRunningScan
@@ -238,7 +238,7 @@ var CheckForSignaturesBeforeRunningScan = csp.Policy{
 	CSPVersion: "8.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Disabled"}, {Value: "1", Description: "Enabled"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "CheckForSignaturesBeforeRunningScan"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Vendor/MSFT/Policy/Config", Property: "CheckForSignaturesBeforeRunningScan"},
 }
 
 // CloudBlockLevel: This policy setting determines how aggressive Windows Defender Antivirus will be in blocking and scanning suspicious files. Value type is integer. If this setting is on, Windows Defender Antivirus will be more aggressive when identifying suspicious files to block and scan; otherwise, it will be less aggressive and therefore block and scan with less frequency. For more information about specific values that are supported, see the Windows Defender Antivirus documentation site. NoteThis feature requires the Join Microsoft MAPS setting enabled in order to function.
@@ -252,7 +252,7 @@ var CloudBlockLevel = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "NotConfigured"}, {Value: "2", Description: "High"}, {Value: "4", Description: "HighPlus"}, {Value: "6", Description: "ZeroTolerance"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "CloudBlockLevel"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Vendor/MSFT/Policy/Config", Property: "CloudBlockLevel"},
 }
 
 // CloudExtendedTimeout: This feature allows Windows Defender Antivirus to block a suspicious file for up to 60 seconds, and scan it in the cloud to make sure it's safe. Value type is integer, range is 0 - 50. The typical cloud check timeout is 10 seconds. To enable the extended cloud check feature, specify the extended time in seconds, up to an additional 50 seconds. For example, if the desired timeout is 60 seconds, specify 50 seconds in this setting, which will enable the extended cloud check feature, and will raise the total time to 60 seconds. NoteThis feature depends on three other MAPS settings the must all be enabled- Configure the 'Block at First Sight' feature; Join Microsoft MAPS; Send file samples when further analysis is required.
@@ -266,7 +266,7 @@ var CloudExtendedTimeout = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "CloudExtendedTimeout"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Vendor/MSFT/Policy/Config", Property: "CloudExtendedTimeout"},
 }
 
 // ControlledFolderAccessAllowedApplications: The previous name was GuardedFoldersAllowedApplications and changed to ControlledFolderAccessAllowedApplications.  This policy setting allows user-specified applications to the controlled folder access feature. Adding an allowed application means the controlled folder access feature will allow the application to modify or delete content in certain folders such as My Documents. In most cases it will not be necessary to add entries. Windows Defender Antivirus will automatically detect and dynamically add applications that are friendly. Value type is string. Use the | as the substring separator.
@@ -279,7 +279,7 @@ var ControlledFolderAccessAllowedApplications = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ControlledFolderAccessAllowedApplications"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ControlledFolderAccessAllowedApplications"},
 }
 
 // ControlledFolderAccessProtectedFolders: The previous name was GuardedFoldersList and changed to ControlledFolderAccessProtectedFolders.  This policy settings allows adding user-specified folder locations to the controlled folder access feature.  These folders will complement the system defined folders such as My Documents and My Pictures. The list of system folders will be displayed in the user interface and can not be changed. Value type is string. Use the | as the substring separator.
@@ -292,7 +292,7 @@ var ControlledFolderAccessProtectedFolders = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ControlledFolderAccessProtectedFolders"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ControlledFolderAccessProtectedFolders"},
 }
 
 // DaysToRetainCleanedMalware: Time period (in days) that quarantine items will be stored on the system. The default value is 0, which keeps items in quarantine, and does not automatically remove them.
@@ -306,7 +306,7 @@ var DaysToRetainCleanedMalware = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DaysToRetainCleanedMalware"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DaysToRetainCleanedMalware"},
 }
 
 // DisableCatchupFullScan: This policy setting allows you to configure catch-up scans for scheduled full scans. A catch-up scan is a scan that is initiated because a regularly scheduled scan was missed. Usually these scheduled scans are missed because the computer was turned off at the scheduled time. If you disable or do not configure this setting, catch-up scans for scheduled full scans will be turned on. If a computer is offline for two consecutive scheduled scans, a catch-up scan is started the next time someone logs on to the computer. If there is no scheduled scan configured, there will be no catch-up scan run. If you enable this setting, catch-up scans for scheduled full scans will be disabled. Supported values:0 - Disabled1 - Enabled (default)OMA-URI Path: ./Vendor/MSFT/Policy/Config/Defender/DisableCatchupFullScan
@@ -320,7 +320,7 @@ var DisableCatchupFullScan = csp.Policy{
 	CSPVersion: "8.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Enabled"}, {Value: "1", Description: "Disabled"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisableCatchupFullScan"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DisableCatchupFullScan"},
 }
 
 // DisableCatchupQuickScan: This policy setting allows you to configure catch-up scans for scheduled quick scans. A catch-up scan is a scan that's initiated because a regularly scheduled scan was missed. Usually, these scheduled scans are missed because the computer was turned off at the scheduled time. If you disable or don't configure this setting, catch-up scans for scheduled quick scans will be turned on. If a computer is offline for two consecutive scheduled scans, a catch-up scan is started the next time someone logs on to the computer. If there is no scheduled scan configured, there will be no catch-up scan run. If you enable this setting, catch-up scans for scheduled quick scans will be disabled.
@@ -334,7 +334,7 @@ var DisableCatchupQuickScan = csp.Policy{
 	CSPVersion: "8.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Enabled"}, {Value: "1", Description: "Disabled"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisableCatchupQuickScan"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DisableCatchupQuickScan"},
 }
 
 // EnableControlledFolderAccess: The previous name was EnableGuardMyFolders and changed to EnableControlledFolderAccess.  This policy enables setting the state (Off/On/Audit/DiskOnly/AuditDiskOnly) for the controlled folder access feature. The controlled folder access feature removes modify and delete permissions from untrusted applications to certain folders such as My Documents.  Value type is integer and the range is 0 - 4.
@@ -348,7 +348,7 @@ var EnableControlledFolderAccess = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Disabled"}, {Value: "1", Description: "Enabled"}, {Value: "2", Description: "Audit Mode"}, {Value: "3", Description: "Block disk modification only"}, {Value: "4", Description: "Audit disk modification only"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "EnableControlledFolderAccess"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Vendor/MSFT/Policy/Config", Property: "EnableControlledFolderAccess"},
 }
 
 // EnableLowCPUPriority: This policy setting allows you to enable or disable low CPU priority for scheduled scans. If you enable this setting, low CPU priority will be used during scheduled scans. If you disable or do not configure this setting, not changes will be made to CPU priority for scheduled scans. Supported values:0 - Disabled (default)1 - Enabled
@@ -362,7 +362,7 @@ var EnableLowCPUPriority = csp.Policy{
 	CSPVersion: "8.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Disabled"}, {Value: "1", Description: "Enabled"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "EnableLowCPUPriority"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Vendor/MSFT/Policy/Config", Property: "EnableLowCPUPriority"},
 }
 
 // EnableNetworkProtection: This policy allows you to turn network protection on (block/audit) or off. Network protection protects employees using any app from accessing phishing scams, exploit-hosting sites, and malicious content on the Internet. This includes preventing third-party browsers from connecting to dangerous sites. Value type is integer. If you enable this setting, network protection is turned on and employees can't turn it off. Its behavior can be controlled by the following options: Block and Audit. If you enable this policy with the Block option, users/apps will be blocked from connecting to dangerous domains. You will be able to see this activity in Windows Defender Security Center. If you enable this policy with the Audit option, users/apps will not be blocked from connecting to dangerous domains. However, you will still see this activity in Windows Defender Security Center. If you disable this policy, users/apps will not be blocked from connecting to dangerous domains. You will not see any network activity in Windows Defender Security Center. If you do not configure this policy, network blocking will be disabled by default.
@@ -376,7 +376,7 @@ var EnableNetworkProtection = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Disabled"}, {Value: "1", Description: "Enabled (block mode)"}, {Value: "2", Description: "Enabled (audit mode)"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "EnableNetworkProtection"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Vendor/MSFT/Policy/Config", Property: "EnableNetworkProtection"},
 }
 
 // ExcludedExtensions: Allows an administrator to specify a list of file type extensions to ignore during a scan. Each file type in the list must be separated by a |. For example, lib|obj.
@@ -389,7 +389,7 @@ var ExcludedExtensions = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ExcludedExtensions"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ExcludedExtensions"},
 }
 
 // ExcludedPaths: Allows an administrator to specify a list of directory paths to ignore during a scan. Each path in the list must be separated by a |. For example, C:\Example|C:\Example1.
@@ -402,7 +402,7 @@ var ExcludedPaths = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ExcludedPaths"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ExcludedPaths"},
 }
 
 // ExcludedProcesses: Allows an administrator to specify a list of files opened by processes to ignore during a scan. ImportantThe process itself is not excluded from the scan, but can be by using the Defender/ExcludedPaths policy to exclude its path. Each file type must be separated by a |. For example, C:\Example. exe|C:\Example1.exe.
@@ -415,7 +415,7 @@ var ExcludedProcesses = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ExcludedProcesses"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ExcludedProcesses"},
 }
 
 // PUAProtection: Specifies the level of detection for potentially unwanted applications (PUAs). Windows Defender alerts you when potentially unwanted software is being downloaded or attempts to install itself on your computer.
@@ -429,7 +429,7 @@ var PUAProtection = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "PUA Protection off. Windows Defender will not protect against potentially unwanted applications."}, {Value: "1", Description: "PUA Protection on. Detected items are blocked. They will show in history along with other threats."}, {Value: "2", Description: "Audit mode. Windows Defender will detect potentially unwanted applications, but take no action. You can review information about the applications Windows Defender would have taken action against by searching for events created by Windows Defender in the Event Viewer."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "PUAProtection"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Vendor/MSFT/Policy/Config", Property: "PUAProtection"},
 }
 
 // RealTimeScanDirection: Controls which sets of files should be monitored. Note If AllowOnAccessProtection is not allowed, then this configuration can be used to monitor specific files.
@@ -443,7 +443,7 @@ var RealTimeScanDirection = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Monitor all files (bi-directional)."}, {Value: "1", Description: "Monitor incoming files."}, {Value: "2", Description: "Monitor outgoing files."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "RealTimeScanDirection"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Vendor/MSFT/Policy/Config", Property: "RealTimeScanDirection"},
 }
 
 // ScanParameter: Selects whether to perform a quick scan or full scan.
@@ -457,7 +457,7 @@ var ScanParameter = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "1", Description: "Quick scan"}, {Value: "2", Description: "Full scan"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ScanParameter"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ScanParameter"},
 }
 
 // ScheduleQuickScanTime: Selects the time of day that the daily Windows Defender quick scan should run. For example, a value of 0=12:00AM, a value of 60=1:00AM, a value of 120=2:00, and so on, up to a value of 1380=11:00PM. The default value is 120
@@ -471,7 +471,7 @@ var ScheduleQuickScanTime = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ScheduleQuickScanTime"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ScheduleQuickScanTime"},
 }
 
 // ScheduleScanDay: Selects the day that the Windows Defender scan should run. Note The scan type will depends on what scan type is selected in the Defender/ScanParameter setting.
@@ -485,7 +485,7 @@ var ScheduleScanDay = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Every day"}, {Value: "1", Description: "Sunday"}, {Value: "2", Description: "Monday"}, {Value: "3", Description: "Tuesday"}, {Value: "4", Description: "Wednesday"}, {Value: "5", Description: "Thursday"}, {Value: "6", Description: "Friday"}, {Value: "7", Description: "Saturday"}, {Value: "8", Description: "No scheduled scan"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ScheduleScanDay"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ScheduleScanDay"},
 }
 
 // ScheduleScanTime: Selects the time of day that the weekly Windows Defender scan should run. Note The scan type will depends on what scan type is selected in the Defender/ScanParameter setting. For example, a value of 0=12:00AM, a value of 60=1:00AM, a value of 120=2:00, and so on, up to a value of 1380=11:00PM. The default value is 120.
@@ -499,7 +499,7 @@ var ScheduleScanTime = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ScheduleScanTime"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ScheduleScanTime"},
 }
 
 var SecurityIntelligenceLocation = csp.Policy{
@@ -510,7 +510,7 @@ var SecurityIntelligenceLocation = csp.Policy{
 	MinOSBuild: "10.0.18362",
 	CSPVersion: "9.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "SecurityIntelligenceLocation"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Vendor/MSFT/Policy/Config", Property: "SecurityIntelligenceLocation"},
 }
 
 // SignatureUpdateFallbackOrder: This policy setting allows you to define the order in which different definition update sources should be contacted. The value of this setting should be entered as a pipe-separated string enumerating the definition update sources in order. Possible values are:InternalDefinitionUpdateServerMicrosoftUpdateServerMMPCFileSharesFor example: InternalDefinitionUpdateServer | MicrosoftUpdateServer | MMPCIf you enable this setting, definition update sources will be contacted in the order specified. Once definition updates have been successfully downloaded from one specified source, the remaining sources in the list will not be contacted. If you disable or do not configure this setting, definition update sources will be contacted in a default order. OMA-URI Path: ./Vendor/MSFT/Policy/Config/Defender/SignatureUpdateFallbackOrder
@@ -523,7 +523,7 @@ var SignatureUpdateFallbackOrder = csp.Policy{
 	CSPVersion: "8.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "SignatureUpdateFallbackOrder"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Vendor/MSFT/Policy/Config", Property: "SignatureUpdateFallbackOrder"},
 }
 
 // SignatureUpdateFileSharesSources: This policy setting allows you to configure UNC file share sources for downloading definition updates. Sources will be contacted in the order specified. The value of this setting should be entered as a pipe-separated string enumerating the definition update sources. For example: \unc1\Signatures | \unc2\SignaturesThe list is empty by default. If you enable this setting, the specified sources will be contacted for definition updates. Once definition updates have been successfully downloaded from one specified source, the remaining sources in the list will not be contacted. If you disable or do not configure this setting, the list will remain empty by default and no sources will be contacted. OMA-URI Path: ./Vendor/MSFT/Policy/Config/Defender/SignatureUpdateFileSharesSources
@@ -536,7 +536,7 @@ var SignatureUpdateFileSharesSources = csp.Policy{
 	CSPVersion: "8.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "SignatureUpdateFileSharesSources"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Vendor/MSFT/Policy/Config", Property: "SignatureUpdateFileSharesSources"},
 }
 
 // SignatureUpdateInterval: Specifies the interval (in hours) that will be used to check for signatures, so instead of using the ScheduleDay and ScheduleTime the check for new signatures will be set according to the interval. A value of 0 means no check for new signatures, a value of 1 means to check every hour, a value of 2 means to check every two hours, and so on, up to a value of 24, which means to check every day. The default value is 8. OMA-URI Path: ./Vendor/MSFT/Policy/Config/Defender/SignatureUpdateInterval
@@ -550,7 +550,7 @@ var SignatureUpdateInterval = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "SignatureUpdateInterval"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Vendor/MSFT/Policy/Config", Property: "SignatureUpdateInterval"},
 }
 
 // SubmitSamplesConsent: Checks for the user consent level in Windows Defender to send data. If the required consent has already been granted, Windows Defender submits them. If not, (and if the user has specified never to ask), the UI is launched to ask for user consent (when Defender/AllowCloudProtection is allowed) before sending data.
@@ -564,7 +564,7 @@ var SubmitSamplesConsent = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Always prompt."}, {Value: "1", Description: "Send safe samples automatically."}, {Value: "2", Description: "Never send."}, {Value: "3", Description: "Send all samples automatically."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "SubmitSamplesConsent"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Vendor/MSFT/Policy/Config", Property: "SubmitSamplesConsent"},
 }
 
 // ThreatSeverityDefaultAction: Allows an administrator to specify any valid threat severity levels and the corresponding default action ID to take. This value is a list of threat severity level IDs and corresponding actions, separated by a | using the format threat level=action|threat level=action. For example, 1=6|2=2|4=10|5=3. The following list shows the supported values for threat severity levels:1 – Low severity threats2 – Moderate severity threats4 – High severity threats5 – Severe threatsThe following list shows the supported values for possible actions:2 – Quarantine. Moves files to quarantine. 3 – Remove. Removes files from system. 6 – Allow. Allows file/does none of the above actions. 8 – User defined. Requires user to make a decision on which action to take. 10 – Block. Blocks file execution.
@@ -576,7 +576,7 @@ var ThreatSeverityDefaultAction = csp.Policy{
 	MinOSBuild: "10.0.14393",
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ThreatSeverityDefaultAction"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Defender02", ResultClass: "MDM_Policy_Result01_Defender02", InstanceID: "Defender", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ThreatSeverityDefaultAction"},
 }
 
 // All lists every policy in this CSP area.

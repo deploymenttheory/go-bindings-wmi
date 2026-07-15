@@ -15,7 +15,7 @@ var AllowBluetooth = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Disallow Bluetooth. If this is set to 0, the radio in the Bluetooth control panel will be grayed out and the user will not be able to turn Bluetooth on."}, {Value: "2", Description: "Allow Bluetooth. If this is set to 2, the radio in the Bluetooth control panel will be functional and the user will be able to turn Bluetooth on."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Connectivity02", ResultClass: "MDM_Policy_Result01_Connectivity02", InstanceID: "Connectivity", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowBluetooth"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Connectivity02", ResultClass: "MDM_Policy_Result01_Connectivity02", InstanceID: "Connectivity", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowBluetooth"},
 }
 
 // AllowCellularData: Allows the cellular data channel on the device. Device reboot is not required to enforce the policy.
@@ -29,7 +29,7 @@ var AllowCellularData = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Do not allow the cellular data channel. The user cannot turn it on. This value is not supported in Windows\u00a010, version 1511."}, {Value: "1", Description: "Allow the cellular data channel. The user can turn it off."}, {Value: "2", Description: "Allow the cellular data channel. The user cannot turn it off."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Connectivity02", ResultClass: "MDM_Policy_Result01_Connectivity02", InstanceID: "Connectivity", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowCellularData"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Connectivity02", ResultClass: "MDM_Policy_Result01_Connectivity02", InstanceID: "Connectivity", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowCellularData"},
 }
 
 // AllowCellularDataRoaming: Allows or disallows cellular data roaming on the device. Device reboot is not required to enforce the policy. Most restricted value is 0.
@@ -43,7 +43,7 @@ var AllowCellularDataRoaming = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Do not allow cellular data roaming. The user cannot turn it on. This value is not supported in Windows\u00a010, version 1511."}, {Value: "1", Description: "Allow cellular data roaming."}, {Value: "2", Description: "Allow cellular data roaming on. The user cannot turn it off."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Connectivity02", ResultClass: "MDM_Policy_Result01_Connectivity02", InstanceID: "Connectivity", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowCellularDataRoaming"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Connectivity02", ResultClass: "MDM_Policy_Result01_Connectivity02", InstanceID: "Connectivity", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowCellularDataRoaming"},
 }
 
 // AllowConnectedDevices: Note This policy requires reboot to take effect.  Allows IT Admins the ability to disable the Connected Devices Platform (CDP) component. CDP enables discovery and connection to other devices (either proximally with BT/LAN or through the cloud) to support remote app launching, remote messaging, remote app sessions, and other cross-device experiences.
@@ -57,7 +57,7 @@ var AllowConnectedDevices = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Disable (CDP service not available)."}, {Value: "1", Description: "Allow (CDP service available)."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Connectivity02", ResultClass: "MDM_Policy_Result01_Connectivity02", InstanceID: "Connectivity", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowConnectedDevices"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Connectivity02", ResultClass: "MDM_Policy_Result01_Connectivity02", InstanceID: "Connectivity", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowConnectedDevices"},
 }
 
 // AllowNFC: This policy is deprecated.
@@ -72,7 +72,7 @@ var AllowNFC = csp.Policy{
 	MinOSBuild:        "10.0.10240",
 	CSPVersion:        "1.0",
 	Allowed:           &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Disabled."}, {Value: "1", Description: "Enabled."}}},
-	Bridge:            &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Connectivity02", ResultClass: "MDM_Policy_Result01_Connectivity02", InstanceID: "Connectivity", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowNFC"},
+	Bridge:            &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Connectivity02", ResultClass: "MDM_Policy_Result01_Connectivity02", InstanceID: "Connectivity", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowNFC"},
 }
 
 // AllowPhonePCLinking: This policy allows IT admins to turn off the ability to Link a Phone with a PC to continue tasks, such as reading, email, and other tasks that require linking between Phone and PC. If you enable this policy setting, the Windows device will be able to enroll in Phone-PC linking functionality and participate in 'Continue on PC experiences'. If you disable this policy setting, the Windows device is not allowed to be linked to phones, will remove itself from the device list of any linked Phones, and cannot participate in 'Continue on PC experiences'. If you do not configure this policy setting, the default behavior depends on the Windows edition. Changes to this policy take effect on reboot.
@@ -86,7 +86,7 @@ var AllowPhonePCLinking = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Do not link."}, {Value: "1", Description: "Allow phone-PC linking."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Connectivity02", ResultClass: "MDM_Policy_Result01_Connectivity02", InstanceID: "Connectivity", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowPhonePCLinking"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Connectivity02", ResultClass: "MDM_Policy_Result01_Connectivity02", InstanceID: "Connectivity", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowPhonePCLinking"},
 }
 
 // AllowUSBConnection: NoteCurrently, this policy is supported only in HoloLens 2, Hololens (1st gen) Commercial Suite, and HoloLens (1st gen) Development Edition. Enables USB connection between the device and a computer to sync files with the device or to use developer tools to deploy or debug applications. Changing this policy does not affect USB charging. Both Media Transfer Protocol (MTP) and IP over USB are disabled when this policy is enforced. Most restricted value is 0.
@@ -100,7 +100,7 @@ var AllowUSBConnection = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x87;0x88;0x88*",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Connectivity02", ResultClass: "MDM_Policy_Result01_Connectivity02", InstanceID: "Connectivity", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowUSBConnection"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Connectivity02", ResultClass: "MDM_Policy_Result01_Connectivity02", InstanceID: "Connectivity", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowUSBConnection"},
 }
 
 // AllowVPNOverCellular: Specifies what type of underlying connections VPN is allowed to use. Most restricted value is 0.
@@ -114,7 +114,7 @@ var AllowVPNOverCellular = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "VPN is not allowed over cellular."}, {Value: "1", Description: "VPN can use any connection, including cellular."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Connectivity02", ResultClass: "MDM_Policy_Result01_Connectivity02", InstanceID: "Connectivity", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowVPNOverCellular"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Connectivity02", ResultClass: "MDM_Policy_Result01_Connectivity02", InstanceID: "Connectivity", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowVPNOverCellular"},
 }
 
 // AllowVPNRoamingOverCellular: Prevents the device from connecting to VPN when the device roams over cellular networks. Most restricted value is 0.
@@ -128,7 +128,7 @@ var AllowVPNRoamingOverCellular = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Connectivity02", ResultClass: "MDM_Policy_Result01_Connectivity02", InstanceID: "Connectivity", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowVPNRoamingOverCellular"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Connectivity02", ResultClass: "MDM_Policy_Result01_Connectivity02", InstanceID: "Connectivity", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowVPNRoamingOverCellular"},
 }
 
 var DiablePrintingOverHTTP = csp.Policy{
@@ -140,7 +140,7 @@ var DiablePrintingOverHTTP = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "ICM~AT~System~InternetManagement~InternetManagement_Settings", Name: "DisableHTTPPrinting_2", File: "ICM.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Connectivity02", ResultClass: "MDM_Policy_Result01_Connectivity02", InstanceID: "Connectivity", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DiablePrintingOverHTTP"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Connectivity02", ResultClass: "MDM_Policy_Result01_Connectivity02", InstanceID: "Connectivity", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DiablePrintingOverHTTP"},
 }
 
 // DisableCellularOperatorSettingsPage: This policy makes all configurable settings in the 'Cellular' > 'Mobile operator settings' page read-only.
@@ -154,7 +154,7 @@ var DisableCellularOperatorSettingsPage = csp.Policy{
 	CSPVersion: "9.9",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Disabled"}, {Value: "1", Description: "Enabled"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Connectivity02", ResultClass: "MDM_Policy_Result01_Connectivity02", InstanceID: "Connectivity", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisableCellularOperatorSettingsPage"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Connectivity02", ResultClass: "MDM_Policy_Result01_Connectivity02", InstanceID: "Connectivity", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DisableCellularOperatorSettingsPage"},
 }
 
 // DisableCellularSettingsPage: This policy makes all configurable settings in the 'Cellular' Settings page read-only.
@@ -168,7 +168,7 @@ var DisableCellularSettingsPage = csp.Policy{
 	CSPVersion: "9.9",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Disabled"}, {Value: "1", Description: "Enabled"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Connectivity02", ResultClass: "MDM_Policy_Result01_Connectivity02", InstanceID: "Connectivity", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisableCellularSettingsPage"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Connectivity02", ResultClass: "MDM_Policy_Result01_Connectivity02", InstanceID: "Connectivity", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DisableCellularSettingsPage"},
 }
 
 // DisableCrossDeviceResume: This policy allows IT admins to turn off CrossDeviceResume feature to continue tasks, such as browsing file, continue using 1P/ 3P apps that require linking between Phone and PC. If you enable this policy setting, the Windows device will not receive any CrossDeviceResume notification. If you disable this policy setting, the Windows device will receive notification to resume activity from linked phone. If you do not configure this policy setting, the default behavior is that the CrossDeviceResume feature is turned 'ON'. Changes to this policy take effect on reboot.
@@ -182,7 +182,7 @@ var DisableCrossDeviceResume = csp.Policy{
 	CSPVersion: "9.9",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "CrossDeviceResume is Enabled."}, {Value: "1", Description: "CrossDeviceResume is Disabled."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Connectivity02", ResultClass: "MDM_Policy_Result01_Connectivity02", InstanceID: "Connectivity", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisableCrossDeviceResume"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Connectivity02", ResultClass: "MDM_Policy_Result01_Connectivity02", InstanceID: "Connectivity", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DisableCrossDeviceResume"},
 }
 
 var DisableDownloadingOfPrintDriversOverHTTP = csp.Policy{
@@ -194,7 +194,7 @@ var DisableDownloadingOfPrintDriversOverHTTP = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "ICM~AT~System~InternetManagement~InternetManagement_Settings", Name: "DisableWebPnPDownload_2", File: "ICM.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Connectivity02", ResultClass: "MDM_Policy_Result01_Connectivity02", InstanceID: "Connectivity", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisableDownloadingOfPrintDriversOverHTTP"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Connectivity02", ResultClass: "MDM_Policy_Result01_Connectivity02", InstanceID: "Connectivity", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DisableDownloadingOfPrintDriversOverHTTP"},
 }
 
 var DisableInternetDownloadForWebPublishingAndOnlineOrderingWizards = csp.Policy{
@@ -206,7 +206,7 @@ var DisableInternetDownloadForWebPublishingAndOnlineOrderingWizards = csp.Policy
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "ICM~AT~System~InternetManagement~InternetManagement_Settings", Name: "ShellPreventWPWDownload_2", File: "ICM.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Connectivity02", ResultClass: "MDM_Policy_Result01_Connectivity02", InstanceID: "Connectivity", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisableInternetDownloadForWebPublishingAndOnlineOrderingWizards"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Connectivity02", ResultClass: "MDM_Policy_Result01_Connectivity02", InstanceID: "Connectivity", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DisableInternetDownloadForWebPublishingAndOnlineOrderingWizards"},
 }
 
 // DisallowNetworkConnectivityActiveTests: Network Connection Status Indicator (NCSI) detects Internet connectivity and corporate network connectivity status. NCSI sends a DNS request and HTTP query to http://www.msftconnecttest.com/connecttest.txt to determine if the device can communicate with the Internet. This policy disables the NCSI active probe, preventing network connectivity to www. msftconnecttest. com. Value type is integer.
@@ -220,7 +220,7 @@ var DisallowNetworkConnectivityActiveTests = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "1", Description: "Allow"}, {Value: "0", Description: "Block"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Connectivity02", ResultClass: "MDM_Policy_Result01_Connectivity02", InstanceID: "Connectivity", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisallowNetworkConnectivityActiveTests"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Connectivity02", ResultClass: "MDM_Policy_Result01_Connectivity02", InstanceID: "Connectivity", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DisallowNetworkConnectivityActiveTests"},
 }
 
 var HardenedUNCPaths = csp.Policy{
@@ -232,7 +232,7 @@ var HardenedUNCPaths = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "NetworkProvider~AT~Network~Cat_NetworkProvider", Name: "Pol_HardenedPaths", File: "networkprovider.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Connectivity02", ResultClass: "MDM_Policy_Result01_Connectivity02", InstanceID: "Connectivity", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "HardenedUNCPaths"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Connectivity02", ResultClass: "MDM_Policy_Result01_Connectivity02", InstanceID: "Connectivity", ParentID: "./Vendor/MSFT/Policy/Config", Property: "HardenedUNCPaths"},
 }
 
 var ProhibitInstallationAndConfigurationOfNetworkBridge = csp.Policy{
@@ -244,7 +244,7 @@ var ProhibitInstallationAndConfigurationOfNetworkBridge = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "NetworkConnections~AT~Network~NetworkConnections", Name: "NC_AllowNetBridge_NLA", File: "NetworkConnections.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Connectivity02", ResultClass: "MDM_Policy_Result01_Connectivity02", InstanceID: "Connectivity", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ProhibitInstallationAndConfigurationOfNetworkBridge"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Connectivity02", ResultClass: "MDM_Policy_Result01_Connectivity02", InstanceID: "Connectivity", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ProhibitInstallationAndConfigurationOfNetworkBridge"},
 }
 
 // UseCellularWhenWiFiPoor: This policy allows the use of a cellular connection when Wi-Fi connectivity is limited.
@@ -258,7 +258,7 @@ var UseCellularWhenWiFiPoor = csp.Policy{
 	CSPVersion: "9.9",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Disabled"}, {Value: "1", Description: "Enabled"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Connectivity02", ResultClass: "MDM_Policy_Result01_Connectivity02", InstanceID: "Connectivity", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "UseCellularWhenWiFiPoor"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Connectivity02", ResultClass: "MDM_Policy_Result01_Connectivity02", InstanceID: "Connectivity", ParentID: "./Vendor/MSFT/Policy/Config", Property: "UseCellularWhenWiFiPoor"},
 }
 
 // All lists every policy in this CSP area.

@@ -38,3 +38,16 @@ DDF-sourced policy catalog:
   read its value, and (with `-write`) set and restore it — the R/U/D of
   policy values. Requires the **SYSTEM** account; read-only unless `-write`
   is passed, and self-restoring.
+- **[`csp-lcrud`](csp-lcrud)** — one subcommand per LCRUD operation
+  (`list`/`read`/`set`/`delete`/`cycle`) on `Browser/AllowCookies`. Because
+  the bridge needs **SYSTEM** (an elevated prompt is not SYSTEM), run the
+  bridge verbs via the helper, which elevates to SYSTEM for you:
+
+  ```powershell
+  # from an ELEVATED PowerShell or cmd prompt, at the repo root:
+  powershell -ExecutionPolicy Bypass -File scripts\Invoke-CspLcrud.ps1 read
+  powershell -ExecutionPolicy Bypass -File scripts\Invoke-CspLcrud.ps1 cycle   # full LCRUD, self-restoring
+  powershell -ExecutionPolicy Bypass -File scripts\Invoke-CspLcrud.ps1 set 2
+  ```
+
+  `list` needs no device access: `go run ./examples/csp-lcrud list`.

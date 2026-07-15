@@ -14,7 +14,7 @@ var AccessCredentialManagerAsTrustedCaller = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_UserRights02", ResultClass: "MDM_Policy_Result01_UserRights02", InstanceID: "UserRights", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AccessCredentialManagerAsTrustedCaller"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_UserRights02", ResultClass: "MDM_Policy_Result01_UserRights02", InstanceID: "UserRights", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AccessCredentialManagerAsTrustedCaller"},
 }
 
 // AccessFromNetwork: This user right determines which users and groups are allowed to connect to the computer over the network. Remote Desktop Services are not affected by this user right.Note: Remote Desktop Services was called Terminal Services in previous versions of Windows Server.
@@ -27,7 +27,7 @@ var AccessFromNetwork = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_UserRights02", ResultClass: "MDM_Policy_Result01_UserRights02", InstanceID: "UserRights", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AccessFromNetwork"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_UserRights02", ResultClass: "MDM_Policy_Result01_UserRights02", InstanceID: "UserRights", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AccessFromNetwork"},
 }
 
 // ActAsPartOfTheOperatingSystem: This user right allows a process to impersonate any user without authentication. The process can therefore gain access to the same local resources as that user. Processes that require this privilege should use the LocalSystem account, which already includes this privilege, rather than using a separate user account with this privilege specially assigned. Caution:Assigning this user right can be a security risk. Only assign this user right to trusted users.
@@ -40,7 +40,7 @@ var ActAsPartOfTheOperatingSystem = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_UserRights02", ResultClass: "MDM_Policy_Result01_UserRights02", InstanceID: "UserRights", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ActAsPartOfTheOperatingSystem"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_UserRights02", ResultClass: "MDM_Policy_Result01_UserRights02", InstanceID: "UserRights", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ActAsPartOfTheOperatingSystem"},
 }
 
 // AdjustMemoryQuotasForProcess: Adjust memory quotas for a process - This privilege determines who can change the maximum memory that can be consumed by a process. This privilege is useful for system tuning on a group or user basis.
@@ -53,7 +53,7 @@ var AdjustMemoryQuotasForProcess = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_UserRights02", ResultClass: "MDM_Policy_Result01_UserRights02", InstanceID: "UserRights", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AdjustMemoryQuotasForProcess"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_UserRights02", ResultClass: "MDM_Policy_Result01_UserRights02", InstanceID: "UserRights", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AdjustMemoryQuotasForProcess"},
 }
 
 // AllowLocalLogOn: This user right determines which users can log on to the computer. Note: Modifying this setting may affect compatibility with clients, services, and applications. For compatibility information about this setting, see Allow log on locally (https://go.microsoft.com/fwlink/?LinkId=24268 ) at the Microsoft website.
@@ -66,7 +66,7 @@ var AllowLocalLogOn = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_UserRights02", ResultClass: "MDM_Policy_Result01_UserRights02", InstanceID: "UserRights", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowLocalLogOn"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_UserRights02", ResultClass: "MDM_Policy_Result01_UserRights02", InstanceID: "UserRights", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowLocalLogOn"},
 }
 
 // AllowLogOnThroughRemoteDesktop: Allow log on through Remote Desktop Services - This policy setting determines which users or groups can access the sign-in screen of a remote device through a Remote Desktop Services connection.
@@ -79,7 +79,7 @@ var AllowLogOnThroughRemoteDesktop = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_UserRights02", ResultClass: "MDM_Policy_Result01_UserRights02", InstanceID: "UserRights", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowLogOnThroughRemoteDesktop"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_UserRights02", ResultClass: "MDM_Policy_Result01_UserRights02", InstanceID: "UserRights", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowLogOnThroughRemoteDesktop"},
 }
 
 // BackupFilesAndDirectories: This user right determines which users can bypass file, directory, registry, and other persistent objects permissions when backing up files and directories.Specifically, this user right is similar to granting the following permissions to the user or group in question on all files and folders on the system:Traverse Folder/Execute File, Read. Caution: Assigning this user right can be a security risk. Since users with this user right can read any registry settings and files, only assign this user right to trusted users
@@ -92,7 +92,7 @@ var BackupFilesAndDirectories = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_UserRights02", ResultClass: "MDM_Policy_Result01_UserRights02", InstanceID: "UserRights", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "BackupFilesAndDirectories"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_UserRights02", ResultClass: "MDM_Policy_Result01_UserRights02", InstanceID: "UserRights", ParentID: "./Vendor/MSFT/Policy/Config", Property: "BackupFilesAndDirectories"},
 }
 
 // BypassTraverseChecking: This user right determines which users can traverse directory trees even though the user may not have permissions on the traversed directory. This privilege does not allow the user to list the contents of a directory, only to traverse directories.
@@ -105,7 +105,7 @@ var BypassTraverseChecking = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_UserRights02", ResultClass: "MDM_Policy_Result01_UserRights02", InstanceID: "UserRights", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "BypassTraverseChecking"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_UserRights02", ResultClass: "MDM_Policy_Result01_UserRights02", InstanceID: "UserRights", ParentID: "./Vendor/MSFT/Policy/Config", Property: "BypassTraverseChecking"},
 }
 
 // ChangeSystemTime: This user right determines which users and groups can change the time and date on the internal clock of the computer. Users that are assigned this user right can affect the appearance of event logs. If the system time is changed, events that are logged will reflect this new time, not the actual time that the events occurred.
@@ -118,7 +118,7 @@ var ChangeSystemTime = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_UserRights02", ResultClass: "MDM_Policy_Result01_UserRights02", InstanceID: "UserRights", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ChangeSystemTime"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_UserRights02", ResultClass: "MDM_Policy_Result01_UserRights02", InstanceID: "UserRights", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ChangeSystemTime"},
 }
 
 // ChangeTimeZone: This user right determines which users and groups can change the time zone used by the computer for displaying the local time, which is the computer's system time plus the time zone offset. System time itself is absolute and is not affected by a change in the time zone.
@@ -131,7 +131,7 @@ var ChangeTimeZone = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_UserRights02", ResultClass: "MDM_Policy_Result01_UserRights02", InstanceID: "UserRights", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ChangeTimeZone"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_UserRights02", ResultClass: "MDM_Policy_Result01_UserRights02", InstanceID: "UserRights", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ChangeTimeZone"},
 }
 
 // CreateGlobalObjects: This security setting determines whether users can create global objects that are available to all sessions. Users can still create objects that are specific to their own session if they do not have this user right. Users who can create global objects could affect processes that run under other users' sessions, which could lead to application failure or data corruption. Caution: Assigning this user right can be a security risk. Assign this user right only to trusted users.
@@ -144,7 +144,7 @@ var CreateGlobalObjects = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_UserRights02", ResultClass: "MDM_Policy_Result01_UserRights02", InstanceID: "UserRights", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "CreateGlobalObjects"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_UserRights02", ResultClass: "MDM_Policy_Result01_UserRights02", InstanceID: "UserRights", ParentID: "./Vendor/MSFT/Policy/Config", Property: "CreateGlobalObjects"},
 }
 
 // CreatePageFile: This user right determines which users and groups can call an internal application programming interface (API) to create and change the size of a page file. This user right is used internally by the operating system and usually does not need to be assigned to any users
@@ -157,7 +157,7 @@ var CreatePageFile = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_UserRights02", ResultClass: "MDM_Policy_Result01_UserRights02", InstanceID: "UserRights", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "CreatePageFile"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_UserRights02", ResultClass: "MDM_Policy_Result01_UserRights02", InstanceID: "UserRights", ParentID: "./Vendor/MSFT/Policy/Config", Property: "CreatePageFile"},
 }
 
 // CreatePermanentSharedObjects: This user right determines which accounts can be used by processes to create a directory object using the object manager. This user right is used internally by the operating system and is useful to kernel-mode components that extend the object namespace. Because components that are running in kernel mode already have this user right assigned to them, it is not necessary to specifically assign it.
@@ -170,7 +170,7 @@ var CreatePermanentSharedObjects = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_UserRights02", ResultClass: "MDM_Policy_Result01_UserRights02", InstanceID: "UserRights", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "CreatePermanentSharedObjects"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_UserRights02", ResultClass: "MDM_Policy_Result01_UserRights02", InstanceID: "UserRights", ParentID: "./Vendor/MSFT/Policy/Config", Property: "CreatePermanentSharedObjects"},
 }
 
 // CreateSymbolicLinks: This user right determines if the user can create a symbolic link from the computer he is logged on to. Caution: This privilege should only be given to trusted users. Symbolic links can expose security vulnerabilities in applications that aren't designed to handle them. Note: This setting can be used in conjunction a symlink filesystem setting that can be manipulated with the command line utility to control the kinds of symlinks that are allowed on the machine. Type 'fsutil behavior set symlinkevaluation /?' at the command line to get more information about fsutil and symbolic links.
@@ -183,7 +183,7 @@ var CreateSymbolicLinks = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_UserRights02", ResultClass: "MDM_Policy_Result01_UserRights02", InstanceID: "UserRights", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "CreateSymbolicLinks"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_UserRights02", ResultClass: "MDM_Policy_Result01_UserRights02", InstanceID: "UserRights", ParentID: "./Vendor/MSFT/Policy/Config", Property: "CreateSymbolicLinks"},
 }
 
 // CreateToken: This user right determines which accounts can be used by processes to create a token that can then be used to get access to any local resources when the process uses an internal application programming interface (API) to create an access token. This user right is used internally by the operating system. Unless it is necessary, do not assign this user right to a user, group, or process other than Local System. Caution: Assigning this user right can be a security risk. Do not assign this user right to any user, group, or process that you do not want to take over the system.
@@ -196,7 +196,7 @@ var CreateToken = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_UserRights02", ResultClass: "MDM_Policy_Result01_UserRights02", InstanceID: "UserRights", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "CreateToken"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_UserRights02", ResultClass: "MDM_Policy_Result01_UserRights02", InstanceID: "UserRights", ParentID: "./Vendor/MSFT/Policy/Config", Property: "CreateToken"},
 }
 
 // DebugPrograms: This user right determines which users can attach a debugger to any process or to the kernel. Developers who are debugging their own applications do not need to be assigned this user right. Developers who are debugging new system components will need this user right to be able to do so. This user right provides complete access to sensitive and critical operating system components. Caution:Assigning this user right can be a security risk. Only assign this user right to trusted users.
@@ -209,7 +209,7 @@ var DebugPrograms = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_UserRights02", ResultClass: "MDM_Policy_Result01_UserRights02", InstanceID: "UserRights", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DebugPrograms"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_UserRights02", ResultClass: "MDM_Policy_Result01_UserRights02", InstanceID: "UserRights", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DebugPrograms"},
 }
 
 // DenyAccessFromNetwork: This user right determines which users are prevented from accessing a computer over the network. This policy setting supersedes the Access this computer from the network policy setting if a user account is subject to both policies.
@@ -222,7 +222,7 @@ var DenyAccessFromNetwork = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_UserRights02", ResultClass: "MDM_Policy_Result01_UserRights02", InstanceID: "UserRights", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DenyAccessFromNetwork"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_UserRights02", ResultClass: "MDM_Policy_Result01_UserRights02", InstanceID: "UserRights", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DenyAccessFromNetwork"},
 }
 
 // DenyLocalLogOn: This security setting determines which service accounts are prevented from registering a process as a service. Note: This security setting does not apply to the System, Local Service, or Network Service accounts.
@@ -235,7 +235,7 @@ var DenyLocalLogOn = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_UserRights02", ResultClass: "MDM_Policy_Result01_UserRights02", InstanceID: "UserRights", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DenyLocalLogOn"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_UserRights02", ResultClass: "MDM_Policy_Result01_UserRights02", InstanceID: "UserRights", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DenyLocalLogOn"},
 }
 
 // DenyLogOnAsBatchJob: This security setting determines which accounts are prevented from being able to log on as a batch job. This policy setting supersedes the Log on as a batch job policy setting if a user account is subject to both policies.
@@ -248,7 +248,7 @@ var DenyLogOnAsBatchJob = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_UserRights02", ResultClass: "MDM_Policy_Result01_UserRights02", InstanceID: "UserRights", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DenyLogOnAsBatchJob"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_UserRights02", ResultClass: "MDM_Policy_Result01_UserRights02", InstanceID: "UserRights", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DenyLogOnAsBatchJob"},
 }
 
 // DenyLogOnAsService: Deny log on as a service -This security setting determines which service accounts are prevented from registering a process as a service. This policy setting supersedes the Log on as a service policy setting if an account is subject to both policies. Note: This security setting does not apply to the System, Local Service, or Network Service accounts. Default: None.
@@ -261,7 +261,7 @@ var DenyLogOnAsService = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_UserRights02", ResultClass: "MDM_Policy_Result01_UserRights02", InstanceID: "UserRights", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DenyLogOnAsService"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_UserRights02", ResultClass: "MDM_Policy_Result01_UserRights02", InstanceID: "UserRights", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DenyLogOnAsService"},
 }
 
 // DenyRemoteDesktopServicesLogOn: This user right determines which users and groups are prohibited from logging on as a Remote Desktop Services client.
@@ -274,7 +274,7 @@ var DenyRemoteDesktopServicesLogOn = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_UserRights02", ResultClass: "MDM_Policy_Result01_UserRights02", InstanceID: "UserRights", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DenyRemoteDesktopServicesLogOn"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_UserRights02", ResultClass: "MDM_Policy_Result01_UserRights02", InstanceID: "UserRights", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DenyRemoteDesktopServicesLogOn"},
 }
 
 // EnableDelegation: This user right determines which users can set the Trusted for Delegation setting on a user or computer object. The user or object that is granted this privilege must have write access to the account control flags on the user or computer object. A server process running on a computer (or under a user context) that is trusted for delegation can access resources on another computer using delegated credentials of a client, as long as the client account does not have the Account cannot be delegated account control flag set. Caution: Misuse of this user right, or of the Trusted for Delegation setting, could make the network vulnerable to sophisticated attacks using Trojan horse programs that impersonate incoming clients and use their credentials to gain access to network resources.
@@ -287,7 +287,7 @@ var EnableDelegation = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_UserRights02", ResultClass: "MDM_Policy_Result01_UserRights02", InstanceID: "UserRights", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "EnableDelegation"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_UserRights02", ResultClass: "MDM_Policy_Result01_UserRights02", InstanceID: "UserRights", ParentID: "./Vendor/MSFT/Policy/Config", Property: "EnableDelegation"},
 }
 
 // GenerateSecurityAudits: This user right determines which accounts can be used by a process to add entries to the security log. The security log is used to trace unauthorized system access. Misuse of this user right can result in the generation of many auditing events, potentially hiding evidence of an attack or causing a denial of service. Shut down system immediately if unable to log security audits security policy setting is enabled.
@@ -300,7 +300,7 @@ var GenerateSecurityAudits = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_UserRights02", ResultClass: "MDM_Policy_Result01_UserRights02", InstanceID: "UserRights", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "GenerateSecurityAudits"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_UserRights02", ResultClass: "MDM_Policy_Result01_UserRights02", InstanceID: "UserRights", ParentID: "./Vendor/MSFT/Policy/Config", Property: "GenerateSecurityAudits"},
 }
 
 // ImpersonateClient: Assigning this user right to a user allows programs running on behalf of that user to impersonate a client. Requiring this user right for this kind of impersonation prevents an unauthorized user from convincing a client to connect (for example, by remote procedure call (RPC) or named pipes) to a service that they have created and then impersonating that client, which can elevate the unauthorized user's permissions to administrative or system levels. Caution: Assigning this user right can be a security risk. Only assign this user right to trusted users. Note: By default, services that are started by the Service Control Manager have the built-in Service group added to their access tokens. Component Object Model (COM) servers that are started by the COM infrastructure and that are configured to run under a specific account also have the Service group added to their access tokens. As a result, these services get this user right when they are started. In addition, a user can also impersonate an access token if any of the following conditions exist.  1) The access token that is being impersonated is for this user. 2) The user, in this logon session, created the access token by logging on to the network with explicit credentials. 3) The requested level is less than Impersonate, such as Anonymous or Identify. Because of these factors, users do not usually need this user right. Warning: If you enable this setting, programs that previously had the Impersonate privilege may lose it, and they may not run.
@@ -313,7 +313,7 @@ var ImpersonateClient = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_UserRights02", ResultClass: "MDM_Policy_Result01_UserRights02", InstanceID: "UserRights", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ImpersonateClient"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_UserRights02", ResultClass: "MDM_Policy_Result01_UserRights02", InstanceID: "UserRights", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ImpersonateClient"},
 }
 
 // IncreaseProcessWorkingSet: Increase a process working set. This privilege determines which user accounts can increase or decrease the size of a process’s working set. The working set of a process is the set of memory pages currently visible to the process in physical RAM memory. These pages are resident and available for an application to use without triggering a page fault. The minimum and maximum working set sizes affect the virtual memory paging behavior of a process. Warning: Increasing the working set size for a process decreases the amount of physical memory available to the rest of the system.
@@ -326,7 +326,7 @@ var IncreaseProcessWorkingSet = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_UserRights02", ResultClass: "MDM_Policy_Result01_UserRights02", InstanceID: "UserRights", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "IncreaseProcessWorkingSet"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_UserRights02", ResultClass: "MDM_Policy_Result01_UserRights02", InstanceID: "UserRights", ParentID: "./Vendor/MSFT/Policy/Config", Property: "IncreaseProcessWorkingSet"},
 }
 
 // IncreaseSchedulingPriority: This user right determines which accounts can use a process with Write Property access to another process to increase the execution priority assigned to the other process. A user with this privilege can change the scheduling priority of a process through the Task Manager user interface.
@@ -339,7 +339,7 @@ var IncreaseSchedulingPriority = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_UserRights02", ResultClass: "MDM_Policy_Result01_UserRights02", InstanceID: "UserRights", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "IncreaseSchedulingPriority"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_UserRights02", ResultClass: "MDM_Policy_Result01_UserRights02", InstanceID: "UserRights", ParentID: "./Vendor/MSFT/Policy/Config", Property: "IncreaseSchedulingPriority"},
 }
 
 // LoadUnloadDeviceDrivers: This user right determines which users can dynamically load and unload device drivers or other code in to kernel mode. This user right does not apply to Plug and Play device drivers. It is recommended that you do not assign this privilege to other users. Caution: Assigning this user right can be a security risk. Do not assign this user right to any user, group, or process that you do not want to take over the system.
@@ -352,7 +352,7 @@ var LoadUnloadDeviceDrivers = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_UserRights02", ResultClass: "MDM_Policy_Result01_UserRights02", InstanceID: "UserRights", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LoadUnloadDeviceDrivers"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_UserRights02", ResultClass: "MDM_Policy_Result01_UserRights02", InstanceID: "UserRights", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LoadUnloadDeviceDrivers"},
 }
 
 // LockMemory: This user right determines which accounts can use a process to keep data in physical memory, which prevents the system from paging the data to virtual memory on disk. Exercising this privilege could significantly affect system performance by decreasing the amount of available random access memory (RAM).
@@ -365,7 +365,7 @@ var LockMemory = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_UserRights02", ResultClass: "MDM_Policy_Result01_UserRights02", InstanceID: "UserRights", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LockMemory"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_UserRights02", ResultClass: "MDM_Policy_Result01_UserRights02", InstanceID: "UserRights", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LockMemory"},
 }
 
 // LogOnAsBatchJob: This security setting allows a user to be logged on by means of a batch-queue facility and is provided only for compatibility with older versions of Windows. For example, when a user submits a job by means of the task scheduler, the task scheduler logs that user on as a batch user rather than as an interactive user.
@@ -378,7 +378,7 @@ var LogOnAsBatchJob = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_UserRights02", ResultClass: "MDM_Policy_Result01_UserRights02", InstanceID: "UserRights", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LogOnAsBatchJob"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_UserRights02", ResultClass: "MDM_Policy_Result01_UserRights02", InstanceID: "UserRights", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LogOnAsBatchJob"},
 }
 
 // LogOnAsService: This security setting allows a security principal to log on as a service. Services can be configured to run under the Local System, Local Service, or Network Service accounts, which have a built in right to log on as a service. Any service that runs under a separate user account must be assigned the right.
@@ -391,7 +391,7 @@ var LogOnAsService = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_UserRights02", ResultClass: "MDM_Policy_Result01_UserRights02", InstanceID: "UserRights", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LogOnAsService"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_UserRights02", ResultClass: "MDM_Policy_Result01_UserRights02", InstanceID: "UserRights", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LogOnAsService"},
 }
 
 // ManageAuditingAndSecurityLog: This user right determines which users can specify object access auditing options for individual resources, such as files, Active Directory objects, and registry keys. This security setting does not allow a user to enable file and object access auditing in general. You can view audited events in the security log of the Event Viewer. A user with this privilege can also view and clear the security log.
@@ -404,7 +404,7 @@ var ManageAuditingAndSecurityLog = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_UserRights02", ResultClass: "MDM_Policy_Result01_UserRights02", InstanceID: "UserRights", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ManageAuditingAndSecurityLog"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_UserRights02", ResultClass: "MDM_Policy_Result01_UserRights02", InstanceID: "UserRights", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ManageAuditingAndSecurityLog"},
 }
 
 // ManageVolume: This user right determines which users and groups can run maintenance tasks on a volume, such as remote defragmentation. Use caution when assigning this user right. Users with this user right can explore disks and extend files in to memory that contains other data. When the extended files are opened, the user might be able to read and modify the acquired data.
@@ -417,7 +417,7 @@ var ManageVolume = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_UserRights02", ResultClass: "MDM_Policy_Result01_UserRights02", InstanceID: "UserRights", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ManageVolume"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_UserRights02", ResultClass: "MDM_Policy_Result01_UserRights02", InstanceID: "UserRights", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ManageVolume"},
 }
 
 // ModifyFirmwareEnvironment: This user right determines who can modify firmware environment values. Firmware environment variables are settings stored in the nonvolatile RAM of non-x86-based computers. The effect of the setting depends on the processor.On x86-based computers, the only firmware environment value that can be modified by assigning this user right is the Last Known Good Configuration setting, which should only be modified by the system. On Itanium-based computers, boot information is stored in nonvolatile RAM. Users must be assigned this user right to run bootcfg.exe and to change the Default Operating System setting on Startup and Recovery in System Properties. On all computers, this user right is required to install or upgrade Windows.Note: This security setting does not affect who can modify the system environment variables and user environment variables that are displayed on the Advanced tab of System Properties.
@@ -430,7 +430,7 @@ var ModifyFirmwareEnvironment = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_UserRights02", ResultClass: "MDM_Policy_Result01_UserRights02", InstanceID: "UserRights", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ModifyFirmwareEnvironment"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_UserRights02", ResultClass: "MDM_Policy_Result01_UserRights02", InstanceID: "UserRights", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ModifyFirmwareEnvironment"},
 }
 
 // ModifyObjectLabel: This user right determines which user accounts can modify the integrity label of objects, such as files, registry keys, or processes owned by other users. Processes running under a user account can modify the label of an object owned by that user to a lower level without this privilege.
@@ -443,7 +443,7 @@ var ModifyObjectLabel = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_UserRights02", ResultClass: "MDM_Policy_Result01_UserRights02", InstanceID: "UserRights", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ModifyObjectLabel"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_UserRights02", ResultClass: "MDM_Policy_Result01_UserRights02", InstanceID: "UserRights", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ModifyObjectLabel"},
 }
 
 // ProfileSingleProcess: This user right determines which users can use performance monitoring tools to monitor the performance of system processes.
@@ -456,7 +456,7 @@ var ProfileSingleProcess = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_UserRights02", ResultClass: "MDM_Policy_Result01_UserRights02", InstanceID: "UserRights", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ProfileSingleProcess"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_UserRights02", ResultClass: "MDM_Policy_Result01_UserRights02", InstanceID: "UserRights", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ProfileSingleProcess"},
 }
 
 // ProfileSystemPerformance: This security setting determines which users can use performance monitoring tools to monitor the performance of system processes.
@@ -469,7 +469,7 @@ var ProfileSystemPerformance = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_UserRights02", ResultClass: "MDM_Policy_Result01_UserRights02", InstanceID: "UserRights", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ProfileSystemPerformance"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_UserRights02", ResultClass: "MDM_Policy_Result01_UserRights02", InstanceID: "UserRights", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ProfileSystemPerformance"},
 }
 
 // RemoteShutdown: This user right determines which users are allowed to shut down a computer from a remote location on the network. Misuse of this user right can result in a denial of service.
@@ -482,7 +482,7 @@ var RemoteShutdown = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_UserRights02", ResultClass: "MDM_Policy_Result01_UserRights02", InstanceID: "UserRights", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "RemoteShutdown"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_UserRights02", ResultClass: "MDM_Policy_Result01_UserRights02", InstanceID: "UserRights", ParentID: "./Vendor/MSFT/Policy/Config", Property: "RemoteShutdown"},
 }
 
 // ReplaceProcessLevelToken: This security setting determines which user accounts can call the CreateProcessAsUser() application programming interface (API) so that one service can start another. An example of a process that uses this user right is Task Scheduler. For information about Task Scheduler, see Task Scheduler overview.
@@ -495,7 +495,7 @@ var ReplaceProcessLevelToken = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_UserRights02", ResultClass: "MDM_Policy_Result01_UserRights02", InstanceID: "UserRights", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ReplaceProcessLevelToken"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_UserRights02", ResultClass: "MDM_Policy_Result01_UserRights02", InstanceID: "UserRights", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ReplaceProcessLevelToken"},
 }
 
 // RestoreFilesAndDirectories: This user right determines which users can bypass file, directory, registry, and other persistent objects permissions when restoring backed up files and directories, and determines which users can set any valid security principal as the owner of an object. Specifically, this user right is similar to granting the following permissions to the user or group in question on all files and folders on the system:Traverse Folder/Execute File, Write. Caution: Assigning this user right can be a security risk. Since users with this user right can overwrite registry settings, hide data, and gain ownership of system objects, only assign this user right to trusted users.
@@ -508,7 +508,7 @@ var RestoreFilesAndDirectories = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_UserRights02", ResultClass: "MDM_Policy_Result01_UserRights02", InstanceID: "UserRights", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "RestoreFilesAndDirectories"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_UserRights02", ResultClass: "MDM_Policy_Result01_UserRights02", InstanceID: "UserRights", ParentID: "./Vendor/MSFT/Policy/Config", Property: "RestoreFilesAndDirectories"},
 }
 
 // ShutDownTheSystem: This security setting determines which users who are logged on locally to the computer can shut down the operating system using the Shut Down command. Misuse of this user right can result in a denial of service.
@@ -521,7 +521,7 @@ var ShutDownTheSystem = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_UserRights02", ResultClass: "MDM_Policy_Result01_UserRights02", InstanceID: "UserRights", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ShutDownTheSystem"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_UserRights02", ResultClass: "MDM_Policy_Result01_UserRights02", InstanceID: "UserRights", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ShutDownTheSystem"},
 }
 
 // TakeOwnership: This user right determines which users can take ownership of any securable object in the system, including Active Directory objects, files and folders, printers, registry keys, processes, and threads. Caution: Assigning this user right can be a security risk. Since owners of objects have full control of them, only assign this user right to trusted users.
@@ -534,7 +534,7 @@ var TakeOwnership = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_UserRights02", ResultClass: "MDM_Policy_Result01_UserRights02", InstanceID: "UserRights", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "TakeOwnership"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_UserRights02", ResultClass: "MDM_Policy_Result01_UserRights02", InstanceID: "UserRights", ParentID: "./Vendor/MSFT/Policy/Config", Property: "TakeOwnership"},
 }
 
 // All lists every policy in this CSP area.

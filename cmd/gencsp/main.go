@@ -259,7 +259,7 @@ func renderPolicy(b *strings.Builder, p policy, bridgeArea, cspPath string) {
 		fmt.Fprintf(b, "\tBridge: &csp.Bridge{ConfigClass: %q, ResultClass: %q, InstanceID: %q, ParentID: %q, Property: %q},\n",
 			"MDM_Policy_Config01_"+bridgeArea+"02",
 			"MDM_Policy_Result01_"+bridgeArea+"02",
-			bridgeArea, cspPath, n.Name)
+			bridgeArea, bridgeParentID(cspPath), n.Name)
 	}
 	b.WriteString("}\n\n")
 }

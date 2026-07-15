@@ -15,7 +15,7 @@ var AllowAllTrustedApps = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Explicit deny."}, {Value: "1", Description: "Explicit allow unlock."}, {Value: "65535", Description: "Not configured."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_ApplicationManagement02", ResultClass: "MDM_Policy_Result01_ApplicationManagement02", InstanceID: "ApplicationManagement", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowAllTrustedApps"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_ApplicationManagement02", ResultClass: "MDM_Policy_Result01_ApplicationManagement02", InstanceID: "ApplicationManagement", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowAllTrustedApps"},
 }
 
 // AllowAppStoreAutoUpdate: Specifies whether automatic update of apps from Microsoft Store are allowed. Most restricted value is 0.
@@ -29,7 +29,7 @@ var AllowAppStoreAutoUpdate = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}, {Value: "2", Description: "Not configured."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_ApplicationManagement02", ResultClass: "MDM_Policy_Result01_ApplicationManagement02", InstanceID: "ApplicationManagement", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowAppStoreAutoUpdate"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_ApplicationManagement02", ResultClass: "MDM_Policy_Result01_ApplicationManagement02", InstanceID: "ApplicationManagement", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowAppStoreAutoUpdate"},
 }
 
 // AllowAutomaticAppArchiving: This policy setting controls whether the system can archive infrequently used apps. If you enable this policy setting, then the system will periodically check for and archive infrequently used apps. If you disable this policy setting, then the system will not archive any apps. If you do not configure this policy setting (default), then the system will follow default behavior, which is to periodically check for and archive infrequently used apps, and the user will be able to configure this setting themselves.
@@ -43,7 +43,7 @@ var AllowAutomaticAppArchiving = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Explicit deny."}, {Value: "1", Description: "Explicit enable."}, {Value: "65535", Description: "Not configured. User's Choice."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_ApplicationManagement02", ResultClass: "MDM_Policy_Result01_ApplicationManagement02", InstanceID: "ApplicationManagement", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowAutomaticAppArchiving"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_ApplicationManagement02", ResultClass: "MDM_Policy_Result01_ApplicationManagement02", InstanceID: "ApplicationManagement", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowAutomaticAppArchiving"},
 }
 
 // AllowDeveloperUnlock: Specifies whether developer unlock is allowed. Most restricted value is 0.
@@ -57,7 +57,7 @@ var AllowDeveloperUnlock = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Explicit deny."}, {Value: "1", Description: "Explicit allow unlock."}, {Value: "65535", Description: "Not configured."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_ApplicationManagement02", ResultClass: "MDM_Policy_Result01_ApplicationManagement02", InstanceID: "ApplicationManagement", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowDeveloperUnlock"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_ApplicationManagement02", ResultClass: "MDM_Policy_Result01_ApplicationManagement02", InstanceID: "ApplicationManagement", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowDeveloperUnlock"},
 }
 
 // AllowGameDVR: Note The policy is only enforced in Windows 10 for desktop. Specifies whether DVR and broadcasting is allowed. Most restricted value is 0.
@@ -71,7 +71,7 @@ var AllowGameDVR = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_ApplicationManagement02", ResultClass: "MDM_Policy_Result01_ApplicationManagement02", InstanceID: "ApplicationManagement", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowGameDVR"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_ApplicationManagement02", ResultClass: "MDM_Policy_Result01_ApplicationManagement02", InstanceID: "ApplicationManagement", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowGameDVR"},
 }
 
 // AllowSharedUserAppData: With this policy, you can configure Windows 10 to share application data among multiple users on the system and with other instances of that app. Data shared through the SharedLocal folder is available through the Windows. Storage API. If you previously enabled this policy and now want to disable it, any shared app data remains in the SharedLocal folder.
@@ -85,7 +85,7 @@ var AllowSharedUserAppData = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Prevented/not allowed, but Microsoft Edge downloads book files to a per-user folder for each user."}, {Value: "1", Description: "Allowed. Microsoft Edge downloads book files into a shared folder. For this policy to work correctly, you must also enable the Allow a Windows app to share application data between users group policy. Also, the users must be signed in with a school or work account."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_ApplicationManagement02", ResultClass: "MDM_Policy_Result01_ApplicationManagement02", InstanceID: "ApplicationManagement", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowSharedUserAppData"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_ApplicationManagement02", ResultClass: "MDM_Policy_Result01_ApplicationManagement02", InstanceID: "ApplicationManagement", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowSharedUserAppData"},
 }
 
 // AllowStore: This policy is deprecated
@@ -100,7 +100,7 @@ var AllowStore = csp.Policy{
 	MinOSBuild:        "10.0.10240",
 	CSPVersion:        "1.0",
 	Allowed:           &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Disallow."}, {Value: "1", Description: "Allow."}}},
-	Bridge:            &csp.Bridge{ConfigClass: "MDM_Policy_Config01_ApplicationManagement02", ResultClass: "MDM_Policy_Result01_ApplicationManagement02", InstanceID: "ApplicationManagement", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowStore"},
+	Bridge:            &csp.Bridge{ConfigClass: "MDM_Policy_Config01_ApplicationManagement02", ResultClass: "MDM_Policy_Result01_ApplicationManagement02", InstanceID: "ApplicationManagement", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowStore"},
 }
 
 var AllowedNonAdminPackageFamilyNameRules = csp.Policy{
@@ -112,7 +112,7 @@ var AllowedNonAdminPackageFamilyNameRules = csp.Policy{
 	CSPVersion: "9.9",
 	Editions:   "0x4;0x1B;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0xAB;0xAC;0xAF;0xBC;0xBF;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "AppxPackageManager~AT~WindowsComponents~AppxDeployment", Name: "AllowedNonAdminPackageFamilyNameRules", File: "AppxPackageManager.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_ApplicationManagement02", ResultClass: "MDM_Policy_Result01_ApplicationManagement02", InstanceID: "ApplicationManagement", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowedNonAdminPackageFamilyNameRules"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_ApplicationManagement02", ResultClass: "MDM_Policy_Result01_ApplicationManagement02", InstanceID: "ApplicationManagement", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowedNonAdminPackageFamilyNameRules"},
 }
 
 // ApplicationRestrictions: This policy is deprecated
@@ -125,7 +125,7 @@ var ApplicationRestrictions = csp.Policy{
 	DeprecatedOSBuild: "10.0.22000",
 	MinOSBuild:        "10.0.10240",
 	CSPVersion:        "1.0",
-	Bridge:            &csp.Bridge{ConfigClass: "MDM_Policy_Config01_ApplicationManagement02", ResultClass: "MDM_Policy_Result01_ApplicationManagement02", InstanceID: "ApplicationManagement", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ApplicationRestrictions"},
+	Bridge:            &csp.Bridge{ConfigClass: "MDM_Policy_Config01_ApplicationManagement02", ResultClass: "MDM_Policy_Result01_ApplicationManagement02", InstanceID: "ApplicationManagement", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ApplicationRestrictions"},
 }
 
 // BlockNonAdminUserInstall: Manages non-administrator users' ability to install Windows app packages. If you enable this policy, non-administrators will be unable to initiate installation of Windows app packages. Administrators who wish to install an app will need to do so from an Administrator context (for example, an Administrator PowerShell window). All users will still be able to install Windows app packages via the Microsoft Store, if permitted by other policies. If you disable or do not configure this policy, all users will be able to initiate installation of Windows app packages.
@@ -139,7 +139,7 @@ var BlockNonAdminUserInstall = csp.Policy{
 	CSPVersion: "10.0",
 	Editions:   "0x4;0x1B;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0xAB;0xAC;0xAF;0xBC;0xBF;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Disabled. All users will be able to initiate installation of Windows app packages."}, {Value: "1", Description: "Enabled. Non-administrator users will not be able to initiate installation of Windows app packages."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_ApplicationManagement02", ResultClass: "MDM_Policy_Result01_ApplicationManagement02", InstanceID: "ApplicationManagement", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "BlockNonAdminUserInstall"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_ApplicationManagement02", ResultClass: "MDM_Policy_Result01_ApplicationManagement02", InstanceID: "ApplicationManagement", ParentID: "./Vendor/MSFT/Policy/Config", Property: "BlockNonAdminUserInstall"},
 }
 
 // ConfigureMSIXAuthenticationAuthorizedDomains: Defines a regular expression in ECMA Script. When performing a streaming MSIX install, if this regular expression matches the domain name (uppercased) then the user's EntraID OAuth token will be attached to the request.
@@ -151,7 +151,7 @@ var ConfigureMSIXAuthenticationAuthorizedDomains = csp.Policy{
 	MinOSBuild: "99.9.99999",
 	CSPVersion: "9.9",
 	Editions:   "0x4;0x1B;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0xAB;0xAC;0xAF;0xBC;0xBF;0xCD;0xCF;",
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_ApplicationManagement02", ResultClass: "MDM_Policy_Result01_ApplicationManagement02", InstanceID: "ApplicationManagement", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ConfigureMSIXAuthenticationAuthorizedDomains"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_ApplicationManagement02", ResultClass: "MDM_Policy_Result01_ApplicationManagement02", InstanceID: "ApplicationManagement", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ConfigureMSIXAuthenticationAuthorizedDomains"},
 }
 
 // DisableStoreOriginatedApps: Boolean value that disables the launch of all apps from Microsoft Store that came pre-installed or were downloaded.
@@ -165,7 +165,7 @@ var DisableStoreOriginatedApps = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0xAB;0xAC;0xAF;0xBC;0xBF;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Enable launch of apps."}, {Value: "1", Description: "Disable launch of apps."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_ApplicationManagement02", ResultClass: "MDM_Policy_Result01_ApplicationManagement02", InstanceID: "ApplicationManagement", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisableStoreOriginatedApps"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_ApplicationManagement02", ResultClass: "MDM_Policy_Result01_ApplicationManagement02", InstanceID: "ApplicationManagement", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DisableStoreOriginatedApps"},
 }
 
 // EnableMsixAllowedZones: This policy controls whether MSIX packages originating from specific URL Zones are allowed to install. A package's origin is determined by its URI and whether a Mart-of-the-Web (MotW) is present. If multiple URIs are involved, all of them are considered.
@@ -178,7 +178,7 @@ var EnableMsixAllowedZones = csp.Policy{
 	CSPVersion: "10.0",
 	Editions:   "0x4;0x1B;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0xAB;0xAC;0xAF;0xBC;0xBF;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Disabled. Users will be able to install MSIX packages from any zone except for Untrusted."}, {Value: "1", Description: "Enabled. Users will be able to install MSIX packages according to the configuration for each zone."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_ApplicationManagement02", ResultClass: "MDM_Policy_Result01_ApplicationManagement02", InstanceID: "ApplicationManagement", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "EnableMsixAllowedZones"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_ApplicationManagement02", ResultClass: "MDM_Policy_Result01_ApplicationManagement02", InstanceID: "ApplicationManagement", ParentID: "./Vendor/MSFT/Policy/Config", Property: "EnableMsixAllowedZones"},
 }
 
 // EnableMsixSmartScreenCheck: This policy controls whether Microsoft SmartScreen check is performed when installing MSIX packages from specific URL zones.
@@ -191,7 +191,7 @@ var EnableMsixSmartScreenCheck = csp.Policy{
 	CSPVersion: "10.0",
 	Editions:   "0x4;0x1B;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0xAB;0xAC;0xAF;0xBC;0xBF;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Disabled. Microsoft SmartScreen will not be consulted before installing a package."}, {Value: "1", Description: "Enabled. The package URI will be evaluated with Microsoft SmartScreen before installation. This check is only done for packages that come from the internet."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_ApplicationManagement02", ResultClass: "MDM_Policy_Result01_ApplicationManagement02", InstanceID: "ApplicationManagement", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "EnableMsixSmartScreenCheck"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_ApplicationManagement02", ResultClass: "MDM_Policy_Result01_ApplicationManagement02", InstanceID: "ApplicationManagement", ParentID: "./Vendor/MSFT/Policy/Config", Property: "EnableMsixSmartScreenCheck"},
 }
 
 // LaunchAppAfterLogOn: List of semi-colon delimited Package Family Names of Windows apps. Listed Windows apps are to be launched after logon.
@@ -204,7 +204,7 @@ var LaunchAppAfterLogOn = csp.Policy{
 	CSPVersion: "8.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_ApplicationManagement02", ResultClass: "MDM_Policy_Result01_ApplicationManagement02", InstanceID: "ApplicationManagement", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LaunchAppAfterLogOn"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_ApplicationManagement02", ResultClass: "MDM_Policy_Result01_ApplicationManagement02", InstanceID: "ApplicationManagement", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LaunchAppAfterLogOn"},
 }
 
 // MSIAllowUserControlOverInstall: This policy setting permits users to change installation options that typically are available only to system administrators. If you enable this policy setting, some of the security features of Windows Installer are bypassed. It permits installations to complete that otherwise would be halted due to a security violation. If you disable or do not configure this policy setting, the security features of Windows Installer prevent users from changing installation options typically reserved for system administrators, such as specifying the directory to which files are installed. If Windows Installer detects that an installation package has permitted the user to change a protected option, it stops the installation and displays a message. These security features operate only when the installation program is running in a privileged security context in which it has access to directories denied to the user. This policy setting is designed for less restrictive environments. It can be used to circumvent errors in an installation program that prevents software from being installed.
@@ -218,7 +218,7 @@ var MSIAllowUserControlOverInstall = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Disabled"}, {Value: "1", Description: "Enabled"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_ApplicationManagement02", ResultClass: "MDM_Policy_Result01_ApplicationManagement02", InstanceID: "ApplicationManagement", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "MSIAllowUserControlOverInstall"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_ApplicationManagement02", ResultClass: "MDM_Policy_Result01_ApplicationManagement02", InstanceID: "ApplicationManagement", ParentID: "./Vendor/MSFT/Policy/Config", Property: "MSIAllowUserControlOverInstall"},
 }
 
 // MSIAlwaysInstallWithElevatedPrivileges: This policy setting directs Windows Installer to use elevated permissions when it installs any program on the system. If you enable this policy setting, privileges are extended to all programs. These privileges are usually reserved for programs that have been assigned to the user (offered on the desktop), assigned to the computer (installed automatically), or made available in Add or Remove Programs in Control Panel. This profile setting lets users install programs that require access to directories that the user might not have permission to view or change, including directories on highly restricted computers. If you disable or do not configure this policy setting, the system applies the current user's permissions when it installs programs that a system administrator does not distribute or offer. Note: This policy setting appears both in the Computer Configuration and User Configuration folders. To make this policy setting effective, you must enable it in both folders. Caution: Skilled users can take advantage of the permissions this policy setting grants to change their privileges and gain permanent access to restricted files and folders. Note that the User Configuration version of this policy setting is not guaranteed to be secure.
@@ -232,7 +232,7 @@ var MSIAlwaysInstallWithElevatedPrivileges = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Disabled"}, {Value: "1", Description: "Enabled"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_ApplicationManagement02", ResultClass: "MDM_Policy_Result01_ApplicationManagement02", InstanceID: "ApplicationManagement", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "MSIAlwaysInstallWithElevatedPrivileges"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_ApplicationManagement02", ResultClass: "MDM_Policy_Result01_ApplicationManagement02", InstanceID: "ApplicationManagement", ParentID: "./Vendor/MSFT/Policy/Config", Property: "MSIAlwaysInstallWithElevatedPrivileges"},
 }
 
 var RemoveDefaultMicrosoftStorePackages = csp.Policy{
@@ -244,7 +244,7 @@ var RemoveDefaultMicrosoftStorePackages = csp.Policy{
 	CSPVersion: "10.0",
 	Editions:   "0x4;0x1B;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0xAB;0xAC;0xAF;0xBC;0xBF;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "AppxPackageManager~AT~WindowsComponents~AppxDeployment", Name: "RemoveDefaultMicrosoftStorePackages", File: "AppxPackageManager.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_ApplicationManagement02", ResultClass: "MDM_Policy_Result01_ApplicationManagement02", InstanceID: "ApplicationManagement", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "RemoveDefaultMicrosoftStorePackages"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_ApplicationManagement02", ResultClass: "MDM_Policy_Result01_ApplicationManagement02", InstanceID: "ApplicationManagement", ParentID: "./Vendor/MSFT/Policy/Config", Property: "RemoveDefaultMicrosoftStorePackages"},
 }
 
 // RequirePrivateStoreOnly: Allows disabling of the retail catalog and only enables the Private store. Most restricted value is 1.
@@ -258,7 +258,7 @@ var RequirePrivateStoreOnly = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0xAB;0xAC;0xAF;0xBC;0xBF;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Allow both public and Private store."}, {Value: "1", Description: "Only Private store is enabled."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_ApplicationManagement02", ResultClass: "MDM_Policy_Result01_ApplicationManagement02", InstanceID: "ApplicationManagement", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "RequirePrivateStoreOnly"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_ApplicationManagement02", ResultClass: "MDM_Policy_Result01_ApplicationManagement02", InstanceID: "ApplicationManagement", ParentID: "./Vendor/MSFT/Policy/Config", Property: "RequirePrivateStoreOnly"},
 }
 
 // RestrictAppDataToSystemVolume: Specifies whether application data is restricted to the system drive. Most restricted value is 1.
@@ -272,7 +272,7 @@ var RestrictAppDataToSystemVolume = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not restricted."}, {Value: "1", Description: "Restricted."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_ApplicationManagement02", ResultClass: "MDM_Policy_Result01_ApplicationManagement02", InstanceID: "ApplicationManagement", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "RestrictAppDataToSystemVolume"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_ApplicationManagement02", ResultClass: "MDM_Policy_Result01_ApplicationManagement02", InstanceID: "ApplicationManagement", ParentID: "./Vendor/MSFT/Policy/Config", Property: "RestrictAppDataToSystemVolume"},
 }
 
 // RestrictAppToSystemVolume: Specifies whether the installation of applications is restricted to the system drive. Most restricted value is 1.
@@ -286,7 +286,7 @@ var RestrictAppToSystemVolume = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not restricted."}, {Value: "1", Description: "Restricted."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_ApplicationManagement02", ResultClass: "MDM_Policy_Result01_ApplicationManagement02", InstanceID: "ApplicationManagement", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "RestrictAppToSystemVolume"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_ApplicationManagement02", ResultClass: "MDM_Policy_Result01_ApplicationManagement02", InstanceID: "ApplicationManagement", ParentID: "./Vendor/MSFT/Policy/Config", Property: "RestrictAppToSystemVolume"},
 }
 
 // ScheduleForceRestartForUpdateFailures: To ensure apps are up-to-date, this policy allows the admins to set a recurring or one time date to restart apps whose update failed due to the app being in use allowing the update to be applied. Value type is string.
@@ -299,7 +299,7 @@ var ScheduleForceRestartForUpdateFailures = csp.Policy{
 	CSPVersion: "8.0",
 	Editions:   "0x4;0x1B;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0xAB;0xAC;0xAF;0xBC;0xBF;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "XSD"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_ApplicationManagement02", ResultClass: "MDM_Policy_Result01_ApplicationManagement02", InstanceID: "ApplicationManagement", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ScheduleForceRestartForUpdateFailures"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_ApplicationManagement02", ResultClass: "MDM_Policy_Result01_ApplicationManagement02", InstanceID: "ApplicationManagement", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ScheduleForceRestartForUpdateFailures"},
 }
 
 // All lists every policy in this CSP area.
