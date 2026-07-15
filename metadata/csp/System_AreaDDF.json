@@ -1,0 +1,1127 @@
+{
+  "name": "System",
+  "path": "./Device/Vendor/MSFT/Policy/Config",
+  "nodes": [
+    {
+      "name": "AllowBuildPreview",
+      "path": "./Device/Vendor/MSFT/Policy/Config/System/AllowBuildPreview",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Note This policy setting applies only to devices running Windows 10 Pro, Windows 10 Enterprise, and Windows 10 Education, Windows 10 Mobile, and Windows 10 Mobile Enterprise. This policy setting determines whether users can access the Insider build controls in the Advanced Options for Windows Update. These controls are located under Get Insider builds, and enable users to make their devices available for downloading and installing Windows preview software. If you enable or do not configure this policy setting, users can download and install Windows preview software on their devices. If you disable this policy setting, the item Get Insider builds will be unavailable.",
+      "default": "2",
+      "applicability": {
+        "minOsBuild": "10.0.10240",
+        "cspVersion": "1.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Not allowed. The item \"Get Insider builds\" is unavailable, users are unable to make their devices available for preview software."
+          },
+          {
+            "value": "1",
+            "description": "Allowed. Users can make their devices available for downloading and installing preview software."
+          },
+          {
+            "value": "2",
+            "description": "Not configured. Users can make their devices available for downloading and installing preview software."
+          }
+        ]
+      }
+    },
+    {
+      "name": "AllowCommercialDataPipeline",
+      "path": "./Device/Vendor/MSFT/Policy/Config/System/AllowCommercialDataPipeline",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This policy is deprecated and will only work on Windows 10 version 1809. Setting this policy will have no effect for other supported versions of Windows.                      AllowCommercialDataPipeline configures an Azure Active Directory joined device so that Microsoft is the processor of the Windows diagnostic data collected from the device, subject to the Product Terms at https://go.microsoft.com/fwlink/?linkid=2185086.                     To enable this behavior:                         1. Enable this policy setting                         2. Join an Azure Active Directory account to the device                     Windows diagnostic data is collected when the Allow Telemetry policy setting is set to value 1  - Required or above. Configuring this setting does not change the Windows diagnostic data collection level set for the device.                     If you disable or do not configure this setting, Microsoft will be the controller of the Windows diagnostic data collected from the device and processed in accordance with Microsoft's privacy statement at https://go.microsoft.com/fwlink/?LinkId=521839 unless you have enabled policies like 'Allow Update Compliance Processing' or 'Allow Desktop Analytics Processing'.                     See the documentation at  https://go.microsoft.com/fwlink/?linkid=2011107 for information on this and other policies that will result in Microsoft being the processor of Windows diagnostic data.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.18362",
+        "cspVersion": "9.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Disabled."
+          },
+          {
+            "value": "1",
+            "description": "Enabled."
+          }
+        ]
+      }
+    },
+    {
+      "name": "AllowDesktopAnalyticsProcessing",
+      "path": "./Device/Vendor/MSFT/Policy/Config/System/AllowDesktopAnalyticsProcessing",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This policy is deprecated and will only work on Windows 10 version 1809. Setting this policy will have no effect for other supported versions of Windows.                      This policy setting, in combination with the Allow Telemetry and Configure the Commercial ID, enables organizations to configure the device so that Microsoft is the processor for Windows diagnostic data collected from the device, subject to the Product Terms at https://go.microsoft.com/fwlink/?linkid=2185086.                     To enable this behavior:                         1. Enable this policy setting                         2. Join an Azure Active Directory account to the device                         3. Set Allow Telemetry to value 1 - Required, or higher                         4. Set the Configure the Commercial ID setting for your Desktop Analytics workspace                     When these policies are configured, Windows diagnostic data collected from the device will be subject to Microsoft processor commitments.                     This setting has no effect on devices unless they are properly enrolled in Desktop Analytics. If you disable this policy setting, devices will not appear in Desktop Analytics.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.18362.836, 10.0.17763.1217",
+        "cspVersion": "8.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Disabled."
+          },
+          {
+            "value": "2",
+            "description": "Allowed."
+          }
+        ]
+      }
+    },
+    {
+      "name": "AllowDeviceNameInDiagnosticData",
+      "path": "./Device/Vendor/MSFT/Policy/Config/System/AllowDeviceNameInDiagnosticData",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This policy allows the device name to be sent to Microsoft as part of Windows diagnostic data.  If you disable or do not configure this policy setting, then device name will not be sent to Microsoft as part of Windows diagnostic data.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.17763",
+        "cspVersion": "8.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Disabled."
+          },
+          {
+            "value": "1",
+            "description": "Allowed."
+          }
+        ]
+      }
+    },
+    {
+      "name": "AllowEmbeddedMode",
+      "path": "./Device/Vendor/MSFT/Policy/Config/System/AllowEmbeddedMode",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Specifies whether set general purpose device to be in embedded mode. Most restricted value is 0.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.14393",
+        "cspVersion": "4.1",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Not allowed."
+          },
+          {
+            "value": "1",
+            "description": "Allowed."
+          }
+        ]
+      }
+    },
+    {
+      "name": "AllowExperimentation",
+      "path": "./Device/Vendor/MSFT/Policy/Config/System/AllowExperimentation",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "NoteThis policy is not supported in Windows 10, version 1607. This policy setting determines the level that Microsoft can experiment with the product to study user preferences or device behavior. Most restricted value is 0.",
+      "default": "1",
+      "applicability": {
+        "minOsBuild": "10.0.14393",
+        "cspVersion": "4.1",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Disabled."
+          },
+          {
+            "value": "1",
+            "description": "Permits Microsoft to configure device settings only."
+          },
+          {
+            "value": "2",
+            "description": "Allows Microsoft to conduct full experimentation."
+          }
+        ]
+      }
+    },
+    {
+      "name": "AllowFontProviders",
+      "path": "./Device/Vendor/MSFT/Policy/Config/System/AllowFontProviders",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Boolean policy setting that determines whether Windows is allowed to download fonts and font catalog data from an online font provider. If you enable this setting, Windows periodically queries an online font provider to determine whether a new font catalog is available. Windows may also download font data if needed to format or render text. If you disable this policy setting, Windows does not connect to an online font provider and only enumerates locally-installed fonts. This MDM setting corresponds to the EnableFontProviders Group Policy setting. If both the Group Policy and the MDM settings are configured, the group policy setting takes precedence. If neither is configured, the behavior depends on a DisableFontProviders registry value. In server editions, this registry value is set to 1 by default, so the default behavior is false (disabled). In all other editions, the registry value is not set by default, so the default behavior is true (enabled). This setting is used by lower-level components for text display and fond handling and has not direct effect on web browsers, which may download web fonts used in web content. NoteReboot is required after setting the policy; alternatively you can stop and restart the FontCache service.",
+      "default": "1",
+      "applicability": {
+        "minOsBuild": "10.0.15063",
+        "cspVersion": "5.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Not allowed. No traffic to fs.microsoft.com and only locally installed fonts are available."
+          },
+          {
+            "value": "1",
+            "description": "Allowed. There may be network traffic to fs.microsoft.com and downloadable fonts are available to apps that support them."
+          }
+        ]
+      }
+    },
+    {
+      "name": "AllowLocation",
+      "path": "./Device/Vendor/MSFT/Policy/Config/System/AllowLocation",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Specifies whether to allow app access to the Location service. Most restricted value is 0. While the policy is set to 0 (Force Location Off) or 2 (Force Location On), any Location service call from an app would trigger the value set by this policy. When switching the policy back from 0 (Force Location Off) or 2 (Force Location On) to 1 (User Control), the app reverts to its original Location service setting. For example, an app's original Location setting is Off. The administrator then sets the AllowLocation policy to 2 (Force Location On. ) The Location service starts working for that app, overriding the original setting. Later, if the administrator switches the AllowLocation policy back to 1 (User Control), the app will revert to using its original setting of Off.",
+      "default": "1",
+      "applicability": {
+        "minOsBuild": "10.0.10240",
+        "cspVersion": "1.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Force Location Off. All Location Privacy settings are toggled off and grayed out. Users cannot change the settings, and no apps are allowed access to the Location service, including Cortana and Search."
+          },
+          {
+            "value": "1",
+            "description": "Location service is allowed. The user has control and can change Location Privacy settings on or off."
+          },
+          {
+            "value": "2",
+            "description": "Force Location On. All Location Privacy settings are toggled on and grayed out. Users cannot change the settings and all consent permissions will be automatically suppressed."
+          }
+        ]
+      }
+    },
+    {
+      "name": "AllowMicrosoftManagedDesktopProcessing",
+      "path": "./Device/Vendor/MSFT/Policy/Config/System/AllowMicrosoftManagedDesktopProcessing",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This policy is deprecated and will only work on Windows 10 version 1809. Setting this policy will have no effect for other supported versions of Windows.                      This policy setting configures an Azure Active Directory joined device so that Microsoft is the processor of the Windows diagnostic data collected from the device, subject to the Product Terms at https://go.microsoft.com/fwlink/?linkid=2185086.                     For customers who enroll into the Microsoft Managed Desktop service, enabling this policy is required to allow Microsoft to process data for operational and analytic needs. See https://go.microsoft.com/fwlink/?linkid=2184944 for more information.                     hen these policies are configured, Windows diagnostic data collected from the device will be subject to Microsoft processor commitments.                     This setting has no effect on devices unless they are properly enrolled in Microsoft Managed Desktop. If you disable this policy setting, devices may not appear in Microsoft Managed Desktop.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.18362.836, 10.0.17763.1217",
+        "cspVersion": "8.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Disabled."
+          },
+          {
+            "value": "32",
+            "description": "Allowed."
+          }
+        ]
+      }
+    },
+    {
+      "name": "AllowOOBEUpdates",
+      "path": "./Device/Vendor/MSFT/Policy/Config/System/AllowOOBEUpdates",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Allows or disallows updating device during OOBE via NDUP. By default devices are not allowed to update during OOBE.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "99.9.99999",
+        "cspVersion": "9.9",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Not allowed."
+          },
+          {
+            "value": "1",
+            "description": "Allowed."
+          }
+        ]
+      }
+    },
+    {
+      "name": "AllowStorageCard",
+      "path": "./Device/Vendor/MSFT/Policy/Config/System/AllowStorageCard",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Controls whether the user is allowed to use the storage card for device storage. This setting prevents programmatic access to the storage card. Most restricted value is 0.",
+      "default": "1",
+      "applicability": {
+        "minOsBuild": "10.0.10240",
+        "cspVersion": "1.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "SD card use is not allowed and USB drives are disabled. This setting does not prevent programmatic access to the storage card."
+          },
+          {
+            "value": "1",
+            "description": "Allow a storage card."
+          }
+        ]
+      }
+    },
+    {
+      "name": "AllowTelemetry",
+      "path": "./Device/Vendor/MSFT/Policy/Config/System/AllowTelemetry",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Allow the device to send diagnostic and usage telemetry data, such as Watson. For more information about diagnostic data for Windows, including what is and what is not collected by Windows, see Configure Windows diagnostic data in your organization. Note: This value is only applicable to Windows Enterprise, Windows Education, Windows Mobile Enterprise, Windows IoT Core (IoT Core), Windows Server 2016, and Windows CPC OS. The following tables describe the supported values:Windows 8. 1 Values:0 - Not allowed. 1 - Allowed, except for Secondary Data Requests. 2 (default) - Allowed. Windows 10 Values:0 - Security. Information that is required to help keep Windows or Windows CPC OS more secure, including data about the Connected User Experience and Telemetry component settings, the Malicious Software Removal Tool, and Windows Defender. Note: This value is only applicable to Windows 10 Enterprise, Windows 10 Education, Windows 10 Mobile Enterprise, Windows IoT Core (IoT Core), Windows Server 2016, and Windows CPC OS. Using this setting on other devices is equivalent to setting the value of 1. 1 - Basic. Basic device info, including: quality-related data, app compatibility, app usage data, and data from the Security level. 2 - Enhanced. Additional insights, including: how Windows, Windows Server, System Center, Windows CPC OS, and apps are used, how they perform, advanced reliability data, and data from both the Basic and the Security levels. 3 - Full. All data necessary to identify and help to fix problems, plus data from the Security, Basic, and Enhanced levels. Important lf you are using Windows 8. 1 MDM server and set a value of 0 using the legacy AllowTelemetry policy on a Windows 10 Mobile device, then the value is not respected and the telemetry level is silently set to level 1. Most restricted value is 0.",
+      "default": "1",
+      "applicability": {
+        "minOsBuild": "10.0.10240",
+        "cspVersion": "1.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Security. Information that is required to help keep Windows more secure, including data about the Connected User Experience and Telemetry component settings, the Malicious Software Removal Tool, and Windows Defender.\nNote: This value is only applicable to Windows 10 Enterprise, Windows 10 Education, Windows 10 Mobile Enterprise, Windows 10 IoT Core (IoT Core), and Windows Server 2016. Using this setting on other devices is equivalent to setting the value of 1."
+          },
+          {
+            "value": "1",
+            "description": "Basic. Basic device info, including: quality-related data, app compatibility, app usage data, and data from the Security level."
+          },
+          {
+            "value": "3",
+            "description": "Full. All data necessary to identify and help to fix problems, plus data from the Security, Basic, and Enhanced levels."
+          }
+        ]
+      }
+    },
+    {
+      "name": "AllowTelemetry",
+      "path": "./Device/Vendor/MSFT/Policy/Config/System/AllowTelemetry",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Allow the device to send diagnostic and usage telemetry data, such as Watson. For more information about diagnostic data for Windows, including what is and what is not collected by Windows, see Configure Windows diagnostic data in your organization. Note: This value is only applicable to Windows Enterprise, Windows Education, Windows Mobile Enterprise, Windows IoT Core (IoT Core), Windows Server 2016, and Windows CPC OS. The following tables describe the supported values:Windows 8. 1 Values:0 - Not allowed. 1 - Allowed, except for Secondary Data Requests. 2 (default) - Allowed. Windows 10 Values:0 - Security. Information that is required to help keep Windows or Windows CPC OS more secure, including data about the Connected User Experience and Telemetry component settings, the Malicious Software Removal Tool, and Windows Defender. Note: This value is only applicable to Windows 10 Enterprise, Windows 10 Education, Windows 10 Mobile Enterprise, Windows IoT Core (IoT Core), Windows Server 2016, and Windows CPC OS. Using this setting on other devices is equivalent to setting the value of 1. 1 - Basic. Basic device info, including: quality-related data, app compatibility, app usage data, and data from the Security level. 2 - Enhanced. Additional insights, including: how Windows, Windows Server, System Center, Windows CPC OS, and apps are used, how they perform, advanced reliability data, and data from both the Basic and the Security levels. 3 - Full. All data necessary to identify and help to fix problems, plus data from the Security, Basic, and Enhanced levels. Important lf you are using Windows 8. 1 MDM server and set a value of 0 using the legacy AllowTelemetry policy on a Windows 10 Mobile device, then the value is not respected and the telemetry level is silently set to level 1. Most restricted value is 0.",
+      "default": "1",
+      "applicability": {
+        "minOsBuild": "10.0.10240",
+        "cspVersion": "1.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Security. Information that is required to help keep Windows more secure, including data about the Connected User Experience and Telemetry component settings, the Malicious Software Removal Tool, and Windows Defender.\nNote: This value is only applicable to Windows 10 Enterprise, Windows 10 Education, Windows 10 Mobile Enterprise, Windows 10 IoT Core (IoT Core), and Windows Server 2016. Using this setting on other devices is equivalent to setting the value of 1."
+          },
+          {
+            "value": "1",
+            "description": "Basic. Basic device info, including: quality-related data, app compatibility, app usage data, and data from the Security level."
+          },
+          {
+            "value": "3",
+            "description": "Full. All data necessary to identify and help to fix problems, plus data from the Security, Basic, and Enhanced levels."
+          }
+        ]
+      }
+    },
+    {
+      "name": "AllowUpdateComplianceProcessing",
+      "path": "./Device/Vendor/MSFT/Policy/Config/System/AllowUpdateComplianceProcessing",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This policy is deprecated and will only work on Windows 10 version 1809. Setting this policy will have no effect for other supported versions of Windows.                      This policy setting, in combination with the Allow Telemetry and Configure the Commercial ID, enables organizations to configure the device so that Microsoft is the processor of the Windows diagnostic data collected from the device, subject to the Product Terms at https://go.microsoft.com/fwlink/?linkid=2185086.                     To enable this behavior:                         1. Enable this policy setting                         2. Join an Azure Active Directory account to the device                         3. Set Allow Telemetry to  value 1 - Required, or higher                         4. Set the Configure the Commercial ID setting for your Update Compliance workspace                     When these policies are configured, Windows diagnostic data collected from the device will be subject to Microsoft processor commitments.                     If you disable or do not configure this policy setting, devices will not appear in Update Compliance.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.18362.836, 10.0.17763.1217",
+        "cspVersion": "8.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Disabled."
+          },
+          {
+            "value": "16",
+            "description": "Enabled."
+          }
+        ]
+      }
+    },
+    {
+      "name": "AllowUserToResetPhone",
+      "path": "./Device/Vendor/MSFT/Policy/Config/System/AllowUserToResetPhone",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Specifies whether to allow the user to factory reset the device by using control panel and hardware key combination. Most restricted value is 0. Tip, This policy is also applicable to Windows 10 and not exclusive to phone.",
+      "default": "1",
+      "applicability": {
+        "minOsBuild": "10.0.10240",
+        "cspVersion": "1.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Not allowed."
+          },
+          {
+            "value": "1",
+            "description": "Allowed to reset to factory default settings."
+          }
+        ]
+      }
+    },
+    {
+      "name": "AllowWUfBCloudProcessing",
+      "path": "./Device/Vendor/MSFT/Policy/Config/System/AllowWUfBCloudProcessing",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This policy is deprecated and will only work on Windows 10 version 1809. Setting this policy will have no effect for other supported versions of Windows.                      This policy setting configures an Azure Active Directory joined device so that Microsoft is the processor of the Windows diagnostic data collected from the device, subject to the Product Terms at https://go.microsoft.com/fwlink/?linkid=2185086.                     To enable this behavior:                         1. Enable this policy setting                         2. Join an Azure Active Directory account to the device                         3. Set Allow Telemetry to  value 1 - Required, or higher                     When these policies are configured, Windows diagnostic data collected from the device will be subject to Microsoft processor commitments.                     If you disable or do not configure this policy setting, devices enrolled to the Windows Update for Business deployment service will not be able to take advantage of some deployment service features.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.18362.836, 10.0.17763.1217",
+        "cspVersion": "8.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Disabled."
+          },
+          {
+            "value": "8",
+            "description": "Enabled."
+          }
+        ]
+      }
+    },
+    {
+      "name": "BootStartDriverInitialization",
+      "path": "./Device/Vendor/MSFT/Policy/Config/System/BootStartDriverInitialization",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.15063",
+        "cspVersion": "5.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "EarlyLaunchAM~AT~System~ELAMCategory",
+          "name": "POL_DriverLoadPolicy_Name",
+          "file": "earlylauncham.admx"
+        }
+      }
+    },
+    {
+      "name": "ConfigureMicrosoft365UploadEndpoint",
+      "path": "./Device/Vendor/MSFT/Policy/Config/System/ConfigureMicrosoft365UploadEndpoint",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This policy sets the upload endpoint for this device’s diagnostic data as part of the Microsoft 365 Update Readiness program. If your organization is participating in the program and has been instructed to configure a custom upload endpoint, then use this setting to define that endpoint. The value for this setting will be provided by Microsoft as part of the onboarding process for the program. Value type is string.",
+      "applicability": {
+        "minOsBuild": "10.0.17763",
+        "cspVersion": "8.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;"
+      }
+    },
+    {
+      "name": "ConfigureTelemetryOptInChangeNotification",
+      "path": "./Device/Vendor/MSFT/Policy/Config/System/ConfigureTelemetryOptInChangeNotification",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.17134",
+        "cspVersion": "7.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Enable telemetry change notifications."
+          },
+          {
+            "value": "1",
+            "description": "Disable telemetry change notifications."
+          }
+        ]
+      }
+    },
+    {
+      "name": "ConfigureTelemetryOptInSettingsUx",
+      "path": "./Device/Vendor/MSFT/Policy/Config/System/ConfigureTelemetryOptInSettingsUx",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.17134",
+        "cspVersion": "7.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Enable Telemetry opt-in Settings."
+          },
+          {
+            "value": "1",
+            "description": "Disable Telemetry opt-in Settings."
+          }
+        ]
+      }
+    },
+    {
+      "name": "DisableCHPE",
+      "path": "./Device/Vendor/MSFT/Policy/Config/System/DisableCHPE",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This policy setting controls whether loading CHPE binaries is disabled on the ARM64 device. This policy has no effect on x64 devices.                     If you enable this policy setting, ARM64 devices will not load CHPE binaries. This setting is required for hotpatching on ARM64 devices.                     If you disable or do not configure this policy setting, ARM64 devices will load CHPE binaries.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "99.9.99999, 10.0.26100.3775",
+        "cspVersion": "11.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "CHPE Binaries Enabled (Default)"
+          },
+          {
+            "value": "1",
+            "description": "CHPE Binaries Disabled"
+          }
+        ]
+      }
+    },
+    {
+      "name": "DisableDeviceDelete",
+      "path": "./Device/Vendor/MSFT/Policy/Config/System/DisableDeviceDelete",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.17763",
+        "cspVersion": "8.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Not disabled."
+          },
+          {
+            "value": "1",
+            "description": "Disabled."
+          }
+        ]
+      }
+    },
+    {
+      "name": "DisableDiagnosticDataViewer",
+      "path": "./Device/Vendor/MSFT/Policy/Config/System/DisableDiagnosticDataViewer",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.17763",
+        "cspVersion": "8.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Not disabled."
+          },
+          {
+            "value": "1",
+            "description": "Disabled."
+          }
+        ]
+      }
+    },
+    {
+      "name": "DisableDirectXDatabaseUpdate",
+      "path": "./Device/Vendor/MSFT/Policy/Config/System/DisableDirectXDatabaseUpdate",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This group policy allows control over whether the DirectX Database Updater task will be run on the system.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.18362",
+        "cspVersion": "9.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Not disabled."
+          },
+          {
+            "value": "1",
+            "description": "Disabled."
+          }
+        ]
+      }
+    },
+    {
+      "name": "DisableEnterpriseAuthProxy",
+      "path": "./Device/Vendor/MSFT/Policy/Config/System/DisableEnterpriseAuthProxy",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This policy setting blocks the Connected User Experience and Telemetry service from automatically using an authenticated proxy to send data back to Microsoft on Windows 10. If you disable or do not configure this policy setting, the Connected User Experience and Telemetry service will automatically use an authenticated proxy to send data back to Microsoft. Enabling this policy will block the Connected User Experience and Telemetry service from automatically using an authenticated proxy.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.16299",
+        "cspVersion": "6.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "1",
+            "description": "Enable"
+          },
+          {
+            "value": "0",
+            "description": "Disable"
+          }
+        ]
+      }
+    },
+    {
+      "name": "DisableOneDriveFileSync",
+      "path": "./Device/Vendor/MSFT/Policy/Config/System/DisableOneDriveFileSync",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This policy setting lets you prevent apps and features from working with files on OneDrive. If you enable this policy setting: users can’t access OneDrive from the OneDrive app and file picker; Microsoft Store apps can’t access OneDrive using the WinRT API; OneDrive doesn’t appear in the navigation pane in File Explorer; OneDrive files aren’t kept in sync with the cloud; Users can’t automatically upload photos and videos from the camera roll folder. If you disable or do not configure this policy setting, apps and features can work with OneDrive file storage.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.15063",
+        "cspVersion": "5.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Sync enabled."
+          },
+          {
+            "value": "1",
+            "description": "Sync disabled."
+          }
+        ]
+      }
+    },
+    {
+      "name": "DisableOneSettingsDownloads",
+      "path": "./Device/Vendor/MSFT/Policy/Config/System/DisableOneSettingsDownloads",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This policy setting controls whether Windows attempts to connect with the OneSettings service.                             If you enable this policy, Windows will not attempt to connect with the OneSettings Service.                             If you disable or don't configure this policy setting, Windows will periodically attempt to connect with the OneSettings service to download configuration settings.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.22000",
+        "cspVersion": "11.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Not disabled."
+          },
+          {
+            "value": "1",
+            "description": "Disabled."
+          }
+        ]
+      }
+    },
+    {
+      "name": "DisableSystemRestore",
+      "path": "./Device/Vendor/MSFT/Policy/Config/System/DisableSystemRestore",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.15063",
+        "cspVersion": "5.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "SystemRestore~AT~System~SR",
+          "name": "SR_DisableSR",
+          "file": "systemrestore.admx"
+        }
+      }
+    },
+    {
+      "name": "EnableHotpatchAutoRemediation",
+      "path": "./Device/Vendor/MSFT/Policy/Config/System/EnableHotpatchAutoRemediation",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This policy setting controls whether Automatic Remediation is enabled on the hotpatch enrolled device. This policy has no effect on devices                     that does not have hotpatch updates installed.                     If you enable this policy setting, Automatic Remediation is enabled on the hotpatch enrolled device.                     If you disable or do not configure this policy setting, Automatic Remediation is disabled on the hotpatch enrolled device.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "99.9.99999, 10.0.26100.4946",
+        "cspVersion": "11.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Automatic Remediation is not enabled (Default)"
+          },
+          {
+            "value": "1",
+            "description": "Automatic Remediation is enabled"
+          }
+        ]
+      }
+    },
+    {
+      "name": "EnableOneSettingsAuditing",
+      "path": "./Device/Vendor/MSFT/Policy/Config/System/EnableOneSettingsAuditing",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This policy setting controls whether Windows records attempts to connect with the OneSettings service to the EventLog.                             If you enable this policy, Windows will record attempts to connect with the OneSettings service to the Microsoft\\Windows\\Privacy-Auditing\\Operational EventLog channel.                             If you disable or don't configure this policy setting, Windows will not record attempts to connect with the OneSettings service to the EventLog.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.22000",
+        "cspVersion": "11.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Disabled."
+          },
+          {
+            "value": "1",
+            "description": "Enabled."
+          }
+        ]
+      }
+    },
+    {
+      "name": "FeedbackHubAlwaysSaveDiagnosticsLocally",
+      "path": "./Device/Vendor/MSFT/Policy/Config/System/FeedbackHubAlwaysSaveDiagnosticsLocally",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Diagnostic files created when a feedback is filed in the Feedback Hub app will always be saved locally. If this policy is not present or set to false, users will be presented with the option to save locally. The default is to not save locally.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.16299",
+        "cspVersion": "6.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "False. The Feedback Hub will not always save a local copy of diagnostics that may be created when a feedback is submitted. The user will have the option to do so."
+          },
+          {
+            "value": "1",
+            "description": "True. The Feedback Hub should always save a local copy of diagnostics that may be created when a feedback is submitted."
+          }
+        ]
+      }
+    },
+    {
+      "name": "HideUnsupportedHardwareNotifications",
+      "path": "./Device/Vendor/MSFT/Policy/Config/System/HideUnsupportedHardwareNotifications",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This policy controls messages which are shown when Windows is running on a device that does not meet the minimum system requirements for this OS version.                     If you enable this policy setting, these messages will never appear on desktop or in the Settings app.                     If you disable or do not configure this policy setting, these messages will appear on desktop and in the Settings app when Windows is running on a device that does not meet the minimum system requirements for this OS version.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.26100",
+        "cspVersion": "11.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Disabled."
+          },
+          {
+            "value": "1",
+            "description": "Enabled."
+          }
+        ]
+      }
+    },
+    {
+      "name": "LimitDiagnosticLogCollection",
+      "path": "./Device/Vendor/MSFT/Policy/Config/System/LimitDiagnosticLogCollection",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This policy setting specifies whether diagnostic log data can be collected when more information is needed to troubleshoot a problem. The diagnostic data logs are collected, only if we have permission to collect optional diagnostic data, and only if the device meets the criteria for additional data collection.                     If you disable or do not configure this policy setting, we may occasionally collect advanced diagnostic data if the user has opted to send optional diagnostic data.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.22000",
+        "cspVersion": "11.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Disabled."
+          },
+          {
+            "value": "1",
+            "description": "Enabled."
+          }
+        ]
+      }
+    },
+    {
+      "name": "LimitDumpCollection",
+      "path": "./Device/Vendor/MSFT/Policy/Config/System/LimitDumpCollection",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This policy setting limits the type of dumps that can be collected when more information is needed to troubleshoot a problem. These dumps are not sent unless we have permission to collect optional diagnostic data.                             By enabling this policy setting, Windows Error Reporting is limited to sending kernel mini dumps and user mode triage dumps only.                             If you disable or do not configure this policy setting, we may occasionally collect full or heap dumps if the user has opted to send optional diagnostic data.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.22000",
+        "cspVersion": "11.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Disabled."
+          },
+          {
+            "value": "1",
+            "description": "Enabled."
+          }
+        ]
+      }
+    },
+    {
+      "name": "LimitEnhancedDiagnosticDataWindowsAnalytics",
+      "path": "./Device/Vendor/MSFT/Policy/Config/System/LimitEnhancedDiagnosticDataWindowsAnalytics",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This policy setting, in combination with the Allow Telemetry policy setting, enables organizations to send Microsoft a specific set of diagnostic data for IT insights via Windows Analytics services. By configuring this setting, you're not stopping people from changing their Telemetry Settings; however, you are stopping them from choosing a higher level than you've set for the organization. To enable this behavior, you must complete two steps: 1. Enable this policy setting 2. Set Allow Telemetry to level 2 (Enhanced).If you configure these policy settings together, you'll send the Basic level of diagnostic data plus any additional events that are required for Windows Analytics, to Microsoft. The additional events are documented here: https://go.Microsoft.com/fwlink/?linked=847594. If you enable Enhanced diagnostic data in the Allow Telemetry policy setting, but you don't configure this policy setting, you'll send the required events for Windows Analytics, plus any additional Enhanced level telemetry data to Microsoft. This setting has no effect on computers configured to send Full, Basic, or Security level diagnostic data to Microsoft. If you disable or don't configure this policy setting, then the level of diagnostic data sent to Microsoft is determined by the Allow Telemetry policy setting.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.16299",
+        "cspVersion": "6.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Disabled."
+          },
+          {
+            "value": "1",
+            "description": "Enabled."
+          }
+        ]
+      }
+    },
+    {
+      "name": "TelemetryProxy",
+      "path": "./Device/Vendor/MSFT/Policy/Config/System/TelemetryProxy",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Allows you to specify the fully qualified domain name (FQDN) or IP address of a proxy server to forward Connected User Experiences and Telemetry requests. The format for this setting is \u003cserver\u003e:\u003cport\u003e. The connection is made over a Secure Sockets Layer (SSL) connection. If the named proxy fails, or if there is no proxy specified when this policy is enabled, the Connected User Experiences and Telemetry data will not be transmitted and will remain on the local device. If you disable or do not configure this policy setting, Connected User Experiences and Telemetry will go to Microsoft using the default proxy configuration.",
+      "applicability": {
+        "minOsBuild": "10.0.14393",
+        "cspVersion": "4.1",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;"
+      }
+    },
+    {
+      "name": "TurnOffFileHistory",
+      "path": "./Device/Vendor/MSFT/Policy/Config/System/TurnOffFileHistory",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This policy setting allows you to turn off File History.  If you enable this policy setting, File History cannot be activated to create regular, automatic backups.  If you disable or do not configure this policy setting, File History can be activated to create regular, automatic backups.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.18362",
+        "cspVersion": "9.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Allow file history."
+          },
+          {
+            "value": "1",
+            "description": "Turn off file history."
+          }
+        ]
+      }
+    }
+  ]
+}

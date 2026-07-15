@@ -1,0 +1,391 @@
+{
+  "name": "Security",
+  "path": "./Device/Vendor/MSFT/Policy/Config",
+  "nodes": [
+    {
+      "name": "AllowAddProvisioningPackage",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Security/AllowAddProvisioningPackage",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Specifies whether to allow the runtime configuration agent to install provisioning packages.",
+      "default": "1",
+      "applicability": {
+        "minOsBuild": "10.0.10240",
+        "cspVersion": "1.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Not allowed."
+          },
+          {
+            "value": "1",
+            "description": "Allowed."
+          }
+        ]
+      }
+    },
+    {
+      "name": "AllowManualRootCertificateInstallation",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Security/AllowManualRootCertificateInstallation",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This policy is deprecated.",
+      "default": "1",
+      "deprecatedOsBuild": "10.0.22000",
+      "applicability": {
+        "minOsBuild": "10.0.10240",
+        "cspVersion": "1.0",
+        "editions": "0x87;0x88;0x88*"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Not allowed."
+          },
+          {
+            "value": "1",
+            "description": "Allowed."
+          }
+        ]
+      }
+    },
+    {
+      "name": "AllowRemoveProvisioningPackage",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Security/AllowRemoveProvisioningPackage",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Specifies whether to allow the runtime configuration agent to remove provisioning packages.",
+      "default": "1",
+      "applicability": {
+        "minOsBuild": "10.0.10240",
+        "cspVersion": "1.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Not allowed."
+          },
+          {
+            "value": "1",
+            "description": "Allowed."
+          }
+        ]
+      }
+    },
+    {
+      "name": "AntiTheftMode",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Security/AntiTheftMode",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This policy is deprecated.",
+      "default": "1",
+      "deprecatedOsBuild": "10.0.22000",
+      "applicability": {
+        "minOsBuild": "10.0.10240",
+        "cspVersion": "1.0"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Disabled."
+          },
+          {
+            "value": "1",
+            "description": "Enabled."
+          }
+        ]
+      }
+    },
+    {
+      "name": "ClearTPMIfNotReady",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Security/ClearTPMIfNotReady",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Admin access is required. The prompt will appear on first admin logon after a reboot when the TPM is in a non-ready state that can be remediated with a TPM Clear. The prompt will have a description of what clearing the TPM does and that it requires a reboot. The user can dismiss it, but it will appear on next admin logon after restart.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.16299",
+        "cspVersion": "6.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Will not force recovery from a non-ready TPM state."
+          },
+          {
+            "value": "1",
+            "description": "Will prompt to clear the TPM if the TPM is in a non-ready state (or reduced functionality) which can be remediated with a TPM Clear."
+          }
+        ]
+      }
+    },
+    {
+      "name": "ConfigureWindowsPasswords",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Security/ConfigureWindowsPasswords",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Configures the use of passwords for Windows features",
+      "default": "2",
+      "applicability": {
+        "minOsBuild": "10.0.17134",
+        "cspVersion": "7.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "-Disallow passwords (Asymmetric credentials will be promoted to replace passwords on Windows features)"
+          },
+          {
+            "value": "1",
+            "description": "Allow passwords (Passwords continue to be allowed to be used for Windows features)"
+          },
+          {
+            "value": "2",
+            "description": "as per SKU and device capabilities. Windows 10 S devices will exhibit \"Disallow passwords\" default, and all other devices will default to \"Allow passwords\")"
+          }
+        ]
+      }
+    },
+    {
+      "name": "PreventAutomaticDeviceEncryptionForAzureADJoinedDevices",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Security/PreventAutomaticDeviceEncryptionForAzureADJoinedDevices",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Specifies whether to allow automatic device encryption during OOBE when the device is Azure AD joined.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.14393",
+        "cspVersion": "4.1",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Encryption enabled."
+          },
+          {
+            "value": "1",
+            "description": "Encryption disabled."
+          }
+        ]
+      }
+    },
+    {
+      "name": "RecoveryEnvironmentAuthentication",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Security/RecoveryEnvironmentAuthentication",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This policy controls the requirement of Admin Authentication in RecoveryEnvironment.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.17763",
+        "cspVersion": "8.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "current) behavior"
+          },
+          {
+            "value": "1",
+            "description": "RequireAuthentication: Admin Authentication is always required for components in RecoveryEnvironment"
+          },
+          {
+            "value": "2",
+            "description": "NoRequireAuthentication: Admin Authentication is not required for components in RecoveryEnvironment"
+          }
+        ]
+      }
+    },
+    {
+      "name": "RecoveryEnvironmentAuthentication",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Security/RecoveryEnvironmentAuthentication",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This policy controls the requirement of Admin Authentication in RecoveryEnvironment.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.17763",
+        "cspVersion": "8.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "current) behavior"
+          },
+          {
+            "value": "1",
+            "description": "RequireAuthentication: Admin Authentication is always required for components in RecoveryEnvironment"
+          },
+          {
+            "value": "2",
+            "description": "NoRequireAuthentication: Admin Authentication is not required for components in RecoveryEnvironment"
+          }
+        ]
+      }
+    },
+    {
+      "name": "RequireDeviceEncryption",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Security/RequireDeviceEncryption",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Allows enterprise to turn on internal storage encryption. Most restricted value is 1. Important. If encryption has been enabled, it cannot be turned off by using this policy.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.14393",
+        "cspVersion": "4.1",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Encryption is not required."
+          },
+          {
+            "value": "1",
+            "description": "Encryption is required."
+          }
+        ]
+      }
+    },
+    {
+      "name": "RequireProvisioningPackageSignature",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Security/RequireProvisioningPackageSignature",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Specifies whether provisioning packages must have a certificate signed by a device trusted authority.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.10240",
+        "cspVersion": "1.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Not required."
+          },
+          {
+            "value": "1",
+            "description": "Required."
+          }
+        ]
+      }
+    },
+    {
+      "name": "RequireRetrieveHealthCertificateOnBoot",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Security/RequireRetrieveHealthCertificateOnBoot",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Specifies whether to retrieve and post TCG Boot logs, and get or cache an encrypted or signed Health Attestation Report from the Microsoft Health Attestation Service (HAS) when a device boots or reboots. Setting this policy to 1 (Required):Determines whether a device is capable of Remote Device Health Attestation, by verifying if the device has TPM 2. 0. Improves the performance of the device by enabling the device to fetch and cache data to reduce the latency during Device Health Verification. Note We recommend that this policy is set to Required after MDM enrollment.  Most restricted value is 1.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.10240",
+        "cspVersion": "1.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Not required."
+          },
+          {
+            "value": "1",
+            "description": "Required."
+          }
+        ]
+      }
+    }
+  ]
+}

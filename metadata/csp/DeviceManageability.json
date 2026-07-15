@@ -1,0 +1,106 @@
+{
+  "name": "DeviceManageability",
+  "path": "./Device/Vendor/MSFT",
+  "nodes": [
+    {
+      "name": "Capabilities",
+      "path": "./Device/Vendor/MSFT/DeviceManageability/Capabilities",
+      "format": "node",
+      "access": [
+        "Get"
+      ],
+      "applicability": {},
+      "children": [
+        {
+          "name": "CSPVersions",
+          "path": "./Device/Vendor/MSFT/DeviceManageability/Capabilities/CSPVersions",
+          "format": "xml",
+          "access": [
+            "Get"
+          ],
+          "description": "Returns the versions of all configuration service providers (CSP) for MDM.",
+          "applicability": {}
+        }
+      ]
+    },
+    {
+      "name": "Provider",
+      "path": "./Device/Vendor/MSFT/DeviceManageability/Provider",
+      "format": "node",
+      "access": [
+        "Get"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.17134",
+        "cspVersion": "1.1"
+      },
+      "children": [
+        {
+          "name": "",
+          "path": "./Device/Vendor/MSFT/DeviceManageability/Provider/",
+          "format": "node",
+          "access": [
+            "Add",
+            "Delete",
+            "Get"
+          ],
+          "description": "Provider ID String of the Configuration Source",
+          "applicability": {},
+          "children": [
+            {
+              "name": "ConfigInfo",
+              "path": "./Device/Vendor/MSFT/DeviceManageability/Provider/ConfigInfo",
+              "format": "chr",
+              "access": [
+                "Add",
+                "Delete",
+                "Get",
+                "Replace"
+              ],
+              "description": "Configuration Info string value set by the config source. Recommended to be used during sync session.",
+              "applicability": {},
+              "allowedValues": {
+                "type": "None"
+              }
+            },
+            {
+              "name": "EnrollmentInfo",
+              "path": "./Device/Vendor/MSFT/DeviceManageability/Provider/EnrollmentInfo",
+              "format": "chr",
+              "access": [
+                "Add",
+                "Delete",
+                "Get",
+                "Replace"
+              ],
+              "description": "Enrollment Info string value set by the config source. Recommended to sent to server during MDM enrollment.",
+              "applicability": {},
+              "allowedValues": {
+                "type": "None"
+              }
+            },
+            {
+              "name": "PayloadTransfer",
+              "path": "./Device/Vendor/MSFT/DeviceManageability/Provider/PayloadTransfer",
+              "format": "chr",
+              "access": [
+                "Add",
+                "Delete",
+                "Get",
+                "Replace"
+              ],
+              "description": "Payload Transfer string value set by the config source. Recommended to be used during sync session.",
+              "applicability": {
+                "minOsBuild": "10.0.22621, 10.0.22000.918, 10.0.19044.2193, 10.0.19043.2193, 10.0.19042.2193",
+                "cspVersion": "1.1"
+              },
+              "allowedValues": {
+                "type": "None"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

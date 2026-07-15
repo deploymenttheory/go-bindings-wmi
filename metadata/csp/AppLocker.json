@@ -1,0 +1,633 @@
+{
+  "name": "AppLocker",
+  "path": "./Vendor/MSFT",
+  "nodes": [
+    {
+      "name": "ApplicationLaunchRestrictions",
+      "path": "./Vendor/MSFT/AppLocker/ApplicationLaunchRestrictions",
+      "format": "node",
+      "access": [
+        "Get"
+      ],
+      "description": "Defines restrictions for applications.",
+      "applicability": {},
+      "children": [
+        {
+          "name": "",
+          "path": "./Vendor/MSFT/AppLocker/ApplicationLaunchRestrictions/",
+          "format": "node",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "Grouping nodes are dynamic nodes, and there may be any number of them for a given enrollment (or a given context). The actual identifiers are selected by the management endpoint, whose job it is to determine what their purpose is, and to not conflict with other identifiers that they define. Different enrollments and contexts may use the same Authority identifier, even if many such identifiers are active at the same time.",
+          "applicability": {},
+          "allowedValues": {
+            "type": "None"
+          },
+          "children": [
+            {
+              "name": "CodeIntegrity",
+              "path": "./Vendor/MSFT/AppLocker/ApplicationLaunchRestrictions/CodeIntegrity",
+              "format": "node",
+              "access": [
+                "Add",
+                "Delete",
+                "Get",
+                "Replace"
+              ],
+              "description": "Insert Description Here",
+              "applicability": {},
+              "children": [
+                {
+                  "name": "Policy",
+                  "path": "./Vendor/MSFT/AppLocker/ApplicationLaunchRestrictions/CodeIntegrity/Policy",
+                  "format": "b64",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Policy nodes define the policy for launching executables, Windows Installer files, scripts, store apps, and DLL files. The contents of a given Policy node is precisely the XML format for a RuleCollection node in the corresponding AppLocker XML policy.  This will need to be Base64 encoded.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "None"
+                  }
+                }
+              ]
+            },
+            {
+              "name": "DLL",
+              "path": "./Vendor/MSFT/AppLocker/ApplicationLaunchRestrictions/DLL",
+              "format": "node",
+              "access": [
+                "Add",
+                "Delete",
+                "Get",
+                "Replace"
+              ],
+              "description": "Defines restrictions for processing DLL files.",
+              "applicability": {},
+              "children": [
+                {
+                  "name": "EnforcementMode",
+                  "path": "./Vendor/MSFT/AppLocker/ApplicationLaunchRestrictions/DLL/EnforcementMode",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "The EnforcementMode node for Windows Information Protection (formerly known as Enterprise Data Protection) does not affect the behavior of EnterpriseDataProtection. The EDPEnforcementLevel from Policy CSP should be used to enable and disable Windows Information Protection (formerly known as Enterprise Data Protection).",
+                  "applicability": {}
+                },
+                {
+                  "name": "NonInteractiveProcessEnforcement",
+                  "path": "./Vendor/MSFT/AppLocker/ApplicationLaunchRestrictions/DLL/NonInteractiveProcessEnforcement",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Insert Description Here",
+                  "applicability": {}
+                },
+                {
+                  "name": "Policy",
+                  "path": "./Vendor/MSFT/AppLocker/ApplicationLaunchRestrictions/DLL/Policy",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Policy nodes define the policy for launching executables, Windows Installer files, scripts, store apps, and DLL files. The contents of a given Policy node is precisely the XML format for a RuleCollection node in the corresponding AppLocker XML policy.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "XSD"
+                  }
+                }
+              ]
+            },
+            {
+              "name": "EXE",
+              "path": "./Vendor/MSFT/AppLocker/ApplicationLaunchRestrictions/EXE",
+              "format": "node",
+              "access": [
+                "Add",
+                "Delete",
+                "Get",
+                "Replace"
+              ],
+              "description": "Defines restrictions for launching executable applications.",
+              "applicability": {},
+              "children": [
+                {
+                  "name": "EnforcementMode",
+                  "path": "./Vendor/MSFT/AppLocker/ApplicationLaunchRestrictions/EXE/EnforcementMode",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "The EnforcementMode node for Windows Information Protection (formerly known as Enterprise Data Protection) does not affect the behavior of EnterpriseDataProtection. The EDPEnforcementLevel from Policy CSP should be used to enable and disable Windows Information Protection (formerly known as Enterprise Data Protection).",
+                  "applicability": {}
+                },
+                {
+                  "name": "NonInteractiveProcessEnforcement",
+                  "path": "./Vendor/MSFT/AppLocker/ApplicationLaunchRestrictions/EXE/NonInteractiveProcessEnforcement",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Insert Description Here",
+                  "applicability": {}
+                },
+                {
+                  "name": "Policy",
+                  "path": "./Vendor/MSFT/AppLocker/ApplicationLaunchRestrictions/EXE/Policy",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Policy nodes define the policy for launching executables, Windows Installer files, scripts, store apps, and DLL files. The contents of a given Policy node is precisely the XML format for a RuleCollection node in the corresponding AppLocker XML policy.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "XSD"
+                  }
+                }
+              ]
+            },
+            {
+              "name": "MSI",
+              "path": "./Vendor/MSFT/AppLocker/ApplicationLaunchRestrictions/MSI",
+              "format": "node",
+              "access": [
+                "Add",
+                "Delete",
+                "Get",
+                "Replace"
+              ],
+              "description": "Defines restrictions for executing Windows Installer files.",
+              "applicability": {},
+              "children": [
+                {
+                  "name": "EnforcementMode",
+                  "path": "./Vendor/MSFT/AppLocker/ApplicationLaunchRestrictions/MSI/EnforcementMode",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "The EnforcementMode node for Windows Information Protection (formerly known as Enterprise Data Protection) does not affect the behavior of EnterpriseDataProtection. The EDPEnforcementLevel from Policy CSP should be used to enable and disable Windows Information Protection (formerly known as Enterprise Data Protection).",
+                  "applicability": {}
+                },
+                {
+                  "name": "Policy",
+                  "path": "./Vendor/MSFT/AppLocker/ApplicationLaunchRestrictions/MSI/Policy",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Policy nodes define the policy for launching executables, Windows Installer files, scripts, store apps, and DLL files. The contents of a given Policy node is precisely the XML format for a RuleCollection node in the corresponding AppLocker XML policy.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "XSD"
+                  }
+                }
+              ]
+            },
+            {
+              "name": "Script",
+              "path": "./Vendor/MSFT/AppLocker/ApplicationLaunchRestrictions/Script",
+              "format": "node",
+              "access": [
+                "Add",
+                "Delete",
+                "Get",
+                "Replace"
+              ],
+              "description": "Defines restrictions for running scripts.",
+              "applicability": {},
+              "children": [
+                {
+                  "name": "EnforcementMode",
+                  "path": "./Vendor/MSFT/AppLocker/ApplicationLaunchRestrictions/Script/EnforcementMode",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "The EnforcementMode node for Windows Information Protection (formerly known as Enterprise Data Protection) does not affect the behavior of EnterpriseDataProtection. The EDPEnforcementLevel from Policy CSP should be used to enable and disable Windows Information Protection (formerly known as Enterprise Data Protection).",
+                  "applicability": {}
+                },
+                {
+                  "name": "Policy",
+                  "path": "./Vendor/MSFT/AppLocker/ApplicationLaunchRestrictions/Script/Policy",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Policy nodes define the policy for launching executables, Windows Installer files, scripts, store apps, and DLL files. The contents of a given Policy node is precisely the XML format for a RuleCollection node in the corresponding AppLocker XML policy.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "XSD"
+                  }
+                }
+              ]
+            },
+            {
+              "name": "StoreApps",
+              "path": "./Vendor/MSFT/AppLocker/ApplicationLaunchRestrictions/StoreApps",
+              "format": "node",
+              "access": [
+                "Add",
+                "Delete",
+                "Get",
+                "Replace"
+              ],
+              "description": "Defines restrictions for running apps from the Microsoft Store.",
+              "applicability": {},
+              "children": [
+                {
+                  "name": "EnforcementMode",
+                  "path": "./Vendor/MSFT/AppLocker/ApplicationLaunchRestrictions/StoreApps/EnforcementMode",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "The EnforcementMode node for Windows Information Protection (formerly known as Enterprise Data Protection) does not affect the behavior of EnterpriseDataProtection. The EDPEnforcementLevel from Policy CSP should be used to enable and disable Windows Information Protection (formerly known as Enterprise Data Protection).",
+                  "applicability": {}
+                },
+                {
+                  "name": "Policy",
+                  "path": "./Vendor/MSFT/AppLocker/ApplicationLaunchRestrictions/StoreApps/Policy",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Policy nodes define the policy for launching executables, Windows Installer files, scripts, store apps, and DLL files. The contents of a given Policy node is precisely the XML format for a RuleCollection node in the corresponding AppLocker XML policy.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "XSD"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "EnterpriseDataProtection",
+      "path": "./Vendor/MSFT/AppLocker/EnterpriseDataProtection",
+      "format": "node",
+      "access": [
+        "Get"
+      ],
+      "description": "Captures the list of apps that are allowed to handle enterprise data. Should be used in conjunction with the settings in ./Device/Vendor/MSFT/EnterpriseDataProtection in EnterpriseDataProtection CSP.",
+      "applicability": {},
+      "children": [
+        {
+          "name": "",
+          "path": "./Vendor/MSFT/AppLocker/EnterpriseDataProtection/",
+          "format": "node",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "Grouping nodes are dynamic nodes, and there may be any number of them for a given enrollment (or a given context). The actual identifiers are selected by the management endpoint, whose job it is to determine what their purpose is, and to not conflict with other identifiers that they define. Different enrollments and contexts may use the same Authority identifier, even if many such identifiers are active at the same time.",
+          "applicability": {},
+          "allowedValues": {
+            "type": "None"
+          },
+          "children": [
+            {
+              "name": "EXE",
+              "path": "./Vendor/MSFT/AppLocker/EnterpriseDataProtection/EXE",
+              "format": "node",
+              "access": [
+                "Add",
+                "Delete",
+                "Get",
+                "Replace"
+              ],
+              "description": "Defines restrictions for launching executable applications.",
+              "applicability": {},
+              "children": [
+                {
+                  "name": "Policy",
+                  "path": "./Vendor/MSFT/AppLocker/EnterpriseDataProtection/EXE/Policy",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Policy nodes define the policy for launching executables, Windows Installer files, scripts, store apps, and DLL files. The contents of a given Policy node is precisely the XML format for a RuleCollection node in the corresponding AppLocker XML policy.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "XSD"
+                  }
+                }
+              ]
+            },
+            {
+              "name": "StoreApps",
+              "path": "./Vendor/MSFT/AppLocker/EnterpriseDataProtection/StoreApps",
+              "format": "node",
+              "access": [
+                "Add",
+                "Delete",
+                "Get",
+                "Replace"
+              ],
+              "description": "Defines restrictions for running apps from the Microsoft Store.",
+              "applicability": {},
+              "children": [
+                {
+                  "name": "Policy",
+                  "path": "./Vendor/MSFT/AppLocker/EnterpriseDataProtection/StoreApps/Policy",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Policy nodes define the policy for launching executables, Windows Installer files, scripts, store apps, and DLL files. The contents of a given Policy node is precisely the XML format for a RuleCollection node in the corresponding AppLocker XML policy.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "XSD"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "FamilySafety",
+      "path": "./Vendor/MSFT/AppLocker/FamilySafety",
+      "format": "node",
+      "access": [
+        "Get"
+      ],
+      "description": "Insert Description Here",
+      "applicability": {},
+      "children": [
+        {
+          "name": "",
+          "path": "./Vendor/MSFT/AppLocker/FamilySafety/",
+          "format": "node",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "Insert Description Here",
+          "applicability": {},
+          "allowedValues": {
+            "type": "None"
+          },
+          "children": [
+            {
+              "name": "EXE",
+              "path": "./Vendor/MSFT/AppLocker/FamilySafety/EXE",
+              "format": "node",
+              "access": [
+                "Add",
+                "Delete",
+                "Get",
+                "Replace"
+              ],
+              "description": "Insert Description Here",
+              "applicability": {},
+              "children": [
+                {
+                  "name": "EnforcementMode",
+                  "path": "./Vendor/MSFT/AppLocker/FamilySafety/EXE/EnforcementMode",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "The EnforcementMode node for Windows Information Protection (formerly known as Enterprise Data Protection) does not affect the behavior of EnterpriseDataProtection. The EDPEnforcementLevel from Policy CSP should be used to enable and disable Windows Information Protection (formerly known as Enterprise Data Protection).",
+                  "applicability": {}
+                },
+                {
+                  "name": "Policy",
+                  "path": "./Vendor/MSFT/AppLocker/FamilySafety/EXE/Policy",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Policy nodes define the policy for launching executables, Windows Installer files, scripts, store apps, and DLL files. The contents of a given Policy node is precisely the XML format for a RuleCollection node in the corresponding AppLocker XML policy.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "XSD"
+                  }
+                }
+              ]
+            },
+            {
+              "name": "StoreApps",
+              "path": "./Vendor/MSFT/AppLocker/FamilySafety/StoreApps",
+              "format": "node",
+              "access": [
+                "Add",
+                "Delete",
+                "Get",
+                "Replace"
+              ],
+              "description": "Insert Description Here",
+              "applicability": {},
+              "children": [
+                {
+                  "name": "EnforcementMode",
+                  "path": "./Vendor/MSFT/AppLocker/FamilySafety/StoreApps/EnforcementMode",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "The EnforcementMode node for Windows Information Protection (formerly known as Enterprise Data Protection) does not affect the behavior of EnterpriseDataProtection. The EDPEnforcementLevel from Policy CSP should be used to enable and disable Windows Information Protection (formerly known as Enterprise Data Protection).",
+                  "applicability": {}
+                },
+                {
+                  "name": "Policy",
+                  "path": "./Vendor/MSFT/AppLocker/FamilySafety/StoreApps/Policy",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Policy nodes define the policy for launching executables, Windows Installer files, scripts, store apps, and DLL files. The contents of a given Policy node is precisely the XML format for a RuleCollection node in the corresponding AppLocker XML policy.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "XSD"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "LaunchControl",
+      "path": "./Vendor/MSFT/AppLocker/LaunchControl",
+      "format": "node",
+      "access": [
+        "Get"
+      ],
+      "description": "Insert Description Here",
+      "applicability": {},
+      "children": [
+        {
+          "name": "",
+          "path": "./Vendor/MSFT/AppLocker/LaunchControl/",
+          "format": "node",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "Insert Description Here",
+          "applicability": {},
+          "allowedValues": {
+            "type": "None"
+          },
+          "children": [
+            {
+              "name": "EXE",
+              "path": "./Vendor/MSFT/AppLocker/LaunchControl/EXE",
+              "format": "node",
+              "access": [
+                "Add",
+                "Delete",
+                "Get",
+                "Replace"
+              ],
+              "description": "Insert Description Here",
+              "applicability": {},
+              "children": [
+                {
+                  "name": "EnforcementMode",
+                  "path": "./Vendor/MSFT/AppLocker/LaunchControl/EXE/EnforcementMode",
+                  "format": "chr",
+                  "access": [
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "The EnforcementMode node for Windows Information Protection (formerly known as Enterprise Data Protection) does not affect the behavior of EnterpriseDataProtection. The EDPEnforcementLevel from Policy CSP should be used to enable and disable Windows Information Protection (formerly known as Enterprise Data Protection).",
+                  "applicability": {}
+                },
+                {
+                  "name": "Policy",
+                  "path": "./Vendor/MSFT/AppLocker/LaunchControl/EXE/Policy",
+                  "format": "chr",
+                  "access": [
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Policy nodes define the policy for launching executables, Windows Installer files, scripts, store apps, and DLL files. The contents of a given Policy node is precisely the XML format for a RuleCollection node in the corresponding AppLocker XML policy.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "XSD"
+                  }
+                }
+              ]
+            },
+            {
+              "name": "StoreApps",
+              "path": "./Vendor/MSFT/AppLocker/LaunchControl/StoreApps",
+              "format": "node",
+              "access": [
+                "Add",
+                "Delete",
+                "Get",
+                "Replace"
+              ],
+              "description": "Insert Description Here",
+              "applicability": {},
+              "children": [
+                {
+                  "name": "EnforcementMode",
+                  "path": "./Vendor/MSFT/AppLocker/LaunchControl/StoreApps/EnforcementMode",
+                  "format": "chr",
+                  "access": [
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "The EnforcementMode node for Windows Information Protection (formerly known as Enterprise Data Protection) does not affect the behavior of EnterpriseDataProtection. The EDPEnforcementLevel from Policy CSP should be used to enable and disable Windows Information Protection (formerly known as Enterprise Data Protection).",
+                  "applicability": {}
+                },
+                {
+                  "name": "Policy",
+                  "path": "./Vendor/MSFT/AppLocker/LaunchControl/StoreApps/Policy",
+                  "format": "chr",
+                  "access": [
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Policy nodes define the policy for launching executables, Windows Installer files, scripts, store apps, and DLL files. The contents of a given Policy node is precisely the XML format for a RuleCollection node in the corresponding AppLocker XML policy.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "XSD"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

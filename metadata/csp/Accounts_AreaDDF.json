@@ -1,0 +1,146 @@
+{
+  "name": "Accounts",
+  "path": "./Device/Vendor/MSFT/Policy/Config",
+  "nodes": [
+    {
+      "name": "AllowAddingNonMicrosoftAccountsManually",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Accounts/AllowAddingNonMicrosoftAccountsManually",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Specifies whether user is allowed to add non-MSA email accounts. Most restricted value is 0. Note This policy will only block UI/UX-based methods for adding non-Microsoft accounts. Even if this policy is enforced, you can still provision non-MSA accounts using the EMAIL2 CSP.",
+      "default": "1",
+      "applicability": {
+        "minOsBuild": "10.0.10240",
+        "cspVersion": "1.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Not allowed."
+          },
+          {
+            "value": "1",
+            "description": "Allowed."
+          }
+        ]
+      }
+    },
+    {
+      "name": "AllowMicrosoftAccountConnection",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Accounts/AllowMicrosoftAccountConnection",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Specifies whether the user is allowed to use an MSA account for non-email related connection authentication and services. Most restricted value is 0.",
+      "default": "1",
+      "applicability": {
+        "minOsBuild": "10.0.10240",
+        "cspVersion": "1.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Not allowed."
+          },
+          {
+            "value": "1",
+            "description": "Allowed."
+          }
+        ]
+      }
+    },
+    {
+      "name": "AllowMicrosoftAccountSignInAssistant",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Accounts/AllowMicrosoftAccountSignInAssistant",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Allows IT Admins the ability to disable the Microsoft Account Sign-In Assistant (wlidsvc) NT service. Note If the MSA service is disabled, Windows Update will no longer offer feature updates to devices running Windows 10 1709 or higher. See Feature updates are not being offered while other updates are. NoteIf the MSA service is disabled, the Subscription Activation feature will not work properly and your users will not be able to “step-up” from Windows 10 Pro to Windows 10 Enterprise, because the MSA ticket for license authentication cannot be generated. The machine will remain on Windows 10 Pro and no error will be displayed in the Activation Settings app.",
+      "default": "1",
+      "applicability": {
+        "minOsBuild": "10.0.15063",
+        "cspVersion": "5.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Disabled."
+          },
+          {
+            "value": "1",
+            "description": "Manual start."
+          }
+        ]
+      }
+    },
+    {
+      "name": "DomainNamesForEmailSync",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Accounts/DomainNamesForEmailSync",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.14393",
+        "cspVersion": "4.1",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      }
+    },
+    {
+      "name": "RestrictToEnterpriseDeviceAuthenticationOnly",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Accounts/RestrictToEnterpriseDeviceAuthenticationOnly",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This setting determines whether to only allow enterprise device authentication for the Microsoft Account Sign-in Assistant service (wlidsvc). By default, this setting is disabled and allows both user and device authentication. When the value is set to 1, only allow device authentication, and block user authentication.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.22621",
+        "cspVersion": "11.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Allow both device and user authentication. Do not block user authentication."
+          },
+          {
+            "value": "1",
+            "description": "Only allow device authentication. Block user authentication."
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,393 @@
+{
+  "name": "eUICCs",
+  "path": "./Device/Vendor/MSFT",
+  "nodes": [
+    {
+      "name": "",
+      "path": "./Device/Vendor/MSFT/eUICCs/",
+      "format": "node",
+      "access": [
+        "Get"
+      ],
+      "description": "Represents information associated with an eUICC. There is one subtree for each known eUICC, created by the Local Profile Assistant (LPA) when the eUICC is first seen. The node name is the eUICC ID (EID). The node name \"Default\" represents the currently active eUICC.",
+      "applicability": {},
+      "children": [
+        {
+          "name": "Actions",
+          "path": "./Device/Vendor/MSFT/eUICCs/Actions",
+          "format": "node",
+          "access": [
+            "Get"
+          ],
+          "description": "Actions that can be performed on the eUICC as a whole.",
+          "applicability": {},
+          "children": [
+            {
+              "name": "ResetToFactoryState",
+              "path": "./Device/Vendor/MSFT/eUICCs/Actions/ResetToFactoryState",
+              "format": "chr",
+              "access": [
+                "Exec"
+              ],
+              "description": "This triggers an eUICC Memory Reset, which erases all the eSIM profiles in the eUICC.",
+              "applicability": {}
+            },
+            {
+              "name": "Status",
+              "path": "./Device/Vendor/MSFT/eUICCs/Actions/Status",
+              "format": "int",
+              "access": [
+                "Get"
+              ],
+              "description": "Status of most recent operation, as an HRESULT. S_OK indicates success, S_FALSE indicates operation is in progress, other values represent specific errors.",
+              "default": "0",
+              "applicability": {}
+            }
+          ]
+        },
+        {
+          "name": "DownloadServers",
+          "path": "./Device/Vendor/MSFT/eUICCs/DownloadServers",
+          "format": "node",
+          "access": [
+            "Get"
+          ],
+          "description": "Represents servers used for bulk provisioning and eSIM discovery.",
+          "applicability": {
+            "minOsBuild": "10.0.22000",
+            "cspVersion": "1.0"
+          },
+          "children": [
+            {
+              "name": "",
+              "path": "./Device/Vendor/MSFT/eUICCs/DownloadServers/",
+              "format": "node",
+              "access": [
+                "Add",
+                "Delete",
+                "Get",
+                "Replace"
+              ],
+              "description": "Node representing a bulk download/discovery server. The node name is the fully qualified domain name of the server that will be used. Creation of this subtree triggers a discovery request.",
+              "applicability": {},
+              "children": [
+                {
+                  "name": "AutoEnable",
+                  "path": "./Device/Vendor/MSFT/eUICCs/DownloadServers/AutoEnable",
+                  "format": "bool",
+                  "access": [
+                    "Add",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Indicates whether the discovered profile must be enabled automatically after install. This must be set by the MDM when the ServerName subtree is created.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "ENUM",
+                    "enum": [
+                      {
+                        "value": "false",
+                        "description": "Disable"
+                      },
+                      {
+                        "value": "true",
+                        "description": "Enable"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "DiscoveryState",
+                  "path": "./Device/Vendor/MSFT/eUICCs/DownloadServers/DiscoveryState",
+                  "format": "int",
+                  "access": [
+                    "Get"
+                  ],
+                  "description": "Current state of the discovery operation for this server (Requested = 1, Executing = 2, Completed = 3, Failed = 4).",
+                  "default": "1",
+                  "applicability": {}
+                },
+                {
+                  "name": "ErrorDetail",
+                  "path": "./Device/Vendor/MSFT/eUICCs/DownloadServers/ErrorDetail",
+                  "format": "int",
+                  "access": [
+                    "Get"
+                  ],
+                  "description": "Detailed error if the profile download and install procedure failed (None = 0, CardGeneralFailure = 1, ConfirmationCodeIncorrect = 2, ConfirmationCodeMissing = 3, ConfirmationCodeMaxRetriesExceeded = 4, ForbiddenByPolicy = 5, InvalidMatchingId = 6, NoEligibleProfileForThisDevice = 7, NotEnoughSpaceOnCard = 8, OperationAborted = 9, ProfileEidMismatch = 10, ProfileNotAvailableForNewBinding = 11, ProfileNotReleasedByOperator = 12, RemoteServerGeneralFailure = 13, RemoteServerUnreachable = 14, TimeoutWaitingForUserConsent = 15, OperationProhibitedByProfileClass = 16, ProvisioningProfileNotPresent = 17, NoCorrespondingRequest = 18, TimeoutWaitingForResponse = 19, IccidAlreadyExists = 20, ProfileProcessingError = 21, RemoteServerNotTrusted = 22, ProfileDownloadMaxRetriesExceeded = 23, WinhttpNameNotResolved = 24, WinhttpOperationCancelled = 25).",
+                  "default": "0",
+                  "applicability": {
+                    "minOsBuild": "99.9.99999",
+                    "cspVersion": "9.9"
+                  }
+                },
+                {
+                  "name": "ICCID",
+                  "path": "./Device/Vendor/MSFT/eUICCs/DownloadServers/ICCID",
+                  "format": "chr",
+                  "access": [
+                    "Get"
+                  ],
+                  "description": "The ICCID of the eSIM profile downloaded as a result of successfully running the eSIM bulk activation process policy.",
+                  "applicability": {
+                    "minOsBuild": "99.9.99999",
+                    "cspVersion": "9.9"
+                  }
+                },
+                {
+                  "name": "IsDiscoveryServer",
+                  "path": "./Device/Vendor/MSFT/eUICCs/DownloadServers/IsDiscoveryServer",
+                  "format": "bool",
+                  "access": [
+                    "Add",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Indicates whether the server is a discovery server or if it is used for bulk download. A discovery server is used every time a user requests a profile discovery operation. Optional, default value is false.",
+                  "default": "false",
+                  "applicability": {
+                    "minOsBuild": "10.0.22621",
+                    "cspVersion": "1.0"
+                  },
+                  "allowedValues": {
+                    "type": "ENUM",
+                    "enum": [
+                      {
+                        "value": "false",
+                        "description": "Is Not Discovery Server"
+                      },
+                      {
+                        "value": "true",
+                        "description": "Is Discovery Server"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "MaximumAttempts",
+                  "path": "./Device/Vendor/MSFT/eUICCs/DownloadServers/MaximumAttempts",
+                  "format": "int",
+                  "access": [
+                    "Add",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "How many times profile download should be attempted before giving up. A value of 0 indicates unlimited retry attempts. When a value is not specified, it defaults to 50, which is equivalent to about a month of retry attempts.",
+                  "default": "50",
+                  "applicability": {
+                    "minOsBuild": "99.9.99999",
+                    "cspVersion": "9.9"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Identifier",
+          "path": "./Device/Vendor/MSFT/eUICCs/Identifier",
+          "format": "chr",
+          "access": [
+            "Get"
+          ],
+          "description": "The unique eUICC identifier (EID).",
+          "applicability": {}
+        },
+        {
+          "name": "IsActive",
+          "path": "./Device/Vendor/MSFT/eUICCs/IsActive",
+          "format": "bool",
+          "access": [
+            "Get"
+          ],
+          "description": "Indicates whether this eUICC is physically present and active. Updated only by the LPA.",
+          "applicability": {}
+        },
+        {
+          "name": "PPR1Allowed",
+          "path": "./Device/Vendor/MSFT/eUICCs/PPR1Allowed",
+          "format": "bool",
+          "access": [
+            "Get"
+          ],
+          "description": "Indicates whether the download of a profile with Profile Policy Rule 1 (PPR1) is allowed. If the eUICC has already a profile (regardless of its origin and policy rules associated with it), then the download of a profile with PPR1 is not allowed.",
+          "applicability": {}
+        },
+        {
+          "name": "PPR1AlreadySet",
+          "path": "./Device/Vendor/MSFT/eUICCs/PPR1AlreadySet",
+          "format": "bool",
+          "access": [
+            "Get"
+          ],
+          "description": "Indicates whether the eUICC has already a profile with Profile Policy Rule 1 (PPR1).",
+          "applicability": {}
+        },
+        {
+          "name": "Policies",
+          "path": "./Device/Vendor/MSFT/eUICCs/Policies",
+          "format": "node",
+          "access": [
+            "Get"
+          ],
+          "description": "Device policies associated with the eUICC as a whole (not per-profile).",
+          "applicability": {},
+          "children": [
+            {
+              "name": "LocalUIEnabled",
+              "path": "./Device/Vendor/MSFT/eUICCs/Policies/LocalUIEnabled",
+              "format": "bool",
+              "access": [
+                "Get",
+                "Replace"
+              ],
+              "description": "Determines whether or not the user can make changes to the eSIM through the user interface.",
+              "default": "true",
+              "applicability": {},
+              "allowedValues": {
+                "type": "ENUM",
+                "enum": [
+                  {
+                    "value": "false",
+                    "description": "Disabled"
+                  },
+                  {
+                    "value": "true",
+                    "description": "Enabled"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Profiles",
+          "path": "./Device/Vendor/MSFT/eUICCs/Profiles",
+          "format": "node",
+          "access": [
+            "Get"
+          ],
+          "description": "Represents all enterprise-owned eSIM profiles.",
+          "applicability": {},
+          "children": [
+            {
+              "name": "",
+              "path": "./Device/Vendor/MSFT/eUICCs/Profiles/",
+              "format": "node",
+              "access": [
+                "Add",
+                "Delete",
+                "Get",
+                "Replace"
+              ],
+              "description": "Node representing an enterprise-owned eSIM profile. The node name is the ICCID of the profile (which is a unique identifier). Creation of this subtree triggers an AddProfile request by the LPA (which installs the profile on the eUICC). Removal of this subtree triggers the LPA to delete the profile (if resident on the eUICC).",
+              "applicability": {},
+              "children": [
+                {
+                  "name": "ErrorDetail",
+                  "path": "./Device/Vendor/MSFT/eUICCs/Profiles/ErrorDetail",
+                  "format": "int",
+                  "access": [
+                    "Get"
+                  ],
+                  "description": "Detailed error if the profile download and install procedure failed (None = 0, CardGeneralFailure = 1, ConfirmationCodeMissing = 3, ForbiddenByPolicy = 5, InvalidMatchingId = 6, NoEligibleProfileForThisDevice = 7, NotEnoughSpaceOnCard = 8, ProfileEidMismatch = 10, ProfileNotAvailableForNewBinding = 11, ProfileNotReleasedByOperator = 12, RemoteServerGeneralFailure = 13, RemoteServerUnreachable = 14).",
+                  "default": "0",
+                  "applicability": {}
+                },
+                {
+                  "name": "IsEnabled",
+                  "path": "./Device/Vendor/MSFT/eUICCs/Profiles/IsEnabled",
+                  "format": "bool",
+                  "access": [
+                    "Add",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Indicates whether this eSIM profile is enabled. Can be set by both the MDM and the CSP.",
+                  "applicability": {
+                    "minOsBuild": "10.0.17134",
+                    "cspVersion": "1.0"
+                  },
+                  "allowedValues": {
+                    "type": "ENUM",
+                    "enum": [
+                      {
+                        "value": "false",
+                        "description": "Disabled"
+                      },
+                      {
+                        "value": "true",
+                        "description": "Enabled"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "MatchingID",
+                  "path": "./Device/Vendor/MSFT/eUICCs/Profiles/MatchingID",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Matching ID (activation code token) for eSIM profile download. Must be set by the MDM when the ICCID subtree is created.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "RegEx"
+                  }
+                },
+                {
+                  "name": "PPR1Set",
+                  "path": "./Device/Vendor/MSFT/eUICCs/Profiles/PPR1Set",
+                  "format": "bool",
+                  "access": [
+                    "Get"
+                  ],
+                  "description": "Profile Policy Rule 1 (PPR1) indicates whether disabling of this profile is not allowed (true if not allowed, false otherwise).",
+                  "applicability": {}
+                },
+                {
+                  "name": "PPR2Set",
+                  "path": "./Device/Vendor/MSFT/eUICCs/Profiles/PPR2Set",
+                  "format": "bool",
+                  "access": [
+                    "Get"
+                  ],
+                  "description": "Profile Policy Rule 2 (PPR2) indicates whether deletion of this profile is not allowed (true if not allowed, false otherwise).",
+                  "applicability": {}
+                },
+                {
+                  "name": "ServerName",
+                  "path": "./Device/Vendor/MSFT/eUICCs/Profiles/ServerName",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Fully qualified domain name of the server that can download this eSIM profile. Must be set by the MDM when the ICCID subtree is created.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "None"
+                  }
+                },
+                {
+                  "name": "State",
+                  "path": "./Device/Vendor/MSFT/eUICCs/Profiles/State",
+                  "format": "int",
+                  "access": [
+                    "Get"
+                  ],
+                  "description": "Current state of the eSIM profile (Installing = 1, Installed = 2, Deleting = 3, Error = 4).",
+                  "default": "1",
+                  "applicability": {}
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

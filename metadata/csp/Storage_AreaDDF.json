@@ -1,0 +1,334 @@
+{
+  "name": "Storage",
+  "path": "./Device/Vendor/MSFT/Policy/Config",
+  "nodes": [
+    {
+      "name": "AllowDiskHealthModelUpdates",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Storage/AllowDiskHealthModelUpdates",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Allows disk health model updates. Value type is integer.",
+      "default": "1",
+      "applicability": {
+        "minOsBuild": "10.0.16299",
+        "cspVersion": "6.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Do not allow"
+          },
+          {
+            "value": "1",
+            "description": "Allow"
+          }
+        ]
+      }
+    },
+    {
+      "name": "AllowStorageSenseGlobal",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Storage/AllowStorageSenseGlobal",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Storage Sense can automatically clean some of the user’s files to free up disk space. By default, Storage Sense is automatically turned on when the machine runs into low disk space and is set to run whenever the machine runs into storage pressure. This cadence can be changed in Storage settings or set with the Storage/ConfigStorageSenseGlobalCadence group policy. If you enable this policy setting without setting a cadence, Storage Sense is turned on for the machine with the default cadence of during low free disk space. Users cannot disable Storage Sense, but they can adjust the cadence (unless you also configure the Storage/ConfigStorageSenseGlobalCadence group policy). If you disable this policy setting, the machine will turn off Storage Sense. Users cannot enable Storage Sense. If you do not configure this policy setting, Storage Sense is turned off by default until the user runs into low disk space or the user enables it manually. Users can configure this setting in Storage settings.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.18362",
+        "cspVersion": "9.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "1",
+            "description": "Allow"
+          },
+          {
+            "value": "0",
+            "description": "Block"
+          }
+        ]
+      }
+    },
+    {
+      "name": "AllowStorageSenseTemporaryFilesCleanup",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Storage/AllowStorageSenseTemporaryFilesCleanup",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "When Storage Sense runs, it can delete the user’s temporary files that are not in use. If the Storage/AllowStorageSenseGlobal policy is disabled, then this policy does not have any effect. If you enable this policy setting, Storage Sense will delete the user’s temporary files that are not in use. Users cannot disable this setting in Storage settings. If you disable this policy setting, Storage Sense will not delete the user’s temporary files. Users cannot enable this setting in Storage settings. If you do not configure this policy setting, Storage Sense will delete the user’s temporary files by default. Users can configure this setting in Storage settings.",
+      "default": "1",
+      "applicability": {
+        "minOsBuild": "10.0.18362",
+        "cspVersion": "9.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "1",
+            "description": "Allow"
+          },
+          {
+            "value": "0",
+            "description": "Block"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ConfigStorageSenseCloudContentDehydrationThreshold",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Storage/ConfigStorageSenseCloudContentDehydrationThreshold",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "When Storage Sense runs, it can dehydrate cloud-backed content that hasn’t been opened in a certain amount of days. If the Storage/AllowStorageSenseGlobal policy is disabled, then this policy does not have any effect. If you enable this policy setting, you must provide the minimum number of days a cloud-backed file can remain unopened before Storage Sense dehydrates it. Supported values are: 0–365. If you set this value to zero, Storage Sense will not dehydrate any cloud-backed content. The default value is 0, which never dehydrates cloud-backed content. If you disable or do not configure this policy setting, then Storage Sense will not dehydrate any cloud-backed content by default. Users can configure this setting in Storage settings.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.18362",
+        "cspVersion": "9.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "Range"
+      }
+    },
+    {
+      "name": "ConfigStorageSenseDownloadsCleanupThreshold",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Storage/ConfigStorageSenseDownloadsCleanupThreshold",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "When Storage Sense runs, it can delete files in the user’s Downloads folder if they haven’t been opened for more than a certain number of days. If the Storage/AllowStorageSenseGlobal policy is disabled, then this policy does not have any effect. If you enable this policy setting, you must provide the minimum number of days a file can remain unopened before Storage Sense deletes it from the Downloads folder. Supported values are: 0-365. If you set this value to zero, Storage Sense will not delete files in the user’s Downloads folder. The default is 0, or never deleting files in the Downloads folder. If you disable or do not configure this policy setting, then Storage Sense will not delete files in the user’s Downloads folder by default. Users can configure this setting in Storage settings.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.18362",
+        "cspVersion": "9.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "Range"
+      }
+    },
+    {
+      "name": "ConfigStorageSenseGlobalCadence",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Storage/ConfigStorageSenseGlobalCadence",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Storage Sense can automatically clean some of the user’s files to free up disk space. If the Storage/AllowStorageSenseGlobal policy is disabled, then this policy does not have any effect. If you enable this policy setting, you must provide the desired Storage Sense cadence. The following are supported options:1 – Daily7 – Weekly30 – Monthly0 – During low free disk spaceThe default is 0 (during low free disk space). If you do not configure this policy setting, then the Storage Sense cadence is set to “during low free disk space” by default. Users can configure this setting in Storage settings.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.18362",
+        "cspVersion": "9.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "Range"
+      }
+    },
+    {
+      "name": "ConfigStorageSenseRecycleBinCleanupThreshold",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Storage/ConfigStorageSenseRecycleBinCleanupThreshold",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "When Storage Sense runs, it can delete files in the user’s Recycle Bin if they have been there for over a certain amount of days. If the Storage/AllowStorageSenseGlobal policy is disabled, then this policy does not have any effect. If you enable this policy setting, you must provide the minimum age threshold (in days) of a file in the Recycle Bin before Storage Sense will delete it. Supported values are: 0–365. If you set this value to zero, Storage Sense will not delete files in the user’s Recycle Bin. The default is 30 days. If you disable or do not configure this policy setting, Storage Sense will delete files in the user’s Recycle Bin that have been there for over 30 days by default. Users can configure this setting in Storage settings.",
+      "default": "30",
+      "applicability": {
+        "minOsBuild": "10.0.18362",
+        "cspVersion": "9.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "Range"
+      }
+    },
+    {
+      "name": "EnhancedStorageDevices",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Storage/EnhancedStorageDevices",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.15063",
+        "cspVersion": "5.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "EnhancedStorage~AT~System~EnStorDeviceAccess",
+          "name": "TCGSecurityActivationDisabled",
+          "file": "enhancedstorage.admx"
+        }
+      }
+    },
+    {
+      "name": "RemovableDiskDenyWriteAccess",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Storage/RemovableDiskDenyWriteAccess",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "If you enable this policy setting, write access is denied to this removable storage class. If you disable or do not configure this policy setting, write access is allowed to this removable storage class. Note: To require that users write data to BitLocker-protected storage, enable the policy setting \"Deny write access to drives not protected by BitLocker,\" which is located in \"Computer Configuration\\Administrative Templates\\Windows Components\\BitLocker Drive Encryption\\Removable Data Drives.\"",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.17763",
+        "cspVersion": "8.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Disabled."
+          },
+          {
+            "value": "1",
+            "description": "Enabled."
+          }
+        ]
+      }
+    },
+    {
+      "name": "WPDDevicesDenyReadAccessPerDevice",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Storage/WPDDevicesDenyReadAccessPerDevice",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000",
+        "cspVersion": "11.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "RemovableStorage~AT~System~DeviceAccess",
+          "name": "WPDDevices_DenyRead_Access_2",
+          "file": "RemovableStorage.admx"
+        }
+      }
+    },
+    {
+      "name": "WPDDevicesDenyReadAccessPerUser",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Storage/WPDDevicesDenyReadAccessPerUser",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000",
+        "cspVersion": "11.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "RemovableStorage~AT~System~DeviceAccess",
+          "name": "WPDDevices_DenyRead_Access_1",
+          "file": "RemovableStorage.admx"
+        }
+      }
+    },
+    {
+      "name": "WPDDevicesDenyWriteAccessPerDevice",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Storage/WPDDevicesDenyWriteAccessPerDevice",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000",
+        "cspVersion": "11.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "RemovableStorage~AT~System~DeviceAccess",
+          "name": "WPDDevices_DenyWrite_Access_2",
+          "file": "RemovableStorage.admx"
+        }
+      }
+    },
+    {
+      "name": "WPDDevicesDenyWriteAccessPerUser",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Storage/WPDDevicesDenyWriteAccessPerUser",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000",
+        "cspVersion": "11.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "RemovableStorage~AT~System~DeviceAccess",
+          "name": "WPDDevices_DenyWrite_Access_1",
+          "file": "RemovableStorage.admx"
+        }
+      }
+    }
+  ]
+}

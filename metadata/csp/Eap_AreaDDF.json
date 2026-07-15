@@ -1,0 +1,37 @@
+{
+  "name": "Eap",
+  "path": "./Device/Vendor/MSFT/Policy/Config",
+  "nodes": [
+    {
+      "name": "AllowTLS1_3",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Eap/AllowTLS1_3",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Added in Windows 10, version 21H1. Allow or disallow use of TLS 1.3 during EAP client authentication.",
+      "default": "1",
+      "applicability": {
+        "minOsBuild": "10.0.22000",
+        "cspVersion": "11.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Use of TLS version 1.3 is not allowed for authentication."
+          },
+          {
+            "value": "1",
+            "description": "Use of TLS version 1.3 is allowed for authentication."
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,451 @@
+{
+  "name": "Settings",
+  "path": "./Device/Vendor/MSFT/Policy/Config",
+  "nodes": [
+    {
+      "name": "AllowAutoPlay",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Settings/AllowAutoPlay",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Allows the user to change Auto Play settings. Note Setting this policy to 0 (Not allowed) does not affect the autoplay dialog box that appears when a device is connected.",
+      "default": "1",
+      "applicability": {
+        "minOsBuild": "10.0.10240",
+        "cspVersion": "1.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Not allowed."
+          },
+          {
+            "value": "1",
+            "description": "Allowed."
+          }
+        ]
+      }
+    },
+    {
+      "name": "AllowDataSense",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Settings/AllowDataSense",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Allows the user to change Data Sense settings.",
+      "default": "1",
+      "applicability": {
+        "minOsBuild": "10.0.10240",
+        "cspVersion": "1.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Not allowed."
+          },
+          {
+            "value": "1",
+            "description": "Allowed."
+          }
+        ]
+      }
+    },
+    {
+      "name": "AllowDateTime",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Settings/AllowDateTime",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Allows the user to change date and time settings.",
+      "default": "1",
+      "applicability": {
+        "minOsBuild": "10.0.10240",
+        "cspVersion": "1.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Not allowed."
+          },
+          {
+            "value": "1",
+            "description": "Allowed."
+          }
+        ]
+      }
+    },
+    {
+      "name": "AllowEditDeviceName",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Settings/AllowEditDeviceName",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This policy is deprecated.",
+      "default": "1",
+      "deprecatedOsBuild": "10.0.22000",
+      "applicability": {
+        "minOsBuild": "10.0.14393",
+        "cspVersion": "4.1"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Not allowed."
+          },
+          {
+            "value": "1",
+            "description": "Allowed."
+          }
+        ]
+      }
+    },
+    {
+      "name": "AllowLanguage",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Settings/AllowLanguage",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Allows the user to change the language settings.",
+      "default": "1",
+      "applicability": {
+        "minOsBuild": "10.0.10240",
+        "cspVersion": "1.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Not allowed."
+          },
+          {
+            "value": "1",
+            "description": "Allowed."
+          }
+        ]
+      }
+    },
+    {
+      "name": "AllowOnlineTips",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Settings/AllowOnlineTips",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Enables or disables the retrieval of online tips and help for the Settings app. If disabled, Settings will not contact Microsoft content services to retrieve tips and help content.",
+      "default": "1",
+      "applicability": {
+        "minOsBuild": "10.0.16299",
+        "cspVersion": "6.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Not allowed."
+          },
+          {
+            "value": "1",
+            "description": "Allowed."
+          }
+        ]
+      }
+    },
+    {
+      "name": "AllowPowerSleep",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Settings/AllowPowerSleep",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Allows the user to change power and sleep settings.",
+      "default": "1",
+      "applicability": {
+        "minOsBuild": "10.0.10240",
+        "cspVersion": "1.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Not allowed."
+          },
+          {
+            "value": "1",
+            "description": "Allowed."
+          }
+        ]
+      }
+    },
+    {
+      "name": "AllowRegion",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Settings/AllowRegion",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Allows the user to change the region settings.",
+      "default": "1",
+      "applicability": {
+        "minOsBuild": "10.0.10240",
+        "cspVersion": "1.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Not allowed."
+          },
+          {
+            "value": "1",
+            "description": "Allowed."
+          }
+        ]
+      }
+    },
+    {
+      "name": "AllowSignInOptions",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Settings/AllowSignInOptions",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Allows the user to change sign-in options.",
+      "default": "1",
+      "applicability": {
+        "minOsBuild": "10.0.10240",
+        "cspVersion": "1.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Not allowed."
+          },
+          {
+            "value": "1",
+            "description": "Allowed."
+          }
+        ]
+      }
+    },
+    {
+      "name": "AllowVPN",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Settings/AllowVPN",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Allows the user to change VPN settings.",
+      "default": "1",
+      "applicability": {
+        "minOsBuild": "10.0.10240",
+        "cspVersion": "1.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Not allowed."
+          },
+          {
+            "value": "1",
+            "description": "Allowed."
+          }
+        ]
+      }
+    },
+    {
+      "name": "AllowWorkplace",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Settings/AllowWorkplace",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Allows user to change workplace settings.",
+      "default": "1",
+      "applicability": {
+        "minOsBuild": "10.0.10240",
+        "cspVersion": "1.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Not allowed."
+          },
+          {
+            "value": "1",
+            "description": "Allowed."
+          }
+        ]
+      }
+    },
+    {
+      "name": "AllowYourAccount",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Settings/AllowYourAccount",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Allows user to change account settings.",
+      "default": "1",
+      "applicability": {
+        "minOsBuild": "10.0.10240",
+        "cspVersion": "1.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Not allowed."
+          },
+          {
+            "value": "1",
+            "description": "Allowed."
+          }
+        ]
+      }
+    },
+    {
+      "name": "ConfigureTaskbarCalendar",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Settings/ConfigureTaskbarCalendar",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Allows IT Admins to configure the default setting for showing additional calendars (besides the default calendar for the locale) in the taskbar clock and calendar flyout. In this version of Windows 10, supported additional calendars are: Simplified or Traditional Chinese lunar calendar. Turning on one of these calendars will display Chinese lunar dates below the default calendar for the locale. Select Don't show additional calendars to prevent showing other calendars besides the default calendar for the locale.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.15063",
+        "cspVersion": "5.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "User will be allowed to configure the setting."
+          },
+          {
+            "value": "1",
+            "description": "Don't show additional calendars."
+          },
+          {
+            "value": "2",
+            "description": "Simplified Chinese (Lunar)."
+          },
+          {
+            "value": "3",
+            "description": "Traditional Chinese (Lunar)."
+          }
+        ]
+      }
+    },
+    {
+      "name": "PageVisibilityList",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Settings/PageVisibilityList",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Allows IT Admins to either prevent specific pages in the System Settings app from being visible or accessible, or to do so for all pages except those specified. The mode will be specified by the policy string beginning with either the string showonly: or hide:.  Pages are identified by a shortened version of their already published URIs, which is the URI minus the ms-settings: prefix. For example, if the URI for a settings page is ms-settings:bluetooth, the page identifier used in the policy will be just bluetooth. Multiple page identifiers are separated by semicolons. The following example illustrates a policy that would allow access only to the about and bluetooth pages, which have URI ms-settings:about and ms-settings:bluetooth respectively:showonly:about;bluetooth. If the policy is not specified, the behavior will be that no pages are affected. If the policy string is formatted incorrectly, it will be ignored entirely (i. e. treated as not set) to prevent the machine from becoming unserviceable if data corruption occurs. Note that if a page is already hidden for another reason, then it will remain hidden even if it is in a showonly: list. The format of the PageVisibilityList value is as follows: The value is a unicode string up to 10,000 characters long, which will be used without case sensitivity. There are two variants: one that shows only the given pages and one which hides the given pages. The first variant starts with the string showonly: and the second with the string hide:. Following the variant identifier is a semicolon-delimited list of page identifiers, which must not have any extra whitespace. Each page identifier is the ms-settings:xyz URI for the page, minus the ms-settings: prefix, so the identifier for the page with URI ms-settings:network-wifi would be just network-wifi. The default value for this setting is an empty string, which is interpreted as show everything. Example 1, specifies that only the wifi and bluetooth pages should be shown (they have URIs ms-settings:network-wifi and ms-settings:bluetooth). All other pages (and the categories they're in) will be hidden:showonly:network-wifi;bluetooth. Example 2, specifies that the wifi page should not be shown:hide:network-wifi",
+      "applicability": {
+        "minOsBuild": "10.0.15063",
+        "cspVersion": "5.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      }
+    },
+    {
+      "name": "PageVisibilityList",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Settings/PageVisibilityList",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Allows IT Admins to either prevent specific pages in the System Settings app from being visible or accessible, or to do so for all pages except those specified. The mode will be specified by the policy string beginning with either the string showonly: or hide:.  Pages are identified by a shortened version of their already published URIs, which is the URI minus the ms-settings: prefix. For example, if the URI for a settings page is ms-settings:bluetooth, the page identifier used in the policy will be just bluetooth. Multiple page identifiers are separated by semicolons. The following example illustrates a policy that would allow access only to the about and bluetooth pages, which have URI ms-settings:about and ms-settings:bluetooth respectively:showonly:about;bluetooth. If the policy is not specified, the behavior will be that no pages are affected. If the policy string is formatted incorrectly, it will be ignored entirely (i. e. treated as not set) to prevent the machine from becoming unserviceable if data corruption occurs. Note that if a page is already hidden for another reason, then it will remain hidden even if it is in a showonly: list. The format of the PageVisibilityList value is as follows: The value is a unicode string up to 10,000 characters long, which will be used without case sensitivity. There are two variants: one that shows only the given pages and one which hides the given pages. The first variant starts with the string showonly: and the second with the string hide:. Following the variant identifier is a semicolon-delimited list of page identifiers, which must not have any extra whitespace. Each page identifier is the ms-settings:xyz URI for the page, minus the ms-settings: prefix, so the identifier for the page with URI ms-settings:network-wifi would be just network-wifi. The default value for this setting is an empty string, which is interpreted as show everything. Example 1, specifies that only the wifi and bluetooth pages should be shown (they have URIs ms-settings:network-wifi and ms-settings:bluetooth). All other pages (and the categories they're in) will be hidden:showonly:network-wifi;bluetooth. Example 2, specifies that the wifi page should not be shown:hide:network-wifi",
+      "applicability": {
+        "minOsBuild": "10.0.15063",
+        "cspVersion": "5.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      }
+    }
+  ]
+}

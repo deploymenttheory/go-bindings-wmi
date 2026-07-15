@@ -1,0 +1,880 @@
+{
+  "name": "CertificateStore",
+  "path": "./Device/Vendor/MSFT",
+  "nodes": [
+    {
+      "name": "CA",
+      "path": "./Device/Vendor/MSFT/CertificateStore/CA",
+      "format": "node",
+      "access": [
+        "Get"
+      ],
+      "description": "This cryptographic store contains intermediary certification authorities.",
+      "applicability": {},
+      "children": [
+        {
+          "name": "",
+          "path": "./Device/Vendor/MSFT/CertificateStore/CA/",
+          "format": "node",
+          "access": [
+            "Delete",
+            "Get"
+          ],
+          "description": "The SHA1 hash for the certificate. The 20-byte SHA1 hash of the certificate is specified in hexadecimal. This node is implicitly created only when the EncodedCertificate node is added.",
+          "applicability": {},
+          "children": [
+            {
+              "name": "EncodedCertificate",
+              "path": "./Device/Vendor/MSFT/CertificateStore/CA/EncodedCertificate",
+              "format": "b64",
+              "access": [
+                "Add",
+                "Get",
+                "Replace"
+              ],
+              "description": "The base64 Encoded X.509 certificate",
+              "applicability": {}
+            },
+            {
+              "name": "IssuedBy",
+              "path": "./Device/Vendor/MSFT/CertificateStore/CA/IssuedBy",
+              "format": "chr",
+              "access": [
+                "Get"
+              ],
+              "description": "The name of the certificate issuer. This node is implicitly created only when the EncodedCertificate node is added.",
+              "applicability": {}
+            },
+            {
+              "name": "IssuedTo",
+              "path": "./Device/Vendor/MSFT/CertificateStore/CA/IssuedTo",
+              "format": "chr",
+              "access": [
+                "Get"
+              ],
+              "description": "The name of the certificate subject. This node is implicitly created only when the EncodedCertificate node is added.",
+              "applicability": {}
+            },
+            {
+              "name": "TemplateName",
+              "path": "./Device/Vendor/MSFT/CertificateStore/CA/TemplateName",
+              "format": "chr",
+              "access": [
+                "Get"
+              ],
+              "description": "Returns the certificate template name.",
+              "applicability": {}
+            },
+            {
+              "name": "ValidFrom",
+              "path": "./Device/Vendor/MSFT/CertificateStore/CA/ValidFrom",
+              "format": "chr",
+              "access": [
+                "Get"
+              ],
+              "description": "The starting date of the certificate's validity. This node is implicitly created only when the EncodedCertificate node is added.",
+              "applicability": {}
+            },
+            {
+              "name": "ValidTo",
+              "path": "./Device/Vendor/MSFT/CertificateStore/CA/ValidTo",
+              "format": "chr",
+              "access": [
+                "Get"
+              ],
+              "description": "The expiration date of the certificate. This node is implicitly created only when the EncodedCertificate node is added.",
+              "applicability": {}
+            }
+          ]
+        },
+        {
+          "name": "System",
+          "path": "./Device/Vendor/MSFT/CertificateStore/CA/System",
+          "format": "node",
+          "access": [
+            "Get"
+          ],
+          "description": "This store holds the System portion of the CA store.",
+          "applicability": {},
+          "children": [
+            {
+              "name": "",
+              "path": "./Device/Vendor/MSFT/CertificateStore/CA/System/",
+              "format": "node",
+              "access": [
+                "Delete",
+                "Get"
+              ],
+              "description": "The SHA1 hash for the certificate. The 20-byte SHA1 hash of the certificate is specified in hexadecimal. This node is implicitly created only when the EncodedCertificate node is added.",
+              "applicability": {},
+              "children": [
+                {
+                  "name": "EncodedCertificate",
+                  "path": "./Device/Vendor/MSFT/CertificateStore/CA/System/EncodedCertificate",
+                  "format": "b64",
+                  "access": [
+                    "Add",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "The base64 Encoded X.509 certificate.",
+                  "applicability": {}
+                },
+                {
+                  "name": "IssuedBy",
+                  "path": "./Device/Vendor/MSFT/CertificateStore/CA/System/IssuedBy",
+                  "format": "chr",
+                  "access": [
+                    "Get"
+                  ],
+                  "description": "The name of the certificate issuer. This node is implicitly created only when the EncodedCertificate node is added.",
+                  "applicability": {}
+                },
+                {
+                  "name": "IssuedTo",
+                  "path": "./Device/Vendor/MSFT/CertificateStore/CA/System/IssuedTo",
+                  "format": "chr",
+                  "access": [
+                    "Get"
+                  ],
+                  "description": "The name of the certificate subject. This node is implicitly created only when the EncodedCertificate node is added.",
+                  "applicability": {}
+                },
+                {
+                  "name": "TemplateName",
+                  "path": "./Device/Vendor/MSFT/CertificateStore/CA/System/TemplateName",
+                  "format": "chr",
+                  "access": [
+                    "Get"
+                  ],
+                  "description": "Returns the certificate template name.",
+                  "applicability": {}
+                },
+                {
+                  "name": "ValidFrom",
+                  "path": "./Device/Vendor/MSFT/CertificateStore/CA/System/ValidFrom",
+                  "format": "chr",
+                  "access": [
+                    "Get"
+                  ],
+                  "description": "The starting date of the certificate's validity. This node is implicitly created only when the EncodedCertificate node is added.",
+                  "applicability": {}
+                },
+                {
+                  "name": "ValidTo",
+                  "path": "./Device/Vendor/MSFT/CertificateStore/CA/System/ValidTo",
+                  "format": "chr",
+                  "access": [
+                    "Get"
+                  ],
+                  "description": "The expiration date of the certificate. This node is implicitly created only when the EncodedCertificate node is added.",
+                  "applicability": {}
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "MY",
+      "path": "./Device/Vendor/MSFT/CertificateStore/MY",
+      "format": "node",
+      "access": [
+        "Get"
+      ],
+      "description": "This store keeps all end-user personal certificates.",
+      "applicability": {},
+      "children": [
+        {
+          "name": "SCEP",
+          "path": "./Device/Vendor/MSFT/CertificateStore/MY/SCEP",
+          "format": "node",
+          "access": [
+            "Get"
+          ],
+          "description": "This store holds the SCEP portion of the MY store and handle operations related to SCEP certificate enrollment.",
+          "deprecatedOsBuild": "10.0.22000",
+          "applicability": {},
+          "children": [
+            {
+              "name": "",
+              "path": "./Device/Vendor/MSFT/CertificateStore/MY/SCEP/",
+              "format": "node",
+              "access": [
+                "Add",
+                "Delete",
+                "Get"
+              ],
+              "description": "The UniqueID for the SCEP enrollment request. Each client certificate should have different unique ID.",
+              "applicability": {},
+              "children": [
+                {
+                  "name": "CertThumbPrint",
+                  "path": "./Device/Vendor/MSFT/CertificateStore/MY/SCEP/CertThumbPrint",
+                  "format": "chr",
+                  "access": [
+                    "Get"
+                  ],
+                  "description": "Specify the current cert’s thumbprint.",
+                  "applicability": {}
+                },
+                {
+                  "name": "ErrorCode",
+                  "path": "./Device/Vendor/MSFT/CertificateStore/MY/SCEP/ErrorCode",
+                  "format": "int",
+                  "access": [
+                    "Get"
+                  ],
+                  "description": "Specify the last hresult in case enroll action failed.",
+                  "applicability": {}
+                },
+                {
+                  "name": "Install",
+                  "path": "./Device/Vendor/MSFT/CertificateStore/MY/SCEP/Install",
+                  "format": "node",
+                  "access": [
+                    "Get"
+                  ],
+                  "description": "The group to represent the install request",
+                  "applicability": {},
+                  "children": [
+                    {
+                      "name": "CAThumbPrint",
+                      "path": "./Device/Vendor/MSFT/CertificateStore/MY/SCEP/Install/CAThumbPrint",
+                      "format": "chr",
+                      "access": [
+                        "Add",
+                        "Get"
+                      ],
+                      "description": "Specify root CA thumbprint.",
+                      "applicability": {}
+                    },
+                    {
+                      "name": "Challenge",
+                      "path": "./Device/Vendor/MSFT/CertificateStore/MY/SCEP/Install/Challenge",
+                      "format": "chr",
+                      "access": [
+                        "Add",
+                        "Get"
+                      ],
+                      "description": "Enroll requester authentication shared secret.",
+                      "applicability": {}
+                    },
+                    {
+                      "name": "EKUMapping",
+                      "path": "./Device/Vendor/MSFT/CertificateStore/MY/SCEP/Install/EKUMapping",
+                      "format": "chr",
+                      "access": [
+                        "Add",
+                        "Get"
+                      ],
+                      "description": "Specify extended key usages. The list of OIDs are separated by plus “+”.",
+                      "applicability": {}
+                    },
+                    {
+                      "name": "Enroll",
+                      "path": "./Device/Vendor/MSFT/CertificateStore/MY/SCEP/Install/Enroll",
+                      "format": "null",
+                      "access": [
+                        "Exec"
+                      ],
+                      "description": "Start the cert enrollment.",
+                      "applicability": {}
+                    },
+                    {
+                      "name": "HashAlgrithm",
+                      "path": "./Device/Vendor/MSFT/CertificateStore/MY/SCEP/Install/HashAlgrithm",
+                      "format": "chr",
+                      "access": [
+                        "Add",
+                        "Get"
+                      ],
+                      "description": "Client create Cert enroll request, get supported hash OIalgorithm from SCEP server  and  match it with one specified in this parameter.",
+                      "applicability": {}
+                    },
+                    {
+                      "name": "KeyLength",
+                      "path": "./Device/Vendor/MSFT/CertificateStore/MY/SCEP/Install/KeyLength",
+                      "format": "chr",
+                      "access": [
+                        "Add",
+                        "Get"
+                      ],
+                      "description": "Specify private key length (RSA).",
+                      "applicability": {}
+                    },
+                    {
+                      "name": "KeyProtection",
+                      "path": "./Device/Vendor/MSFT/CertificateStore/MY/SCEP/Install/KeyProtection",
+                      "format": "int",
+                      "access": [
+                        "Add",
+                        "Get"
+                      ],
+                      "description": "Specify where to keep the private key.",
+                      "applicability": {}
+                    },
+                    {
+                      "name": "KeyUsage",
+                      "path": "./Device/Vendor/MSFT/CertificateStore/MY/SCEP/Install/KeyUsage",
+                      "format": "int",
+                      "access": [
+                        "Add",
+                        "Get"
+                      ],
+                      "description": "Specify the key usage bits (0x80, 0x20, 0xA0) for the cert.",
+                      "applicability": {}
+                    },
+                    {
+                      "name": "RetryCount",
+                      "path": "./Device/Vendor/MSFT/CertificateStore/MY/SCEP/Install/RetryCount",
+                      "format": "int",
+                      "access": [
+                        "Add",
+                        "Get"
+                      ],
+                      "description": "When the SCEP sends pending status, specify device retry times.",
+                      "applicability": {}
+                    },
+                    {
+                      "name": "RetryDelay",
+                      "path": "./Device/Vendor/MSFT/CertificateStore/MY/SCEP/Install/RetryDelay",
+                      "format": "int",
+                      "access": [
+                        "Add",
+                        "Get"
+                      ],
+                      "description": "When the SCEP server sends pending status, specify device retry waiting time in minutes.",
+                      "applicability": {}
+                    },
+                    {
+                      "name": "ServerURL",
+                      "path": "./Device/Vendor/MSFT/CertificateStore/MY/SCEP/Install/ServerURL",
+                      "format": "chr",
+                      "access": [
+                        "Add",
+                        "Get"
+                      ],
+                      "description": "Specify the cert enrollment server.",
+                      "applicability": {}
+                    },
+                    {
+                      "name": "SubjectAlternativeNames",
+                      "path": "./Device/Vendor/MSFT/CertificateStore/MY/SCEP/Install/SubjectAlternativeNames",
+                      "format": "chr",
+                      "access": [
+                        "Add",
+                        "Get"
+                      ],
+                      "description": "Specify subject alternative name. Multiple alternative names could be specified by this node. Each name is the combination of name format+actual name. Each pair is separated by semi-comma.",
+                      "applicability": {}
+                    },
+                    {
+                      "name": "SubjectName",
+                      "path": "./Device/Vendor/MSFT/CertificateStore/MY/SCEP/Install/SubjectName",
+                      "format": "chr",
+                      "access": [
+                        "Add",
+                        "Get"
+                      ],
+                      "description": "Specify the subject name.",
+                      "applicability": {}
+                    },
+                    {
+                      "name": "TemplateName",
+                      "path": "./Device/Vendor/MSFT/CertificateStore/MY/SCEP/Install/TemplateName",
+                      "format": "chr",
+                      "access": [
+                        "Add",
+                        "Get"
+                      ],
+                      "description": "Certificate Template Name OID (As in AD used by PKI infrastructure.",
+                      "applicability": {}
+                    },
+                    {
+                      "name": "ValidPeriod",
+                      "path": "./Device/Vendor/MSFT/CertificateStore/MY/SCEP/Install/ValidPeriod",
+                      "format": "chr",
+                      "access": [
+                        "Get"
+                      ],
+                      "description": "Specify the period of time that cert is valid. The valid period specified by MDM will overwrite the valid period specified in cert template.",
+                      "applicability": {}
+                    },
+                    {
+                      "name": "ValidPeriodUnit",
+                      "path": "./Device/Vendor/MSFT/CertificateStore/MY/SCEP/Install/ValidPeriodUnit",
+                      "format": "chr",
+                      "access": [
+                        "Add",
+                        "Get"
+                      ],
+                      "description": "Specify valid period unit type.",
+                      "applicability": {}
+                    }
+                  ]
+                },
+                {
+                  "name": "Status",
+                  "path": "./Device/Vendor/MSFT/CertificateStore/MY/SCEP/Status",
+                  "format": "int",
+                  "access": [
+                    "Get"
+                  ],
+                  "description": "Specify the latest status for the certificate due to enroll request.",
+                  "applicability": {}
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "User",
+          "path": "./Device/Vendor/MSFT/CertificateStore/MY/User",
+          "format": "node",
+          "access": [
+            "Get"
+          ],
+          "description": "This store holds the User portion of the MY store.",
+          "applicability": {},
+          "children": [
+            {
+              "name": "",
+              "path": "./Device/Vendor/MSFT/CertificateStore/MY/User/",
+              "format": "node",
+              "access": [
+                "Delete",
+                "Get"
+              ],
+              "description": "The SHA1 hash for the certificate. The 20-byte SHA1 hash of the certificate is specified in hexadecimal. This node is implicitly created only when the EncodedCertificate node is added.",
+              "applicability": {},
+              "children": [
+                {
+                  "name": "EncodedCertificate",
+                  "path": "./Device/Vendor/MSFT/CertificateStore/MY/User/EncodedCertificate",
+                  "format": "b64",
+                  "access": [
+                    "Add",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "The base64 Encoded X.509 certificate. Note that though during MDM enrollment, enrollment server could use WAP XML format to add public part of MDM client cert via EncodedCertificate node, properly enroll a client certificate including private needs a cert enroll protocol handle it  or user installs it manually. In WP, the server cannot purely rely on CertificateStore CSP to install a client certificate including private key.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "None"
+                  }
+                },
+                {
+                  "name": "IssuedBy",
+                  "path": "./Device/Vendor/MSFT/CertificateStore/MY/User/IssuedBy",
+                  "format": "chr",
+                  "access": [
+                    "Get"
+                  ],
+                  "description": "The name of the certificate issuer. This node is implicitly created only when the EncodedCertificate node is added.",
+                  "applicability": {}
+                },
+                {
+                  "name": "IssuedTo",
+                  "path": "./Device/Vendor/MSFT/CertificateStore/MY/User/IssuedTo",
+                  "format": "chr",
+                  "access": [
+                    "Get"
+                  ],
+                  "description": "The name of the certificate subject. This node is implicitly created only when the EncodedCertificate node is added.",
+                  "applicability": {}
+                },
+                {
+                  "name": "TemplateName",
+                  "path": "./Device/Vendor/MSFT/CertificateStore/MY/User/TemplateName",
+                  "format": "chr",
+                  "access": [
+                    "Get"
+                  ],
+                  "description": "Returns the certificate template name.",
+                  "applicability": {}
+                },
+                {
+                  "name": "ValidFrom",
+                  "path": "./Device/Vendor/MSFT/CertificateStore/MY/User/ValidFrom",
+                  "format": "chr",
+                  "access": [
+                    "Get"
+                  ],
+                  "description": "The starting date of the certificate's validity. This node is implicitly created only when the EncodedCertificate node is added.",
+                  "applicability": {}
+                },
+                {
+                  "name": "ValidTo",
+                  "path": "./Device/Vendor/MSFT/CertificateStore/MY/User/ValidTo",
+                  "format": "chr",
+                  "access": [
+                    "Get"
+                  ],
+                  "description": "The expiration date of the certificate. This node is implicitly created only when the EncodedCertificate node is added.",
+                  "applicability": {}
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "WSTEP",
+          "path": "./Device/Vendor/MSFT/CertificateStore/MY/WSTEP",
+          "format": "node",
+          "access": [
+            "Get"
+          ],
+          "description": "The parent node that hosts  client certificate that is enrolled via WSTEP, e.g. the certificate that is enrolled during MDM enrollment.",
+          "applicability": {},
+          "children": [
+            {
+              "name": "CertThumprint",
+              "path": "./Device/Vendor/MSFT/CertificateStore/MY/WSTEP/CertThumprint",
+              "format": "chr",
+              "access": [
+                "Get"
+              ],
+              "description": "The thumb print of enrolled MDM client certificate.",
+              "applicability": {}
+            },
+            {
+              "name": "Renew",
+              "path": "./Device/Vendor/MSFT/CertificateStore/MY/WSTEP/Renew",
+              "format": "node",
+              "access": [
+                "Get"
+              ],
+              "description": "The parent node to group renewal related settings.",
+              "applicability": {},
+              "children": [
+                {
+                  "name": "ErrorCode",
+                  "path": "./Device/Vendor/MSFT/CertificateStore/MY/WSTEP/Renew/ErrorCode",
+                  "format": "int",
+                  "access": [
+                    "Get"
+                  ],
+                  "description": "If certificate renew fails, this node provide the last hresult code during renew process.",
+                  "applicability": {}
+                },
+                {
+                  "name": "LastRenewalAttemptTime",
+                  "path": "./Device/Vendor/MSFT/CertificateStore/MY/WSTEP/Renew/LastRenewalAttemptTime",
+                  "format": "time",
+                  "access": [
+                    "Get"
+                  ],
+                  "description": "Time of last attempted renew",
+                  "applicability": {
+                    "minOsBuild": "10.0.14393",
+                    "cspVersion": "1.0"
+                  }
+                },
+                {
+                  "name": "ROBOSupport",
+                  "path": "./Device/Vendor/MSFT/CertificateStore/MY/WSTEP/Renew/ROBOSupport",
+                  "format": "bool",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Optional. Notify the client whether enrollment server supports ROBO auto certificate renew. NOTE: This flag is only needed to the device which is MDM enrolled via On-premise authentication method. For MDM enrolled with federated authentication, ROBO is the only supported renewal method. If the server sets this node value to be false or delete this node for federated enrolled device, the configuration will fail with OMA DM error code 405.",
+                  "default": "true",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "ENUM",
+                    "enum": [
+                      {
+                        "value": "true",
+                        "description": "True"
+                      },
+                      {
+                        "value": "false",
+                        "description": "False"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "RenewNow",
+                  "path": "./Device/Vendor/MSFT/CertificateStore/MY/WSTEP/Renew/RenewNow",
+                  "format": "null",
+                  "access": [
+                    "Exec"
+                  ],
+                  "description": "Initiate a renew now",
+                  "applicability": {
+                    "minOsBuild": "10.0.14393",
+                    "cspVersion": "1.0"
+                  }
+                },
+                {
+                  "name": "RenewPeriod",
+                  "path": "./Device/Vendor/MSFT/CertificateStore/MY/WSTEP/Renew/RenewPeriod",
+                  "format": "int",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Specify the number of days prior to the enrollment cert expiration to prompt the user to renew.",
+                  "default": "42",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "Range"
+                  }
+                },
+                {
+                  "name": "RetryAfterExpiryInterval",
+                  "path": "./Device/Vendor/MSFT/CertificateStore/MY/WSTEP/Renew/RetryAfterExpiryInterval",
+                  "format": "time",
+                  "access": [
+                    "Add",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "How long after the enrollment cert has expiried to keep trying to renew",
+                  "applicability": {
+                    "minOsBuild": "10.0.15063",
+                    "cspVersion": "1.0"
+                  },
+                  "allowedValues": {
+                    "type": "None"
+                  }
+                },
+                {
+                  "name": "RetryInterval",
+                  "path": "./Device/Vendor/MSFT/CertificateStore/MY/WSTEP/Renew/RetryInterval",
+                  "format": "int",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Optional. This parameter specifies retry interval when previous renew failed (in days). It applies to both manual cert renewal and ROBO cert renewal. Retry schedule will stop at cert expiration date. For ROBO renewal failure, the client retries the renewal periodically until the device reaches the certificate expiration date. This parameter specifies the waiting period for ROBO renewal retries. For manual retry failure, there are no built-in retries. The user can retry later. At the next scheduled certificate renewal retry period, the device prompts the credential dialog again. The default value is 7 and the valid values are 1 – 1000 AND =\u003c RenewalPeriod, otherwise it will result in errors. Value type is an integer.",
+                  "default": "7",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "Range"
+                  }
+                },
+                {
+                  "name": "ServerURL",
+                  "path": "./Device/Vendor/MSFT/CertificateStore/MY/WSTEP/Renew/ServerURL",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Optional. Specifies the cert renewal server URL which is the discovery server.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "None"
+                  }
+                },
+                {
+                  "name": "Status",
+                  "path": "./Device/Vendor/MSFT/CertificateStore/MY/WSTEP/Renew/Status",
+                  "format": "int",
+                  "access": [
+                    "Get"
+                  ],
+                  "description": "Show the latest action status for this certificate. Supported values are one of the following: 0 – Not started. 1 – Renewal in progress. 2 – Renewal succeeded. 3 – Renewal failed.",
+                  "applicability": {}
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "ROOT",
+      "path": "./Device/Vendor/MSFT/CertificateStore/ROOT",
+      "format": "node",
+      "access": [
+        "Get"
+      ],
+      "description": "This store holds only root (self-signed) certificates.",
+      "applicability": {},
+      "children": [
+        {
+          "name": "",
+          "path": "./Device/Vendor/MSFT/CertificateStore/ROOT/",
+          "format": "node",
+          "access": [
+            "Delete",
+            "Get"
+          ],
+          "description": "The SHA1 hash for the certificate. The 20-byte SHA1 hash of the certificate is specified in hexadecimal. This node is implicitly created only when the EncodedCertificate node is added.",
+          "applicability": {},
+          "children": [
+            {
+              "name": "EncodedCertificate",
+              "path": "./Device/Vendor/MSFT/CertificateStore/ROOT/EncodedCertificate",
+              "format": "b64",
+              "access": [
+                "Add",
+                "Get",
+                "Replace"
+              ],
+              "description": "The base64 Encoded X.509 certificate.",
+              "applicability": {},
+              "allowedValues": {
+                "type": "None"
+              }
+            },
+            {
+              "name": "IssuedBy",
+              "path": "./Device/Vendor/MSFT/CertificateStore/ROOT/IssuedBy",
+              "format": "chr",
+              "access": [
+                "Get"
+              ],
+              "description": "The name of the certificate issuer. This node is implicitly created only when the EncodedCertificate node is added.",
+              "applicability": {}
+            },
+            {
+              "name": "IssuedTo",
+              "path": "./Device/Vendor/MSFT/CertificateStore/ROOT/IssuedTo",
+              "format": "chr",
+              "access": [
+                "Get"
+              ],
+              "description": "The name of the certificate subject. This node is implicitly created only when the EncodedCertificate node is added.",
+              "applicability": {}
+            },
+            {
+              "name": "TemplateName",
+              "path": "./Device/Vendor/MSFT/CertificateStore/ROOT/TemplateName",
+              "format": "chr",
+              "access": [
+                "Get"
+              ],
+              "description": "Returns the certificate template name.",
+              "applicability": {}
+            },
+            {
+              "name": "ValidFrom",
+              "path": "./Device/Vendor/MSFT/CertificateStore/ROOT/ValidFrom",
+              "format": "chr",
+              "access": [
+                "Get"
+              ],
+              "description": "The starting date of the certificate's validity. This node is implicitly created only when the EncodedCertificate node is added.",
+              "applicability": {}
+            },
+            {
+              "name": "ValidTo",
+              "path": "./Device/Vendor/MSFT/CertificateStore/ROOT/ValidTo",
+              "format": "chr",
+              "access": [
+                "Get"
+              ],
+              "description": "The expiration date of the certificate. This node is implicitly created only when the EncodedCertificate node is added.",
+              "applicability": {}
+            }
+          ]
+        },
+        {
+          "name": "System",
+          "path": "./Device/Vendor/MSFT/CertificateStore/ROOT/System",
+          "format": "node",
+          "access": [
+            "Get"
+          ],
+          "description": "This store holds the System portion of the root store.",
+          "applicability": {},
+          "children": [
+            {
+              "name": "",
+              "path": "./Device/Vendor/MSFT/CertificateStore/ROOT/System/",
+              "format": "node",
+              "access": [
+                "Delete",
+                "Get"
+              ],
+              "description": "The SHA1 hash for the certificate. The 20-byte SHA1 hash of the certificate is specified in hexadecimal. This node is implicitly created only when the EncodedCertificate node is added.",
+              "applicability": {},
+              "children": [
+                {
+                  "name": "EncodedCertificate",
+                  "path": "./Device/Vendor/MSFT/CertificateStore/ROOT/System/EncodedCertificate",
+                  "format": "b64",
+                  "access": [
+                    "Add",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "The base64 Encoded X.509 certificate.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "None"
+                  }
+                },
+                {
+                  "name": "IssuedBy",
+                  "path": "./Device/Vendor/MSFT/CertificateStore/ROOT/System/IssuedBy",
+                  "format": "chr",
+                  "access": [
+                    "Get"
+                  ],
+                  "description": "The name of the certificate issuer. This node is implicitly created only when the EncodedCertificate node is added.",
+                  "applicability": {}
+                },
+                {
+                  "name": "IssuedTo",
+                  "path": "./Device/Vendor/MSFT/CertificateStore/ROOT/System/IssuedTo",
+                  "format": "chr",
+                  "access": [
+                    "Get"
+                  ],
+                  "description": "The name of the certificate subject. This node is implicitly created only when the EncodedCertificate node is added.",
+                  "applicability": {}
+                },
+                {
+                  "name": "TemplateName",
+                  "path": "./Device/Vendor/MSFT/CertificateStore/ROOT/System/TemplateName",
+                  "format": "chr",
+                  "access": [
+                    "Get"
+                  ],
+                  "description": "Returns the certificate template name.",
+                  "applicability": {}
+                },
+                {
+                  "name": "ValidFrom",
+                  "path": "./Device/Vendor/MSFT/CertificateStore/ROOT/System/ValidFrom",
+                  "format": "chr",
+                  "access": [
+                    "Get"
+                  ],
+                  "description": "The starting date of the certificate's validity. This node is implicitly created only when the EncodedCertificate node is added.",
+                  "applicability": {}
+                },
+                {
+                  "name": "ValidTo",
+                  "path": "./Device/Vendor/MSFT/CertificateStore/ROOT/System/ValidTo",
+                  "format": "chr",
+                  "access": [
+                    "Get"
+                  ],
+                  "description": "The expiration date of the certificate. This node is implicitly created only when the EncodedCertificate node is added.",
+                  "applicability": {}
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

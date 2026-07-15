@@ -1,0 +1,246 @@
+{
+  "name": "ADMX_iSCSI",
+  "path": "./Device/Vendor/MSFT/Policy/Config",
+  "nodes": [
+    {
+      "name": "iSCSIDiscovery_ConfigureTargetPortals",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_iSCSI/iSCSIDiscovery_ConfigureTargetPortals",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "iSCSI~AT~System~iSCSI_Category~iSCSIDiscovery_Category",
+          "name": "iSCSIDiscovery_ConfigureTargetPortals",
+          "file": "iSCSI.admx"
+        }
+      }
+    },
+    {
+      "name": "iSCSIDiscovery_ConfigureTargets",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_iSCSI/iSCSIDiscovery_ConfigureTargets",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "iSCSI~AT~System~iSCSI_Category~iSCSIDiscovery_Category",
+          "name": "iSCSIDiscovery_ConfigureTargets",
+          "file": "iSCSI.admx"
+        }
+      }
+    },
+    {
+      "name": "iSCSIDiscovery_ConfigureiSNSServers",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_iSCSI/iSCSIDiscovery_ConfigureiSNSServers",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "iSCSI~AT~System~iSCSI_Category~iSCSIDiscovery_Category",
+          "name": "iSCSIDiscovery_ConfigureiSNSServers",
+          "file": "iSCSI.admx"
+        }
+      }
+    },
+    {
+      "name": "iSCSIDiscovery_NewStaticTargets",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_iSCSI/iSCSIDiscovery_NewStaticTargets",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "iSCSI~AT~System~iSCSI_Category~iSCSIDiscovery_Category",
+          "name": "iSCSIDiscovery_NewStaticTargets",
+          "file": "iSCSI.admx"
+        }
+      }
+    },
+    {
+      "name": "iSCSIGeneral_ChangeIQNName",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_iSCSI/iSCSIGeneral_ChangeIQNName",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "iSCSI~AT~System~iSCSI_Category~iSCSIGeneral_Category",
+          "name": "iSCSIGeneral_ChangeIQNName",
+          "file": "iSCSI.admx"
+        }
+      }
+    },
+    {
+      "name": "iSCSIGeneral_RestrictAdditionalLogins",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_iSCSI/iSCSIGeneral_RestrictAdditionalLogins",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "iSCSI~AT~System~iSCSI_Category~iSCSIGeneral_Category",
+          "name": "iSCSIGeneral_RestrictAdditionalLogins",
+          "file": "iSCSI.admx"
+        }
+      }
+    },
+    {
+      "name": "iSCSISecurity_ChangeCHAPSecret",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_iSCSI/iSCSISecurity_ChangeCHAPSecret",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "iSCSI~AT~System~iSCSI_Category~iSCSISecurity_Category",
+          "name": "iSCSISecurity_ChangeCHAPSecret",
+          "file": "iSCSI.admx"
+        }
+      }
+    },
+    {
+      "name": "iSCSISecurity_RequireIPSec",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_iSCSI/iSCSISecurity_RequireIPSec",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "iSCSI~AT~System~iSCSI_Category~iSCSISecurity_Category",
+          "name": "iSCSISecurity_RequireIPSec",
+          "file": "iSCSI.admx"
+        }
+      }
+    },
+    {
+      "name": "iSCSISecurity_RequireMutualCHAP",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_iSCSI/iSCSISecurity_RequireMutualCHAP",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "iSCSI~AT~System~iSCSI_Category~iSCSISecurity_Category",
+          "name": "iSCSISecurity_RequireMutualCHAP",
+          "file": "iSCSI.admx"
+        }
+      }
+    },
+    {
+      "name": "iSCSISecurity_RequireOneWayCHAP",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_iSCSI/iSCSISecurity_RequireOneWayCHAP",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "iSCSI~AT~System~iSCSI_Category~iSCSISecurity_Category",
+          "name": "iSCSISecurity_RequireOneWayCHAP",
+          "file": "iSCSI.admx"
+        }
+      }
+    }
+  ]
+}

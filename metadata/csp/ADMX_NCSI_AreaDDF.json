@@ -1,0 +1,174 @@
+{
+  "name": "ADMX_NCSI",
+  "path": "./Device/Vendor/MSFT/Policy/Config",
+  "nodes": [
+    {
+      "name": "NCSI_CorpDnsProbeContent",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_NCSI/NCSI_CorpDnsProbeContent",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "NCSI~AT~Network~NCSI_Category",
+          "name": "NCSI_CorpDnsProbeContent",
+          "file": "NCSI.admx"
+        }
+      }
+    },
+    {
+      "name": "NCSI_CorpDnsProbeHost",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_NCSI/NCSI_CorpDnsProbeHost",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "NCSI~AT~Network~NCSI_Category",
+          "name": "NCSI_CorpDnsProbeHost",
+          "file": "NCSI.admx"
+        }
+      }
+    },
+    {
+      "name": "NCSI_CorpSitePrefixes",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_NCSI/NCSI_CorpSitePrefixes",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "NCSI~AT~Network~NCSI_Category",
+          "name": "NCSI_CorpSitePrefixes",
+          "file": "NCSI.admx"
+        }
+      }
+    },
+    {
+      "name": "NCSI_CorpWebProbeUrl",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_NCSI/NCSI_CorpWebProbeUrl",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "NCSI~AT~Network~NCSI_Category",
+          "name": "NCSI_CorpWebProbeUrl",
+          "file": "NCSI.admx"
+        }
+      }
+    },
+    {
+      "name": "NCSI_DomainLocationDeterminationUrl",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_NCSI/NCSI_DomainLocationDeterminationUrl",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "NCSI~AT~Network~NCSI_Category",
+          "name": "NCSI_DomainLocationDeterminationUrl",
+          "file": "NCSI.admx"
+        }
+      }
+    },
+    {
+      "name": "NCSI_GlobalDns",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_NCSI/NCSI_GlobalDns",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "NCSI~AT~Network~NCSI_Category",
+          "name": "NCSI_GlobalDns",
+          "file": "NCSI.admx"
+        }
+      }
+    },
+    {
+      "name": "NCSI_PassivePolling",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_NCSI/NCSI_PassivePolling",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "NCSI~AT~Network~NCSI_Category",
+          "name": "NCSI_PassivePolling",
+          "file": "NCSI.admx"
+        }
+      }
+    }
+  ]
+}

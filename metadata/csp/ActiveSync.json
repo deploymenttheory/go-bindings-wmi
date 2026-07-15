@@ -1,0 +1,517 @@
+{
+  "name": "ActiveSync",
+  "path": "./User/Vendor/MSFT",
+  "nodes": [
+    {
+      "name": "Accounts",
+      "path": "./User/Vendor/MSFT/ActiveSync/Accounts",
+      "format": "node",
+      "access": [
+        "Get"
+      ],
+      "description": "The parent node group all active sync accounts.",
+      "applicability": {},
+      "children": [
+        {
+          "name": "",
+          "path": "./User/Vendor/MSFT/ActiveSync/Accounts/",
+          "format": "node",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "Defines a specific ActiveSync account. A globally unique identifier (GUID) must be generated for each ActiveSync account on the device.",
+          "applicability": {},
+          "allowedValues": {
+            "type": "RegEx"
+          },
+          "children": [
+            {
+              "name": "AccountIcon",
+              "path": "./User/Vendor/MSFT/ActiveSync/Accounts/AccountIcon",
+              "format": "chr",
+              "access": [
+                "Add",
+                "Delete",
+                "Get",
+                "Replace"
+              ],
+              "description": "Specify the location of the icon associated with the account.",
+              "applicability": {},
+              "allowedValues": {
+                "type": "None"
+              }
+            },
+            {
+              "name": "AccountName",
+              "path": "./User/Vendor/MSFT/ActiveSync/Accounts/AccountName",
+              "format": "chr",
+              "access": [
+                "Add",
+                "Delete",
+                "Get",
+                "Replace"
+              ],
+              "description": "The name that refers to the account on the device.",
+              "applicability": {},
+              "allowedValues": {
+                "type": "None"
+              }
+            },
+            {
+              "name": "AccountType",
+              "path": "./User/Vendor/MSFT/ActiveSync/Accounts/AccountType",
+              "format": "chr",
+              "access": [
+                "Add",
+                "Delete",
+                "Get",
+                "Replace"
+              ],
+              "description": "Specify the account type. This value is entered during setup and cannot be modified once entered. An Exchange account is indicated by the string value \"Exchange\".",
+              "applicability": {},
+              "allowedValues": {
+                "type": "None"
+              }
+            },
+            {
+              "name": "Domain",
+              "path": "./User/Vendor/MSFT/ActiveSync/Accounts/Domain",
+              "format": "chr",
+              "access": [
+                "Add",
+                "Delete",
+                "Get",
+                "Replace"
+              ],
+              "description": "Domain name of the Exchange server",
+              "applicability": {},
+              "allowedValues": {
+                "type": "None"
+              }
+            },
+            {
+              "name": "EmailAddress",
+              "path": "./User/Vendor/MSFT/ActiveSync/Accounts/EmailAddress",
+              "format": "chr",
+              "access": [
+                "Add",
+                "Delete",
+                "Get",
+                "Replace"
+              ],
+              "description": "The email address the user entered during setup. This is the email address that is associated with the Exchange ActiveSync account and it is required.",
+              "applicability": {},
+              "allowedValues": {
+                "type": "None"
+              }
+            },
+            {
+              "name": "Options",
+              "path": "./User/Vendor/MSFT/ActiveSync/Accounts/Options",
+              "format": "node",
+              "access": [
+                "Add",
+                "Delete",
+                "Get",
+                "Replace"
+              ],
+              "description": "Specifies whether email, contacts, and calendar need to synchronize by default, and sets preference such as sync schedule, truncation sizes, and logging.",
+              "applicability": {},
+              "children": [
+                {
+                  "name": "CalendarAgeFilter",
+                  "path": "./User/Vendor/MSFT/ActiveSync/Accounts/Options/CalendarAgeFilter",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Specifies the time window used for syncing calendar items to the phone.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "None"
+                  }
+                },
+                {
+                  "name": "ContentTypes",
+                  "path": "./User/Vendor/MSFT/ActiveSync/Accounts/Options/ContentTypes",
+                  "format": "node",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Interior node for Content Types",
+                  "applicability": {},
+                  "children": [
+                    {
+                      "name": "",
+                      "path": "./User/Vendor/MSFT/ActiveSync/Accounts/Options/ContentTypes/",
+                      "format": "node",
+                      "access": [
+                        "Add",
+                        "Delete",
+                        "Get",
+                        "Replace"
+                      ],
+                      "description": "Enables or disables syncing email, contacts, task, and calendar.Each is represented by a GUID.Email: {c6d47067-6e92-480e-b0fc-4ba82182fac7}. Contacts: {0dd8685c-e272-4fcb-9ecf-2ead7ea2497b}.Calendar: {4a5d9fe0-f139-4a63-a5a4-4f31ceea02ad}. Tasks:{783ae4f6-4c12-4423-8270-66361260d4f1}",
+                      "applicability": {},
+                      "children": [
+                        {
+                          "name": "Enabled",
+                          "path": "./User/Vendor/MSFT/ActiveSync/Accounts/Options/ContentTypes/Enabled",
+                          "format": "chr",
+                          "access": [
+                            "Add",
+                            "Delete",
+                            "Get",
+                            "Replace"
+                          ],
+                          "description": "Enables or disables Sync for Email, contacts, calendar, and Tasks.",
+                          "default": "1",
+                          "applicability": {},
+                          "allowedValues": {
+                            "type": "ENUM",
+                            "enum": [
+                              {
+                                "value": "0",
+                                "description": "Sync for email, contacts, calendar, or tasks is disabled."
+                              },
+                              {
+                                "value": "1",
+                                "description": "Sync is enabled."
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "name": "Name",
+                          "path": "./User/Vendor/MSFT/ActiveSync/Accounts/Options/ContentTypes/Name",
+                          "format": "chr",
+                          "access": [
+                            "Add",
+                            "Delete",
+                            "Get",
+                            "Replace"
+                          ],
+                          "description": "The name of the content type.",
+                          "applicability": {},
+                          "allowedValues": {
+                            "type": "None"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "Logging",
+                  "path": "./User/Vendor/MSFT/ActiveSync/Accounts/Options/Logging",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Specifies whether diagnostic logging is enabled and at what level.",
+                  "default": "0",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "ENUM",
+                    "enum": [
+                      {
+                        "value": "0",
+                        "description": "Logging is off."
+                      },
+                      {
+                        "value": "1",
+                        "description": "Basic logging is enabled."
+                      },
+                      {
+                        "value": "2",
+                        "description": "Advanced logging is enabled."
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "MailAgeFilter",
+                  "path": "./User/Vendor/MSFT/ActiveSync/Accounts/Options/MailAgeFilter",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Specifies the time window used for syncing email items to the phone.",
+                  "default": "3",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "ENUM",
+                    "enum": [
+                      {
+                        "value": "0",
+                        "description": "No age filter is used, and all email items are synced to the device."
+                      },
+                      {
+                        "value": "1",
+                        "description": "Only email up to one day old is synced to the device"
+                      },
+                      {
+                        "value": "2",
+                        "description": "Only email up to three days old is synced to the device."
+                      },
+                      {
+                        "value": "3",
+                        "description": "Email up to a week old is synced to the device."
+                      },
+                      {
+                        "value": "4",
+                        "description": "Email up to two weeks old is synced to the device."
+                      },
+                      {
+                        "value": "5",
+                        "description": "Email up to a month old is synced to the device."
+                      },
+                      {
+                        "value": "6",
+                        "description": "Email up to three months old is synced to the device."
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "MailBodyType",
+                  "path": "./User/Vendor/MSFT/ActiveSync/Accounts/Options/MailBodyType",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Indicates format type of the Email.  Supported values are 0 (none), 1 (text), 2 (HTML), 3 (RTF), and 4 (MIME).",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "ENUM",
+                    "enum": [
+                      {
+                        "value": "0",
+                        "description": "none"
+                      },
+                      {
+                        "value": "1",
+                        "description": "text"
+                      },
+                      {
+                        "value": "2",
+                        "description": "HTML"
+                      },
+                      {
+                        "value": "3",
+                        "description": "RTF"
+                      },
+                      {
+                        "value": "4",
+                        "description": "MIME"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "MailHTMLTruncation",
+                  "path": "./User/Vendor/MSFT/ActiveSync/Accounts/Options/MailHTMLTruncation",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "This setting specifies the size beyond which HTML-formatted e-mail messages are truncated when they are synchronized to the mobile phone. The value is specified in KB. A value of -1 disables truncation.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "None"
+                  }
+                },
+                {
+                  "name": "MailPlainTextTruncation",
+                  "path": "./User/Vendor/MSFT/ActiveSync/Accounts/Options/MailPlainTextTruncation",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "This setting specifies the size beyond which text-formatted e-mail messages are truncated when they are synchronized to the mobile phone. The value is specified in KB. A value of -1 disables truncation.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "None"
+                  }
+                },
+                {
+                  "name": "Schedule",
+                  "path": "./User/Vendor/MSFT/ActiveSync/Accounts/Options/Schedule",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Specifies the time until the next sync is performed in minutes.  If -1 is chosen, a sync will occur as items are received.  If a 0 is chosen, all  syncs must be performed manually.",
+                  "default": "-1",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "Range"
+                  }
+                },
+                {
+                  "name": "UseSSL",
+                  "path": "./User/Vendor/MSFT/ActiveSync/Accounts/Options/UseSSL",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Specifies whether SSL is used.",
+                  "default": "1",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "ENUM",
+                    "enum": [
+                      {
+                        "value": "0",
+                        "description": "SSL is not used."
+                      },
+                      {
+                        "value": "1",
+                        "description": "SSL is used."
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "name": "Password",
+              "path": "./User/Vendor/MSFT/ActiveSync/Accounts/Password",
+              "format": "chr",
+              "access": [
+                "Add",
+                "Delete",
+                "Get",
+                "Replace"
+              ],
+              "description": "A character string that specifies the password for the account. For the Get command, only asterisks are returned.",
+              "applicability": {},
+              "allowedValues": {
+                "type": "None"
+              }
+            },
+            {
+              "name": "Policies",
+              "path": "./User/Vendor/MSFT/ActiveSync/Accounts/Policies",
+              "format": "node",
+              "access": [
+                "Add",
+                "Delete",
+                "Get",
+                "Replace"
+              ],
+              "description": "Specifies the mail body type and email age filter.",
+              "applicability": {},
+              "children": [
+                {
+                  "name": "MailBodyType",
+                  "path": "./User/Vendor/MSFT/ActiveSync/Accounts/Policies/MailBodyType",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Specifies the email body type. HTML or plain",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "ENUM",
+                    "enum": [
+                      {
+                        "value": "HTML",
+                        "description": "HTML"
+                      },
+                      {
+                        "value": "plain",
+                        "description": "plain"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "MaxMailAgeFilter",
+                  "path": "./User/Vendor/MSFT/ActiveSync/Accounts/Policies/MaxMailAgeFilter",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Specifies the time window used for syncing mail items to the device.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "None"
+                  }
+                }
+              ]
+            },
+            {
+              "name": "ServerName",
+              "path": "./User/Vendor/MSFT/ActiveSync/Accounts/ServerName",
+              "format": "chr",
+              "access": [
+                "Add",
+                "Delete",
+                "Get",
+                "Replace"
+              ],
+              "description": "Specifies the server name used by the account.",
+              "applicability": {},
+              "allowedValues": {
+                "type": "None"
+              }
+            },
+            {
+              "name": "UserName",
+              "path": "./User/Vendor/MSFT/ActiveSync/Accounts/UserName",
+              "format": "chr",
+              "access": [
+                "Add",
+                "Delete",
+                "Get",
+                "Replace"
+              ],
+              "description": "Specifies the user name for the account. The user name cannot be changed after a sync has been successfully performed. The user name can be in the fully qualified format \"someone@example.com\", or just \"username\", depending on the type of account created. For most Exchange accounts, the user name format is just \"username\", whereas for Microsoft, Google, Yahoo, and most POP/IMAP accounts, the user name format is \"someone@example.com\".",
+              "applicability": {},
+              "allowedValues": {
+                "type": "None"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

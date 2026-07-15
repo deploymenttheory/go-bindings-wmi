@@ -1,0 +1,630 @@
+{
+  "name": "ADMX_Printing",
+  "path": "./Device/Vendor/MSFT/Policy/Config",
+  "nodes": [
+    {
+      "name": "AllowWebPrinting",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_Printing/AllowWebPrinting",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Printing~AT~Printers",
+          "name": "AllowWebPrinting",
+          "file": "Printing.admx"
+        }
+      }
+    },
+    {
+      "name": "ApplicationDriverIsolation",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_Printing/ApplicationDriverIsolation",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Printing~AT~Printers",
+          "name": "ApplicationDriverIsolation",
+          "file": "Printing.admx"
+        }
+      }
+    },
+    {
+      "name": "CustomizedSupportUrl",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_Printing/CustomizedSupportUrl",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Printing~AT~Printers",
+          "name": "CustomizedSupportUrl",
+          "file": "Printing.admx"
+        }
+      }
+    },
+    {
+      "name": "DoNotInstallCompatibleDriverFromWindowsUpdate",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_Printing/DoNotInstallCompatibleDriverFromWindowsUpdate",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Printing~AT~Printers",
+          "name": "DoNotInstallCompatibleDriverFromWindowsUpdate",
+          "file": "Printing.admx"
+        }
+      }
+    },
+    {
+      "name": "DomainPrinters",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_Printing/DomainPrinters",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Printing~AT~Printers",
+          "name": "DomainPrinters",
+          "file": "Printing.admx"
+        }
+      }
+    },
+    {
+      "name": "DownlevelBrowse",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_Printing/DownlevelBrowse",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Printing~AT~ControlPanel~CplPrinters",
+          "name": "DownlevelBrowse",
+          "file": "Printing.admx"
+        }
+      }
+    },
+    {
+      "name": "EMFDespooling",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_Printing/EMFDespooling",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Printing~AT~Printers",
+          "name": "EMFDespooling",
+          "file": "Printing.admx"
+        }
+      }
+    },
+    {
+      "name": "ForceSoftwareRasterization",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_Printing/ForceSoftwareRasterization",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Printing~AT~Printers",
+          "name": "ForceSoftwareRasterization",
+          "file": "Printing.admx"
+        }
+      }
+    },
+    {
+      "name": "IntranetPrintersUrl",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_Printing/IntranetPrintersUrl",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Printing~AT~ControlPanel~CplPrinters",
+          "name": "IntranetPrintersUrl",
+          "file": "Printing.admx"
+        }
+      }
+    },
+    {
+      "name": "KMPrintersAreBlocked",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_Printing/KMPrintersAreBlocked",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Printing~AT~Printers",
+          "name": "KMPrintersAreBlocked",
+          "file": "Printing.admx"
+        }
+      }
+    },
+    {
+      "name": "LegacyDefaultPrinterMode",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_Printing/LegacyDefaultPrinterMode",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Printing~AT~ControlPanel~CplPrinters",
+          "name": "LegacyDefaultPrinterMode",
+          "file": "Printing.admx"
+        }
+      }
+    },
+    {
+      "name": "MXDWUseLegacyOutputFormatMSXPS",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_Printing/MXDWUseLegacyOutputFormatMSXPS",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Printing~AT~Printers",
+          "name": "MXDWUseLegacyOutputFormatMSXPS",
+          "file": "Printing.admx"
+        }
+      }
+    },
+    {
+      "name": "NoDeletePrinter",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_Printing/NoDeletePrinter",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Printing~AT~ControlPanel~CplPrinters",
+          "name": "NoDeletePrinter",
+          "file": "Printing.admx"
+        }
+      }
+    },
+    {
+      "name": "NonDomainPrinters",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_Printing/NonDomainPrinters",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Printing~AT~Printers",
+          "name": "NonDomainPrinters",
+          "file": "Printing.admx"
+        }
+      }
+    },
+    {
+      "name": "PackagePointAndPrintOnly",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_Printing/PackagePointAndPrintOnly",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Printing~AT~ControlPanel~CplPrinters",
+          "name": "PackagePointAndPrintOnly",
+          "file": "Printing.admx"
+        }
+      }
+    },
+    {
+      "name": "PackagePointAndPrintOnly_Win7",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_Printing/PackagePointAndPrintOnly_Win7",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Printing~AT~Printers",
+          "name": "PackagePointAndPrintOnly_Win7",
+          "file": "Printing.admx"
+        }
+      }
+    },
+    {
+      "name": "PackagePointAndPrintServerList",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_Printing/PackagePointAndPrintServerList",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Printing~AT~ControlPanel~CplPrinters",
+          "name": "PackagePointAndPrintServerList",
+          "file": "Printing.admx"
+        }
+      }
+    },
+    {
+      "name": "PackagePointAndPrintServerList_Win7",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_Printing/PackagePointAndPrintServerList_Win7",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Printing~AT~Printers",
+          "name": "PackagePointAndPrintServerList_Win7",
+          "file": "Printing.admx"
+        }
+      }
+    },
+    {
+      "name": "PhysicalLocation",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_Printing/PhysicalLocation",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Printing~AT~Printers",
+          "name": "PhysicalLocation",
+          "file": "Printing.admx"
+        }
+      }
+    },
+    {
+      "name": "PhysicalLocationSupport",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_Printing/PhysicalLocationSupport",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Printing~AT~Printers",
+          "name": "PhysicalLocationSupport",
+          "file": "Printing.admx"
+        }
+      }
+    },
+    {
+      "name": "PrintDriverIsolationExecutionPolicy",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_Printing/PrintDriverIsolationExecutionPolicy",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Printing~AT~Printers",
+          "name": "PrintDriverIsolationExecutionPolicy",
+          "file": "Printing.admx"
+        }
+      }
+    },
+    {
+      "name": "PrintDriverIsolationOverrideCompat",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_Printing/PrintDriverIsolationOverrideCompat",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Printing~AT~Printers",
+          "name": "PrintDriverIsolationOverrideCompat",
+          "file": "Printing.admx"
+        }
+      }
+    },
+    {
+      "name": "PrinterDirectorySearchScope",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_Printing/PrinterDirectorySearchScope",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Printing~AT~ControlPanel~CplPrinters",
+          "name": "PrinterDirectorySearchScope",
+          "file": "Printing.admx"
+        }
+      }
+    },
+    {
+      "name": "PrinterServerThread",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_Printing/PrinterServerThread",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Printing~AT~Printers",
+          "name": "PrinterServerThread",
+          "file": "Printing.admx"
+        }
+      }
+    },
+    {
+      "name": "ShowJobTitleInEventLogs",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_Printing/ShowJobTitleInEventLogs",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Printing~AT~Printers",
+          "name": "ShowJobTitleInEventLogs",
+          "file": "Printing.admx"
+        }
+      }
+    },
+    {
+      "name": "V4DriverDisallowPrinterExtension",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_Printing/V4DriverDisallowPrinterExtension",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Printing~AT~Printers",
+          "name": "V4DriverDisallowPrinterExtension",
+          "file": "Printing.admx"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,551 @@
+{
+  "name": "Search",
+  "path": "./Device/Vendor/MSFT/Policy/Config",
+  "nodes": [
+    {
+      "name": "AllowCloudSearch",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Search/AllowCloudSearch",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Allow search and Cortana to search cloud sources like OneDrive and SharePoint. This policy allows corporate administrators to control whether employees can turn off/on the search of these cloud sources. The default policy value is to allow employees access to the setting that controls search of cloud sources.",
+      "default": "1",
+      "applicability": {
+        "minOsBuild": "10.0.16299",
+        "cspVersion": "6.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Not allowed."
+          },
+          {
+            "value": "1",
+            "description": "Allowed."
+          }
+        ]
+      }
+    },
+    {
+      "name": "AllowCortanaInAAD",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Search/AllowCortanaInAAD",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This features allows you to show the cortana opt-in page during Windows Setup",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.17134",
+        "cspVersion": "7.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Not allowed. The Cortana consent page will not appear in AAD OOBE during setup."
+          },
+          {
+            "value": "1",
+            "description": "Allowed. The Cortana consent page will appear in Azure AAD OOBE during setup."
+          }
+        ]
+      }
+    },
+    {
+      "name": "AllowFindMyFiles",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Search/AllowFindMyFiles",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This feature allows you to disable find my files completely on the machine",
+      "default": "1",
+      "applicability": {
+        "minOsBuild": "10.0.18362",
+        "cspVersion": "9.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "1",
+            "description": "Find My Files feature can be toggled (still off by default), and the settings UI is present."
+          },
+          {
+            "value": "0",
+            "description": "Find My Files feature is turned off completely, and the settings UI is disabled."
+          }
+        ]
+      }
+    },
+    {
+      "name": "AllowIndexingEncryptedStoresOrItems",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Search/AllowIndexingEncryptedStoresOrItems",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Allows or disallows the indexing of items. This switch is for the Windows Search Indexer, which controls whether it will index items that are encrypted, such as the Windows Information Protection (WIP) protected files. When the policy is enabled, WIP protected items are indexed and the metadata about them are stored in an unencrypted location. The metadata includes things like file path and date modified. When the policy is disabled, the WIP protected items are not indexed and do not show up in the results in Cortana or file explorer. There may also be a performance impact on photos and Groove apps if there are a lot of WIP protected media files on the device. Most restricted value is 0.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.14393",
+        "cspVersion": "4.1",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Not allowed."
+          },
+          {
+            "value": "1",
+            "description": "Allowed."
+          }
+        ]
+      }
+    },
+    {
+      "name": "AllowSearchHighlights",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Search/AllowSearchHighlights",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "default": "1",
+      "applicability": {
+        "minOsBuild": "10.0.22621, 10.0.22000.1761, 10.0.19044.1620, 10.0.19043.1620, 10.0.19042.1620",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "Range"
+      }
+    },
+    {
+      "name": "AllowSearchToUseLocation",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Search/AllowSearchToUseLocation",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Specifies whether search can leverage location information. Most restricted value is 0.",
+      "default": "1",
+      "applicability": {
+        "minOsBuild": "10.0.10240",
+        "cspVersion": "1.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Not allowed."
+          },
+          {
+            "value": "1",
+            "description": "Allowed."
+          }
+        ]
+      }
+    },
+    {
+      "name": "AllowStoringImagesFromVisionSearch",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Search/AllowStoringImagesFromVisionSearch",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This policy has been deprecated.",
+      "default": "1",
+      "applicability": {
+        "minOsBuild": "10.0.10240",
+        "cspVersion": "1.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Not allowed."
+          },
+          {
+            "value": "1",
+            "description": "Allowed."
+          }
+        ]
+      }
+    },
+    {
+      "name": "AllowUsingDiacritics",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Search/AllowUsingDiacritics",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Allows the use of diacritics. Most restricted value is 0.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.14393",
+        "cspVersion": "4.1",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Not allowed."
+          },
+          {
+            "value": "1",
+            "description": "Allowed."
+          }
+        ]
+      }
+    },
+    {
+      "name": "AllowWindowsIndexer",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Search/AllowWindowsIndexer",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Allow Windows indexer. Value type is integer.",
+      "default": "3",
+      "applicability": {
+        "minOsBuild": "10.0.10240",
+        "cspVersion": "1.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "Range"
+      }
+    },
+    {
+      "name": "AlwaysUseAutoLangDetection",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Search/AlwaysUseAutoLangDetection",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Specifies whether to always use automatic language detection when indexing content and properties. Most restricted value is 0.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.14393",
+        "cspVersion": "4.1",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Not allowed."
+          },
+          {
+            "value": "1",
+            "description": "Allowed."
+          }
+        ]
+      }
+    },
+    {
+      "name": "ConfigureSearchOnTaskbarMode",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Search/ConfigureSearchOnTaskbarMode",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Configures search on the taskbar. If you disable this policy setting or do not configure it, users can see and change this setting.",
+      "default": "3",
+      "applicability": {
+        "minOsBuild": "10.0.26100",
+        "cspVersion": "11.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Hide"
+          },
+          {
+            "value": "1",
+            "description": "Search icon only"
+          },
+          {
+            "value": "2",
+            "description": "Search icon and label"
+          },
+          {
+            "value": "3",
+            "description": "Search box"
+          }
+        ]
+      }
+    },
+    {
+      "name": "DisableBackoff",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Search/DisableBackoff",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "If enabled, the search indexer backoff feature will be disabled. Indexing will continue at full speed even when system activity is high. If disabled, backoff logic will be used to throttle back indexing activity when system activity is high. Default is disabled.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.14393",
+        "cspVersion": "4.1",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Disable."
+          },
+          {
+            "value": "1",
+            "description": "Enable."
+          }
+        ]
+      }
+    },
+    {
+      "name": "DisableRemovableDriveIndexing",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Search/DisableRemovableDriveIndexing",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This policy setting configures whether or not locations on removable drives can be added to libraries. If you enable this policy setting, locations on removable drives cannot be added to libraries. In addition, locations on removable drives cannot be indexed. If you disable or do not configure this policy setting, locations on removable drives can be added to libraries. In addition, locations on removable drives can be indexed.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.14393",
+        "cspVersion": "4.1",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Disable."
+          },
+          {
+            "value": "1",
+            "description": "Enable."
+          }
+        ]
+      }
+    },
+    {
+      "name": "DisableSearch",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Search/DisableSearch",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Enabling this policy completely disables Search UI and all its entry points such as keyboard shortcuts and touchpad gestures. It removes the Search button from the Taskbar and the corresponding option in the Settings. It also disables type-to-search in the Start menu and removes the Start menu's search box.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.22621",
+        "cspVersion": "11.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Do not disable."
+          },
+          {
+            "value": "1",
+            "description": "Disable."
+          }
+        ]
+      }
+    },
+    {
+      "name": "DoNotUseWebResults",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Search/DoNotUseWebResults",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Don't search the web or display web results in Search. This policy setting allows you to control whether or not Search can perform queries on the web, and if the web results are displayed in Search. If you enable this policy setting, queries won't be performed on the web and web results won't be displayed when a user performs a query in Search. If you disable this policy setting, queries will be performed on the web and web results will be displayed when a user performs a query in Search.",
+      "default": "1",
+      "applicability": {
+        "minOsBuild": "10.0.17134",
+        "cspVersion": "7.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Not allowed. Queries won't be performed on the web and web results won't be displayed when a user performs a query in Search."
+          },
+          {
+            "value": "1",
+            "description": "Allowed. Queries will be performed on the web and web results will be displayed when a user performs a query in Search."
+          }
+        ]
+      }
+    },
+    {
+      "name": "PreventIndexingLowDiskSpaceMB",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Search/PreventIndexingLowDiskSpaceMB",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Enabling this policy prevents indexing from continuing after less than the specified amount of hard drive space is left on the same drive as the index location. Select between 0 and 1. Enable this policy if computers in your environment have extremely limited hard drive space. When this policy is disabled or not configured, Windows Desktop Search automatically manages your index size.",
+      "default": "1",
+      "applicability": {
+        "minOsBuild": "10.0.14393",
+        "cspVersion": "4.1",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Disable."
+          },
+          {
+            "value": "1",
+            "description": "Enable."
+          }
+        ]
+      }
+    },
+    {
+      "name": "PreventRemoteQueries",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Search/PreventRemoteQueries",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "If enabled, clients will be unable to query this computer's index remotely. Thus, when they are browsing network shares that are stored on this computer, they will not search them using the index. If disabled, client search requests will use this computer's index. .",
+      "default": "1",
+      "applicability": {
+        "minOsBuild": "10.0.14393",
+        "cspVersion": "4.1",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Disable."
+          },
+          {
+            "value": "1",
+            "description": "Enable."
+          }
+        ]
+      }
+    },
+    {
+      "name": "SafeSearchPermissions",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Search/SafeSearchPermissions",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This policy is deprecated.",
+      "default": "1",
+      "deprecatedOsBuild": "10.0.22000",
+      "applicability": {
+        "minOsBuild": "10.0.14393",
+        "cspVersion": "4.1"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "1",
+            "description": "Enable"
+          },
+          {
+            "value": "0",
+            "description": "Disable"
+          }
+        ]
+      }
+    }
+  ]
+}

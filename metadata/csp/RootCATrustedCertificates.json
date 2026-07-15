@@ -1,0 +1,1002 @@
+{
+  "name": "RootCATrustedCertificates",
+  "path": "./Device/Vendor/MSFT",
+  "nodes": [
+    {
+      "name": "CA",
+      "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/CA",
+      "format": "node",
+      "access": [
+        "Get"
+      ],
+      "description": "Node for CA certificates.",
+      "applicability": {},
+      "children": [
+        {
+          "name": "",
+          "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/CA/",
+          "format": "node",
+          "access": [
+            "Delete",
+            "Get"
+          ],
+          "description": "Defines the SHA1 hash for the certificate. The 20-byte value of the SHA1 certificate hash is specified as a hexadecimal string value",
+          "applicability": {},
+          "children": [
+            {
+              "name": "EncodedCertificate",
+              "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/CA/EncodedCertificate",
+              "format": "b64",
+              "access": [
+                "Add",
+                "Get",
+                "Replace"
+              ],
+              "description": "Specifies the X.509 certificate as a Base64-encoded string. The Base-64 string value cannot include extra formatting characters such as embedded linefeeds, etc.",
+              "applicability": {},
+              "allowedValues": {
+                "type": "None"
+              }
+            },
+            {
+              "name": "IssuedBy",
+              "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/CA/IssuedBy",
+              "format": "chr",
+              "access": [
+                "Get"
+              ],
+              "description": "Returns the name of the certificate issuer.  This is equivalent to the Issuer member in the CERT_INFO data structure.",
+              "applicability": {}
+            },
+            {
+              "name": "IssuedTo",
+              "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/CA/IssuedTo",
+              "format": "chr",
+              "access": [
+                "Get"
+              ],
+              "description": "Returns the name of the certificate subject. This is equivalent to the Subject member in the CERT_INFO data structure.",
+              "applicability": {}
+            },
+            {
+              "name": "TemplateName",
+              "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/CA/TemplateName",
+              "format": "chr",
+              "access": [
+                "Get"
+              ],
+              "description": "Returns the certificate template name. Supported operation is Get.",
+              "applicability": {}
+            },
+            {
+              "name": "ValidFrom",
+              "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/CA/ValidFrom",
+              "format": "chr",
+              "access": [
+                "Get"
+              ],
+              "description": "Returns the starting date of the certificate's validity. Supported operation is Get. This is equivalent to the NotBefore member in the CERT_INFO structure.",
+              "applicability": {}
+            },
+            {
+              "name": "ValidTo",
+              "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/CA/ValidTo",
+              "format": "chr",
+              "access": [
+                "Get"
+              ],
+              "description": "Returns the expiration date of the certificate. Supported operation is Get. This is equivalent to the NotAfter member in the CERT_INFO structure",
+              "applicability": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "CA",
+      "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/CA",
+      "format": "node",
+      "access": [
+        "Get"
+      ],
+      "description": "Node for CA certificates.",
+      "applicability": {},
+      "children": [
+        {
+          "name": "",
+          "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/CA/",
+          "format": "node",
+          "access": [
+            "Delete",
+            "Get"
+          ],
+          "description": "Defines the SHA1 hash for the certificate. The 20-byte value of the SHA1 certificate hash is specified as a hexadecimal string value",
+          "applicability": {},
+          "children": [
+            {
+              "name": "EncodedCertificate",
+              "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/CA/EncodedCertificate",
+              "format": "b64",
+              "access": [
+                "Add",
+                "Get",
+                "Replace"
+              ],
+              "description": "Specifies the X.509 certificate as a Base64-encoded string. The Base-64 string value cannot include extra formatting characters such as embedded linefeeds, etc.",
+              "applicability": {},
+              "allowedValues": {
+                "type": "None"
+              }
+            },
+            {
+              "name": "IssuedBy",
+              "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/CA/IssuedBy",
+              "format": "chr",
+              "access": [
+                "Get"
+              ],
+              "description": "Returns the name of the certificate issuer.  This is equivalent to the Issuer member in the CERT_INFO data structure.",
+              "applicability": {}
+            },
+            {
+              "name": "IssuedTo",
+              "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/CA/IssuedTo",
+              "format": "chr",
+              "access": [
+                "Get"
+              ],
+              "description": "Returns the name of the certificate subject. This is equivalent to the Subject member in the CERT_INFO data structure.",
+              "applicability": {}
+            },
+            {
+              "name": "TemplateName",
+              "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/CA/TemplateName",
+              "format": "chr",
+              "access": [
+                "Get"
+              ],
+              "description": "Returns the certificate template name. Supported operation is Get.",
+              "applicability": {}
+            },
+            {
+              "name": "ValidFrom",
+              "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/CA/ValidFrom",
+              "format": "chr",
+              "access": [
+                "Get"
+              ],
+              "description": "Returns the starting date of the certificate's validity. Supported operation is Get. This is equivalent to the NotBefore member in the CERT_INFO structure.",
+              "applicability": {}
+            },
+            {
+              "name": "ValidTo",
+              "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/CA/ValidTo",
+              "format": "chr",
+              "access": [
+                "Get"
+              ],
+              "description": "Returns the expiration date of the certificate. Supported operation is Get. This is equivalent to the NotAfter member in the CERT_INFO structure",
+              "applicability": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "OemEsim",
+      "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/OemEsim",
+      "format": "node",
+      "access": [
+        "Get"
+      ],
+      "description": "Node for OEM eSIM certificates.",
+      "applicability": {
+        "minOsBuild": "10.0.22000",
+        "cspVersion": "1.2"
+      },
+      "children": [
+        {
+          "name": "",
+          "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/OemEsim/",
+          "format": "node",
+          "access": [
+            "Delete",
+            "Get"
+          ],
+          "description": "Defines the SHA1 hash for the certificate. The 20-byte value of the SHA1 certificate hash is specified as a hexadecimal string value",
+          "applicability": {},
+          "children": [
+            {
+              "name": "EncodedCertificate",
+              "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/OemEsim/EncodedCertificate",
+              "format": "b64",
+              "access": [
+                "Add",
+                "Get",
+                "Replace"
+              ],
+              "description": "Specifies the X.509 certificate as a Base64-encoded string. The Base-64 string value cannot include extra formatting characters such as embedded linefeeds, etc.",
+              "applicability": {},
+              "allowedValues": {
+                "type": "None"
+              }
+            },
+            {
+              "name": "IssuedBy",
+              "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/OemEsim/IssuedBy",
+              "format": "chr",
+              "access": [
+                "Get"
+              ],
+              "description": "Returns the name of the certificate issuer.  This is equivalent to the Issuer member in the CERT_INFO data structure.",
+              "applicability": {}
+            },
+            {
+              "name": "IssuedTo",
+              "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/OemEsim/IssuedTo",
+              "format": "chr",
+              "access": [
+                "Get"
+              ],
+              "description": "Returns the name of the certificate subject. This is equivalent to the Subject member in the CERT_INFO data structure.",
+              "applicability": {}
+            },
+            {
+              "name": "TemplateName",
+              "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/OemEsim/TemplateName",
+              "format": "chr",
+              "access": [
+                "Get"
+              ],
+              "description": "Returns the certificate template name. Supported operation is Get.",
+              "applicability": {}
+            },
+            {
+              "name": "ValidFrom",
+              "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/OemEsim/ValidFrom",
+              "format": "chr",
+              "access": [
+                "Get"
+              ],
+              "description": "Returns the starting date of the certificate's validity. Supported operation is Get. This is equivalent to the NotBefore member in the CERT_INFO structure.",
+              "applicability": {}
+            },
+            {
+              "name": "ValidTo",
+              "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/OemEsim/ValidTo",
+              "format": "chr",
+              "access": [
+                "Get"
+              ],
+              "description": "Returns the expiration date of the certificate. Supported operation is Get. This is equivalent to the NotAfter member in the CERT_INFO structure",
+              "applicability": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "OemEsim",
+      "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/OemEsim",
+      "format": "node",
+      "access": [
+        "Get"
+      ],
+      "description": "Node for OEM eSIM certificates.",
+      "applicability": {
+        "minOsBuild": "10.0.22000",
+        "cspVersion": "1.2"
+      },
+      "children": [
+        {
+          "name": "",
+          "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/OemEsim/",
+          "format": "node",
+          "access": [
+            "Delete",
+            "Get"
+          ],
+          "description": "Defines the SHA1 hash for the certificate. The 20-byte value of the SHA1 certificate hash is specified as a hexadecimal string value",
+          "applicability": {},
+          "children": [
+            {
+              "name": "EncodedCertificate",
+              "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/OemEsim/EncodedCertificate",
+              "format": "b64",
+              "access": [
+                "Add",
+                "Get",
+                "Replace"
+              ],
+              "description": "Specifies the X.509 certificate as a Base64-encoded string. The Base-64 string value cannot include extra formatting characters such as embedded linefeeds, etc.",
+              "applicability": {}
+            },
+            {
+              "name": "IssuedBy",
+              "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/OemEsim/IssuedBy",
+              "format": "chr",
+              "access": [
+                "Get"
+              ],
+              "description": "Returns the name of the certificate issuer.  This is equivalent to the Issuer member in the CERT_INFO data structure.",
+              "applicability": {}
+            },
+            {
+              "name": "IssuedTo",
+              "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/OemEsim/IssuedTo",
+              "format": "chr",
+              "access": [
+                "Get"
+              ],
+              "description": "Returns the name of the certificate subject. This is equivalent to the Subject member in the CERT_INFO data structure.",
+              "applicability": {}
+            },
+            {
+              "name": "TemplateName",
+              "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/OemEsim/TemplateName",
+              "format": "chr",
+              "access": [
+                "Get"
+              ],
+              "description": "Returns the certificate template name. Supported operation is Get.",
+              "applicability": {}
+            },
+            {
+              "name": "ValidFrom",
+              "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/OemEsim/ValidFrom",
+              "format": "chr",
+              "access": [
+                "Get"
+              ],
+              "description": "Returns the starting date of the certificate's validity. Supported operation is Get. This is equivalent to the NotBefore member in the CERT_INFO structure.",
+              "applicability": {}
+            },
+            {
+              "name": "ValidTo",
+              "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/OemEsim/ValidTo",
+              "format": "chr",
+              "access": [
+                "Get"
+              ],
+              "description": "Returns the expiration date of the certificate. Supported operation is Get. This is equivalent to the NotAfter member in the CERT_INFO structure",
+              "applicability": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Root",
+      "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/Root",
+      "format": "node",
+      "access": [
+        "Get"
+      ],
+      "description": "Defines the certificate store that contains root, or self-signed certificates, in this case, the computer store.",
+      "applicability": {},
+      "children": [
+        {
+          "name": "",
+          "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/Root/",
+          "format": "node",
+          "access": [
+            "Delete",
+            "Get"
+          ],
+          "description": "Defines the SHA1 hash for the certificate. The 20-byte value of the SHA1 certificate hash is specified as a hexadecimal string value",
+          "applicability": {},
+          "children": [
+            {
+              "name": "EncodedCertificate",
+              "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/Root/EncodedCertificate",
+              "format": "b64",
+              "access": [
+                "Add",
+                "Get",
+                "Replace"
+              ],
+              "description": "Specifies the X.509 certificate as a Base64-encoded string. The Base-64 string value cannot include extra formatting characters such as embedded linefeeds, etc.",
+              "applicability": {},
+              "allowedValues": {
+                "type": "None"
+              }
+            },
+            {
+              "name": "IssuedBy",
+              "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/Root/IssuedBy",
+              "format": "chr",
+              "access": [
+                "Get"
+              ],
+              "description": "Returns the name of the certificate issuer.  This is equivalent to the Issuer member in the CERT_INFO data structure.",
+              "applicability": {}
+            },
+            {
+              "name": "IssuedTo",
+              "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/Root/IssuedTo",
+              "format": "chr",
+              "access": [
+                "Get"
+              ],
+              "description": "Returns the name of the certificate subject. This is equivalent to the Subject member in the CERT_INFO data structure.",
+              "applicability": {}
+            },
+            {
+              "name": "TemplateName",
+              "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/Root/TemplateName",
+              "format": "chr",
+              "access": [
+                "Get"
+              ],
+              "description": "Returns the certificate template name. Supported operation is Get.",
+              "applicability": {}
+            },
+            {
+              "name": "ValidFrom",
+              "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/Root/ValidFrom",
+              "format": "chr",
+              "access": [
+                "Get"
+              ],
+              "description": "Returns the starting date of the certificate's validity. Supported operation is Get. This is equivalent to the NotBefore member in the CERT_INFO structure.",
+              "applicability": {}
+            },
+            {
+              "name": "ValidTo",
+              "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/Root/ValidTo",
+              "format": "chr",
+              "access": [
+                "Get"
+              ],
+              "description": "Returns the expiration date of the certificate. Supported operation is Get. This is equivalent to the NotAfter member in the CERT_INFO structure",
+              "applicability": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "TrustedPeople",
+      "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/TrustedPeople",
+      "format": "node",
+      "access": [
+        "Get"
+      ],
+      "description": "Node for trusted people certificates.",
+      "applicability": {},
+      "children": [
+        {
+          "name": "",
+          "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/TrustedPeople/",
+          "format": "node",
+          "access": [
+            "Delete",
+            "Get"
+          ],
+          "description": "Defines the SHA1 hash for the certificate. The 20-byte value of the SHA1 certificate hash is specified as a hexadecimal string value",
+          "applicability": {},
+          "children": [
+            {
+              "name": "EncodedCertificate",
+              "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/TrustedPeople/EncodedCertificate",
+              "format": "b64",
+              "access": [
+                "Add",
+                "Get",
+                "Replace"
+              ],
+              "description": "Specifies the X.509 certificate as a Base64-encoded string. The Base-64 string value cannot include extra formatting characters such as embedded linefeeds, etc.",
+              "applicability": {},
+              "allowedValues": {
+                "type": "None"
+              }
+            },
+            {
+              "name": "IssuedBy",
+              "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/TrustedPeople/IssuedBy",
+              "format": "chr",
+              "access": [
+                "Get"
+              ],
+              "description": "Returns the name of the certificate issuer.  This is equivalent to the Issuer member in the CERT_INFO data structure.",
+              "applicability": {}
+            },
+            {
+              "name": "IssuedTo",
+              "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/TrustedPeople/IssuedTo",
+              "format": "chr",
+              "access": [
+                "Get"
+              ],
+              "description": "Returns the name of the certificate subject. This is equivalent to the Subject member in the CERT_INFO data structure.",
+              "applicability": {}
+            },
+            {
+              "name": "TemplateName",
+              "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/TrustedPeople/TemplateName",
+              "format": "chr",
+              "access": [
+                "Get"
+              ],
+              "description": "Returns the certificate template name. Supported operation is Get.",
+              "applicability": {}
+            },
+            {
+              "name": "ValidFrom",
+              "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/TrustedPeople/ValidFrom",
+              "format": "chr",
+              "access": [
+                "Get"
+              ],
+              "description": "Returns the starting date of the certificate's validity. Supported operation is Get. This is equivalent to the NotBefore member in the CERT_INFO structure.",
+              "applicability": {}
+            },
+            {
+              "name": "ValidTo",
+              "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/TrustedPeople/ValidTo",
+              "format": "chr",
+              "access": [
+                "Get"
+              ],
+              "description": "Returns the expiration date of the certificate. Supported operation is Get. This is equivalent to the NotAfter member in the CERT_INFO structure",
+              "applicability": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "TrustedPeople",
+      "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/TrustedPeople",
+      "format": "node",
+      "access": [
+        "Get"
+      ],
+      "description": "Node for trusted people certificates.",
+      "applicability": {},
+      "children": [
+        {
+          "name": "",
+          "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/TrustedPeople/",
+          "format": "node",
+          "access": [
+            "Delete",
+            "Get"
+          ],
+          "description": "Defines the SHA1 hash for the certificate. The 20-byte value of the SHA1 certificate hash is specified as a hexadecimal string value",
+          "applicability": {},
+          "children": [
+            {
+              "name": "EncodedCertificate",
+              "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/TrustedPeople/EncodedCertificate",
+              "format": "b64",
+              "access": [
+                "Add",
+                "Get",
+                "Replace"
+              ],
+              "description": "Specifies the X.509 certificate as a Base64-encoded string. The Base-64 string value cannot include extra formatting characters such as embedded linefeeds, etc.",
+              "applicability": {}
+            },
+            {
+              "name": "IssuedBy",
+              "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/TrustedPeople/IssuedBy",
+              "format": "chr",
+              "access": [
+                "Get"
+              ],
+              "description": "Returns the name of the certificate issuer.  This is equivalent to the Issuer member in the CERT_INFO data structure.",
+              "applicability": {}
+            },
+            {
+              "name": "IssuedTo",
+              "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/TrustedPeople/IssuedTo",
+              "format": "chr",
+              "access": [
+                "Get"
+              ],
+              "description": "Returns the name of the certificate subject. This is equivalent to the Subject member in the CERT_INFO data structure.",
+              "applicability": {}
+            },
+            {
+              "name": "TemplateName",
+              "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/TrustedPeople/TemplateName",
+              "format": "chr",
+              "access": [
+                "Get"
+              ],
+              "description": "Returns the certificate template name. Supported operation is Get.",
+              "applicability": {}
+            },
+            {
+              "name": "ValidFrom",
+              "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/TrustedPeople/ValidFrom",
+              "format": "chr",
+              "access": [
+                "Get"
+              ],
+              "description": "Returns the starting date of the certificate's validity. Supported operation is Get. This is equivalent to the NotBefore member in the CERT_INFO structure.",
+              "applicability": {}
+            },
+            {
+              "name": "ValidTo",
+              "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/TrustedPeople/ValidTo",
+              "format": "chr",
+              "access": [
+                "Get"
+              ],
+              "description": "Returns the expiration date of the certificate. Supported operation is Get. This is equivalent to the NotAfter member in the CERT_INFO structure",
+              "applicability": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "TrustedPublisher",
+      "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/TrustedPublisher",
+      "format": "node",
+      "access": [
+        "Get"
+      ],
+      "description": "Node for trusted publisher certificates.",
+      "applicability": {},
+      "children": [
+        {
+          "name": "",
+          "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/TrustedPublisher/",
+          "format": "node",
+          "access": [
+            "Delete",
+            "Get"
+          ],
+          "description": "Defines the SHA1 hash for the certificate. The 20-byte value of the SHA1 certificate hash is specified as a hexadecimal string value",
+          "applicability": {},
+          "children": [
+            {
+              "name": "EncodedCertificate",
+              "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/TrustedPublisher/EncodedCertificate",
+              "format": "b64",
+              "access": [
+                "Add",
+                "Get",
+                "Replace"
+              ],
+              "description": "Specifies the X.509 certificate as a Base64-encoded string. The Base-64 string value cannot include extra formatting characters such as embedded linefeeds, etc.",
+              "applicability": {},
+              "allowedValues": {
+                "type": "None"
+              }
+            },
+            {
+              "name": "IssuedBy",
+              "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/TrustedPublisher/IssuedBy",
+              "format": "chr",
+              "access": [
+                "Get"
+              ],
+              "description": "Returns the name of the certificate issuer.  This is equivalent to the Issuer member in the CERT_INFO data structure.",
+              "applicability": {}
+            },
+            {
+              "name": "IssuedTo",
+              "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/TrustedPublisher/IssuedTo",
+              "format": "chr",
+              "access": [
+                "Get"
+              ],
+              "description": "Returns the name of the certificate subject. This is equivalent to the Subject member in the CERT_INFO data structure.",
+              "applicability": {}
+            },
+            {
+              "name": "TemplateName",
+              "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/TrustedPublisher/TemplateName",
+              "format": "chr",
+              "access": [
+                "Get"
+              ],
+              "description": "Returns the certificate template name. Supported operation is Get.",
+              "applicability": {}
+            },
+            {
+              "name": "ValidFrom",
+              "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/TrustedPublisher/ValidFrom",
+              "format": "chr",
+              "access": [
+                "Get"
+              ],
+              "description": "Returns the starting date of the certificate's validity. Supported operation is Get. This is equivalent to the NotBefore member in the CERT_INFO structure.",
+              "applicability": {}
+            },
+            {
+              "name": "ValidTo",
+              "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/TrustedPublisher/ValidTo",
+              "format": "chr",
+              "access": [
+                "Get"
+              ],
+              "description": "Returns the expiration date of the certificate. Supported operation is Get. This is equivalent to the NotAfter member in the CERT_INFO structure",
+              "applicability": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "TrustedPublisher",
+      "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/TrustedPublisher",
+      "format": "node",
+      "access": [
+        "Get"
+      ],
+      "description": "Node for trusted publisher certificates.",
+      "applicability": {},
+      "children": [
+        {
+          "name": "",
+          "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/TrustedPublisher/",
+          "format": "node",
+          "access": [
+            "Delete",
+            "Get"
+          ],
+          "description": "Defines the SHA1 hash for the certificate. The 20-byte value of the SHA1 certificate hash is specified as a hexadecimal string value",
+          "applicability": {},
+          "children": [
+            {
+              "name": "EncodedCertificate",
+              "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/TrustedPublisher/EncodedCertificate",
+              "format": "b64",
+              "access": [
+                "Add",
+                "Get",
+                "Replace"
+              ],
+              "description": "Specifies the X.509 certificate as a Base64-encoded string. The Base-64 string value cannot include extra formatting characters such as embedded linefeeds, etc.",
+              "applicability": {},
+              "allowedValues": {
+                "type": "None"
+              }
+            },
+            {
+              "name": "IssuedBy",
+              "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/TrustedPublisher/IssuedBy",
+              "format": "chr",
+              "access": [
+                "Get"
+              ],
+              "description": "Returns the name of the certificate issuer.  This is equivalent to the Issuer member in the CERT_INFO data structure.",
+              "applicability": {}
+            },
+            {
+              "name": "IssuedTo",
+              "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/TrustedPublisher/IssuedTo",
+              "format": "chr",
+              "access": [
+                "Get"
+              ],
+              "description": "Returns the name of the certificate subject. This is equivalent to the Subject member in the CERT_INFO data structure.",
+              "applicability": {}
+            },
+            {
+              "name": "TemplateName",
+              "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/TrustedPublisher/TemplateName",
+              "format": "chr",
+              "access": [
+                "Get"
+              ],
+              "description": "Returns the certificate template name. Supported operation is Get.",
+              "applicability": {}
+            },
+            {
+              "name": "ValidFrom",
+              "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/TrustedPublisher/ValidFrom",
+              "format": "chr",
+              "access": [
+                "Get"
+              ],
+              "description": "Returns the starting date of the certificate's validity. Supported operation is Get. This is equivalent to the NotBefore member in the CERT_INFO structure.",
+              "applicability": {}
+            },
+            {
+              "name": "ValidTo",
+              "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/TrustedPublisher/ValidTo",
+              "format": "chr",
+              "access": [
+                "Get"
+              ],
+              "description": "Returns the expiration date of the certificate. Supported operation is Get. This is equivalent to the NotAfter member in the CERT_INFO structure",
+              "applicability": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "UntrustedCertificates",
+      "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/UntrustedCertificates",
+      "format": "node",
+      "access": [
+        "Get"
+      ],
+      "description": "Node for certificates that are not trusted. IT admin can use this node to immediately flag certificates that have been compromised and no longer usable.",
+      "applicability": {
+        "minOsBuild": "10.0.17134",
+        "cspVersion": "1.1"
+      },
+      "children": [
+        {
+          "name": "",
+          "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/UntrustedCertificates/",
+          "format": "node",
+          "access": [
+            "Delete",
+            "Get"
+          ],
+          "description": "Defines the SHA1 hash for the certificate. The 20-byte value of the SHA1 certificate hash is specified as a hexadecimal string value",
+          "applicability": {},
+          "children": [
+            {
+              "name": "EncodedCertificate",
+              "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/UntrustedCertificates/EncodedCertificate",
+              "format": "b64",
+              "access": [
+                "Add",
+                "Get",
+                "Replace"
+              ],
+              "description": "Specifies the X.509 certificate as a Base64-encoded string. The Base-64 string value cannot include extra formatting characters such as embedded linefeeds, etc.",
+              "applicability": {},
+              "allowedValues": {
+                "type": "None"
+              }
+            },
+            {
+              "name": "IssuedBy",
+              "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/UntrustedCertificates/IssuedBy",
+              "format": "chr",
+              "access": [
+                "Get"
+              ],
+              "description": "Returns the name of the certificate issuer.  This is equivalent to the Issuer member in the CERT_INFO data structure.",
+              "applicability": {}
+            },
+            {
+              "name": "IssuedTo",
+              "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/UntrustedCertificates/IssuedTo",
+              "format": "chr",
+              "access": [
+                "Get"
+              ],
+              "description": "Returns the name of the certificate subject. This is equivalent to the Subject member in the CERT_INFO data structure.",
+              "applicability": {}
+            },
+            {
+              "name": "TemplateName",
+              "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/UntrustedCertificates/TemplateName",
+              "format": "chr",
+              "access": [
+                "Get"
+              ],
+              "description": "Returns the certificate template name. Supported operation is Get.",
+              "applicability": {}
+            },
+            {
+              "name": "ValidFrom",
+              "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/UntrustedCertificates/ValidFrom",
+              "format": "chr",
+              "access": [
+                "Get"
+              ],
+              "description": "Returns the starting date of the certificate's validity. Supported operation is Get. This is equivalent to the NotBefore member in the CERT_INFO structure.",
+              "applicability": {}
+            },
+            {
+              "name": "ValidTo",
+              "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/UntrustedCertificates/ValidTo",
+              "format": "chr",
+              "access": [
+                "Get"
+              ],
+              "description": "Returns the expiration date of the certificate. Supported operation is Get. This is equivalent to the NotAfter member in the CERT_INFO structure",
+              "applicability": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "UntrustedCertificates",
+      "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/UntrustedCertificates",
+      "format": "node",
+      "access": [
+        "Get"
+      ],
+      "description": "Node for certificates that are not trusted. IT admin can use this node to immediately flag certificates that have been compromised and no longer usable.",
+      "applicability": {
+        "minOsBuild": "10.0.17134",
+        "cspVersion": "1.1"
+      },
+      "children": [
+        {
+          "name": "",
+          "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/UntrustedCertificates/",
+          "format": "node",
+          "access": [
+            "Delete",
+            "Get"
+          ],
+          "description": "Defines the SHA1 hash for the certificate. The 20-byte value of the SHA1 certificate hash is specified as a hexadecimal string value",
+          "applicability": {},
+          "children": [
+            {
+              "name": "EncodedCertificate",
+              "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/UntrustedCertificates/EncodedCertificate",
+              "format": "b64",
+              "access": [
+                "Add",
+                "Get",
+                "Replace"
+              ],
+              "description": "Specifies the X.509 certificate as a Base64-encoded string. The Base-64 string value cannot include extra formatting characters such as embedded linefeeds, etc.",
+              "applicability": {},
+              "allowedValues": {
+                "type": "None"
+              }
+            },
+            {
+              "name": "IssuedBy",
+              "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/UntrustedCertificates/IssuedBy",
+              "format": "chr",
+              "access": [
+                "Get"
+              ],
+              "description": "Returns the name of the certificate issuer.  This is equivalent to the Issuer member in the CERT_INFO data structure.",
+              "applicability": {}
+            },
+            {
+              "name": "IssuedTo",
+              "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/UntrustedCertificates/IssuedTo",
+              "format": "chr",
+              "access": [
+                "Get"
+              ],
+              "description": "Returns the name of the certificate subject. This is equivalent to the Subject member in the CERT_INFO data structure.",
+              "applicability": {}
+            },
+            {
+              "name": "TemplateName",
+              "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/UntrustedCertificates/TemplateName",
+              "format": "chr",
+              "access": [
+                "Get"
+              ],
+              "description": "Returns the certificate template name. Supported operation is Get.",
+              "applicability": {}
+            },
+            {
+              "name": "ValidFrom",
+              "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/UntrustedCertificates/ValidFrom",
+              "format": "chr",
+              "access": [
+                "Get"
+              ],
+              "description": "Returns the starting date of the certificate's validity. Supported operation is Get. This is equivalent to the NotBefore member in the CERT_INFO structure.",
+              "applicability": {}
+            },
+            {
+              "name": "ValidTo",
+              "path": "./Device/Vendor/MSFT/RootCATrustedCertificates/UntrustedCertificates/ValidTo",
+              "format": "chr",
+              "access": [
+                "Get"
+              ],
+              "description": "Returns the expiration date of the certificate. Supported operation is Get. This is equivalent to the NotAfter member in the CERT_INFO structure",
+              "applicability": {}
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

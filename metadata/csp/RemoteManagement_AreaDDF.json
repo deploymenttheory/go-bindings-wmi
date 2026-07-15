@@ -1,0 +1,366 @@
+{
+  "name": "RemoteManagement",
+  "path": "./Device/Vendor/MSFT/Policy/Config",
+  "nodes": [
+    {
+      "name": "AllowBasicAuthentication_Client",
+      "path": "./Device/Vendor/MSFT/Policy/Config/RemoteManagement/AllowBasicAuthentication_Client",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.16299",
+        "cspVersion": "6.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsRemoteManagement~AT~WindowsComponents~WinRM~WinRMClient",
+          "name": "AllowBasic_2",
+          "file": "WindowsRemoteManagement.admx"
+        }
+      }
+    },
+    {
+      "name": "AllowBasicAuthentication_Service",
+      "path": "./Device/Vendor/MSFT/Policy/Config/RemoteManagement/AllowBasicAuthentication_Service",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.16299",
+        "cspVersion": "6.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsRemoteManagement~AT~WindowsComponents~WinRM~WinRMService",
+          "name": "AllowBasic_1",
+          "file": "WindowsRemoteManagement.admx"
+        }
+      }
+    },
+    {
+      "name": "AllowCredSSPAuthenticationClient",
+      "path": "./Device/Vendor/MSFT/Policy/Config/RemoteManagement/AllowCredSSPAuthenticationClient",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.16299",
+        "cspVersion": "6.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsRemoteManagement~AT~WindowsComponents~WinRMClient",
+          "name": "AllowCredSSP_2",
+          "file": "WindowsRemoteManagement.admx"
+        }
+      }
+    },
+    {
+      "name": "AllowCredSSPAuthenticationService",
+      "path": "./Device/Vendor/MSFT/Policy/Config/RemoteManagement/AllowCredSSPAuthenticationService",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.16299",
+        "cspVersion": "6.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsRemoteManagement~AT~WindowsComponents~WinRM~WinRMService",
+          "name": "AllowCredSSP_1",
+          "file": "WindowsRemoteManagement.admx"
+        }
+      }
+    },
+    {
+      "name": "AllowRemoteServerManagement",
+      "path": "./Device/Vendor/MSFT/Policy/Config/RemoteManagement/AllowRemoteServerManagement",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.16299",
+        "cspVersion": "6.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsRemoteManagement~AT~WindowsComponents~WinRM~WinRMService",
+          "name": "AllowAutoConfig",
+          "file": "WindowsRemoteManagement.admx"
+        }
+      }
+    },
+    {
+      "name": "AllowUnencryptedTraffic_Client",
+      "path": "./Device/Vendor/MSFT/Policy/Config/RemoteManagement/AllowUnencryptedTraffic_Client",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.16299",
+        "cspVersion": "6.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsRemoteManagement~AT~WindowsComponents~WinRM~WinRMClient",
+          "name": "AllowUnencrypted_2",
+          "file": "WindowsRemoteManagement.admx"
+        }
+      }
+    },
+    {
+      "name": "AllowUnencryptedTraffic_Service",
+      "path": "./Device/Vendor/MSFT/Policy/Config/RemoteManagement/AllowUnencryptedTraffic_Service",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.16299",
+        "cspVersion": "6.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsRemoteManagement~AT~WindowsComponents~WinRM~WinRMService",
+          "name": "AllowUnencrypted_1",
+          "file": "WindowsRemoteManagement.admx"
+        }
+      }
+    },
+    {
+      "name": "DisallowDigestAuthentication",
+      "path": "./Device/Vendor/MSFT/Policy/Config/RemoteManagement/DisallowDigestAuthentication",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.16299",
+        "cspVersion": "6.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsRemoteManagement~AT~WindowsComponents~WinRM~WinRMClient",
+          "name": "DisallowDigest",
+          "file": "WindowsRemoteManagement.admx"
+        }
+      }
+    },
+    {
+      "name": "DisallowNegotiateAuthenticationClient",
+      "path": "./Device/Vendor/MSFT/Policy/Config/RemoteManagement/DisallowNegotiateAuthenticationClient",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.16299",
+        "cspVersion": "6.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsRemoteManagement~AT~WindowsComponents~WinRM~WinRMClient",
+          "name": "DisallowNegotiate_2",
+          "file": "WindowsRemoteManagement.admx"
+        }
+      }
+    },
+    {
+      "name": "DisallowNegotiateAuthenticationService",
+      "path": "./Device/Vendor/MSFT/Policy/Config/RemoteManagement/DisallowNegotiateAuthenticationService",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.16299",
+        "cspVersion": "6.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsRemoteManagement~AT~WindowsComponents~WinRM~WinRMService",
+          "name": "DisallowNegotiate_1",
+          "file": "WindowsRemoteManagement.admx"
+        }
+      }
+    },
+    {
+      "name": "DisallowStoringOfRunAsCredentials",
+      "path": "./Device/Vendor/MSFT/Policy/Config/RemoteManagement/DisallowStoringOfRunAsCredentials",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.16299",
+        "cspVersion": "6.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsRemoteManagement~AT~WindowsComponents~WinRM~WinRMService",
+          "name": "DisableRunAs",
+          "file": "WindowsRemoteManagement.admx"
+        }
+      }
+    },
+    {
+      "name": "SpecifyChannelBindingTokenHardeningLevel",
+      "path": "./Device/Vendor/MSFT/Policy/Config/RemoteManagement/SpecifyChannelBindingTokenHardeningLevel",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.16299",
+        "cspVersion": "6.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsRemoteManagement~AT~WindowsComponents~WinRM~WinRMService",
+          "name": "CBTHardeningLevel_1",
+          "file": "WindowsRemoteManagement.admx"
+        }
+      }
+    },
+    {
+      "name": "TrustedHosts",
+      "path": "./Device/Vendor/MSFT/Policy/Config/RemoteManagement/TrustedHosts",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.16299",
+        "cspVersion": "6.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsRemoteManagement~AT~WindowsComponents~WinRM~WinRMClient",
+          "name": "TrustedHosts",
+          "file": "WindowsRemoteManagement.admx"
+        }
+      }
+    },
+    {
+      "name": "TurnOnCompatibilityHTTPListener",
+      "path": "./Device/Vendor/MSFT/Policy/Config/RemoteManagement/TurnOnCompatibilityHTTPListener",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.16299",
+        "cspVersion": "6.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsRemoteManagement~AT~WindowsComponents~WinRM~WinRMService",
+          "name": "HttpCompatibilityListener",
+          "file": "WindowsRemoteManagement.admx"
+        }
+      }
+    },
+    {
+      "name": "TurnOnCompatibilityHTTPSListener",
+      "path": "./Device/Vendor/MSFT/Policy/Config/RemoteManagement/TurnOnCompatibilityHTTPSListener",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.16299",
+        "cspVersion": "6.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsRemoteManagement~AT~WindowsComponents~WinRM~WinRMService",
+          "name": "HttpsCompatibilityListener",
+          "file": "WindowsRemoteManagement.admx"
+        }
+      }
+    }
+  ]
+}

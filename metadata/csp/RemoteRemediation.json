@@ -1,0 +1,254 @@
+{
+  "name": "RemoteRemediation",
+  "path": "./Vendor/MSFT",
+  "nodes": [
+    {
+      "name": "CloudRemediationSettings",
+      "path": "./Vendor/MSFT/RemoteRemediation/CloudRemediationSettings",
+      "format": "node",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Interior node containing settings related to cloud remediation. Delete on this node will reset all cloud remediation settings to their default values.",
+      "applicability": {},
+      "children": [
+        {
+          "name": "AutoRemediationSettings",
+          "path": "./Vendor/MSFT/RemoteRemediation/CloudRemediationSettings/AutoRemediationSettings",
+          "format": "node",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "Interior node containing settings related to auto remediation. Delete on this node will reset all auto remediation settings to their default values.",
+          "applicability": {},
+          "children": [
+            {
+              "name": "EnableAutoRemediation",
+              "path": "./Vendor/MSFT/RemoteRemediation/CloudRemediationSettings/AutoRemediationSettings/EnableAutoRemediation",
+              "format": "bool",
+              "access": [
+                "Add",
+                "Delete",
+                "Get",
+                "Replace"
+              ],
+              "description": "Enable to automatically check for remediation solutions. Disable to check manually.",
+              "applicability": {},
+              "allowedValues": {
+                "type": "ENUM",
+                "enum": [
+                  {
+                    "value": "true",
+                    "description": "Auto remediation enabled"
+                  },
+                  {
+                    "value": "false",
+                    "description": "Auto remediation disabled"
+                  }
+                ]
+              }
+            },
+            {
+              "name": "SetRetryInterval",
+              "path": "./Vendor/MSFT/RemoteRemediation/CloudRemediationSettings/AutoRemediationSettings/SetRetryInterval",
+              "format": "int",
+              "access": [
+                "Add",
+                "Delete",
+                "Get",
+                "Replace"
+              ],
+              "description": "Refers to the time in minutes that a device will wait before trying to look for solutions again. The retry interval should not be higher than the time to reboot, and will only take effect if auto remediation is on. Otherwise an invalid argument error will be returned and no changes will be made. A retry interval of 0 means that the device will look for solutions once without any retries.",
+              "applicability": {},
+              "allowedValues": {
+                "type": "Range"
+              }
+            },
+            {
+              "name": "SetTimeToReboot",
+              "path": "./Vendor/MSFT/RemoteRemediation/CloudRemediationSettings/AutoRemediationSettings/SetTimeToReboot",
+              "format": "int",
+              "access": [
+                "Add",
+                "Delete",
+                "Get",
+                "Replace"
+              ],
+              "description": "Refers to the time in minutes that a device will spend in the recovery environment before attempting to reboot. The maximum time to reboot possible is 72 hours, should be greater than or equal to the retry interval, and only takes effect if auto remediation is on. Otherwise an invalid argument error will be returned and no changes will be made.",
+              "applicability": {},
+              "allowedValues": {
+                "type": "Range"
+              }
+            }
+          ]
+        },
+        {
+          "name": "EnableCloudRemediation",
+          "path": "./Vendor/MSFT/RemoteRemediation/CloudRemediationSettings/EnableCloudRemediation",
+          "format": "bool",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "Enable or disable quick machine recovery, a feature that will search for device recovery solutions if your device fails to start.",
+          "applicability": {},
+          "allowedValues": {
+            "type": "ENUM",
+            "enum": [
+              {
+                "value": "true",
+                "description": "Cloud remediation enabled"
+              },
+              {
+                "value": "false",
+                "description": "Cloud remediation disabled"
+              }
+            ]
+          }
+        },
+        {
+          "name": "NetworkSettings",
+          "path": "./Vendor/MSFT/RemoteRemediation/CloudRemediationSettings/NetworkSettings",
+          "format": "node",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "Interior node containing settings related to network.",
+          "applicability": {},
+          "children": [
+            {
+              "name": "NetworkCredentials",
+              "path": "./Vendor/MSFT/RemoteRemediation/CloudRemediationSettings/NetworkSettings/NetworkCredentials",
+              "format": "node",
+              "access": [
+                "Add",
+                "Delete",
+                "Get",
+                "Replace"
+              ],
+              "description": "Interior node containing settings related to network credentials.",
+              "applicability": {},
+              "children": [
+                {
+                  "name": "NetworkPassword",
+                  "path": "./Vendor/MSFT/RemoteRemediation/CloudRemediationSettings/NetworkSettings/NetworkCredentials/NetworkPassword",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Refers to the password for the wifi network that the device will attempt to connect to during remediation. If a password is set without a SSID, then this will be ignored.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "None"
+                  }
+                },
+                {
+                  "name": "NetworkPasswordEncryptionStore",
+                  "path": "./Vendor/MSFT/RemoteRemediation/CloudRemediationSettings/NetworkSettings/NetworkCredentials/NetworkPasswordEncryptionStore",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "The encryption store that is specified if we are using a custom certificate for password encryption.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "None"
+                  }
+                },
+                {
+                  "name": "NetworkPasswordEncryptionType",
+                  "path": "./Vendor/MSFT/RemoteRemediation/CloudRemediationSettings/NetworkSettings/NetworkCredentials/NetworkPasswordEncryptionType",
+                  "format": "int",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Refers to the type of encryption that can be used for the network password. If you specify \"Encrypt with custom certificate\" you must also enter the encryption store.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "ENUM",
+                    "enum": [
+                      {
+                        "value": "1",
+                        "description": "No encryption"
+                      },
+                      {
+                        "value": "2",
+                        "description": "Encrypt using Mdm certificate"
+                      },
+                      {
+                        "value": "3",
+                        "description": "Encrypt with custom certificate"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "NetworkSSID",
+                  "path": "./Vendor/MSFT/RemoteRemediation/CloudRemediationSettings/NetworkSettings/NetworkCredentials/NetworkSSID",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Refers to the wifi network SSID that the device will attempt to automatically connect to during remediation.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "None"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "EnableHeadless",
+      "path": "./Vendor/MSFT/RemoteRemediation/EnableHeadless",
+      "format": "bool",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Enable or disable headless mode. Note that if true, then during remediation, there will be no opportunity for user interaction.",
+      "applicability": {},
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "true",
+            "description": "Headless remediation enabled"
+          },
+          {
+            "value": "false",
+            "description": "Headless remediation disabled"
+          }
+        ]
+      }
+    }
+  ]
+}

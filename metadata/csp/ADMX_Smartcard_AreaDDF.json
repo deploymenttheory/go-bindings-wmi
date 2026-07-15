@@ -1,0 +1,390 @@
+{
+  "name": "ADMX_Smartcard",
+  "path": "./Device/Vendor/MSFT/Policy/Config",
+  "nodes": [
+    {
+      "name": "AllowCertificatesWithNoEKU",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_Smartcard/AllowCertificatesWithNoEKU",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Smartcard~AT~WindowsComponents~SmartCard",
+          "name": "AllowCertificatesWithNoEKU",
+          "file": "Smartcard.admx"
+        }
+      }
+    },
+    {
+      "name": "AllowIntegratedUnblock",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_Smartcard/AllowIntegratedUnblock",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Smartcard~AT~WindowsComponents~SmartCard",
+          "name": "AllowIntegratedUnblock",
+          "file": "Smartcard.admx"
+        }
+      }
+    },
+    {
+      "name": "AllowSignatureOnlyKeys",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_Smartcard/AllowSignatureOnlyKeys",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Smartcard~AT~WindowsComponents~SmartCard",
+          "name": "AllowSignatureOnlyKeys",
+          "file": "Smartcard.admx"
+        }
+      }
+    },
+    {
+      "name": "AllowTimeInvalidCertificates",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_Smartcard/AllowTimeInvalidCertificates",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Smartcard~AT~WindowsComponents~SmartCard",
+          "name": "AllowTimeInvalidCertificates",
+          "file": "Smartcard.admx"
+        }
+      }
+    },
+    {
+      "name": "CertPropEnabledString",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_Smartcard/CertPropEnabledString",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Smartcard~AT~WindowsComponents~SmartCard",
+          "name": "CertPropEnabledString",
+          "file": "Smartcard.admx"
+        }
+      }
+    },
+    {
+      "name": "CertPropRootCleanupString",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_Smartcard/CertPropRootCleanupString",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Smartcard~AT~WindowsComponents~SmartCard",
+          "name": "CertPropRootCleanupString",
+          "file": "Smartcard.admx"
+        }
+      }
+    },
+    {
+      "name": "CertPropRootEnabledString",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_Smartcard/CertPropRootEnabledString",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Smartcard~AT~WindowsComponents~SmartCard",
+          "name": "CertPropRootEnabledString",
+          "file": "Smartcard.admx"
+        }
+      }
+    },
+    {
+      "name": "DisallowPlaintextPin",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_Smartcard/DisallowPlaintextPin",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Smartcard~AT~WindowsComponents~SmartCard",
+          "name": "DisallowPlaintextPin",
+          "file": "Smartcard.admx"
+        }
+      }
+    },
+    {
+      "name": "EnumerateECCCerts",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_Smartcard/EnumerateECCCerts",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Smartcard~AT~WindowsComponents~SmartCard",
+          "name": "EnumerateECCCerts",
+          "file": "Smartcard.admx"
+        }
+      }
+    },
+    {
+      "name": "FilterDuplicateCerts",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_Smartcard/FilterDuplicateCerts",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Smartcard~AT~WindowsComponents~SmartCard",
+          "name": "FilterDuplicateCerts",
+          "file": "Smartcard.admx"
+        }
+      }
+    },
+    {
+      "name": "ForceReadingAllCertificates",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_Smartcard/ForceReadingAllCertificates",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Smartcard~AT~WindowsComponents~SmartCard",
+          "name": "ForceReadingAllCertificates",
+          "file": "Smartcard.admx"
+        }
+      }
+    },
+    {
+      "name": "IntegratedUnblockPromptString",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_Smartcard/IntegratedUnblockPromptString",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Smartcard~AT~WindowsComponents~SmartCard",
+          "name": "IntegratedUnblockPromptString",
+          "file": "Smartcard.admx"
+        }
+      }
+    },
+    {
+      "name": "ReverseSubject",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_Smartcard/ReverseSubject",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Smartcard~AT~WindowsComponents~SmartCard",
+          "name": "ReverseSubject",
+          "file": "Smartcard.admx"
+        }
+      }
+    },
+    {
+      "name": "SCPnPEnabled",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_Smartcard/SCPnPEnabled",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Smartcard~AT~WindowsComponents~SmartCard",
+          "name": "SCPnPEnabled",
+          "file": "Smartcard.admx"
+        }
+      }
+    },
+    {
+      "name": "SCPnPNotification",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_Smartcard/SCPnPNotification",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Smartcard~AT~WindowsComponents~SmartCard",
+          "name": "SCPnPNotification",
+          "file": "Smartcard.admx"
+        }
+      }
+    },
+    {
+      "name": "X509HintsNeeded",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_Smartcard/X509HintsNeeded",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Smartcard~AT~WindowsComponents~SmartCard",
+          "name": "X509HintsNeeded",
+          "file": "Smartcard.admx"
+        }
+      }
+    }
+  ]
+}

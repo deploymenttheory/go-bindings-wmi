@@ -1,0 +1,371 @@
+{
+  "name": "WindowsLicensing",
+  "path": "./Vendor/MSFT",
+  "nodes": [
+    {
+      "name": "ChangeProductKey",
+      "path": "./Vendor/MSFT/WindowsLicensing/ChangeProductKey",
+      "format": "chr",
+      "access": [
+        "Exec"
+      ],
+      "description": "Installs a product key for Windows 10 desktop devices. Does not reboot.",
+      "applicability": {
+        "minOsBuild": "10.0.15063",
+        "cspVersion": "1.2"
+      },
+      "allowedValues": {
+        "type": "None"
+      }
+    },
+    {
+      "name": "CheckApplicability",
+      "path": "./Vendor/MSFT/WindowsLicensing/CheckApplicability",
+      "format": "chr",
+      "access": [
+        "Exec"
+      ],
+      "description": "Returns TRUE if the entered product key can be used for an edition upgrade of Windows 10 desktop devices.",
+      "applicability": {}
+    },
+    {
+      "name": "DeviceLicensingService",
+      "path": "./Vendor/MSFT/WindowsLicensing/DeviceLicensingService",
+      "format": "node",
+      "access": [
+        "Get"
+      ],
+      "description": "Device Based Subscription",
+      "applicability": {
+        "minOsBuild": "10.0.22621, 10.0.22000.1165",
+        "cspVersion": "1.4"
+      },
+      "children": [
+        {
+          "name": "DeviceLicensingLastError",
+          "path": "./Vendor/MSFT/WindowsLicensing/DeviceLicensingService/DeviceLicensingLastError",
+          "format": "int",
+          "access": [
+            "Get"
+          ],
+          "description": "Returns the last error code of Refresh/Remove Device License operation. Value would be empty(0) in absence of error.",
+          "applicability": {}
+        },
+        {
+          "name": "DeviceLicensingLastErrorDescription",
+          "path": "./Vendor/MSFT/WindowsLicensing/DeviceLicensingService/DeviceLicensingLastErrorDescription",
+          "format": "chr",
+          "access": [
+            "Get"
+          ],
+          "description": "Returns last error description from Device Licensing. Value would be empty, if error decription can not be evaluated.",
+          "applicability": {}
+        },
+        {
+          "name": "DeviceLicensingStatus",
+          "path": "./Vendor/MSFT/WindowsLicensing/DeviceLicensingService/DeviceLicensingStatus",
+          "format": "int",
+          "access": [
+            "Get"
+          ],
+          "description": "Returns the status of Refresh/Remove Device License operation.",
+          "applicability": {}
+        },
+        {
+          "name": "LicenseType",
+          "path": "./Vendor/MSFT/WindowsLicensing/DeviceLicensingService/LicenseType",
+          "format": "int",
+          "access": [
+            "Get",
+            "Replace"
+          ],
+          "description": "License Type: User Based Subscription or Device Based Subscription",
+          "applicability": {},
+          "allowedValues": {
+            "type": "ENUM",
+            "enum": [
+              {
+                "value": "0",
+                "description": "User Based Subscription"
+              },
+              {
+                "value": "1",
+                "description": "Device Based Subscription"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Edition",
+      "path": "./Vendor/MSFT/WindowsLicensing/Edition",
+      "format": "int",
+      "access": [
+        "Get"
+      ],
+      "description": "Returns a value that maps to the Windows 10 edition running on desktop or mobile devices. Take the value, convert it into its hexadecimal equivalent and search the GetProductInfo function page on MSDN for edition information.",
+      "applicability": {}
+    },
+    {
+      "name": "LicenseKeyType",
+      "path": "./Vendor/MSFT/WindowsLicensing/LicenseKeyType",
+      "format": "chr",
+      "access": [
+        "Get"
+      ],
+      "description": "Returns the parameter type used by Windows 10 devices for an edition upgrade. Windows 10 desktop devices require a product key for an edition upgrade. Windows 10 mobile devices require a license for an edition upgrade.",
+      "applicability": {}
+    },
+    {
+      "name": "SMode",
+      "path": "./Vendor/MSFT/WindowsLicensing/SMode",
+      "format": "node",
+      "access": [
+        "Get"
+      ],
+      "description": "Interior node for managing S mode.",
+      "applicability": {
+        "minOsBuild": "10.0.17763",
+        "cspVersion": "1.3"
+      },
+      "children": [
+        {
+          "name": "Status",
+          "path": "./Vendor/MSFT/WindowsLicensing/SMode/Status",
+          "format": "int",
+          "access": [
+            "Get"
+          ],
+          "description": "Returns the status of the latest SwitchFromSMode or SwitchingPolicy set request.",
+          "applicability": {}
+        },
+        {
+          "name": "SwitchFromSMode",
+          "path": "./Vendor/MSFT/WindowsLicensing/SMode/SwitchFromSMode",
+          "format": "null",
+          "access": [
+            "Exec"
+          ],
+          "description": "Switches a device out of S mode if possible. Does not reboot.",
+          "applicability": {}
+        },
+        {
+          "name": "SwitchingPolicy",
+          "path": "./Vendor/MSFT/WindowsLicensing/SMode/SwitchingPolicy",
+          "format": "int",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "Policy that determines whether a consumer can switch the device out of S mode",
+          "applicability": {},
+          "allowedValues": {
+            "type": "ENUM",
+            "enum": [
+              {
+                "value": "0",
+                "description": "No Restriction: The user is allowed to switch the device out of S mode."
+              },
+              {
+                "value": "1",
+                "description": "User Blocked: The admin has blocked the user from switching their device out of S mode. Only the admin can switch the device out of S mode through the SMode/SwitchFromSMode node."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Status",
+      "path": "./Vendor/MSFT/WindowsLicensing/Status",
+      "format": "int",
+      "access": [
+        "Get"
+      ],
+      "description": "Returns the status of an edition upgrade on Windows 10 desktop and mobile devices.\t Status: 0 = Failed, 1 = Pending, 2 = In progress, 3 = Completed, 4 = Unknown",
+      "applicability": {}
+    },
+    {
+      "name": "Subscriptions",
+      "path": "./Vendor/MSFT/WindowsLicensing/Subscriptions",
+      "format": "node",
+      "access": [
+        "Get"
+      ],
+      "description": "Node for subscriptions.",
+      "applicability": {
+        "minOsBuild": "10.0.14393",
+        "cspVersion": "1.1"
+      },
+      "children": [
+        {
+          "name": "",
+          "path": "./Vendor/MSFT/WindowsLicensing/Subscriptions/",
+          "format": "node",
+          "access": [
+            "Get"
+          ],
+          "description": "Node for subscription IDs.",
+          "applicability": {},
+          "children": [
+            {
+              "name": "Name",
+              "path": "./Vendor/MSFT/WindowsLicensing/Subscriptions/Name",
+              "format": "chr",
+              "access": [
+                "Get"
+              ],
+              "description": "Returns the name of the subscription.",
+              "applicability": {}
+            },
+            {
+              "name": "Status",
+              "path": "./Vendor/MSFT/WindowsLicensing/Subscriptions/Status",
+              "format": "int",
+              "access": [
+                "Get"
+              ],
+              "description": "Returns the status of the subscription.",
+              "applicability": {}
+            }
+          ]
+        },
+        {
+          "name": "DisableSubscription",
+          "path": "./Vendor/MSFT/WindowsLicensing/Subscriptions/DisableSubscription",
+          "format": "int",
+          "access": [
+            "Replace"
+          ],
+          "description": "Disable or Enable subscription activation on a device",
+          "applicability": {
+            "minOsBuild": "99.9.99999",
+            "cspVersion": "9.9"
+          },
+          "allowedValues": {
+            "type": "ENUM",
+            "enum": [
+              {
+                "value": "0",
+                "description": "Enable Subscription"
+              },
+              {
+                "value": "1",
+                "description": "Disable Subscription. It also removes any existing subscription on the device."
+              }
+            ]
+          }
+        },
+        {
+          "name": "RemoveSubscription",
+          "path": "./Vendor/MSFT/WindowsLicensing/Subscriptions/RemoveSubscription",
+          "format": "null",
+          "access": [
+            "Exec"
+          ],
+          "description": "Remove subscription uninstall subscription license. It also reset subscription type to User Based Subscription.",
+          "applicability": {
+            "minOsBuild": "99.9.99999",
+            "cspVersion": "9.9"
+          }
+        },
+        {
+          "name": "SubscriptionLastError",
+          "path": "./Vendor/MSFT/WindowsLicensing/Subscriptions/SubscriptionLastError",
+          "format": "int",
+          "access": [
+            "Get"
+          ],
+          "description": "Error code of last subscription operation. Value would be empty(0) in absence of error.",
+          "applicability": {
+            "minOsBuild": "99.9.99999",
+            "cspVersion": "9.9"
+          }
+        },
+        {
+          "name": "SubscriptionLastErrorDescription",
+          "path": "./Vendor/MSFT/WindowsLicensing/Subscriptions/SubscriptionLastErrorDescription",
+          "format": "chr",
+          "access": [
+            "Get"
+          ],
+          "description": "Error description of last subscription operation. Value would be empty, if error description cannot be evaluated.",
+          "applicability": {
+            "minOsBuild": "99.9.99999",
+            "cspVersion": "9.9"
+          }
+        },
+        {
+          "name": "SubscriptionStatus",
+          "path": "./Vendor/MSFT/WindowsLicensing/Subscriptions/SubscriptionStatus",
+          "format": "int",
+          "access": [
+            "Get"
+          ],
+          "description": "Status of last subscription operation.",
+          "applicability": {
+            "minOsBuild": "99.9.99999",
+            "cspVersion": "9.9"
+          }
+        },
+        {
+          "name": "SubscriptionType",
+          "path": "./Vendor/MSFT/WindowsLicensing/Subscriptions/SubscriptionType",
+          "format": "int",
+          "access": [
+            "Get",
+            "Replace"
+          ],
+          "description": "Set device to Device Based Subscription or User Based Subscription. For Device Based Subscription this action will automatically acquire the subscription on the device. For User Based Subscription the existing process of user logon will be required.",
+          "applicability": {
+            "minOsBuild": "99.9.99999",
+            "cspVersion": "9.9"
+          },
+          "allowedValues": {
+            "type": "ENUM",
+            "enum": [
+              {
+                "value": "0",
+                "description": "User Based Subscription"
+              },
+              {
+                "value": "1",
+                "description": "Device Based Subscription"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "UpgradeEditionWithLicense",
+      "path": "./Vendor/MSFT/WindowsLicensing/UpgradeEditionWithLicense",
+      "format": "xml",
+      "access": [
+        "Exec"
+      ],
+      "description": "Provide a license for an edition upgrade of Windows 10 mobile devices. Does not require reboot.",
+      "deprecatedOsBuild": "deprecated",
+      "applicability": {},
+      "allowedValues": {
+        "type": "None"
+      }
+    },
+    {
+      "name": "UpgradeEditionWithProductKey",
+      "path": "./Vendor/MSFT/WindowsLicensing/UpgradeEditionWithProductKey",
+      "format": "chr",
+      "access": [
+        "Exec"
+      ],
+      "description": "Enter a product key for an edition upgrade of Windows 10 desktop devices. Requires reboot.",
+      "applicability": {},
+      "allowedValues": {
+        "type": "None"
+      }
+    }
+  ]
+}

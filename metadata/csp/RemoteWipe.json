@@ -1,0 +1,140 @@
+{
+  "name": "RemoteWipe",
+  "path": "./Device/Vendor/MSFT",
+  "nodes": [
+    {
+      "name": "AutomaticRedeployment",
+      "path": "./Device/Vendor/MSFT/RemoteWipe/AutomaticRedeployment",
+      "format": "node",
+      "access": [
+        "Get"
+      ],
+      "description": "Node for the Autopilot Reset operation.",
+      "applicability": {
+        "minOsBuild": "10.0.17763",
+        "cspVersion": "1.1"
+      },
+      "children": [
+        {
+          "name": "LastError",
+          "path": "./Device/Vendor/MSFT/RemoteWipe/AutomaticRedeployment/LastError",
+          "format": "int",
+          "access": [
+            "Get"
+          ],
+          "description": "Error value, if any, associated with Automatic Redeployment operation (typically an HRESULT).",
+          "default": "0",
+          "applicability": {}
+        },
+        {
+          "name": "Status",
+          "path": "./Device/Vendor/MSFT/RemoteWipe/AutomaticRedeployment/Status",
+          "format": "int",
+          "access": [
+            "Get"
+          ],
+          "description": "Status value indicating current state of an Automatic Redeployment operation. 0: Never run (not started). The default state. 1: Complete. 10: Reset has been scheduled. 20: Reset is scheduled and waiting for a reboot. 30: Failed during CSP Execute (\"Exec\" in SyncML). 40: Failed: power requirements not met. 50: Failed: reset internals failed during reset attempt.",
+          "default": "0",
+          "applicability": {}
+        },
+        {
+          "name": "doAutomaticRedeployment",
+          "path": "./Device/Vendor/MSFT/RemoteWipe/AutomaticRedeployment/doAutomaticRedeployment",
+          "format": "chr",
+          "access": [
+            "Exec"
+          ],
+          "description": "Exec on this node triggers Autopilot Reset operation. This works like PC Reset, similar to other existing nodes in this RemoteWipe CSP, except that it keeps the device enrolled in Azure AD and MDM, keeps Wi-Fi profiles, and a few other settings like region, language, keyboard.",
+          "applicability": {}
+        }
+      ]
+    },
+    {
+      "name": "doWipe",
+      "path": "./Device/Vendor/MSFT/RemoteWipe/doWipe",
+      "format": "chr",
+      "access": [
+        "Exec"
+      ],
+      "description": "Exec on this node will perform a remote wipe on the device. The return status code shows whether the device accepted the Exec command.  When used with OMA Client Provisioning, a dummy value of \"1\" should be included for this element.",
+      "applicability": {
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x77;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x87;0x88;0x88*;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xB4;0xBC;0xBD;0xBF;"
+      }
+    },
+    {
+      "name": "doWipeCloud",
+      "path": "./Device/Vendor/MSFT/RemoteWipe/doWipeCloud",
+      "format": "chr",
+      "access": [
+        "Exec"
+      ],
+      "description": "Exec on this node will perform a cloud-based remote wipe on the device. The return status code shows whether the device accepted the Exec command.",
+      "applicability": {
+        "minOsBuild": "10.0.22621",
+        "cspVersion": "1.1"
+      }
+    },
+    {
+      "name": "doWipeCloudPersistProvisionedData",
+      "path": "./Device/Vendor/MSFT/RemoteWipe/doWipeCloudPersistProvisionedData",
+      "format": "chr",
+      "access": [
+        "Exec"
+      ],
+      "description": "Exec on this node will back up provisioning data to a persistent location and perform a cloud-based remote wipe on the device. The information that was backed up will be restored and applied to the device when it resumes. The return status code shows whether the device accepted the Exec command.",
+      "applicability": {
+        "minOsBuild": "10.0.22621",
+        "cspVersion": "1.1"
+      }
+    },
+    {
+      "name": "doWipeCloudPersistUserData",
+      "path": "./Device/Vendor/MSFT/RemoteWipe/doWipeCloudPersistUserData",
+      "format": "chr",
+      "access": [
+        "Exec"
+      ],
+      "description": "Exec on this node will perform a cloud-based remote reset on the device and persist user accounts and data. The return status code shows whether the device accepted the Exec command.",
+      "applicability": {
+        "minOsBuild": "10.0.22621",
+        "cspVersion": "1.1"
+      }
+    },
+    {
+      "name": "doWipePersistProvisionedData",
+      "path": "./Device/Vendor/MSFT/RemoteWipe/doWipePersistProvisionedData",
+      "format": "chr",
+      "access": [
+        "Exec"
+      ],
+      "description": "Exec on this node will back up provisioning data to a persistent location and perform a remote wipe on the device. The information that was backed up will be restored and applied to the device when it resumes. The return status code shows whether the device accepted the Exec command. When used with OMA Client Provisioning, a dummy value of \"1\" should be included for this element. The information that was backed up will be restored and applied to the device when it resumes. The return status code shows whether the device accepted the Exec command.",
+      "applicability": {}
+    },
+    {
+      "name": "doWipePersistUserData",
+      "path": "./Device/Vendor/MSFT/RemoteWipe/doWipePersistUserData",
+      "format": "chr",
+      "access": [
+        "Exec"
+      ],
+      "description": "Exec on this node will perform a remote reset on the device and persist user accounts and data. The return status code shows whether the device accepted the Exec command.",
+      "applicability": {
+        "minOsBuild": "10.0.16299",
+        "cspVersion": "1.1"
+      }
+    },
+    {
+      "name": "doWipeProtected",
+      "path": "./Device/Vendor/MSFT/RemoteWipe/doWipeProtected",
+      "format": "chr",
+      "access": [
+        "Exec"
+      ],
+      "description": "Exec on this node will perform a remote wipe on the device and fully clean the internal drive. In some device configurations, this command may leave the device unable to boot. The return status code shows whether the device accepted the Exec command. The doWipeProtected is functionally similar to doWipe. But unlike doWipe, which can be easily circumvented by simply power cycling the device, doWipeProtected will keep trying to reset the device until it’s done.",
+      "applicability": {
+        "minOsBuild": "10.0.15063",
+        "cspVersion": "1.1"
+      }
+    }
+  ]
+}

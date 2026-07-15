@@ -1,0 +1,270 @@
+{
+  "name": "ADMX_CredSsp",
+  "path": "./Device/Vendor/MSFT/Policy/Config",
+  "nodes": [
+    {
+      "name": "AllowDefCredentialsWhenNTLMOnly",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_CredSsp/AllowDefCredentialsWhenNTLMOnly",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "CredSsp~AT~System~CredentialsDelegation",
+          "name": "AllowDefCredentialsWhenNTLMOnly",
+          "file": "CredSsp.admx"
+        }
+      }
+    },
+    {
+      "name": "AllowDefaultCredentials",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_CredSsp/AllowDefaultCredentials",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "CredSsp~AT~System~CredentialsDelegation",
+          "name": "AllowDefaultCredentials",
+          "file": "CredSsp.admx"
+        }
+      }
+    },
+    {
+      "name": "AllowEncryptionOracle",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_CredSsp/AllowEncryptionOracle",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "CredSsp~AT~System~CredentialsDelegation",
+          "name": "AllowEncryptionOracle",
+          "file": "CredSsp.admx"
+        }
+      }
+    },
+    {
+      "name": "AllowFreshCredentials",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_CredSsp/AllowFreshCredentials",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "CredSsp~AT~System~CredentialsDelegation",
+          "name": "AllowFreshCredentials",
+          "file": "CredSsp.admx"
+        }
+      }
+    },
+    {
+      "name": "AllowFreshCredentialsWhenNTLMOnly",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_CredSsp/AllowFreshCredentialsWhenNTLMOnly",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "CredSsp~AT~System~CredentialsDelegation",
+          "name": "AllowFreshCredentialsWhenNTLMOnly",
+          "file": "CredSsp.admx"
+        }
+      }
+    },
+    {
+      "name": "AllowSavedCredentials",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_CredSsp/AllowSavedCredentials",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "CredSsp~AT~System~CredentialsDelegation",
+          "name": "AllowSavedCredentials",
+          "file": "CredSsp.admx"
+        }
+      }
+    },
+    {
+      "name": "AllowSavedCredentialsWhenNTLMOnly",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_CredSsp/AllowSavedCredentialsWhenNTLMOnly",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "CredSsp~AT~System~CredentialsDelegation",
+          "name": "AllowSavedCredentialsWhenNTLMOnly",
+          "file": "CredSsp.admx"
+        }
+      }
+    },
+    {
+      "name": "DenyDefaultCredentials",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_CredSsp/DenyDefaultCredentials",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "CredSsp~AT~System~CredentialsDelegation",
+          "name": "DenyDefaultCredentials",
+          "file": "CredSsp.admx"
+        }
+      }
+    },
+    {
+      "name": "DenyFreshCredentials",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_CredSsp/DenyFreshCredentials",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "CredSsp~AT~System~CredentialsDelegation",
+          "name": "DenyFreshCredentials",
+          "file": "CredSsp.admx"
+        }
+      }
+    },
+    {
+      "name": "DenySavedCredentials",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_CredSsp/DenySavedCredentials",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "CredSsp~AT~System~CredentialsDelegation",
+          "name": "DenySavedCredentials",
+          "file": "CredSsp.admx"
+        }
+      }
+    },
+    {
+      "name": "RestrictedRemoteAdministration",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_CredSsp/RestrictedRemoteAdministration",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "CredSsp~AT~System~CredentialsDelegation",
+          "name": "RestrictedRemoteAdministration",
+          "file": "CredSsp.admx"
+        }
+      }
+    }
+  ]
+}

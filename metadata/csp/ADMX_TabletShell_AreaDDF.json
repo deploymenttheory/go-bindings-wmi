@@ -1,0 +1,534 @@
+{
+  "name": "ADMX_TabletShell",
+  "path": "./Device/Vendor/MSFT/Policy/Config",
+  "nodes": [
+    {
+      "name": "DisableInkball_1",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_TabletShell/DisableInkball_1",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "TabletShell~AT~WindowsComponents~TabletPC~Accessories",
+          "name": "DisableInkball_1",
+          "file": "TabletShell.admx"
+        }
+      }
+    },
+    {
+      "name": "DisableInkball_2",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_TabletShell/DisableInkball_2",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "TabletShell~AT~WindowsComponents~TabletPC~Accessories",
+          "name": "DisableInkball_2",
+          "file": "TabletShell.admx"
+        }
+      }
+    },
+    {
+      "name": "DisableJournal_1",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_TabletShell/DisableJournal_1",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "TabletShell~AT~WindowsComponents~TabletPC~Accessories",
+          "name": "DisableJournal_1",
+          "file": "TabletShell.admx"
+        }
+      }
+    },
+    {
+      "name": "DisableJournal_2",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_TabletShell/DisableJournal_2",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "TabletShell~AT~WindowsComponents~TabletPC~Accessories",
+          "name": "DisableJournal_2",
+          "file": "TabletShell.admx"
+        }
+      }
+    },
+    {
+      "name": "DisableNoteWriterPrinting_1",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_TabletShell/DisableNoteWriterPrinting_1",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "TabletShell~AT~WindowsComponents~TabletPC~Accessories",
+          "name": "DisableNoteWriterPrinting_1",
+          "file": "TabletShell.admx"
+        }
+      }
+    },
+    {
+      "name": "DisableNoteWriterPrinting_2",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_TabletShell/DisableNoteWriterPrinting_2",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "TabletShell~AT~WindowsComponents~TabletPC~Accessories",
+          "name": "DisableNoteWriterPrinting_2",
+          "file": "TabletShell.admx"
+        }
+      }
+    },
+    {
+      "name": "DisableSnippingTool_1",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_TabletShell/DisableSnippingTool_1",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "TabletShell~AT~WindowsComponents~TabletPC~Accessories",
+          "name": "DisableSnippingTool_1",
+          "file": "TabletShell.admx"
+        }
+      }
+    },
+    {
+      "name": "DisableSnippingTool_2",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_TabletShell/DisableSnippingTool_2",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "TabletShell~AT~WindowsComponents~TabletPC~Accessories",
+          "name": "DisableSnippingTool_2",
+          "file": "TabletShell.admx"
+        }
+      }
+    },
+    {
+      "name": "PreventBackEscMapping_1",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_TabletShell/PreventBackEscMapping_1",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "TabletShell~AT~WindowsComponents~TabletPC~HardwareButtons",
+          "name": "PreventBackEscMapping_1",
+          "file": "TabletShell.admx"
+        }
+      }
+    },
+    {
+      "name": "PreventBackEscMapping_2",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_TabletShell/PreventBackEscMapping_2",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "TabletShell~AT~WindowsComponents~TabletPC~HardwareButtons",
+          "name": "PreventBackEscMapping_2",
+          "file": "TabletShell.admx"
+        }
+      }
+    },
+    {
+      "name": "PreventFlicksLearningMode_1",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_TabletShell/PreventFlicksLearningMode_1",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "TabletShell~AT~WindowsComponents~TabletPC~PenFlicksLearning",
+          "name": "PreventFlicksLearningMode_1",
+          "file": "TabletShell.admx"
+        }
+      }
+    },
+    {
+      "name": "PreventFlicksLearningMode_2",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_TabletShell/PreventFlicksLearningMode_2",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "TabletShell~AT~WindowsComponents~TabletPC~PenFlicksLearning",
+          "name": "PreventFlicksLearningMode_2",
+          "file": "TabletShell.admx"
+        }
+      }
+    },
+    {
+      "name": "PreventFlicks_1",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_TabletShell/PreventFlicks_1",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "TabletShell~AT~WindowsComponents~TabletPC~PenUXBehaviors",
+          "name": "PreventFlicks_1",
+          "file": "TabletShell.admx"
+        }
+      }
+    },
+    {
+      "name": "PreventFlicks_2",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_TabletShell/PreventFlicks_2",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "TabletShell~AT~WindowsComponents~TabletPC~PenUXBehaviors",
+          "name": "PreventFlicks_2",
+          "file": "TabletShell.admx"
+        }
+      }
+    },
+    {
+      "name": "PreventLaunchApp_1",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_TabletShell/PreventLaunchApp_1",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "TabletShell~AT~WindowsComponents~TabletPC~HardwareButtons",
+          "name": "PreventLaunchApp_1",
+          "file": "TabletShell.admx"
+        }
+      }
+    },
+    {
+      "name": "PreventLaunchApp_2",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_TabletShell/PreventLaunchApp_2",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "TabletShell~AT~WindowsComponents~TabletPC~HardwareButtons",
+          "name": "PreventLaunchApp_2",
+          "file": "TabletShell.admx"
+        }
+      }
+    },
+    {
+      "name": "PreventPressAndHold_1",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_TabletShell/PreventPressAndHold_1",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "TabletShell~AT~WindowsComponents~TabletPC~HardwareButtons",
+          "name": "PreventPressAndHold_1",
+          "file": "TabletShell.admx"
+        }
+      }
+    },
+    {
+      "name": "PreventPressAndHold_2",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_TabletShell/PreventPressAndHold_2",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "TabletShell~AT~WindowsComponents~TabletPC~HardwareButtons",
+          "name": "PreventPressAndHold_2",
+          "file": "TabletShell.admx"
+        }
+      }
+    },
+    {
+      "name": "TurnOffButtons_1",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_TabletShell/TurnOffButtons_1",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "TabletShell~AT~WindowsComponents~TabletPC~HardwareButtons",
+          "name": "TurnOffButtons_1",
+          "file": "TabletShell.admx"
+        }
+      }
+    },
+    {
+      "name": "TurnOffButtons_2",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_TabletShell/TurnOffButtons_2",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "TabletShell~AT~WindowsComponents~TabletPC~HardwareButtons",
+          "name": "TurnOffButtons_2",
+          "file": "TabletShell.admx"
+        }
+      }
+    },
+    {
+      "name": "TurnOffFeedback_1",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_TabletShell/TurnOffFeedback_1",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "TabletShell~AT~WindowsComponents~TabletPC~Cursors",
+          "name": "TurnOffFeedback_1",
+          "file": "TabletShell.admx"
+        }
+      }
+    },
+    {
+      "name": "TurnOffFeedback_2",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_TabletShell/TurnOffFeedback_2",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "TabletShell~AT~WindowsComponents~TabletPC~Cursors",
+          "name": "TurnOffFeedback_2",
+          "file": "TabletShell.admx"
+        }
+      }
+    }
+  ]
+}

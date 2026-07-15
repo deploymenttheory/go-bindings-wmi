@@ -1,0 +1,88 @@
+{
+  "name": "DeviceHealthMonitoring",
+  "path": "./Device/Vendor/MSFT/Policy/Config",
+  "nodes": [
+    {
+      "name": "AllowDeviceHealthMonitoring",
+      "path": "./Device/Vendor/MSFT/Policy/Config/DeviceHealthMonitoring/AllowDeviceHealthMonitoring",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Enable/disable 4Nines device health monitoring on devices.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.18362",
+        "cspVersion": "9.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "1",
+            "description": "The DeviceHealthMonitoring connection is enabled."
+          },
+          {
+            "value": "0",
+            "description": "The DeviceHealthMonitoring connection is disabled."
+          }
+        ]
+      }
+    },
+    {
+      "name": "ConfigDeviceHealthMonitoringScope",
+      "path": "./Device/Vendor/MSFT/Policy/Config/DeviceHealthMonitoring/ConfigDeviceHealthMonitoringScope",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "If the device is not opted-in to the DeviceHealthMonitoring service via the AllowDeviceHealthMonitoring then this policy has no meaning. For devices which are opted in, the value of this policy modifies which types of events are monitored.",
+      "applicability": {
+        "minOsBuild": "10.0.18362",
+        "cspVersion": "9.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;"
+      }
+    },
+    {
+      "name": "ConfigDeviceHealthMonitoringServiceInstance",
+      "path": "./Device/Vendor/MSFT/Policy/Config/DeviceHealthMonitoring/ConfigDeviceHealthMonitoringServiceInstance",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "If the device is not opted-in to the DeviceHealthMonitoring service via the AllowDeviceHealthMonitoring then this policy has no meaning. For devices which are opted in, the value of this policy modifies which service instance to which events are to be uploaded.",
+      "applicability": {
+        "minOsBuild": "10.0.22000",
+        "cspVersion": "11.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;"
+      }
+    },
+    {
+      "name": "ConfigDeviceHealthMonitoringUploadDestination",
+      "path": "./Device/Vendor/MSFT/Policy/Config/DeviceHealthMonitoring/ConfigDeviceHealthMonitoringUploadDestination",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "If the device is not opted-in to the DeviceHealthMonitoring service via the AllowDeviceHealthMonitoring then this policy has no meaning. For devices which are opted in, the value of this policy modifies which destinations are in-scope for monitored events to be uploaded.",
+      "applicability": {
+        "minOsBuild": "10.0.18362",
+        "cspVersion": "9.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;"
+      }
+    }
+  ]
+}

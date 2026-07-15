@@ -1,0 +1,444 @@
+{
+  "name": "FileExplorer",
+  "path": "./Device/Vendor/MSFT/Policy/Config",
+  "nodes": [
+    {
+      "name": "AllowOptionToShowNetwork",
+      "path": "./Device/Vendor/MSFT/Policy/Config/FileExplorer/AllowOptionToShowNetwork",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "When the Network folder is restricted, give the user the option to enumerate and navigate into it.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.22000",
+        "cspVersion": "11.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Not Allowed."
+          },
+          {
+            "value": "1",
+            "description": "Allowed."
+          }
+        ]
+      }
+    },
+    {
+      "name": "AllowOptionToShowNetwork",
+      "path": "./Device/Vendor/MSFT/Policy/Config/FileExplorer/AllowOptionToShowNetwork",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "When the Network folder is restricted, give the user the option to enumerate and navigate into it.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.22000",
+        "cspVersion": "11.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Not Allowed."
+          },
+          {
+            "value": "1",
+            "description": "Allowed."
+          }
+        ]
+      }
+    },
+    {
+      "name": "AllowOptionToShowThisPC",
+      "path": "./Device/Vendor/MSFT/Policy/Config/FileExplorer/AllowOptionToShowThisPC",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "When This PC location is restricted, give the user the option to enumerate and navigate into it.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.22000",
+        "cspVersion": "11.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Not Allowed."
+          },
+          {
+            "value": "1",
+            "description": "Allowed."
+          }
+        ]
+      }
+    },
+    {
+      "name": "AllowOptionToShowThisPC",
+      "path": "./Device/Vendor/MSFT/Policy/Config/FileExplorer/AllowOptionToShowThisPC",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "When This PC location is restricted, give the user the option to enumerate and navigate into it.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.22000",
+        "cspVersion": "11.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Not Allowed."
+          },
+          {
+            "value": "1",
+            "description": "Allowed."
+          }
+        ]
+      }
+    },
+    {
+      "name": "DisableFileExplorerPrelaunch",
+      "path": "./Device/Vendor/MSFT/Policy/Config/FileExplorer/DisableFileExplorerPrelaunch",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This policy prevents users from enabling the Prelaunch feature in File Explorer, which creates a window in the background to accelerate the launch experience and improve responsiveness.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "99.9.99999",
+        "cspVersion": "9.9",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "File Explorer will attempt prelaunch of windows in the background to improve performance when possible."
+          },
+          {
+            "value": "1",
+            "description": "File Explorer will not allow prelaunch of windows in the background."
+          }
+        ]
+      }
+    },
+    {
+      "name": "DisableGraphRecentItems",
+      "path": "./Device/Vendor/MSFT/Policy/Config/FileExplorer/DisableGraphRecentItems",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Turning off this setting will prevent File Explorer from displaying files based on account and cloud provider activity.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.22621",
+        "cspVersion": "11.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "File Explorer will request cloud file metadata and display it in the homepage and other views."
+          },
+          {
+            "value": "1",
+            "description": "File Explorer will not request cloud file metadata or display it in the homepage or other views."
+          }
+        ]
+      }
+    },
+    {
+      "name": "SetAllowedFolderLocations",
+      "path": "./Device/Vendor/MSFT/Policy/Config/FileExplorer/SetAllowedFolderLocations",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "A value that can represent one or more folder locations in File Explorer. If not specified, the default is access to all folder locations.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.22000",
+        "cspVersion": "11.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Access to all folder locations."
+          },
+          {
+            "value": "13",
+            "description": "Documents, Pictures, Downloads"
+          },
+          {
+            "value": "15",
+            "description": "Desktop, Documents, Pictures, Downloads"
+          },
+          {
+            "value": "31",
+            "description": "Desktop, Documents, Pictures, Downloads, Network"
+          },
+          {
+            "value": "47",
+            "description": "This PC, Desktop, Documents, Pictures, Downloads"
+          },
+          {
+            "value": "63",
+            "description": "This PC, Desktop, Documents, Pictures, Downloads, Network"
+          }
+        ]
+      }
+    },
+    {
+      "name": "SetAllowedFolderLocations",
+      "path": "./Device/Vendor/MSFT/Policy/Config/FileExplorer/SetAllowedFolderLocations",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "A value that can represent one or more folder locations in File Explorer. If not specified, the default is access to all folder locations.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.22000",
+        "cspVersion": "11.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Access to all folder locations."
+          },
+          {
+            "value": "13",
+            "description": "Documents, Pictures, Downloads"
+          },
+          {
+            "value": "15",
+            "description": "Desktop, Documents, Pictures, Downloads"
+          },
+          {
+            "value": "31",
+            "description": "Desktop, Documents, Pictures, Downloads, Network"
+          },
+          {
+            "value": "47",
+            "description": "This PC, Desktop, Documents, Pictures, Downloads"
+          },
+          {
+            "value": "63",
+            "description": "This PC, Desktop, Documents, Pictures, Downloads, Network"
+          }
+        ]
+      }
+    },
+    {
+      "name": "SetAllowedStorageLocations",
+      "path": "./Device/Vendor/MSFT/Policy/Config/FileExplorer/SetAllowedStorageLocations",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "A value that can represent one or more storage locations in File Explorer. If not specified, the default is access to all storage locations.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.22000",
+        "cspVersion": "11.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Access to all storage locations."
+          },
+          {
+            "value": "1",
+            "description": "Removable Drives"
+          },
+          {
+            "value": "2",
+            "description": "Sync roots"
+          },
+          {
+            "value": "3",
+            "description": "Removable Drives, Sync roots"
+          },
+          {
+            "value": "4",
+            "description": "Local Drives"
+          },
+          {
+            "value": "5",
+            "description": "Removable Drives, Local Drives"
+          },
+          {
+            "value": "6",
+            "description": "Sync Roots, Local Drives"
+          },
+          {
+            "value": "7",
+            "description": "Removable Drives, Sync Roots, Local Drives"
+          }
+        ]
+      }
+    },
+    {
+      "name": "SetAllowedStorageLocations",
+      "path": "./Device/Vendor/MSFT/Policy/Config/FileExplorer/SetAllowedStorageLocations",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "A value that can represent one or more storage locations in File Explorer. If not specified, the default is access to all storage locations.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.22000",
+        "cspVersion": "11.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Access to all storage locations."
+          },
+          {
+            "value": "1",
+            "description": "Removable Drives"
+          },
+          {
+            "value": "2",
+            "description": "Sync roots"
+          },
+          {
+            "value": "3",
+            "description": "Removable Drives, Sync roots"
+          },
+          {
+            "value": "4",
+            "description": "Local Drives"
+          },
+          {
+            "value": "5",
+            "description": "Removable Drives, Local Drives"
+          },
+          {
+            "value": "6",
+            "description": "Sync Roots, Local Drives"
+          },
+          {
+            "value": "7",
+            "description": "Removable Drives, Sync Roots, Local Drives"
+          }
+        ]
+      }
+    },
+    {
+      "name": "TurnOffDataExecutionPreventionForExplorer",
+      "path": "./Device/Vendor/MSFT/Policy/Config/FileExplorer/TurnOffDataExecutionPreventionForExplorer",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.17134",
+        "cspVersion": "7.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Explorer~AT~WindowsExplorer",
+          "name": "NoDataExecutionPrevention",
+          "file": "Explorer.admx"
+        }
+      }
+    },
+    {
+      "name": "TurnOffHeapTerminationOnCorruption",
+      "path": "./Device/Vendor/MSFT/Policy/Config/FileExplorer/TurnOffHeapTerminationOnCorruption",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.17134",
+        "cspVersion": "7.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Explorer~AT~WindowsExplorer",
+          "name": "NoHeapTerminationOnCorruption",
+          "file": "Explorer.admx"
+        }
+      }
+    }
+  ]
+}

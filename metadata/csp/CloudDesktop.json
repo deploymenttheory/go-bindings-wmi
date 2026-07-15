@@ -1,0 +1,124 @@
+{
+  "name": "CloudDesktop",
+  "path": "./Device/Vendor/MSFT",
+  "nodes": [
+    {
+      "name": "BootToCloudPCEnhanced",
+      "path": "./Device/Vendor/MSFT/CloudDesktop/BootToCloudPCEnhanced",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This node allows to configure different kinds of Boot to Cloud mode. Boot to cloud mode enables users to seamlessly sign-in to a Cloud PC. For using this feature, Cloud Provider application must be installed on the PC and the user must have a Cloud PC provisioned. This node supports the below options: 0. Not Configured. 1. Enable Boot to Cloud Shared PC Mode: Boot to Cloud Shared PC mode allows multiple users to sign-in on the device and use for shared purpose. 2. Enable Boot to Cloud Dedicated Mode (Cloud only): Dedicated mode allows user to sign-in on the device using various authentication mechanism configured by their organization (For ex. PIN, Biometrics etc). This mode preserves user personalization, including their profile picture and username in local machine, and facilitates fast account switching.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.22621.3374",
+        "cspVersion": "1.0"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Not Configured"
+          },
+          {
+            "value": "1",
+            "description": "Enable Boot to Cloud Shared PC Mode"
+          },
+          {
+            "value": "2",
+            "description": "Enable Boot to Cloud Dedicated Mode (Cloud only)"
+          }
+        ]
+      }
+    },
+    {
+      "name": "EnableBootToCloudSharedPCMode",
+      "path": "./Device/Vendor/MSFT/CloudDesktop/EnableBootToCloudSharedPCMode",
+      "format": "bool",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Setting this node to \"true\" configures boot to cloud for Shared PC mode. Boot to cloud mode enables users to seamlessly sign-in to a Cloud PC. Shared PC mode allows multiple users to sign-in on the device and use for shared purpose. For enabling Boot to Cloud Shared PC feature, Cloud Provider application must be installed on the PC and the user must have a Cloud PC provisioned.",
+      "default": "false",
+      "deprecatedOsBuild": "deprecated",
+      "applicability": {
+        "minOsBuild": "88.8.88888"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "false",
+            "description": "Not configured"
+          },
+          {
+            "value": "true",
+            "description": "Boot to cloud shared pc mode enabled"
+          }
+        ]
+      }
+    },
+    {
+      "name": "EnablePhysicalDeviceAccessOnCtrlAltDel",
+      "path": "./Device/Vendor/MSFT/CloudDesktop/EnablePhysicalDeviceAccessOnCtrlAltDel",
+      "format": "bool",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Configuring this node gives access to the physical devices used to boot to Cloud PCs from the Ctrl+Alt+Del page for specified users. This node supports these options: 0. Not enabled 1. Enabled.",
+      "default": "false",
+      "applicability": {},
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "false",
+            "description": "Access to physical device on CtrlAltDel page disabled"
+          },
+          {
+            "value": "true",
+            "description": "Access to physical device on CtrlAltDel page enabled"
+          }
+        ]
+      }
+    },
+    {
+      "name": "EnablePhysicalDeviceAccessOnErrorScreens",
+      "path": "./Device/Vendor/MSFT/CloudDesktop/EnablePhysicalDeviceAccessOnErrorScreens",
+      "format": "bool",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Configuring this node gives access to the physical devices used to boot to Cloud PCs from the error screens for specified users. This node supports these options: 0. Not enabled 1. Enabled.",
+      "default": "false",
+      "applicability": {},
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "false",
+            "description": "Access to physical device on error screens disabled"
+          },
+          {
+            "value": "true",
+            "description": "Access to physical device on error screens enabled"
+          }
+        ]
+      }
+    }
+  ]
+}

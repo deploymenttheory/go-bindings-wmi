@@ -1,0 +1,846 @@
+{
+  "name": "ADMX_Netlogon",
+  "path": "./Device/Vendor/MSFT/Policy/Config",
+  "nodes": [
+    {
+      "name": "Netlogon_AddressLookupOnPingBehavior",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_Netlogon/Netlogon_AddressLookupOnPingBehavior",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Netlogon~AT~System~Netlogon~Netlogon_DC_Locator_DNS_Records",
+          "name": "Netlogon_AddressLookupOnPingBehavior",
+          "file": "Netlogon.admx"
+        }
+      }
+    },
+    {
+      "name": "Netlogon_AddressTypeReturned",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_Netlogon/Netlogon_AddressTypeReturned",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Netlogon~AT~System~Netlogon~Netlogon_DC_Locator_DNS_Records",
+          "name": "Netlogon_AddressTypeReturned",
+          "file": "Netlogon.admx"
+        }
+      }
+    },
+    {
+      "name": "Netlogon_AllowDnsSuffixSearch",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_Netlogon/Netlogon_AllowDnsSuffixSearch",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Netlogon~AT~System~Netlogon~Netlogon_DC_Locator_DNS_Records",
+          "name": "Netlogon_AllowDnsSuffixSearch",
+          "file": "Netlogon.admx"
+        }
+      }
+    },
+    {
+      "name": "Netlogon_AllowNT4Crypto",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_Netlogon/Netlogon_AllowNT4Crypto",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Netlogon~AT~System~Netlogon",
+          "name": "Netlogon_AllowNT4Crypto",
+          "file": "Netlogon.admx"
+        }
+      }
+    },
+    {
+      "name": "Netlogon_AllowSingleLabelDnsDomain",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_Netlogon/Netlogon_AllowSingleLabelDnsDomain",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Netlogon~AT~System~Netlogon~Netlogon_DC_Locator_DNS_Records",
+          "name": "Netlogon_AllowSingleLabelDnsDomain",
+          "file": "Netlogon.admx"
+        }
+      }
+    },
+    {
+      "name": "Netlogon_AutoSiteCoverage",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_Netlogon/Netlogon_AutoSiteCoverage",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Netlogon~AT~System~Netlogon~Netlogon_DC_Locator_DNS_Records",
+          "name": "Netlogon_AutoSiteCoverage",
+          "file": "Netlogon.admx"
+        }
+      }
+    },
+    {
+      "name": "Netlogon_AvoidFallbackNetbiosDiscovery",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_Netlogon/Netlogon_AvoidFallbackNetbiosDiscovery",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Netlogon~AT~System~Netlogon~Netlogon_DC_Locator_DNS_Records",
+          "name": "Netlogon_AvoidFallbackNetbiosDiscovery",
+          "file": "Netlogon.admx"
+        }
+      }
+    },
+    {
+      "name": "Netlogon_AvoidPdcOnWan",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_Netlogon/Netlogon_AvoidPdcOnWan",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Netlogon~AT~System~Netlogon",
+          "name": "Netlogon_AvoidPdcOnWan",
+          "file": "Netlogon.admx"
+        }
+      }
+    },
+    {
+      "name": "Netlogon_BackgroundRetryInitialPeriod",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_Netlogon/Netlogon_BackgroundRetryInitialPeriod",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Netlogon~AT~System~Netlogon",
+          "name": "Netlogon_BackgroundRetryInitialPeriod",
+          "file": "Netlogon.admx"
+        }
+      }
+    },
+    {
+      "name": "Netlogon_BackgroundRetryMaximumPeriod",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_Netlogon/Netlogon_BackgroundRetryMaximumPeriod",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Netlogon~AT~System~Netlogon",
+          "name": "Netlogon_BackgroundRetryMaximumPeriod",
+          "file": "Netlogon.admx"
+        }
+      }
+    },
+    {
+      "name": "Netlogon_BackgroundRetryQuitTime",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_Netlogon/Netlogon_BackgroundRetryQuitTime",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Netlogon~AT~System~Netlogon",
+          "name": "Netlogon_BackgroundRetryQuitTime",
+          "file": "Netlogon.admx"
+        }
+      }
+    },
+    {
+      "name": "Netlogon_BackgroundSuccessfulRefreshPeriod",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_Netlogon/Netlogon_BackgroundSuccessfulRefreshPeriod",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Netlogon~AT~System~Netlogon",
+          "name": "Netlogon_BackgroundSuccessfulRefreshPeriod",
+          "file": "Netlogon.admx"
+        }
+      }
+    },
+    {
+      "name": "Netlogon_DebugFlag",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_Netlogon/Netlogon_DebugFlag",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Netlogon~AT~System~Netlogon",
+          "name": "Netlogon_DebugFlag",
+          "file": "Netlogon.admx"
+        }
+      }
+    },
+    {
+      "name": "Netlogon_DnsAvoidRegisterRecords",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_Netlogon/Netlogon_DnsAvoidRegisterRecords",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Netlogon~AT~System~Netlogon~Netlogon_DC_Locator_DNS_Records",
+          "name": "Netlogon_DnsAvoidRegisterRecords",
+          "file": "Netlogon.admx"
+        }
+      }
+    },
+    {
+      "name": "Netlogon_DnsRefreshInterval",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_Netlogon/Netlogon_DnsRefreshInterval",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Netlogon~AT~System~Netlogon~Netlogon_DC_Locator_DNS_Records",
+          "name": "Netlogon_DnsRefreshInterval",
+          "file": "Netlogon.admx"
+        }
+      }
+    },
+    {
+      "name": "Netlogon_DnsSrvRecordUseLowerCaseHostNames",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_Netlogon/Netlogon_DnsSrvRecordUseLowerCaseHostNames",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Netlogon~AT~System~Netlogon~Netlogon_DC_Locator_DNS_Records",
+          "name": "Netlogon_DnsSrvRecordUseLowerCaseHostNames",
+          "file": "Netlogon.admx"
+        }
+      }
+    },
+    {
+      "name": "Netlogon_DnsTtl",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_Netlogon/Netlogon_DnsTtl",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Netlogon~AT~System~Netlogon~Netlogon_DC_Locator_DNS_Records",
+          "name": "Netlogon_DnsTtl",
+          "file": "Netlogon.admx"
+        }
+      }
+    },
+    {
+      "name": "Netlogon_ExpectedDialupDelay",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_Netlogon/Netlogon_ExpectedDialupDelay",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Netlogon~AT~System~Netlogon",
+          "name": "Netlogon_ExpectedDialupDelay",
+          "file": "Netlogon.admx"
+        }
+      }
+    },
+    {
+      "name": "Netlogon_ForceRediscoveryInterval",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_Netlogon/Netlogon_ForceRediscoveryInterval",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Netlogon~AT~System~Netlogon~Netlogon_DC_Locator_DNS_Records",
+          "name": "Netlogon_ForceRediscoveryInterval",
+          "file": "Netlogon.admx"
+        }
+      }
+    },
+    {
+      "name": "Netlogon_GcSiteCoverage",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_Netlogon/Netlogon_GcSiteCoverage",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Netlogon~AT~System~Netlogon~Netlogon_DC_Locator_DNS_Records",
+          "name": "Netlogon_GcSiteCoverage",
+          "file": "Netlogon.admx"
+        }
+      }
+    },
+    {
+      "name": "Netlogon_IgnoreIncomingMailslotMessages",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_Netlogon/Netlogon_IgnoreIncomingMailslotMessages",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Netlogon~AT~System~Netlogon~Netlogon_DC_Locator_DNS_Records",
+          "name": "Netlogon_IgnoreIncomingMailslotMessages",
+          "file": "Netlogon.admx"
+        }
+      }
+    },
+    {
+      "name": "Netlogon_LdapSrvPriority",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_Netlogon/Netlogon_LdapSrvPriority",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Netlogon~AT~System~Netlogon~Netlogon_DC_Locator_DNS_Records",
+          "name": "Netlogon_LdapSrvPriority",
+          "file": "Netlogon.admx"
+        }
+      }
+    },
+    {
+      "name": "Netlogon_LdapSrvWeight",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_Netlogon/Netlogon_LdapSrvWeight",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Netlogon~AT~System~Netlogon~Netlogon_DC_Locator_DNS_Records",
+          "name": "Netlogon_LdapSrvWeight",
+          "file": "Netlogon.admx"
+        }
+      }
+    },
+    {
+      "name": "Netlogon_MaximumLogFileSize",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_Netlogon/Netlogon_MaximumLogFileSize",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Netlogon~AT~System~Netlogon",
+          "name": "Netlogon_MaximumLogFileSize",
+          "file": "Netlogon.admx"
+        }
+      }
+    },
+    {
+      "name": "Netlogon_NdncSiteCoverage",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_Netlogon/Netlogon_NdncSiteCoverage",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Netlogon~AT~System~Netlogon~Netlogon_DC_Locator_DNS_Records",
+          "name": "Netlogon_NdncSiteCoverage",
+          "file": "Netlogon.admx"
+        }
+      }
+    },
+    {
+      "name": "Netlogon_NegativeCachePeriod",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_Netlogon/Netlogon_NegativeCachePeriod",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Netlogon~AT~System~Netlogon",
+          "name": "Netlogon_NegativeCachePeriod",
+          "file": "Netlogon.admx"
+        }
+      }
+    },
+    {
+      "name": "Netlogon_NetlogonShareCompatibilityMode",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_Netlogon/Netlogon_NetlogonShareCompatibilityMode",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Netlogon~AT~System~Netlogon",
+          "name": "Netlogon_NetlogonShareCompatibilityMode",
+          "file": "Netlogon.admx"
+        }
+      }
+    },
+    {
+      "name": "Netlogon_NonBackgroundSuccessfulRefreshPeriod",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_Netlogon/Netlogon_NonBackgroundSuccessfulRefreshPeriod",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Netlogon~AT~System~Netlogon",
+          "name": "Netlogon_NonBackgroundSuccessfulRefreshPeriod",
+          "file": "Netlogon.admx"
+        }
+      }
+    },
+    {
+      "name": "Netlogon_PingUrgencyMode",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_Netlogon/Netlogon_PingUrgencyMode",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Netlogon~AT~System~Netlogon",
+          "name": "Netlogon_PingUrgencyMode",
+          "file": "Netlogon.admx"
+        }
+      }
+    },
+    {
+      "name": "Netlogon_ScavengeInterval",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_Netlogon/Netlogon_ScavengeInterval",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Netlogon~AT~System~Netlogon",
+          "name": "Netlogon_ScavengeInterval",
+          "file": "Netlogon.admx"
+        }
+      }
+    },
+    {
+      "name": "Netlogon_SiteCoverage",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_Netlogon/Netlogon_SiteCoverage",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Netlogon~AT~System~Netlogon~Netlogon_DC_Locator_DNS_Records",
+          "name": "Netlogon_SiteCoverage",
+          "file": "Netlogon.admx"
+        }
+      }
+    },
+    {
+      "name": "Netlogon_SiteName",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_Netlogon/Netlogon_SiteName",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Netlogon~AT~System~Netlogon",
+          "name": "Netlogon_SiteName",
+          "file": "Netlogon.admx"
+        }
+      }
+    },
+    {
+      "name": "Netlogon_SysvolShareCompatibilityMode",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_Netlogon/Netlogon_SysvolShareCompatibilityMode",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Netlogon~AT~System~Netlogon",
+          "name": "Netlogon_SysvolShareCompatibilityMode",
+          "file": "Netlogon.admx"
+        }
+      }
+    },
+    {
+      "name": "Netlogon_TryNextClosestSite",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_Netlogon/Netlogon_TryNextClosestSite",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Netlogon~AT~System~Netlogon~Netlogon_DC_Locator_DNS_Records",
+          "name": "Netlogon_TryNextClosestSite",
+          "file": "Netlogon.admx"
+        }
+      }
+    },
+    {
+      "name": "Netlogon_UseDynamicDns",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_Netlogon/Netlogon_UseDynamicDns",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Netlogon~AT~System~Netlogon~Netlogon_DC_Locator_DNS_Records",
+          "name": "Netlogon_UseDynamicDns",
+          "file": "Netlogon.admx"
+        }
+      }
+    }
+  ]
+}

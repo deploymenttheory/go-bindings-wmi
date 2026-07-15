@@ -1,0 +1,248 @@
+{
+  "name": "Wifi",
+  "path": "./Device/Vendor/MSFT/Policy/Config",
+  "nodes": [
+    {
+      "name": "AllowAutoConnectToWiFiSenseHotspots",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Wifi/AllowAutoConnectToWiFiSenseHotspots",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Allow or disallow the device to automatically connect to Wi-Fi hotspots. Most restricted value is 0.",
+      "default": "1",
+      "applicability": {
+        "minOsBuild": "10.0.10240",
+        "cspVersion": "1.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Not allowed."
+          },
+          {
+            "value": "1",
+            "description": "Allowed."
+          }
+        ]
+      }
+    },
+    {
+      "name": "AllowInternetSharing",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Wifi/AllowInternetSharing",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Allow or disallow internet sharing. Most restricted value is 0.",
+      "default": "1",
+      "applicability": {
+        "minOsBuild": "10.0.10240",
+        "cspVersion": "1.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Not allowed."
+          },
+          {
+            "value": "1",
+            "description": "Allowed."
+          }
+        ]
+      }
+    },
+    {
+      "name": "AllowManualWiFiConfiguration",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Wifi/AllowManualWiFiConfiguration",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Allow or block connections to Wi-Fi outside of MDM server-installed networks. If you change this setting to Block, you must deploy enterprise Wi-Fi profiles to the device using the Wi-Fi CSP before you apply this setting. Otherwise, the device will go offline since it won't be able to connect to Wi-Fi. Note that choosing to block Wi-Fi connections will delete any previously installed user-configured Wi-Fi profiles from the device, though not all non-MDM profiles will be deleted.",
+      "default": "1",
+      "applicability": {
+        "minOsBuild": "10.0.10240",
+        "cspVersion": "1.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "No Wi-Fi connection outside of MDM provisioned network is allowed."
+          },
+          {
+            "value": "1",
+            "description": "Adding new network SSIDs beyond the already MDM provisioned ones is allowed."
+          }
+        ]
+      }
+    },
+    {
+      "name": "AllowWFAQosManagementDSCPToUPMapping",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Wifi/AllowWFAQosManagementDSCPToUPMapping",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Allow or disallow the device to use the DSCP to UP Mapping feature from the Wi-Fi Alliance QOS Management Suite 2020.  This policy requires a reboot to take effect.",
+      "default": "2",
+      "applicability": {
+        "minOsBuild": "99.9.99999",
+        "cspVersion": "9.9",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "DSCP to UP Mapping will be disabled."
+          },
+          {
+            "value": "1",
+            "description": "DSCP to UP Mapping will be enabled."
+          },
+          {
+            "value": "2",
+            "description": "DSCP to UP Mapping will be enabled only if it is enabled in the network profile."
+          }
+        ]
+      }
+    },
+    {
+      "name": "AllowWFAQosManagementMSCS",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Wifi/AllowWFAQosManagementMSCS",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Allow or disallow the device to automatically request to enable Mirrored Stream Classification Service when connecting to a MSCS capable network.   This is a Quality of Service feature associated with Wi-Fi Alliance QoS Management Suite 2020.  This policy requires a reboot to take effect.",
+      "default": "1",
+      "applicability": {
+        "minOsBuild": "99.9.99999",
+        "cspVersion": "9.9",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "The device will not automatically request to enable MSCS when connecting to a MSCS capable network."
+          },
+          {
+            "value": "1",
+            "description": "The device will automatically request to enable MSCS when connecting to a MSCS capable network."
+          }
+        ]
+      }
+    },
+    {
+      "name": "AllowWiFi",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Wifi/AllowWiFi",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Allow or disallow WiFi connection.",
+      "default": "1",
+      "applicability": {
+        "minOsBuild": "10.0.10240",
+        "cspVersion": "1.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Not allowed."
+          },
+          {
+            "value": "1",
+            "description": "Allowed."
+          }
+        ]
+      }
+    },
+    {
+      "name": "AllowWiFiDirect",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Wifi/AllowWiFiDirect",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Allow WiFi Direct connection. .",
+      "default": "1",
+      "applicability": {
+        "minOsBuild": "10.0.15063",
+        "cspVersion": "5.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Not allowed."
+          },
+          {
+            "value": "1",
+            "description": "Allowed."
+          }
+        ]
+      }
+    },
+    {
+      "name": "WLANScanMode",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Wifi/WLANScanMode",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Allow an enterprise to control the WLAN scanning behavior and how aggressively devices should be actively scanning for Wi-Fi networks to get devices connected. Supported values are 0-500, where 100 = normal scan frequency and 500 = low scan frequency. The default value is 0. Supported operations are Add, Delete, Get, and Replace.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.14393",
+        "cspVersion": "4.1",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;"
+      },
+      "allowedValues": {
+        "type": "Range"
+      }
+    }
+  ]
+}

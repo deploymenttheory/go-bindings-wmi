@@ -1,0 +1,351 @@
+{
+  "name": "WirelessDisplay",
+  "path": "./Device/Vendor/MSFT/Policy/Config",
+  "nodes": [
+    {
+      "name": "AllowMdnsAdvertisement",
+      "path": "./Device/Vendor/MSFT/Policy/Config/WirelessDisplay/AllowMdnsAdvertisement",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This policy setting allows you to turn off the Wireless Display multicast DNS service advertisement from a Wireless Display receiver.",
+      "default": "1",
+      "applicability": {
+        "minOsBuild": "10.0.16299",
+        "cspVersion": "6.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Not allowed."
+          },
+          {
+            "value": "1",
+            "description": "Allowed."
+          }
+        ]
+      }
+    },
+    {
+      "name": "AllowMdnsDiscovery",
+      "path": "./Device/Vendor/MSFT/Policy/Config/WirelessDisplay/AllowMdnsDiscovery",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This policy setting allows you to turn off discovering the display service advertised over multicast DNS by a Wireless Display receiver.",
+      "default": "1",
+      "applicability": {
+        "minOsBuild": "10.0.16299",
+        "cspVersion": "6.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Not allowed."
+          },
+          {
+            "value": "1",
+            "description": "Allowed."
+          }
+        ]
+      }
+    },
+    {
+      "name": "AllowMovementDetectionOnInfrastructure",
+      "path": "./Device/Vendor/MSFT/Policy/Config/WirelessDisplay/AllowMovementDetectionOnInfrastructure",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This policy setting allows you to disable the infrastructure movement detection feature.                     If you set it to 0, your PC may stay connected and continue to project if you walk away from a Wireless Display receiver to which you are projecting over infrastructure.                     If you set it to 1, your PC will detect that you have moved and will automatically disconnect your infrastructure Wireless Display session.",
+      "default": "1",
+      "applicability": {
+        "minOsBuild": "10.0.22000",
+        "cspVersion": "11.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Not allowed."
+          },
+          {
+            "value": "1",
+            "description": "Allowed."
+          }
+        ]
+      }
+    },
+    {
+      "name": "AllowPCReceiverToBeTCPServer",
+      "path": "./Device/Vendor/MSFT/Policy/Config/WirelessDisplay/AllowPCReceiverToBeTCPServer",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This policy setting allows a PC acting as a Wireless Display receiver to be a TCP server for the TCP session carrying the projection stream to the receiver.                             If you set it to 0, your PC receiver will start the outbound connection as a TCP client.                             If you set it to 1, your PC may receive the incoming projection as a TCP server.",
+      "default": "1",
+      "applicability": {
+        "minOsBuild": "10.0.22000",
+        "cspVersion": "11.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Not allowed."
+          },
+          {
+            "value": "1",
+            "description": "Allowed."
+          }
+        ]
+      }
+    },
+    {
+      "name": "AllowPCSenderToBeTCPClient",
+      "path": "./Device/Vendor/MSFT/Policy/Config/WirelessDisplay/AllowPCSenderToBeTCPClient",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This policy setting allows a PC acting as a Wireless Display sender to be a TCP client for the TCP session carrying the projection stream to the receiver.                             If you set it to 0, your PC will only participate in an outgoing projection as a TCP server.                             If you set it to 1, your PC may start an outgoing projection as a TCP client.",
+      "default": "1",
+      "applicability": {
+        "minOsBuild": "10.0.22000",
+        "cspVersion": "11.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Not allowed."
+          },
+          {
+            "value": "1",
+            "description": "Allowed."
+          }
+        ]
+      }
+    },
+    {
+      "name": "AllowProjectionFromPC",
+      "path": "./Device/Vendor/MSFT/Policy/Config/WirelessDisplay/AllowProjectionFromPC",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This policy allows you to turn off projection from a PC.                             If you set it to 0, your PC cannot discover or project to other devices.                             If you set it to 1, your PC can discover and project to other devices.",
+      "default": "1",
+      "applicability": {
+        "minOsBuild": "10.0.15063",
+        "cspVersion": "5.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Your PC cannot discover or project to other devices."
+          },
+          {
+            "value": "1",
+            "description": "Your PC can discover and project to other devices."
+          }
+        ]
+      }
+    },
+    {
+      "name": "AllowProjectionFromPCOverInfrastructure",
+      "path": "./Device/Vendor/MSFT/Policy/Config/WirelessDisplay/AllowProjectionFromPCOverInfrastructure",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This policy allows you to turn off projection from a PC over infrastructure.                             If you set it to 0, your PC cannot discover or project to other infrastructure devices, though it may still be possible to discover and project over WiFi Direct.                             If you set it to 1, your PC can discover and project to other devices over infrastructure.",
+      "default": "1",
+      "applicability": {
+        "minOsBuild": "10.0.15063",
+        "cspVersion": "5.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Your PC cannot discover or project to other infrastructure devices, although it is possible to discover and project over WiFi Direct."
+          },
+          {
+            "value": "1",
+            "description": "Your PC can discover and project to other devices over infrastructure."
+          }
+        ]
+      }
+    },
+    {
+      "name": "AllowProjectionToPC",
+      "path": "./Device/Vendor/MSFT/Policy/Config/WirelessDisplay/AllowProjectionToPC",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This policy setting allows you to turn off projection to a PC                             If you set it to 0, your PC can't be discoverable or projected to over Wi-Fi Direct.                              If you set it to 1, your PC can be discoverable and projected to over Wi-Fi Direct. The user has an option to turn it always on or off except for manual launch, too.",
+      "default": "1",
+      "applicability": {
+        "minOsBuild": "10.0.14393",
+        "cspVersion": "4.1",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Projection to PC is not allowed. Always off and the user cannot enable it."
+          },
+          {
+            "value": "1",
+            "description": "Projection to PC is allowed. Enabled only above the lock screen."
+          }
+        ]
+      }
+    },
+    {
+      "name": "AllowProjectionToPCOverInfrastructure",
+      "path": "./Device/Vendor/MSFT/Policy/Config/WirelessDisplay/AllowProjectionToPCOverInfrastructure",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This policy setting allows you to turn off projection to a PC over infrastructure.                             If you set it to 0, your PC cannot be discoverable and can't be projected to over infrastructure, though it may still be possible to project over WiFi Direct.                             If you set it to 1, your PC can be discoverable and can be projected to over infrastructure.",
+      "default": "1",
+      "applicability": {
+        "minOsBuild": "10.0.15063",
+        "cspVersion": "5.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Your PC is not discoverable and other devices cannot project to it over infrastructure, although it is possible to project to it over WiFi Direct."
+          },
+          {
+            "value": "1",
+            "description": "Your PC is discoverable and other devices can project to it over infrastructure."
+          }
+        ]
+      }
+    },
+    {
+      "name": "AllowUserInputFromWirelessDisplayReceiver",
+      "path": "./Device/Vendor/MSFT/Policy/Config/WirelessDisplay/AllowUserInputFromWirelessDisplayReceiver",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Setting this policy controls whether or not the wireless display can send input—keyboard, mouse, pen, and touch input if the display supports it—back to the source device.",
+      "default": "1",
+      "applicability": {
+        "minOsBuild": "10.0.10586",
+        "cspVersion": "4.1",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Wireless display input disabled."
+          },
+          {
+            "value": "1",
+            "description": "Wireless display input enabled."
+          }
+        ]
+      }
+    },
+    {
+      "name": "RequirePinForPairing",
+      "path": "./Device/Vendor/MSFT/Policy/Config/WirelessDisplay/RequirePinForPairing",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This policy setting allows you to require a pin for pairing.                             If you set this to 0, a pin isn't required for pairing.                             If you set this to 1, the pairing ceremony for new devices will always require a PIN.                             If you set this to 2, all pairings will require PIN.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.14393",
+        "cspVersion": "4.1",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "PIN is not required."
+          },
+          {
+            "value": "1",
+            "description": "Pairing ceremony for new devices will always require a PIN"
+          },
+          {
+            "value": "2",
+            "description": "All pairings will require PIN"
+          }
+        ]
+      }
+    }
+  ]
+}
