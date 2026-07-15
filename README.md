@@ -41,9 +41,12 @@ owner, _ := cimv2.Win32ProcessGetOwner(svc, path)   // instance method via __PAT
 res, _ := cimv2.Win32ProcessCreate(svc, "notepad.exe", "", nil) // static method
 ```
 
-The runtime also provides event subscriptions (`SubscribeEvents`), streaming
-(`QuerySeq`) and cancellable (`QueryContext`) queries, remote connections
-(`ConnectWith`), and DMTF datetime parsing (`ParseDMTF`).
+The runtime also provides the full instance lifecycle
+(`CreateInstance`/`UpdateInstance`/`DeleteInstance`/`GetInstance`, plus
+generated `Get<Class>` key lookups), association traversal
+(`Associators`/`References`), event subscriptions (`SubscribeEvents`),
+streaming (`QuerySeq`) and cancellable (`QueryContext`) queries, remote
+connections (`ConnectWith`), and DMTF datetime parsing (`ParseDMTF`).
 
 ## How it's built
 
@@ -93,13 +96,16 @@ capture with `-namespace` and regenerate.
 
 ## Examples & docs
 
-- [`examples/inventory`](examples/inventory) — runnable: OS, CPU, disks, and
-  running auto-start services via typed queries.
+- [`examples`](examples) — runnable programs, one per surface: typed-query
+  inventory, instance CRUD, association walking, method invocation, and
+  live event watching.
 - [Getting started](docs/getting-started.md)
 - [Capture and generate](docs/capture-and-generate.md) — the metadata pipeline
 - [WQL and VARIANTs](docs/wql-and-variants.md) — types, coercion, decoding
 - [Methods, events, and query shapes](docs/methods-and-events.md) — ExecMethod,
   subscriptions, streaming, remote
+- [Instances and associations](docs/instances-and-associations.md) — CRUD,
+  key lookups, ASSOCIATORS OF
 - [`CLAUDE.md`](CLAUDE.md) — the capture doctrine and why the CLI is minimal
 
 ## Related projects

@@ -72,8 +72,10 @@ tracking.
 ## Packages
 
 - **`runtime/wmi`** — `Connect`/`ConnectWith` → `Service`; `Query`/`QuerySeq`/
-  `QueryContext` → rows; `ExecMethod` (typed by the generated wrappers);
-  `SubscribeEvents`; `ClassProperties`/`ClassNames`/`ClassMethods` for schema
+  `QueryContext` → rows; instance CRUD (`GetInstance`/`CreateInstance`/
+  `UpdateInstance`/`DeleteInstance`, `ErrNotFound`) and association traversal
+  (`Associators`/`References`); `ExecMethod` (typed by the generated
+  wrappers); `SubscribeEvents`; `ClassProperties`/`ClassNames`/`ClassMethods` for schema
   introspection (used by capture); VARIANT decode (scalars, SAFEARRAYs, and
   embedded objects → nested `Row`) and encode (method in-parameters,
   including slices and embedded instances via `wmi.Instance`); DMTF datetime
