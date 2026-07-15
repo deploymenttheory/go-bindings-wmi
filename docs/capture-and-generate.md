@@ -50,6 +50,8 @@ file layout:
 - `<leaf>_structs.go` — one struct per class
 - `<leaf>_queries.go` — the `Query<Class>` and `Get<Class>` helpers
 - `<leaf>_methods.go` — method wrappers and their result structs
+- `<leaf>_constants.go` — named constants for enumerated properties (the
+  `Values`/`ValueMap` qualifiers)
 
 Empty files are not written. Self-cleaning (stale files pruned) and
 **byte-deterministic** — running it twice produces no diff, which CI enforces

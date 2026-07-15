@@ -28,6 +28,17 @@ The generator maps CIM property types to Go field types:
 | (array of the above) | `[]T` |
 | unknown | `any` |
 
+## Enumeration constants
+
+Properties carrying the CIM `Values`/`ValueMap` qualifiers (captured into the
+snapshot) generate named constants into `<ns>_constants.go`, one block per
+property: `cimv2.Win32LogicalDiskDriveTypeLocalDisk` (`uint32 = 3`),
+`cimv2.Win32ServiceStartModeAuto` (`"Auto"`), and so on. Integer enums take
+their value from the `ValueMap`; a negative map entry on an unsigned property
+is reinterpreted as its two's-complement bit pattern (matching how that value
+decodes from a VARIANT — `-1` on a `uint32` becomes `4294967295`). Range
+entries (`128..255`) and free-form text have no single value and are skipped.
+
 `datetime` is surfaced as its raw DMTF string (e.g.
 `20260714120000.000000+060`). The runtime provides parsers:
 `wmi.ParseDMTF` → `time.Time` (offset preserved as a fixed zone) and
