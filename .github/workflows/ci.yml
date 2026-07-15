@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   test:
-    name: Build & test
+    name: Build & test (live WMI)
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v7
@@ -27,13 +27,34 @@ jobs:
       - name: Vet (non-generated packages)
         run: go vet ./cmd/... ./internal/... ./runtime/... ./acceptance/
 
-      # Live WMI queries against the runner's CIM repository.
-      - name: Acceptance tests (live WMI)
-        run: go test ./runtime/... ./acceptance/
+      # Unit tests plus live WMI queries against the runner's CIM repository.
+      - name: Tests (unit + live acceptance)
+        run: go test ./cmd/... ./internal/... ./runtime/... ./acceptance/
+
+  offline:
+    name: Offline tests & cross-compile (ubuntu)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+          cache: true
+
+      # The pure packages (coercion, DMTF parsing, snapshot format, the
+      # generator) build and test on any OS.
+      - name: Unit tests
+        run: go test ./cmd/... ./internal/... ./runtime/...
+
+      - name: Cross-compile (windows/amd64 + windows/arm64)
+        run: |
+          GOOS=windows GOARCH=amd64 go build ./...
+          GOOS=windows GOARCH=arm64 go build ./...
 
   regen:
     name: Regeneration determinism gate
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
 
@@ -43,12 +64,12 @@ jobs:
           cache: true
 
       # Codegen is offline and deterministic from the committed snapshot
-      # (capture is a separate, manual step — schema varies by host).
+      # (capture is a separate, manual step — schema varies by host), so the
+      # gate runs on the fast runner.
       - name: Regenerate from the committed snapshot
         run: go run ./cmd/generate
 
       - name: Generated output must match the committed tree
-        shell: bash
         run: |
           git add -N bindings
           git diff --exit-code --stat -- bindings
