@@ -59,12 +59,40 @@ func encodeVariant(value any, v *variant.VARIANT) error {
 		scalar.Vt = uint16(variant.VT_R8)
 		scalar.U64 = math.Float64bits(t)
 	case []string:
-		psa, err := stringSafeArray(t)
-		if err != nil {
-			return err
-		}
-		pointer.Vt = uint16(variant.VT_ARRAY | variant.VT_BSTR)
-		pointer.P = unsafe.Pointer(psa)
+		return encodeArray(pointer, variant.VT_BSTR, t, putBSTRElement)
+	case []bool:
+		return encodeArray(pointer, variant.VT_BOOL, t, func(v bool) (unsafe.Pointer, func()) {
+			e := int16(0)
+			if v {
+				e = -1 // VARIANT_TRUE
+			}
+			return unsafe.Pointer(&e), nil
+		})
+	case []int8:
+		return encodeArray(pointer, variant.VT_I2, t, scalarElement(func(v int8) int16 { return int16(v) }))
+	case []int16:
+		return encodeArray(pointer, variant.VT_I2, t, scalarElement(func(v int16) int16 { return v }))
+	case []int32:
+		return encodeArray(pointer, variant.VT_I4, t, scalarElement(func(v int32) int32 { return v }))
+	case []int64:
+		// CIM sint64/uint64 arrays travel as strings, like their scalars.
+		return encodeArray(pointer, variant.VT_BSTR, t, func(v int64) (unsafe.Pointer, func()) {
+			return putBSTRElement(strconv.FormatInt(v, 10))
+		})
+	case []uint8:
+		return encodeArray(pointer, variant.VT_UI1, t, scalarElement(func(v uint8) uint8 { return v }))
+	case []uint16:
+		return encodeArray(pointer, variant.VT_I4, t, scalarElement(func(v uint16) int32 { return int32(v) }))
+	case []uint32:
+		return encodeArray(pointer, variant.VT_I4, t, scalarElement(func(v uint32) int32 { return int32(v) }))
+	case []uint64:
+		return encodeArray(pointer, variant.VT_BSTR, t, func(v uint64) (unsafe.Pointer, func()) {
+			return putBSTRElement(strconv.FormatUint(v, 10))
+		})
+	case []float32:
+		return encodeArray(pointer, variant.VT_R4, t, scalarElement(func(v float32) float32 { return v }))
+	case []float64:
+		return encodeArray(pointer, variant.VT_R8, t, scalarElement(func(v float64) float64 { return v }))
 	default:
 		return fmt.Errorf("wmi: cannot encode %T into a VARIANT", value)
 	}
@@ -95,24 +123,46 @@ func encodeUint(scalar *variantScalar, pointer *variantPtr, n uint64) {
 	pointer.P = unsafe.Pointer(foundation.SysAllocString(strconv.FormatUint(n, 10)))
 }
 
-// stringSafeArray builds a one-dimensional SAFEARRAY of BSTR.
-// SafeArrayPutElement copies string elements, so the temporaries are freed
-// here; SafeArrayDestroy (via VariantClear) frees the copies.
-func stringSafeArray(values []string) (*com.SAFEARRAY, error) {
+// encodeArray builds a one-dimensional SAFEARRAY of vt from a Go slice and
+// stores it in the VARIANT. element yields a pointer to one element's
+// marshaled form plus an optional cleanup (SafeArrayPutElement copies, so
+// temporaries are freed immediately; VariantClear destroys the array).
+func encodeArray[T any](pointer *variantPtr, vt variant.VARENUM, values []T,
+	element func(T) (unsafe.Pointer, func()),
+) error {
 	bound := com.SAFEARRAYBOUND{CElements: uint32(len(values))}
-	psa := ole.SafeArrayCreate(variant.VT_BSTR, 1, &bound)
+	psa := ole.SafeArrayCreate(vt, 1, &bound)
 	if psa == nil {
-		return nil, fmt.Errorf("wmi: SafeArrayCreate failed for %d elements", len(values))
+		return fmt.Errorf("wmi: SafeArrayCreate(%d) failed for %d elements", vt, len(values))
 	}
-	for i, s := range values {
-		b := foundation.SysAllocString(s)
+	for i, v := range values {
+		p, cleanup := element(v)
 		index := int32(i)
-		err := ole.SafeArrayPutElement(psa, &index, unsafe.Pointer(b))
-		foundation.SysFreeString(b)
+		err := ole.SafeArrayPutElement(psa, &index, p)
+		if cleanup != nil {
+			cleanup()
+		}
 		if err != nil {
 			_ = ole.SafeArrayDestroy(psa)
-			return nil, fmt.Errorf("wmi: SafeArrayPutElement(%d): %w", i, err)
+			return fmt.Errorf("wmi: SafeArrayPutElement(%d): %w", i, err)
 		}
 	}
-	return psa, nil
+	pointer.Vt = uint16(variant.VT_ARRAY | vt)
+	pointer.P = unsafe.Pointer(psa)
+	return nil
+}
+
+// scalarElement adapts a fixed-width conversion for encodeArray.
+func scalarElement[T, E any](conv func(T) E) func(T) (unsafe.Pointer, func()) {
+	return func(v T) (unsafe.Pointer, func()) {
+		e := conv(v)
+		return unsafe.Pointer(&e), nil
+	}
+}
+
+// putBSTRElement marshals one string element; SafeArrayPutElement copies
+// BSTRs, so ours is freed right after the put.
+func putBSTRElement(s string) (unsafe.Pointer, func()) {
+	b := foundation.SysAllocString(s)
+	return unsafe.Pointer(b), func() { foundation.SysFreeString(b) }
 }

@@ -72,6 +72,10 @@ const (
 	CIMString   int32 = 8
 	CIMDatetime int32 = 101
 	CIMChar16   int32 = 103
+	// CIMObject is an embedded CIM object (decoded to a wmi.Row).
+	CIMObject int32 = 13
+	// CIMReference is a REF — an object path string.
+	CIMReference int32 = 102
 	CIMFlagArray int32 = 0x2000
 )
 
@@ -119,8 +123,10 @@ func scalarGoType(cimType int32) string {
 		return "float64"
 	case CIMBoolean:
 		return "bool"
-	case CIMString, CIMDatetime:
+	case CIMString, CIMDatetime, CIMReference:
 		return "string"
+	case CIMObject:
+		return "wmi.Row"
 	}
 	return "any"
 }
