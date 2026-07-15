@@ -27,9 +27,8 @@ type EventSubscription struct {
 //
 //	SELECT * FROM __InstanceCreationEvent WITHIN 2 WHERE TargetInstance ISA 'Win32_Process'
 //
-// Intrinsic events carry the instance in their TargetInstance property
-// (decoded as nil — embedded objects are not yet decoded); extrinsic events
-// carry their own properties.
+// Intrinsic events carry the instance in their TargetInstance property,
+// decoded to a nested Row; extrinsic events carry their own properties.
 func (s *Service) SubscribeEvents(wql string) (*EventSubscription, error) {
 	lang := foundation.SysAllocString("WQL")
 	defer foundation.SysFreeString(lang)

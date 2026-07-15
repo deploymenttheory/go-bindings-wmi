@@ -9,8 +9,8 @@ import wmi "github.com/deploymenttheory/go-bindings-wmi/runtime/wmi"
 
 // CIMBindsTo is the CIM_BindsTo CIM class.
 type CIMBindsTo struct {
-	Antecedent any `cim:"Antecedent"`
-	Dependent  any `cim:"Dependent"`
+	Antecedent string `cim:"Antecedent"`
+	Dependent  string `cim:"Dependent"`
 }
 
 // QueryCIMBindsTo runs the WQL query against the class and decodes each
@@ -26,20 +26,16 @@ func QueryCIMBindsTo(svc *wmi.Service, where string) ([]CIMBindsTo, error) {
 	}
 	out := make([]CIMBindsTo, len(rows))
 	for i, row := range rows {
-		if v, ok := row["Antecedent"].(any); ok {
-			out[i].Antecedent = v
-		}
-		if v, ok := row["Dependent"].(any); ok {
-			out[i].Dependent = v
-		}
+		out[i].Antecedent = wmi.AsString(row["Antecedent"])
+		out[i].Dependent = wmi.AsString(row["Dependent"])
 	}
 	return out, nil
 }
 
 // CIMBindsToLANEndpoint is the CIM_BindsToLANEndpoint CIM class.
 type CIMBindsToLANEndpoint struct {
-	Antecedent any    `cim:"Antecedent"`
-	Dependent  any    `cim:"Dependent"`
+	Antecedent string `cim:"Antecedent"`
+	Dependent  string `cim:"Dependent"`
 	FrameType  uint16 `cim:"FrameType"`
 }
 
@@ -56,12 +52,8 @@ func QueryCIMBindsToLANEndpoint(svc *wmi.Service, where string) ([]CIMBindsToLAN
 	}
 	out := make([]CIMBindsToLANEndpoint, len(rows))
 	for i, row := range rows {
-		if v, ok := row["Antecedent"].(any); ok {
-			out[i].Antecedent = v
-		}
-		if v, ok := row["Dependent"].(any); ok {
-			out[i].Dependent = v
-		}
+		out[i].Antecedent = wmi.AsString(row["Antecedent"])
+		out[i].Dependent = wmi.AsString(row["Dependent"])
 		out[i].FrameType = wmi.AsUint16(row["FrameType"])
 	}
 	return out, nil
@@ -69,7 +61,7 @@ func QueryCIMBindsToLANEndpoint(svc *wmi.Service, where string) ([]CIMBindsToLAN
 
 // CIMClassCreation is the CIM_ClassCreation CIM class.
 type CIMClassCreation struct {
-	ClassDefinition       any      `cim:"ClassDefinition"`
+	ClassDefinition       wmi.Row  `cim:"ClassDefinition"`
 	CorrelatedIndications []string `cim:"CorrelatedIndications"`
 	IndicationFilterName  string   `cim:"IndicationFilterName"`
 	IndicationIdentifier  string   `cim:"IndicationIdentifier"`
@@ -93,7 +85,7 @@ func QueryCIMClassCreation(svc *wmi.Service, where string) ([]CIMClassCreation, 
 	}
 	out := make([]CIMClassCreation, len(rows))
 	for i, row := range rows {
-		if v, ok := row["ClassDefinition"].(any); ok {
+		if v, ok := row["ClassDefinition"].(wmi.Row); ok {
 			out[i].ClassDefinition = v
 		}
 		out[i].CorrelatedIndications = wmi.AsStringSlice(row["CorrelatedIndications"])
@@ -110,7 +102,7 @@ func QueryCIMClassCreation(svc *wmi.Service, where string) ([]CIMClassCreation, 
 
 // CIMClassDeletion is the CIM_ClassDeletion CIM class.
 type CIMClassDeletion struct {
-	ClassDefinition       any      `cim:"ClassDefinition"`
+	ClassDefinition       wmi.Row  `cim:"ClassDefinition"`
 	CorrelatedIndications []string `cim:"CorrelatedIndications"`
 	IndicationFilterName  string   `cim:"IndicationFilterName"`
 	IndicationIdentifier  string   `cim:"IndicationIdentifier"`
@@ -134,7 +126,7 @@ func QueryCIMClassDeletion(svc *wmi.Service, where string) ([]CIMClassDeletion, 
 	}
 	out := make([]CIMClassDeletion, len(rows))
 	for i, row := range rows {
-		if v, ok := row["ClassDefinition"].(any); ok {
+		if v, ok := row["ClassDefinition"].(wmi.Row); ok {
 			out[i].ClassDefinition = v
 		}
 		out[i].CorrelatedIndications = wmi.AsStringSlice(row["CorrelatedIndications"])
@@ -151,7 +143,7 @@ func QueryCIMClassDeletion(svc *wmi.Service, where string) ([]CIMClassDeletion, 
 
 // CIMClassIndication is the CIM_ClassIndication CIM class.
 type CIMClassIndication struct {
-	ClassDefinition       any      `cim:"ClassDefinition"`
+	ClassDefinition       wmi.Row  `cim:"ClassDefinition"`
 	CorrelatedIndications []string `cim:"CorrelatedIndications"`
 	IndicationFilterName  string   `cim:"IndicationFilterName"`
 	IndicationIdentifier  string   `cim:"IndicationIdentifier"`
@@ -175,7 +167,7 @@ func QueryCIMClassIndication(svc *wmi.Service, where string) ([]CIMClassIndicati
 	}
 	out := make([]CIMClassIndication, len(rows))
 	for i, row := range rows {
-		if v, ok := row["ClassDefinition"].(any); ok {
+		if v, ok := row["ClassDefinition"].(wmi.Row); ok {
 			out[i].ClassDefinition = v
 		}
 		out[i].CorrelatedIndications = wmi.AsStringSlice(row["CorrelatedIndications"])
@@ -192,14 +184,14 @@ func QueryCIMClassIndication(svc *wmi.Service, where string) ([]CIMClassIndicati
 
 // CIMClassModification is the CIM_ClassModification CIM class.
 type CIMClassModification struct {
-	ClassDefinition         any      `cim:"ClassDefinition"`
+	ClassDefinition         wmi.Row  `cim:"ClassDefinition"`
 	CorrelatedIndications   []string `cim:"CorrelatedIndications"`
 	IndicationFilterName    string   `cim:"IndicationFilterName"`
 	IndicationIdentifier    string   `cim:"IndicationIdentifier"`
 	IndicationTime          string   `cim:"IndicationTime"`
 	OtherSeverity           string   `cim:"OtherSeverity"`
 	PerceivedSeverity       uint16   `cim:"PerceivedSeverity"`
-	PreviousClassDefinition any      `cim:"PreviousClassDefinition"`
+	PreviousClassDefinition wmi.Row  `cim:"PreviousClassDefinition"`
 	SequenceContext         string   `cim:"SequenceContext"`
 	SequenceNumber          int64    `cim:"SequenceNumber"`
 }
@@ -217,7 +209,7 @@ func QueryCIMClassModification(svc *wmi.Service, where string) ([]CIMClassModifi
 	}
 	out := make([]CIMClassModification, len(rows))
 	for i, row := range rows {
-		if v, ok := row["ClassDefinition"].(any); ok {
+		if v, ok := row["ClassDefinition"].(wmi.Row); ok {
 			out[i].ClassDefinition = v
 		}
 		out[i].CorrelatedIndications = wmi.AsStringSlice(row["CorrelatedIndications"])
@@ -226,7 +218,7 @@ func QueryCIMClassModification(svc *wmi.Service, where string) ([]CIMClassModifi
 		out[i].IndicationTime = wmi.AsString(row["IndicationTime"])
 		out[i].OtherSeverity = wmi.AsString(row["OtherSeverity"])
 		out[i].PerceivedSeverity = wmi.AsUint16(row["PerceivedSeverity"])
-		if v, ok := row["PreviousClassDefinition"].(any); ok {
+		if v, ok := row["PreviousClassDefinition"].(wmi.Row); ok {
 			out[i].PreviousClassDefinition = v
 		}
 		out[i].SequenceContext = wmi.AsString(row["SequenceContext"])
@@ -237,8 +229,8 @@ func QueryCIMClassModification(svc *wmi.Service, where string) ([]CIMClassModifi
 
 // CIMComponent is the CIM_Component CIM class.
 type CIMComponent struct {
-	GroupComponent any `cim:"GroupComponent"`
-	PartComponent  any `cim:"PartComponent"`
+	GroupComponent string `cim:"GroupComponent"`
+	PartComponent  string `cim:"PartComponent"`
 }
 
 // QueryCIMComponent runs the WQL query against the class and decodes each
@@ -254,12 +246,8 @@ func QueryCIMComponent(svc *wmi.Service, where string) ([]CIMComponent, error) {
 	}
 	out := make([]CIMComponent, len(rows))
 	for i, row := range rows {
-		if v, ok := row["GroupComponent"].(any); ok {
-			out[i].GroupComponent = v
-		}
-		if v, ok := row["PartComponent"].(any); ok {
-			out[i].PartComponent = v
-		}
+		out[i].GroupComponent = wmi.AsString(row["GroupComponent"])
+		out[i].PartComponent = wmi.AsString(row["PartComponent"])
 	}
 	return out, nil
 }
@@ -363,7 +351,7 @@ func QueryCIMConcreteJob(svc *wmi.Service, where string) ([]CIMConcreteJob, erro
 
 // CIMConcreteJobGetErrorResult holds the out-parameters of CIM_ConcreteJob.GetError.
 type CIMConcreteJobGetErrorResult struct {
-	Error       any
+	Error       wmi.Row
 	ReturnValue uint32
 }
 
@@ -376,7 +364,9 @@ func CIMConcreteJobGetError(svc *wmi.Service, objectPath string) (*CIMConcreteJo
 		return nil, err
 	}
 	out := &CIMConcreteJobGetErrorResult{}
-	out.Error = row["Error"]
+	if v, ok := row["Error"].(wmi.Row); ok {
+		out.Error = v
+	}
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
@@ -550,7 +540,7 @@ func QueryCIMDNSProtocolEndpoint(svc *wmi.Service, where string) ([]CIMDNSProtoc
 
 // CIMDNSProtocolEndpointRequestStateChangeResult holds the out-parameters of CIM_DNSProtocolEndpoint.RequestStateChange.
 type CIMDNSProtocolEndpointRequestStateChangeResult struct {
-	Job         any
+	Job         string
 	ReturnValue uint32
 }
 
@@ -570,15 +560,15 @@ func CIMDNSProtocolEndpointRequestStateChange(svc *wmi.Service, objectPath strin
 		return nil, err
 	}
 	out := &CIMDNSProtocolEndpointRequestStateChangeResult{}
-	out.Job = row["Job"]
+	out.Job = wmi.AsString(row["Job"])
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
 
 // CIMDependency is the CIM_Dependency CIM class.
 type CIMDependency struct {
-	Antecedent any `cim:"Antecedent"`
-	Dependent  any `cim:"Dependent"`
+	Antecedent string `cim:"Antecedent"`
+	Dependent  string `cim:"Dependent"`
 }
 
 // QueryCIMDependency runs the WQL query against the class and decodes each
@@ -594,20 +584,16 @@ func QueryCIMDependency(svc *wmi.Service, where string) ([]CIMDependency, error)
 	}
 	out := make([]CIMDependency, len(rows))
 	for i, row := range rows {
-		if v, ok := row["Antecedent"].(any); ok {
-			out[i].Antecedent = v
-		}
-		if v, ok := row["Dependent"].(any); ok {
-			out[i].Dependent = v
-		}
+		out[i].Antecedent = wmi.AsString(row["Antecedent"])
+		out[i].Dependent = wmi.AsString(row["Dependent"])
 	}
 	return out, nil
 }
 
 // CIMDeviceSAPImplementation is the CIM_DeviceSAPImplementation CIM class.
 type CIMDeviceSAPImplementation struct {
-	Antecedent any `cim:"Antecedent"`
-	Dependent  any `cim:"Dependent"`
+	Antecedent string `cim:"Antecedent"`
+	Dependent  string `cim:"Dependent"`
 }
 
 // QueryCIMDeviceSAPImplementation runs the WQL query against the class and decodes each
@@ -623,12 +609,8 @@ func QueryCIMDeviceSAPImplementation(svc *wmi.Service, where string) ([]CIMDevic
 	}
 	out := make([]CIMDeviceSAPImplementation, len(rows))
 	for i, row := range rows {
-		if v, ok := row["Antecedent"].(any); ok {
-			out[i].Antecedent = v
-		}
-		if v, ok := row["Dependent"].(any); ok {
-			out[i].Dependent = v
-		}
+		out[i].Antecedent = wmi.AsString(row["Antecedent"])
+		out[i].Dependent = wmi.AsString(row["Dependent"])
 	}
 	return out, nil
 }
@@ -638,8 +620,8 @@ type CIMElementSettingData struct {
 	IsCurrent      uint16 `cim:"IsCurrent"`
 	IsDefault      uint16 `cim:"IsDefault"`
 	IsNext         uint16 `cim:"IsNext"`
-	ManagedElement any    `cim:"ManagedElement"`
-	SettingData    any    `cim:"SettingData"`
+	ManagedElement string `cim:"ManagedElement"`
+	SettingData    string `cim:"SettingData"`
 }
 
 // QueryCIMElementSettingData runs the WQL query against the class and decodes each
@@ -658,12 +640,8 @@ func QueryCIMElementSettingData(svc *wmi.Service, where string) ([]CIMElementSet
 		out[i].IsCurrent = wmi.AsUint16(row["IsCurrent"])
 		out[i].IsDefault = wmi.AsUint16(row["IsDefault"])
 		out[i].IsNext = wmi.AsUint16(row["IsNext"])
-		if v, ok := row["ManagedElement"].(any); ok {
-			out[i].ManagedElement = v
-		}
-		if v, ok := row["SettingData"].(any); ok {
-			out[i].SettingData = v
-		}
+		out[i].ManagedElement = wmi.AsString(row["ManagedElement"])
+		out[i].SettingData = wmi.AsString(row["SettingData"])
 	}
 	return out, nil
 }
@@ -733,7 +711,7 @@ func QueryCIMEnabledLogicalElement(svc *wmi.Service, where string) ([]CIMEnabled
 
 // CIMEnabledLogicalElementRequestStateChangeResult holds the out-parameters of CIM_EnabledLogicalElement.RequestStateChange.
 type CIMEnabledLogicalElementRequestStateChangeResult struct {
-	Job         any
+	Job         string
 	ReturnValue uint32
 }
 
@@ -753,7 +731,7 @@ func CIMEnabledLogicalElementRequestStateChange(svc *wmi.Service, objectPath str
 		return nil, err
 	}
 	out := &CIMEnabledLogicalElementRequestStateChangeResult{}
-	out.Job = row["Job"]
+	out.Job = wmi.AsString(row["Job"])
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
@@ -1089,7 +1067,7 @@ func QueryCIMIKESAEndpoint(svc *wmi.Service, where string) ([]CIMIKESAEndpoint, 
 
 // CIMIKESAEndpointRequestStateChangeResult holds the out-parameters of CIM_IKESAEndpoint.RequestStateChange.
 type CIMIKESAEndpointRequestStateChangeResult struct {
-	Job         any
+	Job         string
 	ReturnValue uint32
 }
 
@@ -1109,7 +1087,7 @@ func CIMIKESAEndpointRequestStateChange(svc *wmi.Service, objectPath string, req
 		return nil, err
 	}
 	out := &CIMIKESAEndpointRequestStateChangeResult{}
-	out.Job = row["Job"]
+	out.Job = wmi.AsString(row["Job"])
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
@@ -1242,7 +1220,7 @@ func QueryCIMIPProtocolEndpoint(svc *wmi.Service, where string) ([]CIMIPProtocol
 
 // CIMIPProtocolEndpointRequestStateChangeResult holds the out-parameters of CIM_IPProtocolEndpoint.RequestStateChange.
 type CIMIPProtocolEndpointRequestStateChangeResult struct {
-	Job         any
+	Job         string
 	ReturnValue uint32
 }
 
@@ -1262,7 +1240,7 @@ func CIMIPProtocolEndpointRequestStateChange(svc *wmi.Service, objectPath string
 		return nil, err
 	}
 	out := &CIMIPProtocolEndpointRequestStateChangeResult{}
-	out.Job = row["Job"]
+	out.Job = wmi.AsString(row["Job"])
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
@@ -1368,7 +1346,7 @@ func QueryCIMIPsecSAEndpoint(svc *wmi.Service, where string) ([]CIMIPsecSAEndpoi
 
 // CIMIPsecSAEndpointRequestStateChangeResult holds the out-parameters of CIM_IPsecSAEndpoint.RequestStateChange.
 type CIMIPsecSAEndpointRequestStateChangeResult struct {
-	Job         any
+	Job         string
 	ReturnValue uint32
 }
 
@@ -1388,7 +1366,7 @@ func CIMIPsecSAEndpointRequestStateChange(svc *wmi.Service, objectPath string, r
 		return nil, err
 	}
 	out := &CIMIPsecSAEndpointRequestStateChangeResult{}
-	out.Job = row["Job"]
+	out.Job = wmi.AsString(row["Job"])
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
@@ -1440,7 +1418,7 @@ type CIMInstCreation struct {
 	PerceivedSeverity       uint16   `cim:"PerceivedSeverity"`
 	SequenceContext         string   `cim:"SequenceContext"`
 	SequenceNumber          int64    `cim:"SequenceNumber"`
-	SourceInstance          any      `cim:"SourceInstance"`
+	SourceInstance          wmi.Row  `cim:"SourceInstance"`
 	SourceInstanceHost      string   `cim:"SourceInstanceHost"`
 	SourceInstanceModelPath string   `cim:"SourceInstanceModelPath"`
 }
@@ -1466,7 +1444,7 @@ func QueryCIMInstCreation(svc *wmi.Service, where string) ([]CIMInstCreation, er
 		out[i].PerceivedSeverity = wmi.AsUint16(row["PerceivedSeverity"])
 		out[i].SequenceContext = wmi.AsString(row["SequenceContext"])
 		out[i].SequenceNumber = wmi.AsInt64(row["SequenceNumber"])
-		if v, ok := row["SourceInstance"].(any); ok {
+		if v, ok := row["SourceInstance"].(wmi.Row); ok {
 			out[i].SourceInstance = v
 		}
 		out[i].SourceInstanceHost = wmi.AsString(row["SourceInstanceHost"])
@@ -1485,7 +1463,7 @@ type CIMInstDeletion struct {
 	PerceivedSeverity       uint16   `cim:"PerceivedSeverity"`
 	SequenceContext         string   `cim:"SequenceContext"`
 	SequenceNumber          int64    `cim:"SequenceNumber"`
-	SourceInstance          any      `cim:"SourceInstance"`
+	SourceInstance          wmi.Row  `cim:"SourceInstance"`
 	SourceInstanceHost      string   `cim:"SourceInstanceHost"`
 	SourceInstanceModelPath string   `cim:"SourceInstanceModelPath"`
 }
@@ -1511,7 +1489,7 @@ func QueryCIMInstDeletion(svc *wmi.Service, where string) ([]CIMInstDeletion, er
 		out[i].PerceivedSeverity = wmi.AsUint16(row["PerceivedSeverity"])
 		out[i].SequenceContext = wmi.AsString(row["SequenceContext"])
 		out[i].SequenceNumber = wmi.AsInt64(row["SequenceNumber"])
-		if v, ok := row["SourceInstance"].(any); ok {
+		if v, ok := row["SourceInstance"].(wmi.Row); ok {
 			out[i].SourceInstance = v
 		}
 		out[i].SourceInstanceHost = wmi.AsString(row["SourceInstanceHost"])
@@ -1530,7 +1508,7 @@ type CIMInstIndication struct {
 	PerceivedSeverity       uint16   `cim:"PerceivedSeverity"`
 	SequenceContext         string   `cim:"SequenceContext"`
 	SequenceNumber          int64    `cim:"SequenceNumber"`
-	SourceInstance          any      `cim:"SourceInstance"`
+	SourceInstance          wmi.Row  `cim:"SourceInstance"`
 	SourceInstanceHost      string   `cim:"SourceInstanceHost"`
 	SourceInstanceModelPath string   `cim:"SourceInstanceModelPath"`
 }
@@ -1556,7 +1534,7 @@ func QueryCIMInstIndication(svc *wmi.Service, where string) ([]CIMInstIndication
 		out[i].PerceivedSeverity = wmi.AsUint16(row["PerceivedSeverity"])
 		out[i].SequenceContext = wmi.AsString(row["SequenceContext"])
 		out[i].SequenceNumber = wmi.AsInt64(row["SequenceNumber"])
-		if v, ok := row["SourceInstance"].(any); ok {
+		if v, ok := row["SourceInstance"].(wmi.Row); ok {
 			out[i].SourceInstance = v
 		}
 		out[i].SourceInstanceHost = wmi.AsString(row["SourceInstanceHost"])
@@ -1573,10 +1551,10 @@ type CIMInstModification struct {
 	IndicationTime          string   `cim:"IndicationTime"`
 	OtherSeverity           string   `cim:"OtherSeverity"`
 	PerceivedSeverity       uint16   `cim:"PerceivedSeverity"`
-	PreviousInstance        any      `cim:"PreviousInstance"`
+	PreviousInstance        wmi.Row  `cim:"PreviousInstance"`
 	SequenceContext         string   `cim:"SequenceContext"`
 	SequenceNumber          int64    `cim:"SequenceNumber"`
-	SourceInstance          any      `cim:"SourceInstance"`
+	SourceInstance          wmi.Row  `cim:"SourceInstance"`
 	SourceInstanceHost      string   `cim:"SourceInstanceHost"`
 	SourceInstanceModelPath string   `cim:"SourceInstanceModelPath"`
 }
@@ -1600,12 +1578,12 @@ func QueryCIMInstModification(svc *wmi.Service, where string) ([]CIMInstModifica
 		out[i].IndicationTime = wmi.AsString(row["IndicationTime"])
 		out[i].OtherSeverity = wmi.AsString(row["OtherSeverity"])
 		out[i].PerceivedSeverity = wmi.AsUint16(row["PerceivedSeverity"])
-		if v, ok := row["PreviousInstance"].(any); ok {
+		if v, ok := row["PreviousInstance"].(wmi.Row); ok {
 			out[i].PreviousInstance = v
 		}
 		out[i].SequenceContext = wmi.AsString(row["SequenceContext"])
 		out[i].SequenceNumber = wmi.AsInt64(row["SequenceNumber"])
-		if v, ok := row["SourceInstance"].(any); ok {
+		if v, ok := row["SourceInstance"].(wmi.Row); ok {
 			out[i].SourceInstance = v
 		}
 		out[i].SourceInstanceHost = wmi.AsString(row["SourceInstanceHost"])
@@ -1820,7 +1798,7 @@ func QueryCIMLANEndpoint(svc *wmi.Service, where string) ([]CIMLANEndpoint, erro
 
 // CIMLANEndpointRequestStateChangeResult holds the out-parameters of CIM_LANEndpoint.RequestStateChange.
 type CIMLANEndpointRequestStateChangeResult struct {
-	Job         any
+	Job         string
 	ReturnValue uint32
 }
 
@@ -1840,7 +1818,7 @@ func CIMLANEndpointRequestStateChange(svc *wmi.Service, objectPath string, reque
 		return nil, err
 	}
 	out := &CIMLANEndpointRequestStateChangeResult{}
-	out.Job = row["Job"]
+	out.Job = wmi.AsString(row["Job"])
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
@@ -2010,7 +1988,7 @@ func CIMLogicalDeviceQuiesceDevice(svc *wmi.Service, objectPath string, quiesce 
 
 // CIMLogicalDeviceRequestStateChangeResult holds the out-parameters of CIM_LogicalDevice.RequestStateChange.
 type CIMLogicalDeviceRequestStateChangeResult struct {
-	Job         any
+	Job         string
 	ReturnValue uint32
 }
 
@@ -2030,7 +2008,7 @@ func CIMLogicalDeviceRequestStateChange(svc *wmi.Service, objectPath string, req
 		return nil, err
 	}
 	out := &CIMLogicalDeviceRequestStateChangeResult{}
-	out.Job = row["Job"]
+	out.Job = wmi.AsString(row["Job"])
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
@@ -2340,7 +2318,7 @@ func CIMLogicalPortQuiesceDevice(svc *wmi.Service, objectPath string, quiesce bo
 
 // CIMLogicalPortRequestStateChangeResult holds the out-parameters of CIM_LogicalPort.RequestStateChange.
 type CIMLogicalPortRequestStateChangeResult struct {
-	Job         any
+	Job         string
 	ReturnValue uint32
 }
 
@@ -2360,7 +2338,7 @@ func CIMLogicalPortRequestStateChange(svc *wmi.Service, objectPath string, reque
 		return nil, err
 	}
 	out := &CIMLogicalPortRequestStateChangeResult{}
-	out.Job = row["Job"]
+	out.Job = wmi.AsString(row["Job"])
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
@@ -2591,7 +2569,7 @@ func QueryCIMNetworkPipe(svc *wmi.Service, where string) ([]CIMNetworkPipe, erro
 
 // CIMNetworkPipeRequestStateChangeResult holds the out-parameters of CIM_NetworkPipe.RequestStateChange.
 type CIMNetworkPipeRequestStateChangeResult struct {
-	Job         any
+	Job         string
 	ReturnValue uint32
 }
 
@@ -2611,7 +2589,7 @@ func CIMNetworkPipeRequestStateChange(svc *wmi.Service, objectPath string, reque
 		return nil, err
 	}
 	out := &CIMNetworkPipeRequestStateChangeResult{}
-	out.Job = row["Job"]
+	out.Job = wmi.AsString(row["Job"])
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
@@ -2813,7 +2791,7 @@ func CIMNetworkPortQuiesceDevice(svc *wmi.Service, objectPath string, quiesce bo
 
 // CIMNetworkPortRequestStateChangeResult holds the out-parameters of CIM_NetworkPort.RequestStateChange.
 type CIMNetworkPortRequestStateChangeResult struct {
-	Job         any
+	Job         string
 	ReturnValue uint32
 }
 
@@ -2833,7 +2811,7 @@ func CIMNetworkPortRequestStateChange(svc *wmi.Service, objectPath string, reque
 		return nil, err
 	}
 	out := &CIMNetworkPortRequestStateChangeResult{}
-	out.Job = row["Job"]
+	out.Job = wmi.AsString(row["Job"])
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
@@ -2958,8 +2936,8 @@ func QueryCIMNextHopRoute(svc *wmi.Service, where string) ([]CIMNextHopRoute, er
 
 // CIMPhase1SAUsedForPhase2 is the CIM_Phase1SAUsedForPhase2 CIM class.
 type CIMPhase1SAUsedForPhase2 struct {
-	Antecedent any `cim:"Antecedent"`
-	Dependent  any `cim:"Dependent"`
+	Antecedent string `cim:"Antecedent"`
+	Dependent  string `cim:"Dependent"`
 }
 
 // QueryCIMPhase1SAUsedForPhase2 runs the WQL query against the class and decodes each
@@ -2975,12 +2953,8 @@ func QueryCIMPhase1SAUsedForPhase2(svc *wmi.Service, where string) ([]CIMPhase1S
 	}
 	out := make([]CIMPhase1SAUsedForPhase2, len(rows))
 	for i, row := range rows {
-		if v, ok := row["Antecedent"].(any); ok {
-			out[i].Antecedent = v
-		}
-		if v, ok := row["Dependent"].(any); ok {
-			out[i].Dependent = v
-		}
+		out[i].Antecedent = wmi.AsString(row["Antecedent"])
+		out[i].Dependent = wmi.AsString(row["Dependent"])
 	}
 	return out, nil
 }
@@ -3068,8 +3042,8 @@ func QueryCIMPolicyAction(svc *wmi.Service, where string) ([]CIMPolicyAction, er
 // CIMPolicyActionInPolicyRule is the CIM_PolicyActionInPolicyRule CIM class.
 type CIMPolicyActionInPolicyRule struct {
 	ActionOrder    uint16 `cim:"ActionOrder"`
-	GroupComponent any    `cim:"GroupComponent"`
-	PartComponent  any    `cim:"PartComponent"`
+	GroupComponent string `cim:"GroupComponent"`
+	PartComponent  string `cim:"PartComponent"`
 }
 
 // QueryCIMPolicyActionInPolicyRule runs the WQL query against the class and decodes each
@@ -3086,12 +3060,8 @@ func QueryCIMPolicyActionInPolicyRule(svc *wmi.Service, where string) ([]CIMPoli
 	out := make([]CIMPolicyActionInPolicyRule, len(rows))
 	for i, row := range rows {
 		out[i].ActionOrder = wmi.AsUint16(row["ActionOrder"])
-		if v, ok := row["GroupComponent"].(any); ok {
-			out[i].GroupComponent = v
-		}
-		if v, ok := row["PartComponent"].(any); ok {
-			out[i].PartComponent = v
-		}
+		out[i].GroupComponent = wmi.AsString(row["GroupComponent"])
+		out[i].PartComponent = wmi.AsString(row["PartComponent"])
 	}
 	return out, nil
 }
@@ -3099,8 +3069,8 @@ func QueryCIMPolicyActionInPolicyRule(svc *wmi.Service, where string) ([]CIMPoli
 // CIMPolicyActionStructure is the CIM_PolicyActionStructure CIM class.
 type CIMPolicyActionStructure struct {
 	ActionOrder    uint16 `cim:"ActionOrder"`
-	GroupComponent any    `cim:"GroupComponent"`
-	PartComponent  any    `cim:"PartComponent"`
+	GroupComponent string `cim:"GroupComponent"`
+	PartComponent  string `cim:"PartComponent"`
 }
 
 // QueryCIMPolicyActionStructure runs the WQL query against the class and decodes each
@@ -3117,20 +3087,16 @@ func QueryCIMPolicyActionStructure(svc *wmi.Service, where string) ([]CIMPolicyA
 	out := make([]CIMPolicyActionStructure, len(rows))
 	for i, row := range rows {
 		out[i].ActionOrder = wmi.AsUint16(row["ActionOrder"])
-		if v, ok := row["GroupComponent"].(any); ok {
-			out[i].GroupComponent = v
-		}
-		if v, ok := row["PartComponent"].(any); ok {
-			out[i].PartComponent = v
-		}
+		out[i].GroupComponent = wmi.AsString(row["GroupComponent"])
+		out[i].PartComponent = wmi.AsString(row["PartComponent"])
 	}
 	return out, nil
 }
 
 // CIMPolicyComponent is the CIM_PolicyComponent CIM class.
 type CIMPolicyComponent struct {
-	GroupComponent any `cim:"GroupComponent"`
-	PartComponent  any `cim:"PartComponent"`
+	GroupComponent string `cim:"GroupComponent"`
+	PartComponent  string `cim:"PartComponent"`
 }
 
 // QueryCIMPolicyComponent runs the WQL query against the class and decodes each
@@ -3146,12 +3112,8 @@ func QueryCIMPolicyComponent(svc *wmi.Service, where string) ([]CIMPolicyCompone
 	}
 	out := make([]CIMPolicyComponent, len(rows))
 	for i, row := range rows {
-		if v, ok := row["GroupComponent"].(any); ok {
-			out[i].GroupComponent = v
-		}
-		if v, ok := row["PartComponent"].(any); ok {
-			out[i].PartComponent = v
-		}
+		out[i].GroupComponent = wmi.AsString(row["GroupComponent"])
+		out[i].PartComponent = wmi.AsString(row["PartComponent"])
 	}
 	return out, nil
 }
@@ -3256,8 +3218,8 @@ func QueryCIMPolicySet(svc *wmi.Service, where string) ([]CIMPolicySet, error) {
 
 // CIMPolicySetComponent is the CIM_PolicySetComponent CIM class.
 type CIMPolicySetComponent struct {
-	GroupComponent any    `cim:"GroupComponent"`
-	PartComponent  any    `cim:"PartComponent"`
+	GroupComponent string `cim:"GroupComponent"`
+	PartComponent  string `cim:"PartComponent"`
 	Priority       uint16 `cim:"Priority"`
 }
 
@@ -3274,12 +3236,8 @@ func QueryCIMPolicySetComponent(svc *wmi.Service, where string) ([]CIMPolicySetC
 	}
 	out := make([]CIMPolicySetComponent, len(rows))
 	for i, row := range rows {
-		if v, ok := row["GroupComponent"].(any); ok {
-			out[i].GroupComponent = v
-		}
-		if v, ok := row["PartComponent"].(any); ok {
-			out[i].PartComponent = v
-		}
+		out[i].GroupComponent = wmi.AsString(row["GroupComponent"])
+		out[i].PartComponent = wmi.AsString(row["PartComponent"])
 		out[i].Priority = wmi.AsUint16(row["Priority"])
 	}
 	return out, nil
@@ -3287,8 +3245,8 @@ func QueryCIMPolicySetComponent(svc *wmi.Service, where string) ([]CIMPolicySetC
 
 // CIMPortImplementsEndpoint is the CIM_PortImplementsEndpoint CIM class.
 type CIMPortImplementsEndpoint struct {
-	Antecedent any `cim:"Antecedent"`
-	Dependent  any `cim:"Dependent"`
+	Antecedent string `cim:"Antecedent"`
+	Dependent  string `cim:"Dependent"`
 }
 
 // QueryCIMPortImplementsEndpoint runs the WQL query against the class and decodes each
@@ -3304,12 +3262,8 @@ func QueryCIMPortImplementsEndpoint(svc *wmi.Service, where string) ([]CIMPortIm
 	}
 	out := make([]CIMPortImplementsEndpoint, len(rows))
 	for i, row := range rows {
-		if v, ok := row["Antecedent"].(any); ok {
-			out[i].Antecedent = v
-		}
-		if v, ok := row["Dependent"].(any); ok {
-			out[i].Dependent = v
-		}
+		out[i].Antecedent = wmi.AsString(row["Antecedent"])
+		out[i].Dependent = wmi.AsString(row["Dependent"])
 	}
 	return out, nil
 }
@@ -3393,7 +3347,7 @@ func QueryCIMProtocolEndpoint(svc *wmi.Service, where string) ([]CIMProtocolEndp
 
 // CIMProtocolEndpointRequestStateChangeResult holds the out-parameters of CIM_ProtocolEndpoint.RequestStateChange.
 type CIMProtocolEndpointRequestStateChangeResult struct {
-	Job         any
+	Job         string
 	ReturnValue uint32
 }
 
@@ -3413,7 +3367,7 @@ func CIMProtocolEndpointRequestStateChange(svc *wmi.Service, objectPath string, 
 		return nil, err
 	}
 	out := &CIMProtocolEndpointRequestStateChangeResult{}
-	out.Job = row["Job"]
+	out.Job = wmi.AsString(row["Job"])
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
@@ -3499,7 +3453,7 @@ func QueryCIMRemoteServiceAccessPoint(svc *wmi.Service, where string) ([]CIMRemo
 
 // CIMRemoteServiceAccessPointRequestStateChangeResult holds the out-parameters of CIM_RemoteServiceAccessPoint.RequestStateChange.
 type CIMRemoteServiceAccessPointRequestStateChangeResult struct {
-	Job         any
+	Job         string
 	ReturnValue uint32
 }
 
@@ -3519,15 +3473,15 @@ func CIMRemoteServiceAccessPointRequestStateChange(svc *wmi.Service, objectPath 
 		return nil, err
 	}
 	out := &CIMRemoteServiceAccessPointRequestStateChangeResult{}
-	out.Job = row["Job"]
+	out.Job = wmi.AsString(row["Job"])
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
 
 // CIMRouteUsesEndpoint is the CIM_RouteUsesEndpoint CIM class.
 type CIMRouteUsesEndpoint struct {
-	Antecedent any `cim:"Antecedent"`
-	Dependent  any `cim:"Dependent"`
+	Antecedent string `cim:"Antecedent"`
+	Dependent  string `cim:"Dependent"`
 }
 
 // QueryCIMRouteUsesEndpoint runs the WQL query against the class and decodes each
@@ -3543,12 +3497,8 @@ func QueryCIMRouteUsesEndpoint(svc *wmi.Service, where string) ([]CIMRouteUsesEn
 	}
 	out := make([]CIMRouteUsesEndpoint, len(rows))
 	for i, row := range rows {
-		if v, ok := row["Antecedent"].(any); ok {
-			out[i].Antecedent = v
-		}
-		if v, ok := row["Dependent"].(any); ok {
-			out[i].Dependent = v
-		}
+		out[i].Antecedent = wmi.AsString(row["Antecedent"])
+		out[i].Dependent = wmi.AsString(row["Dependent"])
 	}
 	return out, nil
 }
@@ -3659,8 +3609,8 @@ func QueryCIMSANegotiationAction(svc *wmi.Service, where string) ([]CIMSANegotia
 
 // CIMSAPSAPDependency is the CIM_SAPSAPDependency CIM class.
 type CIMSAPSAPDependency struct {
-	Antecedent any `cim:"Antecedent"`
-	Dependent  any `cim:"Dependent"`
+	Antecedent string `cim:"Antecedent"`
+	Dependent  string `cim:"Dependent"`
 }
 
 // QueryCIMSAPSAPDependency runs the WQL query against the class and decodes each
@@ -3676,12 +3626,8 @@ func QueryCIMSAPSAPDependency(svc *wmi.Service, where string) ([]CIMSAPSAPDepend
 	}
 	out := make([]CIMSAPSAPDependency, len(rows))
 	for i, row := range rows {
-		if v, ok := row["Antecedent"].(any); ok {
-			out[i].Antecedent = v
-		}
-		if v, ok := row["Dependent"].(any); ok {
-			out[i].Dependent = v
-		}
+		out[i].Antecedent = wmi.AsString(row["Antecedent"])
+		out[i].Dependent = wmi.AsString(row["Dependent"])
 	}
 	return out, nil
 }
@@ -3896,7 +3842,7 @@ func QueryCIMSecurityAssociationEndpoint(svc *wmi.Service, where string) ([]CIMS
 
 // CIMSecurityAssociationEndpointRequestStateChangeResult holds the out-parameters of CIM_SecurityAssociationEndpoint.RequestStateChange.
 type CIMSecurityAssociationEndpointRequestStateChangeResult struct {
-	Job         any
+	Job         string
 	ReturnValue uint32
 }
 
@@ -3916,7 +3862,7 @@ func CIMSecurityAssociationEndpointRequestStateChange(svc *wmi.Service, objectPa
 		return nil, err
 	}
 	out := &CIMSecurityAssociationEndpointRequestStateChangeResult{}
-	out.Job = row["Job"]
+	out.Job = wmi.AsString(row["Job"])
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
@@ -3992,7 +3938,7 @@ func QueryCIMServiceAccessPoint(svc *wmi.Service, where string) ([]CIMServiceAcc
 
 // CIMServiceAccessPointRequestStateChangeResult holds the out-parameters of CIM_ServiceAccessPoint.RequestStateChange.
 type CIMServiceAccessPointRequestStateChangeResult struct {
-	Job         any
+	Job         string
 	ReturnValue uint32
 }
 
@@ -4012,7 +3958,7 @@ func CIMServiceAccessPointRequestStateChange(svc *wmi.Service, objectPath string
 		return nil, err
 	}
 	out := &CIMServiceAccessPointRequestStateChangeResult{}
-	out.Job = row["Job"]
+	out.Job = wmi.AsString(row["Job"])
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
@@ -4365,7 +4311,7 @@ type MSFT3DPrinterRenameByObjectResult struct {
 
 // MSFT3DPrinterRenameByObject invokes the static MSFT_3DPrinter.RenameByObject method. Zero-valued
 // in-parameters are omitted so the provider applies its defaults.
-func MSFT3DPrinterRenameByObject(svc *wmi.Service, inputObject any, newName string) (*MSFT3DPrinterRenameByObjectResult, error) {
+func MSFT3DPrinterRenameByObject(svc *wmi.Service, inputObject wmi.Row, newName string) (*MSFT3DPrinterRenameByObjectResult, error) {
 	in := map[string]any{}
 	if inputObject != nil {
 		in["InputObject"] = inputObject
@@ -4498,7 +4444,7 @@ func QueryMSFTDAClientExperienceConfiguration(svc *wmi.Service, where string) ([
 
 // MSFTDAClientExperienceConfigurationResetResult holds the out-parameters of MSFT_DAClientExperienceConfiguration.Reset.
 type MSFTDAClientExperienceConfigurationResetResult struct {
-	OutputObject any
+	OutputObject wmi.Row
 	ReturnValue  uint32
 }
 
@@ -4548,7 +4494,9 @@ func MSFTDAClientExperienceConfigurationReset(svc *wmi.Service, objectPath strin
 		return nil, err
 	}
 	out := &MSFTDAClientExperienceConfigurationResetResult{}
-	out.OutputObject = row["OutputObject"]
+	if v, ok := row["OutputObject"].(wmi.Row); ok {
+		out.OutputObject = v
+	}
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
@@ -4692,7 +4640,7 @@ func MSFTDASiteTableEntryEnable(svc *wmi.Service, entryPointName string) (*MSFTD
 
 // MSFTDASiteTableEntryRenameResult holds the out-parameters of MSFT_DASiteTableEntry.Rename.
 type MSFTDASiteTableEntryRenameResult struct {
-	OutputObject any
+	OutputObject wmi.Row
 	ReturnValue  uint32
 }
 
@@ -4712,14 +4660,16 @@ func MSFTDASiteTableEntryRename(svc *wmi.Service, objectPath string, newName str
 		return nil, err
 	}
 	out := &MSFTDASiteTableEntryRenameResult{}
-	out.OutputObject = row["OutputObject"]
+	if v, ok := row["OutputObject"].(wmi.Row); ok {
+		out.OutputObject = v
+	}
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
 
 // MSFTDASiteTableEntryResetResult holds the out-parameters of MSFT_DASiteTableEntry.Reset.
 type MSFTDASiteTableEntryResetResult struct {
-	OutputObject any
+	OutputObject wmi.Row
 	ReturnValue  uint32
 }
 
@@ -4745,7 +4695,9 @@ func MSFTDASiteTableEntryReset(svc *wmi.Service, objectPath string, teredoServer
 		return nil, err
 	}
 	out := &MSFTDASiteTableEntryResetResult{}
-	out.OutputObject = row["OutputObject"]
+	if v, ok := row["OutputObject"].(wmi.Row); ok {
+		out.OutputObject = v
+	}
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
@@ -4862,7 +4814,7 @@ func MSFTDNSClientRegister(svc *wmi.Service) (*MSFTDNSClientRegisterResult, erro
 
 // MSFTDNSClientRequestStateChangeResult holds the out-parameters of MSFT_DNSClient.RequestStateChange.
 type MSFTDNSClientRequestStateChangeResult struct {
-	Job         any
+	Job         string
 	ReturnValue uint32
 }
 
@@ -4882,7 +4834,7 @@ func MSFTDNSClientRequestStateChange(svc *wmi.Service, objectPath string, reques
 		return nil, err
 	}
 	out := &MSFTDNSClientRequestStateChangeResult{}
-	out.Job = row["Job"]
+	out.Job = wmi.AsString(row["Job"])
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
@@ -5038,7 +4990,7 @@ func QueryMSFTDNSClientDohServerAddress(svc *wmi.Service, where string) ([]MSFTD
 
 // MSFTDNSClientDohServerAddressRequestStateChangeResult holds the out-parameters of MSFT_DNSClientDohServerAddress.RequestStateChange.
 type MSFTDNSClientDohServerAddressRequestStateChangeResult struct {
-	Job         any
+	Job         string
 	ReturnValue uint32
 }
 
@@ -5058,7 +5010,7 @@ func MSFTDNSClientDohServerAddressRequestStateChange(svc *wmi.Service, objectPat
 		return nil, err
 	}
 	out := &MSFTDNSClientDohServerAddressRequestStateChangeResult{}
-	out.Job = row["Job"]
+	out.Job = wmi.AsString(row["Job"])
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
@@ -5199,7 +5151,7 @@ func QueryMSFTDNSClientServerAddress(svc *wmi.Service, where string) ([]MSFTDNSC
 
 // MSFTDNSClientServerAddressRequestStateChangeResult holds the out-parameters of MSFT_DNSClientServerAddress.RequestStateChange.
 type MSFTDNSClientServerAddressRequestStateChangeResult struct {
-	Job         any
+	Job         string
 	ReturnValue uint32
 }
 
@@ -5219,7 +5171,7 @@ func MSFTDNSClientServerAddressRequestStateChange(svc *wmi.Service, objectPath s
 		return nil, err
 	}
 	out := &MSFTDNSClientServerAddressRequestStateChangeResult{}
-	out.Job = row["Job"]
+	out.Job = wmi.AsString(row["Job"])
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
@@ -5244,7 +5196,7 @@ type MSFTExtendedStatus struct {
 	ErrorCategory            uint16   `cim:"error_Category"`
 	ErrorCode                uint32   `cim:"error_Code"`
 	ErrorWindowsErrorMessage string   `cim:"error_WindowsErrorMessage"`
-	OriginalError            any      `cim:"original_error"`
+	OriginalError            wmi.Row  `cim:"original_error"`
 }
 
 // QueryMSFTExtendedStatus runs the WQL query against the class and decodes each
@@ -5278,7 +5230,7 @@ func QueryMSFTExtendedStatus(svc *wmi.Service, where string) ([]MSFTExtendedStat
 		out[i].ErrorCategory = wmi.AsUint16(row["error_Category"])
 		out[i].ErrorCode = wmi.AsUint32(row["error_Code"])
 		out[i].ErrorWindowsErrorMessage = wmi.AsString(row["error_WindowsErrorMessage"])
-		if v, ok := row["original_error"].(any); ok {
+		if v, ok := row["original_error"].(wmi.Row); ok {
 			out[i].OriginalError = v
 		}
 	}
@@ -5438,7 +5390,7 @@ func QueryMSFTNCSIPolicyConfiguration(svc *wmi.Service, where string) ([]MSFTNCS
 
 // MSFTNCSIPolicyConfigurationResetResult holds the out-parameters of MSFT_NCSIPolicyConfiguration.Reset.
 type MSFTNCSIPolicyConfigurationResetResult struct {
-	OutputObject any
+	OutputObject wmi.Row
 	ReturnValue  uint32
 }
 
@@ -5470,7 +5422,9 @@ func MSFTNCSIPolicyConfigurationReset(svc *wmi.Service, objectPath string, corpo
 		return nil, err
 	}
 	out := &MSFTNCSIPolicyConfigurationResetResult{}
-	out.OutputObject = row["OutputObject"]
+	if v, ok := row["OutputObject"].(wmi.Row); ok {
+		out.OutputObject = v
+	}
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
@@ -5518,7 +5472,7 @@ func QueryMSFTNet6to4Configuration(svc *wmi.Service, where string) ([]MSFTNet6to
 
 // MSFTNet6to4ConfigurationResetResult holds the out-parameters of MSFT_Net6to4Configuration.Reset.
 type MSFTNet6to4ConfigurationResetResult struct {
-	OutputObject any
+	OutputObject wmi.Row
 	ReturnValue  uint32
 }
 
@@ -5550,7 +5504,9 @@ func MSFTNet6to4ConfigurationReset(svc *wmi.Service, objectPath string, state bo
 		return nil, err
 	}
 	out := &MSFTNet6to4ConfigurationResetResult{}
-	out.OutputObject = row["OutputObject"]
+	if v, ok := row["OutputObject"].(wmi.Row); ok {
+		out.OutputObject = v
+	}
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
@@ -5560,8 +5516,8 @@ type MSFTNet6to4State struct {
 	IsCurrent      uint16 `cim:"IsCurrent"`
 	IsDefault      uint16 `cim:"IsDefault"`
 	IsNext         uint16 `cim:"IsNext"`
-	ManagedElement any    `cim:"ManagedElement"`
-	SettingData    any    `cim:"SettingData"`
+	ManagedElement string `cim:"ManagedElement"`
+	SettingData    string `cim:"SettingData"`
 }
 
 // QueryMSFTNet6to4State runs the WQL query against the class and decodes each
@@ -5580,12 +5536,8 @@ func QueryMSFTNet6to4State(svc *wmi.Service, where string) ([]MSFTNet6to4State, 
 		out[i].IsCurrent = wmi.AsUint16(row["IsCurrent"])
 		out[i].IsDefault = wmi.AsUint16(row["IsDefault"])
 		out[i].IsNext = wmi.AsUint16(row["IsNext"])
-		if v, ok := row["ManagedElement"].(any); ok {
-			out[i].ManagedElement = v
-		}
-		if v, ok := row["SettingData"].(any); ok {
-			out[i].SettingData = v
-		}
+		out[i].ManagedElement = wmi.AsString(row["ManagedElement"])
+		out[i].SettingData = wmi.AsString(row["SettingData"])
 	}
 	return out, nil
 }
@@ -5819,7 +5771,7 @@ func QueryMSFTNetAdapter(svc *wmi.Service, where string) ([]MSFTNetAdapter, erro
 
 // MSFTNetAdapterDisableResult holds the out-parameters of MSFT_NetAdapter.Disable.
 type MSFTNetAdapterDisableResult struct {
-	CmdletOutput any
+	CmdletOutput wmi.Row
 	ReturnValue  uint32
 }
 
@@ -5832,14 +5784,16 @@ func MSFTNetAdapterDisable(svc *wmi.Service, objectPath string) (*MSFTNetAdapter
 		return nil, err
 	}
 	out := &MSFTNetAdapterDisableResult{}
-	out.CmdletOutput = row["CmdletOutput"]
+	if v, ok := row["CmdletOutput"].(wmi.Row); ok {
+		out.CmdletOutput = v
+	}
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
 
 // MSFTNetAdapterEnableResult holds the out-parameters of MSFT_NetAdapter.Enable.
 type MSFTNetAdapterEnableResult struct {
-	CmdletOutput any
+	CmdletOutput wmi.Row
 	ReturnValue  uint32
 }
 
@@ -5852,7 +5806,9 @@ func MSFTNetAdapterEnable(svc *wmi.Service, objectPath string) (*MSFTNetAdapterE
 		return nil, err
 	}
 	out := &MSFTNetAdapterEnableResult{}
-	out.CmdletOutput = row["CmdletOutput"]
+	if v, ok := row["CmdletOutput"].(wmi.Row); ok {
+		out.CmdletOutput = v
+	}
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
@@ -5881,7 +5837,7 @@ func MSFTNetAdapterEnableDevice(svc *wmi.Service, objectPath string, enabled boo
 
 // MSFTNetAdapterLockResult holds the out-parameters of MSFT_NetAdapter.Lock.
 type MSFTNetAdapterLockResult struct {
-	CmdletOutput any
+	CmdletOutput wmi.Row
 	ReturnValue  uint32
 }
 
@@ -5894,7 +5850,9 @@ func MSFTNetAdapterLock(svc *wmi.Service, objectPath string) (*MSFTNetAdapterLoc
 		return nil, err
 	}
 	out := &MSFTNetAdapterLockResult{}
-	out.CmdletOutput = row["CmdletOutput"]
+	if v, ok := row["CmdletOutput"].(wmi.Row); ok {
+		out.CmdletOutput = v
+	}
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
@@ -5945,7 +5903,7 @@ func MSFTNetAdapterQuiesceDevice(svc *wmi.Service, objectPath string, quiesce bo
 
 // MSFTNetAdapterRenameResult holds the out-parameters of MSFT_NetAdapter.Rename.
 type MSFTNetAdapterRenameResult struct {
-	CmdletOutput any
+	CmdletOutput wmi.Row
 	ReturnValue  uint32
 }
 
@@ -5962,14 +5920,16 @@ func MSFTNetAdapterRename(svc *wmi.Service, objectPath string, newName string) (
 		return nil, err
 	}
 	out := &MSFTNetAdapterRenameResult{}
-	out.CmdletOutput = row["CmdletOutput"]
+	if v, ok := row["CmdletOutput"].(wmi.Row); ok {
+		out.CmdletOutput = v
+	}
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
 
 // MSFTNetAdapterRequestStateChangeResult holds the out-parameters of MSFT_NetAdapter.RequestStateChange.
 type MSFTNetAdapterRequestStateChangeResult struct {
-	Job         any
+	Job         string
 	ReturnValue uint32
 }
 
@@ -5989,7 +5949,7 @@ func MSFTNetAdapterRequestStateChange(svc *wmi.Service, objectPath string, reque
 		return nil, err
 	}
 	out := &MSFTNetAdapterRequestStateChangeResult{}
-	out.Job = row["Job"]
+	out.Job = wmi.AsString(row["Job"])
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
@@ -6014,7 +5974,7 @@ func MSFTNetAdapterReset(svc *wmi.Service, objectPath string) (*MSFTNetAdapterRe
 
 // MSFTNetAdapterRestartResult holds the out-parameters of MSFT_NetAdapter.Restart.
 type MSFTNetAdapterRestartResult struct {
-	CmdletOutput any
+	CmdletOutput wmi.Row
 	ReturnValue  uint32
 }
 
@@ -6027,7 +5987,9 @@ func MSFTNetAdapterRestart(svc *wmi.Service, objectPath string) (*MSFTNetAdapter
 		return nil, err
 	}
 	out := &MSFTNetAdapterRestartResult{}
-	out.CmdletOutput = row["CmdletOutput"]
+	if v, ok := row["CmdletOutput"].(wmi.Row); ok {
+		out.CmdletOutput = v
+	}
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
@@ -6095,7 +6057,7 @@ func MSFTNetAdapterSetPowerState(svc *wmi.Service, objectPath string, powerState
 
 // MSFTNetAdapterUnlockResult holds the out-parameters of MSFT_NetAdapter.Unlock.
 type MSFTNetAdapterUnlockResult struct {
-	CmdletOutput any
+	CmdletOutput wmi.Row
 	ReturnValue  uint32
 }
 
@@ -6108,7 +6070,9 @@ func MSFTNetAdapterUnlock(svc *wmi.Service, objectPath string) (*MSFTNetAdapterU
 		return nil, err
 	}
 	out := &MSFTNetAdapterUnlockResult{}
-	out.CmdletOutput = row["CmdletOutput"]
+	if v, ok := row["CmdletOutput"].(wmi.Row); ok {
+		out.CmdletOutput = v
+	}
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
@@ -6118,8 +6082,8 @@ type MSFTNetAdapterAdvancedPropertyElementSetting struct {
 	IsCurrent      uint16 `cim:"IsCurrent"`
 	IsDefault      uint16 `cim:"IsDefault"`
 	IsNext         uint16 `cim:"IsNext"`
-	ManagedElement any    `cim:"ManagedElement"`
-	SettingData    any    `cim:"SettingData"`
+	ManagedElement string `cim:"ManagedElement"`
+	SettingData    string `cim:"SettingData"`
 }
 
 // QueryMSFTNetAdapterAdvancedPropertyElementSetting runs the WQL query against the class and decodes each
@@ -6138,12 +6102,8 @@ func QueryMSFTNetAdapterAdvancedPropertyElementSetting(svc *wmi.Service, where s
 		out[i].IsCurrent = wmi.AsUint16(row["IsCurrent"])
 		out[i].IsDefault = wmi.AsUint16(row["IsDefault"])
 		out[i].IsNext = wmi.AsUint16(row["IsNext"])
-		if v, ok := row["ManagedElement"].(any); ok {
-			out[i].ManagedElement = v
-		}
-		if v, ok := row["SettingData"].(any); ok {
-			out[i].SettingData = v
-		}
+		out[i].ManagedElement = wmi.AsString(row["ManagedElement"])
+		out[i].SettingData = wmi.AsString(row["SettingData"])
 	}
 	return out, nil
 }
@@ -6217,7 +6177,7 @@ func QueryMSFTNetAdapterAdvancedPropertySettingData(svc *wmi.Service, where stri
 
 // MSFTNetAdapterAdvancedPropertySettingDataResetResult holds the out-parameters of MSFT_NetAdapterAdvancedPropertySettingData.Reset.
 type MSFTNetAdapterAdvancedPropertySettingDataResetResult struct {
-	CmdletOutput any
+	CmdletOutput wmi.Row
 	ReturnValue  uint32
 }
 
@@ -6230,7 +6190,9 @@ func MSFTNetAdapterAdvancedPropertySettingDataReset(svc *wmi.Service, objectPath
 		return nil, err
 	}
 	out := &MSFTNetAdapterAdvancedPropertySettingDataResetResult{}
-	out.CmdletOutput = row["CmdletOutput"]
+	if v, ok := row["CmdletOutput"].(wmi.Row); ok {
+		out.CmdletOutput = v
+	}
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
@@ -6240,8 +6202,8 @@ type MSFTNetAdapterBindingElementSetting struct {
 	IsCurrent      uint16 `cim:"IsCurrent"`
 	IsDefault      uint16 `cim:"IsDefault"`
 	IsNext         uint16 `cim:"IsNext"`
-	ManagedElement any    `cim:"ManagedElement"`
-	SettingData    any    `cim:"SettingData"`
+	ManagedElement string `cim:"ManagedElement"`
+	SettingData    string `cim:"SettingData"`
 }
 
 // QueryMSFTNetAdapterBindingElementSetting runs the WQL query against the class and decodes each
@@ -6260,12 +6222,8 @@ func QueryMSFTNetAdapterBindingElementSetting(svc *wmi.Service, where string) ([
 		out[i].IsCurrent = wmi.AsUint16(row["IsCurrent"])
 		out[i].IsDefault = wmi.AsUint16(row["IsDefault"])
 		out[i].IsNext = wmi.AsUint16(row["IsNext"])
-		if v, ok := row["ManagedElement"].(any); ok {
-			out[i].ManagedElement = v
-		}
-		if v, ok := row["SettingData"].(any); ok {
-			out[i].SettingData = v
-		}
+		out[i].ManagedElement = wmi.AsString(row["ManagedElement"])
+		out[i].SettingData = wmi.AsString(row["SettingData"])
 	}
 	return out, nil
 }
@@ -6323,7 +6281,7 @@ func QueryMSFTNetAdapterBindingSettingData(svc *wmi.Service, where string) ([]MS
 
 // MSFTNetAdapterBindingSettingDataDisableResult holds the out-parameters of MSFT_NetAdapterBindingSettingData.Disable.
 type MSFTNetAdapterBindingSettingDataDisableResult struct {
-	CmdletOutput any
+	CmdletOutput wmi.Row
 	ReturnValue  uint32
 }
 
@@ -6336,14 +6294,16 @@ func MSFTNetAdapterBindingSettingDataDisable(svc *wmi.Service, objectPath string
 		return nil, err
 	}
 	out := &MSFTNetAdapterBindingSettingDataDisableResult{}
-	out.CmdletOutput = row["cmdletOutput"]
+	if v, ok := row["cmdletOutput"].(wmi.Row); ok {
+		out.CmdletOutput = v
+	}
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
 
 // MSFTNetAdapterBindingSettingDataEnableResult holds the out-parameters of MSFT_NetAdapterBindingSettingData.Enable.
 type MSFTNetAdapterBindingSettingDataEnableResult struct {
-	CmdletOutput any
+	CmdletOutput wmi.Row
 	ReturnValue  uint32
 }
 
@@ -6356,35 +6316,37 @@ func MSFTNetAdapterBindingSettingDataEnable(svc *wmi.Service, objectPath string)
 		return nil, err
 	}
 	out := &MSFTNetAdapterBindingSettingDataEnableResult{}
-	out.CmdletOutput = row["cmdletOutput"]
+	if v, ok := row["cmdletOutput"].(wmi.Row); ok {
+		out.CmdletOutput = v
+	}
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
 
 // MSFTNetAdapterChecksumOffloadCapabilities is the MSFT_NetAdapterChecksumOffloadCapabilities CIM class.
 type MSFTNetAdapterChecksumOffloadCapabilities struct {
-	IPv4ReceiveEncapsulation                any  `cim:"IPv4ReceiveEncapsulation"`
-	IPv4ReceiveIpChecksumSupported          bool `cim:"IPv4ReceiveIpChecksumSupported"`
-	IPv4ReceiveIpOptionsSupported           bool `cim:"IPv4ReceiveIpOptionsSupported"`
-	IPv4ReceiveTcpChecksumSupported         bool `cim:"IPv4ReceiveTcpChecksumSupported"`
-	IPv4ReceiveTcpOptionsSupported          bool `cim:"IPv4ReceiveTcpOptionsSupported"`
-	IPv4ReceiveUdpChecksumSupported         bool `cim:"IPv4ReceiveUdpChecksumSupported"`
-	IPv4TransmitEncapsulation               any  `cim:"IPv4TransmitEncapsulation"`
-	IPv4TransmitIpChecksumSupported         bool `cim:"IPv4TransmitIpChecksumSupported"`
-	IPv4TransmitIpOptionsSupported          bool `cim:"IPv4TransmitIpOptionsSupported"`
-	IPv4TransmitTcpChecksumSupported        bool `cim:"IPv4TransmitTcpChecksumSupported"`
-	IPv4TransmitTcpOptionsSupported         bool `cim:"IPv4TransmitTcpOptionsSupported"`
-	IPv4TransmitUdpChecksumSupported        bool `cim:"IPv4TransmitUdpChecksumSupported"`
-	IPv6ReceiveEncapsulation                any  `cim:"IPv6ReceiveEncapsulation"`
-	IPv6ReceiveIpExtensionHeadersSupported  bool `cim:"IPv6ReceiveIpExtensionHeadersSupported"`
-	IPv6ReceiveTcpChecksumSupported         bool `cim:"IPv6ReceiveTcpChecksumSupported"`
-	IPv6ReceiveTcpOptionsSupported          bool `cim:"IPv6ReceiveTcpOptionsSupported"`
-	IPv6ReceiveUdpChecksumSupported         bool `cim:"IPv6ReceiveUdpChecksumSupported"`
-	IPv6TransmitEncapsulation               any  `cim:"IPv6TransmitEncapsulation"`
-	IPv6TransmitIpExtensionHeadersSupported bool `cim:"IPv6TransmitIpExtensionHeadersSupported"`
-	IPv6TransmitTcpChecksumSupported        bool `cim:"IPv6TransmitTcpChecksumSupported"`
-	IPv6TransmitTcpOptionsSupported         bool `cim:"IPv6TransmitTcpOptionsSupported"`
-	IPv6TransmitUdpChecksumSupported        bool `cim:"IPv6TransmitUdpChecksumSupported"`
+	IPv4ReceiveEncapsulation                wmi.Row `cim:"IPv4ReceiveEncapsulation"`
+	IPv4ReceiveIpChecksumSupported          bool    `cim:"IPv4ReceiveIpChecksumSupported"`
+	IPv4ReceiveIpOptionsSupported           bool    `cim:"IPv4ReceiveIpOptionsSupported"`
+	IPv4ReceiveTcpChecksumSupported         bool    `cim:"IPv4ReceiveTcpChecksumSupported"`
+	IPv4ReceiveTcpOptionsSupported          bool    `cim:"IPv4ReceiveTcpOptionsSupported"`
+	IPv4ReceiveUdpChecksumSupported         bool    `cim:"IPv4ReceiveUdpChecksumSupported"`
+	IPv4TransmitEncapsulation               wmi.Row `cim:"IPv4TransmitEncapsulation"`
+	IPv4TransmitIpChecksumSupported         bool    `cim:"IPv4TransmitIpChecksumSupported"`
+	IPv4TransmitIpOptionsSupported          bool    `cim:"IPv4TransmitIpOptionsSupported"`
+	IPv4TransmitTcpChecksumSupported        bool    `cim:"IPv4TransmitTcpChecksumSupported"`
+	IPv4TransmitTcpOptionsSupported         bool    `cim:"IPv4TransmitTcpOptionsSupported"`
+	IPv4TransmitUdpChecksumSupported        bool    `cim:"IPv4TransmitUdpChecksumSupported"`
+	IPv6ReceiveEncapsulation                wmi.Row `cim:"IPv6ReceiveEncapsulation"`
+	IPv6ReceiveIpExtensionHeadersSupported  bool    `cim:"IPv6ReceiveIpExtensionHeadersSupported"`
+	IPv6ReceiveTcpChecksumSupported         bool    `cim:"IPv6ReceiveTcpChecksumSupported"`
+	IPv6ReceiveTcpOptionsSupported          bool    `cim:"IPv6ReceiveTcpOptionsSupported"`
+	IPv6ReceiveUdpChecksumSupported         bool    `cim:"IPv6ReceiveUdpChecksumSupported"`
+	IPv6TransmitEncapsulation               wmi.Row `cim:"IPv6TransmitEncapsulation"`
+	IPv6TransmitIpExtensionHeadersSupported bool    `cim:"IPv6TransmitIpExtensionHeadersSupported"`
+	IPv6TransmitTcpChecksumSupported        bool    `cim:"IPv6TransmitTcpChecksumSupported"`
+	IPv6TransmitTcpOptionsSupported         bool    `cim:"IPv6TransmitTcpOptionsSupported"`
+	IPv6TransmitUdpChecksumSupported        bool    `cim:"IPv6TransmitUdpChecksumSupported"`
 }
 
 // QueryMSFTNetAdapterChecksumOffloadCapabilities runs the WQL query against the class and decodes each
@@ -6400,7 +6362,7 @@ func QueryMSFTNetAdapterChecksumOffloadCapabilities(svc *wmi.Service, where stri
 	}
 	out := make([]MSFTNetAdapterChecksumOffloadCapabilities, len(rows))
 	for i, row := range rows {
-		if v, ok := row["IPv4ReceiveEncapsulation"].(any); ok {
+		if v, ok := row["IPv4ReceiveEncapsulation"].(wmi.Row); ok {
 			out[i].IPv4ReceiveEncapsulation = v
 		}
 		out[i].IPv4ReceiveIpChecksumSupported = wmi.AsBool(row["IPv4ReceiveIpChecksumSupported"])
@@ -6408,7 +6370,7 @@ func QueryMSFTNetAdapterChecksumOffloadCapabilities(svc *wmi.Service, where stri
 		out[i].IPv4ReceiveTcpChecksumSupported = wmi.AsBool(row["IPv4ReceiveTcpChecksumSupported"])
 		out[i].IPv4ReceiveTcpOptionsSupported = wmi.AsBool(row["IPv4ReceiveTcpOptionsSupported"])
 		out[i].IPv4ReceiveUdpChecksumSupported = wmi.AsBool(row["IPv4ReceiveUdpChecksumSupported"])
-		if v, ok := row["IPv4TransmitEncapsulation"].(any); ok {
+		if v, ok := row["IPv4TransmitEncapsulation"].(wmi.Row); ok {
 			out[i].IPv4TransmitEncapsulation = v
 		}
 		out[i].IPv4TransmitIpChecksumSupported = wmi.AsBool(row["IPv4TransmitIpChecksumSupported"])
@@ -6416,14 +6378,14 @@ func QueryMSFTNetAdapterChecksumOffloadCapabilities(svc *wmi.Service, where stri
 		out[i].IPv4TransmitTcpChecksumSupported = wmi.AsBool(row["IPv4TransmitTcpChecksumSupported"])
 		out[i].IPv4TransmitTcpOptionsSupported = wmi.AsBool(row["IPv4TransmitTcpOptionsSupported"])
 		out[i].IPv4TransmitUdpChecksumSupported = wmi.AsBool(row["IPv4TransmitUdpChecksumSupported"])
-		if v, ok := row["IPv6ReceiveEncapsulation"].(any); ok {
+		if v, ok := row["IPv6ReceiveEncapsulation"].(wmi.Row); ok {
 			out[i].IPv6ReceiveEncapsulation = v
 		}
 		out[i].IPv6ReceiveIpExtensionHeadersSupported = wmi.AsBool(row["IPv6ReceiveIpExtensionHeadersSupported"])
 		out[i].IPv6ReceiveTcpChecksumSupported = wmi.AsBool(row["IPv6ReceiveTcpChecksumSupported"])
 		out[i].IPv6ReceiveTcpOptionsSupported = wmi.AsBool(row["IPv6ReceiveTcpOptionsSupported"])
 		out[i].IPv6ReceiveUdpChecksumSupported = wmi.AsBool(row["IPv6ReceiveUdpChecksumSupported"])
-		if v, ok := row["IPv6TransmitEncapsulation"].(any); ok {
+		if v, ok := row["IPv6TransmitEncapsulation"].(wmi.Row); ok {
 			out[i].IPv6TransmitEncapsulation = v
 		}
 		out[i].IPv6TransmitIpExtensionHeadersSupported = wmi.AsBool(row["IPv6TransmitIpExtensionHeadersSupported"])
@@ -6439,8 +6401,8 @@ type MSFTNetAdapterChecksumOffloadElementSetting struct {
 	IsCurrent      uint16 `cim:"IsCurrent"`
 	IsDefault      uint16 `cim:"IsDefault"`
 	IsNext         uint16 `cim:"IsNext"`
-	ManagedElement any    `cim:"ManagedElement"`
-	SettingData    any    `cim:"SettingData"`
+	ManagedElement string `cim:"ManagedElement"`
+	SettingData    string `cim:"SettingData"`
 }
 
 // QueryMSFTNetAdapterChecksumOffloadElementSetting runs the WQL query against the class and decodes each
@@ -6459,12 +6421,8 @@ func QueryMSFTNetAdapterChecksumOffloadElementSetting(svc *wmi.Service, where st
 		out[i].IsCurrent = wmi.AsUint16(row["IsCurrent"])
 		out[i].IsDefault = wmi.AsUint16(row["IsDefault"])
 		out[i].IsNext = wmi.AsUint16(row["IsNext"])
-		if v, ok := row["ManagedElement"].(any); ok {
-			out[i].ManagedElement = v
-		}
-		if v, ok := row["SettingData"].(any); ok {
-			out[i].SettingData = v
-		}
+		out[i].ManagedElement = wmi.AsString(row["ManagedElement"])
+		out[i].SettingData = wmi.AsString(row["SettingData"])
 	}
 	return out, nil
 }
@@ -6504,20 +6462,20 @@ func QueryMSFTNetAdapterChecksumOffloadEncapsulationTypes(svc *wmi.Service, wher
 
 // MSFTNetAdapterChecksumOffloadSettingData is the MSFT_NetAdapterChecksumOffloadSettingData CIM class.
 type MSFTNetAdapterChecksumOffloadSettingData struct {
-	Caption                             string `cim:"Caption"`
-	ChecksumOffloadHardwareCapabilities any    `cim:"ChecksumOffloadHardwareCapabilities"`
-	Description                         string `cim:"Description"`
-	ElementName                         string `cim:"ElementName"`
-	InstanceID                          string `cim:"InstanceID"`
-	InterfaceDescription                string `cim:"InterfaceDescription"`
-	IpIPv4Enabled                       uint32 `cim:"IpIPv4Enabled"`
-	Name                                string `cim:"Name"`
-	Source                              uint32 `cim:"Source"`
-	SystemName                          string `cim:"SystemName"`
-	TcpIPv4Enabled                      uint32 `cim:"TcpIPv4Enabled"`
-	TcpIPv6Enabled                      uint32 `cim:"TcpIPv6Enabled"`
-	UdpIPv4Enabled                      uint32 `cim:"UdpIPv4Enabled"`
-	UdpIPv6Enabled                      uint32 `cim:"UdpIPv6Enabled"`
+	Caption                             string  `cim:"Caption"`
+	ChecksumOffloadHardwareCapabilities wmi.Row `cim:"ChecksumOffloadHardwareCapabilities"`
+	Description                         string  `cim:"Description"`
+	ElementName                         string  `cim:"ElementName"`
+	InstanceID                          string  `cim:"InstanceID"`
+	InterfaceDescription                string  `cim:"InterfaceDescription"`
+	IpIPv4Enabled                       uint32  `cim:"IpIPv4Enabled"`
+	Name                                string  `cim:"Name"`
+	Source                              uint32  `cim:"Source"`
+	SystemName                          string  `cim:"SystemName"`
+	TcpIPv4Enabled                      uint32  `cim:"TcpIPv4Enabled"`
+	TcpIPv6Enabled                      uint32  `cim:"TcpIPv6Enabled"`
+	UdpIPv4Enabled                      uint32  `cim:"UdpIPv4Enabled"`
+	UdpIPv6Enabled                      uint32  `cim:"UdpIPv6Enabled"`
 }
 
 // QueryMSFTNetAdapterChecksumOffloadSettingData runs the WQL query against the class and decodes each
@@ -6534,7 +6492,7 @@ func QueryMSFTNetAdapterChecksumOffloadSettingData(svc *wmi.Service, where strin
 	out := make([]MSFTNetAdapterChecksumOffloadSettingData, len(rows))
 	for i, row := range rows {
 		out[i].Caption = wmi.AsString(row["Caption"])
-		if v, ok := row["ChecksumOffloadHardwareCapabilities"].(any); ok {
+		if v, ok := row["ChecksumOffloadHardwareCapabilities"].(wmi.Row); ok {
 			out[i].ChecksumOffloadHardwareCapabilities = v
 		}
 		out[i].Description = wmi.AsString(row["Description"])
@@ -6555,7 +6513,7 @@ func QueryMSFTNetAdapterChecksumOffloadSettingData(svc *wmi.Service, where strin
 
 // MSFTNetAdapterChecksumOffloadSettingDataDisableResult holds the out-parameters of MSFT_NetAdapterChecksumOffloadSettingData.Disable.
 type MSFTNetAdapterChecksumOffloadSettingDataDisableResult struct {
-	CmdletOutput any
+	CmdletOutput wmi.Row
 	ReturnValue  uint32
 }
 
@@ -6587,14 +6545,16 @@ func MSFTNetAdapterChecksumOffloadSettingDataDisable(svc *wmi.Service, objectPat
 		return nil, err
 	}
 	out := &MSFTNetAdapterChecksumOffloadSettingDataDisableResult{}
-	out.CmdletOutput = row["cmdletOutput"]
+	if v, ok := row["cmdletOutput"].(wmi.Row); ok {
+		out.CmdletOutput = v
+	}
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
 
 // MSFTNetAdapterChecksumOffloadSettingDataEnableResult holds the out-parameters of MSFT_NetAdapterChecksumOffloadSettingData.Enable.
 type MSFTNetAdapterChecksumOffloadSettingDataEnableResult struct {
-	CmdletOutput any
+	CmdletOutput wmi.Row
 	ReturnValue  uint32
 }
 
@@ -6626,7 +6586,9 @@ func MSFTNetAdapterChecksumOffloadSettingDataEnable(svc *wmi.Service, objectPath
 		return nil, err
 	}
 	out := &MSFTNetAdapterChecksumOffloadSettingDataEnableResult{}
-	out.CmdletOutput = row["cmdletOutput"]
+	if v, ok := row["cmdletOutput"].(wmi.Row); ok {
+		out.CmdletOutput = v
+	}
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
@@ -6636,8 +6598,8 @@ type MSFTNetAdapterDataPathConfigurationElementSetting struct {
 	IsCurrent      uint16 `cim:"IsCurrent"`
 	IsDefault      uint16 `cim:"IsDefault"`
 	IsNext         uint16 `cim:"IsNext"`
-	ManagedElement any    `cim:"ManagedElement"`
-	SettingData    any    `cim:"SettingData"`
+	ManagedElement string `cim:"ManagedElement"`
+	SettingData    string `cim:"SettingData"`
 }
 
 // QueryMSFTNetAdapterDataPathConfigurationElementSetting runs the WQL query against the class and decodes each
@@ -6656,12 +6618,8 @@ func QueryMSFTNetAdapterDataPathConfigurationElementSetting(svc *wmi.Service, wh
 		out[i].IsCurrent = wmi.AsUint16(row["IsCurrent"])
 		out[i].IsDefault = wmi.AsUint16(row["IsDefault"])
 		out[i].IsNext = wmi.AsUint16(row["IsNext"])
-		if v, ok := row["ManagedElement"].(any); ok {
-			out[i].ManagedElement = v
-		}
-		if v, ok := row["SettingData"].(any); ok {
-			out[i].SettingData = v
-		}
+		out[i].ManagedElement = wmi.AsString(row["ManagedElement"])
+		out[i].SettingData = wmi.AsString(row["SettingData"])
 	}
 	return out, nil
 }
@@ -6712,8 +6670,8 @@ type MSFTNetAdapterElementSettingData struct {
 	IsCurrent      uint16 `cim:"IsCurrent"`
 	IsDefault      uint16 `cim:"IsDefault"`
 	IsNext         uint16 `cim:"IsNext"`
-	ManagedElement any    `cim:"ManagedElement"`
-	SettingData    any    `cim:"SettingData"`
+	ManagedElement string `cim:"ManagedElement"`
+	SettingData    string `cim:"SettingData"`
 }
 
 // QueryMSFTNetAdapterElementSettingData runs the WQL query against the class and decodes each
@@ -6732,12 +6690,8 @@ func QueryMSFTNetAdapterElementSettingData(svc *wmi.Service, where string) ([]MS
 		out[i].IsCurrent = wmi.AsUint16(row["IsCurrent"])
 		out[i].IsDefault = wmi.AsUint16(row["IsDefault"])
 		out[i].IsNext = wmi.AsUint16(row["IsNext"])
-		if v, ok := row["ManagedElement"].(any); ok {
-			out[i].ManagedElement = v
-		}
-		if v, ok := row["SettingData"].(any); ok {
-			out[i].SettingData = v
-		}
+		out[i].ManagedElement = wmi.AsString(row["ManagedElement"])
+		out[i].SettingData = wmi.AsString(row["SettingData"])
 	}
 	return out, nil
 }
@@ -6813,8 +6767,8 @@ type MSFTNetAdapterEncapsulatedPacketTaskOffloadElementSetting struct {
 	IsCurrent      uint16 `cim:"IsCurrent"`
 	IsDefault      uint16 `cim:"IsDefault"`
 	IsNext         uint16 `cim:"IsNext"`
-	ManagedElement any    `cim:"ManagedElement"`
-	SettingData    any    `cim:"SettingData"`
+	ManagedElement string `cim:"ManagedElement"`
+	SettingData    string `cim:"SettingData"`
 }
 
 // QueryMSFTNetAdapterEncapsulatedPacketTaskOffloadElementSetting runs the WQL query against the class and decodes each
@@ -6833,33 +6787,29 @@ func QueryMSFTNetAdapterEncapsulatedPacketTaskOffloadElementSetting(svc *wmi.Ser
 		out[i].IsCurrent = wmi.AsUint16(row["IsCurrent"])
 		out[i].IsDefault = wmi.AsUint16(row["IsDefault"])
 		out[i].IsNext = wmi.AsUint16(row["IsNext"])
-		if v, ok := row["ManagedElement"].(any); ok {
-			out[i].ManagedElement = v
-		}
-		if v, ok := row["SettingData"].(any); ok {
-			out[i].SettingData = v
-		}
+		out[i].ManagedElement = wmi.AsString(row["ManagedElement"])
+		out[i].SettingData = wmi.AsString(row["SettingData"])
 	}
 	return out, nil
 }
 
 // MSFTNetAdapterEncapsulatedPacketTaskOffloadSettingData is the MSFT_NetAdapterEncapsulatedPacketTaskOffloadSettingData CIM class.
 type MSFTNetAdapterEncapsulatedPacketTaskOffloadSettingData struct {
-	Caption                                                string `cim:"Caption"`
-	Description                                            string `cim:"Description"`
-	ElementName                                            string `cim:"ElementName"`
-	EncapsulatedPacketTaskOffloadHardwareCapabilitiesNvgre any    `cim:"EncapsulatedPacketTaskOffloadHardwareCapabilitiesNvgre"`
-	EncapsulatedPacketTaskOffloadHardwareCapabilitiesVxlan any    `cim:"EncapsulatedPacketTaskOffloadHardwareCapabilitiesVxlan"`
-	EncapsulationType                                      uint16 `cim:"EncapsulationType"`
-	InstanceID                                             string `cim:"InstanceID"`
-	InterfaceDescription                                   string `cim:"InterfaceDescription"`
-	IsVxlanUDPPortConfigurable                             bool   `cim:"IsVxlanUDPPortConfigurable"`
-	Name                                                   string `cim:"Name"`
-	NvgreEncapsulatedPacketTaskOffloadEnabled              bool   `cim:"NvgreEncapsulatedPacketTaskOffloadEnabled"`
-	Source                                                 uint32 `cim:"Source"`
-	SystemName                                             string `cim:"SystemName"`
-	VxlanEncapsulatedPacketTaskOffloadEnabled              bool   `cim:"VxlanEncapsulatedPacketTaskOffloadEnabled"`
-	VxlanUDPPortNumber                                     uint16 `cim:"VxlanUDPPortNumber"`
+	Caption                                                string  `cim:"Caption"`
+	Description                                            string  `cim:"Description"`
+	ElementName                                            string  `cim:"ElementName"`
+	EncapsulatedPacketTaskOffloadHardwareCapabilitiesNvgre wmi.Row `cim:"EncapsulatedPacketTaskOffloadHardwareCapabilitiesNvgre"`
+	EncapsulatedPacketTaskOffloadHardwareCapabilitiesVxlan wmi.Row `cim:"EncapsulatedPacketTaskOffloadHardwareCapabilitiesVxlan"`
+	EncapsulationType                                      uint16  `cim:"EncapsulationType"`
+	InstanceID                                             string  `cim:"InstanceID"`
+	InterfaceDescription                                   string  `cim:"InterfaceDescription"`
+	IsVxlanUDPPortConfigurable                             bool    `cim:"IsVxlanUDPPortConfigurable"`
+	Name                                                   string  `cim:"Name"`
+	NvgreEncapsulatedPacketTaskOffloadEnabled              bool    `cim:"NvgreEncapsulatedPacketTaskOffloadEnabled"`
+	Source                                                 uint32  `cim:"Source"`
+	SystemName                                             string  `cim:"SystemName"`
+	VxlanEncapsulatedPacketTaskOffloadEnabled              bool    `cim:"VxlanEncapsulatedPacketTaskOffloadEnabled"`
+	VxlanUDPPortNumber                                     uint16  `cim:"VxlanUDPPortNumber"`
 }
 
 // QueryMSFTNetAdapterEncapsulatedPacketTaskOffloadSettingData runs the WQL query against the class and decodes each
@@ -6878,10 +6828,10 @@ func QueryMSFTNetAdapterEncapsulatedPacketTaskOffloadSettingData(svc *wmi.Servic
 		out[i].Caption = wmi.AsString(row["Caption"])
 		out[i].Description = wmi.AsString(row["Description"])
 		out[i].ElementName = wmi.AsString(row["ElementName"])
-		if v, ok := row["EncapsulatedPacketTaskOffloadHardwareCapabilitiesNvgre"].(any); ok {
+		if v, ok := row["EncapsulatedPacketTaskOffloadHardwareCapabilitiesNvgre"].(wmi.Row); ok {
 			out[i].EncapsulatedPacketTaskOffloadHardwareCapabilitiesNvgre = v
 		}
-		if v, ok := row["EncapsulatedPacketTaskOffloadHardwareCapabilitiesVxlan"].(any); ok {
+		if v, ok := row["EncapsulatedPacketTaskOffloadHardwareCapabilitiesVxlan"].(wmi.Row); ok {
 			out[i].EncapsulatedPacketTaskOffloadHardwareCapabilitiesVxlan = v
 		}
 		out[i].EncapsulationType = wmi.AsUint16(row["EncapsulationType"])
@@ -6900,7 +6850,7 @@ func QueryMSFTNetAdapterEncapsulatedPacketTaskOffloadSettingData(svc *wmi.Servic
 
 // MSFTNetAdapterEncapsulatedPacketTaskOffloadSettingDataDisableResult holds the out-parameters of MSFT_NetAdapterEncapsulatedPacketTaskOffloadSettingData.Disable.
 type MSFTNetAdapterEncapsulatedPacketTaskOffloadSettingDataDisableResult struct {
-	CmdletOutput any
+	CmdletOutput wmi.Row
 	ReturnValue  uint32
 }
 
@@ -6917,14 +6867,16 @@ func MSFTNetAdapterEncapsulatedPacketTaskOffloadSettingDataDisable(svc *wmi.Serv
 		return nil, err
 	}
 	out := &MSFTNetAdapterEncapsulatedPacketTaskOffloadSettingDataDisableResult{}
-	out.CmdletOutput = row["cmdletOutput"]
+	if v, ok := row["cmdletOutput"].(wmi.Row); ok {
+		out.CmdletOutput = v
+	}
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
 
 // MSFTNetAdapterEncapsulatedPacketTaskOffloadSettingDataEnableResult holds the out-parameters of MSFT_NetAdapterEncapsulatedPacketTaskOffloadSettingData.Enable.
 type MSFTNetAdapterEncapsulatedPacketTaskOffloadSettingDataEnableResult struct {
-	CmdletOutput any
+	CmdletOutput wmi.Row
 	ReturnValue  uint32
 }
 
@@ -6941,7 +6893,9 @@ func MSFTNetAdapterEncapsulatedPacketTaskOffloadSettingDataEnable(svc *wmi.Servi
 		return nil, err
 	}
 	out := &MSFTNetAdapterEncapsulatedPacketTaskOffloadSettingDataEnableResult{}
-	out.CmdletOutput = row["cmdletOutput"]
+	if v, ok := row["cmdletOutput"].(wmi.Row); ok {
+		out.CmdletOutput = v
+	}
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
@@ -6951,8 +6905,8 @@ type MSFTNetAdapterHardwareInfoElementSetting struct {
 	IsCurrent      uint16 `cim:"IsCurrent"`
 	IsDefault      uint16 `cim:"IsDefault"`
 	IsNext         uint16 `cim:"IsNext"`
-	ManagedElement any    `cim:"ManagedElement"`
-	SettingData    any    `cim:"SettingData"`
+	ManagedElement string `cim:"ManagedElement"`
+	SettingData    string `cim:"SettingData"`
 }
 
 // QueryMSFTNetAdapterHardwareInfoElementSetting runs the WQL query against the class and decodes each
@@ -6971,62 +6925,58 @@ func QueryMSFTNetAdapterHardwareInfoElementSetting(svc *wmi.Service, where strin
 		out[i].IsCurrent = wmi.AsUint16(row["IsCurrent"])
 		out[i].IsDefault = wmi.AsUint16(row["IsDefault"])
 		out[i].IsNext = wmi.AsUint16(row["IsNext"])
-		if v, ok := row["ManagedElement"].(any); ok {
-			out[i].ManagedElement = v
-		}
-		if v, ok := row["SettingData"].(any); ok {
-			out[i].SettingData = v
-		}
+		out[i].ManagedElement = wmi.AsString(row["ManagedElement"])
+		out[i].SettingData = wmi.AsString(row["SettingData"])
 	}
 	return out, nil
 }
 
 // MSFTNetAdapterHardwareInfoSettingData is the MSFT_NetAdapterHardwareInfoSettingData CIM class.
 type MSFTNetAdapterHardwareInfoSettingData struct {
-	BusNumber                         uint32 `cim:"BusNumber"`
-	Caption                           string `cim:"Caption"`
-	Description                       string `cim:"Description"`
-	DeviceNumber                      uint32 `cim:"DeviceNumber"`
-	Dma64BitSupported                 bool   `cim:"Dma64BitSupported"`
-	ElementName                       string `cim:"ElementName"`
-	FunctionNumber                    uint32 `cim:"FunctionNumber"`
-	InstanceID                        string `cim:"InstanceID"`
-	InterfaceDescription              string `cim:"InterfaceDescription"`
-	LineBasedInterruptSupported       bool   `cim:"LineBasedInterruptSupported"`
-	LineBasedInterrupts               bool   `cim:"LineBasedInterrupts"`
-	LocationInformationString         string `cim:"LocationInformationString"`
-	MaxInterruptMessages              uint32 `cim:"MaxInterruptMessages"`
-	MsiEnabled                        bool   `cim:"MsiEnabled"`
-	MsiInterruptSupported             bool   `cim:"MsiInterruptSupported"`
-	MsiSupported                      bool   `cim:"MsiSupported"`
-	MsiXEnabled                       bool   `cim:"MsiXEnabled"`
-	MsiXInterruptSupported            bool   `cim:"MsiXInterruptSupported"`
-	MsiXSupported                     bool   `cim:"MsiXSupported"`
-	MsixMessageAffinityArray          []any  `cim:"MsixMessageAffinityArray"`
-	Name                              string `cim:"Name"`
-	NoInterrupt                       bool   `cim:"NoInterrupt"`
-	NumMsiMessages                    uint32 `cim:"NumMsiMessages"`
-	NumMsixTableEntries               uint32 `cim:"NumMsixTableEntries"`
-	NumaNode                          uint16 `cim:"NumaNode"`
-	PciCurrentSpeedAndMode            uint32 `cim:"PciCurrentSpeedAndMode"`
-	PciDeviceLabelID                  uint32 `cim:"PciDeviceLabelID"`
-	PciDeviceLabelString              string `cim:"PciDeviceLabelString"`
-	PciDeviceType                     uint32 `cim:"PciDeviceType"`
-	PciExpressCurrentLinkSpeedEncoded uint32 `cim:"PciExpressCurrentLinkSpeedEncoded"`
-	PciExpressCurrentLinkWidth        uint32 `cim:"PciExpressCurrentLinkWidth"`
-	PciExpressCurrentPayloadSize      uint32 `cim:"PciExpressCurrentPayloadSize"`
-	PciExpressMaxLinkSpeedEncoded     uint32 `cim:"PciExpressMaxLinkSpeedEncoded"`
-	PciExpressMaxLinkWidth            uint32 `cim:"PciExpressMaxLinkWidth"`
-	PciExpressMaxPayloadSize          uint32 `cim:"PciExpressMaxPayloadSize"`
-	PciExpressMaxReadRequestSize      uint32 `cim:"PciExpressMaxReadRequestSize"`
-	PciExpressVersion                 uint32 `cim:"PciExpressVersion"`
-	PciXCurrentSpeedAndMode           uint32 `cim:"PciXCurrentSpeedAndMode"`
-	S0WakeupSupported                 bool   `cim:"S0WakeupSupported"`
-	SegmentNumber                     uint32 `cim:"SegmentNumber"`
-	SlotNumber                        uint32 `cim:"SlotNumber"`
-	Source                            uint32 `cim:"Source"`
-	SriovSupport                      uint32 `cim:"SriovSupport"`
-	SystemName                        string `cim:"SystemName"`
+	BusNumber                         uint32    `cim:"BusNumber"`
+	Caption                           string    `cim:"Caption"`
+	Description                       string    `cim:"Description"`
+	DeviceNumber                      uint32    `cim:"DeviceNumber"`
+	Dma64BitSupported                 bool      `cim:"Dma64BitSupported"`
+	ElementName                       string    `cim:"ElementName"`
+	FunctionNumber                    uint32    `cim:"FunctionNumber"`
+	InstanceID                        string    `cim:"InstanceID"`
+	InterfaceDescription              string    `cim:"InterfaceDescription"`
+	LineBasedInterruptSupported       bool      `cim:"LineBasedInterruptSupported"`
+	LineBasedInterrupts               bool      `cim:"LineBasedInterrupts"`
+	LocationInformationString         string    `cim:"LocationInformationString"`
+	MaxInterruptMessages              uint32    `cim:"MaxInterruptMessages"`
+	MsiEnabled                        bool      `cim:"MsiEnabled"`
+	MsiInterruptSupported             bool      `cim:"MsiInterruptSupported"`
+	MsiSupported                      bool      `cim:"MsiSupported"`
+	MsiXEnabled                       bool      `cim:"MsiXEnabled"`
+	MsiXInterruptSupported            bool      `cim:"MsiXInterruptSupported"`
+	MsiXSupported                     bool      `cim:"MsiXSupported"`
+	MsixMessageAffinityArray          []wmi.Row `cim:"MsixMessageAffinityArray"`
+	Name                              string    `cim:"Name"`
+	NoInterrupt                       bool      `cim:"NoInterrupt"`
+	NumMsiMessages                    uint32    `cim:"NumMsiMessages"`
+	NumMsixTableEntries               uint32    `cim:"NumMsixTableEntries"`
+	NumaNode                          uint16    `cim:"NumaNode"`
+	PciCurrentSpeedAndMode            uint32    `cim:"PciCurrentSpeedAndMode"`
+	PciDeviceLabelID                  uint32    `cim:"PciDeviceLabelID"`
+	PciDeviceLabelString              string    `cim:"PciDeviceLabelString"`
+	PciDeviceType                     uint32    `cim:"PciDeviceType"`
+	PciExpressCurrentLinkSpeedEncoded uint32    `cim:"PciExpressCurrentLinkSpeedEncoded"`
+	PciExpressCurrentLinkWidth        uint32    `cim:"PciExpressCurrentLinkWidth"`
+	PciExpressCurrentPayloadSize      uint32    `cim:"PciExpressCurrentPayloadSize"`
+	PciExpressMaxLinkSpeedEncoded     uint32    `cim:"PciExpressMaxLinkSpeedEncoded"`
+	PciExpressMaxLinkWidth            uint32    `cim:"PciExpressMaxLinkWidth"`
+	PciExpressMaxPayloadSize          uint32    `cim:"PciExpressMaxPayloadSize"`
+	PciExpressMaxReadRequestSize      uint32    `cim:"PciExpressMaxReadRequestSize"`
+	PciExpressVersion                 uint32    `cim:"PciExpressVersion"`
+	PciXCurrentSpeedAndMode           uint32    `cim:"PciXCurrentSpeedAndMode"`
+	S0WakeupSupported                 bool      `cim:"S0WakeupSupported"`
+	SegmentNumber                     uint32    `cim:"SegmentNumber"`
+	SlotNumber                        uint32    `cim:"SlotNumber"`
+	Source                            uint32    `cim:"Source"`
+	SriovSupport                      uint32    `cim:"SriovSupport"`
+	SystemName                        string    `cim:"SystemName"`
 }
 
 // QueryMSFTNetAdapterHardwareInfoSettingData runs the WQL query against the class and decodes each
@@ -7061,9 +7011,7 @@ func QueryMSFTNetAdapterHardwareInfoSettingData(svc *wmi.Service, where string) 
 		out[i].MsiXEnabled = wmi.AsBool(row["MsiXEnabled"])
 		out[i].MsiXInterruptSupported = wmi.AsBool(row["MsiXInterruptSupported"])
 		out[i].MsiXSupported = wmi.AsBool(row["MsiXSupported"])
-		if v, ok := row["MsixMessageAffinityArray"].([]any); ok {
-			out[i].MsixMessageAffinityArray = v
-		}
+		out[i].MsixMessageAffinityArray = wmi.AsRowSlice(row["MsixMessageAffinityArray"])
 		out[i].Name = wmi.AsString(row["Name"])
 		out[i].NoInterrupt = wmi.AsBool(row["NoInterrupt"])
 		out[i].NumMsiMessages = wmi.AsUint32(row["NumMsiMessages"])
@@ -7097,8 +7045,8 @@ type MSFTNetAdapterIPsecOffloadV2ElementSetting struct {
 	IsCurrent      uint16 `cim:"IsCurrent"`
 	IsDefault      uint16 `cim:"IsDefault"`
 	IsNext         uint16 `cim:"IsNext"`
-	ManagedElement any    `cim:"ManagedElement"`
-	SettingData    any    `cim:"SettingData"`
+	ManagedElement string `cim:"ManagedElement"`
+	SettingData    string `cim:"SettingData"`
 }
 
 // QueryMSFTNetAdapterIPsecOffloadV2ElementSetting runs the WQL query against the class and decodes each
@@ -7117,12 +7065,8 @@ func QueryMSFTNetAdapterIPsecOffloadV2ElementSetting(svc *wmi.Service, where str
 		out[i].IsCurrent = wmi.AsUint16(row["IsCurrent"])
 		out[i].IsDefault = wmi.AsUint16(row["IsDefault"])
 		out[i].IsNext = wmi.AsUint16(row["IsNext"])
-		if v, ok := row["ManagedElement"].(any); ok {
-			out[i].ManagedElement = v
-		}
-		if v, ok := row["SettingData"].(any); ok {
-			out[i].SettingData = v
-		}
+		out[i].ManagedElement = wmi.AsString(row["ManagedElement"])
+		out[i].SettingData = wmi.AsString(row["SettingData"])
 	}
 	return out, nil
 }
@@ -7220,7 +7164,7 @@ func QueryMSFTNetAdapterIPsecOffloadV2SettingData(svc *wmi.Service, where string
 
 // MSFTNetAdapterIPsecOffloadV2SettingDataDisableResult holds the out-parameters of MSFT_NetAdapterIPsecOffloadV2SettingData.Disable.
 type MSFTNetAdapterIPsecOffloadV2SettingDataDisableResult struct {
-	CmdletOutput any
+	CmdletOutput wmi.Row
 	ReturnValue  uint32
 }
 
@@ -7240,14 +7184,16 @@ func MSFTNetAdapterIPsecOffloadV2SettingDataDisable(svc *wmi.Service, objectPath
 		return nil, err
 	}
 	out := &MSFTNetAdapterIPsecOffloadV2SettingDataDisableResult{}
-	out.CmdletOutput = row["cmdletOutput"]
+	if v, ok := row["cmdletOutput"].(wmi.Row); ok {
+		out.CmdletOutput = v
+	}
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
 
 // MSFTNetAdapterIPsecOffloadV2SettingDataEnableResult holds the out-parameters of MSFT_NetAdapterIPsecOffloadV2SettingData.Enable.
 type MSFTNetAdapterIPsecOffloadV2SettingDataEnableResult struct {
-	CmdletOutput any
+	CmdletOutput wmi.Row
 	ReturnValue  uint32
 }
 
@@ -7267,14 +7213,16 @@ func MSFTNetAdapterIPsecOffloadV2SettingDataEnable(svc *wmi.Service, objectPath 
 		return nil, err
 	}
 	out := &MSFTNetAdapterIPsecOffloadV2SettingDataEnableResult{}
-	out.CmdletOutput = row["cmdletOutput"]
+	if v, ok := row["cmdletOutput"].(wmi.Row); ok {
+		out.CmdletOutput = v
+	}
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
 
 // MSFTNetAdapterIPsecOffloadV2SettingDataSetResult holds the out-parameters of MSFT_NetAdapterIPsecOffloadV2SettingData.Set.
 type MSFTNetAdapterIPsecOffloadV2SettingDataSetResult struct {
-	CmdletOutput any
+	CmdletOutput wmi.Row
 	ReturnValue  uint32
 }
 
@@ -7297,18 +7245,20 @@ func MSFTNetAdapterIPsecOffloadV2SettingDataSet(svc *wmi.Service, objectPath str
 		return nil, err
 	}
 	out := &MSFTNetAdapterIPsecOffloadV2SettingDataSetResult{}
-	out.CmdletOutput = row["cmdletOutput"]
+	if v, ok := row["cmdletOutput"].(wmi.Row); ok {
+		out.CmdletOutput = v
+	}
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
 
 // MSFTNetAdapterLargeSendOffloadV1Capabilities is the MSFT_NetAdapterLargeSendOffloadV1Capabilities CIM class.
 type MSFTNetAdapterLargeSendOffloadV1Capabilities struct {
-	IPv4Encapsulation            any    `cim:"IPv4Encapsulation"`
-	IPv4IpOptionsSupported       bool   `cim:"IPv4IpOptionsSupported"`
-	IPv4MaxOffloadSizeSupported  uint32 `cim:"IPv4MaxOffloadSizeSupported"`
-	IPv4MinSegmentCountSupported uint32 `cim:"IPv4MinSegmentCountSupported"`
-	IPv4TcpOptionsSupported      bool   `cim:"IPv4TcpOptionsSupported"`
+	IPv4Encapsulation            wmi.Row `cim:"IPv4Encapsulation"`
+	IPv4IpOptionsSupported       bool    `cim:"IPv4IpOptionsSupported"`
+	IPv4MaxOffloadSizeSupported  uint32  `cim:"IPv4MaxOffloadSizeSupported"`
+	IPv4MinSegmentCountSupported uint32  `cim:"IPv4MinSegmentCountSupported"`
+	IPv4TcpOptionsSupported      bool    `cim:"IPv4TcpOptionsSupported"`
 }
 
 // QueryMSFTNetAdapterLargeSendOffloadV1Capabilities runs the WQL query against the class and decodes each
@@ -7324,7 +7274,7 @@ func QueryMSFTNetAdapterLargeSendOffloadV1Capabilities(svc *wmi.Service, where s
 	}
 	out := make([]MSFTNetAdapterLargeSendOffloadV1Capabilities, len(rows))
 	for i, row := range rows {
-		if v, ok := row["IPv4Encapsulation"].(any); ok {
+		if v, ok := row["IPv4Encapsulation"].(wmi.Row); ok {
 			out[i].IPv4Encapsulation = v
 		}
 		out[i].IPv4IpOptionsSupported = wmi.AsBool(row["IPv4IpOptionsSupported"])
@@ -7337,14 +7287,14 @@ func QueryMSFTNetAdapterLargeSendOffloadV1Capabilities(svc *wmi.Service, where s
 
 // MSFTNetAdapterLargeSendOffloadV2Capabilities is the MSFT_NetAdapterLargeSendOffloadV2Capabilities CIM class.
 type MSFTNetAdapterLargeSendOffloadV2Capabilities struct {
-	IPv4Encapsulation               any    `cim:"IPv4Encapsulation"`
-	IPv4MaxOffloadSizeSupported     uint32 `cim:"IPv4MaxOffloadSizeSupported"`
-	IPv4MinSegmentCountSupported    uint32 `cim:"IPv4MinSegmentCountSupported"`
-	IPv6Encapsulation               any    `cim:"IPv6Encapsulation"`
-	IPv6IpExtensionHeadersSupported bool   `cim:"IPv6IpExtensionHeadersSupported"`
-	IPv6MaxOffLoadSizeSupported     uint32 `cim:"IPv6MaxOffLoadSizeSupported"`
-	IPv6MinSegmentCountSupported    uint32 `cim:"IPv6MinSegmentCountSupported"`
-	IPv6TcpOptionsSupported         bool   `cim:"IPv6TcpOptionsSupported"`
+	IPv4Encapsulation               wmi.Row `cim:"IPv4Encapsulation"`
+	IPv4MaxOffloadSizeSupported     uint32  `cim:"IPv4MaxOffloadSizeSupported"`
+	IPv4MinSegmentCountSupported    uint32  `cim:"IPv4MinSegmentCountSupported"`
+	IPv6Encapsulation               wmi.Row `cim:"IPv6Encapsulation"`
+	IPv6IpExtensionHeadersSupported bool    `cim:"IPv6IpExtensionHeadersSupported"`
+	IPv6MaxOffLoadSizeSupported     uint32  `cim:"IPv6MaxOffLoadSizeSupported"`
+	IPv6MinSegmentCountSupported    uint32  `cim:"IPv6MinSegmentCountSupported"`
+	IPv6TcpOptionsSupported         bool    `cim:"IPv6TcpOptionsSupported"`
 }
 
 // QueryMSFTNetAdapterLargeSendOffloadV2Capabilities runs the WQL query against the class and decodes each
@@ -7360,12 +7310,12 @@ func QueryMSFTNetAdapterLargeSendOffloadV2Capabilities(svc *wmi.Service, where s
 	}
 	out := make([]MSFTNetAdapterLargeSendOffloadV2Capabilities, len(rows))
 	for i, row := range rows {
-		if v, ok := row["IPv4Encapsulation"].(any); ok {
+		if v, ok := row["IPv4Encapsulation"].(wmi.Row); ok {
 			out[i].IPv4Encapsulation = v
 		}
 		out[i].IPv4MaxOffloadSizeSupported = wmi.AsUint32(row["IPv4MaxOffloadSizeSupported"])
 		out[i].IPv4MinSegmentCountSupported = wmi.AsUint32(row["IPv4MinSegmentCountSupported"])
-		if v, ok := row["IPv6Encapsulation"].(any); ok {
+		if v, ok := row["IPv6Encapsulation"].(wmi.Row); ok {
 			out[i].IPv6Encapsulation = v
 		}
 		out[i].IPv6IpExtensionHeadersSupported = wmi.AsBool(row["IPv6IpExtensionHeadersSupported"])
@@ -7381,8 +7331,8 @@ type MSFTNetAdapterLsoElementSetting struct {
 	IsCurrent      uint16 `cim:"IsCurrent"`
 	IsDefault      uint16 `cim:"IsDefault"`
 	IsNext         uint16 `cim:"IsNext"`
-	ManagedElement any    `cim:"ManagedElement"`
-	SettingData    any    `cim:"SettingData"`
+	ManagedElement string `cim:"ManagedElement"`
+	SettingData    string `cim:"SettingData"`
 }
 
 // QueryMSFTNetAdapterLsoElementSetting runs the WQL query against the class and decodes each
@@ -7401,12 +7351,8 @@ func QueryMSFTNetAdapterLsoElementSetting(svc *wmi.Service, where string) ([]MSF
 		out[i].IsCurrent = wmi.AsUint16(row["IsCurrent"])
 		out[i].IsDefault = wmi.AsUint16(row["IsDefault"])
 		out[i].IsNext = wmi.AsUint16(row["IsNext"])
-		if v, ok := row["ManagedElement"].(any); ok {
-			out[i].ManagedElement = v
-		}
-		if v, ok := row["SettingData"].(any); ok {
-			out[i].SettingData = v
-		}
+		out[i].ManagedElement = wmi.AsString(row["ManagedElement"])
+		out[i].SettingData = wmi.AsString(row["SettingData"])
 	}
 	return out, nil
 }
@@ -7446,20 +7392,20 @@ func QueryMSFTNetAdapterLsoEncapsulationTypes(svc *wmi.Service, where string) ([
 
 // MSFTNetAdapterLsoSettingData is the MSFT_NetAdapterLsoSettingData CIM class.
 type MSFTNetAdapterLsoSettingData struct {
-	Caption                                string `cim:"Caption"`
-	Description                            string `cim:"Description"`
-	ElementName                            string `cim:"ElementName"`
-	IPv4Enabled                            bool   `cim:"IPv4Enabled"`
-	IPv6Enabled                            bool   `cim:"IPv6Enabled"`
-	InstanceID                             string `cim:"InstanceID"`
-	InterfaceDescription                   string `cim:"InterfaceDescription"`
-	LargeSendOffloadV1HardwareCapabilities any    `cim:"LargeSendOffloadV1HardwareCapabilities"`
-	LargeSendOffloadV2HardwareCapabilities any    `cim:"LargeSendOffloadV2HardwareCapabilities"`
-	MaximumLsoVersionSupported             uint32 `cim:"MaximumLsoVersionSupported"`
-	Name                                   string `cim:"Name"`
-	Source                                 uint32 `cim:"Source"`
-	SystemName                             string `cim:"SystemName"`
-	V1IPv4Enabled                          bool   `cim:"V1IPv4Enabled"`
+	Caption                                string  `cim:"Caption"`
+	Description                            string  `cim:"Description"`
+	ElementName                            string  `cim:"ElementName"`
+	IPv4Enabled                            bool    `cim:"IPv4Enabled"`
+	IPv6Enabled                            bool    `cim:"IPv6Enabled"`
+	InstanceID                             string  `cim:"InstanceID"`
+	InterfaceDescription                   string  `cim:"InterfaceDescription"`
+	LargeSendOffloadV1HardwareCapabilities wmi.Row `cim:"LargeSendOffloadV1HardwareCapabilities"`
+	LargeSendOffloadV2HardwareCapabilities wmi.Row `cim:"LargeSendOffloadV2HardwareCapabilities"`
+	MaximumLsoVersionSupported             uint32  `cim:"MaximumLsoVersionSupported"`
+	Name                                   string  `cim:"Name"`
+	Source                                 uint32  `cim:"Source"`
+	SystemName                             string  `cim:"SystemName"`
+	V1IPv4Enabled                          bool    `cim:"V1IPv4Enabled"`
 }
 
 // QueryMSFTNetAdapterLsoSettingData runs the WQL query against the class and decodes each
@@ -7482,10 +7428,10 @@ func QueryMSFTNetAdapterLsoSettingData(svc *wmi.Service, where string) ([]MSFTNe
 		out[i].IPv6Enabled = wmi.AsBool(row["IPv6Enabled"])
 		out[i].InstanceID = wmi.AsString(row["InstanceID"])
 		out[i].InterfaceDescription = wmi.AsString(row["InterfaceDescription"])
-		if v, ok := row["LargeSendOffloadV1HardwareCapabilities"].(any); ok {
+		if v, ok := row["LargeSendOffloadV1HardwareCapabilities"].(wmi.Row); ok {
 			out[i].LargeSendOffloadV1HardwareCapabilities = v
 		}
-		if v, ok := row["LargeSendOffloadV2HardwareCapabilities"].(any); ok {
+		if v, ok := row["LargeSendOffloadV2HardwareCapabilities"].(wmi.Row); ok {
 			out[i].LargeSendOffloadV2HardwareCapabilities = v
 		}
 		out[i].MaximumLsoVersionSupported = wmi.AsUint32(row["MaximumLsoVersionSupported"])
@@ -7499,7 +7445,7 @@ func QueryMSFTNetAdapterLsoSettingData(svc *wmi.Service, where string) ([]MSFTNe
 
 // MSFTNetAdapterLsoSettingDataDisableResult holds the out-parameters of MSFT_NetAdapterLsoSettingData.Disable.
 type MSFTNetAdapterLsoSettingDataDisableResult struct {
-	CmdletOutput any
+	CmdletOutput wmi.Row
 	ReturnValue  uint32
 }
 
@@ -7519,14 +7465,16 @@ func MSFTNetAdapterLsoSettingDataDisable(svc *wmi.Service, objectPath string, iP
 		return nil, err
 	}
 	out := &MSFTNetAdapterLsoSettingDataDisableResult{}
-	out.CmdletOutput = row["cmdletOutput"]
+	if v, ok := row["cmdletOutput"].(wmi.Row); ok {
+		out.CmdletOutput = v
+	}
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
 
 // MSFTNetAdapterLsoSettingDataEnableResult holds the out-parameters of MSFT_NetAdapterLsoSettingData.Enable.
 type MSFTNetAdapterLsoSettingDataEnableResult struct {
-	CmdletOutput any
+	CmdletOutput wmi.Row
 	ReturnValue  uint32
 }
 
@@ -7546,7 +7494,9 @@ func MSFTNetAdapterLsoSettingDataEnable(svc *wmi.Service, objectPath string, iPv
 		return nil, err
 	}
 	out := &MSFTNetAdapterLsoSettingDataEnableResult{}
-	out.CmdletOutput = row["cmdletOutput"]
+	if v, ok := row["cmdletOutput"].(wmi.Row); ok {
+		out.CmdletOutput = v
+	}
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
@@ -7556,8 +7506,8 @@ type MSFTNetAdapterPacketDirectElementSetting struct {
 	IsCurrent      uint16 `cim:"IsCurrent"`
 	IsDefault      uint16 `cim:"IsDefault"`
 	IsNext         uint16 `cim:"IsNext"`
-	ManagedElement any    `cim:"ManagedElement"`
-	SettingData    any    `cim:"SettingData"`
+	ManagedElement string `cim:"ManagedElement"`
+	SettingData    string `cim:"SettingData"`
 }
 
 // QueryMSFTNetAdapterPacketDirectElementSetting runs the WQL query against the class and decodes each
@@ -7576,32 +7526,28 @@ func QueryMSFTNetAdapterPacketDirectElementSetting(svc *wmi.Service, where strin
 		out[i].IsCurrent = wmi.AsUint16(row["IsCurrent"])
 		out[i].IsDefault = wmi.AsUint16(row["IsDefault"])
 		out[i].IsNext = wmi.AsUint16(row["IsNext"])
-		if v, ok := row["ManagedElement"].(any); ok {
-			out[i].ManagedElement = v
-		}
-		if v, ok := row["SettingData"].(any); ok {
-			out[i].SettingData = v
-		}
+		out[i].ManagedElement = wmi.AsString(row["ManagedElement"])
+		out[i].SettingData = wmi.AsString(row["SettingData"])
 	}
 	return out, nil
 }
 
 // MSFTNetAdapterPacketDirectSettingData is the MSFT_NetAdapterPacketDirectSettingData CIM class.
 type MSFTNetAdapterPacketDirectSettingData struct {
-	Capabilities         any    `cim:"Capabilities"`
-	Caption              string `cim:"Caption"`
-	Description          string `cim:"Description"`
-	DiagnosticCode       uint32 `cim:"DiagnosticCode"`
-	DmaAddressWidth      uint8  `cim:"DmaAddressWidth"`
-	DomainId             uint32 `cim:"DomainId"`
-	ElementName          string `cim:"ElementName"`
-	Enabled              bool   `cim:"Enabled"`
-	InstanceID           string `cim:"InstanceID"`
-	InterfaceDescription string `cim:"InterfaceDescription"`
-	Name                 string `cim:"Name"`
-	Operational          bool   `cim:"Operational"`
-	Source               uint32 `cim:"Source"`
-	SystemName           string `cim:"SystemName"`
+	Capabilities         wmi.Row `cim:"Capabilities"`
+	Caption              string  `cim:"Caption"`
+	Description          string  `cim:"Description"`
+	DiagnosticCode       uint32  `cim:"DiagnosticCode"`
+	DmaAddressWidth      uint8   `cim:"DmaAddressWidth"`
+	DomainId             uint32  `cim:"DomainId"`
+	ElementName          string  `cim:"ElementName"`
+	Enabled              bool    `cim:"Enabled"`
+	InstanceID           string  `cim:"InstanceID"`
+	InterfaceDescription string  `cim:"InterfaceDescription"`
+	Name                 string  `cim:"Name"`
+	Operational          bool    `cim:"Operational"`
+	Source               uint32  `cim:"Source"`
+	SystemName           string  `cim:"SystemName"`
 }
 
 // QueryMSFTNetAdapterPacketDirectSettingData runs the WQL query against the class and decodes each
@@ -7617,7 +7563,7 @@ func QueryMSFTNetAdapterPacketDirectSettingData(svc *wmi.Service, where string) 
 	}
 	out := make([]MSFTNetAdapterPacketDirectSettingData, len(rows))
 	for i, row := range rows {
-		if v, ok := row["Capabilities"].(any); ok {
+		if v, ok := row["Capabilities"].(wmi.Row); ok {
 			out[i].Capabilities = v
 		}
 		out[i].Caption = wmi.AsString(row["Caption"])
@@ -7639,7 +7585,7 @@ func QueryMSFTNetAdapterPacketDirectSettingData(svc *wmi.Service, where string) 
 
 // MSFTNetAdapterPacketDirectSettingDataDisableResult holds the out-parameters of MSFT_NetAdapterPacketDirectSettingData.Disable.
 type MSFTNetAdapterPacketDirectSettingDataDisableResult struct {
-	CmdletOutput any
+	CmdletOutput wmi.Row
 	ReturnValue  uint32
 }
 
@@ -7652,14 +7598,16 @@ func MSFTNetAdapterPacketDirectSettingDataDisable(svc *wmi.Service, objectPath s
 		return nil, err
 	}
 	out := &MSFTNetAdapterPacketDirectSettingDataDisableResult{}
-	out.CmdletOutput = row["CmdletOutput"]
+	if v, ok := row["CmdletOutput"].(wmi.Row); ok {
+		out.CmdletOutput = v
+	}
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
 
 // MSFTNetAdapterPacketDirectSettingDataEnableResult holds the out-parameters of MSFT_NetAdapterPacketDirectSettingData.Enable.
 type MSFTNetAdapterPacketDirectSettingDataEnableResult struct {
-	CmdletOutput any
+	CmdletOutput wmi.Row
 	ReturnValue  uint32
 }
 
@@ -7672,7 +7620,9 @@ func MSFTNetAdapterPacketDirectSettingDataEnable(svc *wmi.Service, objectPath st
 		return nil, err
 	}
 	out := &MSFTNetAdapterPacketDirectSettingDataEnableResult{}
-	out.CmdletOutput = row["CmdletOutput"]
+	if v, ok := row["CmdletOutput"].(wmi.Row); ok {
+		out.CmdletOutput = v
+	}
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
@@ -7682,8 +7632,8 @@ type MSFTNetAdapterPowerManagementElementSetting struct {
 	IsCurrent      uint16 `cim:"IsCurrent"`
 	IsDefault      uint16 `cim:"IsDefault"`
 	IsNext         uint16 `cim:"IsNext"`
-	ManagedElement any    `cim:"ManagedElement"`
-	SettingData    any    `cim:"SettingData"`
+	ManagedElement string `cim:"ManagedElement"`
+	SettingData    string `cim:"SettingData"`
 }
 
 // QueryMSFTNetAdapterPowerManagementElementSetting runs the WQL query against the class and decodes each
@@ -7702,37 +7652,33 @@ func QueryMSFTNetAdapterPowerManagementElementSetting(svc *wmi.Service, where st
 		out[i].IsCurrent = wmi.AsUint16(row["IsCurrent"])
 		out[i].IsDefault = wmi.AsUint16(row["IsDefault"])
 		out[i].IsNext = wmi.AsUint16(row["IsNext"])
-		if v, ok := row["ManagedElement"].(any); ok {
-			out[i].ManagedElement = v
-		}
-		if v, ok := row["SettingData"].(any); ok {
-			out[i].SettingData = v
-		}
+		out[i].ManagedElement = wmi.AsString(row["ManagedElement"])
+		out[i].SettingData = wmi.AsString(row["SettingData"])
 	}
 	return out, nil
 }
 
 // MSFTNetAdapterPowerManagementSettingData is the MSFT_NetAdapterPowerManagementSettingData CIM class.
 type MSFTNetAdapterPowerManagementSettingData struct {
-	AllowComputerToTurnOffDevice uint32 `cim:"AllowComputerToTurnOffDevice"`
-	ArpOffload                   uint32 `cim:"ArpOffload"`
-	Caption                      string `cim:"Caption"`
-	D0PacketCoalescing           uint32 `cim:"D0PacketCoalescing"`
-	Description                  string `cim:"Description"`
-	DeviceSleepOnDisconnect      uint32 `cim:"DeviceSleepOnDisconnect"`
-	ElementName                  string `cim:"ElementName"`
-	InstanceID                   string `cim:"InstanceID"`
-	InterfaceDescription         string `cim:"InterfaceDescription"`
-	NSOffload                    uint32 `cim:"NSOffload"`
-	Name                         string `cim:"Name"`
-	OffloadParameters            []any  `cim:"OffloadParameters"`
-	RsnRekeyOffload              uint32 `cim:"RsnRekeyOffload"`
-	SelectiveSuspend             uint32 `cim:"SelectiveSuspend"`
-	Source                       uint32 `cim:"Source"`
-	SystemName                   string `cim:"SystemName"`
-	WakeOnMagicPacket            uint32 `cim:"WakeOnMagicPacket"`
-	WakeOnPattern                uint32 `cim:"WakeOnPattern"`
-	WakePatterns                 []any  `cim:"WakePatterns"`
+	AllowComputerToTurnOffDevice uint32    `cim:"AllowComputerToTurnOffDevice"`
+	ArpOffload                   uint32    `cim:"ArpOffload"`
+	Caption                      string    `cim:"Caption"`
+	D0PacketCoalescing           uint32    `cim:"D0PacketCoalescing"`
+	Description                  string    `cim:"Description"`
+	DeviceSleepOnDisconnect      uint32    `cim:"DeviceSleepOnDisconnect"`
+	ElementName                  string    `cim:"ElementName"`
+	InstanceID                   string    `cim:"InstanceID"`
+	InterfaceDescription         string    `cim:"InterfaceDescription"`
+	NSOffload                    uint32    `cim:"NSOffload"`
+	Name                         string    `cim:"Name"`
+	OffloadParameters            []wmi.Row `cim:"OffloadParameters"`
+	RsnRekeyOffload              uint32    `cim:"RsnRekeyOffload"`
+	SelectiveSuspend             uint32    `cim:"SelectiveSuspend"`
+	Source                       uint32    `cim:"Source"`
+	SystemName                   string    `cim:"SystemName"`
+	WakeOnMagicPacket            uint32    `cim:"WakeOnMagicPacket"`
+	WakeOnPattern                uint32    `cim:"WakeOnPattern"`
+	WakePatterns                 []wmi.Row `cim:"WakePatterns"`
 }
 
 // QueryMSFTNetAdapterPowerManagementSettingData runs the WQL query against the class and decodes each
@@ -7759,25 +7705,21 @@ func QueryMSFTNetAdapterPowerManagementSettingData(svc *wmi.Service, where strin
 		out[i].InterfaceDescription = wmi.AsString(row["InterfaceDescription"])
 		out[i].NSOffload = wmi.AsUint32(row["NSOffload"])
 		out[i].Name = wmi.AsString(row["Name"])
-		if v, ok := row["OffloadParameters"].([]any); ok {
-			out[i].OffloadParameters = v
-		}
+		out[i].OffloadParameters = wmi.AsRowSlice(row["OffloadParameters"])
 		out[i].RsnRekeyOffload = wmi.AsUint32(row["RsnRekeyOffload"])
 		out[i].SelectiveSuspend = wmi.AsUint32(row["SelectiveSuspend"])
 		out[i].Source = wmi.AsUint32(row["Source"])
 		out[i].SystemName = wmi.AsString(row["SystemName"])
 		out[i].WakeOnMagicPacket = wmi.AsUint32(row["WakeOnMagicPacket"])
 		out[i].WakeOnPattern = wmi.AsUint32(row["WakeOnPattern"])
-		if v, ok := row["WakePatterns"].([]any); ok {
-			out[i].WakePatterns = v
-		}
+		out[i].WakePatterns = wmi.AsRowSlice(row["WakePatterns"])
 	}
 	return out, nil
 }
 
 // MSFTNetAdapterPowerManagementSettingDataDisableResult holds the out-parameters of MSFT_NetAdapterPowerManagementSettingData.Disable.
 type MSFTNetAdapterPowerManagementSettingDataDisableResult struct {
-	CmdletOutput any
+	CmdletOutput wmi.Row
 	ReturnValue  uint32
 }
 
@@ -7815,14 +7757,16 @@ func MSFTNetAdapterPowerManagementSettingDataDisable(svc *wmi.Service, objectPat
 		return nil, err
 	}
 	out := &MSFTNetAdapterPowerManagementSettingDataDisableResult{}
-	out.CmdletOutput = row["cmdletOutput"]
+	if v, ok := row["cmdletOutput"].(wmi.Row); ok {
+		out.CmdletOutput = v
+	}
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
 
 // MSFTNetAdapterPowerManagementSettingDataEnableResult holds the out-parameters of MSFT_NetAdapterPowerManagementSettingData.Enable.
 type MSFTNetAdapterPowerManagementSettingDataEnableResult struct {
-	CmdletOutput any
+	CmdletOutput wmi.Row
 	ReturnValue  uint32
 }
 
@@ -7860,7 +7804,9 @@ func MSFTNetAdapterPowerManagementSettingDataEnable(svc *wmi.Service, objectPath
 		return nil, err
 	}
 	out := &MSFTNetAdapterPowerManagementSettingDataEnableResult{}
-	out.CmdletOutput = row["cmdletOutput"]
+	if v, ok := row["cmdletOutput"].(wmi.Row); ok {
+		out.CmdletOutput = v
+	}
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
@@ -8192,8 +8138,8 @@ type MSFTNetAdapterQosElementSetting struct {
 	IsCurrent      uint16 `cim:"IsCurrent"`
 	IsDefault      uint16 `cim:"IsDefault"`
 	IsNext         uint16 `cim:"IsNext"`
-	ManagedElement any    `cim:"ManagedElement"`
-	SettingData    any    `cim:"SettingData"`
+	ManagedElement string `cim:"ManagedElement"`
+	SettingData    string `cim:"SettingData"`
 }
 
 // QueryMSFTNetAdapterQosElementSetting runs the WQL query against the class and decodes each
@@ -8212,31 +8158,27 @@ func QueryMSFTNetAdapterQosElementSetting(svc *wmi.Service, where string) ([]MSF
 		out[i].IsCurrent = wmi.AsUint16(row["IsCurrent"])
 		out[i].IsDefault = wmi.AsUint16(row["IsDefault"])
 		out[i].IsNext = wmi.AsUint16(row["IsNext"])
-		if v, ok := row["ManagedElement"].(any); ok {
-			out[i].ManagedElement = v
-		}
-		if v, ok := row["SettingData"].(any); ok {
-			out[i].SettingData = v
-		}
+		out[i].ManagedElement = wmi.AsString(row["ManagedElement"])
+		out[i].SettingData = wmi.AsString(row["SettingData"])
 	}
 	return out, nil
 }
 
 // MSFTNetAdapterQosSettingData is the MSFT_NetAdapterQosSettingData CIM class.
 type MSFTNetAdapterQosSettingData struct {
-	Caption              string `cim:"Caption"`
-	CurrentCapabilities  any    `cim:"CurrentCapabilities"`
-	Description          string `cim:"Description"`
-	ElementName          string `cim:"ElementName"`
-	Enabled              bool   `cim:"Enabled"`
-	HardwareCapabilities any    `cim:"HardwareCapabilities"`
-	InstanceID           string `cim:"InstanceID"`
-	InterfaceDescription string `cim:"InterfaceDescription"`
-	Name                 string `cim:"Name"`
-	OperationalSettings  any    `cim:"OperationalSettings"`
-	RemoteSettings       any    `cim:"RemoteSettings"`
-	Source               uint32 `cim:"Source"`
-	SystemName           string `cim:"SystemName"`
+	Caption              string  `cim:"Caption"`
+	CurrentCapabilities  wmi.Row `cim:"CurrentCapabilities"`
+	Description          string  `cim:"Description"`
+	ElementName          string  `cim:"ElementName"`
+	Enabled              bool    `cim:"Enabled"`
+	HardwareCapabilities wmi.Row `cim:"HardwareCapabilities"`
+	InstanceID           string  `cim:"InstanceID"`
+	InterfaceDescription string  `cim:"InterfaceDescription"`
+	Name                 string  `cim:"Name"`
+	OperationalSettings  wmi.Row `cim:"OperationalSettings"`
+	RemoteSettings       wmi.Row `cim:"RemoteSettings"`
+	Source               uint32  `cim:"Source"`
+	SystemName           string  `cim:"SystemName"`
 }
 
 // QueryMSFTNetAdapterQosSettingData runs the WQL query against the class and decodes each
@@ -8253,22 +8195,22 @@ func QueryMSFTNetAdapterQosSettingData(svc *wmi.Service, where string) ([]MSFTNe
 	out := make([]MSFTNetAdapterQosSettingData, len(rows))
 	for i, row := range rows {
 		out[i].Caption = wmi.AsString(row["Caption"])
-		if v, ok := row["CurrentCapabilities"].(any); ok {
+		if v, ok := row["CurrentCapabilities"].(wmi.Row); ok {
 			out[i].CurrentCapabilities = v
 		}
 		out[i].Description = wmi.AsString(row["Description"])
 		out[i].ElementName = wmi.AsString(row["ElementName"])
 		out[i].Enabled = wmi.AsBool(row["Enabled"])
-		if v, ok := row["HardwareCapabilities"].(any); ok {
+		if v, ok := row["HardwareCapabilities"].(wmi.Row); ok {
 			out[i].HardwareCapabilities = v
 		}
 		out[i].InstanceID = wmi.AsString(row["InstanceID"])
 		out[i].InterfaceDescription = wmi.AsString(row["InterfaceDescription"])
 		out[i].Name = wmi.AsString(row["Name"])
-		if v, ok := row["OperationalSettings"].(any); ok {
+		if v, ok := row["OperationalSettings"].(wmi.Row); ok {
 			out[i].OperationalSettings = v
 		}
-		if v, ok := row["RemoteSettings"].(any); ok {
+		if v, ok := row["RemoteSettings"].(wmi.Row); ok {
 			out[i].RemoteSettings = v
 		}
 		out[i].Source = wmi.AsUint32(row["Source"])
@@ -8279,7 +8221,7 @@ func QueryMSFTNetAdapterQosSettingData(svc *wmi.Service, where string) ([]MSFTNe
 
 // MSFTNetAdapterQosSettingDataDisableResult holds the out-parameters of MSFT_NetAdapterQosSettingData.Disable.
 type MSFTNetAdapterQosSettingDataDisableResult struct {
-	CmdletOutput any
+	CmdletOutput wmi.Row
 	ReturnValue  uint32
 }
 
@@ -8292,14 +8234,16 @@ func MSFTNetAdapterQosSettingDataDisable(svc *wmi.Service, objectPath string) (*
 		return nil, err
 	}
 	out := &MSFTNetAdapterQosSettingDataDisableResult{}
-	out.CmdletOutput = row["CmdletOutput"]
+	if v, ok := row["CmdletOutput"].(wmi.Row); ok {
+		out.CmdletOutput = v
+	}
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
 
 // MSFTNetAdapterQosSettingDataEnableResult holds the out-parameters of MSFT_NetAdapterQosSettingData.Enable.
 type MSFTNetAdapterQosSettingDataEnableResult struct {
-	CmdletOutput any
+	CmdletOutput wmi.Row
 	ReturnValue  uint32
 }
 
@@ -8312,7 +8256,9 @@ func MSFTNetAdapterQosSettingDataEnable(svc *wmi.Service, objectPath string) (*M
 		return nil, err
 	}
 	out := &MSFTNetAdapterQosSettingDataEnableResult{}
-	out.CmdletOutput = row["CmdletOutput"]
+	if v, ok := row["CmdletOutput"].(wmi.Row); ok {
+		out.CmdletOutput = v
+	}
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
@@ -8322,8 +8268,8 @@ type MSFTNetAdapterRdmaElementSetting struct {
 	IsCurrent      uint16 `cim:"IsCurrent"`
 	IsDefault      uint16 `cim:"IsDefault"`
 	IsNext         uint16 `cim:"IsNext"`
-	ManagedElement any    `cim:"ManagedElement"`
-	SettingData    any    `cim:"SettingData"`
+	ManagedElement string `cim:"ManagedElement"`
+	SettingData    string `cim:"SettingData"`
 }
 
 // QueryMSFTNetAdapterRdmaElementSetting runs the WQL query against the class and decodes each
@@ -8342,40 +8288,36 @@ func QueryMSFTNetAdapterRdmaElementSetting(svc *wmi.Service, where string) ([]MS
 		out[i].IsCurrent = wmi.AsUint16(row["IsCurrent"])
 		out[i].IsDefault = wmi.AsUint16(row["IsDefault"])
 		out[i].IsNext = wmi.AsUint16(row["IsNext"])
-		if v, ok := row["ManagedElement"].(any); ok {
-			out[i].ManagedElement = v
-		}
-		if v, ok := row["SettingData"].(any); ok {
-			out[i].SettingData = v
-		}
+		out[i].ManagedElement = wmi.AsString(row["ManagedElement"])
+		out[i].SettingData = wmi.AsString(row["SettingData"])
 	}
 	return out, nil
 }
 
 // MSFTNetAdapterRdmaSettingData is the MSFT_NetAdapterRdmaSettingData CIM class.
 type MSFTNetAdapterRdmaSettingData struct {
-	Caption                    string `cim:"Caption"`
-	Description                string `cim:"Description"`
-	ETS                        uint32 `cim:"ETS"`
-	ElementName                string `cim:"ElementName"`
-	Enabled                    bool   `cim:"Enabled"`
-	InstanceID                 string `cim:"InstanceID"`
-	InterfaceDescription       string `cim:"InterfaceDescription"`
-	MaxCompletionQueueCount    uint32 `cim:"MaxCompletionQueueCount"`
-	MaxInboundReadLimit        uint32 `cim:"MaxInboundReadLimit"`
-	MaxMemoryRegionCount       uint32 `cim:"MaxMemoryRegionCount"`
-	MaxMemoryWindowCount       uint32 `cim:"MaxMemoryWindowCount"`
-	MaxOutboundReadLimit       uint32 `cim:"MaxOutboundReadLimit"`
-	MaxProtectionDomainCount   uint32 `cim:"MaxProtectionDomainCount"`
-	MaxQueuePairCount          uint32 `cim:"MaxQueuePairCount"`
-	MaxSharedReceiveQueueCount uint32 `cim:"MaxSharedReceiveQueueCount"`
-	Name                       string `cim:"Name"`
-	OperationalState           bool   `cim:"OperationalState"`
-	PFC                        uint32 `cim:"PFC"`
-	RdmaAdapterInfo            any    `cim:"RdmaAdapterInfo"`
-	RdmaMissingCounterInfo     any    `cim:"RdmaMissingCounterInfo"`
-	Source                     uint32 `cim:"Source"`
-	SystemName                 string `cim:"SystemName"`
+	Caption                    string  `cim:"Caption"`
+	Description                string  `cim:"Description"`
+	ETS                        uint32  `cim:"ETS"`
+	ElementName                string  `cim:"ElementName"`
+	Enabled                    bool    `cim:"Enabled"`
+	InstanceID                 string  `cim:"InstanceID"`
+	InterfaceDescription       string  `cim:"InterfaceDescription"`
+	MaxCompletionQueueCount    uint32  `cim:"MaxCompletionQueueCount"`
+	MaxInboundReadLimit        uint32  `cim:"MaxInboundReadLimit"`
+	MaxMemoryRegionCount       uint32  `cim:"MaxMemoryRegionCount"`
+	MaxMemoryWindowCount       uint32  `cim:"MaxMemoryWindowCount"`
+	MaxOutboundReadLimit       uint32  `cim:"MaxOutboundReadLimit"`
+	MaxProtectionDomainCount   uint32  `cim:"MaxProtectionDomainCount"`
+	MaxQueuePairCount          uint32  `cim:"MaxQueuePairCount"`
+	MaxSharedReceiveQueueCount uint32  `cim:"MaxSharedReceiveQueueCount"`
+	Name                       string  `cim:"Name"`
+	OperationalState           bool    `cim:"OperationalState"`
+	PFC                        uint32  `cim:"PFC"`
+	RdmaAdapterInfo            wmi.Row `cim:"RdmaAdapterInfo"`
+	RdmaMissingCounterInfo     wmi.Row `cim:"RdmaMissingCounterInfo"`
+	Source                     uint32  `cim:"Source"`
+	SystemName                 string  `cim:"SystemName"`
 }
 
 // QueryMSFTNetAdapterRdmaSettingData runs the WQL query against the class and decodes each
@@ -8409,10 +8351,10 @@ func QueryMSFTNetAdapterRdmaSettingData(svc *wmi.Service, where string) ([]MSFTN
 		out[i].Name = wmi.AsString(row["Name"])
 		out[i].OperationalState = wmi.AsBool(row["OperationalState"])
 		out[i].PFC = wmi.AsUint32(row["PFC"])
-		if v, ok := row["RdmaAdapterInfo"].(any); ok {
+		if v, ok := row["RdmaAdapterInfo"].(wmi.Row); ok {
 			out[i].RdmaAdapterInfo = v
 		}
-		if v, ok := row["RdmaMissingCounterInfo"].(any); ok {
+		if v, ok := row["RdmaMissingCounterInfo"].(wmi.Row); ok {
 			out[i].RdmaMissingCounterInfo = v
 		}
 		out[i].Source = wmi.AsUint32(row["Source"])
@@ -8423,7 +8365,7 @@ func QueryMSFTNetAdapterRdmaSettingData(svc *wmi.Service, where string) ([]MSFTN
 
 // MSFTNetAdapterRdmaSettingDataDisableResult holds the out-parameters of MSFT_NetAdapterRdmaSettingData.Disable.
 type MSFTNetAdapterRdmaSettingDataDisableResult struct {
-	CmdletOutput any
+	CmdletOutput wmi.Row
 	ReturnValue  uint32
 }
 
@@ -8436,14 +8378,16 @@ func MSFTNetAdapterRdmaSettingDataDisable(svc *wmi.Service, objectPath string) (
 		return nil, err
 	}
 	out := &MSFTNetAdapterRdmaSettingDataDisableResult{}
-	out.CmdletOutput = row["cmdletOutput"]
+	if v, ok := row["cmdletOutput"].(wmi.Row); ok {
+		out.CmdletOutput = v
+	}
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
 
 // MSFTNetAdapterRdmaSettingDataEnableResult holds the out-parameters of MSFT_NetAdapterRdmaSettingData.Enable.
 type MSFTNetAdapterRdmaSettingDataEnableResult struct {
-	CmdletOutput any
+	CmdletOutput wmi.Row
 	ReturnValue  uint32
 }
 
@@ -8456,7 +8400,9 @@ func MSFTNetAdapterRdmaSettingDataEnable(svc *wmi.Service, objectPath string) (*
 		return nil, err
 	}
 	out := &MSFTNetAdapterRdmaSettingDataEnableResult{}
-	out.CmdletOutput = row["cmdletOutput"]
+	if v, ok := row["cmdletOutput"].(wmi.Row); ok {
+		out.CmdletOutput = v
+	}
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
@@ -8491,8 +8437,8 @@ type MSFTNetAdapterRscElementSetting struct {
 	IsCurrent      uint16 `cim:"IsCurrent"`
 	IsDefault      uint16 `cim:"IsDefault"`
 	IsNext         uint16 `cim:"IsNext"`
-	ManagedElement any    `cim:"ManagedElement"`
-	SettingData    any    `cim:"SettingData"`
+	ManagedElement string `cim:"ManagedElement"`
+	SettingData    string `cim:"SettingData"`
 }
 
 // QueryMSFTNetAdapterRscElementSetting runs the WQL query against the class and decodes each
@@ -8511,33 +8457,29 @@ func QueryMSFTNetAdapterRscElementSetting(svc *wmi.Service, where string) ([]MSF
 		out[i].IsCurrent = wmi.AsUint16(row["IsCurrent"])
 		out[i].IsDefault = wmi.AsUint16(row["IsDefault"])
 		out[i].IsNext = wmi.AsUint16(row["IsNext"])
-		if v, ok := row["ManagedElement"].(any); ok {
-			out[i].ManagedElement = v
-		}
-		if v, ok := row["SettingData"].(any); ok {
-			out[i].SettingData = v
-		}
+		out[i].ManagedElement = wmi.AsString(row["ManagedElement"])
+		out[i].SettingData = wmi.AsString(row["SettingData"])
 	}
 	return out, nil
 }
 
 // MSFTNetAdapterRscSettingData is the MSFT_NetAdapterRscSettingData CIM class.
 type MSFTNetAdapterRscSettingData struct {
-	Caption                 string `cim:"Caption"`
-	Description             string `cim:"Description"`
-	ElementName             string `cim:"ElementName"`
-	IPv4Enabled             bool   `cim:"IPv4Enabled"`
-	IPv4FailureReason       uint32 `cim:"IPv4FailureReason"`
-	IPv4OperationalState    bool   `cim:"IPv4OperationalState"`
-	IPv6Enabled             bool   `cim:"IPv6Enabled"`
-	IPv6FailureReason       uint32 `cim:"IPv6FailureReason"`
-	IPv6OperationalState    bool   `cim:"IPv6OperationalState"`
-	InstanceID              string `cim:"InstanceID"`
-	InterfaceDescription    string `cim:"InterfaceDescription"`
-	Name                    string `cim:"Name"`
-	RscHardwareCapabilities any    `cim:"RscHardwareCapabilities"`
-	Source                  uint32 `cim:"Source"`
-	SystemName              string `cim:"SystemName"`
+	Caption                 string  `cim:"Caption"`
+	Description             string  `cim:"Description"`
+	ElementName             string  `cim:"ElementName"`
+	IPv4Enabled             bool    `cim:"IPv4Enabled"`
+	IPv4FailureReason       uint32  `cim:"IPv4FailureReason"`
+	IPv4OperationalState    bool    `cim:"IPv4OperationalState"`
+	IPv6Enabled             bool    `cim:"IPv6Enabled"`
+	IPv6FailureReason       uint32  `cim:"IPv6FailureReason"`
+	IPv6OperationalState    bool    `cim:"IPv6OperationalState"`
+	InstanceID              string  `cim:"InstanceID"`
+	InterfaceDescription    string  `cim:"InterfaceDescription"`
+	Name                    string  `cim:"Name"`
+	RscHardwareCapabilities wmi.Row `cim:"RscHardwareCapabilities"`
+	Source                  uint32  `cim:"Source"`
+	SystemName              string  `cim:"SystemName"`
 }
 
 // QueryMSFTNetAdapterRscSettingData runs the WQL query against the class and decodes each
@@ -8565,7 +8507,7 @@ func QueryMSFTNetAdapterRscSettingData(svc *wmi.Service, where string) ([]MSFTNe
 		out[i].InstanceID = wmi.AsString(row["InstanceID"])
 		out[i].InterfaceDescription = wmi.AsString(row["InterfaceDescription"])
 		out[i].Name = wmi.AsString(row["Name"])
-		if v, ok := row["RscHardwareCapabilities"].(any); ok {
+		if v, ok := row["RscHardwareCapabilities"].(wmi.Row); ok {
 			out[i].RscHardwareCapabilities = v
 		}
 		out[i].Source = wmi.AsUint32(row["Source"])
@@ -8576,7 +8518,7 @@ func QueryMSFTNetAdapterRscSettingData(svc *wmi.Service, where string) ([]MSFTNe
 
 // MSFTNetAdapterRscSettingDataDisableResult holds the out-parameters of MSFT_NetAdapterRscSettingData.Disable.
 type MSFTNetAdapterRscSettingDataDisableResult struct {
-	CmdletOutput any
+	CmdletOutput wmi.Row
 	ReturnValue  uint32
 }
 
@@ -8596,14 +8538,16 @@ func MSFTNetAdapterRscSettingDataDisable(svc *wmi.Service, objectPath string, iP
 		return nil, err
 	}
 	out := &MSFTNetAdapterRscSettingDataDisableResult{}
-	out.CmdletOutput = row["cmdletOutput"]
+	if v, ok := row["cmdletOutput"].(wmi.Row); ok {
+		out.CmdletOutput = v
+	}
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
 
 // MSFTNetAdapterRscSettingDataEnableResult holds the out-parameters of MSFT_NetAdapterRscSettingData.Enable.
 type MSFTNetAdapterRscSettingDataEnableResult struct {
-	CmdletOutput any
+	CmdletOutput wmi.Row
 	ReturnValue  uint32
 }
 
@@ -8623,7 +8567,9 @@ func MSFTNetAdapterRscSettingDataEnable(svc *wmi.Service, objectPath string, iPv
 		return nil, err
 	}
 	out := &MSFTNetAdapterRscSettingDataEnableResult{}
-	out.CmdletOutput = row["cmdletOutput"]
+	if v, ok := row["cmdletOutput"].(wmi.Row); ok {
+		out.CmdletOutput = v
+	}
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
@@ -8633,8 +8579,8 @@ type MSFTNetAdapterRssElementSetting struct {
 	IsCurrent      uint16 `cim:"IsCurrent"`
 	IsDefault      uint16 `cim:"IsDefault"`
 	IsNext         uint16 `cim:"IsNext"`
-	ManagedElement any    `cim:"ManagedElement"`
-	SettingData    any    `cim:"SettingData"`
+	ManagedElement string `cim:"ManagedElement"`
+	SettingData    string `cim:"SettingData"`
 }
 
 // QueryMSFTNetAdapterRssElementSetting runs the WQL query against the class and decodes each
@@ -8653,64 +8599,60 @@ func QueryMSFTNetAdapterRssElementSetting(svc *wmi.Service, where string) ([]MSF
 		out[i].IsCurrent = wmi.AsUint16(row["IsCurrent"])
 		out[i].IsDefault = wmi.AsUint16(row["IsDefault"])
 		out[i].IsNext = wmi.AsUint16(row["IsNext"])
-		if v, ok := row["ManagedElement"].(any); ok {
-			out[i].ManagedElement = v
-		}
-		if v, ok := row["SettingData"].(any); ok {
-			out[i].SettingData = v
-		}
+		out[i].ManagedElement = wmi.AsString(row["ManagedElement"])
+		out[i].SettingData = wmi.AsString(row["SettingData"])
 	}
 	return out, nil
 }
 
 // MSFTNetAdapterRssSettingData is the MSFT_NetAdapterRssSettingData CIM class.
 type MSFTNetAdapterRssSettingData struct {
-	BaseProcessorGroup            uint16 `cim:"BaseProcessorGroup"`
-	BaseProcessorNumber           uint8  `cim:"BaseProcessorNumber"`
-	Caption                       string `cim:"Caption"`
-	ClassificationAtDpcSupported  bool   `cim:"ClassificationAtDpcSupported"`
-	ClassificationAtIsrSupported  bool   `cim:"ClassificationAtIsrSupported"`
-	Description                   string `cim:"Description"`
-	ElementName                   string `cim:"ElementName"`
-	Enabled                       bool   `cim:"Enabled"`
-	HashKeySize                   uint16 `cim:"HashKeySize"`
-	IPv4HashEnabled               bool   `cim:"IPv4HashEnabled"`
-	IPv6ExtensionHashEnabled      bool   `cim:"IPv6ExtensionHashEnabled"`
-	IPv6HashEnabled               bool   `cim:"IPv6HashEnabled"`
-	IndirectionTable              []any  `cim:"IndirectionTable"`
-	IndirectionTableEntryCount    uint16 `cim:"IndirectionTableEntryCount"`
-	InstanceID                    string `cim:"InstanceID"`
-	InterfaceDescription          string `cim:"InterfaceDescription"`
-	MaxProcessorGroup             uint16 `cim:"MaxProcessorGroup"`
-	MaxProcessorNumber            uint8  `cim:"MaxProcessorNumber"`
-	MaxProcessors                 uint32 `cim:"MaxProcessors"`
-	MsiSupported                  bool   `cim:"MsiSupported"`
-	MsiXEnabled                   bool   `cim:"MsiXEnabled"`
-	MsiXSupported                 bool   `cim:"MsiXSupported"`
-	Name                          string `cim:"Name"`
-	NumaNode                      uint16 `cim:"NumaNode"`
-	NumberOfInterruptMessages     uint32 `cim:"NumberOfInterruptMessages"`
-	NumberOfReceiveQueues         uint32 `cim:"NumberOfReceiveQueues"`
-	Profile                       uint32 `cim:"Profile"`
-	RssOnPortsSupported           bool   `cim:"RssOnPortsSupported"`
-	RssProcessorArray             []any  `cim:"RssProcessorArray"`
-	RssProcessorArraySize         uint32 `cim:"RssProcessorArraySize"`
-	Source                        uint32 `cim:"Source"`
-	SystemName                    string `cim:"SystemName"`
-	TcpIPv4HashEnabled            bool   `cim:"TcpIPv4HashEnabled"`
-	TcpIPv4HashSupported          bool   `cim:"TcpIPv4HashSupported"`
-	TcpIPv6ExtensionHashEnabled   bool   `cim:"TcpIPv6ExtensionHashEnabled"`
-	TcpIPv6ExtensionHashSupported bool   `cim:"TcpIPv6ExtensionHashSupported"`
-	TcpIPv6HashEnabled            bool   `cim:"TcpIPv6HashEnabled"`
-	TcpIPv6HashSupported          bool   `cim:"TcpIPv6HashSupported"`
-	ToeplitzHashFunctionEnabled   bool   `cim:"ToeplitzHashFunctionEnabled"`
-	ToeplitzHashFunctionSupported bool   `cim:"ToeplitzHashFunctionSupported"`
-	UdpIPv4HashEnabled            bool   `cim:"UdpIPv4HashEnabled"`
-	UdpIPv4HashSupported          bool   `cim:"UdpIPv4HashSupported"`
-	UdpIPv6ExtensionHashEnabled   bool   `cim:"UdpIPv6ExtensionHashEnabled"`
-	UdpIPv6ExtensionHashSupported bool   `cim:"UdpIPv6ExtensionHashSupported"`
-	UdpIPv6HashEnabled            bool   `cim:"UdpIPv6HashEnabled"`
-	UdpIPv6HashSupported          bool   `cim:"UdpIPv6HashSupported"`
+	BaseProcessorGroup            uint16    `cim:"BaseProcessorGroup"`
+	BaseProcessorNumber           uint8     `cim:"BaseProcessorNumber"`
+	Caption                       string    `cim:"Caption"`
+	ClassificationAtDpcSupported  bool      `cim:"ClassificationAtDpcSupported"`
+	ClassificationAtIsrSupported  bool      `cim:"ClassificationAtIsrSupported"`
+	Description                   string    `cim:"Description"`
+	ElementName                   string    `cim:"ElementName"`
+	Enabled                       bool      `cim:"Enabled"`
+	HashKeySize                   uint16    `cim:"HashKeySize"`
+	IPv4HashEnabled               bool      `cim:"IPv4HashEnabled"`
+	IPv6ExtensionHashEnabled      bool      `cim:"IPv6ExtensionHashEnabled"`
+	IPv6HashEnabled               bool      `cim:"IPv6HashEnabled"`
+	IndirectionTable              []wmi.Row `cim:"IndirectionTable"`
+	IndirectionTableEntryCount    uint16    `cim:"IndirectionTableEntryCount"`
+	InstanceID                    string    `cim:"InstanceID"`
+	InterfaceDescription          string    `cim:"InterfaceDescription"`
+	MaxProcessorGroup             uint16    `cim:"MaxProcessorGroup"`
+	MaxProcessorNumber            uint8     `cim:"MaxProcessorNumber"`
+	MaxProcessors                 uint32    `cim:"MaxProcessors"`
+	MsiSupported                  bool      `cim:"MsiSupported"`
+	MsiXEnabled                   bool      `cim:"MsiXEnabled"`
+	MsiXSupported                 bool      `cim:"MsiXSupported"`
+	Name                          string    `cim:"Name"`
+	NumaNode                      uint16    `cim:"NumaNode"`
+	NumberOfInterruptMessages     uint32    `cim:"NumberOfInterruptMessages"`
+	NumberOfReceiveQueues         uint32    `cim:"NumberOfReceiveQueues"`
+	Profile                       uint32    `cim:"Profile"`
+	RssOnPortsSupported           bool      `cim:"RssOnPortsSupported"`
+	RssProcessorArray             []wmi.Row `cim:"RssProcessorArray"`
+	RssProcessorArraySize         uint32    `cim:"RssProcessorArraySize"`
+	Source                        uint32    `cim:"Source"`
+	SystemName                    string    `cim:"SystemName"`
+	TcpIPv4HashEnabled            bool      `cim:"TcpIPv4HashEnabled"`
+	TcpIPv4HashSupported          bool      `cim:"TcpIPv4HashSupported"`
+	TcpIPv6ExtensionHashEnabled   bool      `cim:"TcpIPv6ExtensionHashEnabled"`
+	TcpIPv6ExtensionHashSupported bool      `cim:"TcpIPv6ExtensionHashSupported"`
+	TcpIPv6HashEnabled            bool      `cim:"TcpIPv6HashEnabled"`
+	TcpIPv6HashSupported          bool      `cim:"TcpIPv6HashSupported"`
+	ToeplitzHashFunctionEnabled   bool      `cim:"ToeplitzHashFunctionEnabled"`
+	ToeplitzHashFunctionSupported bool      `cim:"ToeplitzHashFunctionSupported"`
+	UdpIPv4HashEnabled            bool      `cim:"UdpIPv4HashEnabled"`
+	UdpIPv4HashSupported          bool      `cim:"UdpIPv4HashSupported"`
+	UdpIPv6ExtensionHashEnabled   bool      `cim:"UdpIPv6ExtensionHashEnabled"`
+	UdpIPv6ExtensionHashSupported bool      `cim:"UdpIPv6ExtensionHashSupported"`
+	UdpIPv6HashEnabled            bool      `cim:"UdpIPv6HashEnabled"`
+	UdpIPv6HashSupported          bool      `cim:"UdpIPv6HashSupported"`
 }
 
 // QueryMSFTNetAdapterRssSettingData runs the WQL query against the class and decodes each
@@ -8738,9 +8680,7 @@ func QueryMSFTNetAdapterRssSettingData(svc *wmi.Service, where string) ([]MSFTNe
 		out[i].IPv4HashEnabled = wmi.AsBool(row["IPv4HashEnabled"])
 		out[i].IPv6ExtensionHashEnabled = wmi.AsBool(row["IPv6ExtensionHashEnabled"])
 		out[i].IPv6HashEnabled = wmi.AsBool(row["IPv6HashEnabled"])
-		if v, ok := row["IndirectionTable"].([]any); ok {
-			out[i].IndirectionTable = v
-		}
+		out[i].IndirectionTable = wmi.AsRowSlice(row["IndirectionTable"])
 		out[i].IndirectionTableEntryCount = wmi.AsUint16(row["IndirectionTableEntryCount"])
 		out[i].InstanceID = wmi.AsString(row["InstanceID"])
 		out[i].InterfaceDescription = wmi.AsString(row["InterfaceDescription"])
@@ -8756,9 +8696,7 @@ func QueryMSFTNetAdapterRssSettingData(svc *wmi.Service, where string) ([]MSFTNe
 		out[i].NumberOfReceiveQueues = wmi.AsUint32(row["NumberOfReceiveQueues"])
 		out[i].Profile = wmi.AsUint32(row["Profile"])
 		out[i].RssOnPortsSupported = wmi.AsBool(row["RssOnPortsSupported"])
-		if v, ok := row["RssProcessorArray"].([]any); ok {
-			out[i].RssProcessorArray = v
-		}
+		out[i].RssProcessorArray = wmi.AsRowSlice(row["RssProcessorArray"])
 		out[i].RssProcessorArraySize = wmi.AsUint32(row["RssProcessorArraySize"])
 		out[i].Source = wmi.AsUint32(row["Source"])
 		out[i].SystemName = wmi.AsString(row["SystemName"])
@@ -8782,7 +8720,7 @@ func QueryMSFTNetAdapterRssSettingData(svc *wmi.Service, where string) ([]MSFTNe
 
 // MSFTNetAdapterRssSettingDataDisableResult holds the out-parameters of MSFT_NetAdapterRssSettingData.Disable.
 type MSFTNetAdapterRssSettingDataDisableResult struct {
-	CmdletOutput any
+	CmdletOutput wmi.Row
 	ReturnValue  uint32
 }
 
@@ -8795,14 +8733,16 @@ func MSFTNetAdapterRssSettingDataDisable(svc *wmi.Service, objectPath string) (*
 		return nil, err
 	}
 	out := &MSFTNetAdapterRssSettingDataDisableResult{}
-	out.CmdletOutput = row["cmdletOutput"]
+	if v, ok := row["cmdletOutput"].(wmi.Row); ok {
+		out.CmdletOutput = v
+	}
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
 
 // MSFTNetAdapterRssSettingDataEnableResult holds the out-parameters of MSFT_NetAdapterRssSettingData.Enable.
 type MSFTNetAdapterRssSettingDataEnableResult struct {
-	CmdletOutput any
+	CmdletOutput wmi.Row
 	ReturnValue  uint32
 }
 
@@ -8815,7 +8755,9 @@ func MSFTNetAdapterRssSettingDataEnable(svc *wmi.Service, objectPath string) (*M
 		return nil, err
 	}
 	out := &MSFTNetAdapterRssSettingDataEnableResult{}
-	out.CmdletOutput = row["cmdletOutput"]
+	if v, ok := row["cmdletOutput"].(wmi.Row); ok {
+		out.CmdletOutput = v
+	}
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
@@ -8905,8 +8847,8 @@ type MSFTNetAdapterSriovElementSetting struct {
 	IsCurrent      uint16 `cim:"IsCurrent"`
 	IsDefault      uint16 `cim:"IsDefault"`
 	IsNext         uint16 `cim:"IsNext"`
-	ManagedElement any    `cim:"ManagedElement"`
-	SettingData    any    `cim:"SettingData"`
+	ManagedElement string `cim:"ManagedElement"`
+	SettingData    string `cim:"SettingData"`
 }
 
 // QueryMSFTNetAdapterSriovElementSetting runs the WQL query against the class and decodes each
@@ -8925,42 +8867,38 @@ func QueryMSFTNetAdapterSriovElementSetting(svc *wmi.Service, where string) ([]M
 		out[i].IsCurrent = wmi.AsUint16(row["IsCurrent"])
 		out[i].IsDefault = wmi.AsUint16(row["IsDefault"])
 		out[i].IsNext = wmi.AsUint16(row["IsNext"])
-		if v, ok := row["ManagedElement"].(any); ok {
-			out[i].ManagedElement = v
-		}
-		if v, ok := row["SettingData"].(any); ok {
-			out[i].SettingData = v
-		}
+		out[i].ManagedElement = wmi.AsString(row["ManagedElement"])
+		out[i].SettingData = wmi.AsString(row["SettingData"])
 	}
 	return out, nil
 }
 
 // MSFTNetAdapterSriovSettingData is the MSFT_NetAdapterSriovSettingData CIM class.
 type MSFTNetAdapterSriovSettingData struct {
-	Caption                              string `cim:"Caption"`
-	CurrentCapabilities                  any    `cim:"CurrentCapabilities"`
-	Description                          string `cim:"Description"`
-	ElementName                          string `cim:"ElementName"`
-	Enabled                              bool   `cim:"Enabled"`
-	HardwareCapabilities                 any    `cim:"HardwareCapabilities"`
-	InstanceID                           string `cim:"InstanceID"`
-	InterfaceDescription                 string `cim:"InterfaceDescription"`
-	Name                                 string `cim:"Name"`
-	NumActiveDefaultVPortMacAddresses    uint32 `cim:"NumActiveDefaultVPortMacAddresses"`
-	NumActiveDefaultVPortVlanIds         uint32 `cim:"NumActiveDefaultVPortVlanIds"`
-	NumActiveNonDefaultVPortMacAddresses uint32 `cim:"NumActiveNonDefaultVPortMacAddresses"`
-	NumActiveNonDefaultVPortVlanIds      uint32 `cim:"NumActiveNonDefaultVPortVlanIds"`
-	NumActiveVPorts                      uint32 `cim:"NumActiveVPorts"`
-	NumAllocatedVFs                      uint32 `cim:"NumAllocatedVFs"`
-	NumQueuePairsForDefaultVPort         uint32 `cim:"NumQueuePairsForDefaultVPort"`
-	NumQueuePairsForNonDefaultVPorts     uint32 `cim:"NumQueuePairsForNonDefaultVPorts"`
-	NumVFs                               uint32 `cim:"NumVFs"`
-	NumVPorts                            uint32 `cim:"NumVPorts"`
-	Source                               uint32 `cim:"Source"`
-	SriovSupport                         uint32 `cim:"SriovSupport"`
-	SwitchName                           string `cim:"SwitchName"`
-	SwitchType                           uint16 `cim:"SwitchType"`
-	SystemName                           string `cim:"SystemName"`
+	Caption                              string  `cim:"Caption"`
+	CurrentCapabilities                  wmi.Row `cim:"CurrentCapabilities"`
+	Description                          string  `cim:"Description"`
+	ElementName                          string  `cim:"ElementName"`
+	Enabled                              bool    `cim:"Enabled"`
+	HardwareCapabilities                 wmi.Row `cim:"HardwareCapabilities"`
+	InstanceID                           string  `cim:"InstanceID"`
+	InterfaceDescription                 string  `cim:"InterfaceDescription"`
+	Name                                 string  `cim:"Name"`
+	NumActiveDefaultVPortMacAddresses    uint32  `cim:"NumActiveDefaultVPortMacAddresses"`
+	NumActiveDefaultVPortVlanIds         uint32  `cim:"NumActiveDefaultVPortVlanIds"`
+	NumActiveNonDefaultVPortMacAddresses uint32  `cim:"NumActiveNonDefaultVPortMacAddresses"`
+	NumActiveNonDefaultVPortVlanIds      uint32  `cim:"NumActiveNonDefaultVPortVlanIds"`
+	NumActiveVPorts                      uint32  `cim:"NumActiveVPorts"`
+	NumAllocatedVFs                      uint32  `cim:"NumAllocatedVFs"`
+	NumQueuePairsForDefaultVPort         uint32  `cim:"NumQueuePairsForDefaultVPort"`
+	NumQueuePairsForNonDefaultVPorts     uint32  `cim:"NumQueuePairsForNonDefaultVPorts"`
+	NumVFs                               uint32  `cim:"NumVFs"`
+	NumVPorts                            uint32  `cim:"NumVPorts"`
+	Source                               uint32  `cim:"Source"`
+	SriovSupport                         uint32  `cim:"SriovSupport"`
+	SwitchName                           string  `cim:"SwitchName"`
+	SwitchType                           uint16  `cim:"SwitchType"`
+	SystemName                           string  `cim:"SystemName"`
 }
 
 // QueryMSFTNetAdapterSriovSettingData runs the WQL query against the class and decodes each
@@ -8977,13 +8915,13 @@ func QueryMSFTNetAdapterSriovSettingData(svc *wmi.Service, where string) ([]MSFT
 	out := make([]MSFTNetAdapterSriovSettingData, len(rows))
 	for i, row := range rows {
 		out[i].Caption = wmi.AsString(row["Caption"])
-		if v, ok := row["CurrentCapabilities"].(any); ok {
+		if v, ok := row["CurrentCapabilities"].(wmi.Row); ok {
 			out[i].CurrentCapabilities = v
 		}
 		out[i].Description = wmi.AsString(row["Description"])
 		out[i].ElementName = wmi.AsString(row["ElementName"])
 		out[i].Enabled = wmi.AsBool(row["Enabled"])
-		if v, ok := row["HardwareCapabilities"].(any); ok {
+		if v, ok := row["HardwareCapabilities"].(wmi.Row); ok {
 			out[i].HardwareCapabilities = v
 		}
 		out[i].InstanceID = wmi.AsString(row["InstanceID"])
@@ -9010,7 +8948,7 @@ func QueryMSFTNetAdapterSriovSettingData(svc *wmi.Service, where string) ([]MSFT
 
 // MSFTNetAdapterSriovSettingDataDisableResult holds the out-parameters of MSFT_NetAdapterSriovSettingData.Disable.
 type MSFTNetAdapterSriovSettingDataDisableResult struct {
-	CmdletOutput any
+	CmdletOutput wmi.Row
 	ReturnValue  uint32
 }
 
@@ -9023,14 +8961,16 @@ func MSFTNetAdapterSriovSettingDataDisable(svc *wmi.Service, objectPath string) 
 		return nil, err
 	}
 	out := &MSFTNetAdapterSriovSettingDataDisableResult{}
-	out.CmdletOutput = row["cmdletOutput"]
+	if v, ok := row["cmdletOutput"].(wmi.Row); ok {
+		out.CmdletOutput = v
+	}
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
 
 // MSFTNetAdapterSriovSettingDataEnableResult holds the out-parameters of MSFT_NetAdapterSriovSettingData.Enable.
 type MSFTNetAdapterSriovSettingDataEnableResult struct {
-	CmdletOutput any
+	CmdletOutput wmi.Row
 	ReturnValue  uint32
 }
 
@@ -9043,7 +8983,9 @@ func MSFTNetAdapterSriovSettingDataEnable(svc *wmi.Service, objectPath string) (
 		return nil, err
 	}
 	out := &MSFTNetAdapterSriovSettingDataEnableResult{}
-	out.CmdletOutput = row["cmdletOutput"]
+	if v, ok := row["cmdletOutput"].(wmi.Row); ok {
+		out.CmdletOutput = v
+	}
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
@@ -9053,8 +8995,8 @@ type MSFTNetAdapterSriovVfElementSetting struct {
 	IsCurrent      uint16 `cim:"IsCurrent"`
 	IsDefault      uint16 `cim:"IsDefault"`
 	IsNext         uint16 `cim:"IsNext"`
-	ManagedElement any    `cim:"ManagedElement"`
-	SettingData    any    `cim:"SettingData"`
+	ManagedElement string `cim:"ManagedElement"`
+	SettingData    string `cim:"SettingData"`
 }
 
 // QueryMSFTNetAdapterSriovVfElementSetting runs the WQL query against the class and decodes each
@@ -9073,12 +9015,8 @@ func QueryMSFTNetAdapterSriovVfElementSetting(svc *wmi.Service, where string) ([
 		out[i].IsCurrent = wmi.AsUint16(row["IsCurrent"])
 		out[i].IsDefault = wmi.AsUint16(row["IsDefault"])
 		out[i].IsNext = wmi.AsUint16(row["IsNext"])
-		if v, ok := row["ManagedElement"].(any); ok {
-			out[i].ManagedElement = v
-		}
-		if v, ok := row["SettingData"].(any); ok {
-			out[i].SettingData = v
-		}
+		out[i].ManagedElement = wmi.AsString(row["ManagedElement"])
+		out[i].SettingData = wmi.AsString(row["SettingData"])
 	}
 	return out, nil
 }
@@ -9141,8 +9079,8 @@ type MSFTNetAdapterStatisticsElementSetting struct {
 	IsCurrent      uint16 `cim:"IsCurrent"`
 	IsDefault      uint16 `cim:"IsDefault"`
 	IsNext         uint16 `cim:"IsNext"`
-	ManagedElement any    `cim:"ManagedElement"`
-	SettingData    any    `cim:"SettingData"`
+	ManagedElement string `cim:"ManagedElement"`
+	SettingData    string `cim:"SettingData"`
 }
 
 // QueryMSFTNetAdapterStatisticsElementSetting runs the WQL query against the class and decodes each
@@ -9161,47 +9099,43 @@ func QueryMSFTNetAdapterStatisticsElementSetting(svc *wmi.Service, where string)
 		out[i].IsCurrent = wmi.AsUint16(row["IsCurrent"])
 		out[i].IsDefault = wmi.AsUint16(row["IsDefault"])
 		out[i].IsNext = wmi.AsUint16(row["IsNext"])
-		if v, ok := row["ManagedElement"].(any); ok {
-			out[i].ManagedElement = v
-		}
-		if v, ok := row["SettingData"].(any); ok {
-			out[i].SettingData = v
-		}
+		out[i].ManagedElement = wmi.AsString(row["ManagedElement"])
+		out[i].SettingData = wmi.AsString(row["SettingData"])
 	}
 	return out, nil
 }
 
 // MSFTNetAdapterStatisticsSettingData is the MSFT_NetAdapterStatisticsSettingData CIM class.
 type MSFTNetAdapterStatisticsSettingData struct {
-	Caption                  string `cim:"Caption"`
-	Description              string `cim:"Description"`
-	ElementName              string `cim:"ElementName"`
-	InstanceID               string `cim:"InstanceID"`
-	InterfaceDescription     string `cim:"InterfaceDescription"`
-	Name                     string `cim:"Name"`
-	OutboundDiscardedPackets uint64 `cim:"OutboundDiscardedPackets"`
-	OutboundPacketErrors     uint64 `cim:"OutboundPacketErrors"`
-	RdmaStatistics           any    `cim:"RdmaStatistics"`
-	ReceivedBroadcastBytes   uint64 `cim:"ReceivedBroadcastBytes"`
-	ReceivedBroadcastPackets uint64 `cim:"ReceivedBroadcastPackets"`
-	ReceivedBytes            uint64 `cim:"ReceivedBytes"`
-	ReceivedDiscardedPackets uint64 `cim:"ReceivedDiscardedPackets"`
-	ReceivedMulticastBytes   uint64 `cim:"ReceivedMulticastBytes"`
-	ReceivedMulticastPackets uint64 `cim:"ReceivedMulticastPackets"`
-	ReceivedPacketErrors     uint64 `cim:"ReceivedPacketErrors"`
-	ReceivedUnicastBytes     uint64 `cim:"ReceivedUnicastBytes"`
-	ReceivedUnicastPackets   uint64 `cim:"ReceivedUnicastPackets"`
-	RscStatistics            any    `cim:"RscStatistics"`
-	SentBroadcastBytes       uint64 `cim:"SentBroadcastBytes"`
-	SentBroadcastPackets     uint64 `cim:"SentBroadcastPackets"`
-	SentBytes                uint64 `cim:"SentBytes"`
-	SentMulticastBytes       uint64 `cim:"SentMulticastBytes"`
-	SentMulticastPackets     uint64 `cim:"SentMulticastPackets"`
-	SentUnicastBytes         uint64 `cim:"SentUnicastBytes"`
-	SentUnicastPackets       uint64 `cim:"SentUnicastPackets"`
-	Source                   uint32 `cim:"Source"`
-	SupportedStatistics      uint32 `cim:"SupportedStatistics"`
-	SystemName               string `cim:"SystemName"`
+	Caption                  string  `cim:"Caption"`
+	Description              string  `cim:"Description"`
+	ElementName              string  `cim:"ElementName"`
+	InstanceID               string  `cim:"InstanceID"`
+	InterfaceDescription     string  `cim:"InterfaceDescription"`
+	Name                     string  `cim:"Name"`
+	OutboundDiscardedPackets uint64  `cim:"OutboundDiscardedPackets"`
+	OutboundPacketErrors     uint64  `cim:"OutboundPacketErrors"`
+	RdmaStatistics           wmi.Row `cim:"RdmaStatistics"`
+	ReceivedBroadcastBytes   uint64  `cim:"ReceivedBroadcastBytes"`
+	ReceivedBroadcastPackets uint64  `cim:"ReceivedBroadcastPackets"`
+	ReceivedBytes            uint64  `cim:"ReceivedBytes"`
+	ReceivedDiscardedPackets uint64  `cim:"ReceivedDiscardedPackets"`
+	ReceivedMulticastBytes   uint64  `cim:"ReceivedMulticastBytes"`
+	ReceivedMulticastPackets uint64  `cim:"ReceivedMulticastPackets"`
+	ReceivedPacketErrors     uint64  `cim:"ReceivedPacketErrors"`
+	ReceivedUnicastBytes     uint64  `cim:"ReceivedUnicastBytes"`
+	ReceivedUnicastPackets   uint64  `cim:"ReceivedUnicastPackets"`
+	RscStatistics            wmi.Row `cim:"RscStatistics"`
+	SentBroadcastBytes       uint64  `cim:"SentBroadcastBytes"`
+	SentBroadcastPackets     uint64  `cim:"SentBroadcastPackets"`
+	SentBytes                uint64  `cim:"SentBytes"`
+	SentMulticastBytes       uint64  `cim:"SentMulticastBytes"`
+	SentMulticastPackets     uint64  `cim:"SentMulticastPackets"`
+	SentUnicastBytes         uint64  `cim:"SentUnicastBytes"`
+	SentUnicastPackets       uint64  `cim:"SentUnicastPackets"`
+	Source                   uint32  `cim:"Source"`
+	SupportedStatistics      uint32  `cim:"SupportedStatistics"`
+	SystemName               string  `cim:"SystemName"`
 }
 
 // QueryMSFTNetAdapterStatisticsSettingData runs the WQL query against the class and decodes each
@@ -9225,7 +9159,7 @@ func QueryMSFTNetAdapterStatisticsSettingData(svc *wmi.Service, where string) ([
 		out[i].Name = wmi.AsString(row["Name"])
 		out[i].OutboundDiscardedPackets = wmi.AsUint64(row["OutboundDiscardedPackets"])
 		out[i].OutboundPacketErrors = wmi.AsUint64(row["OutboundPacketErrors"])
-		if v, ok := row["RdmaStatistics"].(any); ok {
+		if v, ok := row["RdmaStatistics"].(wmi.Row); ok {
 			out[i].RdmaStatistics = v
 		}
 		out[i].ReceivedBroadcastBytes = wmi.AsUint64(row["ReceivedBroadcastBytes"])
@@ -9237,7 +9171,7 @@ func QueryMSFTNetAdapterStatisticsSettingData(svc *wmi.Service, where string) ([
 		out[i].ReceivedPacketErrors = wmi.AsUint64(row["ReceivedPacketErrors"])
 		out[i].ReceivedUnicastBytes = wmi.AsUint64(row["ReceivedUnicastBytes"])
 		out[i].ReceivedUnicastPackets = wmi.AsUint64(row["ReceivedUnicastPackets"])
-		if v, ok := row["RscStatistics"].(any); ok {
+		if v, ok := row["RscStatistics"].(wmi.Row); ok {
 			out[i].RscStatistics = v
 		}
 		out[i].SentBroadcastBytes = wmi.AsUint64(row["SentBroadcastBytes"])
@@ -9256,13 +9190,13 @@ func QueryMSFTNetAdapterStatisticsSettingData(svc *wmi.Service, where string) ([
 
 // MSFTNetAdapterUdpSegmentationOffloadCapabilities is the MSFT_NetAdapterUdpSegmentationOffloadCapabilities CIM class.
 type MSFTNetAdapterUdpSegmentationOffloadCapabilities struct {
-	IPv4Encapsulation               any    `cim:"IPv4Encapsulation"`
-	IPv4MaxOffloadSizeSupported     uint32 `cim:"IPv4MaxOffloadSizeSupported"`
-	IPv4MinSegmentCountSupported    uint32 `cim:"IPv4MinSegmentCountSupported"`
-	IPv6Encapsulation               any    `cim:"IPv6Encapsulation"`
-	IPv6IpExtensionHeadersSupported bool   `cim:"IPv6IpExtensionHeadersSupported"`
-	IPv6MaxOffLoadSizeSupported     uint32 `cim:"IPv6MaxOffLoadSizeSupported"`
-	IPv6MinSegmentCountSupported    uint32 `cim:"IPv6MinSegmentCountSupported"`
+	IPv4Encapsulation               wmi.Row `cim:"IPv4Encapsulation"`
+	IPv4MaxOffloadSizeSupported     uint32  `cim:"IPv4MaxOffloadSizeSupported"`
+	IPv4MinSegmentCountSupported    uint32  `cim:"IPv4MinSegmentCountSupported"`
+	IPv6Encapsulation               wmi.Row `cim:"IPv6Encapsulation"`
+	IPv6IpExtensionHeadersSupported bool    `cim:"IPv6IpExtensionHeadersSupported"`
+	IPv6MaxOffLoadSizeSupported     uint32  `cim:"IPv6MaxOffLoadSizeSupported"`
+	IPv6MinSegmentCountSupported    uint32  `cim:"IPv6MinSegmentCountSupported"`
 }
 
 // QueryMSFTNetAdapterUdpSegmentationOffloadCapabilities runs the WQL query against the class and decodes each
@@ -9278,12 +9212,12 @@ func QueryMSFTNetAdapterUdpSegmentationOffloadCapabilities(svc *wmi.Service, whe
 	}
 	out := make([]MSFTNetAdapterUdpSegmentationOffloadCapabilities, len(rows))
 	for i, row := range rows {
-		if v, ok := row["IPv4Encapsulation"].(any); ok {
+		if v, ok := row["IPv4Encapsulation"].(wmi.Row); ok {
 			out[i].IPv4Encapsulation = v
 		}
 		out[i].IPv4MaxOffloadSizeSupported = wmi.AsUint32(row["IPv4MaxOffloadSizeSupported"])
 		out[i].IPv4MinSegmentCountSupported = wmi.AsUint32(row["IPv4MinSegmentCountSupported"])
-		if v, ok := row["IPv6Encapsulation"].(any); ok {
+		if v, ok := row["IPv6Encapsulation"].(wmi.Row); ok {
 			out[i].IPv6Encapsulation = v
 		}
 		out[i].IPv6IpExtensionHeadersSupported = wmi.AsBool(row["IPv6IpExtensionHeadersSupported"])
@@ -9321,8 +9255,8 @@ type MSFTNetAdapterUroElementSetting struct {
 	IsCurrent      uint16 `cim:"IsCurrent"`
 	IsDefault      uint16 `cim:"IsDefault"`
 	IsNext         uint16 `cim:"IsNext"`
-	ManagedElement any    `cim:"ManagedElement"`
-	SettingData    any    `cim:"SettingData"`
+	ManagedElement string `cim:"ManagedElement"`
+	SettingData    string `cim:"SettingData"`
 }
 
 // QueryMSFTNetAdapterUroElementSetting runs the WQL query against the class and decodes each
@@ -9341,30 +9275,26 @@ func QueryMSFTNetAdapterUroElementSetting(svc *wmi.Service, where string) ([]MSF
 		out[i].IsCurrent = wmi.AsUint16(row["IsCurrent"])
 		out[i].IsDefault = wmi.AsUint16(row["IsDefault"])
 		out[i].IsNext = wmi.AsUint16(row["IsNext"])
-		if v, ok := row["ManagedElement"].(any); ok {
-			out[i].ManagedElement = v
-		}
-		if v, ok := row["SettingData"].(any); ok {
-			out[i].SettingData = v
-		}
+		out[i].ManagedElement = wmi.AsString(row["ManagedElement"])
+		out[i].SettingData = wmi.AsString(row["SettingData"])
 	}
 	return out, nil
 }
 
 // MSFTNetAdapterUroSettingData is the MSFT_NetAdapterUroSettingData CIM class.
 type MSFTNetAdapterUroSettingData struct {
-	Caption                 string `cim:"Caption"`
-	Description             string `cim:"Description"`
-	ElementName             string `cim:"ElementName"`
-	Enabled                 bool   `cim:"Enabled"`
-	FailureReason           uint32 `cim:"FailureReason"`
-	InstanceID              string `cim:"InstanceID"`
-	InterfaceDescription    string `cim:"InterfaceDescription"`
-	Name                    string `cim:"Name"`
-	Operational             bool   `cim:"Operational"`
-	Source                  uint32 `cim:"Source"`
-	SystemName              string `cim:"SystemName"`
-	UroHardwareCapabilities any    `cim:"UroHardwareCapabilities"`
+	Caption                 string  `cim:"Caption"`
+	Description             string  `cim:"Description"`
+	ElementName             string  `cim:"ElementName"`
+	Enabled                 bool    `cim:"Enabled"`
+	FailureReason           uint32  `cim:"FailureReason"`
+	InstanceID              string  `cim:"InstanceID"`
+	InterfaceDescription    string  `cim:"InterfaceDescription"`
+	Name                    string  `cim:"Name"`
+	Operational             bool    `cim:"Operational"`
+	Source                  uint32  `cim:"Source"`
+	SystemName              string  `cim:"SystemName"`
+	UroHardwareCapabilities wmi.Row `cim:"UroHardwareCapabilities"`
 }
 
 // QueryMSFTNetAdapterUroSettingData runs the WQL query against the class and decodes each
@@ -9391,7 +9321,7 @@ func QueryMSFTNetAdapterUroSettingData(svc *wmi.Service, where string) ([]MSFTNe
 		out[i].Operational = wmi.AsBool(row["Operational"])
 		out[i].Source = wmi.AsUint32(row["Source"])
 		out[i].SystemName = wmi.AsString(row["SystemName"])
-		if v, ok := row["UroHardwareCapabilities"].(any); ok {
+		if v, ok := row["UroHardwareCapabilities"].(wmi.Row); ok {
 			out[i].UroHardwareCapabilities = v
 		}
 	}
@@ -9400,7 +9330,7 @@ func QueryMSFTNetAdapterUroSettingData(svc *wmi.Service, where string) ([]MSFTNe
 
 // MSFTNetAdapterUroSettingDataDisableResult holds the out-parameters of MSFT_NetAdapterUroSettingData.Disable.
 type MSFTNetAdapterUroSettingDataDisableResult struct {
-	CmdletOutput any
+	CmdletOutput wmi.Row
 	ReturnValue  uint32
 }
 
@@ -9417,14 +9347,16 @@ func MSFTNetAdapterUroSettingDataDisable(svc *wmi.Service, objectPath string, di
 		return nil, err
 	}
 	out := &MSFTNetAdapterUroSettingDataDisableResult{}
-	out.CmdletOutput = row["cmdletOutput"]
+	if v, ok := row["cmdletOutput"].(wmi.Row); ok {
+		out.CmdletOutput = v
+	}
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
 
 // MSFTNetAdapterUroSettingDataEnableResult holds the out-parameters of MSFT_NetAdapterUroSettingData.Enable.
 type MSFTNetAdapterUroSettingDataEnableResult struct {
-	CmdletOutput any
+	CmdletOutput wmi.Row
 	ReturnValue  uint32
 }
 
@@ -9441,7 +9373,9 @@ func MSFTNetAdapterUroSettingDataEnable(svc *wmi.Service, objectPath string, ena
 		return nil, err
 	}
 	out := &MSFTNetAdapterUroSettingDataEnableResult{}
-	out.CmdletOutput = row["cmdletOutput"]
+	if v, ok := row["cmdletOutput"].(wmi.Row); ok {
+		out.CmdletOutput = v
+	}
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
@@ -9451,8 +9385,8 @@ type MSFTNetAdapterUsoElementSetting struct {
 	IsCurrent      uint16 `cim:"IsCurrent"`
 	IsDefault      uint16 `cim:"IsDefault"`
 	IsNext         uint16 `cim:"IsNext"`
-	ManagedElement any    `cim:"ManagedElement"`
-	SettingData    any    `cim:"SettingData"`
+	ManagedElement string `cim:"ManagedElement"`
+	SettingData    string `cim:"SettingData"`
 }
 
 // QueryMSFTNetAdapterUsoElementSetting runs the WQL query against the class and decodes each
@@ -9471,12 +9405,8 @@ func QueryMSFTNetAdapterUsoElementSetting(svc *wmi.Service, where string) ([]MSF
 		out[i].IsCurrent = wmi.AsUint16(row["IsCurrent"])
 		out[i].IsDefault = wmi.AsUint16(row["IsDefault"])
 		out[i].IsNext = wmi.AsUint16(row["IsNext"])
-		if v, ok := row["ManagedElement"].(any); ok {
-			out[i].ManagedElement = v
-		}
-		if v, ok := row["SettingData"].(any); ok {
-			out[i].SettingData = v
-		}
+		out[i].ManagedElement = wmi.AsString(row["ManagedElement"])
+		out[i].SettingData = wmi.AsString(row["SettingData"])
 	}
 	return out, nil
 }
@@ -9516,17 +9446,17 @@ func QueryMSFTNetAdapterUsoEncapsulationTypes(svc *wmi.Service, where string) ([
 
 // MSFTNetAdapterUsoSettingData is the MSFT_NetAdapterUsoSettingData CIM class.
 type MSFTNetAdapterUsoSettingData struct {
-	Caption                                    string `cim:"Caption"`
-	Description                                string `cim:"Description"`
-	ElementName                                string `cim:"ElementName"`
-	IPv4Enabled                                bool   `cim:"IPv4Enabled"`
-	IPv6Enabled                                bool   `cim:"IPv6Enabled"`
-	InstanceID                                 string `cim:"InstanceID"`
-	InterfaceDescription                       string `cim:"InterfaceDescription"`
-	Name                                       string `cim:"Name"`
-	Source                                     uint32 `cim:"Source"`
-	SystemName                                 string `cim:"SystemName"`
-	UdpSegmentationOffloadHardwareCapabilities any    `cim:"UdpSegmentationOffloadHardwareCapabilities"`
+	Caption                                    string  `cim:"Caption"`
+	Description                                string  `cim:"Description"`
+	ElementName                                string  `cim:"ElementName"`
+	IPv4Enabled                                bool    `cim:"IPv4Enabled"`
+	IPv6Enabled                                bool    `cim:"IPv6Enabled"`
+	InstanceID                                 string  `cim:"InstanceID"`
+	InterfaceDescription                       string  `cim:"InterfaceDescription"`
+	Name                                       string  `cim:"Name"`
+	Source                                     uint32  `cim:"Source"`
+	SystemName                                 string  `cim:"SystemName"`
+	UdpSegmentationOffloadHardwareCapabilities wmi.Row `cim:"UdpSegmentationOffloadHardwareCapabilities"`
 }
 
 // QueryMSFTNetAdapterUsoSettingData runs the WQL query against the class and decodes each
@@ -9552,7 +9482,7 @@ func QueryMSFTNetAdapterUsoSettingData(svc *wmi.Service, where string) ([]MSFTNe
 		out[i].Name = wmi.AsString(row["Name"])
 		out[i].Source = wmi.AsUint32(row["Source"])
 		out[i].SystemName = wmi.AsString(row["SystemName"])
-		if v, ok := row["UdpSegmentationOffloadHardwareCapabilities"].(any); ok {
+		if v, ok := row["UdpSegmentationOffloadHardwareCapabilities"].(wmi.Row); ok {
 			out[i].UdpSegmentationOffloadHardwareCapabilities = v
 		}
 	}
@@ -9561,7 +9491,7 @@ func QueryMSFTNetAdapterUsoSettingData(svc *wmi.Service, where string) ([]MSFTNe
 
 // MSFTNetAdapterUsoSettingDataDisableResult holds the out-parameters of MSFT_NetAdapterUsoSettingData.Disable.
 type MSFTNetAdapterUsoSettingDataDisableResult struct {
-	CmdletOutput any
+	CmdletOutput wmi.Row
 	ReturnValue  uint32
 }
 
@@ -9581,14 +9511,16 @@ func MSFTNetAdapterUsoSettingDataDisable(svc *wmi.Service, objectPath string, iP
 		return nil, err
 	}
 	out := &MSFTNetAdapterUsoSettingDataDisableResult{}
-	out.CmdletOutput = row["cmdletOutput"]
+	if v, ok := row["cmdletOutput"].(wmi.Row); ok {
+		out.CmdletOutput = v
+	}
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
 
 // MSFTNetAdapterUsoSettingDataEnableResult holds the out-parameters of MSFT_NetAdapterUsoSettingData.Enable.
 type MSFTNetAdapterUsoSettingDataEnableResult struct {
-	CmdletOutput any
+	CmdletOutput wmi.Row
 	ReturnValue  uint32
 }
 
@@ -9608,7 +9540,9 @@ func MSFTNetAdapterUsoSettingDataEnable(svc *wmi.Service, objectPath string, iPv
 		return nil, err
 	}
 	out := &MSFTNetAdapterUsoSettingDataEnableResult{}
-	out.CmdletOutput = row["cmdletOutput"]
+	if v, ok := row["cmdletOutput"].(wmi.Row); ok {
+		out.CmdletOutput = v
+	}
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
@@ -9618,8 +9552,8 @@ type MSFTNetAdapterVPortElementSetting struct {
 	IsCurrent      uint16 `cim:"IsCurrent"`
 	IsDefault      uint16 `cim:"IsDefault"`
 	IsNext         uint16 `cim:"IsNext"`
-	ManagedElement any    `cim:"ManagedElement"`
-	SettingData    any    `cim:"SettingData"`
+	ManagedElement string `cim:"ManagedElement"`
+	SettingData    string `cim:"SettingData"`
 }
 
 // QueryMSFTNetAdapterVPortElementSetting runs the WQL query against the class and decodes each
@@ -9638,37 +9572,33 @@ func QueryMSFTNetAdapterVPortElementSetting(svc *wmi.Service, where string) ([]M
 		out[i].IsCurrent = wmi.AsUint16(row["IsCurrent"])
 		out[i].IsDefault = wmi.AsUint16(row["IsDefault"])
 		out[i].IsNext = wmi.AsUint16(row["IsNext"])
-		if v, ok := row["ManagedElement"].(any); ok {
-			out[i].ManagedElement = v
-		}
-		if v, ok := row["SettingData"].(any); ok {
-			out[i].SettingData = v
-		}
+		out[i].ManagedElement = wmi.AsString(row["ManagedElement"])
+		out[i].SettingData = wmi.AsString(row["SettingData"])
 	}
 	return out, nil
 }
 
 // MSFTNetAdapterVPortSettingData is the MSFT_NetAdapterVPortSettingData CIM class.
 type MSFTNetAdapterVPortSettingData struct {
-	Caption               string `cim:"Caption"`
-	Description           string `cim:"Description"`
-	ElementName           string `cim:"ElementName"`
-	FilterList            []any  `cim:"FilterList"`
-	FunctionID            uint16 `cim:"FunctionID"`
-	InstanceID            string `cim:"InstanceID"`
-	InterfaceDescription  string `cim:"InterfaceDescription"`
-	InterruptModeration   uint32 `cim:"InterruptModeration"`
-	Name                  string `cim:"Name"`
-	NumFilters            uint32 `cim:"NumFilters"`
-	NumQueuePairs         uint32 `cim:"NumQueuePairs"`
-	ProcessorAffinityMask uint64 `cim:"ProcessorAffinityMask"`
-	ProcessorGroup        uint16 `cim:"ProcessorGroup"`
-	Source                uint32 `cim:"Source"`
-	SwitchID              uint32 `cim:"SwitchID"`
-	SystemName            string `cim:"SystemName"`
-	VPortID               uint32 `cim:"VPortID"`
-	VPortName             string `cim:"VPortName"`
-	VPortState            uint32 `cim:"VPortState"`
+	Caption               string    `cim:"Caption"`
+	Description           string    `cim:"Description"`
+	ElementName           string    `cim:"ElementName"`
+	FilterList            []wmi.Row `cim:"FilterList"`
+	FunctionID            uint16    `cim:"FunctionID"`
+	InstanceID            string    `cim:"InstanceID"`
+	InterfaceDescription  string    `cim:"InterfaceDescription"`
+	InterruptModeration   uint32    `cim:"InterruptModeration"`
+	Name                  string    `cim:"Name"`
+	NumFilters            uint32    `cim:"NumFilters"`
+	NumQueuePairs         uint32    `cim:"NumQueuePairs"`
+	ProcessorAffinityMask uint64    `cim:"ProcessorAffinityMask"`
+	ProcessorGroup        uint16    `cim:"ProcessorGroup"`
+	Source                uint32    `cim:"Source"`
+	SwitchID              uint32    `cim:"SwitchID"`
+	SystemName            string    `cim:"SystemName"`
+	VPortID               uint32    `cim:"VPortID"`
+	VPortName             string    `cim:"VPortName"`
+	VPortState            uint32    `cim:"VPortState"`
 }
 
 // QueryMSFTNetAdapterVPortSettingData runs the WQL query against the class and decodes each
@@ -9687,9 +9617,7 @@ func QueryMSFTNetAdapterVPortSettingData(svc *wmi.Service, where string) ([]MSFT
 		out[i].Caption = wmi.AsString(row["Caption"])
 		out[i].Description = wmi.AsString(row["Description"])
 		out[i].ElementName = wmi.AsString(row["ElementName"])
-		if v, ok := row["FilterList"].([]any); ok {
-			out[i].FilterList = v
-		}
+		out[i].FilterList = wmi.AsRowSlice(row["FilterList"])
 		out[i].FunctionID = wmi.AsUint16(row["FunctionID"])
 		out[i].InstanceID = wmi.AsString(row["InstanceID"])
 		out[i].InterfaceDescription = wmi.AsString(row["InterfaceDescription"])
@@ -9714,8 +9642,8 @@ type MSFTNetAdapterVmqElementSetting struct {
 	IsCurrent      uint16 `cim:"IsCurrent"`
 	IsDefault      uint16 `cim:"IsDefault"`
 	IsNext         uint16 `cim:"IsNext"`
-	ManagedElement any    `cim:"ManagedElement"`
-	SettingData    any    `cim:"SettingData"`
+	ManagedElement string `cim:"ManagedElement"`
+	SettingData    string `cim:"SettingData"`
 }
 
 // QueryMSFTNetAdapterVmqElementSetting runs the WQL query against the class and decodes each
@@ -9734,12 +9662,8 @@ func QueryMSFTNetAdapterVmqElementSetting(svc *wmi.Service, where string) ([]MSF
 		out[i].IsCurrent = wmi.AsUint16(row["IsCurrent"])
 		out[i].IsDefault = wmi.AsUint16(row["IsDefault"])
 		out[i].IsNext = wmi.AsUint16(row["IsNext"])
-		if v, ok := row["ManagedElement"].(any); ok {
-			out[i].ManagedElement = v
-		}
-		if v, ok := row["SettingData"].(any); ok {
-			out[i].SettingData = v
-		}
+		out[i].ManagedElement = wmi.AsString(row["ManagedElement"])
+		out[i].SettingData = wmi.AsString(row["SettingData"])
 	}
 	return out, nil
 }
@@ -9749,8 +9673,8 @@ type MSFTNetAdapterVmqQueueElementSetting struct {
 	IsCurrent      uint16 `cim:"IsCurrent"`
 	IsDefault      uint16 `cim:"IsDefault"`
 	IsNext         uint16 `cim:"IsNext"`
-	ManagedElement any    `cim:"ManagedElement"`
-	SettingData    any    `cim:"SettingData"`
+	ManagedElement string `cim:"ManagedElement"`
+	SettingData    string `cim:"SettingData"`
 }
 
 // QueryMSFTNetAdapterVmqQueueElementSetting runs the WQL query against the class and decodes each
@@ -9769,35 +9693,31 @@ func QueryMSFTNetAdapterVmqQueueElementSetting(svc *wmi.Service, where string) (
 		out[i].IsCurrent = wmi.AsUint16(row["IsCurrent"])
 		out[i].IsDefault = wmi.AsUint16(row["IsDefault"])
 		out[i].IsNext = wmi.AsUint16(row["IsNext"])
-		if v, ok := row["ManagedElement"].(any); ok {
-			out[i].ManagedElement = v
-		}
-		if v, ok := row["SettingData"].(any); ok {
-			out[i].SettingData = v
-		}
+		out[i].ManagedElement = wmi.AsString(row["ManagedElement"])
+		out[i].SettingData = wmi.AsString(row["SettingData"])
 	}
 	return out, nil
 }
 
 // MSFTNetAdapterVmqQueueSettingData is the MSFT_NetAdapterVmqQueueSettingData CIM class.
 type MSFTNetAdapterVmqQueueSettingData struct {
-	Caption               string `cim:"Caption"`
-	Description           string `cim:"Description"`
-	ElementName           string `cim:"ElementName"`
-	FilterList            []any  `cim:"FilterList"`
-	InstanceID            string `cim:"InstanceID"`
-	InterfaceDescription  string `cim:"InterfaceDescription"`
-	Name                  string `cim:"Name"`
-	NumFilters            uint32 `cim:"NumFilters"`
-	ProcessorAffinityMask uint64 `cim:"ProcessorAffinityMask"`
-	ProcessorGroup        uint16 `cim:"ProcessorGroup"`
-	QueueID               uint32 `cim:"QueueID"`
-	QueueName             string `cim:"QueueName"`
-	Source                uint32 `cim:"Source"`
-	State                 uint32 `cim:"State"`
-	SystemName            string `cim:"SystemName"`
-	VmFriendlyName        string `cim:"VmFriendlyName"`
-	VmID                  string `cim:"VmID"`
+	Caption               string    `cim:"Caption"`
+	Description           string    `cim:"Description"`
+	ElementName           string    `cim:"ElementName"`
+	FilterList            []wmi.Row `cim:"FilterList"`
+	InstanceID            string    `cim:"InstanceID"`
+	InterfaceDescription  string    `cim:"InterfaceDescription"`
+	Name                  string    `cim:"Name"`
+	NumFilters            uint32    `cim:"NumFilters"`
+	ProcessorAffinityMask uint64    `cim:"ProcessorAffinityMask"`
+	ProcessorGroup        uint16    `cim:"ProcessorGroup"`
+	QueueID               uint32    `cim:"QueueID"`
+	QueueName             string    `cim:"QueueName"`
+	Source                uint32    `cim:"Source"`
+	State                 uint32    `cim:"State"`
+	SystemName            string    `cim:"SystemName"`
+	VmFriendlyName        string    `cim:"VmFriendlyName"`
+	VmID                  string    `cim:"VmID"`
 }
 
 // QueryMSFTNetAdapterVmqQueueSettingData runs the WQL query against the class and decodes each
@@ -9816,9 +9736,7 @@ func QueryMSFTNetAdapterVmqQueueSettingData(svc *wmi.Service, where string) ([]M
 		out[i].Caption = wmi.AsString(row["Caption"])
 		out[i].Description = wmi.AsString(row["Description"])
 		out[i].ElementName = wmi.AsString(row["ElementName"])
-		if v, ok := row["FilterList"].([]any); ok {
-			out[i].FilterList = v
-		}
+		out[i].FilterList = wmi.AsRowSlice(row["FilterList"])
 		out[i].InstanceID = wmi.AsString(row["InstanceID"])
 		out[i].InterfaceDescription = wmi.AsString(row["InterfaceDescription"])
 		out[i].Name = wmi.AsString(row["Name"])
@@ -9909,7 +9827,7 @@ func QueryMSFTNetAdapterVmqSettingData(svc *wmi.Service, where string) ([]MSFTNe
 
 // MSFTNetAdapterVmqSettingDataDisableResult holds the out-parameters of MSFT_NetAdapterVmqSettingData.Disable.
 type MSFTNetAdapterVmqSettingDataDisableResult struct {
-	CmdletOutput any
+	CmdletOutput wmi.Row
 	ReturnValue  uint32
 }
 
@@ -9922,14 +9840,16 @@ func MSFTNetAdapterVmqSettingDataDisable(svc *wmi.Service, objectPath string) (*
 		return nil, err
 	}
 	out := &MSFTNetAdapterVmqSettingDataDisableResult{}
-	out.CmdletOutput = row["cmdletOutput"]
+	if v, ok := row["cmdletOutput"].(wmi.Row); ok {
+		out.CmdletOutput = v
+	}
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
 
 // MSFTNetAdapterVmqSettingDataEnableResult holds the out-parameters of MSFT_NetAdapterVmqSettingData.Enable.
 type MSFTNetAdapterVmqSettingDataEnableResult struct {
-	CmdletOutput any
+	CmdletOutput wmi.Row
 	ReturnValue  uint32
 }
 
@@ -9942,7 +9862,9 @@ func MSFTNetAdapterVmqSettingDataEnable(svc *wmi.Service, objectPath string) (*M
 		return nil, err
 	}
 	out := &MSFTNetAdapterVmqSettingDataEnableResult{}
-	out.CmdletOutput = row["cmdletOutput"]
+	if v, ok := row["cmdletOutput"].(wmi.Row); ok {
+		out.CmdletOutput = v
+	}
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
@@ -10112,15 +10034,15 @@ func QueryMSFTNetAdapterQosClassificationElement(svc *wmi.Service, where string)
 
 // MSFTNetAdapterQosSettings is the MSFT_NetAdapter_QosSettings CIM class.
 type MSFTNetAdapterQosSettings struct {
-	BandwidthAssignmentTable       []uint8 `cim:"BandwidthAssignmentTable"`
-	ClassificationEnabled          bool    `cim:"ClassificationEnabled"`
-	ClassificationTable            []any   `cim:"ClassificationTable"`
-	FlowControlEnabled             bool    `cim:"FlowControlEnabled"`
-	NumberOfClassificationElements uint32  `cim:"NumberOfClassificationElements"`
-	PriorityAssignmentTable        []uint8 `cim:"PriorityAssignmentTable"`
-	PriorityFlowControlEnableArray []bool  `cim:"PriorityFlowControlEnableArray"`
-	TransmissionSelectionEnabled   bool    `cim:"TransmissionSelectionEnabled"`
-	TsaAssignmentTable             []uint8 `cim:"TsaAssignmentTable"`
+	BandwidthAssignmentTable       []uint8   `cim:"BandwidthAssignmentTable"`
+	ClassificationEnabled          bool      `cim:"ClassificationEnabled"`
+	ClassificationTable            []wmi.Row `cim:"ClassificationTable"`
+	FlowControlEnabled             bool      `cim:"FlowControlEnabled"`
+	NumberOfClassificationElements uint32    `cim:"NumberOfClassificationElements"`
+	PriorityAssignmentTable        []uint8   `cim:"PriorityAssignmentTable"`
+	PriorityFlowControlEnableArray []bool    `cim:"PriorityFlowControlEnableArray"`
+	TransmissionSelectionEnabled   bool      `cim:"TransmissionSelectionEnabled"`
+	TsaAssignmentTable             []uint8   `cim:"TsaAssignmentTable"`
 }
 
 // QueryMSFTNetAdapterQosSettings runs the WQL query against the class and decodes each
@@ -10138,9 +10060,7 @@ func QueryMSFTNetAdapterQosSettings(svc *wmi.Service, where string) ([]MSFTNetAd
 	for i, row := range rows {
 		out[i].BandwidthAssignmentTable = wmi.AsUint8Slice(row["BandwidthAssignmentTable"])
 		out[i].ClassificationEnabled = wmi.AsBool(row["ClassificationEnabled"])
-		if v, ok := row["ClassificationTable"].([]any); ok {
-			out[i].ClassificationTable = v
-		}
+		out[i].ClassificationTable = wmi.AsRowSlice(row["ClassificationTable"])
 		out[i].FlowControlEnabled = wmi.AsBool(row["FlowControlEnabled"])
 		out[i].NumberOfClassificationElements = wmi.AsUint32(row["NumberOfClassificationElements"])
 		out[i].PriorityAssignmentTable = wmi.AsUint8Slice(row["PriorityAssignmentTable"])
@@ -10650,7 +10570,7 @@ func QueryMSFTNetBaseIPProtocol(svc *wmi.Service, where string) ([]MSFTNetBaseIP
 
 // MSFTNetBaseIPProtocolRequestStateChangeResult holds the out-parameters of MSFT_NetBaseIPProtocol.RequestStateChange.
 type MSFTNetBaseIPProtocolRequestStateChangeResult struct {
-	Job         any
+	Job         string
 	ReturnValue uint32
 }
 
@@ -10670,7 +10590,7 @@ func MSFTNetBaseIPProtocolRequestStateChange(svc *wmi.Service, objectPath string
 		return nil, err
 	}
 	out := &MSFTNetBaseIPProtocolRequestStateChangeResult{}
-	out.Job = row["Job"]
+	out.Job = wmi.AsString(row["Job"])
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
@@ -10810,26 +10730,26 @@ func QueryMSFTNetBranchCacheContentServerSettingData(svc *wmi.Service, where str
 
 // MSFTNetBranchCacheDataCache is the MSFT_NetBranchCacheDataCache CIM class.
 type MSFTNetBranchCacheDataCache struct {
-	CacheFileDirectoryPath               string   `cim:"CacheFileDirectoryPath"`
-	Caption                              string   `cim:"Caption"`
-	CommunicationStatus                  uint16   `cim:"CommunicationStatus"`
-	CurrentActiveCacheSize               uint64   `cim:"CurrentActiveCacheSize"`
-	CurrentSizeOnDiskAsNumberOfBytes     uint64   `cim:"CurrentSizeOnDiskAsNumberOfBytes"`
-	DataCacheExtensions                  []any    `cim:"DataCacheExtensions"`
-	Description                          string   `cim:"Description"`
-	DetailedStatus                       uint16   `cim:"DetailedStatus"`
-	ElementName                          string   `cim:"ElementName"`
-	HealthState                          uint16   `cim:"HealthState"`
-	InstallDate                          string   `cim:"InstallDate"`
-	InstanceID                           string   `cim:"InstanceID"`
-	MaxCacheSizeAsNumberOfBytes          uint64   `cim:"MaxCacheSizeAsNumberOfBytes"`
-	MaxCacheSizeAsPercentageOfDiskVolume uint32   `cim:"MaxCacheSizeAsPercentageOfDiskVolume"`
-	Name                                 string   `cim:"Name"`
-	OperatingStatus                      uint16   `cim:"OperatingStatus"`
-	OperationalStatus                    []uint16 `cim:"OperationalStatus"`
-	PrimaryStatus                        uint16   `cim:"PrimaryStatus"`
-	Status                               string   `cim:"Status"`
-	StatusDescriptions                   []string `cim:"StatusDescriptions"`
+	CacheFileDirectoryPath               string    `cim:"CacheFileDirectoryPath"`
+	Caption                              string    `cim:"Caption"`
+	CommunicationStatus                  uint16    `cim:"CommunicationStatus"`
+	CurrentActiveCacheSize               uint64    `cim:"CurrentActiveCacheSize"`
+	CurrentSizeOnDiskAsNumberOfBytes     uint64    `cim:"CurrentSizeOnDiskAsNumberOfBytes"`
+	DataCacheExtensions                  []wmi.Row `cim:"DataCacheExtensions"`
+	Description                          string    `cim:"Description"`
+	DetailedStatus                       uint16    `cim:"DetailedStatus"`
+	ElementName                          string    `cim:"ElementName"`
+	HealthState                          uint16    `cim:"HealthState"`
+	InstallDate                          string    `cim:"InstallDate"`
+	InstanceID                           string    `cim:"InstanceID"`
+	MaxCacheSizeAsNumberOfBytes          uint64    `cim:"MaxCacheSizeAsNumberOfBytes"`
+	MaxCacheSizeAsPercentageOfDiskVolume uint32    `cim:"MaxCacheSizeAsPercentageOfDiskVolume"`
+	Name                                 string    `cim:"Name"`
+	OperatingStatus                      uint16    `cim:"OperatingStatus"`
+	OperationalStatus                    []uint16  `cim:"OperationalStatus"`
+	PrimaryStatus                        uint16    `cim:"PrimaryStatus"`
+	Status                               string    `cim:"Status"`
+	StatusDescriptions                   []string  `cim:"StatusDescriptions"`
 }
 
 // QueryMSFTNetBranchCacheDataCache runs the WQL query against the class and decodes each
@@ -10850,9 +10770,7 @@ func QueryMSFTNetBranchCacheDataCache(svc *wmi.Service, where string) ([]MSFTNet
 		out[i].CommunicationStatus = wmi.AsUint16(row["CommunicationStatus"])
 		out[i].CurrentActiveCacheSize = wmi.AsUint64(row["CurrentActiveCacheSize"])
 		out[i].CurrentSizeOnDiskAsNumberOfBytes = wmi.AsUint64(row["CurrentSizeOnDiskAsNumberOfBytes"])
-		if v, ok := row["DataCacheExtensions"].([]any); ok {
-			out[i].DataCacheExtensions = v
-		}
+		out[i].DataCacheExtensions = wmi.AsRowSlice(row["DataCacheExtensions"])
 		out[i].Description = wmi.AsString(row["Description"])
 		out[i].DetailedStatus = wmi.AsUint16(row["DetailedStatus"])
 		out[i].ElementName = wmi.AsString(row["ElementName"])
@@ -11108,7 +11026,7 @@ func QueryMSFTNetBranchCacheOrchestrator(svc *wmi.Service, where string) ([]MSFT
 
 // MSFTNetBranchCacheOrchestratorAddBCDataCacheExtensionByPercentageResult holds the out-parameters of MSFT_NetBranchCacheOrchestrator.Add_BCDataCacheExtensionByPercentage.
 type MSFTNetBranchCacheOrchestratorAddBCDataCacheExtensionByPercentageResult struct {
-	CmdletOutput any
+	CmdletOutput wmi.Row
 	ReturnValue  uint32
 }
 
@@ -11133,14 +11051,16 @@ func MSFTNetBranchCacheOrchestratorAddBCDataCacheExtensionByPercentage(svc *wmi.
 		return nil, err
 	}
 	out := &MSFTNetBranchCacheOrchestratorAddBCDataCacheExtensionByPercentageResult{}
-	out.CmdletOutput = row["cmdletOutput"]
+	if v, ok := row["cmdletOutput"].(wmi.Row); ok {
+		out.CmdletOutput = v
+	}
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
 
 // MSFTNetBranchCacheOrchestratorAddBCDataCacheExtensionBySizeBytesResult holds the out-parameters of MSFT_NetBranchCacheOrchestrator.Add_BCDataCacheExtensionBySizeBytes.
 type MSFTNetBranchCacheOrchestratorAddBCDataCacheExtensionBySizeBytesResult struct {
-	CmdletOutput any
+	CmdletOutput wmi.Row
 	ReturnValue  uint32
 }
 
@@ -11165,7 +11085,9 @@ func MSFTNetBranchCacheOrchestratorAddBCDataCacheExtensionBySizeBytes(svc *wmi.S
 		return nil, err
 	}
 	out := &MSFTNetBranchCacheOrchestratorAddBCDataCacheExtensionBySizeBytesResult{}
-	out.CmdletOutput = row["cmdletOutput"]
+	if v, ok := row["cmdletOutput"].(wmi.Row); ok {
+		out.CmdletOutput = v
+	}
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
@@ -11636,7 +11558,7 @@ type MSFTNetBranchCacheOrchestratorRemoveBCDataCacheExtensionByDataCacheExtensio
 
 // MSFTNetBranchCacheOrchestratorRemoveBCDataCacheExtensionByDataCacheExtension invokes the static MSFT_NetBranchCacheOrchestrator.Remove_BCDataCacheExtensionByDataCacheExtension method. Zero-valued
 // in-parameters are omitted so the provider applies its defaults.
-func MSFTNetBranchCacheOrchestratorRemoveBCDataCacheExtensionByDataCacheExtension(svc *wmi.Service, dataCacheExtension []any, force bool) (*MSFTNetBranchCacheOrchestratorRemoveBCDataCacheExtensionByDataCacheExtensionResult, error) {
+func MSFTNetBranchCacheOrchestratorRemoveBCDataCacheExtensionByDataCacheExtension(svc *wmi.Service, dataCacheExtension []wmi.Row, force bool) (*MSFTNetBranchCacheOrchestratorRemoveBCDataCacheExtensionByDataCacheExtensionResult, error) {
 	in := map[string]any{}
 	if dataCacheExtension != nil {
 		in["DataCacheExtension"] = dataCacheExtension
@@ -11730,13 +11652,13 @@ func MSFTNetBranchCacheOrchestratorSetBCAuthentication(svc *wmi.Service, mode ui
 
 // MSFTNetBranchCacheOrchestratorSetBCCacheByCacheResult holds the out-parameters of MSFT_NetBranchCacheOrchestrator.Set_BCCacheByCache.
 type MSFTNetBranchCacheOrchestratorSetBCCacheByCacheResult struct {
-	CmdletOutput []any
+	CmdletOutput []wmi.Row
 	ReturnValue  uint32
 }
 
 // MSFTNetBranchCacheOrchestratorSetBCCacheByCache invokes the static MSFT_NetBranchCacheOrchestrator.Set_BCCacheByCache method. Zero-valued
 // in-parameters are omitted so the provider applies its defaults.
-func MSFTNetBranchCacheOrchestratorSetBCCacheByCache(svc *wmi.Service, cache []any, moveTo string, percentage uint32, sizeBytes uint64, defragment bool, passThru bool, force bool) (*MSFTNetBranchCacheOrchestratorSetBCCacheByCacheResult, error) {
+func MSFTNetBranchCacheOrchestratorSetBCCacheByCache(svc *wmi.Service, cache []wmi.Row, moveTo string, percentage uint32, sizeBytes uint64, defragment bool, passThru bool, force bool) (*MSFTNetBranchCacheOrchestratorSetBCCacheByCacheResult, error) {
 	in := map[string]any{}
 	if cache != nil {
 		in["Cache"] = cache
@@ -11764,16 +11686,14 @@ func MSFTNetBranchCacheOrchestratorSetBCCacheByCache(svc *wmi.Service, cache []a
 		return nil, err
 	}
 	out := &MSFTNetBranchCacheOrchestratorSetBCCacheByCacheResult{}
-	if v, ok := row["cmdletOutput"].([]any); ok {
-		out.CmdletOutput = v
-	}
+	out.CmdletOutput = wmi.AsRowSlice(row["cmdletOutput"])
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
 
 // MSFTNetBranchCacheOrchestratorSetBCCacheByPathResult holds the out-parameters of MSFT_NetBranchCacheOrchestrator.Set_BCCacheByPath.
 type MSFTNetBranchCacheOrchestratorSetBCCacheByPathResult struct {
-	CmdletOutput any
+	CmdletOutput wmi.Row
 	ReturnValue  uint32
 }
 
@@ -11807,7 +11727,9 @@ func MSFTNetBranchCacheOrchestratorSetBCCacheByPath(svc *wmi.Service, path strin
 		return nil, err
 	}
 	out := &MSFTNetBranchCacheOrchestratorSetBCCacheByPathResult{}
-	out.CmdletOutput = row["cmdletOutput"]
+	if v, ok := row["cmdletOutput"].(wmi.Row); ok {
+		out.CmdletOutput = v
+	}
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
@@ -12035,20 +11957,20 @@ type MSFTNetBranchCacheStatus struct {
 	BranchCacheServiceStartType    uint32   `cim:"BranchCacheServiceStartType"`
 	BranchCacheServiceStatus       uint32   `cim:"BranchCacheServiceStatus"`
 	Caption                        string   `cim:"Caption"`
-	ClientConfiguration            any      `cim:"ClientConfiguration"`
+	ClientConfiguration            wmi.Row  `cim:"ClientConfiguration"`
 	CommunicationStatus            uint16   `cim:"CommunicationStatus"`
-	ContentServerConfiguration     any      `cim:"ContentServerConfiguration"`
-	DataCache                      any      `cim:"DataCache"`
+	ContentServerConfiguration     wmi.Row  `cim:"ContentServerConfiguration"`
+	DataCache                      wmi.Row  `cim:"DataCache"`
 	Description                    string   `cim:"Description"`
 	DetailedStatus                 uint16   `cim:"DetailedStatus"`
 	ElementName                    string   `cim:"ElementName"`
-	HashCache                      any      `cim:"HashCache"`
+	HashCache                      wmi.Row  `cim:"HashCache"`
 	HealthState                    uint16   `cim:"HealthState"`
-	HostedCacheServerConfiguration any      `cim:"HostedCacheServerConfiguration"`
+	HostedCacheServerConfiguration wmi.Row  `cim:"HostedCacheServerConfiguration"`
 	InstallDate                    string   `cim:"InstallDate"`
 	InstanceID                     string   `cim:"InstanceID"`
 	Name                           string   `cim:"Name"`
-	NetworkConfiguration           any      `cim:"NetworkConfiguration"`
+	NetworkConfiguration           wmi.Row  `cim:"NetworkConfiguration"`
 	OperatingStatus                uint16   `cim:"OperatingStatus"`
 	OperationalStatus              []uint16 `cim:"OperationalStatus"`
 	PrimaryStatus                  uint16   `cim:"PrimaryStatus"`
@@ -12073,30 +11995,30 @@ func QueryMSFTNetBranchCacheStatus(svc *wmi.Service, where string) ([]MSFTNetBra
 		out[i].BranchCacheServiceStartType = wmi.AsUint32(row["BranchCacheServiceStartType"])
 		out[i].BranchCacheServiceStatus = wmi.AsUint32(row["BranchCacheServiceStatus"])
 		out[i].Caption = wmi.AsString(row["Caption"])
-		if v, ok := row["ClientConfiguration"].(any); ok {
+		if v, ok := row["ClientConfiguration"].(wmi.Row); ok {
 			out[i].ClientConfiguration = v
 		}
 		out[i].CommunicationStatus = wmi.AsUint16(row["CommunicationStatus"])
-		if v, ok := row["ContentServerConfiguration"].(any); ok {
+		if v, ok := row["ContentServerConfiguration"].(wmi.Row); ok {
 			out[i].ContentServerConfiguration = v
 		}
-		if v, ok := row["DataCache"].(any); ok {
+		if v, ok := row["DataCache"].(wmi.Row); ok {
 			out[i].DataCache = v
 		}
 		out[i].Description = wmi.AsString(row["Description"])
 		out[i].DetailedStatus = wmi.AsUint16(row["DetailedStatus"])
 		out[i].ElementName = wmi.AsString(row["ElementName"])
-		if v, ok := row["HashCache"].(any); ok {
+		if v, ok := row["HashCache"].(wmi.Row); ok {
 			out[i].HashCache = v
 		}
 		out[i].HealthState = wmi.AsUint16(row["HealthState"])
-		if v, ok := row["HostedCacheServerConfiguration"].(any); ok {
+		if v, ok := row["HostedCacheServerConfiguration"].(wmi.Row); ok {
 			out[i].HostedCacheServerConfiguration = v
 		}
 		out[i].InstallDate = wmi.AsString(row["InstallDate"])
 		out[i].InstanceID = wmi.AsString(row["InstanceID"])
 		out[i].Name = wmi.AsString(row["Name"])
-		if v, ok := row["NetworkConfiguration"].(any); ok {
+		if v, ok := row["NetworkConfiguration"].(wmi.Row); ok {
 			out[i].NetworkConfiguration = v
 		}
 		out[i].OperatingStatus = wmi.AsUint16(row["OperatingStatus"])
@@ -12336,7 +12258,7 @@ func MSFTNetConSecRuleEnable(svc *wmi.Service, objectPath string) (*MSFTNetConSe
 
 // MSFTNetConSecRuleEnumerateFullResult holds the out-parameters of MSFT_NetConSecRule.EnumerateFull.
 type MSFTNetConSecRuleEnumerateFullResult struct {
-	Dependents  []any
+	Dependents  []wmi.Row
 	ReturnValue uint32
 }
 
@@ -12348,16 +12270,14 @@ func MSFTNetConSecRuleEnumerateFull(svc *wmi.Service) (*MSFTNetConSecRuleEnumera
 		return nil, err
 	}
 	out := &MSFTNetConSecRuleEnumerateFullResult{}
-	if v, ok := row["Dependents"].([]any); ok {
-		out.Dependents = v
-	}
+	out.Dependents = wmi.AsRowSlice(row["Dependents"])
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
 
 // MSFTNetConSecRuleFindResult holds the out-parameters of MSFT_NetConSecRule.Find.
 type MSFTNetConSecRuleFindResult struct {
-	CmdletOutput []any
+	CmdletOutput []wmi.Row
 	ReturnValue  uint32
 }
 
@@ -12385,9 +12305,7 @@ func MSFTNetConSecRuleFind(svc *wmi.Service, localAddress string, remoteAddress 
 		return nil, err
 	}
 	out := &MSFTNetConSecRuleFindResult{}
-	if v, ok := row["CmdletOutput"].([]any); ok {
-		out.CmdletOutput = v
-	}
+	out.CmdletOutput = wmi.AsRowSlice(row["CmdletOutput"])
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
@@ -12416,7 +12334,7 @@ func MSFTNetConSecRuleRename(svc *wmi.Service, objectPath string, newName string
 
 // MSFTNetConSecRuleSetPolicyDeltaResult holds the out-parameters of MSFT_NetConSecRule.SetPolicyDelta.
 type MSFTNetConSecRuleSetPolicyDeltaResult struct {
-	Output      []any
+	Output      []wmi.Row
 	ReturnValue uint32
 }
 
@@ -12445,16 +12363,14 @@ func MSFTNetConSecRuleSetPolicyDelta(svc *wmi.Service, objectPath string, action
 		return nil, err
 	}
 	out := &MSFTNetConSecRuleSetPolicyDeltaResult{}
-	if v, ok := row["Output"].([]any); ok {
-		out.Output = v
-	}
+	out.Output = wmi.AsRowSlice(row["Output"])
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
 
 // MSFTNetConSecRuleSyncPolicyDeltaResult holds the out-parameters of MSFT_NetConSecRule.SyncPolicyDelta.
 type MSFTNetConSecRuleSyncPolicyDeltaResult struct {
-	Output      []any
+	Output      []wmi.Row
 	ReturnValue uint32
 }
 
@@ -12483,9 +12399,7 @@ func MSFTNetConSecRuleSyncPolicyDelta(svc *wmi.Service, objectPath string, serve
 		return nil, err
 	}
 	out := &MSFTNetConSecRuleSyncPolicyDeltaResult{}
-	if v, ok := row["Output"].([]any); ok {
-		out.Output = v
-	}
+	out.Output = wmi.AsRowSlice(row["Output"])
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
@@ -12493,8 +12407,8 @@ func MSFTNetConSecRuleSyncPolicyDelta(svc *wmi.Service, objectPath string, serve
 // MSFTNetConSecRuleEMAuthSet is the MSFT_NetConSecRuleEMAuthSet CIM class.
 type MSFTNetConSecRuleEMAuthSet struct {
 	ActionOrder    uint16 `cim:"ActionOrder"`
-	GroupComponent any    `cim:"GroupComponent"`
-	PartComponent  any    `cim:"PartComponent"`
+	GroupComponent string `cim:"GroupComponent"`
+	PartComponent  string `cim:"PartComponent"`
 }
 
 // QueryMSFTNetConSecRuleEMAuthSet runs the WQL query against the class and decodes each
@@ -12511,20 +12425,16 @@ func QueryMSFTNetConSecRuleEMAuthSet(svc *wmi.Service, where string) ([]MSFTNetC
 	out := make([]MSFTNetConSecRuleEMAuthSet, len(rows))
 	for i, row := range rows {
 		out[i].ActionOrder = wmi.AsUint16(row["ActionOrder"])
-		if v, ok := row["GroupComponent"].(any); ok {
-			out[i].GroupComponent = v
-		}
-		if v, ok := row["PartComponent"].(any); ok {
-			out[i].PartComponent = v
-		}
+		out[i].GroupComponent = wmi.AsString(row["GroupComponent"])
+		out[i].PartComponent = wmi.AsString(row["PartComponent"])
 	}
 	return out, nil
 }
 
 // MSFTNetConSecRuleFilterByAddress is the MSFT_NetConSecRuleFilterByAddress CIM class.
 type MSFTNetConSecRuleFilterByAddress struct {
-	GroupComponent any `cim:"GroupComponent"`
-	PartComponent  any `cim:"PartComponent"`
+	GroupComponent string `cim:"GroupComponent"`
+	PartComponent  string `cim:"PartComponent"`
 }
 
 // QueryMSFTNetConSecRuleFilterByAddress runs the WQL query against the class and decodes each
@@ -12540,20 +12450,16 @@ func QueryMSFTNetConSecRuleFilterByAddress(svc *wmi.Service, where string) ([]MS
 	}
 	out := make([]MSFTNetConSecRuleFilterByAddress, len(rows))
 	for i, row := range rows {
-		if v, ok := row["GroupComponent"].(any); ok {
-			out[i].GroupComponent = v
-		}
-		if v, ok := row["PartComponent"].(any); ok {
-			out[i].PartComponent = v
-		}
+		out[i].GroupComponent = wmi.AsString(row["GroupComponent"])
+		out[i].PartComponent = wmi.AsString(row["PartComponent"])
 	}
 	return out, nil
 }
 
 // MSFTNetConSecRuleFilterByInterface is the MSFT_NetConSecRuleFilterByInterface CIM class.
 type MSFTNetConSecRuleFilterByInterface struct {
-	GroupComponent any `cim:"GroupComponent"`
-	PartComponent  any `cim:"PartComponent"`
+	GroupComponent string `cim:"GroupComponent"`
+	PartComponent  string `cim:"PartComponent"`
 }
 
 // QueryMSFTNetConSecRuleFilterByInterface runs the WQL query against the class and decodes each
@@ -12569,20 +12475,16 @@ func QueryMSFTNetConSecRuleFilterByInterface(svc *wmi.Service, where string) ([]
 	}
 	out := make([]MSFTNetConSecRuleFilterByInterface, len(rows))
 	for i, row := range rows {
-		if v, ok := row["GroupComponent"].(any); ok {
-			out[i].GroupComponent = v
-		}
-		if v, ok := row["PartComponent"].(any); ok {
-			out[i].PartComponent = v
-		}
+		out[i].GroupComponent = wmi.AsString(row["GroupComponent"])
+		out[i].PartComponent = wmi.AsString(row["PartComponent"])
 	}
 	return out, nil
 }
 
 // MSFTNetConSecRuleFilterByInterfaceType is the MSFT_NetConSecRuleFilterByInterfaceType CIM class.
 type MSFTNetConSecRuleFilterByInterfaceType struct {
-	GroupComponent any `cim:"GroupComponent"`
-	PartComponent  any `cim:"PartComponent"`
+	GroupComponent string `cim:"GroupComponent"`
+	PartComponent  string `cim:"PartComponent"`
 }
 
 // QueryMSFTNetConSecRuleFilterByInterfaceType runs the WQL query against the class and decodes each
@@ -12598,20 +12500,16 @@ func QueryMSFTNetConSecRuleFilterByInterfaceType(svc *wmi.Service, where string)
 	}
 	out := make([]MSFTNetConSecRuleFilterByInterfaceType, len(rows))
 	for i, row := range rows {
-		if v, ok := row["GroupComponent"].(any); ok {
-			out[i].GroupComponent = v
-		}
-		if v, ok := row["PartComponent"].(any); ok {
-			out[i].PartComponent = v
-		}
+		out[i].GroupComponent = wmi.AsString(row["GroupComponent"])
+		out[i].PartComponent = wmi.AsString(row["PartComponent"])
 	}
 	return out, nil
 }
 
 // MSFTNetConSecRuleFilterByProtocolPort is the MSFT_NetConSecRuleFilterByProtocolPort CIM class.
 type MSFTNetConSecRuleFilterByProtocolPort struct {
-	GroupComponent any `cim:"GroupComponent"`
-	PartComponent  any `cim:"PartComponent"`
+	GroupComponent string `cim:"GroupComponent"`
+	PartComponent  string `cim:"PartComponent"`
 }
 
 // QueryMSFTNetConSecRuleFilterByProtocolPort runs the WQL query against the class and decodes each
@@ -12627,20 +12525,16 @@ func QueryMSFTNetConSecRuleFilterByProtocolPort(svc *wmi.Service, where string) 
 	}
 	out := make([]MSFTNetConSecRuleFilterByProtocolPort, len(rows))
 	for i, row := range rows {
-		if v, ok := row["GroupComponent"].(any); ok {
-			out[i].GroupComponent = v
-		}
-		if v, ok := row["PartComponent"].(any); ok {
-			out[i].PartComponent = v
-		}
+		out[i].GroupComponent = wmi.AsString(row["GroupComponent"])
+		out[i].PartComponent = wmi.AsString(row["PartComponent"])
 	}
 	return out, nil
 }
 
 // MSFTNetConSecRuleFilters is the MSFT_NetConSecRuleFilters CIM class.
 type MSFTNetConSecRuleFilters struct {
-	GroupComponent any `cim:"GroupComponent"`
-	PartComponent  any `cim:"PartComponent"`
+	GroupComponent string `cim:"GroupComponent"`
+	PartComponent  string `cim:"PartComponent"`
 }
 
 // QueryMSFTNetConSecRuleFilters runs the WQL query against the class and decodes each
@@ -12656,20 +12550,16 @@ func QueryMSFTNetConSecRuleFilters(svc *wmi.Service, where string) ([]MSFTNetCon
 	}
 	out := make([]MSFTNetConSecRuleFilters, len(rows))
 	for i, row := range rows {
-		if v, ok := row["GroupComponent"].(any); ok {
-			out[i].GroupComponent = v
-		}
-		if v, ok := row["PartComponent"].(any); ok {
-			out[i].PartComponent = v
-		}
+		out[i].GroupComponent = wmi.AsString(row["GroupComponent"])
+		out[i].PartComponent = wmi.AsString(row["PartComponent"])
 	}
 	return out, nil
 }
 
 // MSFTNetConSecRuleInProfile is the MSFT_NetConSecRuleInProfile CIM class.
 type MSFTNetConSecRuleInProfile struct {
-	GroupComponent any    `cim:"GroupComponent"`
-	PartComponent  any    `cim:"PartComponent"`
+	GroupComponent string `cim:"GroupComponent"`
+	PartComponent  string `cim:"PartComponent"`
 	Priority       uint16 `cim:"Priority"`
 }
 
@@ -12686,12 +12576,8 @@ func QueryMSFTNetConSecRuleInProfile(svc *wmi.Service, where string) ([]MSFTNetC
 	}
 	out := make([]MSFTNetConSecRuleInProfile, len(rows))
 	for i, row := range rows {
-		if v, ok := row["GroupComponent"].(any); ok {
-			out[i].GroupComponent = v
-		}
-		if v, ok := row["PartComponent"].(any); ok {
-			out[i].PartComponent = v
-		}
+		out[i].GroupComponent = wmi.AsString(row["GroupComponent"])
+		out[i].PartComponent = wmi.AsString(row["PartComponent"])
 		out[i].Priority = wmi.AsUint16(row["Priority"])
 	}
 	return out, nil
@@ -12700,8 +12586,8 @@ func QueryMSFTNetConSecRuleInProfile(svc *wmi.Service, where string) ([]MSFTNetC
 // MSFTNetConSecRuleMMAuthSet is the MSFT_NetConSecRuleMMAuthSet CIM class.
 type MSFTNetConSecRuleMMAuthSet struct {
 	ActionOrder    uint16 `cim:"ActionOrder"`
-	GroupComponent any    `cim:"GroupComponent"`
-	PartComponent  any    `cim:"PartComponent"`
+	GroupComponent string `cim:"GroupComponent"`
+	PartComponent  string `cim:"PartComponent"`
 }
 
 // QueryMSFTNetConSecRuleMMAuthSet runs the WQL query against the class and decodes each
@@ -12718,12 +12604,8 @@ func QueryMSFTNetConSecRuleMMAuthSet(svc *wmi.Service, where string) ([]MSFTNetC
 	out := make([]MSFTNetConSecRuleMMAuthSet, len(rows))
 	for i, row := range rows {
 		out[i].ActionOrder = wmi.AsUint16(row["ActionOrder"])
-		if v, ok := row["GroupComponent"].(any); ok {
-			out[i].GroupComponent = v
-		}
-		if v, ok := row["PartComponent"].(any); ok {
-			out[i].PartComponent = v
-		}
+		out[i].GroupComponent = wmi.AsString(row["GroupComponent"])
+		out[i].PartComponent = wmi.AsString(row["PartComponent"])
 	}
 	return out, nil
 }
@@ -12731,8 +12613,8 @@ func QueryMSFTNetConSecRuleMMAuthSet(svc *wmi.Service, where string) ([]MSFTNetC
 // MSFTNetConSecRuleQMCryptoSet is the MSFT_NetConSecRuleQMCryptoSet CIM class.
 type MSFTNetConSecRuleQMCryptoSet struct {
 	ActionOrder    uint16 `cim:"ActionOrder"`
-	GroupComponent any    `cim:"GroupComponent"`
-	PartComponent  any    `cim:"PartComponent"`
+	GroupComponent string `cim:"GroupComponent"`
+	PartComponent  string `cim:"PartComponent"`
 }
 
 // QueryMSFTNetConSecRuleQMCryptoSet runs the WQL query against the class and decodes each
@@ -12749,12 +12631,8 @@ func QueryMSFTNetConSecRuleQMCryptoSet(svc *wmi.Service, where string) ([]MSFTNe
 	out := make([]MSFTNetConSecRuleQMCryptoSet, len(rows))
 	for i, row := range rows {
 		out[i].ActionOrder = wmi.AsUint16(row["ActionOrder"])
-		if v, ok := row["GroupComponent"].(any); ok {
-			out[i].GroupComponent = v
-		}
-		if v, ok := row["PartComponent"].(any); ok {
-			out[i].PartComponent = v
-		}
+		out[i].GroupComponent = wmi.AsString(row["GroupComponent"])
+		out[i].PartComponent = wmi.AsString(row["PartComponent"])
 	}
 	return out, nil
 }
@@ -12849,7 +12727,7 @@ func QueryMSFTNetDnsTransitionConfiguration(svc *wmi.Service, where string) ([]M
 
 // MSFTNetDnsTransitionConfigurationDisableResult holds the out-parameters of MSFT_NetDnsTransitionConfiguration.Disable.
 type MSFTNetDnsTransitionConfigurationDisableResult struct {
-	OutputObject any
+	OutputObject wmi.Row
 	ReturnValue  uint32
 }
 
@@ -12866,14 +12744,16 @@ func MSFTNetDnsTransitionConfigurationDisable(svc *wmi.Service, objectPath strin
 		return nil, err
 	}
 	out := &MSFTNetDnsTransitionConfigurationDisableResult{}
-	out.OutputObject = row["OutputObject"]
+	if v, ok := row["OutputObject"].(wmi.Row); ok {
+		out.OutputObject = v
+	}
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
 
 // MSFTNetDnsTransitionConfigurationEnableResult holds the out-parameters of MSFT_NetDnsTransitionConfiguration.Enable.
 type MSFTNetDnsTransitionConfigurationEnableResult struct {
-	OutputObject any
+	OutputObject wmi.Row
 	ReturnValue  uint32
 }
 
@@ -12890,14 +12770,16 @@ func MSFTNetDnsTransitionConfigurationEnable(svc *wmi.Service, objectPath string
 		return nil, err
 	}
 	out := &MSFTNetDnsTransitionConfigurationEnableResult{}
-	out.OutputObject = row["OutputObject"]
+	if v, ok := row["OutputObject"].(wmi.Row); ok {
+		out.OutputObject = v
+	}
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
 
 // MSFTNetDnsTransitionConfigurationResetResult holds the out-parameters of MSFT_NetDnsTransitionConfiguration.Reset.
 type MSFTNetDnsTransitionConfigurationResetResult struct {
-	OutputObject any
+	OutputObject wmi.Row
 	ReturnValue  uint32
 }
 
@@ -12938,7 +12820,9 @@ func MSFTNetDnsTransitionConfigurationReset(svc *wmi.Service, objectPath string,
 		return nil, err
 	}
 	out := &MSFTNetDnsTransitionConfigurationResetResult{}
-	out.OutputObject = row["OutputObject"]
+	if v, ok := row["OutputObject"].(wmi.Row); ok {
+		out.OutputObject = v
+	}
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
@@ -12948,8 +12832,8 @@ type MSFTNetDnsTransitionInterfaceAssociation struct {
 	IsCurrent      uint16 `cim:"IsCurrent"`
 	IsDefault      uint16 `cim:"IsDefault"`
 	IsNext         uint16 `cim:"IsNext"`
-	ManagedElement any    `cim:"ManagedElement"`
-	SettingData    any    `cim:"SettingData"`
+	ManagedElement string `cim:"ManagedElement"`
+	SettingData    string `cim:"SettingData"`
 }
 
 // QueryMSFTNetDnsTransitionInterfaceAssociation runs the WQL query against the class and decodes each
@@ -12968,12 +12852,8 @@ func QueryMSFTNetDnsTransitionInterfaceAssociation(svc *wmi.Service, where strin
 		out[i].IsCurrent = wmi.AsUint16(row["IsCurrent"])
 		out[i].IsDefault = wmi.AsUint16(row["IsDefault"])
 		out[i].IsNext = wmi.AsUint16(row["IsNext"])
-		if v, ok := row["ManagedElement"].(any); ok {
-			out[i].ManagedElement = v
-		}
-		if v, ok := row["SettingData"].(any); ok {
-			out[i].SettingData = v
-		}
+		out[i].ManagedElement = wmi.AsString(row["ManagedElement"])
+		out[i].SettingData = wmi.AsString(row["SettingData"])
 	}
 	return out, nil
 }
@@ -13021,8 +12901,8 @@ func QueryMSFTNetDnsTransitionMonitoring(svc *wmi.Service, where string) ([]MSFT
 
 // MSFTNetEventCaptureTargetCaptureProvider is the MSFT_NetEventCaptureTarget_CaptureProvider CIM class.
 type MSFTNetEventCaptureTargetCaptureProvider struct {
-	GroupComponent any `cim:"GroupComponent"`
-	PartComponent  any `cim:"PartComponent"`
+	GroupComponent string `cim:"GroupComponent"`
+	PartComponent  string `cim:"PartComponent"`
 }
 
 // QueryMSFTNetEventCaptureTargetCaptureProvider runs the WQL query against the class and decodes each
@@ -13038,12 +12918,8 @@ func QueryMSFTNetEventCaptureTargetCaptureProvider(svc *wmi.Service, where strin
 	}
 	out := make([]MSFTNetEventCaptureTargetCaptureProvider, len(rows))
 	for i, row := range rows {
-		if v, ok := row["GroupComponent"].(any); ok {
-			out[i].GroupComponent = v
-		}
-		if v, ok := row["PartComponent"].(any); ok {
-			out[i].PartComponent = v
-		}
+		out[i].GroupComponent = wmi.AsString(row["GroupComponent"])
+		out[i].PartComponent = wmi.AsString(row["PartComponent"])
 	}
 	return out, nil
 }
@@ -13462,8 +13338,8 @@ func MSFTNetEventSessionStop(svc *wmi.Service, objectPath string) (*MSFTNetEvent
 
 // MSFTNetEventSessionProvider is the MSFT_NetEventSession_Provider CIM class.
 type MSFTNetEventSessionProvider struct {
-	GroupComponent any `cim:"GroupComponent"`
-	PartComponent  any `cim:"PartComponent"`
+	GroupComponent string `cim:"GroupComponent"`
+	PartComponent  string `cim:"PartComponent"`
 }
 
 // QueryMSFTNetEventSessionProvider runs the WQL query against the class and decodes each
@@ -13479,12 +13355,8 @@ func QueryMSFTNetEventSessionProvider(svc *wmi.Service, where string) ([]MSFTNet
 	}
 	out := make([]MSFTNetEventSessionProvider, len(rows))
 	for i, row := range rows {
-		if v, ok := row["GroupComponent"].(any); ok {
-			out[i].GroupComponent = v
-		}
-		if v, ok := row["PartComponent"].(any); ok {
-			out[i].PartComponent = v
-		}
+		out[i].GroupComponent = wmi.AsString(row["GroupComponent"])
+		out[i].PartComponent = wmi.AsString(row["PartComponent"])
 	}
 	return out, nil
 }
@@ -13988,39 +13860,39 @@ func QueryMSFTNetFirewallHyperVProfile(svc *wmi.Service, where string) ([]MSFTNe
 
 // MSFTNetFirewallHyperVRule is the MSFT_NetFirewallHyperVRule CIM class.
 type MSFTNetFirewallHyperVRule struct {
-	Action                  uint16   `cim:"Action"`
-	Caption                 string   `cim:"Caption"`
-	CommonName              string   `cim:"CommonName"`
-	ConditionListType       uint16   `cim:"ConditionListType"`
-	CreationClassName       string   `cim:"CreationClassName"`
-	Description             string   `cim:"Description"`
-	Direction               uint16   `cim:"Direction"`
-	DisplayName             string   `cim:"DisplayName"`
-	ElementName             string   `cim:"ElementName"`
-	Enabled                 uint16   `cim:"Enabled"`
-	EnforcementStatus       uint16   `cim:"EnforcementStatus"`
-	ExecutionStrategy       uint16   `cim:"ExecutionStrategy"`
-	InstanceID              string   `cim:"InstanceID"`
-	LocalAddresses          []string `cim:"LocalAddresses"`
-	LocalPorts              []string `cim:"LocalPorts"`
-	Mandatory               bool     `cim:"Mandatory"`
-	PolicyDecisionStrategy  uint16   `cim:"PolicyDecisionStrategy"`
-	PolicyKeywords          []string `cim:"PolicyKeywords"`
-	PolicyRoles             []string `cim:"PolicyRoles"`
-	PolicyRuleName          string   `cim:"PolicyRuleName"`
-	PolicyStoreSourceType   uint16   `cim:"PolicyStoreSourceType"`
-	PortStatuses            []any    `cim:"PortStatuses"`
-	Priority                uint16   `cim:"Priority"`
-	Profiles                uint16   `cim:"Profiles"`
-	Protocol                string   `cim:"Protocol"`
-	RemoteAddresses         []string `cim:"RemoteAddresses"`
-	RemotePorts             []string `cim:"RemotePorts"`
-	RulePriority            uint16   `cim:"RulePriority"`
-	RuleUsage               string   `cim:"RuleUsage"`
-	SequencedActions        uint16   `cim:"SequencedActions"`
-	SystemCreationClassName string   `cim:"SystemCreationClassName"`
-	SystemName              string   `cim:"SystemName"`
-	VMCreatorId             string   `cim:"VMCreatorId"`
+	Action                  uint16    `cim:"Action"`
+	Caption                 string    `cim:"Caption"`
+	CommonName              string    `cim:"CommonName"`
+	ConditionListType       uint16    `cim:"ConditionListType"`
+	CreationClassName       string    `cim:"CreationClassName"`
+	Description             string    `cim:"Description"`
+	Direction               uint16    `cim:"Direction"`
+	DisplayName             string    `cim:"DisplayName"`
+	ElementName             string    `cim:"ElementName"`
+	Enabled                 uint16    `cim:"Enabled"`
+	EnforcementStatus       uint16    `cim:"EnforcementStatus"`
+	ExecutionStrategy       uint16    `cim:"ExecutionStrategy"`
+	InstanceID              string    `cim:"InstanceID"`
+	LocalAddresses          []string  `cim:"LocalAddresses"`
+	LocalPorts              []string  `cim:"LocalPorts"`
+	Mandatory               bool      `cim:"Mandatory"`
+	PolicyDecisionStrategy  uint16    `cim:"PolicyDecisionStrategy"`
+	PolicyKeywords          []string  `cim:"PolicyKeywords"`
+	PolicyRoles             []string  `cim:"PolicyRoles"`
+	PolicyRuleName          string    `cim:"PolicyRuleName"`
+	PolicyStoreSourceType   uint16    `cim:"PolicyStoreSourceType"`
+	PortStatuses            []wmi.Row `cim:"PortStatuses"`
+	Priority                uint16    `cim:"Priority"`
+	Profiles                uint16    `cim:"Profiles"`
+	Protocol                string    `cim:"Protocol"`
+	RemoteAddresses         []string  `cim:"RemoteAddresses"`
+	RemotePorts             []string  `cim:"RemotePorts"`
+	RulePriority            uint16    `cim:"RulePriority"`
+	RuleUsage               string    `cim:"RuleUsage"`
+	SequencedActions        uint16    `cim:"SequencedActions"`
+	SystemCreationClassName string    `cim:"SystemCreationClassName"`
+	SystemName              string    `cim:"SystemName"`
+	VMCreatorId             string    `cim:"VMCreatorId"`
 }
 
 // QueryMSFTNetFirewallHyperVRule runs the WQL query against the class and decodes each
@@ -14057,9 +13929,7 @@ func QueryMSFTNetFirewallHyperVRule(svc *wmi.Service, where string) ([]MSFTNetFi
 		out[i].PolicyRoles = wmi.AsStringSlice(row["PolicyRoles"])
 		out[i].PolicyRuleName = wmi.AsString(row["PolicyRuleName"])
 		out[i].PolicyStoreSourceType = wmi.AsUint16(row["PolicyStoreSourceType"])
-		if v, ok := row["PortStatuses"].([]any); ok {
-			out[i].PortStatuses = v
-		}
+		out[i].PortStatuses = wmi.AsRowSlice(row["PortStatuses"])
 		out[i].Priority = wmi.AsUint16(row["Priority"])
 		out[i].Profiles = wmi.AsUint16(row["Profiles"])
 		out[i].Protocol = wmi.AsString(row["Protocol"])
@@ -14113,7 +13983,7 @@ func MSFTNetFirewallHyperVRuleEnable(svc *wmi.Service, objectPath string) (*MSFT
 
 // MSFTNetFirewallHyperVRuleEnumerateFullResult holds the out-parameters of MSFT_NetFirewallHyperVRule.EnumerateFull.
 type MSFTNetFirewallHyperVRuleEnumerateFullResult struct {
-	Dependents  []any
+	Dependents  []wmi.Row
 	ReturnValue uint32
 }
 
@@ -14125,9 +13995,7 @@ func MSFTNetFirewallHyperVRuleEnumerateFull(svc *wmi.Service) (*MSFTNetFirewallH
 		return nil, err
 	}
 	out := &MSFTNetFirewallHyperVRuleEnumerateFullResult{}
-	if v, ok := row["Dependents"].([]any); ok {
-		out.Dependents = v
-	}
+	out.Dependents = wmi.AsRowSlice(row["Dependents"])
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
@@ -14156,8 +14024,8 @@ func MSFTNetFirewallHyperVRuleRename(svc *wmi.Service, objectPath string, newNam
 
 // MSFTNetFirewallHyperVRulePortStatus is the MSFT_NetFirewallHyperVRulePortStatus CIM class.
 type MSFTNetFirewallHyperVRulePortStatus struct {
-	Port   any    `cim:"Port"`
-	Status uint16 `cim:"Status"`
+	Port   wmi.Row `cim:"Port"`
+	Status uint16  `cim:"Status"`
 }
 
 // QueryMSFTNetFirewallHyperVRulePortStatus runs the WQL query against the class and decodes each
@@ -14173,7 +14041,7 @@ func QueryMSFTNetFirewallHyperVRulePortStatus(svc *wmi.Service, where string) ([
 	}
 	out := make([]MSFTNetFirewallHyperVRulePortStatus, len(rows))
 	for i, row := range rows {
-		if v, ok := row["Port"].(any); ok {
+		if v, ok := row["Port"].(wmi.Row); ok {
 			out[i].Port = v
 		}
 		out[i].Status = wmi.AsUint16(row["Status"])
@@ -14530,7 +14398,7 @@ func MSFTNetFirewallRuleEnable(svc *wmi.Service, objectPath string) (*MSFTNetFir
 
 // MSFTNetFirewallRuleEnumerateFullResult holds the out-parameters of MSFT_NetFirewallRule.EnumerateFull.
 type MSFTNetFirewallRuleEnumerateFullResult struct {
-	Dependents  []any
+	Dependents  []wmi.Row
 	ReturnValue uint32
 }
 
@@ -14542,9 +14410,7 @@ func MSFTNetFirewallRuleEnumerateFull(svc *wmi.Service) (*MSFTNetFirewallRuleEnu
 		return nil, err
 	}
 	out := &MSFTNetFirewallRuleEnumerateFullResult{}
-	if v, ok := row["Dependents"].([]any); ok {
-		out.Dependents = v
-	}
+	out.Dependents = wmi.AsRowSlice(row["Dependents"])
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
@@ -14573,8 +14439,8 @@ func MSFTNetFirewallRuleRename(svc *wmi.Service, objectPath string, newName stri
 
 // MSFTNetFirewallRuleFilterByAddress is the MSFT_NetFirewallRuleFilterByAddress CIM class.
 type MSFTNetFirewallRuleFilterByAddress struct {
-	GroupComponent any `cim:"GroupComponent"`
-	PartComponent  any `cim:"PartComponent"`
+	GroupComponent string `cim:"GroupComponent"`
+	PartComponent  string `cim:"PartComponent"`
 }
 
 // QueryMSFTNetFirewallRuleFilterByAddress runs the WQL query against the class and decodes each
@@ -14590,20 +14456,16 @@ func QueryMSFTNetFirewallRuleFilterByAddress(svc *wmi.Service, where string) ([]
 	}
 	out := make([]MSFTNetFirewallRuleFilterByAddress, len(rows))
 	for i, row := range rows {
-		if v, ok := row["GroupComponent"].(any); ok {
-			out[i].GroupComponent = v
-		}
-		if v, ok := row["PartComponent"].(any); ok {
-			out[i].PartComponent = v
-		}
+		out[i].GroupComponent = wmi.AsString(row["GroupComponent"])
+		out[i].PartComponent = wmi.AsString(row["PartComponent"])
 	}
 	return out, nil
 }
 
 // MSFTNetFirewallRuleFilterByApplication is the MSFT_NetFirewallRuleFilterByApplication CIM class.
 type MSFTNetFirewallRuleFilterByApplication struct {
-	GroupComponent any `cim:"GroupComponent"`
-	PartComponent  any `cim:"PartComponent"`
+	GroupComponent string `cim:"GroupComponent"`
+	PartComponent  string `cim:"PartComponent"`
 }
 
 // QueryMSFTNetFirewallRuleFilterByApplication runs the WQL query against the class and decodes each
@@ -14619,20 +14481,16 @@ func QueryMSFTNetFirewallRuleFilterByApplication(svc *wmi.Service, where string)
 	}
 	out := make([]MSFTNetFirewallRuleFilterByApplication, len(rows))
 	for i, row := range rows {
-		if v, ok := row["GroupComponent"].(any); ok {
-			out[i].GroupComponent = v
-		}
-		if v, ok := row["PartComponent"].(any); ok {
-			out[i].PartComponent = v
-		}
+		out[i].GroupComponent = wmi.AsString(row["GroupComponent"])
+		out[i].PartComponent = wmi.AsString(row["PartComponent"])
 	}
 	return out, nil
 }
 
 // MSFTNetFirewallRuleFilterByInterface is the MSFT_NetFirewallRuleFilterByInterface CIM class.
 type MSFTNetFirewallRuleFilterByInterface struct {
-	GroupComponent any `cim:"GroupComponent"`
-	PartComponent  any `cim:"PartComponent"`
+	GroupComponent string `cim:"GroupComponent"`
+	PartComponent  string `cim:"PartComponent"`
 }
 
 // QueryMSFTNetFirewallRuleFilterByInterface runs the WQL query against the class and decodes each
@@ -14648,20 +14506,16 @@ func QueryMSFTNetFirewallRuleFilterByInterface(svc *wmi.Service, where string) (
 	}
 	out := make([]MSFTNetFirewallRuleFilterByInterface, len(rows))
 	for i, row := range rows {
-		if v, ok := row["GroupComponent"].(any); ok {
-			out[i].GroupComponent = v
-		}
-		if v, ok := row["PartComponent"].(any); ok {
-			out[i].PartComponent = v
-		}
+		out[i].GroupComponent = wmi.AsString(row["GroupComponent"])
+		out[i].PartComponent = wmi.AsString(row["PartComponent"])
 	}
 	return out, nil
 }
 
 // MSFTNetFirewallRuleFilterByInterfaceType is the MSFT_NetFirewallRuleFilterByInterfaceType CIM class.
 type MSFTNetFirewallRuleFilterByInterfaceType struct {
-	GroupComponent any `cim:"GroupComponent"`
-	PartComponent  any `cim:"PartComponent"`
+	GroupComponent string `cim:"GroupComponent"`
+	PartComponent  string `cim:"PartComponent"`
 }
 
 // QueryMSFTNetFirewallRuleFilterByInterfaceType runs the WQL query against the class and decodes each
@@ -14677,20 +14531,16 @@ func QueryMSFTNetFirewallRuleFilterByInterfaceType(svc *wmi.Service, where strin
 	}
 	out := make([]MSFTNetFirewallRuleFilterByInterfaceType, len(rows))
 	for i, row := range rows {
-		if v, ok := row["GroupComponent"].(any); ok {
-			out[i].GroupComponent = v
-		}
-		if v, ok := row["PartComponent"].(any); ok {
-			out[i].PartComponent = v
-		}
+		out[i].GroupComponent = wmi.AsString(row["GroupComponent"])
+		out[i].PartComponent = wmi.AsString(row["PartComponent"])
 	}
 	return out, nil
 }
 
 // MSFTNetFirewallRuleFilterByProtocolPort is the MSFT_NetFirewallRuleFilterByProtocolPort CIM class.
 type MSFTNetFirewallRuleFilterByProtocolPort struct {
-	GroupComponent any `cim:"GroupComponent"`
-	PartComponent  any `cim:"PartComponent"`
+	GroupComponent string `cim:"GroupComponent"`
+	PartComponent  string `cim:"PartComponent"`
 }
 
 // QueryMSFTNetFirewallRuleFilterByProtocolPort runs the WQL query against the class and decodes each
@@ -14706,20 +14556,16 @@ func QueryMSFTNetFirewallRuleFilterByProtocolPort(svc *wmi.Service, where string
 	}
 	out := make([]MSFTNetFirewallRuleFilterByProtocolPort, len(rows))
 	for i, row := range rows {
-		if v, ok := row["GroupComponent"].(any); ok {
-			out[i].GroupComponent = v
-		}
-		if v, ok := row["PartComponent"].(any); ok {
-			out[i].PartComponent = v
-		}
+		out[i].GroupComponent = wmi.AsString(row["GroupComponent"])
+		out[i].PartComponent = wmi.AsString(row["PartComponent"])
 	}
 	return out, nil
 }
 
 // MSFTNetFirewallRuleFilterBySecurity is the MSFT_NetFirewallRuleFilterBySecurity CIM class.
 type MSFTNetFirewallRuleFilterBySecurity struct {
-	GroupComponent any `cim:"GroupComponent"`
-	PartComponent  any `cim:"PartComponent"`
+	GroupComponent string `cim:"GroupComponent"`
+	PartComponent  string `cim:"PartComponent"`
 }
 
 // QueryMSFTNetFirewallRuleFilterBySecurity runs the WQL query against the class and decodes each
@@ -14735,20 +14581,16 @@ func QueryMSFTNetFirewallRuleFilterBySecurity(svc *wmi.Service, where string) ([
 	}
 	out := make([]MSFTNetFirewallRuleFilterBySecurity, len(rows))
 	for i, row := range rows {
-		if v, ok := row["GroupComponent"].(any); ok {
-			out[i].GroupComponent = v
-		}
-		if v, ok := row["PartComponent"].(any); ok {
-			out[i].PartComponent = v
-		}
+		out[i].GroupComponent = wmi.AsString(row["GroupComponent"])
+		out[i].PartComponent = wmi.AsString(row["PartComponent"])
 	}
 	return out, nil
 }
 
 // MSFTNetFirewallRuleFilterByService is the MSFT_NetFirewallRuleFilterByService CIM class.
 type MSFTNetFirewallRuleFilterByService struct {
-	GroupComponent any `cim:"GroupComponent"`
-	PartComponent  any `cim:"PartComponent"`
+	GroupComponent string `cim:"GroupComponent"`
+	PartComponent  string `cim:"PartComponent"`
 }
 
 // QueryMSFTNetFirewallRuleFilterByService runs the WQL query against the class and decodes each
@@ -14764,20 +14606,16 @@ func QueryMSFTNetFirewallRuleFilterByService(svc *wmi.Service, where string) ([]
 	}
 	out := make([]MSFTNetFirewallRuleFilterByService, len(rows))
 	for i, row := range rows {
-		if v, ok := row["GroupComponent"].(any); ok {
-			out[i].GroupComponent = v
-		}
-		if v, ok := row["PartComponent"].(any); ok {
-			out[i].PartComponent = v
-		}
+		out[i].GroupComponent = wmi.AsString(row["GroupComponent"])
+		out[i].PartComponent = wmi.AsString(row["PartComponent"])
 	}
 	return out, nil
 }
 
 // MSFTNetFirewallRuleFilters is the MSFT_NetFirewallRuleFilters CIM class.
 type MSFTNetFirewallRuleFilters struct {
-	GroupComponent any `cim:"GroupComponent"`
-	PartComponent  any `cim:"PartComponent"`
+	GroupComponent string `cim:"GroupComponent"`
+	PartComponent  string `cim:"PartComponent"`
 }
 
 // QueryMSFTNetFirewallRuleFilters runs the WQL query against the class and decodes each
@@ -14793,20 +14631,16 @@ func QueryMSFTNetFirewallRuleFilters(svc *wmi.Service, where string) ([]MSFTNetF
 	}
 	out := make([]MSFTNetFirewallRuleFilters, len(rows))
 	for i, row := range rows {
-		if v, ok := row["GroupComponent"].(any); ok {
-			out[i].GroupComponent = v
-		}
-		if v, ok := row["PartComponent"].(any); ok {
-			out[i].PartComponent = v
-		}
+		out[i].GroupComponent = wmi.AsString(row["GroupComponent"])
+		out[i].PartComponent = wmi.AsString(row["PartComponent"])
 	}
 	return out, nil
 }
 
 // MSFTNetFirewallRuleInProfile is the MSFT_NetFirewallRuleInProfile CIM class.
 type MSFTNetFirewallRuleInProfile struct {
-	GroupComponent any    `cim:"GroupComponent"`
-	PartComponent  any    `cim:"PartComponent"`
+	GroupComponent string `cim:"GroupComponent"`
+	PartComponent  string `cim:"PartComponent"`
 	Priority       uint16 `cim:"Priority"`
 }
 
@@ -14823,12 +14657,8 @@ func QueryMSFTNetFirewallRuleInProfile(svc *wmi.Service, where string) ([]MSFTNe
 	}
 	out := make([]MSFTNetFirewallRuleInProfile, len(rows))
 	for i, row := range rows {
-		if v, ok := row["GroupComponent"].(any); ok {
-			out[i].GroupComponent = v
-		}
-		if v, ok := row["PartComponent"].(any); ok {
-			out[i].PartComponent = v
-		}
+		out[i].GroupComponent = wmi.AsString(row["GroupComponent"])
+		out[i].PartComponent = wmi.AsString(row["PartComponent"])
 		out[i].Priority = wmi.AsUint16(row["Priority"])
 	}
 	return out, nil
@@ -14961,37 +14791,37 @@ func QueryMSFTNetIKEAuthProposal(svc *wmi.Service, where string) ([]MSFTNetIKEAu
 
 // MSFTNetIKEAuthSet is the MSFT_NetIKEAuthSet CIM class.
 type MSFTNetIKEAuthSet struct {
-	AggressiveModeGroupID       uint16   `cim:"AggressiveModeGroupID"`
-	Caption                     string   `cim:"Caption"`
-	CommonName                  string   `cim:"CommonName"`
-	CreationClassName           string   `cim:"CreationClassName"`
-	Description                 string   `cim:"Description"`
-	DisplayGroup                string   `cim:"DisplayGroup"`
-	DisplayName                 string   `cim:"DisplayName"`
-	DoActionLogging             bool     `cim:"DoActionLogging"`
-	DoPacketLogging             bool     `cim:"DoPacketLogging"`
-	ElementName                 string   `cim:"ElementName"`
-	EnforcementStatus           []uint16 `cim:"EnforcementStatus"`
-	ExchangeMode                uint16   `cim:"ExchangeMode"`
-	IdleDurationSeconds         uint64   `cim:"IdleDurationSeconds"`
-	InstanceID                  string   `cim:"InstanceID"`
-	MinLifetimeKilobytes        uint64   `cim:"MinLifetimeKilobytes"`
-	MinLifetimeSeconds          uint64   `cim:"MinLifetimeSeconds"`
-	PolicyActionName            string   `cim:"PolicyActionName"`
-	PolicyKeywords              []string `cim:"PolicyKeywords"`
-	PolicyRuleCreationClassName string   `cim:"PolicyRuleCreationClassName"`
-	PolicyRuleName              string   `cim:"PolicyRuleName"`
-	PolicyStoreSource           string   `cim:"PolicyStoreSource"`
-	PolicyStoreSourceType       uint16   `cim:"PolicyStoreSourceType"`
-	PrimaryStatus               uint16   `cim:"PrimaryStatus"`
-	Proposals                   []any    `cim:"Proposals"`
-	RuleGroup                   string   `cim:"RuleGroup"`
-	Status                      string   `cim:"Status"`
-	StatusCode                  uint32   `cim:"StatusCode"`
-	SystemCreationClassName     string   `cim:"SystemCreationClassName"`
-	SystemName                  string   `cim:"SystemName"`
-	UseIKEIdentityType          uint16   `cim:"UseIKEIdentityType"`
-	VendorID                    string   `cim:"VendorID"`
+	AggressiveModeGroupID       uint16    `cim:"AggressiveModeGroupID"`
+	Caption                     string    `cim:"Caption"`
+	CommonName                  string    `cim:"CommonName"`
+	CreationClassName           string    `cim:"CreationClassName"`
+	Description                 string    `cim:"Description"`
+	DisplayGroup                string    `cim:"DisplayGroup"`
+	DisplayName                 string    `cim:"DisplayName"`
+	DoActionLogging             bool      `cim:"DoActionLogging"`
+	DoPacketLogging             bool      `cim:"DoPacketLogging"`
+	ElementName                 string    `cim:"ElementName"`
+	EnforcementStatus           []uint16  `cim:"EnforcementStatus"`
+	ExchangeMode                uint16    `cim:"ExchangeMode"`
+	IdleDurationSeconds         uint64    `cim:"IdleDurationSeconds"`
+	InstanceID                  string    `cim:"InstanceID"`
+	MinLifetimeKilobytes        uint64    `cim:"MinLifetimeKilobytes"`
+	MinLifetimeSeconds          uint64    `cim:"MinLifetimeSeconds"`
+	PolicyActionName            string    `cim:"PolicyActionName"`
+	PolicyKeywords              []string  `cim:"PolicyKeywords"`
+	PolicyRuleCreationClassName string    `cim:"PolicyRuleCreationClassName"`
+	PolicyRuleName              string    `cim:"PolicyRuleName"`
+	PolicyStoreSource           string    `cim:"PolicyStoreSource"`
+	PolicyStoreSourceType       uint16    `cim:"PolicyStoreSourceType"`
+	PrimaryStatus               uint16    `cim:"PrimaryStatus"`
+	Proposals                   []wmi.Row `cim:"Proposals"`
+	RuleGroup                   string    `cim:"RuleGroup"`
+	Status                      string    `cim:"Status"`
+	StatusCode                  uint32    `cim:"StatusCode"`
+	SystemCreationClassName     string    `cim:"SystemCreationClassName"`
+	SystemName                  string    `cim:"SystemName"`
+	UseIKEIdentityType          uint16    `cim:"UseIKEIdentityType"`
+	VendorID                    string    `cim:"VendorID"`
 }
 
 // QueryMSFTNetIKEAuthSet runs the WQL query against the class and decodes each
@@ -15030,9 +14860,7 @@ func QueryMSFTNetIKEAuthSet(svc *wmi.Service, where string) ([]MSFTNetIKEAuthSet
 		out[i].PolicyStoreSource = wmi.AsString(row["PolicyStoreSource"])
 		out[i].PolicyStoreSourceType = wmi.AsUint16(row["PolicyStoreSourceType"])
 		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		if v, ok := row["Proposals"].([]any); ok {
-			out[i].Proposals = v
-		}
+		out[i].Proposals = wmi.AsRowSlice(row["Proposals"])
 		out[i].RuleGroup = wmi.AsString(row["RuleGroup"])
 		out[i].Status = wmi.AsString(row["Status"])
 		out[i].StatusCode = wmi.AsUint32(row["StatusCode"])
@@ -15217,37 +15045,37 @@ func QueryMSFTNetIKECryptoProposal(svc *wmi.Service, where string) ([]MSFTNetIKE
 
 // MSFTNetIKECryptoSet is the MSFT_NetIKECryptoSet CIM class.
 type MSFTNetIKECryptoSet struct {
-	AggressiveModeGroupID       uint16   `cim:"AggressiveModeGroupID"`
-	Caption                     string   `cim:"Caption"`
-	CommonName                  string   `cim:"CommonName"`
-	CreationClassName           string   `cim:"CreationClassName"`
-	Description                 string   `cim:"Description"`
-	DisplayGroup                string   `cim:"DisplayGroup"`
-	DisplayName                 string   `cim:"DisplayName"`
-	DoActionLogging             bool     `cim:"DoActionLogging"`
-	DoPacketLogging             bool     `cim:"DoPacketLogging"`
-	ElementName                 string   `cim:"ElementName"`
-	EnforcementStatus           []uint16 `cim:"EnforcementStatus"`
-	ExchangeMode                uint16   `cim:"ExchangeMode"`
-	IdleDurationSeconds         uint64   `cim:"IdleDurationSeconds"`
-	InstanceID                  string   `cim:"InstanceID"`
-	MinLifetimeKilobytes        uint64   `cim:"MinLifetimeKilobytes"`
-	MinLifetimeSeconds          uint64   `cim:"MinLifetimeSeconds"`
-	PolicyActionName            string   `cim:"PolicyActionName"`
-	PolicyKeywords              []string `cim:"PolicyKeywords"`
-	PolicyRuleCreationClassName string   `cim:"PolicyRuleCreationClassName"`
-	PolicyRuleName              string   `cim:"PolicyRuleName"`
-	PolicyStoreSource           string   `cim:"PolicyStoreSource"`
-	PolicyStoreSourceType       uint16   `cim:"PolicyStoreSourceType"`
-	PrimaryStatus               uint16   `cim:"PrimaryStatus"`
-	Proposals                   []any    `cim:"Proposals"`
-	RuleGroup                   string   `cim:"RuleGroup"`
-	Status                      string   `cim:"Status"`
-	StatusCode                  uint32   `cim:"StatusCode"`
-	SystemCreationClassName     string   `cim:"SystemCreationClassName"`
-	SystemName                  string   `cim:"SystemName"`
-	UseIKEIdentityType          uint16   `cim:"UseIKEIdentityType"`
-	VendorID                    string   `cim:"VendorID"`
+	AggressiveModeGroupID       uint16    `cim:"AggressiveModeGroupID"`
+	Caption                     string    `cim:"Caption"`
+	CommonName                  string    `cim:"CommonName"`
+	CreationClassName           string    `cim:"CreationClassName"`
+	Description                 string    `cim:"Description"`
+	DisplayGroup                string    `cim:"DisplayGroup"`
+	DisplayName                 string    `cim:"DisplayName"`
+	DoActionLogging             bool      `cim:"DoActionLogging"`
+	DoPacketLogging             bool      `cim:"DoPacketLogging"`
+	ElementName                 string    `cim:"ElementName"`
+	EnforcementStatus           []uint16  `cim:"EnforcementStatus"`
+	ExchangeMode                uint16    `cim:"ExchangeMode"`
+	IdleDurationSeconds         uint64    `cim:"IdleDurationSeconds"`
+	InstanceID                  string    `cim:"InstanceID"`
+	MinLifetimeKilobytes        uint64    `cim:"MinLifetimeKilobytes"`
+	MinLifetimeSeconds          uint64    `cim:"MinLifetimeSeconds"`
+	PolicyActionName            string    `cim:"PolicyActionName"`
+	PolicyKeywords              []string  `cim:"PolicyKeywords"`
+	PolicyRuleCreationClassName string    `cim:"PolicyRuleCreationClassName"`
+	PolicyRuleName              string    `cim:"PolicyRuleName"`
+	PolicyStoreSource           string    `cim:"PolicyStoreSource"`
+	PolicyStoreSourceType       uint16    `cim:"PolicyStoreSourceType"`
+	PrimaryStatus               uint16    `cim:"PrimaryStatus"`
+	Proposals                   []wmi.Row `cim:"Proposals"`
+	RuleGroup                   string    `cim:"RuleGroup"`
+	Status                      string    `cim:"Status"`
+	StatusCode                  uint32    `cim:"StatusCode"`
+	SystemCreationClassName     string    `cim:"SystemCreationClassName"`
+	SystemName                  string    `cim:"SystemName"`
+	UseIKEIdentityType          uint16    `cim:"UseIKEIdentityType"`
+	VendorID                    string    `cim:"VendorID"`
 }
 
 // QueryMSFTNetIKECryptoSet runs the WQL query against the class and decodes each
@@ -15286,9 +15114,7 @@ func QueryMSFTNetIKECryptoSet(svc *wmi.Service, where string) ([]MSFTNetIKECrypt
 		out[i].PolicyStoreSource = wmi.AsString(row["PolicyStoreSource"])
 		out[i].PolicyStoreSourceType = wmi.AsUint16(row["PolicyStoreSourceType"])
 		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		if v, ok := row["Proposals"].([]any); ok {
-			out[i].Proposals = v
-		}
+		out[i].Proposals = wmi.AsRowSlice(row["Proposals"])
 		out[i].RuleGroup = wmi.AsString(row["RuleGroup"])
 		out[i].Status = wmi.AsString(row["Status"])
 		out[i].StatusCode = wmi.AsUint32(row["StatusCode"])
@@ -15402,40 +15228,40 @@ func QueryMSFTNetIKEMMCryptoProposal(svc *wmi.Service, where string) ([]MSFTNetI
 
 // MSFTNetIKEMMCryptoSet is the MSFT_NetIKEMMCryptoSet CIM class.
 type MSFTNetIKEMMCryptoSet struct {
-	AggressiveModeGroupID       uint16   `cim:"AggressiveModeGroupID"`
-	Caption                     string   `cim:"Caption"`
-	CommonName                  string   `cim:"CommonName"`
-	CreationClassName           string   `cim:"CreationClassName"`
-	Description                 string   `cim:"Description"`
-	DisplayGroup                string   `cim:"DisplayGroup"`
-	DisplayName                 string   `cim:"DisplayName"`
-	DoActionLogging             bool     `cim:"DoActionLogging"`
-	DoPacketLogging             bool     `cim:"DoPacketLogging"`
-	ElementName                 string   `cim:"ElementName"`
-	EnforcementStatus           []uint16 `cim:"EnforcementStatus"`
-	ExchangeMode                uint16   `cim:"ExchangeMode"`
-	ForceDiffieHellman          bool     `cim:"ForceDiffieHellman"`
-	IdleDurationSeconds         uint64   `cim:"IdleDurationSeconds"`
-	InstanceID                  string   `cim:"InstanceID"`
-	MaxLifetimeMinutes          uint32   `cim:"MaxLifetimeMinutes"`
-	MaxLifetimeSessions         uint32   `cim:"MaxLifetimeSessions"`
-	MinLifetimeKilobytes        uint64   `cim:"MinLifetimeKilobytes"`
-	MinLifetimeSeconds          uint64   `cim:"MinLifetimeSeconds"`
-	PolicyActionName            string   `cim:"PolicyActionName"`
-	PolicyKeywords              []string `cim:"PolicyKeywords"`
-	PolicyRuleCreationClassName string   `cim:"PolicyRuleCreationClassName"`
-	PolicyRuleName              string   `cim:"PolicyRuleName"`
-	PolicyStoreSource           string   `cim:"PolicyStoreSource"`
-	PolicyStoreSourceType       uint16   `cim:"PolicyStoreSourceType"`
-	PrimaryStatus               uint16   `cim:"PrimaryStatus"`
-	Proposals                   []any    `cim:"Proposals"`
-	RuleGroup                   string   `cim:"RuleGroup"`
-	Status                      string   `cim:"Status"`
-	StatusCode                  uint32   `cim:"StatusCode"`
-	SystemCreationClassName     string   `cim:"SystemCreationClassName"`
-	SystemName                  string   `cim:"SystemName"`
-	UseIKEIdentityType          uint16   `cim:"UseIKEIdentityType"`
-	VendorID                    string   `cim:"VendorID"`
+	AggressiveModeGroupID       uint16    `cim:"AggressiveModeGroupID"`
+	Caption                     string    `cim:"Caption"`
+	CommonName                  string    `cim:"CommonName"`
+	CreationClassName           string    `cim:"CreationClassName"`
+	Description                 string    `cim:"Description"`
+	DisplayGroup                string    `cim:"DisplayGroup"`
+	DisplayName                 string    `cim:"DisplayName"`
+	DoActionLogging             bool      `cim:"DoActionLogging"`
+	DoPacketLogging             bool      `cim:"DoPacketLogging"`
+	ElementName                 string    `cim:"ElementName"`
+	EnforcementStatus           []uint16  `cim:"EnforcementStatus"`
+	ExchangeMode                uint16    `cim:"ExchangeMode"`
+	ForceDiffieHellman          bool      `cim:"ForceDiffieHellman"`
+	IdleDurationSeconds         uint64    `cim:"IdleDurationSeconds"`
+	InstanceID                  string    `cim:"InstanceID"`
+	MaxLifetimeMinutes          uint32    `cim:"MaxLifetimeMinutes"`
+	MaxLifetimeSessions         uint32    `cim:"MaxLifetimeSessions"`
+	MinLifetimeKilobytes        uint64    `cim:"MinLifetimeKilobytes"`
+	MinLifetimeSeconds          uint64    `cim:"MinLifetimeSeconds"`
+	PolicyActionName            string    `cim:"PolicyActionName"`
+	PolicyKeywords              []string  `cim:"PolicyKeywords"`
+	PolicyRuleCreationClassName string    `cim:"PolicyRuleCreationClassName"`
+	PolicyRuleName              string    `cim:"PolicyRuleName"`
+	PolicyStoreSource           string    `cim:"PolicyStoreSource"`
+	PolicyStoreSourceType       uint16    `cim:"PolicyStoreSourceType"`
+	PrimaryStatus               uint16    `cim:"PrimaryStatus"`
+	Proposals                   []wmi.Row `cim:"Proposals"`
+	RuleGroup                   string    `cim:"RuleGroup"`
+	Status                      string    `cim:"Status"`
+	StatusCode                  uint32    `cim:"StatusCode"`
+	SystemCreationClassName     string    `cim:"SystemCreationClassName"`
+	SystemName                  string    `cim:"SystemName"`
+	UseIKEIdentityType          uint16    `cim:"UseIKEIdentityType"`
+	VendorID                    string    `cim:"VendorID"`
 }
 
 // QueryMSFTNetIKEMMCryptoSet runs the WQL query against the class and decodes each
@@ -15477,9 +15303,7 @@ func QueryMSFTNetIKEMMCryptoSet(svc *wmi.Service, where string) ([]MSFTNetIKEMMC
 		out[i].PolicyStoreSource = wmi.AsString(row["PolicyStoreSource"])
 		out[i].PolicyStoreSourceType = wmi.AsUint16(row["PolicyStoreSourceType"])
 		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		if v, ok := row["Proposals"].([]any); ok {
-			out[i].Proposals = v
-		}
+		out[i].Proposals = wmi.AsRowSlice(row["Proposals"])
 		out[i].RuleGroup = wmi.AsString(row["RuleGroup"])
 		out[i].Status = wmi.AsString(row["Status"])
 		out[i].StatusCode = wmi.AsUint32(row["StatusCode"])
@@ -15546,37 +15370,37 @@ func MSFTNetIKEMMCryptoSetRename(svc *wmi.Service, objectPath string, newName st
 
 // MSFTNetIKEP1AuthSet is the MSFT_NetIKEP1AuthSet CIM class.
 type MSFTNetIKEP1AuthSet struct {
-	AggressiveModeGroupID       uint16   `cim:"AggressiveModeGroupID"`
-	Caption                     string   `cim:"Caption"`
-	CommonName                  string   `cim:"CommonName"`
-	CreationClassName           string   `cim:"CreationClassName"`
-	Description                 string   `cim:"Description"`
-	DisplayGroup                string   `cim:"DisplayGroup"`
-	DisplayName                 string   `cim:"DisplayName"`
-	DoActionLogging             bool     `cim:"DoActionLogging"`
-	DoPacketLogging             bool     `cim:"DoPacketLogging"`
-	ElementName                 string   `cim:"ElementName"`
-	EnforcementStatus           []uint16 `cim:"EnforcementStatus"`
-	ExchangeMode                uint16   `cim:"ExchangeMode"`
-	IdleDurationSeconds         uint64   `cim:"IdleDurationSeconds"`
-	InstanceID                  string   `cim:"InstanceID"`
-	MinLifetimeKilobytes        uint64   `cim:"MinLifetimeKilobytes"`
-	MinLifetimeSeconds          uint64   `cim:"MinLifetimeSeconds"`
-	PolicyActionName            string   `cim:"PolicyActionName"`
-	PolicyKeywords              []string `cim:"PolicyKeywords"`
-	PolicyRuleCreationClassName string   `cim:"PolicyRuleCreationClassName"`
-	PolicyRuleName              string   `cim:"PolicyRuleName"`
-	PolicyStoreSource           string   `cim:"PolicyStoreSource"`
-	PolicyStoreSourceType       uint16   `cim:"PolicyStoreSourceType"`
-	PrimaryStatus               uint16   `cim:"PrimaryStatus"`
-	Proposals                   []any    `cim:"Proposals"`
-	RuleGroup                   string   `cim:"RuleGroup"`
-	Status                      string   `cim:"Status"`
-	StatusCode                  uint32   `cim:"StatusCode"`
-	SystemCreationClassName     string   `cim:"SystemCreationClassName"`
-	SystemName                  string   `cim:"SystemName"`
-	UseIKEIdentityType          uint16   `cim:"UseIKEIdentityType"`
-	VendorID                    string   `cim:"VendorID"`
+	AggressiveModeGroupID       uint16    `cim:"AggressiveModeGroupID"`
+	Caption                     string    `cim:"Caption"`
+	CommonName                  string    `cim:"CommonName"`
+	CreationClassName           string    `cim:"CreationClassName"`
+	Description                 string    `cim:"Description"`
+	DisplayGroup                string    `cim:"DisplayGroup"`
+	DisplayName                 string    `cim:"DisplayName"`
+	DoActionLogging             bool      `cim:"DoActionLogging"`
+	DoPacketLogging             bool      `cim:"DoPacketLogging"`
+	ElementName                 string    `cim:"ElementName"`
+	EnforcementStatus           []uint16  `cim:"EnforcementStatus"`
+	ExchangeMode                uint16    `cim:"ExchangeMode"`
+	IdleDurationSeconds         uint64    `cim:"IdleDurationSeconds"`
+	InstanceID                  string    `cim:"InstanceID"`
+	MinLifetimeKilobytes        uint64    `cim:"MinLifetimeKilobytes"`
+	MinLifetimeSeconds          uint64    `cim:"MinLifetimeSeconds"`
+	PolicyActionName            string    `cim:"PolicyActionName"`
+	PolicyKeywords              []string  `cim:"PolicyKeywords"`
+	PolicyRuleCreationClassName string    `cim:"PolicyRuleCreationClassName"`
+	PolicyRuleName              string    `cim:"PolicyRuleName"`
+	PolicyStoreSource           string    `cim:"PolicyStoreSource"`
+	PolicyStoreSourceType       uint16    `cim:"PolicyStoreSourceType"`
+	PrimaryStatus               uint16    `cim:"PrimaryStatus"`
+	Proposals                   []wmi.Row `cim:"Proposals"`
+	RuleGroup                   string    `cim:"RuleGroup"`
+	Status                      string    `cim:"Status"`
+	StatusCode                  uint32    `cim:"StatusCode"`
+	SystemCreationClassName     string    `cim:"SystemCreationClassName"`
+	SystemName                  string    `cim:"SystemName"`
+	UseIKEIdentityType          uint16    `cim:"UseIKEIdentityType"`
+	VendorID                    string    `cim:"VendorID"`
 }
 
 // QueryMSFTNetIKEP1AuthSet runs the WQL query against the class and decodes each
@@ -15615,9 +15439,7 @@ func QueryMSFTNetIKEP1AuthSet(svc *wmi.Service, where string) ([]MSFTNetIKEP1Aut
 		out[i].PolicyStoreSource = wmi.AsString(row["PolicyStoreSource"])
 		out[i].PolicyStoreSourceType = wmi.AsUint16(row["PolicyStoreSourceType"])
 		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		if v, ok := row["Proposals"].([]any); ok {
-			out[i].Proposals = v
-		}
+		out[i].Proposals = wmi.AsRowSlice(row["Proposals"])
 		out[i].RuleGroup = wmi.AsString(row["RuleGroup"])
 		out[i].Status = wmi.AsString(row["Status"])
 		out[i].StatusCode = wmi.AsUint32(row["StatusCode"])
@@ -15684,37 +15506,37 @@ func MSFTNetIKEP1AuthSetRename(svc *wmi.Service, objectPath string, newName stri
 
 // MSFTNetIKEP2AuthSet is the MSFT_NetIKEP2AuthSet CIM class.
 type MSFTNetIKEP2AuthSet struct {
-	AggressiveModeGroupID       uint16   `cim:"AggressiveModeGroupID"`
-	Caption                     string   `cim:"Caption"`
-	CommonName                  string   `cim:"CommonName"`
-	CreationClassName           string   `cim:"CreationClassName"`
-	Description                 string   `cim:"Description"`
-	DisplayGroup                string   `cim:"DisplayGroup"`
-	DisplayName                 string   `cim:"DisplayName"`
-	DoActionLogging             bool     `cim:"DoActionLogging"`
-	DoPacketLogging             bool     `cim:"DoPacketLogging"`
-	ElementName                 string   `cim:"ElementName"`
-	EnforcementStatus           []uint16 `cim:"EnforcementStatus"`
-	ExchangeMode                uint16   `cim:"ExchangeMode"`
-	IdleDurationSeconds         uint64   `cim:"IdleDurationSeconds"`
-	InstanceID                  string   `cim:"InstanceID"`
-	MinLifetimeKilobytes        uint64   `cim:"MinLifetimeKilobytes"`
-	MinLifetimeSeconds          uint64   `cim:"MinLifetimeSeconds"`
-	PolicyActionName            string   `cim:"PolicyActionName"`
-	PolicyKeywords              []string `cim:"PolicyKeywords"`
-	PolicyRuleCreationClassName string   `cim:"PolicyRuleCreationClassName"`
-	PolicyRuleName              string   `cim:"PolicyRuleName"`
-	PolicyStoreSource           string   `cim:"PolicyStoreSource"`
-	PolicyStoreSourceType       uint16   `cim:"PolicyStoreSourceType"`
-	PrimaryStatus               uint16   `cim:"PrimaryStatus"`
-	Proposals                   []any    `cim:"Proposals"`
-	RuleGroup                   string   `cim:"RuleGroup"`
-	Status                      string   `cim:"Status"`
-	StatusCode                  uint32   `cim:"StatusCode"`
-	SystemCreationClassName     string   `cim:"SystemCreationClassName"`
-	SystemName                  string   `cim:"SystemName"`
-	UseIKEIdentityType          uint16   `cim:"UseIKEIdentityType"`
-	VendorID                    string   `cim:"VendorID"`
+	AggressiveModeGroupID       uint16    `cim:"AggressiveModeGroupID"`
+	Caption                     string    `cim:"Caption"`
+	CommonName                  string    `cim:"CommonName"`
+	CreationClassName           string    `cim:"CreationClassName"`
+	Description                 string    `cim:"Description"`
+	DisplayGroup                string    `cim:"DisplayGroup"`
+	DisplayName                 string    `cim:"DisplayName"`
+	DoActionLogging             bool      `cim:"DoActionLogging"`
+	DoPacketLogging             bool      `cim:"DoPacketLogging"`
+	ElementName                 string    `cim:"ElementName"`
+	EnforcementStatus           []uint16  `cim:"EnforcementStatus"`
+	ExchangeMode                uint16    `cim:"ExchangeMode"`
+	IdleDurationSeconds         uint64    `cim:"IdleDurationSeconds"`
+	InstanceID                  string    `cim:"InstanceID"`
+	MinLifetimeKilobytes        uint64    `cim:"MinLifetimeKilobytes"`
+	MinLifetimeSeconds          uint64    `cim:"MinLifetimeSeconds"`
+	PolicyActionName            string    `cim:"PolicyActionName"`
+	PolicyKeywords              []string  `cim:"PolicyKeywords"`
+	PolicyRuleCreationClassName string    `cim:"PolicyRuleCreationClassName"`
+	PolicyRuleName              string    `cim:"PolicyRuleName"`
+	PolicyStoreSource           string    `cim:"PolicyStoreSource"`
+	PolicyStoreSourceType       uint16    `cim:"PolicyStoreSourceType"`
+	PrimaryStatus               uint16    `cim:"PrimaryStatus"`
+	Proposals                   []wmi.Row `cim:"Proposals"`
+	RuleGroup                   string    `cim:"RuleGroup"`
+	Status                      string    `cim:"Status"`
+	StatusCode                  uint32    `cim:"StatusCode"`
+	SystemCreationClassName     string    `cim:"SystemCreationClassName"`
+	SystemName                  string    `cim:"SystemName"`
+	UseIKEIdentityType          uint16    `cim:"UseIKEIdentityType"`
+	VendorID                    string    `cim:"VendorID"`
 }
 
 // QueryMSFTNetIKEP2AuthSet runs the WQL query against the class and decodes each
@@ -15753,9 +15575,7 @@ func QueryMSFTNetIKEP2AuthSet(svc *wmi.Service, where string) ([]MSFTNetIKEP2Aut
 		out[i].PolicyStoreSource = wmi.AsString(row["PolicyStoreSource"])
 		out[i].PolicyStoreSourceType = wmi.AsUint16(row["PolicyStoreSourceType"])
 		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		if v, ok := row["Proposals"].([]any); ok {
-			out[i].Proposals = v
-		}
+		out[i].Proposals = wmi.AsRowSlice(row["Proposals"])
 		out[i].RuleGroup = wmi.AsString(row["RuleGroup"])
 		out[i].Status = wmi.AsString(row["Status"])
 		out[i].StatusCode = wmi.AsUint32(row["StatusCode"])
@@ -15930,38 +15750,38 @@ func QueryMSFTNetIKEQMCryptoProposal(svc *wmi.Service, where string) ([]MSFTNetI
 
 // MSFTNetIKEQMCryptoSet is the MSFT_NetIKEQMCryptoSet CIM class.
 type MSFTNetIKEQMCryptoSet struct {
-	AggressiveModeGroupID       uint16   `cim:"AggressiveModeGroupID"`
-	Caption                     string   `cim:"Caption"`
-	CommonName                  string   `cim:"CommonName"`
-	CreationClassName           string   `cim:"CreationClassName"`
-	Description                 string   `cim:"Description"`
-	DisplayGroup                string   `cim:"DisplayGroup"`
-	DisplayName                 string   `cim:"DisplayName"`
-	DoActionLogging             bool     `cim:"DoActionLogging"`
-	DoPacketLogging             bool     `cim:"DoPacketLogging"`
-	ElementName                 string   `cim:"ElementName"`
-	EnforcementStatus           []uint16 `cim:"EnforcementStatus"`
-	ExchangeMode                uint16   `cim:"ExchangeMode"`
-	IdleDurationSeconds         uint64   `cim:"IdleDurationSeconds"`
-	InstanceID                  string   `cim:"InstanceID"`
-	MinLifetimeKilobytes        uint64   `cim:"MinLifetimeKilobytes"`
-	MinLifetimeSeconds          uint64   `cim:"MinLifetimeSeconds"`
-	PfsGroupID                  uint16   `cim:"PfsGroupID"`
-	PolicyActionName            string   `cim:"PolicyActionName"`
-	PolicyKeywords              []string `cim:"PolicyKeywords"`
-	PolicyRuleCreationClassName string   `cim:"PolicyRuleCreationClassName"`
-	PolicyRuleName              string   `cim:"PolicyRuleName"`
-	PolicyStoreSource           string   `cim:"PolicyStoreSource"`
-	PolicyStoreSourceType       uint16   `cim:"PolicyStoreSourceType"`
-	PrimaryStatus               uint16   `cim:"PrimaryStatus"`
-	Proposals                   []any    `cim:"Proposals"`
-	RuleGroup                   string   `cim:"RuleGroup"`
-	Status                      string   `cim:"Status"`
-	StatusCode                  uint32   `cim:"StatusCode"`
-	SystemCreationClassName     string   `cim:"SystemCreationClassName"`
-	SystemName                  string   `cim:"SystemName"`
-	UseIKEIdentityType          uint16   `cim:"UseIKEIdentityType"`
-	VendorID                    string   `cim:"VendorID"`
+	AggressiveModeGroupID       uint16    `cim:"AggressiveModeGroupID"`
+	Caption                     string    `cim:"Caption"`
+	CommonName                  string    `cim:"CommonName"`
+	CreationClassName           string    `cim:"CreationClassName"`
+	Description                 string    `cim:"Description"`
+	DisplayGroup                string    `cim:"DisplayGroup"`
+	DisplayName                 string    `cim:"DisplayName"`
+	DoActionLogging             bool      `cim:"DoActionLogging"`
+	DoPacketLogging             bool      `cim:"DoPacketLogging"`
+	ElementName                 string    `cim:"ElementName"`
+	EnforcementStatus           []uint16  `cim:"EnforcementStatus"`
+	ExchangeMode                uint16    `cim:"ExchangeMode"`
+	IdleDurationSeconds         uint64    `cim:"IdleDurationSeconds"`
+	InstanceID                  string    `cim:"InstanceID"`
+	MinLifetimeKilobytes        uint64    `cim:"MinLifetimeKilobytes"`
+	MinLifetimeSeconds          uint64    `cim:"MinLifetimeSeconds"`
+	PfsGroupID                  uint16    `cim:"PfsGroupID"`
+	PolicyActionName            string    `cim:"PolicyActionName"`
+	PolicyKeywords              []string  `cim:"PolicyKeywords"`
+	PolicyRuleCreationClassName string    `cim:"PolicyRuleCreationClassName"`
+	PolicyRuleName              string    `cim:"PolicyRuleName"`
+	PolicyStoreSource           string    `cim:"PolicyStoreSource"`
+	PolicyStoreSourceType       uint16    `cim:"PolicyStoreSourceType"`
+	PrimaryStatus               uint16    `cim:"PrimaryStatus"`
+	Proposals                   []wmi.Row `cim:"Proposals"`
+	RuleGroup                   string    `cim:"RuleGroup"`
+	Status                      string    `cim:"Status"`
+	StatusCode                  uint32    `cim:"StatusCode"`
+	SystemCreationClassName     string    `cim:"SystemCreationClassName"`
+	SystemName                  string    `cim:"SystemName"`
+	UseIKEIdentityType          uint16    `cim:"UseIKEIdentityType"`
+	VendorID                    string    `cim:"VendorID"`
 }
 
 // QueryMSFTNetIKEQMCryptoSet runs the WQL query against the class and decodes each
@@ -16001,9 +15821,7 @@ func QueryMSFTNetIKEQMCryptoSet(svc *wmi.Service, where string) ([]MSFTNetIKEQMC
 		out[i].PolicyStoreSource = wmi.AsString(row["PolicyStoreSource"])
 		out[i].PolicyStoreSourceType = wmi.AsUint16(row["PolicyStoreSourceType"])
 		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		if v, ok := row["Proposals"].([]any); ok {
-			out[i].Proposals = v
-		}
+		out[i].Proposals = wmi.AsRowSlice(row["Proposals"])
 		out[i].RuleGroup = wmi.AsString(row["RuleGroup"])
 		out[i].Status = wmi.AsString(row["Status"])
 		out[i].StatusCode = wmi.AsUint32(row["StatusCode"])
@@ -16187,7 +16005,7 @@ func QueryMSFTNetIPAddress(svc *wmi.Service, where string) ([]MSFTNetIPAddress, 
 
 // MSFTNetIPAddressCreateResult holds the out-parameters of MSFT_NetIPAddress.Create.
 type MSFTNetIPAddressCreateResult struct {
-	CmdletOutput []any
+	CmdletOutput []wmi.Row
 	ReturnValue  uint32
 }
 
@@ -16245,16 +16063,14 @@ func MSFTNetIPAddressCreate(svc *wmi.Service, interfaceIndex uint32, interfaceAl
 		return nil, err
 	}
 	out := &MSFTNetIPAddressCreateResult{}
-	if v, ok := row["CmdletOutput"].([]any); ok {
-		out.CmdletOutput = v
-	}
+	out.CmdletOutput = wmi.AsRowSlice(row["CmdletOutput"])
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
 
 // MSFTNetIPAddressRequestStateChangeResult holds the out-parameters of MSFT_NetIPAddress.RequestStateChange.
 type MSFTNetIPAddressRequestStateChangeResult struct {
-	Job         any
+	Job         string
 	ReturnValue uint32
 }
 
@@ -16274,7 +16090,7 @@ func MSFTNetIPAddressRequestStateChange(svc *wmi.Service, objectPath string, req
 		return nil, err
 	}
 	out := &MSFTNetIPAddressRequestStateChangeResult{}
-	out.Job = row["Job"]
+	out.Job = wmi.AsString(row["Job"])
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
@@ -16416,7 +16232,7 @@ func MSFTNetIPHttpsConfigurationRemoveCertBinding(svc *wmi.Service) (*MSFTNetIPH
 
 // MSFTNetIPHttpsConfigurationRenameResult holds the out-parameters of MSFT_NetIPHttpsConfiguration.Rename.
 type MSFTNetIPHttpsConfigurationRenameResult struct {
-	OutputObject any
+	OutputObject wmi.Row
 	ReturnValue  uint32
 }
 
@@ -16436,14 +16252,16 @@ func MSFTNetIPHttpsConfigurationRename(svc *wmi.Service, objectPath string, newN
 		return nil, err
 	}
 	out := &MSFTNetIPHttpsConfigurationRenameResult{}
-	out.OutputObject = row["OutputObject"]
+	if v, ok := row["OutputObject"].(wmi.Row); ok {
+		out.OutputObject = v
+	}
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
 
 // MSFTNetIPHttpsConfigurationResetResult holds the out-parameters of MSFT_NetIPHttpsConfiguration.Reset.
 type MSFTNetIPHttpsConfigurationResetResult struct {
-	OutputObject any
+	OutputObject wmi.Row
 	ReturnValue  uint32
 }
 
@@ -16469,7 +16287,9 @@ func MSFTNetIPHttpsConfigurationReset(svc *wmi.Service, objectPath string, state
 		return nil, err
 	}
 	out := &MSFTNetIPHttpsConfigurationResetResult{}
-	out.OutputObject = row["OutputObject"]
+	if v, ok := row["OutputObject"].(wmi.Row); ok {
+		out.OutputObject = v
+	}
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
@@ -16481,8 +16301,8 @@ type MSFTNetIPHttpsState struct {
 	IsDefault       uint16 `cim:"IsDefault"`
 	IsNext          uint16 `cim:"IsNext"`
 	LastErrorCode   uint32 `cim:"LastErrorCode"`
-	ManagedElement  any    `cim:"ManagedElement"`
-	SettingData     any    `cim:"SettingData"`
+	ManagedElement  string `cim:"ManagedElement"`
+	SettingData     string `cim:"SettingData"`
 }
 
 // QueryMSFTNetIPHttpsState runs the WQL query against the class and decodes each
@@ -16503,12 +16323,8 @@ func QueryMSFTNetIPHttpsState(svc *wmi.Service, where string) ([]MSFTNetIPHttpsS
 		out[i].IsDefault = wmi.AsUint16(row["IsDefault"])
 		out[i].IsNext = wmi.AsUint16(row["IsNext"])
 		out[i].LastErrorCode = wmi.AsUint32(row["LastErrorCode"])
-		if v, ok := row["ManagedElement"].(any); ok {
-			out[i].ManagedElement = v
-		}
-		if v, ok := row["SettingData"].(any); ok {
-			out[i].SettingData = v
-		}
+		out[i].ManagedElement = wmi.AsString(row["ManagedElement"])
+		out[i].SettingData = wmi.AsString(row["SettingData"])
 	}
 	return out, nil
 }
@@ -16674,7 +16490,7 @@ func QueryMSFTNetIPInterface(svc *wmi.Service, where string) ([]MSFTNetIPInterfa
 
 // MSFTNetIPInterfaceRequestStateChangeResult holds the out-parameters of MSFT_NetIPInterface.RequestStateChange.
 type MSFTNetIPInterfaceRequestStateChangeResult struct {
-	Job         any
+	Job         string
 	ReturnValue uint32
 }
 
@@ -16694,15 +16510,15 @@ func MSFTNetIPInterfaceRequestStateChange(svc *wmi.Service, objectPath string, r
 		return nil, err
 	}
 	out := &MSFTNetIPInterfaceRequestStateChangeResult{}
-	out.Job = row["Job"]
+	out.Job = wmi.AsString(row["Job"])
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
 
 // MSFTNetIPInterfaceAdapter is the MSFT_NetIPInterfaceAdapter CIM class.
 type MSFTNetIPInterfaceAdapter struct {
-	Antecedent any `cim:"Antecedent"`
-	Dependent  any `cim:"Dependent"`
+	Antecedent string `cim:"Antecedent"`
+	Dependent  string `cim:"Dependent"`
 }
 
 // QueryMSFTNetIPInterfaceAdapter runs the WQL query against the class and decodes each
@@ -16718,20 +16534,16 @@ func QueryMSFTNetIPInterfaceAdapter(svc *wmi.Service, where string) ([]MSFTNetIP
 	}
 	out := make([]MSFTNetIPInterfaceAdapter, len(rows))
 	for i, row := range rows {
-		if v, ok := row["Antecedent"].(any); ok {
-			out[i].Antecedent = v
-		}
-		if v, ok := row["Dependent"].(any); ok {
-			out[i].Dependent = v
-		}
+		out[i].Antecedent = wmi.AsString(row["Antecedent"])
+		out[i].Dependent = wmi.AsString(row["Dependent"])
 	}
 	return out, nil
 }
 
 // MSFTNetIPInterfaceIPAddress is the MSFT_NetIPInterfaceIPAddress CIM class.
 type MSFTNetIPInterfaceIPAddress struct {
-	Antecedent any    `cim:"Antecedent"`
-	Dependent  any    `cim:"Dependent"`
+	Antecedent string `cim:"Antecedent"`
+	Dependent  string `cim:"Dependent"`
 	FrameType  uint16 `cim:"FrameType"`
 }
 
@@ -16748,12 +16560,8 @@ func QueryMSFTNetIPInterfaceIPAddress(svc *wmi.Service, where string) ([]MSFTNet
 	}
 	out := make([]MSFTNetIPInterfaceIPAddress, len(rows))
 	for i, row := range rows {
-		if v, ok := row["Antecedent"].(any); ok {
-			out[i].Antecedent = v
-		}
-		if v, ok := row["Dependent"].(any); ok {
-			out[i].Dependent = v
-		}
+		out[i].Antecedent = wmi.AsString(row["Antecedent"])
+		out[i].Dependent = wmi.AsString(row["Dependent"])
 		out[i].FrameType = wmi.AsUint16(row["FrameType"])
 	}
 	return out, nil
@@ -16761,8 +16569,8 @@ func QueryMSFTNetIPInterfaceIPAddress(svc *wmi.Service, where string) ([]MSFTNet
 
 // MSFTNetIPInterfaceNeighbor is the MSFT_NetIPInterfaceNeighbor CIM class.
 type MSFTNetIPInterfaceNeighbor struct {
-	Antecedent any    `cim:"Antecedent"`
-	Dependent  any    `cim:"Dependent"`
+	Antecedent string `cim:"Antecedent"`
+	Dependent  string `cim:"Dependent"`
 	FrameType  uint16 `cim:"FrameType"`
 }
 
@@ -16779,12 +16587,8 @@ func QueryMSFTNetIPInterfaceNeighbor(svc *wmi.Service, where string) ([]MSFTNetI
 	}
 	out := make([]MSFTNetIPInterfaceNeighbor, len(rows))
 	for i, row := range rows {
-		if v, ok := row["Antecedent"].(any); ok {
-			out[i].Antecedent = v
-		}
-		if v, ok := row["Dependent"].(any); ok {
-			out[i].Dependent = v
-		}
+		out[i].Antecedent = wmi.AsString(row["Antecedent"])
+		out[i].Dependent = wmi.AsString(row["Dependent"])
 		out[i].FrameType = wmi.AsUint16(row["FrameType"])
 	}
 	return out, nil
@@ -16792,8 +16596,8 @@ func QueryMSFTNetIPInterfaceNeighbor(svc *wmi.Service, where string) ([]MSFTNetI
 
 // MSFTNetIPInterfaceRoute is the MSFT_NetIPInterfaceRoute CIM class.
 type MSFTNetIPInterfaceRoute struct {
-	Antecedent any `cim:"Antecedent"`
-	Dependent  any `cim:"Dependent"`
+	Antecedent string `cim:"Antecedent"`
+	Dependent  string `cim:"Dependent"`
 }
 
 // QueryMSFTNetIPInterfaceRoute runs the WQL query against the class and decodes each
@@ -16809,12 +16613,8 @@ func QueryMSFTNetIPInterfaceRoute(svc *wmi.Service, where string) ([]MSFTNetIPIn
 	}
 	out := make([]MSFTNetIPInterfaceRoute, len(rows))
 	for i, row := range rows {
-		if v, ok := row["Antecedent"].(any); ok {
-			out[i].Antecedent = v
-		}
-		if v, ok := row["Dependent"].(any); ok {
-			out[i].Dependent = v
-		}
+		out[i].Antecedent = wmi.AsString(row["Antecedent"])
+		out[i].Dependent = wmi.AsString(row["Dependent"])
 	}
 	return out, nil
 }
@@ -17034,7 +16834,7 @@ func QueryMSFTNetIPv4Protocol(svc *wmi.Service, where string) ([]MSFTNetIPv4Prot
 
 // MSFTNetIPv4ProtocolRequestStateChangeResult holds the out-parameters of MSFT_NetIPv4Protocol.RequestStateChange.
 type MSFTNetIPv4ProtocolRequestStateChangeResult struct {
-	Job         any
+	Job         string
 	ReturnValue uint32
 }
 
@@ -17054,7 +16854,7 @@ func MSFTNetIPv4ProtocolRequestStateChange(svc *wmi.Service, objectPath string, 
 		return nil, err
 	}
 	out := &MSFTNetIPv4ProtocolRequestStateChangeResult{}
-	out.Job = row["Job"]
+	out.Job = wmi.AsString(row["Job"])
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
@@ -17180,7 +16980,7 @@ func QueryMSFTNetIPv6Protocol(svc *wmi.Service, where string) ([]MSFTNetIPv6Prot
 
 // MSFTNetIPv6ProtocolRequestStateChangeResult holds the out-parameters of MSFT_NetIPv6Protocol.RequestStateChange.
 type MSFTNetIPv6ProtocolRequestStateChangeResult struct {
-	Job         any
+	Job         string
 	ReturnValue uint32
 }
 
@@ -17200,7 +17000,7 @@ func MSFTNetIPv6ProtocolRequestStateChange(svc *wmi.Service, objectPath string, 
 		return nil, err
 	}
 	out := &MSFTNetIPv6ProtocolRequestStateChangeResult{}
-	out.Job = row["Job"]
+	out.Job = wmi.AsString(row["Job"])
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
@@ -17246,7 +17046,7 @@ func QueryMSFTNetISATAPConfiguration(svc *wmi.Service, where string) ([]MSFTNetI
 
 // MSFTNetISATAPConfigurationResetResult holds the out-parameters of MSFT_NetISATAPConfiguration.Reset.
 type MSFTNetISATAPConfigurationResetResult struct {
-	OutputObject any
+	OutputObject wmi.Row
 	ReturnValue  uint32
 }
 
@@ -17275,7 +17075,9 @@ func MSFTNetISATAPConfigurationReset(svc *wmi.Service, objectPath string, state 
 		return nil, err
 	}
 	out := &MSFTNetISATAPConfigurationResetResult{}
-	out.OutputObject = row["OutputObject"]
+	if v, ok := row["OutputObject"].(wmi.Row); ok {
+		out.OutputObject = v
+	}
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
@@ -17285,8 +17087,8 @@ type MSFTNetISATAPState struct {
 	IsCurrent      uint16 `cim:"IsCurrent"`
 	IsDefault      uint16 `cim:"IsDefault"`
 	IsNext         uint16 `cim:"IsNext"`
-	ManagedElement any    `cim:"ManagedElement"`
-	SettingData    any    `cim:"SettingData"`
+	ManagedElement string `cim:"ManagedElement"`
+	SettingData    string `cim:"SettingData"`
 }
 
 // QueryMSFTNetISATAPState runs the WQL query against the class and decodes each
@@ -17305,12 +17107,8 @@ func QueryMSFTNetISATAPState(svc *wmi.Service, where string) ([]MSFTNetISATAPSta
 		out[i].IsCurrent = wmi.AsUint16(row["IsCurrent"])
 		out[i].IsDefault = wmi.AsUint16(row["IsDefault"])
 		out[i].IsNext = wmi.AsUint16(row["IsNext"])
-		if v, ok := row["ManagedElement"].(any); ok {
-			out[i].ManagedElement = v
-		}
-		if v, ok := row["SettingData"].(any); ok {
-			out[i].SettingData = v
-		}
+		out[i].ManagedElement = wmi.AsString(row["ManagedElement"])
+		out[i].SettingData = wmi.AsString(row["SettingData"])
 	}
 	return out, nil
 }
@@ -17392,7 +17190,7 @@ func QueryMSFTNetImPlatAdapter(svc *wmi.Service, where string) ([]MSFTNetImPlatA
 
 // MSFTNetImPlatAdapterRequestStateChangeResult holds the out-parameters of MSFT_NetImPlatAdapter.RequestStateChange.
 type MSFTNetImPlatAdapterRequestStateChangeResult struct {
-	Job         any
+	Job         string
 	ReturnValue uint32
 }
 
@@ -17412,7 +17210,7 @@ func MSFTNetImPlatAdapterRequestStateChange(svc *wmi.Service, objectPath string,
 		return nil, err
 	}
 	out := &MSFTNetImPlatAdapterRequestStateChangeResult{}
-	out.Job = row["Job"]
+	out.Job = wmi.AsString(row["Job"])
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
@@ -17669,7 +17467,7 @@ func QueryMSFTNetLbfoTeam(svc *wmi.Service, where string) ([]MSFTNetLbfoTeam, er
 
 // MSFTNetLbfoTeamRenameResult holds the out-parameters of MSFT_NetLbfoTeam.Rename.
 type MSFTNetLbfoTeamRenameResult struct {
-	CmdletOutput any
+	CmdletOutput wmi.Row
 	ReturnValue  uint32
 }
 
@@ -17688,7 +17486,9 @@ func MSFTNetLbfoTeamRename(svc *wmi.Service, name string, newName string) (*MSFT
 		return nil, err
 	}
 	out := &MSFTNetLbfoTeamRenameResult{}
-	out.CmdletOutput = row["CmdletOutput"]
+	if v, ok := row["CmdletOutput"].(wmi.Row); ok {
+		out.CmdletOutput = v
+	}
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
@@ -17774,7 +17574,7 @@ func QueryMSFTNetLbfoTeamMember(svc *wmi.Service, where string) ([]MSFTNetLbfoTe
 
 // MSFTNetLbfoTeamMemberRequestStateChangeResult holds the out-parameters of MSFT_NetLbfoTeamMember.RequestStateChange.
 type MSFTNetLbfoTeamMemberRequestStateChangeResult struct {
-	Job         any
+	Job         string
 	ReturnValue uint32
 }
 
@@ -17794,7 +17594,7 @@ func MSFTNetLbfoTeamMemberRequestStateChange(svc *wmi.Service, objectPath string
 		return nil, err
 	}
 	out := &MSFTNetLbfoTeamMemberRequestStateChangeResult{}
-	out.Job = row["Job"]
+	out.Job = wmi.AsString(row["Job"])
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
@@ -17882,7 +17682,7 @@ func QueryMSFTNetLbfoTeamNic(svc *wmi.Service, where string) ([]MSFTNetLbfoTeamN
 
 // MSFTNetLbfoTeamNicRequestStateChangeResult holds the out-parameters of MSFT_NetLbfoTeamNic.RequestStateChange.
 type MSFTNetLbfoTeamNicRequestStateChangeResult struct {
-	Job         any
+	Job         string
 	ReturnValue uint32
 }
 
@@ -17902,15 +17702,15 @@ func MSFTNetLbfoTeamNicRequestStateChange(svc *wmi.Service, objectPath string, r
 		return nil, err
 	}
 	out := &MSFTNetLbfoTeamNicRequestStateChangeResult{}
-	out.Job = row["Job"]
+	out.Job = wmi.AsString(row["Job"])
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
 
 // MSFTNetLbfoTeamProvider is the MSFT_NetLbfoTeam_Provider CIM class.
 type MSFTNetLbfoTeamProvider struct {
-	GroupComponent any `cim:"GroupComponent"`
-	PartComponent  any `cim:"PartComponent"`
+	GroupComponent string `cim:"GroupComponent"`
+	PartComponent  string `cim:"PartComponent"`
 }
 
 // QueryMSFTNetLbfoTeamProvider runs the WQL query against the class and decodes each
@@ -17926,20 +17726,16 @@ func QueryMSFTNetLbfoTeamProvider(svc *wmi.Service, where string) ([]MSFTNetLbfo
 	}
 	out := make([]MSFTNetLbfoTeamProvider, len(rows))
 	for i, row := range rows {
-		if v, ok := row["GroupComponent"].(any); ok {
-			out[i].GroupComponent = v
-		}
-		if v, ok := row["PartComponent"].(any); ok {
-			out[i].PartComponent = v
-		}
+		out[i].GroupComponent = wmi.AsString(row["GroupComponent"])
+		out[i].PartComponent = wmi.AsString(row["PartComponent"])
 	}
 	return out, nil
 }
 
 // MSFTNetLbfoTeamTeamMember is the MSFT_NetLbfoTeam_TeamMember CIM class.
 type MSFTNetLbfoTeamTeamMember struct {
-	GroupComponent any `cim:"GroupComponent"`
-	PartComponent  any `cim:"PartComponent"`
+	GroupComponent string `cim:"GroupComponent"`
+	PartComponent  string `cim:"PartComponent"`
 }
 
 // QueryMSFTNetLbfoTeamTeamMember runs the WQL query against the class and decodes each
@@ -17955,20 +17751,16 @@ func QueryMSFTNetLbfoTeamTeamMember(svc *wmi.Service, where string) ([]MSFTNetLb
 	}
 	out := make([]MSFTNetLbfoTeamTeamMember, len(rows))
 	for i, row := range rows {
-		if v, ok := row["GroupComponent"].(any); ok {
-			out[i].GroupComponent = v
-		}
-		if v, ok := row["PartComponent"].(any); ok {
-			out[i].PartComponent = v
-		}
+		out[i].GroupComponent = wmi.AsString(row["GroupComponent"])
+		out[i].PartComponent = wmi.AsString(row["PartComponent"])
 	}
 	return out, nil
 }
 
 // MSFTNetLbfoTeamTeamNic is the MSFT_NetLbfoTeam_TeamNic CIM class.
 type MSFTNetLbfoTeamTeamNic struct {
-	GroupComponent any `cim:"GroupComponent"`
-	PartComponent  any `cim:"PartComponent"`
+	GroupComponent string `cim:"GroupComponent"`
+	PartComponent  string `cim:"PartComponent"`
 }
 
 // QueryMSFTNetLbfoTeamTeamNic runs the WQL query against the class and decodes each
@@ -17984,12 +17776,8 @@ func QueryMSFTNetLbfoTeamTeamNic(svc *wmi.Service, where string) ([]MSFTNetLbfoT
 	}
 	out := make([]MSFTNetLbfoTeamTeamNic, len(rows))
 	for i, row := range rows {
-		if v, ok := row["GroupComponent"].(any); ok {
-			out[i].GroupComponent = v
-		}
-		if v, ok := row["PartComponent"].(any); ok {
-			out[i].PartComponent = v
-		}
+		out[i].GroupComponent = wmi.AsString(row["GroupComponent"])
+		out[i].PartComponent = wmi.AsString(row["PartComponent"])
 	}
 	return out, nil
 }
@@ -18173,8 +17961,8 @@ func MSFTNetMainModeRuleRename(svc *wmi.Service, objectPath string, newName stri
 
 // MSFTNetMainModeRuleFilterByAddress is the MSFT_NetMainModeRuleFilterByAddress CIM class.
 type MSFTNetMainModeRuleFilterByAddress struct {
-	GroupComponent any `cim:"GroupComponent"`
-	PartComponent  any `cim:"PartComponent"`
+	GroupComponent string `cim:"GroupComponent"`
+	PartComponent  string `cim:"PartComponent"`
 }
 
 // QueryMSFTNetMainModeRuleFilterByAddress runs the WQL query against the class and decodes each
@@ -18190,20 +17978,16 @@ func QueryMSFTNetMainModeRuleFilterByAddress(svc *wmi.Service, where string) ([]
 	}
 	out := make([]MSFTNetMainModeRuleFilterByAddress, len(rows))
 	for i, row := range rows {
-		if v, ok := row["GroupComponent"].(any); ok {
-			out[i].GroupComponent = v
-		}
-		if v, ok := row["PartComponent"].(any); ok {
-			out[i].PartComponent = v
-		}
+		out[i].GroupComponent = wmi.AsString(row["GroupComponent"])
+		out[i].PartComponent = wmi.AsString(row["PartComponent"])
 	}
 	return out, nil
 }
 
 // MSFTNetMainModeRuleFilters is the MSFT_NetMainModeRuleFilters CIM class.
 type MSFTNetMainModeRuleFilters struct {
-	GroupComponent any `cim:"GroupComponent"`
-	PartComponent  any `cim:"PartComponent"`
+	GroupComponent string `cim:"GroupComponent"`
+	PartComponent  string `cim:"PartComponent"`
 }
 
 // QueryMSFTNetMainModeRuleFilters runs the WQL query against the class and decodes each
@@ -18219,20 +18003,16 @@ func QueryMSFTNetMainModeRuleFilters(svc *wmi.Service, where string) ([]MSFTNetM
 	}
 	out := make([]MSFTNetMainModeRuleFilters, len(rows))
 	for i, row := range rows {
-		if v, ok := row["GroupComponent"].(any); ok {
-			out[i].GroupComponent = v
-		}
-		if v, ok := row["PartComponent"].(any); ok {
-			out[i].PartComponent = v
-		}
+		out[i].GroupComponent = wmi.AsString(row["GroupComponent"])
+		out[i].PartComponent = wmi.AsString(row["PartComponent"])
 	}
 	return out, nil
 }
 
 // MSFTNetMainModeRuleInProfile is the MSFT_NetMainModeRuleInProfile CIM class.
 type MSFTNetMainModeRuleInProfile struct {
-	GroupComponent any    `cim:"GroupComponent"`
-	PartComponent  any    `cim:"PartComponent"`
+	GroupComponent string `cim:"GroupComponent"`
+	PartComponent  string `cim:"PartComponent"`
 	Priority       uint16 `cim:"Priority"`
 }
 
@@ -18249,12 +18029,8 @@ func QueryMSFTNetMainModeRuleInProfile(svc *wmi.Service, where string) ([]MSFTNe
 	}
 	out := make([]MSFTNetMainModeRuleInProfile, len(rows))
 	for i, row := range rows {
-		if v, ok := row["GroupComponent"].(any); ok {
-			out[i].GroupComponent = v
-		}
-		if v, ok := row["PartComponent"].(any); ok {
-			out[i].PartComponent = v
-		}
+		out[i].GroupComponent = wmi.AsString(row["GroupComponent"])
+		out[i].PartComponent = wmi.AsString(row["PartComponent"])
 		out[i].Priority = wmi.AsUint16(row["Priority"])
 	}
 	return out, nil
@@ -18263,8 +18039,8 @@ func QueryMSFTNetMainModeRuleInProfile(svc *wmi.Service, where string) ([]MSFTNe
 // MSFTNetMainModeRuleMMAuthSet is the MSFT_NetMainModeRuleMMAuthSet CIM class.
 type MSFTNetMainModeRuleMMAuthSet struct {
 	ActionOrder    uint16 `cim:"ActionOrder"`
-	GroupComponent any    `cim:"GroupComponent"`
-	PartComponent  any    `cim:"PartComponent"`
+	GroupComponent string `cim:"GroupComponent"`
+	PartComponent  string `cim:"PartComponent"`
 }
 
 // QueryMSFTNetMainModeRuleMMAuthSet runs the WQL query against the class and decodes each
@@ -18281,12 +18057,8 @@ func QueryMSFTNetMainModeRuleMMAuthSet(svc *wmi.Service, where string) ([]MSFTNe
 	out := make([]MSFTNetMainModeRuleMMAuthSet, len(rows))
 	for i, row := range rows {
 		out[i].ActionOrder = wmi.AsUint16(row["ActionOrder"])
-		if v, ok := row["GroupComponent"].(any); ok {
-			out[i].GroupComponent = v
-		}
-		if v, ok := row["PartComponent"].(any); ok {
-			out[i].PartComponent = v
-		}
+		out[i].GroupComponent = wmi.AsString(row["GroupComponent"])
+		out[i].PartComponent = wmi.AsString(row["PartComponent"])
 	}
 	return out, nil
 }
@@ -18294,8 +18066,8 @@ func QueryMSFTNetMainModeRuleMMAuthSet(svc *wmi.Service, where string) ([]MSFTNe
 // MSFTNetMainModeRuleMMCryptoSet is the MSFT_NetMainModeRuleMMCryptoSet CIM class.
 type MSFTNetMainModeRuleMMCryptoSet struct {
 	ActionOrder    uint16 `cim:"ActionOrder"`
-	GroupComponent any    `cim:"GroupComponent"`
-	PartComponent  any    `cim:"PartComponent"`
+	GroupComponent string `cim:"GroupComponent"`
+	PartComponent  string `cim:"PartComponent"`
 }
 
 // QueryMSFTNetMainModeRuleMMCryptoSet runs the WQL query against the class and decodes each
@@ -18312,12 +18084,8 @@ func QueryMSFTNetMainModeRuleMMCryptoSet(svc *wmi.Service, where string) ([]MSFT
 	out := make([]MSFTNetMainModeRuleMMCryptoSet, len(rows))
 	for i, row := range rows {
 		out[i].ActionOrder = wmi.AsUint16(row["ActionOrder"])
-		if v, ok := row["GroupComponent"].(any); ok {
-			out[i].GroupComponent = v
-		}
-		if v, ok := row["PartComponent"].(any); ok {
-			out[i].PartComponent = v
-		}
+		out[i].GroupComponent = wmi.AsString(row["GroupComponent"])
+		out[i].PartComponent = wmi.AsString(row["PartComponent"])
 	}
 	return out, nil
 }
@@ -18348,8 +18116,8 @@ type MSFTNetMainModeSA struct {
 	LifetimeKilobytes                 uint64   `cim:"LifetimeKilobytes"`
 	LifetimeSeconds                   uint64   `cim:"LifetimeSeconds"`
 	LocalEndpoint                     string   `cim:"LocalEndpoint"`
-	LocalFirstId                      any      `cim:"LocalFirstId"`
-	LocalSecondId                     any      `cim:"LocalSecondId"`
+	LocalFirstId                      wmi.Row  `cim:"LocalFirstId"`
+	LocalSecondId                     wmi.Row  `cim:"LocalSecondId"`
 	LocalUdpEncapsulationPort         uint16   `cim:"LocalUdpEncapsulationPort"`
 	MaxQMSAs                          uint32   `cim:"MaxQMSAs"`
 	Name                              string   `cim:"Name"`
@@ -18369,8 +18137,8 @@ type MSFTNetMainModeSA struct {
 	RefreshThresholdKbytesPercentage  uint8    `cim:"RefreshThresholdKbytesPercentage"`
 	RefreshThresholdSecondsPercentage uint8    `cim:"RefreshThresholdSecondsPercentage"`
 	RemoteEndpoint                    string   `cim:"RemoteEndpoint"`
-	RemoteFirstId                     any      `cim:"RemoteFirstId"`
-	RemoteSecondId                    any      `cim:"RemoteSecondId"`
+	RemoteFirstId                     wmi.Row  `cim:"RemoteFirstId"`
+	RemoteSecondId                    wmi.Row  `cim:"RemoteSecondId"`
 	RemoteUdpEncapsulationPort        uint16   `cim:"RemoteUdpEncapsulationPort"`
 	RequestedState                    uint16   `cim:"RequestedState"`
 	ResponderCookie                   uint64   `cim:"ResponderCookie"`
@@ -18421,10 +18189,10 @@ func QueryMSFTNetMainModeSA(svc *wmi.Service, where string) ([]MSFTNetMainModeSA
 		out[i].LifetimeKilobytes = wmi.AsUint64(row["LifetimeKilobytes"])
 		out[i].LifetimeSeconds = wmi.AsUint64(row["LifetimeSeconds"])
 		out[i].LocalEndpoint = wmi.AsString(row["LocalEndpoint"])
-		if v, ok := row["LocalFirstId"].(any); ok {
+		if v, ok := row["LocalFirstId"].(wmi.Row); ok {
 			out[i].LocalFirstId = v
 		}
-		if v, ok := row["LocalSecondId"].(any); ok {
+		if v, ok := row["LocalSecondId"].(wmi.Row); ok {
 			out[i].LocalSecondId = v
 		}
 		out[i].LocalUdpEncapsulationPort = wmi.AsUint16(row["LocalUdpEncapsulationPort"])
@@ -18446,10 +18214,10 @@ func QueryMSFTNetMainModeSA(svc *wmi.Service, where string) ([]MSFTNetMainModeSA
 		out[i].RefreshThresholdKbytesPercentage = wmi.AsUint8(row["RefreshThresholdKbytesPercentage"])
 		out[i].RefreshThresholdSecondsPercentage = wmi.AsUint8(row["RefreshThresholdSecondsPercentage"])
 		out[i].RemoteEndpoint = wmi.AsString(row["RemoteEndpoint"])
-		if v, ok := row["RemoteFirstId"].(any); ok {
+		if v, ok := row["RemoteFirstId"].(wmi.Row); ok {
 			out[i].RemoteFirstId = v
 		}
-		if v, ok := row["RemoteSecondId"].(any); ok {
+		if v, ok := row["RemoteSecondId"].(wmi.Row); ok {
 			out[i].RemoteSecondId = v
 		}
 		out[i].RemoteUdpEncapsulationPort = wmi.AsUint16(row["RemoteUdpEncapsulationPort"])
@@ -18469,7 +18237,7 @@ func QueryMSFTNetMainModeSA(svc *wmi.Service, where string) ([]MSFTNetMainModeSA
 
 // MSFTNetMainModeSARequestStateChangeResult holds the out-parameters of MSFT_NetMainModeSA.RequestStateChange.
 type MSFTNetMainModeSARequestStateChangeResult struct {
-	Job         any
+	Job         string
 	ReturnValue uint32
 }
 
@@ -18489,7 +18257,7 @@ func MSFTNetMainModeSARequestStateChange(svc *wmi.Service, objectPath string, re
 		return nil, err
 	}
 	out := &MSFTNetMainModeSARequestStateChangeResult{}
-	out.Job = row["Job"]
+	out.Job = wmi.AsString(row["Job"])
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
@@ -18770,7 +18538,7 @@ func QueryMSFTNetNatTransitionConfiguration(svc *wmi.Service, where string) ([]M
 
 // MSFTNetNatTransitionConfigurationDisableResult holds the out-parameters of MSFT_NetNatTransitionConfiguration.Disable.
 type MSFTNetNatTransitionConfigurationDisableResult struct {
-	OutputObject any
+	OutputObject wmi.Row
 	ReturnValue  uint32
 }
 
@@ -18787,14 +18555,16 @@ func MSFTNetNatTransitionConfigurationDisable(svc *wmi.Service, objectPath strin
 		return nil, err
 	}
 	out := &MSFTNetNatTransitionConfigurationDisableResult{}
-	out.OutputObject = row["OutputObject"]
+	if v, ok := row["OutputObject"].(wmi.Row); ok {
+		out.OutputObject = v
+	}
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
 
 // MSFTNetNatTransitionConfigurationEnableResult holds the out-parameters of MSFT_NetNatTransitionConfiguration.Enable.
 type MSFTNetNatTransitionConfigurationEnableResult struct {
-	OutputObject any
+	OutputObject wmi.Row
 	ReturnValue  uint32
 }
 
@@ -18811,7 +18581,9 @@ func MSFTNetNatTransitionConfigurationEnable(svc *wmi.Service, objectPath string
 		return nil, err
 	}
 	out := &MSFTNetNatTransitionConfigurationEnableResult{}
-	out.OutputObject = row["OutputObject"]
+	if v, ok := row["OutputObject"].(wmi.Row); ok {
+		out.OutputObject = v
+	}
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
@@ -18821,8 +18593,8 @@ type MSFTNetNatTransitionInterfaceAssociation struct {
 	IsCurrent      uint16 `cim:"IsCurrent"`
 	IsDefault      uint16 `cim:"IsDefault"`
 	IsNext         uint16 `cim:"IsNext"`
-	ManagedElement any    `cim:"ManagedElement"`
-	SettingData    any    `cim:"SettingData"`
+	ManagedElement string `cim:"ManagedElement"`
+	SettingData    string `cim:"SettingData"`
 }
 
 // QueryMSFTNetNatTransitionInterfaceAssociation runs the WQL query against the class and decodes each
@@ -18841,12 +18613,8 @@ func QueryMSFTNetNatTransitionInterfaceAssociation(svc *wmi.Service, where strin
 		out[i].IsCurrent = wmi.AsUint16(row["IsCurrent"])
 		out[i].IsDefault = wmi.AsUint16(row["IsDefault"])
 		out[i].IsNext = wmi.AsUint16(row["IsNext"])
-		if v, ok := row["ManagedElement"].(any); ok {
-			out[i].ManagedElement = v
-		}
-		if v, ok := row["SettingData"].(any); ok {
-			out[i].SettingData = v
-		}
+		out[i].ManagedElement = wmi.AsString(row["ManagedElement"])
+		out[i].SettingData = wmi.AsString(row["SettingData"])
 	}
 	return out, nil
 }
@@ -18983,7 +18751,7 @@ func QueryMSFTNetNeighbor(svc *wmi.Service, where string) ([]MSFTNetNeighbor, er
 
 // MSFTNetNeighborCreateResult holds the out-parameters of MSFT_NetNeighbor.Create.
 type MSFTNetNeighborCreateResult struct {
-	CmdletOutput []any
+	CmdletOutput []wmi.Row
 	ReturnValue  uint32
 }
 
@@ -19020,16 +18788,14 @@ func MSFTNetNeighborCreate(svc *wmi.Service, interfaceIndex uint32, interfaceAli
 		return nil, err
 	}
 	out := &MSFTNetNeighborCreateResult{}
-	if v, ok := row["CmdletOutput"].([]any); ok {
-		out.CmdletOutput = v
-	}
+	out.CmdletOutput = wmi.AsRowSlice(row["CmdletOutput"])
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
 
 // MSFTNetNeighborRequestStateChangeResult holds the out-parameters of MSFT_NetNeighbor.RequestStateChange.
 type MSFTNetNeighborRequestStateChangeResult struct {
-	Job         any
+	Job         string
 	ReturnValue uint32
 }
 
@@ -19049,7 +18815,7 @@ func MSFTNetNeighborRequestStateChange(svc *wmi.Service, objectPath string, requ
 		return nil, err
 	}
 	out := &MSFTNetNeighborRequestStateChangeResult{}
-	out.Job = row["Job"]
+	out.Job = wmi.AsString(row["Job"])
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
@@ -19168,8 +18934,8 @@ func QueryMSFTNetOffloadGlobalSetting(svc *wmi.Service, where string) ([]MSFTNet
 
 // MSFTNetPolicyRuleFilters is the MSFT_NetPolicyRuleFilters CIM class.
 type MSFTNetPolicyRuleFilters struct {
-	GroupComponent any `cim:"GroupComponent"`
-	PartComponent  any `cim:"PartComponent"`
+	GroupComponent string `cim:"GroupComponent"`
+	PartComponent  string `cim:"PartComponent"`
 }
 
 // QueryMSFTNetPolicyRuleFilters runs the WQL query against the class and decodes each
@@ -19185,12 +18951,8 @@ func QueryMSFTNetPolicyRuleFilters(svc *wmi.Service, where string) ([]MSFTNetPol
 	}
 	out := make([]MSFTNetPolicyRuleFilters, len(rows))
 	for i, row := range rows {
-		if v, ok := row["GroupComponent"].(any); ok {
-			out[i].GroupComponent = v
-		}
-		if v, ok := row["PartComponent"].(any); ok {
-			out[i].PartComponent = v
-		}
+		out[i].GroupComponent = wmi.AsString(row["GroupComponent"])
+		out[i].PartComponent = wmi.AsString(row["PartComponent"])
 	}
 	return out, nil
 }
@@ -19234,7 +18996,7 @@ func QueryMSFTNetPrefixPolicy(svc *wmi.Service, where string) ([]MSFTNetPrefixPo
 
 // MSFTNetPrefixPolicyCreateResult holds the out-parameters of MSFT_NetPrefixPolicy.Create.
 type MSFTNetPrefixPolicyCreateResult struct {
-	CmdletOutput []any
+	CmdletOutput []wmi.Row
 	ReturnValue  uint32
 }
 
@@ -19262,9 +19024,7 @@ func MSFTNetPrefixPolicyCreate(svc *wmi.Service, prefix string, precedence uint3
 		return nil, err
 	}
 	out := &MSFTNetPrefixPolicyCreateResult{}
-	if v, ok := row["CmdletOutput"].([]any); ok {
-		out.CmdletOutput = v
-	}
+	out.CmdletOutput = wmi.AsRowSlice(row["CmdletOutput"])
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
@@ -19578,7 +19338,7 @@ func QueryMSFTNetQuickModeSA(svc *wmi.Service, where string) ([]MSFTNetQuickMode
 
 // MSFTNetQuickModeSARequestStateChangeResult holds the out-parameters of MSFT_NetQuickModeSA.RequestStateChange.
 type MSFTNetQuickModeSARequestStateChangeResult struct {
-	Job         any
+	Job         string
 	ReturnValue uint32
 }
 
@@ -19598,7 +19358,7 @@ func MSFTNetQuickModeSARequestStateChange(svc *wmi.Service, objectPath string, r
 		return nil, err
 	}
 	out := &MSFTNetQuickModeSARequestStateChangeResult{}
-	out.Job = row["Job"]
+	out.Job = wmi.AsString(row["Job"])
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
@@ -19670,7 +19430,7 @@ func QueryMSFTNetRoute(svc *wmi.Service, where string) ([]MSFTNetRoute, error) {
 
 // MSFTNetRouteCreateResult holds the out-parameters of MSFT_NetRoute.Create.
 type MSFTNetRouteCreateResult struct {
-	CmdletOutput []any
+	CmdletOutput []wmi.Row
 	ReturnValue  uint32
 }
 
@@ -19722,16 +19482,14 @@ func MSFTNetRouteCreate(svc *wmi.Service, interfaceIndex uint32, interfaceAlias 
 		return nil, err
 	}
 	out := &MSFTNetRouteCreateResult{}
-	if v, ok := row["CmdletOutput"].([]any); ok {
-		out.CmdletOutput = v
-	}
+	out.CmdletOutput = wmi.AsRowSlice(row["CmdletOutput"])
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
 
 // MSFTNetRouteFindResult holds the out-parameters of MSFT_NetRoute.Find.
 type MSFTNetRouteFindResult struct {
-	CmdletOutput []any
+	CmdletOutput []wmi.Row
 	ReturnValue  uint32
 }
 
@@ -19753,17 +19511,15 @@ func MSFTNetRouteFind(svc *wmi.Service, interfaceIndex uint32, localIPAddress st
 		return nil, err
 	}
 	out := &MSFTNetRouteFindResult{}
-	if v, ok := row["CmdletOutput"].([]any); ok {
-		out.CmdletOutput = v
-	}
+	out.CmdletOutput = wmi.AsRowSlice(row["CmdletOutput"])
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
 
 // MSFTNetRuleInProfile is the MSFT_NetRuleInProfile CIM class.
 type MSFTNetRuleInProfile struct {
-	GroupComponent any    `cim:"GroupComponent"`
-	PartComponent  any    `cim:"PartComponent"`
+	GroupComponent string `cim:"GroupComponent"`
+	PartComponent  string `cim:"PartComponent"`
 	Priority       uint16 `cim:"Priority"`
 }
 
@@ -19780,12 +19536,8 @@ func QueryMSFTNetRuleInProfile(svc *wmi.Service, where string) ([]MSFTNetRuleInP
 	}
 	out := make([]MSFTNetRuleInProfile, len(rows))
 	for i, row := range rows {
-		if v, ok := row["GroupComponent"].(any); ok {
-			out[i].GroupComponent = v
-		}
-		if v, ok := row["PartComponent"].(any); ok {
-			out[i].PartComponent = v
-		}
+		out[i].GroupComponent = wmi.AsString(row["GroupComponent"])
+		out[i].PartComponent = wmi.AsString(row["PartComponent"])
 		out[i].Priority = wmi.AsUint16(row["Priority"])
 	}
 	return out, nil
@@ -19794,8 +19546,8 @@ func QueryMSFTNetRuleInProfile(svc *wmi.Service, where string) ([]MSFTNetRuleInP
 // MSFTNetSAActionInSARule is the MSFT_NetSAActionInSARule CIM class.
 type MSFTNetSAActionInSARule struct {
 	ActionOrder    uint16 `cim:"ActionOrder"`
-	GroupComponent any    `cim:"GroupComponent"`
-	PartComponent  any    `cim:"PartComponent"`
+	GroupComponent string `cim:"GroupComponent"`
+	PartComponent  string `cim:"PartComponent"`
 }
 
 // QueryMSFTNetSAActionInSARule runs the WQL query against the class and decodes each
@@ -19812,20 +19564,16 @@ func QueryMSFTNetSAActionInSARule(svc *wmi.Service, where string) ([]MSFTNetSAAc
 	out := make([]MSFTNetSAActionInSARule, len(rows))
 	for i, row := range rows {
 		out[i].ActionOrder = wmi.AsUint16(row["ActionOrder"])
-		if v, ok := row["GroupComponent"].(any); ok {
-			out[i].GroupComponent = v
-		}
-		if v, ok := row["PartComponent"].(any); ok {
-			out[i].PartComponent = v
-		}
+		out[i].GroupComponent = wmi.AsString(row["GroupComponent"])
+		out[i].PartComponent = wmi.AsString(row["PartComponent"])
 	}
 	return out, nil
 }
 
 // MSFTNetSAAssociation is the MSFT_NetSAAssociation CIM class.
 type MSFTNetSAAssociation struct {
-	Antecedent any `cim:"Antecedent"`
-	Dependent  any `cim:"Dependent"`
+	Antecedent string `cim:"Antecedent"`
+	Dependent  string `cim:"Dependent"`
 }
 
 // QueryMSFTNetSAAssociation runs the WQL query against the class and decodes each
@@ -19841,12 +19589,8 @@ func QueryMSFTNetSAAssociation(svc *wmi.Service, where string) ([]MSFTNetSAAssoc
 	}
 	out := make([]MSFTNetSAAssociation, len(rows))
 	for i, row := range rows {
-		if v, ok := row["Antecedent"].(any); ok {
-			out[i].Antecedent = v
-		}
-		if v, ok := row["Dependent"].(any); ok {
-			out[i].Dependent = v
-		}
+		out[i].Antecedent = wmi.AsString(row["Antecedent"])
+		out[i].Dependent = wmi.AsString(row["Dependent"])
 	}
 	return out, nil
 }
@@ -19945,8 +19689,8 @@ func QueryMSFTNetSARule(svc *wmi.Service, where string) ([]MSFTNetSARule, error)
 // MSFTNetSARuleEMAuth is the MSFT_NetSARuleEMAuth CIM class.
 type MSFTNetSARuleEMAuth struct {
 	ActionOrder    uint16 `cim:"ActionOrder"`
-	GroupComponent any    `cim:"GroupComponent"`
-	PartComponent  any    `cim:"PartComponent"`
+	GroupComponent string `cim:"GroupComponent"`
+	PartComponent  string `cim:"PartComponent"`
 }
 
 // QueryMSFTNetSARuleEMAuth runs the WQL query against the class and decodes each
@@ -19963,12 +19707,8 @@ func QueryMSFTNetSARuleEMAuth(svc *wmi.Service, where string) ([]MSFTNetSARuleEM
 	out := make([]MSFTNetSARuleEMAuth, len(rows))
 	for i, row := range rows {
 		out[i].ActionOrder = wmi.AsUint16(row["ActionOrder"])
-		if v, ok := row["GroupComponent"].(any); ok {
-			out[i].GroupComponent = v
-		}
-		if v, ok := row["PartComponent"].(any); ok {
-			out[i].PartComponent = v
-		}
+		out[i].GroupComponent = wmi.AsString(row["GroupComponent"])
+		out[i].PartComponent = wmi.AsString(row["PartComponent"])
 	}
 	return out, nil
 }
@@ -19976,8 +19716,8 @@ func QueryMSFTNetSARuleEMAuth(svc *wmi.Service, where string) ([]MSFTNetSARuleEM
 // MSFTNetSARuleMMAuth is the MSFT_NetSARuleMMAuth CIM class.
 type MSFTNetSARuleMMAuth struct {
 	ActionOrder    uint16 `cim:"ActionOrder"`
-	GroupComponent any    `cim:"GroupComponent"`
-	PartComponent  any    `cim:"PartComponent"`
+	GroupComponent string `cim:"GroupComponent"`
+	PartComponent  string `cim:"PartComponent"`
 }
 
 // QueryMSFTNetSARuleMMAuth runs the WQL query against the class and decodes each
@@ -19994,12 +19734,8 @@ func QueryMSFTNetSARuleMMAuth(svc *wmi.Service, where string) ([]MSFTNetSARuleMM
 	out := make([]MSFTNetSARuleMMAuth, len(rows))
 	for i, row := range rows {
 		out[i].ActionOrder = wmi.AsUint16(row["ActionOrder"])
-		if v, ok := row["GroupComponent"].(any); ok {
-			out[i].GroupComponent = v
-		}
-		if v, ok := row["PartComponent"].(any); ok {
-			out[i].PartComponent = v
-		}
+		out[i].GroupComponent = wmi.AsString(row["GroupComponent"])
+		out[i].PartComponent = wmi.AsString(row["PartComponent"])
 	}
 	return out, nil
 }
@@ -20007,8 +19743,8 @@ func QueryMSFTNetSARuleMMAuth(svc *wmi.Service, where string) ([]MSFTNetSARuleMM
 // MSFTNetSARuleMMCrypto is the MSFT_NetSARuleMMCrypto CIM class.
 type MSFTNetSARuleMMCrypto struct {
 	ActionOrder    uint16 `cim:"ActionOrder"`
-	GroupComponent any    `cim:"GroupComponent"`
-	PartComponent  any    `cim:"PartComponent"`
+	GroupComponent string `cim:"GroupComponent"`
+	PartComponent  string `cim:"PartComponent"`
 }
 
 // QueryMSFTNetSARuleMMCrypto runs the WQL query against the class and decodes each
@@ -20025,12 +19761,8 @@ func QueryMSFTNetSARuleMMCrypto(svc *wmi.Service, where string) ([]MSFTNetSARule
 	out := make([]MSFTNetSARuleMMCrypto, len(rows))
 	for i, row := range rows {
 		out[i].ActionOrder = wmi.AsUint16(row["ActionOrder"])
-		if v, ok := row["GroupComponent"].(any); ok {
-			out[i].GroupComponent = v
-		}
-		if v, ok := row["PartComponent"].(any); ok {
-			out[i].PartComponent = v
-		}
+		out[i].GroupComponent = wmi.AsString(row["GroupComponent"])
+		out[i].PartComponent = wmi.AsString(row["PartComponent"])
 	}
 	return out, nil
 }
@@ -20038,8 +19770,8 @@ func QueryMSFTNetSARuleMMCrypto(svc *wmi.Service, where string) ([]MSFTNetSARule
 // MSFTNetSARuleQMCrypto is the MSFT_NetSARuleQMCrypto CIM class.
 type MSFTNetSARuleQMCrypto struct {
 	ActionOrder    uint16 `cim:"ActionOrder"`
-	GroupComponent any    `cim:"GroupComponent"`
-	PartComponent  any    `cim:"PartComponent"`
+	GroupComponent string `cim:"GroupComponent"`
+	PartComponent  string `cim:"PartComponent"`
 }
 
 // QueryMSFTNetSARuleQMCrypto runs the WQL query against the class and decodes each
@@ -20056,12 +19788,8 @@ func QueryMSFTNetSARuleQMCrypto(svc *wmi.Service, where string) ([]MSFTNetSARule
 	out := make([]MSFTNetSARuleQMCrypto, len(rows))
 	for i, row := range rows {
 		out[i].ActionOrder = wmi.AsUint16(row["ActionOrder"])
-		if v, ok := row["GroupComponent"].(any); ok {
-			out[i].GroupComponent = v
-		}
-		if v, ok := row["PartComponent"].(any); ok {
-			out[i].PartComponent = v
-		}
+		out[i].GroupComponent = wmi.AsString(row["GroupComponent"])
+		out[i].PartComponent = wmi.AsString(row["PartComponent"])
 	}
 	return out, nil
 }
@@ -20460,7 +20188,7 @@ func QueryMSFTNetSwitchTeamMember(svc *wmi.Service, where string) ([]MSFTNetSwit
 
 // MSFTNetSwitchTeamMemberRequestStateChangeResult holds the out-parameters of MSFT_NetSwitchTeamMember.RequestStateChange.
 type MSFTNetSwitchTeamMemberRequestStateChangeResult struct {
-	Job         any
+	Job         string
 	ReturnValue uint32
 }
 
@@ -20480,15 +20208,15 @@ func MSFTNetSwitchTeamMemberRequestStateChange(svc *wmi.Service, objectPath stri
 		return nil, err
 	}
 	out := &MSFTNetSwitchTeamMemberRequestStateChangeResult{}
-	out.Job = row["Job"]
+	out.Job = wmi.AsString(row["Job"])
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
 
 // MSFTNetSwitchTeamTeamMember is the MSFT_NetSwitchTeam_TeamMember CIM class.
 type MSFTNetSwitchTeamTeamMember struct {
-	MemberOfTheTeam any `cim:"MemberOfTheTeam"`
-	TeamOfTheMember any `cim:"TeamOfTheMember"`
+	MemberOfTheTeam string `cim:"MemberOfTheTeam"`
+	TeamOfTheMember string `cim:"TeamOfTheMember"`
 }
 
 // QueryMSFTNetSwitchTeamTeamMember runs the WQL query against the class and decodes each
@@ -20504,12 +20232,8 @@ func QueryMSFTNetSwitchTeamTeamMember(svc *wmi.Service, where string) ([]MSFTNet
 	}
 	out := make([]MSFTNetSwitchTeamTeamMember, len(rows))
 	for i, row := range rows {
-		if v, ok := row["MemberOfTheTeam"].(any); ok {
-			out[i].MemberOfTheTeam = v
-		}
-		if v, ok := row["TeamOfTheMember"].(any); ok {
-			out[i].TeamOfTheMember = v
-		}
+		out[i].MemberOfTheTeam = wmi.AsString(row["MemberOfTheTeam"])
+		out[i].TeamOfTheMember = wmi.AsString(row["TeamOfTheMember"])
 	}
 	return out, nil
 }
@@ -20601,7 +20325,7 @@ func QueryMSFTNetTCPConnection(svc *wmi.Service, where string) ([]MSFTNetTCPConn
 
 // MSFTNetTCPConnectionRequestStateChangeResult holds the out-parameters of MSFT_NetTCPConnection.RequestStateChange.
 type MSFTNetTCPConnectionRequestStateChangeResult struct {
-	Job         any
+	Job         string
 	ReturnValue uint32
 }
 
@@ -20621,7 +20345,7 @@ func MSFTNetTCPConnectionRequestStateChange(svc *wmi.Service, objectPath string,
 		return nil, err
 	}
 	out := &MSFTNetTCPConnectionRequestStateChangeResult{}
-	out.Job = row["Job"]
+	out.Job = wmi.AsString(row["Job"])
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
@@ -20766,7 +20490,7 @@ func QueryMSFTNetTeredoConfiguration(svc *wmi.Service, where string) ([]MSFTNetT
 
 // MSFTNetTeredoConfigurationResetResult holds the out-parameters of MSFT_NetTeredoConfiguration.Reset.
 type MSFTNetTeredoConfigurationResetResult struct {
-	OutputObject any
+	OutputObject wmi.Row
 	ReturnValue  uint32
 }
 
@@ -20804,7 +20528,9 @@ func MSFTNetTeredoConfigurationReset(svc *wmi.Service, objectPath string, typeAr
 		return nil, err
 	}
 	out := &MSFTNetTeredoConfigurationResetResult{}
-	out.OutputObject = row["OutputObject"]
+	if v, ok := row["OutputObject"].(wmi.Row); ok {
+		out.OutputObject = v
+	}
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
@@ -20815,8 +20541,8 @@ type MSFTNetTeredoState struct {
 	IsCurrent      uint16 `cim:"IsCurrent"`
 	IsDefault      uint16 `cim:"IsDefault"`
 	IsNext         uint16 `cim:"IsNext"`
-	ManagedElement any    `cim:"ManagedElement"`
-	SettingData    any    `cim:"SettingData"`
+	ManagedElement string `cim:"ManagedElement"`
+	SettingData    string `cim:"SettingData"`
 	State          string `cim:"State"`
 }
 
@@ -20837,12 +20563,8 @@ func QueryMSFTNetTeredoState(svc *wmi.Service, where string) ([]MSFTNetTeredoSta
 		out[i].IsCurrent = wmi.AsUint16(row["IsCurrent"])
 		out[i].IsDefault = wmi.AsUint16(row["IsDefault"])
 		out[i].IsNext = wmi.AsUint16(row["IsNext"])
-		if v, ok := row["ManagedElement"].(any); ok {
-			out[i].ManagedElement = v
-		}
-		if v, ok := row["SettingData"].(any); ok {
-			out[i].SettingData = v
-		}
+		out[i].ManagedElement = wmi.AsString(row["ManagedElement"])
+		out[i].SettingData = wmi.AsString(row["SettingData"])
 		out[i].State = wmi.AsString(row["State"])
 	}
 	return out, nil
@@ -20925,7 +20647,7 @@ func QueryMSFTNetTransportConnection(svc *wmi.Service, where string) ([]MSFTNetT
 
 // MSFTNetTransportConnectionRequestStateChangeResult holds the out-parameters of MSFT_NetTransportConnection.RequestStateChange.
 type MSFTNetTransportConnectionRequestStateChangeResult struct {
-	Job         any
+	Job         string
 	ReturnValue uint32
 }
 
@@ -20945,7 +20667,7 @@ func MSFTNetTransportConnectionRequestStateChange(svc *wmi.Service, objectPath s
 		return nil, err
 	}
 	out := &MSFTNetTransportConnectionRequestStateChangeResult{}
-	out.Job = row["Job"]
+	out.Job = wmi.AsString(row["Job"])
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
@@ -21023,8 +20745,8 @@ func QueryMSFTNetTransportFilter(svc *wmi.Service, where string) ([]MSFTNetTrans
 
 // MSFTNetTransportFilterTCPSetting is the MSFT_NetTransportFilterTCPSetting CIM class.
 type MSFTNetTransportFilterTCPSetting struct {
-	Antecedent any `cim:"Antecedent"`
-	Dependent  any `cim:"Dependent"`
+	Antecedent string `cim:"Antecedent"`
+	Dependent  string `cim:"Dependent"`
 }
 
 // QueryMSFTNetTransportFilterTCPSetting runs the WQL query against the class and decodes each
@@ -21040,12 +20762,8 @@ func QueryMSFTNetTransportFilterTCPSetting(svc *wmi.Service, where string) ([]MS
 	}
 	out := make([]MSFTNetTransportFilterTCPSetting, len(rows))
 	for i, row := range rows {
-		if v, ok := row["Antecedent"].(any); ok {
-			out[i].Antecedent = v
-		}
-		if v, ok := row["Dependent"].(any); ok {
-			out[i].Dependent = v
-		}
+		out[i].Antecedent = wmi.AsString(row["Antecedent"])
+		out[i].Dependent = wmi.AsString(row["Dependent"])
 	}
 	return out, nil
 }
@@ -21127,7 +20845,7 @@ func QueryMSFTNetUDPEndpoint(svc *wmi.Service, where string) ([]MSFTNetUDPEndpoi
 
 // MSFTNetUDPEndpointRequestStateChangeResult holds the out-parameters of MSFT_NetUDPEndpoint.RequestStateChange.
 type MSFTNetUDPEndpointRequestStateChangeResult struct {
-	Job         any
+	Job         string
 	ReturnValue uint32
 }
 
@@ -21147,7 +20865,7 @@ func MSFTNetUDPEndpointRequestStateChange(svc *wmi.Service, objectPath string, r
 		return nil, err
 	}
 	out := &MSFTNetUDPEndpointRequestStateChangeResult{}
-	out.Job = row["Job"]
+	out.Job = wmi.AsString(row["Job"])
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
@@ -21314,7 +21032,7 @@ type MSFTPrintJobDeleteJobByObjectResult struct {
 
 // MSFTPrintJobDeleteJobByObject invokes the static MSFT_PrintJob.DeleteJobByObject method. Zero-valued
 // in-parameters are omitted so the provider applies its defaults.
-func MSFTPrintJobDeleteJobByObject(svc *wmi.Service, inputObject any) (*MSFTPrintJobDeleteJobByObjectResult, error) {
+func MSFTPrintJobDeleteJobByObject(svc *wmi.Service, inputObject wmi.Row) (*MSFTPrintJobDeleteJobByObjectResult, error) {
 	in := map[string]any{}
 	if inputObject != nil {
 		in["InputObject"] = inputObject
@@ -21335,7 +21053,7 @@ type MSFTPrintJobDeleteJobByPrinterObjectResult struct {
 
 // MSFTPrintJobDeleteJobByPrinterObject invokes the static MSFT_PrintJob.DeleteJobByPrinterObject method. Zero-valued
 // in-parameters are omitted so the provider applies its defaults.
-func MSFTPrintJobDeleteJobByPrinterObject(svc *wmi.Service, iD uint32, printerObject any) (*MSFTPrintJobDeleteJobByPrinterObjectResult, error) {
+func MSFTPrintJobDeleteJobByPrinterObject(svc *wmi.Service, iD uint32, printerObject wmi.Row) (*MSFTPrintJobDeleteJobByPrinterObjectResult, error) {
 	in := map[string]any{}
 	if iD != 0 {
 		in["ID"] = iD
@@ -21354,7 +21072,7 @@ func MSFTPrintJobDeleteJobByPrinterObject(svc *wmi.Service, iD uint32, printerOb
 
 // MSFTPrintJobGetByNameResult holds the out-parameters of MSFT_PrintJob.GetByName.
 type MSFTPrintJobGetByNameResult struct {
-	CmdletOutput []any
+	CmdletOutput []wmi.Row
 	ReturnValue  uint32
 }
 
@@ -21376,22 +21094,20 @@ func MSFTPrintJobGetByName(svc *wmi.Service, computerName string, iD uint32, pri
 		return nil, err
 	}
 	out := &MSFTPrintJobGetByNameResult{}
-	if v, ok := row["cmdletOutput"].([]any); ok {
-		out.CmdletOutput = v
-	}
+	out.CmdletOutput = wmi.AsRowSlice(row["cmdletOutput"])
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
 
 // MSFTPrintJobGetByObjectResult holds the out-parameters of MSFT_PrintJob.GetByObject.
 type MSFTPrintJobGetByObjectResult struct {
-	CmdletOutput []any
+	CmdletOutput []wmi.Row
 	ReturnValue  uint32
 }
 
 // MSFTPrintJobGetByObject invokes the static MSFT_PrintJob.GetByObject method. Zero-valued
 // in-parameters are omitted so the provider applies its defaults.
-func MSFTPrintJobGetByObject(svc *wmi.Service, iD uint32, printerObject any) (*MSFTPrintJobGetByObjectResult, error) {
+func MSFTPrintJobGetByObject(svc *wmi.Service, iD uint32, printerObject wmi.Row) (*MSFTPrintJobGetByObjectResult, error) {
 	in := map[string]any{}
 	if iD != 0 {
 		in["ID"] = iD
@@ -21404,9 +21120,7 @@ func MSFTPrintJobGetByObject(svc *wmi.Service, iD uint32, printerObject any) (*M
 		return nil, err
 	}
 	out := &MSFTPrintJobGetByObjectResult{}
-	if v, ok := row["cmdletOutput"].([]any); ok {
-		out.CmdletOutput = v
-	}
+	out.CmdletOutput = wmi.AsRowSlice(row["cmdletOutput"])
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
@@ -21445,7 +21159,7 @@ type MSFTPrintJobRestartJobByObjectResult struct {
 
 // MSFTPrintJobRestartJobByObject invokes the static MSFT_PrintJob.RestartJobByObject method. Zero-valued
 // in-parameters are omitted so the provider applies its defaults.
-func MSFTPrintJobRestartJobByObject(svc *wmi.Service, inputObject any) (*MSFTPrintJobRestartJobByObjectResult, error) {
+func MSFTPrintJobRestartJobByObject(svc *wmi.Service, inputObject wmi.Row) (*MSFTPrintJobRestartJobByObjectResult, error) {
 	in := map[string]any{}
 	if inputObject != nil {
 		in["InputObject"] = inputObject
@@ -21466,7 +21180,7 @@ type MSFTPrintJobRestartJobByPrinterObjectResult struct {
 
 // MSFTPrintJobRestartJobByPrinterObject invokes the static MSFT_PrintJob.RestartJobByPrinterObject method. Zero-valued
 // in-parameters are omitted so the provider applies its defaults.
-func MSFTPrintJobRestartJobByPrinterObject(svc *wmi.Service, iD uint32, printerObject any) (*MSFTPrintJobRestartJobByPrinterObjectResult, error) {
+func MSFTPrintJobRestartJobByPrinterObject(svc *wmi.Service, iD uint32, printerObject wmi.Row) (*MSFTPrintJobRestartJobByPrinterObjectResult, error) {
 	in := map[string]any{}
 	if iD != 0 {
 		in["ID"] = iD
@@ -21517,7 +21231,7 @@ type MSFTPrintJobResumeJobByObjectResult struct {
 
 // MSFTPrintJobResumeJobByObject invokes the static MSFT_PrintJob.ResumeJobByObject method. Zero-valued
 // in-parameters are omitted so the provider applies its defaults.
-func MSFTPrintJobResumeJobByObject(svc *wmi.Service, inputObject any) (*MSFTPrintJobResumeJobByObjectResult, error) {
+func MSFTPrintJobResumeJobByObject(svc *wmi.Service, inputObject wmi.Row) (*MSFTPrintJobResumeJobByObjectResult, error) {
 	in := map[string]any{}
 	if inputObject != nil {
 		in["InputObject"] = inputObject
@@ -21538,7 +21252,7 @@ type MSFTPrintJobResumeJobByPrinterObjectResult struct {
 
 // MSFTPrintJobResumeJobByPrinterObject invokes the static MSFT_PrintJob.ResumeJobByPrinterObject method. Zero-valued
 // in-parameters are omitted so the provider applies its defaults.
-func MSFTPrintJobResumeJobByPrinterObject(svc *wmi.Service, iD uint32, printerObject any) (*MSFTPrintJobResumeJobByPrinterObjectResult, error) {
+func MSFTPrintJobResumeJobByPrinterObject(svc *wmi.Service, iD uint32, printerObject wmi.Row) (*MSFTPrintJobResumeJobByPrinterObjectResult, error) {
 	in := map[string]any{}
 	if iD != 0 {
 		in["ID"] = iD
@@ -21589,7 +21303,7 @@ type MSFTPrintJobSuspendJobByObjectResult struct {
 
 // MSFTPrintJobSuspendJobByObject invokes the static MSFT_PrintJob.SuspendJobByObject method. Zero-valued
 // in-parameters are omitted so the provider applies its defaults.
-func MSFTPrintJobSuspendJobByObject(svc *wmi.Service, inputObject any) (*MSFTPrintJobSuspendJobByObjectResult, error) {
+func MSFTPrintJobSuspendJobByObject(svc *wmi.Service, inputObject wmi.Row) (*MSFTPrintJobSuspendJobByObjectResult, error) {
 	in := map[string]any{}
 	if inputObject != nil {
 		in["InputObject"] = inputObject
@@ -21610,7 +21324,7 @@ type MSFTPrintJobSuspendJobByPrinterObjectResult struct {
 
 // MSFTPrintJobSuspendJobByPrinterObject invokes the static MSFT_PrintJob.SuspendJobByPrinterObject method. Zero-valued
 // in-parameters are omitted so the provider applies its defaults.
-func MSFTPrintJobSuspendJobByPrinterObject(svc *wmi.Service, iD uint32, printerObject any) (*MSFTPrintJobSuspendJobByPrinterObjectResult, error) {
+func MSFTPrintJobSuspendJobByPrinterObject(svc *wmi.Service, iD uint32, printerObject wmi.Row) (*MSFTPrintJobSuspendJobByPrinterObjectResult, error) {
 	in := map[string]any{}
 	if iD != 0 {
 		in["ID"] = iD
@@ -21946,7 +21660,7 @@ type MSFTPrinterRenameByObjectResult struct {
 
 // MSFTPrinterRenameByObject invokes the static MSFT_Printer.RenameByObject method. Zero-valued
 // in-parameters are omitted so the provider applies its defaults.
-func MSFTPrinterRenameByObject(svc *wmi.Service, inputObject any, newName string) (*MSFTPrinterRenameByObjectResult, error) {
+func MSFTPrinterRenameByObject(svc *wmi.Service, inputObject wmi.Row, newName string) (*MSFTPrinterRenameByObjectResult, error) {
 	in := map[string]any{}
 	if inputObject != nil {
 		in["InputObject"] = inputObject
@@ -22002,7 +21716,7 @@ func QueryMSFTPrinterConfiguration(svc *wmi.Service, where string) ([]MSFTPrinte
 
 // MSFTPrinterConfigurationGetByPrinterNameResult holds the out-parameters of MSFT_PrinterConfiguration.GetByPrinterName.
 type MSFTPrinterConfigurationGetByPrinterNameResult struct {
-	CmdletOutput any
+	CmdletOutput wmi.Row
 	ReturnValue  uint32
 }
 
@@ -22021,20 +21735,22 @@ func MSFTPrinterConfigurationGetByPrinterName(svc *wmi.Service, computerName str
 		return nil, err
 	}
 	out := &MSFTPrinterConfigurationGetByPrinterNameResult{}
-	out.CmdletOutput = row["cmdletOutput"]
+	if v, ok := row["cmdletOutput"].(wmi.Row); ok {
+		out.CmdletOutput = v
+	}
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
 
 // MSFTPrinterConfigurationGetByPrinterObjectResult holds the out-parameters of MSFT_PrinterConfiguration.GetByPrinterObject.
 type MSFTPrinterConfigurationGetByPrinterObjectResult struct {
-	CmdletOutput any
+	CmdletOutput wmi.Row
 	ReturnValue  uint32
 }
 
 // MSFTPrinterConfigurationGetByPrinterObject invokes the static MSFT_PrinterConfiguration.GetByPrinterObject method. Zero-valued
 // in-parameters are omitted so the provider applies its defaults.
-func MSFTPrinterConfigurationGetByPrinterObject(svc *wmi.Service, printerObject any) (*MSFTPrinterConfigurationGetByPrinterObjectResult, error) {
+func MSFTPrinterConfigurationGetByPrinterObject(svc *wmi.Service, printerObject wmi.Row) (*MSFTPrinterConfigurationGetByPrinterObjectResult, error) {
 	in := map[string]any{}
 	if printerObject != nil {
 		in["PrinterObject"] = printerObject
@@ -22044,7 +21760,9 @@ func MSFTPrinterConfigurationGetByPrinterObject(svc *wmi.Service, printerObject 
 		return nil, err
 	}
 	out := &MSFTPrinterConfigurationGetByPrinterObjectResult{}
-	out.CmdletOutput = row["cmdletOutput"]
+	if v, ok := row["cmdletOutput"].(wmi.Row); ok {
+		out.CmdletOutput = v
+	}
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
@@ -22056,7 +21774,7 @@ type MSFTPrinterConfigurationSetByPrintConfigObjectResult struct {
 
 // MSFTPrinterConfigurationSetByPrintConfigObject invokes the static MSFT_PrinterConfiguration.SetByPrintConfigObject method. Zero-valued
 // in-parameters are omitted so the provider applies its defaults.
-func MSFTPrinterConfigurationSetByPrintConfigObject(svc *wmi.Service, inputObject any) (*MSFTPrinterConfigurationSetByPrintConfigObjectResult, error) {
+func MSFTPrinterConfigurationSetByPrintConfigObject(svc *wmi.Service, inputObject wmi.Row) (*MSFTPrinterConfigurationSetByPrintConfigObjectResult, error) {
 	in := map[string]any{}
 	if inputObject != nil {
 		in["InputObject"] = inputObject
@@ -22116,7 +21834,7 @@ type MSFTPrinterConfigurationSetByPrinterObjectResult struct {
 
 // MSFTPrinterConfigurationSetByPrinterObject invokes the static MSFT_PrinterConfiguration.SetByPrinterObject method. Zero-valued
 // in-parameters are omitted so the provider applies its defaults.
-func MSFTPrinterConfigurationSetByPrinterObject(svc *wmi.Service, collate bool, color bool, duplexingMode uint32, paperSize uint32, printTicketXML string, printerObject any) (*MSFTPrinterConfigurationSetByPrinterObjectResult, error) {
+func MSFTPrinterConfigurationSetByPrinterObject(svc *wmi.Service, collate bool, color bool, duplexingMode uint32, paperSize uint32, printTicketXML string, printerObject wmi.Row) (*MSFTPrinterConfigurationSetByPrinterObjectResult, error) {
 	in := map[string]any{}
 	if collate {
 		in["Collate"] = collate
@@ -22318,7 +22036,7 @@ func QueryMSFTPrinterNfcTagTasks(svc *wmi.Service, where string) ([]MSFTPrinterN
 
 // MSFTPrinterNfcTagTasksReadResult holds the out-parameters of MSFT_PrinterNfcTagTasks.Read.
 type MSFTPrinterNfcTagTasksReadResult struct {
-	CmdletOutput any
+	CmdletOutput wmi.Row
 	ReturnValue  uint32
 }
 
@@ -22330,7 +22048,9 @@ func MSFTPrinterNfcTagTasksRead(svc *wmi.Service) (*MSFTPrinterNfcTagTasksReadRe
 		return nil, err
 	}
 	out := &MSFTPrinterNfcTagTasksReadResult{}
-	out.CmdletOutput = row["cmdletOutput"]
+	if v, ok := row["cmdletOutput"].(wmi.Row); ok {
+		out.CmdletOutput = v
+	}
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
@@ -22369,7 +22089,7 @@ type MSFTPrinterNfcTagTasksWriteByPrinterNfcTagResult struct {
 
 // MSFTPrinterNfcTagTasksWriteByPrinterNfcTag invokes the static MSFT_PrinterNfcTagTasks.WriteByPrinterNfcTag method. Zero-valued
 // in-parameters are omitted so the provider applies its defaults.
-func MSFTPrinterNfcTagTasksWriteByPrinterNfcTag(svc *wmi.Service, inputObject any) (*MSFTPrinterNfcTagTasksWriteByPrinterNfcTagResult, error) {
+func MSFTPrinterNfcTagTasksWriteByPrinterNfcTag(svc *wmi.Service, inputObject wmi.Row) (*MSFTPrinterNfcTagTasksWriteByPrinterNfcTagResult, error) {
 	in := map[string]any{}
 	if inputObject != nil {
 		in["InputObject"] = inputObject
@@ -22660,7 +22380,7 @@ type MSFTPrinterPropertySetByPrinterObjectResult struct {
 
 // MSFTPrinterPropertySetByPrinterObject invokes the static MSFT_PrinterProperty.SetByPrinterObject method. Zero-valued
 // in-parameters are omitted so the provider applies its defaults.
-func MSFTPrinterPropertySetByPrinterObject(svc *wmi.Service, printerObject any, propertyName string, value string) (*MSFTPrinterPropertySetByPrinterObjectResult, error) {
+func MSFTPrinterPropertySetByPrinterObject(svc *wmi.Service, printerObject wmi.Row, propertyName string, value string) (*MSFTPrinterPropertySetByPrinterObjectResult, error) {
 	in := map[string]any{}
 	if printerObject != nil {
 		in["PrinterObject"] = printerObject
@@ -22687,7 +22407,7 @@ type MSFTPrinterPropertySetByPrinterPropertyObjectResult struct {
 
 // MSFTPrinterPropertySetByPrinterPropertyObject invokes the static MSFT_PrinterProperty.SetByPrinterPropertyObject method. Zero-valued
 // in-parameters are omitted so the provider applies its defaults.
-func MSFTPrinterPropertySetByPrinterPropertyObject(svc *wmi.Service, inputObject any) (*MSFTPrinterPropertySetByPrinterPropertyObjectResult, error) {
+func MSFTPrinterPropertySetByPrinterPropertyObject(svc *wmi.Service, inputObject wmi.Row) (*MSFTPrinterPropertySetByPrinterPropertyObjectResult, error) {
 	in := map[string]any{}
 	if inputObject != nil {
 		in["InputObject"] = inputObject
@@ -22831,13 +22551,13 @@ func QueryMSFTWmiError(svc *wmi.Service, where string) ([]MSFTWmiError, error) {
 
 // ACE is the __ACE CIM class.
 type ACE struct {
-	AccessMask              uint32 `cim:"AccessMask"`
-	AceFlags                uint32 `cim:"AceFlags"`
-	AceType                 uint32 `cim:"AceType"`
-	GuidInheritedObjectType string `cim:"GuidInheritedObjectType"`
-	GuidObjectType          string `cim:"GuidObjectType"`
-	TIMECREATED             uint64 `cim:"TIME_CREATED"`
-	Trustee                 any    `cim:"Trustee"`
+	AccessMask              uint32  `cim:"AccessMask"`
+	AceFlags                uint32  `cim:"AceFlags"`
+	AceType                 uint32  `cim:"AceType"`
+	GuidInheritedObjectType string  `cim:"GuidInheritedObjectType"`
+	GuidObjectType          string  `cim:"GuidObjectType"`
+	TIMECREATED             uint64  `cim:"TIME_CREATED"`
+	Trustee                 wmi.Row `cim:"Trustee"`
 }
 
 // QueryACE runs the WQL query against the class and decodes each
@@ -22859,7 +22579,7 @@ func QueryACE(svc *wmi.Service, where string) ([]ACE, error) {
 		out[i].GuidInheritedObjectType = wmi.AsString(row["GuidInheritedObjectType"])
 		out[i].GuidObjectType = wmi.AsString(row["GuidObjectType"])
 		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
-		if v, ok := row["Trustee"].(any); ok {
+		if v, ok := row["Trustee"].(wmi.Row); ok {
 			out[i].Trustee = v
 		}
 	}
@@ -22895,8 +22615,8 @@ func QueryAbsoluteTimerInstruction(svc *wmi.Service, where string) ([]AbsoluteTi
 
 // AggregateEvent is the __AggregateEvent CIM class.
 type AggregateEvent struct {
-	NumberOfEvents uint32 `cim:"NumberOfEvents"`
-	Representative any    `cim:"Representative"`
+	NumberOfEvents uint32  `cim:"NumberOfEvents"`
+	Representative wmi.Row `cim:"Representative"`
 }
 
 // QueryAggregateEvent runs the WQL query against the class and decodes each
@@ -22913,7 +22633,7 @@ func QueryAggregateEvent(svc *wmi.Service, where string) ([]AggregateEvent, erro
 	out := make([]AggregateEvent, len(rows))
 	for i, row := range rows {
 		out[i].NumberOfEvents = wmi.AsUint32(row["NumberOfEvents"])
-		if v, ok := row["Representative"].(any); ok {
+		if v, ok := row["Representative"].(wmi.Row); ok {
 			out[i].Representative = v
 		}
 	}
@@ -22924,7 +22644,7 @@ func QueryAggregateEvent(svc *wmi.Service, where string) ([]AggregateEvent, erro
 type ClassCreationEvent struct {
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 	TIMECREATED        uint64  `cim:"TIME_CREATED"`
-	TargetClass        any     `cim:"TargetClass"`
+	TargetClass        wmi.Row `cim:"TargetClass"`
 }
 
 // QueryClassCreationEvent runs the WQL query against the class and decodes each
@@ -22942,7 +22662,7 @@ func QueryClassCreationEvent(svc *wmi.Service, where string) ([]ClassCreationEve
 	for i, row := range rows {
 		out[i].SECURITYDESCRIPTOR = wmi.AsUint8Slice(row["SECURITY_DESCRIPTOR"])
 		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
-		if v, ok := row["TargetClass"].(any); ok {
+		if v, ok := row["TargetClass"].(wmi.Row); ok {
 			out[i].TargetClass = v
 		}
 	}
@@ -22953,7 +22673,7 @@ func QueryClassCreationEvent(svc *wmi.Service, where string) ([]ClassCreationEve
 type ClassDeletionEvent struct {
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 	TIMECREATED        uint64  `cim:"TIME_CREATED"`
-	TargetClass        any     `cim:"TargetClass"`
+	TargetClass        wmi.Row `cim:"TargetClass"`
 }
 
 // QueryClassDeletionEvent runs the WQL query against the class and decodes each
@@ -22971,7 +22691,7 @@ func QueryClassDeletionEvent(svc *wmi.Service, where string) ([]ClassDeletionEve
 	for i, row := range rows {
 		out[i].SECURITYDESCRIPTOR = wmi.AsUint8Slice(row["SECURITY_DESCRIPTOR"])
 		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
-		if v, ok := row["TargetClass"].(any); ok {
+		if v, ok := row["TargetClass"].(wmi.Row); ok {
 			out[i].TargetClass = v
 		}
 	}
@@ -22980,10 +22700,10 @@ func QueryClassDeletionEvent(svc *wmi.Service, where string) ([]ClassDeletionEve
 
 // ClassModificationEvent is the __ClassModificationEvent CIM class.
 type ClassModificationEvent struct {
-	PreviousClass      any     `cim:"PreviousClass"`
+	PreviousClass      wmi.Row `cim:"PreviousClass"`
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 	TIMECREATED        uint64  `cim:"TIME_CREATED"`
-	TargetClass        any     `cim:"TargetClass"`
+	TargetClass        wmi.Row `cim:"TargetClass"`
 }
 
 // QueryClassModificationEvent runs the WQL query against the class and decodes each
@@ -22999,12 +22719,12 @@ func QueryClassModificationEvent(svc *wmi.Service, where string) ([]ClassModific
 	}
 	out := make([]ClassModificationEvent, len(rows))
 	for i, row := range rows {
-		if v, ok := row["PreviousClass"].(any); ok {
+		if v, ok := row["PreviousClass"].(wmi.Row); ok {
 			out[i].PreviousClass = v
 		}
 		out[i].SECURITYDESCRIPTOR = wmi.AsUint8Slice(row["SECURITY_DESCRIPTOR"])
 		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
-		if v, ok := row["TargetClass"].(any); ok {
+		if v, ok := row["TargetClass"].(wmi.Row); ok {
 			out[i].TargetClass = v
 		}
 	}
@@ -23015,7 +22735,7 @@ func QueryClassModificationEvent(svc *wmi.Service, where string) ([]ClassModific
 type ClassOperationEvent struct {
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 	TIMECREATED        uint64  `cim:"TIME_CREATED"`
-	TargetClass        any     `cim:"TargetClass"`
+	TargetClass        wmi.Row `cim:"TargetClass"`
 }
 
 // QueryClassOperationEvent runs the WQL query against the class and decodes each
@@ -23033,7 +22753,7 @@ func QueryClassOperationEvent(svc *wmi.Service, where string) ([]ClassOperationE
 	for i, row := range rows {
 		out[i].SECURITYDESCRIPTOR = wmi.AsUint8Slice(row["SECURITY_DESCRIPTOR"])
 		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
-		if v, ok := row["TargetClass"].(any); ok {
+		if v, ok := row["TargetClass"].(wmi.Row); ok {
 			out[i].TargetClass = v
 		}
 	}
@@ -23057,7 +22777,7 @@ type ClassProviderRegistration struct {
 	SupportsTransactions         bool     `cim:"SupportsTransactions"`
 	UnsupportedQueries           []string `cim:"UnsupportedQueries"`
 	Version                      uint32   `cim:"Version"`
-	Provider                     any      `cim:"provider"`
+	Provider                     string   `cim:"provider"`
 }
 
 // QueryClassProviderRegistration runs the WQL query against the class and decodes each
@@ -23088,9 +22808,7 @@ func QueryClassProviderRegistration(svc *wmi.Service, where string) ([]ClassProv
 		out[i].SupportsTransactions = wmi.AsBool(row["SupportsTransactions"])
 		out[i].UnsupportedQueries = wmi.AsStringSlice(row["UnsupportedQueries"])
 		out[i].Version = wmi.AsUint32(row["Version"])
-		if v, ok := row["provider"].(any); ok {
-			out[i].Provider = v
-		}
+		out[i].Provider = wmi.AsString(row["provider"])
 	}
 	return out, nil
 }
@@ -23099,9 +22817,9 @@ func QueryClassProviderRegistration(svc *wmi.Service, where string) ([]ClassProv
 type ConsumerFailureEvent struct {
 	ErrorCode          uint32  `cim:"ErrorCode"`
 	ErrorDescription   string  `cim:"ErrorDescription"`
-	ErrorObject        any     `cim:"ErrorObject"`
-	Event              any     `cim:"Event"`
-	IntendedConsumer   any     `cim:"IntendedConsumer"`
+	ErrorObject        wmi.Row `cim:"ErrorObject"`
+	Event              wmi.Row `cim:"Event"`
+	IntendedConsumer   string  `cim:"IntendedConsumer"`
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 	TIMECREATED        uint64  `cim:"TIME_CREATED"`
 }
@@ -23121,15 +22839,13 @@ func QueryConsumerFailureEvent(svc *wmi.Service, where string) ([]ConsumerFailur
 	for i, row := range rows {
 		out[i].ErrorCode = wmi.AsUint32(row["ErrorCode"])
 		out[i].ErrorDescription = wmi.AsString(row["ErrorDescription"])
-		if v, ok := row["ErrorObject"].(any); ok {
+		if v, ok := row["ErrorObject"].(wmi.Row); ok {
 			out[i].ErrorObject = v
 		}
-		if v, ok := row["Event"].(any); ok {
+		if v, ok := row["Event"].(wmi.Row); ok {
 			out[i].Event = v
 		}
-		if v, ok := row["IntendedConsumer"].(any); ok {
-			out[i].IntendedConsumer = v
-		}
+		out[i].IntendedConsumer = wmi.AsString(row["IntendedConsumer"])
 		out[i].SECURITYDESCRIPTOR = wmi.AsUint8Slice(row["SECURITY_DESCRIPTOR"])
 		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
 	}
@@ -23191,7 +22907,7 @@ func QueryEventConsumer(svc *wmi.Service, where string) ([]EventConsumer, error)
 // EventConsumerProviderRegistration is the __EventConsumerProviderRegistration CIM class.
 type EventConsumerProviderRegistration struct {
 	ConsumerClassNames []string `cim:"ConsumerClassNames"`
-	Provider           any      `cim:"provider"`
+	Provider           string   `cim:"provider"`
 }
 
 // QueryEventConsumerProviderRegistration runs the WQL query against the class and decodes each
@@ -23208,17 +22924,15 @@ func QueryEventConsumerProviderRegistration(svc *wmi.Service, where string) ([]E
 	out := make([]EventConsumerProviderRegistration, len(rows))
 	for i, row := range rows {
 		out[i].ConsumerClassNames = wmi.AsStringSlice(row["ConsumerClassNames"])
-		if v, ok := row["provider"].(any); ok {
-			out[i].Provider = v
-		}
+		out[i].Provider = wmi.AsString(row["provider"])
 	}
 	return out, nil
 }
 
 // EventDroppedEvent is the __EventDroppedEvent CIM class.
 type EventDroppedEvent struct {
-	Event              any     `cim:"Event"`
-	IntendedConsumer   any     `cim:"IntendedConsumer"`
+	Event              wmi.Row `cim:"Event"`
+	IntendedConsumer   string  `cim:"IntendedConsumer"`
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 	TIMECREATED        uint64  `cim:"TIME_CREATED"`
 }
@@ -23236,12 +22950,10 @@ func QueryEventDroppedEvent(svc *wmi.Service, where string) ([]EventDroppedEvent
 	}
 	out := make([]EventDroppedEvent, len(rows))
 	for i, row := range rows {
-		if v, ok := row["Event"].(any); ok {
+		if v, ok := row["Event"].(wmi.Row); ok {
 			out[i].Event = v
 		}
-		if v, ok := row["IntendedConsumer"].(any); ok {
-			out[i].IntendedConsumer = v
-		}
+		out[i].IntendedConsumer = wmi.AsString(row["IntendedConsumer"])
 		out[i].SECURITYDESCRIPTOR = wmi.AsUint8Slice(row["SECURITY_DESCRIPTOR"])
 		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
 	}
@@ -23303,7 +23015,7 @@ func QueryEventGenerator(svc *wmi.Service, where string) ([]EventGenerator, erro
 // EventProviderRegistration is the __EventProviderRegistration CIM class.
 type EventProviderRegistration struct {
 	EventQueryList []string `cim:"EventQueryList"`
-	Provider       any      `cim:"provider"`
+	Provider       string   `cim:"provider"`
 }
 
 // QueryEventProviderRegistration runs the WQL query against the class and decodes each
@@ -23320,9 +23032,7 @@ func QueryEventProviderRegistration(svc *wmi.Service, where string) ([]EventProv
 	out := make([]EventProviderRegistration, len(rows))
 	for i, row := range rows {
 		out[i].EventQueryList = wmi.AsStringSlice(row["EventQueryList"])
-		if v, ok := row["provider"].(any); ok {
-			out[i].Provider = v
-		}
+		out[i].Provider = wmi.AsString(row["provider"])
 	}
 	return out, nil
 }
@@ -23330,8 +23040,8 @@ func QueryEventProviderRegistration(svc *wmi.Service, where string) ([]EventProv
 // EventQueueOverflowEvent is the __EventQueueOverflowEvent CIM class.
 type EventQueueOverflowEvent struct {
 	CurrentQueueSize   uint32  `cim:"CurrentQueueSize"`
-	Event              any     `cim:"Event"`
-	IntendedConsumer   any     `cim:"IntendedConsumer"`
+	Event              wmi.Row `cim:"Event"`
+	IntendedConsumer   string  `cim:"IntendedConsumer"`
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 	TIMECREATED        uint64  `cim:"TIME_CREATED"`
 }
@@ -23350,12 +23060,10 @@ func QueryEventQueueOverflowEvent(svc *wmi.Service, where string) ([]EventQueueO
 	out := make([]EventQueueOverflowEvent, len(rows))
 	for i, row := range rows {
 		out[i].CurrentQueueSize = wmi.AsUint32(row["CurrentQueueSize"])
-		if v, ok := row["Event"].(any); ok {
+		if v, ok := row["Event"].(wmi.Row); ok {
 			out[i].Event = v
 		}
-		if v, ok := row["IntendedConsumer"].(any); ok {
-			out[i].IntendedConsumer = v
-		}
+		out[i].IntendedConsumer = wmi.AsString(row["IntendedConsumer"])
 		out[i].SECURITYDESCRIPTOR = wmi.AsUint8Slice(row["SECURITY_DESCRIPTOR"])
 		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
 	}
@@ -23420,11 +23128,11 @@ func QueryExtrinsicEvent(svc *wmi.Service, where string) ([]ExtrinsicEvent, erro
 
 // FilterToConsumerBinding is the __FilterToConsumerBinding CIM class.
 type FilterToConsumerBinding struct {
-	Consumer                any     `cim:"Consumer"`
+	Consumer                string  `cim:"Consumer"`
 	CreatorSID              []uint8 `cim:"CreatorSID"`
 	DeliverSynchronously    bool    `cim:"DeliverSynchronously"`
 	DeliveryQoS             uint32  `cim:"DeliveryQoS"`
-	Filter                  any     `cim:"Filter"`
+	Filter                  string  `cim:"Filter"`
 	MaintainSecurityContext bool    `cim:"MaintainSecurityContext"`
 	SlowDownProviders       bool    `cim:"SlowDownProviders"`
 }
@@ -23442,15 +23150,11 @@ func QueryFilterToConsumerBinding(svc *wmi.Service, where string) ([]FilterToCon
 	}
 	out := make([]FilterToConsumerBinding, len(rows))
 	for i, row := range rows {
-		if v, ok := row["Consumer"].(any); ok {
-			out[i].Consumer = v
-		}
+		out[i].Consumer = wmi.AsString(row["Consumer"])
 		out[i].CreatorSID = wmi.AsUint8Slice(row["CreatorSID"])
 		out[i].DeliverSynchronously = wmi.AsBool(row["DeliverSynchronously"])
 		out[i].DeliveryQoS = wmi.AsUint32(row["DeliveryQoS"])
-		if v, ok := row["Filter"].(any); ok {
-			out[i].Filter = v
-		}
+		out[i].Filter = wmi.AsString(row["Filter"])
 		out[i].MaintainSecurityContext = wmi.AsBool(row["MaintainSecurityContext"])
 		out[i].SlowDownProviders = wmi.AsBool(row["SlowDownProviders"])
 	}
@@ -23480,7 +23184,7 @@ func QueryIndicationRelated(svc *wmi.Service, where string) ([]IndicationRelated
 type InstanceCreationEvent struct {
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 	TIMECREATED        uint64  `cim:"TIME_CREATED"`
-	TargetInstance     any     `cim:"TargetInstance"`
+	TargetInstance     wmi.Row `cim:"TargetInstance"`
 }
 
 // QueryInstanceCreationEvent runs the WQL query against the class and decodes each
@@ -23498,7 +23202,7 @@ func QueryInstanceCreationEvent(svc *wmi.Service, where string) ([]InstanceCreat
 	for i, row := range rows {
 		out[i].SECURITYDESCRIPTOR = wmi.AsUint8Slice(row["SECURITY_DESCRIPTOR"])
 		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
-		if v, ok := row["TargetInstance"].(any); ok {
+		if v, ok := row["TargetInstance"].(wmi.Row); ok {
 			out[i].TargetInstance = v
 		}
 	}
@@ -23509,7 +23213,7 @@ func QueryInstanceCreationEvent(svc *wmi.Service, where string) ([]InstanceCreat
 type InstanceDeletionEvent struct {
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 	TIMECREATED        uint64  `cim:"TIME_CREATED"`
-	TargetInstance     any     `cim:"TargetInstance"`
+	TargetInstance     wmi.Row `cim:"TargetInstance"`
 }
 
 // QueryInstanceDeletionEvent runs the WQL query against the class and decodes each
@@ -23527,7 +23231,7 @@ func QueryInstanceDeletionEvent(svc *wmi.Service, where string) ([]InstanceDelet
 	for i, row := range rows {
 		out[i].SECURITYDESCRIPTOR = wmi.AsUint8Slice(row["SECURITY_DESCRIPTOR"])
 		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
-		if v, ok := row["TargetInstance"].(any); ok {
+		if v, ok := row["TargetInstance"].(wmi.Row); ok {
 			out[i].TargetInstance = v
 		}
 	}
@@ -23536,10 +23240,10 @@ func QueryInstanceDeletionEvent(svc *wmi.Service, where string) ([]InstanceDelet
 
 // InstanceModificationEvent is the __InstanceModificationEvent CIM class.
 type InstanceModificationEvent struct {
-	PreviousInstance   any     `cim:"PreviousInstance"`
+	PreviousInstance   wmi.Row `cim:"PreviousInstance"`
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 	TIMECREATED        uint64  `cim:"TIME_CREATED"`
-	TargetInstance     any     `cim:"TargetInstance"`
+	TargetInstance     wmi.Row `cim:"TargetInstance"`
 }
 
 // QueryInstanceModificationEvent runs the WQL query against the class and decodes each
@@ -23555,12 +23259,12 @@ func QueryInstanceModificationEvent(svc *wmi.Service, where string) ([]InstanceM
 	}
 	out := make([]InstanceModificationEvent, len(rows))
 	for i, row := range rows {
-		if v, ok := row["PreviousInstance"].(any); ok {
+		if v, ok := row["PreviousInstance"].(wmi.Row); ok {
 			out[i].PreviousInstance = v
 		}
 		out[i].SECURITYDESCRIPTOR = wmi.AsUint8Slice(row["SECURITY_DESCRIPTOR"])
 		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
-		if v, ok := row["TargetInstance"].(any); ok {
+		if v, ok := row["TargetInstance"].(wmi.Row); ok {
 			out[i].TargetInstance = v
 		}
 	}
@@ -23571,7 +23275,7 @@ func QueryInstanceModificationEvent(svc *wmi.Service, where string) ([]InstanceM
 type InstanceOperationEvent struct {
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 	TIMECREATED        uint64  `cim:"TIME_CREATED"`
-	TargetInstance     any     `cim:"TargetInstance"`
+	TargetInstance     wmi.Row `cim:"TargetInstance"`
 }
 
 // QueryInstanceOperationEvent runs the WQL query against the class and decodes each
@@ -23589,7 +23293,7 @@ func QueryInstanceOperationEvent(svc *wmi.Service, where string) ([]InstanceOper
 	for i, row := range rows {
 		out[i].SECURITYDESCRIPTOR = wmi.AsUint8Slice(row["SECURITY_DESCRIPTOR"])
 		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
-		if v, ok := row["TargetInstance"].(any); ok {
+		if v, ok := row["TargetInstance"].(wmi.Row); ok {
 			out[i].TargetInstance = v
 		}
 	}
@@ -23606,7 +23310,7 @@ type InstanceProviderRegistration struct {
 	SupportsGet          bool     `cim:"SupportsGet"`
 	SupportsPut          bool     `cim:"SupportsPut"`
 	SupportsTransactions bool     `cim:"SupportsTransactions"`
-	Provider             any      `cim:"provider"`
+	Provider             string   `cim:"provider"`
 }
 
 // QueryInstanceProviderRegistration runs the WQL query against the class and decodes each
@@ -23630,9 +23334,7 @@ func QueryInstanceProviderRegistration(svc *wmi.Service, where string) ([]Instan
 		out[i].SupportsGet = wmi.AsBool(row["SupportsGet"])
 		out[i].SupportsPut = wmi.AsBool(row["SupportsPut"])
 		out[i].SupportsTransactions = wmi.AsBool(row["SupportsTransactions"])
-		if v, ok := row["provider"].(any); ok {
-			out[i].Provider = v
-		}
+		out[i].Provider = wmi.AsString(row["provider"])
 	}
 	return out, nil
 }
@@ -23667,11 +23369,11 @@ func QueryIntervalTimerInstruction(svc *wmi.Service, where string) ([]IntervalTi
 // MethodInvocationEvent is the __MethodInvocationEvent CIM class.
 type MethodInvocationEvent struct {
 	Method             string  `cim:"Method"`
-	Parameters         any     `cim:"Parameters"`
+	Parameters         wmi.Row `cim:"Parameters"`
 	PreCall            bool    `cim:"PreCall"`
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 	TIMECREATED        uint64  `cim:"TIME_CREATED"`
-	TargetInstance     any     `cim:"TargetInstance"`
+	TargetInstance     wmi.Row `cim:"TargetInstance"`
 }
 
 // QueryMethodInvocationEvent runs the WQL query against the class and decodes each
@@ -23688,13 +23390,13 @@ func QueryMethodInvocationEvent(svc *wmi.Service, where string) ([]MethodInvocat
 	out := make([]MethodInvocationEvent, len(rows))
 	for i, row := range rows {
 		out[i].Method = wmi.AsString(row["Method"])
-		if v, ok := row["Parameters"].(any); ok {
+		if v, ok := row["Parameters"].(wmi.Row); ok {
 			out[i].Parameters = v
 		}
 		out[i].PreCall = wmi.AsBool(row["PreCall"])
 		out[i].SECURITYDESCRIPTOR = wmi.AsUint8Slice(row["SECURITY_DESCRIPTOR"])
 		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
-		if v, ok := row["TargetInstance"].(any); ok {
+		if v, ok := row["TargetInstance"].(wmi.Row); ok {
 			out[i].TargetInstance = v
 		}
 	}
@@ -23703,7 +23405,7 @@ func QueryMethodInvocationEvent(svc *wmi.Service, where string) ([]MethodInvocat
 
 // MethodProviderRegistration is the __MethodProviderRegistration CIM class.
 type MethodProviderRegistration struct {
-	Provider any `cim:"provider"`
+	Provider string `cim:"provider"`
 }
 
 // QueryMethodProviderRegistration runs the WQL query against the class and decodes each
@@ -23719,9 +23421,7 @@ func QueryMethodProviderRegistration(svc *wmi.Service, where string) ([]MethodPr
 	}
 	out := make([]MethodProviderRegistration, len(rows))
 	for i, row := range rows {
-		if v, ok := row["provider"].(any); ok {
-			out[i].Provider = v
-		}
+		out[i].Provider = wmi.AsString(row["provider"])
 	}
 	return out, nil
 }
@@ -23784,7 +23484,7 @@ func QueryNTLMUser9X(svc *wmi.Service, where string) ([]NTLMUser9X, error) {
 type NamespaceCreationEvent struct {
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 	TIMECREATED        uint64  `cim:"TIME_CREATED"`
-	TargetNamespace    any     `cim:"TargetNamespace"`
+	TargetNamespace    wmi.Row `cim:"TargetNamespace"`
 }
 
 // QueryNamespaceCreationEvent runs the WQL query against the class and decodes each
@@ -23802,7 +23502,7 @@ func QueryNamespaceCreationEvent(svc *wmi.Service, where string) ([]NamespaceCre
 	for i, row := range rows {
 		out[i].SECURITYDESCRIPTOR = wmi.AsUint8Slice(row["SECURITY_DESCRIPTOR"])
 		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
-		if v, ok := row["TargetNamespace"].(any); ok {
+		if v, ok := row["TargetNamespace"].(wmi.Row); ok {
 			out[i].TargetNamespace = v
 		}
 	}
@@ -23813,7 +23513,7 @@ func QueryNamespaceCreationEvent(svc *wmi.Service, where string) ([]NamespaceCre
 type NamespaceDeletionEvent struct {
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 	TIMECREATED        uint64  `cim:"TIME_CREATED"`
-	TargetNamespace    any     `cim:"TargetNamespace"`
+	TargetNamespace    wmi.Row `cim:"TargetNamespace"`
 }
 
 // QueryNamespaceDeletionEvent runs the WQL query against the class and decodes each
@@ -23831,7 +23531,7 @@ func QueryNamespaceDeletionEvent(svc *wmi.Service, where string) ([]NamespaceDel
 	for i, row := range rows {
 		out[i].SECURITYDESCRIPTOR = wmi.AsUint8Slice(row["SECURITY_DESCRIPTOR"])
 		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
-		if v, ok := row["TargetNamespace"].(any); ok {
+		if v, ok := row["TargetNamespace"].(wmi.Row); ok {
 			out[i].TargetNamespace = v
 		}
 	}
@@ -23840,10 +23540,10 @@ func QueryNamespaceDeletionEvent(svc *wmi.Service, where string) ([]NamespaceDel
 
 // NamespaceModificationEvent is the __NamespaceModificationEvent CIM class.
 type NamespaceModificationEvent struct {
-	PreviousNamespace  any     `cim:"PreviousNamespace"`
+	PreviousNamespace  wmi.Row `cim:"PreviousNamespace"`
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 	TIMECREATED        uint64  `cim:"TIME_CREATED"`
-	TargetNamespace    any     `cim:"TargetNamespace"`
+	TargetNamespace    wmi.Row `cim:"TargetNamespace"`
 }
 
 // QueryNamespaceModificationEvent runs the WQL query against the class and decodes each
@@ -23859,12 +23559,12 @@ func QueryNamespaceModificationEvent(svc *wmi.Service, where string) ([]Namespac
 	}
 	out := make([]NamespaceModificationEvent, len(rows))
 	for i, row := range rows {
-		if v, ok := row["PreviousNamespace"].(any); ok {
+		if v, ok := row["PreviousNamespace"].(wmi.Row); ok {
 			out[i].PreviousNamespace = v
 		}
 		out[i].SECURITYDESCRIPTOR = wmi.AsUint8Slice(row["SECURITY_DESCRIPTOR"])
 		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
-		if v, ok := row["TargetNamespace"].(any); ok {
+		if v, ok := row["TargetNamespace"].(wmi.Row); ok {
 			out[i].TargetNamespace = v
 		}
 	}
@@ -23875,7 +23575,7 @@ func QueryNamespaceModificationEvent(svc *wmi.Service, where string) ([]Namespac
 type NamespaceOperationEvent struct {
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 	TIMECREATED        uint64  `cim:"TIME_CREATED"`
-	TargetNamespace    any     `cim:"TargetNamespace"`
+	TargetNamespace    wmi.Row `cim:"TargetNamespace"`
 }
 
 // QueryNamespaceOperationEvent runs the WQL query against the class and decodes each
@@ -23893,7 +23593,7 @@ func QueryNamespaceOperationEvent(svc *wmi.Service, where string) ([]NamespaceOp
 	for i, row := range rows {
 		out[i].SECURITYDESCRIPTOR = wmi.AsUint8Slice(row["SECURITY_DESCRIPTOR"])
 		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
-		if v, ok := row["TargetNamespace"].(any); ok {
+		if v, ok := row["TargetNamespace"].(wmi.Row); ok {
 			out[i].TargetNamespace = v
 		}
 	}
@@ -23933,7 +23633,7 @@ type ObjectProviderRegistration struct {
 	SupportsGet          bool     `cim:"SupportsGet"`
 	SupportsPut          bool     `cim:"SupportsPut"`
 	SupportsTransactions bool     `cim:"SupportsTransactions"`
-	Provider             any      `cim:"provider"`
+	Provider             string   `cim:"provider"`
 }
 
 // QueryObjectProviderRegistration runs the WQL query against the class and decodes each
@@ -23957,9 +23657,7 @@ func QueryObjectProviderRegistration(svc *wmi.Service, where string) ([]ObjectPr
 		out[i].SupportsGet = wmi.AsBool(row["SupportsGet"])
 		out[i].SupportsPut = wmi.AsBool(row["SupportsPut"])
 		out[i].SupportsTransactions = wmi.AsBool(row["SupportsTransactions"])
-		if v, ok := row["provider"].(any); ok {
-			out[i].Provider = v
-		}
+		out[i].Provider = wmi.AsString(row["provider"])
 	}
 	return out, nil
 }
@@ -23985,9 +23683,9 @@ func QueryPARAMETERS(svc *wmi.Service, where string) ([]PARAMETERS, error) {
 
 // PropertyProviderRegistration is the __PropertyProviderRegistration CIM class.
 type PropertyProviderRegistration struct {
-	SupportsGet bool `cim:"SupportsGet"`
-	SupportsPut bool `cim:"SupportsPut"`
-	Provider    any  `cim:"provider"`
+	SupportsGet bool   `cim:"SupportsGet"`
+	SupportsPut bool   `cim:"SupportsPut"`
+	Provider    string `cim:"provider"`
 }
 
 // QueryPropertyProviderRegistration runs the WQL query against the class and decodes each
@@ -24005,9 +23703,7 @@ func QueryPropertyProviderRegistration(svc *wmi.Service, where string) ([]Proper
 	for i, row := range rows {
 		out[i].SupportsGet = wmi.AsBool(row["SupportsGet"])
 		out[i].SupportsPut = wmi.AsBool(row["SupportsPut"])
-		if v, ok := row["provider"].(any); ok {
-			out[i].Provider = v
-		}
+		out[i].Provider = wmi.AsString(row["provider"])
 	}
 	return out, nil
 }
@@ -24037,7 +23733,7 @@ func QueryProvider(svc *wmi.Service, where string) ([]Provider, error) {
 
 // ProviderRegistration is the __ProviderRegistration CIM class.
 type ProviderRegistration struct {
-	Provider any `cim:"provider"`
+	Provider string `cim:"provider"`
 }
 
 // QueryProviderRegistration runs the WQL query against the class and decodes each
@@ -24053,9 +23749,7 @@ func QueryProviderRegistration(svc *wmi.Service, where string) ([]ProviderRegist
 	}
 	out := make([]ProviderRegistration, len(rows))
 	for i, row := range rows {
-		if v, ok := row["provider"].(any); ok {
-			out[i].Provider = v
-		}
+		out[i].Provider = wmi.AsString(row["provider"])
 	}
 	return out, nil
 }
@@ -24064,8 +23758,8 @@ func QueryProviderRegistration(svc *wmi.Service, where string) ([]ProviderRegist
 type QOSFailureEvent struct {
 	ErrorCode          uint32  `cim:"ErrorCode"`
 	ErrorDescription   string  `cim:"ErrorDescription"`
-	Event              any     `cim:"Event"`
-	IntendedConsumer   any     `cim:"IntendedConsumer"`
+	Event              wmi.Row `cim:"Event"`
+	IntendedConsumer   string  `cim:"IntendedConsumer"`
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 	TIMECREATED        uint64  `cim:"TIME_CREATED"`
 }
@@ -24085,12 +23779,10 @@ func QueryQOSFailureEvent(svc *wmi.Service, where string) ([]QOSFailureEvent, er
 	for i, row := range rows {
 		out[i].ErrorCode = wmi.AsUint32(row["ErrorCode"])
 		out[i].ErrorDescription = wmi.AsString(row["ErrorDescription"])
-		if v, ok := row["Event"].(any); ok {
+		if v, ok := row["Event"].(wmi.Row); ok {
 			out[i].Event = v
 		}
-		if v, ok := row["IntendedConsumer"].(any); ok {
-			out[i].IntendedConsumer = v
-		}
+		out[i].IntendedConsumer = wmi.AsString(row["IntendedConsumer"])
 		out[i].SECURITYDESCRIPTOR = wmi.AsUint8Slice(row["SECURITY_DESCRIPTOR"])
 		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
 	}
@@ -24099,12 +23791,12 @@ func QueryQOSFailureEvent(svc *wmi.Service, where string) ([]QOSFailureEvent, er
 
 // SecurityDescriptor is the __SecurityDescriptor CIM class.
 type SecurityDescriptor struct {
-	ControlFlags uint32 `cim:"ControlFlags"`
-	DACL         []any  `cim:"DACL"`
-	Group        any    `cim:"Group"`
-	Owner        any    `cim:"Owner"`
-	SACL         []any  `cim:"SACL"`
-	TIMECREATED  uint64 `cim:"TIME_CREATED"`
+	ControlFlags uint32    `cim:"ControlFlags"`
+	DACL         []wmi.Row `cim:"DACL"`
+	Group        wmi.Row   `cim:"Group"`
+	Owner        wmi.Row   `cim:"Owner"`
+	SACL         []wmi.Row `cim:"SACL"`
+	TIMECREATED  uint64    `cim:"TIME_CREATED"`
 }
 
 // QuerySecurityDescriptor runs the WQL query against the class and decodes each
@@ -24121,18 +23813,14 @@ func QuerySecurityDescriptor(svc *wmi.Service, where string) ([]SecurityDescript
 	out := make([]SecurityDescriptor, len(rows))
 	for i, row := range rows {
 		out[i].ControlFlags = wmi.AsUint32(row["ControlFlags"])
-		if v, ok := row["DACL"].([]any); ok {
-			out[i].DACL = v
-		}
-		if v, ok := row["Group"].(any); ok {
+		out[i].DACL = wmi.AsRowSlice(row["DACL"])
+		if v, ok := row["Group"].(wmi.Row); ok {
 			out[i].Group = v
 		}
-		if v, ok := row["Owner"].(any); ok {
+		if v, ok := row["Owner"].(wmi.Row); ok {
 			out[i].Owner = v
 		}
-		if v, ok := row["SACL"].([]any); ok {
-			out[i].SACL = v
-		}
+		out[i].SACL = wmi.AsRowSlice(row["SACL"])
 		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
 	}
 	return out, nil
@@ -24222,7 +23910,7 @@ func QuerySystemSecurity(svc *wmi.Service, where string) ([]SystemSecurity, erro
 
 // SystemSecurityGet9XUserListResult holds the out-parameters of __SystemSecurity.Get9XUserList.
 type SystemSecurityGet9XUserListResult struct {
-	Ul          []any
+	Ul          []wmi.Row
 	ReturnValue uint32
 }
 
@@ -24234,9 +23922,7 @@ func SystemSecurityGet9XUserList(svc *wmi.Service) (*SystemSecurityGet9XUserList
 		return nil, err
 	}
 	out := &SystemSecurityGet9XUserListResult{}
-	if v, ok := row["ul"].([]any); ok {
-		out.Ul = v
-	}
+	out.Ul = wmi.AsRowSlice(row["ul"])
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
@@ -24281,7 +23967,7 @@ func SystemSecurityGetSD(svc *wmi.Service) (*SystemSecurityGetSDResult, error) {
 
 // SystemSecurityGetSecurityDescriptorResult holds the out-parameters of __SystemSecurity.GetSecurityDescriptor.
 type SystemSecurityGetSecurityDescriptorResult struct {
-	Descriptor  any
+	Descriptor  wmi.Row
 	ReturnValue uint32
 }
 
@@ -24293,7 +23979,9 @@ func SystemSecurityGetSecurityDescriptor(svc *wmi.Service) (*SystemSecurityGetSe
 		return nil, err
 	}
 	out := &SystemSecurityGetSecurityDescriptorResult{}
-	out.Descriptor = row["Descriptor"]
+	if v, ok := row["Descriptor"].(wmi.Row); ok {
+		out.Descriptor = v
+	}
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
@@ -24305,7 +23993,7 @@ type SystemSecuritySet9XUserListResult struct {
 
 // SystemSecuritySet9XUserList invokes the static __SystemSecurity.Set9XUserList method. Zero-valued
 // in-parameters are omitted so the provider applies its defaults.
-func SystemSecuritySet9XUserList(svc *wmi.Service, ul []any) (*SystemSecuritySet9XUserListResult, error) {
+func SystemSecuritySet9XUserList(svc *wmi.Service, ul []wmi.Row) (*SystemSecuritySet9XUserListResult, error) {
 	in := map[string]any{}
 	if ul != nil {
 		in["ul"] = ul
@@ -24347,7 +24035,7 @@ type SystemSecuritySetSecurityDescriptorResult struct {
 
 // SystemSecuritySetSecurityDescriptor invokes the static __SystemSecurity.SetSecurityDescriptor method. Zero-valued
 // in-parameters are omitted so the provider applies its defaults.
-func SystemSecuritySetSecurityDescriptor(svc *wmi.Service, descriptor any) (*SystemSecuritySetSecurityDescriptorResult, error) {
+func SystemSecuritySetSecurityDescriptor(svc *wmi.Service, descriptor wmi.Row) (*SystemSecuritySetSecurityDescriptorResult, error) {
 	in := map[string]any{}
 	if descriptor != nil {
 		in["Descriptor"] = descriptor

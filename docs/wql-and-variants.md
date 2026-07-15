@@ -23,8 +23,10 @@ The generator maps CIM property types to Go field types:
 | sint8/16/32/64 | `int8`/`int16`/`int32`/`int64` |
 | uint8/16/32/64 | `uint8`/`uint16`/`uint32`/`uint64` |
 | real32/64 | `float32`/`float64` |
+| reference (REF) | `string` (the object path) |
+| object (embedded) | `wmi.Row` |
 | (array of the above) | `[]T` |
-| unknown / object refs | `any` |
+| unknown | `any` |
 
 `datetime` is surfaced as its raw DMTF string (e.g.
 `20260714120000.000000+060`). The runtime provides parsers:
@@ -36,8 +38,9 @@ The generator maps CIM property types to Go field types:
 
 WMI returns values as COM `VARIANT`s. The runtime decodes every scalar type
 WMI produces into widened Go values (`string`, `int64`, `uint64`, `bool`,
-`float64`, or `nil` for `VT_EMPTY`/`VT_NULL`), and decodes SAFEARRAY values
-into `[]any` of those widened elements. The typed `Query<Class>` helpers then
+`float64`, or `nil` for `VT_EMPTY`/`VT_NULL`), decodes SAFEARRAY values
+into `[]any` of those widened elements, and decodes embedded CIM objects
+(`VT_UNKNOWN`) into nested `wmi.Row` maps carrying their `__CLASS`. The typed `Query<Class>` helpers then
 *coerce* each property into its declared struct field (`wmi.AsUint32`,
 `wmi.AsStringSlice`, …) rather than type-asserting — necessary because WMI
 does not return values in the CIM-declared width: most integers arrive as

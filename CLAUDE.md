@@ -74,8 +74,10 @@ tracking.
 - **`runtime/wmi`** — `Connect`/`ConnectWith` → `Service`; `Query`/`QuerySeq`/
   `QueryContext` → rows; `ExecMethod` (typed by the generated wrappers);
   `SubscribeEvents`; `ClassProperties`/`ClassNames`/`ClassMethods` for schema
-  introspection (used by capture); VARIANT decode (scalars + SAFEARRAY) and
-  encode (method in-parameters); DMTF datetime parsing. Uses
+  introspection (used by capture); VARIANT decode (scalars, SAFEARRAYs, and
+  embedded objects → nested `Row`) and encode (method in-parameters,
+  including slices and embedded instances via `wmi.Instance`); DMTF datetime
+  parsing. Uses
   go-bindings-win32's `IWbemLocator`/`IWbemServices`/`IEnumWbemClassObject`
   (the `(HRESULT, error)` shape detects end-of-enum/timeouts), `VARIANT`,
   `BSTR`, SAFEARRAY, and COM init. This is also the seed of a general
