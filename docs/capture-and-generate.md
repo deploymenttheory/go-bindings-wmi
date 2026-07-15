@@ -43,8 +43,15 @@ go run ./cmd/generate
 ```
 
 Reads `metadata/cim/*.json`, validates each snapshot, and writes
-`bindings/cim/<leaf>/<leaf>_classes.go`: one struct per class plus a
-`Query<Class>` helper. Self-cleaning (stale files pruned) and
+`bindings/cim/<leaf>/` split by construct, mirroring the winmd sisters'
+file layout:
+
+- `doc.go` — the package doc
+- `<leaf>_structs.go` — one struct per class
+- `<leaf>_queries.go` — the `Query<Class>` and `Get<Class>` helpers
+- `<leaf>_methods.go` — method wrappers and their result structs
+
+Empty files are not written. Self-cleaning (stale files pruned) and
 **byte-deterministic** — running it twice produces no diff, which CI enforces
 with `git diff --exit-code`. Codegen is fully offline from the committed
 snapshot; it never touches the live system.

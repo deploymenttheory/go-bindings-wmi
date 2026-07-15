@@ -27,9 +27,12 @@ live CIM repository → committed snapshot → deterministic codegen → typed q
   flags) with a provenance header (OS build + date, auto-filled from the
   capture host). By default it captures **every class** in the namespace
   (~1,300 for `root\cimv2`); `-classes a,b,c` narrows.
-- **`cmd/generate`** turns the snapshot into `bindings/cim/<ns>`: one struct per
-  class (CIM types → Go types, arrays → slices) plus a `Query<Class>` helper
-  that decodes via the runtime's coercers. Self-cleaning, byte-deterministic —
+- **`cmd/generate`** turns the snapshot into `bindings/cim/<ns>`, split by
+  construct like the winmd sisters (`doc.go`, `<ns>_structs.go`,
+  `<ns>_queries.go`, `<ns>_methods.go`; empty files not written): one struct
+  per class (CIM types → Go types, arrays → slices), `Query<Class>`/
+  `Get<Class>` helpers that decode via the runtime's coercers, and typed
+  method wrappers. Self-cleaning, byte-deterministic —
   CI regenerates and diffs. It validates every snapshot before generating, and
   has two snapshot subcommands:
   - `go run ./cmd/generate validate [dir]` — structural invariants (sorted,
