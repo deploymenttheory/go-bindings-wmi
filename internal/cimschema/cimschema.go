@@ -4,6 +4,8 @@
 // (cmd/generate).
 package cimschema
 
+import "slices"
+
 // Snapshot is one WMI namespace's captured class schema.
 type Snapshot struct {
 	// Namespace is the CIM namespace, e.g. `root\cimv2`.
@@ -54,6 +56,21 @@ type Property struct {
 	Array bool `json:"array,omitempty"`
 	// Key marks a key property (the [key] qualifier).
 	Key bool `json:"key,omitempty"`
+	// Values and ValueMap are the CIM enumeration qualifiers: ValueMap holds
+	// the stored values (numeric strings for integer properties), Values the
+	// display names. Either may be present alone — without a ValueMap the
+	// Values entries map to consecutive indices 0..n-1 (integer properties)
+	// or are the stored strings themselves (string properties).
+	Values   []string `json:"values,omitempty"`
+	ValueMap []string `json:"valueMap,omitempty"`
+}
+
+// Equal reports semantic property equality (used by the snapshot diff;
+// Property is not comparable once it carries qualifier slices).
+func (p Property) Equal(other Property) bool {
+	return p.Name == other.Name && p.CIMType == other.CIMType &&
+		p.Array == other.Array && p.Key == other.Key &&
+		slices.Equal(p.Values, other.Values) && slices.Equal(p.ValueMap, other.ValueMap)
 }
 
 // CIM types (CIMTYPE_ENUMERATION from wbemcli.h).

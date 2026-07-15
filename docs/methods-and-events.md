@@ -48,6 +48,13 @@ res, _ := cimv2.Win32ProcessCreate(svc, "cmd.exe /c exit 0", "", startup)
 ```
 
 A `wmi.Row` returned by a query also works — it already carries `__CLASS`.
+Arrays of embedded objects (`[]wmi.Row`) encode too, as a SAFEARRAY of
+instances.
+
+For a cancellable call, `ExecMethodContext(ctx, path, method, in)` runs the
+method semisynchronously and checks `ctx` between short completion polls.
+WMI cannot abort a provider mid-call, so cancellation abandons the call —
+the provider may finish it anyway.
 
 Abstract base classes (`CIM_*`) declare methods their providers often don't
 implement; the wrappers are generated faithfully and the provider's error
@@ -110,6 +117,10 @@ svc, err := wmi.ConnectWith(`root\cimv2`, wmi.ConnectOptions{
 })
 ```
 
-The zero `ConnectOptions` is exactly `Connect`. WMI rejects explicit
-credentials on local connections. All Service operations remain bound to
-the connecting goroutine (see the thread-affinity note on `Connect`).
+The zero `ConnectOptions` is exactly `Connect`. When credentials are given,
+they are applied both to `ConnectServer` and to the DCOM proxy blanket (via
+a `COAUTHIDENTITY`) — without the latter, remote calls run as the caller's
+token and fail access-denied. `User` may be `DOMAIN\user`; the domain is
+split out for the blanket. WMI rejects explicit credentials on local
+connections. All Service operations remain bound to the connecting
+goroutine (see the thread-affinity note on `Connect`).

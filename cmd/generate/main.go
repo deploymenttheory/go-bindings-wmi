@@ -16,6 +16,7 @@ import (
 	"os"
 	"path/filepath"
 	"sort"
+	"strconv"
 	"strings"
 
 	"github.com/deploymenttheory/go-bindings-wmi/internal/cimschema"
@@ -152,16 +153,23 @@ func run(metadataDir, outDir string) error {
 		if err := os.MkdirAll(pkgDir, 0o755); err != nil {
 			return err
 		}
-		source, err := renderPackage(pkg, snapshot)
+		files, err := renderPackage(pkg, snapshot)
 		if err != nil {
 			return fmt.Errorf("%s: %w", entry, err)
 		}
-		path := filepath.Join(pkgDir, pkg+"_classes.go")
-		if err := os.WriteFile(path, source, 0o644); err != nil {
-			return err
+		names := make([]string, 0, len(files))
+		for name := range files {
+			names = append(names, name)
 		}
-		written[path] = true
-		fmt.Printf("generated %d classes → %s\n", len(snapshot.Classes), path)
+		sort.Strings(names)
+		for _, name := range names {
+			path := filepath.Join(pkgDir, name)
+			if err := os.WriteFile(path, files[name], 0o644); err != nil {
+				return err
+			}
+			written[path] = true
+		}
+		fmt.Printf("generated %d classes → %s (%d files)\n", len(snapshot.Classes), pkgDir, len(files))
 	}
 	return pruneStale(outDir, written)
 }
@@ -173,13 +181,12 @@ func packageName(namespace string) string {
 	return strings.ToLower(parts[len(parts)-1])
 }
 
-func renderPackage(pkg string, snapshot *cimschema.Snapshot) ([]byte, error) {
-	var b strings.Builder
-	b.WriteString(header)
-	b.WriteString("\n//go:build windows\n\n")
-	fmt.Fprintf(&b, "// Package %s binds the %s CIM classes.\n", pkg, snapshot.Namespace)
-	fmt.Fprintf(&b, "package %s\n\n", pkg)
-	b.WriteString("import wmi \"github.com/deploymenttheory/go-bindings-wmi/runtime/wmi\"\n\n")
+// renderPackage renders one namespace into its per-construct files —
+// <pkg>_structs.go (one struct per class), <pkg>_queries.go (Query<Class>
+// and Get<Class> helpers), <pkg>_methods.go (method wrappers + result
+// structs), and doc.go — keyed by file name. Empty files are not emitted.
+func renderPackage(pkg string, snapshot *cimschema.Snapshot) (map[string][]byte, error) {
+	var structs, queries, methods, constants strings.Builder
 
 	// Pass 1: claim every class-level symbol first, so a method wrapper can
 	// never steal a later class's type or query-helper name.
@@ -200,6 +207,7 @@ func renderPackage(pkg string, snapshot *cimschema.Snapshot) ([]byte, error) {
 			continue
 		}
 		goName := exportName(class.Name)
+		b := &structs
 
 		// Deduplicate fields by exported Go name (CIM property names can
 		// collapse to the same identifier); first occurrence wins.
@@ -217,47 +225,207 @@ func renderPackage(pkg string, snapshot *cimschema.Snapshot) ([]byte, error) {
 			fields = append(fields, field{fn, cimschema.GoType(p), p.Name})
 		}
 
-		fmt.Fprintf(&b, "// %s is the %s CIM class.\n", goName, class.Name)
-		fmt.Fprintf(&b, "type %s struct {\n", goName)
+		fmt.Fprintf(b, "// %s is the %s CIM class.\n", goName, class.Name)
+		fmt.Fprintf(b, "type %s struct {\n", goName)
 		for _, f := range fields {
-			fmt.Fprintf(&b, "\t%s %s `cim:%q`\n", f.name, f.goType, f.cim)
+			fmt.Fprintf(b, "\t%s %s `cim:%q`\n", f.name, f.goType, f.cim)
 		}
 		b.WriteString("}\n\n")
 
 		// Typed query helper: run WQL and unmarshal rows into []T.
-		fmt.Fprintf(&b, "// Query%s runs the WQL query against the class and decodes each\n", goName)
-		fmt.Fprintf(&b, "// instance into a %s. Pass the WHERE clause (or \"\" for all).\n", goName)
-		fmt.Fprintf(&b, "func Query%s(svc *wmi.Service, where string) ([]%s, error) {\n", goName, goName)
-		fmt.Fprintf(&b, "\tq := \"SELECT * FROM %s\"\n", class.Name)
-		b.WriteString("\tif where != \"\" {\n\t\tq += \" WHERE \" + where\n\t}\n")
-		b.WriteString("\trows, err := svc.Query(q)\n\tif err != nil {\n\t\treturn nil, err\n\t}\n")
-		fmt.Fprintf(&b, "\tout := make([]%s, len(rows))\n", goName)
+		q := &queries
+		fmt.Fprintf(q, "// Query%s runs the WQL query against the class and decodes each\n", goName)
+		fmt.Fprintf(q, "// instance into a %s. Pass the WHERE clause (or \"\" for all).\n", goName)
+		fmt.Fprintf(q, "func Query%s(svc *wmi.Service, where string) ([]%s, error) {\n", goName, goName)
+		fmt.Fprintf(q, "\tq := \"SELECT * FROM %s\"\n", class.Name)
+		q.WriteString("\tif where != \"\" {\n\t\tq += \" WHERE \" + where\n\t}\n")
+		q.WriteString("\trows, err := svc.Query(q)\n\tif err != nil {\n\t\treturn nil, err\n\t}\n")
+		fmt.Fprintf(q, "\tout := make([]%s, len(rows))\n", goName)
 		if len(fields) > 0 {
-			b.WriteString("\tfor i, row := range rows {\n")
+			q.WriteString("\tfor i, row := range rows {\n")
 			for _, f := range fields {
 				// WMI returns values in a different width/shape than the
 				// CIM-declared type; coerce rather than assert.
 				if coercer, ok := scalarCoercers[f.goType]; ok {
-					fmt.Fprintf(&b, "\t\tout[i].%s = wmi.%s(row[%q])\n", f.name, coercer, f.cim)
+					fmt.Fprintf(q, "\t\tout[i].%s = wmi.%s(row[%q])\n", f.name, coercer, f.cim)
 				} else if coercer, ok := sliceCoercers[f.goType]; ok {
-					fmt.Fprintf(&b, "\t\tout[i].%s = wmi.%s(row[%q])\n", f.name, coercer, f.cim)
+					fmt.Fprintf(q, "\t\tout[i].%s = wmi.%s(row[%q])\n", f.name, coercer, f.cim)
 				} else {
 					// `any` and []any: assert, leave zero on mismatch.
-					fmt.Fprintf(&b, "\t\tif v, ok := row[%q].(%s); ok {\n\t\t\tout[i].%s = v\n\t\t}\n",
+					fmt.Fprintf(q, "\t\tif v, ok := row[%q].(%s); ok {\n\t\t\tout[i].%s = v\n\t\t}\n",
 						f.cim, f.goType, f.name)
 				}
 			}
-			b.WriteString("\t}\n")
+			q.WriteString("\t}\n")
 		}
-		b.WriteString("\treturn out, nil\n}\n\n")
+		q.WriteString("\treturn out, nil\n}\n\n")
 
-		renderGetByKey(&b, claimed, goName, class)
+		renderGetByKey(q, claimed, goName, class)
+		renderConstants(&constants, claimed, goName, class)
 		for _, method := range class.Methods {
-			renderMethod(&b, claimed, goName, class.Name, method)
+			renderMethod(&methods, claimed, goName, class.Name, method)
 		}
 	}
 
+	files := map[string][]byte{}
+	docSource, err := assembleFile(pkg,
+		fmt.Sprintf("// Package %s binds the %s CIM classes.\n", pkg, snapshot.Namespace), "")
+	if err != nil {
+		return nil, err
+	}
+	files["doc.go"] = docSource
+	for name, body := range map[string]string{
+		pkg + "_structs.go":   structs.String(),
+		pkg + "_queries.go":   queries.String(),
+		pkg + "_methods.go":   methods.String(),
+		pkg + "_constants.go": constants.String(),
+	} {
+		if body == "" {
+			continue // empty files are not written
+		}
+		source, err := assembleFile(pkg, "", body)
+		if err != nil {
+			return nil, fmt.Errorf("%s: %w", name, err)
+		}
+		files[name] = source
+	}
+	return files, nil
+}
+
+// assembleFile wraps a rendered body with the generated header, build tag,
+// package clause, and (when the body references it) the runtime import.
+func assembleFile(pkg, doc, body string) ([]byte, error) {
+	var b strings.Builder
+	b.WriteString(header)
+	b.WriteString("\n//go:build windows\n\n")
+	b.WriteString(doc)
+	fmt.Fprintf(&b, "package %s\n\n", pkg)
+	if strings.Contains(body, "wmi.") {
+		b.WriteString("import wmi \"github.com/deploymenttheory/go-bindings-wmi/runtime/wmi\"\n\n")
+	}
+	b.WriteString(body)
 	return format.Source([]byte(b.String()))
+}
+
+// renderConstants emits named constants for a class's enumerated properties
+// (the Values/ValueMap qualifiers): one const block per property. Integer
+// properties get typed constants from the parsed ValueMap (entries that
+// don't parse — ranges like "128..65535" — are skipped; a missing ValueMap
+// implies consecutive indices); string properties get the stored string
+// (the ValueMap entry when present, else the display name).
+func renderConstants(b *strings.Builder, claimed map[string]bool, goName string, class cimschema.Class) {
+	for _, p := range class.Properties {
+		if len(p.Values) == 0 {
+			continue
+		}
+		field := exportName(p.Name)
+		if field == "" {
+			continue
+		}
+		elemType := cimschema.GoTypeFor(p.CIMType, false)
+		isString := elemType == "string"
+		isInteger := strings.HasPrefix(elemType, "int") || strings.HasPrefix(elemType, "uint")
+		if !isString && !isInteger {
+			continue // enumeration qualifiers on other shapes are not expressible
+		}
+
+		type entry struct {
+			name, spec string
+		}
+		var entries []entry
+		for i, display := range p.Values {
+			name := goName + field + constName(display)
+			if name == goName+field || claimed[name] {
+				continue // unnameable display value or a collision; first wins
+			}
+			stored := ""
+			if i < len(p.ValueMap) {
+				stored = p.ValueMap[i]
+			}
+			var spec string
+			if isString {
+				if stored == "" {
+					stored = display
+				}
+				spec = fmt.Sprintf("= %q", stored)
+			} else {
+				if stored == "" && len(p.ValueMap) == 0 {
+					stored = strconv.Itoa(i) // no ValueMap → consecutive indices
+				}
+				literal, ok := intLiteral(stored, elemType)
+				if !ok {
+					continue // ranges, free-form, or out-of-range entries
+				}
+				spec = fmt.Sprintf("%s = %s", elemType, literal)
+			}
+			claimed[name] = true
+			entries = append(entries, entry{name, spec})
+		}
+		if len(entries) == 0 {
+			continue
+		}
+		fmt.Fprintf(b, "// %s.%s values.\n", class.Name, p.Name)
+		b.WriteString("const (\n")
+		for _, e := range entries {
+			fmt.Fprintf(b, "\t%s %s\n", e.name, e.spec)
+		}
+		b.WriteString(")\n\n")
+	}
+}
+
+// intLiteral renders a ValueMap entry as a Go integer literal for elemType.
+// Unsigned types reinterpret a negative value as its two's-complement bit
+// pattern for that width — matching how the value round-trips through
+// VARIANT decode (a uint32 property whose bits are all set decodes as
+// 4294967295, the same value the schema's "-1" denotes). Entries that are
+// not a plain integer, or overflow the width, are rejected.
+func intLiteral(stored, elemType string) (string, bool) {
+	bits := map[string]int{
+		"int8": 8, "int16": 16, "int32": 32, "int64": 64,
+		"uint8": 8, "uint16": 16, "uint32": 32, "uint64": 64,
+	}[elemType]
+	if bits == 0 {
+		return "", false
+	}
+	if strings.HasPrefix(elemType, "u") {
+		if u, err := strconv.ParseUint(stored, 0, bits); err == nil {
+			return strconv.FormatUint(u, 10), true
+		}
+		// Negative value on an unsigned property: reinterpret its bits.
+		if n, err := strconv.ParseInt(stored, 0, 64); err == nil && n < 0 {
+			mask := uint64(1)<<uint(bits) - 1
+			return strconv.FormatUint(uint64(n)&mask, 10), true
+		}
+		return "", false
+	}
+	if n, err := strconv.ParseInt(stored, 0, bits); err == nil {
+		return strconv.FormatInt(n, 10), true
+	}
+	return "", false
+}
+
+// constName renders an enumeration display name as an identifier fragment:
+// alphanumeric runs survive with their first rune upper-cased, everything
+// else ("-", "/", spaces, parentheses) separates words.
+func constName(display string) string {
+	var out []rune
+	upperNext := true
+	for _, r := range display {
+		switch {
+		case r >= 'a' && r <= 'z':
+			if upperNext {
+				r = r - 'a' + 'A'
+			}
+			out = append(out, r)
+			upperNext = false
+		case (r >= 'A' && r <= 'Z') || (r >= '0' && r <= '9'):
+			out = append(out, r)
+			upperNext = false
+		default:
+			upperNext = true
+		}
+	}
+	return string(out)
 }
 
 // renderGetByKey emits Get<Class>, a lookup by the class's [key] properties

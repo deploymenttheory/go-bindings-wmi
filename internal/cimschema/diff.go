@@ -99,7 +99,7 @@ func diffClass(before, after Class) *ClassDiff {
 			d.AddedProperties = append(d.AddedProperties, p)
 			continue
 		}
-		if prev != p {
+		if !prev.Equal(p) {
 			d.ChangedProperties = append(d.ChangedProperties, PropertyChange{Name: p.Name, Old: prev, New: p})
 		}
 	}

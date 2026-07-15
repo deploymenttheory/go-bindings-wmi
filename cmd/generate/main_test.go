@@ -4,64 +4,85 @@ import (
 	"bytes"
 	"flag"
 	"fmt"
+	"maps"
 	"os"
 	"path/filepath"
+	"slices"
 	"strings"
 	"testing"
 )
 
 var update = flag.Bool("update", false, "rewrite the golden files")
 
-// TestGenerateGolden runs the generator against a fixture snapshot that
-// exercises the long tail — zero-property classes, class- and property-name
-// collisions, a property named like its class, arrays, keys, datetime, and
-// an unknown CIM type — and compares byte-for-byte against a committed
-// golden file. Run with -update to regenerate the golden.
-func TestGenerateGolden(t *testing.T) {
+// generatedFiles runs the generator on the fixture and returns the demo
+// package's files keyed by name.
+func generatedFiles(t *testing.T) map[string][]byte {
+	t.Helper()
 	outDir := t.TempDir()
 	if err := run(filepath.Join("testdata", "snapshot"), outDir); err != nil {
 		t.Fatalf("run: %v", err)
 	}
-
-	got, err := os.ReadFile(filepath.Join(outDir, "demo", "demo_classes.go"))
+	entries, err := os.ReadDir(filepath.Join(outDir, "demo"))
 	if err != nil {
-		t.Fatalf("read generated output: %v", err)
+		t.Fatalf("read generated package: %v", err)
 	}
-
-	golden := filepath.Join("testdata", "demo_classes.go.golden")
-	if *update {
-		if err := os.WriteFile(golden, got, 0o644); err != nil {
-			t.Fatalf("update golden: %v", err)
+	files := map[string][]byte{}
+	for _, entry := range entries {
+		content, err := os.ReadFile(filepath.Join(outDir, "demo", entry.Name()))
+		if err != nil {
+			t.Fatal(err)
 		}
+		files[entry.Name()] = content
 	}
-	want, err := os.ReadFile(golden)
-	if err != nil {
-		t.Fatalf("read golden (run with -update to create): %v", err)
+	return files
+}
+
+// TestGenerateGolden runs the generator against a fixture snapshot that
+// exercises the long tail — zero-property classes, class- and property-name
+// collisions, a property named like its class, arrays, keys, methods, and
+// an unknown CIM type — and compares each emitted file (doc.go, _structs,
+// _queries, _methods) byte-for-byte against a committed golden. Run with
+// -update to regenerate the goldens.
+func TestGenerateGolden(t *testing.T) {
+	files := generatedFiles(t)
+	want := []string{"demo_constants.go", "demo_methods.go", "demo_queries.go", "demo_structs.go", "doc.go"}
+	if len(files) != len(want) {
+		t.Errorf("generated files = %v, want %v", slices.Sorted(maps.Keys(files)), want)
 	}
-	if !bytes.Equal(got, want) {
-		t.Errorf("generated output differs from %s (rerun with -update after reviewing)\n--- got ---\n%s", golden, got)
+	for _, name := range want {
+		got, ok := files[name]
+		if !ok {
+			t.Errorf("missing generated file %s", name)
+			continue
+		}
+		golden := filepath.Join("testdata", name+".golden")
+		if *update {
+			if err := os.WriteFile(golden, got, 0o644); err != nil {
+				t.Fatalf("update golden: %v", err)
+			}
+		}
+		wantBytes, err := os.ReadFile(golden)
+		if err != nil {
+			t.Fatalf("read golden (run with -update to create): %v", err)
+		}
+		if !bytes.Equal(got, wantBytes) {
+			t.Errorf("%s differs from its golden (rerun with -update after reviewing)\n--- got ---\n%s", name, got)
+		}
 	}
 }
 
 // TestGenerateDeterministic pins the byte-determinism contract CI relies on:
-// two runs over the same snapshot produce identical output.
+// two runs over the same snapshot produce identical files.
 func TestGenerateDeterministic(t *testing.T) {
-	first, second := t.TempDir(), t.TempDir()
-	for _, dir := range []string{first, second} {
-		if err := run(filepath.Join("testdata", "snapshot"), dir); err != nil {
-			t.Fatalf("run: %v", err)
+	first := generatedFiles(t)
+	second := generatedFiles(t)
+	if len(first) != len(second) {
+		t.Fatalf("run produced %d then %d files", len(first), len(second))
+	}
+	for name, a := range first {
+		if !bytes.Equal(a, second[name]) {
+			t.Errorf("%s: two generator runs produced different bytes", name)
 		}
-	}
-	a, err := os.ReadFile(filepath.Join(first, "demo", "demo_classes.go"))
-	if err != nil {
-		t.Fatal(err)
-	}
-	b, err := os.ReadFile(filepath.Join(second, "demo", "demo_classes.go"))
-	if err != nil {
-		t.Fatal(err)
-	}
-	if !bytes.Equal(a, b) {
-		t.Error("two generator runs produced different bytes")
 	}
 }
 
@@ -112,6 +133,45 @@ func TestPackageCollision(t *testing.T) {
 	err := run(metadataDir, t.TempDir())
 	if err == nil || !strings.Contains(err.Error(), "package collision") {
 		t.Errorf("err = %v, want package collision", err)
+	}
+}
+
+func TestConstName(t *testing.T) {
+	cases := []struct{ in, want string }{
+		{"Local Disk", "LocalDisk"},
+		{"No Root Directory", "NoRootDirectory"},
+		{"RAM Disk", "RAMDisk"},
+		{"Read-only", "ReadOnly"},
+		{"Other/Unknown", "OtherUnknown"},
+		{"Power Off (5)", "PowerOff5"},
+		{"", ""},
+	}
+	for _, c := range cases {
+		if got := constName(c.in); got != c.want {
+			t.Errorf("constName(%q) = %q, want %q", c.in, got, c.want)
+		}
+	}
+}
+
+func TestIntLiteral(t *testing.T) {
+	cases := []struct {
+		stored, elemType, want string
+		ok                     bool
+	}{
+		{"3", "uint32", "3", true},
+		{"-1", "uint32", "4294967295", true}, // two's-complement reinterpret
+		{"-1", "uint16", "65535", true},
+		{"-1", "int32", "-1", true}, // signed keeps its sign
+		{"128..255", "uint32", "", false},
+		{"", "uint32", "", false},
+		{"0x10", "uint32", "16", true},
+		{"5", "float64", "", false}, // non-integer target
+	}
+	for _, c := range cases {
+		got, ok := intLiteral(c.stored, c.elemType)
+		if ok != c.ok || got != c.want {
+			t.Errorf("intLiteral(%q, %q) = (%q, %v), want (%q, %v)", c.stored, c.elemType, got, ok, c.want, c.ok)
+		}
 	}
 }
 

@@ -20,6 +20,10 @@ type PropertyInfo struct {
 	Name    string
 	CIMType int32 // CIMTYPE_ENUMERATION, with the CIM_FLAG_ARRAY (0x2000) bit intact
 	Key     bool  // the [key] qualifier
+	// Values and ValueMap are the CIM enumeration qualifiers (display names
+	// and stored values respectively).
+	Values   []string
+	ValueMap []string
 }
 
 // MethodInfo describes one CIM class method: its in/out parameters in
@@ -115,11 +119,49 @@ func (s *Service) ClassProperties(className string) ([]PropertyInfo, error) {
 	// Qualifier reads happen after EndEnumeration — qualifier-set calls must
 	// not interleave with a property enumeration in flight.
 	for i := range props {
-		props[i].Key = propertyIsKey(class, props[i].Name)
+		readPropertyQualifiers(class, &props[i])
 	}
 
 	sort.Slice(props, func(i, j int) bool { return props[i].Name < props[j].Name })
 	return props, nil
+}
+
+// readPropertyQualifiers fills a property's [key], Values, and ValueMap
+// qualifiers. System properties (__*) have no qualifier set; absence means
+// zero values.
+func readPropertyQualifiers(class *wmi.IWbemClassObject, p *PropertyInfo) {
+	var qualifiers *wmi.IWbemQualifierSet
+	if err := class.GetPropertyQualifierSet(p.Name, &qualifiers); err != nil || qualifiers == nil {
+		return
+	}
+	defer qualifiers.Release()
+
+	p.Key = boolQualifier(qualifiers, "key")
+	p.Values = stringsQualifier(qualifiers, "Values")
+	p.ValueMap = stringsQualifier(qualifiers, "ValueMap")
+}
+
+// boolQualifier reads one boolean qualifier; absence is false.
+func boolQualifier(qualifiers *wmi.IWbemQualifierSet, name string) bool {
+	var value variant.VARIANT
+	variant.VariantInit(&value)
+	defer variant.VariantClear(&value)
+	if err := qualifiers.Get(name, 0, &value, nil); err != nil {
+		return false
+	}
+	b, ok := decodeVariant(&value).(bool)
+	return ok && b
+}
+
+// stringsQualifier reads one string-array qualifier; absence is nil.
+func stringsQualifier(qualifiers *wmi.IWbemQualifierSet, name string) []string {
+	var value variant.VARIANT
+	variant.VariantInit(&value)
+	defer variant.VariantClear(&value)
+	if err := qualifiers.Get(name, 0, &value, nil); err != nil {
+		return nil
+	}
+	return AsStringSlice(decodeVariant(&value))
 }
 
 // enumerateProperties walks a class object's property schema.
@@ -291,21 +333,3 @@ func methodIsStatic(class *wmi.IWbemClassObject, method string) bool {
 	return ok && static
 }
 
-// propertyIsKey reads a property's [key] qualifier. System properties (__*)
-// have no qualifier set; absence of the qualifier means not a key.
-func propertyIsKey(class *wmi.IWbemClassObject, property string) bool {
-	var qualifiers *wmi.IWbemQualifierSet
-	if err := class.GetPropertyQualifierSet(property, &qualifiers); err != nil || qualifiers == nil {
-		return false
-	}
-	defer qualifiers.Release()
-
-	var value variant.VARIANT
-	variant.VariantInit(&value)
-	defer variant.VariantClear(&value)
-	if err := qualifiers.Get("key", 0, &value, nil); err != nil {
-		return false
-	}
-	isKey, ok := decodeVariant(&value).(bool)
-	return ok && isKey
-}
