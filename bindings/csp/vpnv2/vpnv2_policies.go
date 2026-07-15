@@ -10,6 +10,7 @@ var APNBindingAccessPointName = csp.Policy{
 	URI:    "./Device/Vendor/MSFT/VPNv2/APNBinding/AccessPointName",
 	Format: "chr",
 	Access: []string{"Add", "Delete", "Get", "Replace"},
+	Bridge: &csp.Bridge{ConfigClass: "MDM_VPNv2_APNBinding02", ResultClass: "MDM_VPNv2_APNBinding02", InstanceID: "APNBinding", ParentID: "./Vendor/MSFT/VPNv2", Property: "AccessPointName"},
 }
 
 // APNBindingAuthenticationType: Reserved for future use.
@@ -18,6 +19,7 @@ var APNBindingAuthenticationType = csp.Policy{
 	URI:    "./Device/Vendor/MSFT/VPNv2/APNBinding/AuthenticationType",
 	Format: "chr",
 	Access: []string{"Add", "Delete", "Get", "Replace"},
+	Bridge: &csp.Bridge{ConfigClass: "MDM_VPNv2_APNBinding02", ResultClass: "MDM_VPNv2_APNBinding02", InstanceID: "APNBinding", ParentID: "./Vendor/MSFT/VPNv2", Property: "AuthenticationType"},
 }
 
 // APNBindingIsCompressionEnabled: Reserved for future use.
@@ -26,6 +28,7 @@ var APNBindingIsCompressionEnabled = csp.Policy{
 	URI:    "./Device/Vendor/MSFT/VPNv2/APNBinding/IsCompressionEnabled",
 	Format: "bool",
 	Access: []string{"Add", "Delete", "Get", "Replace"},
+	Bridge: &csp.Bridge{ConfigClass: "MDM_VPNv2_APNBinding02", ResultClass: "MDM_VPNv2_APNBinding02", InstanceID: "APNBinding", ParentID: "./Vendor/MSFT/VPNv2", Property: "IsCompressionEnabled"},
 }
 
 // APNBindingPassword: Reserved for future use.
@@ -34,6 +37,7 @@ var APNBindingPassword = csp.Policy{
 	URI:    "./Device/Vendor/MSFT/VPNv2/APNBinding/Password",
 	Format: "chr",
 	Access: []string{"Add", "Delete", "Get", "Replace"},
+	Bridge: &csp.Bridge{ConfigClass: "MDM_VPNv2_APNBinding02", ResultClass: "MDM_VPNv2_APNBinding02", InstanceID: "APNBinding", ParentID: "./Vendor/MSFT/VPNv2", Property: "Password"},
 }
 
 // APNBindingProviderId: Reserved for future use.
@@ -42,6 +46,7 @@ var APNBindingProviderId = csp.Policy{
 	URI:    "./Device/Vendor/MSFT/VPNv2/APNBinding/ProviderId",
 	Format: "chr",
 	Access: []string{"Add", "Delete", "Get", "Replace"},
+	Bridge: &csp.Bridge{ConfigClass: "MDM_VPNv2_APNBinding02", ResultClass: "MDM_VPNv2_APNBinding02", InstanceID: "APNBinding", ParentID: "./Vendor/MSFT/VPNv2", Property: "ProviderId"},
 }
 
 // APNBindingUserName: Reserved for future use.
@@ -50,6 +55,7 @@ var APNBindingUserName = csp.Policy{
 	URI:    "./Device/Vendor/MSFT/VPNv2/APNBinding/UserName",
 	Format: "chr",
 	Access: []string{"Add", "Delete", "Get", "Replace"},
+	Bridge: &csp.Bridge{ConfigClass: "MDM_VPNv2_APNBinding02", ResultClass: "MDM_VPNv2_APNBinding02", InstanceID: "APNBinding", ParentID: "./Vendor/MSFT/VPNv2", Property: "UserName"},
 }
 
 // AlwaysOn: An optional flag to enable Always On mode. This will automatically connect the VPN at sign-in and will stay connected until the user manually disconnects.
@@ -60,6 +66,7 @@ var AlwaysOn = csp.Policy{
 	Access:  []string{"Add", "Delete", "Get", "Replace"},
 	Default: "false",
 	Allowed: &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "false", Description: "Always On is turned off."}, {Value: "true", Description: "Always On is turned on."}}},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_VPNv2_01", ResultClass: "MDM_VPNv2_01", InstanceID: "VPNv2", ParentID: "./Vendor/MSFT", Property: "AlwaysOn"},
 }
 
 // AlwaysOnActive: An optional flag to activate Always On mode. This is true by default if AlwaysOn is true. Setting controls whether "Connect Automatically" is toggled on profile creation.
@@ -70,6 +77,7 @@ var AlwaysOnActive = csp.Policy{
 	Access:  []string{"Add", "Delete", "Get", "Replace"},
 	Default: "1",
 	Allowed: &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Always On is inactive."}, {Value: "1", Description: "Always On is activated on provisioning."}}},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_VPNv2_01", ResultClass: "MDM_VPNv2_01", InstanceID: "VPNv2", ParentID: "./Vendor/MSFT", Property: "AlwaysOnActive"},
 }
 
 // AppTriggerListAppId: App Identity. Specified, based on the Type Field.
@@ -79,6 +87,7 @@ var AppTriggerListAppId = csp.Policy{
 	Format:  "chr",
 	Access:  []string{"Add", "Delete", "Get", "Replace"},
 	Allowed: &csp.Allowed{Type: "None"},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_VPNv2_AppTriggerList02_App04", ResultClass: "MDM_VPNv2_AppTriggerList02_App04", InstanceID: "App", ParentID: "./Vendor/MSFT/VPNv2/AppTriggerList", Property: "Id"},
 }
 
 // AppTriggerListAppType: Returns the type of App/Id. This value can be either of the following: PackageFamilyName - When this is returned, the App/Id value represents the PackageFamilyName of the app. The PackageFamilyName is the unique name of the Microsoft Store application. FilePath - When this is returned, the App/Id value represents the full file path of the app. For example, C:\Windows\System\Notepad.exe.
@@ -87,6 +96,7 @@ var AppTriggerListAppType = csp.Policy{
 	URI:    "./Device/Vendor/MSFT/VPNv2/AppTriggerList/App/Type",
 	Format: "chr",
 	Access: []string{"Get"},
+	Bridge: &csp.Bridge{ConfigClass: "MDM_VPNv2_AppTriggerList02_App04", ResultClass: "MDM_VPNv2_AppTriggerList02_App04", InstanceID: "App", ParentID: "./Vendor/MSFT/VPNv2/AppTriggerList", Property: "Type"},
 }
 
 // ByPassForLocal: Not supported.
@@ -95,6 +105,7 @@ var ByPassForLocal = csp.Policy{
 	URI:    "./Device/Vendor/MSFT/VPNv2/ByPassForLocal",
 	Format: "bool",
 	Access: []string{"Add", "Delete", "Get", "Replace"},
+	Bridge: &csp.Bridge{ConfigClass: "MDM_VPNv2_01", ResultClass: "MDM_VPNv2_01", InstanceID: "VPNv2", ParentID: "./Vendor/MSFT", Property: "ByPassForLocal"},
 }
 
 // DataEncryption: Determines the level of data encryption required for the connection.
@@ -107,6 +118,7 @@ var DataEncryption = csp.Policy{
 	MinOSBuild: "10.0.22000",
 	CSPVersion: "1.6",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "None", Description: "No Data Encryption required."}, {Value: "Require", Description: "Data Encryption required."}, {Value: "Max", Description: "Maximum-strength Data Encryption required."}, {Value: "Optional", Description: "Perform encryption if possible."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_VPNv2_01", ResultClass: "MDM_VPNv2_01", InstanceID: "VPNv2", ParentID: "./Vendor/MSFT", Property: "DataEncryption"},
 }
 
 // DeviceComplianceEnabled: Enables the Device Compliance flow from the client. If marked as True, the VPN Client will attempt to communicate with AAD to get a certificate to use for authentication. The VPN should be set up to use Certificate Auth and the VPN Server must trust the Server returned by Azure Active Directory.
@@ -116,6 +128,7 @@ var DeviceComplianceEnabled = csp.Policy{
 	Format:  "bool",
 	Access:  []string{"Add", "Delete", "Get", "Replace"},
 	Allowed: &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "false", Description: "Disabled"}, {Value: "true", Description: "Enabled"}}},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_VPNv2_DeviceCompliance02", ResultClass: "MDM_VPNv2_DeviceCompliance02", InstanceID: "DeviceCompliance", ParentID: "./Vendor/MSFT/VPNv2", Property: "Enabled"},
 }
 
 // DeviceComplianceSsoEku: Comma Separated list of EKU's for the VPN Client to look for the correct certificate for Kerberos Authentication.
@@ -154,6 +167,7 @@ var DisableAdvancedOptionsEditButton = csp.Policy{
 	MinOSBuild: "10.0.22000",
 	CSPVersion: "1.5",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "false", Description: "Advanced Options Edit Button is available."}, {Value: "true", Description: "Advanced Options Edit Button is unavailable."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_VPNv2_01", ResultClass: "MDM_VPNv2_01", InstanceID: "VPNv2", ParentID: "./Vendor/MSFT", Property: "DisableAdvancedOptionsEditButton"},
 }
 
 // DisableDisconnectButton: Optional. When this setting is True, the Disconnect button will not be visible for connected profiles and the 'Connect automatically' checkbox cannot be deselected.
@@ -165,6 +179,7 @@ var DisableDisconnectButton = csp.Policy{
 	MinOSBuild: "10.0.22000",
 	CSPVersion: "1.5",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "false", Description: "Disconnect Button is visible."}, {Value: "true", Description: "Disconnect Button is not visible."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_VPNv2_01", ResultClass: "MDM_VPNv2_01", InstanceID: "VPNv2", ParentID: "./Vendor/MSFT", Property: "DisableDisconnectButton"},
 }
 
 // DisableIKEv2Fragmentation: Set to disable IKEv2 Fragmentation.
@@ -177,6 +192,7 @@ var DisableIKEv2Fragmentation = csp.Policy{
 	MinOSBuild: "10.0.22000",
 	CSPVersion: "1.6",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "true", Description: "IKEv2 Fragmentation will not be used."}, {Value: "false", Description: "IKEv2 Fragmentation is used as normal."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_VPNv2_01", ResultClass: "MDM_VPNv2_01", InstanceID: "VPNv2", ParentID: "./Vendor/MSFT", Property: "DisableIKEv2Fragmentation"},
 }
 
 // DnsSuffix: Specifies one or more comma separated DNS suffixes. The first in the list is also used as the primary connection specific DNS suffix for the VPN Interface. The entire list will also be added into the SuffixSearchList.
@@ -186,6 +202,7 @@ var DnsSuffix = csp.Policy{
 	Format:  "chr",
 	Access:  []string{"Add", "Delete", "Get", "Replace"},
 	Allowed: &csp.Allowed{Type: "None"},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_VPNv2_01", ResultClass: "MDM_VPNv2_01", InstanceID: "VPNv2", ParentID: "./Vendor/MSFT", Property: "DnsSuffix"},
 }
 
 // DomainNameInformationListAutoTrigger: Boolean to determine whether this domain name rule will trigger the VPN.
@@ -198,6 +215,7 @@ var DomainNameInformationListAutoTrigger = csp.Policy{
 	MinOSBuild: "10.0.14393",
 	CSPVersion: "1.2",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "false", Description: "This DomainName rule will not trigger the VPN."}, {Value: "true", Description: "This DomainName rule will trigger the VPN."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_VPNv2_DomainNameInformationList02_01", ResultClass: "MDM_VPNv2_DomainNameInformationList02_01", InstanceID: "DomainNameInformationList", ParentID: "./Vendor/MSFT/VPNv2", Property: "AutoTrigger"},
 }
 
 // DomainNameInformationListDnsServers: Comma Seperated list of IP addresses for the DNS Servers to use for the domain name.
@@ -207,6 +225,7 @@ var DomainNameInformationListDnsServers = csp.Policy{
 	Format:  "chr",
 	Access:  []string{"Add", "Delete", "Get", "Replace"},
 	Allowed: &csp.Allowed{Type: "None"},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_VPNv2_DomainNameInformationList02_01", ResultClass: "MDM_VPNv2_DomainNameInformationList02_01", InstanceID: "DomainNameInformationList", ParentID: "./Vendor/MSFT/VPNv2", Property: "DnsServers"},
 }
 
 // DomainNameInformationListDomainName: Used to indicate the namespace to which the policy applies. When a Name query is issued, the DNS client compares the name in the query to all of the namespaces under DomainNameInformationList to find a match. This parameter can be one of the following types: FQDN - Fully qualified domain name. Suffix - A domain suffix that will be appended to the shortname query for DNS resolution. To specify a suffix, prepend a . to the DNS suffix.
@@ -216,6 +235,7 @@ var DomainNameInformationListDomainName = csp.Policy{
 	Format:  "chr",
 	Access:  []string{"Add", "Delete", "Get", "Replace"},
 	Allowed: &csp.Allowed{Type: "None"},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_VPNv2_DomainNameInformationList02_01", ResultClass: "MDM_VPNv2_DomainNameInformationList02_01", InstanceID: "DomainNameInformationList", ParentID: "./Vendor/MSFT/VPNv2", Property: "DomainName"},
 }
 
 // DomainNameInformationListDomainNameType: Returns the namespace type. This value can be one of the following: FQDN - If the DomainName was not prepended with a . and applies only to the fully qualified domain name (FQDN) of a specified host. Suffix - If the DomainName was prepended with a . and applies to the specified namespace, all records in that namespace, and all subdomains.
@@ -224,6 +244,7 @@ var DomainNameInformationListDomainNameType = csp.Policy{
 	URI:    "./Device/Vendor/MSFT/VPNv2/DomainNameInformationList/DomainNameType",
 	Format: "chr",
 	Access: []string{"Get"},
+	Bridge: &csp.Bridge{ConfigClass: "MDM_VPNv2_DomainNameInformationList02_01", ResultClass: "MDM_VPNv2_DomainNameInformationList02_01", InstanceID: "DomainNameInformationList", ParentID: "./Vendor/MSFT/VPNv2", Property: "DomainNameType"},
 }
 
 // DomainNameInformationListPersistent: A boolean value that specifies if the rule being added should persist even when the VPN is not connected.
@@ -236,6 +257,7 @@ var DomainNameInformationListPersistent = csp.Policy{
 	MinOSBuild: "10.0.14393",
 	CSPVersion: "1.2",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "false", Description: "This DomainName rule will only be applied when VPN is connected."}, {Value: "true", Description: "This DomainName rule will always be present and applied."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_VPNv2_DomainNameInformationList02_01", ResultClass: "MDM_VPNv2_DomainNameInformationList02_01", InstanceID: "DomainNameInformationList", ParentID: "./Vendor/MSFT/VPNv2", Property: "Persistent"},
 }
 
 // DomainNameInformationListWebProxyServers: Web Proxy Server IP address if you are redirecting traffic through your intranet.
@@ -245,6 +267,7 @@ var DomainNameInformationListWebProxyServers = csp.Policy{
 	Format:  "chr",
 	Access:  []string{"Add", "Delete", "Get", "Replace"},
 	Allowed: &csp.Allowed{Type: "None"},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_VPNv2_DomainNameInformationList02_01", ResultClass: "MDM_VPNv2_DomainNameInformationList02_01", InstanceID: "DomainNameInformationList", ParentID: "./Vendor/MSFT/VPNv2", Property: "WebProxyServers"},
 }
 
 // EdpModeId: Enterprise ID, which is required for connecting this VPN profile with an WIP policy. When this is set, the networking stack looks for this Enterprise ID in the app token to determine if the traffic is allowed to go over the VPN. If the profile is active, it also automatically triggers the VPN to connect. We recommend having only one such profile per device.
@@ -254,6 +277,7 @@ var EdpModeId = csp.Policy{
 	Format:  "chr",
 	Access:  []string{"Add", "Delete", "Get", "Replace"},
 	Allowed: &csp.Allowed{Type: "None"},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_VPNv2_01", ResultClass: "MDM_VPNv2_01", InstanceID: "VPNv2", ParentID: "./Vendor/MSFT", Property: "EdpModeId"},
 }
 
 // IPv4InterfaceMetric: The metric for the IPv4 interface.
@@ -265,6 +289,7 @@ var IPv4InterfaceMetric = csp.Policy{
 	MinOSBuild: "10.0.22000",
 	CSPVersion: "1.6",
 	Allowed:    &csp.Allowed{Type: "Range"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_VPNv2_01", ResultClass: "MDM_VPNv2_01", InstanceID: "VPNv2", ParentID: "./Vendor/MSFT", Property: "IPv4InterfaceMetric"},
 }
 
 // IPv6InterfaceMetric: The metric for the IPv6 interface.
@@ -276,6 +301,7 @@ var IPv6InterfaceMetric = csp.Policy{
 	MinOSBuild: "10.0.22000",
 	CSPVersion: "1.6",
 	Allowed:    &csp.Allowed{Type: "Range"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_VPNv2_01", ResultClass: "MDM_VPNv2_01", InstanceID: "VPNv2", ParentID: "./Vendor/MSFT", Property: "IPv6InterfaceMetric"},
 }
 
 // NativeProfileAuthenticationCertificateEku: Reserved for future use.
@@ -393,6 +419,7 @@ var NativeProfileDisableClassBasedDefaultRoute = csp.Policy{
 	MinOSBuild: "10.0.14393",
 	CSPVersion: "1.2",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "false", Description: "Enabled"}, {Value: "true", Description: "Disabled"}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_VPNv2_NativeProfile02", ResultClass: "MDM_VPNv2_NativeProfile02", InstanceID: "NativeProfile", ParentID: "./Vendor/MSFT/VPNv2", Property: "DisableClassBasedDefaultRoute"},
 }
 
 // NativeProfileL2tpPsk: The preshared key used for an L2TP connection.
@@ -404,6 +431,7 @@ var NativeProfileL2tpPsk = csp.Policy{
 	MinOSBuild: "10.0.14393",
 	CSPVersion: "1.2",
 	Allowed:    &csp.Allowed{Type: "None"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_VPNv2_NativeProfile02", ResultClass: "MDM_VPNv2_NativeProfile02", InstanceID: "NativeProfile", ParentID: "./Vendor/MSFT/VPNv2", Property: "L2tpPsk"},
 }
 
 // NativeProfileNativeProtocolType: Required for native profiles. Type of tunneling protocol used.
@@ -413,6 +441,7 @@ var NativeProfileNativeProtocolType = csp.Policy{
 	Format:  "chr",
 	Access:  []string{"Add", "Delete", "Get", "Replace"},
 	Allowed: &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "PPTP", Description: "PPTP"}, {Value: "L2TP", Description: "L2TP"}, {Value: "IKEv2", Description: "IKEv2"}, {Value: "Automatic", Description: "Automatic"}, {Value: "SSTP", Description: "SSTP"}, {Value: "ProtocolList", Description: "ProtocolList"}}},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_VPNv2_NativeProfile02", ResultClass: "MDM_VPNv2_NativeProfile02", InstanceID: "NativeProfile", ParentID: "./Vendor/MSFT/VPNv2", Property: "NativeProtocolType"},
 }
 
 // NativeProfilePlumbIKEv2TSAsRoutes: True: Plumb traffic selectors as routes onto VPN interface, False: Do not plumb traffic selectors as routes.
@@ -423,6 +452,7 @@ var NativeProfilePlumbIKEv2TSAsRoutes = csp.Policy{
 	Access:     []string{"Add", "Delete", "Get", "Replace"},
 	MinOSBuild: "10.0.19041",
 	CSPVersion: "1.3",
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_VPNv2_NativeProfile02", ResultClass: "MDM_VPNv2_NativeProfile02", InstanceID: "NativeProfile", ParentID: "./Vendor/MSFT/VPNv2", Property: "PlumbIKEv2TSAsRoutes"},
 }
 
 // NativeProfileProtocolListNativeProtocolListType: Inbox VPN protocols type.
@@ -449,6 +479,7 @@ var NativeProfileRoutingPolicyType = csp.Policy{
 	Format:  "chr",
 	Access:  []string{"Add", "Delete", "Get", "Replace"},
 	Allowed: &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "SplitTunnel", Description: "Traffic can go over any interface as determined by the networking stack."}, {Value: "ForceTunnel", Description: "All IP traffic must go over the VPN interface."}}},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_VPNv2_NativeProfile02", ResultClass: "MDM_VPNv2_NativeProfile02", InstanceID: "NativeProfile", ParentID: "./Vendor/MSFT/VPNv2", Property: "RoutingPolicyType"},
 }
 
 // NativeProfileServers: Required for native profiles. Public or routable IP address or DNS name for the VPN gateway. It can point to the external IP of a gateway or a virtual IP for a server farm. Examples, 208.147.66.130 or vpn.contoso.com. The name can be a server name plus a friendly name separated with a semi-colon. For example, server2.example.com;server2FriendlyName. When you get the value, the return will include both the server name and the friendly name; if no friendly name had been supplied it will default to the server name. You can make a list of server names (with optional friendly names) separated by commas. For example, server1.example.com,server2.example.com. If the user is using the native Windows VPN client, they will then be able to select between servers. Only the chosen server will be used for connections, the options will not be iterated automatically.
@@ -457,6 +488,7 @@ var NativeProfileServers = csp.Policy{
 	URI:    "./Device/Vendor/MSFT/VPNv2/NativeProfile/Servers",
 	Format: "chr",
 	Access: []string{"Add", "Delete", "Get", "Replace"},
+	Bridge: &csp.Bridge{ConfigClass: "MDM_VPNv2_NativeProfile02", ResultClass: "MDM_VPNv2_NativeProfile02", InstanceID: "NativeProfile", ParentID: "./Vendor/MSFT/VPNv2", Property: "Servers"},
 }
 
 // NetworkOutageTime: Optional. For IKEv2 VPN connections only. Specifies the amount of time in seconds the VPN client will wait to notify the network stack if the VPN server becomes unavailable. This allows the VPN connection to survive when the client changes its connectivity, e.g. because of switching from LAN to MBN, or when the client is disconnected for some time, e.g. sitting in a train that runs through a tunnel. It's recommended to set this value between 0 and 28,800 seconds (8 hours).
@@ -468,6 +500,7 @@ var NetworkOutageTime = csp.Policy{
 	MinOSBuild: "10.0.22000",
 	CSPVersion: "1.6",
 	Allowed:    &csp.Allowed{Type: "Range"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_VPNv2_01", ResultClass: "MDM_VPNv2_01", InstanceID: "VPNv2", ParentID: "./Vendor/MSFT", Property: "NetworkOutageTime"},
 }
 
 // PluginProfileCustomConfiguration: Optional. This is an HTML encoded XML blob for SSL-VPN plug-in specific configuration including authentication information that is deployed to the device to make it available for SSL-VPN plug-ins. Contact the plugin provider for format and other details. Most plugins can also configure values based on the server negotiations as well as defaults.
@@ -477,6 +510,7 @@ var PluginProfileCustomConfiguration = csp.Policy{
 	Format:  "chr",
 	Access:  []string{"Add", "Delete", "Get", "Replace"},
 	Allowed: &csp.Allowed{Type: "None"},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_VPNv2_PluginProfile02", ResultClass: "MDM_VPNv2_PluginProfile02", InstanceID: "PluginProfile", ParentID: "./Vendor/MSFT/VPNv2", Property: "CustomConfiguration"},
 }
 
 // PluginProfilePluginPackageFamilyName: Required for Plugin Profiles. This node specifies the Package Family Name of the SSL-VPN plugin app.
@@ -486,6 +520,7 @@ var PluginProfilePluginPackageFamilyName = csp.Policy{
 	Format:  "chr",
 	Access:  []string{"Add", "Delete", "Get", "Replace"},
 	Allowed: &csp.Allowed{Type: "None"},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_VPNv2_PluginProfile02", ResultClass: "MDM_VPNv2_PluginProfile02", InstanceID: "PluginProfile", ParentID: "./Vendor/MSFT/VPNv2", Property: "PluginPackageFamilyName"},
 }
 
 // PluginProfileServerUrlList: Required for plug-in profiles. Semicolon-separated list of servers in URL, hostname, or IP format.
@@ -495,6 +530,7 @@ var PluginProfileServerUrlList = csp.Policy{
 	Format:  "chr",
 	Access:  []string{"Add", "Delete", "Get", "Replace"},
 	Allowed: &csp.Allowed{Type: "None"},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_VPNv2_PluginProfile02", ResultClass: "MDM_VPNv2_PluginProfile02", InstanceID: "PluginProfile", ParentID: "./Vendor/MSFT/VPNv2", Property: "ServerUrlList"},
 }
 
 // PrivateNetwork: Determines whether the VPN connection is public or private.
@@ -507,6 +543,7 @@ var PrivateNetwork = csp.Policy{
 	MinOSBuild: "10.0.22000",
 	CSPVersion: "1.6",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "false", Description: "VPN connection is public."}, {Value: "true", Description: "VPN connection is private."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_VPNv2_01", ResultClass: "MDM_VPNv2_01", InstanceID: "VPNv2", ParentID: "./Vendor/MSFT", Property: "PrivateNetwork"},
 }
 
 // ProfileXML: The XML schema for provisioning all the fields of a VPN.
@@ -518,6 +555,7 @@ var ProfileXML = csp.Policy{
 	MinOSBuild: "10.0.14393",
 	CSPVersion: "1.2",
 	Allowed:    &csp.Allowed{Type: "XSD"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_VPNv2_01", ResultClass: "MDM_VPNv2_01", InstanceID: "VPNv2", ParentID: "./Vendor/MSFT", Property: "ProfileXML"},
 }
 
 // ProxyAutoConfigUrl: Optional. Set a URL to automatically retrieve the proxy settings.
@@ -527,6 +565,7 @@ var ProxyAutoConfigUrl = csp.Policy{
 	Format:  "chr",
 	Access:  []string{"Add", "Delete", "Get", "Replace"},
 	Allowed: &csp.Allowed{Type: "None"},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_VPNv2_Proxy02", ResultClass: "MDM_VPNv2_Proxy02", InstanceID: "Proxy", ParentID: "./Vendor/MSFT/VPNv2", Property: "AutoConfigUrl"},
 }
 
 // ProxyManualServer: Optional. The value is the proxy server address as a fully qualified hostname or an IP address, with port appended after a colon for example, proxy.constoso.com:80.
@@ -548,6 +587,7 @@ var RegisterDNS = csp.Policy{
 	MinOSBuild: "10.0.16299",
 	CSPVersion: "1.3",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "false", Description: "Do not register the connection's address in DNS."}, {Value: "true", Description: "Register the connection's addresses in DNS."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_VPNv2_01", ResultClass: "MDM_VPNv2_01", InstanceID: "VPNv2", ParentID: "./Vendor/MSFT", Property: "RegisterDNS"},
 }
 
 // RememberCredentials: Boolean value (true or false) for caching credentials.
@@ -558,6 +598,7 @@ var RememberCredentials = csp.Policy{
 	Access:  []string{"Add", "Delete", "Get", "Replace"},
 	Default: "false",
 	Allowed: &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "false", Description: "Do not cache credentials."}, {Value: "true", Description: "Credentials are cached whenever possible."}}},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_VPNv2_01", ResultClass: "MDM_VPNv2_01", InstanceID: "VPNv2", ParentID: "./Vendor/MSFT", Property: "RememberCredentials"},
 }
 
 // RequireVpnClientAppUI: Applicable only to AppContainer profiles.
@@ -577,6 +618,7 @@ var RouteListAddress = csp.Policy{
 	Format:  "chr",
 	Access:  []string{"Add", "Delete", "Get", "Replace"},
 	Allowed: &csp.Allowed{Type: "None"},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_VPNv2_RouteList02_01", ResultClass: "MDM_VPNv2_RouteList02_01", InstanceID: "RouteList", ParentID: "./Vendor/MSFT/VPNv2", Property: "Address"},
 }
 
 // RouteListExclusionRoute: A boolean value that specifies if the route being added should point to the VPN Interface or the Physical Interface as the Gateway.
@@ -589,6 +631,7 @@ var RouteListExclusionRoute = csp.Policy{
 	MinOSBuild: "10.0.14393",
 	CSPVersion: "1.2",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "false", Description: "This route will direct traffic over the VPN."}, {Value: "true", Description: "This route will direct traffic over the physical interface."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_VPNv2_RouteList02_01", ResultClass: "MDM_VPNv2_RouteList02_01", InstanceID: "RouteList", ParentID: "./Vendor/MSFT/VPNv2", Property: "ExclusionRoute"},
 }
 
 // RouteListMetric: The route's metric.
@@ -600,6 +643,7 @@ var RouteListMetric = csp.Policy{
 	MinOSBuild: "10.0.14393",
 	CSPVersion: "1.2",
 	Allowed:    &csp.Allowed{Type: "None"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_VPNv2_RouteList02_01", ResultClass: "MDM_VPNv2_RouteList02_01", InstanceID: "RouteList", ParentID: "./Vendor/MSFT/VPNv2", Property: "Metric"},
 }
 
 // RouteListPrefixSize: The subnet prefix size part of the destination prefix for the route entry. This, along with the address will be used to determine the destination prefix to route through the VPN Interface.
@@ -609,6 +653,7 @@ var RouteListPrefixSize = csp.Policy{
 	Format:  "int",
 	Access:  []string{"Add", "Delete", "Get", "Replace"},
 	Allowed: &csp.Allowed{Type: "Range"},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_VPNv2_RouteList02_01", ResultClass: "MDM_VPNv2_RouteList02_01", InstanceID: "RouteList", ParentID: "./Vendor/MSFT/VPNv2", Property: "PrefixSize"},
 }
 
 // TrafficFilterListAppId: App identity for the app-based traffic filter. The value for this node can be one of the following: PackageFamilyName - This App/Id value represents the PackageFamilyName of the app. The PackageFamilyName is the unique name of a Microsoft Store application. FilePath - This App/Id value represents the full file path of the app. For example, C:\Windows\System\Notepad.exe. SYSTEM - This value enables Kernel Drivers to send traffic through VPN (for example, PING or SMB).
@@ -618,6 +663,7 @@ var TrafficFilterListAppId = csp.Policy{
 	Format:  "chr",
 	Access:  []string{"Add", "Delete", "Get", "Replace"},
 	Allowed: &csp.Allowed{Type: "None"},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_VPNv2_TrafficFilterList02_App04", ResultClass: "MDM_VPNv2_TrafficFilterList02_App04", InstanceID: "App", ParentID: "./Vendor/MSFT/VPNv2/TrafficFilterList", Property: "Id"},
 }
 
 // TrafficFilterListAppType: Returns the type of ID of the App/Id. Either PackageFamilyName, FilePath, or System.
@@ -626,6 +672,7 @@ var TrafficFilterListAppType = csp.Policy{
 	URI:    "./Device/Vendor/MSFT/VPNv2/TrafficFilterList/App/Type",
 	Format: "chr",
 	Access: []string{"Get"},
+	Bridge: &csp.Bridge{ConfigClass: "MDM_VPNv2_TrafficFilterList02_App04", ResultClass: "MDM_VPNv2_TrafficFilterList02_App04", InstanceID: "App", ParentID: "./Vendor/MSFT/VPNv2/TrafficFilterList", Property: "Type"},
 }
 
 // TrafficFilterListClaims: Specifies a rule in Security Descriptor Definition Language (SDDL) format to check against local user token.
@@ -635,6 +682,7 @@ var TrafficFilterListClaims = csp.Policy{
 	Format:  "chr",
 	Access:  []string{"Add", "Delete", "Get", "Replace"},
 	Allowed: &csp.Allowed{Type: "None"},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_VPNv2_TrafficFilterList02_01", ResultClass: "MDM_VPNv2_TrafficFilterList02_01", InstanceID: "TrafficFilterList", ParentID: "./Vendor/MSFT/VPNv2", Property: "Claims"},
 }
 
 // TrafficFilterListDirection: Outbound - The traffic filter allows traffic to reach destinations matching this rule. This is the default.
@@ -645,6 +693,7 @@ var TrafficFilterListDirection = csp.Policy{
 	Access:     []string{"Add", "Delete", "Get", "Replace"},
 	MinOSBuild: "10.0.19041",
 	CSPVersion: "1.3",
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_VPNv2_TrafficFilterList02_01", ResultClass: "MDM_VPNv2_TrafficFilterList02_01", InstanceID: "TrafficFilterList", ParentID: "./Vendor/MSFT/VPNv2", Property: "Direction"},
 }
 
 // TrafficFilterListLocalAddressRanges: A list of comma separated values specifying local IP address ranges to allow.
@@ -654,6 +703,7 @@ var TrafficFilterListLocalAddressRanges = csp.Policy{
 	Format:  "chr",
 	Access:  []string{"Add", "Delete", "Get", "Replace"},
 	Allowed: &csp.Allowed{Type: "None"},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_VPNv2_TrafficFilterList02_01", ResultClass: "MDM_VPNv2_TrafficFilterList02_01", InstanceID: "TrafficFilterList", ParentID: "./Vendor/MSFT/VPNv2", Property: "LocalAddressRanges"},
 }
 
 // TrafficFilterListLocalPortRanges: Comma Separated list of ranges for eg. 100-120,200,300-320.
@@ -663,6 +713,7 @@ var TrafficFilterListLocalPortRanges = csp.Policy{
 	Format:  "chr",
 	Access:  []string{"Add", "Delete", "Get", "Replace"},
 	Allowed: &csp.Allowed{Type: "RegEx"},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_VPNv2_TrafficFilterList02_01", ResultClass: "MDM_VPNv2_TrafficFilterList02_01", InstanceID: "TrafficFilterList", ParentID: "./Vendor/MSFT/VPNv2", Property: "LocalPortRanges"},
 }
 
 // TrafficFilterListProtocol: 0-255 number representing the ip protocol (TCP = 6, UDP = 17).
@@ -672,6 +723,7 @@ var TrafficFilterListProtocol = csp.Policy{
 	Format:  "int",
 	Access:  []string{"Add", "Delete", "Get", "Replace"},
 	Allowed: &csp.Allowed{Type: "Range"},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_VPNv2_TrafficFilterList02_01", ResultClass: "MDM_VPNv2_TrafficFilterList02_01", InstanceID: "TrafficFilterList", ParentID: "./Vendor/MSFT/VPNv2", Property: "Protocol"},
 }
 
 // TrafficFilterListRemoteAddressRanges: A list of comma separated values specifying remote IP address ranges to allow.
@@ -681,6 +733,7 @@ var TrafficFilterListRemoteAddressRanges = csp.Policy{
 	Format:  "chr",
 	Access:  []string{"Add", "Delete", "Get", "Replace"},
 	Allowed: &csp.Allowed{Type: "None"},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_VPNv2_TrafficFilterList02_01", ResultClass: "MDM_VPNv2_TrafficFilterList02_01", InstanceID: "TrafficFilterList", ParentID: "./Vendor/MSFT/VPNv2", Property: "RemoteAddressRanges"},
 }
 
 // TrafficFilterListRemotePortRanges: A list of comma separated values specifying remote port ranges to allow. For example, 100-120, 200, 300-320.
@@ -690,6 +743,7 @@ var TrafficFilterListRemotePortRanges = csp.Policy{
 	Format:  "chr",
 	Access:  []string{"Add", "Delete", "Get", "Replace"},
 	Allowed: &csp.Allowed{Type: "RegEx"},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_VPNv2_TrafficFilterList02_01", ResultClass: "MDM_VPNv2_TrafficFilterList02_01", InstanceID: "TrafficFilterList", ParentID: "./Vendor/MSFT/VPNv2", Property: "RemotePortRanges"},
 }
 
 // TrafficFilterListRoutingPolicyType: Specifies the routing policy if an App or Claims type is used in the traffic filter. The scope of this property is for this traffic filter rule alone.
@@ -699,6 +753,7 @@ var TrafficFilterListRoutingPolicyType = csp.Policy{
 	Format:  "chr",
 	Access:  []string{"Add", "Delete", "Get", "Replace"},
 	Allowed: &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "SplitTunnel", Description: "For this traffic filter rule, only the traffic meant for the VPN interface (as determined by the networking stack) goes over the interface. Internet traffic can continue to go over the other interfaces."}, {Value: "ForceTunnel", Description: "For this traffic rule all IP traffic must go through the VPN Interface only."}}},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_VPNv2_TrafficFilterList02_01", ResultClass: "MDM_VPNv2_TrafficFilterList02_01", InstanceID: "TrafficFilterList", ParentID: "./Vendor/MSFT/VPNv2", Property: "RoutingPolicyType"},
 }
 
 // TrustedNetworkDetection: Comma separated string to identify the trusted network. VPN will not connect automatically when the user is on their corporate wireless network where protected resources are directly accessible to the device.
@@ -708,6 +763,7 @@ var TrustedNetworkDetection = csp.Policy{
 	Format:  "chr",
 	Access:  []string{"Add", "Delete", "Get", "Replace"},
 	Allowed: &csp.Allowed{Type: "None"},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_VPNv2_01", ResultClass: "MDM_VPNv2_01", InstanceID: "VPNv2", ParentID: "./Vendor/MSFT", Property: "TrustedNetworkDetection"},
 }
 
 // UseRasCredentials: Determines whether the credential manager will save ras credentials after a connection.
@@ -720,6 +776,7 @@ var UseRasCredentials = csp.Policy{
 	MinOSBuild: "10.0.22000",
 	CSPVersion: "1.6",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "false", Description: "Ras Credentials are not saved."}, {Value: "true", Description: "Ras Credentials are saved."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_VPNv2_01", ResultClass: "MDM_VPNv2_01", InstanceID: "VPNv2", ParentID: "./Vendor/MSFT", Property: "UseRasCredentials"},
 }
 
 // DeviceTunnel: If turned on a device tunnel profile does four things.
@@ -732,6 +789,7 @@ var DeviceTunnel = csp.Policy{
 	MinOSBuild: "10.0.16299",
 	CSPVersion: "1.3",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "false", Description: "This is not a device tunnel profile."}, {Value: "true", Description: "This is a device tunnel profile."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_VPNv2_01", ResultClass: "MDM_VPNv2_01", InstanceID: "VPNv2", ParentID: "./Vendor/MSFT", Property: "DeviceTunnel"},
 }
 
 // All lists every policy in this CSP area.

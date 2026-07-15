@@ -10,6 +10,7 @@ var BootstrapperAgentExecutionContext = csp.Policy{
 	URI:    "./Device/Vendor/MSFT/DevicePreparation/BootstrapperAgent/ExecutionContext",
 	Format: "chr",
 	Access: []string{"Get", "Replace"},
+	Bridge: &csp.Bridge{ConfigClass: "MDM_DevicePreparation_BootstrapperAgent01", ResultClass: "MDM_DevicePreparation_BootstrapperAgent01", InstanceID: "BootstrapperAgent", ParentID: "./Vendor/MSFT/DevicePreparation", Property: "ExecutionContext"},
 }
 
 // IsPostOobeProvisioningAllowed: This node determines whether Autopilot Device Preparation provisioning can be executed after OOBE has completed.
@@ -20,6 +21,7 @@ var IsPostOobeProvisioningAllowed = csp.Policy{
 	Access:  []string{"Get", "Replace"},
 	Default: "false",
 	Allowed: &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "false", Description: "Autopilot Device Preparation provisioning is only allowed during OOBE."}, {Value: "true", Description: "Autopilot Device Preparation provisioning is only allowed post-OOBE."}}},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_DevicePreparation", ResultClass: "MDM_DevicePreparation", InstanceID: "DevicePreparation", ParentID: "./Vendor/MSFT", Property: "IsPostOobeProvisioningAllowed"},
 }
 
 // MDMProviderMdmAgentInstalled: This node indicates whether the mdm agent was installed or not. When set to true sets the AUTOPILOT_MDM_AGENT_REGISTERED WNF event.
@@ -30,6 +32,7 @@ var MDMProviderMdmAgentInstalled = csp.Policy{
 	Access:  []string{"Get", "Replace"},
 	Default: "False",
 	Allowed: &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "false", Description: "Mdm Agent Not Installed"}, {Value: "true", Description: "Mdm Agent Installed"}}},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_DevicePreparation_MDMProvider01", ResultClass: "MDM_DevicePreparation_MDMProvider01", InstanceID: "MDMProvider", ParentID: "./Vendor/MSFT/DevicePreparation", Property: "MdmAgentInstalled"},
 }
 
 // MDMProviderProgress: Node for reporting progress status as opaque data. Contract for data is between the server and EMM agent that reads the data.
@@ -38,6 +41,7 @@ var MDMProviderProgress = csp.Policy{
 	URI:    "./Device/Vendor/MSFT/DevicePreparation/MDMProvider/Progress",
 	Format: "chr",
 	Access: []string{"Add", "Delete", "Get", "Replace"},
+	Bridge: &csp.Bridge{ConfigClass: "MDM_DevicePreparation_MDMProvider01", ResultClass: "MDM_DevicePreparation_MDMProvider01", InstanceID: "MDMProvider", ParentID: "./Vendor/MSFT/DevicePreparation", Property: "Progress"},
 }
 
 // MDMProviderRebootRequired: This node indicates whether an MDM policy was provisioned that requires a reboot.
@@ -48,6 +52,7 @@ var MDMProviderRebootRequired = csp.Policy{
 	Access:  []string{"Get"},
 	Default: "False",
 	Allowed: &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "false", Description: "No Reboot Required"}, {Value: "true", Description: "Reboot Required"}}},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_DevicePreparation_MDMProvider01", ResultClass: "MDM_DevicePreparation_MDMProvider01", InstanceID: "MDMProvider", ParentID: "./Vendor/MSFT/DevicePreparation", Property: "RebootRequired"},
 }
 
 // PageEnabled: This node determines whether to show the Device Preparation page during OOBE.
@@ -58,6 +63,7 @@ var PageEnabled = csp.Policy{
 	Access:  []string{"Get", "Replace"},
 	Default: "false",
 	Allowed: &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "false", Description: "Disable Page"}, {Value: "true", Description: "Enable Page"}}},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_DevicePreparation", ResultClass: "MDM_DevicePreparation", InstanceID: "DevicePreparation", ParentID: "./Vendor/MSFT", Property: "PageEnabled"},
 }
 
 // PageErrorCode: This node provides specific overall HRESULT causing a fatal error on the Device Preparation page.  This node is valid only if the PageErrorPhase node's value is not Unknown.
@@ -66,6 +72,7 @@ var PageErrorCode = csp.Policy{
 	URI:    "./Device/Vendor/MSFT/DevicePreparation/PageErrorCode",
 	Format: "int",
 	Access: []string{"Get"},
+	Bridge: &csp.Bridge{ConfigClass: "MDM_DevicePreparation", ResultClass: "MDM_DevicePreparation", InstanceID: "DevicePreparation", ParentID: "./Vendor/MSFT", Property: "PageErrorCode"},
 }
 
 // PageErrorDetails: This node provides optional details for any fatal error on the Device Preparation page.  This node is valid only if the PageErrorPhase node's value is not Unknown, but not all errors will have details.
@@ -74,6 +81,7 @@ var PageErrorDetails = csp.Policy{
 	URI:    "./Device/Vendor/MSFT/DevicePreparation/PageErrorDetails",
 	Format: "chr",
 	Access: []string{"Get"},
+	Bridge: &csp.Bridge{ConfigClass: "MDM_DevicePreparation", ResultClass: "MDM_DevicePreparation", InstanceID: "DevicePreparation", ParentID: "./Vendor/MSFT", Property: "PageErrorDetails"},
 }
 
 // PageErrorPhase: This node provides the specific phase that failed during the Device Preparation page.  Values are an enum: 0 = Unknown; 1 = AgentDownload;  2 = AgentProgress.
@@ -83,6 +91,7 @@ var PageErrorPhase = csp.Policy{
 	Format:  "int",
 	Access:  []string{"Get"},
 	Allowed: &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Unknown"}, {Value: "1", Description: "AgentDownload"}, {Value: "2", Description: "AgentProgress"}}},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_DevicePreparation", ResultClass: "MDM_DevicePreparation", InstanceID: "DevicePreparation", ParentID: "./Vendor/MSFT", Property: "PageErrorPhase"},
 }
 
 // PageSettings: This node configures the Device Preparation page settings.
@@ -92,6 +101,7 @@ var PageSettings = csp.Policy{
 	Format:  "chr",
 	Access:  []string{"Get", "Replace"},
 	Allowed: &csp.Allowed{Type: "JSON"},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_DevicePreparation", ResultClass: "MDM_DevicePreparation", InstanceID: "DevicePreparation", ParentID: "./Vendor/MSFT", Property: "PageSettings"},
 }
 
 // PageStatus: This node provides status of the Device Preparation page.
@@ -101,6 +111,7 @@ var PageStatus = csp.Policy{
 	Format:  "int",
 	Access:  []string{"Get", "Replace"},
 	Allowed: &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Disabled"}, {Value: "1", Description: "Enabled"}, {Value: "2", Description: "InProgress"}, {Value: "3", Description: "ExitOnSuccess"}, {Value: "4", Description: "ExitOnFailure"}}},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_DevicePreparation", ResultClass: "MDM_DevicePreparation", InstanceID: "DevicePreparation", ParentID: "./Vendor/MSFT", Property: "PageStatus"},
 }
 
 // All lists every policy in this CSP area.

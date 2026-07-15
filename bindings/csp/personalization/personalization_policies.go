@@ -42,6 +42,7 @@ var DesktopImageStatus = csp.Policy{
 	URI:    "./Vendor/MSFT/Personalization/DesktopImageStatus",
 	Format: "int",
 	Access: []string{"Get"},
+	Bridge: &csp.Bridge{ConfigClass: "MDM_Personalization", ResultClass: "MDM_Personalization", InstanceID: "Personalization", ParentID: "./Vendor/MSFT", Property: "DesktopImageStatus"},
 }
 
 // DesktopImageUrl: A http or https Url to a jpg, jpeg or png image that needs to be downloaded and used as the Desktop Image or a file Url to a local image on the file system that needs to be used as the Desktop Image.
@@ -51,6 +52,7 @@ var DesktopImageUrl = csp.Policy{
 	Format:  "chr",
 	Access:  []string{"Add", "Delete", "Get", "Replace"},
 	Allowed: &csp.Allowed{Type: "None"},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_Personalization", ResultClass: "MDM_Personalization", InstanceID: "Personalization", ParentID: "./Vendor/MSFT", Property: "DesktopImageUrl"},
 }
 
 // LockScreenImageStatus: This represents the status of the LockScreenImage. 1 - Successfully downloaded or copied. 2 - Download/Copy in progress. 3 - Download/Copy failed. 4 - Unknown file type. 5 - Unsupported Url scheme. 6 - Max retry failed.
@@ -59,6 +61,7 @@ var LockScreenImageStatus = csp.Policy{
 	URI:    "./Vendor/MSFT/Personalization/LockScreenImageStatus",
 	Format: "int",
 	Access: []string{"Get"},
+	Bridge: &csp.Bridge{ConfigClass: "MDM_Personalization", ResultClass: "MDM_Personalization", InstanceID: "Personalization", ParentID: "./Vendor/MSFT", Property: "LockScreenImageStatus"},
 }
 
 // LockScreenImageUrl: A http or https Url to a jpg, jpeg or png image that needs to be downloaded and used as the Lock Screen Image or a file Url to a local image on the file system that needs to be used as the Lock Screen Image.
@@ -68,6 +71,7 @@ var LockScreenImageUrl = csp.Policy{
 	Format:  "chr",
 	Access:  []string{"Add", "Delete", "Get", "Replace"},
 	Allowed: &csp.Allowed{Type: "None"},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_Personalization", ResultClass: "MDM_Personalization", InstanceID: "Personalization", ParentID: "./Vendor/MSFT", Property: "LockScreenImageUrl"},
 }
 
 // All lists every policy in this CSP area.

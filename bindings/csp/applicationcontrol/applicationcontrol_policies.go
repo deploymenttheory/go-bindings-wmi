@@ -11,6 +11,7 @@ var PoliciesPolicy = csp.Policy{
 	Format:  "b64",
 	Access:  []string{"Add", "Delete", "Get", "Replace"},
 	Allowed: &csp.Allowed{Type: "None"},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_ApplicationControl_Policies01_01", ResultClass: "MDM_ApplicationControl_Policies01_01", InstanceID: "Policies", ParentID: "./Vendor/MSFT/ApplicationControl", Property: "Policy"},
 }
 
 // PoliciesPolicyInfoBasePolicyId: The BasePolicyId of the Policy Indicated by the Policy GUID
@@ -100,6 +101,7 @@ var TokensToken = csp.Policy{
 	Format:  "b64",
 	Access:  []string{"Add", "Delete", "Get", "Replace"},
 	Allowed: &csp.Allowed{Type: "None"},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_ApplicationControl_Tokens01_01", ResultClass: "MDM_ApplicationControl_Tokens01_01", InstanceID: "Tokens", ParentID: "./Vendor/MSFT/ApplicationControl", Property: "Token"},
 }
 
 // TokensTokenInfoStatus: The Current Status of the Token Indicated by the Token ID

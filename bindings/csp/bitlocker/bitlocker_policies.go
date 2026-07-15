@@ -14,6 +14,7 @@ var AllowStandardUserEncryption = csp.Policy{
 	MinOSBuild: "10.0.17763",
 	CSPVersion: "3.0",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "This is the default, when the policy is not set. If current logged on user is a standard user, \"RequireDeviceEncryption\" policy will not try to enable encryption on any drive."}, {Value: "1", Description: "\"RequireDeviceEncryption\" policy will try to enable encryption on all fixed drives even if a current logged in user is standard user."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_BitLocker", ResultClass: "MDM_BitLocker", InstanceID: "BitLocker", ParentID: "./Vendor/MSFT", Property: "AllowStandardUserEncryption"},
 }
 
 // AllowWarningForOtherDiskEncryption: Allows Admin to disable all UI (notification for encryption and warning prompt for other disk encryption)
@@ -24,6 +25,7 @@ var AllowWarningForOtherDiskEncryption = csp.Policy{
 	Access:  []string{"Add", "Delete", "Get", "Replace"},
 	Default: "1",
 	Allowed: &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Disables the warning prompt. Starting in Windows 10, version 1803, the value 0 can only be set for Entra ID joined devices. Windows will attempt to silently enable BitLocker for value 0."}, {Value: "1", Description: "Warning prompt allowed."}}},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_BitLocker", ResultClass: "MDM_BitLocker", InstanceID: "BitLocker", ParentID: "./Vendor/MSFT", Property: "AllowWarningForOtherDiskEncryption"},
 }
 
 // ConfigureRecoveryPasswordRotation: Allows Admin to configure Numeric Recovery Password Rotation upon use for OS and fixed drives on Entra ID and Hybrid domain joined devices.
@@ -36,6 +38,7 @@ var ConfigureRecoveryPasswordRotation = csp.Policy{
 	MinOSBuild: "10.0.18363",
 	CSPVersion: "5.0",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Refresh off (default)"}, {Value: "1", Description: "Refresh on for Entra ID-joined devices"}, {Value: "2", Description: "Refresh on for both Entra ID-joined and hybrid-joined devices"}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_BitLocker", ResultClass: "MDM_BitLocker", InstanceID: "BitLocker", ParentID: "./Vendor/MSFT", Property: "ConfigureRecoveryPasswordRotation"},
 }
 
 // EncryptionMethodByDriveType: This policy setting allows you to configure the algorithm and cipher strength used by BitLocker Drive Encryption. This policy setting is applied when you turn on BitLocker. Changing the encryption method has no effect if the drive is already encrypted, or if encryption is in progress.
@@ -45,6 +48,7 @@ var EncryptionMethodByDriveType = csp.Policy{
 	Format:  "chr",
 	Access:  []string{"Add", "Delete", "Get", "Replace"},
 	Allowed: &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "VolumeEncryption~AT~WindowsComponents~FVECategory~FVERDVCategory", Name: "RDVDenyWriteAccess_Name", File: "VolumeEncryption.admx"}},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_BitLocker", ResultClass: "MDM_BitLocker", InstanceID: "BitLocker", ParentID: "./Vendor/MSFT", Property: "EncryptionMethodByDriveType"},
 }
 
 // FixedDrivesEncryptionType: This policy setting allows you to configure the encryption type used by BitLocker Drive Encryption. This policy setting is applied when you turn on BitLocker. Changing the encryption type has no effect if the drive is already encrypted or if encryption is in progress. Choose full encryption to require that the entire drive be encrypted when BitLocker is turned on. Choose used space only encryption to require that only the portion of the drive used to store data is encrypted when BitLocker is turned on.
@@ -56,6 +60,7 @@ var FixedDrivesEncryptionType = csp.Policy{
 	MinOSBuild: "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
 	CSPVersion: "5.0",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "VolumeEncryption~AT~WindowsComponents~FVECategory~FVEFDVCategory", Name: "FDVEncryptionType_Name", File: "VolumeEncryption.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_BitLocker", ResultClass: "MDM_BitLocker", InstanceID: "BitLocker", ParentID: "./Vendor/MSFT", Property: "FixedDrivesEncryptionType"},
 }
 
 // FixedDrivesRecoveryOptions: This policy setting allows you to control how BitLocker-protected fixed data drives are recovered in the absence of the required credentials. This policy setting is applied when you turn on BitLocker.
@@ -65,6 +70,7 @@ var FixedDrivesRecoveryOptions = csp.Policy{
 	Format:  "chr",
 	Access:  []string{"Add", "Delete", "Get", "Replace"},
 	Allowed: &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "VolumeEncryption~AT~WindowsComponents~FVECategory~FVEFDVCategory", Name: "FDVRecoveryUsage_Name", File: "VolumeEncryption.admx"}},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_BitLocker", ResultClass: "MDM_BitLocker", InstanceID: "BitLocker", ParentID: "./Vendor/MSFT", Property: "FixedDrivesRecoveryOptions"},
 }
 
 // FixedDrivesRequireEncryption: This policy setting determines whether BitLocker protection is required for fixed data drives to be writable on a computer.
@@ -74,6 +80,7 @@ var FixedDrivesRequireEncryption = csp.Policy{
 	Format:  "chr",
 	Access:  []string{"Add", "Delete", "Get", "Replace"},
 	Allowed: &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "VolumeEncryption~AT~WindowsComponents~FVECategory~FVEFDVCategory", Name: "FDVDenyWriteAccess_Name", File: "VolumeEncryption.admx"}},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_BitLocker", ResultClass: "MDM_BitLocker", InstanceID: "BitLocker", ParentID: "./Vendor/MSFT", Property: "FixedDrivesRequireEncryption"},
 }
 
 // IdentificationField: This policy setting allows you to associate unique organizational identifiers to a new drive that is enabled with BitLocker. These identifiers are stored as the identification field and allowed identification field. The identification field allows you to associate a unique organizational identifier to BitLocker-protected drives. This identifier is automatically added to new BitLocker-protected drives and can be updated on existing BitLocker-protected drives using the manage-bde command-line tool. An identification field is required for management of certificate-based data recovery agents on BitLocker-protected drives and for potential updates to the BitLocker To Go Reader. BitLocker will only manage and update data recovery agents when the identification field on the drive matches the value configured in the identification field. In a similar manner, BitLocker will only update the BitLocker To Go Reader when the identification field on the drive matches the value configured for the identification field.
@@ -85,6 +92,7 @@ var IdentificationField = csp.Policy{
 	MinOSBuild: "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
 	CSPVersion: "5.0",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "VolumeEncryption~AT~WindowsComponents~FVECategory", Name: "IdentificationField_Name", File: "VolumeEncryption.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_BitLocker", ResultClass: "MDM_BitLocker", InstanceID: "BitLocker", ParentID: "./Vendor/MSFT", Property: "IdentificationField"},
 }
 
 // RemovableDrivesConfigureBDE: This policy setting controls the use of BitLocker on removable data drives. This policy setting is applied when you turn on BitLocker.
@@ -96,6 +104,7 @@ var RemovableDrivesConfigureBDE = csp.Policy{
 	MinOSBuild: "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
 	CSPVersion: "5.0",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "VolumeEncryption~AT~WindowsComponents~FVECategory~FVERDVCategory", Name: "RDVConfigureBDE", File: "VolumeEncryption.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_BitLocker", ResultClass: "MDM_BitLocker", InstanceID: "BitLocker", ParentID: "./Vendor/MSFT", Property: "RemovableDrivesConfigureBDE"},
 }
 
 // RemovableDrivesEncryptionType: This policy setting allows you to configure the encryption type used by BitLocker Drive Encryption. This policy setting is applied when you turn on BitLocker. Changing the encryption type has no effect if the drive is already encrypted or if encryption is in progress. Choose full encryption to require that the entire drive be encrypted when BitLocker is turned on. Choose used space only encryption to require that only the portion of the drive used to store data is encrypted when BitLocker is turned on.
@@ -107,6 +116,7 @@ var RemovableDrivesEncryptionType = csp.Policy{
 	MinOSBuild: "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
 	CSPVersion: "5.0",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "VolumeEncryption~AT~WindowsComponents~FVECategory~FVERDVCategory", Name: "RDVEncryptionType_Name", File: "VolumeEncryption.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_BitLocker", ResultClass: "MDM_BitLocker", InstanceID: "BitLocker", ParentID: "./Vendor/MSFT", Property: "RemovableDrivesEncryptionType"},
 }
 
 // RemovableDrivesExcludedFromEncryption: When enabled, allows you to exclude removable drives and devices connected over USB interface from BitLocker Device Encryption. Excluded devices cannot be encrypted, even manually. Additionally, if "Deny write access to removable drives not protected by BitLocker" is configured, user will not be prompted for encryption and drive will be mounted in read/write mode. Provide a comma separated list of excluded removable drives\devices, using the Hardware ID of the disk device. Example USBSTOR\SEAGATE_ST39102LW_______0004.
@@ -118,6 +128,7 @@ var RemovableDrivesExcludedFromEncryption = csp.Policy{
 	MinOSBuild: "10.0.22000",
 	CSPVersion: "5.0",
 	Allowed:    &csp.Allowed{Type: "None"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_BitLocker", ResultClass: "MDM_BitLocker", InstanceID: "BitLocker", ParentID: "./Vendor/MSFT", Property: "RemovableDrivesExcludedFromEncryption"},
 }
 
 // RemovableDrivesRequireEncryption: This policy setting configures whether BitLocker protection is required for a computer to be able to write data to a removable data drive.
@@ -127,6 +138,7 @@ var RemovableDrivesRequireEncryption = csp.Policy{
 	Format:  "chr",
 	Access:  []string{"Add", "Delete", "Get", "Replace"},
 	Allowed: &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "VolumeEncryption~AT~WindowsComponents~FVECategory~FVERDVCategory", Name: "RDVDenyWriteAccess_Name", File: "VolumeEncryption.admx"}},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_BitLocker", ResultClass: "MDM_BitLocker", InstanceID: "BitLocker", ParentID: "./Vendor/MSFT", Property: "RemovableDrivesRequireEncryption"},
 }
 
 // RequireDeviceEncryption: Allows the Admin to require encryption to be turned on using BitLocker\Device Encryption.
@@ -137,6 +149,7 @@ var RequireDeviceEncryption = csp.Policy{
 	Access:  []string{"Add", "Delete", "Get", "Replace"},
 	Default: "0",
 	Allowed: &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Disable. If the policy setting is not set or is set to 0, the device's enforcement status is not checked. The policy does not enforce encryption and it does not decrypt encrypted volumes."}, {Value: "1", Description: "Enable. The device's enforcement status is checked. Setting this policy to 1 triggers encryption of all drives (silently or non-silently based on AllowWarningForOtherDiskEncryption policy)."}}},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_BitLocker", ResultClass: "MDM_BitLocker", InstanceID: "BitLocker", ParentID: "./Vendor/MSFT", Property: "RequireDeviceEncryption"},
 }
 
 // RequireStorageCardEncryption: Allows the Admin to require storage card encryption on the device.
@@ -149,6 +162,7 @@ var RequireStorageCardEncryption = csp.Policy{
 	Default:           "0",
 	DeprecatedOSBuild: "deprecated",
 	Allowed:           &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Storage cards do not need to be encrypted."}, {Value: "1", Description: "Require storage cards to be encrypted."}}},
+	Bridge:            &csp.Bridge{ConfigClass: "MDM_BitLocker", ResultClass: "MDM_BitLocker", InstanceID: "BitLocker", ParentID: "./Vendor/MSFT", Property: "RequireStorageCardEncryption"},
 }
 
 // RotateRecoveryPasswords: Allows admin to push one-time rotation of all numeric recovery passwords for OS and Fixed Data drives on an Entra ID or hybrid-joined device.
@@ -168,6 +182,7 @@ var StatusDeviceEncryptionStatus = csp.Policy{
 	Format:   "int",
 	Access:   []string{"Get"},
 	Editions: "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
+	Bridge:   &csp.Bridge{ConfigClass: "MDM_BitLocker_Status01", ResultClass: "MDM_BitLocker_Status01", InstanceID: "Status", ParentID: "./Vendor/MSFT/BitLocker", Property: "DeviceEncryptionStatus"},
 }
 
 // StatusRemovableDrivesEncryptionStatus: This node reports compliance state of removal drive encryption. "0" Value means the removal drive is encrypted following all set removal drive settings.
@@ -178,6 +193,7 @@ var StatusRemovableDrivesEncryptionStatus = csp.Policy{
 	Access:     []string{"Get"},
 	MinOSBuild: "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
 	CSPVersion: "5.0",
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_BitLocker_Status01", ResultClass: "MDM_BitLocker_Status01", InstanceID: "Status", ParentID: "./Vendor/MSFT/BitLocker", Property: "RemovableDrivesEncryptionStatus"},
 }
 
 // StatusRotateRecoveryPasswordsRequestID: This Node reports the RequestID corresponding to RotateRecoveryPasswordsStatus.
@@ -188,6 +204,7 @@ var StatusRotateRecoveryPasswordsRequestID = csp.Policy{
 	Access:     []string{"Get"},
 	MinOSBuild: "10.0.18363",
 	CSPVersion: "5.0",
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_BitLocker_Status01", ResultClass: "MDM_BitLocker_Status01", InstanceID: "Status", ParentID: "./Vendor/MSFT/BitLocker", Property: "RotateRecoveryPasswordsRequestID"},
 }
 
 // StatusRotateRecoveryPasswordsStatus: This Node reports the status of RotateRecoveryPasswords request.
@@ -198,6 +215,7 @@ var StatusRotateRecoveryPasswordsStatus = csp.Policy{
 	Access:     []string{"Get"},
 	MinOSBuild: "10.0.18363",
 	CSPVersion: "5.0",
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_BitLocker_Status01", ResultClass: "MDM_BitLocker_Status01", InstanceID: "Status", ParentID: "./Vendor/MSFT/BitLocker", Property: "RotateRecoveryPasswordsStatus"},
 }
 
 // SystemDrivesDisallowStandardUsersCanChangePIN: This policy setting allows you to configure whether or not standard users are allowed to change BitLocker volume PINs, provided they are able to provide the existing PIN first.
@@ -209,6 +227,7 @@ var SystemDrivesDisallowStandardUsersCanChangePIN = csp.Policy{
 	MinOSBuild: "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
 	CSPVersion: "5.0",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "VolumeEncryption~AT~WindowsComponents~FVECategory~FVEOSCategory", Name: "DisallowStandardUsersCanChangePIN_Name", File: "VolumeEncryption.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_BitLocker", ResultClass: "MDM_BitLocker", InstanceID: "BitLocker", ParentID: "./Vendor/MSFT", Property: "SystemDrivesDisallowStandardUsersCanChangePIN"},
 }
 
 // SystemDrivesEnablePreBootPinExceptionOnDECapableDevice: This policy setting allows users on devices that are compliant with InstantGo or Microsoft Hardware Security Test Interface (HSTI) to not have a PIN for pre-boot authentication. This overrides the "Require startup PIN with TPM" and "Require startup key and PIN with TPM" options of the "Require additional authentication at startup" policy on compliant hardware.
@@ -220,6 +239,7 @@ var SystemDrivesEnablePreBootPinExceptionOnDECapableDevice = csp.Policy{
 	MinOSBuild: "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
 	CSPVersion: "5.0",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "VolumeEncryption~AT~WindowsComponents~FVECategory~FVEOSCategory", Name: "EnablePreBootPinExceptionOnDECapableDevice_Name", File: "VolumeEncryption.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_BitLocker", ResultClass: "MDM_BitLocker", InstanceID: "BitLocker", ParentID: "./Vendor/MSFT", Property: "SystemDrivesEnablePreBootPinExceptionOnDECapableDevice"},
 }
 
 // SystemDrivesEnablePrebootInputProtectorsOnSlates: This policy setting allows users to turn on authentication options that require user input from the pre-boot environment, even if the platform lacks pre-boot input capability.
@@ -231,6 +251,7 @@ var SystemDrivesEnablePrebootInputProtectorsOnSlates = csp.Policy{
 	MinOSBuild: "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
 	CSPVersion: "5.0",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "VolumeEncryption~AT~WindowsComponents~FVECategory~FVEOSCategory", Name: "EnablePrebootInputProtectorsOnSlates_Name", File: "VolumeEncryption.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_BitLocker", ResultClass: "MDM_BitLocker", InstanceID: "BitLocker", ParentID: "./Vendor/MSFT", Property: "SystemDrivesEnablePrebootInputProtectorsOnSlates"},
 }
 
 // SystemDrivesEncryptionType: This policy setting allows you to configure the encryption type used by BitLocker Drive Encryption. This policy setting is applied when you turn on BitLocker. Changing the encryption type has no effect if the drive is already encrypted or if encryption is in progress. Choose full encryption to require that the entire drive be encrypted when BitLocker is turned on. Choose used space only encryption to require that only the portion of the drive used to store data is encrypted when BitLocker is turned on.
@@ -242,6 +263,7 @@ var SystemDrivesEncryptionType = csp.Policy{
 	MinOSBuild: "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
 	CSPVersion: "5.0",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "VolumeEncryption~AT~WindowsComponents~FVECategory~FVEOSCategory", Name: "OSEncryptionType_Name", File: "VolumeEncryption.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_BitLocker", ResultClass: "MDM_BitLocker", InstanceID: "BitLocker", ParentID: "./Vendor/MSFT", Property: "SystemDrivesEncryptionType"},
 }
 
 // SystemDrivesEnhancedPIN: This policy setting allows you to configure whether or not enhanced startup PINs are used with BitLocker.
@@ -253,6 +275,7 @@ var SystemDrivesEnhancedPIN = csp.Policy{
 	MinOSBuild: "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
 	CSPVersion: "5.0",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "VolumeEncryption~AT~WindowsComponents~FVECategory~FVEOSCategory", Name: "EnhancedPIN_Name", File: "VolumeEncryption.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_BitLocker", ResultClass: "MDM_BitLocker", InstanceID: "BitLocker", ParentID: "./Vendor/MSFT", Property: "SystemDrivesEnhancedPIN"},
 }
 
 // SystemDrivesMinimumPINLength: This policy setting allows you to configure a minimum length for a Trusted Platform Module (TPM) startup PIN. This policy setting is applied when you turn on BitLocker. The startup PIN must have a minimum length of 4 digits and can have a maximum length of 20 digits.
@@ -262,6 +285,7 @@ var SystemDrivesMinimumPINLength = csp.Policy{
 	Format:  "chr",
 	Access:  []string{"Add", "Delete", "Get", "Replace"},
 	Allowed: &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "VolumeEncryption~AT~WindowsComponents~FVECategory~FVEOSCategory", Name: "MinimumPINLength_Name", File: "VolumeEncryption.admx"}},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_BitLocker", ResultClass: "MDM_BitLocker", InstanceID: "BitLocker", ParentID: "./Vendor/MSFT", Property: "SystemDrivesMinimumPINLength"},
 }
 
 // SystemDrivesRecoveryMessage: This policy setting lets you configure the entire recovery message or replace the existing URL that are displayed on the pre-boot key recovery screen when the OS drive is locked.
@@ -271,6 +295,7 @@ var SystemDrivesRecoveryMessage = csp.Policy{
 	Format:  "chr",
 	Access:  []string{"Add", "Delete", "Get", "Replace"},
 	Allowed: &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "VolumeEncryption~AT~WindowsComponents~FVECategory~FVEOSCategory", Name: "PrebootRecoveryInfo_Name", File: "VolumeEncryption.admx"}},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_BitLocker", ResultClass: "MDM_BitLocker", InstanceID: "BitLocker", ParentID: "./Vendor/MSFT", Property: "SystemDrivesRecoveryMessage"},
 }
 
 // SystemDrivesRecoveryOptions: This policy setting allows you to control how BitLocker-protected operating system drives are recovered in the absence of the required startup key information. This policy setting is applied when you turn on BitLocker.
@@ -280,6 +305,7 @@ var SystemDrivesRecoveryOptions = csp.Policy{
 	Format:  "chr",
 	Access:  []string{"Add", "Delete", "Get", "Replace"},
 	Allowed: &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "VolumeEncryption~AT~WindowsComponents~FVECategory~FVEOSCategory", Name: "OSRecoveryUsage_Name", File: "VolumeEncryption.admx"}},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_BitLocker", ResultClass: "MDM_BitLocker", InstanceID: "BitLocker", ParentID: "./Vendor/MSFT", Property: "SystemDrivesRecoveryOptions"},
 }
 
 // SystemDrivesRequireStartupAuthentication: This policy setting allows you to configure whether BitLocker requires additional authentication each time the computer starts and whether you are using BitLocker with or without a Trusted Platform Module (TPM). This policy setting is applied when you turn on BitLocker.
@@ -289,6 +315,7 @@ var SystemDrivesRequireStartupAuthentication = csp.Policy{
 	Format:  "chr",
 	Access:  []string{"Add", "Delete", "Get", "Replace"},
 	Allowed: &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "VolumeEncryption~AT~WindowsComponents~FVECategory~FVEOSCategory", Name: "ConfigureAdvancedStartup_Name", File: "VolumeEncryption.admx"}},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_BitLocker", ResultClass: "MDM_BitLocker", InstanceID: "BitLocker", ParentID: "./Vendor/MSFT", Property: "SystemDrivesRequireStartupAuthentication"},
 }
 
 // All lists every policy in this CSP area.

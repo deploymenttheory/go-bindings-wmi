@@ -74,12 +74,27 @@ Package naming: policy areas are prefixed `policy` (`Bitlocker_AreaDDF` →
 ## Executing policies (LCRUD via the bridge)
 
 The DDF gives the schema; the MDM WMI bridge (`root\cimv2\mdm\dmmap`) is the
-local runtime. `cmd/gencsp` joins the two: it cross-checks each policy area
-against the bridge classes captured from a live device
-(`metadata/csp/bridge-policy-classes.json`) and attaches a `csp.Bridge`
-mapping to every policy the bridge exposes — the ~1,500 direct settings of
-the native Policy areas. Those policies report `Executable() == true` and can
-be read, set, and deleted through `runtime/csp`:
+local runtime. `cmd/gencsp` joins the two, cross-checking each DDF node
+against the bridge classes captured from a live device, and attaches a
+`csp.Bridge` mapping to every policy the bridge exposes (~1,760 across ~1,500
+native Policy settings and ~260 non-Policy CSP settings):
+
+- **Native Policy areas** (`metadata/csp/bridge-policy-classes.json`) use the
+  regular `MDM_Policy_Config01_<Area>02` / `Result01` convention.
+- **Non-Policy CSPs** (`metadata/csp/bridge-csp-classes.json`) have irregular
+  class names, so the join matches each instance-node to its captured class
+  by normalized name, validated by the property — covering the flat,
+  statically-keyable CSPs (DevDetail, DeviceStatus, WindowsLicensing,
+  BitLocker, AssignedAccess, …).
+
+The key convention is uniform and verified against device truth: `InstanceID`
+is the instance-node's name, `ParentID` the scope-relative path of its parent
+(`./Vendor/MSFT/Policy/Config` for a Policy area, `./Vendor/MSFT` for
+WindowsLicensing, `./DevDetail` for DevDetail/Ext). **Dynamic-instance nodes
+(`{GUID}`) carry no static mapping** — they need a runtime instance id;
+construct a `csp.Bridge` by hand for those. Bridge-backed policies report
+`Executable() == true` and can be read, set, and deleted through
+`runtime/csp`:
 
 ```go
 import "github.com/deploymenttheory/go-bindings-wmi/runtime/csp"

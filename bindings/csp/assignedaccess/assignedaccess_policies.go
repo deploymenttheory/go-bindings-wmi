@@ -13,6 +13,7 @@ var Configuration = csp.Policy{
 	MinOSBuild: "10.0.16299",
 	CSPVersion: "1.1",
 	Allowed:    &csp.Allowed{Type: "None"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_AssignedAccess", ResultClass: "MDM_AssignedAccess", InstanceID: "AssignedAccess", ParentID: "./Vendor/MSFT", Property: "Configuration"},
 }
 
 // KioskModeApp: This node can accept and return json string which comprises of account name, and AUMID for Kiosk mode app.
@@ -24,6 +25,7 @@ var KioskModeApp = csp.Policy{
 	Access:            []string{"Add", "Delete", "Get", "Replace"},
 	DeprecatedOSBuild: "deprecated",
 	Allowed:           &csp.Allowed{Type: "None"},
+	Bridge:            &csp.Bridge{ConfigClass: "MDM_AssignedAccess", ResultClass: "MDM_AssignedAccess", InstanceID: "AssignedAccess", ParentID: "./Vendor/MSFT", Property: "KioskModeApp"},
 }
 
 // ShellLauncher: This node accepts a ShellLauncherConfiguration xml as input. Please check out samples and required xsd on MSDN.
@@ -36,6 +38,7 @@ var ShellLauncher = csp.Policy{
 	CSPVersion: "2.0",
 	Editions:   "0x4;0x1B;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0xAB;0xAC;0xAF;0xBC;0xBF",
 	Allowed:    &csp.Allowed{Type: "None"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_AssignedAccess", ResultClass: "MDM_AssignedAccess", InstanceID: "AssignedAccess", ParentID: "./Vendor/MSFT", Property: "ShellLauncher"},
 }
 
 // Status: This read only node contains kiosk health event xml

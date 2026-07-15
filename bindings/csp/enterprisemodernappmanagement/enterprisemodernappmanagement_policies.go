@@ -10,6 +10,7 @@ var AppInstallationHostedInstall = csp.Policy{
 	URI:    "./Device/Vendor/MSFT/EnterpriseModernAppManagement/AppInstallation/HostedInstall",
 	Format: "xml",
 	Access: []string{"Add", "Delete", "Exec", "Get"},
+	Bridge: &csp.Bridge{ConfigClass: "MDM_EnterpriseModernAppManagement_AppInstallation01_01", ResultClass: "MDM_EnterpriseModernAppManagement_AppInstallation01_01", InstanceID: "AppInstallation", ParentID: "./Vendor/MSFT/EnterpriseModernAppManagement", Property: "HostedInstall"},
 }
 
 // AppInstallationLastError: Last error relating to the app installation.
@@ -18,6 +19,7 @@ var AppInstallationLastError = csp.Policy{
 	URI:    "./Device/Vendor/MSFT/EnterpriseModernAppManagement/AppInstallation/LastError",
 	Format: "int",
 	Access: []string{"Get"},
+	Bridge: &csp.Bridge{ConfigClass: "MDM_EnterpriseModernAppManagement_AppInstallation01_01", ResultClass: "MDM_EnterpriseModernAppManagement_AppInstallation01_01", InstanceID: "AppInstallation", ParentID: "./Vendor/MSFT/EnterpriseModernAppManagement", Property: "LastError"},
 }
 
 // AppInstallationLastErrorDesc: Description of last error relating to the app installation.
@@ -26,6 +28,7 @@ var AppInstallationLastErrorDesc = csp.Policy{
 	URI:    "./Device/Vendor/MSFT/EnterpriseModernAppManagement/AppInstallation/LastErrorDesc",
 	Format: "chr",
 	Access: []string{"Get"},
+	Bridge: &csp.Bridge{ConfigClass: "MDM_EnterpriseModernAppManagement_AppInstallation01_01", ResultClass: "MDM_EnterpriseModernAppManagement_AppInstallation01_01", InstanceID: "AppInstallation", ParentID: "./Vendor/MSFT/EnterpriseModernAppManagement", Property: "LastErrorDesc"},
 }
 
 // AppInstallationProgressStatus: An integer the indicates the progress of the app installation. For https locations, this indicates the download progress. ProgressStatus is not available for provisioning and it is only for user-based installations. In provisioning, the value is always 0 (zero).
@@ -34,6 +37,7 @@ var AppInstallationProgressStatus = csp.Policy{
 	URI:    "./Device/Vendor/MSFT/EnterpriseModernAppManagement/AppInstallation/ProgressStatus",
 	Format: "int",
 	Access: []string{"Get"},
+	Bridge: &csp.Bridge{ConfigClass: "MDM_EnterpriseModernAppManagement_AppInstallation01_01", ResultClass: "MDM_EnterpriseModernAppManagement_AppInstallation01_01", InstanceID: "AppInstallation", ParentID: "./Vendor/MSFT/EnterpriseModernAppManagement", Property: "ProgressStatus"},
 }
 
 // AppInstallationStatus: Status of app installation. The following values are returned: NOT_INSTALLED (0) - The node was added, but the execution has not completed. INSTALLING (1) - Execution has started, but the deployment has not completed. If the deployment completes regardless of success, this value is updated. FAILED (2) - Installation failed. The details of the error can be found under LastError and LastErrorDescription. INSTALLED (3) - Once an install is successful this node is cleaned up, however in the event the clean up action has not completed, this state may briefly appear.
@@ -42,6 +46,7 @@ var AppInstallationStatus = csp.Policy{
 	URI:    "./Device/Vendor/MSFT/EnterpriseModernAppManagement/AppInstallation/Status",
 	Format: "int",
 	Access: []string{"Get"},
+	Bridge: &csp.Bridge{ConfigClass: "MDM_EnterpriseModernAppManagement_AppInstallation01_01", ResultClass: "MDM_EnterpriseModernAppManagement_AppInstallation01_01", InstanceID: "AppInstallation", ParentID: "./Vendor/MSFT/EnterpriseModernAppManagement", Property: "Status"},
 }
 
 // AppInstallationStoreInstall: Command to perform an install of an app and a license from the Microsoft Store.
@@ -50,6 +55,7 @@ var AppInstallationStoreInstall = csp.Policy{
 	URI:    "./Device/Vendor/MSFT/EnterpriseModernAppManagement/AppInstallation/StoreInstall",
 	Format: "xml",
 	Access: []string{"Add", "Delete", "Exec", "Get"},
+	Bridge: &csp.Bridge{ConfigClass: "MDM_EnterpriseModernAppManagement_AppInstallation01_01", ResultClass: "MDM_EnterpriseModernAppManagement_AppInstallation01_01", InstanceID: "AppInstallation", ParentID: "./Vendor/MSFT/EnterpriseModernAppManagement", Property: "StoreInstall"},
 }
 
 // AppLicensesStoreLicensesAddLicense: Command to add license.

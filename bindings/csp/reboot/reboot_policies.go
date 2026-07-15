@@ -11,6 +11,7 @@ var ScheduleDailyRecurrent = csp.Policy{
 	Format:  "chr",
 	Access:  []string{"Add", "Delete", "Get", "Replace"},
 	Allowed: &csp.Allowed{Type: "None"},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_Reboot_Schedule01", ResultClass: "MDM_Reboot_Schedule01", InstanceID: "Schedule", ParentID: "./Vendor/MSFT/Reboot", Property: "DailyRecurrent"},
 }
 
 // ScheduleSingle: Value in ISO8601 date and time format (such as 2025-10-07T10:35:00) is required.  Both the date and time are required. A reboot will be scheduled to occur at the specified date and time. Setting a null (empty) date will delete the existing schedule.
@@ -20,6 +21,7 @@ var ScheduleSingle = csp.Policy{
 	Format:  "chr",
 	Access:  []string{"Add", "Delete", "Get", "Replace"},
 	Allowed: &csp.Allowed{Type: "None"},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_Reboot_Schedule01", ResultClass: "MDM_Reboot_Schedule01", InstanceID: "Schedule", ParentID: "./Vendor/MSFT/Reboot", Property: "Single"},
 }
 
 // ScheduleWeeklyRecurrent: Value in ISO8601 date and time format (such as 2025-10-07T10:35:00) is required.  While it is supported to set either DailyRecurrent or WeeklyRecurrent schedules, it is not supported to enable both settings simultaneously.  A reboot will be scheduled to occur every week at the configured day and time starting at the specified date and time. Setting a null (empty) date will delete the existing schedule.

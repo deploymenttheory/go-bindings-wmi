@@ -62,6 +62,7 @@ var Edition = csp.Policy{
 	URI:    "./Vendor/MSFT/WindowsLicensing/Edition",
 	Format: "int",
 	Access: []string{"Get"},
+	Bridge: &csp.Bridge{ConfigClass: "MDM_WindowsLicensing", ResultClass: "MDM_WindowsLicensing", InstanceID: "WindowsLicensing", ParentID: "./Vendor/MSFT", Property: "Edition"},
 }
 
 // LicenseKeyType: Returns the parameter type used by Windows 10 devices for an edition upgrade. Windows 10 desktop devices require a product key for an edition upgrade. Windows 10 mobile devices require a license for an edition upgrade.
@@ -70,6 +71,7 @@ var LicenseKeyType = csp.Policy{
 	URI:    "./Vendor/MSFT/WindowsLicensing/LicenseKeyType",
 	Format: "chr",
 	Access: []string{"Get"},
+	Bridge: &csp.Bridge{ConfigClass: "MDM_WindowsLicensing", ResultClass: "MDM_WindowsLicensing", InstanceID: "WindowsLicensing", ParentID: "./Vendor/MSFT", Property: "LicenseKeyType"},
 }
 
 // SModeStatus: Returns the status of the latest SwitchFromSMode or SwitchingPolicy set request.
@@ -95,6 +97,7 @@ var Status = csp.Policy{
 	URI:    "./Vendor/MSFT/WindowsLicensing/Status",
 	Format: "int",
 	Access: []string{"Get"},
+	Bridge: &csp.Bridge{ConfigClass: "MDM_WindowsLicensing", ResultClass: "MDM_WindowsLicensing", InstanceID: "WindowsLicensing", ParentID: "./Vendor/MSFT", Property: "Status"},
 }
 
 // SubscriptionsName: Returns the name of the subscription.
@@ -103,6 +106,7 @@ var SubscriptionsName = csp.Policy{
 	URI:    "./Vendor/MSFT/WindowsLicensing/Subscriptions/Name",
 	Format: "chr",
 	Access: []string{"Get"},
+	Bridge: &csp.Bridge{ConfigClass: "MDM_WindowsLicensing_Subscriptions01_01", ResultClass: "MDM_WindowsLicensing_Subscriptions01_01", InstanceID: "Subscriptions", ParentID: "./Vendor/MSFT/WindowsLicensing", Property: "Name"},
 }
 
 // SubscriptionsStatus: Returns the status of the subscription.
@@ -111,6 +115,7 @@ var SubscriptionsStatus = csp.Policy{
 	URI:    "./Vendor/MSFT/WindowsLicensing/Subscriptions/Status",
 	Format: "int",
 	Access: []string{"Get"},
+	Bridge: &csp.Bridge{ConfigClass: "MDM_WindowsLicensing_Subscriptions01_01", ResultClass: "MDM_WindowsLicensing_Subscriptions01_01", InstanceID: "Subscriptions", ParentID: "./Vendor/MSFT/WindowsLicensing", Property: "Status"},
 }
 
 // SubscriptionsDisableSubscription: Disable or Enable subscription activation on a device

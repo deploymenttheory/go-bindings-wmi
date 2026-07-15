@@ -28,7 +28,7 @@
 [CmdletBinding()]
 param(
     [Parameter(Position = 0)]
-    [ValidateSet('list', 'read', 'set', 'delete', 'cycle')]
+    [ValidateSet('list', 'read', 'set', 'delete', 'cycle', 'inspect', 'nonpolicy')]
     [string]$Verb = 'read',
     [Parameter(Position = 1)]
     [string]$Value = ''
@@ -65,6 +65,10 @@ try {
     $verbArgs = @($Verb)
     if ($Verb -eq 'set') {
         if (-not $Value) { Fail 'The set verb needs a value: ... Invoke-CspLcrud.ps1 set 2' }
+        $verbArgs += $Value
+    }
+    elseif ($Verb -eq 'inspect') {
+        if (-not $Value) { Fail 'The inspect verb needs a class: ... Invoke-CspLcrud.ps1 inspect MDM_AssignedAccess' }
         $verbArgs += $Value
     }
     $quotedArgs = ($verbArgs | ForEach-Object { '"{0}"' -f $_ }) -join ' '

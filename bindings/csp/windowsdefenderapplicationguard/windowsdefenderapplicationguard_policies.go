@@ -12,6 +12,7 @@ var AuditAuditApplicationGuard = csp.Policy{
 	Access:  []string{"Add", "Delete", "Get", "Replace"},
 	Default: "0",
 	Allowed: &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Audit event logs aren't collected for Application Guard."}, {Value: "1", Description: "Application Guard inherits its auditing policies from system and starts to audit security events for Application Guard container."}}},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_WindowsDefenderApplicationGuard_Audit01", ResultClass: "MDM_WindowsDefenderApplicationGuard_Audit01", InstanceID: "Audit", ParentID: "./Vendor/MSFT/WindowsDefenderApplicationGuard", Property: "AuditApplicationGuard"},
 }
 
 // InstallWindowsDefenderApplicationGuard: Initiates remote installation of Application Guard feature.
@@ -21,6 +22,7 @@ var InstallWindowsDefenderApplicationGuard = csp.Policy{
 	Format:  "chr",
 	Access:  []string{"Exec", "Get"},
 	Allowed: &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "Install", Description: "Will initiate feature install."}, {Value: "Uninstall", Description: "Will initiate feature uninstall."}}},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_WindowsDefenderApplicationGuard", ResultClass: "MDM_WindowsDefenderApplicationGuard", InstanceID: "WindowsDefenderApplicationGuard", ParentID: "./Vendor/MSFT", Property: "InstallWindowsDefenderApplicationGuard"},
 }
 
 // PlatformStatus: Returns bitmask that indicates status of Application Guard platform installation and prerequisites on the device.  Bit 0 - Set to 1 when Application Guard is enabled into enterprise manage mode. Bit 1 - Set to 1 when the client machine is Hyper-V capable. Bit 2 - Reserved for Microsoft. Bit 3 - Set to 1 when Application Guard is installed on the client machine. Bit 4 - Reserved for Microsoft. Bit 5 - Set to 1 when the client machine meets minimum hardware requirements.
@@ -31,6 +33,7 @@ var PlatformStatus = csp.Policy{
 	Access:     []string{"Get"},
 	MinOSBuild: "10.0.19041",
 	CSPVersion: "1.4",
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_WindowsDefenderApplicationGuard", ResultClass: "MDM_WindowsDefenderApplicationGuard", InstanceID: "WindowsDefenderApplicationGuard", ParentID: "./Vendor/MSFT", Property: "PlatformStatus"},
 }
 
 // SettingsAllowCameraMicrophoneRedirection: This policy setting allows you to determine whether applications inside Microsoft Defender Application Guard can access the device’s camera and microphone when these settings are enabled on the user’s device. If you enable this policy setting, applications inside Microsoft Defender Application Guard will be able to access the camera and microphone on the user’s device. If you disable or don't configure this policy setting, applications inside Microsoft Defender Application Guard will be unable to access the camera and microphone on the user’s device.
@@ -43,6 +46,7 @@ var SettingsAllowCameraMicrophoneRedirection = csp.Policy{
 	MinOSBuild: "10.0.17763",
 	CSPVersion: "1.3",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Microsoft Defender Application Guard cannot access the device’s camera and microphone. When the policy is not configured, it is the same as disabled (0)."}, {Value: "1", Description: "Turns on the functionality to allow Microsoft Defender Application Guard to access the device’s camera and microphone."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_WindowsDefenderApplicationGuard_Settings01", ResultClass: "MDM_WindowsDefenderApplicationGuard_Settings01", InstanceID: "Settings", ParentID: "./Vendor/MSFT/WindowsDefenderApplicationGuard", Property: "AllowCameraMicrophoneRedirection"},
 }
 
 // SettingsAllowPersistence: This policy setting allows you to decide whether data should persist across different sessions in Application Guard.
@@ -52,6 +56,7 @@ var SettingsAllowPersistence = csp.Policy{
 	Format:  "int",
 	Access:  []string{"Add", "Delete", "Get", "Replace"},
 	Allowed: &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Application Guard discards user-downloaded files and other items (such as, cookies, Favorites, and so on) during machine restart or user log-off."}, {Value: "1", Description: "Application Guard saves user-downloaded files and other items (such as, cookies, Favorites, and so on) for use in future Application Guard sessions."}}},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_WindowsDefenderApplicationGuard_Settings01", ResultClass: "MDM_WindowsDefenderApplicationGuard_Settings01", InstanceID: "Settings", ParentID: "./Vendor/MSFT/WindowsDefenderApplicationGuard", Property: "AllowPersistence"},
 }
 
 // SettingsAllowVirtualGPU: This policy setting allows you to determine whether Application Guard can use the virtual Graphics Processing Unit (GPU) to process graphics. If you enable this setting, Microsoft Defender Application Guard uses Hyper-V to access supported, high-security rendering graphics hardware (GPUs). These GPUs improve rendering performance and battery life while using Microsoft Defender Application Guard, particularly for video playback and other graphics-intensive use cases. If you enable this setting without connecting any high-security rendering graphics hardware, Microsoft Defender Application Guard will automatically revert to software-based (CPU) rendering.
@@ -64,6 +69,7 @@ var SettingsAllowVirtualGPU = csp.Policy{
 	MinOSBuild: "10.0.17134",
 	CSPVersion: "1.2",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Cannot access the vGPU and uses the CPU to support rendering graphics. When the policy is not configured, it is the same as disabled (0)."}, {Value: "1", Description: "Turns on the functionality to access the vGPU offloading graphics rendering from the CPU. This can create a faster experience when working with graphics intense websites or watching video within the container."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_WindowsDefenderApplicationGuard_Settings01", ResultClass: "MDM_WindowsDefenderApplicationGuard_Settings01", InstanceID: "Settings", ParentID: "./Vendor/MSFT/WindowsDefenderApplicationGuard", Property: "AllowVirtualGPU"},
 }
 
 // SettingsAllowWindowsDefenderApplicationGuard: Turn on Microsoft Defender Application Guard in Enterprise Mode.
@@ -73,6 +79,7 @@ var SettingsAllowWindowsDefenderApplicationGuard = csp.Policy{
 	Format:  "int",
 	Access:  []string{"Add", "Delete", "Get", "Replace"},
 	Allowed: &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Disable Microsoft Defender Application Guard"}, {Value: "1", Description: "Enable Microsoft Defender Application Guard for Microsoft Edge ONLY"}, {Value: "2", Description: "Enable Microsoft Defender Application Guard for isolated Windows environments ONLY"}, {Value: "3", Description: "Enable Microsoft Defender Application Guard for Microsoft Edge AND isolated Windows environments"}}},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_WindowsDefenderApplicationGuard_Settings01", ResultClass: "MDM_WindowsDefenderApplicationGuard_Settings01", InstanceID: "Settings", ParentID: "./Vendor/MSFT/WindowsDefenderApplicationGuard", Property: "AllowWindowsDefenderApplicationGuard"},
 }
 
 // SettingsBlockNonEnterpriseContent: This policy setting allows you to decide whether websites can load non-enterprise content in Microsoft Edge and Internet Explorer.
@@ -85,6 +92,7 @@ var SettingsBlockNonEnterpriseContent = csp.Policy{
 	Default:           "0",
 	DeprecatedOSBuild: "deprecated",
 	Allowed:           &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Non-enterprise content embedded in enterprise sites is allowed to open outside of the Microsoft Defender Application Guard container, directly in Internet Explorer and Microsoft Edge."}, {Value: "1", Description: "Non-enterprise content embedded on enterprise sites are stopped from opening in Internet Explorer or Microsoft Edge outside of Microsoft Defender Application Guard."}}},
+	Bridge:            &csp.Bridge{ConfigClass: "MDM_WindowsDefenderApplicationGuard_Settings01", ResultClass: "MDM_WindowsDefenderApplicationGuard_Settings01", InstanceID: "Settings", ParentID: "./Vendor/MSFT/WindowsDefenderApplicationGuard", Property: "BlockNonEnterpriseContent"},
 }
 
 // SettingsCertificateThumbprints: This policy setting allows certain device level Root Certificates to be shared with the Microsoft Defender Application Guard container. If you enable this setting, certificates with a thumbprint matching the ones specified will be transferred into the container. Multiple certificates can be specified by using a comma to separate the thumbprints for each certificate you want to transfer. Here's an example: b4e72779a8a362c860c36a6461f31e3aa7e58c14,1b1d49f06d2a697a544a1059bd59a7b058cda924. If you disable or don’t configure this setting, certificates are not shared with the Microsoft Defender Application Guard container.
@@ -96,6 +104,7 @@ var SettingsCertificateThumbprints = csp.Policy{
 	MinOSBuild: "10.0.17763",
 	CSPVersion: "1.3",
 	Allowed:    &csp.Allowed{Type: "None"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_WindowsDefenderApplicationGuard_Settings01", ResultClass: "MDM_WindowsDefenderApplicationGuard_Settings01", InstanceID: "Settings", ParentID: "./Vendor/MSFT/WindowsDefenderApplicationGuard", Property: "CertificateThumbprints"},
 }
 
 // SettingsClipboardFileType: Determines the type of content that can be copied from the host to Application Guard environment and vice versa.
@@ -105,6 +114,7 @@ var SettingsClipboardFileType = csp.Policy{
 	Format:  "int",
 	Access:  []string{"Add", "Delete", "Get", "Replace"},
 	Allowed: &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "1", Description: "Allow text copying."}, {Value: "2", Description: "Allow image copying."}, {Value: "3", Description: "Allow text and image copying."}}},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_WindowsDefenderApplicationGuard_Settings01", ResultClass: "MDM_WindowsDefenderApplicationGuard_Settings01", InstanceID: "Settings", ParentID: "./Vendor/MSFT/WindowsDefenderApplicationGuard", Property: "ClipboardFileType"},
 }
 
 // SettingsClipboardSettings: This policy setting allows you to decide how the clipboard behaves while in Application Guard.
@@ -115,6 +125,7 @@ var SettingsClipboardSettings = csp.Policy{
 	Access:  []string{"Add", "Delete", "Get", "Replace"},
 	Default: "0",
 	Allowed: &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Completely turns Off the clipboard functionality for the Application Guard."}, {Value: "1", Description: "Turns On clipboard operation from an isolated session to the host."}, {Value: "2", Description: "Turns On clipboard operation from the host to an isolated session."}, {Value: "3", Description: "Turns On clipboard operation in both the directions."}}},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_WindowsDefenderApplicationGuard_Settings01", ResultClass: "MDM_WindowsDefenderApplicationGuard_Settings01", InstanceID: "Settings", ParentID: "./Vendor/MSFT/WindowsDefenderApplicationGuard", Property: "ClipboardSettings"},
 }
 
 // SettingsPrintingSettings: This policy setting allows you to decide how the print functionality behaves while in Application Guard.
@@ -125,6 +136,7 @@ var SettingsPrintingSettings = csp.Policy{
 	Access:  []string{"Add", "Delete", "Get", "Replace"},
 	Default: "0",
 	Allowed: &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Disables all print functionality."}, {Value: "1", Description: "Enables only XPS printing."}, {Value: "2", Description: "Enables only PDF printing."}, {Value: "3", Description: "Enables both PDF and XPS printing."}, {Value: "4", Description: "Enables only local printing."}, {Value: "5", Description: "Enables both local and XPS printing."}, {Value: "6", Description: "Enables both local and PDF printing."}, {Value: "7", Description: "Enables local, PDF, and XPS printing."}, {Value: "8", Description: "Enables only network printing."}, {Value: "9", Description: "Enables both network and XPS printing."}, {Value: "10", Description: "Enables both network and PDF printing."}, {Value: "11", Description: "Enables network, PDF, and XPS printing."}, {Value: "12", Description: "Enables both network and local printing."}, {Value: "13", Description: "Enables network, local, and XPS printing."}, {Value: "14", Description: "Enables network, local, and PDF printing."}, {Value: "15", Description: "Enables all printing."}}},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_WindowsDefenderApplicationGuard_Settings01", ResultClass: "MDM_WindowsDefenderApplicationGuard_Settings01", InstanceID: "Settings", ParentID: "./Vendor/MSFT/WindowsDefenderApplicationGuard", Property: "PrintingSettings"},
 }
 
 // SettingsSaveFilesToHost: This policy setting allows you to determine whether users can elect to download files from Edge in the container and persist files them from container to the host operating system.
@@ -137,6 +149,7 @@ var SettingsSaveFilesToHost = csp.Policy{
 	MinOSBuild: "10.0.17134",
 	CSPVersion: "1.2",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "The user cannot download files from Edge in the container to the host file system. When the policy is not configured, it is the same as disabled (0)."}, {Value: "1", Description: "Turns on the functionality to allow users to download files from Edge in the container to the host file system."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_WindowsDefenderApplicationGuard_Settings01", ResultClass: "MDM_WindowsDefenderApplicationGuard_Settings01", InstanceID: "Settings", ParentID: "./Vendor/MSFT/WindowsDefenderApplicationGuard", Property: "SaveFilesToHost"},
 }
 
 // Status: Returns bitmask that indicates status of Application Guard installation and pre-requisites on the device. Bit 0 - Set to 1 when Application Guard is enabled into enterprise manage mode. Bit 1 - Set to 1 when the client machine is Hyper-V capable. Bit 2 - Set to 1 when the client machine has a valid OS license and SKU. Bit 3 - Set to 1 when Application Guard installed on the client machine. Bit 4 - Set to 1 when required Network Isolation Policies are configured. Bit 5 - Set to 1 when the client machine meets minimum hardware requirements. Bit 6 - Set to 1 when system reboot is required.
@@ -145,6 +158,7 @@ var Status = csp.Policy{
 	URI:    "./Device/Vendor/MSFT/WindowsDefenderApplicationGuard/Status",
 	Format: "int",
 	Access: []string{"Get"},
+	Bridge: &csp.Bridge{ConfigClass: "MDM_WindowsDefenderApplicationGuard", ResultClass: "MDM_WindowsDefenderApplicationGuard", InstanceID: "WindowsDefenderApplicationGuard", ParentID: "./Vendor/MSFT", Property: "Status"},
 }
 
 // All lists every policy in this CSP area.

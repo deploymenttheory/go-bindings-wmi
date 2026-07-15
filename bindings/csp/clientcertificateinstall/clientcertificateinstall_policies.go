@@ -11,6 +11,7 @@ var PFXCertInstallContainerName = csp.Policy{
 	Format:  "chr",
 	Access:  []string{"Add", "Get", "Replace"},
 	Allowed: &csp.Allowed{Type: "None"},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_ClientCertificateInstall_PFXCertInstall01_01", ResultClass: "MDM_ClientCertificateInstall_PFXCertInstall01_01", InstanceID: "PFXCertInstall", ParentID: "./Vendor/MSFT/ClientCertificateInstall", Property: "ContainerName"},
 }
 
 // PFXCertInstallKeyLocation: Required for PFX certificate installation. Indicates the KeyStorage provider to target the private key installation to.
@@ -20,6 +21,7 @@ var PFXCertInstallKeyLocation = csp.Policy{
 	Format:  "int",
 	Access:  []string{"Add", "Get", "Replace"},
 	Allowed: &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "1", Description: "Install to TPM if present, fail if not present."}, {Value: "2", Description: "Install to TPM if present. If not present, fallback to software."}, {Value: "3", Description: "Install to software."}, {Value: "4", Description: "Install to Windows Hello for Business (formerly known as Microsoft Passport for Work) whose name is specified"}}},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_ClientCertificateInstall_PFXCertInstall01_01", ResultClass: "MDM_ClientCertificateInstall_PFXCertInstall01_01", InstanceID: "PFXCertInstall", ParentID: "./Vendor/MSFT/ClientCertificateInstall", Property: "KeyLocation"},
 }
 
 // PFXCertInstallPFXCertBlob: Required.
@@ -29,6 +31,7 @@ var PFXCertInstallPFXCertBlob = csp.Policy{
 	Format:  "bin",
 	Access:  []string{"Add", "Get", "Replace"},
 	Allowed: &csp.Allowed{Type: "None"},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_ClientCertificateInstall_PFXCertInstall01_01", ResultClass: "MDM_ClientCertificateInstall_PFXCertInstall01_01", InstanceID: "PFXCertInstall", ParentID: "./Vendor/MSFT/ClientCertificateInstall", Property: "PFXCertBlob"},
 }
 
 // PFXCertInstallPFXCertPassword: Password that protects the PFX blob. This is required if the PFX is password protected.
@@ -38,6 +41,7 @@ var PFXCertInstallPFXCertPassword = csp.Policy{
 	Format:  "chr",
 	Access:  []string{"Add", "Get", "Replace"},
 	Allowed: &csp.Allowed{Type: "None"},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_ClientCertificateInstall_PFXCertInstall01_01", ResultClass: "MDM_ClientCertificateInstall_PFXCertInstall01_01", InstanceID: "PFXCertInstall", ParentID: "./Vendor/MSFT/ClientCertificateInstall", Property: "PFXCertPassword"},
 }
 
 // PFXCertInstallPFXCertPasswordEncryptionStore: Optional.
@@ -47,6 +51,7 @@ var PFXCertInstallPFXCertPasswordEncryptionStore = csp.Policy{
 	Format:  "chr",
 	Access:  []string{"Add", "Get", "Replace"},
 	Allowed: &csp.Allowed{Type: "None"},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_ClientCertificateInstall_PFXCertInstall01_01", ResultClass: "MDM_ClientCertificateInstall_PFXCertInstall01_01", InstanceID: "PFXCertInstall", ParentID: "./Vendor/MSFT/ClientCertificateInstall", Property: "PFXCertPasswordEncryptionStore"},
 }
 
 // PFXCertInstallPFXCertPasswordEncryptionType: Optional. Used to specify if the PFX certificate password is encrypted with a certificate.
@@ -57,6 +62,7 @@ var PFXCertInstallPFXCertPasswordEncryptionType = csp.Policy{
 	Access:  []string{"Add", "Get", "Replace"},
 	Default: "0",
 	Allowed: &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Password is not encrypted."}, {Value: "1", Description: "Password is encrypted with the MDM certificate."}, {Value: "2", Description: "Password is encrypted with custom certificate."}}},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_ClientCertificateInstall_PFXCertInstall01_01", ResultClass: "MDM_ClientCertificateInstall_PFXCertInstall01_01", InstanceID: "PFXCertInstall", ParentID: "./Vendor/MSFT/ClientCertificateInstall", Property: "PFXCertPasswordEncryptionType"},
 }
 
 // PFXCertInstallPFXKeyExportable: Optional. Used to specify if the private key installed is exportable (can be exported later).
@@ -67,6 +73,7 @@ var PFXCertInstallPFXKeyExportable = csp.Policy{
 	Access:  []string{"Add", "Get", "Replace"},
 	Default: "true",
 	Allowed: &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "false", Description: "False"}, {Value: "true", Description: "True"}}},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_ClientCertificateInstall_PFXCertInstall01_01", ResultClass: "MDM_ClientCertificateInstall_PFXCertInstall01_01", InstanceID: "PFXCertInstall", ParentID: "./Vendor/MSFT/ClientCertificateInstall", Property: "PFXKeyExportable"},
 }
 
 // PFXCertInstallStatus: Returns the error code of the PFX installation from the GetLastError command called after the PfxImportCertStore.
@@ -75,6 +82,7 @@ var PFXCertInstallStatus = csp.Policy{
 	URI:    "./Device/Vendor/MSFT/ClientCertificateInstall/PFXCertInstall/Status",
 	Format: "int",
 	Access: []string{"Get"},
+	Bridge: &csp.Bridge{ConfigClass: "MDM_ClientCertificateInstall_PFXCertInstall01_01", ResultClass: "MDM_ClientCertificateInstall_PFXCertInstall01_01", InstanceID: "PFXCertInstall", ParentID: "./Vendor/MSFT/ClientCertificateInstall", Property: "Status"},
 }
 
 // PFXCertInstallThumbprint: Returns the thumbprint of the PFX certificate installed.
@@ -83,6 +91,7 @@ var PFXCertInstallThumbprint = csp.Policy{
 	URI:    "./Device/Vendor/MSFT/ClientCertificateInstall/PFXCertInstall/Thumbprint",
 	Format: "chr",
 	Access: []string{"Get"},
+	Bridge: &csp.Bridge{ConfigClass: "MDM_ClientCertificateInstall_PFXCertInstall01_01", ResultClass: "MDM_ClientCertificateInstall_PFXCertInstall01_01", InstanceID: "PFXCertInstall", ParentID: "./Vendor/MSFT/ClientCertificateInstall", Property: "Thumbprint"},
 }
 
 // SCEPCertThumbprint: Optional. Specify the current cert’s thumbprint if certificate enrollment succeeds. It is a 20-byte value of the SHA1 certificate hash specified as a hexadecimal string value.
@@ -91,6 +100,7 @@ var SCEPCertThumbprint = csp.Policy{
 	URI:    "./Device/Vendor/MSFT/ClientCertificateInstall/SCEP/CertThumbprint",
 	Format: "chr",
 	Access: []string{"Get"},
+	Bridge: &csp.Bridge{ConfigClass: "MDM_ClientCertificateInstall_SCEP01_01", ResultClass: "MDM_ClientCertificateInstall_SCEP01_01", InstanceID: "SCEP", ParentID: "./Vendor/MSFT/ClientCertificateInstall", Property: "CertThumbprint"},
 }
 
 // SCEPErrorCode: Optional. The integer value that indicates the HRESULT of the last enrollment error code.
@@ -99,6 +109,7 @@ var SCEPErrorCode = csp.Policy{
 	URI:    "./Device/Vendor/MSFT/ClientCertificateInstall/SCEP/ErrorCode",
 	Format: "int",
 	Access: []string{"Get"},
+	Bridge: &csp.Bridge{ConfigClass: "MDM_ClientCertificateInstall_SCEP01_01", ResultClass: "MDM_ClientCertificateInstall_SCEP01_01", InstanceID: "SCEP", ParentID: "./Vendor/MSFT/ClientCertificateInstall", Property: "ErrorCode"},
 }
 
 // SCEPInstallAADKeyIdentifierList: Optional. Specify the AAD Key Identifier List as a semicolon separated values. On Enroll, the values in this list are validated against the AAD Key present on the device. If no match is found, enrollment will fail.
@@ -287,6 +298,7 @@ var SCEPRespondentServerUrl = csp.Policy{
 	URI:    "./Device/Vendor/MSFT/ClientCertificateInstall/SCEP/RespondentServerUrl",
 	Format: "chr",
 	Access: []string{"Get"},
+	Bridge: &csp.Bridge{ConfigClass: "MDM_ClientCertificateInstall_SCEP01_01", ResultClass: "MDM_ClientCertificateInstall_SCEP01_01", InstanceID: "SCEP", ParentID: "./Vendor/MSFT/ClientCertificateInstall", Property: "RespondentServerUrl"},
 }
 
 // SCEPStatus: Required. Specify the latest status for the certificate due to enroll request.
@@ -295,6 +307,7 @@ var SCEPStatus = csp.Policy{
 	URI:    "./Device/Vendor/MSFT/ClientCertificateInstall/SCEP/Status",
 	Format: "int",
 	Access: []string{"Get"},
+	Bridge: &csp.Bridge{ConfigClass: "MDM_ClientCertificateInstall_SCEP01_01", ResultClass: "MDM_ClientCertificateInstall_SCEP01_01", InstanceID: "SCEP", ParentID: "./Vendor/MSFT/ClientCertificateInstall", Property: "Status"},
 }
 
 // All lists every policy in this CSP area.

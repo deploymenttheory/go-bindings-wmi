@@ -19,6 +19,7 @@ var ActionsStatus = csp.Policy{
 	Format:  "int",
 	Access:  []string{"Get"},
 	Default: "0",
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_eUICCs_Actions02", ResultClass: "MDM_eUICCs_Actions02", InstanceID: "Actions", ParentID: "./Vendor/MSFT/eUICCs", Property: "Status"},
 }
 
 // DownloadServersAutoEnable: Indicates whether the discovered profile must be enabled automatically after install. This must be set by the MDM when the ServerName subtree is created.
@@ -28,6 +29,7 @@ var DownloadServersAutoEnable = csp.Policy{
 	Format:  "bool",
 	Access:  []string{"Add", "Get", "Replace"},
 	Allowed: &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "false", Description: "Disable"}, {Value: "true", Description: "Enable"}}},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_eUICCs_DownloadServers02_01", ResultClass: "MDM_eUICCs_DownloadServers02_01", InstanceID: "DownloadServers", ParentID: "./Vendor/MSFT/eUICCs", Property: "AutoEnable"},
 }
 
 // DownloadServersDiscoveryState: Current state of the discovery operation for this server (Requested = 1, Executing = 2, Completed = 3, Failed = 4).
@@ -37,6 +39,7 @@ var DownloadServersDiscoveryState = csp.Policy{
 	Format:  "int",
 	Access:  []string{"Get"},
 	Default: "1",
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_eUICCs_DownloadServers02_01", ResultClass: "MDM_eUICCs_DownloadServers02_01", InstanceID: "DownloadServers", ParentID: "./Vendor/MSFT/eUICCs", Property: "DiscoveryState"},
 }
 
 // DownloadServersErrorDetail: Detailed error if the profile download and install procedure failed (None = 0, CardGeneralFailure = 1, ConfirmationCodeIncorrect = 2, ConfirmationCodeMissing = 3, ConfirmationCodeMaxRetriesExceeded = 4, ForbiddenByPolicy = 5, InvalidMatchingId = 6, NoEligibleProfileForThisDevice = 7, NotEnoughSpaceOnCard = 8, OperationAborted = 9, ProfileEidMismatch = 10, ProfileNotAvailableForNewBinding = 11, ProfileNotReleasedByOperator = 12, RemoteServerGeneralFailure = 13, RemoteServerUnreachable = 14, TimeoutWaitingForUserConsent = 15, OperationProhibitedByProfileClass = 16, ProvisioningProfileNotPresent = 17, NoCorrespondingRequest = 18, TimeoutWaitingForResponse = 19, IccidAlreadyExists = 20, ProfileProcessingError = 21, RemoteServerNotTrusted = 22, ProfileDownloadMaxRetriesExceeded = 23, WinhttpNameNotResolved = 24, WinhttpOperationCancelled = 25).
@@ -48,6 +51,7 @@ var DownloadServersErrorDetail = csp.Policy{
 	Default:    "0",
 	MinOSBuild: "99.9.99999",
 	CSPVersion: "9.9",
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_eUICCs_DownloadServers02_01", ResultClass: "MDM_eUICCs_DownloadServers02_01", InstanceID: "DownloadServers", ParentID: "./Vendor/MSFT/eUICCs", Property: "ErrorDetail"},
 }
 
 // DownloadServersICCID: The ICCID of the eSIM profile downloaded as a result of successfully running the eSIM bulk activation process policy.
@@ -58,6 +62,7 @@ var DownloadServersICCID = csp.Policy{
 	Access:     []string{"Get"},
 	MinOSBuild: "99.9.99999",
 	CSPVersion: "9.9",
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_eUICCs_DownloadServers02_01", ResultClass: "MDM_eUICCs_DownloadServers02_01", InstanceID: "DownloadServers", ParentID: "./Vendor/MSFT/eUICCs", Property: "ICCID"},
 }
 
 // DownloadServersIsDiscoveryServer: Indicates whether the server is a discovery server or if it is used for bulk download. A discovery server is used every time a user requests a profile discovery operation. Optional, default value is false.
@@ -70,6 +75,7 @@ var DownloadServersIsDiscoveryServer = csp.Policy{
 	MinOSBuild: "10.0.22621",
 	CSPVersion: "1.0",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "false", Description: "Is Not Discovery Server"}, {Value: "true", Description: "Is Discovery Server"}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_eUICCs_DownloadServers02_01", ResultClass: "MDM_eUICCs_DownloadServers02_01", InstanceID: "DownloadServers", ParentID: "./Vendor/MSFT/eUICCs", Property: "IsDiscoveryServer"},
 }
 
 // DownloadServersMaximumAttempts: How many times profile download should be attempted before giving up. A value of 0 indicates unlimited retry attempts. When a value is not specified, it defaults to 50, which is equivalent to about a month of retry attempts.
@@ -81,6 +87,7 @@ var DownloadServersMaximumAttempts = csp.Policy{
 	Default:    "50",
 	MinOSBuild: "99.9.99999",
 	CSPVersion: "9.9",
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_eUICCs_DownloadServers02_01", ResultClass: "MDM_eUICCs_DownloadServers02_01", InstanceID: "DownloadServers", ParentID: "./Vendor/MSFT/eUICCs", Property: "MaximumAttempts"},
 }
 
 // Identifier: The unique eUICC identifier (EID).
@@ -89,6 +96,7 @@ var Identifier = csp.Policy{
 	URI:    "./Device/Vendor/MSFT/eUICCs/Identifier",
 	Format: "chr",
 	Access: []string{"Get"},
+	Bridge: &csp.Bridge{ConfigClass: "MDM_eUICCs_01", ResultClass: "MDM_eUICCs_01", InstanceID: "eUICCs", ParentID: "./Vendor/MSFT", Property: "Identifier"},
 }
 
 // IsActive: Indicates whether this eUICC is physically present and active. Updated only by the LPA.
@@ -97,6 +105,7 @@ var IsActive = csp.Policy{
 	URI:    "./Device/Vendor/MSFT/eUICCs/IsActive",
 	Format: "bool",
 	Access: []string{"Get"},
+	Bridge: &csp.Bridge{ConfigClass: "MDM_eUICCs_01", ResultClass: "MDM_eUICCs_01", InstanceID: "eUICCs", ParentID: "./Vendor/MSFT", Property: "IsActive"},
 }
 
 // PPR1Allowed: Indicates whether the download of a profile with Profile Policy Rule 1 (PPR1) is allowed. If the eUICC has already a profile (regardless of its origin and policy rules associated with it), then the download of a profile with PPR1 is not allowed.
@@ -105,6 +114,7 @@ var PPR1Allowed = csp.Policy{
 	URI:    "./Device/Vendor/MSFT/eUICCs/PPR1Allowed",
 	Format: "bool",
 	Access: []string{"Get"},
+	Bridge: &csp.Bridge{ConfigClass: "MDM_eUICCs_01", ResultClass: "MDM_eUICCs_01", InstanceID: "eUICCs", ParentID: "./Vendor/MSFT", Property: "PPR1Allowed"},
 }
 
 // PPR1AlreadySet: Indicates whether the eUICC has already a profile with Profile Policy Rule 1 (PPR1).
@@ -113,6 +123,7 @@ var PPR1AlreadySet = csp.Policy{
 	URI:    "./Device/Vendor/MSFT/eUICCs/PPR1AlreadySet",
 	Format: "bool",
 	Access: []string{"Get"},
+	Bridge: &csp.Bridge{ConfigClass: "MDM_eUICCs_01", ResultClass: "MDM_eUICCs_01", InstanceID: "eUICCs", ParentID: "./Vendor/MSFT", Property: "PPR1AlreadySet"},
 }
 
 // PoliciesLocalUIEnabled: Determines whether or not the user can make changes to the eSIM through the user interface.
@@ -123,6 +134,7 @@ var PoliciesLocalUIEnabled = csp.Policy{
 	Access:  []string{"Get", "Replace"},
 	Default: "true",
 	Allowed: &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "false", Description: "Disabled"}, {Value: "true", Description: "Enabled"}}},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_eUICCs_Policies02", ResultClass: "MDM_eUICCs_Policies02", InstanceID: "Policies", ParentID: "./Vendor/MSFT/eUICCs", Property: "LocalUIEnabled"},
 }
 
 // ProfilesErrorDetail: Detailed error if the profile download and install procedure failed (None = 0, CardGeneralFailure = 1, ConfirmationCodeMissing = 3, ForbiddenByPolicy = 5, InvalidMatchingId = 6, NoEligibleProfileForThisDevice = 7, NotEnoughSpaceOnCard = 8, ProfileEidMismatch = 10, ProfileNotAvailableForNewBinding = 11, ProfileNotReleasedByOperator = 12, RemoteServerGeneralFailure = 13, RemoteServerUnreachable = 14).
@@ -132,6 +144,7 @@ var ProfilesErrorDetail = csp.Policy{
 	Format:  "int",
 	Access:  []string{"Get"},
 	Default: "0",
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_eUICCs_Profiles02_01", ResultClass: "MDM_eUICCs_Profiles02_01", InstanceID: "Profiles", ParentID: "./Vendor/MSFT/eUICCs", Property: "ErrorDetail"},
 }
 
 // ProfilesIsEnabled: Indicates whether this eSIM profile is enabled. Can be set by both the MDM and the CSP.
@@ -143,6 +156,7 @@ var ProfilesIsEnabled = csp.Policy{
 	MinOSBuild: "10.0.17134",
 	CSPVersion: "1.0",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "false", Description: "Disabled"}, {Value: "true", Description: "Enabled"}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_eUICCs_Profiles02_01", ResultClass: "MDM_eUICCs_Profiles02_01", InstanceID: "Profiles", ParentID: "./Vendor/MSFT/eUICCs", Property: "IsEnabled"},
 }
 
 // ProfilesMatchingID: Matching ID (activation code token) for eSIM profile download. Must be set by the MDM when the ICCID subtree is created.
@@ -152,6 +166,7 @@ var ProfilesMatchingID = csp.Policy{
 	Format:  "chr",
 	Access:  []string{"Add", "Get", "Replace"},
 	Allowed: &csp.Allowed{Type: "RegEx"},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_eUICCs_Profiles02_01", ResultClass: "MDM_eUICCs_Profiles02_01", InstanceID: "Profiles", ParentID: "./Vendor/MSFT/eUICCs", Property: "MatchingID"},
 }
 
 // ProfilesPPR1Set: Profile Policy Rule 1 (PPR1) indicates whether disabling of this profile is not allowed (true if not allowed, false otherwise).
@@ -160,6 +175,7 @@ var ProfilesPPR1Set = csp.Policy{
 	URI:    "./Device/Vendor/MSFT/eUICCs/Profiles/PPR1Set",
 	Format: "bool",
 	Access: []string{"Get"},
+	Bridge: &csp.Bridge{ConfigClass: "MDM_eUICCs_Profiles02_01", ResultClass: "MDM_eUICCs_Profiles02_01", InstanceID: "Profiles", ParentID: "./Vendor/MSFT/eUICCs", Property: "PPR1Set"},
 }
 
 // ProfilesPPR2Set: Profile Policy Rule 2 (PPR2) indicates whether deletion of this profile is not allowed (true if not allowed, false otherwise).
@@ -168,6 +184,7 @@ var ProfilesPPR2Set = csp.Policy{
 	URI:    "./Device/Vendor/MSFT/eUICCs/Profiles/PPR2Set",
 	Format: "bool",
 	Access: []string{"Get"},
+	Bridge: &csp.Bridge{ConfigClass: "MDM_eUICCs_Profiles02_01", ResultClass: "MDM_eUICCs_Profiles02_01", InstanceID: "Profiles", ParentID: "./Vendor/MSFT/eUICCs", Property: "PPR2Set"},
 }
 
 // ProfilesServerName: Fully qualified domain name of the server that can download this eSIM profile. Must be set by the MDM when the ICCID subtree is created.
@@ -177,6 +194,7 @@ var ProfilesServerName = csp.Policy{
 	Format:  "chr",
 	Access:  []string{"Add", "Get", "Replace"},
 	Allowed: &csp.Allowed{Type: "None"},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_eUICCs_Profiles02_01", ResultClass: "MDM_eUICCs_Profiles02_01", InstanceID: "Profiles", ParentID: "./Vendor/MSFT/eUICCs", Property: "ServerName"},
 }
 
 // ProfilesState: Current state of the eSIM profile (Installing = 1, Installed = 2, Deleting = 3, Error = 4).
@@ -186,6 +204,7 @@ var ProfilesState = csp.Policy{
 	Format:  "int",
 	Access:  []string{"Get"},
 	Default: "1",
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_eUICCs_Profiles02_01", ResultClass: "MDM_eUICCs_Profiles02_01", InstanceID: "Profiles", ParentID: "./Vendor/MSFT/eUICCs", Property: "State"},
 }
 
 // All lists every policy in this CSP area.

@@ -49,6 +49,10 @@ func run(metadataDir, outDir string) error {
 	if err != nil {
 		return err
 	}
+	cspClasses, err := loadBridgeCSPClasses(metadataDir)
+	if err != nil {
+		return err
+	}
 
 	// Pass 1: load CSPs and claim package names (fail fast on collision).
 	type area struct {
@@ -59,7 +63,7 @@ func run(metadataDir, outDir string) error {
 	packages := map[string]string{}
 	for _, entry := range entries {
 		base := strings.TrimSuffix(filepath.Base(entry), ".json")
-		if base == "PROVENANCE" || base == bridgeFile {
+		if base == "PROVENANCE" || base == bridgeFile || base == bridgeCSPFile {
 			continue
 		}
 		data, err := os.ReadFile(entry)
@@ -80,7 +84,7 @@ func run(metadataDir, outDir string) error {
 
 	written := map[string]bool{}
 	for _, a := range areas {
-		files, err := renderPackage(a.pkg, a.csp, bridgeAreas)
+		files, err := renderPackage(a.pkg, a.csp, bridgeAreas, cspClasses)
 		if err != nil {
 			return fmt.Errorf("%s: %w", a.csp.Name, err)
 		}
@@ -111,7 +115,7 @@ type policy struct {
 	node   cspschema.Node
 }
 
-func renderPackage(pkg string, csp *cspschema.CSP, bridgeAreas map[string]string) (map[string][]byte, error) {
+func renderPackage(pkg string, csp *cspschema.CSP, bridgeAreas map[string]string, cspClasses map[string][]cspBridge) (map[string][]byte, error) {
 	policies := uniquify(flatten(csp.Nodes, nil))
 	if len(policies) == 0 {
 		return nil, nil
@@ -119,15 +123,15 @@ func renderPackage(pkg string, csp *cspschema.CSP, bridgeAreas map[string]string
 
 	// Resolve the bridge area for this CSP: a native Policy area whose name
 	// the captured bridge exposes. Its direct settings become executable.
-	bridge := ""
+	bridgeArea := ""
 	if csp.PolicyArea() {
-		bridge = bridgeAreas[strings.ToLower(csp.Name)]
+		bridgeArea = bridgeAreas[strings.ToLower(csp.Name)]
 	}
 
 	var policiesBody, constsBody strings.Builder
 	all := make([]string, 0, len(policies))
 	for _, p := range policies {
-		renderPolicy(&policiesBody, p, bridge, csp.Path)
+		renderPolicy(&policiesBody, p, resolveBridge(p, bridgeArea, csp.Path, cspClasses))
 		renderConstants(&constsBody, p)
 		all = append(all, p.goName)
 	}
@@ -201,7 +205,7 @@ func flatten(nodes []cspschema.Node, prefix []string) []policy {
 	return out
 }
 
-func renderPolicy(b *strings.Builder, p policy, bridgeArea, cspPath string) {
+func renderPolicy(b *strings.Builder, p policy, spec *bridgeSpec) {
 	n := p.node
 	if n.Description != "" {
 		fmt.Fprintf(b, "// %s: %s\n", p.goName, firstLine(n.Description))
@@ -252,16 +256,78 @@ func renderPolicy(b *strings.Builder, p policy, bridgeArea, cspPath string) {
 		}
 		b.WriteString("},\n")
 	}
-	// Bridge mapping: only for a native Policy area's direct settings (one
-	// segment below the area), which the bridge exposes as area-instance
-	// properties.
-	if bridgeArea != "" && len(p.segs) == 1 {
+	if spec != nil {
 		fmt.Fprintf(b, "\tBridge: &csp.Bridge{ConfigClass: %q, ResultClass: %q, InstanceID: %q, ParentID: %q, Property: %q},\n",
-			"MDM_Policy_Config01_"+bridgeArea+"02",
-			"MDM_Policy_Result01_"+bridgeArea+"02",
-			bridgeArea, bridgeParentID(cspPath), n.Name)
+			spec.configClass, spec.resultClass, spec.instanceID, spec.parentID, spec.property)
 	}
 	b.WriteString("}\n\n")
+}
+
+// bridgeSpec is a resolved DDF↔bridge mapping for one policy.
+type bridgeSpec struct {
+	configClass, resultClass, instanceID, parentID, property string
+}
+
+// dmRoot are the OMA-DM tree scaffolding segments that are not part of a
+// bridge class's name.
+var dmRoot = map[string]bool{".": true, "Device": true, "User": true, "Vendor": true, "MSFT": true, "": true}
+
+// resolveBridge maps a policy onto the MDM bridge, or returns nil when it is
+// not statically executable. Native Policy areas use the regular
+// MDM_Policy_Config01_<Area>02 convention (direct settings only); other CSPs
+// match their instance-node against the captured bridge classes by
+// normalized name, validated by the property. Dynamic-instance nodes ({...})
+// and ambiguous matches are skipped.
+func resolveBridge(p policy, bridgeArea, cspPath string, cspClasses map[string][]cspBridge) *bridgeSpec {
+	if bridgeArea != "" {
+		if len(p.segs) != 1 {
+			return nil // only an area's direct settings are area-instance properties
+		}
+		return &bridgeSpec{
+			configClass: "MDM_Policy_Config01_" + bridgeArea + "02",
+			resultClass: "MDM_Policy_Result01_" + bridgeArea + "02",
+			instanceID:  bridgeArea,
+			parentID:    bridgeParentID(cspPath),
+			property:    p.node.Name,
+		}
+	}
+
+	// Non-Policy: the instance-node is the leaf's parent; ParentID is that
+	// node's parent path, InstanceID its name (verified against device
+	// truth). Both keys are scope-relative.
+	segs := strings.Split(p.node.Path, "/")
+	if len(segs) < 3 {
+		return nil
+	}
+	property := segs[len(segs)-1]
+	instanceNode := segs[len(segs)-2]
+	if strings.ContainsAny(instanceNode, "{}") {
+		return nil // dynamic instance — needs a runtime id
+	}
+	var meaningful []string
+	for _, s := range segs[:len(segs)-1] {
+		if dmRoot[s] {
+			continue
+		}
+		if strings.ContainsAny(s, "{}") {
+			return nil // dynamic ancestor
+		}
+		meaningful = append(meaningful, s)
+	}
+	if len(meaningful) == 0 {
+		return nil
+	}
+	cands := cspClasses[normalizeBridge(strings.Join(meaningful, "_"))]
+	if len(cands) != 1 || !cands[0].props[property] {
+		return nil // no match, ambiguous, or property not on the class
+	}
+	return &bridgeSpec{
+		configClass: cands[0].class,
+		resultClass: cands[0].class, // non-Policy CSPs are a single class
+		instanceID:  instanceNode,
+		parentID:    bridgeParentID(strings.Join(segs[:len(segs)-2], "/")),
+		property:    property,
+	}
 }
 
 // renderConstants emits typed constants for a policy's ENUM/Flag allowed

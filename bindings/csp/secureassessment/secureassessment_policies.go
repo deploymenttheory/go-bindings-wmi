@@ -12,6 +12,7 @@ var AllowScreenMonitoring = csp.Policy{
 	Access:  []string{"Get", "Replace"},
 	Default: "0",
 	Allowed: &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "1", Description: "Screen monitoring is allowed"}, {Value: "0", Description: "Screen monitoring is not allowed"}}},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_SecureAssessment", ResultClass: "MDM_SecureAssessment", InstanceID: "SecureAssessment", ParentID: "./Vendor/MSFT", Property: "AllowScreenMonitoring"},
 }
 
 // AllowTextSuggestions: Indicates if keyboard text suggestions are allowed by the app.
@@ -22,6 +23,7 @@ var AllowTextSuggestions = csp.Policy{
 	Access:  []string{"Get", "Replace"},
 	Default: "0",
 	Allowed: &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "1", Description: "Keyboard text suggestions are allowed"}, {Value: "0", Description: "Keyboard text suggestions are not allowed"}}},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_SecureAssessment", ResultClass: "MDM_SecureAssessment", InstanceID: "SecureAssessment", ParentID: "./Vendor/MSFT", Property: "AllowTextSuggestions"},
 }
 
 // Assessments: Enables support for multiple assessments and for assessment grouping. The structure is specified by an XML.
@@ -41,6 +43,7 @@ var LaunchURI = csp.Policy{
 	Format:  "chr",
 	Access:  []string{"Add", "Delete", "Get", "Replace"},
 	Allowed: &csp.Allowed{Type: "RegEx"},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_SecureAssessment", ResultClass: "MDM_SecureAssessment", InstanceID: "SecureAssessment", ParentID: "./Vendor/MSFT", Property: "LaunchURI"},
 }
 
 // RequirePrinting: Indicates if printing is required by the app.
@@ -51,6 +54,7 @@ var RequirePrinting = csp.Policy{
 	Access:  []string{"Get", "Replace"},
 	Default: "1",
 	Allowed: &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "1", Description: "Printing is allowed"}, {Value: "0", Description: "Printing is not allowed"}}},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_SecureAssessment", ResultClass: "MDM_SecureAssessment", InstanceID: "SecureAssessment", ParentID: "./Vendor/MSFT", Property: "RequirePrinting"},
 }
 
 // TesterAccount: The user name of the test taking account.  To specify a domain account, use domain\user. To specify an AAD account, use username@tenant.com. To specify a local account, use the username.
@@ -60,6 +64,7 @@ var TesterAccount = csp.Policy{
 	Format:  "chr",
 	Access:  []string{"Add", "Delete", "Get", "Replace"},
 	Allowed: &csp.Allowed{Type: "None"},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_SecureAssessment", ResultClass: "MDM_SecureAssessment", InstanceID: "SecureAssessment", ParentID: "./Vendor/MSFT", Property: "TesterAccount"},
 }
 
 // All lists every policy in this CSP area.
