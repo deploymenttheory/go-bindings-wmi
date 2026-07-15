@@ -81,31 +81,34 @@ try {
     if ($OSBuild)  { $captureArgs += @('-osbuild', $OSBuild) }
     if ($Captured) { $captureArgs += @('-captured', $Captured) }
     $quotedArgs = ($captureArgs | ForEach-Object { '"{0}"' -f $_ }) -join ' '
-    # Redirect output to a log; scheduled tasks have no console.
-    $command = 'cmd.exe /c ""{0}" {1} > "{2}" 2>&1"' -f $exe, $quotedArgs, $log
+    # Redirect output to a log; scheduled tasks have no console. cmd.exe's
+    # ""exe" args" form tolerates spaces in the exe path.
+    $innerArgs = '/c ""{0}" {1} > "{2}" 2>&1"' -f $exe, $quotedArgs, $log
 
     # --- run it as SYSTEM via a transient scheduled task -----------------
+    # Register-ScheduledTask (not schtasks.exe) - the latter caps /TR at 261
+    # characters, which the absolute paths here exceed.
     $taskName = 'go-bindings-wmi-capture-{0}' -f ([guid]::NewGuid().ToString('N'))
     Write-Host "Running capture as SYSTEM (task $taskName)"
-    & schtasks.exe /Create /TN $taskName /TR $command /SC ONCE /ST 00:00 /RU SYSTEM /RL HIGHEST /F | Out-Null
-    if ($LASTEXITCODE -ne 0) { Fail 'Failed to create the SYSTEM scheduled task.' }
-    try {
-        & schtasks.exe /Run /TN $taskName | Out-Null
-        if ($LASTEXITCODE -ne 0) { Fail 'Failed to start the SYSTEM scheduled task.' }
+    $action = New-ScheduledTaskAction -Execute 'cmd.exe' -Argument $innerArgs
+    $principal = New-ScheduledTaskPrincipal -UserId 'SYSTEM' -LogonType ServiceAccount -RunLevel Highest
+    Register-ScheduledTask -TaskName $taskName -Action $action -Principal $principal -Force | Out-Null
 
-        # Poll until the task stops (Status transitions away from Running).
+    $result = $null
+    try {
+        Start-ScheduledTask -TaskName $taskName
+
+        # Poll until the task leaves the Running state.
         $deadline = (Get-Date).AddMinutes(5)
         do {
             Start-Sleep -Milliseconds 500
-            $status = (& schtasks.exe /Query /TN $taskName /FO LIST |
-                Select-String -Pattern '^\s*Status:\s*(.+)$').Matches.Groups[1].Value.Trim()
-        } while ($status -eq 'Running' -and (Get-Date) -lt $deadline)
+            $state = (Get-ScheduledTask -TaskName $taskName).State
+        } while ($state -eq 'Running' -and (Get-Date) -lt $deadline)
 
-        $result = (& schtasks.exe /Query /TN $taskName /FO LIST /V |
-            Select-String -Pattern '^\s*Last Result:\s*(.+)$').Matches.Groups[1].Value.Trim()
+        $result = (Get-ScheduledTaskInfo -TaskName $taskName).LastTaskResult
     }
     finally {
-        & schtasks.exe /Delete /TN $taskName /F | Out-Null
+        Unregister-ScheduledTask -TaskName $taskName -Confirm:$false
     }
 
     # --- surface the capture output --------------------------------------
@@ -116,7 +119,7 @@ try {
     }
     Remove-Item $exe -Force -ErrorAction SilentlyContinue
 
-    if ($result -ne '0') {
+    if ($result -ne 0) {
         Fail "Capture (as SYSTEM) exited with code $result. See the output above - access-denied here usually means the MDM bridge is unavailable on this host (not enrolled)."
     }
 
