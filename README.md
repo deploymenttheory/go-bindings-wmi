@@ -90,9 +90,11 @@ narrows):
 - **`root\SecurityCenter2`** (69) → `bindings/cim/securitycenter2` —
   registered AV / firewall / anti-spyware products (client SKUs only).
 
-Other namespaces (`root\Microsoft\Windows\*`, the `root\cimv2\mdm\dmmap` MDM
-bridge — which requires an elevated/SYSTEM capture context) are additive:
-capture with `-namespace` and regenerate.
+The **MDM bridge** (`root\cimv2\mdm\dmmap`, Windows' CSP policy surface as
+WMI classes) is additive but requires a **SYSTEM** capture context — see
+[docs/mdm-bridge.md](docs/mdm-bridge.md) and `scripts/Capture-MdmBridge.ps1`,
+which automates it. Any other namespace (`root\Microsoft\Windows\*`, …) is
+just `go run ./cmd/capture -namespace <ns>` then regenerate.
 
 ## Examples & docs
 
@@ -106,6 +108,8 @@ capture with `-namespace` and regenerate.
   subscriptions, streaming, remote
 - [Instances and associations](docs/instances-and-associations.md) — CRUD,
   key lookups, ASSOCIATORS OF
+- [The MDM bridge](docs/mdm-bridge.md) — capturing `root\cimv2\mdm\dmmap`
+  (CSP policy classes) as SYSTEM
 - [`CLAUDE.md`](CLAUDE.md) — the capture doctrine and why the CLI is minimal
 
 ## Related projects

@@ -98,3 +98,8 @@ To capture another namespace: `go run ./cmd/capture -namespace root\StandardCimv
 then `go run ./cmd/generate`. Each namespace becomes its own package
 (`bindings/cim/<leaf>`). The generator handles arbitrary classes; duplicate Go
 field/class names and zero-property classes are handled.
+
+The MDM bridge (`root\cimv2\mdm\dmmap`, CSP policy classes) needs the SYSTEM
+account, not just elevation — capture surfaces a hint and
+`scripts/Capture-MdmBridge.ps1` runs it as SYSTEM via a transient scheduled
+task (see [docs/mdm-bridge.md](docs/mdm-bridge.md)).
