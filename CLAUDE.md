@@ -92,6 +92,36 @@ tracking.
 - **`bindings/cim/<ns>`** — generated typed classes + `Query<Class>` helpers.
   Never hand-edited.
 
+## The second pipeline: CSP policy bindings (DDF v2)
+
+Alongside the live-CIM pipeline, the repo generates a typed catalog of the
+Windows MDM policy / CSP surface from Microsoft's **DDF v2** files. Unlike
+the CIM side, this metadata *is* a versioned download — so it follows the
+winmd doctrine directly (the DDF v2 zip is the winmd-NuGet analogue):
+
+```
+DDF v2 zip (pinned) → committed snapshots → deterministic codegen → typed policy catalog
+  cmd/fetchddf        metadata/csp/*.json    cmd/gencsp             bindings/csp/<area>
+```
+
+- **`cmd/fetchddf`** (cross-platform) — the acquisition stage: download the
+  pinned DDF zip, verify SHA-256, parse every CSP/policy-area DDF into
+  `metadata/csp/<area>.json` + `PROVENANCE.json`. Bump the pin and re-run to
+  adopt a new Microsoft drop; `ddf-update.yml` automates the PR.
+- **`internal/cspschema`** — the DDF snapshot format + the DDF XML parser +
+  the DDF-format→Go-type mapping.
+- **`cmd/gencsp`** — snapshot → `bindings/csp/<area>`: one `csp.Policy`
+  descriptor per leaf node (URI, format, access, applicability, allowed
+  values, deprecation) plus typed enum constants. Self-cleaning,
+  byte-deterministic; CI regenerates and diffs both pipelines.
+- **`runtime/csp`** — the hand-written `csp.Policy` descriptor types the
+  generated bindings reference. Pure data — the CSP bindings have **no
+  Windows dependency** and build/test on any OS.
+
+The DDF is the canonical *schema*; the MDM WMI bridge (`root\cimv2\mdm\dmmap`)
+is the local *runtime* for driving those policies. Complementary, not
+redundant.
+
 ## Growing coverage
 
 To capture another namespace: `go run ./cmd/capture -namespace root\StandardCimv2`
