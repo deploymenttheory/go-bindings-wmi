@@ -17,6 +17,7 @@ import (
 	"path/filepath"
 	"sort"
 	"strings"
+	"time"
 
 	"github.com/deploymenttheory/go-bindings-wmi/internal/cimschema"
 	"github.com/deploymenttheory/go-bindings-wmi/runtime/wmi"
@@ -25,8 +26,8 @@ import (
 func main() {
 	namespace := flag.String("namespace", `root\cimv2`, "CIM namespace")
 	classFilter := flag.String("classes", "", "comma-separated class list; empty = every class in the namespace")
-	osBuild := flag.String("osbuild", "", "OS build recorded in provenance (informational)")
-	captured := flag.String("captured", "", "capture date (YYYY-MM-DD) recorded in provenance")
+	osBuild := flag.String("osbuild", "", "OS build recorded in provenance (default: read from the live OS)")
+	captured := flag.String("captured", "", "capture date (YYYY-MM-DD) recorded in provenance (default: today, UTC)")
 	outDir := flag.String("out", filepath.Join("metadata", "cim"), "snapshot output directory")
 	flag.Parse()
 
@@ -43,9 +44,20 @@ func run(namespace, classFilter, osBuild, captured, outDir string) error {
 	}
 	defer svc.Close()
 
+	// Provenance defaults come from the capture host itself — a snapshot must
+	// never land without a build and date to review against.
+	if osBuild == "" {
+		if osBuild, err = liveOSBuild(); err != nil {
+			return err
+		}
+	}
+	if captured == "" {
+		captured = time.Now().UTC().Format("2006-01-02")
+	}
+
 	var classes []string
 	if classFilter != "" {
-		for _, name := range strings.Split(classFilter, ",") {
+		for name := range strings.SplitSeq(classFilter, ",") {
 			if name = strings.TrimSpace(name); name != "" {
 				classes = append(classes, name)
 			}
@@ -77,6 +89,19 @@ func run(namespace, classFilter, osBuild, captured, outDir string) error {
 				Name:    p.Name,
 				CIMType: p.CIMType &^ cimschema.CIMFlagArray,
 				Array:   p.CIMType&cimschema.CIMFlagArray != 0,
+				Key:     p.Key,
+			})
+		}
+		methods, err := svc.ClassMethods(className)
+		if err != nil {
+			return fmt.Errorf("%s: %w", className, err)
+		}
+		for _, m := range methods {
+			class.Methods = append(class.Methods, cimschema.Method{
+				Name:   m.Name,
+				Static: m.Static,
+				In:     captureParams(m.In),
+				Out:    captureParams(m.Out),
 			})
 		}
 		snapshot.Classes = append(snapshot.Classes, class)
@@ -97,4 +122,40 @@ func run(namespace, classFilter, osBuild, captured, outDir string) error {
 	}
 	fmt.Printf("captured %d classes → %s\n", len(snapshot.Classes), path)
 	return nil
+}
+
+// captureParams converts runtime parameter schemas (declaration-ordered)
+// into snapshot params.
+func captureParams(params []wmi.PropertyInfo) []cimschema.Param {
+	out := make([]cimschema.Param, 0, len(params))
+	for _, p := range params {
+		out = append(out, cimschema.Param{
+			Name:    p.Name,
+			CIMType: p.CIMType &^ cimschema.CIMFlagArray,
+			Array:   p.CIMType&cimschema.CIMFlagArray != 0,
+		})
+	}
+	return out
+}
+
+// liveOSBuild reads the capture host's build number. It uses its own cimv2
+// connection: the capture target may be a different namespace.
+func liveOSBuild() (string, error) {
+	svc, err := wmi.Connect(`root\cimv2`)
+	if err != nil {
+		return "", err
+	}
+	defer svc.Close()
+	rows, err := svc.Query("SELECT BuildNumber FROM Win32_OperatingSystem")
+	if err != nil {
+		return "", err
+	}
+	if len(rows) == 0 {
+		return "", fmt.Errorf("capture: no Win32_OperatingSystem instance")
+	}
+	build := wmi.AsString(rows[0]["BuildNumber"])
+	if build == "" {
+		return "", fmt.Errorf("capture: empty BuildNumber")
+	}
+	return build, nil
 }

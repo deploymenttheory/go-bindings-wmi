@@ -21,10 +21,28 @@ type Provenance struct {
 	Captured string `json:"captured"`
 }
 
-// Class is one CIM class: its name and properties (sorted by name).
+// Class is one CIM class: its name, properties (sorted by name), and
+// methods (sorted by name).
 type Class struct {
 	Name       string     `json:"name"`
 	Properties []Property `json:"properties"`
+	Methods    []Method   `json:"methods,omitempty"`
+}
+
+// Method is one CIM method. Parameters keep their declaration ([ID]) order —
+// it defines the generated Go signature; Out includes ReturnValue last.
+type Method struct {
+	Name   string  `json:"name"`
+	Static bool    `json:"static,omitempty"`
+	In     []Param `json:"in,omitempty"`
+	Out    []Param `json:"out,omitempty"`
+}
+
+// Param is one method parameter.
+type Param struct {
+	Name    string `json:"name"`
+	CIMType int32  `json:"cimType"`
+	Array   bool   `json:"array,omitempty"`
 }
 
 // Property is one CIM property with its type and key CIM qualifiers.
@@ -59,8 +77,19 @@ const (
 
 // GoType maps a CIM property to its Go type (arrays become slices).
 func GoType(p Property) string {
-	base := scalarGoType(p.CIMType &^ CIMFlagArray)
-	if p.Array || p.CIMType&CIMFlagArray != 0 {
+	return GoTypeFor(p.CIMType, p.Array)
+}
+
+// ParamGoType maps a CIM method parameter to its Go type.
+func ParamGoType(p Param) string {
+	return GoTypeFor(p.CIMType, p.Array)
+}
+
+// GoTypeFor maps a CIM type (with or without the array flag folded in) to a
+// Go type.
+func GoTypeFor(cimType int32, array bool) string {
+	base := scalarGoType(cimType &^ CIMFlagArray)
+	if array || cimType&CIMFlagArray != 0 {
 		return "[]" + base
 	}
 	return base
