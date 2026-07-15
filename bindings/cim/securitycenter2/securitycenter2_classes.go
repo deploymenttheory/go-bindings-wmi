@@ -75,7 +75,7 @@ func QueryAntiVirusProduct(svc *wmi.Service, where string) ([]AntiVirusProduct, 
 
 // CIMClassCreation is the CIM_ClassCreation CIM class.
 type CIMClassCreation struct {
-	ClassDefinition       any      `cim:"ClassDefinition"`
+	ClassDefinition       wmi.Row  `cim:"ClassDefinition"`
 	CorrelatedIndications []string `cim:"CorrelatedIndications"`
 	IndicationFilterName  string   `cim:"IndicationFilterName"`
 	IndicationIdentifier  string   `cim:"IndicationIdentifier"`
@@ -99,7 +99,7 @@ func QueryCIMClassCreation(svc *wmi.Service, where string) ([]CIMClassCreation, 
 	}
 	out := make([]CIMClassCreation, len(rows))
 	for i, row := range rows {
-		if v, ok := row["ClassDefinition"].(any); ok {
+		if v, ok := row["ClassDefinition"].(wmi.Row); ok {
 			out[i].ClassDefinition = v
 		}
 		out[i].CorrelatedIndications = wmi.AsStringSlice(row["CorrelatedIndications"])
@@ -116,7 +116,7 @@ func QueryCIMClassCreation(svc *wmi.Service, where string) ([]CIMClassCreation, 
 
 // CIMClassDeletion is the CIM_ClassDeletion CIM class.
 type CIMClassDeletion struct {
-	ClassDefinition       any      `cim:"ClassDefinition"`
+	ClassDefinition       wmi.Row  `cim:"ClassDefinition"`
 	CorrelatedIndications []string `cim:"CorrelatedIndications"`
 	IndicationFilterName  string   `cim:"IndicationFilterName"`
 	IndicationIdentifier  string   `cim:"IndicationIdentifier"`
@@ -140,7 +140,7 @@ func QueryCIMClassDeletion(svc *wmi.Service, where string) ([]CIMClassDeletion, 
 	}
 	out := make([]CIMClassDeletion, len(rows))
 	for i, row := range rows {
-		if v, ok := row["ClassDefinition"].(any); ok {
+		if v, ok := row["ClassDefinition"].(wmi.Row); ok {
 			out[i].ClassDefinition = v
 		}
 		out[i].CorrelatedIndications = wmi.AsStringSlice(row["CorrelatedIndications"])
@@ -157,7 +157,7 @@ func QueryCIMClassDeletion(svc *wmi.Service, where string) ([]CIMClassDeletion, 
 
 // CIMClassIndication is the CIM_ClassIndication CIM class.
 type CIMClassIndication struct {
-	ClassDefinition       any      `cim:"ClassDefinition"`
+	ClassDefinition       wmi.Row  `cim:"ClassDefinition"`
 	CorrelatedIndications []string `cim:"CorrelatedIndications"`
 	IndicationFilterName  string   `cim:"IndicationFilterName"`
 	IndicationIdentifier  string   `cim:"IndicationIdentifier"`
@@ -181,7 +181,7 @@ func QueryCIMClassIndication(svc *wmi.Service, where string) ([]CIMClassIndicati
 	}
 	out := make([]CIMClassIndication, len(rows))
 	for i, row := range rows {
-		if v, ok := row["ClassDefinition"].(any); ok {
+		if v, ok := row["ClassDefinition"].(wmi.Row); ok {
 			out[i].ClassDefinition = v
 		}
 		out[i].CorrelatedIndications = wmi.AsStringSlice(row["CorrelatedIndications"])
@@ -198,14 +198,14 @@ func QueryCIMClassIndication(svc *wmi.Service, where string) ([]CIMClassIndicati
 
 // CIMClassModification is the CIM_ClassModification CIM class.
 type CIMClassModification struct {
-	ClassDefinition         any      `cim:"ClassDefinition"`
+	ClassDefinition         wmi.Row  `cim:"ClassDefinition"`
 	CorrelatedIndications   []string `cim:"CorrelatedIndications"`
 	IndicationFilterName    string   `cim:"IndicationFilterName"`
 	IndicationIdentifier    string   `cim:"IndicationIdentifier"`
 	IndicationTime          string   `cim:"IndicationTime"`
 	OtherSeverity           string   `cim:"OtherSeverity"`
 	PerceivedSeverity       uint16   `cim:"PerceivedSeverity"`
-	PreviousClassDefinition any      `cim:"PreviousClassDefinition"`
+	PreviousClassDefinition wmi.Row  `cim:"PreviousClassDefinition"`
 	SequenceContext         string   `cim:"SequenceContext"`
 	SequenceNumber          int64    `cim:"SequenceNumber"`
 }
@@ -223,7 +223,7 @@ func QueryCIMClassModification(svc *wmi.Service, where string) ([]CIMClassModifi
 	}
 	out := make([]CIMClassModification, len(rows))
 	for i, row := range rows {
-		if v, ok := row["ClassDefinition"].(any); ok {
+		if v, ok := row["ClassDefinition"].(wmi.Row); ok {
 			out[i].ClassDefinition = v
 		}
 		out[i].CorrelatedIndications = wmi.AsStringSlice(row["CorrelatedIndications"])
@@ -232,7 +232,7 @@ func QueryCIMClassModification(svc *wmi.Service, where string) ([]CIMClassModifi
 		out[i].IndicationTime = wmi.AsString(row["IndicationTime"])
 		out[i].OtherSeverity = wmi.AsString(row["OtherSeverity"])
 		out[i].PerceivedSeverity = wmi.AsUint16(row["PerceivedSeverity"])
-		if v, ok := row["PreviousClassDefinition"].(any); ok {
+		if v, ok := row["PreviousClassDefinition"].(wmi.Row); ok {
 			out[i].PreviousClassDefinition = v
 		}
 		out[i].SequenceContext = wmi.AsString(row["SequenceContext"])
@@ -339,7 +339,7 @@ type CIMInstCreation struct {
 	PerceivedSeverity       uint16   `cim:"PerceivedSeverity"`
 	SequenceContext         string   `cim:"SequenceContext"`
 	SequenceNumber          int64    `cim:"SequenceNumber"`
-	SourceInstance          any      `cim:"SourceInstance"`
+	SourceInstance          wmi.Row  `cim:"SourceInstance"`
 	SourceInstanceHost      string   `cim:"SourceInstanceHost"`
 	SourceInstanceModelPath string   `cim:"SourceInstanceModelPath"`
 }
@@ -365,7 +365,7 @@ func QueryCIMInstCreation(svc *wmi.Service, where string) ([]CIMInstCreation, er
 		out[i].PerceivedSeverity = wmi.AsUint16(row["PerceivedSeverity"])
 		out[i].SequenceContext = wmi.AsString(row["SequenceContext"])
 		out[i].SequenceNumber = wmi.AsInt64(row["SequenceNumber"])
-		if v, ok := row["SourceInstance"].(any); ok {
+		if v, ok := row["SourceInstance"].(wmi.Row); ok {
 			out[i].SourceInstance = v
 		}
 		out[i].SourceInstanceHost = wmi.AsString(row["SourceInstanceHost"])
@@ -384,7 +384,7 @@ type CIMInstDeletion struct {
 	PerceivedSeverity       uint16   `cim:"PerceivedSeverity"`
 	SequenceContext         string   `cim:"SequenceContext"`
 	SequenceNumber          int64    `cim:"SequenceNumber"`
-	SourceInstance          any      `cim:"SourceInstance"`
+	SourceInstance          wmi.Row  `cim:"SourceInstance"`
 	SourceInstanceHost      string   `cim:"SourceInstanceHost"`
 	SourceInstanceModelPath string   `cim:"SourceInstanceModelPath"`
 }
@@ -410,7 +410,7 @@ func QueryCIMInstDeletion(svc *wmi.Service, where string) ([]CIMInstDeletion, er
 		out[i].PerceivedSeverity = wmi.AsUint16(row["PerceivedSeverity"])
 		out[i].SequenceContext = wmi.AsString(row["SequenceContext"])
 		out[i].SequenceNumber = wmi.AsInt64(row["SequenceNumber"])
-		if v, ok := row["SourceInstance"].(any); ok {
+		if v, ok := row["SourceInstance"].(wmi.Row); ok {
 			out[i].SourceInstance = v
 		}
 		out[i].SourceInstanceHost = wmi.AsString(row["SourceInstanceHost"])
@@ -429,7 +429,7 @@ type CIMInstIndication struct {
 	PerceivedSeverity       uint16   `cim:"PerceivedSeverity"`
 	SequenceContext         string   `cim:"SequenceContext"`
 	SequenceNumber          int64    `cim:"SequenceNumber"`
-	SourceInstance          any      `cim:"SourceInstance"`
+	SourceInstance          wmi.Row  `cim:"SourceInstance"`
 	SourceInstanceHost      string   `cim:"SourceInstanceHost"`
 	SourceInstanceModelPath string   `cim:"SourceInstanceModelPath"`
 }
@@ -455,7 +455,7 @@ func QueryCIMInstIndication(svc *wmi.Service, where string) ([]CIMInstIndication
 		out[i].PerceivedSeverity = wmi.AsUint16(row["PerceivedSeverity"])
 		out[i].SequenceContext = wmi.AsString(row["SequenceContext"])
 		out[i].SequenceNumber = wmi.AsInt64(row["SequenceNumber"])
-		if v, ok := row["SourceInstance"].(any); ok {
+		if v, ok := row["SourceInstance"].(wmi.Row); ok {
 			out[i].SourceInstance = v
 		}
 		out[i].SourceInstanceHost = wmi.AsString(row["SourceInstanceHost"])
@@ -472,10 +472,10 @@ type CIMInstModification struct {
 	IndicationTime          string   `cim:"IndicationTime"`
 	OtherSeverity           string   `cim:"OtherSeverity"`
 	PerceivedSeverity       uint16   `cim:"PerceivedSeverity"`
-	PreviousInstance        any      `cim:"PreviousInstance"`
+	PreviousInstance        wmi.Row  `cim:"PreviousInstance"`
 	SequenceContext         string   `cim:"SequenceContext"`
 	SequenceNumber          int64    `cim:"SequenceNumber"`
-	SourceInstance          any      `cim:"SourceInstance"`
+	SourceInstance          wmi.Row  `cim:"SourceInstance"`
 	SourceInstanceHost      string   `cim:"SourceInstanceHost"`
 	SourceInstanceModelPath string   `cim:"SourceInstanceModelPath"`
 }
@@ -499,12 +499,12 @@ func QueryCIMInstModification(svc *wmi.Service, where string) ([]CIMInstModifica
 		out[i].IndicationTime = wmi.AsString(row["IndicationTime"])
 		out[i].OtherSeverity = wmi.AsString(row["OtherSeverity"])
 		out[i].PerceivedSeverity = wmi.AsUint16(row["PerceivedSeverity"])
-		if v, ok := row["PreviousInstance"].(any); ok {
+		if v, ok := row["PreviousInstance"].(wmi.Row); ok {
 			out[i].PreviousInstance = v
 		}
 		out[i].SequenceContext = wmi.AsString(row["SequenceContext"])
 		out[i].SequenceNumber = wmi.AsInt64(row["SequenceNumber"])
-		if v, ok := row["SourceInstance"].(any); ok {
+		if v, ok := row["SourceInstance"].(wmi.Row); ok {
 			out[i].SourceInstance = v
 		}
 		out[i].SourceInstanceHost = wmi.AsString(row["SourceInstanceHost"])
@@ -566,7 +566,7 @@ type MSFTExtendedStatus struct {
 	ErrorCategory            uint16   `cim:"error_Category"`
 	ErrorCode                uint32   `cim:"error_Code"`
 	ErrorWindowsErrorMessage string   `cim:"error_WindowsErrorMessage"`
-	OriginalError            any      `cim:"original_error"`
+	OriginalError            wmi.Row  `cim:"original_error"`
 }
 
 // QueryMSFTExtendedStatus runs the WQL query against the class and decodes each
@@ -600,7 +600,7 @@ func QueryMSFTExtendedStatus(svc *wmi.Service, where string) ([]MSFTExtendedStat
 		out[i].ErrorCategory = wmi.AsUint16(row["error_Category"])
 		out[i].ErrorCode = wmi.AsUint32(row["error_Code"])
 		out[i].ErrorWindowsErrorMessage = wmi.AsString(row["error_WindowsErrorMessage"])
-		if v, ok := row["original_error"].(any); ok {
+		if v, ok := row["original_error"].(wmi.Row); ok {
 			out[i].OriginalError = v
 		}
 	}
@@ -701,13 +701,13 @@ func QueryWSCCallerAMPPLData(svc *wmi.Service, where string) ([]WSCCallerAMPPLDa
 
 // ACE is the __ACE CIM class.
 type ACE struct {
-	AccessMask              uint32 `cim:"AccessMask"`
-	AceFlags                uint32 `cim:"AceFlags"`
-	AceType                 uint32 `cim:"AceType"`
-	GuidInheritedObjectType string `cim:"GuidInheritedObjectType"`
-	GuidObjectType          string `cim:"GuidObjectType"`
-	TIMECREATED             uint64 `cim:"TIME_CREATED"`
-	Trustee                 any    `cim:"Trustee"`
+	AccessMask              uint32  `cim:"AccessMask"`
+	AceFlags                uint32  `cim:"AceFlags"`
+	AceType                 uint32  `cim:"AceType"`
+	GuidInheritedObjectType string  `cim:"GuidInheritedObjectType"`
+	GuidObjectType          string  `cim:"GuidObjectType"`
+	TIMECREATED             uint64  `cim:"TIME_CREATED"`
+	Trustee                 wmi.Row `cim:"Trustee"`
 }
 
 // QueryACE runs the WQL query against the class and decodes each
@@ -729,7 +729,7 @@ func QueryACE(svc *wmi.Service, where string) ([]ACE, error) {
 		out[i].GuidInheritedObjectType = wmi.AsString(row["GuidInheritedObjectType"])
 		out[i].GuidObjectType = wmi.AsString(row["GuidObjectType"])
 		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
-		if v, ok := row["Trustee"].(any); ok {
+		if v, ok := row["Trustee"].(wmi.Row); ok {
 			out[i].Trustee = v
 		}
 	}
@@ -765,8 +765,8 @@ func QueryAbsoluteTimerInstruction(svc *wmi.Service, where string) ([]AbsoluteTi
 
 // AggregateEvent is the __AggregateEvent CIM class.
 type AggregateEvent struct {
-	NumberOfEvents uint32 `cim:"NumberOfEvents"`
-	Representative any    `cim:"Representative"`
+	NumberOfEvents uint32  `cim:"NumberOfEvents"`
+	Representative wmi.Row `cim:"Representative"`
 }
 
 // QueryAggregateEvent runs the WQL query against the class and decodes each
@@ -783,7 +783,7 @@ func QueryAggregateEvent(svc *wmi.Service, where string) ([]AggregateEvent, erro
 	out := make([]AggregateEvent, len(rows))
 	for i, row := range rows {
 		out[i].NumberOfEvents = wmi.AsUint32(row["NumberOfEvents"])
-		if v, ok := row["Representative"].(any); ok {
+		if v, ok := row["Representative"].(wmi.Row); ok {
 			out[i].Representative = v
 		}
 	}
@@ -794,7 +794,7 @@ func QueryAggregateEvent(svc *wmi.Service, where string) ([]AggregateEvent, erro
 type ClassCreationEvent struct {
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 	TIMECREATED        uint64  `cim:"TIME_CREATED"`
-	TargetClass        any     `cim:"TargetClass"`
+	TargetClass        wmi.Row `cim:"TargetClass"`
 }
 
 // QueryClassCreationEvent runs the WQL query against the class and decodes each
@@ -812,7 +812,7 @@ func QueryClassCreationEvent(svc *wmi.Service, where string) ([]ClassCreationEve
 	for i, row := range rows {
 		out[i].SECURITYDESCRIPTOR = wmi.AsUint8Slice(row["SECURITY_DESCRIPTOR"])
 		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
-		if v, ok := row["TargetClass"].(any); ok {
+		if v, ok := row["TargetClass"].(wmi.Row); ok {
 			out[i].TargetClass = v
 		}
 	}
@@ -823,7 +823,7 @@ func QueryClassCreationEvent(svc *wmi.Service, where string) ([]ClassCreationEve
 type ClassDeletionEvent struct {
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 	TIMECREATED        uint64  `cim:"TIME_CREATED"`
-	TargetClass        any     `cim:"TargetClass"`
+	TargetClass        wmi.Row `cim:"TargetClass"`
 }
 
 // QueryClassDeletionEvent runs the WQL query against the class and decodes each
@@ -841,7 +841,7 @@ func QueryClassDeletionEvent(svc *wmi.Service, where string) ([]ClassDeletionEve
 	for i, row := range rows {
 		out[i].SECURITYDESCRIPTOR = wmi.AsUint8Slice(row["SECURITY_DESCRIPTOR"])
 		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
-		if v, ok := row["TargetClass"].(any); ok {
+		if v, ok := row["TargetClass"].(wmi.Row); ok {
 			out[i].TargetClass = v
 		}
 	}
@@ -850,10 +850,10 @@ func QueryClassDeletionEvent(svc *wmi.Service, where string) ([]ClassDeletionEve
 
 // ClassModificationEvent is the __ClassModificationEvent CIM class.
 type ClassModificationEvent struct {
-	PreviousClass      any     `cim:"PreviousClass"`
+	PreviousClass      wmi.Row `cim:"PreviousClass"`
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 	TIMECREATED        uint64  `cim:"TIME_CREATED"`
-	TargetClass        any     `cim:"TargetClass"`
+	TargetClass        wmi.Row `cim:"TargetClass"`
 }
 
 // QueryClassModificationEvent runs the WQL query against the class and decodes each
@@ -869,12 +869,12 @@ func QueryClassModificationEvent(svc *wmi.Service, where string) ([]ClassModific
 	}
 	out := make([]ClassModificationEvent, len(rows))
 	for i, row := range rows {
-		if v, ok := row["PreviousClass"].(any); ok {
+		if v, ok := row["PreviousClass"].(wmi.Row); ok {
 			out[i].PreviousClass = v
 		}
 		out[i].SECURITYDESCRIPTOR = wmi.AsUint8Slice(row["SECURITY_DESCRIPTOR"])
 		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
-		if v, ok := row["TargetClass"].(any); ok {
+		if v, ok := row["TargetClass"].(wmi.Row); ok {
 			out[i].TargetClass = v
 		}
 	}
@@ -885,7 +885,7 @@ func QueryClassModificationEvent(svc *wmi.Service, where string) ([]ClassModific
 type ClassOperationEvent struct {
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 	TIMECREATED        uint64  `cim:"TIME_CREATED"`
-	TargetClass        any     `cim:"TargetClass"`
+	TargetClass        wmi.Row `cim:"TargetClass"`
 }
 
 // QueryClassOperationEvent runs the WQL query against the class and decodes each
@@ -903,7 +903,7 @@ func QueryClassOperationEvent(svc *wmi.Service, where string) ([]ClassOperationE
 	for i, row := range rows {
 		out[i].SECURITYDESCRIPTOR = wmi.AsUint8Slice(row["SECURITY_DESCRIPTOR"])
 		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
-		if v, ok := row["TargetClass"].(any); ok {
+		if v, ok := row["TargetClass"].(wmi.Row); ok {
 			out[i].TargetClass = v
 		}
 	}
@@ -927,7 +927,7 @@ type ClassProviderRegistration struct {
 	SupportsTransactions         bool     `cim:"SupportsTransactions"`
 	UnsupportedQueries           []string `cim:"UnsupportedQueries"`
 	Version                      uint32   `cim:"Version"`
-	Provider                     any      `cim:"provider"`
+	Provider                     string   `cim:"provider"`
 }
 
 // QueryClassProviderRegistration runs the WQL query against the class and decodes each
@@ -958,9 +958,7 @@ func QueryClassProviderRegistration(svc *wmi.Service, where string) ([]ClassProv
 		out[i].SupportsTransactions = wmi.AsBool(row["SupportsTransactions"])
 		out[i].UnsupportedQueries = wmi.AsStringSlice(row["UnsupportedQueries"])
 		out[i].Version = wmi.AsUint32(row["Version"])
-		if v, ok := row["provider"].(any); ok {
-			out[i].Provider = v
-		}
+		out[i].Provider = wmi.AsString(row["provider"])
 	}
 	return out, nil
 }
@@ -969,9 +967,9 @@ func QueryClassProviderRegistration(svc *wmi.Service, where string) ([]ClassProv
 type ConsumerFailureEvent struct {
 	ErrorCode          uint32  `cim:"ErrorCode"`
 	ErrorDescription   string  `cim:"ErrorDescription"`
-	ErrorObject        any     `cim:"ErrorObject"`
-	Event              any     `cim:"Event"`
-	IntendedConsumer   any     `cim:"IntendedConsumer"`
+	ErrorObject        wmi.Row `cim:"ErrorObject"`
+	Event              wmi.Row `cim:"Event"`
+	IntendedConsumer   string  `cim:"IntendedConsumer"`
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 	TIMECREATED        uint64  `cim:"TIME_CREATED"`
 }
@@ -991,15 +989,13 @@ func QueryConsumerFailureEvent(svc *wmi.Service, where string) ([]ConsumerFailur
 	for i, row := range rows {
 		out[i].ErrorCode = wmi.AsUint32(row["ErrorCode"])
 		out[i].ErrorDescription = wmi.AsString(row["ErrorDescription"])
-		if v, ok := row["ErrorObject"].(any); ok {
+		if v, ok := row["ErrorObject"].(wmi.Row); ok {
 			out[i].ErrorObject = v
 		}
-		if v, ok := row["Event"].(any); ok {
+		if v, ok := row["Event"].(wmi.Row); ok {
 			out[i].Event = v
 		}
-		if v, ok := row["IntendedConsumer"].(any); ok {
-			out[i].IntendedConsumer = v
-		}
+		out[i].IntendedConsumer = wmi.AsString(row["IntendedConsumer"])
 		out[i].SECURITYDESCRIPTOR = wmi.AsUint8Slice(row["SECURITY_DESCRIPTOR"])
 		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
 	}
@@ -1061,7 +1057,7 @@ func QueryEventConsumer(svc *wmi.Service, where string) ([]EventConsumer, error)
 // EventConsumerProviderRegistration is the __EventConsumerProviderRegistration CIM class.
 type EventConsumerProviderRegistration struct {
 	ConsumerClassNames []string `cim:"ConsumerClassNames"`
-	Provider           any      `cim:"provider"`
+	Provider           string   `cim:"provider"`
 }
 
 // QueryEventConsumerProviderRegistration runs the WQL query against the class and decodes each
@@ -1078,17 +1074,15 @@ func QueryEventConsumerProviderRegistration(svc *wmi.Service, where string) ([]E
 	out := make([]EventConsumerProviderRegistration, len(rows))
 	for i, row := range rows {
 		out[i].ConsumerClassNames = wmi.AsStringSlice(row["ConsumerClassNames"])
-		if v, ok := row["provider"].(any); ok {
-			out[i].Provider = v
-		}
+		out[i].Provider = wmi.AsString(row["provider"])
 	}
 	return out, nil
 }
 
 // EventDroppedEvent is the __EventDroppedEvent CIM class.
 type EventDroppedEvent struct {
-	Event              any     `cim:"Event"`
-	IntendedConsumer   any     `cim:"IntendedConsumer"`
+	Event              wmi.Row `cim:"Event"`
+	IntendedConsumer   string  `cim:"IntendedConsumer"`
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 	TIMECREATED        uint64  `cim:"TIME_CREATED"`
 }
@@ -1106,12 +1100,10 @@ func QueryEventDroppedEvent(svc *wmi.Service, where string) ([]EventDroppedEvent
 	}
 	out := make([]EventDroppedEvent, len(rows))
 	for i, row := range rows {
-		if v, ok := row["Event"].(any); ok {
+		if v, ok := row["Event"].(wmi.Row); ok {
 			out[i].Event = v
 		}
-		if v, ok := row["IntendedConsumer"].(any); ok {
-			out[i].IntendedConsumer = v
-		}
+		out[i].IntendedConsumer = wmi.AsString(row["IntendedConsumer"])
 		out[i].SECURITYDESCRIPTOR = wmi.AsUint8Slice(row["SECURITY_DESCRIPTOR"])
 		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
 	}
@@ -1173,7 +1165,7 @@ func QueryEventGenerator(svc *wmi.Service, where string) ([]EventGenerator, erro
 // EventProviderRegistration is the __EventProviderRegistration CIM class.
 type EventProviderRegistration struct {
 	EventQueryList []string `cim:"EventQueryList"`
-	Provider       any      `cim:"provider"`
+	Provider       string   `cim:"provider"`
 }
 
 // QueryEventProviderRegistration runs the WQL query against the class and decodes each
@@ -1190,9 +1182,7 @@ func QueryEventProviderRegistration(svc *wmi.Service, where string) ([]EventProv
 	out := make([]EventProviderRegistration, len(rows))
 	for i, row := range rows {
 		out[i].EventQueryList = wmi.AsStringSlice(row["EventQueryList"])
-		if v, ok := row["provider"].(any); ok {
-			out[i].Provider = v
-		}
+		out[i].Provider = wmi.AsString(row["provider"])
 	}
 	return out, nil
 }
@@ -1200,8 +1190,8 @@ func QueryEventProviderRegistration(svc *wmi.Service, where string) ([]EventProv
 // EventQueueOverflowEvent is the __EventQueueOverflowEvent CIM class.
 type EventQueueOverflowEvent struct {
 	CurrentQueueSize   uint32  `cim:"CurrentQueueSize"`
-	Event              any     `cim:"Event"`
-	IntendedConsumer   any     `cim:"IntendedConsumer"`
+	Event              wmi.Row `cim:"Event"`
+	IntendedConsumer   string  `cim:"IntendedConsumer"`
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 	TIMECREATED        uint64  `cim:"TIME_CREATED"`
 }
@@ -1220,12 +1210,10 @@ func QueryEventQueueOverflowEvent(svc *wmi.Service, where string) ([]EventQueueO
 	out := make([]EventQueueOverflowEvent, len(rows))
 	for i, row := range rows {
 		out[i].CurrentQueueSize = wmi.AsUint32(row["CurrentQueueSize"])
-		if v, ok := row["Event"].(any); ok {
+		if v, ok := row["Event"].(wmi.Row); ok {
 			out[i].Event = v
 		}
-		if v, ok := row["IntendedConsumer"].(any); ok {
-			out[i].IntendedConsumer = v
-		}
+		out[i].IntendedConsumer = wmi.AsString(row["IntendedConsumer"])
 		out[i].SECURITYDESCRIPTOR = wmi.AsUint8Slice(row["SECURITY_DESCRIPTOR"])
 		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
 	}
@@ -1290,11 +1278,11 @@ func QueryExtrinsicEvent(svc *wmi.Service, where string) ([]ExtrinsicEvent, erro
 
 // FilterToConsumerBinding is the __FilterToConsumerBinding CIM class.
 type FilterToConsumerBinding struct {
-	Consumer                any     `cim:"Consumer"`
+	Consumer                string  `cim:"Consumer"`
 	CreatorSID              []uint8 `cim:"CreatorSID"`
 	DeliverSynchronously    bool    `cim:"DeliverSynchronously"`
 	DeliveryQoS             uint32  `cim:"DeliveryQoS"`
-	Filter                  any     `cim:"Filter"`
+	Filter                  string  `cim:"Filter"`
 	MaintainSecurityContext bool    `cim:"MaintainSecurityContext"`
 	SlowDownProviders       bool    `cim:"SlowDownProviders"`
 }
@@ -1312,15 +1300,11 @@ func QueryFilterToConsumerBinding(svc *wmi.Service, where string) ([]FilterToCon
 	}
 	out := make([]FilterToConsumerBinding, len(rows))
 	for i, row := range rows {
-		if v, ok := row["Consumer"].(any); ok {
-			out[i].Consumer = v
-		}
+		out[i].Consumer = wmi.AsString(row["Consumer"])
 		out[i].CreatorSID = wmi.AsUint8Slice(row["CreatorSID"])
 		out[i].DeliverSynchronously = wmi.AsBool(row["DeliverSynchronously"])
 		out[i].DeliveryQoS = wmi.AsUint32(row["DeliveryQoS"])
-		if v, ok := row["Filter"].(any); ok {
-			out[i].Filter = v
-		}
+		out[i].Filter = wmi.AsString(row["Filter"])
 		out[i].MaintainSecurityContext = wmi.AsBool(row["MaintainSecurityContext"])
 		out[i].SlowDownProviders = wmi.AsBool(row["SlowDownProviders"])
 	}
@@ -1350,7 +1334,7 @@ func QueryIndicationRelated(svc *wmi.Service, where string) ([]IndicationRelated
 type InstanceCreationEvent struct {
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 	TIMECREATED        uint64  `cim:"TIME_CREATED"`
-	TargetInstance     any     `cim:"TargetInstance"`
+	TargetInstance     wmi.Row `cim:"TargetInstance"`
 }
 
 // QueryInstanceCreationEvent runs the WQL query against the class and decodes each
@@ -1368,7 +1352,7 @@ func QueryInstanceCreationEvent(svc *wmi.Service, where string) ([]InstanceCreat
 	for i, row := range rows {
 		out[i].SECURITYDESCRIPTOR = wmi.AsUint8Slice(row["SECURITY_DESCRIPTOR"])
 		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
-		if v, ok := row["TargetInstance"].(any); ok {
+		if v, ok := row["TargetInstance"].(wmi.Row); ok {
 			out[i].TargetInstance = v
 		}
 	}
@@ -1379,7 +1363,7 @@ func QueryInstanceCreationEvent(svc *wmi.Service, where string) ([]InstanceCreat
 type InstanceDeletionEvent struct {
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 	TIMECREATED        uint64  `cim:"TIME_CREATED"`
-	TargetInstance     any     `cim:"TargetInstance"`
+	TargetInstance     wmi.Row `cim:"TargetInstance"`
 }
 
 // QueryInstanceDeletionEvent runs the WQL query against the class and decodes each
@@ -1397,7 +1381,7 @@ func QueryInstanceDeletionEvent(svc *wmi.Service, where string) ([]InstanceDelet
 	for i, row := range rows {
 		out[i].SECURITYDESCRIPTOR = wmi.AsUint8Slice(row["SECURITY_DESCRIPTOR"])
 		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
-		if v, ok := row["TargetInstance"].(any); ok {
+		if v, ok := row["TargetInstance"].(wmi.Row); ok {
 			out[i].TargetInstance = v
 		}
 	}
@@ -1406,10 +1390,10 @@ func QueryInstanceDeletionEvent(svc *wmi.Service, where string) ([]InstanceDelet
 
 // InstanceModificationEvent is the __InstanceModificationEvent CIM class.
 type InstanceModificationEvent struct {
-	PreviousInstance   any     `cim:"PreviousInstance"`
+	PreviousInstance   wmi.Row `cim:"PreviousInstance"`
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 	TIMECREATED        uint64  `cim:"TIME_CREATED"`
-	TargetInstance     any     `cim:"TargetInstance"`
+	TargetInstance     wmi.Row `cim:"TargetInstance"`
 }
 
 // QueryInstanceModificationEvent runs the WQL query against the class and decodes each
@@ -1425,12 +1409,12 @@ func QueryInstanceModificationEvent(svc *wmi.Service, where string) ([]InstanceM
 	}
 	out := make([]InstanceModificationEvent, len(rows))
 	for i, row := range rows {
-		if v, ok := row["PreviousInstance"].(any); ok {
+		if v, ok := row["PreviousInstance"].(wmi.Row); ok {
 			out[i].PreviousInstance = v
 		}
 		out[i].SECURITYDESCRIPTOR = wmi.AsUint8Slice(row["SECURITY_DESCRIPTOR"])
 		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
-		if v, ok := row["TargetInstance"].(any); ok {
+		if v, ok := row["TargetInstance"].(wmi.Row); ok {
 			out[i].TargetInstance = v
 		}
 	}
@@ -1441,7 +1425,7 @@ func QueryInstanceModificationEvent(svc *wmi.Service, where string) ([]InstanceM
 type InstanceOperationEvent struct {
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 	TIMECREATED        uint64  `cim:"TIME_CREATED"`
-	TargetInstance     any     `cim:"TargetInstance"`
+	TargetInstance     wmi.Row `cim:"TargetInstance"`
 }
 
 // QueryInstanceOperationEvent runs the WQL query against the class and decodes each
@@ -1459,7 +1443,7 @@ func QueryInstanceOperationEvent(svc *wmi.Service, where string) ([]InstanceOper
 	for i, row := range rows {
 		out[i].SECURITYDESCRIPTOR = wmi.AsUint8Slice(row["SECURITY_DESCRIPTOR"])
 		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
-		if v, ok := row["TargetInstance"].(any); ok {
+		if v, ok := row["TargetInstance"].(wmi.Row); ok {
 			out[i].TargetInstance = v
 		}
 	}
@@ -1476,7 +1460,7 @@ type InstanceProviderRegistration struct {
 	SupportsGet          bool     `cim:"SupportsGet"`
 	SupportsPut          bool     `cim:"SupportsPut"`
 	SupportsTransactions bool     `cim:"SupportsTransactions"`
-	Provider             any      `cim:"provider"`
+	Provider             string   `cim:"provider"`
 }
 
 // QueryInstanceProviderRegistration runs the WQL query against the class and decodes each
@@ -1500,9 +1484,7 @@ func QueryInstanceProviderRegistration(svc *wmi.Service, where string) ([]Instan
 		out[i].SupportsGet = wmi.AsBool(row["SupportsGet"])
 		out[i].SupportsPut = wmi.AsBool(row["SupportsPut"])
 		out[i].SupportsTransactions = wmi.AsBool(row["SupportsTransactions"])
-		if v, ok := row["provider"].(any); ok {
-			out[i].Provider = v
-		}
+		out[i].Provider = wmi.AsString(row["provider"])
 	}
 	return out, nil
 }
@@ -1537,11 +1519,11 @@ func QueryIntervalTimerInstruction(svc *wmi.Service, where string) ([]IntervalTi
 // MethodInvocationEvent is the __MethodInvocationEvent CIM class.
 type MethodInvocationEvent struct {
 	Method             string  `cim:"Method"`
-	Parameters         any     `cim:"Parameters"`
+	Parameters         wmi.Row `cim:"Parameters"`
 	PreCall            bool    `cim:"PreCall"`
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 	TIMECREATED        uint64  `cim:"TIME_CREATED"`
-	TargetInstance     any     `cim:"TargetInstance"`
+	TargetInstance     wmi.Row `cim:"TargetInstance"`
 }
 
 // QueryMethodInvocationEvent runs the WQL query against the class and decodes each
@@ -1558,13 +1540,13 @@ func QueryMethodInvocationEvent(svc *wmi.Service, where string) ([]MethodInvocat
 	out := make([]MethodInvocationEvent, len(rows))
 	for i, row := range rows {
 		out[i].Method = wmi.AsString(row["Method"])
-		if v, ok := row["Parameters"].(any); ok {
+		if v, ok := row["Parameters"].(wmi.Row); ok {
 			out[i].Parameters = v
 		}
 		out[i].PreCall = wmi.AsBool(row["PreCall"])
 		out[i].SECURITYDESCRIPTOR = wmi.AsUint8Slice(row["SECURITY_DESCRIPTOR"])
 		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
-		if v, ok := row["TargetInstance"].(any); ok {
+		if v, ok := row["TargetInstance"].(wmi.Row); ok {
 			out[i].TargetInstance = v
 		}
 	}
@@ -1573,7 +1555,7 @@ func QueryMethodInvocationEvent(svc *wmi.Service, where string) ([]MethodInvocat
 
 // MethodProviderRegistration is the __MethodProviderRegistration CIM class.
 type MethodProviderRegistration struct {
-	Provider any `cim:"provider"`
+	Provider string `cim:"provider"`
 }
 
 // QueryMethodProviderRegistration runs the WQL query against the class and decodes each
@@ -1589,9 +1571,7 @@ func QueryMethodProviderRegistration(svc *wmi.Service, where string) ([]MethodPr
 	}
 	out := make([]MethodProviderRegistration, len(rows))
 	for i, row := range rows {
-		if v, ok := row["provider"].(any); ok {
-			out[i].Provider = v
-		}
+		out[i].Provider = wmi.AsString(row["provider"])
 	}
 	return out, nil
 }
@@ -1654,7 +1634,7 @@ func QueryNTLMUser9X(svc *wmi.Service, where string) ([]NTLMUser9X, error) {
 type NamespaceCreationEvent struct {
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 	TIMECREATED        uint64  `cim:"TIME_CREATED"`
-	TargetNamespace    any     `cim:"TargetNamespace"`
+	TargetNamespace    wmi.Row `cim:"TargetNamespace"`
 }
 
 // QueryNamespaceCreationEvent runs the WQL query against the class and decodes each
@@ -1672,7 +1652,7 @@ func QueryNamespaceCreationEvent(svc *wmi.Service, where string) ([]NamespaceCre
 	for i, row := range rows {
 		out[i].SECURITYDESCRIPTOR = wmi.AsUint8Slice(row["SECURITY_DESCRIPTOR"])
 		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
-		if v, ok := row["TargetNamespace"].(any); ok {
+		if v, ok := row["TargetNamespace"].(wmi.Row); ok {
 			out[i].TargetNamespace = v
 		}
 	}
@@ -1683,7 +1663,7 @@ func QueryNamespaceCreationEvent(svc *wmi.Service, where string) ([]NamespaceCre
 type NamespaceDeletionEvent struct {
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 	TIMECREATED        uint64  `cim:"TIME_CREATED"`
-	TargetNamespace    any     `cim:"TargetNamespace"`
+	TargetNamespace    wmi.Row `cim:"TargetNamespace"`
 }
 
 // QueryNamespaceDeletionEvent runs the WQL query against the class and decodes each
@@ -1701,7 +1681,7 @@ func QueryNamespaceDeletionEvent(svc *wmi.Service, where string) ([]NamespaceDel
 	for i, row := range rows {
 		out[i].SECURITYDESCRIPTOR = wmi.AsUint8Slice(row["SECURITY_DESCRIPTOR"])
 		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
-		if v, ok := row["TargetNamespace"].(any); ok {
+		if v, ok := row["TargetNamespace"].(wmi.Row); ok {
 			out[i].TargetNamespace = v
 		}
 	}
@@ -1710,10 +1690,10 @@ func QueryNamespaceDeletionEvent(svc *wmi.Service, where string) ([]NamespaceDel
 
 // NamespaceModificationEvent is the __NamespaceModificationEvent CIM class.
 type NamespaceModificationEvent struct {
-	PreviousNamespace  any     `cim:"PreviousNamespace"`
+	PreviousNamespace  wmi.Row `cim:"PreviousNamespace"`
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 	TIMECREATED        uint64  `cim:"TIME_CREATED"`
-	TargetNamespace    any     `cim:"TargetNamespace"`
+	TargetNamespace    wmi.Row `cim:"TargetNamespace"`
 }
 
 // QueryNamespaceModificationEvent runs the WQL query against the class and decodes each
@@ -1729,12 +1709,12 @@ func QueryNamespaceModificationEvent(svc *wmi.Service, where string) ([]Namespac
 	}
 	out := make([]NamespaceModificationEvent, len(rows))
 	for i, row := range rows {
-		if v, ok := row["PreviousNamespace"].(any); ok {
+		if v, ok := row["PreviousNamespace"].(wmi.Row); ok {
 			out[i].PreviousNamespace = v
 		}
 		out[i].SECURITYDESCRIPTOR = wmi.AsUint8Slice(row["SECURITY_DESCRIPTOR"])
 		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
-		if v, ok := row["TargetNamespace"].(any); ok {
+		if v, ok := row["TargetNamespace"].(wmi.Row); ok {
 			out[i].TargetNamespace = v
 		}
 	}
@@ -1745,7 +1725,7 @@ func QueryNamespaceModificationEvent(svc *wmi.Service, where string) ([]Namespac
 type NamespaceOperationEvent struct {
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 	TIMECREATED        uint64  `cim:"TIME_CREATED"`
-	TargetNamespace    any     `cim:"TargetNamespace"`
+	TargetNamespace    wmi.Row `cim:"TargetNamespace"`
 }
 
 // QueryNamespaceOperationEvent runs the WQL query against the class and decodes each
@@ -1763,7 +1743,7 @@ func QueryNamespaceOperationEvent(svc *wmi.Service, where string) ([]NamespaceOp
 	for i, row := range rows {
 		out[i].SECURITYDESCRIPTOR = wmi.AsUint8Slice(row["SECURITY_DESCRIPTOR"])
 		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
-		if v, ok := row["TargetNamespace"].(any); ok {
+		if v, ok := row["TargetNamespace"].(wmi.Row); ok {
 			out[i].TargetNamespace = v
 		}
 	}
@@ -1803,7 +1783,7 @@ type ObjectProviderRegistration struct {
 	SupportsGet          bool     `cim:"SupportsGet"`
 	SupportsPut          bool     `cim:"SupportsPut"`
 	SupportsTransactions bool     `cim:"SupportsTransactions"`
-	Provider             any      `cim:"provider"`
+	Provider             string   `cim:"provider"`
 }
 
 // QueryObjectProviderRegistration runs the WQL query against the class and decodes each
@@ -1827,9 +1807,7 @@ func QueryObjectProviderRegistration(svc *wmi.Service, where string) ([]ObjectPr
 		out[i].SupportsGet = wmi.AsBool(row["SupportsGet"])
 		out[i].SupportsPut = wmi.AsBool(row["SupportsPut"])
 		out[i].SupportsTransactions = wmi.AsBool(row["SupportsTransactions"])
-		if v, ok := row["provider"].(any); ok {
-			out[i].Provider = v
-		}
+		out[i].Provider = wmi.AsString(row["provider"])
 	}
 	return out, nil
 }
@@ -1855,9 +1833,9 @@ func QueryPARAMETERS(svc *wmi.Service, where string) ([]PARAMETERS, error) {
 
 // PropertyProviderRegistration is the __PropertyProviderRegistration CIM class.
 type PropertyProviderRegistration struct {
-	SupportsGet bool `cim:"SupportsGet"`
-	SupportsPut bool `cim:"SupportsPut"`
-	Provider    any  `cim:"provider"`
+	SupportsGet bool   `cim:"SupportsGet"`
+	SupportsPut bool   `cim:"SupportsPut"`
+	Provider    string `cim:"provider"`
 }
 
 // QueryPropertyProviderRegistration runs the WQL query against the class and decodes each
@@ -1875,9 +1853,7 @@ func QueryPropertyProviderRegistration(svc *wmi.Service, where string) ([]Proper
 	for i, row := range rows {
 		out[i].SupportsGet = wmi.AsBool(row["SupportsGet"])
 		out[i].SupportsPut = wmi.AsBool(row["SupportsPut"])
-		if v, ok := row["provider"].(any); ok {
-			out[i].Provider = v
-		}
+		out[i].Provider = wmi.AsString(row["provider"])
 	}
 	return out, nil
 }
@@ -1907,7 +1883,7 @@ func QueryProvider(svc *wmi.Service, where string) ([]Provider, error) {
 
 // ProviderRegistration is the __ProviderRegistration CIM class.
 type ProviderRegistration struct {
-	Provider any `cim:"provider"`
+	Provider string `cim:"provider"`
 }
 
 // QueryProviderRegistration runs the WQL query against the class and decodes each
@@ -1923,9 +1899,7 @@ func QueryProviderRegistration(svc *wmi.Service, where string) ([]ProviderRegist
 	}
 	out := make([]ProviderRegistration, len(rows))
 	for i, row := range rows {
-		if v, ok := row["provider"].(any); ok {
-			out[i].Provider = v
-		}
+		out[i].Provider = wmi.AsString(row["provider"])
 	}
 	return out, nil
 }
@@ -1934,8 +1908,8 @@ func QueryProviderRegistration(svc *wmi.Service, where string) ([]ProviderRegist
 type QOSFailureEvent struct {
 	ErrorCode          uint32  `cim:"ErrorCode"`
 	ErrorDescription   string  `cim:"ErrorDescription"`
-	Event              any     `cim:"Event"`
-	IntendedConsumer   any     `cim:"IntendedConsumer"`
+	Event              wmi.Row `cim:"Event"`
+	IntendedConsumer   string  `cim:"IntendedConsumer"`
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 	TIMECREATED        uint64  `cim:"TIME_CREATED"`
 }
@@ -1955,12 +1929,10 @@ func QueryQOSFailureEvent(svc *wmi.Service, where string) ([]QOSFailureEvent, er
 	for i, row := range rows {
 		out[i].ErrorCode = wmi.AsUint32(row["ErrorCode"])
 		out[i].ErrorDescription = wmi.AsString(row["ErrorDescription"])
-		if v, ok := row["Event"].(any); ok {
+		if v, ok := row["Event"].(wmi.Row); ok {
 			out[i].Event = v
 		}
-		if v, ok := row["IntendedConsumer"].(any); ok {
-			out[i].IntendedConsumer = v
-		}
+		out[i].IntendedConsumer = wmi.AsString(row["IntendedConsumer"])
 		out[i].SECURITYDESCRIPTOR = wmi.AsUint8Slice(row["SECURITY_DESCRIPTOR"])
 		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
 	}
@@ -1969,12 +1941,12 @@ func QueryQOSFailureEvent(svc *wmi.Service, where string) ([]QOSFailureEvent, er
 
 // SecurityDescriptor is the __SecurityDescriptor CIM class.
 type SecurityDescriptor struct {
-	ControlFlags uint32 `cim:"ControlFlags"`
-	DACL         []any  `cim:"DACL"`
-	Group        any    `cim:"Group"`
-	Owner        any    `cim:"Owner"`
-	SACL         []any  `cim:"SACL"`
-	TIMECREATED  uint64 `cim:"TIME_CREATED"`
+	ControlFlags uint32    `cim:"ControlFlags"`
+	DACL         []wmi.Row `cim:"DACL"`
+	Group        wmi.Row   `cim:"Group"`
+	Owner        wmi.Row   `cim:"Owner"`
+	SACL         []wmi.Row `cim:"SACL"`
+	TIMECREATED  uint64    `cim:"TIME_CREATED"`
 }
 
 // QuerySecurityDescriptor runs the WQL query against the class and decodes each
@@ -1991,18 +1963,14 @@ func QuerySecurityDescriptor(svc *wmi.Service, where string) ([]SecurityDescript
 	out := make([]SecurityDescriptor, len(rows))
 	for i, row := range rows {
 		out[i].ControlFlags = wmi.AsUint32(row["ControlFlags"])
-		if v, ok := row["DACL"].([]any); ok {
-			out[i].DACL = v
-		}
-		if v, ok := row["Group"].(any); ok {
+		out[i].DACL = wmi.AsRowSlice(row["DACL"])
+		if v, ok := row["Group"].(wmi.Row); ok {
 			out[i].Group = v
 		}
-		if v, ok := row["Owner"].(any); ok {
+		if v, ok := row["Owner"].(wmi.Row); ok {
 			out[i].Owner = v
 		}
-		if v, ok := row["SACL"].([]any); ok {
-			out[i].SACL = v
-		}
+		out[i].SACL = wmi.AsRowSlice(row["SACL"])
 		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
 	}
 	return out, nil
@@ -2092,7 +2060,7 @@ func QuerySystemSecurity(svc *wmi.Service, where string) ([]SystemSecurity, erro
 
 // SystemSecurityGet9XUserListResult holds the out-parameters of __SystemSecurity.Get9XUserList.
 type SystemSecurityGet9XUserListResult struct {
-	Ul          []any
+	Ul          []wmi.Row
 	ReturnValue uint32
 }
 
@@ -2104,9 +2072,7 @@ func SystemSecurityGet9XUserList(svc *wmi.Service) (*SystemSecurityGet9XUserList
 		return nil, err
 	}
 	out := &SystemSecurityGet9XUserListResult{}
-	if v, ok := row["ul"].([]any); ok {
-		out.Ul = v
-	}
+	out.Ul = wmi.AsRowSlice(row["ul"])
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
@@ -2151,7 +2117,7 @@ func SystemSecurityGetSD(svc *wmi.Service) (*SystemSecurityGetSDResult, error) {
 
 // SystemSecurityGetSecurityDescriptorResult holds the out-parameters of __SystemSecurity.GetSecurityDescriptor.
 type SystemSecurityGetSecurityDescriptorResult struct {
-	Descriptor  any
+	Descriptor  wmi.Row
 	ReturnValue uint32
 }
 
@@ -2163,7 +2129,9 @@ func SystemSecurityGetSecurityDescriptor(svc *wmi.Service) (*SystemSecurityGetSe
 		return nil, err
 	}
 	out := &SystemSecurityGetSecurityDescriptorResult{}
-	out.Descriptor = row["Descriptor"]
+	if v, ok := row["Descriptor"].(wmi.Row); ok {
+		out.Descriptor = v
+	}
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
@@ -2175,7 +2143,7 @@ type SystemSecuritySet9XUserListResult struct {
 
 // SystemSecuritySet9XUserList invokes the static __SystemSecurity.Set9XUserList method. Zero-valued
 // in-parameters are omitted so the provider applies its defaults.
-func SystemSecuritySet9XUserList(svc *wmi.Service, ul []any) (*SystemSecuritySet9XUserListResult, error) {
+func SystemSecuritySet9XUserList(svc *wmi.Service, ul []wmi.Row) (*SystemSecuritySet9XUserListResult, error) {
 	in := map[string]any{}
 	if ul != nil {
 		in["ul"] = ul
@@ -2217,7 +2185,7 @@ type SystemSecuritySetSecurityDescriptorResult struct {
 
 // SystemSecuritySetSecurityDescriptor invokes the static __SystemSecurity.SetSecurityDescriptor method. Zero-valued
 // in-parameters are omitted so the provider applies its defaults.
-func SystemSecuritySetSecurityDescriptor(svc *wmi.Service, descriptor any) (*SystemSecuritySetSecurityDescriptorResult, error) {
+func SystemSecuritySetSecurityDescriptor(svc *wmi.Service, descriptor wmi.Row) (*SystemSecuritySetSecurityDescriptorResult, error) {
 	in := map[string]any{}
 	if descriptor != nil {
 		in["Descriptor"] = descriptor
