@@ -11,6 +11,7 @@ var AntispywareSignatureStatus = csp.Policy{
 	Format:  "int",
 	Access:  []string{"Get"},
 	Default: "1",
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_DeviceStatus_Antispyware01", ResultClass: "MDM_DeviceStatus_Antispyware01", InstanceID: "Antispyware", ParentID: "./Vendor/MSFT/DeviceStatus", Property: "SignatureStatus"},
 }
 
 // AntispywareStatus: Integer that specifies the status of the antispyware. Valid values: 0 - The status of the security provider category is good and does not need user attention. 1 - The status of the security provider category is not monitored by Windows Security Center (WSC). 2 - The status of the security provider category is poor and the computer may be at risk. 3 - The security provider category is in snooze state. Snooze indicates that WSC is not actively protecting the computer.
@@ -20,6 +21,7 @@ var AntispywareStatus = csp.Policy{
 	Format:  "int",
 	Access:  []string{"Get"},
 	Default: "3",
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_DeviceStatus_Antispyware01", ResultClass: "MDM_DeviceStatus_Antispyware01", InstanceID: "Antispyware", ParentID: "./Vendor/MSFT/DeviceStatus", Property: "Status"},
 }
 
 // AntivirusSignatureStatus: Integer that specifies the status of the antivirus signature. Valid values: 0 - The security software reports that it is not the most recent version. 1 (default) - The security software reports that it is the most recent version. 2 – Not applicable. This is returned for devices like the phone that do not have an antivirus (where the API doesn’t exist.) If more than one antivirus provider is active, this node returns: 1 – If every active antivirus provider has a valid signature status. 0 – If any of the active antivirus providers has an invalid signature status.
@@ -29,6 +31,7 @@ var AntivirusSignatureStatus = csp.Policy{
 	Format:  "int",
 	Access:  []string{"Get"},
 	Default: "1",
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_DeviceStatus_Antivirus01", ResultClass: "MDM_DeviceStatus_Antivirus01", InstanceID: "Antivirus", ParentID: "./Vendor/MSFT/DeviceStatus", Property: "SignatureStatus"},
 }
 
 // AntivirusStatus: Integer that specifies the status of the antivirus. Valid values: 0 – Antivirus is on and monitoring, 1 – Antivirus is disabled, 2 – Antivirus is not monitoring the device/PC or some options have been turned off, 3 (default) – Antivirus is temporarily not completely monitoring the device/PC,  4 – Antivirus not applicable for this device. This is returned for devices like the phone that do not have an antivirus (where the API doesn’t exist.)
@@ -38,6 +41,7 @@ var AntivirusStatus = csp.Policy{
 	Format:  "int",
 	Access:  []string{"Get"},
 	Default: "3",
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_DeviceStatus_Antivirus01", ResultClass: "MDM_DeviceStatus_Antivirus01", InstanceID: "Antivirus", ParentID: "./Vendor/MSFT/DeviceStatus", Property: "Status"},
 }
 
 // BatteryEstimatedChargeRemaining: Integer that specifies the estimated battery charge remaining. This is the value returned in BatteryLifeTime in SYSTEM_POWER_STATUS structure. The value is the number of seconds of battery life remaining when the device is not connected to an AC power source. When it is connected to a power source, the value is -1. When the estimation is unknown, the value is -1.
@@ -47,6 +51,7 @@ var BatteryEstimatedChargeRemaining = csp.Policy{
 	Format:  "int",
 	Access:  []string{"Get"},
 	Default: "0",
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_DeviceStatus_Battery01", ResultClass: "MDM_DeviceStatus_Battery01", InstanceID: "Battery", ParentID: "./Vendor/MSFT/DeviceStatus", Property: "EstimatedChargeRemaining"},
 }
 
 // BatteryEstimatedRuntime: Integer that specifies the estimated runtime of the battery. This is the value returned in BatteryLifeTime in SYSTEM_POWER_STATUS structure. The value is the number of seconds of battery life remaining when the device is not connected to an AC power source. When it is connected to a power source, the value is -1. When the estimation is unknown, the value is -1.
@@ -56,6 +61,7 @@ var BatteryEstimatedRuntime = csp.Policy{
 	Format:  "int",
 	Access:  []string{"Get"},
 	Default: "0",
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_DeviceStatus_Battery01", ResultClass: "MDM_DeviceStatus_Battery01", InstanceID: "Battery", ParentID: "./Vendor/MSFT/DeviceStatus", Property: "EstimatedRuntime"},
 }
 
 // BatteryStatus: Integer that specifies the status of the battery
@@ -65,6 +71,7 @@ var BatteryStatus = csp.Policy{
 	Format:  "int",
 	Access:  []string{"Get"},
 	Default: "0",
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_DeviceStatus_Battery01", ResultClass: "MDM_DeviceStatus_Battery01", InstanceID: "Battery", ParentID: "./Vendor/MSFT/DeviceStatus", Property: "Status"},
 }
 
 // CellularIdentitiesCommercializationOperator: The mobile service provider or mobile operator associated with the specific IMEI number.
@@ -73,6 +80,7 @@ var CellularIdentitiesCommercializationOperator = csp.Policy{
 	URI:    "./Vendor/MSFT/DeviceStatus/CellularIdentities/CommercializationOperator",
 	Format: "chr",
 	Access: []string{"Get"},
+	Bridge: &csp.Bridge{ConfigClass: "MDM_DeviceStatus_CellularIdentities01_01", ResultClass: "MDM_DeviceStatus_CellularIdentities01_01", InstanceID: "CellularIdentities", ParentID: "./Vendor/MSFT/DeviceStatus", Property: "CommercializationOperator"},
 }
 
 // CellularIdentitiesICCID: The Integrated Circuit Card ID (ICCID) of the SIM card associated with the specific IMEI number.
@@ -81,6 +89,7 @@ var CellularIdentitiesICCID = csp.Policy{
 	URI:    "./Vendor/MSFT/DeviceStatus/CellularIdentities/ICCID",
 	Format: "chr",
 	Access: []string{"Get"},
+	Bridge: &csp.Bridge{ConfigClass: "MDM_DeviceStatus_CellularIdentities01_01", ResultClass: "MDM_DeviceStatus_CellularIdentities01_01", InstanceID: "CellularIdentities", ParentID: "./Vendor/MSFT/DeviceStatus", Property: "ICCID"},
 }
 
 // CellularIdentitiesIMSI: The International Mobile Subscriber Identity (IMSI) associated with the IMEI number.
@@ -89,6 +98,7 @@ var CellularIdentitiesIMSI = csp.Policy{
 	URI:    "./Vendor/MSFT/DeviceStatus/CellularIdentities/IMSI",
 	Format: "chr",
 	Access: []string{"Get"},
+	Bridge: &csp.Bridge{ConfigClass: "MDM_DeviceStatus_CellularIdentities01_01", ResultClass: "MDM_DeviceStatus_CellularIdentities01_01", InstanceID: "CellularIdentities", ParentID: "./Vendor/MSFT/DeviceStatus", Property: "IMSI"},
 }
 
 // CellularIdentitiesPhoneNumber: Phone number associated with the specific IMEI number.
@@ -97,6 +107,7 @@ var CellularIdentitiesPhoneNumber = csp.Policy{
 	URI:    "./Vendor/MSFT/DeviceStatus/CellularIdentities/PhoneNumber",
 	Format: "chr",
 	Access: []string{"Get"},
+	Bridge: &csp.Bridge{ConfigClass: "MDM_DeviceStatus_CellularIdentities01_01", ResultClass: "MDM_DeviceStatus_CellularIdentities01_01", InstanceID: "CellularIdentities", ParentID: "./Vendor/MSFT/DeviceStatus", Property: "PhoneNumber"},
 }
 
 // CellularIdentitiesRoamingCompliance: Boolean value that indicates compliance with the enforced enterprise roaming policy.
@@ -105,6 +116,7 @@ var CellularIdentitiesRoamingCompliance = csp.Policy{
 	URI:    "./Vendor/MSFT/DeviceStatus/CellularIdentities/RoamingCompliance",
 	Format: "bool",
 	Access: []string{"Get"},
+	Bridge: &csp.Bridge{ConfigClass: "MDM_DeviceStatus_CellularIdentities01_01", ResultClass: "MDM_DeviceStatus_CellularIdentities01_01", InstanceID: "CellularIdentities", ParentID: "./Vendor/MSFT/DeviceStatus", Property: "RoamingCompliance"},
 }
 
 // CellularIdentitiesRoamingStatus: Indicates whether the SIM card associated with the specific IMEI number is roaming.
@@ -113,6 +125,7 @@ var CellularIdentitiesRoamingStatus = csp.Policy{
 	URI:    "./Vendor/MSFT/DeviceStatus/CellularIdentities/RoamingStatus",
 	Format: "bool",
 	Access: []string{"Get"},
+	Bridge: &csp.Bridge{ConfigClass: "MDM_DeviceStatus_CellularIdentities01_01", ResultClass: "MDM_DeviceStatus_CellularIdentities01_01", InstanceID: "CellularIdentities", ParentID: "./Vendor/MSFT/DeviceStatus", Property: "RoamingStatus"},
 }
 
 // CertAttestationMDMClientCertAttestation: MDM Certificate attestation information.  This will return an XML blob containing the relevent attestation fields.
@@ -129,6 +142,7 @@ var ComplianceEncryptionCompliance = csp.Policy{
 	URI:    "./Vendor/MSFT/DeviceStatus/Compliance/EncryptionCompliance",
 	Format: "bool",
 	Access: []string{"Get"},
+	Bridge: &csp.Bridge{ConfigClass: "MDM_DeviceStatus_Compliance01", ResultClass: "MDM_DeviceStatus_Compliance01", InstanceID: "Compliance", ParentID: "./Vendor/MSFT/DeviceStatus", Property: "EncryptionCompliance"},
 }
 
 // DMABootDMAProtectionStatus: Boot DMA Protection status. 1 - Enabled, 2 - Disabled
@@ -137,6 +151,7 @@ var DMABootDMAProtectionStatus = csp.Policy{
 	URI:    "./Vendor/MSFT/DeviceStatus/DMA/BootDMAProtectionStatus",
 	Format: "int",
 	Access: []string{"Get"},
+	Bridge: &csp.Bridge{ConfigClass: "MDM_DeviceStatus_DMA01", ResultClass: "MDM_DeviceStatus_DMA01", InstanceID: "DMA", ParentID: "./Vendor/MSFT/DeviceStatus", Property: "BootDMAProtectionStatus"},
 }
 
 // DeviceGuardHypervisorEnforcedCodeIntegrityStatus: Hypervisor Enforced Code Integrity (HVCI) status. 0 - Running, 1 - Reboot required, 2 - Not configured, 3 - VBS not running
@@ -147,6 +162,7 @@ var DeviceGuardHypervisorEnforcedCodeIntegrityStatus = csp.Policy{
 	Access:     []string{"Get"},
 	MinOSBuild: "10.0.22000",
 	CSPVersion: "1.5",
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_DeviceStatus_DeviceGuard01", ResultClass: "MDM_DeviceStatus_DeviceGuard01", InstanceID: "DeviceGuard", ParentID: "./Vendor/MSFT/DeviceStatus", Property: "HypervisorEnforcedCodeIntegrityStatus"},
 }
 
 // DeviceGuardLsaCfgCredGuardStatus: Local System Authority (LSA) credential guard status. 0 - Running, 1 - Reboot required, 2 - Not licensed for Credential Guard, 3 - Not configured, 4 - VBS not running
@@ -155,6 +171,7 @@ var DeviceGuardLsaCfgCredGuardStatus = csp.Policy{
 	URI:    "./Vendor/MSFT/DeviceStatus/DeviceGuard/LsaCfgCredGuardStatus",
 	Format: "int",
 	Access: []string{"Get"},
+	Bridge: &csp.Bridge{ConfigClass: "MDM_DeviceStatus_DeviceGuard01", ResultClass: "MDM_DeviceStatus_DeviceGuard01", InstanceID: "DeviceGuard", ParentID: "./Vendor/MSFT/DeviceStatus", Property: "LsaCfgCredGuardStatus"},
 }
 
 // DeviceGuardSystemGuardStatus: System Guard status. 0 - Running, 1 - Reboot required, 2 - Not configured, 3 - System doesn't meet hardware requirements
@@ -165,6 +182,7 @@ var DeviceGuardSystemGuardStatus = csp.Policy{
 	Access:     []string{"Get"},
 	MinOSBuild: "10.0.22000",
 	CSPVersion: "1.5",
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_DeviceStatus_DeviceGuard01", ResultClass: "MDM_DeviceStatus_DeviceGuard01", InstanceID: "DeviceGuard", ParentID: "./Vendor/MSFT/DeviceStatus", Property: "SystemGuardStatus"},
 }
 
 // DeviceGuardVirtualizationBasedSecurityHwReq: Virtualization-based security hardware requirement status. The value is a 256 value bitmask. 0x0: System meets hardware configuration requirements, 0x1: SecureBoot required, 0x2: DMA Protection required, 0x4: HyperV not supported for Guest VM, 0x8: HyperV feature is not available
@@ -173,6 +191,7 @@ var DeviceGuardVirtualizationBasedSecurityHwReq = csp.Policy{
 	URI:    "./Vendor/MSFT/DeviceStatus/DeviceGuard/VirtualizationBasedSecurityHwReq",
 	Format: "int",
 	Access: []string{"Get"},
+	Bridge: &csp.Bridge{ConfigClass: "MDM_DeviceStatus_DeviceGuard01", ResultClass: "MDM_DeviceStatus_DeviceGuard01", InstanceID: "DeviceGuard", ParentID: "./Vendor/MSFT/DeviceStatus", Property: "VirtualizationBasedSecurityHwReq"},
 }
 
 // DeviceGuardVirtualizationBasedSecurityStatus: Virtualization-based security status. Value is one of the following: 0 - Running, 1 - Reboot required, 2 - 64 bit architecture required, 3 - not licensed, 4 - not configured, 5 - System doesn't meet hardware requirements, 42 – Other. Event logs in Microsoft-Windows-DeviceGuard have more details
@@ -181,6 +200,7 @@ var DeviceGuardVirtualizationBasedSecurityStatus = csp.Policy{
 	URI:    "./Vendor/MSFT/DeviceStatus/DeviceGuard/VirtualizationBasedSecurityStatus",
 	Format: "int",
 	Access: []string{"Get"},
+	Bridge: &csp.Bridge{ConfigClass: "MDM_DeviceStatus_DeviceGuard01", ResultClass: "MDM_DeviceStatus_DeviceGuard01", InstanceID: "DeviceGuard", ParentID: "./Vendor/MSFT/DeviceStatus", Property: "VirtualizationBasedSecurityStatus"},
 }
 
 // DomainName: Returns the fully qualified domain name of the device(if any).
@@ -191,6 +211,7 @@ var DomainName = csp.Policy{
 	Access:     []string{"Get"},
 	MinOSBuild: "10.0.17134",
 	CSPVersion: "1.3",
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_DeviceStatus", ResultClass: "MDM_DeviceStatus", InstanceID: "DeviceStatus", ParentID: "./Vendor/MSFT", Property: "DomainName"},
 }
 
 // FirewallStatus: Integer that specifies the status of the firewall. Valid values: 0 – Firewall is on and monitoring, 1 – Firewall has been disabled, 2 – Firewall is not monitoring all networks or some rules have been turned off, 3 (default) – Firewall is temporarily not monitoring all networks, 4 – Not applicable. This is returned for devices like the phone that do not have an antivirus (where the API doesn’t exist.)
@@ -200,6 +221,7 @@ var FirewallStatus = csp.Policy{
 	Format:  "int",
 	Access:  []string{"Get"},
 	Default: "3",
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_DeviceStatus_Firewall01", ResultClass: "MDM_DeviceStatus_Firewall01", InstanceID: "Firewall", ParentID: "./Vendor/MSFT/DeviceStatus", Property: "Status"},
 }
 
 // NetworkIdentifiersIPAddressV4: IPv4 address of the network card associated with the MAC address.
@@ -208,6 +230,7 @@ var NetworkIdentifiersIPAddressV4 = csp.Policy{
 	URI:    "./Vendor/MSFT/DeviceStatus/NetworkIdentifiers/IPAddressV4",
 	Format: "chr",
 	Access: []string{"Get"},
+	Bridge: &csp.Bridge{ConfigClass: "MDM_DeviceStatus_NetworkIdentifiers01_01", ResultClass: "MDM_DeviceStatus_NetworkIdentifiers01_01", InstanceID: "NetworkIdentifiers", ParentID: "./Vendor/MSFT/DeviceStatus", Property: "IPAddressV4"},
 }
 
 // NetworkIdentifiersIPAddressV6: IPv6 address of the network card associated with the MAC address.
@@ -216,6 +239,7 @@ var NetworkIdentifiersIPAddressV6 = csp.Policy{
 	URI:    "./Vendor/MSFT/DeviceStatus/NetworkIdentifiers/IPAddressV6",
 	Format: "chr",
 	Access: []string{"Get"},
+	Bridge: &csp.Bridge{ConfigClass: "MDM_DeviceStatus_NetworkIdentifiers01_01", ResultClass: "MDM_DeviceStatus_NetworkIdentifiers01_01", InstanceID: "NetworkIdentifiers", ParentID: "./Vendor/MSFT/DeviceStatus", Property: "IPAddressV6"},
 }
 
 // NetworkIdentifiersIsConnected: Boolean value that indicates whether the network card associated with the MAC address has an active network connection.
@@ -224,6 +248,7 @@ var NetworkIdentifiersIsConnected = csp.Policy{
 	URI:    "./Vendor/MSFT/DeviceStatus/NetworkIdentifiers/IsConnected",
 	Format: "bool",
 	Access: []string{"Get"},
+	Bridge: &csp.Bridge{ConfigClass: "MDM_DeviceStatus_NetworkIdentifiers01_01", ResultClass: "MDM_DeviceStatus_NetworkIdentifiers01_01", InstanceID: "NetworkIdentifiers", ParentID: "./Vendor/MSFT/DeviceStatus", Property: "IsConnected"},
 }
 
 // NetworkIdentifiersType: Type of network connection. The value is one of the following: 2 - WLAN (or other Wireless interface), 1 - LAN (or other Wired interface), 0 - Unknown
@@ -232,6 +257,7 @@ var NetworkIdentifiersType = csp.Policy{
 	URI:    "./Vendor/MSFT/DeviceStatus/NetworkIdentifiers/Type",
 	Format: "int",
 	Access: []string{"Get"},
+	Bridge: &csp.Bridge{ConfigClass: "MDM_DeviceStatus_NetworkIdentifiers01_01", ResultClass: "MDM_DeviceStatus_NetworkIdentifiers01_01", InstanceID: "NetworkIdentifiers", ParentID: "./Vendor/MSFT/DeviceStatus", Property: "Type"},
 }
 
 // OSEdition: String that specifies the OS edition.
@@ -241,6 +267,7 @@ var OSEdition = csp.Policy{
 	Format:  "chr",
 	Access:  []string{"Get"},
 	Default: "Not available",
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_DeviceStatus_OS01", ResultClass: "MDM_DeviceStatus_OS01", InstanceID: "OS", ParentID: "./Vendor/MSFT/DeviceStatus", Property: "Edition"},
 }
 
 // OSMode: Read only node that specifies the device mode. Valid values: 0 - the device is in standard configuration, 1 - the device is in S mode configuration
@@ -252,6 +279,7 @@ var OSMode = csp.Policy{
 	Default:    "Not available",
 	MinOSBuild: "10.0.17134",
 	CSPVersion: "1.4",
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_DeviceStatus_OS01", ResultClass: "MDM_DeviceStatus_OS01", InstanceID: "OS", ParentID: "./Vendor/MSFT/DeviceStatus", Property: "Mode"},
 }
 
 // SecureBootSecurebootCertificateUpdateError: Returns the first error encountered during Secure Boot certificate update (if any). This error corresponds to the event log error that was logged.
@@ -276,6 +304,7 @@ var SecureBootState = csp.Policy{
 	URI:    "./Vendor/MSFT/DeviceStatus/SecureBootState",
 	Format: "int",
 	Access: []string{"Get"},
+	Bridge: &csp.Bridge{ConfigClass: "MDM_DeviceStatus", ResultClass: "MDM_DeviceStatus", InstanceID: "DeviceStatus", ParentID: "./Vendor/MSFT", Property: "SecureBootState"},
 }
 
 // TPMManufacturerId: String that specifies the TPM manufacturer ID as a number.
@@ -318,6 +347,7 @@ var TPMSpecificationVersion = csp.Policy{
 	Format:  "chr",
 	Access:  []string{"Get"},
 	Default: "Not available",
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_DeviceStatus_TPM01", ResultClass: "MDM_DeviceStatus_TPM01", InstanceID: "TPM", ParentID: "./Vendor/MSFT/DeviceStatus", Property: "SpecificationVersion"},
 }
 
 // UACStatus: Integer that specifies the status of the UAC.
@@ -326,6 +356,7 @@ var UACStatus = csp.Policy{
 	URI:    "./Vendor/MSFT/DeviceStatus/UAC/Status",
 	Format: "int",
 	Access: []string{"Get"},
+	Bridge: &csp.Bridge{ConfigClass: "MDM_DeviceStatus_UAC01", ResultClass: "MDM_DeviceStatus_UAC01", InstanceID: "UAC", ParentID: "./Vendor/MSFT/DeviceStatus", Property: "Status"},
 }
 
 // All lists every policy in this CSP area.

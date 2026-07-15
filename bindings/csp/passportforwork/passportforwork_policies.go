@@ -14,6 +14,7 @@ var PoliciesEnablePinRecovery = csp.Policy{
 	MinOSBuild: "10.0.15063",
 	CSPVersion: "1.3",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "false", Description: "Disabled"}, {Value: "true", Description: "Enabled"}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_PassportForWork_Policies02", ResultClass: "MDM_PassportForWork_Policies02", InstanceID: "Policies", ParentID: "./Vendor/MSFT/PassportForWork", Property: "EnablePinRecovery"},
 }
 
 // PoliciesPINComplexityDigits: Use this policy setting to configure the use of digits in the Windows Hello for Business PIN.
@@ -104,6 +105,7 @@ var PoliciesRequireSecurityDevice = csp.Policy{
 	Access:  []string{"Add", "Delete", "Get", "Replace"},
 	Default: "False",
 	Allowed: &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "false", Description: "Disabled"}, {Value: "true", Description: "Enabled"}}},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_PassportForWork_Policies02", ResultClass: "MDM_PassportForWork_Policies02", InstanceID: "Policies", ParentID: "./Vendor/MSFT/PassportForWork", Property: "RequireSecurityDevice"},
 }
 
 // PoliciesUsePassportForWork: Windows Hello for Business is an alternative method for signing into Windows using your Active Directory or Azure Active Directory account that can replace passwords, Smart Cards, and Virtual Smart Cards.
@@ -114,6 +116,7 @@ var PoliciesUsePassportForWork = csp.Policy{
 	Access:  []string{"Add", "Delete", "Get", "Replace"},
 	Default: "True",
 	Allowed: &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "false", Description: "Disabled"}, {Value: "true", Description: "Enabled"}}},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_PassportForWork_Policies02", ResultClass: "MDM_PassportForWork_Policies02", InstanceID: "Policies", ParentID: "./Vendor/MSFT/PassportForWork", Property: "UsePassportForWork"},
 }
 
 // PoliciesDisablePostLogonProvisioning: Do not start Windows Hello provisioning after sign-in.
@@ -192,6 +195,7 @@ var PoliciesUseHelloCertificatesAsSmartCardCertificates = csp.Policy{
 	MinOSBuild: "10.0.17763",
 	CSPVersion: "1.6",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "false", Description: "Disabled"}, {Value: "true", Description: "Enabled"}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_PassportForWork_Policies02", ResultClass: "MDM_PassportForWork_Policies02", InstanceID: "Policies", ParentID: "./Vendor/MSFT/PassportForWork", Property: "UseHelloCertificatesAsSmartCardCertificates"},
 }
 
 // BiometricsEnableESSwithSupportedPeripherals: Enhanced Sign-in Security (ESS) isolates both biometric template data and matching operations to trusted hardware or specified memory regions, meaning the rest of the operating system cannot access or tamper with them. Because the channel of communication between the sensors and the algorithm is also secured, it is impossible for malware to inject or replay data in order to simulate a user signing in or to lock a user out of their machine.
@@ -214,6 +218,7 @@ var BiometricsFacialFeaturesUseEnhancedAntiSpoofing = csp.Policy{
 	Access:  []string{"Add", "Delete", "Get", "Replace"},
 	Default: "False",
 	Allowed: &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "false", Description: "Disabled"}, {Value: "true", Description: "Enabled"}}},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_PassportForWork_Biometrics01", ResultClass: "MDM_PassportForWork_Biometrics01", InstanceID: "Biometrics", ParentID: "./Vendor/MSFT/PassportForWork", Property: "FacialFeaturesUseEnhancedAntiSpoofing"},
 }
 
 // BiometricsUseBiometrics: Windows Hello for Business enables users to use biometric gestures, such as face and fingerprints, as an alternative to the PIN gesture. However, users must still configure a PIN to use in case of failures.
@@ -224,6 +229,7 @@ var BiometricsUseBiometrics = csp.Policy{
 	Access:  []string{"Add", "Delete", "Get", "Replace"},
 	Default: "False",
 	Allowed: &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "false", Description: "Disabled"}, {Value: "true", Description: "Enabled"}}},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_PassportForWork_Biometrics01", ResultClass: "MDM_PassportForWork_Biometrics01", InstanceID: "Biometrics", ParentID: "./Vendor/MSFT/PassportForWork", Property: "UseBiometrics"},
 }
 
 // DeviceUnlockGroupA: Contains a list of providers by GUID that are to be considered for the first step of authentication
@@ -233,6 +239,7 @@ var DeviceUnlockGroupA = csp.Policy{
 	Format:  "chr",
 	Access:  []string{"Add", "Delete", "Get", "Replace"},
 	Allowed: &csp.Allowed{Type: "RegEx"},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_PassportForWork_DeviceUnlock01", ResultClass: "MDM_PassportForWork_DeviceUnlock01", InstanceID: "DeviceUnlock", ParentID: "./Vendor/MSFT/PassportForWork", Property: "GroupA"},
 }
 
 // DeviceUnlockGroupB: Contains a list of providers by GUID that are to be considered for the second step of authentication
@@ -242,6 +249,7 @@ var DeviceUnlockGroupB = csp.Policy{
 	Format:  "chr",
 	Access:  []string{"Add", "Delete", "Get", "Replace"},
 	Allowed: &csp.Allowed{Type: "RegEx"},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_PassportForWork_DeviceUnlock01", ResultClass: "MDM_PassportForWork_DeviceUnlock01", InstanceID: "DeviceUnlock", ParentID: "./Vendor/MSFT/PassportForWork", Property: "GroupB"},
 }
 
 // DeviceUnlockPlugins: List of plugins that the passive provider monitors to detect user presence
@@ -250,6 +258,7 @@ var DeviceUnlockPlugins = csp.Policy{
 	URI:    "./Device/Vendor/MSFT/PassportForWork/DeviceUnlock/Plugins",
 	Format: "chr",
 	Access: []string{"Add", "Delete", "Get", "Replace"},
+	Bridge: &csp.Bridge{ConfigClass: "MDM_PassportForWork_DeviceUnlock01", ResultClass: "MDM_PassportForWork_DeviceUnlock01", InstanceID: "DeviceUnlock", ParentID: "./Vendor/MSFT/PassportForWork", Property: "Plugins"},
 }
 
 // DynamicLockDynamicLock: Enables/Disables Dyanamic Lock
@@ -260,6 +269,7 @@ var DynamicLockDynamicLock = csp.Policy{
 	Access:  []string{"Add", "Delete", "Get", "Replace"},
 	Default: "False",
 	Allowed: &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "false", Description: "Disabled"}, {Value: "true", Description: "Enabled"}}},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_PassportForWork_DynamicLock01", ResultClass: "MDM_PassportForWork_DynamicLock01", InstanceID: "DynamicLock", ParentID: "./Vendor/MSFT/PassportForWork", Property: "DynamicLock"},
 }
 
 // DynamicLockPlugins: List of plugins that the passive provider monitors to detect user absence
@@ -268,6 +278,7 @@ var DynamicLockPlugins = csp.Policy{
 	URI:    "./Device/Vendor/MSFT/PassportForWork/DynamicLock/Plugins",
 	Format: "chr",
 	Access: []string{"Add", "Delete", "Get", "Replace"},
+	Bridge: &csp.Bridge{ConfigClass: "MDM_PassportForWork_DynamicLock01", ResultClass: "MDM_PassportForWork_DynamicLock01", InstanceID: "DynamicLock", ParentID: "./Vendor/MSFT/PassportForWork", Property: "Plugins"},
 }
 
 // SecurityKeyUseSecurityKeyForSignin: Use security key for signin. 0 is disabled. 1 is enable. If you do not configure this policy setting, the default is disabled.
@@ -290,6 +301,7 @@ var UseBiometrics = csp.Policy{
 	Default:           "False",
 	DeprecatedOSBuild: "deprecated",
 	Allowed:           &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "false", Description: "Disabled"}, {Value: "true", Description: "Enabled"}}},
+	Bridge:            &csp.Bridge{ConfigClass: "MDM_PassportForWork", ResultClass: "MDM_PassportForWork", InstanceID: "PassportForWork", ParentID: "./Vendor/MSFT", Property: "UseBiometrics"},
 }
 
 // All lists every policy in this CSP area.

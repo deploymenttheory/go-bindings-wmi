@@ -10,6 +10,7 @@ var Identifier = csp.Policy{
 	URI:    "./Device/Vendor/MSFT/MultiSIM/Identifier",
 	Format: "chr",
 	Access: []string{"Get"},
+	Bridge: &csp.Bridge{ConfigClass: "MDM_MultiSIM_01", ResultClass: "MDM_MultiSIM_01", InstanceID: "MultiSIM", ParentID: "./Vendor/MSFT", Property: "Identifier"},
 }
 
 // IsEmbedded: Indicates whether this Modem is embedded or external.
@@ -18,6 +19,7 @@ var IsEmbedded = csp.Policy{
 	URI:    "./Device/Vendor/MSFT/MultiSIM/IsEmbedded",
 	Format: "bool",
 	Access: []string{"Get"},
+	Bridge: &csp.Bridge{ConfigClass: "MDM_MultiSIM_01", ResultClass: "MDM_MultiSIM_01", InstanceID: "MultiSIM", ParentID: "./Vendor/MSFT", Property: "IsEmbedded"},
 }
 
 // PoliciesSlotSelectionEnabled: Determines whether the user is allowed to change slots in the Cellular settings UI. Default is true.
@@ -28,6 +30,7 @@ var PoliciesSlotSelectionEnabled = csp.Policy{
 	Access:  []string{"Get", "Replace"},
 	Default: "true",
 	Allowed: &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "false", Description: "Disabled"}, {Value: "true", Description: "Enabled"}}},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_MultiSIM_Policies02", ResultClass: "MDM_MultiSIM_Policies02", InstanceID: "Policies", ParentID: "./Vendor/MSFT/MultiSIM", Property: "SlotSelectionEnabled"},
 }
 
 // SlotsIdentifier: Slot ID.
@@ -36,6 +39,7 @@ var SlotsIdentifier = csp.Policy{
 	URI:    "./Device/Vendor/MSFT/MultiSIM/Slots/Identifier",
 	Format: "int",
 	Access: []string{"Get"},
+	Bridge: &csp.Bridge{ConfigClass: "MDM_MultiSIM_Slots02_01", ResultClass: "MDM_MultiSIM_Slots02_01", InstanceID: "Slots", ParentID: "./Vendor/MSFT/MultiSIM", Property: "Identifier"},
 }
 
 // SlotsIsEmbedded: Indicates whether this Slot is embedded or a physical SIM slot.
@@ -44,6 +48,7 @@ var SlotsIsEmbedded = csp.Policy{
 	URI:    "./Device/Vendor/MSFT/MultiSIM/Slots/IsEmbedded",
 	Format: "bool",
 	Access: []string{"Get"},
+	Bridge: &csp.Bridge{ConfigClass: "MDM_MultiSIM_Slots02_01", ResultClass: "MDM_MultiSIM_Slots02_01", InstanceID: "Slots", ParentID: "./Vendor/MSFT/MultiSIM", Property: "IsEmbedded"},
 }
 
 // SlotsIsSelected: Indicates whether this Slot is selected or not.
@@ -53,6 +58,7 @@ var SlotsIsSelected = csp.Policy{
 	Format:  "bool",
 	Access:  []string{"Get", "Replace"},
 	Allowed: &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "false", Description: "Not selected"}, {Value: "true", Description: "Selected"}}},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_MultiSIM_Slots02_01", ResultClass: "MDM_MultiSIM_Slots02_01", InstanceID: "Slots", ParentID: "./Vendor/MSFT/MultiSIM", Property: "IsSelected"},
 }
 
 // SlotsState: Slot state (Unknown = 0, OffEmpty = 1, Off = 2, Empty = 3, NotReady = 4, Active = 5, Error = 6, ActiveEsim = 7, ActiveEsimNoProfile = 8)
@@ -61,6 +67,7 @@ var SlotsState = csp.Policy{
 	URI:    "./Device/Vendor/MSFT/MultiSIM/Slots/State",
 	Format: "int",
 	Access: []string{"Get"},
+	Bridge: &csp.Bridge{ConfigClass: "MDM_MultiSIM_Slots02_01", ResultClass: "MDM_MultiSIM_Slots02_01", InstanceID: "Slots", ParentID: "./Vendor/MSFT/MultiSIM", Property: "State"},
 }
 
 // All lists every policy in this CSP area.

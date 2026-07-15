@@ -19,6 +19,7 @@ var ProviderConfigInfo = csp.Policy{
 	Format:  "chr",
 	Access:  []string{"Add", "Delete", "Get", "Replace"},
 	Allowed: &csp.Allowed{Type: "None"},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_DeviceManageability_Provider01_01", ResultClass: "MDM_DeviceManageability_Provider01_01", InstanceID: "Provider", ParentID: "./Vendor/MSFT/DeviceManageability", Property: "ConfigInfo"},
 }
 
 // ProviderEnrollmentInfo: Enrollment Info string value set by the config source. Recommended to sent to server during MDM enrollment.
@@ -28,6 +29,7 @@ var ProviderEnrollmentInfo = csp.Policy{
 	Format:  "chr",
 	Access:  []string{"Add", "Delete", "Get", "Replace"},
 	Allowed: &csp.Allowed{Type: "None"},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_DeviceManageability_Provider01_01", ResultClass: "MDM_DeviceManageability_Provider01_01", InstanceID: "Provider", ParentID: "./Vendor/MSFT/DeviceManageability", Property: "EnrollmentInfo"},
 }
 
 // ProviderPayloadTransfer: Payload Transfer string value set by the config source. Recommended to be used during sync session.

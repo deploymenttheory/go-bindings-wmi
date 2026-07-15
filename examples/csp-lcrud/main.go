@@ -22,6 +22,7 @@ import (
 	"strconv"
 
 	"github.com/deploymenttheory/go-bindings-wmi/bindings/csp/policybrowser"
+	"github.com/deploymenttheory/go-bindings-wmi/bindings/csp/windowslicensing"
 	"github.com/deploymenttheory/go-bindings-wmi/runtime/csp"
 	"github.com/deploymenttheory/go-bindings-wmi/runtime/wmi"
 )
@@ -45,6 +46,9 @@ func main() {
 			os.Exit(2)
 		}
 		inspect(args[1])
+		return
+	case "nonpolicy":
+		nonpolicy()
 		return
 	}
 
@@ -105,6 +109,27 @@ func inspect(class string) {
 				fmt.Printf("  %s = %v\n", k, v)
 			}
 		}
+	}
+}
+
+// nonpolicy reads a few non-Policy CSP settings through their generated
+// Bridge mappings — proving the DDF↔bridge join beyond the native Policy
+// areas. Read-only; needs SYSTEM.
+func nonpolicy() {
+	svc, err := csp.Connect()
+	if err != nil {
+		fmt.Printf("connect failed: %v\n(run via scripts/Invoke-CspLcrud.ps1 as SYSTEM)\n", err)
+		os.Exit(1)
+	}
+	defer svc.Close()
+
+	for _, p := range []csp.Policy{
+		windowslicensing.Status,
+		windowslicensing.Edition,
+		windowslicensing.LicenseKeyType,
+	} {
+		v, err := csp.Read(svc, p)
+		fmt.Printf("%-14s (%s) = %s\n", p.Name, p.Bridge.ConfigClass, describe(v, err))
 	}
 }
 
@@ -210,5 +235,5 @@ func describe(v any, err error) string {
 }
 
 func usage() {
-	fmt.Println("usage: csp-lcrud <list|read|set <value>|delete|cycle|inspect <class>>")
+	fmt.Println("usage: csp-lcrud <list|read|set <value>|delete|cycle|inspect <class>|nonpolicy>")
 }

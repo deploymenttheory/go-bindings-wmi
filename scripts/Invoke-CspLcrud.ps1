@@ -28,7 +28,7 @@
 [CmdletBinding()]
 param(
     [Parameter(Position = 0)]
-    [ValidateSet('list', 'read', 'set', 'delete', 'cycle', 'inspect')]
+    [ValidateSet('list', 'read', 'set', 'delete', 'cycle', 'inspect', 'nonpolicy')]
     [string]$Verb = 'read',
     [Parameter(Position = 1)]
     [string]$Value = ''

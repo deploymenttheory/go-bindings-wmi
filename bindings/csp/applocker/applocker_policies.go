@@ -44,6 +44,7 @@ var ApplicationLaunchRestrictionsEXEEnforcementMode = csp.Policy{
 	URI:    "./Vendor/MSFT/AppLocker/ApplicationLaunchRestrictions/EXE/EnforcementMode",
 	Format: "chr",
 	Access: []string{"Add", "Delete", "Get", "Replace"},
+	Bridge: &csp.Bridge{ConfigClass: "MDM_AppLocker_ApplicationLaunchRestrictions01_EXE03", ResultClass: "MDM_AppLocker_ApplicationLaunchRestrictions01_EXE03", InstanceID: "EXE", ParentID: "./Vendor/MSFT/AppLocker/ApplicationLaunchRestrictions", Property: "EnforcementMode"},
 }
 
 // ApplicationLaunchRestrictionsEXENonInteractiveProcessEnforcement: Insert Description Here
@@ -52,6 +53,7 @@ var ApplicationLaunchRestrictionsEXENonInteractiveProcessEnforcement = csp.Polic
 	URI:    "./Vendor/MSFT/AppLocker/ApplicationLaunchRestrictions/EXE/NonInteractiveProcessEnforcement",
 	Format: "chr",
 	Access: []string{"Add", "Delete", "Get", "Replace"},
+	Bridge: &csp.Bridge{ConfigClass: "MDM_AppLocker_ApplicationLaunchRestrictions01_EXE03", ResultClass: "MDM_AppLocker_ApplicationLaunchRestrictions01_EXE03", InstanceID: "EXE", ParentID: "./Vendor/MSFT/AppLocker/ApplicationLaunchRestrictions", Property: "NonInteractiveProcessEnforcement"},
 }
 
 // ApplicationLaunchRestrictionsEXEPolicy: Policy nodes define the policy for launching executables, Windows Installer files, scripts, store apps, and DLL files. The contents of a given Policy node is precisely the XML format for a RuleCollection node in the corresponding AppLocker XML policy.
@@ -61,6 +63,7 @@ var ApplicationLaunchRestrictionsEXEPolicy = csp.Policy{
 	Format:  "chr",
 	Access:  []string{"Add", "Delete", "Get", "Replace"},
 	Allowed: &csp.Allowed{Type: "XSD"},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_AppLocker_ApplicationLaunchRestrictions01_EXE03", ResultClass: "MDM_AppLocker_ApplicationLaunchRestrictions01_EXE03", InstanceID: "EXE", ParentID: "./Vendor/MSFT/AppLocker/ApplicationLaunchRestrictions", Property: "Policy"},
 }
 
 // ApplicationLaunchRestrictionsMSIEnforcementMode: The EnforcementMode node for Windows Information Protection (formerly known as Enterprise Data Protection) does not affect the behavior of EnterpriseDataProtection. The EDPEnforcementLevel from Policy CSP should be used to enable and disable Windows Information Protection (formerly known as Enterprise Data Protection).
@@ -103,6 +106,7 @@ var ApplicationLaunchRestrictionsStoreAppsEnforcementMode = csp.Policy{
 	URI:    "./Vendor/MSFT/AppLocker/ApplicationLaunchRestrictions/StoreApps/EnforcementMode",
 	Format: "chr",
 	Access: []string{"Add", "Delete", "Get", "Replace"},
+	Bridge: &csp.Bridge{ConfigClass: "MDM_AppLocker_ApplicationLaunchRestrictions01_StoreApps03", ResultClass: "MDM_AppLocker_ApplicationLaunchRestrictions01_StoreApps03", InstanceID: "StoreApps", ParentID: "./Vendor/MSFT/AppLocker/ApplicationLaunchRestrictions", Property: "EnforcementMode"},
 }
 
 // ApplicationLaunchRestrictionsStoreAppsPolicy: Policy nodes define the policy for launching executables, Windows Installer files, scripts, store apps, and DLL files. The contents of a given Policy node is precisely the XML format for a RuleCollection node in the corresponding AppLocker XML policy.
@@ -112,6 +116,7 @@ var ApplicationLaunchRestrictionsStoreAppsPolicy = csp.Policy{
 	Format:  "chr",
 	Access:  []string{"Add", "Delete", "Get", "Replace"},
 	Allowed: &csp.Allowed{Type: "XSD"},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_AppLocker_ApplicationLaunchRestrictions01_StoreApps03", ResultClass: "MDM_AppLocker_ApplicationLaunchRestrictions01_StoreApps03", InstanceID: "StoreApps", ParentID: "./Vendor/MSFT/AppLocker/ApplicationLaunchRestrictions", Property: "Policy"},
 }
 
 // EnterpriseDataProtectionEXEPolicy: Policy nodes define the policy for launching executables, Windows Installer files, scripts, store apps, and DLL files. The contents of a given Policy node is precisely the XML format for a RuleCollection node in the corresponding AppLocker XML policy.
@@ -121,6 +126,7 @@ var EnterpriseDataProtectionEXEPolicy = csp.Policy{
 	Format:  "chr",
 	Access:  []string{"Add", "Delete", "Get", "Replace"},
 	Allowed: &csp.Allowed{Type: "XSD"},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_AppLocker_EnterpriseDataProtection01_EXE03", ResultClass: "MDM_AppLocker_EnterpriseDataProtection01_EXE03", InstanceID: "EXE", ParentID: "./Vendor/MSFT/AppLocker/EnterpriseDataProtection", Property: "Policy"},
 }
 
 // EnterpriseDataProtectionStoreAppsPolicy: Policy nodes define the policy for launching executables, Windows Installer files, scripts, store apps, and DLL files. The contents of a given Policy node is precisely the XML format for a RuleCollection node in the corresponding AppLocker XML policy.
@@ -130,6 +136,7 @@ var EnterpriseDataProtectionStoreAppsPolicy = csp.Policy{
 	Format:  "chr",
 	Access:  []string{"Add", "Delete", "Get", "Replace"},
 	Allowed: &csp.Allowed{Type: "XSD"},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_AppLocker_EnterpriseDataProtection01_StoreApps03", ResultClass: "MDM_AppLocker_EnterpriseDataProtection01_StoreApps03", InstanceID: "StoreApps", ParentID: "./Vendor/MSFT/AppLocker/EnterpriseDataProtection", Property: "Policy"},
 }
 
 // FamilySafetyEXEEnforcementMode: The EnforcementMode node for Windows Information Protection (formerly known as Enterprise Data Protection) does not affect the behavior of EnterpriseDataProtection. The EDPEnforcementLevel from Policy CSP should be used to enable and disable Windows Information Protection (formerly known as Enterprise Data Protection).

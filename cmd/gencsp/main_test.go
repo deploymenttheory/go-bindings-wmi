@@ -7,6 +7,8 @@ import (
 	"path/filepath"
 	"slices"
 	"testing"
+
+	"github.com/deploymenttheory/go-bindings-wmi/internal/cspschema"
 )
 
 var update = flag.Bool("update", false, "rewrite the golden files")
@@ -102,6 +104,54 @@ func TestJoinExport(t *testing.T) {
 		if got := joinExport(c.segs); got != c.want {
 			t.Errorf("joinExport(%v) = %q, want %q", c.segs, got, c.want)
 		}
+	}
+}
+
+func TestResolveBridge(t *testing.T) {
+	classes := map[string][]cspBridge{
+		"windowslicensing":       {{class: "MDM_WindowsLicensing", props: map[string]bool{"Edition": true}}},
+		"devdetailext":           {{class: "MDM_DevDetail_Ext01", props: map[string]bool{"DeviceHardwareData": true}}},
+		"ambiguous":              {{class: "MDM_A"}, {class: "MDM_B"}},
+	}
+
+	// Policy area, direct setting → regular convention.
+	p := policy{segs: []string{"AllowX"}, node: cspschema.Node{Name: "AllowX"}}
+	spec := resolveBridge(p, "Browser", "./Device/Vendor/MSFT/Policy/Config", classes)
+	if spec == nil || spec.configClass != "MDM_Policy_Config01_Browser02" ||
+		spec.instanceID != "Browser" || spec.parentID != "./Vendor/MSFT/Policy/Config" || spec.property != "AllowX" {
+		t.Errorf("policy spec = %+v", spec)
+	}
+	// Policy area, nested → not an area-instance property.
+	if resolveBridge(policy{segs: []string{"Grp", "Leaf"}}, "Browser", "./Device/Vendor/MSFT/Policy/Config", classes) != nil {
+		t.Error("nested policy should not resolve")
+	}
+
+	// Non-Policy match, verified key convention.
+	wl := policy{node: cspschema.Node{Name: "Edition", Path: "./Vendor/MSFT/WindowsLicensing/Edition"}}
+	spec = resolveBridge(wl, "", "./Vendor/MSFT", classes)
+	if spec == nil || spec.configClass != "MDM_WindowsLicensing" || spec.resultClass != "MDM_WindowsLicensing" ||
+		spec.instanceID != "WindowsLicensing" || spec.parentID != "./Vendor/MSFT" || spec.property != "Edition" {
+		t.Errorf("non-policy spec = %+v", spec)
+	}
+	// Top-level DM root (DevDetail is not under Vendor/MSFT).
+	dd := policy{node: cspschema.Node{Name: "DeviceHardwareData", Path: "./DevDetail/Ext/DeviceHardwareData"}}
+	spec = resolveBridge(dd, "", ".", classes)
+	if spec == nil || spec.instanceID != "Ext" || spec.parentID != "./DevDetail" {
+		t.Errorf("devdetail spec = %+v", spec)
+	}
+
+	// Rejections: dynamic instance, property not on class, ambiguous.
+	dyn := policy{node: cspschema.Node{Name: "V", Path: "./Vendor/MSFT/Foo/{Id}/V"}}
+	if resolveBridge(dyn, "", "./Vendor/MSFT", classes) != nil {
+		t.Error("dynamic-instance node should not resolve")
+	}
+	noprop := policy{node: cspschema.Node{Name: "Missing", Path: "./Vendor/MSFT/WindowsLicensing/Missing"}}
+	if resolveBridge(noprop, "", "./Vendor/MSFT", classes) != nil {
+		t.Error("property not on class should not resolve")
+	}
+	amb := policy{node: cspschema.Node{Name: "X", Path: "./Vendor/MSFT/Ambiguous/X"}}
+	if resolveBridge(amb, "", "./Vendor/MSFT", classes) != nil {
+		t.Error("ambiguous match should not resolve")
 	}
 }
 

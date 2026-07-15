@@ -10,6 +10,7 @@ var DevTyp = csp.Policy{
 	URI:    "./DevDetail/DevTyp",
 	Format: "chr",
 	Access: []string{"Get"},
+	Bridge: &csp.Bridge{ConfigClass: "MDM_DevDetail", ResultClass: "MDM_DevDetail", InstanceID: "DevDetail", ParentID: ".", Property: "DevTyp"},
 }
 
 // ExtDeviceHardwareData: Added in Windows 10 version 1703. Returns a base64 encoded string of the hardware parameters of a device.
@@ -20,6 +21,7 @@ var ExtDeviceHardwareData = csp.Policy{
 	Access:     []string{"Get"},
 	MinOSBuild: "10.0.15063",
 	CSPVersion: "1.1",
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_DevDetail_Ext01", ResultClass: "MDM_DevDetail_Ext01", InstanceID: "Ext", ParentID: "./DevDetail", Property: "DeviceHardwareData"},
 }
 
 // ExtMicrosoftCommercializationOperator: Returns the name of the mobile operator if it exists; otherwise it returns 404.
@@ -172,6 +174,7 @@ var ExtWLANMACAddress = csp.Policy{
 	URI:    "./DevDetail/Ext/WLANMACAddress",
 	Format: "chr",
 	Access: []string{"Get"},
+	Bridge: &csp.Bridge{ConfigClass: "MDM_DevDetail_Ext01", ResultClass: "MDM_DevDetail_Ext01", InstanceID: "Ext", ParentID: "./DevDetail", Property: "WLANMACAddress"},
 }
 
 // ExtWlanDnsSuffix: The DNS suffix of the active WiFi connection. Only exposed to Enterprise-based OMA-DM servers.
@@ -212,6 +215,7 @@ var FwV = csp.Policy{
 	URI:    "./DevDetail/FwV",
 	Format: "chr",
 	Access: []string{"Get"},
+	Bridge: &csp.Bridge{ConfigClass: "MDM_DevDetail", ResultClass: "MDM_DevDetail", InstanceID: "DevDetail", ParentID: ".", Property: "FwV"},
 }
 
 // HwV: Returns the hardware version, as defined in the registry key HKEY_LOCAL_MACHINE\System\Platform\DeviceTargetingInfo\PhoneRadioHardwareRevision. For Windows 10 for desktop editions, it returns the BIOS version as defined in the registry key HKEY_LOCAL_MACHINE\HARDWARE\DESCRIPTION\System\BIOS\BIOSVersion.
@@ -220,6 +224,7 @@ var HwV = csp.Policy{
 	URI:    "./DevDetail/HwV",
 	Format: "chr",
 	Access: []string{"Get"},
+	Bridge: &csp.Bridge{ConfigClass: "MDM_DevDetail", ResultClass: "MDM_DevDetail", InstanceID: "DevDetail", ParentID: ".", Property: "HwV"},
 }
 
 // LrgObj: Returns whether the device uses OMA DM Large Object Handling, as defined in the specification SyncML Device Information, version 1.1.2.
@@ -228,6 +233,7 @@ var LrgObj = csp.Policy{
 	URI:    "./DevDetail/LrgObj",
 	Format: "bool",
 	Access: []string{"Get"},
+	Bridge: &csp.Bridge{ConfigClass: "MDM_DevDetail", ResultClass: "MDM_DevDetail", InstanceID: "DevDetail", ParentID: ".", Property: "LrgObj"},
 }
 
 // OEM: Returns the name of the Original Equipment Manufacturer (OEM) as a string, as defined in the specification SyncML Device Information, version 1.1.2.
@@ -236,6 +242,7 @@ var OEM = csp.Policy{
 	URI:    "./DevDetail/OEM",
 	Format: "chr",
 	Access: []string{"Get"},
+	Bridge: &csp.Bridge{ConfigClass: "MDM_DevDetail", ResultClass: "MDM_DevDetail", InstanceID: "DevDetail", ParentID: ".", Property: "OEM"},
 }
 
 // SwV: Returns the Windows 10 OS software version in the format MajorVersion.MinorVersion.BuildNumber.QFEnumber. Currently the BuildNumber returns the build number on the desktop and mobile build number on the phone. In the future, the build numbers may converge.
@@ -244,6 +251,7 @@ var SwV = csp.Policy{
 	URI:    "./DevDetail/SwV",
 	Format: "chr",
 	Access: []string{"Get"},
+	Bridge: &csp.Bridge{ConfigClass: "MDM_DevDetail", ResultClass: "MDM_DevDetail", InstanceID: "DevDetail", ParentID: ".", Property: "SwV"},
 }
 
 // URIMaxDepth: Returns the maximum depth of the management tree that the device supports. The default is zero (0). This is the maximum number of URI segments that the device supports. The default value zero (0) indicates that the device supports a URI of unlimited depth.

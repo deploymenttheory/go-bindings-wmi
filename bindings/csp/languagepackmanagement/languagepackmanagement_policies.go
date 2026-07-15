@@ -12,6 +12,7 @@ var InstallCopyToDeviceInternationalSettings = csp.Policy{
 	Access:  []string{"Add", "Delete", "Get", "Replace"},
 	Default: "false",
 	Allowed: &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "false", Description: "Don't copy the language to the international settings immediately after installation."}, {Value: "true", Description: "Copy the language to the international settings immediately after installation."}}},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_LanguagePackManagement_Install01_01", ResultClass: "MDM_LanguagePackManagement_Install01_01", InstanceID: "Install", ParentID: "./Vendor/MSFT/LanguagePackManagement", Property: "CopyToDeviceInternationalSettings"},
 }
 
 // InstallEnableLanguageFeatureInstallations: Enables installations of all available language features when the value is true. Default value is true.
@@ -22,6 +23,7 @@ var InstallEnableLanguageFeatureInstallations = csp.Policy{
 	Access:  []string{"Add", "Delete", "Get", "Replace"},
 	Default: "true",
 	Allowed: &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "true", Description: "Install all available language features."}, {Value: "false", Description: "Install only the required language features."}}},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_LanguagePackManagement_Install01_01", ResultClass: "MDM_LanguagePackManagement_Install01_01", InstanceID: "Install", ParentID: "./Vendor/MSFT/LanguagePackManagement", Property: "EnableLanguageFeatureInstallations"},
 }
 
 // InstallErrorCode: Error code of queued language installation. 0 if there is no error.
@@ -30,6 +32,7 @@ var InstallErrorCode = csp.Policy{
 	URI:    "./Device/Vendor/MSFT/LanguagePackManagement/Install/ErrorCode",
 	Format: "int",
 	Access: []string{"Get"},
+	Bridge: &csp.Bridge{ConfigClass: "MDM_LanguagePackManagement_Install01_01", ResultClass: "MDM_LanguagePackManagement_Install01_01", InstanceID: "Install", ParentID: "./Vendor/MSFT/LanguagePackManagement", Property: "ErrorCode"},
 }
 
 // InstallStatus: Status of the language queued for install. 0 – not started; 1 – in progress; 2 – succeeded; 3 – failed; 4 – partially succeeded.
@@ -38,6 +41,7 @@ var InstallStatus = csp.Policy{
 	URI:    "./Device/Vendor/MSFT/LanguagePackManagement/Install/Status",
 	Format: "int",
 	Access: []string{"Get"},
+	Bridge: &csp.Bridge{ConfigClass: "MDM_LanguagePackManagement_Install01_01", ResultClass: "MDM_LanguagePackManagement_Install01_01", InstanceID: "Install", ParentID: "./Vendor/MSFT/LanguagePackManagement", Property: "Status"},
 }
 
 // InstalledLanguagesLanguageFeatures: Numeric representation of the language features installed. Basic Typing - 1 (0x1), Fonts - 2 (0x2), Handwriting - 4 (0x4), Speech - 8 (0x8), TextToSpeech - 16 (0x10), OCR - 32 (0x20), LocaleData - 64 (0x40), SupplementFonts - 128 (0x80).
@@ -46,6 +50,7 @@ var InstalledLanguagesLanguageFeatures = csp.Policy{
 	URI:    "./Device/Vendor/MSFT/LanguagePackManagement/InstalledLanguages/LanguageFeatures",
 	Format: "int",
 	Access: []string{"Get"},
+	Bridge: &csp.Bridge{ConfigClass: "MDM_LanguagePackManagement_InstalledLanguages01_01", ResultClass: "MDM_LanguagePackManagement_InstalledLanguages01_01", InstanceID: "InstalledLanguages", ParentID: "./Vendor/MSFT/LanguagePackManagement", Property: "LanguageFeatures"},
 }
 
 // InstalledLanguagesProviders: Numeric representation of how a language is installed. 1 - The system language pack is installed; 2 - The Local Experience Pack is installed; 3 - Both are installed.
@@ -54,6 +59,7 @@ var InstalledLanguagesProviders = csp.Policy{
 	URI:    "./Device/Vendor/MSFT/LanguagePackManagement/InstalledLanguages/Providers",
 	Format: "int",
 	Access: []string{"Get"},
+	Bridge: &csp.Bridge{ConfigClass: "MDM_LanguagePackManagement_InstalledLanguages01_01", ResultClass: "MDM_LanguagePackManagement_InstalledLanguages01_01", InstanceID: "InstalledLanguages", ParentID: "./Vendor/MSFT/LanguagePackManagement", Property: "Providers"},
 }
 
 // LanguageSettingsSystemPreferredUILanguages: System Preferred UI Language of the device.
@@ -63,6 +69,7 @@ var LanguageSettingsSystemPreferredUILanguages = csp.Policy{
 	Format:  "chr",
 	Access:  []string{"Get", "Replace"},
 	Allowed: &csp.Allowed{Type: "None"},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_LanguagePackManagement_LanguageSettings01", ResultClass: "MDM_LanguagePackManagement_LanguageSettings01", InstanceID: "LanguageSettings", ParentID: "./Vendor/MSFT/LanguagePackManagement", Property: "SystemPreferredUILanguages"},
 }
 
 // All lists every policy in this CSP area.

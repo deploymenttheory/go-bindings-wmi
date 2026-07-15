@@ -12,6 +12,7 @@ var AccountModel = csp.Policy{
 	Access:  []string{"Add", "Delete", "Get", "Replace"},
 	Default: "0",
 	Allowed: &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Only guest accounts are allowed."}, {Value: "1", Description: "Only domain-joined accounts are allowed."}, {Value: "2", Description: "Domain-joined and guest accounts are allowed."}}},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_SharedPC", ResultClass: "MDM_SharedPC", InstanceID: "SharedPC", ParentID: "./Vendor/MSFT", Property: "AccountModel"},
 }
 
 // DeletionPolicy: Configures when accounts will be deleted. Allowed values: 0 (delete immediately), 1 (delete at disk space threshold), 2 (Delete at disk space threshold and inactive threshold). If used, this value must be set before the action on the EnableSharedPCMode node is taken.
@@ -22,6 +23,7 @@ var DeletionPolicy = csp.Policy{
 	Access:  []string{"Add", "Delete", "Get", "Replace"},
 	Default: "1",
 	Allowed: &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Delete immediately."}, {Value: "1", Description: "Delete at disk space threshold"}, {Value: "2", Description: "Delete at disk space threshold and inactive threshold"}}},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_SharedPC", ResultClass: "MDM_SharedPC", InstanceID: "SharedPC", ParentID: "./Vendor/MSFT", Property: "DeletionPolicy"},
 }
 
 // DiskLevelCaching: Stop deleting accounts when available disk space reaches this threshold, given as percent of total disk capacity. If used, this value must be set before the action on the EnableSharedPCMode node is taken.
@@ -32,6 +34,7 @@ var DiskLevelCaching = csp.Policy{
 	Access:  []string{"Add", "Delete", "Get", "Replace"},
 	Default: "50",
 	Allowed: &csp.Allowed{Type: "Range"},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_SharedPC", ResultClass: "MDM_SharedPC", InstanceID: "SharedPC", ParentID: "./Vendor/MSFT", Property: "DiskLevelCaching"},
 }
 
 // DiskLevelDeletion: Accounts will start being deleted when available disk space falls below this threshold, given as percent of total disk capacity. Accounts that have been inactive the longest will be deleted first. If used, this value must be set before the action on the EnableSharedPCMode node is taken.
@@ -42,6 +45,7 @@ var DiskLevelDeletion = csp.Policy{
 	Access:  []string{"Add", "Delete", "Get", "Replace"},
 	Default: "25",
 	Allowed: &csp.Allowed{Type: "Range"},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_SharedPC", ResultClass: "MDM_SharedPC", InstanceID: "SharedPC", ParentID: "./Vendor/MSFT", Property: "DiskLevelDeletion"},
 }
 
 // EnableAccountManager: Enable the account manager for shared PC mode. If used, this value must be set before the action on the EnableSharedPCMode node is taken.
@@ -52,6 +56,7 @@ var EnableAccountManager = csp.Policy{
 	Access:  []string{"Add", "Delete", "Get", "Replace"},
 	Default: "false",
 	Allowed: &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "false", Description: "False"}, {Value: "true", Description: "True"}}},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_SharedPC", ResultClass: "MDM_SharedPC", InstanceID: "SharedPC", ParentID: "./Vendor/MSFT", Property: "EnableAccountManager"},
 }
 
 // EnableSharedPCMode: Setting this node to "true" triggers the action to configure a device to Shared PC mode.
@@ -62,6 +67,7 @@ var EnableSharedPCMode = csp.Policy{
 	Access:  []string{"Add", "Delete", "Get", "Replace"},
 	Default: "false",
 	Allowed: &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "false", Description: "Not configured"}, {Value: "true", Description: "Enabled"}}},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_SharedPC", ResultClass: "MDM_SharedPC", InstanceID: "SharedPC", ParentID: "./Vendor/MSFT", Property: "EnableSharedPCMode"},
 }
 
 // EnableSharedPCModeWithOneDriveSync: Setting this node to “1” triggers the action to configure a device to Shared PC mode with OneDrive sync turned on
@@ -98,6 +104,7 @@ var InactiveThreshold = csp.Policy{
 	MinOSBuild: "10.0.15063",
 	CSPVersion: "1.1",
 	Allowed:    &csp.Allowed{Type: "Range"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_SharedPC", ResultClass: "MDM_SharedPC", InstanceID: "SharedPC", ParentID: "./Vendor/MSFT", Property: "InactiveThreshold"},
 }
 
 // KioskModeAUMID: Specifies the AUMID of the app to use with assigned access. If used, this value must be set before the action on the EnableSharedPCMode node is taken.
@@ -109,6 +116,7 @@ var KioskModeAUMID = csp.Policy{
 	MinOSBuild: "10.0.15063",
 	CSPVersion: "1.1",
 	Allowed:    &csp.Allowed{Type: "None"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_SharedPC", ResultClass: "MDM_SharedPC", InstanceID: "SharedPC", ParentID: "./Vendor/MSFT", Property: "KioskModeAUMID"},
 }
 
 // KioskModeUserTileDisplayText: Specifies the display text for the account shown on the sign-in screen which launches the app specified by KioskModeAUMID. If used, this value must be set before the action on the EnableSharedPCMode node is taken.
@@ -120,6 +128,7 @@ var KioskModeUserTileDisplayText = csp.Policy{
 	MinOSBuild: "10.0.15063",
 	CSPVersion: "1.1",
 	Allowed:    &csp.Allowed{Type: "None"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_SharedPC", ResultClass: "MDM_SharedPC", InstanceID: "SharedPC", ParentID: "./Vendor/MSFT", Property: "KioskModeUserTileDisplayText"},
 }
 
 // MaintenanceStartTime: Daily start time of maintenance hour. Given in minutes from midnight. Default is 0 (12am).  If used, this value must be set before the action on the EnableSharedPCMode node is taken.
@@ -130,6 +139,7 @@ var MaintenanceStartTime = csp.Policy{
 	Access:  []string{"Add", "Delete", "Get", "Replace"},
 	Default: "0",
 	Allowed: &csp.Allowed{Type: "Range"},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_SharedPC", ResultClass: "MDM_SharedPC", InstanceID: "SharedPC", ParentID: "./Vendor/MSFT", Property: "MaintenanceStartTime"},
 }
 
 // MaxPageFileSizeMB: Maximum size of the paging file in MB. Applies only to systems with less than 32 GB storage and at least 3 GB of RAM. If used, this value must be set before the action on the EnableSharedPCMode node is taken.
@@ -142,6 +152,7 @@ var MaxPageFileSizeMB = csp.Policy{
 	MinOSBuild: "10.0.15063",
 	CSPVersion: "1.1",
 	Allowed:    &csp.Allowed{Type: "Range"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_SharedPC", ResultClass: "MDM_SharedPC", InstanceID: "SharedPC", ParentID: "./Vendor/MSFT", Property: "MaxPageFileSizeMB"},
 }
 
 // RestrictLocalStorage: Restricts the user from using local storage. This node is optional. If used, this value must be set before the action on the EnableSharedPCMode node is taken.
@@ -154,6 +165,7 @@ var RestrictLocalStorage = csp.Policy{
 	MinOSBuild: "10.0.15063",
 	CSPVersion: "1.1",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "false", Description: "False"}, {Value: "true", Description: "True"}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_SharedPC", ResultClass: "MDM_SharedPC", InstanceID: "SharedPC", ParentID: "./Vendor/MSFT", Property: "RestrictLocalStorage"},
 }
 
 // SetEduPolicies: Set a list of EDU policies.
@@ -164,6 +176,7 @@ var SetEduPolicies = csp.Policy{
 	Access:  []string{"Add", "Delete", "Get", "Replace"},
 	Default: "false",
 	Allowed: &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "false", Description: "Not configured"}, {Value: "true", Description: "Enabled"}}},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_SharedPC", ResultClass: "MDM_SharedPC", InstanceID: "SharedPC", ParentID: "./Vendor/MSFT", Property: "SetEduPolicies"},
 }
 
 // SetPowerPolicies: Set a list of power policies. If used, this value must be set before the action on the EnableSharedPCMode node is taken.
@@ -174,6 +187,7 @@ var SetPowerPolicies = csp.Policy{
 	Access:  []string{"Add", "Delete", "Get", "Replace"},
 	Default: "false",
 	Allowed: &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "false", Description: "Not configured"}, {Value: "true", Description: "Enabled"}}},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_SharedPC", ResultClass: "MDM_SharedPC", InstanceID: "SharedPC", ParentID: "./Vendor/MSFT", Property: "SetPowerPolicies"},
 }
 
 // SignInOnResume: Require signing in on waking up from sleep. If used, this value must be set before the action on the EnableSharedPCMode node is taken.
@@ -184,6 +198,7 @@ var SignInOnResume = csp.Policy{
 	Access:  []string{"Add", "Delete", "Get", "Replace"},
 	Default: "false",
 	Allowed: &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "false", Description: "False"}, {Value: "true", Description: "True"}}},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_SharedPC", ResultClass: "MDM_SharedPC", InstanceID: "SharedPC", ParentID: "./Vendor/MSFT", Property: "SignInOnResume"},
 }
 
 // SleepTimeout: The amount of time before the PC sleeps, giving in seconds. 0 means the PC never sleeps. Default is 5 minutes. If used, this value must be set before the action on the EnableSharedPCMode node is taken.
@@ -194,6 +209,7 @@ var SleepTimeout = csp.Policy{
 	Access:  []string{"Add", "Delete", "Get", "Replace"},
 	Default: "300",
 	Allowed: &csp.Allowed{Type: "Range"},
+	Bridge:  &csp.Bridge{ConfigClass: "MDM_SharedPC", ResultClass: "MDM_SharedPC", InstanceID: "SharedPC", ParentID: "./Vendor/MSFT", Property: "SleepTimeout"},
 }
 
 // All lists every policy in this CSP area.
