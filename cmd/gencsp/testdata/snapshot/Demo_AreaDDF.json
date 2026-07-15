@@ -1,0 +1,57 @@
+{
+  "name": "Demo",
+  "path": "./Device/Vendor/MSFT/Policy/Config",
+  "nodes": [
+    {
+      "name": "AllowThing",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Demo/AllowThing",
+      "format": "int",
+      "access": ["Add", "Delete", "Get", "Replace"],
+      "description": "First line.\nSecond line.",
+      "default": "1",
+      "deprecatedOsBuild": "10.0.22000",
+      "applicability": {
+        "minOsBuild": "10.0.10240",
+        "cspVersion": "1.0",
+        "editions": "0x4;",
+        "requiresAad": true
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          { "value": "0", "description": "Not allowed." },
+          { "value": "1", "description": "Allowed." }
+        ]
+      }
+    },
+    {
+      "name": "Mode",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Demo/Mode",
+      "format": "chr",
+      "access": ["Get", "Replace"],
+      "applicability": { "minOsBuild": "10.0.10240" },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          { "value": "auto", "description": "Automatic." },
+          { "value": "manual", "description": "Manual." }
+        ]
+      }
+    },
+    {
+      "name": "Group",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Demo/Group",
+      "format": "node",
+      "applicability": {},
+      "children": [
+        {
+          "name": "Nested",
+          "path": "./Device/Vendor/MSFT/Policy/Config/Demo/Group/Nested",
+          "format": "bool",
+          "access": ["Get"],
+          "applicability": {}
+        }
+      ]
+    }
+  ]
+}
