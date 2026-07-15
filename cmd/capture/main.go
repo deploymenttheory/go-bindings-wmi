@@ -86,10 +86,12 @@ func run(namespace, classFilter, osBuild, captured, outDir string) error {
 				continue // WMI system properties (__CLASS, __PATH, …) are not class schema
 			}
 			class.Properties = append(class.Properties, cimschema.Property{
-				Name:    p.Name,
-				CIMType: p.CIMType &^ cimschema.CIMFlagArray,
-				Array:   p.CIMType&cimschema.CIMFlagArray != 0,
-				Key:     p.Key,
+				Name:     p.Name,
+				CIMType:  p.CIMType &^ cimschema.CIMFlagArray,
+				Array:    p.CIMType&cimschema.CIMFlagArray != 0,
+				Key:      p.Key,
+				Values:   p.Values,
+				ValueMap: p.ValueMap,
 			})
 		}
 		methods, err := svc.ClassMethods(className)

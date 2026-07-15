@@ -14,6 +14,8 @@ import (
 	"iter"
 	"math"
 	"runtime"
+	"strings"
+	"syscall"
 	"unsafe"
 
 	win32 "github.com/deploymenttheory/go-bindings-win32/bindings/runtime/win32"
@@ -135,12 +137,56 @@ func ConnectWith(namespace string, opts ConnectOptions) (*Service, error) {
 		runtime.UnlockOSThread()
 		return nil, fmt.Errorf("wmi: ConnectServer(%s): %w", path, err)
 	}
+
+	// The proxy blanket must carry the same credentials as ConnectServer, or
+	// remote calls run as the caller's token and fail with access-denied.
+	// Build a COAUTHIDENTITY for explicit credentials; local connections use
+	// the default (nil auth identity).
+	authIdentity, freeIdentity := authIdentityFor(opts)
+	defer freeIdentity()
 	if err := com.CoSetProxyBlanket((*com.IUnknown)(unsafe.Pointer(services)),
 		10 /*RPC_C_AUTHN_WINNT*/, 0 /*RPC_C_AUTHZ_NONE*/, "",
-		rpcCAuthnLevelDefault, rpcCImpLevelImpersonate, nil, eoacNone); err != nil {
+		rpcCAuthnLevelDefault, rpcCImpLevelImpersonate, authIdentity, eoacNone); err != nil {
 		// Non-fatal for local queries.
 	}
 	return &Service{locator: locator, services: services}, nil
+}
+
+// authIdentityFor builds a COAUTHIDENTITY for the proxy blanket when explicit
+// credentials are set, returning a pointer (nil for the default identity)
+// and a cleanup that keeps the UTF-16 buffers alive until the blanket call
+// returns.
+func authIdentityFor(opts ConnectOptions) (unsafe.Pointer, func()) {
+	if opts.User == "" && opts.Password == "" {
+		return nil, func() {}
+	}
+	user, domain := opts.User, ""
+	if slash := strings.LastIndexAny(user, `\/`); slash >= 0 {
+		domain, user = user[:slash], user[slash+1:]
+	}
+	// UTF16FromString appends a NUL; the length fields below exclude it. NUL
+	// bytes inside credentials are rejected (they cannot occur in valid ones).
+	userUTF16, _ := syscall.UTF16FromString(user)
+	domainUTF16, _ := syscall.UTF16FromString(domain)
+	passwordUTF16, _ := syscall.UTF16FromString(opts.Password)
+
+	identity := &com.COAUTHIDENTITY{
+		User:           &userUTF16[0],
+		UserLength:     uint32(len(userUTF16) - 1), // exclude the NUL terminator
+		Domain:         &domainUTF16[0],
+		DomainLength:   uint32(len(domainUTF16) - 1),
+		Password:       &passwordUTF16[0],
+		PasswordLength: uint32(len(passwordUTF16) - 1),
+		Flags:          2, // SEC_WINNT_AUTH_IDENTITY_UNICODE
+	}
+	// runtime.KeepAlive in the cleanup pins the backing slices (identity only
+	// holds element pointers) across the CoSetProxyBlanket call.
+	return unsafe.Pointer(identity), func() {
+		runtime.KeepAlive(userUTF16)
+		runtime.KeepAlive(domainUTF16)
+		runtime.KeepAlive(passwordUTF16)
+		runtime.KeepAlive(identity)
+	}
 }
 
 // optionalBSTR allocates a BSTR for non-empty strings; empty stays nil

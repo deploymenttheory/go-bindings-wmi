@@ -3,12 +3,17 @@
 package wmi
 
 import (
+	"context"
 	"fmt"
+	"math"
 	"sort"
 	"strings"
 	"unsafe"
 
+	win32 "github.com/deploymenttheory/go-bindings-win32/bindings/runtime/win32"
 	"github.com/deploymenttheory/go-bindings-win32/bindings/win32/foundation"
+	"github.com/deploymenttheory/go-bindings-win32/bindings/win32/system/com"
+	"github.com/deploymenttheory/go-bindings-win32/bindings/win32/system/ole"
 	"github.com/deploymenttheory/go-bindings-win32/bindings/win32/system/variant"
 	"github.com/deploymenttheory/go-bindings-win32/bindings/win32/system/wmi"
 )
@@ -41,6 +46,65 @@ func (s *Service) ExecMethod(objectPath, method string, in map[string]any) (Row,
 	}
 	if out == nil {
 		return Row{}, nil
+	}
+	defer out.Release()
+	return decodeObject(out)
+}
+
+// ExecMethodContext is ExecMethod with cancellation: the call runs
+// semisynchronously and the completion poll checks ctx between short waits.
+// WMI cannot abort a provider mid-call — cancellation abandons the call;
+// the provider may finish it anyway.
+func (s *Service) ExecMethodContext(ctx context.Context, objectPath, method string, in map[string]any) (Row, error) {
+	var inInstance *wmi.IWbemClassObject
+	if len(in) > 0 {
+		instance, err := s.spawnInParameters(classOfPath(objectPath), method, in)
+		if err != nil {
+			return nil, err
+		}
+		defer instance.Release()
+		inInstance = instance
+	}
+
+	path := foundation.SysAllocString(objectPath)
+	defer foundation.SysFreeString(path)
+	name := foundation.SysAllocString(method)
+	defer foundation.SysFreeString(name)
+
+	var callResult *wmi.IWbemCallResult
+	if err := s.services.ExecMethod(path, name, wmi.WBEM_FLAG_RETURN_IMMEDIATELY,
+		nil, inInstance, nil, &callResult); err != nil {
+		return nil, fmt.Errorf("wmi: ExecMethod(%s.%s): %w", objectPath, method, err)
+	}
+	if callResult == nil {
+		return Row{}, nil
+	}
+	defer callResult.Release()
+
+	const pollMs = 250
+	for {
+		if err := ctx.Err(); err != nil {
+			return nil, err
+		}
+		// GetCallStatus returns WBEM_S_TIMEDOUT (a success HRESULT the
+		// binding maps to a nil error) without touching plStatus while the
+		// call is in flight — the sentinel detects that.
+		status := int32(math.MinInt32)
+		if err := callResult.GetCallStatus(pollMs, &status); err != nil {
+			return nil, fmt.Errorf("wmi: ExecMethod(%s.%s) status: %w", objectPath, method, err)
+		}
+		if status == int32(math.MinInt32) {
+			continue // timed out; poll again
+		}
+		if hr := win32.HRESULT(status); hr.Failed() {
+			return nil, fmt.Errorf("wmi: ExecMethod(%s.%s): %w", objectPath, method, hr)
+		}
+		break
+	}
+
+	var out *wmi.IWbemClassObject
+	if err := callResult.GetResultObject(-1, &out); err != nil || out == nil {
+		return Row{}, nil // void methods produce no out-parameters object
 	}
 	defer out.Release()
 	return decodeObject(out)
@@ -111,6 +175,10 @@ func (s *Service) putValue(target *wmi.IWbemClassObject, property string, value 
 		pointer.P = unsafe.Pointer(embedded)
 	case map[string]any:
 		return s.putValue(target, property, Row(t))
+	case []Row:
+		if err := s.encodeRowArray(t, &v); err != nil {
+			return err
+		}
 	default:
 		if err := encodeVariant(value, &v); err != nil {
 			return err
@@ -119,6 +187,36 @@ func (s *Service) putValue(target *wmi.IWbemClassObject, property string, value 
 	if err := target.Put(property, 0, &v, 0); err != nil {
 		return fmt.Errorf("Put: %w", err)
 	}
+	return nil
+}
+
+// encodeRowArray builds a SAFEARRAY of embedded instances (VT_UNKNOWN) from
+// rows. SafeArrayPutElement AddRefs each interface, so our references are
+// released as we go; SafeArrayDestroy (via VariantClear) releases the
+// array's.
+func (s *Service) encodeRowArray(rows []Row, v *variant.VARIANT) error {
+	bound := com.SAFEARRAYBOUND{CElements: uint32(len(rows))}
+	psa := ole.SafeArrayCreate(variant.VT_UNKNOWN, 1, &bound)
+	if psa == nil {
+		return fmt.Errorf("wmi: SafeArrayCreate(VT_UNKNOWN) failed for %d rows", len(rows))
+	}
+	for i, row := range rows {
+		embedded, err := s.embeddedInstance(row)
+		if err != nil {
+			_ = ole.SafeArrayDestroy(psa)
+			return err
+		}
+		index := int32(i)
+		err = ole.SafeArrayPutElement(psa, &index, unsafe.Pointer(embedded))
+		embedded.Release()
+		if err != nil {
+			_ = ole.SafeArrayDestroy(psa)
+			return fmt.Errorf("wmi: SafeArrayPutElement(%d): %w", i, err)
+		}
+	}
+	pointer := (*variantPtr)(unsafe.Pointer(&v.Anonymous))
+	pointer.Vt = uint16(variant.VT_ARRAY | variant.VT_UNKNOWN)
+	pointer.P = unsafe.Pointer(psa)
 	return nil
 }
 
