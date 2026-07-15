@@ -39,6 +39,13 @@ func main() {
 	case "list":
 		list()
 		return
+	case "inspect":
+		if len(args) < 2 {
+			fmt.Println("usage: csp-lcrud inspect <BridgeClassName>")
+			os.Exit(2)
+		}
+		inspect(args[1])
+		return
 	}
 
 	// Every other verb drives the bridge, which needs SYSTEM.
@@ -65,6 +72,39 @@ func main() {
 		cycle(svc)
 	default:
 		usage()
+	}
+}
+
+// inspect enumerates a raw bridge class and dumps each instance's keys and
+// properties — a read-only diagnostic for discovering how a non-Policy CSP
+// keys its bridge instances (InstanceID / ParentID), which the DDF does not
+// reveal. It needs the SYSTEM account (run via the helper).
+func inspect(class string) {
+	svc, err := csp.Connect()
+	if err != nil {
+		fmt.Printf("connect failed: %v\n(run via scripts/Invoke-CspLcrud.ps1 as SYSTEM)\n", err)
+		os.Exit(1)
+	}
+	defer svc.Close()
+
+	rows, err := svc.Query("SELECT * FROM " + class)
+	if err != nil {
+		fmt.Printf("query %s failed: %v\n", class, err)
+		os.Exit(1)
+	}
+	fmt.Printf("%s: %d instance(s)\n", class, len(rows))
+	for i, row := range rows {
+		fmt.Printf("--- instance %d ---\n", i)
+		fmt.Printf("  InstanceID = %q\n", wmi.AsString(row["InstanceID"]))
+		fmt.Printf("  ParentID   = %q\n", wmi.AsString(row["ParentID"]))
+		for k, v := range row {
+			if k == "InstanceID" || k == "ParentID" || len(k) >= 2 && k[:2] == "__" {
+				continue
+			}
+			if v != nil {
+				fmt.Printf("  %s = %v\n", k, v)
+			}
+		}
 	}
 }
 
@@ -170,5 +210,5 @@ func describe(v any, err error) string {
 }
 
 func usage() {
-	fmt.Println("usage: csp-lcrud <list|read|set <value>|delete|cycle>")
+	fmt.Println("usage: csp-lcrud <list|read|set <value>|delete|cycle|inspect <class>>")
 }
