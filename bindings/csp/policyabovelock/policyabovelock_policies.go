@@ -16,6 +16,7 @@ var AllowActionCenterNotifications = csp.Policy{
 	MinOSBuild:        "10.0.10240",
 	CSPVersion:        "1.0",
 	Allowed:           &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
+	Bridge:            &csp.Bridge{ConfigClass: "MDM_Policy_Config01_AboveLock02", ResultClass: "MDM_Policy_Result01_AboveLock02", InstanceID: "AboveLock", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowActionCenterNotifications"},
 }
 
 // AllowCortanaAboveLock: Specifies whether or not the user can interact with Cortana using speech while the system is locked. If you enable or don’t configure this setting, the user can interact with Cortana using speech while the system is locked. If you disable this setting, the system will need to be unlocked for the user to interact with Cortana using speech.
@@ -29,6 +30,7 @@ var AllowCortanaAboveLock = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_AboveLock02", ResultClass: "MDM_Policy_Result01_AboveLock02", InstanceID: "AboveLock", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowCortanaAboveLock"},
 }
 
 // AllowToasts: Specifies whether to allow toast notifications above the device lock screen. Most restricted value is 0.
@@ -42,6 +44,7 @@ var AllowToasts = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_AboveLock02", ResultClass: "MDM_Policy_Result01_AboveLock02", InstanceID: "AboveLock", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowToasts"},
 }
 
 // ConfigureAudioOnLockScreen: This policy will allow the audio above lock screen to be managed by IT admins and allow apps like digital signage to play audio above lock screen without having a user signed on.
@@ -55,6 +58,7 @@ var ConfigureAudioOnLockScreen = csp.Policy{
 	CSPVersion: "9.9",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "No audio playback or recording on lock screen (aside from OS defined exceptions)."}, {Value: "1", Description: "Audio playback allowed on lock screen. Audio recording is not allowed."}, {Value: "2", Description: "Audio playback and recording allowed on lock screen."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_AboveLock02", ResultClass: "MDM_Policy_Result01_AboveLock02", InstanceID: "AboveLock", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ConfigureAudioOnLockScreen"},
 }
 
 // All lists every policy in this CSP area.

@@ -13,6 +13,7 @@ var SetCost3G = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "wwansvc~AT~Network~WwanSvc_Category~NetworkCost_Category", Name: "SetCost3G", File: "wwansvc.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DataUsage02", ResultClass: "MDM_Policy_Result01_DataUsage02", InstanceID: "DataUsage", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "SetCost3G"},
 }
 
 var SetCost4G = csp.Policy{
@@ -24,6 +25,7 @@ var SetCost4G = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "wwansvc~AT~Network~WwanSvc_Category~NetworkCost_Category", Name: "SetCost4G", File: "wwansvc.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DataUsage02", ResultClass: "MDM_Policy_Result01_DataUsage02", InstanceID: "DataUsage", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "SetCost4G"},
 }
 
 // All lists every policy in this CSP area.

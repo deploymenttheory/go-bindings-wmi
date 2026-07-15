@@ -15,6 +15,7 @@ var AllowAadPasswordReset = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Authentication02", ResultClass: "MDM_Policy_Result01_Authentication02", InstanceID: "Authentication", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowAadPasswordReset"},
 }
 
 // AllowEAPCertSSO: Allows an EAP cert-based authentication for a single sign on (SSO) to access internal resources.
@@ -28,6 +29,7 @@ var AllowEAPCertSSO = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Authentication02", ResultClass: "MDM_Policy_Result01_Authentication02", InstanceID: "Authentication", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowEAPCertSSO"},
 }
 
 // AllowFastReconnect: Allows EAP Fast Reconnect from being attempted for EAP Method TLS. Most restricted value is 0.
@@ -41,6 +43,7 @@ var AllowFastReconnect = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Authentication02", ResultClass: "MDM_Policy_Result01_Authentication02", InstanceID: "Authentication", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowFastReconnect"},
 }
 
 // AllowSecondaryAuthenticationDevice: Allows secondary authentication devices to work with Windows. The default for this policy must be on for consumer devices (defined as local or Microsoft account connected device) and off for enterprise devices (such as cloud domain-joined, cloud domain-joined in an on-premises only environment, cloud domain-joined in a hybrid environment, and BYOD). In the next major release of Windows 10, the default for this policy for consumer devices will be changed to off. This will only affect users that have not already set up a secondary authentication device.
@@ -54,6 +57,7 @@ var AllowSecondaryAuthenticationDevice = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Authentication02", ResultClass: "MDM_Policy_Result01_Authentication02", InstanceID: "Authentication", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowSecondaryAuthenticationDevice"},
 }
 
 // ConfigureWebSignInAllowedUrls: Specifies a list of URLs that are navigable in Web Sign-in based authentication scenarios.
@@ -66,6 +70,7 @@ var ConfigureWebSignInAllowedUrls = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Authentication02", ResultClass: "MDM_Policy_Result01_Authentication02", InstanceID: "Authentication", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ConfigureWebSignInAllowedUrls"},
 }
 
 // ConfigureWebcamAccessDomainNames: Specifies a list of domains that are allowed to access the webcam in Web Sign-in based authentication scenarios.
@@ -78,6 +83,7 @@ var ConfigureWebcamAccessDomainNames = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Authentication02", ResultClass: "MDM_Policy_Result01_Authentication02", InstanceID: "Authentication", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ConfigureWebcamAccessDomainNames"},
 }
 
 // EnableFastFirstSignIn: Specifies whether new non-admin AAD accounts should auto-connect to pre-created candidate local accounts
@@ -91,6 +97,7 @@ var EnableFastFirstSignIn = csp.Policy{
 	CSPVersion: "8.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "The feature defaults to the existing SKU and device capabilities."}, {Value: "1", Description: "Enabled. Auto-connect new non-admin Azure AD accounts to pre-configured candidate local accounts"}, {Value: "2", Description: "Disabled. Do not auto-connect new non-admin Azure AD accounts to pre-configured local accounts"}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Authentication02", ResultClass: "MDM_Policy_Result01_Authentication02", InstanceID: "Authentication", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "EnableFastFirstSignIn"},
 }
 
 // EnablePasswordlessExperience: Specifies whether connected users on AADJ devices receive a Passwordless experience on Windows
@@ -104,6 +111,7 @@ var EnablePasswordlessExperience = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "The feature defaults to the existing edition and device capabilities."}, {Value: "1", Description: "Enabled. The Passwordless experience will be enabled on Windows"}, {Value: "2", Description: "Disabled. The Passwordless experience will not be enabled on Windows"}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Authentication02", ResultClass: "MDM_Policy_Result01_Authentication02", InstanceID: "Authentication", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "EnablePasswordlessExperience"},
 }
 
 // EnableWebSignIn: Specifies whether web-based sign-in is allowed for signing in to Windows
@@ -117,6 +125,7 @@ var EnableWebSignIn = csp.Policy{
 	CSPVersion: "8.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "The feature defaults to the existing SKU and device capabilities."}, {Value: "1", Description: "Enabled. Web Sign-in will be enabled for signing in to Windows"}, {Value: "2", Description: "Disabled. Web Sign-in will not be enabled for signing in to Windows"}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Authentication02", ResultClass: "MDM_Policy_Result01_Authentication02", InstanceID: "Authentication", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "EnableWebSignIn"},
 }
 
 // PreferredAadTenantDomainName: Specifies the preferred domain among available domains in the AAD tenant.
@@ -128,6 +137,7 @@ var PreferredAadTenantDomainName = csp.Policy{
 	MinOSBuild: "10.0.17763",
 	CSPVersion: "8.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Authentication02", ResultClass: "MDM_Policy_Result01_Authentication02", InstanceID: "Authentication", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "PreferredAadTenantDomainName"},
 }
 
 // All lists every policy in this CSP area.

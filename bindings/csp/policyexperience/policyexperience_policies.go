@@ -15,6 +15,7 @@ var AllowClipboardHistory = csp.Policy{
 	CSPVersion: "8.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Experience02", ResultClass: "MDM_Policy_Result01_Experience02", InstanceID: "Experience", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowClipboardHistory"},
 }
 
 // AllowCopyPaste: This policy is deprecated.
@@ -29,6 +30,7 @@ var AllowCopyPaste = csp.Policy{
 	MinOSBuild:        "10.0.10240",
 	CSPVersion:        "1.0",
 	Allowed:           &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
+	Bridge:            &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Experience02", ResultClass: "MDM_Policy_Result01_Experience02", InstanceID: "Experience", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowCopyPaste"},
 }
 
 // AllowCortana: Specifies whether Cortana is allowed on the device. If you enable or don’t configure this setting, Cortana is allowed on the device. If you disable this setting, Cortana is turned off. When Cortana is off, users will still be able to use search to find items on the device. Most restricted value is 0.
@@ -42,6 +44,7 @@ var AllowCortana = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Experience02", ResultClass: "MDM_Policy_Result01_Experience02", InstanceID: "Experience", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowCortana"},
 }
 
 // AllowDeviceDiscovery: Allows users to turn on/off device discovery UX. When set to 0 , the projection pane is disabled. The Win+P and Win+K shortcut keys will not work on. Most restricted value is 0.
@@ -55,6 +58,7 @@ var AllowDeviceDiscovery = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Disabled."}, {Value: "1", Description: "Enabled."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Experience02", ResultClass: "MDM_Policy_Result01_Experience02", InstanceID: "Experience", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowDeviceDiscovery"},
 }
 
 // AllowFindMyDevice: This policy turns on Find My Device. When Find My Device is on, the device and its location are registered in the cloud so that the device can be located when the user initiates a Find command from account. microsoft. com. In Windows 10, version 1709 devices that are compatible with active digitizers, enabling Find My Device will also allow the user to view the last location of use of their active digitizer on their device; this location is stored locally on the user's device after each use of their active digitizer. When Find My Device is off, the device and its location are not registered and the Find My Device feature will not work. In Windows 10, version 1709 the user will not be able to view the location of the last use of their active digitizer on their device.
@@ -68,6 +72,7 @@ var AllowFindMyDevice = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Experience02", ResultClass: "MDM_Policy_Result01_Experience02", InstanceID: "Experience", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowFindMyDevice"},
 }
 
 // AllowManualMDMUnenrollment: Specifies whether to allow the user to delete the workplace account using the workplace control panel. If the device is Azure Active Directory joined and MDM enrolled (e. g. auto-enrolled), then disabling the MDM unenrollment has no effect. Note The MDM server can always remotely delete the account. Most restricted value is 0.
@@ -81,6 +86,7 @@ var AllowManualMDMUnenrollment = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Experience02", ResultClass: "MDM_Policy_Result01_Experience02", InstanceID: "Experience", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowManualMDMUnenrollment"},
 }
 
 // AllowSIMErrorDialogPromptWhenNoSIM: Allow SIM error diaglog prompts when no SIM is inserted.
@@ -94,6 +100,7 @@ var AllowSIMErrorDialogPromptWhenNoSIM = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Experience02", ResultClass: "MDM_Policy_Result01_Experience02", InstanceID: "Experience", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowSIMErrorDialogPromptWhenNoSIM"},
 }
 
 // AllowSaveAsOfOfficeFiles: This policy is deprecated.
@@ -107,6 +114,7 @@ var AllowSaveAsOfOfficeFiles = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Experience02", ResultClass: "MDM_Policy_Result01_Experience02", InstanceID: "Experience", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowSaveAsOfOfficeFiles"},
 }
 
 // AllowScreenCapture: Allow screen capture
@@ -120,6 +128,7 @@ var AllowScreenCapture = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Experience02", ResultClass: "MDM_Policy_Result01_Experience02", InstanceID: "Experience", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowScreenCapture"},
 }
 
 // AllowScreenRecorder: This policy setting allows you to control whether screen recording functionality is available in the Windows Snipping Tool app. If you disable this policy setting, screen recording functionality will not be accessible in the Windows Snipping Tool app. If you enable or don't configure this policy setting, users will be able to access screen recording functionality.
@@ -133,6 +142,7 @@ var AllowScreenRecorder = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0xAB;0xAC;0xBC;0xBF;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Disabled."}, {Value: "1", Description: "Enabled."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Experience02", ResultClass: "MDM_Policy_Result01_Experience02", InstanceID: "Experience", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowScreenRecorder"},
 }
 
 // AllowSharingOfOfficeFiles: This policy is deprecated.
@@ -148,6 +158,7 @@ var AllowSharingOfOfficeFiles = csp.Policy{
 	CSPVersion:        "4.1",
 	Editions:          "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:           &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
+	Bridge:            &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Experience02", ResultClass: "MDM_Policy_Result01_Experience02", InstanceID: "Experience", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowSharingOfOfficeFiles"},
 }
 
 // AllowSpotlightCollection: Specifies whether Spotlight collection is allowed as a Personalization->Background Setting. If you enable this policy setting, Spotlight collection will show as an option in the user's Personalization Settings, and the user will be able to get daily images from Microsoft displayed on their desktop. If you disable this policy setting, Spotlight collection will not show as an option in Personliazation Settings, and the user will not have the choice of getting Microsoft daily images shown on their desktop.
@@ -161,6 +172,7 @@ var AllowSpotlightCollection = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0xAB;0xAC;0xBC;0xBF;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "Range"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Experience02", ResultClass: "MDM_Policy_Result01_Experience02", InstanceID: "Experience", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowSpotlightCollection"},
 }
 
 // AllowSyncMySettings: Allows or disallows all Windows sync settings on the device. For information about what settings are sync'ed, see About sync setting on Windows 10 devices.
@@ -174,6 +186,7 @@ var AllowSyncMySettings = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Sync settings are not allowed."}, {Value: "1", Description: "Sync settings allowed."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Experience02", ResultClass: "MDM_Policy_Result01_Experience02", InstanceID: "Experience", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowSyncMySettings"},
 }
 
 // AllowTailoredExperiencesWithDiagnosticData: This policy allows you to prevent Windows from using diagnostic data to provide customized experiences to the user. If you enable this policy setting, Windows will not use diagnostic data from this device to customize content shown on the lock screen, Windows tips, Microsoft consumer features, or other related features. If these features are enabled, users will still see recommendations, tips and offers, but they may be less relevant. If you disable or do not configure this policy setting, Microsoft will use diagnostic data to provide personalized recommendations, tips, and offers to tailor Windows for the user's needs and make it work better for them. Diagnostic data can include browser, app and feature usage, depending on the Diagnostic and usage data setting value. Note This setting does not control Cortana cutomized experiences because there are separate policies to configure it. Most restricted value is 0.
@@ -187,6 +200,7 @@ var AllowTailoredExperiencesWithDiagnosticData = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Experience02", ResultClass: "MDM_Policy_Result01_Experience02", InstanceID: "Experience", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowTailoredExperiencesWithDiagnosticData"},
 }
 
 // AllowTaskSwitcher: This policy is deprecated.
@@ -201,6 +215,7 @@ var AllowTaskSwitcher = csp.Policy{
 	MinOSBuild:        "10.0.10240",
 	CSPVersion:        "1.0",
 	Allowed:           &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
+	Bridge:            &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Experience02", ResultClass: "MDM_Policy_Result01_Experience02", InstanceID: "Experience", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowTaskSwitcher"},
 }
 
 // AllowThirdPartySuggestionsInWindowsSpotlight: Specifies whether to allow app and content suggestions from third-party software publishers in Windows spotlight features like lock screen spotlight, suggested apps in the Start menu, and Windows tips. Users may still see suggestions for Microsoft features, apps, and services.
@@ -214,6 +229,7 @@ var AllowThirdPartySuggestionsInWindowsSpotlight = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Third-party suggestions not allowed."}, {Value: "1", Description: "Third-party suggestions allowed."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Experience02", ResultClass: "MDM_Policy_Result01_Experience02", InstanceID: "Experience", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowThirdPartySuggestionsInWindowsSpotlight"},
 }
 
 // AllowVoiceRecording: This policy is deprecated.
@@ -228,6 +244,7 @@ var AllowVoiceRecording = csp.Policy{
 	MinOSBuild:        "10.0.10240",
 	CSPVersion:        "1.0",
 	Allowed:           &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
+	Bridge:            &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Experience02", ResultClass: "MDM_Policy_Result01_Experience02", InstanceID: "Experience", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowVoiceRecording"},
 }
 
 // AllowWindowsConsumerFeatures: Prior to Windows 10, version 1803, this policy had User scope. This policy allows IT admins to turn on experiences that are typically for consumers only, such as Start suggestions, Membership notifications, Post-OOBE app install and redirect tiles. Most restricted value is 0.
@@ -241,6 +258,7 @@ var AllowWindowsConsumerFeatures = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0xAB;0xAC;0xBC;0xBF;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Experience02", ResultClass: "MDM_Policy_Result01_Experience02", InstanceID: "Experience", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowWindowsConsumerFeatures"},
 }
 
 // AllowWindowsSpotlight: Specifies whether to turn off all Windows spotlight features at once. If you enable this policy setting, Windows spotlight on lock screen, Windows Tips, Microsoft consumer features and other related features will be turned off. You should enable this policy setting if your goal is to minimize network traffic from target devices. If you disable or do not configure this policy setting, Windows spotlight features are allowed and may be controlled individually using their corresponding policy settings. Most restricted value is 0.
@@ -254,6 +272,7 @@ var AllowWindowsSpotlight = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0xAB;0xAC;0xBC;0xBF;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Experience02", ResultClass: "MDM_Policy_Result01_Experience02", InstanceID: "Experience", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowWindowsSpotlight"},
 }
 
 // AllowWindowsSpotlightOnActionCenter: This policy allows administrators to prevent Windows spotlight notifications from being displayed in the Action Center. If you enable this policy, Windows spotlight notifications will no longer be displayed in the Action Center. If you disable or do not configure this policy, Microsoft may display notifications in the Action Center that will suggest apps or features to help users be more productive on Windows. Most restricted value is 0.
@@ -267,6 +286,7 @@ var AllowWindowsSpotlightOnActionCenter = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0xAB;0xAC;0xBC;0xBF;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Experience02", ResultClass: "MDM_Policy_Result01_Experience02", InstanceID: "Experience", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowWindowsSpotlightOnActionCenter"},
 }
 
 // AllowWindowsSpotlightOnSettings: This policy allows IT admins to turn off Suggestions in Settings app. These suggestions from Microsoft may show after each OS clean install, upgrade or an on-going basis to help users discover apps/features on Windows or across devices, to make their experience productive. User setting is under Settings -> Privacy -> General -> Show me suggested content in Settings app. User Setting is changeable on a per user basis. If the Group policy is set to off, no suggestions will be shown to the user in Settings app.
@@ -280,6 +300,7 @@ var AllowWindowsSpotlightOnSettings = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0xAB;0xAC;0xBC;0xBF;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Experience02", ResultClass: "MDM_Policy_Result01_Experience02", InstanceID: "Experience", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowWindowsSpotlightOnSettings"},
 }
 
 // AllowWindowsSpotlightWindowsWelcomeExperience: This policy setting lets you turn off the Windows spotlight Windows welcome experience feature. The Windows welcome experience feature introduces onboard users to Windows; for example, launching Microsoft Edge with a webpage that highlights new features. If you enable this policy, the Windows welcome experience will no longer be displayed when there are updates and changes to Windows and its apps. If you disable or do not configure this policy, the Windows welcome experience will be launched to inform onboard users about what's new, changed, and suggested. Most restricted value is 0.
@@ -293,6 +314,7 @@ var AllowWindowsSpotlightWindowsWelcomeExperience = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0xAB;0xAC;0xBC;0xBF;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Experience02", ResultClass: "MDM_Policy_Result01_Experience02", InstanceID: "Experience", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowWindowsSpotlightWindowsWelcomeExperience"},
 }
 
 // AllowWindowsTips: Enables or disables Windows Tips / soft landing.
@@ -306,6 +328,7 @@ var AllowWindowsTips = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0xAB;0xAC;0xAF;0xBC;0xBF;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Disabled."}, {Value: "1", Description: "Enabled."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Experience02", ResultClass: "MDM_Policy_Result01_Experience02", InstanceID: "Experience", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowWindowsTips"},
 }
 
 // ConfigureChatIcon: This policy is deprecated
@@ -321,6 +344,7 @@ var ConfigureChatIcon = csp.Policy{
 	CSPVersion:        "11.0",
 	Editions:          "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:           &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not Configured"}, {Value: "1", Description: "Show"}, {Value: "2", Description: "Hide"}, {Value: "3", Description: "Disabled"}}},
+	Bridge:            &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Experience02", ResultClass: "MDM_Policy_Result01_Experience02", InstanceID: "Experience", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ConfigureChatIcon"},
 }
 
 // ConfigureWindowsSpotlightOnLockScreen: Allows IT admins to specify whether spotlight should be used on the user's lock screen. If your organization does not have an Enterprise spotlight content service, then this policy will behave the same as a setting of 1.
@@ -334,6 +358,7 @@ var ConfigureWindowsSpotlightOnLockScreen = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0xAB;0xAC;0xBC;0xBF;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Windows spotlight disabled."}, {Value: "1", Description: "Windows spotlight enabled."}, {Value: "2", Description: "Windows spotlight is always enabled, the user cannot disable it"}, {Value: "3", Description: "Windows spotlight is always enabled, the user cannot disable it. For special configurations only"}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Experience02", ResultClass: "MDM_Policy_Result01_Experience02", InstanceID: "Experience", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ConfigureWindowsSpotlightOnLockScreen"},
 }
 
 // DisableCloudOptimizedContent: This policy controls Windows experiences that use the cloud optimized content client component. If you enable this policy, they will present only default content. If you disable or do not configure this policy, they will be able to use cloud provided content.
@@ -347,6 +372,7 @@ var DisableCloudOptimizedContent = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0xAB;0xAC;0xAF;0xBC;0xBF;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Disabled."}, {Value: "1", Description: "Enabled."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Experience02", ResultClass: "MDM_Policy_Result01_Experience02", InstanceID: "Experience", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisableCloudOptimizedContent"},
 }
 
 // DisableConsumerAccountStateContent: This policy controls Windows experiences that use the cloud consumer account state content client component. If you enable this policy, they will present only default content. If you disable or do not configure this policy, they will be able to use cloud provided content.
@@ -360,6 +386,7 @@ var DisableConsumerAccountStateContent = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0xAB;0xAC;0xBC;0xBF;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Disabled."}, {Value: "1", Description: "Enabled."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Experience02", ResultClass: "MDM_Policy_Result01_Experience02", InstanceID: "Experience", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisableConsumerAccountStateContent"},
 }
 
 // DisableInlineCompose: This policy controls whether users can compose a message directly in the Share sheet after selecting Outlook. If the policy is enabled, Windows hides the message entry field and users must complete message composition within Outlook. If the policy is disabled or not configured, Windows may display a message entry field in the Share sheet.
@@ -373,6 +400,7 @@ var DisableInlineCompose = csp.Policy{
 	CSPVersion: "9.9",
 	Editions:   "0x4;0x1B;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0xAB;0xAC;0xBC;0xBF;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Inline Compose on ShareSheet is Enabled."}, {Value: "1", Description: "Inline Compose on ShareSheet is Disabled."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Experience02", ResultClass: "MDM_Policy_Result01_Experience02", InstanceID: "Experience", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisableInlineCompose"},
 }
 
 // DisableShareAppPromotions: This policy setting allow IT admins to control whether promotional apps are displayed in the Share sheet. If you enable this policy, Windows will not show  promotional apps in the Share sheet. If you disable or do not configure this policy, Share sheet may show app suggestions and promotions when the Share sheet is opened.
@@ -386,6 +414,7 @@ var DisableShareAppPromotions = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0xAB;0xAC;0xBC;0xBF;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Promotional Apps on ShareSheet are Enabled."}, {Value: "1", Description: "Promotional Apps on ShareSheet are Disabled."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Experience02", ResultClass: "MDM_Policy_Result01_Experience02", InstanceID: "Experience", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisableShareAppPromotions"},
 }
 
 // DisableTextTranslation: Allows Text Translation feature to be enabled/disabled.
@@ -399,6 +428,7 @@ var DisableTextTranslation = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0xAB;0xAC;0xBC;0xBF;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Enable Text Translation"}, {Value: "1", Description: "Disable Text Translation"}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Experience02", ResultClass: "MDM_Policy_Result01_Experience02", InstanceID: "Experience", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisableTextTranslation"},
 }
 
 // DoNotShowFeedbackNotifications: Prevents devices from showing feedback questions from Microsoft. If you enable this policy setting, users will no longer see feedback notifications through the Feedback hub app. If you disable or do not configure this policy setting, users may see notifications through the Feedback hub app asking users for feedback. If you disable or do not configure this policy setting, users can control how often they receive feedback questions.
@@ -412,6 +442,7 @@ var DoNotShowFeedbackNotifications = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Feedback notifications are not disabled. The actual state of feedback notifications on the device will then depend on what GP has configured or what the user has configured locally."}, {Value: "1", Description: "Feedback notifications are disabled."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Experience02", ResultClass: "MDM_Policy_Result01_Experience02", InstanceID: "Experience", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DoNotShowFeedbackNotifications"},
 }
 
 // DoNotSyncBrowserSettings: You can configure Microsoft Edge, when enabled, to prevent the "browser" group from using the Sync your Settings option to sync information, such as history and favorites, between user's devices. If you want syncing turned off by default in Microsoft Edge but not disabled, enable the Allow users to turn browser syncing on policy. If disabled or not configured, the Sync your Settings options are turned on in Microsoft Edge by default, and configurable by the user.                          Related policy: PreventUsersFromTurningOnBrowserSyncing                         0 (default) = allow syncing, 2 = disable syncing
@@ -425,6 +456,7 @@ var DoNotSyncBrowserSettings = csp.Policy{
 	CSPVersion: "8.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "2", Description: "Disable Syncing"}, {Value: "0", Description: "Allow syncing"}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Experience02", ResultClass: "MDM_Policy_Result01_Experience02", InstanceID: "Experience", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DoNotSyncBrowserSettings"},
 }
 
 // EnableOrganizationalMessages: Organizational messages allow Administrators to deliver messages to their end users on selected Windows 11 experiences. Organizational messages are available to Administrators via services like Microsoft Endpoint Manager. By default, this policy is disabled. If you enable this policy, these experiences will show content booked by Administrators. Enabling this policy will have no impact on existing MDM policy settings governing delivery of content from Microsoft on Windows experiences.
@@ -438,6 +470,7 @@ var EnableOrganizationalMessages = csp.Policy{
 	CSPVersion: "10.0",
 	Editions:   "0x4;0x1B;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0xAB;0xAC;0xBC;0xBF;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Disabled."}, {Value: "1", Description: "Enabled."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Experience02", ResultClass: "MDM_Policy_Result01_Experience02", InstanceID: "Experience", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "EnableOrganizationalMessages"},
 }
 
 // PreventUsersFromTurningOnBrowserSyncing: You can configure Microsoft Edge to allow users to turn on the Sync your Settings option to sync information, such as history and favorites, between user's devices.  When enabled and you enable the Do not sync browser setting policy, browser settings sync automatically. If disabled, users have the option to sync the browser settings.                         Related policy: DoNotSyncBrowserSettings                         1 (default) = Do not allow users to turn on syncing, 0 = Allows users to turn on syncing
@@ -451,6 +484,7 @@ var PreventUsersFromTurningOnBrowserSyncing = csp.Policy{
 	CSPVersion: "8.0",
 	Editions:   "0x4;0x1B;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0xAB;0xAC;0xAF;0xBC;0xBF;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Allowed/turned on. Users can sync the browser settings."}, {Value: "1", Description: "Prevented/turned off."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Experience02", ResultClass: "MDM_Policy_Result01_Experience02", InstanceID: "Experience", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "PreventUsersFromTurningOnBrowserSyncing"},
 }
 
 // ShowLockOnUserTile: Shows or hides lock from the user tile menu. If you enable this policy setting, the lock option will be shown in the User Tile menu.  If you disable this policy setting, the lock option will never be shown in the User Tile menu.  If you do not configure this policy setting, users will be able to choose whether they want lock to show through the Power Options Control Panel.
@@ -464,6 +498,7 @@ var ShowLockOnUserTile = csp.Policy{
 	CSPVersion: "9.0",
 	Editions:   "0x4;0x1B;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0xAB;0xAC;0xAF;0xBC;0xBF;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "The lock option is not displayed in the User Tile menu."}, {Value: "1", Description: "The lock option is displayed in the User Tile menu."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Experience02", ResultClass: "MDM_Policy_Result01_Experience02", InstanceID: "Experience", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ShowLockOnUserTile"},
 }
 
 // All lists every policy in this CSP area.

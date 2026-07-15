@@ -15,6 +15,7 @@ var AllowSuggestedAppsInWindowsInkWorkspace = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WindowsInkWorkspace02", ResultClass: "MDM_Policy_Result01_WindowsInkWorkspace02", InstanceID: "WindowsInkWorkspace", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowSuggestedAppsInWindowsInkWorkspace"},
 }
 
 // AllowWindowsInkWorkspace: Specifies whether to allow the user to access the ink workspace.
@@ -28,6 +29,7 @@ var AllowWindowsInkWorkspace = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "access to ink workspace is disabled. The feature is turned off."}, {Value: "1", Description: "ink workspace is enabled (feature is turned on), but the user cannot access it above the lock screen."}, {Value: "2", Description: "ink workspace is enabled (feature is turned on), and the user is allowed to use it above the lock screen."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WindowsInkWorkspace02", ResultClass: "MDM_Policy_Result01_WindowsInkWorkspace02", InstanceID: "WindowsInkWorkspace", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowWindowsInkWorkspace"},
 }
 
 // All lists every policy in this CSP area.

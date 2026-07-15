@@ -15,6 +15,7 @@ var HypervisorEnforcedCodeIntegrity = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "(Disabled) Turns off Hypervisor-Protected Code Integrity remotely if configured previously without UEFI Lock."}, {Value: "1", Description: "(Enabled with UEFI lock) Turns on Hypervisor-Protected Code Integrity with UEFI lock."}, {Value: "2", Description: "(Enabled without lock) Turns on Hypervisor-Protected Code Integrity without UEFI lock."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_VirtualizationBasedTechnology02", ResultClass: "MDM_Policy_Result01_VirtualizationBasedTechnology02", InstanceID: "VirtualizationBasedTechnology", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "HypervisorEnforcedCodeIntegrity"},
 }
 
 // RequireUEFIMemoryAttributesTable: Require UEFI Memory Attributes Table
@@ -28,6 +29,7 @@ var RequireUEFIMemoryAttributesTable = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Do not require UEFI Memory Attributes Table"}, {Value: "1", Description: "Require UEFI Memory Attributes Table"}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_VirtualizationBasedTechnology02", ResultClass: "MDM_Policy_Result01_VirtualizationBasedTechnology02", InstanceID: "VirtualizationBasedTechnology", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "RequireUEFIMemoryAttributesTable"},
 }
 
 // All lists every policy in this CSP area.

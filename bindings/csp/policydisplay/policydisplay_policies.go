@@ -15,6 +15,7 @@ var ConfigureMultipleDisplayMode = csp.Policy{
 	CSPVersion: "9.9",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Default."}, {Value: "1", Description: "Internal Only."}, {Value: "2", Description: "External Only."}, {Value: "3", Description: "Clone."}, {Value: "4", Description: "Extend."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Display02", ResultClass: "MDM_Policy_Result01_Display02", InstanceID: "Display", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ConfigureMultipleDisplayMode"},
 }
 
 // DisablePerProcessDpiForApps: This policy allows you to disable Per-Process System DPI for a semicolon-separated list of applications. Applications can be specified either by using full paths or with filenames and extensions. This policy will override the system-wide default value.
@@ -27,6 +28,7 @@ var DisablePerProcessDpiForApps = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "None"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Display02", ResultClass: "MDM_Policy_Result01_Display02", InstanceID: "Display", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisablePerProcessDpiForApps"},
 }
 
 // EnablePerProcessDpi: Enable or disable Per-Process System DPI for all applications.
@@ -39,6 +41,7 @@ var EnablePerProcessDpi = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Disable."}, {Value: "1", Description: "Enable."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Display02", ResultClass: "MDM_Policy_Result01_Display02", InstanceID: "Display", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "EnablePerProcessDpi"},
 }
 
 // EnablePerProcessDpiForApps: This policy allows you to enable Per-Process System DPI for a semicolon-separated list of applications. Applications can be specified either by using full paths or with filenames and extensions. This policy will override the system-wide default value.
@@ -51,6 +54,7 @@ var EnablePerProcessDpiForApps = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "None"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Display02", ResultClass: "MDM_Policy_Result01_Display02", InstanceID: "Display", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "EnablePerProcessDpiForApps"},
 }
 
 // SetClonePreferredResolutionSource: Set the cloned monitor preferred resolution source as internal or external monitor or set to default.
@@ -64,6 +68,7 @@ var SetClonePreferredResolutionSource = csp.Policy{
 	CSPVersion: "9.9",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Default."}, {Value: "1", Description: "Internal."}, {Value: "2", Description: "External."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Display02", ResultClass: "MDM_Policy_Result01_Display02", InstanceID: "Display", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "SetClonePreferredResolutionSource"},
 }
 
 // TurnOffGdiDPIScalingForApps: This policy allows to force turn off GDI DPI Scaling for a semicolon separated list of applications. Applications can be specified either by using full path or just filename and extension.
@@ -76,6 +81,7 @@ var TurnOffGdiDPIScalingForApps = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "None"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Display02", ResultClass: "MDM_Policy_Result01_Display02", InstanceID: "Display", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "TurnOffGdiDPIScalingForApps"},
 }
 
 // TurnOnGdiDPIScalingForApps: This policy allows to turn on GDI DPI Scaling for a semicolon separated list of applications. Applications can be specified either by using full path or just filename and extension.
@@ -88,6 +94,7 @@ var TurnOnGdiDPIScalingForApps = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "None"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Display02", ResultClass: "MDM_Policy_Result01_Display02", InstanceID: "Display", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "TurnOnGdiDPIScalingForApps"},
 }
 
 // All lists every policy in this CSP area.

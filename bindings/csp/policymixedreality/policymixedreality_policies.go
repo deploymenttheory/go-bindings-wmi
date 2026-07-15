@@ -15,6 +15,7 @@ var AADGroupMembershipCacheValidityInDays = csp.Policy{
 	CSPVersion: "10.0",
 	Editions:   "0x88;",
 	Allowed:    &csp.Allowed{Type: "Range"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_MixedReality02", ResultClass: "MDM_Policy_Result01_MixedReality02", InstanceID: "MixedReality", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AADGroupMembershipCacheValidityInDays"},
 }
 
 // AllowCaptivePortalBeforeLogon: This policy controls whether the device will display the captive portal flow on the HoloLens sign in screen's network selection page when a captive portal network is detected. Displaying the captive portal flow is disabled by default to reduce the potential of gaining unauthorized access to the device through the browser.
@@ -28,6 +29,7 @@ var AllowCaptivePortalBeforeLogon = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x88;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Displaying captive portal is not allowed."}, {Value: "1", Description: "Displaying captive portal is allowed."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_MixedReality02", ResultClass: "MDM_Policy_Result01_MixedReality02", InstanceID: "MixedReality", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowCaptivePortalBeforeLogon"},
 }
 
 // AllowLaunchUriInSingleAppKiosk: By default, launching applications via Launcher API (Launcher Class (Windows.System) - Windows UWP applications | Microsoft Docs) is disabled in single app kiosk mode. To enable applications to launch in single app kiosk mode on HoloLens devices, set the policy value to true.
@@ -41,6 +43,7 @@ var AllowLaunchUriInSingleAppKiosk = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x88;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Applications are not allowed to be launched with Launcher API, when in single app kiosk mode."}, {Value: "1", Description: "Applications are allowed to be launched with Launcher API, when in single app kiosk mode."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_MixedReality02", ResultClass: "MDM_Policy_Result01_MixedReality02", InstanceID: "MixedReality", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowLaunchUriInSingleAppKiosk"},
 }
 
 // AutoLogonUser: This policy controls whether a user will be automatically logged on. When the policy is set to a non-empty value, it specifies the email address of the auto-logon user. The specified user must logon to the device at least once to enable auto-logon.
@@ -52,6 +55,7 @@ var AutoLogonUser = csp.Policy{
 	MinOSBuild: "10.0.20348",
 	CSPVersion: "11.0",
 	Editions:   "0x88;",
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_MixedReality02", ResultClass: "MDM_Policy_Result01_MixedReality02", InstanceID: "MixedReality", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AutoLogonUser"},
 }
 
 // AutoUnlock: This policy controls whether a signed-in user will be prompted for credentials when returning to the device after the device has entered suspended state. This policy is available both for the device as well as the user scope. When enabled for the device scope, auto unlock will be enabled for all users on the device. When enabled for the user scope, only the specific user will have auto unlock enabled.
@@ -65,6 +69,7 @@ var AutoUnlock = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x88;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "User will be prompted for credentials."}, {Value: "1", Description: "User will not be prompted for credentials."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_MixedReality02", ResultClass: "MDM_Policy_Result01_MixedReality02", InstanceID: "MixedReality", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AutoUnlock"},
 }
 
 // AutomaticDisplayAdjustment: This policy controls if the HoloLens displays will be automatically adjusted for your eyes to improve hologram visual quality when an user wears the device. When this feature is enabled, a new user upon wearing the device will not be prompted to calibrate and yet the displays will be adjusted to suite them automatically.  However if an immersive application is launched that depends on eye tracking interactions, the user will be prompted to perform the calibration.
@@ -77,6 +82,7 @@ var AutomaticDisplayAdjustment = csp.Policy{
 	MinOSBuild: "10.0.19041",
 	CSPVersion: "10.0",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Disabled."}, {Value: "1", Description: "Enabled."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_MixedReality02", ResultClass: "MDM_Policy_Result01_MixedReality02", InstanceID: "MixedReality", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AutomaticDisplayAdjustment"},
 }
 
 // BrightnessButtonDisabled: This policy setting controls if pressing the brightness button changes the brightness or not. It only impacts brightness on HoloLens and not the functionality of the button when it's used with other buttons as combination for other purposes.
@@ -90,6 +96,7 @@ var BrightnessButtonDisabled = csp.Policy{
 	CSPVersion: "10.0",
 	Editions:   "0x88;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Brightness can be changed with press of brightness button."}, {Value: "1", Description: "Brightness cannot be changed with press of brightness button."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_MixedReality02", ResultClass: "MDM_Policy_Result01_MixedReality02", InstanceID: "MixedReality", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "BrightnessButtonDisabled"},
 }
 
 // ConfigureDeviceStandbyAction: This policy setting controls device maintenance action during standby.
@@ -103,6 +110,7 @@ var ConfigureDeviceStandbyAction = csp.Policy{
 	CSPVersion: "9.9",
 	Editions:   "0x88;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not configured."}, {Value: "1", Description: "Logoff users."}, {Value: "2", Description: "Reboot device."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_MixedReality02", ResultClass: "MDM_Policy_Result01_MixedReality02", InstanceID: "MixedReality", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ConfigureDeviceStandbyAction"},
 }
 
 // ConfigureDeviceStandbyActionTimeout: This policy setting controls when to start maintenance action after device enters standby. The timeout value is in hours.
@@ -116,6 +124,7 @@ var ConfigureDeviceStandbyActionTimeout = csp.Policy{
 	CSPVersion: "9.9",
 	Editions:   "0x88;",
 	Allowed:    &csp.Allowed{Type: "Range"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_MixedReality02", ResultClass: "MDM_Policy_Result01_MixedReality02", InstanceID: "MixedReality", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ConfigureDeviceStandbyActionTimeout"},
 }
 
 // ConfigureMovingPlatform: This policy controls the behavior of moving platform feature on HoloLens 2, that is, whether it’s turned off / on or it can be toggled by a user. It should only be used by customers who intend to use HoloLens 2 in moving environments with low dynamic motion. Please refer to HoloLens 2 Moving Platform Mode for background information.
@@ -129,6 +138,7 @@ var ConfigureMovingPlatform = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x88;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Last set user's preference. Initial state is OFF and after that user's preference is persisted across reboots and is used to initialize the system."}, {Value: "1", Description: "Moving platform is disabled and cannot be changed by user."}, {Value: "2", Description: "Moving platform is enabled and cannot be changed by user."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_MixedReality02", ResultClass: "MDM_Policy_Result01_MixedReality02", InstanceID: "MixedReality", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ConfigureMovingPlatform"},
 }
 
 // ConfigureNtpClient: This policy setting specifies a set of parameters for controlling the Windows NTP Client. Please refer to https://docs.microsoft.com/en-us/windows/client-management/mdm/policy-csp-admx-w32time#admx-w32time-policy-configure-ntpclient for parameters and https://docs.microsoft.com/en-us/windows/client-management/mdm/policy-csp-mixedreality for setting values for this policy.
@@ -141,6 +151,7 @@ var ConfigureNtpClient = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x88;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "w32time~AT~System~W32TIME_ROOT~W32TIME_TIMEPROVIDERS", Name: "W32TIME_POLICY_CONFIGURE_NTPCLIENT", File: "w32time.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_MixedReality02", ResultClass: "MDM_Policy_Result01_MixedReality02", InstanceID: "MixedReality", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ConfigureNtpClient"},
 }
 
 // ConfigureSharedAccount: This policy specifies the configuration for Shared Accounts on the device. Shared Accounts are AAD accounts that are deployed to the device by an IT admin and can be used by anyone with physical access to the device. These accounts excel in deployments where the HoloLens device is used like a tool shared between multiple people and it doesn't matter which account is used to access AAD resources. Because these accounts can be signed in without requiring the user to provide credentials, you should ensure that these devices are physically secure, with access granted only to authorized personnel. You should also lock down these accounts to only have access to the required resources.
@@ -153,6 +164,7 @@ var ConfigureSharedAccount = csp.Policy{
 	CSPVersion: "9.9",
 	Editions:   "0x88;",
 	Allowed:    &csp.Allowed{Type: "XSD"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_MixedReality02", ResultClass: "MDM_Policy_Result01_MixedReality02", InstanceID: "MixedReality", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ConfigureSharedAccount"},
 }
 
 // DisallowNetworkConnectivityPassivePolling: Network Connection Status Indicator (NCSI) detects Internet connectivity and corporate network connectivity status. This policy allows IT admins to disable NCSI passive polling. Value type is integer.
@@ -166,6 +178,7 @@ var DisallowNetworkConnectivityPassivePolling = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x88;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Allowed."}, {Value: "1", Description: "Not allowed."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_MixedReality02", ResultClass: "MDM_Policy_Result01_MixedReality02", InstanceID: "MixedReality", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisallowNetworkConnectivityPassivePolling"},
 }
 
 // EnableStartMenuSingleHandGesture: This policy setting controls if pinching your thumb and index finger, while looking at the Start icon on your wrist, to open the Start menu is enabled or not.
@@ -179,6 +192,7 @@ var EnableStartMenuSingleHandGesture = csp.Policy{
 	CSPVersion: "9.9",
 	Editions:   "0x88;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Don't allow pinching your thumb and index finger, while looking at the Start icon on your wrist, to open the Start menu."}, {Value: "1", Description: "Allow pinching your thumb and index finger, while looking at the Start icon on your wrist, to open the Start menu."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_MixedReality02", ResultClass: "MDM_Policy_Result01_MixedReality02", InstanceID: "MixedReality", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "EnableStartMenuSingleHandGesture"},
 }
 
 // EnableStartMenuVoiceCommand: This policy setting controls if using voice commands to open the Start menu is enabled or not.
@@ -192,6 +206,7 @@ var EnableStartMenuVoiceCommand = csp.Policy{
 	CSPVersion: "9.9",
 	Editions:   "0x88;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Using voice commands to open the Start menu is disabled."}, {Value: "1", Description: "Using voice commands to open the Start menu is enabled."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_MixedReality02", ResultClass: "MDM_Policy_Result01_MixedReality02", InstanceID: "MixedReality", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "EnableStartMenuVoiceCommand"},
 }
 
 // EnableStartMenuWristTap: This policy setting controls if tapping the Star icon on your wrist to open the Start menu is enabled or not.
@@ -205,6 +220,7 @@ var EnableStartMenuWristTap = csp.Policy{
 	CSPVersion: "9.9",
 	Editions:   "0x88;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Don't allow tapping the Start icon on your wrist to open the Start menu."}, {Value: "1", Description: "Allow tapping the Start icon on your wrist to open the Start menu."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_MixedReality02", ResultClass: "MDM_Policy_Result01_MixedReality02", InstanceID: "MixedReality", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "EnableStartMenuWristTap"},
 }
 
 // EyeTrackingCalibrationPrompt: This policy controls when a new person uses Hololens device, if Hololens should automatically ask to run eye calibration.
@@ -217,6 +233,7 @@ var EyeTrackingCalibrationPrompt = csp.Policy{
 	MinOSBuild: "10.0.19041",
 	CSPVersion: "10.0",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Disabled."}, {Value: "1", Description: "Enabled."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_MixedReality02", ResultClass: "MDM_Policy_Result01_MixedReality02", InstanceID: "MixedReality", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "EyeTrackingCalibrationPrompt"},
 }
 
 // FallbackDiagnostics: This policy setting controls, when and if diagnostic logs can be collected using specific button combination on HoloLens.
@@ -230,6 +247,7 @@ var FallbackDiagnostics = csp.Policy{
 	CSPVersion: "10.0",
 	Editions:   "0x88;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed. Diagnostic logs cannot be collected by pressing the button combination."}, {Value: "1", Description: "Allowed for device owners only. Diagnostics logs can be collected by pressing the button combination only if signed-in user is considered as device owner."}, {Value: "2", Description: "Allowed for all users. Diagnostic logs can be collected by pressing the button combination."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_MixedReality02", ResultClass: "MDM_Policy_Result01_MixedReality02", InstanceID: "MixedReality", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "FallbackDiagnostics"},
 }
 
 // HeadTrackingMode: This policy configures behavior of HUP to determine, which algorithm to use for head tracking. It requires a reboot for the policy to take effect.
@@ -242,6 +260,7 @@ var HeadTrackingMode = csp.Policy{
 	MinOSBuild: "10.0.19041",
 	CSPVersion: "10.0",
 	Allowed:    &csp.Allowed{Type: "Range"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_MixedReality02", ResultClass: "MDM_Policy_Result01_MixedReality02", InstanceID: "MixedReality", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "HeadTrackingMode"},
 }
 
 // ManualDownDirectionDisabled: This policy controls whether the user can change down direction manually or not. If no down direction is set by the user, then an automatically calculated down direction is used by the system. This policy has no dependency on ConfigureMovingPlatform policy and they can be set independently.
@@ -255,6 +274,7 @@ var ManualDownDirectionDisabled = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x88;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "User is allowed to manually change down direction."}, {Value: "1", Description: "User is not allowed to manually change down direction."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_MixedReality02", ResultClass: "MDM_Policy_Result01_MixedReality02", InstanceID: "MixedReality", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ManualDownDirectionDisabled"},
 }
 
 // MicrophoneDisabled: This policy setting controls whether microphone on HoloLens 2 is disabled or not.
@@ -268,6 +288,7 @@ var MicrophoneDisabled = csp.Policy{
 	CSPVersion: "10.0",
 	Editions:   "0x88;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Microphone can be used for voice."}, {Value: "1", Description: "Microphone cannot be used for voice."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_MixedReality02", ResultClass: "MDM_Policy_Result01_MixedReality02", InstanceID: "MixedReality", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "MicrophoneDisabled"},
 }
 
 // NtpClientEnabled: This policy setting specifies whether the Windows NTP Client is enabled. Please refer to https://docs.microsoft.com/en-us/windows/client-management/mdm/policy-csp-mixedreality on setting values for this policy.
@@ -280,6 +301,7 @@ var NtpClientEnabled = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x88;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "w32time~AT~System~W32TIME_ROOT~W32TIME_TIMEPROVIDERS", Name: "W32TIME_POLICY_ENABLE_NTPCLIENT", File: "w32time.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_MixedReality02", ResultClass: "MDM_Policy_Result01_MixedReality02", InstanceID: "MixedReality", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "NtpClientEnabled"},
 }
 
 // PreferLogonAsOtherUser: This policy configures whether the Sign-In App should prefer showing Other User panel to user.
@@ -293,6 +315,7 @@ var PreferLogonAsOtherUser = csp.Policy{
 	CSPVersion: "9.9",
 	Editions:   "0x88;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Disabled."}, {Value: "1", Description: "Enabled."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_MixedReality02", ResultClass: "MDM_Policy_Result01_MixedReality02", InstanceID: "MixedReality", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "PreferLogonAsOtherUser"},
 }
 
 // RequireStartIconHold: This policy setting controls if it's require that the Start icon to be pressed for 2 seconds to open the Start menu.
@@ -306,6 +329,7 @@ var RequireStartIconHold = csp.Policy{
 	CSPVersion: "9.9",
 	Editions:   "0x88;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Don't require the Start icon to be pressed for 2 seconds."}, {Value: "1", Description: "Require the Start icon to be pressed for 2 seconds."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_MixedReality02", ResultClass: "MDM_Policy_Result01_MixedReality02", InstanceID: "MixedReality", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "RequireStartIconHold"},
 }
 
 // RequireStartIconVisible: This policy setting controls if it's required that the Start icon to be looked at when you tap it to open the Start menu.
@@ -319,6 +343,7 @@ var RequireStartIconVisible = csp.Policy{
 	CSPVersion: "9.9",
 	Editions:   "0x88;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Don't require the Start icon to be looked at when you tap it."}, {Value: "1", Description: "Require the Start icon to be looked at when you tap it."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_MixedReality02", ResultClass: "MDM_Policy_Result01_MixedReality02", InstanceID: "MixedReality", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "RequireStartIconVisible"},
 }
 
 // SkipCalibrationDuringSetup: This policy configures whether the device will take the user through the eye tracking calibration process during device setup and first time user setup. If this policy is enabled, the device will not show the eye tracking calibration process during device setup and first time user setup. Note that until the user goes through the calibration process, eye tracking will not work on the device. If an app requires eye tracking and the user has not gone through the calibration process, the user will be prompted to do so.
@@ -332,6 +357,7 @@ var SkipCalibrationDuringSetup = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x88;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Eye tracking calibration process will be shown during device setup and first time user setup."}, {Value: "1", Description: "Eye tracking calibration process will not be shown during device setup and first time user setup."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_MixedReality02", ResultClass: "MDM_Policy_Result01_MixedReality02", InstanceID: "MixedReality", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "SkipCalibrationDuringSetup"},
 }
 
 // SkipTrainingDuringSetup: This policy configures whether the device will take the user through a training process during device setup and first time user setup. If this policy is enabled, the device will not show the training process during device setup and first time user setup. If the user wishes to go through that training process, the user can launch the Tips app.
@@ -345,6 +371,7 @@ var SkipTrainingDuringSetup = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x88;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Training process will be shown during device setup and first time user setup."}, {Value: "1", Description: "Training process will not be shown during device setup and first time user setup."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_MixedReality02", ResultClass: "MDM_Policy_Result01_MixedReality02", InstanceID: "MixedReality", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "SkipTrainingDuringSetup"},
 }
 
 // VisitorAutoLogon: This policy controls whether a visitor user will be automatically logged in. Visitor users can only be created and logged in, if an Assigned Access profile has been created targeting visitor users. A visitor user will only be automatically logged in, if no other user has logged in on the device before.
@@ -358,6 +385,7 @@ var VisitorAutoLogon = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x88;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Visitor user will not be signed in automatically."}, {Value: "1", Description: "Visitor user will be signed in automatically."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_MixedReality02", ResultClass: "MDM_Policy_Result01_MixedReality02", InstanceID: "MixedReality", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "VisitorAutoLogon"},
 }
 
 // VolumeButtonDisabled: This policy setting controls if pressing the volume button changes the volume or not. It only impacts volume on HoloLens and not the functionality of the button when it's used with other buttons as combination for other purposes.
@@ -371,6 +399,7 @@ var VolumeButtonDisabled = csp.Policy{
 	CSPVersion: "10.0",
 	Editions:   "0x88;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Volume can be changed with press of the volume button."}, {Value: "1", Description: "Volume cannot be changed with press of the volume button."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_MixedReality02", ResultClass: "MDM_Policy_Result01_MixedReality02", InstanceID: "MixedReality", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "VolumeButtonDisabled"},
 }
 
 // All lists every policy in this CSP area.

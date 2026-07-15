@@ -15,6 +15,7 @@ var AllowSpeechModelUpdate = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Speech02", ResultClass: "MDM_Policy_Result01_Speech02", InstanceID: "Speech", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowSpeechModelUpdate"},
 }
 
 // All lists every policy in this CSP area.

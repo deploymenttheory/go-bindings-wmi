@@ -15,6 +15,7 @@ var AllowMdnsAdvertisement = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WirelessDisplay02", ResultClass: "MDM_Policy_Result01_WirelessDisplay02", InstanceID: "WirelessDisplay", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowMdnsAdvertisement"},
 }
 
 // AllowMdnsDiscovery: This policy setting allows you to turn off discovering the display service advertised over multicast DNS by a Wireless Display receiver.
@@ -28,6 +29,7 @@ var AllowMdnsDiscovery = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WirelessDisplay02", ResultClass: "MDM_Policy_Result01_WirelessDisplay02", InstanceID: "WirelessDisplay", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowMdnsDiscovery"},
 }
 
 // AllowMovementDetectionOnInfrastructure: This policy setting allows you to disable the infrastructure movement detection feature.                     If you set it to 0, your PC may stay connected and continue to project if you walk away from a Wireless Display receiver to which you are projecting over infrastructure.                     If you set it to 1, your PC will detect that you have moved and will automatically disconnect your infrastructure Wireless Display session.
@@ -41,6 +43,7 @@ var AllowMovementDetectionOnInfrastructure = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WirelessDisplay02", ResultClass: "MDM_Policy_Result01_WirelessDisplay02", InstanceID: "WirelessDisplay", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowMovementDetectionOnInfrastructure"},
 }
 
 // AllowPCReceiverToBeTCPServer: This policy setting allows a PC acting as a Wireless Display receiver to be a TCP server for the TCP session carrying the projection stream to the receiver.                             If you set it to 0, your PC receiver will start the outbound connection as a TCP client.                             If you set it to 1, your PC may receive the incoming projection as a TCP server.
@@ -54,6 +57,7 @@ var AllowPCReceiverToBeTCPServer = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WirelessDisplay02", ResultClass: "MDM_Policy_Result01_WirelessDisplay02", InstanceID: "WirelessDisplay", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowPCReceiverToBeTCPServer"},
 }
 
 // AllowPCSenderToBeTCPClient: This policy setting allows a PC acting as a Wireless Display sender to be a TCP client for the TCP session carrying the projection stream to the receiver.                             If you set it to 0, your PC will only participate in an outgoing projection as a TCP server.                             If you set it to 1, your PC may start an outgoing projection as a TCP client.
@@ -67,6 +71,7 @@ var AllowPCSenderToBeTCPClient = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WirelessDisplay02", ResultClass: "MDM_Policy_Result01_WirelessDisplay02", InstanceID: "WirelessDisplay", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowPCSenderToBeTCPClient"},
 }
 
 // AllowProjectionFromPC: This policy allows you to turn off projection from a PC.                             If you set it to 0, your PC cannot discover or project to other devices.                             If you set it to 1, your PC can discover and project to other devices.
@@ -80,6 +85,7 @@ var AllowProjectionFromPC = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Your PC cannot discover or project to other devices."}, {Value: "1", Description: "Your PC can discover and project to other devices."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WirelessDisplay02", ResultClass: "MDM_Policy_Result01_WirelessDisplay02", InstanceID: "WirelessDisplay", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowProjectionFromPC"},
 }
 
 // AllowProjectionFromPCOverInfrastructure: This policy allows you to turn off projection from a PC over infrastructure.                             If you set it to 0, your PC cannot discover or project to other infrastructure devices, though it may still be possible to discover and project over WiFi Direct.                             If you set it to 1, your PC can discover and project to other devices over infrastructure.
@@ -93,6 +99,7 @@ var AllowProjectionFromPCOverInfrastructure = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Your PC cannot discover or project to other infrastructure devices, although it is possible to discover and project over WiFi Direct."}, {Value: "1", Description: "Your PC can discover and project to other devices over infrastructure."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WirelessDisplay02", ResultClass: "MDM_Policy_Result01_WirelessDisplay02", InstanceID: "WirelessDisplay", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowProjectionFromPCOverInfrastructure"},
 }
 
 // AllowProjectionToPC: This policy setting allows you to turn off projection to a PC                             If you set it to 0, your PC can't be discoverable or projected to over Wi-Fi Direct.                              If you set it to 1, your PC can be discoverable and projected to over Wi-Fi Direct. The user has an option to turn it always on or off except for manual launch, too.
@@ -106,6 +113,7 @@ var AllowProjectionToPC = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Projection to PC is not allowed. Always off and the user cannot enable it."}, {Value: "1", Description: "Projection to PC is allowed. Enabled only above the lock screen."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WirelessDisplay02", ResultClass: "MDM_Policy_Result01_WirelessDisplay02", InstanceID: "WirelessDisplay", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowProjectionToPC"},
 }
 
 // AllowProjectionToPCOverInfrastructure: This policy setting allows you to turn off projection to a PC over infrastructure.                             If you set it to 0, your PC cannot be discoverable and can't be projected to over infrastructure, though it may still be possible to project over WiFi Direct.                             If you set it to 1, your PC can be discoverable and can be projected to over infrastructure.
@@ -119,6 +127,7 @@ var AllowProjectionToPCOverInfrastructure = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Your PC is not discoverable and other devices cannot project to it over infrastructure, although it is possible to project to it over WiFi Direct."}, {Value: "1", Description: "Your PC is discoverable and other devices can project to it over infrastructure."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WirelessDisplay02", ResultClass: "MDM_Policy_Result01_WirelessDisplay02", InstanceID: "WirelessDisplay", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowProjectionToPCOverInfrastructure"},
 }
 
 // AllowUserInputFromWirelessDisplayReceiver: Setting this policy controls whether or not the wireless display can send input—keyboard, mouse, pen, and touch input if the display supports it—back to the source device.
@@ -132,6 +141,7 @@ var AllowUserInputFromWirelessDisplayReceiver = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Wireless display input disabled."}, {Value: "1", Description: "Wireless display input enabled."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WirelessDisplay02", ResultClass: "MDM_Policy_Result01_WirelessDisplay02", InstanceID: "WirelessDisplay", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowUserInputFromWirelessDisplayReceiver"},
 }
 
 // RequirePinForPairing: This policy setting allows you to require a pin for pairing.                             If you set this to 0, a pin isn't required for pairing.                             If you set this to 1, the pairing ceremony for new devices will always require a PIN.                             If you set this to 2, all pairings will require PIN.
@@ -145,6 +155,7 @@ var RequirePinForPairing = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "PIN is not required."}, {Value: "1", Description: "Pairing ceremony for new devices will always require a PIN"}, {Value: "2", Description: "All pairings will require PIN"}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WirelessDisplay02", ResultClass: "MDM_Policy_Result01_WirelessDisplay02", InstanceID: "WirelessDisplay", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "RequirePinForPairing"},
 }
 
 // All lists every policy in this CSP area.

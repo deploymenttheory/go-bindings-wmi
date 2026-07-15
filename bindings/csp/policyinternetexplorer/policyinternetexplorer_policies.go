@@ -13,6 +13,7 @@ var AddSearchProvider = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer", Name: "AddSearchProvider", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AddSearchProvider"},
 }
 
 var AllowActiveXFiltering = csp.Policy{
@@ -24,6 +25,7 @@ var AllowActiveXFiltering = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer", Name: "TurnOnActiveXFiltering", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowActiveXFiltering"},
 }
 
 var AllowAddOnList = csp.Policy{
@@ -35,6 +37,7 @@ var AllowAddOnList = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~SecurityFeatures~IESF_AddOnManagement", Name: "AddonManagement_AddOnList", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowAddOnList"},
 }
 
 var AllowAutoComplete = csp.Policy{
@@ -46,6 +49,7 @@ var AllowAutoComplete = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer", Name: "RestrictFormSuggestPW", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowAutoComplete"},
 }
 
 var AllowCertificateAddressMismatchWarning = csp.Policy{
@@ -57,6 +61,7 @@ var AllowCertificateAddressMismatchWarning = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage", Name: "IZ_PolicyWarnCertMismatch", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowCertificateAddressMismatchWarning"},
 }
 
 var AllowDeletingBrowsingHistoryOnExit = csp.Policy{
@@ -68,6 +73,7 @@ var AllowDeletingBrowsingHistoryOnExit = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~DeleteBrowsingHistory", Name: "DBHDisableDeleteOnExit", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowDeletingBrowsingHistoryOnExit"},
 }
 
 var AllowEnhancedProtectedMode = csp.Policy{
@@ -79,6 +85,7 @@ var AllowEnhancedProtectedMode = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~AdvancedPage", Name: "Advanced_EnableEnhancedProtectedMode", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowEnhancedProtectedMode"},
 }
 
 var AllowEnhancedSuggestionsInAddressBar = csp.Policy{
@@ -90,6 +97,7 @@ var AllowEnhancedSuggestionsInAddressBar = csp.Policy{
 	CSPVersion: "9.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer", Name: "AllowServicePoweredQSA", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowEnhancedSuggestionsInAddressBar"},
 }
 
 var AllowEnterpriseModeFromToolsMenu = csp.Policy{
@@ -101,6 +109,7 @@ var AllowEnterpriseModeFromToolsMenu = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer", Name: "EnterpriseModeEnable", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowEnterpriseModeFromToolsMenu"},
 }
 
 var AllowEnterpriseModeSiteList = csp.Policy{
@@ -112,6 +121,7 @@ var AllowEnterpriseModeSiteList = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer", Name: "EnterpriseModeSiteList", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowEnterpriseModeSiteList"},
 }
 
 var AllowFallbackToSSL3 = csp.Policy{
@@ -123,6 +133,7 @@ var AllowFallbackToSSL3 = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~SecurityFeatures", Name: "Advanced_EnableSSL3Fallback", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowFallbackToSSL3"},
 }
 
 var AllowInternetExplorer7PolicyList = csp.Policy{
@@ -134,6 +145,7 @@ var AllowInternetExplorer7PolicyList = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~CategoryCompatView", Name: "CompatView_UsePolicyList", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowInternetExplorer7PolicyList"},
 }
 
 var AllowInternetExplorerStandardsMode = csp.Policy{
@@ -145,6 +157,7 @@ var AllowInternetExplorerStandardsMode = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~CategoryCompatView", Name: "CompatView_IntranetSites", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowInternetExplorerStandardsMode"},
 }
 
 var AllowInternetZoneTemplate = csp.Policy{
@@ -156,6 +169,7 @@ var AllowInternetZoneTemplate = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage", Name: "IZ_PolicyInternetZoneTemplate", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowInternetZoneTemplate"},
 }
 
 var AllowIntranetZoneTemplate = csp.Policy{
@@ -167,6 +181,7 @@ var AllowIntranetZoneTemplate = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage", Name: "IZ_PolicyIntranetZoneTemplate", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowIntranetZoneTemplate"},
 }
 
 var AllowLegacyURLFields = csp.Policy{
@@ -178,6 +193,7 @@ var AllowLegacyURLFields = csp.Policy{
 	CSPVersion: "9.9",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer", Name: "AllowLegacyURLFields", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowLegacyURLFields"},
 }
 
 var AllowLocalMachineZoneTemplate = csp.Policy{
@@ -189,6 +205,7 @@ var AllowLocalMachineZoneTemplate = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage", Name: "IZ_PolicyLocalMachineZoneTemplate", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowLocalMachineZoneTemplate"},
 }
 
 var AllowLockedDownInternetZoneTemplate = csp.Policy{
@@ -200,6 +217,7 @@ var AllowLockedDownInternetZoneTemplate = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage", Name: "IZ_PolicyInternetZoneLockdownTemplate", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowLockedDownInternetZoneTemplate"},
 }
 
 var AllowLockedDownIntranetZoneTemplate = csp.Policy{
@@ -211,6 +229,7 @@ var AllowLockedDownIntranetZoneTemplate = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage", Name: "IZ_PolicyIntranetZoneLockdownTemplate", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowLockedDownIntranetZoneTemplate"},
 }
 
 var AllowLockedDownLocalMachineZoneTemplate = csp.Policy{
@@ -222,6 +241,7 @@ var AllowLockedDownLocalMachineZoneTemplate = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage", Name: "IZ_PolicyLocalMachineZoneLockdownTemplate", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowLockedDownLocalMachineZoneTemplate"},
 }
 
 var AllowLockedDownRestrictedSitesZoneTemplate = csp.Policy{
@@ -233,6 +253,7 @@ var AllowLockedDownRestrictedSitesZoneTemplate = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage", Name: "IZ_PolicyRestrictedSitesZoneLockdownTemplate", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowLockedDownRestrictedSitesZoneTemplate"},
 }
 
 var AllowOneWordEntry = csp.Policy{
@@ -244,6 +265,7 @@ var AllowOneWordEntry = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetSettings~Advanced~Browsing", Name: "UseIntranetSiteForOneWordEntry", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowOneWordEntry"},
 }
 
 var AllowSaveTargetAsInIEMode = csp.Policy{
@@ -255,6 +277,7 @@ var AllowSaveTargetAsInIEMode = csp.Policy{
 	CSPVersion: "9.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer", Name: "AllowSaveTargetAsInIEMode", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowSaveTargetAsInIEMode"},
 }
 
 var AllowSiteToZoneAssignmentList = csp.Policy{
@@ -266,6 +289,7 @@ var AllowSiteToZoneAssignmentList = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage", Name: "IZ_Zonemaps", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowSiteToZoneAssignmentList"},
 }
 
 var AllowSoftwareWhenSignatureIsInvalid = csp.Policy{
@@ -277,6 +301,7 @@ var AllowSoftwareWhenSignatureIsInvalid = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~AdvancedPage", Name: "Advanced_InvalidSignatureBlock", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowSoftwareWhenSignatureIsInvalid"},
 }
 
 var AllowSuggestedSites = csp.Policy{
@@ -288,6 +313,7 @@ var AllowSuggestedSites = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer", Name: "EnableSuggestedSites", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowSuggestedSites"},
 }
 
 var AllowTrustedSitesZoneTemplate = csp.Policy{
@@ -299,6 +325,7 @@ var AllowTrustedSitesZoneTemplate = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage", Name: "IZ_PolicyTrustedSitesZoneTemplate", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowTrustedSitesZoneTemplate"},
 }
 
 var AllowsLockedDownTrustedSitesZoneTemplate = csp.Policy{
@@ -310,6 +337,7 @@ var AllowsLockedDownTrustedSitesZoneTemplate = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage", Name: "IZ_PolicyTrustedSitesZoneLockdownTemplate", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowsLockedDownTrustedSitesZoneTemplate"},
 }
 
 var AllowsRestrictedSitesZoneTemplate = csp.Policy{
@@ -321,6 +349,7 @@ var AllowsRestrictedSitesZoneTemplate = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage", Name: "IZ_PolicyRestrictedSitesZoneTemplate", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowsRestrictedSitesZoneTemplate"},
 }
 
 var AutoDetectIntranet = csp.Policy{
@@ -332,6 +361,7 @@ var AutoDetectIntranet = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage", Name: "SecurityPage_AutoDetect", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AutoDetectIntranet"},
 }
 
 var CheckServerCertificateRevocation = csp.Policy{
@@ -343,6 +373,7 @@ var CheckServerCertificateRevocation = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~AdvancedPage", Name: "Advanced_CertificateRevocation", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "CheckServerCertificateRevocation"},
 }
 
 var CheckSignaturesOnDownloadedPrograms = csp.Policy{
@@ -354,6 +385,7 @@ var CheckSignaturesOnDownloadedPrograms = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~AdvancedPage", Name: "Advanced_DownloadSignatures", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "CheckSignaturesOnDownloadedPrograms"},
 }
 
 var ConfigureEdgeRedirectChannel = csp.Policy{
@@ -365,6 +397,7 @@ var ConfigureEdgeRedirectChannel = csp.Policy{
 	CSPVersion: "9.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer", Name: "NeedEdgeBrowser", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ConfigureEdgeRedirectChannel"},
 }
 
 var ConsistentMimeHandlingInternetExplorerProcesses = csp.Policy{
@@ -376,6 +409,7 @@ var ConsistentMimeHandlingInternetExplorerProcesses = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~SecurityFeatures~IESF_CategoryConsistentMimeHandling", Name: "IESF_PolicyExplorerProcesses_5", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ConsistentMimeHandlingInternetExplorerProcesses"},
 }
 
 var DisableActiveXVersionListAutoDownload = csp.Policy{
@@ -387,6 +421,7 @@ var DisableActiveXVersionListAutoDownload = csp.Policy{
 	CSPVersion: "9.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~SecurityFeatures~IESF_AddOnManagement", Name: "VersionListAutomaticDownloadDisable", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisableActiveXVersionListAutoDownload"},
 }
 
 var DisableBypassOfSmartScreenWarnings = csp.Policy{
@@ -398,6 +433,7 @@ var DisableBypassOfSmartScreenWarnings = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer", Name: "DisableSafetyFilterOverride", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisableBypassOfSmartScreenWarnings"},
 }
 
 var DisableBypassOfSmartScreenWarningsAboutUncommonFiles = csp.Policy{
@@ -409,6 +445,7 @@ var DisableBypassOfSmartScreenWarningsAboutUncommonFiles = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer", Name: "DisableSafetyFilterOverrideForAppRepUnknown", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisableBypassOfSmartScreenWarningsAboutUncommonFiles"},
 }
 
 var DisableCompatView = csp.Policy{
@@ -420,6 +457,7 @@ var DisableCompatView = csp.Policy{
 	CSPVersion: "9.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~CategoryCompatView", Name: "CompatView_DisableList", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisableCompatView"},
 }
 
 var DisableConfiguringHistory = csp.Policy{
@@ -431,6 +469,7 @@ var DisableConfiguringHistory = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~DeleteBrowsingHistory", Name: "RestrictHistory", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisableConfiguringHistory"},
 }
 
 var DisableCrashDetection = csp.Policy{
@@ -442,6 +481,7 @@ var DisableCrashDetection = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer", Name: "AddonManagement_RestrictCrashDetection", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisableCrashDetection"},
 }
 
 var DisableCustomerExperienceImprovementProgramParticipation = csp.Policy{
@@ -453,6 +493,7 @@ var DisableCustomerExperienceImprovementProgramParticipation = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer", Name: "SQM_DisableCEIP", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisableCustomerExperienceImprovementProgramParticipation"},
 }
 
 var DisableDeletingUserVisitedWebsites = csp.Policy{
@@ -464,6 +505,7 @@ var DisableDeletingUserVisitedWebsites = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~DeleteBrowsingHistory", Name: "DBHDisableDeleteHistory", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisableDeletingUserVisitedWebsites"},
 }
 
 var DisableEnclosureDownloading = csp.Policy{
@@ -475,6 +517,7 @@ var DisableEnclosureDownloading = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~RSS_Feeds", Name: "Disable_Downloading_of_Enclosures", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisableEnclosureDownloading"},
 }
 
 var DisableEncryptionSupport = csp.Policy{
@@ -486,6 +529,7 @@ var DisableEncryptionSupport = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~AdvancedPage", Name: "Advanced_SetWinInetProtocols", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisableEncryptionSupport"},
 }
 
 var DisableFeedsBackgroundSync = csp.Policy{
@@ -497,6 +541,7 @@ var DisableFeedsBackgroundSync = csp.Policy{
 	CSPVersion: "9.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~RSS_Feeds", Name: "Disable_Background_Syncing", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisableFeedsBackgroundSync"},
 }
 
 var DisableFirstRunWizard = csp.Policy{
@@ -508,6 +553,7 @@ var DisableFirstRunWizard = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer", Name: "NoFirstRunCustomise", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisableFirstRunWizard"},
 }
 
 var DisableFlipAheadFeature = csp.Policy{
@@ -519,6 +565,7 @@ var DisableFlipAheadFeature = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~AdvancedPage", Name: "Advanced_DisableFlipAhead", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisableFlipAheadFeature"},
 }
 
 var DisableGeolocation = csp.Policy{
@@ -530,6 +577,7 @@ var DisableGeolocation = csp.Policy{
 	CSPVersion: "9.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer", Name: "GeolocationDisable", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisableGeolocation"},
 }
 
 var DisableHTMLApplication = csp.Policy{
@@ -541,6 +589,7 @@ var DisableHTMLApplication = csp.Policy{
 	CSPVersion: "8.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer", Name: "DisableHTMLApplication", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisableHTMLApplication"},
 }
 
 var DisableHomePageChange = csp.Policy{
@@ -552,6 +601,7 @@ var DisableHomePageChange = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer", Name: "RestrictHomePage", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisableHomePageChange"},
 }
 
 var DisableIgnoringCertificateErrors = csp.Policy{
@@ -563,6 +613,7 @@ var DisableIgnoringCertificateErrors = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL", Name: "NoCertError", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisableIgnoringCertificateErrors"},
 }
 
 var DisableInPrivateBrowsing = csp.Policy{
@@ -574,6 +625,7 @@ var DisableInPrivateBrowsing = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~CategoryPrivacy", Name: "DisableInPrivateBrowsing", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisableInPrivateBrowsing"},
 }
 
 var DisableInternetExplorerApp = csp.Policy{
@@ -585,6 +637,7 @@ var DisableInternetExplorerApp = csp.Policy{
 	CSPVersion: "9.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer", Name: "DisableInternetExplorerApp", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisableInternetExplorerApp"},
 }
 
 var DisableInternetExplorerLaunchViaCOM = csp.Policy{
@@ -596,6 +649,7 @@ var DisableInternetExplorerLaunchViaCOM = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer", Name: "DisableInternetExplorerLaunchViaCOM", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisableInternetExplorerLaunchViaCOM"},
 }
 
 var DisableProcessesInEnhancedProtectedMode = csp.Policy{
@@ -607,6 +661,7 @@ var DisableProcessesInEnhancedProtectedMode = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~AdvancedPage", Name: "Advanced_EnableEnhancedProtectedMode64Bit", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisableProcessesInEnhancedProtectedMode"},
 }
 
 var DisableProxyChange = csp.Policy{
@@ -618,6 +673,7 @@ var DisableProxyChange = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer", Name: "RestrictProxy", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisableProxyChange"},
 }
 
 var DisableSearchProviderChange = csp.Policy{
@@ -629,6 +685,7 @@ var DisableSearchProviderChange = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer", Name: "NoSearchProvider", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisableSearchProviderChange"},
 }
 
 var DisableSecondaryHomePageChange = csp.Policy{
@@ -640,6 +697,7 @@ var DisableSecondaryHomePageChange = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer", Name: "SecondaryHomePages", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisableSecondaryHomePageChange"},
 }
 
 var DisableSecuritySettingsCheck = csp.Policy{
@@ -651,6 +709,7 @@ var DisableSecuritySettingsCheck = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer", Name: "Disable_Security_Settings_Check", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisableSecuritySettingsCheck"},
 }
 
 var DisableUpdateCheck = csp.Policy{
@@ -662,6 +721,7 @@ var DisableUpdateCheck = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer", Name: "NoUpdateCheck", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisableUpdateCheck"},
 }
 
 var DisableWebAddressAutoComplete = csp.Policy{
@@ -673,6 +733,7 @@ var DisableWebAddressAutoComplete = csp.Policy{
 	CSPVersion: "9.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer", Name: "RestrictWebAddressSuggest", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisableWebAddressAutoComplete"},
 }
 
 var DoNotAllowActiveXControlsInProtectedMode = csp.Policy{
@@ -684,6 +745,7 @@ var DoNotAllowActiveXControlsInProtectedMode = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~AdvancedPage", Name: "Advanced_DisableEPMCompat", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DoNotAllowActiveXControlsInProtectedMode"},
 }
 
 var DoNotAllowUsersToAddSites = csp.Policy{
@@ -695,6 +757,7 @@ var DoNotAllowUsersToAddSites = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer", Name: "Security_zones_map_edit", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DoNotAllowUsersToAddSites"},
 }
 
 var DoNotAllowUsersToChangePolicies = csp.Policy{
@@ -706,6 +769,7 @@ var DoNotAllowUsersToChangePolicies = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer", Name: "Security_options_edit", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DoNotAllowUsersToChangePolicies"},
 }
 
 var DoNotBlockOutdatedActiveXControls = csp.Policy{
@@ -717,6 +781,7 @@ var DoNotBlockOutdatedActiveXControls = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~SecurityFeatures~IESF_AddOnManagement", Name: "VerMgmtDisable", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DoNotBlockOutdatedActiveXControls"},
 }
 
 var DoNotBlockOutdatedActiveXControlsOnSpecificDomains = csp.Policy{
@@ -728,6 +793,7 @@ var DoNotBlockOutdatedActiveXControlsOnSpecificDomains = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~SecurityFeatures~IESF_AddOnManagement", Name: "VerMgmtDomainAllowlist", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DoNotBlockOutdatedActiveXControlsOnSpecificDomains"},
 }
 
 var EnableExtendedIEModeHotkeys = csp.Policy{
@@ -739,6 +805,7 @@ var EnableExtendedIEModeHotkeys = csp.Policy{
 	CSPVersion: "9.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer", Name: "EnableExtendedIEModeHotkeys", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "EnableExtendedIEModeHotkeys"},
 }
 
 var EnableGlobalWindowListInIEMode = csp.Policy{
@@ -750,6 +817,7 @@ var EnableGlobalWindowListInIEMode = csp.Policy{
 	CSPVersion: "10.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer", Name: "EnableGlobalWindowListInIEMode", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "EnableGlobalWindowListInIEMode"},
 }
 
 var IncludeAllLocalSites = csp.Policy{
@@ -761,6 +829,7 @@ var IncludeAllLocalSites = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage", Name: "IZ_IncludeUnspecifiedLocalSites", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "IncludeAllLocalSites"},
 }
 
 var IncludeAllNetworkPaths = csp.Policy{
@@ -772,6 +841,7 @@ var IncludeAllNetworkPaths = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage", Name: "IZ_UNCAsIntranet", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "IncludeAllNetworkPaths"},
 }
 
 var IncludeAllProxyByPassSites = csp.Policy{
@@ -783,6 +853,7 @@ var IncludeAllProxyByPassSites = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage", Name: "IZ_ProxyByPass", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "IncludeAllProxyByPassSites"},
 }
 
 var InternetZoneAllowAccessToDataSources = csp.Policy{
@@ -794,6 +865,7 @@ var InternetZoneAllowAccessToDataSources = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_InternetZone", Name: "IZ_PolicyAccessDataSourcesAcrossDomains_1", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "InternetZoneAllowAccessToDataSources"},
 }
 
 var InternetZoneAllowAutomaticPromptingForActiveXControls = csp.Policy{
@@ -805,6 +877,7 @@ var InternetZoneAllowAutomaticPromptingForActiveXControls = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_InternetZone", Name: "IZ_PolicyNotificationBarActiveXURLaction_1", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "InternetZoneAllowAutomaticPromptingForActiveXControls"},
 }
 
 var InternetZoneAllowAutomaticPromptingForFileDownloads = csp.Policy{
@@ -816,6 +889,7 @@ var InternetZoneAllowAutomaticPromptingForFileDownloads = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_InternetZone", Name: "IZ_PolicyNotificationBarDownloadURLaction_1", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "InternetZoneAllowAutomaticPromptingForFileDownloads"},
 }
 
 var InternetZoneAllowCopyPasteViaScript = csp.Policy{
@@ -827,6 +901,7 @@ var InternetZoneAllowCopyPasteViaScript = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_InternetZone", Name: "IZ_PolicyAllowPasteViaScript_1", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "InternetZoneAllowCopyPasteViaScript"},
 }
 
 var InternetZoneAllowDragAndDropCopyAndPasteFiles = csp.Policy{
@@ -838,6 +913,7 @@ var InternetZoneAllowDragAndDropCopyAndPasteFiles = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_InternetZone", Name: "IZ_PolicyDropOrPasteFiles_1", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "InternetZoneAllowDragAndDropCopyAndPasteFiles"},
 }
 
 var InternetZoneAllowFontDownloads = csp.Policy{
@@ -849,6 +925,7 @@ var InternetZoneAllowFontDownloads = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_InternetZone", Name: "IZ_PolicyFontDownload_1", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "InternetZoneAllowFontDownloads"},
 }
 
 var InternetZoneAllowLessPrivilegedSites = csp.Policy{
@@ -860,6 +937,7 @@ var InternetZoneAllowLessPrivilegedSites = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_InternetZone", Name: "IZ_PolicyZoneElevationURLaction_1", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "InternetZoneAllowLessPrivilegedSites"},
 }
 
 var InternetZoneAllowLoadingOfXAMLFiles = csp.Policy{
@@ -871,6 +949,7 @@ var InternetZoneAllowLoadingOfXAMLFiles = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_InternetZone", Name: "IZ_Policy_XAML_1", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "InternetZoneAllowLoadingOfXAMLFiles"},
 }
 
 var InternetZoneAllowNETFrameworkReliantComponents = csp.Policy{
@@ -882,6 +961,7 @@ var InternetZoneAllowNETFrameworkReliantComponents = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_InternetZone", Name: "IZ_PolicyUnsignedFrameworkComponentsURLaction_1", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "InternetZoneAllowNETFrameworkReliantComponents"},
 }
 
 var InternetZoneAllowOnlyApprovedDomainsToUseActiveXControls = csp.Policy{
@@ -893,6 +973,7 @@ var InternetZoneAllowOnlyApprovedDomainsToUseActiveXControls = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_InternetZone", Name: "IZ_PolicyOnlyAllowApprovedDomainsToUseActiveXWithoutPrompt_Both_Internet", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "InternetZoneAllowOnlyApprovedDomainsToUseActiveXControls"},
 }
 
 var InternetZoneAllowOnlyApprovedDomainsToUseTDCActiveXControl = csp.Policy{
@@ -904,6 +985,7 @@ var InternetZoneAllowOnlyApprovedDomainsToUseTDCActiveXControl = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_InternetZone", Name: "IZ_PolicyAllowTDCControl_Both_Internet", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "InternetZoneAllowOnlyApprovedDomainsToUseTDCActiveXControl"},
 }
 
 var InternetZoneAllowScriptInitiatedWindows = csp.Policy{
@@ -915,6 +997,7 @@ var InternetZoneAllowScriptInitiatedWindows = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_InternetZone", Name: "IZ_PolicyWindowsRestrictionsURLaction_1", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "InternetZoneAllowScriptInitiatedWindows"},
 }
 
 var InternetZoneAllowScriptingOfInternetExplorerWebBrowserControls = csp.Policy{
@@ -926,6 +1009,7 @@ var InternetZoneAllowScriptingOfInternetExplorerWebBrowserControls = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_InternetZone", Name: "IZ_Policy_WebBrowserControl_1", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "InternetZoneAllowScriptingOfInternetExplorerWebBrowserControls"},
 }
 
 var InternetZoneAllowScriptlets = csp.Policy{
@@ -937,6 +1021,7 @@ var InternetZoneAllowScriptlets = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_InternetZone", Name: "IZ_Policy_AllowScriptlets_1", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "InternetZoneAllowScriptlets"},
 }
 
 var InternetZoneAllowSmartScreenIE = csp.Policy{
@@ -948,6 +1033,7 @@ var InternetZoneAllowSmartScreenIE = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_InternetZone", Name: "IZ_Policy_Phishing_1", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "InternetZoneAllowSmartScreenIE"},
 }
 
 var InternetZoneAllowUpdatesToStatusBarViaScript = csp.Policy{
@@ -959,6 +1045,7 @@ var InternetZoneAllowUpdatesToStatusBarViaScript = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_InternetZone", Name: "IZ_Policy_ScriptStatusBar_1", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "InternetZoneAllowUpdatesToStatusBarViaScript"},
 }
 
 var InternetZoneAllowUserDataPersistence = csp.Policy{
@@ -970,6 +1057,7 @@ var InternetZoneAllowUserDataPersistence = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_InternetZone", Name: "IZ_PolicyUserdataPersistence_1", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "InternetZoneAllowUserDataPersistence"},
 }
 
 var InternetZoneAllowVBScriptToRunInInternetExplorer = csp.Policy{
@@ -981,6 +1069,7 @@ var InternetZoneAllowVBScriptToRunInInternetExplorer = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_InternetZone", Name: "IZ_PolicyAllowVBScript_1", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "InternetZoneAllowVBScriptToRunInInternetExplorer"},
 }
 
 var InternetZoneDoNotRunAntimalwareAgainstActiveXControls = csp.Policy{
@@ -992,6 +1081,7 @@ var InternetZoneDoNotRunAntimalwareAgainstActiveXControls = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_InternetZone", Name: "IZ_PolicyAntiMalwareCheckingOfActiveXControls_1", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "InternetZoneDoNotRunAntimalwareAgainstActiveXControls"},
 }
 
 var InternetZoneDownloadSignedActiveXControls = csp.Policy{
@@ -1003,6 +1093,7 @@ var InternetZoneDownloadSignedActiveXControls = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_InternetZone", Name: "IZ_PolicyDownloadSignedActiveX_1", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "InternetZoneDownloadSignedActiveXControls"},
 }
 
 var InternetZoneDownloadUnsignedActiveXControls = csp.Policy{
@@ -1014,6 +1105,7 @@ var InternetZoneDownloadUnsignedActiveXControls = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_InternetZone", Name: "IZ_PolicyDownloadUnsignedActiveX_1", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "InternetZoneDownloadUnsignedActiveXControls"},
 }
 
 var InternetZoneEnableCrossSiteScriptingFilter = csp.Policy{
@@ -1025,6 +1117,7 @@ var InternetZoneEnableCrossSiteScriptingFilter = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_InternetZone", Name: "IZ_PolicyTurnOnXSSFilter_Both_Internet", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "InternetZoneEnableCrossSiteScriptingFilter"},
 }
 
 var InternetZoneEnableDraggingOfContentFromDifferentDomainsAcrossWindows = csp.Policy{
@@ -1036,6 +1129,7 @@ var InternetZoneEnableDraggingOfContentFromDifferentDomainsAcrossWindows = csp.P
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_InternetZone", Name: "IZ_PolicyDragDropAcrossDomainsAcrossWindows_Both_Internet", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "InternetZoneEnableDraggingOfContentFromDifferentDomainsAcrossWindows"},
 }
 
 var InternetZoneEnableDraggingOfContentFromDifferentDomainsWithinWindows = csp.Policy{
@@ -1047,6 +1141,7 @@ var InternetZoneEnableDraggingOfContentFromDifferentDomainsWithinWindows = csp.P
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_InternetZone", Name: "IZ_PolicyDragDropAcrossDomainsWithinWindow_Both_Internet", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "InternetZoneEnableDraggingOfContentFromDifferentDomainsWithinWindows"},
 }
 
 var InternetZoneEnableMIMESniffing = csp.Policy{
@@ -1058,6 +1153,7 @@ var InternetZoneEnableMIMESniffing = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_InternetZone", Name: "IZ_PolicyMimeSniffingURLaction_1", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "InternetZoneEnableMIMESniffing"},
 }
 
 var InternetZoneEnableProtectedMode = csp.Policy{
@@ -1069,6 +1165,7 @@ var InternetZoneEnableProtectedMode = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_InternetZone", Name: "IZ_Policy_TurnOnProtectedMode_1", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "InternetZoneEnableProtectedMode"},
 }
 
 var InternetZoneIncludeLocalPathWhenUploadingFilesToServer = csp.Policy{
@@ -1080,6 +1177,7 @@ var InternetZoneIncludeLocalPathWhenUploadingFilesToServer = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_InternetZone", Name: "IZ_Policy_LocalPathForUpload_1", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "InternetZoneIncludeLocalPathWhenUploadingFilesToServer"},
 }
 
 var InternetZoneInitializeAndScriptActiveXControls = csp.Policy{
@@ -1091,6 +1189,7 @@ var InternetZoneInitializeAndScriptActiveXControls = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_InternetZone", Name: "IZ_PolicyScriptActiveXNotMarkedSafe_1", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "InternetZoneInitializeAndScriptActiveXControls"},
 }
 
 var InternetZoneJavaPermissions = csp.Policy{
@@ -1102,6 +1201,7 @@ var InternetZoneJavaPermissions = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_InternetZone", Name: "IZ_PolicyJavaPermissions_1", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "InternetZoneJavaPermissions"},
 }
 
 var InternetZoneLaunchingApplicationsAndFilesInIFRAME = csp.Policy{
@@ -1113,6 +1213,7 @@ var InternetZoneLaunchingApplicationsAndFilesInIFRAME = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_InternetZone", Name: "IZ_PolicyLaunchAppsAndFilesInIFRAME_1", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "InternetZoneLaunchingApplicationsAndFilesInIFRAME"},
 }
 
 var InternetZoneLogonOptions = csp.Policy{
@@ -1124,6 +1225,7 @@ var InternetZoneLogonOptions = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_InternetZone", Name: "IZ_PolicyLogon_1", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "InternetZoneLogonOptions"},
 }
 
 var InternetZoneNavigateWindowsAndFrames = csp.Policy{
@@ -1135,6 +1237,7 @@ var InternetZoneNavigateWindowsAndFrames = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_InternetZone", Name: "IZ_PolicyNavigateSubframesAcrossDomains_1", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "InternetZoneNavigateWindowsAndFrames"},
 }
 
 var InternetZoneRunNETFrameworkReliantComponentsSignedWithAuthenticode = csp.Policy{
@@ -1146,6 +1249,7 @@ var InternetZoneRunNETFrameworkReliantComponentsSignedWithAuthenticode = csp.Pol
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_InternetZone", Name: "IZ_PolicySignedFrameworkComponentsURLaction_1", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "InternetZoneRunNETFrameworkReliantComponentsSignedWithAuthenticode"},
 }
 
 var InternetZoneShowSecurityWarningForPotentiallyUnsafeFiles = csp.Policy{
@@ -1157,6 +1261,7 @@ var InternetZoneShowSecurityWarningForPotentiallyUnsafeFiles = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_InternetZone", Name: "IZ_Policy_UnsafeFiles_1", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "InternetZoneShowSecurityWarningForPotentiallyUnsafeFiles"},
 }
 
 var InternetZoneUsePopupBlocker = csp.Policy{
@@ -1168,6 +1273,7 @@ var InternetZoneUsePopupBlocker = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_InternetZone", Name: "IZ_PolicyBlockPopupWindows_1", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "InternetZoneUsePopupBlocker"},
 }
 
 var IntranetZoneAllowAccessToDataSources = csp.Policy{
@@ -1179,6 +1285,7 @@ var IntranetZoneAllowAccessToDataSources = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_IntranetZone", Name: "IZ_PolicyAccessDataSourcesAcrossDomains_3", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "IntranetZoneAllowAccessToDataSources"},
 }
 
 var IntranetZoneAllowAutomaticPromptingForActiveXControls = csp.Policy{
@@ -1190,6 +1297,7 @@ var IntranetZoneAllowAutomaticPromptingForActiveXControls = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_IntranetZone", Name: "IZ_PolicyNotificationBarActiveXURLaction_3", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "IntranetZoneAllowAutomaticPromptingForActiveXControls"},
 }
 
 var IntranetZoneAllowAutomaticPromptingForFileDownloads = csp.Policy{
@@ -1201,6 +1309,7 @@ var IntranetZoneAllowAutomaticPromptingForFileDownloads = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_IntranetZone", Name: "IZ_PolicyNotificationBarDownloadURLaction_3", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "IntranetZoneAllowAutomaticPromptingForFileDownloads"},
 }
 
 var IntranetZoneAllowFontDownloads = csp.Policy{
@@ -1212,6 +1321,7 @@ var IntranetZoneAllowFontDownloads = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_IntranetZone", Name: "IZ_PolicyFontDownload_3", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "IntranetZoneAllowFontDownloads"},
 }
 
 var IntranetZoneAllowLessPrivilegedSites = csp.Policy{
@@ -1223,6 +1333,7 @@ var IntranetZoneAllowLessPrivilegedSites = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_IntranetZone", Name: "IZ_PolicyZoneElevationURLaction_3", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "IntranetZoneAllowLessPrivilegedSites"},
 }
 
 var IntranetZoneAllowNETFrameworkReliantComponents = csp.Policy{
@@ -1234,6 +1345,7 @@ var IntranetZoneAllowNETFrameworkReliantComponents = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_IntranetZone", Name: "IZ_PolicyUnsignedFrameworkComponentsURLaction_3", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "IntranetZoneAllowNETFrameworkReliantComponents"},
 }
 
 var IntranetZoneAllowScriptlets = csp.Policy{
@@ -1245,6 +1357,7 @@ var IntranetZoneAllowScriptlets = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_IntranetZone", Name: "IZ_Policy_AllowScriptlets_3", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "IntranetZoneAllowScriptlets"},
 }
 
 var IntranetZoneAllowSmartScreenIE = csp.Policy{
@@ -1256,6 +1369,7 @@ var IntranetZoneAllowSmartScreenIE = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_IntranetZone", Name: "IZ_Policy_Phishing_3", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "IntranetZoneAllowSmartScreenIE"},
 }
 
 var IntranetZoneAllowUserDataPersistence = csp.Policy{
@@ -1267,6 +1381,7 @@ var IntranetZoneAllowUserDataPersistence = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_IntranetZone", Name: "IZ_PolicyUserdataPersistence_3", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "IntranetZoneAllowUserDataPersistence"},
 }
 
 var IntranetZoneDoNotRunAntimalwareAgainstActiveXControls = csp.Policy{
@@ -1278,6 +1393,7 @@ var IntranetZoneDoNotRunAntimalwareAgainstActiveXControls = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_IntranetZone", Name: "IZ_PolicyAntiMalwareCheckingOfActiveXControls_3", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "IntranetZoneDoNotRunAntimalwareAgainstActiveXControls"},
 }
 
 var IntranetZoneEnableProtectedMode = csp.Policy{
@@ -1289,6 +1405,7 @@ var IntranetZoneEnableProtectedMode = csp.Policy{
 	CSPVersion: "9.9",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_IntranetZone", Name: "IZ_Policy_TurnOnProtectedMode_3", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "IntranetZoneEnableProtectedMode"},
 }
 
 var IntranetZoneInitializeAndScriptActiveXControls = csp.Policy{
@@ -1300,6 +1417,7 @@ var IntranetZoneInitializeAndScriptActiveXControls = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_IntranetZone", Name: "IZ_PolicyScriptActiveXNotMarkedSafe_3", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "IntranetZoneInitializeAndScriptActiveXControls"},
 }
 
 var IntranetZoneJavaPermissions = csp.Policy{
@@ -1311,6 +1429,7 @@ var IntranetZoneJavaPermissions = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_IntranetZone", Name: "IZ_PolicyJavaPermissions_3", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "IntranetZoneJavaPermissions"},
 }
 
 var IntranetZoneLogonOptions = csp.Policy{
@@ -1322,6 +1441,7 @@ var IntranetZoneLogonOptions = csp.Policy{
 	CSPVersion: "10.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_IntranetZone", Name: "IZ_PolicyLogon_3", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "IntranetZoneLogonOptions"},
 }
 
 var IntranetZoneNavigateWindowsAndFrames = csp.Policy{
@@ -1333,6 +1453,7 @@ var IntranetZoneNavigateWindowsAndFrames = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_IntranetZone", Name: "IZ_PolicyNavigateSubframesAcrossDomains_3", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "IntranetZoneNavigateWindowsAndFrames"},
 }
 
 var JScriptReplacement = csp.Policy{
@@ -1344,6 +1465,7 @@ var JScriptReplacement = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer", Name: "JScriptReplacement", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "JScriptReplacement"},
 }
 
 var KeepIntranetSitesInInternetExplorer = csp.Policy{
@@ -1355,6 +1477,7 @@ var KeepIntranetSitesInInternetExplorer = csp.Policy{
 	CSPVersion: "9.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer", Name: "KeepIntranetSitesInInternetExplorer", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "KeepIntranetSitesInInternetExplorer"},
 }
 
 var LocalMachineZoneAllowAccessToDataSources = csp.Policy{
@@ -1366,6 +1489,7 @@ var LocalMachineZoneAllowAccessToDataSources = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_LocalMachineZone", Name: "IZ_PolicyAccessDataSourcesAcrossDomains_9", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LocalMachineZoneAllowAccessToDataSources"},
 }
 
 var LocalMachineZoneAllowAutomaticPromptingForActiveXControls = csp.Policy{
@@ -1377,6 +1501,7 @@ var LocalMachineZoneAllowAutomaticPromptingForActiveXControls = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_LocalMachineZone", Name: "IZ_PolicyNotificationBarActiveXURLaction_9", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LocalMachineZoneAllowAutomaticPromptingForActiveXControls"},
 }
 
 var LocalMachineZoneAllowAutomaticPromptingForFileDownloads = csp.Policy{
@@ -1388,6 +1513,7 @@ var LocalMachineZoneAllowAutomaticPromptingForFileDownloads = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_LocalMachineZone", Name: "IZ_PolicyNotificationBarDownloadURLaction_9", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LocalMachineZoneAllowAutomaticPromptingForFileDownloads"},
 }
 
 var LocalMachineZoneAllowFontDownloads = csp.Policy{
@@ -1399,6 +1525,7 @@ var LocalMachineZoneAllowFontDownloads = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_LocalMachineZone", Name: "IZ_PolicyFontDownload_9", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LocalMachineZoneAllowFontDownloads"},
 }
 
 var LocalMachineZoneAllowLessPrivilegedSites = csp.Policy{
@@ -1410,6 +1537,7 @@ var LocalMachineZoneAllowLessPrivilegedSites = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_LocalMachineZone", Name: "IZ_PolicyZoneElevationURLaction_9", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LocalMachineZoneAllowLessPrivilegedSites"},
 }
 
 var LocalMachineZoneAllowNETFrameworkReliantComponents = csp.Policy{
@@ -1421,6 +1549,7 @@ var LocalMachineZoneAllowNETFrameworkReliantComponents = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_LocalMachineZone", Name: "IZ_PolicyUnsignedFrameworkComponentsURLaction_9", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LocalMachineZoneAllowNETFrameworkReliantComponents"},
 }
 
 var LocalMachineZoneAllowScriptlets = csp.Policy{
@@ -1432,6 +1561,7 @@ var LocalMachineZoneAllowScriptlets = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_LocalMachineZone", Name: "IZ_Policy_AllowScriptlets_9", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LocalMachineZoneAllowScriptlets"},
 }
 
 var LocalMachineZoneAllowSmartScreenIE = csp.Policy{
@@ -1443,6 +1573,7 @@ var LocalMachineZoneAllowSmartScreenIE = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_LocalMachineZone", Name: "IZ_Policy_Phishing_9", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LocalMachineZoneAllowSmartScreenIE"},
 }
 
 var LocalMachineZoneAllowUserDataPersistence = csp.Policy{
@@ -1454,6 +1585,7 @@ var LocalMachineZoneAllowUserDataPersistence = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_LocalMachineZone", Name: "IZ_PolicyUserdataPersistence_9", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LocalMachineZoneAllowUserDataPersistence"},
 }
 
 var LocalMachineZoneDoNotRunAntimalwareAgainstActiveXControls = csp.Policy{
@@ -1465,6 +1597,7 @@ var LocalMachineZoneDoNotRunAntimalwareAgainstActiveXControls = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_LocalMachineZone", Name: "IZ_PolicyAntiMalwareCheckingOfActiveXControls_9", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LocalMachineZoneDoNotRunAntimalwareAgainstActiveXControls"},
 }
 
 var LocalMachineZoneEnableProtectedMode = csp.Policy{
@@ -1476,6 +1609,7 @@ var LocalMachineZoneEnableProtectedMode = csp.Policy{
 	CSPVersion: "9.9",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_LocalMachineZone", Name: "IZ_Policy_TurnOnProtectedMode_9", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LocalMachineZoneEnableProtectedMode"},
 }
 
 var LocalMachineZoneInitializeAndScriptActiveXControls = csp.Policy{
@@ -1487,6 +1621,7 @@ var LocalMachineZoneInitializeAndScriptActiveXControls = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_LocalMachineZone", Name: "IZ_PolicyScriptActiveXNotMarkedSafe_9", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LocalMachineZoneInitializeAndScriptActiveXControls"},
 }
 
 var LocalMachineZoneJavaPermissions = csp.Policy{
@@ -1498,6 +1633,7 @@ var LocalMachineZoneJavaPermissions = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_LocalMachineZone", Name: "IZ_PolicyJavaPermissions_9", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LocalMachineZoneJavaPermissions"},
 }
 
 var LocalMachineZoneLogonOptions = csp.Policy{
@@ -1509,6 +1645,7 @@ var LocalMachineZoneLogonOptions = csp.Policy{
 	CSPVersion: "10.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_LocalMachineZone", Name: "IZ_PolicyLogon_9", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LocalMachineZoneLogonOptions"},
 }
 
 var LocalMachineZoneNavigateWindowsAndFrames = csp.Policy{
@@ -1520,6 +1657,7 @@ var LocalMachineZoneNavigateWindowsAndFrames = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_LocalMachineZone", Name: "IZ_PolicyNavigateSubframesAcrossDomains_9", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LocalMachineZoneNavigateWindowsAndFrames"},
 }
 
 var LockedDownInternetZoneAllowAccessToDataSources = csp.Policy{
@@ -1531,6 +1669,7 @@ var LockedDownInternetZoneAllowAccessToDataSources = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_InternetZoneLockdown", Name: "IZ_PolicyAccessDataSourcesAcrossDomains_2", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LockedDownInternetZoneAllowAccessToDataSources"},
 }
 
 var LockedDownInternetZoneAllowAutomaticPromptingForActiveXControls = csp.Policy{
@@ -1542,6 +1681,7 @@ var LockedDownInternetZoneAllowAutomaticPromptingForActiveXControls = csp.Policy
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_InternetZoneLockdown", Name: "IZ_PolicyNotificationBarActiveXURLaction_2", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LockedDownInternetZoneAllowAutomaticPromptingForActiveXControls"},
 }
 
 var LockedDownInternetZoneAllowAutomaticPromptingForFileDownloads = csp.Policy{
@@ -1553,6 +1693,7 @@ var LockedDownInternetZoneAllowAutomaticPromptingForFileDownloads = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_InternetZoneLockdown", Name: "IZ_PolicyNotificationBarDownloadURLaction_2", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LockedDownInternetZoneAllowAutomaticPromptingForFileDownloads"},
 }
 
 var LockedDownInternetZoneAllowFontDownloads = csp.Policy{
@@ -1564,6 +1705,7 @@ var LockedDownInternetZoneAllowFontDownloads = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_InternetZoneLockdown", Name: "IZ_PolicyFontDownload_2", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LockedDownInternetZoneAllowFontDownloads"},
 }
 
 var LockedDownInternetZoneAllowLessPrivilegedSites = csp.Policy{
@@ -1575,6 +1717,7 @@ var LockedDownInternetZoneAllowLessPrivilegedSites = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_InternetZoneLockdown", Name: "IZ_PolicyZoneElevationURLaction_2", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LockedDownInternetZoneAllowLessPrivilegedSites"},
 }
 
 var LockedDownInternetZoneAllowNETFrameworkReliantComponents = csp.Policy{
@@ -1586,6 +1729,7 @@ var LockedDownInternetZoneAllowNETFrameworkReliantComponents = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_InternetZoneLockdown", Name: "IZ_PolicyUnsignedFrameworkComponentsURLaction_2", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LockedDownInternetZoneAllowNETFrameworkReliantComponents"},
 }
 
 var LockedDownInternetZoneAllowScriptlets = csp.Policy{
@@ -1597,6 +1741,7 @@ var LockedDownInternetZoneAllowScriptlets = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_InternetZoneLockdown", Name: "IZ_Policy_AllowScriptlets_2", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LockedDownInternetZoneAllowScriptlets"},
 }
 
 var LockedDownInternetZoneAllowSmartScreenIE = csp.Policy{
@@ -1608,6 +1753,7 @@ var LockedDownInternetZoneAllowSmartScreenIE = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_InternetZoneLockdown", Name: "IZ_Policy_Phishing_2", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LockedDownInternetZoneAllowSmartScreenIE"},
 }
 
 var LockedDownInternetZoneAllowUserDataPersistence = csp.Policy{
@@ -1619,6 +1765,7 @@ var LockedDownInternetZoneAllowUserDataPersistence = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_InternetZoneLockdown", Name: "IZ_PolicyUserdataPersistence_2", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LockedDownInternetZoneAllowUserDataPersistence"},
 }
 
 var LockedDownInternetZoneInitializeAndScriptActiveXControls = csp.Policy{
@@ -1630,6 +1777,7 @@ var LockedDownInternetZoneInitializeAndScriptActiveXControls = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_InternetZoneLockdown", Name: "IZ_PolicyScriptActiveXNotMarkedSafe_2", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LockedDownInternetZoneInitializeAndScriptActiveXControls"},
 }
 
 var LockedDownInternetZoneJavaPermissions = csp.Policy{
@@ -1641,6 +1789,7 @@ var LockedDownInternetZoneJavaPermissions = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_InternetZoneLockdown", Name: "IZ_PolicyJavaPermissions_2", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LockedDownInternetZoneJavaPermissions"},
 }
 
 var LockedDownInternetZoneNavigateWindowsAndFrames = csp.Policy{
@@ -1652,6 +1801,7 @@ var LockedDownInternetZoneNavigateWindowsAndFrames = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_InternetZoneLockdown", Name: "IZ_PolicyNavigateSubframesAcrossDomains_2", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LockedDownInternetZoneNavigateWindowsAndFrames"},
 }
 
 var LockedDownIntranetJavaPermissions = csp.Policy{
@@ -1663,6 +1813,7 @@ var LockedDownIntranetJavaPermissions = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_IntranetZoneLockdown", Name: "IZ_PolicyJavaPermissions_4", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LockedDownIntranetJavaPermissions"},
 }
 
 var LockedDownIntranetZoneAllowAccessToDataSources = csp.Policy{
@@ -1674,6 +1825,7 @@ var LockedDownIntranetZoneAllowAccessToDataSources = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_IntranetZoneLockdown", Name: "IZ_PolicyAccessDataSourcesAcrossDomains_4", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LockedDownIntranetZoneAllowAccessToDataSources"},
 }
 
 var LockedDownIntranetZoneAllowAutomaticPromptingForActiveXControls = csp.Policy{
@@ -1685,6 +1837,7 @@ var LockedDownIntranetZoneAllowAutomaticPromptingForActiveXControls = csp.Policy
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_IntranetZoneLockdown", Name: "IZ_PolicyNotificationBarActiveXURLaction_4", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LockedDownIntranetZoneAllowAutomaticPromptingForActiveXControls"},
 }
 
 var LockedDownIntranetZoneAllowAutomaticPromptingForFileDownloads = csp.Policy{
@@ -1696,6 +1849,7 @@ var LockedDownIntranetZoneAllowAutomaticPromptingForFileDownloads = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_IntranetZoneLockdown", Name: "IZ_PolicyNotificationBarDownloadURLaction_4", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LockedDownIntranetZoneAllowAutomaticPromptingForFileDownloads"},
 }
 
 var LockedDownIntranetZoneAllowFontDownloads = csp.Policy{
@@ -1707,6 +1861,7 @@ var LockedDownIntranetZoneAllowFontDownloads = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_IntranetZoneLockdown", Name: "IZ_PolicyFontDownload_4", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LockedDownIntranetZoneAllowFontDownloads"},
 }
 
 var LockedDownIntranetZoneAllowLessPrivilegedSites = csp.Policy{
@@ -1718,6 +1873,7 @@ var LockedDownIntranetZoneAllowLessPrivilegedSites = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_IntranetZoneLockdown", Name: "IZ_PolicyZoneElevationURLaction_4", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LockedDownIntranetZoneAllowLessPrivilegedSites"},
 }
 
 var LockedDownIntranetZoneAllowNETFrameworkReliantComponents = csp.Policy{
@@ -1729,6 +1885,7 @@ var LockedDownIntranetZoneAllowNETFrameworkReliantComponents = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_IntranetZoneLockdown", Name: "IZ_PolicyUnsignedFrameworkComponentsURLaction_4", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LockedDownIntranetZoneAllowNETFrameworkReliantComponents"},
 }
 
 var LockedDownIntranetZoneAllowScriptlets = csp.Policy{
@@ -1740,6 +1897,7 @@ var LockedDownIntranetZoneAllowScriptlets = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_IntranetZoneLockdown", Name: "IZ_Policy_AllowScriptlets_4", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LockedDownIntranetZoneAllowScriptlets"},
 }
 
 var LockedDownIntranetZoneAllowSmartScreenIE = csp.Policy{
@@ -1751,6 +1909,7 @@ var LockedDownIntranetZoneAllowSmartScreenIE = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_IntranetZoneLockdown", Name: "IZ_Policy_Phishing_4", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LockedDownIntranetZoneAllowSmartScreenIE"},
 }
 
 var LockedDownIntranetZoneAllowUserDataPersistence = csp.Policy{
@@ -1762,6 +1921,7 @@ var LockedDownIntranetZoneAllowUserDataPersistence = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_IntranetZoneLockdown", Name: "IZ_PolicyUserdataPersistence_4", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LockedDownIntranetZoneAllowUserDataPersistence"},
 }
 
 var LockedDownIntranetZoneInitializeAndScriptActiveXControls = csp.Policy{
@@ -1773,6 +1933,7 @@ var LockedDownIntranetZoneInitializeAndScriptActiveXControls = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_IntranetZoneLockdown", Name: "IZ_PolicyScriptActiveXNotMarkedSafe_4", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LockedDownIntranetZoneInitializeAndScriptActiveXControls"},
 }
 
 var LockedDownIntranetZoneNavigateWindowsAndFrames = csp.Policy{
@@ -1784,6 +1945,7 @@ var LockedDownIntranetZoneNavigateWindowsAndFrames = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_IntranetZoneLockdown", Name: "IZ_PolicyNavigateSubframesAcrossDomains_4", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LockedDownIntranetZoneNavigateWindowsAndFrames"},
 }
 
 var LockedDownLocalMachineZoneAllowAccessToDataSources = csp.Policy{
@@ -1795,6 +1957,7 @@ var LockedDownLocalMachineZoneAllowAccessToDataSources = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_LocalMachineZoneLockdown", Name: "IZ_PolicyAccessDataSourcesAcrossDomains_10", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LockedDownLocalMachineZoneAllowAccessToDataSources"},
 }
 
 var LockedDownLocalMachineZoneAllowAutomaticPromptingForActiveXControls = csp.Policy{
@@ -1806,6 +1969,7 @@ var LockedDownLocalMachineZoneAllowAutomaticPromptingForActiveXControls = csp.Po
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_LocalMachineZoneLockdown", Name: "IZ_PolicyNotificationBarActiveXURLaction_10", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LockedDownLocalMachineZoneAllowAutomaticPromptingForActiveXControls"},
 }
 
 var LockedDownLocalMachineZoneAllowAutomaticPromptingForFileDownloads = csp.Policy{
@@ -1817,6 +1981,7 @@ var LockedDownLocalMachineZoneAllowAutomaticPromptingForFileDownloads = csp.Poli
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_LocalMachineZoneLockdown", Name: "IZ_PolicyNotificationBarDownloadURLaction_10", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LockedDownLocalMachineZoneAllowAutomaticPromptingForFileDownloads"},
 }
 
 var LockedDownLocalMachineZoneAllowFontDownloads = csp.Policy{
@@ -1828,6 +1993,7 @@ var LockedDownLocalMachineZoneAllowFontDownloads = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_LocalMachineZoneLockdown", Name: "IZ_PolicyFontDownload_10", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LockedDownLocalMachineZoneAllowFontDownloads"},
 }
 
 var LockedDownLocalMachineZoneAllowLessPrivilegedSites = csp.Policy{
@@ -1839,6 +2005,7 @@ var LockedDownLocalMachineZoneAllowLessPrivilegedSites = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_LocalMachineZoneLockdown", Name: "IZ_PolicyZoneElevationURLaction_10", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LockedDownLocalMachineZoneAllowLessPrivilegedSites"},
 }
 
 var LockedDownLocalMachineZoneAllowNETFrameworkReliantComponents = csp.Policy{
@@ -1850,6 +2017,7 @@ var LockedDownLocalMachineZoneAllowNETFrameworkReliantComponents = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_LocalMachineZoneLockdown", Name: "IZ_PolicyUnsignedFrameworkComponentsURLaction_10", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LockedDownLocalMachineZoneAllowNETFrameworkReliantComponents"},
 }
 
 var LockedDownLocalMachineZoneAllowScriptlets = csp.Policy{
@@ -1861,6 +2029,7 @@ var LockedDownLocalMachineZoneAllowScriptlets = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_LocalMachineZoneLockdown", Name: "IZ_Policy_AllowScriptlets_10", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LockedDownLocalMachineZoneAllowScriptlets"},
 }
 
 var LockedDownLocalMachineZoneAllowSmartScreenIE = csp.Policy{
@@ -1872,6 +2041,7 @@ var LockedDownLocalMachineZoneAllowSmartScreenIE = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_LocalMachineZoneLockdown", Name: "IZ_Policy_Phishing_10", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LockedDownLocalMachineZoneAllowSmartScreenIE"},
 }
 
 var LockedDownLocalMachineZoneAllowUserDataPersistence = csp.Policy{
@@ -1883,6 +2053,7 @@ var LockedDownLocalMachineZoneAllowUserDataPersistence = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_LocalMachineZoneLockdown", Name: "IZ_PolicyUserdataPersistence_10", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LockedDownLocalMachineZoneAllowUserDataPersistence"},
 }
 
 var LockedDownLocalMachineZoneInitializeAndScriptActiveXControls = csp.Policy{
@@ -1894,6 +2065,7 @@ var LockedDownLocalMachineZoneInitializeAndScriptActiveXControls = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_LocalMachineZoneLockdown", Name: "IZ_PolicyScriptActiveXNotMarkedSafe_10", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LockedDownLocalMachineZoneInitializeAndScriptActiveXControls"},
 }
 
 var LockedDownLocalMachineZoneJavaPermissions = csp.Policy{
@@ -1905,6 +2077,7 @@ var LockedDownLocalMachineZoneJavaPermissions = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_LocalMachineZoneLockdown", Name: "IZ_PolicyJavaPermissions_10", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LockedDownLocalMachineZoneJavaPermissions"},
 }
 
 var LockedDownLocalMachineZoneNavigateWindowsAndFrames = csp.Policy{
@@ -1916,6 +2089,7 @@ var LockedDownLocalMachineZoneNavigateWindowsAndFrames = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_LocalMachineZoneLockdown", Name: "IZ_PolicyNavigateSubframesAcrossDomains_10", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LockedDownLocalMachineZoneNavigateWindowsAndFrames"},
 }
 
 var LockedDownRestrictedSitesZoneAllowAccessToDataSources = csp.Policy{
@@ -1927,6 +2101,7 @@ var LockedDownRestrictedSitesZoneAllowAccessToDataSources = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_RestrictedSitesZoneLockdown", Name: "IZ_PolicyAccessDataSourcesAcrossDomains_8", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LockedDownRestrictedSitesZoneAllowAccessToDataSources"},
 }
 
 var LockedDownRestrictedSitesZoneAllowAutomaticPromptingForActiveXControls = csp.Policy{
@@ -1938,6 +2113,7 @@ var LockedDownRestrictedSitesZoneAllowAutomaticPromptingForActiveXControls = csp
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_RestrictedSitesZoneLockdown", Name: "IZ_PolicyNotificationBarActiveXURLaction_8", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LockedDownRestrictedSitesZoneAllowAutomaticPromptingForActiveXControls"},
 }
 
 var LockedDownRestrictedSitesZoneAllowAutomaticPromptingForFileDownloads = csp.Policy{
@@ -1949,6 +2125,7 @@ var LockedDownRestrictedSitesZoneAllowAutomaticPromptingForFileDownloads = csp.P
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_RestrictedSitesZoneLockdown", Name: "IZ_PolicyNotificationBarDownloadURLaction_8", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LockedDownRestrictedSitesZoneAllowAutomaticPromptingForFileDownloads"},
 }
 
 var LockedDownRestrictedSitesZoneAllowFontDownloads = csp.Policy{
@@ -1960,6 +2137,7 @@ var LockedDownRestrictedSitesZoneAllowFontDownloads = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_RestrictedSitesZoneLockdown", Name: "IZ_PolicyFontDownload_8", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LockedDownRestrictedSitesZoneAllowFontDownloads"},
 }
 
 var LockedDownRestrictedSitesZoneAllowLessPrivilegedSites = csp.Policy{
@@ -1971,6 +2149,7 @@ var LockedDownRestrictedSitesZoneAllowLessPrivilegedSites = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_RestrictedSitesZoneLockdown", Name: "IZ_PolicyZoneElevationURLaction_8", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LockedDownRestrictedSitesZoneAllowLessPrivilegedSites"},
 }
 
 var LockedDownRestrictedSitesZoneAllowNETFrameworkReliantComponents = csp.Policy{
@@ -1982,6 +2161,7 @@ var LockedDownRestrictedSitesZoneAllowNETFrameworkReliantComponents = csp.Policy
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_RestrictedSitesZoneLockdown", Name: "IZ_PolicyUnsignedFrameworkComponentsURLaction_8", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LockedDownRestrictedSitesZoneAllowNETFrameworkReliantComponents"},
 }
 
 var LockedDownRestrictedSitesZoneAllowScriptlets = csp.Policy{
@@ -1993,6 +2173,7 @@ var LockedDownRestrictedSitesZoneAllowScriptlets = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_RestrictedSitesZoneLockdown", Name: "IZ_Policy_AllowScriptlets_8", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LockedDownRestrictedSitesZoneAllowScriptlets"},
 }
 
 var LockedDownRestrictedSitesZoneAllowSmartScreenIE = csp.Policy{
@@ -2004,6 +2185,7 @@ var LockedDownRestrictedSitesZoneAllowSmartScreenIE = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_RestrictedSitesZoneLockdown", Name: "IZ_Policy_Phishing_8", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LockedDownRestrictedSitesZoneAllowSmartScreenIE"},
 }
 
 var LockedDownRestrictedSitesZoneAllowUserDataPersistence = csp.Policy{
@@ -2015,6 +2197,7 @@ var LockedDownRestrictedSitesZoneAllowUserDataPersistence = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_RestrictedSitesZoneLockdown", Name: "IZ_PolicyUserdataPersistence_8", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LockedDownRestrictedSitesZoneAllowUserDataPersistence"},
 }
 
 var LockedDownRestrictedSitesZoneInitializeAndScriptActiveXControls = csp.Policy{
@@ -2026,6 +2209,7 @@ var LockedDownRestrictedSitesZoneInitializeAndScriptActiveXControls = csp.Policy
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_RestrictedSitesZoneLockdown", Name: "IZ_PolicyScriptActiveXNotMarkedSafe_8", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LockedDownRestrictedSitesZoneInitializeAndScriptActiveXControls"},
 }
 
 var LockedDownRestrictedSitesZoneJavaPermissions = csp.Policy{
@@ -2037,6 +2221,7 @@ var LockedDownRestrictedSitesZoneJavaPermissions = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_RestrictedSitesZoneLockdown", Name: "IZ_PolicyJavaPermissions_8", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LockedDownRestrictedSitesZoneJavaPermissions"},
 }
 
 var LockedDownRestrictedSitesZoneNavigateWindowsAndFrames = csp.Policy{
@@ -2048,6 +2233,7 @@ var LockedDownRestrictedSitesZoneNavigateWindowsAndFrames = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_RestrictedSitesZoneLockdown", Name: "IZ_PolicyNavigateSubframesAcrossDomains_8", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LockedDownRestrictedSitesZoneNavigateWindowsAndFrames"},
 }
 
 var LockedDownTrustedSitesZoneAllowAccessToDataSources = csp.Policy{
@@ -2059,6 +2245,7 @@ var LockedDownTrustedSitesZoneAllowAccessToDataSources = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_TrustedSitesZoneLockdown", Name: "IZ_PolicyAccessDataSourcesAcrossDomains_6", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LockedDownTrustedSitesZoneAllowAccessToDataSources"},
 }
 
 var LockedDownTrustedSitesZoneAllowAutomaticPromptingForActiveXControls = csp.Policy{
@@ -2070,6 +2257,7 @@ var LockedDownTrustedSitesZoneAllowAutomaticPromptingForActiveXControls = csp.Po
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_TrustedSitesZoneLockdown", Name: "IZ_PolicyNotificationBarActiveXURLaction_6", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LockedDownTrustedSitesZoneAllowAutomaticPromptingForActiveXControls"},
 }
 
 var LockedDownTrustedSitesZoneAllowAutomaticPromptingForFileDownloads = csp.Policy{
@@ -2081,6 +2269,7 @@ var LockedDownTrustedSitesZoneAllowAutomaticPromptingForFileDownloads = csp.Poli
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_TrustedSitesZoneLockdown", Name: "IZ_PolicyNotificationBarDownloadURLaction_6", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LockedDownTrustedSitesZoneAllowAutomaticPromptingForFileDownloads"},
 }
 
 var LockedDownTrustedSitesZoneAllowFontDownloads = csp.Policy{
@@ -2092,6 +2281,7 @@ var LockedDownTrustedSitesZoneAllowFontDownloads = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_TrustedSitesZoneLockdown", Name: "IZ_PolicyFontDownload_6", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LockedDownTrustedSitesZoneAllowFontDownloads"},
 }
 
 var LockedDownTrustedSitesZoneAllowLessPrivilegedSites = csp.Policy{
@@ -2103,6 +2293,7 @@ var LockedDownTrustedSitesZoneAllowLessPrivilegedSites = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_TrustedSitesZoneLockdown", Name: "IZ_PolicyZoneElevationURLaction_6", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LockedDownTrustedSitesZoneAllowLessPrivilegedSites"},
 }
 
 var LockedDownTrustedSitesZoneAllowNETFrameworkReliantComponents = csp.Policy{
@@ -2114,6 +2305,7 @@ var LockedDownTrustedSitesZoneAllowNETFrameworkReliantComponents = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_TrustedSitesZoneLockdown", Name: "IZ_PolicyUnsignedFrameworkComponentsURLaction_6", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LockedDownTrustedSitesZoneAllowNETFrameworkReliantComponents"},
 }
 
 var LockedDownTrustedSitesZoneAllowScriptlets = csp.Policy{
@@ -2125,6 +2317,7 @@ var LockedDownTrustedSitesZoneAllowScriptlets = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_TrustedSitesZoneLockdown", Name: "IZ_Policy_AllowScriptlets_6", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LockedDownTrustedSitesZoneAllowScriptlets"},
 }
 
 var LockedDownTrustedSitesZoneAllowSmartScreenIE = csp.Policy{
@@ -2136,6 +2329,7 @@ var LockedDownTrustedSitesZoneAllowSmartScreenIE = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_TrustedSitesZoneLockdown", Name: "IZ_Policy_Phishing_6", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LockedDownTrustedSitesZoneAllowSmartScreenIE"},
 }
 
 var LockedDownTrustedSitesZoneAllowUserDataPersistence = csp.Policy{
@@ -2147,6 +2341,7 @@ var LockedDownTrustedSitesZoneAllowUserDataPersistence = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_TrustedSitesZoneLockdown", Name: "IZ_PolicyUserdataPersistence_6", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LockedDownTrustedSitesZoneAllowUserDataPersistence"},
 }
 
 var LockedDownTrustedSitesZoneInitializeAndScriptActiveXControls = csp.Policy{
@@ -2158,6 +2353,7 @@ var LockedDownTrustedSitesZoneInitializeAndScriptActiveXControls = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_TrustedSitesZoneLockdown", Name: "IZ_PolicyScriptActiveXNotMarkedSafe_6", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LockedDownTrustedSitesZoneInitializeAndScriptActiveXControls"},
 }
 
 var LockedDownTrustedSitesZoneJavaPermissions = csp.Policy{
@@ -2169,6 +2365,7 @@ var LockedDownTrustedSitesZoneJavaPermissions = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_TrustedSitesZoneLockdown", Name: "IZ_PolicyJavaPermissions_6", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LockedDownTrustedSitesZoneJavaPermissions"},
 }
 
 var LockedDownTrustedSitesZoneNavigateWindowsAndFrames = csp.Policy{
@@ -2180,6 +2377,7 @@ var LockedDownTrustedSitesZoneNavigateWindowsAndFrames = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_TrustedSitesZoneLockdown", Name: "IZ_PolicyNavigateSubframesAcrossDomains_6", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LockedDownTrustedSitesZoneNavigateWindowsAndFrames"},
 }
 
 var MKProtocolSecurityRestrictionInternetExplorerProcesses = csp.Policy{
@@ -2191,6 +2389,7 @@ var MKProtocolSecurityRestrictionInternetExplorerProcesses = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~SecurityFeatures~IESF_CategoryMKProtocolSecurityRestriction", Name: "IESF_PolicyExplorerProcesses_3", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "MKProtocolSecurityRestrictionInternetExplorerProcesses"},
 }
 
 var MimeSniffingSafetyFeatureInternetExplorerProcesses = csp.Policy{
@@ -2202,6 +2401,7 @@ var MimeSniffingSafetyFeatureInternetExplorerProcesses = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~SecurityFeatures~IESF_CategoryMimeSniffingSafetyFeature", Name: "IESF_PolicyExplorerProcesses_6", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "MimeSniffingSafetyFeatureInternetExplorerProcesses"},
 }
 
 var NewTabDefaultPage = csp.Policy{
@@ -2213,6 +2413,7 @@ var NewTabDefaultPage = csp.Policy{
 	CSPVersion: "9.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer", Name: "NewTabAction", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "NewTabDefaultPage"},
 }
 
 var NotificationBarInternetExplorerProcesses = csp.Policy{
@@ -2224,6 +2425,7 @@ var NotificationBarInternetExplorerProcesses = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~SecurityFeatures~IESF_CategoryInformationBar", Name: "IESF_PolicyExplorerProcesses_10", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "NotificationBarInternetExplorerProcesses"},
 }
 
 var PreventManagingSmartScreenFilter = csp.Policy{
@@ -2235,6 +2437,7 @@ var PreventManagingSmartScreenFilter = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer", Name: "Disable_Managing_Safety_Filter_IE9", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "PreventManagingSmartScreenFilter"},
 }
 
 var PreventPerUserInstallationOfActiveXControls = csp.Policy{
@@ -2246,6 +2449,7 @@ var PreventPerUserInstallationOfActiveXControls = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer", Name: "DisablePerUserActiveXInstall", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "PreventPerUserInstallationOfActiveXControls"},
 }
 
 var ProtectionFromZoneElevationInternetExplorerProcesses = csp.Policy{
@@ -2257,6 +2461,7 @@ var ProtectionFromZoneElevationInternetExplorerProcesses = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~SecurityFeatures~IESF_CategoryProtectionFromZoneElevation", Name: "IESF_PolicyExplorerProcesses_9", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ProtectionFromZoneElevationInternetExplorerProcesses"},
 }
 
 var RemoveRunThisTimeButtonForOutdatedActiveXControls = csp.Policy{
@@ -2268,6 +2473,7 @@ var RemoveRunThisTimeButtonForOutdatedActiveXControls = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~SecurityFeatures~IESF_AddOnManagement", Name: "VerMgmtDisableRunThisTime", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "RemoveRunThisTimeButtonForOutdatedActiveXControls"},
 }
 
 var ResetZoomForDialogInIEMode = csp.Policy{
@@ -2279,6 +2485,7 @@ var ResetZoomForDialogInIEMode = csp.Policy{
 	CSPVersion: "9.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer", Name: "ResetZoomForDialogInIEMode", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ResetZoomForDialogInIEMode"},
 }
 
 var RestrictActiveXInstallInternetExplorerProcesses = csp.Policy{
@@ -2290,6 +2497,7 @@ var RestrictActiveXInstallInternetExplorerProcesses = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~SecurityFeatures~IESF_CategoryRestrictActiveXInstall", Name: "IESF_PolicyExplorerProcesses_11", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "RestrictActiveXInstallInternetExplorerProcesses"},
 }
 
 var RestrictFileDownloadInternetExplorerProcesses = csp.Policy{
@@ -2301,6 +2509,7 @@ var RestrictFileDownloadInternetExplorerProcesses = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~SecurityFeatures~IESF_CategoryRestrictFileDownload", Name: "IESF_PolicyExplorerProcesses_12", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "RestrictFileDownloadInternetExplorerProcesses"},
 }
 
 var RestrictedSitesZoneAllowAccessToDataSources = csp.Policy{
@@ -2312,6 +2521,7 @@ var RestrictedSitesZoneAllowAccessToDataSources = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_RestrictedSitesZone", Name: "IZ_PolicyAccessDataSourcesAcrossDomains_7", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "RestrictedSitesZoneAllowAccessToDataSources"},
 }
 
 var RestrictedSitesZoneAllowActiveScripting = csp.Policy{
@@ -2323,6 +2533,7 @@ var RestrictedSitesZoneAllowActiveScripting = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_RestrictedSitesZone", Name: "IZ_PolicyActiveScripting_7", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "RestrictedSitesZoneAllowActiveScripting"},
 }
 
 var RestrictedSitesZoneAllowAutomaticPromptingForActiveXControls = csp.Policy{
@@ -2334,6 +2545,7 @@ var RestrictedSitesZoneAllowAutomaticPromptingForActiveXControls = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_RestrictedSitesZone", Name: "IZ_PolicyNotificationBarActiveXURLaction_7", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "RestrictedSitesZoneAllowAutomaticPromptingForActiveXControls"},
 }
 
 var RestrictedSitesZoneAllowAutomaticPromptingForFileDownloads = csp.Policy{
@@ -2345,6 +2557,7 @@ var RestrictedSitesZoneAllowAutomaticPromptingForFileDownloads = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_RestrictedSitesZone", Name: "IZ_PolicyNotificationBarDownloadURLaction_7", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "RestrictedSitesZoneAllowAutomaticPromptingForFileDownloads"},
 }
 
 var RestrictedSitesZoneAllowBinaryAndScriptBehaviors = csp.Policy{
@@ -2356,6 +2569,7 @@ var RestrictedSitesZoneAllowBinaryAndScriptBehaviors = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_RestrictedSitesZone", Name: "IZ_PolicyBinaryBehaviors_7", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "RestrictedSitesZoneAllowBinaryAndScriptBehaviors"},
 }
 
 var RestrictedSitesZoneAllowCopyPasteViaScript = csp.Policy{
@@ -2367,6 +2581,7 @@ var RestrictedSitesZoneAllowCopyPasteViaScript = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_RestrictedSitesZone", Name: "IZ_PolicyAllowPasteViaScript_7", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "RestrictedSitesZoneAllowCopyPasteViaScript"},
 }
 
 var RestrictedSitesZoneAllowDragAndDropCopyAndPasteFiles = csp.Policy{
@@ -2378,6 +2593,7 @@ var RestrictedSitesZoneAllowDragAndDropCopyAndPasteFiles = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_RestrictedSitesZone", Name: "IZ_PolicyDropOrPasteFiles_7", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "RestrictedSitesZoneAllowDragAndDropCopyAndPasteFiles"},
 }
 
 var RestrictedSitesZoneAllowFileDownloads = csp.Policy{
@@ -2389,6 +2605,7 @@ var RestrictedSitesZoneAllowFileDownloads = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_RestrictedSitesZone", Name: "IZ_PolicyFileDownload_7", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "RestrictedSitesZoneAllowFileDownloads"},
 }
 
 var RestrictedSitesZoneAllowFontDownloads = csp.Policy{
@@ -2400,6 +2617,7 @@ var RestrictedSitesZoneAllowFontDownloads = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_RestrictedSitesZone", Name: "IZ_PolicyFontDownload_7", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "RestrictedSitesZoneAllowFontDownloads"},
 }
 
 var RestrictedSitesZoneAllowLessPrivilegedSites = csp.Policy{
@@ -2411,6 +2629,7 @@ var RestrictedSitesZoneAllowLessPrivilegedSites = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_RestrictedSitesZone", Name: "IZ_PolicyZoneElevationURLaction_7", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "RestrictedSitesZoneAllowLessPrivilegedSites"},
 }
 
 var RestrictedSitesZoneAllowLoadingOfXAMLFiles = csp.Policy{
@@ -2422,6 +2641,7 @@ var RestrictedSitesZoneAllowLoadingOfXAMLFiles = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_RestrictedSitesZone", Name: "IZ_Policy_XAML_7", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "RestrictedSitesZoneAllowLoadingOfXAMLFiles"},
 }
 
 var RestrictedSitesZoneAllowMETAREFRESH = csp.Policy{
@@ -2433,6 +2653,7 @@ var RestrictedSitesZoneAllowMETAREFRESH = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_RestrictedSitesZone", Name: "IZ_PolicyAllowMETAREFRESH_7", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "RestrictedSitesZoneAllowMETAREFRESH"},
 }
 
 var RestrictedSitesZoneAllowNETFrameworkReliantComponents = csp.Policy{
@@ -2444,6 +2665,7 @@ var RestrictedSitesZoneAllowNETFrameworkReliantComponents = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_RestrictedSitesZone", Name: "IZ_PolicyUnsignedFrameworkComponentsURLaction_7", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "RestrictedSitesZoneAllowNETFrameworkReliantComponents"},
 }
 
 var RestrictedSitesZoneAllowOnlyApprovedDomainsToUseActiveXControls = csp.Policy{
@@ -2455,6 +2677,7 @@ var RestrictedSitesZoneAllowOnlyApprovedDomainsToUseActiveXControls = csp.Policy
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_RestrictedSitesZone", Name: "IZ_PolicyOnlyAllowApprovedDomainsToUseActiveXWithoutPrompt_Both_Restricted", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "RestrictedSitesZoneAllowOnlyApprovedDomainsToUseActiveXControls"},
 }
 
 var RestrictedSitesZoneAllowOnlyApprovedDomainsToUseTDCActiveXControl = csp.Policy{
@@ -2466,6 +2689,7 @@ var RestrictedSitesZoneAllowOnlyApprovedDomainsToUseTDCActiveXControl = csp.Poli
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_RestrictedSitesZone", Name: "IZ_PolicyAllowTDCControl_Both_Restricted", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "RestrictedSitesZoneAllowOnlyApprovedDomainsToUseTDCActiveXControl"},
 }
 
 var RestrictedSitesZoneAllowScriptInitiatedWindows = csp.Policy{
@@ -2477,6 +2701,7 @@ var RestrictedSitesZoneAllowScriptInitiatedWindows = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_RestrictedSitesZone", Name: "IZ_PolicyWindowsRestrictionsURLaction_7", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "RestrictedSitesZoneAllowScriptInitiatedWindows"},
 }
 
 var RestrictedSitesZoneAllowScriptingOfInternetExplorerWebBrowserControls = csp.Policy{
@@ -2488,6 +2713,7 @@ var RestrictedSitesZoneAllowScriptingOfInternetExplorerWebBrowserControls = csp.
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_RestrictedSitesZone", Name: "IZ_Policy_WebBrowserControl_7", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "RestrictedSitesZoneAllowScriptingOfInternetExplorerWebBrowserControls"},
 }
 
 var RestrictedSitesZoneAllowScriptlets = csp.Policy{
@@ -2499,6 +2725,7 @@ var RestrictedSitesZoneAllowScriptlets = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_RestrictedSitesZone", Name: "IZ_Policy_AllowScriptlets_7", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "RestrictedSitesZoneAllowScriptlets"},
 }
 
 var RestrictedSitesZoneAllowSmartScreenIE = csp.Policy{
@@ -2510,6 +2737,7 @@ var RestrictedSitesZoneAllowSmartScreenIE = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_RestrictedSitesZone", Name: "IZ_Policy_Phishing_7", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "RestrictedSitesZoneAllowSmartScreenIE"},
 }
 
 var RestrictedSitesZoneAllowUpdatesToStatusBarViaScript = csp.Policy{
@@ -2521,6 +2749,7 @@ var RestrictedSitesZoneAllowUpdatesToStatusBarViaScript = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_RestrictedSitesZone", Name: "IZ_Policy_ScriptStatusBar_7", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "RestrictedSitesZoneAllowUpdatesToStatusBarViaScript"},
 }
 
 var RestrictedSitesZoneAllowUserDataPersistence = csp.Policy{
@@ -2532,6 +2761,7 @@ var RestrictedSitesZoneAllowUserDataPersistence = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_RestrictedSitesZone", Name: "IZ_PolicyUserdataPersistence_7", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "RestrictedSitesZoneAllowUserDataPersistence"},
 }
 
 var RestrictedSitesZoneAllowVBScriptToRunInInternetExplorer = csp.Policy{
@@ -2543,6 +2773,7 @@ var RestrictedSitesZoneAllowVBScriptToRunInInternetExplorer = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_RestrictedSitesZone", Name: "IZ_PolicyAllowVBScript_7", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "RestrictedSitesZoneAllowVBScriptToRunInInternetExplorer"},
 }
 
 var RestrictedSitesZoneDoNotRunAntimalwareAgainstActiveXControls = csp.Policy{
@@ -2554,6 +2785,7 @@ var RestrictedSitesZoneDoNotRunAntimalwareAgainstActiveXControls = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_RestrictedSitesZone", Name: "IZ_PolicyAntiMalwareCheckingOfActiveXControls_7", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "RestrictedSitesZoneDoNotRunAntimalwareAgainstActiveXControls"},
 }
 
 var RestrictedSitesZoneDownloadSignedActiveXControls = csp.Policy{
@@ -2565,6 +2797,7 @@ var RestrictedSitesZoneDownloadSignedActiveXControls = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_RestrictedSitesZone", Name: "IZ_PolicyDownloadSignedActiveX_7", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "RestrictedSitesZoneDownloadSignedActiveXControls"},
 }
 
 var RestrictedSitesZoneDownloadUnsignedActiveXControls = csp.Policy{
@@ -2576,6 +2809,7 @@ var RestrictedSitesZoneDownloadUnsignedActiveXControls = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_RestrictedSitesZone", Name: "IZ_PolicyDownloadUnsignedActiveX_7", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "RestrictedSitesZoneDownloadUnsignedActiveXControls"},
 }
 
 var RestrictedSitesZoneEnableCrossSiteScriptingFilter = csp.Policy{
@@ -2587,6 +2821,7 @@ var RestrictedSitesZoneEnableCrossSiteScriptingFilter = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_RestrictedSitesZone", Name: "IZ_PolicyTurnOnXSSFilter_Both_Restricted", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "RestrictedSitesZoneEnableCrossSiteScriptingFilter"},
 }
 
 var RestrictedSitesZoneEnableDraggingOfContentFromDifferentDomainsAcrossWindows = csp.Policy{
@@ -2598,6 +2833,7 @@ var RestrictedSitesZoneEnableDraggingOfContentFromDifferentDomainsAcrossWindows 
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_RestrictedSitesZone", Name: "IZ_PolicyDragDropAcrossDomainsAcrossWindows_Both_Restricted", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "RestrictedSitesZoneEnableDraggingOfContentFromDifferentDomainsAcrossWindows"},
 }
 
 var RestrictedSitesZoneEnableDraggingOfContentFromDifferentDomainsWithinWindows = csp.Policy{
@@ -2609,6 +2845,7 @@ var RestrictedSitesZoneEnableDraggingOfContentFromDifferentDomainsWithinWindows 
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_RestrictedSitesZone", Name: "IZ_PolicyDragDropAcrossDomainsWithinWindow_Both_Restricted", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "RestrictedSitesZoneEnableDraggingOfContentFromDifferentDomainsWithinWindows"},
 }
 
 var RestrictedSitesZoneEnableMIMESniffing = csp.Policy{
@@ -2620,6 +2857,7 @@ var RestrictedSitesZoneEnableMIMESniffing = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_RestrictedSitesZone", Name: "IZ_PolicyMimeSniffingURLaction_7", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "RestrictedSitesZoneEnableMIMESniffing"},
 }
 
 var RestrictedSitesZoneIncludeLocalPathWhenUploadingFilesToServer = csp.Policy{
@@ -2631,6 +2869,7 @@ var RestrictedSitesZoneIncludeLocalPathWhenUploadingFilesToServer = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_RestrictedSitesZone", Name: "IZ_Policy_LocalPathForUpload_7", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "RestrictedSitesZoneIncludeLocalPathWhenUploadingFilesToServer"},
 }
 
 var RestrictedSitesZoneInitializeAndScriptActiveXControls = csp.Policy{
@@ -2642,6 +2881,7 @@ var RestrictedSitesZoneInitializeAndScriptActiveXControls = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_RestrictedSitesZone", Name: "IZ_PolicyScriptActiveXNotMarkedSafe_7", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "RestrictedSitesZoneInitializeAndScriptActiveXControls"},
 }
 
 var RestrictedSitesZoneJavaPermissions = csp.Policy{
@@ -2653,6 +2893,7 @@ var RestrictedSitesZoneJavaPermissions = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_RestrictedSitesZone", Name: "IZ_PolicyJavaPermissions_7", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "RestrictedSitesZoneJavaPermissions"},
 }
 
 var RestrictedSitesZoneLaunchingApplicationsAndFilesInIFRAME = csp.Policy{
@@ -2664,6 +2905,7 @@ var RestrictedSitesZoneLaunchingApplicationsAndFilesInIFRAME = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_RestrictedSitesZone", Name: "IZ_PolicyLaunchAppsAndFilesInIFRAME_7", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "RestrictedSitesZoneLaunchingApplicationsAndFilesInIFRAME"},
 }
 
 var RestrictedSitesZoneLogonOptions = csp.Policy{
@@ -2675,6 +2917,7 @@ var RestrictedSitesZoneLogonOptions = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_RestrictedSitesZone", Name: "IZ_PolicyLogon_7", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "RestrictedSitesZoneLogonOptions"},
 }
 
 var RestrictedSitesZoneNavigateWindowsAndFrames = csp.Policy{
@@ -2686,6 +2929,7 @@ var RestrictedSitesZoneNavigateWindowsAndFrames = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_RestrictedSitesZone", Name: "IZ_PolicyNavigateSubframesAcrossDomains_7", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "RestrictedSitesZoneNavigateWindowsAndFrames"},
 }
 
 var RestrictedSitesZoneRunActiveXControlsAndPlugins = csp.Policy{
@@ -2697,6 +2941,7 @@ var RestrictedSitesZoneRunActiveXControlsAndPlugins = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_RestrictedSitesZone", Name: "IZ_PolicyRunActiveXControls_7", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "RestrictedSitesZoneRunActiveXControlsAndPlugins"},
 }
 
 var RestrictedSitesZoneRunNETFrameworkReliantComponentsSignedWithAuthenticode = csp.Policy{
@@ -2708,6 +2953,7 @@ var RestrictedSitesZoneRunNETFrameworkReliantComponentsSignedWithAuthenticode = 
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_RestrictedSitesZone", Name: "IZ_PolicySignedFrameworkComponentsURLaction_7", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "RestrictedSitesZoneRunNETFrameworkReliantComponentsSignedWithAuthenticode"},
 }
 
 var RestrictedSitesZoneScriptActiveXControlsMarkedSafeForScripting = csp.Policy{
@@ -2719,6 +2965,7 @@ var RestrictedSitesZoneScriptActiveXControlsMarkedSafeForScripting = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_RestrictedSitesZone", Name: "IZ_PolicyScriptActiveXMarkedSafe_7", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "RestrictedSitesZoneScriptActiveXControlsMarkedSafeForScripting"},
 }
 
 var RestrictedSitesZoneScriptingOfJavaApplets = csp.Policy{
@@ -2730,6 +2977,7 @@ var RestrictedSitesZoneScriptingOfJavaApplets = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_RestrictedSitesZone", Name: "IZ_PolicyScriptingOfJavaApplets_7", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "RestrictedSitesZoneScriptingOfJavaApplets"},
 }
 
 var RestrictedSitesZoneShowSecurityWarningForPotentiallyUnsafeFiles = csp.Policy{
@@ -2741,6 +2989,7 @@ var RestrictedSitesZoneShowSecurityWarningForPotentiallyUnsafeFiles = csp.Policy
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_RestrictedSitesZone", Name: "IZ_Policy_UnsafeFiles_7", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "RestrictedSitesZoneShowSecurityWarningForPotentiallyUnsafeFiles"},
 }
 
 var RestrictedSitesZoneTurnOnProtectedMode = csp.Policy{
@@ -2752,6 +3001,7 @@ var RestrictedSitesZoneTurnOnProtectedMode = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_RestrictedSitesZone", Name: "IZ_Policy_TurnOnProtectedMode_7", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "RestrictedSitesZoneTurnOnProtectedMode"},
 }
 
 var RestrictedSitesZoneUsePopupBlocker = csp.Policy{
@@ -2763,6 +3013,7 @@ var RestrictedSitesZoneUsePopupBlocker = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_RestrictedSitesZone", Name: "IZ_PolicyBlockPopupWindows_7", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "RestrictedSitesZoneUsePopupBlocker"},
 }
 
 var ScriptedWindowSecurityRestrictionsInternetExplorerProcesses = csp.Policy{
@@ -2774,6 +3025,7 @@ var ScriptedWindowSecurityRestrictionsInternetExplorerProcesses = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~SecurityFeatures~IESF_CategoryScriptedWindowSecurityRestrictions", Name: "IESF_PolicyExplorerProcesses_8", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ScriptedWindowSecurityRestrictionsInternetExplorerProcesses"},
 }
 
 var SearchProviderList = csp.Policy{
@@ -2785,6 +3037,7 @@ var SearchProviderList = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer", Name: "SpecificSearchProvider", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "SearchProviderList"},
 }
 
 var SecurityZonesUseOnlyMachineSettings = csp.Policy{
@@ -2796,6 +3049,7 @@ var SecurityZonesUseOnlyMachineSettings = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer", Name: "Security_HKLM_only", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "SecurityZonesUseOnlyMachineSettings"},
 }
 
 var SendSitesNotInEnterpriseSiteListToEdge = csp.Policy{
@@ -2807,6 +3061,7 @@ var SendSitesNotInEnterpriseSiteListToEdge = csp.Policy{
 	CSPVersion: "9.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer", Name: "RestrictInternetExplorer", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "SendSitesNotInEnterpriseSiteListToEdge"},
 }
 
 var SpecifyUseOfActiveXInstallerService = csp.Policy{
@@ -2818,6 +3073,7 @@ var SpecifyUseOfActiveXInstallerService = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer", Name: "OnlyUseAXISForActiveXInstall", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "SpecifyUseOfActiveXInstallerService"},
 }
 
 var TrustedSitesZoneAllowAccessToDataSources = csp.Policy{
@@ -2829,6 +3085,7 @@ var TrustedSitesZoneAllowAccessToDataSources = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_TrustedSitesZone", Name: "IZ_PolicyAccessDataSourcesAcrossDomains_5", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "TrustedSitesZoneAllowAccessToDataSources"},
 }
 
 var TrustedSitesZoneAllowAutomaticPromptingForActiveXControls = csp.Policy{
@@ -2840,6 +3097,7 @@ var TrustedSitesZoneAllowAutomaticPromptingForActiveXControls = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_TrustedSitesZone", Name: "IZ_PolicyNotificationBarActiveXURLaction_5", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "TrustedSitesZoneAllowAutomaticPromptingForActiveXControls"},
 }
 
 var TrustedSitesZoneAllowAutomaticPromptingForFileDownloads = csp.Policy{
@@ -2851,6 +3109,7 @@ var TrustedSitesZoneAllowAutomaticPromptingForFileDownloads = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_TrustedSitesZone", Name: "IZ_PolicyNotificationBarDownloadURLaction_5", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "TrustedSitesZoneAllowAutomaticPromptingForFileDownloads"},
 }
 
 var TrustedSitesZoneAllowFontDownloads = csp.Policy{
@@ -2862,6 +3121,7 @@ var TrustedSitesZoneAllowFontDownloads = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_TrustedSitesZone", Name: "IZ_PolicyFontDownload_5", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "TrustedSitesZoneAllowFontDownloads"},
 }
 
 var TrustedSitesZoneAllowLessPrivilegedSites = csp.Policy{
@@ -2873,6 +3133,7 @@ var TrustedSitesZoneAllowLessPrivilegedSites = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_TrustedSitesZone", Name: "IZ_PolicyZoneElevationURLaction_5", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "TrustedSitesZoneAllowLessPrivilegedSites"},
 }
 
 var TrustedSitesZoneAllowNETFrameworkReliantComponents = csp.Policy{
@@ -2884,6 +3145,7 @@ var TrustedSitesZoneAllowNETFrameworkReliantComponents = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_TrustedSitesZone", Name: "IZ_PolicyUnsignedFrameworkComponentsURLaction_5", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "TrustedSitesZoneAllowNETFrameworkReliantComponents"},
 }
 
 var TrustedSitesZoneAllowScriptlets = csp.Policy{
@@ -2895,6 +3157,7 @@ var TrustedSitesZoneAllowScriptlets = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_TrustedSitesZone", Name: "IZ_Policy_AllowScriptlets_5", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "TrustedSitesZoneAllowScriptlets"},
 }
 
 var TrustedSitesZoneAllowSmartScreenIE = csp.Policy{
@@ -2906,6 +3169,7 @@ var TrustedSitesZoneAllowSmartScreenIE = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_TrustedSitesZone", Name: "IZ_Policy_Phishing_5", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "TrustedSitesZoneAllowSmartScreenIE"},
 }
 
 var TrustedSitesZoneAllowUserDataPersistence = csp.Policy{
@@ -2917,6 +3181,7 @@ var TrustedSitesZoneAllowUserDataPersistence = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_TrustedSitesZone", Name: "IZ_PolicyUserdataPersistence_5", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "TrustedSitesZoneAllowUserDataPersistence"},
 }
 
 var TrustedSitesZoneDoNotRunAntimalwareAgainstActiveXControls = csp.Policy{
@@ -2928,6 +3193,7 @@ var TrustedSitesZoneDoNotRunAntimalwareAgainstActiveXControls = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_TrustedSitesZone", Name: "IZ_PolicyAntiMalwareCheckingOfActiveXControls_5", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "TrustedSitesZoneDoNotRunAntimalwareAgainstActiveXControls"},
 }
 
 var TrustedSitesZoneEnableProtectedMode = csp.Policy{
@@ -2939,6 +3205,7 @@ var TrustedSitesZoneEnableProtectedMode = csp.Policy{
 	CSPVersion: "9.9",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_TrustedSitesZone", Name: "IZ_Policy_TurnOnProtectedMode_5", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "TrustedSitesZoneEnableProtectedMode"},
 }
 
 var TrustedSitesZoneInitializeAndScriptActiveXControls = csp.Policy{
@@ -2950,6 +3217,7 @@ var TrustedSitesZoneInitializeAndScriptActiveXControls = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_TrustedSitesZone", Name: "IZ_PolicyScriptActiveXNotMarkedSafe_5", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "TrustedSitesZoneInitializeAndScriptActiveXControls"},
 }
 
 var TrustedSitesZoneJavaPermissions = csp.Policy{
@@ -2961,6 +3229,7 @@ var TrustedSitesZoneJavaPermissions = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_TrustedSitesZone", Name: "IZ_PolicyJavaPermissions_5", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "TrustedSitesZoneJavaPermissions"},
 }
 
 var TrustedSitesZoneLogonOptions = csp.Policy{
@@ -2972,6 +3241,7 @@ var TrustedSitesZoneLogonOptions = csp.Policy{
 	CSPVersion: "10.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_TrustedSitesZone", Name: "IZ_PolicyLogon_5", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "TrustedSitesZoneLogonOptions"},
 }
 
 var TrustedSitesZoneNavigateWindowsAndFrames = csp.Policy{
@@ -2983,6 +3253,7 @@ var TrustedSitesZoneNavigateWindowsAndFrames = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "inetres~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_TrustedSitesZone", Name: "IZ_PolicyNavigateSubframesAcrossDomains_5", File: "inetres.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_InternetExplorer02", ResultClass: "MDM_Policy_Result01_InternetExplorer02", InstanceID: "InternetExplorer", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "TrustedSitesZoneNavigateWindowsAndFrames"},
 }
 
 // All lists every policy in this CSP area.

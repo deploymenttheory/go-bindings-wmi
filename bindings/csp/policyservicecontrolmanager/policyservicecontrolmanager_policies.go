@@ -13,6 +13,7 @@ var SvchostProcessMitigation = csp.Policy{
 	CSPVersion: "9.0",
 	Editions:   "0x4;0x1B;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0xAB;0xAC;0xAF;0xBC;0xBF;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "ServiceControlManager~AT~System~ServiceControlManagerCat~ServiceControlManagerSecurityCat", Name: "SvchostProcessMitigationEnable", File: "ServiceControlManager.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_ServiceControlManager02", ResultClass: "MDM_Policy_Result01_ServiceControlManager02", InstanceID: "ServiceControlManager", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "SvchostProcessMitigation"},
 }
 
 // All lists every policy in this CSP area.

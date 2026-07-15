@@ -13,6 +13,7 @@ var ApprovedUsbPrintDevices = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "Printing~AT~Printers", Name: "ApprovedUsbPrintDevices", File: "Printing.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Printers02", ResultClass: "MDM_Policy_Result01_Printers02", InstanceID: "Printers", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ApprovedUsbPrintDevices"},
 }
 
 var ApprovedUsbPrintDevicesUser = csp.Policy{
@@ -24,6 +25,7 @@ var ApprovedUsbPrintDevicesUser = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "Printing~AT~ControlPanel~CplPrinters", Name: "ApprovedUsbPrintDevicesUser", File: "Printing.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Printers02", ResultClass: "MDM_Policy_Result01_Printers02", InstanceID: "Printers", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ApprovedUsbPrintDevicesUser"},
 }
 
 var ConfigureCopyFilesPolicy = csp.Policy{
@@ -35,6 +37,7 @@ var ConfigureCopyFilesPolicy = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "Printing~AT~Printers", Name: "ConfigureCopyFilesPolicy", File: "Printing.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Printers02", ResultClass: "MDM_Policy_Result01_Printers02", InstanceID: "Printers", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ConfigureCopyFilesPolicy"},
 }
 
 var ConfigureDriverValidationLevel = csp.Policy{
@@ -46,6 +49,7 @@ var ConfigureDriverValidationLevel = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "Printing~AT~Printers", Name: "ConfigureDriverValidationLevel", File: "Printing.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Printers02", ResultClass: "MDM_Policy_Result01_Printers02", InstanceID: "Printers", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ConfigureDriverValidationLevel"},
 }
 
 var ConfigureIppPageCountsPolicy = csp.Policy{
@@ -57,6 +61,7 @@ var ConfigureIppPageCountsPolicy = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "Printing~AT~Printers", Name: "ConfigureIppPageCountsPolicy", File: "Printing.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Printers02", ResultClass: "MDM_Policy_Result01_Printers02", InstanceID: "Printers", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ConfigureIppPageCountsPolicy"},
 }
 
 var ConfigureIppTlsCertificatePolicy = csp.Policy{
@@ -68,6 +73,7 @@ var ConfigureIppTlsCertificatePolicy = csp.Policy{
 	CSPVersion: "9.9",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "Printing~AT~Printers", Name: "ConfigureIppTlsCertificatePolicy", File: "Printing.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Printers02", ResultClass: "MDM_Policy_Result01_Printers02", InstanceID: "Printers", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ConfigureIppTlsCertificatePolicy"},
 }
 
 var ConfigureRedirectionGuardPolicy = csp.Policy{
@@ -79,6 +85,7 @@ var ConfigureRedirectionGuardPolicy = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "Printing~AT~Printers", Name: "ConfigureRedirectionGuardPolicy", File: "Printing.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Printers02", ResultClass: "MDM_Policy_Result01_Printers02", InstanceID: "Printers", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ConfigureRedirectionGuardPolicy"},
 }
 
 var ConfigureRpcAuthnLevelPrivacyEnabled = csp.Policy{
@@ -90,6 +97,7 @@ var ConfigureRpcAuthnLevelPrivacyEnabled = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "Printing~AT~Printers", Name: "ConfigureRpcAuthnLevelPrivacyEnabled", File: "Printing.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Printers02", ResultClass: "MDM_Policy_Result01_Printers02", InstanceID: "Printers", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ConfigureRpcAuthnLevelPrivacyEnabled"},
 }
 
 var ConfigureRpcConnectionPolicy = csp.Policy{
@@ -101,6 +109,7 @@ var ConfigureRpcConnectionPolicy = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "Printing~AT~Printers", Name: "ConfigureRpcConnectionPolicy", File: "Printing.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Printers02", ResultClass: "MDM_Policy_Result01_Printers02", InstanceID: "Printers", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ConfigureRpcConnectionPolicy"},
 }
 
 var ConfigureRpcListenerPolicy = csp.Policy{
@@ -112,6 +121,7 @@ var ConfigureRpcListenerPolicy = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "Printing~AT~Printers", Name: "ConfigureRpcListenerPolicy", File: "Printing.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Printers02", ResultClass: "MDM_Policy_Result01_Printers02", InstanceID: "Printers", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ConfigureRpcListenerPolicy"},
 }
 
 var ConfigureRpcTcpPort = csp.Policy{
@@ -123,6 +133,7 @@ var ConfigureRpcTcpPort = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "Printing~AT~Printers", Name: "ConfigureRpcTcpPort", File: "Printing.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Printers02", ResultClass: "MDM_Policy_Result01_Printers02", InstanceID: "Printers", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ConfigureRpcTcpPort"},
 }
 
 var ConfigureWindowsProtectedPrint = csp.Policy{
@@ -134,6 +145,7 @@ var ConfigureWindowsProtectedPrint = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "Printing~AT~Printers", Name: "ConfigureWindowsProtectedPrint", File: "Printing.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Printers02", ResultClass: "MDM_Policy_Result01_Printers02", InstanceID: "Printers", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ConfigureWindowsProtectedPrint"},
 }
 
 var EnableDeviceControl = csp.Policy{
@@ -145,6 +157,7 @@ var EnableDeviceControl = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "Printing~AT~Printers", Name: "EnableDeviceControl", File: "Printing.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Printers02", ResultClass: "MDM_Policy_Result01_Printers02", InstanceID: "Printers", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "EnableDeviceControl"},
 }
 
 var EnableDeviceControlUser = csp.Policy{
@@ -156,6 +169,7 @@ var EnableDeviceControlUser = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "Printing~AT~ControlPanel~CplPrinters", Name: "EnableDeviceControlUser", File: "Printing.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Printers02", ResultClass: "MDM_Policy_Result01_Printers02", InstanceID: "Printers", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "EnableDeviceControlUser"},
 }
 
 var ManageDriverExclusionList = csp.Policy{
@@ -167,6 +181,7 @@ var ManageDriverExclusionList = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "Printing~AT~Printers", Name: "ManageDriverExclusionList", File: "Printing.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Printers02", ResultClass: "MDM_Policy_Result01_Printers02", InstanceID: "Printers", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ManageDriverExclusionList"},
 }
 
 var PointAndPrintRestrictions = csp.Policy{
@@ -178,6 +193,7 @@ var PointAndPrintRestrictions = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "Printing~AT~ControlPanel~CplPrinters", Name: "PointAndPrint_Restrictions_Win7", File: "Printing.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Printers02", ResultClass: "MDM_Policy_Result01_Printers02", InstanceID: "Printers", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "PointAndPrintRestrictions"},
 }
 
 var PointAndPrintRestrictionsUser = csp.Policy{
@@ -189,6 +205,7 @@ var PointAndPrintRestrictionsUser = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "Printing~AT~ControlPanel~CplPrinters", Name: "PointAndPrint_Restrictions", File: "Printing.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Printers02", ResultClass: "MDM_Policy_Result01_Printers02", InstanceID: "Printers", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "PointAndPrintRestrictions_User"},
 }
 
 var PublishPrinters = csp.Policy{
@@ -200,6 +217,7 @@ var PublishPrinters = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "Printing2~AT~Printers", Name: "PublishPrinters", File: "Printing2.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Printers02", ResultClass: "MDM_Policy_Result01_Printers02", InstanceID: "Printers", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "PublishPrinters"},
 }
 
 // RequireIppsPolicy: Allows restricting IPP printer installation to only allow printers supporting IPPS to be installed. This ensures TLS is used for printer communication
@@ -213,6 +231,7 @@ var RequireIppsPolicy = csp.Policy{
 	CSPVersion: "9.9",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Disabled"}, {Value: "1", Description: "Enabled"}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Printers02", ResultClass: "MDM_Policy_Result01_Printers02", InstanceID: "Printers", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "RequireIppsPolicy"},
 }
 
 var RestrictDriverInstallationToAdministrators = csp.Policy{
@@ -224,6 +243,7 @@ var RestrictDriverInstallationToAdministrators = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "Printing~AT~Printers", Name: "RestrictDriverInstallationToAdministrators", File: "Printing.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Printers02", ResultClass: "MDM_Policy_Result01_Printers02", InstanceID: "Printers", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "RestrictDriverInstallationToAdministrators"},
 }
 
 // All lists every policy in this CSP area.

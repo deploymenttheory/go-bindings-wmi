@@ -15,6 +15,7 @@ var AllowPinnedFolderDocuments = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "The shortcut is hidden and disables the setting in the Settings app."}, {Value: "1", Description: "The shortcut is visible and disables the setting in the Settings app."}, {Value: "65535", Description: "There is no enforced configuration and the setting can be changed by the user."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Start02", ResultClass: "MDM_Policy_Result01_Start02", InstanceID: "Start", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowPinnedFolderDocuments"},
 }
 
 // AllowPinnedFolderDownloads: This policy controls the visibility of the Downloads shortcut on the Start menu. The possible values are 0 - means that the shortcut should be hidden and grays out the corresponding toggle in the Settings app, 1 - means that the shortcut should be visible and grays out the corresponding toggle in the Settings app, 65535 - means that there is no enforced configuration and the setting can be changed by the user.
@@ -28,6 +29,7 @@ var AllowPinnedFolderDownloads = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "The shortcut is hidden and disables the setting in the Settings app."}, {Value: "1", Description: "The shortcut is visible and disables the setting in the Settings app."}, {Value: "65535", Description: "There is no enforced configuration and the setting can be changed by the user."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Start02", ResultClass: "MDM_Policy_Result01_Start02", InstanceID: "Start", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowPinnedFolderDownloads"},
 }
 
 // AllowPinnedFolderFileExplorer: This policy controls the visibility of the File Explorer shortcut on the Start menu. The possible values are 0 - means that the shortcut should be hidden and grays out the corresponding toggle in the Settings app, 1 - means that the shortcut should be visible and grays out the corresponding toggle in the Settings app, 65535 - means that there is no enforced configuration and the setting can be changed by the user.
@@ -41,6 +43,7 @@ var AllowPinnedFolderFileExplorer = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "The shortcut is hidden and disables the setting in the Settings app."}, {Value: "1", Description: "The shortcut is visible and disables the setting in the Settings app."}, {Value: "65535", Description: "There is no enforced configuration and the setting can be changed by the user."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Start02", ResultClass: "MDM_Policy_Result01_Start02", InstanceID: "Start", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowPinnedFolderFileExplorer"},
 }
 
 // AllowPinnedFolderHomeGroup: This policy controls the visibility of the HomeGroup shortcut on the Start menu. The possible values are 0 - means that the shortcut should be hidden and grays out the corresponding toggle in the Settings app, 1 - means that the shortcut should be visible and grays out the corresponding toggle in the Settings app, 65535 - means that there is no enforced configuration and the setting can be changed by the user.
@@ -54,6 +57,7 @@ var AllowPinnedFolderHomeGroup = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "The shortcut is hidden and disables the setting in the Settings app."}, {Value: "1", Description: "The shortcut is visible and disables the setting in the Settings app."}, {Value: "65535", Description: "There is no enforced configuration and the setting can be changed by the user."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Start02", ResultClass: "MDM_Policy_Result01_Start02", InstanceID: "Start", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowPinnedFolderHomeGroup"},
 }
 
 // AllowPinnedFolderMusic: This policy controls the visibility of the Music shortcut on the Start menu. The possible values are 0 - means that the shortcut should be hidden and grays out the corresponding toggle in the Settings app, 1 - means that the shortcut should be visible and grays out the corresponding toggle in the Settings app, 65535 - means that there is no enforced configuration and the setting can be changed by the user.
@@ -67,6 +71,7 @@ var AllowPinnedFolderMusic = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "The shortcut is hidden and disables the setting in the Settings app."}, {Value: "1", Description: "The shortcut is visible and disables the setting in the Settings app."}, {Value: "65535", Description: "There is no enforced configuration and the setting can be changed by the user."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Start02", ResultClass: "MDM_Policy_Result01_Start02", InstanceID: "Start", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowPinnedFolderMusic"},
 }
 
 // AllowPinnedFolderNetwork: This policy controls the visibility of the Network shortcut on the Start menu. The possible values are 0 - means that the shortcut should be hidden and grays out the corresponding toggle in the Settings app, 1 - means that the shortcut should be visible and grays out the corresponding toggle in the Settings app, 65535 - means that there is no enforced configuration and the setting can be changed by the user.
@@ -80,6 +85,7 @@ var AllowPinnedFolderNetwork = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "The shortcut is hidden and disables the setting in the Settings app."}, {Value: "1", Description: "The shortcut is visible and disables the setting in the Settings app."}, {Value: "65535", Description: "There is no enforced configuration and the setting can be changed by the user."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Start02", ResultClass: "MDM_Policy_Result01_Start02", InstanceID: "Start", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowPinnedFolderNetwork"},
 }
 
 // AllowPinnedFolderPersonalFolder: This policy controls the visibility of the PersonalFolder shortcut on the Start menu. The possible values are 0 - means that the shortcut should be hidden and grays out the corresponding toggle in the Settings app, 1 - means that the shortcut should be visible and grays out the corresponding toggle in the Settings app, 65535 - means that there is no enforced configuration and the setting can be changed by the user.
@@ -93,6 +99,7 @@ var AllowPinnedFolderPersonalFolder = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "The shortcut is hidden and disables the setting in the Settings app."}, {Value: "1", Description: "The shortcut is visible and disables the setting in the Settings app."}, {Value: "65535", Description: "There is no enforced configuration and the setting can be changed by the user."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Start02", ResultClass: "MDM_Policy_Result01_Start02", InstanceID: "Start", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowPinnedFolderPersonalFolder"},
 }
 
 // AllowPinnedFolderPictures: This policy controls the visibility of the Pictures shortcut on the Start menu. The possible values are 0 - means that the shortcut should be hidden and grays out the corresponding toggle in the Settings app, 1 - means that the shortcut should be visible and grays out the corresponding toggle in the Settings app, 65535 - means that there is no enforced configuration and the setting can be changed by the user.
@@ -106,6 +113,7 @@ var AllowPinnedFolderPictures = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "The shortcut is hidden and disables the setting in the Settings app."}, {Value: "1", Description: "The shortcut is visible and disables the setting in the Settings app."}, {Value: "65535", Description: "There is no enforced configuration and the setting can be changed by the user."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Start02", ResultClass: "MDM_Policy_Result01_Start02", InstanceID: "Start", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowPinnedFolderPictures"},
 }
 
 // AllowPinnedFolderSettings: This policy controls the visibility of the Settings shortcut on the Start menu. The possible values are 0 - means that the shortcut should be hidden and grays out the corresponding toggle in the Settings app, 1 - means that the shortcut should be visible and grays out the corresponding toggle in the Settings app, 65535 - means that there is no enforced configuration and the setting can be changed by the user.
@@ -119,6 +127,7 @@ var AllowPinnedFolderSettings = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "The shortcut is hidden and disables the setting in the Settings app."}, {Value: "1", Description: "The shortcut is visible and disables the setting in the Settings app."}, {Value: "65535", Description: "There is no enforced configuration and the setting can be changed by the user."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Start02", ResultClass: "MDM_Policy_Result01_Start02", InstanceID: "Start", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowPinnedFolderSettings"},
 }
 
 // AllowPinnedFolderVideos: This policy controls the visibility of the Videos shortcut on the Start menu. The possible values are 0 - means that the shortcut should be hidden and grays out the corresponding toggle in the Settings app, 1 - means that the shortcut should be visible and grays out the corresponding toggle in the Settings app, 65535 - means that there is no enforced configuration and the setting can be changed by the user.
@@ -132,6 +141,7 @@ var AllowPinnedFolderVideos = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "The shortcut is hidden and disables the setting in the Settings app."}, {Value: "1", Description: "The shortcut is visible and disables the setting in the Settings app."}, {Value: "65535", Description: "There is no enforced configuration and the setting can be changed by the user."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Start02", ResultClass: "MDM_Policy_Result01_Start02", InstanceID: "Start", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowPinnedFolderVideos"},
 }
 
 var AlwaysShowNotificationIcon = csp.Policy{
@@ -144,6 +154,7 @@ var AlwaysShowNotificationIcon = csp.Policy{
 	CSPVersion: "9.9",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Auto-hide notification bell icon"}, {Value: "1", Description: "Show notification bell icon"}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Start02", ResultClass: "MDM_Policy_Result01_Start02", InstanceID: "Start", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AlwaysShowNotificationIcon"},
 }
 
 // ConfigureStartPins: Allows admin to override the default items pinned to Start.
@@ -155,6 +166,7 @@ var ConfigureStartPins = csp.Policy{
 	MinOSBuild: "10.0.22000",
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Start02", ResultClass: "MDM_Policy_Result01_Start02", InstanceID: "Start", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ConfigureStartPins"},
 }
 
 // ConfigureTaskbarSmallButtonBehavior: This policy setting controls the presence of small taskbar buttons. When the policy is set to values of 0, 1, or 2 the user cannot change the setting value. When the value is 65535 the user can change the setting value. The possible values are 0 - The taskbar always uses small buttons, 1 - The taskbar dynamically switches between small buttons and standard sized buttons based on available space, 2 - The taskbar never uses small buttons, 65535 - means that there is no enforced configuration and the setting can be changed by the user.
@@ -168,6 +180,7 @@ var ConfigureTaskbarSmallButtonBehavior = csp.Policy{
 	CSPVersion: "9.9",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Always: The taskbar always uses small buttons. The setting will be grayed out in the Settings UI and the user can not change the setting value."}, {Value: "1", Description: "When taskbar is full: The taskbar dynamically switches between small buttons and standard sized buttons based on available space. The setting will be grayed out in the Settings UI and the user can not change the setting value."}, {Value: "2", Description: "Never: The taskbar never uses small buttons. Only standard sized buttons will be used. The setting will be grayed out in the Settings UI and the user can not change the setting value."}, {Value: "65535", Description: "There is no enforced configuration and the setting can be changed by the user."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Start02", ResultClass: "MDM_Policy_Result01_Start02", InstanceID: "Start", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ConfigureTaskbarSmallButtonBehavior"},
 }
 
 // DisableContextMenus: Enabling this policy prevents context menus from being invoked in the Start Menu.
@@ -181,6 +194,7 @@ var DisableContextMenus = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Do not disable."}, {Value: "1", Description: "Disable."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Start02", ResultClass: "MDM_Policy_Result01_Start02", InstanceID: "Start", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisableContextMenus"},
 }
 
 var DisableControlCenter = csp.Policy{
@@ -192,6 +206,7 @@ var DisableControlCenter = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Enable Quick Settings."}, {Value: "1", Description: "Disable Quick Settings."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Start02", ResultClass: "MDM_Policy_Result01_Start02", InstanceID: "Start", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisableControlCenter"},
 }
 
 // DisableEditingQuickSettings: Allows admin to disable editing Quick Settings, such as by accessing the 'Edit quick settings' context through right-clicking on Quick Settings buttons.
@@ -205,6 +220,7 @@ var DisableEditingQuickSettings = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Enable editing Quick Settings."}, {Value: "1", Description: "Disable editing Quick Settings."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Start02", ResultClass: "MDM_Policy_Result01_Start02", InstanceID: "Start", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisableEditingQuickSettings"},
 }
 
 // ForceStartSize: Forces the start screen size. If there is policy configuration conflict, the latest configuration request is applied to the device.
@@ -218,6 +234,7 @@ var ForceStartSize = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Do not force size of Start."}, {Value: "1", Description: "Force non-fullscreen size of Start."}, {Value: "2", Description: "Force a fullscreen size of Start."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Start02", ResultClass: "MDM_Policy_Result01_Start02", InstanceID: "Start", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ForceStartSize"},
 }
 
 // HideAppList: Setting the value of this policy to 1 or 2 collapses the app list. Setting the value of this policy to 3 removes the app list entirely. Setting the value of this policy to 2 or 3 disables the corresponding toggle in the Settings app.
@@ -231,6 +248,7 @@ var HideAppList = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "None."}, {Value: "1", Description: "Hide all apps list."}, {Value: "2", Description: "Hide all apps list, and Disable \"Show app list in Start menu\" in Settings app."}, {Value: "3", Description: "Hide all apps list, remove all apps button, and Disable \"Show app list in Start menu\" in Settings app."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Start02", ResultClass: "MDM_Policy_Result01_Start02", InstanceID: "Start", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "HideAppList"},
 }
 
 // HideCategoryView: This policy setting allows you to hide the category view in the Start Menu. If you enable this policy setting, the Start Menu will no longer show the category view as an option and will default to grid view.
@@ -244,6 +262,7 @@ var HideCategoryView = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Category view shown."}, {Value: "1", Description: "Category view hidden."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Start02", ResultClass: "MDM_Policy_Result01_Start02", InstanceID: "Start", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "HideCategoryView"},
 }
 
 // HideChangeAccountSettings: Enabling this policy hides "Change account settings" from appearing in the user tile in the start menu.
@@ -257,6 +276,7 @@ var HideChangeAccountSettings = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Do not hide."}, {Value: "1", Description: "Hide."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Start02", ResultClass: "MDM_Policy_Result01_Start02", InstanceID: "Start", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "HideChangeAccountSettings"},
 }
 
 // HideFrequentlyUsedApps: Enabling this policy hides the most used apps from appearing on the start menu and disables the corresponding toggle in the Settings app.
@@ -270,6 +290,7 @@ var HideFrequentlyUsedApps = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Do not hide."}, {Value: "1", Description: "Hide."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Start02", ResultClass: "MDM_Policy_Result01_Start02", InstanceID: "Start", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "HideFrequentlyUsedApps"},
 }
 
 // HideHibernate: Enabling this policy hides "Hibernate" from appearing in the power button in the start menu.
@@ -283,6 +304,7 @@ var HideHibernate = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Do not hide."}, {Value: "1", Description: "Hide."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Start02", ResultClass: "MDM_Policy_Result01_Start02", InstanceID: "Start", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "HideHibernate"},
 }
 
 // HideLock: Enabling this policy hides "Lock" from appearing in the user tile in the start menu.
@@ -296,6 +318,7 @@ var HideLock = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Do not hide."}, {Value: "1", Description: "Hide."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Start02", ResultClass: "MDM_Policy_Result01_Start02", InstanceID: "Start", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "HideLock"},
 }
 
 // HidePeopleBar: Enabling this policy removes the people icon from the taskbar as well as the corresponding settings toggle. It also prevents users from pinning people to the taskbar.
@@ -309,6 +332,7 @@ var HidePeopleBar = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Do not hide."}, {Value: "1", Description: "Hide."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Start02", ResultClass: "MDM_Policy_Result01_Start02", InstanceID: "Start", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "HidePeopleBar"},
 }
 
 // HidePowerButton: Enabling this policy hides the power button from appearing in the start menu.
@@ -322,6 +346,7 @@ var HidePowerButton = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Do not hide."}, {Value: "1", Description: "Hide."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Start02", ResultClass: "MDM_Policy_Result01_Start02", InstanceID: "Start", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "HidePowerButton"},
 }
 
 // HideRecentJumplists: Enabling this policy hides recent jumplists from appearing on the start menu/taskbar and disables the corresponding toggle in the Settings app.
@@ -335,6 +360,7 @@ var HideRecentJumplists = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Do not hide."}, {Value: "1", Description: "Hide."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Start02", ResultClass: "MDM_Policy_Result01_Start02", InstanceID: "Start", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "HideRecentJumplists"},
 }
 
 // HideRecentlyAddedApps: Enabling this policy hides recently added apps from appearing on the start menu and disables the corresponding toggle in the Settings app.
@@ -348,6 +374,7 @@ var HideRecentlyAddedApps = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Do not hide."}, {Value: "1", Description: "Hide."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Start02", ResultClass: "MDM_Policy_Result01_Start02", InstanceID: "Start", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "HideRecentlyAddedApps"},
 }
 
 // HideRecommendedPersonalizedSites: This policy setting allows you to hide the personalized websites in the recommended section of the Start Menu. If you enable this policy setting, the Start Menu will no longer show personalized website recommendations in the recommended section of the start menu.
@@ -361,6 +388,7 @@ var HideRecommendedPersonalizedSites = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Personalized Website Recommendations shown."}, {Value: "1", Description: "Personalized Website Recommendations hidden."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Start02", ResultClass: "MDM_Policy_Result01_Start02", InstanceID: "Start", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "HideRecommendedPersonalizedSites"},
 }
 
 // HideRecommendedSection: This policy setting allows you to hide the recommended section of the Start Menu. If you enable this policy setting, the Start Menu will no longer show the section containing a list of recommended files and apps.
@@ -374,6 +402,7 @@ var HideRecommendedSection = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Recommended section shown."}, {Value: "1", Description: "Recommended section hidden."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Start02", ResultClass: "MDM_Policy_Result01_Start02", InstanceID: "Start", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "HideRecommendedSection"},
 }
 
 // HideRestart: Enabling this policy hides "Restart/Update and restart" from appearing in the power button in the start menu.
@@ -387,6 +416,7 @@ var HideRestart = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Do not hide."}, {Value: "1", Description: "Hide."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Start02", ResultClass: "MDM_Policy_Result01_Start02", InstanceID: "Start", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "HideRestart"},
 }
 
 // HideShutDown: Enabling this policy hides "Shut down/Update and shut down" from appearing in the power button in the start menu.
@@ -400,6 +430,7 @@ var HideShutDown = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Do not hide."}, {Value: "1", Description: "Hide."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Start02", ResultClass: "MDM_Policy_Result01_Start02", InstanceID: "Start", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "HideShutDown"},
 }
 
 // HideSignOut: Enabling this policy hides "Sign out" from appearing in the user tile in the start menu.
@@ -413,6 +444,7 @@ var HideSignOut = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Do not hide."}, {Value: "1", Description: "Hide."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Start02", ResultClass: "MDM_Policy_Result01_Start02", InstanceID: "Start", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "HideSignOut"},
 }
 
 // HideSleep: Enabling this policy hides "Sleep" from appearing in the power button in the start menu.
@@ -426,6 +458,7 @@ var HideSleep = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Do not hide."}, {Value: "1", Description: "Hide."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Start02", ResultClass: "MDM_Policy_Result01_Start02", InstanceID: "Start", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "HideSleep"},
 }
 
 // HideSwitchAccount: Enabling this policy hides "Switch account" from appearing in the user tile in the start menu.
@@ -439,6 +472,7 @@ var HideSwitchAccount = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Do not hide."}, {Value: "1", Description: "Hide."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Start02", ResultClass: "MDM_Policy_Result01_Start02", InstanceID: "Start", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "HideSwitchAccount"},
 }
 
 // HideTaskViewButton: This policy setting allows you to hide the TaskView button on the Taskbar. If you enable this policy setting, the TaskView button will be hidden and the Settings toggle will be disabled.
@@ -452,6 +486,7 @@ var HideTaskViewButton = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "TaskView button shown."}, {Value: "1", Description: "TaskView button hidden."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Start02", ResultClass: "MDM_Policy_Result01_Start02", InstanceID: "Start", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "HideTaskViewButton"},
 }
 
 // HideUserTile: Enabling this policy hides the user tile from appearing in the start menu.
@@ -465,6 +500,7 @@ var HideUserTile = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Do not hide."}, {Value: "1", Description: "Hide."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Start02", ResultClass: "MDM_Policy_Result01_Start02", InstanceID: "Start", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "HideUserTile"},
 }
 
 // ImportEdgeAssets: This policy setting allows you to import Edge assets to be used with StartLayout policy. Start layout can contain secondary tile from Edge app which looks for Edge local asset file. Edge local asset would not exist and cause Edge secondary tile to appear empty in this case. This policy only gets applied when StartLayout policy is modified.
@@ -476,6 +512,7 @@ var ImportEdgeAssets = csp.Policy{
 	MinOSBuild: "10.0.15063",
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Start02", ResultClass: "MDM_Policy_Result01_Start02", InstanceID: "Start", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ImportEdgeAssets"},
 }
 
 // NoPinningToTaskbar: This policy setting allows you to control pinning programs to the Taskbar. If you enable this policy setting, users cannot change the programs currently pinned to the Taskbar. If any programs are already pinned to the Taskbar, these programs continue to show in the Taskbar. However, users cannot unpin these programs already pinned to the Taskbar, and they cannot pin new programs to the Taskbar. If you disable or do not configure this policy setting, users can change the programs currently pinned to the Taskbar.
@@ -489,6 +526,7 @@ var NoPinningToTaskbar = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Pinning enabled."}, {Value: "1", Description: "Pinning disabled."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Start02", ResultClass: "MDM_Policy_Result01_Start02", InstanceID: "Start", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "NoPinningToTaskbar"},
 }
 
 // ShowOrHideMostUsedApps: This policy controls the visibility of the list of user's most used apps on the Start menu. The possible values are 0 - means that there is no enforced configuration and the setting can be changed by the user (default behavior equivalent to not configuring the policy), 1 - means that the list should be shown and grays out (disables) the corresponding toggle in the Settings app, 2 - means that the list should be hidden and grays out the corresponding toggle in the Settings app. Configuring this policy to 1 or 2 will override any setting of older policy "HideFrequentlyUsedApps" (which manages the same part of Start menu but with fewer options).
@@ -502,6 +540,7 @@ var ShowOrHideMostUsedApps = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Do not enforce visibility of list of most used apps in Start; user can control via Settings app (default behavior equivalent to not configuring this policy)."}, {Value: "1", Description: "Force showing of list of most used apps in Start; corresponding toggle in Setting app is disabled."}, {Value: "2", Description: "Force hiding of list of most used apps in Start; corresponding toggle in Setting app is disabled."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Start02", ResultClass: "MDM_Policy_Result01_Start02", InstanceID: "Start", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ShowOrHideMostUsedApps"},
 }
 
 // SimplifyQuickSettings: Allows admin to control the Quick Settings layout. If enabled, fewer Quick Settings buttons will be shown (only WiFi, Bluetooth, VPN, and Accessibility). If disabled or not configured, the regular Quick Settings layout will be loaded.
@@ -515,6 +554,7 @@ var SimplifyQuickSettings = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Load regular Quick Settings layout."}, {Value: "1", Description: "Load simplified Quick Settings layout."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Start02", ResultClass: "MDM_Policy_Result01_Start02", InstanceID: "Start", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "SimplifyQuickSettings"},
 }
 
 // StartLayout: Important For more information, see Policy scope. Allows you to override the default Start layout and prevents the user from changing it. If both user and device policies are set, the user policy will be used. Apps pinned to the taskbar can also be changed with this policyFor further details on how to customize the Start layout, please see Customize and export Start layout and Configure Windows 10 taskbar.
@@ -526,6 +566,7 @@ var StartLayout = csp.Policy{
 	MinOSBuild: "10.0.14393",
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Start02", ResultClass: "MDM_Policy_Result01_Start02", InstanceID: "Start", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "StartLayout"},
 }
 
 var TurnOffAbbreviatedDateTimeFormat = csp.Policy{
@@ -538,6 +579,7 @@ var TurnOffAbbreviatedDateTimeFormat = csp.Policy{
 	CSPVersion: "9.9",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Show abbreviated time and date format"}, {Value: "1", Description: "Show classic time and date format"}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Start02", ResultClass: "MDM_Policy_Result01_Start02", InstanceID: "Start", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "TurnOffAbbreviatedDateTimeFormat"},
 }
 
 // All lists every policy in this CSP area.
