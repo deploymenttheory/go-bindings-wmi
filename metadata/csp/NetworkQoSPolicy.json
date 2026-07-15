@@ -1,0 +1,125 @@
+{
+  "name": "NetworkQoSPolicy",
+  "path": "./Device/Vendor/MSFT",
+  "nodes": [
+    {
+      "name": "",
+      "path": "./Device/Vendor/MSFT/NetworkQoSPolicy/",
+      "format": "node",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "The value of this node should be a policy name.",
+      "applicability": {},
+      "children": [
+        {
+          "name": "AppPathNameMatchCondition",
+          "path": "./Device/Vendor/MSFT/NetworkQoSPolicy/AppPathNameMatchCondition",
+          "format": "chr",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "Specifies the name of an application to be used to match the network traffic, such as application.exe or %ProgramFiles%\\application.exe.",
+          "applicability": {},
+          "allowedValues": {
+            "type": "None"
+          }
+        },
+        {
+          "name": "DSCPAction",
+          "path": "./Device/Vendor/MSFT/NetworkQoSPolicy/DSCPAction",
+          "format": "int",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "The differentiated services code point (DSCP) value to apply to matching network traffic. Valid values are 0-63.",
+          "applicability": {},
+          "allowedValues": {
+            "type": "Range"
+          }
+        },
+        {
+          "name": "DestinationPortMatchCondition",
+          "path": "./Device/Vendor/MSFT/NetworkQoSPolicy/DestinationPortMatchCondition",
+          "format": "chr",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "Specifies a single port or a range of ports to be used to match the network traffic. Valid values are [first port number]-[last port number] or [port number].",
+          "applicability": {},
+          "allowedValues": {
+            "type": "None"
+          }
+        },
+        {
+          "name": "IPProtocolMatchCondition",
+          "path": "./Device/Vendor/MSFT/NetworkQoSPolicy/IPProtocolMatchCondition",
+          "format": "int",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "Specifies the IP protocol used to match the network traffic. Valid values are 0: Both TCP and UDP (default), 1: TCP, 2: UDP.",
+          "default": "0",
+          "applicability": {}
+        },
+        {
+          "name": "PriorityValue8021Action",
+          "path": "./Device/Vendor/MSFT/NetworkQoSPolicy/PriorityValue8021Action",
+          "format": "int",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "The IEEE 802.1p value to apply to matching network traffice. Valid values are 0-7.",
+          "applicability": {},
+          "allowedValues": {
+            "type": "Range"
+          }
+        },
+        {
+          "name": "SourcePortMatchCondition",
+          "path": "./Device/Vendor/MSFT/NetworkQoSPolicy/SourcePortMatchCondition",
+          "format": "chr",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "Specifies a single port or a range of ports to be used to match the network traffic. Valid values are [first port number]-[last port number] or [port number].",
+          "applicability": {},
+          "allowedValues": {
+            "type": "None"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Version",
+      "path": "./Device/Vendor/MSFT/NetworkQoSPolicy/Version",
+      "format": "int",
+      "access": [
+        "Get"
+      ],
+      "description": "Version information.",
+      "applicability": {}
+    }
+  ]
+}

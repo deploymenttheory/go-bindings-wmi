@@ -1,0 +1,174 @@
+{
+  "name": "ADMX_WinLogon",
+  "path": "./Device/Vendor/MSFT/Policy/Config",
+  "nodes": [
+    {
+      "name": "CustomShell",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WinLogon/CustomShell",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WinLogon~AT~System",
+          "name": "CustomShell",
+          "file": "WinLogon.admx"
+        }
+      }
+    },
+    {
+      "name": "DisplayLastLogonInfoDescription",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WinLogon/DisplayLastLogonInfoDescription",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WinLogon~AT~WindowsComponents~Logon",
+          "name": "DisplayLastLogonInfoDescription",
+          "file": "WinLogon.admx"
+        }
+      }
+    },
+    {
+      "name": "LogonHoursNotificationPolicyDescription",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WinLogon/LogonHoursNotificationPolicyDescription",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WinLogon~AT~WindowsComponents~Logon",
+          "name": "LogonHoursNotificationPolicyDescription",
+          "file": "WinLogon.admx"
+        }
+      }
+    },
+    {
+      "name": "LogonHoursPolicyDescription",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WinLogon/LogonHoursPolicyDescription",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WinLogon~AT~WindowsComponents~Logon",
+          "name": "LogonHoursPolicyDescription",
+          "file": "WinLogon.admx"
+        }
+      }
+    },
+    {
+      "name": "ReportCachedLogonPolicyDescription",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WinLogon/ReportCachedLogonPolicyDescription",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WinLogon~AT~WindowsComponents~Logon",
+          "name": "ReportCachedLogonPolicyDescription",
+          "file": "WinLogon.admx"
+        }
+      }
+    },
+    {
+      "name": "ReportCachedLogonPolicyDescription",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WinLogon/ReportCachedLogonPolicyDescription",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WinLogon~AT~WindowsComponents~Logon",
+          "name": "ReportCachedLogonPolicyDescription",
+          "file": "WinLogon.admx"
+        }
+      }
+    },
+    {
+      "name": "SoftwareSASGeneration",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WinLogon/SoftwareSASGeneration",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WinLogon~AT~WindowsComponents~Logon",
+          "name": "SoftwareSASGeneration",
+          "file": "WinLogon.admx"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,2310 @@
+{
+  "name": "ADMX_WindowsExplorer",
+  "path": "./Device/Vendor/MSFT/Policy/Config",
+  "nodes": [
+    {
+      "name": "CheckSameSourceAndTargetForFRAndDFS",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/CheckSameSourceAndTargetForFRAndDFS",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~WindowsExplorer",
+          "name": "CheckSameSourceAndTargetForFRAndDFS",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "ClassicShell",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/ClassicShell",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~WindowsExplorer",
+          "name": "ClassicShell",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "ConfirmFileDelete",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/ConfirmFileDelete",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~WindowsExplorer",
+          "name": "ConfirmFileDelete",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "DefaultLibrariesLocation",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/DefaultLibrariesLocation",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~WindowsExplorer",
+          "name": "DefaultLibrariesLocation",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "DefaultLibrariesLocation",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/DefaultLibrariesLocation",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~WindowsExplorer",
+          "name": "DefaultLibrariesLocation",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "DisableBindDirectlyToPropertySetStorage",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/DisableBindDirectlyToPropertySetStorage",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~WindowsExplorer",
+          "name": "DisableBindDirectlyToPropertySetStorage",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "DisableBindDirectlyToPropertySetStorage",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/DisableBindDirectlyToPropertySetStorage",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~WindowsExplorer",
+          "name": "DisableBindDirectlyToPropertySetStorage",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "DisableIndexedLibraryExperience",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/DisableIndexedLibraryExperience",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~WindowsExplorer",
+          "name": "DisableIndexedLibraryExperience",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "DisableKnownFolders",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/DisableKnownFolders",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~WindowsExplorer",
+          "name": "DisableKnownFolders",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "DisableMotWOnInsecurePathCopy",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/DisableMotWOnInsecurePathCopy",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~WindowsExplorer",
+          "name": "DisableMotWOnInsecurePathCopy",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "DisableSearchBoxSuggestions",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/DisableSearchBoxSuggestions",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~WindowsExplorer",
+          "name": "DisableSearchBoxSuggestions",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "EnableShellShortcutIconRemotePath",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/EnableShellShortcutIconRemotePath",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~WindowsExplorer",
+          "name": "EnableShellShortcutIconRemotePath",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "EnableSmartScreen",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/EnableSmartScreen",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~WindowsExplorer",
+          "name": "EnableSmartScreen",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "EnforceShellExtensionSecurity",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/EnforceShellExtensionSecurity",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~WindowsExplorer",
+          "name": "EnforceShellExtensionSecurity",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "ExplorerRibbonStartsMinimized",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/ExplorerRibbonStartsMinimized",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~WindowsExplorer",
+          "name": "ExplorerRibbonStartsMinimized",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "ExplorerRibbonStartsMinimized",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/ExplorerRibbonStartsMinimized",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~WindowsExplorer",
+          "name": "ExplorerRibbonStartsMinimized",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "HideContentViewModeSnippets",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/HideContentViewModeSnippets",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~WindowsExplorer",
+          "name": "HideContentViewModeSnippets",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "IZ_Policy_OpenSearchPreview_Internet",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/IZ_Policy_OpenSearchPreview_Internet",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_InternetZone",
+          "name": "IZ_Policy_OpenSearchPreview_Internet",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "IZ_Policy_OpenSearchPreview_Internet",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/IZ_Policy_OpenSearchPreview_Internet",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_InternetZone",
+          "name": "IZ_Policy_OpenSearchPreview_Internet",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "IZ_Policy_OpenSearchPreview_InternetLockdown",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/IZ_Policy_OpenSearchPreview_InternetLockdown",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_InternetZoneLockdown",
+          "name": "IZ_Policy_OpenSearchPreview_InternetLockdown",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "IZ_Policy_OpenSearchPreview_InternetLockdown",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/IZ_Policy_OpenSearchPreview_InternetLockdown",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_InternetZoneLockdown",
+          "name": "IZ_Policy_OpenSearchPreview_InternetLockdown",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "IZ_Policy_OpenSearchPreview_Intranet",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/IZ_Policy_OpenSearchPreview_Intranet",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_IntranetZone",
+          "name": "IZ_Policy_OpenSearchPreview_Intranet",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "IZ_Policy_OpenSearchPreview_Intranet",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/IZ_Policy_OpenSearchPreview_Intranet",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_IntranetZone",
+          "name": "IZ_Policy_OpenSearchPreview_Intranet",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "IZ_Policy_OpenSearchPreview_IntranetLockdown",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/IZ_Policy_OpenSearchPreview_IntranetLockdown",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_IntranetZoneLockdown",
+          "name": "IZ_Policy_OpenSearchPreview_IntranetLockdown",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "IZ_Policy_OpenSearchPreview_IntranetLockdown",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/IZ_Policy_OpenSearchPreview_IntranetLockdown",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_IntranetZoneLockdown",
+          "name": "IZ_Policy_OpenSearchPreview_IntranetLockdown",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "IZ_Policy_OpenSearchPreview_LocalMachine",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/IZ_Policy_OpenSearchPreview_LocalMachine",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_LocalMachineZone",
+          "name": "IZ_Policy_OpenSearchPreview_LocalMachine",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "IZ_Policy_OpenSearchPreview_LocalMachine",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/IZ_Policy_OpenSearchPreview_LocalMachine",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_LocalMachineZone",
+          "name": "IZ_Policy_OpenSearchPreview_LocalMachine",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "IZ_Policy_OpenSearchPreview_LocalMachineLockdown",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/IZ_Policy_OpenSearchPreview_LocalMachineLockdown",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_LocalMachineZoneLockdown",
+          "name": "IZ_Policy_OpenSearchPreview_LocalMachineLockdown",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "IZ_Policy_OpenSearchPreview_LocalMachineLockdown",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/IZ_Policy_OpenSearchPreview_LocalMachineLockdown",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_LocalMachineZoneLockdown",
+          "name": "IZ_Policy_OpenSearchPreview_LocalMachineLockdown",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "IZ_Policy_OpenSearchPreview_Restricted",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/IZ_Policy_OpenSearchPreview_Restricted",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_RestrictedSitesZone",
+          "name": "IZ_Policy_OpenSearchPreview_Restricted",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "IZ_Policy_OpenSearchPreview_Restricted",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/IZ_Policy_OpenSearchPreview_Restricted",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_RestrictedSitesZone",
+          "name": "IZ_Policy_OpenSearchPreview_Restricted",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "IZ_Policy_OpenSearchPreview_RestrictedLockdown",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/IZ_Policy_OpenSearchPreview_RestrictedLockdown",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_RestrictedSitesZoneLockdown",
+          "name": "IZ_Policy_OpenSearchPreview_RestrictedLockdown",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "IZ_Policy_OpenSearchPreview_RestrictedLockdown",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/IZ_Policy_OpenSearchPreview_RestrictedLockdown",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_RestrictedSitesZoneLockdown",
+          "name": "IZ_Policy_OpenSearchPreview_RestrictedLockdown",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "IZ_Policy_OpenSearchPreview_Trusted",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/IZ_Policy_OpenSearchPreview_Trusted",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_TrustedSitesZone",
+          "name": "IZ_Policy_OpenSearchPreview_Trusted",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "IZ_Policy_OpenSearchPreview_Trusted",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/IZ_Policy_OpenSearchPreview_Trusted",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_TrustedSitesZone",
+          "name": "IZ_Policy_OpenSearchPreview_Trusted",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "IZ_Policy_OpenSearchPreview_TrustedLockdown",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/IZ_Policy_OpenSearchPreview_TrustedLockdown",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_TrustedSitesZoneLockdown",
+          "name": "IZ_Policy_OpenSearchPreview_TrustedLockdown",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "IZ_Policy_OpenSearchPreview_TrustedLockdown",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/IZ_Policy_OpenSearchPreview_TrustedLockdown",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_TrustedSitesZoneLockdown",
+          "name": "IZ_Policy_OpenSearchPreview_TrustedLockdown",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "IZ_Policy_OpenSearchQuery_Internet",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/IZ_Policy_OpenSearchQuery_Internet",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_InternetZone",
+          "name": "IZ_Policy_OpenSearchQuery_Internet",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "IZ_Policy_OpenSearchQuery_Internet",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/IZ_Policy_OpenSearchQuery_Internet",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_InternetZone",
+          "name": "IZ_Policy_OpenSearchQuery_Internet",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "IZ_Policy_OpenSearchQuery_InternetLockdown",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/IZ_Policy_OpenSearchQuery_InternetLockdown",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_InternetZoneLockdown",
+          "name": "IZ_Policy_OpenSearchQuery_InternetLockdown",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "IZ_Policy_OpenSearchQuery_InternetLockdown",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/IZ_Policy_OpenSearchQuery_InternetLockdown",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_InternetZoneLockdown",
+          "name": "IZ_Policy_OpenSearchQuery_InternetLockdown",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "IZ_Policy_OpenSearchQuery_Intranet",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/IZ_Policy_OpenSearchQuery_Intranet",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_IntranetZone",
+          "name": "IZ_Policy_OpenSearchQuery_Intranet",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "IZ_Policy_OpenSearchQuery_Intranet",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/IZ_Policy_OpenSearchQuery_Intranet",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_IntranetZone",
+          "name": "IZ_Policy_OpenSearchQuery_Intranet",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "IZ_Policy_OpenSearchQuery_IntranetLockdown",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/IZ_Policy_OpenSearchQuery_IntranetLockdown",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_IntranetZoneLockdown",
+          "name": "IZ_Policy_OpenSearchQuery_IntranetLockdown",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "IZ_Policy_OpenSearchQuery_IntranetLockdown",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/IZ_Policy_OpenSearchQuery_IntranetLockdown",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_IntranetZoneLockdown",
+          "name": "IZ_Policy_OpenSearchQuery_IntranetLockdown",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "IZ_Policy_OpenSearchQuery_LocalMachine",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/IZ_Policy_OpenSearchQuery_LocalMachine",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_LocalMachineZone",
+          "name": "IZ_Policy_OpenSearchQuery_LocalMachine",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "IZ_Policy_OpenSearchQuery_LocalMachine",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/IZ_Policy_OpenSearchQuery_LocalMachine",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_LocalMachineZone",
+          "name": "IZ_Policy_OpenSearchQuery_LocalMachine",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "IZ_Policy_OpenSearchQuery_LocalMachineLockdown",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/IZ_Policy_OpenSearchQuery_LocalMachineLockdown",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_LocalMachineZoneLockdown",
+          "name": "IZ_Policy_OpenSearchQuery_LocalMachineLockdown",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "IZ_Policy_OpenSearchQuery_LocalMachineLockdown",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/IZ_Policy_OpenSearchQuery_LocalMachineLockdown",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_LocalMachineZoneLockdown",
+          "name": "IZ_Policy_OpenSearchQuery_LocalMachineLockdown",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "IZ_Policy_OpenSearchQuery_Restricted",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/IZ_Policy_OpenSearchQuery_Restricted",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_RestrictedSitesZone",
+          "name": "IZ_Policy_OpenSearchQuery_Restricted",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "IZ_Policy_OpenSearchQuery_Restricted",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/IZ_Policy_OpenSearchQuery_Restricted",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_RestrictedSitesZone",
+          "name": "IZ_Policy_OpenSearchQuery_Restricted",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "IZ_Policy_OpenSearchQuery_RestrictedLockdown",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/IZ_Policy_OpenSearchQuery_RestrictedLockdown",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_RestrictedSitesZoneLockdown",
+          "name": "IZ_Policy_OpenSearchQuery_RestrictedLockdown",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "IZ_Policy_OpenSearchQuery_RestrictedLockdown",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/IZ_Policy_OpenSearchQuery_RestrictedLockdown",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_RestrictedSitesZoneLockdown",
+          "name": "IZ_Policy_OpenSearchQuery_RestrictedLockdown",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "IZ_Policy_OpenSearchQuery_Trusted",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/IZ_Policy_OpenSearchQuery_Trusted",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_TrustedSitesZone",
+          "name": "IZ_Policy_OpenSearchQuery_Trusted",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "IZ_Policy_OpenSearchQuery_Trusted",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/IZ_Policy_OpenSearchQuery_Trusted",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_TrustedSitesZone",
+          "name": "IZ_Policy_OpenSearchQuery_Trusted",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "IZ_Policy_OpenSearchQuery_TrustedLockdown",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/IZ_Policy_OpenSearchQuery_TrustedLockdown",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_TrustedSitesZoneLockdown",
+          "name": "IZ_Policy_OpenSearchQuery_TrustedLockdown",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "IZ_Policy_OpenSearchQuery_TrustedLockdown",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/IZ_Policy_OpenSearchQuery_TrustedLockdown",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~InternetExplorer~InternetCPL~IZ_SecurityPage~IZ_TrustedSitesZoneLockdown",
+          "name": "IZ_Policy_OpenSearchQuery_TrustedLockdown",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "LinkResolveIgnoreLinkInfo",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/LinkResolveIgnoreLinkInfo",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~WindowsExplorer",
+          "name": "LinkResolveIgnoreLinkInfo",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "MaxRecentDocs",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/MaxRecentDocs",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~WindowsExplorer",
+          "name": "MaxRecentDocs",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "NoBackButton",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/NoBackButton",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~WindowsExplorer~Comdlg",
+          "name": "NoBackButton",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "NoCDBurning",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/NoCDBurning",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~WindowsExplorer",
+          "name": "NoCDBurning",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "NoCacheThumbNailPictures",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/NoCacheThumbNailPictures",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~WindowsExplorer",
+          "name": "NoCacheThumbNailPictures",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "NoChangeAnimation",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/NoChangeAnimation",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~WindowsExplorer",
+          "name": "NoChangeAnimation",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "NoChangeKeyboardNavigationIndicators",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/NoChangeKeyboardNavigationIndicators",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~WindowsExplorer",
+          "name": "NoChangeKeyboardNavigationIndicators",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "NoDFSTab",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/NoDFSTab",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~WindowsExplorer",
+          "name": "NoDFSTab",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "NoDrives",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/NoDrives",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~WindowsExplorer",
+          "name": "NoDrives",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "NoEntireNetwork",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/NoEntireNetwork",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~WindowsExplorer",
+          "name": "NoEntireNetwork",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "NoFileMRU",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/NoFileMRU",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~WindowsExplorer~Comdlg",
+          "name": "NoFileMRU",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "NoFileMenu",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/NoFileMenu",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~WindowsExplorer",
+          "name": "NoFileMenu",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "NoFolderOptions",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/NoFolderOptions",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~WindowsExplorer",
+          "name": "NoFolderOptions",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "NoHardwareTab",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/NoHardwareTab",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~WindowsExplorer",
+          "name": "NoHardwareTab",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "NoManageMyComputerVerb",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/NoManageMyComputerVerb",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~WindowsExplorer",
+          "name": "NoManageMyComputerVerb",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "NoMyComputerSharedDocuments",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/NoMyComputerSharedDocuments",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~WindowsExplorer",
+          "name": "NoMyComputerSharedDocuments",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "NoNetConnectDisconnect",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/NoNetConnectDisconnect",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~WindowsExplorer",
+          "name": "NoNetConnectDisconnect",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "NoNewAppAlert",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/NoNewAppAlert",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~WindowsExplorer",
+          "name": "NoNewAppAlert",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "NoPlacesBar",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/NoPlacesBar",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~WindowsExplorer~Comdlg",
+          "name": "NoPlacesBar",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "NoRecycleFiles",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/NoRecycleFiles",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~WindowsExplorer",
+          "name": "NoRecycleFiles",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "NoRunAsInstallPrompt",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/NoRunAsInstallPrompt",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~WindowsExplorer",
+          "name": "NoRunAsInstallPrompt",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "NoSearchInternetTryHarderButton",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/NoSearchInternetTryHarderButton",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~WindowsExplorer",
+          "name": "NoSearchInternetTryHarderButton",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "NoSecurityTab",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/NoSecurityTab",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~WindowsExplorer",
+          "name": "NoSecurityTab",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "NoShellSearchButton",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/NoShellSearchButton",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~WindowsExplorer",
+          "name": "NoShellSearchButton",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "NoStrCmpLogical",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/NoStrCmpLogical",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~WindowsExplorer",
+          "name": "NoStrCmpLogical",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "NoStrCmpLogical",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/NoStrCmpLogical",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~WindowsExplorer",
+          "name": "NoStrCmpLogical",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "NoViewContextMenu",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/NoViewContextMenu",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~WindowsExplorer",
+          "name": "NoViewContextMenu",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "NoViewOnDrive",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/NoViewOnDrive",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~WindowsExplorer",
+          "name": "NoViewOnDrive",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "NoWindowsHotKeys",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/NoWindowsHotKeys",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~WindowsExplorer",
+          "name": "NoWindowsHotKeys",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "NoWorkgroupContents",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/NoWorkgroupContents",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~WindowsExplorer",
+          "name": "NoWorkgroupContents",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "PlacesBar",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/PlacesBar",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~WindowsExplorer~Comdlg",
+          "name": "PlacesBar",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "PromptRunasInstallNetPath",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/PromptRunasInstallNetPath",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~WindowsExplorer",
+          "name": "PromptRunasInstallNetPath",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "RecycleBinSize",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/RecycleBinSize",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~WindowsExplorer",
+          "name": "RecycleBinSize",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "ShellProtocolProtectedModeTitle_1",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/ShellProtocolProtectedModeTitle_1",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~WindowsExplorer",
+          "name": "ShellProtocolProtectedModeTitle_1",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "ShellProtocolProtectedModeTitle_2",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/ShellProtocolProtectedModeTitle_2",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~WindowsExplorer",
+          "name": "ShellProtocolProtectedModeTitle_2",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "ShowHibernateOption",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/ShowHibernateOption",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~WindowsExplorer",
+          "name": "ShowHibernateOption",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "ShowSleepOption",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/ShowSleepOption",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~WindowsExplorer",
+          "name": "ShowSleepOption",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "TryHarderPinnedLibrary",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/TryHarderPinnedLibrary",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~WindowsExplorer",
+          "name": "TryHarderPinnedLibrary",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    },
+    {
+      "name": "TryHarderPinnedOpenSearch",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_WindowsExplorer/TryHarderPinnedOpenSearch",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsExplorer~AT~WindowsComponents~WindowsExplorer",
+          "name": "TryHarderPinnedOpenSearch",
+          "file": "WindowsExplorer.admx"
+        }
+      }
+    }
+  ]
+}

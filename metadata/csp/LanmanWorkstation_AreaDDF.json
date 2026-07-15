@@ -1,0 +1,278 @@
+{
+  "name": "LanmanWorkstation",
+  "path": "./Device/Vendor/MSFT/Policy/Config",
+  "nodes": [
+    {
+      "name": "AuditInsecureGuestLogon",
+      "path": "./Device/Vendor/MSFT/Policy/Config/LanmanWorkstation/AuditInsecureGuestLogon",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This policy controls whether the SMB client will enable the audit event when the client is logged on as guest account. If you enable this policy setting, the SMB client will log the event when the client is logged on as guest account. If you disable or do not configure this policy setting, the SMB client will not log the event.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "99.9.99999, 10.0.26100.3613",
+        "cspVersion": "11.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Disabled"
+          },
+          {
+            "value": "1",
+            "description": "Enabled"
+          }
+        ]
+      }
+    },
+    {
+      "name": "AuditServerDoesNotSupportEncryption",
+      "path": "./Device/Vendor/MSFT/Policy/Config/LanmanWorkstation/AuditServerDoesNotSupportEncryption",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This policy controls whether the SMB client will enable the audit event when the SMB server doesn't support encryption. If you enable this policy setting, the SMB client will log the event when the SMB server doesn't support encryption. If you disable or do not configure this policy setting, the SMB client will not log the event.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "99.9.99999, 10.0.26100.3613",
+        "cspVersion": "11.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Disabled"
+          },
+          {
+            "value": "1",
+            "description": "Enabled"
+          }
+        ]
+      }
+    },
+    {
+      "name": "AuditServerDoesNotSupportSigning",
+      "path": "./Device/Vendor/MSFT/Policy/Config/LanmanWorkstation/AuditServerDoesNotSupportSigning",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This policy controls whether the SMB client will enable the audit event when the SMB server doesn't support signing. If you enable this policy setting, the SMB client will log the event when the SMB server doesn't support signing. If you disable or do not configure this policy setting, the SMB client will not log the event.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "99.9.99999, 10.0.26100.3613",
+        "cspVersion": "11.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Disabled"
+          },
+          {
+            "value": "1",
+            "description": "Enabled"
+          }
+        ]
+      }
+    },
+    {
+      "name": "EnableInsecureGuestLogons",
+      "path": "./Device/Vendor/MSFT/Policy/Config/LanmanWorkstation/EnableInsecureGuestLogons",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This policy setting determines if the SMB client will allow insecure guest logons to an SMB server. If you enable this policy setting or if you do not configure this policy setting, the SMB client will allow insecure guest logons. If you disable this policy setting, the SMB client will reject insecure guest logons. Insecure guest logons are used by file servers to allow unauthenticated access to shared folders. While uncommon in an enterprise environment, insecure guest logons are frequently used by consumer Network Attached Storage (NAS) appliances acting as file servers. Windows file servers require authentication and do not use insecure guest logons by default. Since insecure guest logons are unauthenticated, important security features such as SMB Signing and SMB Encryption are disabled. As a result, clients that allow insecure guest logons are vulnerable to a variety of man-in-the-middle attacks that can result in data loss, data corruption, and exposure to malware. Additionally, any data written to a file server using an insecure guest logon is potentially accessible to anyone on the network. Microsoft recommends disabling insecure guest logons and configuring file servers to require authenticated access.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.17134",
+        "cspVersion": "7.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Disabled"
+          },
+          {
+            "value": "1",
+            "description": "Enabled"
+          }
+        ]
+      }
+    },
+    {
+      "name": "EnableMailslots",
+      "path": "./Device/Vendor/MSFT/Policy/Config/LanmanWorkstation/EnableMailslots",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This policy controls whether the SMB client will enable or disable remote mailslots over MUP. If you disable this policy setting, remote mailslots will not function over MUP, hence they will not go through the SMB client redirector. If you do not configure this policy setting, remote mailslots may be allowed through MUP.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "99.9.99999, 10.0.26100.3613",
+        "cspVersion": "11.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Disabled"
+          },
+          {
+            "value": "1",
+            "description": "Enabled"
+          }
+        ]
+      }
+    },
+    {
+      "name": "MaxSmb2Dialect",
+      "path": "./Device/Vendor/MSFT/Policy/Config/LanmanWorkstation/MaxSmb2Dialect",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This policy controls the maximum version of SMB protocol. Note: This group policy does not prevent use of SMB 1 if that component is still installed and enabled.",
+      "default": "785",
+      "applicability": {
+        "minOsBuild": "99.9.99999, 10.0.26100.3613",
+        "cspVersion": "11.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "514",
+            "description": "SMB 2.0.2"
+          },
+          {
+            "value": "528",
+            "description": "SMB 2.1.0"
+          },
+          {
+            "value": "768",
+            "description": "SMB 3.0.0"
+          },
+          {
+            "value": "770",
+            "description": "SMB 3.0.2"
+          },
+          {
+            "value": "785",
+            "description": "SMB 3.1.1"
+          }
+        ]
+      }
+    },
+    {
+      "name": "MinSmb2Dialect",
+      "path": "./Device/Vendor/MSFT/Policy/Config/LanmanWorkstation/MinSmb2Dialect",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This policy controls the minimum version of SMB protocol. Note: This group policy does not prevent use of SMB 1 if that component is still installed and enabled.",
+      "default": "514",
+      "applicability": {
+        "minOsBuild": "99.9.99999, 10.0.26100.3613",
+        "cspVersion": "11.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "514",
+            "description": "SMB 2.0.2"
+          },
+          {
+            "value": "528",
+            "description": "SMB 2.1.0"
+          },
+          {
+            "value": "768",
+            "description": "SMB 3.0.0"
+          },
+          {
+            "value": "770",
+            "description": "SMB 3.0.2"
+          },
+          {
+            "value": "785",
+            "description": "SMB 3.1.1"
+          }
+        ]
+      }
+    },
+    {
+      "name": "RequireEncryption",
+      "path": "./Device/Vendor/MSFT/Policy/Config/LanmanWorkstation/RequireEncryption",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This policy controls whether the SMB client will require encryption. If you enable this policy setting, the SMB client will require the SMB server to support encryption and encrypt the data. If you disable or do not configure this policy setting, the SMB client will not require encryption. However, SMB encryption may still be required; see notes below. Note: This policy is combined with per-share, per-server, and per mapped drive connection properties, through which SMB encryption may be required. The SMB server must support and enable SMB encryption. For example, should this policy be disabled (or not configured), the SMB client may still perform encryption if an SMB server share has required encryption. Important: SMB encryption requires SMB 3.0 or later.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "99.9.99999, 10.0.26100.3613",
+        "cspVersion": "11.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Disabled"
+          },
+          {
+            "value": "1",
+            "description": "Enabled"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,348 @@
+{
+  "name": "KioskBrowser",
+  "path": "./Device/Vendor/MSFT/Policy/Config",
+  "nodes": [
+    {
+      "name": "BlockedUrlExceptions",
+      "path": "./Device/Vendor/MSFT/Policy/Config/KioskBrowser/BlockedUrlExceptions",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "List of exceptions to the blocked website URLs (with wildcard support). This is used to configure URLs kiosk browsers are allowed to navigate to, which are a subset of the blocked URLs.",
+      "applicability": {
+        "minOsBuild": "10.0.17134",
+        "cspVersion": "7.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "None"
+      }
+    },
+    {
+      "name": "BlockedUrlExceptions",
+      "path": "./Device/Vendor/MSFT/Policy/Config/KioskBrowser/BlockedUrlExceptions",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "List of exceptions to the blocked website URLs (with wildcard support). This is used to configure URLs kiosk browsers are allowed to navigate to, which are a subset of the blocked URLs.",
+      "applicability": {
+        "minOsBuild": "10.0.17134",
+        "cspVersion": "7.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "None"
+      }
+    },
+    {
+      "name": "BlockedUrls",
+      "path": "./Device/Vendor/MSFT/Policy/Config/KioskBrowser/BlockedUrls",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "List of blocked website URLs (with wildcard support). This is used to configure blocked URLs kiosk browsers can not navigate to.",
+      "applicability": {
+        "minOsBuild": "10.0.17134",
+        "cspVersion": "7.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "None"
+      }
+    },
+    {
+      "name": "BlockedUrls",
+      "path": "./Device/Vendor/MSFT/Policy/Config/KioskBrowser/BlockedUrls",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "List of blocked website URLs (with wildcard support). This is used to configure blocked URLs kiosk browsers can not navigate to.",
+      "applicability": {
+        "minOsBuild": "10.0.17134",
+        "cspVersion": "7.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "None"
+      }
+    },
+    {
+      "name": "DefaultURL",
+      "path": "./Device/Vendor/MSFT/Policy/Config/KioskBrowser/DefaultURL",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Configures the default URL kiosk browsers to navigate on launch and restart.",
+      "applicability": {
+        "minOsBuild": "10.0.17134",
+        "cspVersion": "7.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      }
+    },
+    {
+      "name": "DefaultURL",
+      "path": "./Device/Vendor/MSFT/Policy/Config/KioskBrowser/DefaultURL",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Configures the default URL kiosk browsers to navigate on launch and restart.",
+      "applicability": {
+        "minOsBuild": "10.0.17134",
+        "cspVersion": "7.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      }
+    },
+    {
+      "name": "EnableEndSessionButton",
+      "path": "./Device/Vendor/MSFT/Policy/Config/KioskBrowser/EnableEndSessionButton",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Enable/disable kiosk browser's end session button.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.17134",
+        "cspVersion": "7.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "1",
+            "description": "Enable"
+          },
+          {
+            "value": "0",
+            "description": "Disable"
+          }
+        ]
+      }
+    },
+    {
+      "name": "EnableEndSessionButton",
+      "path": "./Device/Vendor/MSFT/Policy/Config/KioskBrowser/EnableEndSessionButton",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Enable/disable kiosk browser's end session button.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.17134",
+        "cspVersion": "7.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "1",
+            "description": "Enable"
+          },
+          {
+            "value": "0",
+            "description": "Disable"
+          }
+        ]
+      }
+    },
+    {
+      "name": "EnableHomeButton",
+      "path": "./Device/Vendor/MSFT/Policy/Config/KioskBrowser/EnableHomeButton",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Enable/disable kiosk browser's home button.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.17134",
+        "cspVersion": "7.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "1",
+            "description": "Enable"
+          },
+          {
+            "value": "0",
+            "description": "Disable"
+          }
+        ]
+      }
+    },
+    {
+      "name": "EnableHomeButton",
+      "path": "./Device/Vendor/MSFT/Policy/Config/KioskBrowser/EnableHomeButton",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Enable/disable kiosk browser's home button.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.17134",
+        "cspVersion": "7.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "1",
+            "description": "Enable"
+          },
+          {
+            "value": "0",
+            "description": "Disable"
+          }
+        ]
+      }
+    },
+    {
+      "name": "EnableNavigationButtons",
+      "path": "./Device/Vendor/MSFT/Policy/Config/KioskBrowser/EnableNavigationButtons",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Enable/disable kiosk browser's navigation buttons (forward/back).",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.17134",
+        "cspVersion": "7.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "1",
+            "description": "Enable"
+          },
+          {
+            "value": "0",
+            "description": "Disable"
+          }
+        ]
+      }
+    },
+    {
+      "name": "EnableNavigationButtons",
+      "path": "./Device/Vendor/MSFT/Policy/Config/KioskBrowser/EnableNavigationButtons",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Enable/disable kiosk browser's navigation buttons (forward/back).",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.17134",
+        "cspVersion": "7.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "1",
+            "description": "Enable"
+          },
+          {
+            "value": "0",
+            "description": "Disable"
+          }
+        ]
+      }
+    },
+    {
+      "name": "RestartOnIdleTime",
+      "path": "./Device/Vendor/MSFT/Policy/Config/KioskBrowser/RestartOnIdleTime",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Amount of time in minutes the session is idle until the kiosk browser restarts in a fresh state.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.17134",
+        "cspVersion": "7.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "Range"
+      }
+    },
+    {
+      "name": "RestartOnIdleTime",
+      "path": "./Device/Vendor/MSFT/Policy/Config/KioskBrowser/RestartOnIdleTime",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Amount of time in minutes the session is idle until the kiosk browser restarts in a fresh state.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.17134",
+        "cspVersion": "7.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "Range"
+      }
+    }
+  ]
+}

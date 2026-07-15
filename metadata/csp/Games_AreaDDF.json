@@ -1,0 +1,68 @@
+{
+  "name": "Games",
+  "path": "./Device/Vendor/MSFT/Policy/Config",
+  "nodes": [
+    {
+      "name": "AllowAdvancedGamingServices",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Games/AllowAdvancedGamingServices",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Specifies whether advanced gaming services can be used. These services may send data to Microsoft or publishers of games that use these services.",
+      "default": "1",
+      "applicability": {
+        "minOsBuild": "10.0.15063",
+        "cspVersion": "5.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Not allowed."
+          },
+          {
+            "value": "1",
+            "description": "Allowed."
+          }
+        ]
+      }
+    },
+    {
+      "name": "DisableGamingFullScreenExperience",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Games/DisableGamingFullScreenExperience",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Specifies whether the gaming full screen experience can be used.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "99.9.99999",
+        "cspVersion": "9.9",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Gaming full screen experience allowed."
+          },
+          {
+            "value": "1",
+            "description": "Gaming full screen experience disabled."
+          }
+        ]
+      }
+    }
+  ]
+}

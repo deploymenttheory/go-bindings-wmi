@@ -1,0 +1,702 @@
+{
+  "name": "ADMX_ErrorReporting",
+  "path": "./Device/Vendor/MSFT/Policy/Config",
+  "nodes": [
+    {
+      "name": "PCH_AllOrNoneDef",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_ErrorReporting/PCH_AllOrNoneDef",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "ErrorReporting~AT~WindowsComponents~CAT_WindowsErrorReporting~CAT_WindowsErrorReportingAdvanced",
+          "name": "PCH_AllOrNoneDef",
+          "file": "ErrorReporting.admx"
+        }
+      }
+    },
+    {
+      "name": "PCH_AllOrNoneEx",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_ErrorReporting/PCH_AllOrNoneEx",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "ErrorReporting~AT~WindowsComponents~CAT_WindowsErrorReporting~CAT_WindowsErrorReportingAdvanced",
+          "name": "PCH_AllOrNoneEx",
+          "file": "ErrorReporting.admx"
+        }
+      }
+    },
+    {
+      "name": "PCH_AllOrNoneInc",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_ErrorReporting/PCH_AllOrNoneInc",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "ErrorReporting~AT~WindowsComponents~CAT_WindowsErrorReporting~CAT_WindowsErrorReportingAdvanced",
+          "name": "PCH_AllOrNoneInc",
+          "file": "ErrorReporting.admx"
+        }
+      }
+    },
+    {
+      "name": "PCH_ConfigureReport",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_ErrorReporting/PCH_ConfigureReport",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "ErrorReporting~AT~WindowsComponents~CAT_WindowsErrorReporting",
+          "name": "PCH_ConfigureReport",
+          "file": "ErrorReporting.admx"
+        }
+      }
+    },
+    {
+      "name": "PCH_ReportOperatingSystemFaults",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_ErrorReporting/PCH_ReportOperatingSystemFaults",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "ErrorReporting~AT~WindowsComponents~CAT_WindowsErrorReporting~CAT_WindowsErrorReportingAdvanced",
+          "name": "PCH_ReportOperatingSystemFaults",
+          "file": "ErrorReporting.admx"
+        }
+      }
+    },
+    {
+      "name": "WerArchive_1",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_ErrorReporting/WerArchive_1",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "ErrorReporting~AT~WindowsComponents~CAT_WindowsErrorReporting~CAT_WindowsErrorReportingAdvanced",
+          "name": "WerArchive_1",
+          "file": "ErrorReporting.admx"
+        }
+      }
+    },
+    {
+      "name": "WerArchive_2",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_ErrorReporting/WerArchive_2",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "ErrorReporting~AT~WindowsComponents~CAT_WindowsErrorReporting~CAT_WindowsErrorReportingAdvanced",
+          "name": "WerArchive_2",
+          "file": "ErrorReporting.admx"
+        }
+      }
+    },
+    {
+      "name": "WerAutoApproveOSDumps_1",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_ErrorReporting/WerAutoApproveOSDumps_1",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "ErrorReporting~AT~WindowsComponents~CAT_WindowsErrorReporting",
+          "name": "WerAutoApproveOSDumps_1",
+          "file": "ErrorReporting.admx"
+        }
+      }
+    },
+    {
+      "name": "WerAutoApproveOSDumps_2",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_ErrorReporting/WerAutoApproveOSDumps_2",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "ErrorReporting~AT~WindowsComponents~CAT_WindowsErrorReporting",
+          "name": "WerAutoApproveOSDumps_2",
+          "file": "ErrorReporting.admx"
+        }
+      }
+    },
+    {
+      "name": "WerBypassDataThrottling_1",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_ErrorReporting/WerBypassDataThrottling_1",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "ErrorReporting~AT~WindowsComponents~CAT_WindowsErrorReporting",
+          "name": "WerBypassDataThrottling_1",
+          "file": "ErrorReporting.admx"
+        }
+      }
+    },
+    {
+      "name": "WerBypassDataThrottling_2",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_ErrorReporting/WerBypassDataThrottling_2",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "ErrorReporting~AT~WindowsComponents~CAT_WindowsErrorReporting",
+          "name": "WerBypassDataThrottling_2",
+          "file": "ErrorReporting.admx"
+        }
+      }
+    },
+    {
+      "name": "WerBypassNetworkCostThrottling_1",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_ErrorReporting/WerBypassNetworkCostThrottling_1",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "ErrorReporting~AT~WindowsComponents~CAT_WindowsErrorReporting",
+          "name": "WerBypassNetworkCostThrottling_1",
+          "file": "ErrorReporting.admx"
+        }
+      }
+    },
+    {
+      "name": "WerBypassNetworkCostThrottling_2",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_ErrorReporting/WerBypassNetworkCostThrottling_2",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "ErrorReporting~AT~WindowsComponents~CAT_WindowsErrorReporting",
+          "name": "WerBypassNetworkCostThrottling_2",
+          "file": "ErrorReporting.admx"
+        }
+      }
+    },
+    {
+      "name": "WerBypassPowerThrottling_1",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_ErrorReporting/WerBypassPowerThrottling_1",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "ErrorReporting~AT~WindowsComponents~CAT_WindowsErrorReporting",
+          "name": "WerBypassPowerThrottling_1",
+          "file": "ErrorReporting.admx"
+        }
+      }
+    },
+    {
+      "name": "WerBypassPowerThrottling_2",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_ErrorReporting/WerBypassPowerThrottling_2",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "ErrorReporting~AT~WindowsComponents~CAT_WindowsErrorReporting",
+          "name": "WerBypassPowerThrottling_2",
+          "file": "ErrorReporting.admx"
+        }
+      }
+    },
+    {
+      "name": "WerCER",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_ErrorReporting/WerCER",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "ErrorReporting~AT~WindowsComponents~CAT_WindowsErrorReporting~CAT_WindowsErrorReportingAdvanced",
+          "name": "WerCER",
+          "file": "ErrorReporting.admx"
+        }
+      }
+    },
+    {
+      "name": "WerConsentCustomize_1",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_ErrorReporting/WerConsentCustomize_1",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "ErrorReporting~AT~WindowsComponents~CAT_WindowsErrorReporting~CAT_WindowsErrorReportingConsent",
+          "name": "WerConsentCustomize_1",
+          "file": "ErrorReporting.admx"
+        }
+      }
+    },
+    {
+      "name": "WerConsentOverride_1",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_ErrorReporting/WerConsentOverride_1",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "ErrorReporting~AT~WindowsComponents~CAT_WindowsErrorReporting~CAT_WindowsErrorReportingConsent",
+          "name": "WerConsentOverride_1",
+          "file": "ErrorReporting.admx"
+        }
+      }
+    },
+    {
+      "name": "WerConsentOverride_2",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_ErrorReporting/WerConsentOverride_2",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "ErrorReporting~AT~WindowsComponents~CAT_WindowsErrorReporting~CAT_WindowsErrorReportingConsent",
+          "name": "WerConsentOverride_2",
+          "file": "ErrorReporting.admx"
+        }
+      }
+    },
+    {
+      "name": "WerDefaultConsent_1",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_ErrorReporting/WerDefaultConsent_1",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "ErrorReporting~AT~WindowsComponents~CAT_WindowsErrorReporting~CAT_WindowsErrorReportingConsent",
+          "name": "WerDefaultConsent_1",
+          "file": "ErrorReporting.admx"
+        }
+      }
+    },
+    {
+      "name": "WerDefaultConsent_2",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_ErrorReporting/WerDefaultConsent_2",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "ErrorReporting~AT~WindowsComponents~CAT_WindowsErrorReporting~CAT_WindowsErrorReportingConsent",
+          "name": "WerDefaultConsent_2",
+          "file": "ErrorReporting.admx"
+        }
+      }
+    },
+    {
+      "name": "WerDisable_1",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_ErrorReporting/WerDisable_1",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "ErrorReporting~AT~WindowsComponents~CAT_WindowsErrorReporting",
+          "name": "WerDisable_1",
+          "file": "ErrorReporting.admx"
+        }
+      }
+    },
+    {
+      "name": "WerExlusion_1",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_ErrorReporting/WerExlusion_1",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "ErrorReporting~AT~WindowsComponents~CAT_WindowsErrorReporting~CAT_WindowsErrorReportingAdvanced",
+          "name": "WerExlusion_1",
+          "file": "ErrorReporting.admx"
+        }
+      }
+    },
+    {
+      "name": "WerExlusion_2",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_ErrorReporting/WerExlusion_2",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "ErrorReporting~AT~WindowsComponents~CAT_WindowsErrorReporting~CAT_WindowsErrorReportingAdvanced",
+          "name": "WerExlusion_2",
+          "file": "ErrorReporting.admx"
+        }
+      }
+    },
+    {
+      "name": "WerNoLogging_1",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_ErrorReporting/WerNoLogging_1",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "ErrorReporting~AT~WindowsComponents~CAT_WindowsErrorReporting",
+          "name": "WerNoLogging_1",
+          "file": "ErrorReporting.admx"
+        }
+      }
+    },
+    {
+      "name": "WerNoLogging_2",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_ErrorReporting/WerNoLogging_2",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "ErrorReporting~AT~WindowsComponents~CAT_WindowsErrorReporting",
+          "name": "WerNoLogging_2",
+          "file": "ErrorReporting.admx"
+        }
+      }
+    },
+    {
+      "name": "WerNoSecondLevelData_1",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_ErrorReporting/WerNoSecondLevelData_1",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "ErrorReporting~AT~WindowsComponents~CAT_WindowsErrorReporting",
+          "name": "WerNoSecondLevelData_1",
+          "file": "ErrorReporting.admx"
+        }
+      }
+    },
+    {
+      "name": "WerQueue_1",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_ErrorReporting/WerQueue_1",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "ErrorReporting~AT~WindowsComponents~CAT_WindowsErrorReporting~CAT_WindowsErrorReportingAdvanced",
+          "name": "WerQueue_1",
+          "file": "ErrorReporting.admx"
+        }
+      }
+    },
+    {
+      "name": "WerQueue_2",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_ErrorReporting/WerQueue_2",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "ErrorReporting~AT~WindowsComponents~CAT_WindowsErrorReporting~CAT_WindowsErrorReportingAdvanced",
+          "name": "WerQueue_2",
+          "file": "ErrorReporting.admx"
+        }
+      }
+    }
+  ]
+}

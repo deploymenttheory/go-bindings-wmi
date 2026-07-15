@@ -1,0 +1,78 @@
+{
+  "name": "DevInfo",
+  "path": ".",
+  "nodes": [
+    {
+      "name": "DevId",
+      "path": "./DevInfo/DevId",
+      "format": "chr",
+      "access": [
+        "Get"
+      ],
+      "description": "An unique device identifier. An application-specific global unique device identifier is provided in this node.",
+      "applicability": {}
+    },
+    {
+      "name": "DmV",
+      "path": "./DevInfo/DmV",
+      "format": "chr",
+      "access": [
+        "Get"
+      ],
+      "description": "The current management client revision of the device.",
+      "applicability": {}
+    },
+    {
+      "name": "Ext",
+      "path": "./DevInfo/Ext",
+      "format": "node",
+      "access": [
+        "Get"
+      ],
+      "description": "Parent node for nodes extended by Microsoft.",
+      "applicability": {},
+      "children": [
+        {
+          "name": "ICCID",
+          "path": "./DevInfo/Ext/ICCID",
+          "format": "chr",
+          "access": [
+            "Get"
+          ],
+          "description": "Retrieves the ICCID of the first adapter.",
+          "applicability": {}
+        }
+      ]
+    },
+    {
+      "name": "Lang",
+      "path": "./DevInfo/Lang",
+      "format": "chr",
+      "access": [
+        "Get"
+      ],
+      "description": "Returns the current user interface (UI) language setting of the device as defined by RFC1766.",
+      "applicability": {}
+    },
+    {
+      "name": "Man",
+      "path": "./DevInfo/Man",
+      "format": "chr",
+      "access": [
+        "Get"
+      ],
+      "description": "Returns the name of the OEM. For Windows 10 for desktop editions, it returns the SystemManufacturer as defined in HKEY_LOCAL_MACHINE\\HARDWARE\\DESCRIPTION\\System\\BIOS\\SystemManufacturer. If no name is found, this returns \"Unknown\".",
+      "applicability": {}
+    },
+    {
+      "name": "Mod",
+      "path": "./DevInfo/Mod",
+      "format": "chr",
+      "access": [
+        "Get"
+      ],
+      "description": "Returns the name of the hardware device model as specified by the mobile operator. For Windows 10 for desktop editions, it returns the SystemProductName as defined in HKEY_LOCAL_MACHINE\\HARDWARE\\DESCRIPTION\\System\\BIOS\\SystemProductName. If no name is found, this returns \"Unknown\".",
+      "applicability": {}
+    }
+  ]
+}

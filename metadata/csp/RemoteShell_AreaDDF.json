@@ -1,0 +1,174 @@
+{
+  "name": "RemoteShell",
+  "path": "./Device/Vendor/MSFT/Policy/Config",
+  "nodes": [
+    {
+      "name": "AllowRemoteShellAccess",
+      "path": "./Device/Vendor/MSFT/Policy/Config/RemoteShell/AllowRemoteShellAccess",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.16299",
+        "cspVersion": "6.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsRemoteShell~AT~WindowsComponents~WinRS",
+          "name": "AllowRemoteShellAccess",
+          "file": "WindowsRemoteShell.admx"
+        }
+      }
+    },
+    {
+      "name": "MaxConcurrentUsers",
+      "path": "./Device/Vendor/MSFT/Policy/Config/RemoteShell/MaxConcurrentUsers",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.16299",
+        "cspVersion": "6.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsRemoteShell~AT~WindowsComponents~WinRS",
+          "name": "MaxConcurrentUsers",
+          "file": "WindowsRemoteShell.admx"
+        }
+      }
+    },
+    {
+      "name": "SpecifyIdleTimeout",
+      "path": "./Device/Vendor/MSFT/Policy/Config/RemoteShell/SpecifyIdleTimeout",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.16299",
+        "cspVersion": "6.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsRemoteShell~AT~WindowsComponents~WinRS",
+          "name": "IdleTimeout",
+          "file": "WindowsRemoteShell.admx"
+        }
+      }
+    },
+    {
+      "name": "SpecifyMaxMemory",
+      "path": "./Device/Vendor/MSFT/Policy/Config/RemoteShell/SpecifyMaxMemory",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.16299",
+        "cspVersion": "6.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsRemoteShell~AT~WindowsComponents~WinRS",
+          "name": "MaxMemoryPerShellMB",
+          "file": "WindowsRemoteShell.admx"
+        }
+      }
+    },
+    {
+      "name": "SpecifyMaxProcesses",
+      "path": "./Device/Vendor/MSFT/Policy/Config/RemoteShell/SpecifyMaxProcesses",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.16299",
+        "cspVersion": "6.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsRemoteShell~AT~WindowsComponents~WinRS",
+          "name": "MaxProcessesPerShell",
+          "file": "WindowsRemoteShell.admx"
+        }
+      }
+    },
+    {
+      "name": "SpecifyMaxRemoteShells",
+      "path": "./Device/Vendor/MSFT/Policy/Config/RemoteShell/SpecifyMaxRemoteShells",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.16299",
+        "cspVersion": "6.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsRemoteShell~AT~WindowsComponents~WinRS",
+          "name": "MaxShellsPerUser",
+          "file": "WindowsRemoteShell.admx"
+        }
+      }
+    },
+    {
+      "name": "SpecifyShellTimeout",
+      "path": "./Device/Vendor/MSFT/Policy/Config/RemoteShell/SpecifyShellTimeout",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.16299",
+        "cspVersion": "6.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "WindowsRemoteShell~AT~WindowsComponents~WinRS",
+          "name": "ShellTimeOut",
+          "file": "WindowsRemoteShell.admx"
+        }
+      }
+    }
+  ]
+}

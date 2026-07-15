@@ -1,0 +1,301 @@
+{
+  "name": "Policy",
+  "path": "./Device/Vendor/MSFT",
+  "nodes": [
+    {
+      "name": "Config",
+      "path": "./Device/Vendor/MSFT/Policy/Config",
+      "format": "node",
+      "access": [
+        "Add",
+        "Delete",
+        "Get"
+      ],
+      "description": "Node for grouping all policies configured by one source. The configuration source can use this path to set policy values and later query any policy value that it previously set. One policy can be configured by multiple configuration sources. If a configuration source wants to query the result of conflict resolution (for example, if Exchange and MDM both attempt to set a value,) the configuration source can use the Policy/Result path to retrieve the resulting value.",
+      "applicability": {},
+      "children": [
+        {
+          "name": "",
+          "path": "./Device/Vendor/MSFT/Policy/Config/",
+          "format": "node",
+          "access": [
+            "Add",
+            "Delete",
+            "Get"
+          ],
+          "description": "The area group that can be configured by a single technology for a single provider. Once added, you cannot change the value.  See the individual Area DDFs for Policy CSP for a list of Areas that can be configured.",
+          "applicability": {},
+          "children": [
+            {
+              "name": "",
+              "path": "./Device/Vendor/MSFT/Policy/Config/",
+              "format": "null",
+              "access": [
+                "Add",
+                "Delete",
+                "Get",
+                "Replace"
+              ],
+              "description": "Specifies the name/value pair used in the policy.  See the individual Area DDFs for more information about the policies available to configure.",
+              "applicability": {},
+              "allowedValues": {
+                "type": "None"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Config",
+      "path": "./Device/Vendor/MSFT/Policy/Config",
+      "format": "node",
+      "access": [
+        "Add",
+        "Delete",
+        "Get"
+      ],
+      "description": "Node for grouping all policies configured by one source. The configuration source can use this path to set policy values and later query any policy value that it previously set. One policy can be configured by multiple configuration sources. If a configuration source wants to query the result of conflict resolution (for example, if Exchange and MDM both attempt to set a value,) the configuration source can use the Policy/Result path to retrieve the resulting value.",
+      "applicability": {},
+      "children": [
+        {
+          "name": "",
+          "path": "./Device/Vendor/MSFT/Policy/Config/",
+          "format": "node",
+          "access": [
+            "Add",
+            "Delete",
+            "Get"
+          ],
+          "description": "The area group that can be configured by a single technology for a single provider. Once added, you cannot change the value.  See the individual Area DDFs for Policy CSP for a list of Areas that can be configured.",
+          "applicability": {},
+          "children": [
+            {
+              "name": "",
+              "path": "./Device/Vendor/MSFT/Policy/Config/",
+              "format": "null",
+              "access": [
+                "Add",
+                "Delete",
+                "Get",
+                "Replace"
+              ],
+              "description": "Specifies the name/value pair used in the policy.  See the individual Area DDFs for more information about the policies available to configure.",
+              "applicability": {},
+              "allowedValues": {
+                "type": "None"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "ConfigOperations",
+      "path": "./Device/Vendor/MSFT/Policy/ConfigOperations",
+      "format": "node",
+      "access": [
+        "Add",
+        "Delete",
+        "Get"
+      ],
+      "description": "The root node for grouping different configuration operations.",
+      "applicability": {},
+      "children": [
+        {
+          "name": "ADMXInstall",
+          "path": "./Device/Vendor/MSFT/Policy/ConfigOperations/ADMXInstall",
+          "format": "node",
+          "access": [
+            "Add",
+            "Delete",
+            "Get"
+          ],
+          "description": "Allows settings for ADMX files for Win32 and Desktop Bridge apps to be imported (ingested) by your device and processed into new ADMX-backed policies or preferences. By using ADMXInstall, you can add ADMX-backed policies for those Win32 or Desktop Bridge apps that have been added between OS releases. ADMX-backed policies are ingested to your device by using the Policy CSP URI: ./Vendor/MSFT/Policy/ConfigOperations/ADMXInstall. Each ADMX-backed policy or preference that is added is assigned a unique ID. ADMX files that have been installed by using ConfigOperations/ADMXInstall can later be deleted by using the URI delete operation. Deleting an ADMX file will delete the ADMX file from disk, remove the metadata from the ADMXdefault registry hive, and delete all the policies that were set from the file. The MDM server can also delete all ADMX policies that are tied to a particular app by calling delete on the URI, ./Vendor/MSFT/Policy/ConfigOperations/ADMXInstall/{AppName}.",
+          "applicability": {
+            "minOsBuild": "10.0.16299",
+            "cspVersion": "6.0"
+          },
+          "children": [
+            {
+              "name": "",
+              "path": "./Device/Vendor/MSFT/Policy/ConfigOperations/ADMXInstall/",
+              "format": "node",
+              "access": [
+                "Add",
+                "Delete",
+                "Get"
+              ],
+              "description": "Specifies the name of the Win32 or Desktop Bridge app associated with the ADMX file.",
+              "applicability": {},
+              "children": [
+                {
+                  "name": "",
+                  "path": "./Device/Vendor/MSFT/Policy/ConfigOperations/ADMXInstall/",
+                  "format": "node",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get"
+                  ],
+                  "description": "Setting Type of Win32 App. Policy Or Preference",
+                  "applicability": {},
+                  "children": [
+                    {
+                      "name": "",
+                      "path": "./Device/Vendor/MSFT/Policy/ConfigOperations/ADMXInstall/",
+                      "format": "chr",
+                      "access": [
+                        "Add",
+                        "Delete",
+                        "Get",
+                        "Replace"
+                      ],
+                      "description": "Unique ID of ADMX file",
+                      "applicability": {},
+                      "allowedValues": {
+                        "type": "None"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "Properties",
+                  "path": "./Device/Vendor/MSFT/Policy/ConfigOperations/ADMXInstall/Properties",
+                  "format": "node",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get"
+                  ],
+                  "description": "Properties of Win32 App ADMX Ingestion",
+                  "applicability": {
+                    "minOsBuild": "10.0.18363, 10.0.18362.387, 10.0.17763.832, 10.0.17134.1099, 10.0.16299.1481",
+                    "cspVersion": "6.0"
+                  },
+                  "children": [
+                    {
+                      "name": "",
+                      "path": "./Device/Vendor/MSFT/Policy/ConfigOperations/ADMXInstall/Properties/",
+                      "format": "node",
+                      "access": [
+                        "Add",
+                        "Delete",
+                        "Get"
+                      ],
+                      "description": "Setting Type of Win32 App. Policy Or Preference",
+                      "applicability": {},
+                      "children": [
+                        {
+                          "name": "",
+                          "path": "./Device/Vendor/MSFT/Policy/ConfigOperations/ADMXInstall/Properties/",
+                          "format": "node",
+                          "access": [
+                            "Add",
+                            "Delete",
+                            "Get"
+                          ],
+                          "description": "Unique ID of ADMX file",
+                          "applicability": {},
+                          "children": [
+                            {
+                              "name": "Version",
+                              "path": "./Device/Vendor/MSFT/Policy/ConfigOperations/ADMXInstall/Properties/Version",
+                              "format": "chr",
+                              "access": [
+                                "Add",
+                                "Delete",
+                                "Get",
+                                "Replace"
+                              ],
+                              "description": "Version of ADMX file.  This can be set by the server to keep a record of the versioning of the ADMX file ingested by the device.",
+                              "applicability": {},
+                              "allowedValues": {
+                                "type": "None"
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Result",
+      "path": "./Device/Vendor/MSFT/Policy/Result",
+      "format": "node",
+      "access": [
+        "Get"
+      ],
+      "description": "Groups the evaluated policies from all providers that can be configured.",
+      "applicability": {},
+      "children": [
+        {
+          "name": "",
+          "path": "./Device/Vendor/MSFT/Policy/Result/",
+          "format": "node",
+          "access": [
+            "Get"
+          ],
+          "description": "The area group that can be configured by a single technology independent of the providers. See the individual Area DDFs for Policy CSP for a list of Areas that can be configured.",
+          "applicability": {},
+          "children": [
+            {
+              "name": "",
+              "path": "./Device/Vendor/MSFT/Policy/Result/",
+              "format": "null",
+              "access": [
+                "Get"
+              ],
+              "description": "Specifies the name/value pair used in the policy. See the individual Area DDFs for more information about the policies available to configure.",
+              "applicability": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Result",
+      "path": "./Device/Vendor/MSFT/Policy/Result",
+      "format": "node",
+      "access": [
+        "Get"
+      ],
+      "description": "Groups the evaluated policies from all providers that can be configured.",
+      "applicability": {},
+      "children": [
+        {
+          "name": "",
+          "path": "./Device/Vendor/MSFT/Policy/Result/",
+          "format": "node",
+          "access": [
+            "Get"
+          ],
+          "description": "The area group that can be configured by a single technology independent of the providers. See the individual Area DDFs for Policy CSP for a list of Areas that can be configured.",
+          "applicability": {},
+          "children": [
+            {
+              "name": "",
+              "path": "./Device/Vendor/MSFT/Policy/Result/",
+              "format": "null",
+              "access": [
+                "Get"
+              ],
+              "description": "Specifies the name/value pair used in the policy. See the individual Area DDFs for more information about the policies available to configure.",
+              "applicability": {},
+              "allowedValues": {
+                "type": "None"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

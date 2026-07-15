@@ -1,0 +1,187 @@
+{
+  "name": "LanguagePackManagement",
+  "path": "./Device/Vendor/MSFT",
+  "nodes": [
+    {
+      "name": "Install",
+      "path": "./Device/Vendor/MSFT/LanguagePackManagement/Install",
+      "format": "node",
+      "access": [
+        "Get"
+      ],
+      "description": "Language to be installed or being installed.",
+      "applicability": {},
+      "children": [
+        {
+          "name": "",
+          "path": "./Device/Vendor/MSFT/LanguagePackManagement/Install/",
+          "format": "node",
+          "access": [
+            "Add",
+            "Delete",
+            "Get"
+          ],
+          "description": "Language tag of the language to be installed or being installed.",
+          "applicability": {},
+          "children": [
+            {
+              "name": "CopyToDeviceInternationalSettings",
+              "path": "./Device/Vendor/MSFT/LanguagePackManagement/Install/CopyToDeviceInternationalSettings",
+              "format": "bool",
+              "access": [
+                "Add",
+                "Delete",
+                "Get",
+                "Replace"
+              ],
+              "description": "Copies the language to the international settings (i.e., locale, input layout, speech recognizer, preferred UI language) of the device immediately after installation if the value is true. Default value is false.",
+              "default": "false",
+              "applicability": {},
+              "allowedValues": {
+                "type": "ENUM",
+                "enum": [
+                  {
+                    "value": "false",
+                    "description": "Don't copy the language to the international settings immediately after installation."
+                  },
+                  {
+                    "value": "true",
+                    "description": "Copy the language to the international settings immediately after installation."
+                  }
+                ]
+              }
+            },
+            {
+              "name": "EnableLanguageFeatureInstallations",
+              "path": "./Device/Vendor/MSFT/LanguagePackManagement/Install/EnableLanguageFeatureInstallations",
+              "format": "bool",
+              "access": [
+                "Add",
+                "Delete",
+                "Get",
+                "Replace"
+              ],
+              "description": "Enables installations of all available language features when the value is true. Default value is true.",
+              "default": "true",
+              "applicability": {},
+              "allowedValues": {
+                "type": "ENUM",
+                "enum": [
+                  {
+                    "value": "true",
+                    "description": "Install all available language features."
+                  },
+                  {
+                    "value": "false",
+                    "description": "Install only the required language features."
+                  }
+                ]
+              }
+            },
+            {
+              "name": "ErrorCode",
+              "path": "./Device/Vendor/MSFT/LanguagePackManagement/Install/ErrorCode",
+              "format": "int",
+              "access": [
+                "Get"
+              ],
+              "description": "Error code of queued language installation. 0 if there is no error.",
+              "applicability": {}
+            },
+            {
+              "name": "StartInstallation",
+              "path": "./Device/Vendor/MSFT/LanguagePackManagement/Install/StartInstallation",
+              "format": "null",
+              "access": [
+                "Exec"
+              ],
+              "description": "Execution node to queue a language for installation on the device.",
+              "applicability": {}
+            },
+            {
+              "name": "Status",
+              "path": "./Device/Vendor/MSFT/LanguagePackManagement/Install/Status",
+              "format": "int",
+              "access": [
+                "Get"
+              ],
+              "description": "Status of the language queued for install. 0 – not started; 1 – in progress; 2 – succeeded; 3 – failed; 4 – partially succeeded.",
+              "applicability": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "InstalledLanguages",
+      "path": "./Device/Vendor/MSFT/LanguagePackManagement/InstalledLanguages",
+      "format": "node",
+      "access": [
+        "Get"
+      ],
+      "description": "Languages currently installed on the device.",
+      "applicability": {},
+      "children": [
+        {
+          "name": "",
+          "path": "./Device/Vendor/MSFT/LanguagePackManagement/InstalledLanguages/",
+          "format": "node",
+          "access": [
+            "Delete",
+            "Get"
+          ],
+          "description": "Language tag of an installed language on the device. Delete to uninstall.",
+          "applicability": {},
+          "children": [
+            {
+              "name": "LanguageFeatures",
+              "path": "./Device/Vendor/MSFT/LanguagePackManagement/InstalledLanguages/LanguageFeatures",
+              "format": "int",
+              "access": [
+                "Get"
+              ],
+              "description": "Numeric representation of the language features installed. Basic Typing - 1 (0x1), Fonts - 2 (0x2), Handwriting - 4 (0x4), Speech - 8 (0x8), TextToSpeech - 16 (0x10), OCR - 32 (0x20), LocaleData - 64 (0x40), SupplementFonts - 128 (0x80).",
+              "applicability": {}
+            },
+            {
+              "name": "Providers",
+              "path": "./Device/Vendor/MSFT/LanguagePackManagement/InstalledLanguages/Providers",
+              "format": "int",
+              "access": [
+                "Get"
+              ],
+              "description": "Numeric representation of how a language is installed. 1 - The system language pack is installed; 2 - The Local Experience Pack is installed; 3 - Both are installed.",
+              "applicability": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "LanguageSettings",
+      "path": "./Device/Vendor/MSFT/LanguagePackManagement/LanguageSettings",
+      "format": "node",
+      "access": [
+        "Get"
+      ],
+      "description": "Language settings of the device.",
+      "applicability": {},
+      "children": [
+        {
+          "name": "SystemPreferredUILanguages",
+          "path": "./Device/Vendor/MSFT/LanguagePackManagement/LanguageSettings/SystemPreferredUILanguages",
+          "format": "chr",
+          "access": [
+            "Get",
+            "Replace"
+          ],
+          "description": "System Preferred UI Language of the device.",
+          "applicability": {},
+          "allowedValues": {
+            "type": "None"
+          }
+        }
+      ]
+    }
+  ]
+}

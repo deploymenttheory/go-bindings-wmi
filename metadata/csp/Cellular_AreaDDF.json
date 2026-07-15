@@ -1,0 +1,125 @@
+{
+  "name": "Cellular",
+  "path": "./Device/Vendor/MSFT/Policy/Config",
+  "nodes": [
+    {
+      "name": "LetAppsAccessCellularData",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Cellular/LetAppsAccessCellularData",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This policy setting specifies whether Windows apps can access cellular data.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.16299",
+        "cspVersion": "6.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "User is in control"
+          },
+          {
+            "value": "1",
+            "description": "Force Allow"
+          },
+          {
+            "value": "2",
+            "description": "Force Deny"
+          }
+        ]
+      }
+    },
+    {
+      "name": "LetAppsAccessCellularData_ForceAllowTheseApps",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Cellular/LetAppsAccessCellularData_ForceAllowTheseApps",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "List of semi-colon delimited Package Family Names of Windows Store Apps. Listed apps are allowed access to cellular data. This setting overrides the default LetAppsAccessCellularData policy setting for the specified apps.",
+      "applicability": {
+        "minOsBuild": "10.0.16299",
+        "cspVersion": "6.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "None"
+      }
+    },
+    {
+      "name": "LetAppsAccessCellularData_ForceDenyTheseApps",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Cellular/LetAppsAccessCellularData_ForceDenyTheseApps",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "List of semi-colon delimited Package Family Names of Microsoft Store Apps. Listed apps are denied access to cellular data. This setting overrides the default LetAppsAccessCellularData policy setting for the specified apps.",
+      "applicability": {
+        "minOsBuild": "10.0.16299",
+        "cspVersion": "6.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "None"
+      }
+    },
+    {
+      "name": "LetAppsAccessCellularData_UserInControlOfTheseApps",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Cellular/LetAppsAccessCellularData_UserInControlOfTheseApps",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "List of semi-colon delimited Package Family Names of Microsoft Store Apps. The user is able to control the cellular data access setting for the listed apps. This setting overrides the default LetAppsAccessCellularData policy setting for the specified apps.",
+      "applicability": {
+        "minOsBuild": "10.0.16299",
+        "cspVersion": "6.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "None"
+      }
+    },
+    {
+      "name": "ShowAppCellularAccessUI",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Cellular/ShowAppCellularAccessUI",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.16299",
+        "cspVersion": "6.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "wwansvc~AT~Network~WwanSvc_Category~UISettings_Category",
+          "name": "ShowAppCellularAccessUI",
+          "file": "wwansvc.admx"
+        }
+      }
+    }
+  ]
+}

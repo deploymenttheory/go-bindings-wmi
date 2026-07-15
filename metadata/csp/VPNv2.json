@@ -1,0 +1,3968 @@
+{
+  "name": "VPNv2",
+  "path": "./Device/Vendor/MSFT",
+  "nodes": [
+    {
+      "name": "",
+      "path": "./Device/Vendor/MSFT/VPNv2/",
+      "format": "node",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Unique alpha numeric identifier for the profile. The profile name must not include a forward slash (/). If the profile name has a space or other non-alphanumeric character, it must be properly escaped according to the URL encoding standard.",
+      "applicability": {},
+      "allowedValues": {
+        "type": "RegEx"
+      },
+      "children": [
+        {
+          "name": "APNBinding",
+          "path": "./Device/Vendor/MSFT/VPNv2/APNBinding",
+          "format": "node",
+          "access": [
+            "Get"
+          ],
+          "description": "Reserved for future use.",
+          "applicability": {},
+          "children": [
+            {
+              "name": "AccessPointName",
+              "path": "./Device/Vendor/MSFT/VPNv2/APNBinding/AccessPointName",
+              "format": "chr",
+              "access": [
+                "Add",
+                "Delete",
+                "Get",
+                "Replace"
+              ],
+              "description": "Reserved for future use.",
+              "applicability": {}
+            },
+            {
+              "name": "AuthenticationType",
+              "path": "./Device/Vendor/MSFT/VPNv2/APNBinding/AuthenticationType",
+              "format": "chr",
+              "access": [
+                "Add",
+                "Delete",
+                "Get",
+                "Replace"
+              ],
+              "description": "Reserved for future use.",
+              "applicability": {}
+            },
+            {
+              "name": "IsCompressionEnabled",
+              "path": "./Device/Vendor/MSFT/VPNv2/APNBinding/IsCompressionEnabled",
+              "format": "bool",
+              "access": [
+                "Add",
+                "Delete",
+                "Get",
+                "Replace"
+              ],
+              "description": "Reserved for future use.",
+              "applicability": {}
+            },
+            {
+              "name": "Password",
+              "path": "./Device/Vendor/MSFT/VPNv2/APNBinding/Password",
+              "format": "chr",
+              "access": [
+                "Add",
+                "Delete",
+                "Get",
+                "Replace"
+              ],
+              "description": "Reserved for future use.",
+              "applicability": {}
+            },
+            {
+              "name": "ProviderId",
+              "path": "./Device/Vendor/MSFT/VPNv2/APNBinding/ProviderId",
+              "format": "chr",
+              "access": [
+                "Add",
+                "Delete",
+                "Get",
+                "Replace"
+              ],
+              "description": "Reserved for future use.",
+              "applicability": {}
+            },
+            {
+              "name": "UserName",
+              "path": "./Device/Vendor/MSFT/VPNv2/APNBinding/UserName",
+              "format": "chr",
+              "access": [
+                "Add",
+                "Delete",
+                "Get",
+                "Replace"
+              ],
+              "description": "Reserved for future use.",
+              "applicability": {}
+            }
+          ]
+        },
+        {
+          "name": "AlwaysOn",
+          "path": "./Device/Vendor/MSFT/VPNv2/AlwaysOn",
+          "format": "bool",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "An optional flag to enable Always On mode. This will automatically connect the VPN at sign-in and will stay connected until the user manually disconnects.",
+          "default": "false",
+          "applicability": {},
+          "allowedValues": {
+            "type": "ENUM",
+            "enum": [
+              {
+                "value": "false",
+                "description": "Always On is turned off."
+              },
+              {
+                "value": "true",
+                "description": "Always On is turned on."
+              }
+            ]
+          }
+        },
+        {
+          "name": "AlwaysOnActive",
+          "path": "./Device/Vendor/MSFT/VPNv2/AlwaysOnActive",
+          "format": "bool",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "An optional flag to activate Always On mode. This is true by default if AlwaysOn is true. Setting controls whether \"Connect Automatically\" is toggled on profile creation.",
+          "default": "1",
+          "applicability": {},
+          "allowedValues": {
+            "type": "ENUM",
+            "enum": [
+              {
+                "value": "0",
+                "description": "Always On is inactive."
+              },
+              {
+                "value": "1",
+                "description": "Always On is activated on provisioning."
+              }
+            ]
+          }
+        },
+        {
+          "name": "AppTriggerList",
+          "path": "./Device/Vendor/MSFT/VPNv2/AppTriggerList",
+          "format": "node",
+          "access": [
+            "Get"
+          ],
+          "description": "List of applications set to trigger the VPN. If any of these apps are launched and the VPN Profile is currently the active Profile, this VPN Profile will be triggered to connect.",
+          "applicability": {},
+          "children": [
+            {
+              "name": "",
+              "path": "./Device/Vendor/MSFT/VPNv2/AppTriggerList/",
+              "format": "node",
+              "access": [
+                "Add",
+                "Delete",
+                "Get"
+              ],
+              "description": "A sequential integer identifier which allows the ability to specify multiple apps for App Trigger. Sequencing must start at 0 and you should not skip numbers.",
+              "applicability": {},
+              "children": [
+                {
+                  "name": "App",
+                  "path": "./Device/Vendor/MSFT/VPNv2/AppTriggerList/App",
+                  "format": "node",
+                  "access": [
+                    "Get"
+                  ],
+                  "description": "App Node under the Row Id.",
+                  "applicability": {},
+                  "children": [
+                    {
+                      "name": "Id",
+                      "path": "./Device/Vendor/MSFT/VPNv2/AppTriggerList/App/Id",
+                      "format": "chr",
+                      "access": [
+                        "Add",
+                        "Delete",
+                        "Get",
+                        "Replace"
+                      ],
+                      "description": "App Identity. Specified, based on the Type Field.",
+                      "applicability": {},
+                      "allowedValues": {
+                        "type": "None"
+                      }
+                    },
+                    {
+                      "name": "Type",
+                      "path": "./Device/Vendor/MSFT/VPNv2/AppTriggerList/App/Type",
+                      "format": "chr",
+                      "access": [
+                        "Get"
+                      ],
+                      "description": "Returns the type of App/Id. This value can be either of the following: PackageFamilyName - When this is returned, the App/Id value represents the PackageFamilyName of the app. The PackageFamilyName is the unique name of the Microsoft Store application. FilePath - When this is returned, the App/Id value represents the full file path of the app. For example, C:\\Windows\\System\\Notepad.exe.",
+                      "applicability": {}
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "ByPassForLocal",
+          "path": "./Device/Vendor/MSFT/VPNv2/ByPassForLocal",
+          "format": "bool",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "Not supported.",
+          "applicability": {}
+        },
+        {
+          "name": "DataEncryption",
+          "path": "./Device/Vendor/MSFT/VPNv2/DataEncryption",
+          "format": "chr",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "Determines the level of data encryption required for the connection.",
+          "default": "Require",
+          "applicability": {
+            "minOsBuild": "10.0.22000",
+            "cspVersion": "1.6"
+          },
+          "allowedValues": {
+            "type": "ENUM",
+            "enum": [
+              {
+                "value": "None",
+                "description": "No Data Encryption required."
+              },
+              {
+                "value": "Require",
+                "description": "Data Encryption required."
+              },
+              {
+                "value": "Max",
+                "description": "Maximum-strength Data Encryption required."
+              },
+              {
+                "value": "Optional",
+                "description": "Perform encryption if possible."
+              }
+            ]
+          }
+        },
+        {
+          "name": "DeviceCompliance",
+          "path": "./Device/Vendor/MSFT/VPNv2/DeviceCompliance",
+          "format": "node",
+          "access": [
+            "Add",
+            "Get"
+          ],
+          "description": "Nodes under DeviceCompliance can be used to enable AAD based Conditional Access for VPN.",
+          "applicability": {
+            "minOsBuild": "10.0.14393",
+            "cspVersion": "1.1"
+          },
+          "children": [
+            {
+              "name": "Enabled",
+              "path": "./Device/Vendor/MSFT/VPNv2/DeviceCompliance/Enabled",
+              "format": "bool",
+              "access": [
+                "Add",
+                "Delete",
+                "Get",
+                "Replace"
+              ],
+              "description": "Enables the Device Compliance flow from the client. If marked as True, the VPN Client will attempt to communicate with AAD to get a certificate to use for authentication. The VPN should be set up to use Certificate Auth and the VPN Server must trust the Server returned by Azure Active Directory.",
+              "applicability": {},
+              "allowedValues": {
+                "type": "ENUM",
+                "enum": [
+                  {
+                    "value": "false",
+                    "description": "Disabled"
+                  },
+                  {
+                    "value": "true",
+                    "description": "Enabled"
+                  }
+                ]
+              }
+            },
+            {
+              "name": "Sso",
+              "path": "./Device/Vendor/MSFT/VPNv2/DeviceCompliance/Sso",
+              "format": "node",
+              "access": [
+                "Add",
+                "Get"
+              ],
+              "description": "Nodes under SSO can be used to choose a certificate different from the VPN Authentication cert for the Kerberos Authentication in the case of Device Compliance.",
+              "applicability": {},
+              "children": [
+                {
+                  "name": "Eku",
+                  "path": "./Device/Vendor/MSFT/VPNv2/DeviceCompliance/Sso/Eku",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Comma Separated list of EKU's for the VPN Client to look for the correct certificate for Kerberos Authentication.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "None"
+                  }
+                },
+                {
+                  "name": "Enabled",
+                  "path": "./Device/Vendor/MSFT/VPNv2/DeviceCompliance/Sso/Enabled",
+                  "format": "bool",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "If this field is set to True the VPN Client will look for a separate certificate for Kerberos Authentication.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "ENUM",
+                    "enum": [
+                      {
+                        "value": "false",
+                        "description": "Disabled"
+                      },
+                      {
+                        "value": "true",
+                        "description": "Enabled"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "IssuerHash",
+                  "path": "./Device/Vendor/MSFT/VPNv2/DeviceCompliance/Sso/IssuerHash",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Comma Separated list of Issuer Hashes for the VPN Client to look for the correct certificate for Kerberos Authentication.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "None"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "DisableAdvancedOptionsEditButton",
+          "path": "./Device/Vendor/MSFT/VPNv2/DisableAdvancedOptionsEditButton",
+          "format": "bool",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "Optional. When this setting is True, the Advanced Options page will have its edit functions disabled, only allowing viewing and Clear Sign-In Info.",
+          "applicability": {
+            "minOsBuild": "10.0.22000",
+            "cspVersion": "1.5"
+          },
+          "allowedValues": {
+            "type": "ENUM",
+            "enum": [
+              {
+                "value": "false",
+                "description": "Advanced Options Edit Button is available."
+              },
+              {
+                "value": "true",
+                "description": "Advanced Options Edit Button is unavailable."
+              }
+            ]
+          }
+        },
+        {
+          "name": "DisableDisconnectButton",
+          "path": "./Device/Vendor/MSFT/VPNv2/DisableDisconnectButton",
+          "format": "bool",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "Optional. When this setting is True, the Disconnect button will not be visible for connected profiles and the 'Connect automatically' checkbox cannot be deselected.",
+          "applicability": {
+            "minOsBuild": "10.0.22000",
+            "cspVersion": "1.5"
+          },
+          "allowedValues": {
+            "type": "ENUM",
+            "enum": [
+              {
+                "value": "false",
+                "description": "Disconnect Button is visible."
+              },
+              {
+                "value": "true",
+                "description": "Disconnect Button is not visible."
+              }
+            ]
+          }
+        },
+        {
+          "name": "DisableIKEv2Fragmentation",
+          "path": "./Device/Vendor/MSFT/VPNv2/DisableIKEv2Fragmentation",
+          "format": "bool",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "Set to disable IKEv2 Fragmentation.",
+          "default": "false",
+          "applicability": {
+            "minOsBuild": "10.0.22000",
+            "cspVersion": "1.6"
+          },
+          "allowedValues": {
+            "type": "ENUM",
+            "enum": [
+              {
+                "value": "true",
+                "description": "IKEv2 Fragmentation will not be used."
+              },
+              {
+                "value": "false",
+                "description": "IKEv2 Fragmentation is used as normal."
+              }
+            ]
+          }
+        },
+        {
+          "name": "DnsSuffix",
+          "path": "./Device/Vendor/MSFT/VPNv2/DnsSuffix",
+          "format": "chr",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "Specifies one or more comma separated DNS suffixes. The first in the list is also used as the primary connection specific DNS suffix for the VPN Interface. The entire list will also be added into the SuffixSearchList.",
+          "applicability": {},
+          "allowedValues": {
+            "type": "None"
+          }
+        },
+        {
+          "name": "DomainNameInformationList",
+          "path": "./Device/Vendor/MSFT/VPNv2/DomainNameInformationList",
+          "format": "node",
+          "access": [
+            "Get"
+          ],
+          "description": "NRPT (Name Resolution Policy Table) Rules for the VPN Profile.",
+          "applicability": {},
+          "children": [
+            {
+              "name": "",
+              "path": "./Device/Vendor/MSFT/VPNv2/DomainNameInformationList/",
+              "format": "node",
+              "access": [
+                "Add",
+                "Delete",
+                "Get"
+              ],
+              "description": "A sequential integer identifier for the Domain Name information. Sequencing must start at 0.",
+              "applicability": {},
+              "children": [
+                {
+                  "name": "AutoTrigger",
+                  "path": "./Device/Vendor/MSFT/VPNv2/DomainNameInformationList/AutoTrigger",
+                  "format": "bool",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Boolean to determine whether this domain name rule will trigger the VPN.",
+                  "default": "false",
+                  "applicability": {
+                    "minOsBuild": "10.0.14393",
+                    "cspVersion": "1.2"
+                  },
+                  "allowedValues": {
+                    "type": "ENUM",
+                    "enum": [
+                      {
+                        "value": "false",
+                        "description": "This DomainName rule will not trigger the VPN."
+                      },
+                      {
+                        "value": "true",
+                        "description": "This DomainName rule will trigger the VPN."
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "DnsServers",
+                  "path": "./Device/Vendor/MSFT/VPNv2/DomainNameInformationList/DnsServers",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Comma Seperated list of IP addresses for the DNS Servers to use for the domain name.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "None"
+                  }
+                },
+                {
+                  "name": "DomainName",
+                  "path": "./Device/Vendor/MSFT/VPNv2/DomainNameInformationList/DomainName",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Used to indicate the namespace to which the policy applies. When a Name query is issued, the DNS client compares the name in the query to all of the namespaces under DomainNameInformationList to find a match. This parameter can be one of the following types: FQDN - Fully qualified domain name. Suffix - A domain suffix that will be appended to the shortname query for DNS resolution. To specify a suffix, prepend a . to the DNS suffix.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "None"
+                  }
+                },
+                {
+                  "name": "DomainNameType",
+                  "path": "./Device/Vendor/MSFT/VPNv2/DomainNameInformationList/DomainNameType",
+                  "format": "chr",
+                  "access": [
+                    "Get"
+                  ],
+                  "description": "Returns the namespace type. This value can be one of the following: FQDN - If the DomainName was not prepended with a . and applies only to the fully qualified domain name (FQDN) of a specified host. Suffix - If the DomainName was prepended with a . and applies to the specified namespace, all records in that namespace, and all subdomains.",
+                  "applicability": {}
+                },
+                {
+                  "name": "Persistent",
+                  "path": "./Device/Vendor/MSFT/VPNv2/DomainNameInformationList/Persistent",
+                  "format": "bool",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "A boolean value that specifies if the rule being added should persist even when the VPN is not connected.",
+                  "default": "false",
+                  "applicability": {
+                    "minOsBuild": "10.0.14393",
+                    "cspVersion": "1.2"
+                  },
+                  "allowedValues": {
+                    "type": "ENUM",
+                    "enum": [
+                      {
+                        "value": "false",
+                        "description": "This DomainName rule will only be applied when VPN is connected."
+                      },
+                      {
+                        "value": "true",
+                        "description": "This DomainName rule will always be present and applied."
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "WebProxyServers",
+                  "path": "./Device/Vendor/MSFT/VPNv2/DomainNameInformationList/WebProxyServers",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Web Proxy Server IP address if you are redirecting traffic through your intranet.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "None"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "EdpModeId",
+          "path": "./Device/Vendor/MSFT/VPNv2/EdpModeId",
+          "format": "chr",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "Enterprise ID, which is required for connecting this VPN profile with an WIP policy. When this is set, the networking stack looks for this Enterprise ID in the app token to determine if the traffic is allowed to go over the VPN. If the profile is active, it also automatically triggers the VPN to connect. We recommend having only one such profile per device.",
+          "applicability": {},
+          "allowedValues": {
+            "type": "None"
+          }
+        },
+        {
+          "name": "IPv4InterfaceMetric",
+          "path": "./Device/Vendor/MSFT/VPNv2/IPv4InterfaceMetric",
+          "format": "int",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "The metric for the IPv4 interface.",
+          "applicability": {
+            "minOsBuild": "10.0.22000",
+            "cspVersion": "1.6"
+          },
+          "allowedValues": {
+            "type": "Range"
+          }
+        },
+        {
+          "name": "IPv6InterfaceMetric",
+          "path": "./Device/Vendor/MSFT/VPNv2/IPv6InterfaceMetric",
+          "format": "int",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "The metric for the IPv6 interface.",
+          "applicability": {
+            "minOsBuild": "10.0.22000",
+            "cspVersion": "1.6"
+          },
+          "allowedValues": {
+            "type": "Range"
+          }
+        },
+        {
+          "name": "NativeProfile",
+          "path": "./Device/Vendor/MSFT/VPNv2/NativeProfile",
+          "format": "node",
+          "access": [
+            "Add",
+            "Get"
+          ],
+          "description": "InboxNodes under NativeProfile are required when using a Windows Inbox VPN Protocol (IKEv2, PPTP, L2TP, SSTP).",
+          "applicability": {},
+          "children": [
+            {
+              "name": "Authentication",
+              "path": "./Device/Vendor/MSFT/VPNv2/NativeProfile/Authentication",
+              "format": "node",
+              "access": [
+                "Get"
+              ],
+              "description": "Required node for native profile. It contains authentication information for the native VPN profile.",
+              "applicability": {},
+              "children": [
+                {
+                  "name": "Certificate",
+                  "path": "./Device/Vendor/MSFT/VPNv2/NativeProfile/Authentication/Certificate",
+                  "format": "node",
+                  "access": [
+                    "Get"
+                  ],
+                  "description": "Reserved for future use.",
+                  "applicability": {},
+                  "children": [
+                    {
+                      "name": "Eku",
+                      "path": "./Device/Vendor/MSFT/VPNv2/NativeProfile/Authentication/Certificate/Eku",
+                      "format": "chr",
+                      "access": [
+                        "Add",
+                        "Delete",
+                        "Get",
+                        "Replace"
+                      ],
+                      "description": "Reserved for future use.",
+                      "applicability": {}
+                    },
+                    {
+                      "name": "Issuer",
+                      "path": "./Device/Vendor/MSFT/VPNv2/NativeProfile/Authentication/Certificate/Issuer",
+                      "format": "chr",
+                      "access": [
+                        "Add",
+                        "Delete",
+                        "Get",
+                        "Replace"
+                      ],
+                      "description": "Reserved for future use.",
+                      "applicability": {}
+                    }
+                  ]
+                },
+                {
+                  "name": "Eap",
+                  "path": "./Device/Vendor/MSFT/VPNv2/NativeProfile/Authentication/Eap",
+                  "format": "node",
+                  "access": [
+                    "Get"
+                  ],
+                  "description": "Required when the native profile specifies EAP authentication. EAP configuration XML.",
+                  "applicability": {},
+                  "children": [
+                    {
+                      "name": "Configuration",
+                      "path": "./Device/Vendor/MSFT/VPNv2/NativeProfile/Authentication/Eap/Configuration",
+                      "format": "chr",
+                      "access": [
+                        "Add",
+                        "Delete",
+                        "Get",
+                        "Replace"
+                      ],
+                      "description": "HTML encoded XML of the EAP configuration. For more information about EAP configuration XML, see https://docs.microsoft.com/en-us/windows/client-management/mdm/eap-configuration.",
+                      "applicability": {},
+                      "allowedValues": {
+                        "type": "None"
+                      }
+                    },
+                    {
+                      "name": "Type",
+                      "path": "./Device/Vendor/MSFT/VPNv2/NativeProfile/Authentication/Eap/Type",
+                      "format": "int",
+                      "access": [
+                        "Add",
+                        "Delete",
+                        "Get",
+                        "Replace"
+                      ],
+                      "description": "Required node for EAP profiles. This specifies the EAP Type ID\n                      13 = EAP-TLS\n                      26 = Ms-Chapv2\n                      27 = Peap",
+                      "applicability": {},
+                      "allowedValues": {
+                        "type": "None"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "MachineMethod",
+                  "path": "./Device/Vendor/MSFT/VPNv2/NativeProfile/Authentication/MachineMethod",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "This is only supported in IKEv2.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "ENUM",
+                    "enum": [
+                      {
+                        "value": "Certificate",
+                        "description": "Certificate"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "UserMethod",
+                  "path": "./Device/Vendor/MSFT/VPNv2/NativeProfile/Authentication/UserMethod",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "This value can be one of the following: EAP or MSChapv2 (This is not supported for IKEv2).",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "ENUM",
+                    "enum": [
+                      {
+                        "value": "EAP",
+                        "description": "EAP"
+                      },
+                      {
+                        "value": "MSChapv2",
+                        "description": "MSChapv2: This is not supported for IKEv2"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "name": "CryptographySuite",
+              "path": "./Device/Vendor/MSFT/VPNv2/NativeProfile/CryptographySuite",
+              "format": "node",
+              "access": [
+                "Get"
+              ],
+              "description": "Properties of IPSec tunnels.",
+              "applicability": {
+                "minOsBuild": "10.0.14393",
+                "cspVersion": "1.2"
+              },
+              "children": [
+                {
+                  "name": "AuthenticationTransformConstants",
+                  "path": "./Device/Vendor/MSFT/VPNv2/NativeProfile/CryptographySuite/AuthenticationTransformConstants",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Type of authentication transform constant.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "ENUM",
+                    "enum": [
+                      {
+                        "value": "MD596",
+                        "description": "MD596"
+                      },
+                      {
+                        "value": "SHA196",
+                        "description": "SHA196"
+                      },
+                      {
+                        "value": "SHA256128",
+                        "description": "SHA256128"
+                      },
+                      {
+                        "value": "GCMAES128",
+                        "description": "GCMAES128"
+                      },
+                      {
+                        "value": "GCMAES192",
+                        "description": "GCMAES192"
+                      },
+                      {
+                        "value": "GCMAES256",
+                        "description": "GCMAES256"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "CipherTransformConstants",
+                  "path": "./Device/Vendor/MSFT/VPNv2/NativeProfile/CryptographySuite/CipherTransformConstants",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Type of Cipher transform constant.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "ENUM",
+                    "enum": [
+                      {
+                        "value": "DES",
+                        "description": "DES"
+                      },
+                      {
+                        "value": "DES3",
+                        "description": "DES3"
+                      },
+                      {
+                        "value": "AES128",
+                        "description": "AES128"
+                      },
+                      {
+                        "value": "AES192",
+                        "description": "AES192"
+                      },
+                      {
+                        "value": "AES256",
+                        "description": "AES256"
+                      },
+                      {
+                        "value": "GCMAES128",
+                        "description": "GCMAES128"
+                      },
+                      {
+                        "value": "GCMAES192",
+                        "description": "GCMAES192"
+                      },
+                      {
+                        "value": "GCMAES256",
+                        "description": "GCMAES256"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "DHGroup",
+                  "path": "./Device/Vendor/MSFT/VPNv2/NativeProfile/CryptographySuite/DHGroup",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Group used for DH (Diffie-Hellman).",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "ENUM",
+                    "enum": [
+                      {
+                        "value": "None",
+                        "description": "None"
+                      },
+                      {
+                        "value": "Group1",
+                        "description": "Group1"
+                      },
+                      {
+                        "value": "Group2",
+                        "description": "Group2"
+                      },
+                      {
+                        "value": "Group14",
+                        "description": "Group14"
+                      },
+                      {
+                        "value": "ECP256",
+                        "description": "ECP256"
+                      },
+                      {
+                        "value": "ECP384",
+                        "description": "ECP384"
+                      },
+                      {
+                        "value": "Group24",
+                        "description": "Group24"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "EncryptionMethod",
+                  "path": "./Device/Vendor/MSFT/VPNv2/NativeProfile/CryptographySuite/EncryptionMethod",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Type of encryption method.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "ENUM",
+                    "enum": [
+                      {
+                        "value": "DES",
+                        "description": "DES"
+                      },
+                      {
+                        "value": "DES3",
+                        "description": "DES3"
+                      },
+                      {
+                        "value": "AES128",
+                        "description": "AES128"
+                      },
+                      {
+                        "value": "AES192",
+                        "description": "AES192"
+                      },
+                      {
+                        "value": "AES256",
+                        "description": "AES256"
+                      },
+                      {
+                        "value": "AES_GCM_128",
+                        "description": "AES_GCM_128"
+                      },
+                      {
+                        "value": "AES_GCM_256",
+                        "description": "AES_GCM_256"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "IntegrityCheckMethod",
+                  "path": "./Device/Vendor/MSFT/VPNv2/NativeProfile/CryptographySuite/IntegrityCheckMethod",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Type of integrity check.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "ENUM",
+                    "enum": [
+                      {
+                        "value": "MD5",
+                        "description": "MD5"
+                      },
+                      {
+                        "value": "SHA196",
+                        "description": "SHA196"
+                      },
+                      {
+                        "value": "SHA256",
+                        "description": "SHA256"
+                      },
+                      {
+                        "value": "SHA384",
+                        "description": "SHA384"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "PfsGroup",
+                  "path": "./Device/Vendor/MSFT/VPNv2/NativeProfile/CryptographySuite/PfsGroup",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Group used for PFS (Perfect Forward Secrecy).",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "ENUM",
+                    "enum": [
+                      {
+                        "value": "None",
+                        "description": "None"
+                      },
+                      {
+                        "value": "PFS1",
+                        "description": "PFS1"
+                      },
+                      {
+                        "value": "PFS2",
+                        "description": "PFS2"
+                      },
+                      {
+                        "value": "PFS2048",
+                        "description": "PFS2048"
+                      },
+                      {
+                        "value": "ECP256",
+                        "description": "ECP256"
+                      },
+                      {
+                        "value": "ECP384",
+                        "description": "ECP384"
+                      },
+                      {
+                        "value": "PFSMM",
+                        "description": "PFSMM"
+                      },
+                      {
+                        "value": "PFS24",
+                        "description": "PFS24"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "name": "DisableClassBasedDefaultRoute",
+              "path": "./Device/Vendor/MSFT/VPNv2/NativeProfile/DisableClassBasedDefaultRoute",
+              "format": "bool",
+              "access": [
+                "Add",
+                "Delete",
+                "Get",
+                "Replace"
+              ],
+              "description": "Specifies the class based default routes. For example, if the interface IP begins with 10, it assumes a class a IP and pushes the route to 10.0.0.0/8",
+              "applicability": {
+                "minOsBuild": "10.0.14393",
+                "cspVersion": "1.2"
+              },
+              "allowedValues": {
+                "type": "ENUM",
+                "enum": [
+                  {
+                    "value": "false",
+                    "description": "Enabled"
+                  },
+                  {
+                    "value": "true",
+                    "description": "Disabled"
+                  }
+                ]
+              }
+            },
+            {
+              "name": "L2tpPsk",
+              "path": "./Device/Vendor/MSFT/VPNv2/NativeProfile/L2tpPsk",
+              "format": "chr",
+              "access": [
+                "Add",
+                "Delete",
+                "Get",
+                "Replace"
+              ],
+              "description": "The preshared key used for an L2TP connection.",
+              "applicability": {
+                "minOsBuild": "10.0.14393",
+                "cspVersion": "1.2"
+              },
+              "allowedValues": {
+                "type": "None"
+              }
+            },
+            {
+              "name": "NativeProtocolType",
+              "path": "./Device/Vendor/MSFT/VPNv2/NativeProfile/NativeProtocolType",
+              "format": "chr",
+              "access": [
+                "Add",
+                "Delete",
+                "Get",
+                "Replace"
+              ],
+              "description": "Required for native profiles. Type of tunneling protocol used.",
+              "applicability": {},
+              "allowedValues": {
+                "type": "ENUM",
+                "enum": [
+                  {
+                    "value": "PPTP",
+                    "description": "PPTP"
+                  },
+                  {
+                    "value": "L2TP",
+                    "description": "L2TP"
+                  },
+                  {
+                    "value": "IKEv2",
+                    "description": "IKEv2"
+                  },
+                  {
+                    "value": "Automatic",
+                    "description": "Automatic"
+                  },
+                  {
+                    "value": "SSTP",
+                    "description": "SSTP"
+                  },
+                  {
+                    "value": "ProtocolList",
+                    "description": "ProtocolList"
+                  }
+                ]
+              }
+            },
+            {
+              "name": "PlumbIKEv2TSAsRoutes",
+              "path": "./Device/Vendor/MSFT/VPNv2/NativeProfile/PlumbIKEv2TSAsRoutes",
+              "format": "bool",
+              "access": [
+                "Add",
+                "Delete",
+                "Get",
+                "Replace"
+              ],
+              "description": "True: Plumb traffic selectors as routes onto VPN interface, False: Do not plumb traffic selectors as routes.",
+              "applicability": {
+                "minOsBuild": "10.0.19041",
+                "cspVersion": "1.3"
+              }
+            },
+            {
+              "name": "ProtocolList",
+              "path": "./Device/Vendor/MSFT/VPNv2/NativeProfile/ProtocolList",
+              "format": "node",
+              "access": [
+                "Get"
+              ],
+              "applicability": {
+                "minOsBuild": "10.0.20207",
+                "cspVersion": "1.4"
+              },
+              "children": [
+                {
+                  "name": "NativeProtocolList",
+                  "path": "./Device/Vendor/MSFT/VPNv2/NativeProfile/ProtocolList/NativeProtocolList",
+                  "format": "node",
+                  "access": [
+                    "Get"
+                  ],
+                  "description": "List of inbox VPN protocols in priority order.",
+                  "applicability": {},
+                  "children": [
+                    {
+                      "name": "",
+                      "path": "./Device/Vendor/MSFT/VPNv2/NativeProfile/ProtocolList/NativeProtocolList/",
+                      "format": "node",
+                      "access": [
+                        "Add",
+                        "Delete",
+                        "Get"
+                      ],
+                      "applicability": {},
+                      "children": [
+                        {
+                          "name": "Type",
+                          "path": "./Device/Vendor/MSFT/VPNv2/NativeProfile/ProtocolList/NativeProtocolList/Type",
+                          "format": "chr",
+                          "access": [
+                            "Add",
+                            "Delete",
+                            "Get",
+                            "Replace"
+                          ],
+                          "description": "Inbox VPN protocols type.",
+                          "applicability": {},
+                          "allowedValues": {
+                            "type": "ENUM",
+                            "enum": [
+                              {
+                                "value": "Pptp",
+                                "description": "Pptp"
+                              },
+                              {
+                                "value": "L2tp",
+                                "description": "L2tp"
+                              },
+                              {
+                                "value": "Ikev2",
+                                "description": "Ikev2"
+                              },
+                              {
+                                "value": "Sstp",
+                                "description": "Sstp"
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "RetryTimeInHours",
+                  "path": "./Device/Vendor/MSFT/VPNv2/NativeProfile/ProtocolList/RetryTimeInHours",
+                  "format": "int",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Default 168, max 500000.",
+                  "applicability": {}
+                }
+              ]
+            },
+            {
+              "name": "RoutingPolicyType",
+              "path": "./Device/Vendor/MSFT/VPNv2/NativeProfile/RoutingPolicyType",
+              "format": "chr",
+              "access": [
+                "Add",
+                "Delete",
+                "Get",
+                "Replace"
+              ],
+              "description": "Type of routing policy.",
+              "applicability": {},
+              "allowedValues": {
+                "type": "ENUM",
+                "enum": [
+                  {
+                    "value": "SplitTunnel",
+                    "description": "Traffic can go over any interface as determined by the networking stack."
+                  },
+                  {
+                    "value": "ForceTunnel",
+                    "description": "All IP traffic must go over the VPN interface."
+                  }
+                ]
+              }
+            },
+            {
+              "name": "Servers",
+              "path": "./Device/Vendor/MSFT/VPNv2/NativeProfile/Servers",
+              "format": "chr",
+              "access": [
+                "Add",
+                "Delete",
+                "Get",
+                "Replace"
+              ],
+              "description": "Required for native profiles. Public or routable IP address or DNS name for the VPN gateway. It can point to the external IP of a gateway or a virtual IP for a server farm. Examples, 208.147.66.130 or vpn.contoso.com. The name can be a server name plus a friendly name separated with a semi-colon. For example, server2.example.com;server2FriendlyName. When you get the value, the return will include both the server name and the friendly name; if no friendly name had been supplied it will default to the server name. You can make a list of server names (with optional friendly names) separated by commas. For example, server1.example.com,server2.example.com. If the user is using the native Windows VPN client, they will then be able to select between servers. Only the chosen server will be used for connections, the options will not be iterated automatically.",
+              "applicability": {}
+            }
+          ]
+        },
+        {
+          "name": "NetworkOutageTime",
+          "path": "./Device/Vendor/MSFT/VPNv2/NetworkOutageTime",
+          "format": "int",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "Optional. For IKEv2 VPN connections only. Specifies the amount of time in seconds the VPN client will wait to notify the network stack if the VPN server becomes unavailable. This allows the VPN connection to survive when the client changes its connectivity, e.g. because of switching from LAN to MBN, or when the client is disconnected for some time, e.g. sitting in a train that runs through a tunnel. It's recommended to set this value between 0 and 28,800 seconds (8 hours).",
+          "applicability": {
+            "minOsBuild": "10.0.22000",
+            "cspVersion": "1.6"
+          },
+          "allowedValues": {
+            "type": "Range"
+          }
+        },
+        {
+          "name": "PluginProfile",
+          "path": "./Device/Vendor/MSFT/VPNv2/PluginProfile",
+          "format": "node",
+          "access": [
+            "Add",
+            "Get"
+          ],
+          "description": "Nodes under the PluginProfile are required when using a Microsoft Store based VPN plugin.",
+          "applicability": {},
+          "children": [
+            {
+              "name": "CustomConfiguration",
+              "path": "./Device/Vendor/MSFT/VPNv2/PluginProfile/CustomConfiguration",
+              "format": "chr",
+              "access": [
+                "Add",
+                "Delete",
+                "Get",
+                "Replace"
+              ],
+              "description": "Optional. This is an HTML encoded XML blob for SSL-VPN plug-in specific configuration including authentication information that is deployed to the device to make it available for SSL-VPN plug-ins. Contact the plugin provider for format and other details. Most plugins can also configure values based on the server negotiations as well as defaults.",
+              "applicability": {},
+              "allowedValues": {
+                "type": "None"
+              }
+            },
+            {
+              "name": "PluginPackageFamilyName",
+              "path": "./Device/Vendor/MSFT/VPNv2/PluginProfile/PluginPackageFamilyName",
+              "format": "chr",
+              "access": [
+                "Add",
+                "Delete",
+                "Get",
+                "Replace"
+              ],
+              "description": "Required for Plugin Profiles. This node specifies the Package Family Name of the SSL-VPN plugin app.",
+              "applicability": {},
+              "allowedValues": {
+                "type": "None"
+              }
+            },
+            {
+              "name": "ServerUrlList",
+              "path": "./Device/Vendor/MSFT/VPNv2/PluginProfile/ServerUrlList",
+              "format": "chr",
+              "access": [
+                "Add",
+                "Delete",
+                "Get",
+                "Replace"
+              ],
+              "description": "Required for plug-in profiles. Semicolon-separated list of servers in URL, hostname, or IP format.",
+              "applicability": {},
+              "allowedValues": {
+                "type": "None"
+              }
+            }
+          ]
+        },
+        {
+          "name": "PrivateNetwork",
+          "path": "./Device/Vendor/MSFT/VPNv2/PrivateNetwork",
+          "format": "bool",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "Determines whether the VPN connection is public or private.",
+          "default": "true",
+          "applicability": {
+            "minOsBuild": "10.0.22000",
+            "cspVersion": "1.6"
+          },
+          "allowedValues": {
+            "type": "ENUM",
+            "enum": [
+              {
+                "value": "false",
+                "description": "VPN connection is public."
+              },
+              {
+                "value": "true",
+                "description": "VPN connection is private."
+              }
+            ]
+          }
+        },
+        {
+          "name": "ProfileXML",
+          "path": "./Device/Vendor/MSFT/VPNv2/ProfileXML",
+          "format": "chr",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "The XML schema for provisioning all the fields of a VPN.",
+          "applicability": {
+            "minOsBuild": "10.0.14393",
+            "cspVersion": "1.2"
+          },
+          "allowedValues": {
+            "type": "XSD"
+          }
+        },
+        {
+          "name": "Proxy",
+          "path": "./Device/Vendor/MSFT/VPNv2/Proxy",
+          "format": "node",
+          "access": [
+            "Get"
+          ],
+          "description": "A collection of configuration objects to enable a post-connect proxy support for VPN. The proxy defined for this profile is applied when this profile is active and connected.",
+          "applicability": {},
+          "children": [
+            {
+              "name": "AutoConfigUrl",
+              "path": "./Device/Vendor/MSFT/VPNv2/Proxy/AutoConfigUrl",
+              "format": "chr",
+              "access": [
+                "Add",
+                "Delete",
+                "Get",
+                "Replace"
+              ],
+              "description": "Optional. Set a URL to automatically retrieve the proxy settings.",
+              "applicability": {},
+              "allowedValues": {
+                "type": "None"
+              }
+            },
+            {
+              "name": "Manual",
+              "path": "./Device/Vendor/MSFT/VPNv2/Proxy/Manual",
+              "format": "node",
+              "access": [
+                "Get"
+              ],
+              "description": "Optional node containing the manual server settings.",
+              "applicability": {},
+              "children": [
+                {
+                  "name": "Server",
+                  "path": "./Device/Vendor/MSFT/VPNv2/Proxy/Manual/Server",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Optional. The value is the proxy server address as a fully qualified hostname or an IP address, with port appended after a colon for example, proxy.constoso.com:80.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "None"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "RegisterDNS",
+          "path": "./Device/Vendor/MSFT/VPNv2/RegisterDNS",
+          "format": "bool",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "Allows registration of the connection's address in DNS.",
+          "default": "false",
+          "applicability": {
+            "minOsBuild": "10.0.16299",
+            "cspVersion": "1.3"
+          },
+          "allowedValues": {
+            "type": "ENUM",
+            "enum": [
+              {
+                "value": "false",
+                "description": "Do not register the connection's address in DNS."
+              },
+              {
+                "value": "true",
+                "description": "Register the connection's addresses in DNS."
+              }
+            ]
+          }
+        },
+        {
+          "name": "RememberCredentials",
+          "path": "./Device/Vendor/MSFT/VPNv2/RememberCredentials",
+          "format": "bool",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "Boolean value (true or false) for caching credentials.",
+          "default": "false",
+          "applicability": {},
+          "allowedValues": {
+            "type": "ENUM",
+            "enum": [
+              {
+                "value": "false",
+                "description": "Do not cache credentials."
+              },
+              {
+                "value": "true",
+                "description": "Credentials are cached whenever possible."
+              }
+            ]
+          }
+        },
+        {
+          "name": "RequireVpnClientAppUI",
+          "path": "./Device/Vendor/MSFT/VPNv2/RequireVpnClientAppUI",
+          "format": "bool",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "Applicable only to AppContainer profiles.\n\n                        False : Do not show profile in Settings UI.\n                        True : Show profile in Settings UI.\n\n                        Optional. This node is only relevant for AppContainer profiles (i.e. using the VpnManagementAgent::AddProfileFromXmlAsync method).",
+          "applicability": {
+            "minOsBuild": "10.0.19628",
+            "cspVersion": "1.4"
+          }
+        },
+        {
+          "name": "RouteList",
+          "path": "./Device/Vendor/MSFT/VPNv2/RouteList",
+          "format": "node",
+          "access": [
+            "Get"
+          ],
+          "description": "List of routes to be added to the Routing table for the VPN Interface. Required in the Split Tunneling case where the VPN Server site has more subnets than the default subnet based on the IP assigned to Interface.",
+          "applicability": {},
+          "children": [
+            {
+              "name": "",
+              "path": "./Device/Vendor/MSFT/VPNv2/RouteList/",
+              "format": "node",
+              "access": [
+                "Add",
+                "Delete",
+                "Get"
+              ],
+              "description": "A sequential integer identifier for the RouteList. This is required if you are adding routes. Sequencing must start at 0.",
+              "applicability": {},
+              "children": [
+                {
+                  "name": "Address",
+                  "path": "./Device/Vendor/MSFT/VPNv2/RouteList/Address",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Subnet address in IPv4/v6 address format which, along with the prefix will be used to determine the destination prefix to send via the VPN Interface. This is the IP address part of the destination prefix.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "None"
+                  }
+                },
+                {
+                  "name": "ExclusionRoute",
+                  "path": "./Device/Vendor/MSFT/VPNv2/RouteList/ExclusionRoute",
+                  "format": "bool",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "A boolean value that specifies if the route being added should point to the VPN Interface or the Physical Interface as the Gateway.",
+                  "default": "false",
+                  "applicability": {
+                    "minOsBuild": "10.0.14393",
+                    "cspVersion": "1.2"
+                  },
+                  "allowedValues": {
+                    "type": "ENUM",
+                    "enum": [
+                      {
+                        "value": "false",
+                        "description": "This route will direct traffic over the VPN."
+                      },
+                      {
+                        "value": "true",
+                        "description": "This route will direct traffic over the physical interface."
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "Metric",
+                  "path": "./Device/Vendor/MSFT/VPNv2/RouteList/Metric",
+                  "format": "int",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "The route's metric.",
+                  "applicability": {
+                    "minOsBuild": "10.0.14393",
+                    "cspVersion": "1.2"
+                  },
+                  "allowedValues": {
+                    "type": "None"
+                  }
+                },
+                {
+                  "name": "PrefixSize",
+                  "path": "./Device/Vendor/MSFT/VPNv2/RouteList/PrefixSize",
+                  "format": "int",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "The subnet prefix size part of the destination prefix for the route entry. This, along with the address will be used to determine the destination prefix to route through the VPN Interface.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "Range"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "TrafficFilterList",
+          "path": "./Device/Vendor/MSFT/VPNv2/TrafficFilterList",
+          "format": "node",
+          "access": [
+            "Get"
+          ],
+          "description": "A list of rules allowing traffic over the VPN Interface. Each Rule ID is OR'ed. Within each rule ID each Filter type is AND'ed.",
+          "applicability": {},
+          "children": [
+            {
+              "name": "",
+              "path": "./Device/Vendor/MSFT/VPNv2/TrafficFilterList/",
+              "format": "node",
+              "access": [
+                "Add",
+                "Delete",
+                "Get"
+              ],
+              "description": "A sequential integer identifier for the Traffic Filter rules. Sequencing must start at 0.",
+              "applicability": {},
+              "children": [
+                {
+                  "name": "App",
+                  "path": "./Device/Vendor/MSFT/VPNv2/TrafficFilterList/App",
+                  "format": "node",
+                  "access": [
+                    "Get"
+                  ],
+                  "description": "Per App VPN Rule. This will Allow only the Apps specified to be allowed over VPN Interface.",
+                  "applicability": {},
+                  "children": [
+                    {
+                      "name": "Id",
+                      "path": "./Device/Vendor/MSFT/VPNv2/TrafficFilterList/App/Id",
+                      "format": "chr",
+                      "access": [
+                        "Add",
+                        "Delete",
+                        "Get",
+                        "Replace"
+                      ],
+                      "description": "App identity for the app-based traffic filter. The value for this node can be one of the following: PackageFamilyName - This App/Id value represents the PackageFamilyName of the app. The PackageFamilyName is the unique name of a Microsoft Store application. FilePath - This App/Id value represents the full file path of the app. For example, C:\\Windows\\System\\Notepad.exe. SYSTEM - This value enables Kernel Drivers to send traffic through VPN (for example, PING or SMB).",
+                      "applicability": {},
+                      "allowedValues": {
+                        "type": "None"
+                      }
+                    },
+                    {
+                      "name": "Type",
+                      "path": "./Device/Vendor/MSFT/VPNv2/TrafficFilterList/App/Type",
+                      "format": "chr",
+                      "access": [
+                        "Get"
+                      ],
+                      "description": "Returns the type of ID of the App/Id. Either PackageFamilyName, FilePath, or System.",
+                      "applicability": {}
+                    }
+                  ]
+                },
+                {
+                  "name": "Claims",
+                  "path": "./Device/Vendor/MSFT/VPNv2/TrafficFilterList/Claims",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Specifies a rule in Security Descriptor Definition Language (SDDL) format to check against local user token.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "None"
+                  }
+                },
+                {
+                  "name": "Direction",
+                  "path": "./Device/Vendor/MSFT/VPNv2/TrafficFilterList/Direction",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Outbound - The traffic filter allows traffic to reach destinations matching this rule. This is the default.\n                                Inbound - The traffic filter allows traffic coming from external locations matching this rule.",
+                  "applicability": {
+                    "minOsBuild": "10.0.19041",
+                    "cspVersion": "1.3"
+                  }
+                },
+                {
+                  "name": "LocalAddressRanges",
+                  "path": "./Device/Vendor/MSFT/VPNv2/TrafficFilterList/LocalAddressRanges",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "A list of comma separated values specifying local IP address ranges to allow.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "None"
+                  }
+                },
+                {
+                  "name": "LocalPortRanges",
+                  "path": "./Device/Vendor/MSFT/VPNv2/TrafficFilterList/LocalPortRanges",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Comma Separated list of ranges for eg. 100-120,200,300-320.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "RegEx"
+                  }
+                },
+                {
+                  "name": "Protocol",
+                  "path": "./Device/Vendor/MSFT/VPNv2/TrafficFilterList/Protocol",
+                  "format": "int",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "0-255 number representing the ip protocol (TCP = 6, UDP = 17).",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "Range"
+                  }
+                },
+                {
+                  "name": "RemoteAddressRanges",
+                  "path": "./Device/Vendor/MSFT/VPNv2/TrafficFilterList/RemoteAddressRanges",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "A list of comma separated values specifying remote IP address ranges to allow.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "None"
+                  }
+                },
+                {
+                  "name": "RemotePortRanges",
+                  "path": "./Device/Vendor/MSFT/VPNv2/TrafficFilterList/RemotePortRanges",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "A list of comma separated values specifying remote port ranges to allow. For example, 100-120, 200, 300-320.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "RegEx"
+                  }
+                },
+                {
+                  "name": "RoutingPolicyType",
+                  "path": "./Device/Vendor/MSFT/VPNv2/TrafficFilterList/RoutingPolicyType",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Specifies the routing policy if an App or Claims type is used in the traffic filter. The scope of this property is for this traffic filter rule alone.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "ENUM",
+                    "enum": [
+                      {
+                        "value": "SplitTunnel",
+                        "description": "For this traffic filter rule, only the traffic meant for the VPN interface (as determined by the networking stack) goes over the interface. Internet traffic can continue to go over the other interfaces."
+                      },
+                      {
+                        "value": "ForceTunnel",
+                        "description": "For this traffic rule all IP traffic must go through the VPN Interface only."
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "TrustedNetworkDetection",
+          "path": "./Device/Vendor/MSFT/VPNv2/TrustedNetworkDetection",
+          "format": "chr",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "Comma separated string to identify the trusted network. VPN will not connect automatically when the user is on their corporate wireless network where protected resources are directly accessible to the device.",
+          "applicability": {},
+          "allowedValues": {
+            "type": "None"
+          }
+        },
+        {
+          "name": "UseRasCredentials",
+          "path": "./Device/Vendor/MSFT/VPNv2/UseRasCredentials",
+          "format": "bool",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "Determines whether the credential manager will save ras credentials after a connection.",
+          "default": "true",
+          "applicability": {
+            "minOsBuild": "10.0.22000",
+            "cspVersion": "1.6"
+          },
+          "allowedValues": {
+            "type": "ENUM",
+            "enum": [
+              {
+                "value": "false",
+                "description": "Ras Credentials are not saved."
+              },
+              {
+                "value": "true",
+                "description": "Ras Credentials are saved."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "",
+      "path": "./Device/Vendor/MSFT/VPNv2/",
+      "format": "node",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Unique alpha numeric identifier for the profile. The profile name must not include a forward slash (/). If the profile name has a space or other non-alphanumeric character, it must be properly escaped according to the URL encoding standard.",
+      "applicability": {},
+      "allowedValues": {
+        "type": "RegEx"
+      },
+      "children": [
+        {
+          "name": "APNBinding",
+          "path": "./Device/Vendor/MSFT/VPNv2/APNBinding",
+          "format": "node",
+          "access": [
+            "Get"
+          ],
+          "description": "Reserved for future use.",
+          "applicability": {},
+          "children": [
+            {
+              "name": "AccessPointName",
+              "path": "./Device/Vendor/MSFT/VPNv2/APNBinding/AccessPointName",
+              "format": "chr",
+              "access": [
+                "Add",
+                "Delete",
+                "Get",
+                "Replace"
+              ],
+              "description": "Reserved for future use.",
+              "applicability": {}
+            },
+            {
+              "name": "AuthenticationType",
+              "path": "./Device/Vendor/MSFT/VPNv2/APNBinding/AuthenticationType",
+              "format": "chr",
+              "access": [
+                "Add",
+                "Delete",
+                "Get",
+                "Replace"
+              ],
+              "description": "Reserved for future use.",
+              "applicability": {}
+            },
+            {
+              "name": "IsCompressionEnabled",
+              "path": "./Device/Vendor/MSFT/VPNv2/APNBinding/IsCompressionEnabled",
+              "format": "bool",
+              "access": [
+                "Add",
+                "Delete",
+                "Get",
+                "Replace"
+              ],
+              "description": "Reserved for future use.",
+              "applicability": {}
+            },
+            {
+              "name": "Password",
+              "path": "./Device/Vendor/MSFT/VPNv2/APNBinding/Password",
+              "format": "chr",
+              "access": [
+                "Add",
+                "Delete",
+                "Get",
+                "Replace"
+              ],
+              "description": "Reserved for future use.",
+              "applicability": {}
+            },
+            {
+              "name": "ProviderId",
+              "path": "./Device/Vendor/MSFT/VPNv2/APNBinding/ProviderId",
+              "format": "chr",
+              "access": [
+                "Add",
+                "Delete",
+                "Get",
+                "Replace"
+              ],
+              "description": "Reserved for future use.",
+              "applicability": {}
+            },
+            {
+              "name": "UserName",
+              "path": "./Device/Vendor/MSFT/VPNv2/APNBinding/UserName",
+              "format": "chr",
+              "access": [
+                "Add",
+                "Delete",
+                "Get",
+                "Replace"
+              ],
+              "description": "Reserved for future use.",
+              "applicability": {}
+            }
+          ]
+        },
+        {
+          "name": "AlwaysOn",
+          "path": "./Device/Vendor/MSFT/VPNv2/AlwaysOn",
+          "format": "bool",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "An optional flag to enable Always On mode. This will automatically connect the VPN at sign-in and will stay connected until the user manually disconnects.",
+          "default": "false",
+          "applicability": {},
+          "allowedValues": {
+            "type": "ENUM",
+            "enum": [
+              {
+                "value": "false",
+                "description": "Always On is turned off."
+              },
+              {
+                "value": "true",
+                "description": "Always On is turned on."
+              }
+            ]
+          }
+        },
+        {
+          "name": "AlwaysOnActive",
+          "path": "./Device/Vendor/MSFT/VPNv2/AlwaysOnActive",
+          "format": "bool",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "An optional flag to activate Always On mode. This is true by default if AlwaysOn is true. Setting controls whether \"Connect Automatically\" is toggled on profile creation.",
+          "default": "1",
+          "applicability": {},
+          "allowedValues": {
+            "type": "ENUM",
+            "enum": [
+              {
+                "value": "0",
+                "description": "Always On is inactive."
+              },
+              {
+                "value": "1",
+                "description": "Always On is activated on provisioning."
+              }
+            ]
+          }
+        },
+        {
+          "name": "AppTriggerList",
+          "path": "./Device/Vendor/MSFT/VPNv2/AppTriggerList",
+          "format": "node",
+          "access": [
+            "Get"
+          ],
+          "description": "List of applications set to trigger the VPN. If any of these apps are launched and the VPN Profile is currently the active Profile, this VPN Profile will be triggered to connect.",
+          "applicability": {},
+          "children": [
+            {
+              "name": "",
+              "path": "./Device/Vendor/MSFT/VPNv2/AppTriggerList/",
+              "format": "node",
+              "access": [
+                "Add",
+                "Delete",
+                "Get"
+              ],
+              "description": "A sequential integer identifier which allows the ability to specify multiple apps for App Trigger. Sequencing must start at 0 and you should not skip numbers.",
+              "applicability": {},
+              "children": [
+                {
+                  "name": "App",
+                  "path": "./Device/Vendor/MSFT/VPNv2/AppTriggerList/App",
+                  "format": "node",
+                  "access": [
+                    "Get"
+                  ],
+                  "description": "App Node under the Row Id.",
+                  "applicability": {},
+                  "children": [
+                    {
+                      "name": "Id",
+                      "path": "./Device/Vendor/MSFT/VPNv2/AppTriggerList/App/Id",
+                      "format": "chr",
+                      "access": [
+                        "Add",
+                        "Delete",
+                        "Get",
+                        "Replace"
+                      ],
+                      "description": "App Identity. Specified, based on the Type Field.",
+                      "applicability": {},
+                      "allowedValues": {
+                        "type": "None"
+                      }
+                    },
+                    {
+                      "name": "Type",
+                      "path": "./Device/Vendor/MSFT/VPNv2/AppTriggerList/App/Type",
+                      "format": "chr",
+                      "access": [
+                        "Get"
+                      ],
+                      "description": "Returns the type of App/Id. This value can be either of the following: PackageFamilyName - When this is returned, the App/Id value represents the PackageFamilyName of the app. The PackageFamilyName is the unique name of the Microsoft Store application. FilePath - When this is returned, the App/Id value represents the full file path of the app. For example, C:\\Windows\\System\\Notepad.exe.",
+                      "applicability": {}
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "ByPassForLocal",
+          "path": "./Device/Vendor/MSFT/VPNv2/ByPassForLocal",
+          "format": "bool",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "Not supported.",
+          "applicability": {}
+        },
+        {
+          "name": "DataEncryption",
+          "path": "./Device/Vendor/MSFT/VPNv2/DataEncryption",
+          "format": "chr",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "Determines the level of data encryption required for the connection.",
+          "default": "Require",
+          "applicability": {
+            "minOsBuild": "10.0.22000",
+            "cspVersion": "1.6"
+          },
+          "allowedValues": {
+            "type": "ENUM",
+            "enum": [
+              {
+                "value": "None",
+                "description": "No Data Encryption required."
+              },
+              {
+                "value": "Require",
+                "description": "Data Encryption required."
+              },
+              {
+                "value": "Max",
+                "description": "Maximum-strength Data Encryption required."
+              },
+              {
+                "value": "Optional",
+                "description": "Perform encryption if possible."
+              }
+            ]
+          }
+        },
+        {
+          "name": "DeviceCompliance",
+          "path": "./Device/Vendor/MSFT/VPNv2/DeviceCompliance",
+          "format": "node",
+          "access": [
+            "Add",
+            "Get"
+          ],
+          "description": "Nodes under DeviceCompliance can be used to enable AAD based Conditional Access for VPN.",
+          "applicability": {
+            "minOsBuild": "10.0.14393",
+            "cspVersion": "1.1"
+          },
+          "children": [
+            {
+              "name": "Enabled",
+              "path": "./Device/Vendor/MSFT/VPNv2/DeviceCompliance/Enabled",
+              "format": "bool",
+              "access": [
+                "Add",
+                "Delete",
+                "Get",
+                "Replace"
+              ],
+              "description": "Enables the Device Compliance flow from the client. If marked as True, the VPN Client will attempt to communicate with AAD to get a certificate to use for authentication. The VPN should be set up to use Certificate Auth and the VPN Server must trust the Server returned by Azure Active Directory.",
+              "applicability": {},
+              "allowedValues": {
+                "type": "ENUM",
+                "enum": [
+                  {
+                    "value": "false",
+                    "description": "Disabled"
+                  },
+                  {
+                    "value": "true",
+                    "description": "Enabled"
+                  }
+                ]
+              }
+            },
+            {
+              "name": "Sso",
+              "path": "./Device/Vendor/MSFT/VPNv2/DeviceCompliance/Sso",
+              "format": "node",
+              "access": [
+                "Add",
+                "Get"
+              ],
+              "description": "Nodes under SSO can be used to choose a certificate different from the VPN Authentication cert for the Kerberos Authentication in the case of Device Compliance.",
+              "applicability": {},
+              "children": [
+                {
+                  "name": "Eku",
+                  "path": "./Device/Vendor/MSFT/VPNv2/DeviceCompliance/Sso/Eku",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Comma Separated list of EKU's for the VPN Client to look for the correct certificate for Kerberos Authentication.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "None"
+                  }
+                },
+                {
+                  "name": "Enabled",
+                  "path": "./Device/Vendor/MSFT/VPNv2/DeviceCompliance/Sso/Enabled",
+                  "format": "bool",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "If this field is set to True the VPN Client will look for a separate certificate for Kerberos Authentication.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "ENUM",
+                    "enum": [
+                      {
+                        "value": "false",
+                        "description": "Disabled"
+                      },
+                      {
+                        "value": "true",
+                        "description": "Enabled"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "IssuerHash",
+                  "path": "./Device/Vendor/MSFT/VPNv2/DeviceCompliance/Sso/IssuerHash",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Comma Separated list of Issuer Hashes for the VPN Client to look for the correct certificate for Kerberos Authentication.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "None"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "DeviceTunnel",
+          "path": "./Device/Vendor/MSFT/VPNv2/DeviceTunnel",
+          "format": "bool",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "If turned on a device tunnel profile does four things.\n                        First, it automatically becomes an always on profile.\n                        Second, it does not require the presence or logging in of any user to the machine in order for it to connect.\n                        Third, no other Device Tunnel profile maybe be present on the same machine.\nA device tunnel profile must be deleted before another device tunnel profile can be added, removed, or connected.",
+          "default": "false",
+          "applicability": {
+            "minOsBuild": "10.0.16299",
+            "cspVersion": "1.3"
+          },
+          "allowedValues": {
+            "type": "ENUM",
+            "enum": [
+              {
+                "value": "false",
+                "description": "This is not a device tunnel profile."
+              },
+              {
+                "value": "true",
+                "description": "This is a device tunnel profile."
+              }
+            ]
+          }
+        },
+        {
+          "name": "DisableAdvancedOptionsEditButton",
+          "path": "./Device/Vendor/MSFT/VPNv2/DisableAdvancedOptionsEditButton",
+          "format": "bool",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "Optional. When this setting is True, the Advanced Options page will have its edit functions disabled, only allowing viewing and Clear Sign-In Info.",
+          "applicability": {
+            "minOsBuild": "10.0.22000",
+            "cspVersion": "1.5"
+          },
+          "allowedValues": {
+            "type": "ENUM",
+            "enum": [
+              {
+                "value": "false",
+                "description": "Advanced Options Edit Button is available."
+              },
+              {
+                "value": "true",
+                "description": "Advanced Options Edit Button is unavailable."
+              }
+            ]
+          }
+        },
+        {
+          "name": "DisableDisconnectButton",
+          "path": "./Device/Vendor/MSFT/VPNv2/DisableDisconnectButton",
+          "format": "bool",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "Optional. When this setting is True, the Disconnect button will not be visible for connected profiles and the 'Connect automatically' checkbox cannot be deselected.",
+          "applicability": {
+            "minOsBuild": "10.0.22000",
+            "cspVersion": "1.5"
+          },
+          "allowedValues": {
+            "type": "ENUM",
+            "enum": [
+              {
+                "value": "false",
+                "description": "Disconnect Button is visible."
+              },
+              {
+                "value": "true",
+                "description": "Disconnect Button is not visible."
+              }
+            ]
+          }
+        },
+        {
+          "name": "DisableIKEv2Fragmentation",
+          "path": "./Device/Vendor/MSFT/VPNv2/DisableIKEv2Fragmentation",
+          "format": "bool",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "Set to disable IKEv2 Fragmentation.",
+          "default": "false",
+          "applicability": {
+            "minOsBuild": "10.0.22000",
+            "cspVersion": "1.6"
+          },
+          "allowedValues": {
+            "type": "ENUM",
+            "enum": [
+              {
+                "value": "true",
+                "description": "IKEv2 Fragmentation will not be used."
+              },
+              {
+                "value": "false",
+                "description": "IKEv2 Fragmentation is used as normal."
+              }
+            ]
+          }
+        },
+        {
+          "name": "DnsSuffix",
+          "path": "./Device/Vendor/MSFT/VPNv2/DnsSuffix",
+          "format": "chr",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "Specifies one or more comma separated DNS suffixes. The first in the list is also used as the primary connection specific DNS suffix for the VPN Interface. The entire list will also be added into the SuffixSearchList.",
+          "applicability": {},
+          "allowedValues": {
+            "type": "None"
+          }
+        },
+        {
+          "name": "DomainNameInformationList",
+          "path": "./Device/Vendor/MSFT/VPNv2/DomainNameInformationList",
+          "format": "node",
+          "access": [
+            "Get"
+          ],
+          "description": "NRPT (Name Resolution Policy Table) Rules for the VPN Profile.",
+          "applicability": {},
+          "children": [
+            {
+              "name": "",
+              "path": "./Device/Vendor/MSFT/VPNv2/DomainNameInformationList/",
+              "format": "node",
+              "access": [
+                "Add",
+                "Delete",
+                "Get"
+              ],
+              "description": "A sequential integer identifier for the Domain Name information. Sequencing must start at 0.",
+              "applicability": {},
+              "children": [
+                {
+                  "name": "AutoTrigger",
+                  "path": "./Device/Vendor/MSFT/VPNv2/DomainNameInformationList/AutoTrigger",
+                  "format": "bool",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Boolean to determine whether this domain name rule will trigger the VPN.",
+                  "default": "false",
+                  "applicability": {
+                    "minOsBuild": "10.0.14393",
+                    "cspVersion": "1.2"
+                  },
+                  "allowedValues": {
+                    "type": "ENUM",
+                    "enum": [
+                      {
+                        "value": "false",
+                        "description": "This DomainName rule will not trigger the VPN."
+                      },
+                      {
+                        "value": "true",
+                        "description": "This DomainName rule will trigger the VPN."
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "DnsServers",
+                  "path": "./Device/Vendor/MSFT/VPNv2/DomainNameInformationList/DnsServers",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Comma Seperated list of IP addresses for the DNS Servers to use for the domain name.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "None"
+                  }
+                },
+                {
+                  "name": "DomainName",
+                  "path": "./Device/Vendor/MSFT/VPNv2/DomainNameInformationList/DomainName",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Used to indicate the namespace to which the policy applies. When a Name query is issued, the DNS client compares the name in the query to all of the namespaces under DomainNameInformationList to find a match. This parameter can be one of the following types: FQDN - Fully qualified domain name. Suffix - A domain suffix that will be appended to the shortname query for DNS resolution. To specify a suffix, prepend a . to the DNS suffix.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "None"
+                  }
+                },
+                {
+                  "name": "DomainNameType",
+                  "path": "./Device/Vendor/MSFT/VPNv2/DomainNameInformationList/DomainNameType",
+                  "format": "chr",
+                  "access": [
+                    "Get"
+                  ],
+                  "description": "Returns the namespace type. This value can be one of the following: FQDN - If the DomainName was not prepended with a . and applies only to the fully qualified domain name (FQDN) of a specified host. Suffix - If the DomainName was prepended with a . and applies to the specified namespace, all records in that namespace, and all subdomains.",
+                  "applicability": {}
+                },
+                {
+                  "name": "Persistent",
+                  "path": "./Device/Vendor/MSFT/VPNv2/DomainNameInformationList/Persistent",
+                  "format": "bool",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "A boolean value that specifies if the rule being added should persist even when the VPN is not connected.",
+                  "default": "false",
+                  "applicability": {
+                    "minOsBuild": "10.0.14393",
+                    "cspVersion": "1.2"
+                  },
+                  "allowedValues": {
+                    "type": "ENUM",
+                    "enum": [
+                      {
+                        "value": "false",
+                        "description": "This DomainName rule will only be applied when VPN is connected."
+                      },
+                      {
+                        "value": "true",
+                        "description": "This DomainName rule will always be present and applied."
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "WebProxyServers",
+                  "path": "./Device/Vendor/MSFT/VPNv2/DomainNameInformationList/WebProxyServers",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Web Proxy Server IP address if you are redirecting traffic through your intranet.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "None"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "EdpModeId",
+          "path": "./Device/Vendor/MSFT/VPNv2/EdpModeId",
+          "format": "chr",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "Enterprise ID, which is required for connecting this VPN profile with an WIP policy. When this is set, the networking stack looks for this Enterprise ID in the app token to determine if the traffic is allowed to go over the VPN. If the profile is active, it also automatically triggers the VPN to connect. We recommend having only one such profile per device.",
+          "applicability": {},
+          "allowedValues": {
+            "type": "None"
+          }
+        },
+        {
+          "name": "IPv4InterfaceMetric",
+          "path": "./Device/Vendor/MSFT/VPNv2/IPv4InterfaceMetric",
+          "format": "int",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "The metric for the IPv4 interface.",
+          "applicability": {
+            "minOsBuild": "10.0.22000",
+            "cspVersion": "1.6"
+          },
+          "allowedValues": {
+            "type": "Range"
+          }
+        },
+        {
+          "name": "IPv6InterfaceMetric",
+          "path": "./Device/Vendor/MSFT/VPNv2/IPv6InterfaceMetric",
+          "format": "int",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "The metric for the IPv6 interface.",
+          "applicability": {
+            "minOsBuild": "10.0.22000",
+            "cspVersion": "1.6"
+          },
+          "allowedValues": {
+            "type": "Range"
+          }
+        },
+        {
+          "name": "NativeProfile",
+          "path": "./Device/Vendor/MSFT/VPNv2/NativeProfile",
+          "format": "node",
+          "access": [
+            "Add",
+            "Get"
+          ],
+          "description": "Nodes under NativeProfile are required when using a Windows Inbox VPN Protocol (IKEv2, PPTP, L2TP, SSTP).",
+          "applicability": {},
+          "children": [
+            {
+              "name": "Authentication",
+              "path": "./Device/Vendor/MSFT/VPNv2/NativeProfile/Authentication",
+              "format": "node",
+              "access": [
+                "Get"
+              ],
+              "description": "Required node for native profile. It contains authentication information for the native VPN profile.",
+              "applicability": {},
+              "children": [
+                {
+                  "name": "Certificate",
+                  "path": "./Device/Vendor/MSFT/VPNv2/NativeProfile/Authentication/Certificate",
+                  "format": "node",
+                  "access": [
+                    "Get"
+                  ],
+                  "description": "Reserved for future use.",
+                  "applicability": {},
+                  "children": [
+                    {
+                      "name": "Eku",
+                      "path": "./Device/Vendor/MSFT/VPNv2/NativeProfile/Authentication/Certificate/Eku",
+                      "format": "chr",
+                      "access": [
+                        "Add",
+                        "Delete",
+                        "Get",
+                        "Replace"
+                      ],
+                      "description": "Reserved for future use.",
+                      "applicability": {}
+                    },
+                    {
+                      "name": "Issuer",
+                      "path": "./Device/Vendor/MSFT/VPNv2/NativeProfile/Authentication/Certificate/Issuer",
+                      "format": "chr",
+                      "access": [
+                        "Add",
+                        "Delete",
+                        "Get",
+                        "Replace"
+                      ],
+                      "description": "Reserved for future use.",
+                      "applicability": {}
+                    }
+                  ]
+                },
+                {
+                  "name": "Eap",
+                  "path": "./Device/Vendor/MSFT/VPNv2/NativeProfile/Authentication/Eap",
+                  "format": "node",
+                  "access": [
+                    "Get"
+                  ],
+                  "description": "Required when the native profile specifies EAP authentication. EAP configuration XML.",
+                  "applicability": {},
+                  "children": [
+                    {
+                      "name": "Configuration",
+                      "path": "./Device/Vendor/MSFT/VPNv2/NativeProfile/Authentication/Eap/Configuration",
+                      "format": "chr",
+                      "access": [
+                        "Add",
+                        "Delete",
+                        "Get",
+                        "Replace"
+                      ],
+                      "description": "HTML encoded XML of the EAP configuration. For more information about EAP configuration XML, see https://docs.microsoft.com/en-us/windows/client-management/mdm/eap-configuration.",
+                      "applicability": {},
+                      "allowedValues": {
+                        "type": "None"
+                      }
+                    },
+                    {
+                      "name": "Type",
+                      "path": "./Device/Vendor/MSFT/VPNv2/NativeProfile/Authentication/Eap/Type",
+                      "format": "int",
+                      "access": [
+                        "Add",
+                        "Delete",
+                        "Get",
+                        "Replace"
+                      ],
+                      "description": "Required node for EAP profiles. This specifies the EAP Type ID\n                      13 = EAP-TLS\n                      26 = Ms-Chapv2\n                      27 = Peap",
+                      "applicability": {},
+                      "allowedValues": {
+                        "type": "None"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "MachineMethod",
+                  "path": "./Device/Vendor/MSFT/VPNv2/NativeProfile/Authentication/MachineMethod",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "This is only supported in IKEv2.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "ENUM",
+                    "enum": [
+                      {
+                        "value": "Certificate",
+                        "description": "Certificate"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "UserMethod",
+                  "path": "./Device/Vendor/MSFT/VPNv2/NativeProfile/Authentication/UserMethod",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Type of user authentication.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "ENUM",
+                    "enum": [
+                      {
+                        "value": "EAP",
+                        "description": "EAP"
+                      },
+                      {
+                        "value": "MSChapv2",
+                        "description": "MSChapv2: This is not supported for IKEv2"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "name": "CryptographySuite",
+              "path": "./Device/Vendor/MSFT/VPNv2/NativeProfile/CryptographySuite",
+              "format": "node",
+              "access": [
+                "Get"
+              ],
+              "description": "Properties of IPSec tunnels.",
+              "applicability": {
+                "minOsBuild": "10.0.14393",
+                "cspVersion": "1.2"
+              },
+              "children": [
+                {
+                  "name": "AuthenticationTransformConstants",
+                  "path": "./Device/Vendor/MSFT/VPNv2/NativeProfile/CryptographySuite/AuthenticationTransformConstants",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Type of authentication transform constant.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "ENUM",
+                    "enum": [
+                      {
+                        "value": "MD596",
+                        "description": "MD596"
+                      },
+                      {
+                        "value": "SHA196",
+                        "description": "SHA196"
+                      },
+                      {
+                        "value": "SHA256128",
+                        "description": "SHA256128"
+                      },
+                      {
+                        "value": "GCMAES128",
+                        "description": "GCMAES128"
+                      },
+                      {
+                        "value": "GCMAES192",
+                        "description": "GCMAES192"
+                      },
+                      {
+                        "value": "GCMAES256",
+                        "description": "GCMAES256"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "CipherTransformConstants",
+                  "path": "./Device/Vendor/MSFT/VPNv2/NativeProfile/CryptographySuite/CipherTransformConstants",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Type of Cipher transform constant.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "ENUM",
+                    "enum": [
+                      {
+                        "value": "DES",
+                        "description": "DES"
+                      },
+                      {
+                        "value": "DES3",
+                        "description": "DES3"
+                      },
+                      {
+                        "value": "AES128",
+                        "description": "AES128"
+                      },
+                      {
+                        "value": "AES192",
+                        "description": "AES192"
+                      },
+                      {
+                        "value": "AES256",
+                        "description": "AES256"
+                      },
+                      {
+                        "value": "GCMAES128",
+                        "description": "GCMAES128"
+                      },
+                      {
+                        "value": "GCMAES192",
+                        "description": "GCMAES192"
+                      },
+                      {
+                        "value": "GCMAES256",
+                        "description": "GCMAES256"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "DHGroup",
+                  "path": "./Device/Vendor/MSFT/VPNv2/NativeProfile/CryptographySuite/DHGroup",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Group used for DH (Diffie-Hellman).",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "ENUM",
+                    "enum": [
+                      {
+                        "value": "None",
+                        "description": "None"
+                      },
+                      {
+                        "value": "Group1",
+                        "description": "Group1"
+                      },
+                      {
+                        "value": "Group2",
+                        "description": "Group2"
+                      },
+                      {
+                        "value": "Group14",
+                        "description": "Group14"
+                      },
+                      {
+                        "value": "ECP256",
+                        "description": "ECP256"
+                      },
+                      {
+                        "value": "ECP384",
+                        "description": "ECP384"
+                      },
+                      {
+                        "value": "Group24",
+                        "description": "Group24"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "EncryptionMethod",
+                  "path": "./Device/Vendor/MSFT/VPNv2/NativeProfile/CryptographySuite/EncryptionMethod",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Type of encryption method.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "ENUM",
+                    "enum": [
+                      {
+                        "value": "DES",
+                        "description": "DES"
+                      },
+                      {
+                        "value": "DES3",
+                        "description": "DES3"
+                      },
+                      {
+                        "value": "AES128",
+                        "description": "AES128"
+                      },
+                      {
+                        "value": "AES192",
+                        "description": "AES192"
+                      },
+                      {
+                        "value": "AES256",
+                        "description": "AES256"
+                      },
+                      {
+                        "value": "AES_GCM_128",
+                        "description": "AES_GCM_128"
+                      },
+                      {
+                        "value": "AES_GCM_256",
+                        "description": "AES_GCM_256"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "IntegrityCheckMethod",
+                  "path": "./Device/Vendor/MSFT/VPNv2/NativeProfile/CryptographySuite/IntegrityCheckMethod",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Type of integrity check.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "ENUM",
+                    "enum": [
+                      {
+                        "value": "MD5",
+                        "description": "MD5"
+                      },
+                      {
+                        "value": "SHA196",
+                        "description": "SHA196"
+                      },
+                      {
+                        "value": "SHA256",
+                        "description": "SHA256"
+                      },
+                      {
+                        "value": "SHA384",
+                        "description": "SHA384"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "PfsGroup",
+                  "path": "./Device/Vendor/MSFT/VPNv2/NativeProfile/CryptographySuite/PfsGroup",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Group used for PFS (Perfect Forward Secrecy).",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "ENUM",
+                    "enum": [
+                      {
+                        "value": "None",
+                        "description": "None"
+                      },
+                      {
+                        "value": "PFS1",
+                        "description": "PFS1"
+                      },
+                      {
+                        "value": "PFS2",
+                        "description": "PFS2"
+                      },
+                      {
+                        "value": "PFS2048",
+                        "description": "PFS2048"
+                      },
+                      {
+                        "value": "ECP256",
+                        "description": "ECP256"
+                      },
+                      {
+                        "value": "ECP384",
+                        "description": "ECP384"
+                      },
+                      {
+                        "value": "PFSMM",
+                        "description": "PFSMM"
+                      },
+                      {
+                        "value": "PFS24",
+                        "description": "PFS24"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "name": "DisableClassBasedDefaultRoute",
+              "path": "./Device/Vendor/MSFT/VPNv2/NativeProfile/DisableClassBasedDefaultRoute",
+              "format": "bool",
+              "access": [
+                "Add",
+                "Delete",
+                "Get",
+                "Replace"
+              ],
+              "description": "Specifies the class based default routes. For example, if the interface IP begins with 10, it assumes a class a IP and pushes the route to 10.0.0.0/8",
+              "applicability": {
+                "minOsBuild": "10.0.14393",
+                "cspVersion": "1.2"
+              },
+              "allowedValues": {
+                "type": "ENUM",
+                "enum": [
+                  {
+                    "value": "false",
+                    "description": "Enabled"
+                  },
+                  {
+                    "value": "true",
+                    "description": "Disabled"
+                  }
+                ]
+              }
+            },
+            {
+              "name": "L2tpPsk",
+              "path": "./Device/Vendor/MSFT/VPNv2/NativeProfile/L2tpPsk",
+              "format": "chr",
+              "access": [
+                "Add",
+                "Delete",
+                "Get",
+                "Replace"
+              ],
+              "description": "The preshared key used for an L2TP connection.",
+              "applicability": {
+                "minOsBuild": "10.0.14393",
+                "cspVersion": "1.2"
+              },
+              "allowedValues": {
+                "type": "None"
+              }
+            },
+            {
+              "name": "NativeProtocolType",
+              "path": "./Device/Vendor/MSFT/VPNv2/NativeProfile/NativeProtocolType",
+              "format": "chr",
+              "access": [
+                "Add",
+                "Delete",
+                "Get",
+                "Replace"
+              ],
+              "description": "Required for native profiles. Type of tunneling protocol used.",
+              "applicability": {},
+              "allowedValues": {
+                "type": "ENUM",
+                "enum": [
+                  {
+                    "value": "PPTP",
+                    "description": "PPTP"
+                  },
+                  {
+                    "value": "L2TP",
+                    "description": "L2TP"
+                  },
+                  {
+                    "value": "IKEv2",
+                    "description": "IKEv2"
+                  },
+                  {
+                    "value": "Automatic",
+                    "description": "Automatic"
+                  },
+                  {
+                    "value": "SSTP",
+                    "description": "SSTP"
+                  },
+                  {
+                    "value": "ProtocolList",
+                    "description": "ProtocolList"
+                  }
+                ]
+              }
+            },
+            {
+              "name": "PlumbIKEv2TSAsRoutes",
+              "path": "./Device/Vendor/MSFT/VPNv2/NativeProfile/PlumbIKEv2TSAsRoutes",
+              "format": "bool",
+              "access": [
+                "Add",
+                "Delete",
+                "Get",
+                "Replace"
+              ],
+              "description": "True: Plumb traffic selectors as routes onto VPN interface, False: Do not plumb traffic selectors as routes.",
+              "applicability": {
+                "minOsBuild": "10.0.19041",
+                "cspVersion": "1.3"
+              }
+            },
+            {
+              "name": "ProtocolList",
+              "path": "./Device/Vendor/MSFT/VPNv2/NativeProfile/ProtocolList",
+              "format": "node",
+              "access": [
+                "Get"
+              ],
+              "applicability": {
+                "minOsBuild": "10.0.20207",
+                "cspVersion": "1.4"
+              },
+              "children": [
+                {
+                  "name": "NativeProtocolList",
+                  "path": "./Device/Vendor/MSFT/VPNv2/NativeProfile/ProtocolList/NativeProtocolList",
+                  "format": "node",
+                  "access": [
+                    "Get"
+                  ],
+                  "description": "List of inbox VPN protocols in priority order.",
+                  "applicability": {},
+                  "children": [
+                    {
+                      "name": "",
+                      "path": "./Device/Vendor/MSFT/VPNv2/NativeProfile/ProtocolList/NativeProtocolList/",
+                      "format": "node",
+                      "access": [
+                        "Add",
+                        "Delete",
+                        "Get"
+                      ],
+                      "applicability": {},
+                      "children": [
+                        {
+                          "name": "Type",
+                          "path": "./Device/Vendor/MSFT/VPNv2/NativeProfile/ProtocolList/NativeProtocolList/Type",
+                          "format": "chr",
+                          "access": [
+                            "Add",
+                            "Delete",
+                            "Get",
+                            "Replace"
+                          ],
+                          "description": "Inbox VPN protocols type.",
+                          "applicability": {},
+                          "allowedValues": {
+                            "type": "ENUM",
+                            "enum": [
+                              {
+                                "value": "Pptp",
+                                "description": "Pptp"
+                              },
+                              {
+                                "value": "L2tp",
+                                "description": "L2tp"
+                              },
+                              {
+                                "value": "Ikev2",
+                                "description": "Ikev2"
+                              },
+                              {
+                                "value": "Sstp",
+                                "description": "Sstp"
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "RetryTimeInHours",
+                  "path": "./Device/Vendor/MSFT/VPNv2/NativeProfile/ProtocolList/RetryTimeInHours",
+                  "format": "int",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Default 168, max 500000.",
+                  "applicability": {}
+                }
+              ]
+            },
+            {
+              "name": "RoutingPolicyType",
+              "path": "./Device/Vendor/MSFT/VPNv2/NativeProfile/RoutingPolicyType",
+              "format": "chr",
+              "access": [
+                "Add",
+                "Delete",
+                "Get",
+                "Replace"
+              ],
+              "description": "Type of routing policy.",
+              "applicability": {},
+              "allowedValues": {
+                "type": "ENUM",
+                "enum": [
+                  {
+                    "value": "SplitTunnel",
+                    "description": "Traffic can go over any interface as determined by the networking stack."
+                  },
+                  {
+                    "value": "ForceTunnel",
+                    "description": "All IP traffic must go over the VPN interface."
+                  }
+                ]
+              }
+            },
+            {
+              "name": "Servers",
+              "path": "./Device/Vendor/MSFT/VPNv2/NativeProfile/Servers",
+              "format": "chr",
+              "access": [
+                "Add",
+                "Delete",
+                "Get",
+                "Replace"
+              ],
+              "description": "Required for native profiles. Public or routable IP address or DNS name for the VPN gateway. It can point to the external IP of a gateway or a virtual IP for a server farm. Examples, 208.147.66.130 or vpn.contoso.com. The name can be a server name plus a friendly name separated with a semi-colon. For example, server2.example.com;server2FriendlyName. When you get the value, the return will include both the server name and the friendly name; if no friendly name had been supplied it will default to the server name. You can make a list of server names (with optional friendly names) separated by commas. For example, server1.example.com,server2.example.com. If the user is using the native Windows VPN client, they will then be able to select between servers. Only the chosen server will be used for connections, the options will not be iterated automatically.",
+              "applicability": {}
+            }
+          ]
+        },
+        {
+          "name": "NetworkOutageTime",
+          "path": "./Device/Vendor/MSFT/VPNv2/NetworkOutageTime",
+          "format": "int",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "Optional. For IKEv2 VPN connections only. Specifies the amount of time in seconds the VPN client will wait to notify the network stack if the VPN server becomes unavailable. This allows the VPN connection to survive when the client changes its connectivity, e.g. because of switching from LAN to MBN, or when the client is disconnected for some time, e.g. sitting in a train that runs through a tunnel. It's recommended to set this value between 0 and 28,800 seconds (8 hours).",
+          "applicability": {
+            "minOsBuild": "10.0.22000",
+            "cspVersion": "1.6"
+          },
+          "allowedValues": {
+            "type": "Range"
+          }
+        },
+        {
+          "name": "PluginProfile",
+          "path": "./Device/Vendor/MSFT/VPNv2/PluginProfile",
+          "format": "node",
+          "access": [
+            "Add",
+            "Get"
+          ],
+          "description": "Nodes under the PluginProfile are required when using a Microsoft Store based VPN plugin.",
+          "applicability": {},
+          "children": [
+            {
+              "name": "CustomConfiguration",
+              "path": "./Device/Vendor/MSFT/VPNv2/PluginProfile/CustomConfiguration",
+              "format": "chr",
+              "access": [
+                "Add",
+                "Delete",
+                "Get",
+                "Replace"
+              ],
+              "description": "Optional. This is an HTML encoded XML blob for SSL-VPN plug-in specific configuration including authentication information that is deployed to the device to make it available for SSL-VPN plug-ins. Contact the plugin provider for format and other details. Most plugins can also configure values based on the server negotiations as well as defaults.",
+              "applicability": {},
+              "allowedValues": {
+                "type": "None"
+              }
+            },
+            {
+              "name": "PluginPackageFamilyName",
+              "path": "./Device/Vendor/MSFT/VPNv2/PluginProfile/PluginPackageFamilyName",
+              "format": "chr",
+              "access": [
+                "Add",
+                "Delete",
+                "Get",
+                "Replace"
+              ],
+              "description": "Required for Plugin Profiles. This node specifies the Package Family Name of the SSL-VPN plugin app.",
+              "applicability": {},
+              "allowedValues": {
+                "type": "None"
+              }
+            },
+            {
+              "name": "ServerUrlList",
+              "path": "./Device/Vendor/MSFT/VPNv2/PluginProfile/ServerUrlList",
+              "format": "chr",
+              "access": [
+                "Add",
+                "Delete",
+                "Get",
+                "Replace"
+              ],
+              "description": "Required for plug-in profiles. Semicolon-separated list of servers in URL, hostname, or IP format.",
+              "applicability": {},
+              "allowedValues": {
+                "type": "None"
+              }
+            }
+          ]
+        },
+        {
+          "name": "PrivateNetwork",
+          "path": "./Device/Vendor/MSFT/VPNv2/PrivateNetwork",
+          "format": "bool",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "Determines whether the VPN connection is public or private.",
+          "default": "true",
+          "applicability": {
+            "minOsBuild": "10.0.22000",
+            "cspVersion": "1.6"
+          },
+          "allowedValues": {
+            "type": "ENUM",
+            "enum": [
+              {
+                "value": "false",
+                "description": "VPN connection is public."
+              },
+              {
+                "value": "true",
+                "description": "VPN connection is private."
+              }
+            ]
+          }
+        },
+        {
+          "name": "ProfileXML",
+          "path": "./Device/Vendor/MSFT/VPNv2/ProfileXML",
+          "format": "chr",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "The XML schema for provisioning all the fields of a VPN.",
+          "applicability": {
+            "minOsBuild": "10.0.14393",
+            "cspVersion": "1.2"
+          },
+          "allowedValues": {
+            "type": "XSD"
+          }
+        },
+        {
+          "name": "Proxy",
+          "path": "./Device/Vendor/MSFT/VPNv2/Proxy",
+          "format": "node",
+          "access": [
+            "Get"
+          ],
+          "description": "A collection of configuration objects to enable a post-connect proxy support for VPN. The proxy defined for this profile is applied when this profile is active and connected.",
+          "applicability": {},
+          "children": [
+            {
+              "name": "AutoConfigUrl",
+              "path": "./Device/Vendor/MSFT/VPNv2/Proxy/AutoConfigUrl",
+              "format": "chr",
+              "access": [
+                "Add",
+                "Delete",
+                "Get",
+                "Replace"
+              ],
+              "description": "Optional. Set a URL to automatically retrieve the proxy settings.",
+              "applicability": {},
+              "allowedValues": {
+                "type": "None"
+              }
+            },
+            {
+              "name": "Manual",
+              "path": "./Device/Vendor/MSFT/VPNv2/Proxy/Manual",
+              "format": "node",
+              "access": [
+                "Get"
+              ],
+              "description": "Optional node containing the manual server settings.",
+              "applicability": {},
+              "children": [
+                {
+                  "name": "Server",
+                  "path": "./Device/Vendor/MSFT/VPNv2/Proxy/Manual/Server",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Optional. The value is the proxy server address as a fully qualified hostname or an IP address, with port appended after a colon for example, proxy.constoso.com:80.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "None"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "RegisterDNS",
+          "path": "./Device/Vendor/MSFT/VPNv2/RegisterDNS",
+          "format": "bool",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "Allows registration of the connection's address in DNS.",
+          "default": "false",
+          "applicability": {
+            "minOsBuild": "10.0.16299",
+            "cspVersion": "1.3"
+          },
+          "allowedValues": {
+            "type": "ENUM",
+            "enum": [
+              {
+                "value": "false",
+                "description": "Do not register the connection's address in DNS."
+              },
+              {
+                "value": "true",
+                "description": "Register the connection's addresses in DNS."
+              }
+            ]
+          }
+        },
+        {
+          "name": "RememberCredentials",
+          "path": "./Device/Vendor/MSFT/VPNv2/RememberCredentials",
+          "format": "bool",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "Boolean value (true or false) for caching credentials.",
+          "default": "false",
+          "applicability": {},
+          "allowedValues": {
+            "type": "ENUM",
+            "enum": [
+              {
+                "value": "false",
+                "description": "Do not cache credentials."
+              },
+              {
+                "value": "true",
+                "description": "Credentials are cached whenever possible."
+              }
+            ]
+          }
+        },
+        {
+          "name": "RouteList",
+          "path": "./Device/Vendor/MSFT/VPNv2/RouteList",
+          "format": "node",
+          "access": [
+            "Get"
+          ],
+          "description": "List of routes to be added to the Routing table for the VPN Interface. Required in the Split Tunneling case where the VPN Server site has more subnets than the default subnet based on the IP assigned to Interface.",
+          "applicability": {},
+          "children": [
+            {
+              "name": "",
+              "path": "./Device/Vendor/MSFT/VPNv2/RouteList/",
+              "format": "node",
+              "access": [
+                "Add",
+                "Delete",
+                "Get"
+              ],
+              "description": "A sequential integer identifier for the RouteList. This is required if you are adding routes. Sequencing must start at 0.",
+              "applicability": {},
+              "children": [
+                {
+                  "name": "Address",
+                  "path": "./Device/Vendor/MSFT/VPNv2/RouteList/Address",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Subnet address in IPv4/v6 address format which, along with the prefix will be used to determine the destination prefix to send via the VPN Interface. This is the IP address part of the destination prefix.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "None"
+                  }
+                },
+                {
+                  "name": "ExclusionRoute",
+                  "path": "./Device/Vendor/MSFT/VPNv2/RouteList/ExclusionRoute",
+                  "format": "bool",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "A boolean value that specifies if the route being added should point to the VPN Interface or the Physical Interface as the Gateway.",
+                  "default": "false",
+                  "applicability": {
+                    "minOsBuild": "10.0.14393",
+                    "cspVersion": "1.2"
+                  },
+                  "allowedValues": {
+                    "type": "ENUM",
+                    "enum": [
+                      {
+                        "value": "false",
+                        "description": "This route will direct traffic over the VPN."
+                      },
+                      {
+                        "value": "true",
+                        "description": "This route will direct traffic over the physical interface."
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "Metric",
+                  "path": "./Device/Vendor/MSFT/VPNv2/RouteList/Metric",
+                  "format": "int",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "The route's metric.",
+                  "applicability": {
+                    "minOsBuild": "10.0.14393",
+                    "cspVersion": "1.2"
+                  },
+                  "allowedValues": {
+                    "type": "None"
+                  }
+                },
+                {
+                  "name": "PrefixSize",
+                  "path": "./Device/Vendor/MSFT/VPNv2/RouteList/PrefixSize",
+                  "format": "int",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "The subnet prefix size part of the destination prefix for the route entry. This, along with the address will be used to determine the destination prefix to route through the VPN Interface.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "Range"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "TrafficFilterList",
+          "path": "./Device/Vendor/MSFT/VPNv2/TrafficFilterList",
+          "format": "node",
+          "access": [
+            "Get"
+          ],
+          "description": "A list of rules allowing traffic over the VPN Interface. Each Rule ID is OR'ed. Within each rule ID each Filter type is AND'ed.",
+          "applicability": {},
+          "children": [
+            {
+              "name": "",
+              "path": "./Device/Vendor/MSFT/VPNv2/TrafficFilterList/",
+              "format": "node",
+              "access": [
+                "Add",
+                "Delete",
+                "Get"
+              ],
+              "description": "A sequential integer identifier for the Traffic Filter rules. Sequencing must start at 0.",
+              "applicability": {},
+              "children": [
+                {
+                  "name": "App",
+                  "path": "./Device/Vendor/MSFT/VPNv2/TrafficFilterList/App",
+                  "format": "node",
+                  "access": [
+                    "Get"
+                  ],
+                  "description": "Per App VPN Rule. This will Allow only the Apps specified to be allowed over VPN Interface",
+                  "applicability": {},
+                  "children": [
+                    {
+                      "name": "Id",
+                      "path": "./Device/Vendor/MSFT/VPNv2/TrafficFilterList/App/Id",
+                      "format": "chr",
+                      "access": [
+                        "Add",
+                        "Delete",
+                        "Get",
+                        "Replace"
+                      ],
+                      "description": "App identity for the app-based traffic filter. The value for this node can be one of the following: PackageFamilyName - This App/Id value represents the PackageFamilyName of the app. The PackageFamilyName is the unique name of a Microsoft Store application. FilePath - This App/Id value represents the full file path of the app. For example, C:\\Windows\\System\\Notepad.exe. SYSTEM - This value enables Kernel Drivers to send traffic through VPN (for example, PING or SMB).",
+                      "applicability": {},
+                      "allowedValues": {
+                        "type": "None"
+                      }
+                    },
+                    {
+                      "name": "Type",
+                      "path": "./Device/Vendor/MSFT/VPNv2/TrafficFilterList/App/Type",
+                      "format": "chr",
+                      "access": [
+                        "Get"
+                      ],
+                      "description": "Returns the type of ID of the App/Id. Either PackageFamilyName, FilePath, or System.",
+                      "applicability": {}
+                    }
+                  ]
+                },
+                {
+                  "name": "Claims",
+                  "path": "./Device/Vendor/MSFT/VPNv2/TrafficFilterList/Claims",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Specifies a rule in Security Descriptor Definition Language (SDDL) format to check against local user token.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "None"
+                  }
+                },
+                {
+                  "name": "Direction",
+                  "path": "./Device/Vendor/MSFT/VPNv2/TrafficFilterList/Direction",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Outbound - The traffic filter allows traffic to reach destinations matching this rule. This is the default.\n                                Inbound - The traffic filter allows traffic coming from external locations matching this rule.",
+                  "applicability": {
+                    "minOsBuild": "10.0.19041",
+                    "cspVersion": "1.3"
+                  }
+                },
+                {
+                  "name": "LocalAddressRanges",
+                  "path": "./Device/Vendor/MSFT/VPNv2/TrafficFilterList/LocalAddressRanges",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "A list of comma separated values specifying local IP address ranges to allow.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "None"
+                  }
+                },
+                {
+                  "name": "LocalPortRanges",
+                  "path": "./Device/Vendor/MSFT/VPNv2/TrafficFilterList/LocalPortRanges",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Comma Separated list of ranges for eg. 100-120,200,300-320.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "RegEx"
+                  }
+                },
+                {
+                  "name": "Protocol",
+                  "path": "./Device/Vendor/MSFT/VPNv2/TrafficFilterList/Protocol",
+                  "format": "int",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "0-255 number representing the ip protocol (TCP = 6, UDP = 17).",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "Range"
+                  }
+                },
+                {
+                  "name": "RemoteAddressRanges",
+                  "path": "./Device/Vendor/MSFT/VPNv2/TrafficFilterList/RemoteAddressRanges",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "A list of comma separated values specifying remote IP address ranges to allow.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "None"
+                  }
+                },
+                {
+                  "name": "RemotePortRanges",
+                  "path": "./Device/Vendor/MSFT/VPNv2/TrafficFilterList/RemotePortRanges",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "A list of comma separated values specifying remote port ranges to allow. For example, 100-120, 200, 300-320.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "RegEx"
+                  }
+                },
+                {
+                  "name": "RoutingPolicyType",
+                  "path": "./Device/Vendor/MSFT/VPNv2/TrafficFilterList/RoutingPolicyType",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Specifies the routing policy if an App or Claims type is used in the traffic filter. The scope of this property is for this traffic filter rule alone.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "ENUM",
+                    "enum": [
+                      {
+                        "value": "SplitTunnel",
+                        "description": "For this traffic filter rule, only the traffic meant for the VPN interface (as determined by the networking stack) goes over the interface. Internet traffic can continue to go over the other interfaces."
+                      },
+                      {
+                        "value": "ForceTunnel",
+                        "description": "For this traffic rule all IP traffic must go through the VPN Interface only."
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "TrustedNetworkDetection",
+          "path": "./Device/Vendor/MSFT/VPNv2/TrustedNetworkDetection",
+          "format": "chr",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "Comma separated string to identify the trusted network. VPN will not connect automatically when the user is on their corporate wireless network where protected resources are directly accessible to the device.",
+          "applicability": {},
+          "allowedValues": {
+            "type": "None"
+          }
+        },
+        {
+          "name": "UseRasCredentials",
+          "path": "./Device/Vendor/MSFT/VPNv2/UseRasCredentials",
+          "format": "bool",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "Determines whether the credential manager will save ras credentials after a connection.",
+          "default": "true",
+          "applicability": {
+            "minOsBuild": "10.0.22000",
+            "cspVersion": "1.6"
+          },
+          "allowedValues": {
+            "type": "ENUM",
+            "enum": [
+              {
+                "value": "false",
+                "description": "Ras Credentials are not saved."
+              },
+              {
+                "value": "true",
+                "description": "Ras Credentials are saved."
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

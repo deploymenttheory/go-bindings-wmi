@@ -1,0 +1,112 @@
+{
+  "name": "EnterpriseCloudPrint",
+  "path": "./User/Vendor/MSFT/Policy/Config",
+  "nodes": [
+    {
+      "name": "CloudPrintOAuthAuthority",
+      "path": "./User/Vendor/MSFT/Policy/Config/EnterpriseCloudPrint/CloudPrintOAuthAuthority",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Authentication endpoint for acquiring OAuth tokens",
+      "applicability": {
+        "minOsBuild": "10.0.15063",
+        "cspVersion": "5.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      }
+    },
+    {
+      "name": "CloudPrintOAuthClientId",
+      "path": "./User/Vendor/MSFT/Policy/Config/EnterpriseCloudPrint/CloudPrintOAuthClientId",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "A GUID identifying the client application authorized to retrieve OAuth tokens from the OAuthAuthority",
+      "applicability": {
+        "minOsBuild": "10.0.15063",
+        "cspVersion": "5.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      }
+    },
+    {
+      "name": "CloudPrintResourceId",
+      "path": "./User/Vendor/MSFT/Policy/Config/EnterpriseCloudPrint/CloudPrintResourceId",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Resource URI for which access is being requested by the Enterprise Cloud Print client during OAuth authentication",
+      "applicability": {
+        "minOsBuild": "10.0.15063",
+        "cspVersion": "5.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      }
+    },
+    {
+      "name": "CloudPrinterDiscoveryEndPoint",
+      "path": "./User/Vendor/MSFT/Policy/Config/EnterpriseCloudPrint/CloudPrinterDiscoveryEndPoint",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This policy provisions per-user discovery end point to discover cloud printers",
+      "applicability": {
+        "minOsBuild": "10.0.15063",
+        "cspVersion": "5.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      }
+    },
+    {
+      "name": "DiscoveryMaxPrinterLimit",
+      "path": "./User/Vendor/MSFT/Policy/Config/EnterpriseCloudPrint/DiscoveryMaxPrinterLimit",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Defines the maximum number of printers that should be queried from discovery end point",
+      "default": "20",
+      "applicability": {
+        "minOsBuild": "10.0.15063",
+        "cspVersion": "5.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "Range"
+      }
+    },
+    {
+      "name": "MopriaDiscoveryResourceId",
+      "path": "./User/Vendor/MSFT/Policy/Config/EnterpriseCloudPrint/MopriaDiscoveryResourceId",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Resource URI for which access is being requested by the Mopria discovery client during OAuth authentication",
+      "applicability": {
+        "minOsBuild": "10.0.15063",
+        "cspVersion": "5.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      }
+    }
+  ]
+}

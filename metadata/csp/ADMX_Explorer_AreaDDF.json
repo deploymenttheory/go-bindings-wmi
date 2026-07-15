@@ -1,0 +1,126 @@
+{
+  "name": "ADMX_Explorer",
+  "path": "./Device/Vendor/MSFT/Policy/Config",
+  "nodes": [
+    {
+      "name": "AdminInfoUrl",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_Explorer/AdminInfoUrl",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Explorer~AT~WindowsComponents~WindowsExplorer",
+          "name": "AdminInfoUrl",
+          "file": "Explorer.admx"
+        }
+      }
+    },
+    {
+      "name": "AlwaysShowClassicMenu",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_Explorer/AlwaysShowClassicMenu",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Explorer~AT~WindowsComponents~WindowsExplorer",
+          "name": "AlwaysShowClassicMenu",
+          "file": "Explorer.admx"
+        }
+      }
+    },
+    {
+      "name": "DisableRoamedProfileInit",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_Explorer/DisableRoamedProfileInit",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Explorer~AT~WindowsComponents~WindowsExplorer",
+          "name": "DisableRoamedProfileInit",
+          "file": "Explorer.admx"
+        }
+      }
+    },
+    {
+      "name": "PreventItemCreationInUsersFilesFolder",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_Explorer/PreventItemCreationInUsersFilesFolder",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Explorer~AT~WindowsComponents~WindowsExplorer",
+          "name": "PreventItemCreationInUsersFilesFolder",
+          "file": "Explorer.admx"
+        }
+      }
+    },
+    {
+      "name": "TurnOffSPIAnimations",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_Explorer/TurnOffSPIAnimations",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "Explorer~AT~WindowsComponents~WindowsExplorer",
+          "name": "TurnOffSPIAnimations",
+          "file": "Explorer.admx"
+        }
+      }
+    }
+  ]
+}

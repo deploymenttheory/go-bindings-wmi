@@ -1,0 +1,302 @@
+{
+  "name": "Display",
+  "path": "./Device/Vendor/MSFT/Policy/Config",
+  "nodes": [
+    {
+      "name": "ConfigureMultipleDisplayMode",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Display/ConfigureMultipleDisplayMode",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Set the default display arrangement as clone, extend, internalOnly, externalOnly or default Windows Settings.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "99.9.99999",
+        "cspVersion": "9.9",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Default."
+          },
+          {
+            "value": "1",
+            "description": "Internal Only."
+          },
+          {
+            "value": "2",
+            "description": "External Only."
+          },
+          {
+            "value": "3",
+            "description": "Clone."
+          },
+          {
+            "value": "4",
+            "description": "Extend."
+          }
+        ]
+      }
+    },
+    {
+      "name": "ConfigureMultipleDisplayMode",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Display/ConfigureMultipleDisplayMode",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Set the default display arrangement as clone, extend, internalOnly, externalOnly or default Windows Settings.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "99.9.99999",
+        "cspVersion": "9.9",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Default."
+          },
+          {
+            "value": "1",
+            "description": "Internal Only."
+          },
+          {
+            "value": "2",
+            "description": "External Only."
+          },
+          {
+            "value": "3",
+            "description": "Clone."
+          },
+          {
+            "value": "4",
+            "description": "Extend."
+          }
+        ]
+      }
+    },
+    {
+      "name": "DisablePerProcessDpiForApps",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Display/DisablePerProcessDpiForApps",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This policy allows you to disable Per-Process System DPI for a semicolon-separated list of applications. Applications can be specified either by using full paths or with filenames and extensions. This policy will override the system-wide default value.",
+      "applicability": {
+        "minOsBuild": "10.0.17134",
+        "cspVersion": "7.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "None"
+      }
+    },
+    {
+      "name": "EnablePerProcessDpi",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Display/EnablePerProcessDpi",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Enable or disable Per-Process System DPI for all applications.",
+      "applicability": {
+        "minOsBuild": "10.0.17134",
+        "cspVersion": "7.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Disable."
+          },
+          {
+            "value": "1",
+            "description": "Enable."
+          }
+        ]
+      }
+    },
+    {
+      "name": "EnablePerProcessDpi",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Display/EnablePerProcessDpi",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Enable or disable Per-Process System DPI for all applications.",
+      "applicability": {
+        "minOsBuild": "10.0.17134",
+        "cspVersion": "7.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Disable."
+          },
+          {
+            "value": "1",
+            "description": "Enable."
+          }
+        ]
+      }
+    },
+    {
+      "name": "EnablePerProcessDpiForApps",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Display/EnablePerProcessDpiForApps",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This policy allows you to enable Per-Process System DPI for a semicolon-separated list of applications. Applications can be specified either by using full paths or with filenames and extensions. This policy will override the system-wide default value.",
+      "applicability": {
+        "minOsBuild": "10.0.17134",
+        "cspVersion": "7.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "None"
+      }
+    },
+    {
+      "name": "SetClonePreferredResolutionSource",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Display/SetClonePreferredResolutionSource",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Set the cloned monitor preferred resolution source as internal or external monitor or set to default.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "99.9.99999",
+        "cspVersion": "9.9",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Default."
+          },
+          {
+            "value": "1",
+            "description": "Internal."
+          },
+          {
+            "value": "2",
+            "description": "External."
+          }
+        ]
+      }
+    },
+    {
+      "name": "SetClonePreferredResolutionSource",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Display/SetClonePreferredResolutionSource",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Set the cloned monitor preferred resolution source as internal or external monitor or set to default.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "99.9.99999",
+        "cspVersion": "9.9",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Default."
+          },
+          {
+            "value": "1",
+            "description": "Internal."
+          },
+          {
+            "value": "2",
+            "description": "External."
+          }
+        ]
+      }
+    },
+    {
+      "name": "TurnOffGdiDPIScalingForApps",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Display/TurnOffGdiDPIScalingForApps",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This policy allows to force turn off GDI DPI Scaling for a semicolon separated list of applications. Applications can be specified either by using full path or just filename and extension.",
+      "applicability": {
+        "minOsBuild": "10.0.15063",
+        "cspVersion": "5.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "None"
+      }
+    },
+    {
+      "name": "TurnOnGdiDPIScalingForApps",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Display/TurnOnGdiDPIScalingForApps",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This policy allows to turn on GDI DPI Scaling for a semicolon separated list of applications. Applications can be specified either by using full path or just filename and extension.",
+      "applicability": {
+        "minOsBuild": "10.0.15063",
+        "cspVersion": "5.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "None"
+      }
+    }
+  ]
+}

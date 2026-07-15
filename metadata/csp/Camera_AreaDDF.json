@@ -1,0 +1,37 @@
+{
+  "name": "Camera",
+  "path": "./Device/Vendor/MSFT/Policy/Config",
+  "nodes": [
+    {
+      "name": "AllowCamera",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Camera/AllowCamera",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Disables or enables the camera. Most restricted value is 0.",
+      "default": "1",
+      "applicability": {
+        "minOsBuild": "10.0.10240",
+        "cspVersion": "1.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Not allowed."
+          },
+          {
+            "value": "1",
+            "description": "Allowed."
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,109 @@
+{
+  "name": "Personalization",
+  "path": "./Vendor/MSFT",
+  "nodes": [
+    {
+      "name": "CompanyLogoStatus",
+      "path": "./Vendor/MSFT/Personalization/CompanyLogoStatus",
+      "format": "int",
+      "access": [
+        "Get"
+      ],
+      "description": "This represents the status of the Company Logo. 1 - Successfully downloaded or copied. 2 - Download/Copy in progress. 3 - Download/Copy failed. 4 - Unknown file type. 5 - Unsupported Url scheme. 6 - Max retry failed. This setting is currently available for boot to cloud shared pc mode only.",
+      "applicability": {
+        "minOsBuild": "10.0.22621.3374",
+        "cspVersion": "2.0"
+      }
+    },
+    {
+      "name": "CompanyLogoUrl",
+      "path": "./Vendor/MSFT/Personalization/CompanyLogoUrl",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "A http or https Url to a jpg, jpeg or png image that needs to be downloaded and used as the Company Logo or a file Url to a local image on the file system that needs to be used as the Company Logo. This setting is currently available for boot to cloud shared pc mode only.",
+      "applicability": {
+        "minOsBuild": "10.0.22621.3374",
+        "cspVersion": "2.0"
+      },
+      "allowedValues": {
+        "type": "None"
+      }
+    },
+    {
+      "name": "CompanyName",
+      "path": "./Vendor/MSFT/Personalization/CompanyName",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This represents the name of the company. It can be at most 30 characters long. This setting is currently available only for boot to cloud shared pc mode to display the company name on sign-in screen.",
+      "applicability": {
+        "minOsBuild": "10.0.22621.3374",
+        "cspVersion": "2.0"
+      },
+      "allowedValues": {
+        "type": "RegEx"
+      }
+    },
+    {
+      "name": "DesktopImageStatus",
+      "path": "./Vendor/MSFT/Personalization/DesktopImageStatus",
+      "format": "int",
+      "access": [
+        "Get"
+      ],
+      "description": "This represents the status of the DesktopImage. 1 - Successfully downloaded or copied. 2 - Download/Copy in progress. 3 - Download/Copy failed. 4 - Unknown file type. 5 - Unsupported Url scheme. 6 - Max retry failed.",
+      "applicability": {}
+    },
+    {
+      "name": "DesktopImageUrl",
+      "path": "./Vendor/MSFT/Personalization/DesktopImageUrl",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "A http or https Url to a jpg, jpeg or png image that needs to be downloaded and used as the Desktop Image or a file Url to a local image on the file system that needs to be used as the Desktop Image.",
+      "applicability": {},
+      "allowedValues": {
+        "type": "None"
+      }
+    },
+    {
+      "name": "LockScreenImageStatus",
+      "path": "./Vendor/MSFT/Personalization/LockScreenImageStatus",
+      "format": "int",
+      "access": [
+        "Get"
+      ],
+      "description": "This represents the status of the LockScreenImage. 1 - Successfully downloaded or copied. 2 - Download/Copy in progress. 3 - Download/Copy failed. 4 - Unknown file type. 5 - Unsupported Url scheme. 6 - Max retry failed.",
+      "applicability": {}
+    },
+    {
+      "name": "LockScreenImageUrl",
+      "path": "./Vendor/MSFT/Personalization/LockScreenImageUrl",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "A http or https Url to a jpg, jpeg or png image that needs to be downloaded and used as the Lock Screen Image or a file Url to a local image on the file system that needs to be used as the Lock Screen Image.",
+      "applicability": {},
+      "allowedValues": {
+        "type": "None"
+      }
+    }
+  ]
+}

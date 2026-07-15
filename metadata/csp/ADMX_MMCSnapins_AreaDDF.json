@@ -1,0 +1,2502 @@
+{
+  "name": "ADMX_MMCSnapins",
+  "path": "./User/Vendor/MSFT/Policy/Config",
+  "nodes": [
+    {
+      "name": "MMC_ADMComputers_1",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_ADMComputers_1",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT~MMC_GroupPolicy~MMC_GroupPolicy_GPSnapin",
+          "name": "MMC_ADMComputers_1",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_ADMComputers_2",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_ADMComputers_2",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT~MMC_GroupPolicy~MMC_GroupPolicy_RSoPSnapin",
+          "name": "MMC_ADMComputers_2",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_ADMUsers_1",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_ADMUsers_1",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT~MMC_GroupPolicy~MMC_GroupPolicy_GPSnapin",
+          "name": "MMC_ADMUsers_1",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_ADMUsers_2",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_ADMUsers_2",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT~MMC_GroupPolicy~MMC_GroupPolicy_RSoPSnapin",
+          "name": "MMC_ADMUsers_2",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_ADSI",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_ADSI",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT",
+          "name": "MMC_ADSI",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_ActiveDirDomTrusts",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_ActiveDirDomTrusts",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT",
+          "name": "MMC_ActiveDirDomTrusts",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_ActiveDirSitesServices",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_ActiveDirSitesServices",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT",
+          "name": "MMC_ActiveDirSitesServices",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_ActiveDirUsersComp",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_ActiveDirUsersComp",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT",
+          "name": "MMC_ActiveDirUsersComp",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_AppleTalkRouting",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_AppleTalkRouting",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT~MMC_ExtensionSnapins",
+          "name": "MMC_AppleTalkRouting",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_AuthMan",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_AuthMan",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT~MMC_ExtensionSnapins",
+          "name": "MMC_AuthMan",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_CertAuth",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_CertAuth",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT",
+          "name": "MMC_CertAuth",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_CertAuthPolSet",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_CertAuthPolSet",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT~MMC_ExtensionSnapins",
+          "name": "MMC_CertAuthPolSet",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_Certs",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_Certs",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT",
+          "name": "MMC_Certs",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_CertsTemplate",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_CertsTemplate",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT",
+          "name": "MMC_CertsTemplate",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_ComponentServices",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_ComponentServices",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT",
+          "name": "MMC_ComponentServices",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_ComputerManagement",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_ComputerManagement",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT",
+          "name": "MMC_ComputerManagement",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_ConnectionSharingNAT",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_ConnectionSharingNAT",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT~MMC_ExtensionSnapins",
+          "name": "MMC_ConnectionSharingNAT",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_DCOMCFG",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_DCOMCFG",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT~MMC_ExtensionSnapins",
+          "name": "MMC_DCOMCFG",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_DFS",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_DFS",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT",
+          "name": "MMC_DFS",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_DHCPRelayMgmt",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_DHCPRelayMgmt",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT~MMC_ExtensionSnapins",
+          "name": "MMC_DHCPRelayMgmt",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_DeviceManager_1",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_DeviceManager_1",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT~MMC_ExtensionSnapins",
+          "name": "MMC_DeviceManager_1",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_DeviceManager_2",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_DeviceManager_2",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT",
+          "name": "MMC_DeviceManager_2",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_DiskDefrag",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_DiskDefrag",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT",
+          "name": "MMC_DiskDefrag",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_DiskMgmt",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_DiskMgmt",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT",
+          "name": "MMC_DiskMgmt",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_EnterprisePKI",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_EnterprisePKI",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT",
+          "name": "MMC_EnterprisePKI",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_EventViewer_1",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_EventViewer_1",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT~MMC_ExtensionSnapins",
+          "name": "MMC_EventViewer_1",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_EventViewer_2",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_EventViewer_2",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT~MMC_ExtensionSnapins",
+          "name": "MMC_EventViewer_2",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_EventViewer_3",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_EventViewer_3",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT",
+          "name": "MMC_EventViewer_3",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_EventViewer_4",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_EventViewer_4",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT",
+          "name": "MMC_EventViewer_4",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_FAXService",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_FAXService",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT",
+          "name": "MMC_FAXService",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_FailoverClusters",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_FailoverClusters",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT",
+          "name": "MMC_FailoverClusters",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_FolderRedirection_1",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_FolderRedirection_1",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT~MMC_GroupPolicy~MMC_GroupPolicy_GPSnapin",
+          "name": "MMC_FolderRedirection_1",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_FolderRedirection_2",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_FolderRedirection_2",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT~MMC_GroupPolicy~MMC_GroupPolicy_RSoPSnapin",
+          "name": "MMC_FolderRedirection_2",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_FrontPageExt",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_FrontPageExt",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT",
+          "name": "MMC_FrontPageExt",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_GroupPolicyManagementSnapIn",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_GroupPolicyManagementSnapIn",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT~MMC_GroupPolicy",
+          "name": "MMC_GroupPolicyManagementSnapIn",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_GroupPolicySnapIn",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_GroupPolicySnapIn",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT~MMC_GroupPolicy",
+          "name": "MMC_GroupPolicySnapIn",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_GroupPolicyTab",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_GroupPolicyTab",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT~MMC_GroupPolicy",
+          "name": "MMC_GroupPolicyTab",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_HRA",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_HRA",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT",
+          "name": "MMC_HRA",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_IAS",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_IAS",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT",
+          "name": "MMC_IAS",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_IASLogging",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_IASLogging",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT~MMC_ExtensionSnapins",
+          "name": "MMC_IASLogging",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_IEMaintenance_1",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_IEMaintenance_1",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT~MMC_GroupPolicy~MMC_GroupPolicy_GPSnapin",
+          "name": "MMC_IEMaintenance_1",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_IEMaintenance_2",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_IEMaintenance_2",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT~MMC_GroupPolicy~MMC_GroupPolicy_RSoPSnapin",
+          "name": "MMC_IEMaintenance_2",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_IGMPRouting",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_IGMPRouting",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT~MMC_ExtensionSnapins",
+          "name": "MMC_IGMPRouting",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_IIS",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_IIS",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT",
+          "name": "MMC_IIS",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_IPRouting",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_IPRouting",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT~MMC_ExtensionSnapins",
+          "name": "MMC_IPRouting",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_IPSecManage_GP",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_IPSecManage_GP",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT~MMC_GroupPolicy~MMC_GroupPolicy_GPSnapin",
+          "name": "MMC_IPSecManage_GP",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_IPXRIPRouting",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_IPXRIPRouting",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT~MMC_ExtensionSnapins",
+          "name": "MMC_IPXRIPRouting",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_IPXRouting",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_IPXRouting",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT~MMC_ExtensionSnapins",
+          "name": "MMC_IPXRouting",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_IPXSAPRouting",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_IPXSAPRouting",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT~MMC_ExtensionSnapins",
+          "name": "MMC_IPXSAPRouting",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_IndexingService",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_IndexingService",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT",
+          "name": "MMC_IndexingService",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_IpSecManage",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_IpSecManage",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT",
+          "name": "MMC_IpSecManage",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_IpSecMonitor",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_IpSecMonitor",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT",
+          "name": "MMC_IpSecMonitor",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_LocalUsersGroups",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_LocalUsersGroups",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT",
+          "name": "MMC_LocalUsersGroups",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_LogicalMappedDrives",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_LogicalMappedDrives",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT~MMC_ExtensionSnapins",
+          "name": "MMC_LogicalMappedDrives",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_NPSUI",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_NPSUI",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT",
+          "name": "MMC_NPSUI",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_NapSnap",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_NapSnap",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT",
+          "name": "MMC_NapSnap",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_NapSnap_GP",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_NapSnap_GP",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT~MMC_GroupPolicy~MMC_GroupPolicy_GPSnapin",
+          "name": "MMC_NapSnap_GP",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_Net_Framework",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_Net_Framework",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT",
+          "name": "MMC_Net_Framework",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_OCSP",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_OCSP",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT",
+          "name": "MMC_OCSP",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_OSPFRouting",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_OSPFRouting",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT~MMC_ExtensionSnapins",
+          "name": "MMC_OSPFRouting",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_PerfLogsAlerts",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_PerfLogsAlerts",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT",
+          "name": "MMC_PerfLogsAlerts",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_PublicKey",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_PublicKey",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT~MMC_ExtensionSnapins",
+          "name": "MMC_PublicKey",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_QoSAdmission",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_QoSAdmission",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT",
+          "name": "MMC_QoSAdmission",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_RAS_DialinUser",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_RAS_DialinUser",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT~MMC_ExtensionSnapins",
+          "name": "MMC_RAS_DialinUser",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_RIPRouting",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_RIPRouting",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT~MMC_ExtensionSnapins",
+          "name": "MMC_RIPRouting",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_RIS",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_RIS",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT~MMC_GroupPolicy~MMC_GroupPolicy_GPSnapin",
+          "name": "MMC_RIS",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_RRA",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_RRA",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT",
+          "name": "MMC_RRA",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_RSM",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_RSM",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT",
+          "name": "MMC_RSM",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_RemStore",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_RemStore",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT~MMC_ExtensionSnapins",
+          "name": "MMC_RemStore",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_RemoteAccess",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_RemoteAccess",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT~MMC_ExtensionSnapins",
+          "name": "MMC_RemoteAccess",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_RemoteDesktop",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_RemoteDesktop",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT",
+          "name": "MMC_RemoteDesktop",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_ResultantSetOfPolicySnapIn",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_ResultantSetOfPolicySnapIn",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT~MMC_GroupPolicy",
+          "name": "MMC_ResultantSetOfPolicySnapIn",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_Routing",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_Routing",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT~MMC_ExtensionSnapins",
+          "name": "MMC_Routing",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_SCA",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_SCA",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT",
+          "name": "MMC_SCA",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_SMTPProtocol",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_SMTPProtocol",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT~MMC_ExtensionSnapins",
+          "name": "MMC_SMTPProtocol",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_SNMP",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_SNMP",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT~MMC_ExtensionSnapins",
+          "name": "MMC_SNMP",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_ScriptsMachine_1",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_ScriptsMachine_1",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT~MMC_GroupPolicy~MMC_GroupPolicy_GPSnapin",
+          "name": "MMC_ScriptsMachine_1",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_ScriptsMachine_2",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_ScriptsMachine_2",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT~MMC_GroupPolicy~MMC_GroupPolicy_RSoPSnapin",
+          "name": "MMC_ScriptsMachine_2",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_ScriptsUser_1",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_ScriptsUser_1",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT~MMC_GroupPolicy~MMC_GroupPolicy_GPSnapin",
+          "name": "MMC_ScriptsUser_1",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_ScriptsUser_2",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_ScriptsUser_2",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT~MMC_GroupPolicy~MMC_GroupPolicy_RSoPSnapin",
+          "name": "MMC_ScriptsUser_2",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_SecuritySettings_1",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_SecuritySettings_1",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT~MMC_GroupPolicy~MMC_GroupPolicy_GPSnapin",
+          "name": "MMC_SecuritySettings_1",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_SecuritySettings_2",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_SecuritySettings_2",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT~MMC_GroupPolicy~MMC_GroupPolicy_RSoPSnapin",
+          "name": "MMC_SecuritySettings_2",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_SecurityTemplates",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_SecurityTemplates",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT",
+          "name": "MMC_SecurityTemplates",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_SendConsoleMessage",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_SendConsoleMessage",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT~MMC_ExtensionSnapins",
+          "name": "MMC_SendConsoleMessage",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_ServerManager",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_ServerManager",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT",
+          "name": "MMC_ServerManager",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_ServiceDependencies",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_ServiceDependencies",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT~MMC_ExtensionSnapins",
+          "name": "MMC_ServiceDependencies",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_Services",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_Services",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT",
+          "name": "MMC_Services",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_SharedFolders",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_SharedFolders",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT",
+          "name": "MMC_SharedFolders",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_SharedFolders_Ext",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_SharedFolders_Ext",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT~MMC_ExtensionSnapins",
+          "name": "MMC_SharedFolders_Ext",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_SoftwareInstalationComputers_1",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_SoftwareInstalationComputers_1",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT~MMC_GroupPolicy~MMC_GroupPolicy_GPSnapin",
+          "name": "MMC_SoftwareInstalationComputers_1",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_SoftwareInstalationComputers_2",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_SoftwareInstalationComputers_2",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT~MMC_GroupPolicy~MMC_GroupPolicy_RSoPSnapin",
+          "name": "MMC_SoftwareInstalationComputers_2",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_SoftwareInstallationUsers_1",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_SoftwareInstallationUsers_1",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT~MMC_GroupPolicy~MMC_GroupPolicy_GPSnapin",
+          "name": "MMC_SoftwareInstallationUsers_1",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_SoftwareInstallationUsers_2",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_SoftwareInstallationUsers_2",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT~MMC_GroupPolicy~MMC_GroupPolicy_RSoPSnapin",
+          "name": "MMC_SoftwareInstallationUsers_2",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_SysInfo",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_SysInfo",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT",
+          "name": "MMC_SysInfo",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_SysProp",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_SysProp",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT~MMC_ExtensionSnapins",
+          "name": "MMC_SysProp",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_TPMManagement",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_TPMManagement",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT",
+          "name": "MMC_TPMManagement",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_Telephony",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_Telephony",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT",
+          "name": "MMC_Telephony",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_TerminalServices",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_TerminalServices",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT",
+          "name": "MMC_TerminalServices",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_WMI",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_WMI",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT",
+          "name": "MMC_WMI",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_WindowsFirewall",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_WindowsFirewall",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT",
+          "name": "MMC_WindowsFirewall",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_WindowsFirewall_GP",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_WindowsFirewall_GP",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT~MMC_GroupPolicy~MMC_GroupPolicy_GPSnapin",
+          "name": "MMC_WindowsFirewall_GP",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_WiredNetworkPolicy",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_WiredNetworkPolicy",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT~MMC_GroupPolicy~MMC_GroupPolicy_GPSnapin",
+          "name": "MMC_WiredNetworkPolicy",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_WirelessMon",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_WirelessMon",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT",
+          "name": "MMC_WirelessMon",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    },
+    {
+      "name": "MMC_WirelessNetworkPolicy",
+      "path": "./User/Vendor/MSFT/Policy/Config/ADMX_MMCSnapins/MMC_WirelessNetworkPolicy",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "MMCSnapins~AT~WindowsComponents~MMC~MMC_RESTRICT~MMC_GroupPolicy~MMC_GroupPolicy_GPSnapin",
+          "name": "MMC_WirelessNetworkPolicy",
+          "file": "MMCSnapins.admx"
+        }
+      }
+    }
+  ]
+}

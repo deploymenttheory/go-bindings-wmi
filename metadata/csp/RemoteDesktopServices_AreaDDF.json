@@ -1,0 +1,342 @@
+{
+  "name": "RemoteDesktopServices",
+  "path": "./Device/Vendor/MSFT/Policy/Config",
+  "nodes": [
+    {
+      "name": "AllowUsersToConnectRemotely",
+      "path": "./Device/Vendor/MSFT/Policy/Config/RemoteDesktopServices/AllowUsersToConnectRemotely",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.15063",
+        "cspVersion": "5.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "TerminalServer~AT~WindowsComponents~TS_GP_NODE~TS_TERMINAL_SERVER~TS_CONNECTIONS",
+          "name": "TS_DISABLE_CONNECTIONS",
+          "file": "terminalserver.admx"
+        }
+      }
+    },
+    {
+      "name": "ClientConnectionEncryptionLevel",
+      "path": "./Device/Vendor/MSFT/Policy/Config/RemoteDesktopServices/ClientConnectionEncryptionLevel",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.15063",
+        "cspVersion": "5.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "TerminalServer~AT~WindowsComponents~TS_GP_NODE~TS_TERMINAL_SERVER~TS_SECURITY",
+          "name": "TS_ENCRYPTION_POLICY",
+          "file": "terminalserver.admx"
+        }
+      }
+    },
+    {
+      "name": "DisconnectOnLockLegacyAuthn",
+      "path": "./Device/Vendor/MSFT/Policy/Config/RemoteDesktopServices/DisconnectOnLockLegacyAuthn",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.26100, 10.0.20348.2461, 10.0.22621.3593, 10.0.22000.2960, 10.0.25398.887, 10.0.19041.4474",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "TerminalServer~AT~WindowsComponents~TS_GP_NODE~TS_TERMINAL_SERVER~TS_SECURITY",
+          "name": "TS_DISCONNECT_ON_LOCK_POLICY",
+          "file": "terminalserver.admx"
+        }
+      }
+    },
+    {
+      "name": "DisconnectOnLockMicrosoftIdentityAuthn",
+      "path": "./Device/Vendor/MSFT/Policy/Config/RemoteDesktopServices/DisconnectOnLockMicrosoftIdentityAuthn",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.26100, 10.0.20348.2461, 10.0.22621.3593, 10.0.22000.2960, 10.0.25398.887, 10.0.19041.4474",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "TerminalServer~AT~WindowsComponents~TS_GP_NODE~TS_TERMINAL_SERVER~TS_SECURITY",
+          "name": "TS_DISCONNECT_ON_LOCK_AAD_POLICY",
+          "file": "terminalserver.admx"
+        }
+      }
+    },
+    {
+      "name": "DoNotAllowDriveRedirection",
+      "path": "./Device/Vendor/MSFT/Policy/Config/RemoteDesktopServices/DoNotAllowDriveRedirection",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.15063",
+        "cspVersion": "5.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "TerminalServer~AT~WindowsComponents~TS_GP_NODE~TS_TERMINAL_SERVER~TS_REDIRECTION",
+          "name": "TS_CLIENT_DRIVE_M",
+          "file": "terminalserver.admx"
+        }
+      }
+    },
+    {
+      "name": "DoNotAllowPasswordSaving",
+      "path": "./Device/Vendor/MSFT/Policy/Config/RemoteDesktopServices/DoNotAllowPasswordSaving",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.15063",
+        "cspVersion": "5.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "TerminalServer~AT~WindowsComponents~TS_GP_NODE~TS_CLIENT",
+          "name": "TS_CLIENT_DISABLE_PASSWORD_SAVING_2",
+          "file": "terminalserver.admx"
+        }
+      }
+    },
+    {
+      "name": "DoNotAllowWebAuthnRedirection",
+      "path": "./Device/Vendor/MSFT/Policy/Config/RemoteDesktopServices/DoNotAllowWebAuthnRedirection",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22621",
+        "cspVersion": "11.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "TerminalServer~AT~WindowsComponents~TS_GP_NODE~TS_TERMINAL_SERVER~TS_REDIRECTION",
+          "name": "TS_WEBAUTHN",
+          "file": "terminalserver.admx"
+        }
+      }
+    },
+    {
+      "name": "LimitClientToServerClipboardRedirection",
+      "path": "./Device/Vendor/MSFT/Policy/Config/RemoteDesktopServices/LimitClientToServerClipboardRedirection",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.26100, 10.0.25398.946, 10.0.22631.3672, 10.0.22621.3672, 10.0.22000.3014, 10.0.20348.2523",
+        "cspVersion": "11.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "TerminalServer~AT~WindowsComponents~TS_GP_NODE~TS_TERMINAL_SERVER~TS_REDIRECTION",
+          "name": "TS_CLIENT_CLIPBOARDRESTRICTION_CS",
+          "file": "terminalserver.admx"
+        }
+      }
+    },
+    {
+      "name": "LimitClientToServerClipboardRedirection",
+      "path": "./Device/Vendor/MSFT/Policy/Config/RemoteDesktopServices/LimitClientToServerClipboardRedirection",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.26100, 10.0.25398.946, 10.0.22631.3672, 10.0.22621.3672, 10.0.22000.3014, 10.0.20348.2523",
+        "cspVersion": "11.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "TerminalServer~AT~WindowsComponents~TS_GP_NODE~TS_TERMINAL_SERVER~TS_REDIRECTION",
+          "name": "TS_CLIENT_CLIPBOARDRESTRICTION_CS",
+          "file": "terminalserver.admx"
+        }
+      }
+    },
+    {
+      "name": "LimitServerToClientClipboardRedirection",
+      "path": "./Device/Vendor/MSFT/Policy/Config/RemoteDesktopServices/LimitServerToClientClipboardRedirection",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.26100, 10.0.25398.946, 10.0.22631.3672, 10.0.22621.3672, 10.0.22000.3014, 10.0.20348.2523",
+        "cspVersion": "11.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "TerminalServer~AT~WindowsComponents~TS_GP_NODE~TS_TERMINAL_SERVER~TS_REDIRECTION",
+          "name": "TS_CLIENT_CLIPBOARDRESTRICTION_SC",
+          "file": "terminalserver.admx"
+        }
+      }
+    },
+    {
+      "name": "LimitServerToClientClipboardRedirection",
+      "path": "./Device/Vendor/MSFT/Policy/Config/RemoteDesktopServices/LimitServerToClientClipboardRedirection",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.26100, 10.0.25398.946, 10.0.22631.3672, 10.0.22621.3672, 10.0.22000.3014, 10.0.20348.2523",
+        "cspVersion": "11.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "TerminalServer~AT~WindowsComponents~TS_GP_NODE~TS_TERMINAL_SERVER~TS_REDIRECTION",
+          "name": "TS_CLIENT_CLIPBOARDRESTRICTION_SC",
+          "file": "terminalserver.admx"
+        }
+      }
+    },
+    {
+      "name": "PromptForPasswordUponConnection",
+      "path": "./Device/Vendor/MSFT/Policy/Config/RemoteDesktopServices/PromptForPasswordUponConnection",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.15063",
+        "cspVersion": "5.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "TerminalServer~AT~WindowsComponents~TS_GP_NODE~TS_TERMINAL_SERVER~TS_SECURITY",
+          "name": "TS_PASSWORD",
+          "file": "terminalserver.admx"
+        }
+      }
+    },
+    {
+      "name": "RequireSecureRPCCommunication",
+      "path": "./Device/Vendor/MSFT/Policy/Config/RemoteDesktopServices/RequireSecureRPCCommunication",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.15063",
+        "cspVersion": "5.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "TerminalServer~AT~WindowsComponents~TS_GP_NODE~TS_TERMINAL_SERVER~TS_SECURITY",
+          "name": "TS_RPC_ENCRYPTION",
+          "file": "terminalserver.admx"
+        }
+      }
+    },
+    {
+      "name": "TS_SERVER_REMOTEAPP_USE_SHELLAPPRUNTIME",
+      "path": "./Device/Vendor/MSFT/Policy/Config/RemoteDesktopServices/TS_SERVER_REMOTEAPP_USE_SHELLAPPRUNTIME",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "99.9.99999, 10.0.25398.827, 10.0.22631.3374, 10.0.22621.3374, 10.0.22000.2898, 10.0.20348.2400",
+        "cspVersion": "11.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "TerminalServer~AT~WindowsComponents~TS_GP_NODE~TS_TERMINAL_SERVER~TS_SESSIONS",
+          "name": "TS_SERVER_REMOTEAPP_USE_SHELLAPPRUNTIME",
+          "file": "TerminalServer.admx"
+        }
+      }
+    }
+  ]
+}

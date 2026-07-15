@@ -1,0 +1,222 @@
+{
+  "name": "ADMX_SettingSync",
+  "path": "./Device/Vendor/MSFT/Policy/Config",
+  "nodes": [
+    {
+      "name": "DisableAppSyncSettingSync",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_SettingSync/DisableAppSyncSettingSync",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "SettingSync~AT~WindowsComponents~SettingSync",
+          "name": "DisableAppSyncSettingSync",
+          "file": "SettingSync.admx"
+        }
+      }
+    },
+    {
+      "name": "DisableApplicationSettingSync",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_SettingSync/DisableApplicationSettingSync",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "SettingSync~AT~WindowsComponents~SettingSync",
+          "name": "DisableApplicationSettingSync",
+          "file": "SettingSync.admx"
+        }
+      }
+    },
+    {
+      "name": "DisableCredentialsSettingSync",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_SettingSync/DisableCredentialsSettingSync",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "SettingSync~AT~WindowsComponents~SettingSync",
+          "name": "DisableCredentialsSettingSync",
+          "file": "SettingSync.admx"
+        }
+      }
+    },
+    {
+      "name": "DisableDesktopThemeSettingSync",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_SettingSync/DisableDesktopThemeSettingSync",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "SettingSync~AT~WindowsComponents~SettingSync",
+          "name": "DisableDesktopThemeSettingSync",
+          "file": "SettingSync.admx"
+        }
+      }
+    },
+    {
+      "name": "DisablePersonalizationSettingSync",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_SettingSync/DisablePersonalizationSettingSync",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "SettingSync~AT~WindowsComponents~SettingSync",
+          "name": "DisablePersonalizationSettingSync",
+          "file": "SettingSync.admx"
+        }
+      }
+    },
+    {
+      "name": "DisableSettingSync",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_SettingSync/DisableSettingSync",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "SettingSync~AT~WindowsComponents~SettingSync",
+          "name": "DisableSettingSync",
+          "file": "SettingSync.admx"
+        }
+      }
+    },
+    {
+      "name": "DisableStartLayoutSettingSync",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_SettingSync/DisableStartLayoutSettingSync",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "SettingSync~AT~WindowsComponents~SettingSync",
+          "name": "DisableStartLayoutSettingSync",
+          "file": "SettingSync.admx"
+        }
+      }
+    },
+    {
+      "name": "DisableSyncOnPaidNetwork",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_SettingSync/DisableSyncOnPaidNetwork",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "SettingSync~AT~WindowsComponents~SettingSync",
+          "name": "DisableSyncOnPaidNetwork",
+          "file": "SettingSync.admx"
+        }
+      }
+    },
+    {
+      "name": "DisableWindowsSettingSync",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_SettingSync/DisableWindowsSettingSync",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "SettingSync~AT~WindowsComponents~SettingSync",
+          "name": "DisableWindowsSettingSync",
+          "file": "SettingSync.admx"
+        }
+      }
+    }
+  ]
+}

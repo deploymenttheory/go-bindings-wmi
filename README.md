@@ -98,6 +98,27 @@ narrows):
 Any other namespace (`root\Microsoft\Windows\*`, …) is just
 `go run ./cmd/capture -namespace <ns>` then regenerate.
 
+### CSP policy catalog (DDF v2)
+
+A second pipeline generates a typed catalog of the entire Windows **MDM
+policy / CSP surface** (~5,100 settings across ~313 areas) from Microsoft's
+canonical, versioned **DDF v2** files — the winmd-NuGet analogue for MDM.
+Acquisition is a pinned download with provenance; codegen is offline and the
+bindings are **pure Go** (no Windows dependency):
+
+```sh
+go run ./cmd/fetchddf     # download the pinned DDF v2 zip, verify sha256 → metadata/csp/ (committed)
+go run ./cmd/gencsp       # snapshots → bindings/csp/<area> (typed policy descriptors + enum constants)
+```
+
+```go
+import "github.com/deploymenttheory/go-bindings-wmi/bindings/csp/policybitlocker"
+p := policybitlocker.EncryptionMethod   // URI, format, applicability, allowed values, …
+```
+
+See [docs/csp-and-ddf.md](docs/csp-and-ddf.md). The DDF gives the canonical
+schema; the MDM WMI bridge is the local runtime for driving those policies.
+
 ## Examples & docs
 
 - [`examples`](examples) — runnable programs, one per surface: typed-query
@@ -110,8 +131,9 @@ Any other namespace (`root\Microsoft\Windows\*`, …) is just
   subscriptions, streaming, remote
 - [Instances and associations](docs/instances-and-associations.md) — CRUD,
   key lookups, ASSOCIATORS OF
-- [The MDM bridge](docs/mdm-bridge.md) — capturing `root\cimv2\mdm\dmmap`
-  (CSP policy classes) as SYSTEM
+- [CSP policy bindings (DDF v2)](docs/csp-and-ddf.md) — the DDF pipeline:
+  fetch, parse, the typed policy catalog
+
 - [`CLAUDE.md`](CLAUDE.md) — the capture doctrine and why the CLI is minimal
 
 ## Related projects

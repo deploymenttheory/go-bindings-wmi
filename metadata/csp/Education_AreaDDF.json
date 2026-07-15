@@ -1,0 +1,167 @@
+{
+  "name": "Education",
+  "path": "./Device/Vendor/MSFT/Policy/Config",
+  "nodes": [
+    {
+      "name": "AllowGraphingCalculator",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Education/AllowGraphingCalculator",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This policy setting allows you to control whether graphing functionality is available in the Windows Calculator app. If you disable this policy setting, graphing functionality will not be accessible in the Windows Calculator app. If you enable or don't configure this policy setting, users will be able to access graphing functionality.",
+      "default": "1",
+      "applicability": {
+        "minOsBuild": "10.0.19041",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Disabled."
+          },
+          {
+            "value": "1",
+            "description": "Enabled."
+          }
+        ]
+      }
+    },
+    {
+      "name": "DefaultPrinterName",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Education/DefaultPrinterName",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This policy sets user's default printer",
+      "applicability": {
+        "minOsBuild": "10.0.16299",
+        "cspVersion": "6.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      }
+    },
+    {
+      "name": "EnableEduThemes",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Education/EnableEduThemes",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This policy setting allows you to control whether EDU-specific theme packs are available in Settings \u003e Personalization. If you disable or don't configure this policy setting, EDU-specific theme packs will not be included. If you enable this policy setting, users will be able to personalize their devices with EDU-specific themes.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.22621",
+        "cspVersion": "11.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Disabled."
+          },
+          {
+            "value": "1",
+            "description": "Enabled."
+          }
+        ]
+      }
+    },
+    {
+      "name": "IsEducationEnvironment",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Education/IsEducationEnvironment",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This policy setting allows tenant to control whether to declare this OS as an education environment",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.22621",
+        "cspVersion": "11.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Disabled."
+          },
+          {
+            "value": "1",
+            "description": "Enabled."
+          }
+        ]
+      }
+    },
+    {
+      "name": "PreventAddingNewPrinters",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Education/PreventAddingNewPrinters",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Boolean that specifies whether or not to prevent user to install new printers",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.16299",
+        "cspVersion": "6.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Allow user installation."
+          },
+          {
+            "value": "1",
+            "description": "Prevent user installation."
+          }
+        ]
+      }
+    },
+    {
+      "name": "PrinterNames",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Education/PrinterNames",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This policy provisions per-user network printers",
+      "applicability": {
+        "minOsBuild": "10.0.16299",
+        "cspVersion": "6.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "None"
+      }
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+name: DDF update
+
+on:
+  schedule:
+    - cron: "0 8 * * 1" # Mondays 08:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7.0.0
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+          cache: true
+
+      # Re-fetch the pinned DDF release and re-parse. A new Microsoft drop is
+      # adopted by bumping the pin in cmd/fetchddf and letting this open the
+      # PR; a scheduled run with the same pin is a no-op unless Microsoft
+      # re-published the artifact.
+      - name: Fetch and parse the pinned DDF release
+        run: go run ./cmd/fetchddf
+
+      - name: Regenerate CSP bindings
+        run: go run ./cmd/gencsp
+
+      - name: Detect changes
+        id: diff
+        run: |
+          if git diff --quiet -- metadata/csp bindings/csp; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Build and test
+        if: steps.diff.outputs.changed == 'true'
+        run: |
+          go build ./bindings/csp/...
+          go test ./cmd/... ./internal/... ./runtime/...
+
+      - name: Open the update PR
+        if: steps.diff.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v7
+        with:
+          branch: chore/ddf-update
+          title: "chore(metadata): refresh CSP bindings from the DDF v2 drop"
+          commit-message: "chore(metadata): refresh CSP bindings from the DDF v2 drop"
+          body: |
+            Automated refresh of the committed CSP snapshots and generated
+            bindings from the pinned DDF v2 release (see
+            `metadata/csp/PROVENANCE.json`). Review the `metadata/csp` diff
+            for added/removed/changed policies.
+          add-paths: |
+            metadata/csp/
+            bindings/csp/

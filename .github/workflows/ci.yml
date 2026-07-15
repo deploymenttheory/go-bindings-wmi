@@ -42,10 +42,14 @@ jobs:
           go-version-file: go.mod
           cache: true
 
-      # The pure packages (coercion, DMTF parsing, snapshot format, the
-      # generator) build and test on any OS.
+      # The pure packages (coercion, DMTF parsing, snapshot formats, the
+      # generators, DDF parsing) build and test on any OS.
       - name: Unit tests
         run: go test ./cmd/... ./internal/... ./runtime/...
+
+      # The DDF-sourced CSP bindings are pure Go — build them natively.
+      - name: Build CSP bindings
+        run: go build ./bindings/csp/...
 
       - name: Cross-compile (windows/amd64 + windows/arm64)
         run: |
@@ -63,11 +67,14 @@ jobs:
           go-version-file: go.mod
           cache: true
 
-      # Codegen is offline and deterministic from the committed snapshot
-      # (capture is a separate, manual step — schema varies by host), so the
-      # gate runs on the fast runner.
-      - name: Regenerate from the committed snapshot
-        run: go run ./cmd/generate
+      # Codegen is offline and deterministic from the committed snapshots
+      # (acquisition — capture / fetchddf — is a separate step), so the gate
+      # runs on the fast runner. Both pipelines regenerate: CIM classes from
+      # metadata/cim, CSP policies from metadata/csp.
+      - name: Regenerate from the committed snapshots
+        run: |
+          go run ./cmd/generate
+          go run ./cmd/gencsp
 
       - name: Generated output must match the committed tree
         run: |

@@ -1,0 +1,1110 @@
+{
+  "name": "ADMX_OfflineFiles",
+  "path": "./Device/Vendor/MSFT/Policy/Config",
+  "nodes": [
+    {
+      "name": "Pol_AlwaysPinSubFolders",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_OfflineFiles/Pol_AlwaysPinSubFolders",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "OfflineFiles~AT~Network~Cat_OfflineFiles",
+          "name": "Pol_AlwaysPinSubFolders",
+          "file": "OfflineFiles.admx"
+        }
+      }
+    },
+    {
+      "name": "Pol_AssignedOfflineFiles_1",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_OfflineFiles/Pol_AssignedOfflineFiles_1",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "OfflineFiles~AT~Network~Cat_OfflineFiles",
+          "name": "Pol_AssignedOfflineFiles_1",
+          "file": "OfflineFiles.admx"
+        }
+      }
+    },
+    {
+      "name": "Pol_AssignedOfflineFiles_2",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_OfflineFiles/Pol_AssignedOfflineFiles_2",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "OfflineFiles~AT~Network~Cat_OfflineFiles",
+          "name": "Pol_AssignedOfflineFiles_2",
+          "file": "OfflineFiles.admx"
+        }
+      }
+    },
+    {
+      "name": "Pol_BackgroundSyncSettings",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_OfflineFiles/Pol_BackgroundSyncSettings",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "OfflineFiles~AT~Network~Cat_OfflineFiles",
+          "name": "Pol_BackgroundSyncSettings",
+          "file": "OfflineFiles.admx"
+        }
+      }
+    },
+    {
+      "name": "Pol_CacheSize",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_OfflineFiles/Pol_CacheSize",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "OfflineFiles~AT~Network~Cat_OfflineFiles",
+          "name": "Pol_CacheSize",
+          "file": "OfflineFiles.admx"
+        }
+      }
+    },
+    {
+      "name": "Pol_CustomGoOfflineActions_1",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_OfflineFiles/Pol_CustomGoOfflineActions_1",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "OfflineFiles~AT~Network~Cat_OfflineFiles",
+          "name": "Pol_CustomGoOfflineActions_1",
+          "file": "OfflineFiles.admx"
+        }
+      }
+    },
+    {
+      "name": "Pol_CustomGoOfflineActions_2",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_OfflineFiles/Pol_CustomGoOfflineActions_2",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "OfflineFiles~AT~Network~Cat_OfflineFiles",
+          "name": "Pol_CustomGoOfflineActions_2",
+          "file": "OfflineFiles.admx"
+        }
+      }
+    },
+    {
+      "name": "Pol_DefCacheSize",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_OfflineFiles/Pol_DefCacheSize",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "OfflineFiles~AT~Network~Cat_OfflineFiles",
+          "name": "Pol_DefCacheSize",
+          "file": "OfflineFiles.admx"
+        }
+      }
+    },
+    {
+      "name": "Pol_Enabled",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_OfflineFiles/Pol_Enabled",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "OfflineFiles~AT~Network~Cat_OfflineFiles",
+          "name": "Pol_Enabled",
+          "file": "OfflineFiles.admx"
+        }
+      }
+    },
+    {
+      "name": "Pol_EncryptOfflineFiles",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_OfflineFiles/Pol_EncryptOfflineFiles",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "OfflineFiles~AT~Network~Cat_OfflineFiles",
+          "name": "Pol_EncryptOfflineFiles",
+          "file": "OfflineFiles.admx"
+        }
+      }
+    },
+    {
+      "name": "Pol_EventLoggingLevel_1",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_OfflineFiles/Pol_EventLoggingLevel_1",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "OfflineFiles~AT~Network~Cat_OfflineFiles",
+          "name": "Pol_EventLoggingLevel_1",
+          "file": "OfflineFiles.admx"
+        }
+      }
+    },
+    {
+      "name": "Pol_EventLoggingLevel_2",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_OfflineFiles/Pol_EventLoggingLevel_2",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "OfflineFiles~AT~Network~Cat_OfflineFiles",
+          "name": "Pol_EventLoggingLevel_2",
+          "file": "OfflineFiles.admx"
+        }
+      }
+    },
+    {
+      "name": "Pol_ExclusionListSettings",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_OfflineFiles/Pol_ExclusionListSettings",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "OfflineFiles~AT~Network~Cat_OfflineFiles",
+          "name": "Pol_ExclusionListSettings",
+          "file": "OfflineFiles.admx"
+        }
+      }
+    },
+    {
+      "name": "Pol_ExtExclusionList",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_OfflineFiles/Pol_ExtExclusionList",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "OfflineFiles~AT~Network~Cat_OfflineFiles",
+          "name": "Pol_ExtExclusionList",
+          "file": "OfflineFiles.admx"
+        }
+      }
+    },
+    {
+      "name": "Pol_GoOfflineAction_1",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_OfflineFiles/Pol_GoOfflineAction_1",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "OfflineFiles~AT~Network~Cat_OfflineFiles",
+          "name": "Pol_GoOfflineAction_1",
+          "file": "OfflineFiles.admx"
+        }
+      }
+    },
+    {
+      "name": "Pol_GoOfflineAction_2",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_OfflineFiles/Pol_GoOfflineAction_2",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "OfflineFiles~AT~Network~Cat_OfflineFiles",
+          "name": "Pol_GoOfflineAction_2",
+          "file": "OfflineFiles.admx"
+        }
+      }
+    },
+    {
+      "name": "Pol_NoCacheViewer_1",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_OfflineFiles/Pol_NoCacheViewer_1",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "OfflineFiles~AT~Network~Cat_OfflineFiles",
+          "name": "Pol_NoCacheViewer_1",
+          "file": "OfflineFiles.admx"
+        }
+      }
+    },
+    {
+      "name": "Pol_NoCacheViewer_2",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_OfflineFiles/Pol_NoCacheViewer_2",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "OfflineFiles~AT~Network~Cat_OfflineFiles",
+          "name": "Pol_NoCacheViewer_2",
+          "file": "OfflineFiles.admx"
+        }
+      }
+    },
+    {
+      "name": "Pol_NoConfigCache_1",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_OfflineFiles/Pol_NoConfigCache_1",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "OfflineFiles~AT~Network~Cat_OfflineFiles",
+          "name": "Pol_NoConfigCache_1",
+          "file": "OfflineFiles.admx"
+        }
+      }
+    },
+    {
+      "name": "Pol_NoConfigCache_2",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_OfflineFiles/Pol_NoConfigCache_2",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "OfflineFiles~AT~Network~Cat_OfflineFiles",
+          "name": "Pol_NoConfigCache_2",
+          "file": "OfflineFiles.admx"
+        }
+      }
+    },
+    {
+      "name": "Pol_NoMakeAvailableOffline_1",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_OfflineFiles/Pol_NoMakeAvailableOffline_1",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "OfflineFiles~AT~Network~Cat_OfflineFiles",
+          "name": "Pol_NoMakeAvailableOffline_1",
+          "file": "OfflineFiles.admx"
+        }
+      }
+    },
+    {
+      "name": "Pol_NoMakeAvailableOffline_2",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_OfflineFiles/Pol_NoMakeAvailableOffline_2",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "OfflineFiles~AT~Network~Cat_OfflineFiles",
+          "name": "Pol_NoMakeAvailableOffline_2",
+          "file": "OfflineFiles.admx"
+        }
+      }
+    },
+    {
+      "name": "Pol_NoPinFiles_1",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_OfflineFiles/Pol_NoPinFiles_1",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "OfflineFiles~AT~Network~Cat_OfflineFiles",
+          "name": "Pol_NoPinFiles_1",
+          "file": "OfflineFiles.admx"
+        }
+      }
+    },
+    {
+      "name": "Pol_NoPinFiles_2",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_OfflineFiles/Pol_NoPinFiles_2",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "OfflineFiles~AT~Network~Cat_OfflineFiles",
+          "name": "Pol_NoPinFiles_2",
+          "file": "OfflineFiles.admx"
+        }
+      }
+    },
+    {
+      "name": "Pol_NoReminders_1",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_OfflineFiles/Pol_NoReminders_1",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "OfflineFiles~AT~Network~Cat_OfflineFiles",
+          "name": "Pol_NoReminders_1",
+          "file": "OfflineFiles.admx"
+        }
+      }
+    },
+    {
+      "name": "Pol_NoReminders_2",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_OfflineFiles/Pol_NoReminders_2",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "OfflineFiles~AT~Network~Cat_OfflineFiles",
+          "name": "Pol_NoReminders_2",
+          "file": "OfflineFiles.admx"
+        }
+      }
+    },
+    {
+      "name": "Pol_OnlineCachingSettings",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_OfflineFiles/Pol_OnlineCachingSettings",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "OfflineFiles~AT~Network~Cat_OfflineFiles",
+          "name": "Pol_OnlineCachingSettings",
+          "file": "OfflineFiles.admx"
+        }
+      }
+    },
+    {
+      "name": "Pol_PurgeAtLogoff",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_OfflineFiles/Pol_PurgeAtLogoff",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "OfflineFiles~AT~Network~Cat_OfflineFiles",
+          "name": "Pol_PurgeAtLogoff",
+          "file": "OfflineFiles.admx"
+        }
+      }
+    },
+    {
+      "name": "Pol_QuickAdimPin",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_OfflineFiles/Pol_QuickAdimPin",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "OfflineFiles~AT~Network~Cat_OfflineFiles",
+          "name": "Pol_QuickAdimPin",
+          "file": "OfflineFiles.admx"
+        }
+      }
+    },
+    {
+      "name": "Pol_ReminderFreq_1",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_OfflineFiles/Pol_ReminderFreq_1",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "OfflineFiles~AT~Network~Cat_OfflineFiles",
+          "name": "Pol_ReminderFreq_1",
+          "file": "OfflineFiles.admx"
+        }
+      }
+    },
+    {
+      "name": "Pol_ReminderFreq_2",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_OfflineFiles/Pol_ReminderFreq_2",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "OfflineFiles~AT~Network~Cat_OfflineFiles",
+          "name": "Pol_ReminderFreq_2",
+          "file": "OfflineFiles.admx"
+        }
+      }
+    },
+    {
+      "name": "Pol_ReminderInitTimeout_1",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_OfflineFiles/Pol_ReminderInitTimeout_1",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "OfflineFiles~AT~Network~Cat_OfflineFiles",
+          "name": "Pol_ReminderInitTimeout_1",
+          "file": "OfflineFiles.admx"
+        }
+      }
+    },
+    {
+      "name": "Pol_ReminderInitTimeout_2",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_OfflineFiles/Pol_ReminderInitTimeout_2",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "OfflineFiles~AT~Network~Cat_OfflineFiles",
+          "name": "Pol_ReminderInitTimeout_2",
+          "file": "OfflineFiles.admx"
+        }
+      }
+    },
+    {
+      "name": "Pol_ReminderTimeout_1",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_OfflineFiles/Pol_ReminderTimeout_1",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "OfflineFiles~AT~Network~Cat_OfflineFiles",
+          "name": "Pol_ReminderTimeout_1",
+          "file": "OfflineFiles.admx"
+        }
+      }
+    },
+    {
+      "name": "Pol_ReminderTimeout_2",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_OfflineFiles/Pol_ReminderTimeout_2",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "OfflineFiles~AT~Network~Cat_OfflineFiles",
+          "name": "Pol_ReminderTimeout_2",
+          "file": "OfflineFiles.admx"
+        }
+      }
+    },
+    {
+      "name": "Pol_SlowLinkSettings",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_OfflineFiles/Pol_SlowLinkSettings",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "OfflineFiles~AT~Network~Cat_OfflineFiles",
+          "name": "Pol_SlowLinkSettings",
+          "file": "OfflineFiles.admx"
+        }
+      }
+    },
+    {
+      "name": "Pol_SlowLinkSpeed",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_OfflineFiles/Pol_SlowLinkSpeed",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "OfflineFiles~AT~Network~Cat_OfflineFiles",
+          "name": "Pol_SlowLinkSpeed",
+          "file": "OfflineFiles.admx"
+        }
+      }
+    },
+    {
+      "name": "Pol_SyncAtLogoff_1",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_OfflineFiles/Pol_SyncAtLogoff_1",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "OfflineFiles~AT~Network~Cat_OfflineFiles",
+          "name": "Pol_SyncAtLogoff_1",
+          "file": "OfflineFiles.admx"
+        }
+      }
+    },
+    {
+      "name": "Pol_SyncAtLogoff_2",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_OfflineFiles/Pol_SyncAtLogoff_2",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "OfflineFiles~AT~Network~Cat_OfflineFiles",
+          "name": "Pol_SyncAtLogoff_2",
+          "file": "OfflineFiles.admx"
+        }
+      }
+    },
+    {
+      "name": "Pol_SyncAtLogon_1",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_OfflineFiles/Pol_SyncAtLogon_1",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "OfflineFiles~AT~Network~Cat_OfflineFiles",
+          "name": "Pol_SyncAtLogon_1",
+          "file": "OfflineFiles.admx"
+        }
+      }
+    },
+    {
+      "name": "Pol_SyncAtLogon_2",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_OfflineFiles/Pol_SyncAtLogon_2",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "OfflineFiles~AT~Network~Cat_OfflineFiles",
+          "name": "Pol_SyncAtLogon_2",
+          "file": "OfflineFiles.admx"
+        }
+      }
+    },
+    {
+      "name": "Pol_SyncAtSuspend_1",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_OfflineFiles/Pol_SyncAtSuspend_1",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "OfflineFiles~AT~Network~Cat_OfflineFiles",
+          "name": "Pol_SyncAtSuspend_1",
+          "file": "OfflineFiles.admx"
+        }
+      }
+    },
+    {
+      "name": "Pol_SyncAtSuspend_2",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_OfflineFiles/Pol_SyncAtSuspend_2",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "OfflineFiles~AT~Network~Cat_OfflineFiles",
+          "name": "Pol_SyncAtSuspend_2",
+          "file": "OfflineFiles.admx"
+        }
+      }
+    },
+    {
+      "name": "Pol_SyncOnCostedNetwork",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_OfflineFiles/Pol_SyncOnCostedNetwork",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "OfflineFiles~AT~Network~Cat_OfflineFiles",
+          "name": "Pol_SyncOnCostedNetwork",
+          "file": "OfflineFiles.admx"
+        }
+      }
+    },
+    {
+      "name": "Pol_WorkOfflineDisabled_1",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_OfflineFiles/Pol_WorkOfflineDisabled_1",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "OfflineFiles~AT~Network~Cat_OfflineFiles",
+          "name": "Pol_WorkOfflineDisabled_1",
+          "file": "OfflineFiles.admx"
+        }
+      }
+    },
+    {
+      "name": "Pol_WorkOfflineDisabled_2",
+      "path": "./Device/Vendor/MSFT/Policy/Config/ADMX_OfflineFiles/Pol_WorkOfflineDisabled_2",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
+        "cspVersion": "10.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ADMX",
+        "admx": {
+          "area": "OfflineFiles~AT~Network~Cat_OfflineFiles",
+          "name": "Pol_WorkOfflineDisabled_2",
+          "file": "OfflineFiles.admx"
+        }
+      }
+    }
+  ]
+}

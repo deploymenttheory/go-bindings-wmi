@@ -1,0 +1,1314 @@
+{
+  "name": "ClientCertificateInstall",
+  "path": "./Device/Vendor/MSFT",
+  "nodes": [
+    {
+      "name": "PFXCertInstall",
+      "path": "./Device/Vendor/MSFT/ClientCertificateInstall/PFXCertInstall",
+      "format": "node",
+      "access": [
+        "Get"
+      ],
+      "description": "Required for PFX certificate installation. The parent node grouping the PFX cert related settings.",
+      "applicability": {},
+      "children": [
+        {
+          "name": "",
+          "path": "./Device/Vendor/MSFT/ClientCertificateInstall/PFXCertInstall/",
+          "format": "node",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "Required for PFX certificate installation. A unique ID to differentiate different certificate install requests. \nFormat is node. \nCalling Delete on the this node, should delete the certificates and the keys that were installed by the corresponding PFX blob.",
+          "applicability": {},
+          "children": [
+            {
+              "name": "ContainerName",
+              "path": "./Device/Vendor/MSFT/ClientCertificateInstall/PFXCertInstall/ContainerName",
+              "format": "chr",
+              "access": [
+                "Add",
+                "Get",
+                "Replace"
+              ],
+              "description": "Optional. \nSpecifies the NGC container name (if NGC KSP is chosen for above node). If this node is not specified when NGC KSP is chosen, enrollment will fail.",
+              "applicability": {},
+              "allowedValues": {
+                "type": "None"
+              }
+            },
+            {
+              "name": "KeyLocation",
+              "path": "./Device/Vendor/MSFT/ClientCertificateInstall/PFXCertInstall/KeyLocation",
+              "format": "int",
+              "access": [
+                "Add",
+                "Get",
+                "Replace"
+              ],
+              "description": "Required for PFX certificate installation. Indicates the KeyStorage provider to target the private key installation to.",
+              "applicability": {},
+              "allowedValues": {
+                "type": "ENUM",
+                "enum": [
+                  {
+                    "value": "1",
+                    "description": "Install to TPM if present, fail if not present."
+                  },
+                  {
+                    "value": "2",
+                    "description": "Install to TPM if present. If not present, fallback to software."
+                  },
+                  {
+                    "value": "3",
+                    "description": "Install to software."
+                  },
+                  {
+                    "value": "4",
+                    "description": "Install to Windows Hello for Business (formerly known as Microsoft Passport for Work) whose name is specified"
+                  }
+                ]
+              }
+            },
+            {
+              "name": "PFXCertBlob",
+              "path": "./Device/Vendor/MSFT/ClientCertificateInstall/PFXCertInstall/PFXCertBlob",
+              "format": "bin",
+              "access": [
+                "Add",
+                "Get",
+                "Replace"
+              ],
+              "description": "Required. \nCRYPT_DATA_BLOB structure that contains a PFX packet with the exported and encrypted certificates and keys. Add on this node will trigger the addition to the PFX certificate. This requires that all the other nodes under UniqueID that are parameters for PFX installation (Container Name, KeyLocation, CertPassword, fKeyExportable) are present before this is called. This will also set the Status node to the current Status of the operation.\nIf Add is called on this node and a blob already exists, it will fail. If Replace is called on this node, the certificates will be overwritten.\nIf Add is called on this node for a new PFX, the certificate will be added. If Replace is called on this node when it does not exist, this will fail.\nIn other words, using Replace or Add will result in the effect of either overwriting the old certificate or adding a new certificate\nCRYPT_DATA_BLOB on MSDN can be found at http://msdn.microsoft.com/en-us/library/windows/desktop/aa381414(v=vs.85).aspx",
+              "applicability": {},
+              "allowedValues": {
+                "type": "None"
+              }
+            },
+            {
+              "name": "PFXCertPassword",
+              "path": "./Device/Vendor/MSFT/ClientCertificateInstall/PFXCertInstall/PFXCertPassword",
+              "format": "chr",
+              "access": [
+                "Add",
+                "Get",
+                "Replace"
+              ],
+              "description": "Password that protects the PFX blob. This is required if the PFX is password protected.",
+              "applicability": {},
+              "allowedValues": {
+                "type": "None"
+              }
+            },
+            {
+              "name": "PFXCertPasswordEncryptionStore",
+              "path": "./Device/Vendor/MSFT/ClientCertificateInstall/PFXCertInstall/PFXCertPasswordEncryptionStore",
+              "format": "chr",
+              "access": [
+                "Add",
+                "Get",
+                "Replace"
+              ],
+              "description": "Optional. \nWhen a value of \"2\" is contained iin PFXCertPasswordEncryptionType, specify the store name where the certificate for decrypting the PFXCertPassword is stored.",
+              "applicability": {},
+              "allowedValues": {
+                "type": "None"
+              }
+            },
+            {
+              "name": "PFXCertPasswordEncryptionType",
+              "path": "./Device/Vendor/MSFT/ClientCertificateInstall/PFXCertInstall/PFXCertPasswordEncryptionType",
+              "format": "int",
+              "access": [
+                "Add",
+                "Get",
+                "Replace"
+              ],
+              "description": "Optional. Used to specify if the PFX certificate password is encrypted with a certificate.\nIf the value is \n0 - Password is not encrypted\n1- Password is encrypted using the MDM certificate by the MDM server\n2 - Password is encrypted by a Custom Certificate by the MDM server. When this value is used here, also specify the custom store name in the PFXCertPasswordEncryptionStore node.",
+              "default": "0",
+              "applicability": {},
+              "allowedValues": {
+                "type": "ENUM",
+                "enum": [
+                  {
+                    "value": "0",
+                    "description": "Password is not encrypted."
+                  },
+                  {
+                    "value": "1",
+                    "description": "Password is encrypted with the MDM certificate."
+                  },
+                  {
+                    "value": "2",
+                    "description": "Password is encrypted with custom certificate."
+                  }
+                ]
+              }
+            },
+            {
+              "name": "PFXKeyExportable",
+              "path": "./Device/Vendor/MSFT/ClientCertificateInstall/PFXCertInstall/PFXKeyExportable",
+              "format": "bool",
+              "access": [
+                "Add",
+                "Get",
+                "Replace"
+              ],
+              "description": "Optional. Used to specify if the private key installed is exportable (can be exported later).",
+              "default": "true",
+              "applicability": {},
+              "allowedValues": {
+                "type": "ENUM",
+                "enum": [
+                  {
+                    "value": "false",
+                    "description": "False"
+                  },
+                  {
+                    "value": "true",
+                    "description": "True"
+                  }
+                ]
+              }
+            },
+            {
+              "name": "Status",
+              "path": "./Device/Vendor/MSFT/ClientCertificateInstall/PFXCertInstall/Status",
+              "format": "int",
+              "access": [
+                "Get"
+              ],
+              "description": "Returns the error code of the PFX installation from the GetLastError command called after the PfxImportCertStore.",
+              "applicability": {}
+            },
+            {
+              "name": "Thumbprint",
+              "path": "./Device/Vendor/MSFT/ClientCertificateInstall/PFXCertInstall/Thumbprint",
+              "format": "chr",
+              "access": [
+                "Get"
+              ],
+              "description": "Returns the thumbprint of the PFX certificate installed.",
+              "applicability": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "PFXCertInstall",
+      "path": "./Device/Vendor/MSFT/ClientCertificateInstall/PFXCertInstall",
+      "format": "node",
+      "access": [
+        "Get"
+      ],
+      "description": "Required for PFX certificate installation. The parent node grouping the PFX cert related settings.",
+      "applicability": {},
+      "children": [
+        {
+          "name": "",
+          "path": "./Device/Vendor/MSFT/ClientCertificateInstall/PFXCertInstall/",
+          "format": "node",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "Required for PFX certificate installation. A unique ID to differentiate different certificate install requests. \nFormat is node. \nCalling Delete on the this node, should delete the certificates and the keys that were installed by the corresponding PFX blob.",
+          "applicability": {},
+          "children": [
+            {
+              "name": "ContainerName",
+              "path": "./Device/Vendor/MSFT/ClientCertificateInstall/PFXCertInstall/ContainerName",
+              "format": "chr",
+              "access": [
+                "Add",
+                "Get",
+                "Replace"
+              ],
+              "description": "Optional. \nSpecifies the NGC container name (if NGC KSP is chosen for above node). If this node is not specified when NGC KSP is chosen, enrollment will fail.",
+              "applicability": {},
+              "allowedValues": {
+                "type": "None"
+              }
+            },
+            {
+              "name": "KeyLocation",
+              "path": "./Device/Vendor/MSFT/ClientCertificateInstall/PFXCertInstall/KeyLocation",
+              "format": "int",
+              "access": [
+                "Add",
+                "Get",
+                "Replace"
+              ],
+              "description": "Required for PFX certificate installation. Indicates the KeyStorage provider to target the private key installation to.",
+              "applicability": {},
+              "allowedValues": {
+                "type": "ENUM",
+                "enum": [
+                  {
+                    "value": "1",
+                    "description": "Install to TPM if present, fail if not present."
+                  },
+                  {
+                    "value": "2",
+                    "description": "Install to TPM if present. If not present, fallback to software."
+                  },
+                  {
+                    "value": "3",
+                    "description": "Install to software."
+                  },
+                  {
+                    "value": "4",
+                    "description": "Install to Windows Hello for Business (formerly known as Microsoft Passport for Work) whose name is specified"
+                  }
+                ]
+              }
+            },
+            {
+              "name": "PFXCertBlob",
+              "path": "./Device/Vendor/MSFT/ClientCertificateInstall/PFXCertInstall/PFXCertBlob",
+              "format": "bin",
+              "access": [
+                "Add",
+                "Get",
+                "Replace"
+              ],
+              "description": "Required. \nCRYPT_DATA_BLOB structure that contains a PFX packet with the exported and encrypted certificates and keys. Add on this node will trigger the addition to the PFX certificate. This requires that all the other nodes under UniqueID that are parameters for PFX installation (Container Name, KeyLocation, CertPassword, fKeyExportable) are present before this is called. This will also set the Status node to the current Status of the operation.\nIf Add is called on this node and a blob already exists, it will fail. If Replace is called on this node, the certificates will be overwritten.\nIf Add is called on this node for a new PFX, the certificate will be added. If Replace is called on this node when it does not exist, this will fail.\nIn other words, using Replace or Add will result in the effect of either overwriting the old certificate or adding a new certificate\nCRYPT_DATA_BLOB on MSDN can be found at http://msdn.microsoft.com/en-us/library/windows/desktop/aa381414(v=vs.85).aspx",
+              "applicability": {},
+              "allowedValues": {
+                "type": "None"
+              }
+            },
+            {
+              "name": "PFXCertPassword",
+              "path": "./Device/Vendor/MSFT/ClientCertificateInstall/PFXCertInstall/PFXCertPassword",
+              "format": "chr",
+              "access": [
+                "Add",
+                "Get",
+                "Replace"
+              ],
+              "description": "Password that protects the PFX blob. This is required if the PFX is password protected.",
+              "applicability": {},
+              "allowedValues": {
+                "type": "None"
+              }
+            },
+            {
+              "name": "PFXCertPasswordEncryptionStore",
+              "path": "./Device/Vendor/MSFT/ClientCertificateInstall/PFXCertInstall/PFXCertPasswordEncryptionStore",
+              "format": "chr",
+              "access": [
+                "Add",
+                "Get",
+                "Replace"
+              ],
+              "description": "Optional. \nWhen a value of \"2\" is contained iin PFXCertPasswordEncryptionType, specify the store name where the certificate for decrypting the PFXCertPassword is stored.",
+              "applicability": {},
+              "allowedValues": {
+                "type": "None"
+              }
+            },
+            {
+              "name": "PFXCertPasswordEncryptionType",
+              "path": "./Device/Vendor/MSFT/ClientCertificateInstall/PFXCertInstall/PFXCertPasswordEncryptionType",
+              "format": "int",
+              "access": [
+                "Add",
+                "Get",
+                "Replace"
+              ],
+              "description": "Optional. Used to specify if the PFX certificate password is encrypted with a certificate.\nIf the value is \n0 - Password is not encrypted\n1- Password is encrypted using the MDM certificate by the MDM server\n2 - Password is encrypted by a Custom Certificate by the MDM server. When this value is used here, also specify the custom store name in the PFXCertPasswordEncryptionStore node.",
+              "default": "0",
+              "applicability": {},
+              "allowedValues": {
+                "type": "ENUM",
+                "enum": [
+                  {
+                    "value": "0",
+                    "description": "Password is not encrypted."
+                  },
+                  {
+                    "value": "1",
+                    "description": "Password is encrypted with the MDM certificate."
+                  },
+                  {
+                    "value": "2",
+                    "description": "Password is encrypted with custom certificate."
+                  }
+                ]
+              }
+            },
+            {
+              "name": "PFXKeyExportable",
+              "path": "./Device/Vendor/MSFT/ClientCertificateInstall/PFXCertInstall/PFXKeyExportable",
+              "format": "bool",
+              "access": [
+                "Add",
+                "Get",
+                "Replace"
+              ],
+              "description": "Optional. Used to specify if the private key installed is exportable (can be exported later).",
+              "default": "true",
+              "applicability": {},
+              "allowedValues": {
+                "type": "ENUM",
+                "enum": [
+                  {
+                    "value": "false",
+                    "description": "False"
+                  },
+                  {
+                    "value": "true",
+                    "description": "True"
+                  }
+                ]
+              }
+            },
+            {
+              "name": "Status",
+              "path": "./Device/Vendor/MSFT/ClientCertificateInstall/PFXCertInstall/Status",
+              "format": "int",
+              "access": [
+                "Get"
+              ],
+              "description": "Returns the error code of the PFX installation from the GetLastError command called after the PfxImportCertStore.",
+              "applicability": {}
+            },
+            {
+              "name": "Thumbprint",
+              "path": "./Device/Vendor/MSFT/ClientCertificateInstall/PFXCertInstall/Thumbprint",
+              "format": "chr",
+              "access": [
+                "Get"
+              ],
+              "description": "Returns the thumbprint of the PFX certificate installed.",
+              "applicability": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "SCEP",
+      "path": "./Device/Vendor/MSFT/ClientCertificateInstall/SCEP",
+      "format": "node",
+      "access": [
+        "Get"
+      ],
+      "description": "Node for SCEP. An alert is sent after the SCEP certificate is installed.",
+      "applicability": {},
+      "children": [
+        {
+          "name": "",
+          "path": "./Device/Vendor/MSFT/ClientCertificateInstall/SCEP/",
+          "format": "node",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "Required for SCEP certificate installation. A unique ID to differentiate different certificate install requests. \nCalling Delete on the this node, should delete the corresponding SCEP certificate",
+          "applicability": {},
+          "children": [
+            {
+              "name": "CertThumbprint",
+              "path": "./Device/Vendor/MSFT/ClientCertificateInstall/SCEP/CertThumbprint",
+              "format": "chr",
+              "access": [
+                "Get"
+              ],
+              "description": "Optional. Specify the current cert’s thumbprint if certificate enrollment succeeds. It is a 20-byte value of the SHA1 certificate hash specified as a hexadecimal string value.",
+              "applicability": {}
+            },
+            {
+              "name": "ErrorCode",
+              "path": "./Device/Vendor/MSFT/ClientCertificateInstall/SCEP/ErrorCode",
+              "format": "int",
+              "access": [
+                "Get"
+              ],
+              "description": "Optional. The integer value that indicates the HRESULT of the last enrollment error code.",
+              "applicability": {}
+            },
+            {
+              "name": "Install",
+              "path": "./Device/Vendor/MSFT/ClientCertificateInstall/SCEP/Install",
+              "format": "node",
+              "access": [
+                "Add",
+                "Delete",
+                "Get",
+                "Replace"
+              ],
+              "description": "Required for SCEP certificate enrollment. Parent node to group SCEP cert install related request. NOTE: though the children nodes under Install support Replace commands, once the Exec command is sent to the device, the device will take the values which are set when the Exec command is accepted. The server should not expect the node value change after Exec command is accepted will impact the current undergoing enrollment. The server should check the Status node value and make sure the device is not at unknown stage before changing children node values.",
+              "applicability": {},
+              "children": [
+                {
+                  "name": "AADKeyIdentifierList",
+                  "path": "./Device/Vendor/MSFT/ClientCertificateInstall/SCEP/Install/AADKeyIdentifierList",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Optional. Specify the AAD Key Identifier List as a semicolon separated values. On Enroll, the values in this list are validated against the AAD Key present on the device. If no match is found, enrollment will fail.",
+                  "applicability": {
+                    "minOsBuild": "10.0.15063",
+                    "cspVersion": "1.0"
+                  },
+                  "allowedValues": {
+                    "type": "None"
+                  }
+                },
+                {
+                  "name": "AttestPrivateKey",
+                  "path": "./Device/Vendor/MSFT/ClientCertificateInstall/SCEP/Install/AttestPrivateKey",
+                  "format": "int",
+                  "access": [
+                    "Add",
+                    "Get"
+                  ],
+                  "description": "Defines the attest SCEP private key behavior 0 - normal, 1 - best effort, 2 - on error, fail the installation",
+                  "applicability": {
+                    "minOsBuild": "99.9.99999",
+                    "cspVersion": "9.9"
+                  },
+                  "allowedValues": {
+                    "type": "ENUM",
+                    "enum": [
+                      {
+                        "value": "0",
+                        "description": "Do not attest private key"
+                      },
+                      {
+                        "value": "1",
+                        "description": "Attest key, but in case attestation failed, best effort approach - CSR is sent to the server"
+                      },
+                      {
+                        "value": "2",
+                        "description": "Attest key, but in case attestation failed, fail fast (i.e release the key and not issue a CSR to the server)"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "CAThumbprint",
+                  "path": "./Device/Vendor/MSFT/ClientCertificateInstall/SCEP/Install/CAThumbprint",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Required. Specify root CA thumbprint. It is a 20-byte value of the SHA1 certificate hash specified as a hexadecimal string value. When client authenticates SCEP server, it checks CA cert from SCEP server whether match with this cert. If not match, fail the authentication.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "None"
+                  }
+                },
+                {
+                  "name": "Challenge",
+                  "path": "./Device/Vendor/MSFT/ClientCertificateInstall/SCEP/Install/Challenge",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Required for SCEP certificate enrollment. B64 encoded SCEP enrollment challenge. Challenge will be deleted shortly after the Exec command is accepted.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "None"
+                  }
+                },
+                {
+                  "name": "ContainerName",
+                  "path": "./Device/Vendor/MSFT/ClientCertificateInstall/SCEP/Install/ContainerName",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Optional. \nSpecifies the NGC container name (if NGC KSP is chosen for above node). If this node is not specified when NGC KSP is chosen, enrollment will fail.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "None"
+                  }
+                },
+                {
+                  "name": "CustomTextToShowInPrompt",
+                  "path": "./Device/Vendor/MSFT/ClientCertificateInstall/SCEP/Install/CustomTextToShowInPrompt",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Optional. Specifies the custom text to show on the NGC PIN prompt during certificate enrollment. The admin can choose to provide more contextual information for why the user needs to enter the PIN and what the certificate will be used for through this.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "None"
+                  }
+                },
+                {
+                  "name": "EKUMapping",
+                  "path": "./Device/Vendor/MSFT/ClientCertificateInstall/SCEP/Install/EKUMapping",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Required. Specify extended key usages. Subjected to SCEP server configuration. The list of OIDs are separated by plus “+”. Sample format: OID1+OID2+OID3.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "None"
+                  }
+                },
+                {
+                  "name": "Enroll",
+                  "path": "./Device/Vendor/MSFT/ClientCertificateInstall/SCEP/Install/Enroll",
+                  "format": "null",
+                  "access": [
+                    "Exec"
+                  ],
+                  "description": "Required. Trigger the device to start the cert enrollment. The device will not notify MDM server after cert enrollment is done. The MDM server could later query the device to find out whether new cert is added.",
+                  "applicability": {}
+                },
+                {
+                  "name": "HashAlgorithm",
+                  "path": "./Device/Vendor/MSFT/ClientCertificateInstall/SCEP/Install/HashAlgorithm",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Required for enrollment. Hash algorithm family (SHA-1, SHA-2, SHA-3) specified by MDM server. If multiple hash algorithm families are specified, they must be separated via +. \n\nFor NGC, only SHA256 is supported as the supported algorithm",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "None"
+                  }
+                },
+                {
+                  "name": "KeyLength",
+                  "path": "./Device/Vendor/MSFT/ClientCertificateInstall/SCEP/Install/KeyLength",
+                  "format": "int",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Required for enrollment. Specify private key length (RSA). \nValid value: 1024, 2048, 4096. For NGC, only 2048 is the supported keylength.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "ENUM",
+                    "enum": [
+                      {
+                        "value": "1024",
+                        "description": "1024"
+                      },
+                      {
+                        "value": "2048",
+                        "description": "2048"
+                      },
+                      {
+                        "value": "4096",
+                        "description": "4096"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "KeyProtection",
+                  "path": "./Device/Vendor/MSFT/ClientCertificateInstall/SCEP/Install/KeyProtection",
+                  "format": "int",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Optional. Specify where to keep the private key. Note that even it is protected by TPM, it is not guarded with TPM PIN. \nSCEP enrolled cert doesn’t support TPM PIN protection.",
+                  "default": "3",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "ENUM",
+                    "enum": [
+                      {
+                        "value": "1",
+                        "description": "Private key protected by TPM."
+                      },
+                      {
+                        "value": "2",
+                        "description": "Private key protected by phone TPM if the device supports TPM. All Windows Phone 8.1 devices support TPM and will treat value 2 as 1."
+                      },
+                      {
+                        "value": "3",
+                        "description": "(Default) Private key saved in software KSP."
+                      },
+                      {
+                        "value": "4",
+                        "description": "Private key protected by Windows Hello for Business (formerly known as Microsoft Passport for Work). If this option is specified, the ContainerName must be specified, otherwise enrollment will fail."
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "KeyUsage",
+                  "path": "./Device/Vendor/MSFT/ClientCertificateInstall/SCEP/Install/KeyUsage",
+                  "format": "int",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Required for enrollment. Specify the key usage bits (0x80, 0x20, 0xA0, etc.) for the certificate in decimal format. The value should at least have second (0x20) or forth (0x80) or both bits set. If the value doesn’t have those bits set, configuration will fail.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "None"
+                  }
+                },
+                {
+                  "name": "RetryCount",
+                  "path": "./Device/Vendor/MSFT/ClientCertificateInstall/SCEP/Install/RetryCount",
+                  "format": "int",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Optional. Special to SCEP. Specify device retry times when the SCEP sever sends pending status. Format is int. Default value is 3. Max value: the value cannot be larger than 30. If it is larger than 30, the device will use 30.\nThe min value is 0 which means no retry.",
+                  "default": "3",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "Range"
+                  }
+                },
+                {
+                  "name": "RetryDelay",
+                  "path": "./Device/Vendor/MSFT/ClientCertificateInstall/SCEP/Install/RetryDelay",
+                  "format": "int",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Optional. When the SCEP server sends pending status, specify device retry waiting time in minutes. \n\nDefault value is: 5\nThe min value is 1.",
+                  "default": "5",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "Range"
+                  }
+                },
+                {
+                  "name": "ServerURL",
+                  "path": "./Device/Vendor/MSFT/ClientCertificateInstall/SCEP/Install/ServerURL",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Required for SCEP certificate enrollment. Specify the cert enrollment server. The server could specify multiple server URLs separated by semicolon.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "None"
+                  }
+                },
+                {
+                  "name": "SubjectAlternativeNames",
+                  "path": "./Device/Vendor/MSFT/ClientCertificateInstall/SCEP/Install/SubjectAlternativeNames",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Optional. Specify subject alternative name. Multiple alternative names could be specified by this node. Each name is the combination of name format+actual name. Refer name type definition in MSDN. Each pair is separated by semicolon. E.g. multiple SAN are presented in the format of [nameformat1]+[actual name1];[name format 2]+[actual name2].",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "None"
+                  }
+                },
+                {
+                  "name": "SubjectName",
+                  "path": "./Device/Vendor/MSFT/ClientCertificateInstall/SCEP/Install/SubjectName",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Required. Specify the subject name. The SubjectName value is quoted if it contains leading or trailing white space or one of the following characters: (“,” “=” “+” “;” ).",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "None"
+                  }
+                },
+                {
+                  "name": "TemplateName",
+                  "path": "./Device/Vendor/MSFT/ClientCertificateInstall/SCEP/Install/TemplateName",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Optional. OID of certificate template name. Note that this name is typically ignored by the SCEP server, therefore the MDM server typically doesn’t need to provide it.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "None"
+                  }
+                },
+                {
+                  "name": "ValidPeriod",
+                  "path": "./Device/Vendor/MSFT/ClientCertificateInstall/SCEP/Install/ValidPeriod",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Optional. Specify the units for valid period. Valid values are: Days(Default), Months, Years. \nMDM server expected certificate validation period (ValidPeriodUnits + ValidPerio) the SCEP server as part of certificate enrollment request. It is the server’s decision on how to use this valid period to create the certificate.",
+                  "default": "Days",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "ENUM",
+                    "enum": [
+                      {
+                        "value": "Days",
+                        "description": "Days"
+                      },
+                      {
+                        "value": "Months",
+                        "description": "Months"
+                      },
+                      {
+                        "value": "Years",
+                        "description": "Years"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "ValidPeriodUnits",
+                  "path": "./Device/Vendor/MSFT/ClientCertificateInstall/SCEP/Install/ValidPeriodUnits",
+                  "format": "int",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Optional. Specify desired number of units used in validity period. Subjected to SCEP server configuration. Default is 0. The units are defined in ValidPeriod node. Note the valid period specified by MDM will overwrite the valid period specified in cert template. For example, if ValidPeriod is days and ValidPeriodUnits is 30, it means the total valid duration is 30 days. \nNOTE: The device only sends the MDM server expected certificate validation period (ValidPeriodUnits + ValidPerio) the SCEP server as part of certificate enrollment request. It is the server’s decision on how to use this valid period to create the certificate.",
+                  "default": "0",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "None"
+                  }
+                }
+              ]
+            },
+            {
+              "name": "RespondentServerUrl",
+              "path": "./Device/Vendor/MSFT/ClientCertificateInstall/SCEP/RespondentServerUrl",
+              "format": "chr",
+              "access": [
+                "Get"
+              ],
+              "description": "Required. Returns the URL of the SCEP server that responded to the enrollment request.",
+              "applicability": {}
+            },
+            {
+              "name": "Status",
+              "path": "./Device/Vendor/MSFT/ClientCertificateInstall/SCEP/Status",
+              "format": "int",
+              "access": [
+                "Get"
+              ],
+              "description": "Required. Specify the latest status for the certificate due to enroll request.\nValid values are:\n1 – finished successfully\n2 – pending (the device hasn’t finished the action but has received the SCEP server pending response)\n32 – unknown\n16 - action failed",
+              "applicability": {}
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "SCEP",
+      "path": "./Device/Vendor/MSFT/ClientCertificateInstall/SCEP",
+      "format": "node",
+      "access": [
+        "Get"
+      ],
+      "description": "Node for SCEP. An alert is sent after the SCEP certificate is installed.",
+      "applicability": {},
+      "children": [
+        {
+          "name": "",
+          "path": "./Device/Vendor/MSFT/ClientCertificateInstall/SCEP/",
+          "format": "node",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "Required for SCEP certificate installation. A unique ID to differentiate different certificate install requests. \nCalling Delete on the this node, should delete the corresponding SCEP certificate",
+          "applicability": {},
+          "children": [
+            {
+              "name": "CertThumbprint",
+              "path": "./Device/Vendor/MSFT/ClientCertificateInstall/SCEP/CertThumbprint",
+              "format": "chr",
+              "access": [
+                "Get"
+              ],
+              "description": "Optional. Specify the current cert’s thumbprint if certificate enrollment succeeds. It is a 20-byte value of the SHA1 certificate hash specified as a hexadecimal string value.",
+              "applicability": {}
+            },
+            {
+              "name": "ErrorCode",
+              "path": "./Device/Vendor/MSFT/ClientCertificateInstall/SCEP/ErrorCode",
+              "format": "int",
+              "access": [
+                "Get"
+              ],
+              "description": "Optional. The integer value that indicates the HRESULT of the last enrollment error code.",
+              "applicability": {}
+            },
+            {
+              "name": "Install",
+              "path": "./Device/Vendor/MSFT/ClientCertificateInstall/SCEP/Install",
+              "format": "node",
+              "access": [
+                "Add",
+                "Delete",
+                "Get",
+                "Replace"
+              ],
+              "description": "Required for SCEP certificate enrollment. Parent node to group SCEP cert install related request. NOTE: though the children nodes under Install support Replace commands, once the Exec command is sent to the device, the device will take the values which are set when the Exec command is accepted. The server should not expect the node value change after Exec command is accepted will impact the current undergoing enrollment. The server should check the Status node value and make sure the device is not at unknown stage before changing children node values.",
+              "applicability": {},
+              "children": [
+                {
+                  "name": "AADKeyIdentifierList",
+                  "path": "./Device/Vendor/MSFT/ClientCertificateInstall/SCEP/Install/AADKeyIdentifierList",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Optional. Specify the AAD Key Identifier List as a semicolon separated values. On Enroll, the values in this list are validated against the AAD Key present on the device. If no match is found, enrollment will fail.",
+                  "applicability": {
+                    "minOsBuild": "10.0.15063",
+                    "cspVersion": "1.0"
+                  },
+                  "allowedValues": {
+                    "type": "None"
+                  }
+                },
+                {
+                  "name": "AttestPrivateKey",
+                  "path": "./Device/Vendor/MSFT/ClientCertificateInstall/SCEP/Install/AttestPrivateKey",
+                  "format": "int",
+                  "access": [
+                    "Add",
+                    "Get"
+                  ],
+                  "description": "Defines the attest SCEP private key behavior 0 - normal, 1 - best effort, 2 - on error, fail the installation",
+                  "applicability": {
+                    "minOsBuild": "99.9.99999",
+                    "cspVersion": "9.9"
+                  },
+                  "allowedValues": {
+                    "type": "None"
+                  }
+                },
+                {
+                  "name": "CAThumbprint",
+                  "path": "./Device/Vendor/MSFT/ClientCertificateInstall/SCEP/Install/CAThumbprint",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Required. Specify root CA thumbprint. It is a 20-byte value of the SHA1 certificate hash specified as a hexadecimal string value. When client authenticates SCEP server, it checks CA cert from SCEP server whether match with this cert. If not match, fail the authentication.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "None"
+                  }
+                },
+                {
+                  "name": "Challenge",
+                  "path": "./Device/Vendor/MSFT/ClientCertificateInstall/SCEP/Install/Challenge",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Required for SCEP certificate enrollment. B64 encoded SCEP enrollment challenge. Challenge will be deleted shortly after the Exec command is accepted.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "None"
+                  }
+                },
+                {
+                  "name": "ContainerName",
+                  "path": "./Device/Vendor/MSFT/ClientCertificateInstall/SCEP/Install/ContainerName",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Optional. \nSpecifies the NGC container name (if NGC KSP is chosen for above node). If this node is not specified when NGC KSP is chosen, enrollment will fail.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "None"
+                  }
+                },
+                {
+                  "name": "CustomTextToShowInPrompt",
+                  "path": "./Device/Vendor/MSFT/ClientCertificateInstall/SCEP/Install/CustomTextToShowInPrompt",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Optional. Specifies the custom text to show on the NGC PIN prompt during certificate enrollment. The admin can choose to provide more contextual information for why the user needs to enter the PIN and what the certificate will be used for through this.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "None"
+                  }
+                },
+                {
+                  "name": "EKUMapping",
+                  "path": "./Device/Vendor/MSFT/ClientCertificateInstall/SCEP/Install/EKUMapping",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Required. Specify extended key usages. Subjected to SCEP server configuration. The list of OIDs are separated by plus “+”. Sample format: OID1+OID2+OID3.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "None"
+                  }
+                },
+                {
+                  "name": "Enroll",
+                  "path": "./Device/Vendor/MSFT/ClientCertificateInstall/SCEP/Install/Enroll",
+                  "format": "null",
+                  "access": [
+                    "Exec"
+                  ],
+                  "description": "Required. Trigger the device to start the cert enrollment. The device will not notify MDM server after cert enrollment is done. The MDM server could later query the device to find out whether new cert is added.",
+                  "applicability": {}
+                },
+                {
+                  "name": "HashAlgorithm",
+                  "path": "./Device/Vendor/MSFT/ClientCertificateInstall/SCEP/Install/HashAlgorithm",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Required for enrollment. Hash algorithm family (SHA-1, SHA-2, SHA-3) specified by MDM server. If multiple hash algorithm families are specified, they must be separated via +. \n\nFor NGC, only SHA256 is supported as the supported algorithm",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "None"
+                  }
+                },
+                {
+                  "name": "KeyLength",
+                  "path": "./Device/Vendor/MSFT/ClientCertificateInstall/SCEP/Install/KeyLength",
+                  "format": "int",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Required for enrollment. Specify private key length (RSA). \nValid value: 1024, 2048, 4096. For NGC, only 2048 is the supported keylength.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "ENUM",
+                    "enum": [
+                      {
+                        "value": "1024",
+                        "description": "1024"
+                      },
+                      {
+                        "value": "2048",
+                        "description": "2048"
+                      },
+                      {
+                        "value": "4096",
+                        "description": "4096"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "KeyProtection",
+                  "path": "./Device/Vendor/MSFT/ClientCertificateInstall/SCEP/Install/KeyProtection",
+                  "format": "int",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Optional. Specify where to keep the private key. Note that even it is protected by TPM, it is not guarded with TPM PIN. \nSCEP enrolled cert doesn’t support TPM PIN protection.",
+                  "default": "3",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "ENUM",
+                    "enum": [
+                      {
+                        "value": "1",
+                        "description": "Private key protected by TPM."
+                      },
+                      {
+                        "value": "2",
+                        "description": "Private key protected by phone TPM if the device supports TPM. All Windows Phone 8.1 devices support TPM and will treat value 2 as 1."
+                      },
+                      {
+                        "value": "3",
+                        "description": "(Default) Private key saved in software KSP."
+                      },
+                      {
+                        "value": "4",
+                        "description": "Private key protected by Windows Hello for Business (formerly known as Microsoft Passport for Work). If this option is specified, the ContainerName must be specified, otherwise enrollment will fail."
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "KeyUsage",
+                  "path": "./Device/Vendor/MSFT/ClientCertificateInstall/SCEP/Install/KeyUsage",
+                  "format": "int",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Required for enrollment. Specify the key usage bits (0x80, 0x20, 0xA0, etc.) for the certificate in decimal format. The value should at least have second (0x20) or forth (0x80) or both bits set. If the value doesn’t have those bits set, configuration will fail.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "None"
+                  }
+                },
+                {
+                  "name": "RetryCount",
+                  "path": "./Device/Vendor/MSFT/ClientCertificateInstall/SCEP/Install/RetryCount",
+                  "format": "int",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Optional. Special to SCEP. Specify device retry times when the SCEP sever sends pending status. Format is int. Default value is 3. Max value: the value cannot be larger than 30. If it is larger than 30, the device will use 30.\nThe min value is 0 which means no retry.",
+                  "default": "3",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "Range"
+                  }
+                },
+                {
+                  "name": "RetryDelay",
+                  "path": "./Device/Vendor/MSFT/ClientCertificateInstall/SCEP/Install/RetryDelay",
+                  "format": "int",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Optional. When the SCEP server sends pending status, specify device retry waiting time in minutes. \n\nDefault value is: 5\nThe min value is 1.",
+                  "default": "5",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "Range"
+                  }
+                },
+                {
+                  "name": "ServerURL",
+                  "path": "./Device/Vendor/MSFT/ClientCertificateInstall/SCEP/Install/ServerURL",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Required for SCEP certificate enrollment. Specify the cert enrollment server. The server could specify multiple server URLs separated by semicolon.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "None"
+                  }
+                },
+                {
+                  "name": "SubjectAlternativeNames",
+                  "path": "./Device/Vendor/MSFT/ClientCertificateInstall/SCEP/Install/SubjectAlternativeNames",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Optional. Specify subject alternative name. Multiple alternative names could be specified by this node. Each name is the combination of name format+actual name. Refer name type definition in MSDN. Each pair is separated by semicolon. E.g. multiple SAN are presented in the format of [nameformat1]+[actual name1];[name format 2]+[actual name2].",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "None"
+                  }
+                },
+                {
+                  "name": "SubjectName",
+                  "path": "./Device/Vendor/MSFT/ClientCertificateInstall/SCEP/Install/SubjectName",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Required. Specify the subject name. The SubjectName value is quoted if it contains leading or trailing white space or one of the following characters: (“,” “=” “+” “;” ).",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "None"
+                  }
+                },
+                {
+                  "name": "TemplateName",
+                  "path": "./Device/Vendor/MSFT/ClientCertificateInstall/SCEP/Install/TemplateName",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Optional. OID of certificate template name. Note that this name is typically ignored by the SCEP server, therefore the MDM server typically doesn’t need to provide it.",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "None"
+                  }
+                },
+                {
+                  "name": "ValidPeriod",
+                  "path": "./Device/Vendor/MSFT/ClientCertificateInstall/SCEP/Install/ValidPeriod",
+                  "format": "chr",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Optional. Specify the units for valid period. Valid values are: Days(Default), Months, Years. \nMDM server expected certificate validation period (ValidPeriodUnits + ValidPerio) the SCEP server as part of certificate enrollment request. It is the server’s decision on how to use this valid period to create the certificate.",
+                  "default": "Days",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "ENUM",
+                    "enum": [
+                      {
+                        "value": "Days",
+                        "description": "Days"
+                      },
+                      {
+                        "value": "Months",
+                        "description": "Months"
+                      },
+                      {
+                        "value": "Years",
+                        "description": "Years"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "ValidPeriodUnits",
+                  "path": "./Device/Vendor/MSFT/ClientCertificateInstall/SCEP/Install/ValidPeriodUnits",
+                  "format": "int",
+                  "access": [
+                    "Add",
+                    "Delete",
+                    "Get",
+                    "Replace"
+                  ],
+                  "description": "Optional. Specify desired number of units used in validity period. Subjected to SCEP server configuration. Default is 0. The units are defined in ValidPeriod node. Note the valid period specified by MDM will overwrite the valid period specified in cert template. For example, if ValidPeriod is days and ValidPeriodUnits is 30, it means the total valid duration is 30 days. \nNOTE: The device only sends the MDM server expected certificate validation period (ValidPeriodUnits + ValidPerio) the SCEP server as part of certificate enrollment request. It is the server’s decision on how to use this valid period to create the certificate.",
+                  "default": "0",
+                  "applicability": {},
+                  "allowedValues": {
+                    "type": "None"
+                  }
+                }
+              ]
+            },
+            {
+              "name": "RespondentServerUrl",
+              "path": "./Device/Vendor/MSFT/ClientCertificateInstall/SCEP/RespondentServerUrl",
+              "format": "chr",
+              "access": [
+                "Get"
+              ],
+              "description": "Required. Returns the URL of the SCEP server that responded to the enrollment request.",
+              "applicability": {}
+            },
+            {
+              "name": "Status",
+              "path": "./Device/Vendor/MSFT/ClientCertificateInstall/SCEP/Status",
+              "format": "int",
+              "access": [
+                "Get"
+              ],
+              "description": "Required. Specify the latest status for the certificate due to enroll request.\nValid values are:\n1 – finished successfully\n2 – pending (the device hasn’t finished the action but has received the SCEP server pending response)\n32 – unknown\n16 - action failed",
+              "applicability": {}
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

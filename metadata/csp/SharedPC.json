@@ -1,0 +1,439 @@
+{
+  "name": "SharedPC",
+  "path": "./Vendor/MSFT",
+  "nodes": [
+    {
+      "name": "AccountModel",
+      "path": "./Vendor/MSFT/SharedPC/AccountModel",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Configures which type of accounts are allowed to use the PC. Allowed values: 0 (only guest), 1 (domain-joined only), 2 (domain-joined and guest). If used, this value must be set before the action on the EnableSharedPCMode node is taken.",
+      "default": "0",
+      "applicability": {},
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Only guest accounts are allowed."
+          },
+          {
+            "value": "1",
+            "description": "Only domain-joined accounts are allowed."
+          },
+          {
+            "value": "2",
+            "description": "Domain-joined and guest accounts are allowed."
+          }
+        ]
+      }
+    },
+    {
+      "name": "DeletionPolicy",
+      "path": "./Vendor/MSFT/SharedPC/DeletionPolicy",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Configures when accounts will be deleted. Allowed values: 0 (delete immediately), 1 (delete at disk space threshold), 2 (Delete at disk space threshold and inactive threshold). If used, this value must be set before the action on the EnableSharedPCMode node is taken.",
+      "default": "1",
+      "applicability": {},
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Delete immediately."
+          },
+          {
+            "value": "1",
+            "description": "Delete at disk space threshold"
+          },
+          {
+            "value": "2",
+            "description": "Delete at disk space threshold and inactive threshold"
+          }
+        ]
+      }
+    },
+    {
+      "name": "DiskLevelCaching",
+      "path": "./Vendor/MSFT/SharedPC/DiskLevelCaching",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Stop deleting accounts when available disk space reaches this threshold, given as percent of total disk capacity. If used, this value must be set before the action on the EnableSharedPCMode node is taken.",
+      "default": "50",
+      "applicability": {},
+      "allowedValues": {
+        "type": "Range"
+      }
+    },
+    {
+      "name": "DiskLevelDeletion",
+      "path": "./Vendor/MSFT/SharedPC/DiskLevelDeletion",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Accounts will start being deleted when available disk space falls below this threshold, given as percent of total disk capacity. Accounts that have been inactive the longest will be deleted first. If used, this value must be set before the action on the EnableSharedPCMode node is taken.",
+      "default": "25",
+      "applicability": {},
+      "allowedValues": {
+        "type": "Range"
+      }
+    },
+    {
+      "name": "EnableAccountManager",
+      "path": "./Vendor/MSFT/SharedPC/EnableAccountManager",
+      "format": "bool",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Enable the account manager for shared PC mode. If used, this value must be set before the action on the EnableSharedPCMode node is taken.",
+      "default": "false",
+      "applicability": {},
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "false",
+            "description": "False"
+          },
+          {
+            "value": "true",
+            "description": "True"
+          }
+        ]
+      }
+    },
+    {
+      "name": "EnableSharedPCMode",
+      "path": "./Vendor/MSFT/SharedPC/EnableSharedPCMode",
+      "format": "bool",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Setting this node to \"true\" triggers the action to configure a device to Shared PC mode.",
+      "default": "false",
+      "applicability": {},
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "false",
+            "description": "Not configured"
+          },
+          {
+            "value": "true",
+            "description": "Enabled"
+          }
+        ]
+      }
+    },
+    {
+      "name": "EnableSharedPCModeWithOneDriveSync",
+      "path": "./Vendor/MSFT/SharedPC/EnableSharedPCModeWithOneDriveSync",
+      "format": "bool",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Setting this node to “1” triggers the action to configure a device to Shared PC mode with OneDrive sync turned on",
+      "default": "false",
+      "applicability": {
+        "minOsBuild": "10.0.22621",
+        "cspVersion": "1.2"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "false",
+            "description": "Not configured"
+          },
+          {
+            "value": "true",
+            "description": "Enabled"
+          }
+        ]
+      }
+    },
+    {
+      "name": "EnableWindowsInsiderPreviewFlighting",
+      "path": "./Vendor/MSFT/SharedPC/EnableWindowsInsiderPreviewFlighting",
+      "format": "bool",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Setting this node to “1” enables Windows Insider Preview flighting and the ability to receive insider preview builds.",
+      "default": "false",
+      "applicability": {
+        "minOsBuild": "10.0.22621",
+        "cspVersion": "1.2"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "false",
+            "description": "Not configured"
+          },
+          {
+            "value": "true",
+            "description": "WIP builds are Enabled"
+          }
+        ]
+      }
+    },
+    {
+      "name": "InactiveThreshold",
+      "path": "./Vendor/MSFT/SharedPC/InactiveThreshold",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Accounts will start being deleted when they have not been logged on during the specified period, given as number of days.",
+      "default": "30",
+      "applicability": {
+        "minOsBuild": "10.0.15063",
+        "cspVersion": "1.1"
+      },
+      "allowedValues": {
+        "type": "Range"
+      }
+    },
+    {
+      "name": "KioskModeAUMID",
+      "path": "./Vendor/MSFT/SharedPC/KioskModeAUMID",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Specifies the AUMID of the app to use with assigned access. If used, this value must be set before the action on the EnableSharedPCMode node is taken.",
+      "applicability": {
+        "minOsBuild": "10.0.15063",
+        "cspVersion": "1.1"
+      },
+      "allowedValues": {
+        "type": "None"
+      }
+    },
+    {
+      "name": "KioskModeUserTileDisplayText",
+      "path": "./Vendor/MSFT/SharedPC/KioskModeUserTileDisplayText",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Specifies the display text for the account shown on the sign-in screen which launches the app specified by KioskModeAUMID. If used, this value must be set before the action on the EnableSharedPCMode node is taken.",
+      "applicability": {
+        "minOsBuild": "10.0.15063",
+        "cspVersion": "1.1"
+      },
+      "allowedValues": {
+        "type": "None"
+      }
+    },
+    {
+      "name": "MaintenanceStartTime",
+      "path": "./Vendor/MSFT/SharedPC/MaintenanceStartTime",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Daily start time of maintenance hour. Given in minutes from midnight. Default is 0 (12am).  If used, this value must be set before the action on the EnableSharedPCMode node is taken.",
+      "default": "0",
+      "applicability": {},
+      "allowedValues": {
+        "type": "Range"
+      }
+    },
+    {
+      "name": "MaxPageFileSizeMB",
+      "path": "./Vendor/MSFT/SharedPC/MaxPageFileSizeMB",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Maximum size of the paging file in MB. Applies only to systems with less than 32 GB storage and at least 3 GB of RAM. If used, this value must be set before the action on the EnableSharedPCMode node is taken.",
+      "default": "1024",
+      "applicability": {
+        "minOsBuild": "10.0.15063",
+        "cspVersion": "1.1"
+      },
+      "allowedValues": {
+        "type": "Range"
+      }
+    },
+    {
+      "name": "RestrictLocalStorage",
+      "path": "./Vendor/MSFT/SharedPC/RestrictLocalStorage",
+      "format": "bool",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Restricts the user from using local storage. This node is optional. If used, this value must be set before the action on the EnableSharedPCMode node is taken.",
+      "default": "false",
+      "applicability": {
+        "minOsBuild": "10.0.15063",
+        "cspVersion": "1.1"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "false",
+            "description": "False"
+          },
+          {
+            "value": "true",
+            "description": "True"
+          }
+        ]
+      }
+    },
+    {
+      "name": "SetEduPolicies",
+      "path": "./Vendor/MSFT/SharedPC/SetEduPolicies",
+      "format": "bool",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Set a list of EDU policies.",
+      "default": "false",
+      "applicability": {},
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "false",
+            "description": "Not configured"
+          },
+          {
+            "value": "true",
+            "description": "Enabled"
+          }
+        ]
+      }
+    },
+    {
+      "name": "SetPowerPolicies",
+      "path": "./Vendor/MSFT/SharedPC/SetPowerPolicies",
+      "format": "bool",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Set a list of power policies. If used, this value must be set before the action on the EnableSharedPCMode node is taken.",
+      "default": "false",
+      "applicability": {},
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "false",
+            "description": "Not configured"
+          },
+          {
+            "value": "true",
+            "description": "Enabled"
+          }
+        ]
+      }
+    },
+    {
+      "name": "SignInOnResume",
+      "path": "./Vendor/MSFT/SharedPC/SignInOnResume",
+      "format": "bool",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Require signing in on waking up from sleep. If used, this value must be set before the action on the EnableSharedPCMode node is taken.",
+      "default": "false",
+      "applicability": {},
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "false",
+            "description": "False"
+          },
+          {
+            "value": "true",
+            "description": "True"
+          }
+        ]
+      }
+    },
+    {
+      "name": "SleepTimeout",
+      "path": "./Vendor/MSFT/SharedPC/SleepTimeout",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "The amount of time before the PC sleeps, giving in seconds. 0 means the PC never sleeps. Default is 5 minutes. If used, this value must be set before the action on the EnableSharedPCMode node is taken.",
+      "default": "300",
+      "applicability": {},
+      "allowedValues": {
+        "type": "Range"
+      }
+    }
+  ]
+}

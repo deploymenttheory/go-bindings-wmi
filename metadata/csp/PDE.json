@@ -1,0 +1,192 @@
+{
+  "name": "PDE",
+  "path": "./User/Vendor/MSFT",
+  "nodes": [
+    {
+      "name": "EnablePersonalDataEncryption",
+      "path": "./User/Vendor/MSFT/PDE/EnablePersonalDataEncryption",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Allows the Admin to enable Personal Data Encryption. Set to '1' to set this policy.",
+      "applicability": {},
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Disable Personal Data Encryption."
+          },
+          {
+            "value": "1",
+            "description": "Enable Personal Data Encryption."
+          }
+        ]
+      }
+    },
+    {
+      "name": "ProtectFolders",
+      "path": "./User/Vendor/MSFT/PDE/ProtectFolders",
+      "format": "node",
+      "access": [
+        "Get"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.26100",
+        "cspVersion": "1.0"
+      },
+      "children": [
+        {
+          "name": "ProtectDesktop",
+          "path": "./User/Vendor/MSFT/PDE/ProtectFolders/ProtectDesktop",
+          "format": "int",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "Allows the Admin to enable PDE on Desktop folder. Set to '1' to set this policy.",
+          "applicability": {},
+          "allowedValues": {
+            "type": "ENUM",
+            "enum": [
+              {
+                "value": "0",
+                "description": "Disable PDE on the folder. If the folder is currently protected by PDE, this will result in unprotecting the folder."
+              },
+              {
+                "value": "1",
+                "description": "Enable PDE on the folder."
+              }
+            ]
+          }
+        },
+        {
+          "name": "ProtectDocuments",
+          "path": "./User/Vendor/MSFT/PDE/ProtectFolders/ProtectDocuments",
+          "format": "int",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "Allows the Admin to enable PDE on Documents folder. Set to '1' to set this policy.",
+          "applicability": {},
+          "allowedValues": {
+            "type": "ENUM",
+            "enum": [
+              {
+                "value": "0",
+                "description": "Disable PDE on the folder. If the folder is currently protected by PDE, this will result in unprotecting the folder."
+              },
+              {
+                "value": "1",
+                "description": "Enable PDE on the folder."
+              }
+            ]
+          }
+        },
+        {
+          "name": "ProtectPictures",
+          "path": "./User/Vendor/MSFT/PDE/ProtectFolders/ProtectPictures",
+          "format": "int",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "Allows the Admin to enable PDE on Pictures folder. Set to '1' to set this policy.",
+          "applicability": {},
+          "allowedValues": {
+            "type": "ENUM",
+            "enum": [
+              {
+                "value": "0",
+                "description": "Disable PDE on the folder. If the folder is currently protected by PDE, this will result in unprotecting the folder."
+              },
+              {
+                "value": "1",
+                "description": "Enable PDE on the folder."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Status",
+      "path": "./User/Vendor/MSFT/PDE/Status",
+      "format": "node",
+      "access": [
+        "Get"
+      ],
+      "applicability": {},
+      "children": [
+        {
+          "name": "FolderProtectionStatus",
+          "path": "./User/Vendor/MSFT/PDE/Status/FolderProtectionStatus",
+          "format": "int",
+          "access": [
+            "Get"
+          ],
+          "description": "This node reports folder protection status for a user.",
+          "applicability": {
+            "minOsBuild": "10.0.26100",
+            "cspVersion": "1.0"
+          },
+          "allowedValues": {
+            "type": "ENUM",
+            "enum": [
+              {
+                "value": "0",
+                "description": "Protection not started."
+              },
+              {
+                "value": "1",
+                "description": "Protection is completed with no failures."
+              },
+              {
+                "value": "2",
+                "description": "Protection in progress."
+              },
+              {
+                "value": "3",
+                "description": "Protection failed."
+              }
+            ]
+          }
+        },
+        {
+          "name": "FoldersProtected",
+          "path": "./User/Vendor/MSFT/PDE/Status/FoldersProtected",
+          "format": "chr",
+          "access": [
+            "Get"
+          ],
+          "description": "This node reports all folders (full path to each folder) that have been protected.",
+          "applicability": {
+            "minOsBuild": "10.0.26100",
+            "cspVersion": "1.0"
+          }
+        },
+        {
+          "name": "PersonalDataEncryptionStatus",
+          "path": "./User/Vendor/MSFT/PDE/Status/PersonalDataEncryptionStatus",
+          "format": "int",
+          "access": [
+            "Get"
+          ],
+          "description": "This node reports the current state of Personal Data Encryption for a user. '0' means disabled. '1' means enabled.",
+          "applicability": {}
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,698 @@
+{
+  "name": "EMAIL2",
+  "path": "./User/Vendor/MSFT",
+  "nodes": [
+    {
+      "name": "",
+      "path": "./User/Vendor/MSFT/EMAIL2/",
+      "format": "node",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This is unique and identifies a particular account. Also, we can only have 6 additional email accounts. So, depending on how many are already there on the device, we can have from 1 to 6.",
+      "applicability": {},
+      "allowedValues": {
+        "type": "RegEx"
+      },
+      "children": [
+        {
+          "name": "ACCOUNTICON",
+          "path": "./User/Vendor/MSFT/EMAIL2/ACCOUNTICON",
+          "format": "chr",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "The location of the icon associated with the account.  The account icon can be used as a tile in the Start list or an icon in the applications list under Settings, email \u0026 accounts. Some icons are already provided on the device. The suggested icon for POP/IMAP or generic ActiveSync accounts is at res://AccountSettingsSharedRes{ScreenResolution}!%s.genericmail.png. The suggested icon for Exchange Accounts is at res://AccountSettingsSharedRes{ScreenResolution}!%s.office.outlook.png. Custom icons can be added if desired.",
+          "applicability": {},
+          "allowedValues": {
+            "type": "None"
+          }
+        },
+        {
+          "name": "ACCOUNTTYPE",
+          "path": "./User/Vendor/MSFT/EMAIL2/ACCOUNTTYPE",
+          "format": "chr",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "Specifies the type of account. Valid values are: Email - normal email, VVM - visual voice mail",
+          "applicability": {},
+          "allowedValues": {
+            "type": "ENUM",
+            "enum": [
+              {
+                "value": "Email",
+                "description": "normal email"
+              },
+              {
+                "value": "VVM",
+                "description": "visual voice mail"
+              }
+            ]
+          }
+        },
+        {
+          "name": "AUTHNAME",
+          "path": "./User/Vendor/MSFT/EMAIL2/AUTHNAME",
+          "format": "chr",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "Character string that specifies the name used to authorize the user to a specific email account (also known as the user's logon name).",
+          "applicability": {},
+          "allowedValues": {
+            "type": "None"
+          }
+        },
+        {
+          "name": "AUTHREQUIRED",
+          "path": "./User/Vendor/MSFT/EMAIL2/AUTHREQUIRED",
+          "format": "chr",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "Character string that specifies whether the outgoing server requires authentication.\n                1 for TRUE\n                0 for FALSE(default).\n                Note: If this is not specified then SMTP authentication will not be done. Also, this is different from the SMTPALTENABLED. That is to specify different set of credentials for SMTP.",
+          "applicability": {},
+          "allowedValues": {
+            "type": "ENUM",
+            "enum": [
+              {
+                "value": "0",
+                "description": "Server authentication is not required."
+              },
+              {
+                "value": "1",
+                "description": "Server authentication is required."
+              }
+            ]
+          }
+        },
+        {
+          "name": "AUTHSECRET",
+          "path": "./User/Vendor/MSFT/EMAIL2/AUTHSECRET",
+          "format": "chr",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "Character string that specifies the user's password. The same password is used for SMTP authentication.",
+          "applicability": {},
+          "allowedValues": {
+            "type": "None"
+          }
+        },
+        {
+          "name": "CALENDARSERVER",
+          "path": "./User/Vendor/MSFT/EMAIL2/CALENDARSERVER",
+          "format": "chr",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "Server for calendar sync if it is different from the email server.",
+          "applicability": {},
+          "allowedValues": {
+            "type": "None"
+          }
+        },
+        {
+          "name": "CALENDARSERVERREQUIRESSL",
+          "path": "./User/Vendor/MSFT/EMAIL2/CALENDARSERVERREQUIRESSL",
+          "format": "chr",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "Indicates if the connection to the calendar server requires SSL.",
+          "applicability": {},
+          "allowedValues": {
+            "type": "None"
+          }
+        },
+        {
+          "name": "CALENDARSYNCSCHEDULE",
+          "path": "./User/Vendor/MSFT/EMAIL2/CALENDARSYNCSCHEDULE",
+          "format": "chr",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "Sets the schedule for syncing calendar items.",
+          "applicability": {},
+          "allowedValues": {
+            "type": "None"
+          }
+        },
+        {
+          "name": "CELLULARONLY",
+          "path": "./User/Vendor/MSFT/EMAIL2/CELLULARONLY",
+          "format": "chr",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "If this flag is set, the account only uses the cellular network and not Wi-Fi.",
+          "applicability": {},
+          "allowedValues": {
+            "type": "None"
+          }
+        },
+        {
+          "name": "CONTACTSSERVER",
+          "path": "./User/Vendor/MSFT/EMAIL2/CONTACTSSERVER",
+          "format": "chr",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "Server for contact sync if it is different from the email server.",
+          "applicability": {},
+          "allowedValues": {
+            "type": "None"
+          }
+        },
+        {
+          "name": "CONTACTSSERVERREQUIRESSL",
+          "path": "./User/Vendor/MSFT/EMAIL2/CONTACTSSERVERREQUIRESSL",
+          "format": "chr",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "Indicates if the connection to the contact server requires SSL.",
+          "applicability": {},
+          "allowedValues": {
+            "type": "None"
+          }
+        },
+        {
+          "name": "CONTACTSSYNCSCHEDULE",
+          "path": "./User/Vendor/MSFT/EMAIL2/CONTACTSSYNCSCHEDULE",
+          "format": "chr",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "Sets the schedule for syncing contact items.",
+          "applicability": {},
+          "allowedValues": {
+            "type": "None"
+          }
+        },
+        {
+          "name": "DOMAIN",
+          "path": "./User/Vendor/MSFT/EMAIL2/DOMAIN",
+          "format": "chr",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "Character string that specifies the incoming server credentials domain. Limited to 255 characters.",
+          "applicability": {},
+          "allowedValues": {
+            "type": "None"
+          }
+        },
+        {
+          "name": "DWNDAY",
+          "path": "./User/Vendor/MSFT/EMAIL2/DWNDAY",
+          "format": "chr",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "Character string that specifies how many days' worth of email should be downloaded from the server.",
+          "applicability": {},
+          "allowedValues": {
+            "type": "ENUM",
+            "enum": [
+              {
+                "value": "-1",
+                "description": "Specifies that all email currently on the server should be downloaded."
+              },
+              {
+                "value": "7",
+                "description": "Specifies that 7 days’ worth of email should be downloaded."
+              },
+              {
+                "value": "14",
+                "description": "Specifies that 14 days’ worth of email should be downloaded."
+              },
+              {
+                "value": "30",
+                "description": "Specifies that 30 days’ worth of email should be downloaded."
+              },
+              {
+                "value": "90",
+                "description": "Specifies that 90 days’ worth of email should be downloaded."
+              }
+            ]
+          }
+        },
+        {
+          "name": "INSERVER",
+          "path": "./User/Vendor/MSFT/EMAIL2/INSERVER",
+          "format": "chr",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "Character string that specifies how many days' worth of email should be downloaded from the server. server name:port number",
+          "applicability": {},
+          "allowedValues": {
+            "type": "None"
+          }
+        },
+        {
+          "name": "KEEPMAX",
+          "path": "./User/Vendor/MSFT/EMAIL2/KEEPMAX",
+          "format": "chr",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "Specifies the maximum size for a message attachment. Attachments beyond this size will not be downloaded but it will remain on the server. The message itself will be downloaded. This value can be set only for IMAP4 accounts. The limit is specified in KB.",
+          "applicability": {},
+          "allowedValues": {
+            "type": "ENUM",
+            "enum": [
+              {
+                "value": "-1",
+                "description": "No limit is enforced"
+              },
+              {
+                "value": "0",
+                "description": "No attachment is downloaded"
+              },
+              {
+                "value": "25",
+                "description": "25 KB"
+              },
+              {
+                "value": "50",
+                "description": "50 KB"
+              },
+              {
+                "value": "100",
+                "description": "100 KB"
+              },
+              {
+                "value": "250",
+                "description": "250 KB"
+              }
+            ]
+          }
+        },
+        {
+          "name": "LINGER",
+          "path": "./User/Vendor/MSFT/EMAIL2/LINGER",
+          "format": "chr",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "Character string that specifies the length of time between email send/receive updates in minutes.  0 indicates that updates must be performed manually.",
+          "default": "15",
+          "applicability": {},
+          "allowedValues": {
+            "type": "Range"
+          }
+        },
+        {
+          "name": "NAME",
+          "path": "./User/Vendor/MSFT/EMAIL2/NAME",
+          "format": "chr",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "Character string that specifies the name of the sender displayed on a sent email. It should be set to the user’s name. Limited to 255 characters.",
+          "applicability": {},
+          "allowedValues": {
+            "type": "None"
+          }
+        },
+        {
+          "name": "OUTSERVER",
+          "path": "./User/Vendor/MSFT/EMAIL2/OUTSERVER",
+          "format": "chr",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "Character string that specifies the name of the messaging service's outgoing email server. Limited to 62 characters. The value format is: server name:port number",
+          "applicability": {},
+          "allowedValues": {
+            "type": "None"
+          }
+        },
+        {
+          "name": "REPLYADDR",
+          "path": "./User/Vendor/MSFT/EMAIL2/REPLYADDR",
+          "format": "chr",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "Character string that specifies the reply email address of the user (usually the same as the user email address). Sending email will fail without it. Limited to 255 characters.",
+          "applicability": {},
+          "allowedValues": {
+            "type": "None"
+          }
+        },
+        {
+          "name": "RETRIEVE",
+          "path": "./User/Vendor/MSFT/EMAIL2/RETRIEVE",
+          "format": "chr",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "Specifies the maximum size in bytes for messages retrieved from the incoming email server. Messages beyond this size are retrieved, but truncated.",
+          "applicability": {},
+          "allowedValues": {
+            "type": "Range"
+          }
+        },
+        {
+          "name": "SERVERDELETEACTION",
+          "path": "./User/Vendor/MSFT/EMAIL2/SERVERDELETEACTION",
+          "format": "chr",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "Character string that specifies how message is deleted on server. The default action depends on the transport.",
+          "applicability": {},
+          "allowedValues": {
+            "type": "ENUM",
+            "enum": [
+              {
+                "value": "1",
+                "description": "delete message on the server"
+              },
+              {
+                "value": "2",
+                "description": "keep the message on the server (delete to the Trash folder)."
+              }
+            ]
+          }
+        },
+        {
+          "name": "SERVICENAME",
+          "path": "./User/Vendor/MSFT/EMAIL2/SERVICENAME",
+          "format": "chr",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "Character string that specifies the name of the email service to create or edit (32 characters maximum).",
+          "applicability": {},
+          "allowedValues": {
+            "type": "None"
+          }
+        },
+        {
+          "name": "SERVICETYPE",
+          "path": "./User/Vendor/MSFT/EMAIL2/SERVICETYPE",
+          "format": "chr",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "Character string that specifies the type of email service to create or edit (for example, \"IMAP4\" or \"POP3\").",
+          "applicability": {},
+          "allowedValues": {
+            "type": "None"
+          }
+        },
+        {
+          "name": "SMTPALTAUTHNAME",
+          "path": "./User/Vendor/MSFT/EMAIL2/SMTPALTAUTHNAME",
+          "format": "chr",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "Character string that specifies the display name associated with the user's alternative SMTP email account.",
+          "applicability": {},
+          "allowedValues": {
+            "type": "None"
+          }
+        },
+        {
+          "name": "SMTPALTDOMAIN",
+          "path": "./User/Vendor/MSFT/EMAIL2/SMTPALTDOMAIN",
+          "format": "chr",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "Character string that specifies the domain name for the user's alternative SMTP account.",
+          "applicability": {},
+          "allowedValues": {
+            "type": "None"
+          }
+        },
+        {
+          "name": "SMTPALTENABLED",
+          "path": "./User/Vendor/MSFT/EMAIL2/SMTPALTENABLED",
+          "format": "chr",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "Character string that specifies if the user's alternate SMTP account is enabled.",
+          "applicability": {},
+          "allowedValues": {
+            "type": "ENUM",
+            "enum": [
+              {
+                "value": "0",
+                "description": "The user's alternate SMTP email account is disabled."
+              },
+              {
+                "value": "1",
+                "description": "The user's alternate SMTP email account is enabled."
+              }
+            ]
+          }
+        },
+        {
+          "name": "SMTPALTPASSWORD",
+          "path": "./User/Vendor/MSFT/EMAIL2/SMTPALTPASSWORD",
+          "format": "chr",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "Character string that specifies the password for the user's alternate SMTP account.",
+          "applicability": {},
+          "allowedValues": {
+            "type": "None"
+          }
+        },
+        {
+          "name": "SYNCINGCONTENTTYPES",
+          "path": "./User/Vendor/MSFT/EMAIL2/SYNCINGCONTENTTYPES",
+          "format": "chr",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "Specifies a bitmask for which content types are supported for syncing (eg: Mail, Contacts, Calendar).",
+          "applicability": {},
+          "allowedValues": {
+            "type": "Flag",
+            "enum": [
+              {
+                "value": "0x0",
+                "description": "No data"
+              },
+              {
+                "value": "0x1",
+                "description": "Contacts"
+              },
+              {
+                "value": "0x2",
+                "description": "Mail"
+              },
+              {
+                "value": "0x4",
+                "description": "Appointments"
+              },
+              {
+                "value": "0x8",
+                "description": "Tasks"
+              },
+              {
+                "value": "0x10",
+                "description": "Notes"
+              },
+              {
+                "value": "0x60",
+                "description": "Feeds"
+              },
+              {
+                "value": "0x180",
+                "description": "Network Photo"
+              },
+              {
+                "value": "0x200",
+                "description": "Group and room"
+              },
+              {
+                "value": "0x400",
+                "description": "Chat"
+              },
+              {
+                "value": "0x800",
+                "description": "Email Recipient Email"
+              },
+              {
+                "value": "0x1000",
+                "description": "Server Link"
+              },
+              {
+                "value": "0xffffffff",
+                "description": "All items"
+              }
+            ]
+          }
+        },
+        {
+          "name": "TAGPROPS",
+          "path": "./User/Vendor/MSFT/EMAIL2/TAGPROPS",
+          "format": "node",
+          "access": [
+            "Add",
+            "Delete",
+            "Get",
+            "Replace"
+          ],
+          "description": "Specifies that stated parameter element name attributes is nonstandard tag properties.",
+          "applicability": {},
+          "children": [
+            {
+              "name": "8128000B",
+              "path": "./User/Vendor/MSFT/EMAIL2/TAGPROPS/8128000B",
+              "format": "chr",
+              "access": [
+                "Add",
+                "Delete",
+                "Get",
+                "Replace"
+              ],
+              "description": "Character string that specifies if the incoming email server requires SSL.",
+              "applicability": {},
+              "allowedValues": {
+                "type": "ENUM",
+                "enum": [
+                  {
+                    "value": "0",
+                    "description": "SSL is not required."
+                  },
+                  {
+                    "value": "1",
+                    "description": "SSL is required."
+                  }
+                ]
+              }
+            },
+            {
+              "name": "812C000B",
+              "path": "./User/Vendor/MSFT/EMAIL2/TAGPROPS/812C000B",
+              "format": "chr",
+              "access": [
+                "Add",
+                "Delete",
+                "Get",
+                "Replace"
+              ],
+              "description": "Character string that specifies if the outgoing email server requires SSL.",
+              "applicability": {},
+              "allowedValues": {
+                "type": "ENUM",
+                "enum": [
+                  {
+                    "value": "0",
+                    "description": "SSL is not required."
+                  },
+                  {
+                    "value": "1",
+                    "description": "SSL is required."
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

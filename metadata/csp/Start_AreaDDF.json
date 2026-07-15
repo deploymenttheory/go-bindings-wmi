@@ -1,0 +1,1756 @@
+{
+  "name": "Start",
+  "path": "./Device/Vendor/MSFT/Policy/Config",
+  "nodes": [
+    {
+      "name": "AllowPinnedFolderDocuments",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Start/AllowPinnedFolderDocuments",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This policy controls the visibility of the Documents shortcut on the Start menu. The possible values are 0 - means that the shortcut should be hidden and grays out the corresponding toggle in the Settings app, 1 - means that the shortcut should be visible and grays out the corresponding toggle in the Settings app, 65535 - means that there is no enforced configuration and the setting can be changed by the user.",
+      "default": "65535",
+      "applicability": {
+        "minOsBuild": "10.0.15063",
+        "cspVersion": "5.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "The shortcut is hidden and disables the setting in the Settings app."
+          },
+          {
+            "value": "1",
+            "description": "The shortcut is visible and disables the setting in the Settings app."
+          },
+          {
+            "value": "65535",
+            "description": "There is no enforced configuration and the setting can be changed by the user."
+          }
+        ]
+      }
+    },
+    {
+      "name": "AllowPinnedFolderDownloads",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Start/AllowPinnedFolderDownloads",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This policy controls the visibility of the Downloads shortcut on the Start menu. The possible values are 0 - means that the shortcut should be hidden and grays out the corresponding toggle in the Settings app, 1 - means that the shortcut should be visible and grays out the corresponding toggle in the Settings app, 65535 - means that there is no enforced configuration and the setting can be changed by the user.",
+      "default": "65535",
+      "applicability": {
+        "minOsBuild": "10.0.15063",
+        "cspVersion": "5.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "The shortcut is hidden and disables the setting in the Settings app."
+          },
+          {
+            "value": "1",
+            "description": "The shortcut is visible and disables the setting in the Settings app."
+          },
+          {
+            "value": "65535",
+            "description": "There is no enforced configuration and the setting can be changed by the user."
+          }
+        ]
+      }
+    },
+    {
+      "name": "AllowPinnedFolderFileExplorer",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Start/AllowPinnedFolderFileExplorer",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This policy controls the visibility of the File Explorer shortcut on the Start menu. The possible values are 0 - means that the shortcut should be hidden and grays out the corresponding toggle in the Settings app, 1 - means that the shortcut should be visible and grays out the corresponding toggle in the Settings app, 65535 - means that there is no enforced configuration and the setting can be changed by the user.",
+      "default": "65535",
+      "applicability": {
+        "minOsBuild": "10.0.15063",
+        "cspVersion": "5.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "The shortcut is hidden and disables the setting in the Settings app."
+          },
+          {
+            "value": "1",
+            "description": "The shortcut is visible and disables the setting in the Settings app."
+          },
+          {
+            "value": "65535",
+            "description": "There is no enforced configuration and the setting can be changed by the user."
+          }
+        ]
+      }
+    },
+    {
+      "name": "AllowPinnedFolderHomeGroup",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Start/AllowPinnedFolderHomeGroup",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This policy controls the visibility of the HomeGroup shortcut on the Start menu. The possible values are 0 - means that the shortcut should be hidden and grays out the corresponding toggle in the Settings app, 1 - means that the shortcut should be visible and grays out the corresponding toggle in the Settings app, 65535 - means that there is no enforced configuration and the setting can be changed by the user.",
+      "default": "65535",
+      "applicability": {
+        "minOsBuild": "10.0.15063",
+        "cspVersion": "5.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "The shortcut is hidden and disables the setting in the Settings app."
+          },
+          {
+            "value": "1",
+            "description": "The shortcut is visible and disables the setting in the Settings app."
+          },
+          {
+            "value": "65535",
+            "description": "There is no enforced configuration and the setting can be changed by the user."
+          }
+        ]
+      }
+    },
+    {
+      "name": "AllowPinnedFolderMusic",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Start/AllowPinnedFolderMusic",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This policy controls the visibility of the Music shortcut on the Start menu. The possible values are 0 - means that the shortcut should be hidden and grays out the corresponding toggle in the Settings app, 1 - means that the shortcut should be visible and grays out the corresponding toggle in the Settings app, 65535 - means that there is no enforced configuration and the setting can be changed by the user.",
+      "default": "65535",
+      "applicability": {
+        "minOsBuild": "10.0.15063",
+        "cspVersion": "5.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "The shortcut is hidden and disables the setting in the Settings app."
+          },
+          {
+            "value": "1",
+            "description": "The shortcut is visible and disables the setting in the Settings app."
+          },
+          {
+            "value": "65535",
+            "description": "There is no enforced configuration and the setting can be changed by the user."
+          }
+        ]
+      }
+    },
+    {
+      "name": "AllowPinnedFolderNetwork",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Start/AllowPinnedFolderNetwork",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This policy controls the visibility of the Network shortcut on the Start menu. The possible values are 0 - means that the shortcut should be hidden and grays out the corresponding toggle in the Settings app, 1 - means that the shortcut should be visible and grays out the corresponding toggle in the Settings app, 65535 - means that there is no enforced configuration and the setting can be changed by the user.",
+      "default": "65535",
+      "applicability": {
+        "minOsBuild": "10.0.15063",
+        "cspVersion": "5.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "The shortcut is hidden and disables the setting in the Settings app."
+          },
+          {
+            "value": "1",
+            "description": "The shortcut is visible and disables the setting in the Settings app."
+          },
+          {
+            "value": "65535",
+            "description": "There is no enforced configuration and the setting can be changed by the user."
+          }
+        ]
+      }
+    },
+    {
+      "name": "AllowPinnedFolderPersonalFolder",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Start/AllowPinnedFolderPersonalFolder",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This policy controls the visibility of the PersonalFolder shortcut on the Start menu. The possible values are 0 - means that the shortcut should be hidden and grays out the corresponding toggle in the Settings app, 1 - means that the shortcut should be visible and grays out the corresponding toggle in the Settings app, 65535 - means that there is no enforced configuration and the setting can be changed by the user.",
+      "default": "65535",
+      "applicability": {
+        "minOsBuild": "10.0.15063",
+        "cspVersion": "5.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "The shortcut is hidden and disables the setting in the Settings app."
+          },
+          {
+            "value": "1",
+            "description": "The shortcut is visible and disables the setting in the Settings app."
+          },
+          {
+            "value": "65535",
+            "description": "There is no enforced configuration and the setting can be changed by the user."
+          }
+        ]
+      }
+    },
+    {
+      "name": "AllowPinnedFolderPictures",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Start/AllowPinnedFolderPictures",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This policy controls the visibility of the Pictures shortcut on the Start menu. The possible values are 0 - means that the shortcut should be hidden and grays out the corresponding toggle in the Settings app, 1 - means that the shortcut should be visible and grays out the corresponding toggle in the Settings app, 65535 - means that there is no enforced configuration and the setting can be changed by the user.",
+      "default": "65535",
+      "applicability": {
+        "minOsBuild": "10.0.15063",
+        "cspVersion": "5.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "The shortcut is hidden and disables the setting in the Settings app."
+          },
+          {
+            "value": "1",
+            "description": "The shortcut is visible and disables the setting in the Settings app."
+          },
+          {
+            "value": "65535",
+            "description": "There is no enforced configuration and the setting can be changed by the user."
+          }
+        ]
+      }
+    },
+    {
+      "name": "AllowPinnedFolderSettings",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Start/AllowPinnedFolderSettings",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This policy controls the visibility of the Settings shortcut on the Start menu. The possible values are 0 - means that the shortcut should be hidden and grays out the corresponding toggle in the Settings app, 1 - means that the shortcut should be visible and grays out the corresponding toggle in the Settings app, 65535 - means that there is no enforced configuration and the setting can be changed by the user.",
+      "default": "65535",
+      "applicability": {
+        "minOsBuild": "10.0.15063",
+        "cspVersion": "5.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "The shortcut is hidden and disables the setting in the Settings app."
+          },
+          {
+            "value": "1",
+            "description": "The shortcut is visible and disables the setting in the Settings app."
+          },
+          {
+            "value": "65535",
+            "description": "There is no enforced configuration and the setting can be changed by the user."
+          }
+        ]
+      }
+    },
+    {
+      "name": "AllowPinnedFolderVideos",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Start/AllowPinnedFolderVideos",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This policy controls the visibility of the Videos shortcut on the Start menu. The possible values are 0 - means that the shortcut should be hidden and grays out the corresponding toggle in the Settings app, 1 - means that the shortcut should be visible and grays out the corresponding toggle in the Settings app, 65535 - means that there is no enforced configuration and the setting can be changed by the user.",
+      "default": "65535",
+      "applicability": {
+        "minOsBuild": "10.0.15063",
+        "cspVersion": "5.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "The shortcut is hidden and disables the setting in the Settings app."
+          },
+          {
+            "value": "1",
+            "description": "The shortcut is visible and disables the setting in the Settings app."
+          },
+          {
+            "value": "65535",
+            "description": "There is no enforced configuration and the setting can be changed by the user."
+          }
+        ]
+      }
+    },
+    {
+      "name": "AlwaysShowNotificationIcon",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Start/AlwaysShowNotificationIcon",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "99.9.99999",
+        "cspVersion": "9.9",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Auto-hide notification bell icon"
+          },
+          {
+            "value": "1",
+            "description": "Show notification bell icon"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ConfigureStartPins",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Start/ConfigureStartPins",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Allows admin to override the default items pinned to Start.",
+      "applicability": {
+        "minOsBuild": "10.0.22000",
+        "cspVersion": "11.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      }
+    },
+    {
+      "name": "ConfigureStartPins",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Start/ConfigureStartPins",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Allows admin to override the default items pinned to Start.",
+      "applicability": {
+        "minOsBuild": "10.0.22000",
+        "cspVersion": "11.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      }
+    },
+    {
+      "name": "ConfigureTaskbarSmallButtonBehavior",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Start/ConfigureTaskbarSmallButtonBehavior",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This policy setting controls the presence of small taskbar buttons. When the policy is set to values of 0, 1, or 2 the user cannot change the setting value. When the value is 65535 the user can change the setting value. The possible values are 0 - The taskbar always uses small buttons, 1 - The taskbar dynamically switches between small buttons and standard sized buttons based on available space, 2 - The taskbar never uses small buttons, 65535 - means that there is no enforced configuration and the setting can be changed by the user.",
+      "default": "65535",
+      "applicability": {
+        "minOsBuild": "99.9.99999",
+        "cspVersion": "9.9",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Always: The taskbar always uses small buttons. The setting will be grayed out in the Settings UI and the user can not change the setting value."
+          },
+          {
+            "value": "1",
+            "description": "When taskbar is full: The taskbar dynamically switches between small buttons and standard sized buttons based on available space. The setting will be grayed out in the Settings UI and the user can not change the setting value."
+          },
+          {
+            "value": "2",
+            "description": "Never: The taskbar never uses small buttons. Only standard sized buttons will be used. The setting will be grayed out in the Settings UI and the user can not change the setting value."
+          },
+          {
+            "value": "65535",
+            "description": "There is no enforced configuration and the setting can be changed by the user."
+          }
+        ]
+      }
+    },
+    {
+      "name": "ConfigureTaskbarSmallButtonBehavior",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Start/ConfigureTaskbarSmallButtonBehavior",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This policy setting controls the presence of small taskbar buttons. When the policy is set to values of 0, 1, or 2 the user cannot change the setting value. When the value is 65535 the user can change the setting value. The possible values are 0 - The taskbar always uses small buttons, 1 - The taskbar dynamically switches between small buttons and standard sized buttons based on available space, 2 - The taskbar never uses small buttons, 65535 - means that there is no enforced configuration and the setting can be changed by the user.",
+      "default": "65535",
+      "applicability": {
+        "minOsBuild": "99.9.99999",
+        "cspVersion": "9.9",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Always: The taskbar always uses small buttons. The setting will be grayed out in the Settings UI and the user can not change the setting value."
+          },
+          {
+            "value": "1",
+            "description": "When taskbar is full: The taskbar dynamically switches between small buttons and standard sized buttons based on available space. The setting will be grayed out in the Settings UI and the user can not change the setting value."
+          },
+          {
+            "value": "2",
+            "description": "Never: The taskbar never uses small buttons. Only standard sized buttons will be used. The setting will be grayed out in the Settings UI and the user can not change the setting value."
+          },
+          {
+            "value": "65535",
+            "description": "There is no enforced configuration and the setting can be changed by the user."
+          }
+        ]
+      }
+    },
+    {
+      "name": "DisableContextMenus",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Start/DisableContextMenus",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Enabling this policy prevents context menus from being invoked in the Start Menu.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.17134",
+        "cspVersion": "7.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Do not disable."
+          },
+          {
+            "value": "1",
+            "description": "Disable."
+          }
+        ]
+      }
+    },
+    {
+      "name": "DisableContextMenus",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Start/DisableContextMenus",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Enabling this policy prevents context menus from being invoked in the Start Menu.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.17134",
+        "cspVersion": "7.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Do not disable."
+          },
+          {
+            "value": "1",
+            "description": "Disable."
+          }
+        ]
+      }
+    },
+    {
+      "name": "DisableControlCenter",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Start/DisableControlCenter",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "applicability": {
+        "minOsBuild": "10.0.22621",
+        "cspVersion": "11.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Enable Quick Settings."
+          },
+          {
+            "value": "1",
+            "description": "Disable Quick Settings."
+          }
+        ]
+      }
+    },
+    {
+      "name": "DisableEditingQuickSettings",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Start/DisableEditingQuickSettings",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Allows admin to disable editing Quick Settings, such as by accessing the 'Edit quick settings' context through right-clicking on Quick Settings buttons.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.22621",
+        "cspVersion": "11.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Enable editing Quick Settings."
+          },
+          {
+            "value": "1",
+            "description": "Disable editing Quick Settings."
+          }
+        ]
+      }
+    },
+    {
+      "name": "ForceStartSize",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Start/ForceStartSize",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Forces the start screen size. If there is policy configuration conflict, the latest configuration request is applied to the device.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.10240",
+        "cspVersion": "1.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Do not force size of Start."
+          },
+          {
+            "value": "1",
+            "description": "Force non-fullscreen size of Start."
+          },
+          {
+            "value": "2",
+            "description": "Force a fullscreen size of Start."
+          }
+        ]
+      }
+    },
+    {
+      "name": "ForceStartSize",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Start/ForceStartSize",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Forces the start screen size. If there is policy configuration conflict, the latest configuration request is applied to the device.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.10240",
+        "cspVersion": "1.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Do not force size of Start."
+          },
+          {
+            "value": "1",
+            "description": "Force non-fullscreen size of Start."
+          },
+          {
+            "value": "2",
+            "description": "Force a fullscreen size of Start."
+          }
+        ]
+      }
+    },
+    {
+      "name": "HideAppList",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Start/HideAppList",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Setting the value of this policy to 1 or 2 collapses the app list. Setting the value of this policy to 3 removes the app list entirely. Setting the value of this policy to 2 or 3 disables the corresponding toggle in the Settings app.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.15063",
+        "cspVersion": "5.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "None."
+          },
+          {
+            "value": "1",
+            "description": "Hide all apps list."
+          },
+          {
+            "value": "2",
+            "description": "Hide all apps list, and Disable \"Show app list in Start menu\" in Settings app."
+          },
+          {
+            "value": "3",
+            "description": "Hide all apps list, remove all apps button, and Disable \"Show app list in Start menu\" in Settings app."
+          }
+        ]
+      }
+    },
+    {
+      "name": "HideAppList",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Start/HideAppList",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Setting the value of this policy to 1 or 2 collapses the app list. Setting the value of this policy to 3 removes the app list entirely. Setting the value of this policy to 2 or 3 disables the corresponding toggle in the Settings app.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.15063",
+        "cspVersion": "5.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "None."
+          },
+          {
+            "value": "1",
+            "description": "Hide all apps list."
+          },
+          {
+            "value": "2",
+            "description": "Hide all apps list, and Disable \"Show app list in Start menu\" in Settings app."
+          },
+          {
+            "value": "3",
+            "description": "Hide all apps list, remove all apps button, and Disable \"Show app list in Start menu\" in Settings app."
+          }
+        ]
+      }
+    },
+    {
+      "name": "HideCategoryView",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Start/HideCategoryView",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This policy setting allows you to hide the category view in the Start Menu. If you enable this policy setting, the Start Menu will no longer show the category view as an option and will default to grid view.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "99.9.99999",
+        "cspVersion": "11.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Category view shown."
+          },
+          {
+            "value": "1",
+            "description": "Category view hidden."
+          }
+        ]
+      }
+    },
+    {
+      "name": "HideCategoryView",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Start/HideCategoryView",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This policy setting allows you to hide the category view in the Start Menu. If you enable this policy setting, the Start Menu will no longer show the category view as an option and will default to grid view.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "99.9.99999",
+        "cspVersion": "11.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Category view shown."
+          },
+          {
+            "value": "1",
+            "description": "Category view hidden."
+          }
+        ]
+      }
+    },
+    {
+      "name": "HideChangeAccountSettings",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Start/HideChangeAccountSettings",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Enabling this policy hides \"Change account settings\" from appearing in the user tile in the start menu.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.15063",
+        "cspVersion": "5.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Do not hide."
+          },
+          {
+            "value": "1",
+            "description": "Hide."
+          }
+        ]
+      }
+    },
+    {
+      "name": "HideFrequentlyUsedApps",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Start/HideFrequentlyUsedApps",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Enabling this policy hides the most used apps from appearing on the start menu and disables the corresponding toggle in the Settings app.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.15063",
+        "cspVersion": "5.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Do not hide."
+          },
+          {
+            "value": "1",
+            "description": "Hide."
+          }
+        ]
+      }
+    },
+    {
+      "name": "HideFrequentlyUsedApps",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Start/HideFrequentlyUsedApps",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Enabling this policy hides the most used apps from appearing on the start menu and disables the corresponding toggle in the Settings app.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.15063",
+        "cspVersion": "5.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Do not hide."
+          },
+          {
+            "value": "1",
+            "description": "Hide."
+          }
+        ]
+      }
+    },
+    {
+      "name": "HideHibernate",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Start/HideHibernate",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Enabling this policy hides \"Hibernate\" from appearing in the power button in the start menu.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.15063",
+        "cspVersion": "5.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Do not hide."
+          },
+          {
+            "value": "1",
+            "description": "Hide."
+          }
+        ]
+      }
+    },
+    {
+      "name": "HideLock",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Start/HideLock",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Enabling this policy hides \"Lock\" from appearing in the user tile in the start menu.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.15063",
+        "cspVersion": "5.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Do not hide."
+          },
+          {
+            "value": "1",
+            "description": "Hide."
+          }
+        ]
+      }
+    },
+    {
+      "name": "HidePeopleBar",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Start/HidePeopleBar",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Enabling this policy removes the people icon from the taskbar as well as the corresponding settings toggle. It also prevents users from pinning people to the taskbar.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.16299",
+        "cspVersion": "6.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Do not hide."
+          },
+          {
+            "value": "1",
+            "description": "Hide."
+          }
+        ]
+      }
+    },
+    {
+      "name": "HidePowerButton",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Start/HidePowerButton",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Enabling this policy hides the power button from appearing in the start menu.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.15063",
+        "cspVersion": "5.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Do not hide."
+          },
+          {
+            "value": "1",
+            "description": "Hide."
+          }
+        ]
+      }
+    },
+    {
+      "name": "HideRecentJumplists",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Start/HideRecentJumplists",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Enabling this policy hides recent jumplists from appearing on the start menu/taskbar and disables the corresponding toggle in the Settings app.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.15063",
+        "cspVersion": "5.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Do not hide."
+          },
+          {
+            "value": "1",
+            "description": "Hide."
+          }
+        ]
+      }
+    },
+    {
+      "name": "HideRecentJumplists",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Start/HideRecentJumplists",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Enabling this policy hides recent jumplists from appearing on the start menu/taskbar and disables the corresponding toggle in the Settings app.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.15063",
+        "cspVersion": "5.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Do not hide."
+          },
+          {
+            "value": "1",
+            "description": "Hide."
+          }
+        ]
+      }
+    },
+    {
+      "name": "HideRecentlyAddedApps",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Start/HideRecentlyAddedApps",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Enabling this policy hides recently added apps from appearing on the start menu and disables the corresponding toggle in the Settings app.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.15063",
+        "cspVersion": "5.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Do not hide."
+          },
+          {
+            "value": "1",
+            "description": "Hide."
+          }
+        ]
+      }
+    },
+    {
+      "name": "HideRecentlyAddedApps",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Start/HideRecentlyAddedApps",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Enabling this policy hides recently added apps from appearing on the start menu and disables the corresponding toggle in the Settings app.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.15063",
+        "cspVersion": "5.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Do not hide."
+          },
+          {
+            "value": "1",
+            "description": "Hide."
+          }
+        ]
+      }
+    },
+    {
+      "name": "HideRecommendedPersonalizedSites",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Start/HideRecommendedPersonalizedSites",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This policy setting allows you to hide the personalized websites in the recommended section of the Start Menu. If you enable this policy setting, the Start Menu will no longer show personalized website recommendations in the recommended section of the start menu.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.22621.1928",
+        "cspVersion": "11.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Personalized Website Recommendations shown."
+          },
+          {
+            "value": "1",
+            "description": "Personalized Website Recommendations hidden."
+          }
+        ]
+      }
+    },
+    {
+      "name": "HideRecommendedPersonalizedSites",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Start/HideRecommendedPersonalizedSites",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This policy setting allows you to hide the personalized websites in the recommended section of the Start Menu. If you enable this policy setting, the Start Menu will no longer show personalized website recommendations in the recommended section of the start menu.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.22621.1928",
+        "cspVersion": "11.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Personalized Website Recommendations shown."
+          },
+          {
+            "value": "1",
+            "description": "Personalized Website Recommendations hidden."
+          }
+        ]
+      }
+    },
+    {
+      "name": "HideRecommendedSection",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Start/HideRecommendedSection",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This policy setting allows you to hide the recommended section of the Start Menu. If you enable this policy setting, the Start Menu will no longer show the section containing a list of recommended files and apps.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.22621",
+        "cspVersion": "11.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Recommended section shown."
+          },
+          {
+            "value": "1",
+            "description": "Recommended section hidden."
+          }
+        ]
+      }
+    },
+    {
+      "name": "HideRecommendedSection",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Start/HideRecommendedSection",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This policy setting allows you to hide the recommended section of the Start Menu. If you enable this policy setting, the Start Menu will no longer show the section containing a list of recommended files and apps.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.22621",
+        "cspVersion": "11.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Recommended section shown."
+          },
+          {
+            "value": "1",
+            "description": "Recommended section hidden."
+          }
+        ]
+      }
+    },
+    {
+      "name": "HideRestart",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Start/HideRestart",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Enabling this policy hides \"Restart/Update and restart\" from appearing in the power button in the start menu.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.15063",
+        "cspVersion": "5.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Do not hide."
+          },
+          {
+            "value": "1",
+            "description": "Hide."
+          }
+        ]
+      }
+    },
+    {
+      "name": "HideShutDown",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Start/HideShutDown",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Enabling this policy hides \"Shut down/Update and shut down\" from appearing in the power button in the start menu.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.15063",
+        "cspVersion": "5.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Do not hide."
+          },
+          {
+            "value": "1",
+            "description": "Hide."
+          }
+        ]
+      }
+    },
+    {
+      "name": "HideSignOut",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Start/HideSignOut",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Enabling this policy hides \"Sign out\" from appearing in the user tile in the start menu.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.15063",
+        "cspVersion": "5.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Do not hide."
+          },
+          {
+            "value": "1",
+            "description": "Hide."
+          }
+        ]
+      }
+    },
+    {
+      "name": "HideSleep",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Start/HideSleep",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Enabling this policy hides \"Sleep\" from appearing in the power button in the start menu.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.15063",
+        "cspVersion": "5.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Do not hide."
+          },
+          {
+            "value": "1",
+            "description": "Hide."
+          }
+        ]
+      }
+    },
+    {
+      "name": "HideSwitchAccount",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Start/HideSwitchAccount",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Enabling this policy hides \"Switch account\" from appearing in the user tile in the start menu.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.15063",
+        "cspVersion": "5.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Do not hide."
+          },
+          {
+            "value": "1",
+            "description": "Hide."
+          }
+        ]
+      }
+    },
+    {
+      "name": "HideTaskViewButton",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Start/HideTaskViewButton",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This policy setting allows you to hide the TaskView button on the Taskbar. If you enable this policy setting, the TaskView button will be hidden and the Settings toggle will be disabled.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.22621",
+        "cspVersion": "11.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "TaskView button shown."
+          },
+          {
+            "value": "1",
+            "description": "TaskView button hidden."
+          }
+        ]
+      }
+    },
+    {
+      "name": "HideTaskViewButton",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Start/HideTaskViewButton",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This policy setting allows you to hide the TaskView button on the Taskbar. If you enable this policy setting, the TaskView button will be hidden and the Settings toggle will be disabled.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.22621",
+        "cspVersion": "11.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "TaskView button shown."
+          },
+          {
+            "value": "1",
+            "description": "TaskView button hidden."
+          }
+        ]
+      }
+    },
+    {
+      "name": "HideUserTile",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Start/HideUserTile",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Enabling this policy hides the user tile from appearing in the start menu.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.15063",
+        "cspVersion": "5.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Do not hide."
+          },
+          {
+            "value": "1",
+            "description": "Hide."
+          }
+        ]
+      }
+    },
+    {
+      "name": "ImportEdgeAssets",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Start/ImportEdgeAssets",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This policy setting allows you to import Edge assets to be used with StartLayout policy. Start layout can contain secondary tile from Edge app which looks for Edge local asset file. Edge local asset would not exist and cause Edge secondary tile to appear empty in this case. This policy only gets applied when StartLayout policy is modified.",
+      "applicability": {
+        "minOsBuild": "10.0.15063",
+        "cspVersion": "5.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      }
+    },
+    {
+      "name": "NoPinningToTaskbar",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Start/NoPinningToTaskbar",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This policy setting allows you to control pinning programs to the Taskbar. If you enable this policy setting, users cannot change the programs currently pinned to the Taskbar. If any programs are already pinned to the Taskbar, these programs continue to show in the Taskbar. However, users cannot unpin these programs already pinned to the Taskbar, and they cannot pin new programs to the Taskbar. If you disable or do not configure this policy setting, users can change the programs currently pinned to the Taskbar.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.15063",
+        "cspVersion": "5.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Pinning enabled."
+          },
+          {
+            "value": "1",
+            "description": "Pinning disabled."
+          }
+        ]
+      }
+    },
+    {
+      "name": "ShowOrHideMostUsedApps",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Start/ShowOrHideMostUsedApps",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This policy controls the visibility of the list of user's most used apps on the Start menu. The possible values are 0 - means that there is no enforced configuration and the setting can be changed by the user (default behavior equivalent to not configuring the policy), 1 - means that the list should be shown and grays out (disables) the corresponding toggle in the Settings app, 2 - means that the list should be hidden and grays out the corresponding toggle in the Settings app. Configuring this policy to 1 or 2 will override any setting of older policy \"HideFrequentlyUsedApps\" (which manages the same part of Start menu but with fewer options).",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.22000",
+        "cspVersion": "11.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Do not enforce visibility of list of most used apps in Start; user can control via Settings app (default behavior equivalent to not configuring this policy)."
+          },
+          {
+            "value": "1",
+            "description": "Force showing of list of most used apps in Start; corresponding toggle in Setting app is disabled."
+          },
+          {
+            "value": "2",
+            "description": "Force hiding of list of most used apps in Start; corresponding toggle in Setting app is disabled."
+          }
+        ]
+      }
+    },
+    {
+      "name": "ShowOrHideMostUsedApps",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Start/ShowOrHideMostUsedApps",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "This policy controls the visibility of the list of user's most used apps on the Start menu. The possible values are 0 - means that there is no enforced configuration and the setting can be changed by the user (default behavior equivalent to not configuring the policy), 1 - means that the list should be shown and grays out (disables) the corresponding toggle in the Settings app, 2 - means that the list should be hidden and grays out the corresponding toggle in the Settings app. Configuring this policy to 1 or 2 will override any setting of older policy \"HideFrequentlyUsedApps\" (which manages the same part of Start menu but with fewer options).",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.22000",
+        "cspVersion": "11.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Do not enforce visibility of list of most used apps in Start; user can control via Settings app (default behavior equivalent to not configuring this policy)."
+          },
+          {
+            "value": "1",
+            "description": "Force showing of list of most used apps in Start; corresponding toggle in Setting app is disabled."
+          },
+          {
+            "value": "2",
+            "description": "Force hiding of list of most used apps in Start; corresponding toggle in Setting app is disabled."
+          }
+        ]
+      }
+    },
+    {
+      "name": "SimplifyQuickSettings",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Start/SimplifyQuickSettings",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Allows admin to control the Quick Settings layout. If enabled, fewer Quick Settings buttons will be shown (only WiFi, Bluetooth, VPN, and Accessibility). If disabled or not configured, the regular Quick Settings layout will be loaded.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.22621",
+        "cspVersion": "11.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Load regular Quick Settings layout."
+          },
+          {
+            "value": "1",
+            "description": "Load simplified Quick Settings layout."
+          }
+        ]
+      }
+    },
+    {
+      "name": "StartLayout",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Start/StartLayout",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Important For more information, see Policy scope. Allows you to override the default Start layout and prevents the user from changing it. If both user and device policies are set, the user policy will be used. Apps pinned to the taskbar can also be changed with this policyFor further details on how to customize the Start layout, please see Customize and export Start layout and Configure Windows 10 taskbar.",
+      "applicability": {
+        "minOsBuild": "10.0.14393",
+        "cspVersion": "4.1",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      }
+    },
+    {
+      "name": "StartLayout",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Start/StartLayout",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Important For more information, see Policy scope. Allows you to override the default Start layout and prevents the user from changing it. If both user and device policies are set, the user policy will be used. Apps pinned to the taskbar can also be changed with this policyFor further details on how to customize the Start layout, please see Customize and export Start layout and Configure Windows 10 taskbar.",
+      "applicability": {
+        "minOsBuild": "10.0.14393",
+        "cspVersion": "4.1",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      }
+    },
+    {
+      "name": "TurnOffAbbreviatedDateTimeFormat",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Start/TurnOffAbbreviatedDateTimeFormat",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "99.9.99999",
+        "cspVersion": "9.9",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "0",
+            "description": "Show abbreviated time and date format"
+          },
+          {
+            "value": "1",
+            "description": "Show classic time and date format"
+          }
+        ]
+      }
+    }
+  ]
+}

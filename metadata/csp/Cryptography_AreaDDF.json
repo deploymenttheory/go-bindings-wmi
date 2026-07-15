@@ -1,0 +1,180 @@
+{
+  "name": "Cryptography",
+  "path": "./Device/Vendor/MSFT/Policy/Config",
+  "nodes": [
+    {
+      "name": "AllowFipsAlgorithmPolicy",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Cryptography/AllowFipsAlgorithmPolicy",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Allows or disallows the Federal Information Processing Standard (FIPS) policy.",
+      "default": "0",
+      "applicability": {
+        "minOsBuild": "10.0.14393",
+        "cspVersion": "4.1",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "ENUM",
+        "enum": [
+          {
+            "value": "1",
+            "description": "Allow"
+          },
+          {
+            "value": "0",
+            "description": "Block"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ConfigureEllipticCurveCryptography",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Cryptography/ConfigureEllipticCurveCryptography",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "TLS Elliptic Curves to enable. Format is a semicolon delimited list. Last write wins.",
+      "applicability": {
+        "minOsBuild": "10.0.26100",
+        "cspVersion": "11.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "None"
+      }
+    },
+    {
+      "name": "ConfigureSystemCryptographyForceStrongKeyProtection",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Cryptography/ConfigureSystemCryptographyForceStrongKeyProtection",
+      "format": "int",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "System cryptography: Force strong key protection for user keys stored on the computer. Last write wins.",
+      "default": "2",
+      "applicability": {
+        "minOsBuild": "10.0.26100",
+        "cspVersion": "11.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "Flag",
+        "enum": [
+          {
+            "value": "8",
+            "description": "An app container has accessed a medium key that is not strongly protected. For example, a key that is for user consent only, or is password or fingerprint protected"
+          },
+          {
+            "value": "2",
+            "description": "Force high protection"
+          },
+          {
+            "value": "1",
+            "description": "Display the strong key user interface as needed"
+          }
+        ]
+      }
+    },
+    {
+      "name": "OverrideMinimumEnabledDTLSVersionClient",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Cryptography/OverrideMinimumEnabledDTLSVersionClient",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Override minimal enabled TLS version for client role. Last write wins.",
+      "applicability": {
+        "minOsBuild": "10.0.26100",
+        "cspVersion": "11.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      }
+    },
+    {
+      "name": "OverrideMinimumEnabledDTLSVersionServer",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Cryptography/OverrideMinimumEnabledDTLSVersionServer",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Override minimal enabled TLS version for server role. Last write wins.",
+      "applicability": {
+        "minOsBuild": "10.0.26100",
+        "cspVersion": "11.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      }
+    },
+    {
+      "name": "OverrideMinimumEnabledTLSVersionClient",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Cryptography/OverrideMinimumEnabledTLSVersionClient",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Override minimal enabled TLS version for client role. Last write wins.",
+      "applicability": {
+        "minOsBuild": "10.0.26100",
+        "cspVersion": "11.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      }
+    },
+    {
+      "name": "OverrideMinimumEnabledTLSVersionServer",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Cryptography/OverrideMinimumEnabledTLSVersionServer",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Override minimal enabled TLS version for server role. Last write wins.",
+      "applicability": {
+        "minOsBuild": "10.0.26100",
+        "cspVersion": "11.0",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      }
+    },
+    {
+      "name": "TLSCipherSuites",
+      "path": "./Device/Vendor/MSFT/Policy/Config/Cryptography/TLSCipherSuites",
+      "format": "chr",
+      "access": [
+        "Add",
+        "Delete",
+        "Get",
+        "Replace"
+      ],
+      "description": "Lists the Cryptographic Cipher Algorithms allowed for SSL connections. Format is a comma delimited list. Last write wins.",
+      "applicability": {
+        "minOsBuild": "10.0.14393",
+        "cspVersion": "4.1",
+        "editions": "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;"
+      },
+      "allowedValues": {
+        "type": "None"
+      }
+    }
+  ]
+}
