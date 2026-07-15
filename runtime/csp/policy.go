@@ -39,10 +39,40 @@ type Policy struct {
 	RequiresAAD bool
 	// Allowed describes the value constraints, if the DDF declares any.
 	Allowed *Allowed
+	// Bridge maps the policy onto the MDM WMI bridge for execution
+	// (read/set/delete). Non-nil only for policies the bridge exposes —
+	// currently the native Policy areas. A nil Bridge means the schema is
+	// known but the policy is not (yet) drivable through this runtime.
+	Bridge *Bridge
 }
 
 // Deprecated reports whether the node is marked deprecated.
 func (p Policy) Deprecated() bool { return p.DeprecatedOSBuild != "" }
+
+// Executable reports whether the policy can be read/set/deleted through the
+// MDM WMI bridge (see runtime/csp exec).
+func (p Policy) Executable() bool { return p.Bridge != nil }
+
+// Bridge is a policy's projection onto the MDM WMI bridge
+// (root\cimv2\mdm\dmmap): the WMI classes and instance keys that read and
+// write it. The bridge exposes a Policy area as a singleton instance whose
+// properties are the area's individual settings.
+type Bridge struct {
+	// ConfigClass is the bridge class for the desired value / writes, e.g.
+	// MDM_Policy_Config01_Browser02.
+	ConfigClass string
+	// ResultClass is the bridge class for the effective (applied) value,
+	// e.g. MDM_Policy_Result01_Browser02.
+	ResultClass string
+	// InstanceID keys the area instance (the Policy area name, e.g. Browser).
+	InstanceID string
+	// ParentID keys the area instance (the OMA-DM parent path, e.g.
+	// ./Device/Vendor/MSFT/Policy/Config).
+	ParentID string
+	// Property is the setting's property name on the area instance (the leaf
+	// node name, e.g. AllowCookies).
+	Property string
+}
 
 // Allowed is a node's value constraint.
 type Allowed struct {

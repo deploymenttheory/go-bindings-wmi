@@ -18,6 +18,7 @@ var AllowThing = csp.Policy{
 	Editions:          "0x4;",
 	RequiresAAD:       true,
 	Allowed:           &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
+	Bridge:            &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Demo02", ResultClass: "MDM_Policy_Result01_Demo02", InstanceID: "Demo", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowThing"},
 }
 
 var Mode = csp.Policy{
@@ -27,6 +28,7 @@ var Mode = csp.Policy{
 	Access:     []string{"Get", "Replace"},
 	MinOSBuild: "10.0.10240",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "auto", Description: "Automatic."}, {Value: "manual", Description: "Manual."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Demo02", ResultClass: "MDM_Policy_Result01_Demo02", InstanceID: "Demo", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "Mode"},
 }
 
 var GroupNested = csp.Policy{
