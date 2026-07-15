@@ -33,8 +33,21 @@ out, err := svc.ExecMethod(path, "SetPriority", map[string]any{"Priority": int32
 
 Values encode per WMI's conventions: integers as `VT_I4` when they fit 32
 bits, as decimal strings otherwise (WMI's own 64-bit shape), strings as
-BSTR, `[]string` as a SAFEARRAY of BSTR. Embedded-object parameters are not
-yet encodable — pass `nil` to omit them.
+BSTR, and slices (string, bool, all numeric widths) as SAFEARRAYs of the
+matching element type.
+
+**Embedded-object parameters** (typed `wmi.Row` in the wrappers) are built
+with `wmi.Instance` — the runtime spawns the class instance, puts the
+properties (recursively, so objects nest), and passes it as `VT_UNKNOWN`:
+
+```go
+startup := wmi.Instance("Win32_ProcessStartup", map[string]any{
+    "ShowWindow": uint16(0), // SW_HIDE
+})
+res, _ := cimv2.Win32ProcessCreate(svc, "cmd.exe /c exit 0", "", startup)
+```
+
+A `wmi.Row` returned by a query also works — it already carries `__CLASS`.
 
 Abstract base classes (`CIM_*`) declare methods their providers often don't
 implement; the wrappers are generated faithfully and the provider's error
@@ -60,10 +73,10 @@ for {
     if err != nil {
         break
     }
-    // intrinsic events: the instance is in TargetInstance (currently
-    // decoded as nil — embedded objects are not yet decoded); extrinsic
-    // events carry their own properties.
-    fmt.Println(event["__CLASS"])
+    // intrinsic events embed the instance in TargetInstance, decoded to a
+    // nested wmi.Row; extrinsic events carry their own properties.
+    instance := wmi.AsRow(event["TargetInstance"])
+    fmt.Println(instance["__CLASS"], instance["Name"])
 }
 ```
 

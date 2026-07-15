@@ -110,9 +110,45 @@ func TestSubscribeEvents(t *testing.T) {
 		if class := wmi.AsString(row["__CLASS"]); class != "__InstanceModificationEvent" {
 			t.Errorf("event class = %q", class)
 		}
-		t.Logf("event received: %s", wmi.AsString(row["__CLASS"]))
+		// Intrinsic events embed the instance; a nil TargetInstance means
+		// VT_UNKNOWN decoding regressed.
+		target := wmi.AsRow(row["TargetInstance"])
+		if target == nil {
+			t.Fatal("TargetInstance did not decode to a Row")
+		}
+		if class := wmi.AsString(target["__CLASS"]); class != "Win32_LocalTime" {
+			t.Errorf("TargetInstance.__CLASS = %q", class)
+		}
+		t.Logf("event received: %s of %s (second=%v)",
+			wmi.AsString(row["__CLASS"]), wmi.AsString(target["__CLASS"]), target["Second"])
 		return
 	}
+}
+
+// TestEmbeddedObjectInParameter drives an object-valued method in-parameter
+// end-to-end: Win32_Process.Create with a Win32_ProcessStartup embedded
+// instance (hidden window), through the generated wrapper.
+func TestEmbeddedObjectInParameter(t *testing.T) {
+	svc, err := wmi.Connect(`root\cimv2`)
+	if err != nil {
+		t.Fatalf("Connect: %v", err)
+	}
+	defer svc.Close()
+
+	startup := wmi.Instance("Win32_ProcessStartup", map[string]any{
+		"ShowWindow": uint16(0), // SW_HIDE
+	})
+	res, err := cimv2.Win32ProcessCreate(svc, "cmd.exe /c exit 0", "", startup)
+	if err != nil {
+		t.Fatalf("Win32ProcessCreate(with startup): %v", err)
+	}
+	if res.ReturnValue != 0 {
+		t.Fatalf("Create ReturnValue = %d (embedded object encoding failed?)", res.ReturnValue)
+	}
+	if res.ProcessId == 0 {
+		t.Error("Create returned zero ProcessId")
+	}
+	t.Logf("spawned hidden pid %d via embedded Win32_ProcessStartup", res.ProcessId)
 }
 
 // TestQuerySeq streams rows and stops early, exercising enumerator release
