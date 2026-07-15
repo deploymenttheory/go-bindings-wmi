@@ -7,10 +7,15 @@
 //
 //	go run ./cmd/capture               # capture the curated v0 class list
 //	go run ./cmd/capture -osbuild 26200
+//
+// Some namespaces gate schema reads: the MDM bridge (root\cimv2\mdm\dmmap)
+// requires the SYSTEM account, not merely an elevated admin. Capture from a
+// SYSTEM context — scripts/Capture-MdmBridge.ps1 automates it.
 package main
 
 import (
 	"encoding/json"
+	"errors"
 	"flag"
 	"fmt"
 	"os"
@@ -18,6 +23,9 @@ import (
 	"sort"
 	"strings"
 	"time"
+
+	win32 "github.com/deploymenttheory/go-bindings-win32/bindings/runtime/win32"
+	wmibind "github.com/deploymenttheory/go-bindings-win32/bindings/win32/system/wmi"
 
 	"github.com/deploymenttheory/go-bindings-wmi/internal/cimschema"
 	"github.com/deploymenttheory/go-bindings-wmi/runtime/wmi"
@@ -33,8 +41,24 @@ func main() {
 
 	if err := run(*namespace, *classFilter, *osBuild, *captured, *outDir); err != nil {
 		fmt.Fprintln(os.Stderr, "capture:", err)
+		if hint := accessHint(err, *namespace); hint != "" {
+			fmt.Fprintln(os.Stderr, hint)
+		}
 		os.Exit(1)
 	}
+}
+
+// accessHint returns actionable guidance when a capture fails with
+// access-denied — most often the MDM bridge, which the WMI provider gates
+// behind the SYSTEM account rather than mere elevation.
+func accessHint(err error, namespace string) string {
+	var hr win32.HRESULT
+	if !errors.As(err, &hr) || hr != win32.HRESULT(wmibind.WBEM_E_ACCESS_DENIED) {
+		return ""
+	}
+	return fmt.Sprintf("hint: %s denied access. This namespace likely requires the SYSTEM\n"+
+		"      account (elevation alone is not enough). Run the capture as SYSTEM —\n"+
+		"      scripts/Capture-MdmBridge.ps1 automates it from an elevated shell.", namespace)
 }
 
 func run(namespace, classFilter, osBuild, captured, outDir string) error {

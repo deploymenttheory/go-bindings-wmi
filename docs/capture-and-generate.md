@@ -26,9 +26,11 @@ Other flags:
 - `-classes Win32_OperatingSystem,Win32_Service` — narrow to specific classes.
 
 Some namespaces gate schema reads: the MDM bridge (`root\cimv2\mdm\dmmap`)
-returns `WBEM_E_ACCESS_DENIED` unless captured from an elevated (typically
-SYSTEM) context. Namespace leaves must be unique across snapshots — the
-generator fails fast on package-name collisions.
+returns `WBEM_E_ACCESS_DENIED` unless captured from the **SYSTEM** account
+(elevation alone is not enough). Capture surfaces a hint pointing at
+`scripts/Capture-MdmBridge.ps1`, which runs the capture as SYSTEM — see
+[the MDM bridge doc](mdm-bridge.md). Namespace leaves must be unique across
+snapshots — the generator fails fast on package-name collisions.
 
 The snapshot is **committed**. Capturing a new one is a deliberate, reviewed act
 — the schema varies by host OS build, which is why provenance records the build.
