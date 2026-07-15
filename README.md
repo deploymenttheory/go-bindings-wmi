@@ -79,7 +79,7 @@ values. This is also the seed of a general OLE-automation ergonomics layer
 
 ## Coverage
 
-Three namespaces are captured, each its own generated package
+Four namespaces are captured, each its own generated package
 (`go run ./cmd/capture` enumerates a whole namespace by default; `-classes a,b`
 narrows):
 
@@ -89,12 +89,14 @@ narrows):
   networking (MSFT_NetAdapter, MSFT_NetIPAddress, MSFT_NetRoute, …).
 - **`root\SecurityCenter2`** (69) → `bindings/cim/securitycenter2` —
   registered AV / firewall / anti-spyware products (client SKUs only).
+- **`root\cimv2\mdm\dmmap`** (467, incl. ~400 `MDM_*`) → `bindings/cim/dmmap`
+  — the MDM bridge: Windows' CSP policy surface (AppLocker, ActiveSync,
+  BitLocker, …) as WMI classes. Capturing **and querying** it require the
+  **SYSTEM** account; see [docs/mdm-bridge.md](docs/mdm-bridge.md) and
+  `scripts/Capture-MdmBridge.ps1`, which automates the capture.
 
-The **MDM bridge** (`root\cimv2\mdm\dmmap`, Windows' CSP policy surface as
-WMI classes) is additive but requires a **SYSTEM** capture context — see
-[docs/mdm-bridge.md](docs/mdm-bridge.md) and `scripts/Capture-MdmBridge.ps1`,
-which automates it. Any other namespace (`root\Microsoft\Windows\*`, …) is
-just `go run ./cmd/capture -namespace <ns>` then regenerate.
+Any other namespace (`root\Microsoft\Windows\*`, …) is just
+`go run ./cmd/capture -namespace <ns>` then regenerate.
 
 ## Examples & docs
 

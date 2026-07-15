@@ -7,8 +7,10 @@ policy surface that Intune and other MDM authorities drive, which makes it
 directly relevant to device-management tooling.
 
 It is captured and generated exactly like any other namespace — one extra
-package, `bindings/cim/dmmap` — with one operational difference: **acquisition
-requires the SYSTEM account.**
+package, `bindings/cim/dmmap` (467 classes, ~400 `MDM_*`) — with one
+operational difference: **acquisition and querying both require the SYSTEM
+account.** The committed snapshot was captured this way; refreshing it, and
+running live queries against the bridge, need the same context.
 
 ## Why SYSTEM, not just elevation
 
