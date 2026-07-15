@@ -45,7 +45,7 @@ func generatedFiles(t *testing.T) map[string][]byte {
 // -update to regenerate the goldens.
 func TestGenerateGolden(t *testing.T) {
 	files := generatedFiles(t)
-	want := []string{"demo_methods.go", "demo_queries.go", "demo_structs.go", "doc.go"}
+	want := []string{"demo_constants.go", "demo_methods.go", "demo_queries.go", "demo_structs.go", "doc.go"}
 	if len(files) != len(want) {
 		t.Errorf("generated files = %v, want %v", slices.Sorted(maps.Keys(files)), want)
 	}
@@ -133,6 +133,45 @@ func TestPackageCollision(t *testing.T) {
 	err := run(metadataDir, t.TempDir())
 	if err == nil || !strings.Contains(err.Error(), "package collision") {
 		t.Errorf("err = %v, want package collision", err)
+	}
+}
+
+func TestConstName(t *testing.T) {
+	cases := []struct{ in, want string }{
+		{"Local Disk", "LocalDisk"},
+		{"No Root Directory", "NoRootDirectory"},
+		{"RAM Disk", "RAMDisk"},
+		{"Read-only", "ReadOnly"},
+		{"Other/Unknown", "OtherUnknown"},
+		{"Power Off (5)", "PowerOff5"},
+		{"", ""},
+	}
+	for _, c := range cases {
+		if got := constName(c.in); got != c.want {
+			t.Errorf("constName(%q) = %q, want %q", c.in, got, c.want)
+		}
+	}
+}
+
+func TestIntLiteral(t *testing.T) {
+	cases := []struct {
+		stored, elemType, want string
+		ok                     bool
+	}{
+		{"3", "uint32", "3", true},
+		{"-1", "uint32", "4294967295", true}, // two's-complement reinterpret
+		{"-1", "uint16", "65535", true},
+		{"-1", "int32", "-1", true}, // signed keeps its sign
+		{"128..255", "uint32", "", false},
+		{"", "uint32", "", false},
+		{"0x10", "uint32", "16", true},
+		{"5", "float64", "", false}, // non-integer target
+	}
+	for _, c := range cases {
+		got, ok := intLiteral(c.stored, c.elemType)
+		if ok != c.ok || got != c.want {
+			t.Errorf("intLiteral(%q, %q) = (%q, %v), want (%q, %v)", c.stored, c.elemType, got, ok, c.want, c.ok)
+		}
 	}
 }
 

@@ -20,15 +20,19 @@ type DemoEmpty struct {
 // DemoWidget is the Demo_Widget CIM class.
 type DemoWidget struct {
 	Caps      []uint16  `cim:"Caps"`
+	DriveType uint32    `cim:"DriveType"`
 	Enabled   bool      `cim:"Enabled"`
 	Exotic    any       `cim:"Exotic"`
+	Family    uint32    `cim:"Family"`
 	FooBar    int32     `cim:"FooBar"`
 	Installed string    `cim:"Installed"`
 	Name      string    `cim:"Name"`
 	Owner     string    `cim:"Owner"`
 	Parts     []wmi.Row `cim:"Parts"`
+	Phase     uint32    `cim:"Phase"`
 	Ratio     float32   `cim:"Ratio"`
 	Size      uint64    `cim:"Size"`
+	StartMode string    `cim:"StartMode"`
 	Startup   wmi.Row   `cim:"Startup"`
 	Tags      []string  `cim:"Tags"`
 }

@@ -70,17 +70,21 @@ func QueryDemoWidget(svc *wmi.Service, where string) ([]DemoWidget, error) {
 	out := make([]DemoWidget, len(rows))
 	for i, row := range rows {
 		out[i].Caps = wmi.AsUint16Slice(row["Caps"])
+		out[i].DriveType = wmi.AsUint32(row["DriveType"])
 		out[i].Enabled = wmi.AsBool(row["Enabled"])
 		if v, ok := row["Exotic"].(any); ok {
 			out[i].Exotic = v
 		}
+		out[i].Family = wmi.AsUint32(row["Family"])
 		out[i].FooBar = wmi.AsInt32(row["FooBar"])
 		out[i].Installed = wmi.AsString(row["Installed"])
 		out[i].Name = wmi.AsString(row["Name"])
 		out[i].Owner = wmi.AsString(row["Owner"])
 		out[i].Parts = wmi.AsRowSlice(row["Parts"])
+		out[i].Phase = wmi.AsUint32(row["Phase"])
 		out[i].Ratio = wmi.AsFloat32(row["Ratio"])
 		out[i].Size = wmi.AsUint64(row["Size"])
+		out[i].StartMode = wmi.AsString(row["StartMode"])
 		if v, ok := row["Startup"].(wmi.Row); ok {
 			out[i].Startup = v
 		}

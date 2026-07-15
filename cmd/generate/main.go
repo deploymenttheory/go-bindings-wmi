@@ -16,6 +16,7 @@ import (
 	"os"
 	"path/filepath"
 	"sort"
+	"strconv"
 	"strings"
 
 	"github.com/deploymenttheory/go-bindings-wmi/internal/cimschema"
@@ -185,7 +186,7 @@ func packageName(namespace string) string {
 // and Get<Class> helpers), <pkg>_methods.go (method wrappers + result
 // structs), and doc.go — keyed by file name. Empty files are not emitted.
 func renderPackage(pkg string, snapshot *cimschema.Snapshot) (map[string][]byte, error) {
-	var structs, queries, methods strings.Builder
+	var structs, queries, methods, constants strings.Builder
 
 	// Pass 1: claim every class-level symbol first, so a method wrapper can
 	// never steal a later class's type or query-helper name.
@@ -260,6 +261,7 @@ func renderPackage(pkg string, snapshot *cimschema.Snapshot) (map[string][]byte,
 		q.WriteString("\treturn out, nil\n}\n\n")
 
 		renderGetByKey(q, claimed, goName, class)
+		renderConstants(&constants, claimed, goName, class)
 		for _, method := range class.Methods {
 			renderMethod(&methods, claimed, goName, class.Name, method)
 		}
@@ -273,9 +275,10 @@ func renderPackage(pkg string, snapshot *cimschema.Snapshot) (map[string][]byte,
 	}
 	files["doc.go"] = docSource
 	for name, body := range map[string]string{
-		pkg + "_structs.go": structs.String(),
-		pkg + "_queries.go": queries.String(),
-		pkg + "_methods.go": methods.String(),
+		pkg + "_structs.go":   structs.String(),
+		pkg + "_queries.go":   queries.String(),
+		pkg + "_methods.go":   methods.String(),
+		pkg + "_constants.go": constants.String(),
 	} {
 		if body == "" {
 			continue // empty files are not written
@@ -302,6 +305,127 @@ func assembleFile(pkg, doc, body string) ([]byte, error) {
 	}
 	b.WriteString(body)
 	return format.Source([]byte(b.String()))
+}
+
+// renderConstants emits named constants for a class's enumerated properties
+// (the Values/ValueMap qualifiers): one const block per property. Integer
+// properties get typed constants from the parsed ValueMap (entries that
+// don't parse — ranges like "128..65535" — are skipped; a missing ValueMap
+// implies consecutive indices); string properties get the stored string
+// (the ValueMap entry when present, else the display name).
+func renderConstants(b *strings.Builder, claimed map[string]bool, goName string, class cimschema.Class) {
+	for _, p := range class.Properties {
+		if len(p.Values) == 0 {
+			continue
+		}
+		field := exportName(p.Name)
+		if field == "" {
+			continue
+		}
+		elemType := cimschema.GoTypeFor(p.CIMType, false)
+		isString := elemType == "string"
+		isInteger := strings.HasPrefix(elemType, "int") || strings.HasPrefix(elemType, "uint")
+		if !isString && !isInteger {
+			continue // enumeration qualifiers on other shapes are not expressible
+		}
+
+		type entry struct {
+			name, spec string
+		}
+		var entries []entry
+		for i, display := range p.Values {
+			name := goName + field + constName(display)
+			if name == goName+field || claimed[name] {
+				continue // unnameable display value or a collision; first wins
+			}
+			stored := ""
+			if i < len(p.ValueMap) {
+				stored = p.ValueMap[i]
+			}
+			var spec string
+			if isString {
+				if stored == "" {
+					stored = display
+				}
+				spec = fmt.Sprintf("= %q", stored)
+			} else {
+				if stored == "" && len(p.ValueMap) == 0 {
+					stored = strconv.Itoa(i) // no ValueMap → consecutive indices
+				}
+				literal, ok := intLiteral(stored, elemType)
+				if !ok {
+					continue // ranges, free-form, or out-of-range entries
+				}
+				spec = fmt.Sprintf("%s = %s", elemType, literal)
+			}
+			claimed[name] = true
+			entries = append(entries, entry{name, spec})
+		}
+		if len(entries) == 0 {
+			continue
+		}
+		fmt.Fprintf(b, "// %s.%s values.\n", class.Name, p.Name)
+		b.WriteString("const (\n")
+		for _, e := range entries {
+			fmt.Fprintf(b, "\t%s %s\n", e.name, e.spec)
+		}
+		b.WriteString(")\n\n")
+	}
+}
+
+// intLiteral renders a ValueMap entry as a Go integer literal for elemType.
+// Unsigned types reinterpret a negative value as its two's-complement bit
+// pattern for that width — matching how the value round-trips through
+// VARIANT decode (a uint32 property whose bits are all set decodes as
+// 4294967295, the same value the schema's "-1" denotes). Entries that are
+// not a plain integer, or overflow the width, are rejected.
+func intLiteral(stored, elemType string) (string, bool) {
+	bits := map[string]int{
+		"int8": 8, "int16": 16, "int32": 32, "int64": 64,
+		"uint8": 8, "uint16": 16, "uint32": 32, "uint64": 64,
+	}[elemType]
+	if bits == 0 {
+		return "", false
+	}
+	if strings.HasPrefix(elemType, "u") {
+		if u, err := strconv.ParseUint(stored, 0, bits); err == nil {
+			return strconv.FormatUint(u, 10), true
+		}
+		// Negative value on an unsigned property: reinterpret its bits.
+		if n, err := strconv.ParseInt(stored, 0, 64); err == nil && n < 0 {
+			mask := uint64(1)<<uint(bits) - 1
+			return strconv.FormatUint(uint64(n)&mask, 10), true
+		}
+		return "", false
+	}
+	if n, err := strconv.ParseInt(stored, 0, bits); err == nil {
+		return strconv.FormatInt(n, 10), true
+	}
+	return "", false
+}
+
+// constName renders an enumeration display name as an identifier fragment:
+// alphanumeric runs survive with their first rune upper-cased, everything
+// else ("-", "/", spaces, parentheses) separates words.
+func constName(display string) string {
+	var out []rune
+	upperNext := true
+	for _, r := range display {
+		switch {
+		case r >= 'a' && r <= 'z':
+			if upperNext {
+				r = r - 'a' + 'A'
+			}
+			out = append(out, r)
+			upperNext = false
+		case (r >= 'A' && r <= 'Z') || (r >= '0' && r <= '9'):
+			out = append(out, r)
+			upperNext = false
+		default:
+			upperNext = true
+		}
+	}
+	return string(out)
 }
 
 // renderGetByKey emits Get<Class>, a lookup by the class's [key] properties
