@@ -9,7 +9,9 @@
 package wmi
 
 import (
+	"context"
 	"fmt"
+	"iter"
 	"math"
 	"runtime"
 	"unsafe"
@@ -62,11 +64,35 @@ type Service struct {
 	services *wmi.IWbemServices
 }
 
+// ConnectOptions controls ConnectWith. The zero value connects locally as
+// the current security context.
+type ConnectOptions struct {
+	// Host is a remote machine (DNS name or IP); empty connects locally.
+	Host string
+	// User and Password authenticate against a remote host (User may be
+	// `DOMAIN\user`). Leave empty to use the current token. WMI rejects
+	// explicit credentials on local connections.
+	User, Password string
+	// Locale (e.g. "MS_409") and Authority (e.g. "ntlmdomain:DOMAIN") pass
+	// through to ConnectServer; usually empty.
+	Locale, Authority string
+}
+
 // Connect initializes COM on the calling goroutine's thread and connects to
-// the given namespace (e.g. `root\cimv2`). Call Close when done. The caller
-// should runtime.LockOSThread for the duration if issuing many calls; Connect
-// locks internally for the CoInitializeEx/blanket setup.
+// the given namespace (e.g. `root\cimv2`). Call Close when done.
+//
+// Thread affinity: Connect locks the calling goroutine to its OS thread
+// (COM init is per-thread) and Close unlocks it, so a Service must be
+// connected, used, and closed on the same goroutine. For a long-lived
+// Service shared across goroutines, dedicate one goroutine to WMI and feed
+// it work over a channel.
 func Connect(namespace string) (*Service, error) {
+	return ConnectWith(namespace, ConnectOptions{})
+}
+
+// ConnectWith is Connect with options — remote host, credentials, locale.
+// The same thread-affinity contract applies.
+func ConnectWith(namespace string, opts ConnectOptions) (*Service, error) {
 	runtime.LockOSThread()
 	if _, err := com.CoInitializeEx(0x0); err != nil { // COINIT_MULTITHREADED
 		runtime.UnlockOSThread()
@@ -87,14 +113,27 @@ func Connect(namespace string) (*Service, error) {
 	}
 	locator := (*wmi.IWbemLocator)(unsafe.Pointer(unk))
 
-	ns := foundation.SysAllocString(namespace)
+	path := namespace
+	if opts.Host != "" {
+		path = `\\` + opts.Host + `\` + namespace
+	}
+	ns := foundation.SysAllocString(path)
 	defer foundation.SysFreeString(ns)
+	user := optionalBSTR(opts.User)
+	defer foundation.SysFreeString(user)
+	password := optionalBSTR(opts.Password)
+	defer foundation.SysFreeString(password)
+	locale := optionalBSTR(opts.Locale)
+	defer foundation.SysFreeString(locale)
+	authority := optionalBSTR(opts.Authority)
+	defer foundation.SysFreeString(authority)
+
 	var services *wmi.IWbemServices
-	if err := locator.ConnectServer(ns, nil, nil, nil, 0, nil, nil, &services); err != nil {
+	if err := locator.ConnectServer(ns, user, password, locale, 0, authority, nil, &services); err != nil {
 		locator.Release()
 		com.CoUninitialize()
 		runtime.UnlockOSThread()
-		return nil, fmt.Errorf("wmi: ConnectServer(%s): %w", namespace, err)
+		return nil, fmt.Errorf("wmi: ConnectServer(%s): %w", path, err)
 	}
 	if err := com.CoSetProxyBlanket((*com.IUnknown)(unsafe.Pointer(services)),
 		10 /*RPC_C_AUTHN_WINNT*/, 0 /*RPC_C_AUTHZ_NONE*/, "",
@@ -104,7 +143,18 @@ func Connect(namespace string) (*Service, error) {
 	return &Service{locator: locator, services: services}, nil
 }
 
-// Close releases the session and uninitializes COM on this thread.
+// optionalBSTR allocates a BSTR for non-empty strings; empty stays nil
+// (WMI's "use the default" convention). SysFreeString(nil) is a no-op.
+func optionalBSTR(s string) foundation.BSTR {
+	if s == "" {
+		return nil
+	}
+	return foundation.SysAllocString(s)
+}
+
+// Close releases the session and uninitializes COM on this thread. It must
+// run on the goroutine that called Connect (see Connect's thread-affinity
+// contract).
 func (s *Service) Close() {
 	if s.services != nil {
 		s.services.Release()
@@ -117,11 +167,104 @@ func (s *Service) Close() {
 }
 
 // Row is one WMI instance: property name → decoded Go value (string, int64,
-// uint64, bool, float64, or nil).
+// uint64, bool, float64, []any of those for array properties, or nil).
 type Row map[string]any
 
 // Query runs a WQL query and returns every instance's decoded properties.
 func (s *Service) Query(wql string) ([]Row, error) {
+	enum, err := s.execQuery(wql)
+	if err != nil {
+		return nil, err
+	}
+	defer enum.Release()
+
+	var rows []Row
+	for {
+		obj, status, err := nextObject(enum, -1 /*WBEM_INFINITE*/)
+		if err != nil {
+			return nil, err
+		}
+		if status == enumDone {
+			return rows, nil
+		}
+		row, derr := decodeObject(obj)
+		obj.Release()
+		if derr != nil {
+			return nil, derr
+		}
+		rows = append(rows, row)
+	}
+}
+
+// QuerySeq runs a WQL query and streams each decoded row, releasing the
+// enumerator when the caller stops early — use it for large result sets. A
+// failure yields (nil, err) once and ends the sequence. Consume it on the
+// connecting goroutine (see Connect's thread-affinity contract).
+func (s *Service) QuerySeq(wql string) iter.Seq2[Row, error] {
+	return func(yield func(Row, error) bool) {
+		enum, err := s.execQuery(wql)
+		if err != nil {
+			yield(nil, err)
+			return
+		}
+		defer enum.Release()
+		for {
+			obj, status, err := nextObject(enum, -1 /*WBEM_INFINITE*/)
+			if err != nil {
+				yield(nil, err)
+				return
+			}
+			if status == enumDone {
+				return
+			}
+			row, derr := decodeObject(obj)
+			obj.Release()
+			if !yield(row, derr) || derr != nil {
+				return
+			}
+		}
+	}
+}
+
+// QueryContext is Query with cancellation: between short enumerator waits it
+// checks ctx and returns its error once canceled. WMI has no server-side
+// cancel for a semisynchronous query, so cancellation abandons the
+// enumerator rather than stopping the provider.
+func (s *Service) QueryContext(ctx context.Context, wql string) ([]Row, error) {
+	enum, err := s.execQuery(wql)
+	if err != nil {
+		return nil, err
+	}
+	defer enum.Release()
+
+	const pollMs = 250
+	var rows []Row
+	for {
+		if err := ctx.Err(); err != nil {
+			return nil, err
+		}
+		obj, status, err := nextObject(enum, pollMs)
+		if err != nil {
+			return nil, err
+		}
+		switch status {
+		case enumDone:
+			return rows, nil
+		case enumTimedOut:
+			continue
+		}
+		row, derr := decodeObject(obj)
+		obj.Release()
+		if derr != nil {
+			return nil, derr
+		}
+		rows = append(rows, row)
+	}
+}
+
+// execQuery issues the WQL and returns the (forward-only, semisynchronous)
+// enumerator.
+func (s *Service) execQuery(wql string) (*wmi.IEnumWbemClassObject, error) {
 	lang := foundation.SysAllocString("WQL")
 	defer foundation.SysFreeString(lang)
 	query := foundation.SysAllocString(wql)
@@ -132,28 +275,32 @@ func (s *Service) Query(wql string) ([]Row, error) {
 		wbemFlagForwardOnly|wbemFlagReturnImmediately, nil, &enum); err != nil {
 		return nil, fmt.Errorf("wmi: ExecQuery(%q): %w", wql, err)
 	}
-	defer enum.Release()
+	return enum, nil
+}
 
-	var rows []Row
-	for {
-		var obj *wmi.IWbemClassObject
-		var returned uint32
-		objects := []*wmi.IWbemClassObject{obj}
-		hr, err := enum.Next(-1 /*WBEM_INFINITE*/, objects, &returned)
-		if err != nil {
-			return nil, fmt.Errorf("wmi: enumerate: %w", err)
-		}
-		if returned == 0 || hr == win32.HRESULT(wmi.WBEM_S_FALSE) {
-			break
-		}
-		row, derr := decodeObject(objects[0])
-		objects[0].Release()
-		if derr != nil {
-			return nil, derr
-		}
-		rows = append(rows, row)
+// nextObject steps an enumerator: one object, end-of-enumeration, or (when
+// the timeout elapses first) enumTimedOut. The informational-success shape
+// of Next carries all three outcomes.
+const (
+	objectReady = iota
+	enumDone
+	enumTimedOut
+)
+
+func nextObject(enum *wmi.IEnumWbemClassObject, timeoutMs int32) (*wmi.IWbemClassObject, int, error) {
+	objects := make([]*wmi.IWbemClassObject, 1)
+	var returned uint32
+	hr, err := enum.Next(timeoutMs, objects, &returned)
+	if err != nil {
+		return nil, enumDone, fmt.Errorf("wmi: enumerate: %w", err)
 	}
-	return rows, nil
+	if hr == win32.HRESULT(wmi.WBEM_S_TIMEDOUT) {
+		return nil, enumTimedOut, nil
+	}
+	if returned == 0 || hr == win32.HRESULT(wmi.WBEM_S_FALSE) {
+		return nil, enumDone, nil
+	}
+	return objects[0], objectReady, nil
 }
 
 // decodeObject reads every property of a class object into a Row.
@@ -170,8 +317,10 @@ func decodeObject(obj *wmi.IWbemClassObject) (Row, error) {
 		variant.VariantInit(&value)
 		var cimType, flavor int32
 		if err := obj.Next(0, &name, &value, &cimType, &flavor); err != nil {
-			// WBEM_S_NO_MORE_DATA surfaces as a failed HRESULT → error; stop.
-			break
+			// End-of-enumeration is WBEM_S_NO_MORE_DATA — a *success* HRESULT
+			// (surfaced as a nil error and a nil name below); an error here is
+			// a genuine failure.
+			return nil, fmt.Errorf("wmi: enumerate properties: %w", err)
 		}
 		if name == nil {
 			variant.VariantClear(&value)
@@ -185,10 +334,15 @@ func decodeObject(obj *wmi.IWbemClassObject) (Row, error) {
 	return row, nil
 }
 
-// decodeVariant converts a VARIANT to a Go value for the common CIM scalar
-// types. Unsupported/array types return nil.
+// decodeVariant converts a VARIANT to a Go value: scalars widen to string,
+// int64, uint64, bool, or float64; SAFEARRAYs decode to []any of those
+// widened elements. Unsupported types return nil.
 func decodeVariant(v *variant.VARIANT) any {
 	s := (*variantScalar)(unsafe.Pointer(&v.Anonymous))
+	if s.Vt&uint16(variant.VT_ARRAY) != 0 {
+		p := (*variantPtr)(unsafe.Pointer(&v.Anonymous))
+		return decodeSafeArray((*com.SAFEARRAY)(p.P))
+	}
 	switch s.Vt {
 	case uint16(variant.VT_EMPTY), uint16(variant.VT_NULL):
 		return nil
@@ -197,14 +351,24 @@ func decodeVariant(v *variant.VARIANT) any {
 		return win32.UTF16ToString((*uint16)(p.P))
 	case uint16(variant.VT_BOOL):
 		return int16(s.U64) != 0
-	case uint16(variant.VT_I4):
+	case uint16(variant.VT_I1):
+		return int64(int8(s.U64))
+	case uint16(variant.VT_I2):
+		return int64(int16(s.U64))
+	case uint16(variant.VT_I4), uint16(variant.VT_INT):
 		return int64(int32(s.U64))
-	case uint16(variant.VT_UI4):
+	case uint16(variant.VT_UI1):
+		return uint64(uint8(s.U64))
+	case uint16(variant.VT_UI2):
+		return uint64(uint16(s.U64))
+	case uint16(variant.VT_UI4), uint16(variant.VT_UINT):
 		return uint64(uint32(s.U64))
 	case uint16(variant.VT_I8):
 		return int64(s.U64)
 	case uint16(variant.VT_UI8):
 		return s.U64
+	case uint16(variant.VT_R4):
+		return float64(math.Float32frombits(uint32(s.U64)))
 	case uint16(variant.VT_R8):
 		return math.Float64frombits(s.U64)
 	}

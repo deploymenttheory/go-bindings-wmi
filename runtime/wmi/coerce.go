@@ -114,3 +114,34 @@ func AsUint8(v any) uint8     { return uint8(AsUint64(v)) }
 func AsUint16(v any) uint16   { return uint16(AsUint64(v)) }
 func AsUint32(v any) uint32   { return uint32(AsUint64(v)) }
 func AsFloat32(v any) float32 { return float32(AsFloat64(v)) }
+
+// asSlice coerces the []any that the runtime produces for SAFEARRAY
+// properties into a typed slice, coercing each element like the scalar
+// helpers do. Non-array values (including nil) coerce to a nil slice.
+func asSlice[T any](v any, coerce func(any) T) []T {
+	items, ok := v.([]any)
+	if !ok {
+		return nil
+	}
+	out := make([]T, len(items))
+	for i, item := range items {
+		out[i] = coerce(item)
+	}
+	return out
+}
+
+// Slice coercers used by the generated Query<Class> decoders for CIM array
+// properties.
+
+func AsStringSlice(v any) []string   { return asSlice(v, AsString) }
+func AsBoolSlice(v any) []bool       { return asSlice(v, AsBool) }
+func AsInt8Slice(v any) []int8       { return asSlice(v, AsInt8) }
+func AsInt16Slice(v any) []int16     { return asSlice(v, AsInt16) }
+func AsInt32Slice(v any) []int32     { return asSlice(v, AsInt32) }
+func AsInt64Slice(v any) []int64     { return asSlice(v, AsInt64) }
+func AsUint8Slice(v any) []uint8     { return asSlice(v, AsUint8) }
+func AsUint16Slice(v any) []uint16   { return asSlice(v, AsUint16) }
+func AsUint32Slice(v any) []uint32   { return asSlice(v, AsUint32) }
+func AsUint64Slice(v any) []uint64   { return asSlice(v, AsUint64) }
+func AsFloat32Slice(v any) []float32 { return asSlice(v, AsFloat32) }
+func AsFloat64Slice(v any) []float64 { return asSlice(v, AsFloat64) }
