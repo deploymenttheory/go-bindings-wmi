@@ -1,0 +1,2025 @@
+{
+  "namespace": "root\\SecurityCenter2",
+  "provenance": {
+    "osBuild": "26200",
+    "captured": "2026-07-14"
+  },
+  "classes": [
+    {
+      "name": "AntiSpywareProduct",
+      "properties": [
+        {
+          "name": "displayName",
+          "cimType": 8
+        },
+        {
+          "name": "instanceGuid",
+          "cimType": 8,
+          "key": true
+        },
+        {
+          "name": "pathToSignedProductExe",
+          "cimType": 8
+        },
+        {
+          "name": "pathToSignedReportingExe",
+          "cimType": 8
+        },
+        {
+          "name": "productState",
+          "cimType": 19
+        },
+        {
+          "name": "timestamp",
+          "cimType": 8
+        }
+      ]
+    },
+    {
+      "name": "AntiVirusProduct",
+      "properties": [
+        {
+          "name": "displayName",
+          "cimType": 8
+        },
+        {
+          "name": "instanceGuid",
+          "cimType": 8,
+          "key": true
+        },
+        {
+          "name": "pathToSignedProductExe",
+          "cimType": 8
+        },
+        {
+          "name": "pathToSignedReportingExe",
+          "cimType": 8
+        },
+        {
+          "name": "productState",
+          "cimType": 19
+        },
+        {
+          "name": "timestamp",
+          "cimType": 8
+        }
+      ]
+    },
+    {
+      "name": "CIM_ClassCreation",
+      "properties": [
+        {
+          "name": "ClassDefinition",
+          "cimType": 13
+        },
+        {
+          "name": "CorrelatedIndications",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "IndicationFilterName",
+          "cimType": 8
+        },
+        {
+          "name": "IndicationIdentifier",
+          "cimType": 8
+        },
+        {
+          "name": "IndicationTime",
+          "cimType": 101
+        },
+        {
+          "name": "OtherSeverity",
+          "cimType": 8
+        },
+        {
+          "name": "PerceivedSeverity",
+          "cimType": 18
+        },
+        {
+          "name": "SequenceContext",
+          "cimType": 8
+        },
+        {
+          "name": "SequenceNumber",
+          "cimType": 20
+        }
+      ]
+    },
+    {
+      "name": "CIM_ClassDeletion",
+      "properties": [
+        {
+          "name": "ClassDefinition",
+          "cimType": 13
+        },
+        {
+          "name": "CorrelatedIndications",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "IndicationFilterName",
+          "cimType": 8
+        },
+        {
+          "name": "IndicationIdentifier",
+          "cimType": 8
+        },
+        {
+          "name": "IndicationTime",
+          "cimType": 101
+        },
+        {
+          "name": "OtherSeverity",
+          "cimType": 8
+        },
+        {
+          "name": "PerceivedSeverity",
+          "cimType": 18
+        },
+        {
+          "name": "SequenceContext",
+          "cimType": 8
+        },
+        {
+          "name": "SequenceNumber",
+          "cimType": 20
+        }
+      ]
+    },
+    {
+      "name": "CIM_ClassIndication",
+      "properties": [
+        {
+          "name": "ClassDefinition",
+          "cimType": 13
+        },
+        {
+          "name": "CorrelatedIndications",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "IndicationFilterName",
+          "cimType": 8
+        },
+        {
+          "name": "IndicationIdentifier",
+          "cimType": 8
+        },
+        {
+          "name": "IndicationTime",
+          "cimType": 101
+        },
+        {
+          "name": "OtherSeverity",
+          "cimType": 8
+        },
+        {
+          "name": "PerceivedSeverity",
+          "cimType": 18
+        },
+        {
+          "name": "SequenceContext",
+          "cimType": 8
+        },
+        {
+          "name": "SequenceNumber",
+          "cimType": 20
+        }
+      ]
+    },
+    {
+      "name": "CIM_ClassModification",
+      "properties": [
+        {
+          "name": "ClassDefinition",
+          "cimType": 13
+        },
+        {
+          "name": "CorrelatedIndications",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "IndicationFilterName",
+          "cimType": 8
+        },
+        {
+          "name": "IndicationIdentifier",
+          "cimType": 8
+        },
+        {
+          "name": "IndicationTime",
+          "cimType": 101
+        },
+        {
+          "name": "OtherSeverity",
+          "cimType": 8
+        },
+        {
+          "name": "PerceivedSeverity",
+          "cimType": 18
+        },
+        {
+          "name": "PreviousClassDefinition",
+          "cimType": 13
+        },
+        {
+          "name": "SequenceContext",
+          "cimType": 8
+        },
+        {
+          "name": "SequenceNumber",
+          "cimType": 20
+        }
+      ]
+    },
+    {
+      "name": "CIM_Error",
+      "properties": [
+        {
+          "name": "CIMStatusCode",
+          "cimType": 19
+        },
+        {
+          "name": "CIMStatusCodeDescription",
+          "cimType": 8
+        },
+        {
+          "name": "ErrorSource",
+          "cimType": 8
+        },
+        {
+          "name": "ErrorSourceFormat",
+          "cimType": 18
+        },
+        {
+          "name": "ErrorType",
+          "cimType": 18
+        },
+        {
+          "name": "Message",
+          "cimType": 8
+        },
+        {
+          "name": "MessageArguments",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "MessageID",
+          "cimType": 8
+        },
+        {
+          "name": "OtherErrorSourceFormat",
+          "cimType": 8
+        },
+        {
+          "name": "OtherErrorType",
+          "cimType": 8
+        },
+        {
+          "name": "OwningEntity",
+          "cimType": 8
+        },
+        {
+          "name": "PerceivedSeverity",
+          "cimType": 18
+        },
+        {
+          "name": "ProbableCause",
+          "cimType": 18
+        },
+        {
+          "name": "ProbableCauseDescription",
+          "cimType": 8
+        },
+        {
+          "name": "RecommendedActions",
+          "cimType": 8,
+          "array": true
+        }
+      ]
+    },
+    {
+      "name": "CIM_Indication",
+      "properties": [
+        {
+          "name": "CorrelatedIndications",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "IndicationFilterName",
+          "cimType": 8
+        },
+        {
+          "name": "IndicationIdentifier",
+          "cimType": 8
+        },
+        {
+          "name": "IndicationTime",
+          "cimType": 101
+        },
+        {
+          "name": "OtherSeverity",
+          "cimType": 8
+        },
+        {
+          "name": "PerceivedSeverity",
+          "cimType": 18
+        },
+        {
+          "name": "SequenceContext",
+          "cimType": 8
+        },
+        {
+          "name": "SequenceNumber",
+          "cimType": 20
+        }
+      ]
+    },
+    {
+      "name": "CIM_InstCreation",
+      "properties": [
+        {
+          "name": "CorrelatedIndications",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "IndicationFilterName",
+          "cimType": 8
+        },
+        {
+          "name": "IndicationIdentifier",
+          "cimType": 8
+        },
+        {
+          "name": "IndicationTime",
+          "cimType": 101
+        },
+        {
+          "name": "OtherSeverity",
+          "cimType": 8
+        },
+        {
+          "name": "PerceivedSeverity",
+          "cimType": 18
+        },
+        {
+          "name": "SequenceContext",
+          "cimType": 8
+        },
+        {
+          "name": "SequenceNumber",
+          "cimType": 20
+        },
+        {
+          "name": "SourceInstance",
+          "cimType": 13
+        },
+        {
+          "name": "SourceInstanceHost",
+          "cimType": 8
+        },
+        {
+          "name": "SourceInstanceModelPath",
+          "cimType": 8
+        }
+      ]
+    },
+    {
+      "name": "CIM_InstDeletion",
+      "properties": [
+        {
+          "name": "CorrelatedIndications",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "IndicationFilterName",
+          "cimType": 8
+        },
+        {
+          "name": "IndicationIdentifier",
+          "cimType": 8
+        },
+        {
+          "name": "IndicationTime",
+          "cimType": 101
+        },
+        {
+          "name": "OtherSeverity",
+          "cimType": 8
+        },
+        {
+          "name": "PerceivedSeverity",
+          "cimType": 18
+        },
+        {
+          "name": "SequenceContext",
+          "cimType": 8
+        },
+        {
+          "name": "SequenceNumber",
+          "cimType": 20
+        },
+        {
+          "name": "SourceInstance",
+          "cimType": 13
+        },
+        {
+          "name": "SourceInstanceHost",
+          "cimType": 8
+        },
+        {
+          "name": "SourceInstanceModelPath",
+          "cimType": 8
+        }
+      ]
+    },
+    {
+      "name": "CIM_InstIndication",
+      "properties": [
+        {
+          "name": "CorrelatedIndications",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "IndicationFilterName",
+          "cimType": 8
+        },
+        {
+          "name": "IndicationIdentifier",
+          "cimType": 8
+        },
+        {
+          "name": "IndicationTime",
+          "cimType": 101
+        },
+        {
+          "name": "OtherSeverity",
+          "cimType": 8
+        },
+        {
+          "name": "PerceivedSeverity",
+          "cimType": 18
+        },
+        {
+          "name": "SequenceContext",
+          "cimType": 8
+        },
+        {
+          "name": "SequenceNumber",
+          "cimType": 20
+        },
+        {
+          "name": "SourceInstance",
+          "cimType": 13
+        },
+        {
+          "name": "SourceInstanceHost",
+          "cimType": 8
+        },
+        {
+          "name": "SourceInstanceModelPath",
+          "cimType": 8
+        }
+      ]
+    },
+    {
+      "name": "CIM_InstModification",
+      "properties": [
+        {
+          "name": "CorrelatedIndications",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "IndicationFilterName",
+          "cimType": 8
+        },
+        {
+          "name": "IndicationIdentifier",
+          "cimType": 8
+        },
+        {
+          "name": "IndicationTime",
+          "cimType": 101
+        },
+        {
+          "name": "OtherSeverity",
+          "cimType": 8
+        },
+        {
+          "name": "PerceivedSeverity",
+          "cimType": 18
+        },
+        {
+          "name": "PreviousInstance",
+          "cimType": 13
+        },
+        {
+          "name": "SequenceContext",
+          "cimType": 8
+        },
+        {
+          "name": "SequenceNumber",
+          "cimType": 20
+        },
+        {
+          "name": "SourceInstance",
+          "cimType": 13
+        },
+        {
+          "name": "SourceInstanceHost",
+          "cimType": 8
+        },
+        {
+          "name": "SourceInstanceModelPath",
+          "cimType": 8
+        }
+      ]
+    },
+    {
+      "name": "FirewallProduct",
+      "properties": [
+        {
+          "name": "displayName",
+          "cimType": 8
+        },
+        {
+          "name": "instanceGuid",
+          "cimType": 8,
+          "key": true
+        },
+        {
+          "name": "pathToSignedProductExe",
+          "cimType": 8
+        },
+        {
+          "name": "pathToSignedReportingExe",
+          "cimType": 8
+        },
+        {
+          "name": "productState",
+          "cimType": 19
+        },
+        {
+          "name": "timestamp",
+          "cimType": 8
+        }
+      ]
+    },
+    {
+      "name": "MSFT_ExtendedStatus",
+      "properties": [
+        {
+          "name": "CIMStatusCode",
+          "cimType": 19
+        },
+        {
+          "name": "CIMStatusCodeDescription",
+          "cimType": 8
+        },
+        {
+          "name": "ErrorSource",
+          "cimType": 8
+        },
+        {
+          "name": "ErrorSourceFormat",
+          "cimType": 18
+        },
+        {
+          "name": "ErrorType",
+          "cimType": 18
+        },
+        {
+          "name": "Message",
+          "cimType": 8
+        },
+        {
+          "name": "MessageArguments",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "MessageID",
+          "cimType": 8
+        },
+        {
+          "name": "OtherErrorSourceFormat",
+          "cimType": 8
+        },
+        {
+          "name": "OtherErrorType",
+          "cimType": 8
+        },
+        {
+          "name": "OwningEntity",
+          "cimType": 8
+        },
+        {
+          "name": "PerceivedSeverity",
+          "cimType": 18
+        },
+        {
+          "name": "ProbableCause",
+          "cimType": 18
+        },
+        {
+          "name": "ProbableCauseDescription",
+          "cimType": 8
+        },
+        {
+          "name": "RecommendedActions",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "error_Category",
+          "cimType": 18
+        },
+        {
+          "name": "error_Code",
+          "cimType": 19
+        },
+        {
+          "name": "error_Type",
+          "cimType": 8
+        },
+        {
+          "name": "error_WindowsErrorMessage",
+          "cimType": 8
+        },
+        {
+          "name": "original_error",
+          "cimType": 13
+        }
+      ]
+    },
+    {
+      "name": "MSFT_WmiError",
+      "properties": [
+        {
+          "name": "CIMStatusCode",
+          "cimType": 19
+        },
+        {
+          "name": "CIMStatusCodeDescription",
+          "cimType": 8
+        },
+        {
+          "name": "ErrorSource",
+          "cimType": 8
+        },
+        {
+          "name": "ErrorSourceFormat",
+          "cimType": 18
+        },
+        {
+          "name": "ErrorType",
+          "cimType": 18
+        },
+        {
+          "name": "Message",
+          "cimType": 8
+        },
+        {
+          "name": "MessageArguments",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "MessageID",
+          "cimType": 8
+        },
+        {
+          "name": "OtherErrorSourceFormat",
+          "cimType": 8
+        },
+        {
+          "name": "OtherErrorType",
+          "cimType": 8
+        },
+        {
+          "name": "OwningEntity",
+          "cimType": 8
+        },
+        {
+          "name": "PerceivedSeverity",
+          "cimType": 18
+        },
+        {
+          "name": "ProbableCause",
+          "cimType": 18
+        },
+        {
+          "name": "ProbableCauseDescription",
+          "cimType": 8
+        },
+        {
+          "name": "RecommendedActions",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "error_Category",
+          "cimType": 18
+        },
+        {
+          "name": "error_Code",
+          "cimType": 19
+        },
+        {
+          "name": "error_Type",
+          "cimType": 8
+        },
+        {
+          "name": "error_WindowsErrorMessage",
+          "cimType": 8
+        }
+      ]
+    },
+    {
+      "name": "WSC_CallerAMPPLData",
+      "properties": [
+        {
+          "name": "displayName",
+          "cimType": 8
+        },
+        {
+          "name": "hresultCode",
+          "cimType": 3
+        },
+        {
+          "name": "iniString",
+          "cimType": 8
+        },
+        {
+          "name": "instanceGuid",
+          "cimType": 8,
+          "key": true
+        },
+        {
+          "name": "pathToCaller",
+          "cimType": 8
+        },
+        {
+          "name": "pathToSignedProductExe",
+          "cimType": 8
+        },
+        {
+          "name": "statusCode",
+          "cimType": 3
+        }
+      ]
+    },
+    {
+      "name": "__ACE",
+      "properties": [
+        {
+          "name": "AccessMask",
+          "cimType": 19
+        },
+        {
+          "name": "AceFlags",
+          "cimType": 19
+        },
+        {
+          "name": "AceType",
+          "cimType": 19
+        },
+        {
+          "name": "GuidInheritedObjectType",
+          "cimType": 8
+        },
+        {
+          "name": "GuidObjectType",
+          "cimType": 8
+        },
+        {
+          "name": "TIME_CREATED",
+          "cimType": 21
+        },
+        {
+          "name": "Trustee",
+          "cimType": 13
+        }
+      ]
+    },
+    {
+      "name": "__AbsoluteTimerInstruction",
+      "properties": [
+        {
+          "name": "EventDateTime",
+          "cimType": 101
+        },
+        {
+          "name": "SkipIfPassed",
+          "cimType": 11
+        },
+        {
+          "name": "TimerId",
+          "cimType": 8,
+          "key": true
+        }
+      ]
+    },
+    {
+      "name": "__AggregateEvent",
+      "properties": [
+        {
+          "name": "NumberOfEvents",
+          "cimType": 19
+        },
+        {
+          "name": "Representative",
+          "cimType": 13
+        }
+      ]
+    },
+    {
+      "name": "__ClassCreationEvent",
+      "properties": [
+        {
+          "name": "SECURITY_DESCRIPTOR",
+          "cimType": 17,
+          "array": true
+        },
+        {
+          "name": "TIME_CREATED",
+          "cimType": 21
+        },
+        {
+          "name": "TargetClass",
+          "cimType": 13
+        }
+      ]
+    },
+    {
+      "name": "__ClassDeletionEvent",
+      "properties": [
+        {
+          "name": "SECURITY_DESCRIPTOR",
+          "cimType": 17,
+          "array": true
+        },
+        {
+          "name": "TIME_CREATED",
+          "cimType": 21
+        },
+        {
+          "name": "TargetClass",
+          "cimType": 13
+        }
+      ]
+    },
+    {
+      "name": "__ClassModificationEvent",
+      "properties": [
+        {
+          "name": "PreviousClass",
+          "cimType": 13
+        },
+        {
+          "name": "SECURITY_DESCRIPTOR",
+          "cimType": 17,
+          "array": true
+        },
+        {
+          "name": "TIME_CREATED",
+          "cimType": 21
+        },
+        {
+          "name": "TargetClass",
+          "cimType": 13
+        }
+      ]
+    },
+    {
+      "name": "__ClassOperationEvent",
+      "properties": [
+        {
+          "name": "SECURITY_DESCRIPTOR",
+          "cimType": 17,
+          "array": true
+        },
+        {
+          "name": "TIME_CREATED",
+          "cimType": 21
+        },
+        {
+          "name": "TargetClass",
+          "cimType": 13
+        }
+      ]
+    },
+    {
+      "name": "__ClassProviderRegistration",
+      "properties": [
+        {
+          "name": "CacheRefreshInterval",
+          "cimType": 101
+        },
+        {
+          "name": "InteractionType",
+          "cimType": 3
+        },
+        {
+          "name": "PerUserSchema",
+          "cimType": 11
+        },
+        {
+          "name": "QuerySupportLevels",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "ReSynchroniseOnNamespaceOpen",
+          "cimType": 11
+        },
+        {
+          "name": "ReferencedSetQueries",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "ResultSetQueries",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "SupportsBatching",
+          "cimType": 11
+        },
+        {
+          "name": "SupportsDelete",
+          "cimType": 11
+        },
+        {
+          "name": "SupportsEnumeration",
+          "cimType": 11
+        },
+        {
+          "name": "SupportsGet",
+          "cimType": 11
+        },
+        {
+          "name": "SupportsPut",
+          "cimType": 11
+        },
+        {
+          "name": "SupportsTransactions",
+          "cimType": 11
+        },
+        {
+          "name": "UnsupportedQueries",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "Version",
+          "cimType": 19
+        },
+        {
+          "name": "provider",
+          "cimType": 102,
+          "key": true
+        }
+      ]
+    },
+    {
+      "name": "__ConsumerFailureEvent",
+      "properties": [
+        {
+          "name": "ErrorCode",
+          "cimType": 19
+        },
+        {
+          "name": "ErrorDescription",
+          "cimType": 8
+        },
+        {
+          "name": "ErrorObject",
+          "cimType": 13
+        },
+        {
+          "name": "Event",
+          "cimType": 13
+        },
+        {
+          "name": "IntendedConsumer",
+          "cimType": 102
+        },
+        {
+          "name": "SECURITY_DESCRIPTOR",
+          "cimType": 17,
+          "array": true
+        },
+        {
+          "name": "TIME_CREATED",
+          "cimType": 21
+        }
+      ]
+    },
+    {
+      "name": "__Event",
+      "properties": [
+        {
+          "name": "SECURITY_DESCRIPTOR",
+          "cimType": 17,
+          "array": true
+        },
+        {
+          "name": "TIME_CREATED",
+          "cimType": 21
+        }
+      ]
+    },
+    {
+      "name": "__EventConsumer",
+      "properties": [
+        {
+          "name": "CreatorSID",
+          "cimType": 17,
+          "array": true
+        },
+        {
+          "name": "MachineName",
+          "cimType": 8
+        },
+        {
+          "name": "MaximumQueueSize",
+          "cimType": 19
+        }
+      ]
+    },
+    {
+      "name": "__EventConsumerProviderRegistration",
+      "properties": [
+        {
+          "name": "ConsumerClassNames",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "provider",
+          "cimType": 102,
+          "key": true
+        }
+      ]
+    },
+    {
+      "name": "__EventDroppedEvent",
+      "properties": [
+        {
+          "name": "Event",
+          "cimType": 13
+        },
+        {
+          "name": "IntendedConsumer",
+          "cimType": 102
+        },
+        {
+          "name": "SECURITY_DESCRIPTOR",
+          "cimType": 17,
+          "array": true
+        },
+        {
+          "name": "TIME_CREATED",
+          "cimType": 21
+        }
+      ]
+    },
+    {
+      "name": "__EventFilter",
+      "properties": [
+        {
+          "name": "CreatorSID",
+          "cimType": 17,
+          "array": true
+        },
+        {
+          "name": "EventAccess",
+          "cimType": 8
+        },
+        {
+          "name": "EventNamespace",
+          "cimType": 8
+        },
+        {
+          "name": "Name",
+          "cimType": 8,
+          "key": true
+        },
+        {
+          "name": "Query",
+          "cimType": 8
+        },
+        {
+          "name": "QueryLanguage",
+          "cimType": 8
+        }
+      ]
+    },
+    {
+      "name": "__EventGenerator",
+      "properties": null
+    },
+    {
+      "name": "__EventProviderRegistration",
+      "properties": [
+        {
+          "name": "EventQueryList",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "provider",
+          "cimType": 102,
+          "key": true
+        }
+      ]
+    },
+    {
+      "name": "__EventQueueOverflowEvent",
+      "properties": [
+        {
+          "name": "CurrentQueueSize",
+          "cimType": 19
+        },
+        {
+          "name": "Event",
+          "cimType": 13
+        },
+        {
+          "name": "IntendedConsumer",
+          "cimType": 102
+        },
+        {
+          "name": "SECURITY_DESCRIPTOR",
+          "cimType": 17,
+          "array": true
+        },
+        {
+          "name": "TIME_CREATED",
+          "cimType": 21
+        }
+      ]
+    },
+    {
+      "name": "__ExtendedStatus",
+      "properties": [
+        {
+          "name": "Description",
+          "cimType": 8
+        },
+        {
+          "name": "Operation",
+          "cimType": 8
+        },
+        {
+          "name": "ParameterInfo",
+          "cimType": 8
+        },
+        {
+          "name": "ProviderName",
+          "cimType": 8
+        },
+        {
+          "name": "StatusCode",
+          "cimType": 19
+        }
+      ]
+    },
+    {
+      "name": "__ExtrinsicEvent",
+      "properties": [
+        {
+          "name": "SECURITY_DESCRIPTOR",
+          "cimType": 17,
+          "array": true
+        },
+        {
+          "name": "TIME_CREATED",
+          "cimType": 21
+        }
+      ]
+    },
+    {
+      "name": "__FilterToConsumerBinding",
+      "properties": [
+        {
+          "name": "Consumer",
+          "cimType": 102,
+          "key": true
+        },
+        {
+          "name": "CreatorSID",
+          "cimType": 17,
+          "array": true
+        },
+        {
+          "name": "DeliverSynchronously",
+          "cimType": 11
+        },
+        {
+          "name": "DeliveryQoS",
+          "cimType": 19
+        },
+        {
+          "name": "Filter",
+          "cimType": 102,
+          "key": true
+        },
+        {
+          "name": "MaintainSecurityContext",
+          "cimType": 11
+        },
+        {
+          "name": "SlowDownProviders",
+          "cimType": 11
+        }
+      ]
+    },
+    {
+      "name": "__IndicationRelated",
+      "properties": null
+    },
+    {
+      "name": "__InstanceCreationEvent",
+      "properties": [
+        {
+          "name": "SECURITY_DESCRIPTOR",
+          "cimType": 17,
+          "array": true
+        },
+        {
+          "name": "TIME_CREATED",
+          "cimType": 21
+        },
+        {
+          "name": "TargetInstance",
+          "cimType": 13
+        }
+      ]
+    },
+    {
+      "name": "__InstanceDeletionEvent",
+      "properties": [
+        {
+          "name": "SECURITY_DESCRIPTOR",
+          "cimType": 17,
+          "array": true
+        },
+        {
+          "name": "TIME_CREATED",
+          "cimType": 21
+        },
+        {
+          "name": "TargetInstance",
+          "cimType": 13
+        }
+      ]
+    },
+    {
+      "name": "__InstanceModificationEvent",
+      "properties": [
+        {
+          "name": "PreviousInstance",
+          "cimType": 13
+        },
+        {
+          "name": "SECURITY_DESCRIPTOR",
+          "cimType": 17,
+          "array": true
+        },
+        {
+          "name": "TIME_CREATED",
+          "cimType": 21
+        },
+        {
+          "name": "TargetInstance",
+          "cimType": 13
+        }
+      ]
+    },
+    {
+      "name": "__InstanceOperationEvent",
+      "properties": [
+        {
+          "name": "SECURITY_DESCRIPTOR",
+          "cimType": 17,
+          "array": true
+        },
+        {
+          "name": "TIME_CREATED",
+          "cimType": 21
+        },
+        {
+          "name": "TargetInstance",
+          "cimType": 13
+        }
+      ]
+    },
+    {
+      "name": "__InstanceProviderRegistration",
+      "properties": [
+        {
+          "name": "InteractionType",
+          "cimType": 3
+        },
+        {
+          "name": "QuerySupportLevels",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "SupportsBatching",
+          "cimType": 11
+        },
+        {
+          "name": "SupportsDelete",
+          "cimType": 11
+        },
+        {
+          "name": "SupportsEnumeration",
+          "cimType": 11
+        },
+        {
+          "name": "SupportsGet",
+          "cimType": 11
+        },
+        {
+          "name": "SupportsPut",
+          "cimType": 11
+        },
+        {
+          "name": "SupportsTransactions",
+          "cimType": 11
+        },
+        {
+          "name": "provider",
+          "cimType": 102,
+          "key": true
+        }
+      ]
+    },
+    {
+      "name": "__IntervalTimerInstruction",
+      "properties": [
+        {
+          "name": "IntervalBetweenEvents",
+          "cimType": 19
+        },
+        {
+          "name": "SkipIfPassed",
+          "cimType": 11
+        },
+        {
+          "name": "TimerId",
+          "cimType": 8,
+          "key": true
+        }
+      ]
+    },
+    {
+      "name": "__MethodInvocationEvent",
+      "properties": [
+        {
+          "name": "Method",
+          "cimType": 8
+        },
+        {
+          "name": "Parameters",
+          "cimType": 13
+        },
+        {
+          "name": "PreCall",
+          "cimType": 11
+        },
+        {
+          "name": "SECURITY_DESCRIPTOR",
+          "cimType": 17,
+          "array": true
+        },
+        {
+          "name": "TIME_CREATED",
+          "cimType": 21
+        },
+        {
+          "name": "TargetInstance",
+          "cimType": 13
+        }
+      ]
+    },
+    {
+      "name": "__MethodProviderRegistration",
+      "properties": [
+        {
+          "name": "provider",
+          "cimType": 102,
+          "key": true
+        }
+      ]
+    },
+    {
+      "name": "__NAMESPACE",
+      "properties": [
+        {
+          "name": "Name",
+          "cimType": 8,
+          "key": true
+        }
+      ]
+    },
+    {
+      "name": "__NTLMUser9X",
+      "properties": [
+        {
+          "name": "Authority",
+          "cimType": 8
+        },
+        {
+          "name": "Flags",
+          "cimType": 3
+        },
+        {
+          "name": "Mask",
+          "cimType": 3
+        },
+        {
+          "name": "Name",
+          "cimType": 8
+        },
+        {
+          "name": "Type",
+          "cimType": 3
+        }
+      ]
+    },
+    {
+      "name": "__NamespaceCreationEvent",
+      "properties": [
+        {
+          "name": "SECURITY_DESCRIPTOR",
+          "cimType": 17,
+          "array": true
+        },
+        {
+          "name": "TIME_CREATED",
+          "cimType": 21
+        },
+        {
+          "name": "TargetNamespace",
+          "cimType": 13
+        }
+      ]
+    },
+    {
+      "name": "__NamespaceDeletionEvent",
+      "properties": [
+        {
+          "name": "SECURITY_DESCRIPTOR",
+          "cimType": 17,
+          "array": true
+        },
+        {
+          "name": "TIME_CREATED",
+          "cimType": 21
+        },
+        {
+          "name": "TargetNamespace",
+          "cimType": 13
+        }
+      ]
+    },
+    {
+      "name": "__NamespaceModificationEvent",
+      "properties": [
+        {
+          "name": "PreviousNamespace",
+          "cimType": 13
+        },
+        {
+          "name": "SECURITY_DESCRIPTOR",
+          "cimType": 17,
+          "array": true
+        },
+        {
+          "name": "TIME_CREATED",
+          "cimType": 21
+        },
+        {
+          "name": "TargetNamespace",
+          "cimType": 13
+        }
+      ]
+    },
+    {
+      "name": "__NamespaceOperationEvent",
+      "properties": [
+        {
+          "name": "SECURITY_DESCRIPTOR",
+          "cimType": 17,
+          "array": true
+        },
+        {
+          "name": "TIME_CREATED",
+          "cimType": 21
+        },
+        {
+          "name": "TargetNamespace",
+          "cimType": 13
+        }
+      ]
+    },
+    {
+      "name": "__NotifyStatus",
+      "properties": [
+        {
+          "name": "StatusCode",
+          "cimType": 19
+        }
+      ]
+    },
+    {
+      "name": "__ObjectProviderRegistration",
+      "properties": [
+        {
+          "name": "InteractionType",
+          "cimType": 3
+        },
+        {
+          "name": "QuerySupportLevels",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "SupportsBatching",
+          "cimType": 11
+        },
+        {
+          "name": "SupportsDelete",
+          "cimType": 11
+        },
+        {
+          "name": "SupportsEnumeration",
+          "cimType": 11
+        },
+        {
+          "name": "SupportsGet",
+          "cimType": 11
+        },
+        {
+          "name": "SupportsPut",
+          "cimType": 11
+        },
+        {
+          "name": "SupportsTransactions",
+          "cimType": 11
+        },
+        {
+          "name": "provider",
+          "cimType": 102
+        }
+      ]
+    },
+    {
+      "name": "__PARAMETERS",
+      "properties": null
+    },
+    {
+      "name": "__PropertyProviderRegistration",
+      "properties": [
+        {
+          "name": "SupportsGet",
+          "cimType": 11
+        },
+        {
+          "name": "SupportsPut",
+          "cimType": 11
+        },
+        {
+          "name": "provider",
+          "cimType": 102,
+          "key": true
+        }
+      ]
+    },
+    {
+      "name": "__Provider",
+      "properties": [
+        {
+          "name": "Name",
+          "cimType": 8,
+          "key": true
+        }
+      ]
+    },
+    {
+      "name": "__ProviderRegistration",
+      "properties": [
+        {
+          "name": "provider",
+          "cimType": 102
+        }
+      ]
+    },
+    {
+      "name": "__QOSFailureEvent",
+      "properties": [
+        {
+          "name": "ErrorCode",
+          "cimType": 19
+        },
+        {
+          "name": "ErrorDescription",
+          "cimType": 8
+        },
+        {
+          "name": "Event",
+          "cimType": 13
+        },
+        {
+          "name": "IntendedConsumer",
+          "cimType": 102
+        },
+        {
+          "name": "SECURITY_DESCRIPTOR",
+          "cimType": 17,
+          "array": true
+        },
+        {
+          "name": "TIME_CREATED",
+          "cimType": 21
+        }
+      ]
+    },
+    {
+      "name": "__SecurityDescriptor",
+      "properties": [
+        {
+          "name": "ControlFlags",
+          "cimType": 19
+        },
+        {
+          "name": "DACL",
+          "cimType": 13,
+          "array": true
+        },
+        {
+          "name": "Group",
+          "cimType": 13
+        },
+        {
+          "name": "Owner",
+          "cimType": 13
+        },
+        {
+          "name": "SACL",
+          "cimType": 13,
+          "array": true
+        },
+        {
+          "name": "TIME_CREATED",
+          "cimType": 21
+        }
+      ]
+    },
+    {
+      "name": "__SecurityRelatedClass",
+      "properties": null
+    },
+    {
+      "name": "__SystemClass",
+      "properties": null
+    },
+    {
+      "name": "__SystemEvent",
+      "properties": [
+        {
+          "name": "SECURITY_DESCRIPTOR",
+          "cimType": 17,
+          "array": true
+        },
+        {
+          "name": "TIME_CREATED",
+          "cimType": 21
+        }
+      ]
+    },
+    {
+      "name": "__SystemSecurity",
+      "properties": null,
+      "methods": [
+        {
+          "name": "Get9XUserList",
+          "static": true,
+          "out": [
+            {
+              "name": "ul",
+              "cimType": 13,
+              "array": true
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "GetCallerAccessRights",
+          "static": true,
+          "out": [
+            {
+              "name": "rights",
+              "cimType": 3
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "GetSD",
+          "static": true,
+          "out": [
+            {
+              "name": "SD",
+              "cimType": 17,
+              "array": true
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "GetSecurityDescriptor",
+          "static": true,
+          "out": [
+            {
+              "name": "Descriptor",
+              "cimType": 13
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "Set9XUserList",
+          "static": true,
+          "in": [
+            {
+              "name": "ul",
+              "cimType": 13,
+              "array": true
+            }
+          ],
+          "out": [
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "SetSD",
+          "static": true,
+          "in": [
+            {
+              "name": "SD",
+              "cimType": 17,
+              "array": true
+            }
+          ],
+          "out": [
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "SetSecurityDescriptor",
+          "static": true,
+          "in": [
+            {
+              "name": "Descriptor",
+              "cimType": 13
+            }
+          ],
+          "out": [
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "__TimerEvent",
+      "properties": [
+        {
+          "name": "NumFirings",
+          "cimType": 19
+        },
+        {
+          "name": "SECURITY_DESCRIPTOR",
+          "cimType": 17,
+          "array": true
+        },
+        {
+          "name": "TIME_CREATED",
+          "cimType": 21
+        },
+        {
+          "name": "TimerId",
+          "cimType": 8
+        }
+      ]
+    },
+    {
+      "name": "__TimerInstruction",
+      "properties": [
+        {
+          "name": "SkipIfPassed",
+          "cimType": 11
+        },
+        {
+          "name": "TimerId",
+          "cimType": 8,
+          "key": true
+        }
+      ]
+    },
+    {
+      "name": "__TimerNextFiring",
+      "properties": [
+        {
+          "name": "NextEvent64BitTime",
+          "cimType": 20
+        },
+        {
+          "name": "TimerId",
+          "cimType": 8,
+          "key": true
+        }
+      ]
+    },
+    {
+      "name": "__Trustee",
+      "properties": [
+        {
+          "name": "Domain",
+          "cimType": 8
+        },
+        {
+          "name": "Name",
+          "cimType": 8
+        },
+        {
+          "name": "SID",
+          "cimType": 17,
+          "array": true
+        },
+        {
+          "name": "SIDString",
+          "cimType": 8
+        },
+        {
+          "name": "SidLength",
+          "cimType": 19
+        },
+        {
+          "name": "TIME_CREATED",
+          "cimType": 21
+        }
+      ]
+    },
+    {
+      "name": "__Win32Provider",
+      "properties": [
+        {
+          "name": "CLSID",
+          "cimType": 8
+        },
+        {
+          "name": "ClientLoadableCLSID",
+          "cimType": 8
+        },
+        {
+          "name": "Concurrency",
+          "cimType": 3
+        },
+        {
+          "name": "DefaultMachineName",
+          "cimType": 8
+        },
+        {
+          "name": "Enabled",
+          "cimType": 11
+        },
+        {
+          "name": "HostingModel",
+          "cimType": 8
+        },
+        {
+          "name": "ImpersonationLevel",
+          "cimType": 3
+        },
+        {
+          "name": "InitializationReentrancy",
+          "cimType": 3
+        },
+        {
+          "name": "InitializationTimeoutInterval",
+          "cimType": 101
+        },
+        {
+          "name": "InitializeAsAdminFirst",
+          "cimType": 11
+        },
+        {
+          "name": "Name",
+          "cimType": 8,
+          "key": true
+        },
+        {
+          "name": "OperationTimeoutInterval",
+          "cimType": 101
+        },
+        {
+          "name": "PerLocaleInitialization",
+          "cimType": 11
+        },
+        {
+          "name": "PerUserInitialization",
+          "cimType": 11
+        },
+        {
+          "name": "Pure",
+          "cimType": 11
+        },
+        {
+          "name": "SecurityDescriptor",
+          "cimType": 8
+        },
+        {
+          "name": "SupportsExplicitShutdown",
+          "cimType": 11
+        },
+        {
+          "name": "SupportsExtendedStatus",
+          "cimType": 11
+        },
+        {
+          "name": "SupportsQuotas",
+          "cimType": 11
+        },
+        {
+          "name": "SupportsSendStatus",
+          "cimType": 11
+        },
+        {
+          "name": "SupportsShutdown",
+          "cimType": 11
+        },
+        {
+          "name": "SupportsThrottling",
+          "cimType": 11
+        },
+        {
+          "name": "UnloadTimeout",
+          "cimType": 101
+        },
+        {
+          "name": "Version",
+          "cimType": 19
+        }
+      ]
+    },
+    {
+      "name": "__thisNAMESPACE",
+      "properties": [
+        {
+          "name": "SECURITY_DESCRIPTOR",
+          "cimType": 17,
+          "array": true
+        }
+      ]
+    }
+  ]
+}
