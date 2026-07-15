@@ -15,7 +15,7 @@ var DeviceEnumerationPolicy = csp.Policy{
 	CSPVersion: "8.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Block all (Most restrictive)"}, {Value: "1", Description: "Only after log in/screen unlock"}, {Value: "2", Description: "Allow all (Least restrictive)"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DmaGuard02", ResultClass: "MDM_Policy_Result01_DmaGuard02", InstanceID: "DmaGuard", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DeviceEnumerationPolicy"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DmaGuard02", ResultClass: "MDM_Policy_Result01_DmaGuard02", InstanceID: "DmaGuard", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DeviceEnumerationPolicy"},
 }
 
 // All lists every policy in this CSP area.

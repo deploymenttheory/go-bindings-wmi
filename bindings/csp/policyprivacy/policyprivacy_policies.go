@@ -15,7 +15,7 @@ var AllowAutoAcceptPairingAndPrivacyConsentPrompts = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowAutoAcceptPairingAndPrivacyConsentPrompts"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowAutoAcceptPairingAndPrivacyConsentPrompts"},
 }
 
 // AllowCrossDeviceClipboard: Allows syncing of Clipboard across devices under the same Microsoft account.
@@ -29,7 +29,7 @@ var AllowCrossDeviceClipboard = csp.Policy{
 	CSPVersion: "8.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowCrossDeviceClipboard"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowCrossDeviceClipboard"},
 }
 
 // AllowInputPersonalization: Updated in Windows 10, version 1809. This policy specifies whether users on the device have the option to enable online speech recognition. When enabled, users can use their voice for dictation and to talk to Cortana and other apps that use Microsoft cloud-based speech recognition. Microsoft will use voice input to help improve our speech services. If the policy value is set to 0, online speech recognition will be disabled and users cannot enable online speech recognition via settings. If policy value is set to 1 or is not configured, control is deferred to users. Most restricted value is 0.
@@ -43,7 +43,7 @@ var AllowInputPersonalization = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Choice deferred to user's preference."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowInputPersonalization"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowInputPersonalization"},
 }
 
 // DisableAdvertisingId: Enables or disables the Advertising ID. Most restricted value is 0.
@@ -57,7 +57,7 @@ var DisableAdvertisingId = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Disabled."}, {Value: "1", Description: "Enabled."}, {Value: "65535", Description: "Not configured."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisableAdvertisingId"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DisableAdvertisingId"},
 }
 
 // DisablePrivacyExperience: Enabling this policy prevents the privacy experience from launching during user logon for new and upgraded users.
@@ -71,7 +71,7 @@ var DisablePrivacyExperience = csp.Policy{
 	CSPVersion: "8.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Allow the 'choose privacy settings for your device' screen for a new user during their first logon or when an existing user logs in for the first time after an upgrade."}, {Value: "1", Description: "Do not allow the 'choose privacy settings for your device' screen when a new user logs in or an existing user logs in for the first time after an upgrade."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisablePrivacyExperience"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DisablePrivacyExperience"},
 }
 
 // EnableActivityFeed: Enables ActivityFeed, which is responsible for mirroring different activity types (as applicable) across device graph of the user.
@@ -85,7 +85,7 @@ var EnableActivityFeed = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Disabled. Apps/OS can't publish the activities and roaming is disabled. (not published to the cloud)."}, {Value: "1", Description: "Enabled. Apps/OS can publish the activities and will be roamed across device graph."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "EnableActivityFeed"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "EnableActivityFeed"},
 }
 
 // LetAppsAccessAccountInfo: This policy setting specifies whether Windows apps can access account information.
@@ -99,7 +99,7 @@ var LetAppsAccessAccountInfo = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "User in control."}, {Value: "1", Description: "Force allow."}, {Value: "2", Description: "Force deny."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessAccountInfo"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessAccountInfo"},
 }
 
 // LetAppsAccessAccountInfoForceAllowTheseApps: List of semi-colon delimited Package Family Names of Windows apps. Listed Windows apps are allowed access to account information. This setting overrides the default LetAppsAccessAccountInfo policy setting for the specified Windows apps.
@@ -112,7 +112,7 @@ var LetAppsAccessAccountInfoForceAllowTheseApps = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessAccountInfo_ForceAllowTheseApps"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessAccountInfo_ForceAllowTheseApps"},
 }
 
 // LetAppsAccessAccountInfoForceDenyTheseApps: List of semi-colon delimited Package Family Names of Windows apps. Listed Windows apps are denied access to account information. This setting overrides the default LetAppsAccessAccountInfo policy setting for the specified Windows apps.
@@ -125,7 +125,7 @@ var LetAppsAccessAccountInfoForceDenyTheseApps = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessAccountInfo_ForceDenyTheseApps"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessAccountInfo_ForceDenyTheseApps"},
 }
 
 // LetAppsAccessAccountInfoUserInControlOfTheseApps: List of semi-colon delimited Package Family Names of Windows apps. The user is able to control the account information privacy setting for the listed Windows apps. This setting overrides the default LetAppsAccessAccountInfo policy setting for the specified Windows apps.
@@ -138,7 +138,7 @@ var LetAppsAccessAccountInfoUserInControlOfTheseApps = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessAccountInfo_UserInControlOfTheseApps"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessAccountInfo_UserInControlOfTheseApps"},
 }
 
 // LetAppsAccessBackgroundSpatialPerception: This policy setting specifies whether Windows apps can access the movement of the user's head, hands, motion controllers, and other tracked objects, while the apps are running in the background.
@@ -152,7 +152,7 @@ var LetAppsAccessBackgroundSpatialPerception = csp.Policy{
 	CSPVersion: "9.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "User in control."}, {Value: "1", Description: "Force allow."}, {Value: "2", Description: "Force deny."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessBackgroundSpatialPerception"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessBackgroundSpatialPerception"},
 }
 
 // LetAppsAccessBackgroundSpatialPerceptionForceAllowTheseApps: List of semi-colon delimited Package Family Names of Windows Store Apps. Listed apps are allowed access to the user's movements while the apps are running in the background. This setting overrides the default LetAppsAccessBackgroundSpatialPerception policy setting for the specified apps.
@@ -165,7 +165,7 @@ var LetAppsAccessBackgroundSpatialPerceptionForceAllowTheseApps = csp.Policy{
 	CSPVersion: "9.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessBackgroundSpatialPerception_ForceAllowTheseApps"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessBackgroundSpatialPerception_ForceAllowTheseApps"},
 }
 
 // LetAppsAccessBackgroundSpatialPerceptionForceDenyTheseApps: List of semi-colon delimited Package Family Names of Windows Store Apps. Listed apps are denied access to the user's movements while the apps are running in the background. This setting overrides the default LetAppsAccessBackgroundSpatialPerception policy setting for the specified apps.
@@ -178,7 +178,7 @@ var LetAppsAccessBackgroundSpatialPerceptionForceDenyTheseApps = csp.Policy{
 	CSPVersion: "9.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessBackgroundSpatialPerception_ForceDenyTheseApps"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessBackgroundSpatialPerception_ForceDenyTheseApps"},
 }
 
 // LetAppsAccessBackgroundSpatialPerceptionUserInControlOfTheseApps: List of semi-colon delimited Package Family Names of Windows Store Apps. The user is able to control the user movements privacy setting for the listed apps. This setting overrides the default LetAppsAccessBackgroundSpatialPerception policy setting for the specified apps.
@@ -191,7 +191,7 @@ var LetAppsAccessBackgroundSpatialPerceptionUserInControlOfTheseApps = csp.Polic
 	CSPVersion: "9.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessBackgroundSpatialPerception_UserInControlOfTheseApps"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessBackgroundSpatialPerception_UserInControlOfTheseApps"},
 }
 
 // LetAppsAccessCalendar: This policy setting specifies whether Windows apps can access the calendar.
@@ -205,7 +205,7 @@ var LetAppsAccessCalendar = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "User in control."}, {Value: "1", Description: "Force allow."}, {Value: "2", Description: "Force deny."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessCalendar"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessCalendar"},
 }
 
 // LetAppsAccessCalendarForceAllowTheseApps: List of semi-colon delimited Package Family Names of Windows apps. Listed Windows apps are allowed access to the calendar. This setting overrides the default LetAppsAccessCalendar policy setting for the specified Windows apps.
@@ -218,7 +218,7 @@ var LetAppsAccessCalendarForceAllowTheseApps = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessCalendar_ForceAllowTheseApps"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessCalendar_ForceAllowTheseApps"},
 }
 
 // LetAppsAccessCalendarForceDenyTheseApps: List of semi-colon delimited Package Family Names of Windows apps. Listed Windows apps are denied access to the calendar. This setting overrides the default LetAppsAccessCalendar policy setting for the specified Windows apps.
@@ -231,7 +231,7 @@ var LetAppsAccessCalendarForceDenyTheseApps = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessCalendar_ForceDenyTheseApps"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessCalendar_ForceDenyTheseApps"},
 }
 
 // LetAppsAccessCalendarUserInControlOfTheseApps: List of semi-colon delimited Package Family Names of Windows apps. The user is able to control the calendar privacy setting for the listed Windows apps. This setting overrides the default LetAppsAccessCalendar policy setting for the specified Windows apps.
@@ -244,7 +244,7 @@ var LetAppsAccessCalendarUserInControlOfTheseApps = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessCalendar_UserInControlOfTheseApps"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessCalendar_UserInControlOfTheseApps"},
 }
 
 // LetAppsAccessCallHistory: This policy setting specifies whether Windows apps can access call history.
@@ -258,7 +258,7 @@ var LetAppsAccessCallHistory = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "User in control."}, {Value: "1", Description: "Force allow."}, {Value: "2", Description: "Force deny."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessCallHistory"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessCallHistory"},
 }
 
 // LetAppsAccessCallHistoryForceAllowTheseApps: List of semi-colon delimited Package Family Names of Windows apps. Listed Windows apps are allowed access to call history. This setting overrides the default LetAppsAccessCallHistory policy setting for the specified Windows apps.
@@ -271,7 +271,7 @@ var LetAppsAccessCallHistoryForceAllowTheseApps = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessCallHistory_ForceAllowTheseApps"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessCallHistory_ForceAllowTheseApps"},
 }
 
 // LetAppsAccessCallHistoryForceDenyTheseApps: List of semi-colon delimited Package Family Names of Windows apps. Listed Windows apps are denied access to call history. This setting overrides the default LetAppsAccessCallHistory policy setting for the specified Windows apps.
@@ -284,7 +284,7 @@ var LetAppsAccessCallHistoryForceDenyTheseApps = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessCallHistory_ForceDenyTheseApps"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessCallHistory_ForceDenyTheseApps"},
 }
 
 // LetAppsAccessCallHistoryUserInControlOfTheseApps: List of semi-colon delimited Package Family Names of Windows apps. The user is able to control the call history privacy setting for the listed Windows apps. This setting overrides the default LetAppsAccessCallHistory policy setting for the specified Windows apps.
@@ -297,7 +297,7 @@ var LetAppsAccessCallHistoryUserInControlOfTheseApps = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessCallHistory_UserInControlOfTheseApps"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessCallHistory_UserInControlOfTheseApps"},
 }
 
 // LetAppsAccessCamera: This policy setting specifies whether Windows apps can access the camera.
@@ -311,7 +311,7 @@ var LetAppsAccessCamera = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "User in control."}, {Value: "1", Description: "Force allow."}, {Value: "2", Description: "Force deny."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessCamera"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessCamera"},
 }
 
 // LetAppsAccessCameraForceAllowTheseApps: List of semi-colon delimited Package Family Names of Microsoft Store Apps. Listed apps are allowed access to the camera. This setting overrides the default LetAppsAccessCamera policy setting for the specified apps.
@@ -324,7 +324,7 @@ var LetAppsAccessCameraForceAllowTheseApps = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessCamera_ForceAllowTheseApps"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessCamera_ForceAllowTheseApps"},
 }
 
 // LetAppsAccessCameraForceDenyTheseApps: List of semi-colon delimited Package Family Names of Microsoft Store Apps. Listed apps are denied access to the camera. This setting overrides the default LetAppsAccessCamera policy setting for the specified apps.
@@ -337,7 +337,7 @@ var LetAppsAccessCameraForceDenyTheseApps = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessCamera_ForceDenyTheseApps"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessCamera_ForceDenyTheseApps"},
 }
 
 // LetAppsAccessCameraUserInControlOfTheseApps: List of semi-colon delimited Package Family Names of Microsoft Store Apps. The user is able to control the camera privacy setting for the listed apps. This setting overrides the default LetAppsAccessCamera policy setting for the specified apps.
@@ -350,7 +350,7 @@ var LetAppsAccessCameraUserInControlOfTheseApps = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessCamera_UserInControlOfTheseApps"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessCamera_UserInControlOfTheseApps"},
 }
 
 // LetAppsAccessContacts: This policy setting specifies whether Windows apps can access contacts.
@@ -364,7 +364,7 @@ var LetAppsAccessContacts = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "User in control."}, {Value: "1", Description: "Force allow."}, {Value: "2", Description: "Force deny."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessContacts"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessContacts"},
 }
 
 // LetAppsAccessContactsForceAllowTheseApps: List of semi-colon delimited Package Family Names of Microsoft Store Apps. Listed apps are allowed access to contacts. This setting overrides the default LetAppsAccessContacts policy setting for the specified apps.
@@ -377,7 +377,7 @@ var LetAppsAccessContactsForceAllowTheseApps = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessContacts_ForceAllowTheseApps"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessContacts_ForceAllowTheseApps"},
 }
 
 // LetAppsAccessContactsForceDenyTheseApps: List of semi-colon delimited Package Family Names of Microsoft Store Apps. Listed apps are denied access to contacts. This setting overrides the default LetAppsAccessContacts policy setting for the specified apps.
@@ -390,7 +390,7 @@ var LetAppsAccessContactsForceDenyTheseApps = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessContacts_ForceDenyTheseApps"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessContacts_ForceDenyTheseApps"},
 }
 
 // LetAppsAccessContactsUserInControlOfTheseApps: List of semi-colon delimited Package Family Names of Microsoft Store Apps. The user is able to control the contacts privacy setting for the listed apps. This setting overrides the default LetAppsAccessContacts policy setting for the specified apps.
@@ -403,7 +403,7 @@ var LetAppsAccessContactsUserInControlOfTheseApps = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessContacts_UserInControlOfTheseApps"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessContacts_UserInControlOfTheseApps"},
 }
 
 // LetAppsAccessEmail: This policy setting specifies whether Windows apps can access email.
@@ -417,7 +417,7 @@ var LetAppsAccessEmail = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "User in control."}, {Value: "1", Description: "Force allow."}, {Value: "2", Description: "Force deny."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessEmail"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessEmail"},
 }
 
 // LetAppsAccessEmailForceAllowTheseApps: List of semi-colon delimited Package Family Names of Microsoft Store Apps. Listed apps are allowed access to email. This setting overrides the default LetAppsAccessEmail policy setting for the specified apps.
@@ -430,7 +430,7 @@ var LetAppsAccessEmailForceAllowTheseApps = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessEmail_ForceAllowTheseApps"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessEmail_ForceAllowTheseApps"},
 }
 
 // LetAppsAccessEmailForceDenyTheseApps: List of semi-colon delimited Package Family Names of Microsoft Store Apps. Listed apps are denied access to email. This setting overrides the default LetAppsAccessEmail policy setting for the specified apps.
@@ -443,7 +443,7 @@ var LetAppsAccessEmailForceDenyTheseApps = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessEmail_ForceDenyTheseApps"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessEmail_ForceDenyTheseApps"},
 }
 
 // LetAppsAccessEmailUserInControlOfTheseApps: List of semi-colon delimited Package Family Names of Microsoft Store Apps. The user is able to control the email privacy setting for the listed apps. This setting overrides the default LetAppsAccessEmail policy setting for the specified apps.
@@ -456,7 +456,7 @@ var LetAppsAccessEmailUserInControlOfTheseApps = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessEmail_UserInControlOfTheseApps"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessEmail_UserInControlOfTheseApps"},
 }
 
 // LetAppsAccessGazeInput: This policy setting specifies whether Windows apps can access the eye tracker.
@@ -470,7 +470,7 @@ var LetAppsAccessGazeInput = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessGazeInput"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessGazeInput"},
 }
 
 // LetAppsAccessGazeInputForceAllowTheseApps: List of semi-colon delimited Package Family Names of Windows Store Apps. Listed apps are allowed access to the eye tracker. This setting overrides the default LetAppsAccessGazeInput policy setting for the specified apps.
@@ -483,7 +483,7 @@ var LetAppsAccessGazeInputForceAllowTheseApps = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessGazeInput_ForceAllowTheseApps"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessGazeInput_ForceAllowTheseApps"},
 }
 
 // LetAppsAccessGazeInputForceDenyTheseApps: List of semi-colon delimited Package Family Names of Windows Store Apps. Listed apps are denied access to the eye tracker. This setting overrides the default LetAppsAccessGazeInput policy setting for the specified apps.
@@ -496,7 +496,7 @@ var LetAppsAccessGazeInputForceDenyTheseApps = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessGazeInput_ForceDenyTheseApps"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessGazeInput_ForceDenyTheseApps"},
 }
 
 // LetAppsAccessGazeInputUserInControlOfTheseApps: List of semi-colon delimited Package Family Names of Windows Store Apps. The user is able to control the eye tracker privacy setting for the listed apps. This setting overrides the default LetAppsAccessGazeInput policy setting for the specified apps.
@@ -509,7 +509,7 @@ var LetAppsAccessGazeInputUserInControlOfTheseApps = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessGazeInput_UserInControlOfTheseApps"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessGazeInput_UserInControlOfTheseApps"},
 }
 
 // LetAppsAccessGraphicsCaptureProgrammatic: This policy setting specifies whether Windows apps can use screen capture on arbitrary windows or displays.
@@ -523,7 +523,7 @@ var LetAppsAccessGraphicsCaptureProgrammatic = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessGraphicsCaptureProgrammatic"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessGraphicsCaptureProgrammatic"},
 }
 
 // LetAppsAccessGraphicsCaptureProgrammaticForceAllowTheseApps: List of semi-colon delimited Package Family Names of Microsoft Store Apps. Listed apps are allowed to use screen capture on arbitrary windows or displays. This setting overrides the default LetAppsAccessGraphicsCaptureWithoutBorder policy setting for the specified apps.
@@ -536,7 +536,7 @@ var LetAppsAccessGraphicsCaptureProgrammaticForceAllowTheseApps = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessGraphicsCaptureProgrammatic_ForceAllowTheseApps"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessGraphicsCaptureProgrammatic_ForceAllowTheseApps"},
 }
 
 // LetAppsAccessGraphicsCaptureProgrammaticForceDenyTheseApps: List of semi-colon delimited Package Family Names of Microsoft Store Apps. Listed apps are denied the use of screen capture on arbitrary windows or displays. This setting overrides the default LetAppsAccessGraphicsCaptureWithoutBorder policy setting for the specified apps.
@@ -549,7 +549,7 @@ var LetAppsAccessGraphicsCaptureProgrammaticForceDenyTheseApps = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessGraphicsCaptureProgrammatic_ForceDenyTheseApps"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessGraphicsCaptureProgrammatic_ForceDenyTheseApps"},
 }
 
 // LetAppsAccessGraphicsCaptureProgrammaticUserInControlOfTheseApps: List of semi-colon delimited Package Family Names of Microsoft Store Apps. The user is able to control the programmatic screen capture setting for the listed apps. This setting overrides the default LetAppsAccessGraphicsCaptureWithoutBorder policy setting for the specified apps.
@@ -562,7 +562,7 @@ var LetAppsAccessGraphicsCaptureProgrammaticUserInControlOfTheseApps = csp.Polic
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessGraphicsCaptureProgrammatic_UserInControlOfTheseApps"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessGraphicsCaptureProgrammatic_UserInControlOfTheseApps"},
 }
 
 // LetAppsAccessGraphicsCaptureWithoutBorder: This policy setting specifies whether Windows apps can disable the screen capture border.
@@ -576,7 +576,7 @@ var LetAppsAccessGraphicsCaptureWithoutBorder = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessGraphicsCaptureWithoutBorder"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessGraphicsCaptureWithoutBorder"},
 }
 
 // LetAppsAccessGraphicsCaptureWithoutBorderForceAllowTheseApps: List of semi-colon delimited Package Family Names of Microsoft Store Apps. Listed apps are allowed to disable the screen capture border. This setting overrides the default LetAppsAccessGraphicsCaptureWithoutBorder policy setting for the specified apps.
@@ -589,7 +589,7 @@ var LetAppsAccessGraphicsCaptureWithoutBorderForceAllowTheseApps = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessGraphicsCaptureWithoutBorder_ForceAllowTheseApps"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessGraphicsCaptureWithoutBorder_ForceAllowTheseApps"},
 }
 
 // LetAppsAccessGraphicsCaptureWithoutBorderForceDenyTheseApps: List of semi-colon delimited Package Family Names of Microsoft Store Apps. Listed apps are denied configuration access to the screen capture border. This setting overrides the default LetAppsAccessGraphicsCaptureWithoutBorder policy setting for the specified apps.
@@ -602,7 +602,7 @@ var LetAppsAccessGraphicsCaptureWithoutBorderForceDenyTheseApps = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessGraphicsCaptureWithoutBorder_ForceDenyTheseApps"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessGraphicsCaptureWithoutBorder_ForceDenyTheseApps"},
 }
 
 // LetAppsAccessGraphicsCaptureWithoutBorderUserInControlOfTheseApps: List of semi-colon delimited Package Family Names of Microsoft Store Apps. The user is able to control the screen capture border privacy setting for the listed apps. This setting overrides the default LetAppsAccessGraphicsCaptureWithoutBorder policy setting for the specified apps.
@@ -615,7 +615,7 @@ var LetAppsAccessGraphicsCaptureWithoutBorderUserInControlOfTheseApps = csp.Poli
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessGraphicsCaptureWithoutBorder_UserInControlOfTheseApps"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessGraphicsCaptureWithoutBorder_UserInControlOfTheseApps"},
 }
 
 // LetAppsAccessHumanPresence: This policy setting specifies whether Windows apps can access the human presence sensor.
@@ -629,7 +629,7 @@ var LetAppsAccessHumanPresence = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "User in control."}, {Value: "1", Description: "Force allow."}, {Value: "2", Description: "Force deny."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessHumanPresence"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessHumanPresence"},
 }
 
 // LetAppsAccessHumanPresenceForceAllowTheseApps: List of semi-colon delimited Package Family Names of Microsoft Store Apps. Listed apps are allowed access to the human presence sensor. This setting overrides the default LetAppsAccessHumanPresence policy setting for the specified apps.
@@ -642,7 +642,7 @@ var LetAppsAccessHumanPresenceForceAllowTheseApps = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessHumanPresence_ForceAllowTheseApps"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessHumanPresence_ForceAllowTheseApps"},
 }
 
 // LetAppsAccessHumanPresenceForceDenyTheseApps: List of semi-colon delimited Package Family Names of Microsoft Store Apps. Listed apps are denied access to the human presence sensor. This setting overrides the default LetAppsAccessHumanPresence policy setting for the specified apps.
@@ -655,7 +655,7 @@ var LetAppsAccessHumanPresenceForceDenyTheseApps = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessHumanPresence_ForceDenyTheseApps"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessHumanPresence_ForceDenyTheseApps"},
 }
 
 // LetAppsAccessHumanPresenceUserInControlOfTheseApps: List of semi-colon delimited Package Family Names of Microsoft Store Apps. The user is able to control the human presence privacy setting for the listed apps. This setting overrides the default LetAppsAccessHumanPresence policy setting for the specified apps.
@@ -668,7 +668,7 @@ var LetAppsAccessHumanPresenceUserInControlOfTheseApps = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessHumanPresence_UserInControlOfTheseApps"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessHumanPresence_UserInControlOfTheseApps"},
 }
 
 // LetAppsAccessLocation: This policy setting specifies whether Windows apps can access location.
@@ -682,7 +682,7 @@ var LetAppsAccessLocation = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "User in control."}, {Value: "1", Description: "Force allow."}, {Value: "2", Description: "Force deny."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessLocation"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessLocation"},
 }
 
 // LetAppsAccessLocationForceAllowTheseApps: List of semi-colon delimited Package Family Names of Microsoft Store Apps. Listed apps are allowed access to location. This setting overrides the default LetAppsAccessLocation policy setting for the specified apps.
@@ -695,7 +695,7 @@ var LetAppsAccessLocationForceAllowTheseApps = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessLocation_ForceAllowTheseApps"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessLocation_ForceAllowTheseApps"},
 }
 
 // LetAppsAccessLocationForceDenyTheseApps: List of semi-colon delimited Package Family Names of Microsoft Store Apps. Listed apps are denied access to location. This setting overrides the default LetAppsAccessLocation policy setting for the specified apps.
@@ -708,7 +708,7 @@ var LetAppsAccessLocationForceDenyTheseApps = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessLocation_ForceDenyTheseApps"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessLocation_ForceDenyTheseApps"},
 }
 
 // LetAppsAccessLocationUserInControlOfTheseApps: List of semi-colon delimited Package Family Names of Microsoft Store Apps. The user is able to control the location privacy setting for the listed apps. This setting overrides the default LetAppsAccessLocation policy setting for the specified apps.
@@ -721,7 +721,7 @@ var LetAppsAccessLocationUserInControlOfTheseApps = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessLocation_UserInControlOfTheseApps"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessLocation_UserInControlOfTheseApps"},
 }
 
 // LetAppsAccessMessaging: This policy setting specifies whether Windows apps can read or send messages (text or MMS).
@@ -735,7 +735,7 @@ var LetAppsAccessMessaging = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "User in control."}, {Value: "1", Description: "Force allow."}, {Value: "2", Description: "Force deny."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessMessaging"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessMessaging"},
 }
 
 // LetAppsAccessMessagingForceAllowTheseApps: List of semi-colon delimited Package Family Names of Microsoft Store Apps. Listed apps are allowed to read or send messages (text or MMS). This setting overrides the default LetAppsAccessMessaging policy setting for the specified apps.
@@ -748,7 +748,7 @@ var LetAppsAccessMessagingForceAllowTheseApps = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessMessaging_ForceAllowTheseApps"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessMessaging_ForceAllowTheseApps"},
 }
 
 // LetAppsAccessMessagingForceDenyTheseApps: List of semi-colon delimited Package Family Names of Microsoft Store Apps. Listed apps are not allowed to read or send messages (text or MMS). This setting overrides the default LetAppsAccessMessaging policy setting for the specified apps.
@@ -761,7 +761,7 @@ var LetAppsAccessMessagingForceDenyTheseApps = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessMessaging_ForceDenyTheseApps"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessMessaging_ForceDenyTheseApps"},
 }
 
 // LetAppsAccessMessagingUserInControlOfTheseApps: List of semi-colon delimited Package Family Names of Microsoft Store Apps. The user is able to control the messaging privacy setting for the listed apps. This setting overrides the default LetAppsAccessMessaging policy setting for the specified apps.
@@ -774,7 +774,7 @@ var LetAppsAccessMessagingUserInControlOfTheseApps = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessMessaging_UserInControlOfTheseApps"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessMessaging_UserInControlOfTheseApps"},
 }
 
 // LetAppsAccessMicrophone: This policy setting specifies whether Windows apps can access the microphone.
@@ -788,7 +788,7 @@ var LetAppsAccessMicrophone = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "User in control."}, {Value: "1", Description: "Force allow."}, {Value: "2", Description: "Force deny."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessMicrophone"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessMicrophone"},
 }
 
 // LetAppsAccessMicrophoneForceAllowTheseApps: List of semi-colon delimited Package Family Names of Microsoft Store Apps. Listed apps are allowed access to the microphone. This setting overrides the default LetAppsAccessMicrophone policy setting for the specified apps.
@@ -801,7 +801,7 @@ var LetAppsAccessMicrophoneForceAllowTheseApps = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessMicrophone_ForceAllowTheseApps"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessMicrophone_ForceAllowTheseApps"},
 }
 
 // LetAppsAccessMicrophoneForceDenyTheseApps: List of semi-colon delimited Package Family Names of Microsoft Store Apps. Listed apps are denied access to the microphone. This setting overrides the default LetAppsAccessMicrophone policy setting for the specified apps.
@@ -814,7 +814,7 @@ var LetAppsAccessMicrophoneForceDenyTheseApps = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessMicrophone_ForceDenyTheseApps"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessMicrophone_ForceDenyTheseApps"},
 }
 
 // LetAppsAccessMicrophoneUserInControlOfTheseApps: List of semi-colon delimited Package Family Names of Microsoft Store Apps. The user is able to control the microphone privacy setting for the listed apps. This setting overrides the default LetAppsAccessMicrophone policy setting for the specified apps.
@@ -827,7 +827,7 @@ var LetAppsAccessMicrophoneUserInControlOfTheseApps = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessMicrophone_UserInControlOfTheseApps"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessMicrophone_UserInControlOfTheseApps"},
 }
 
 // LetAppsAccessMotion: This policy setting specifies whether Windows apps can access motion data.
@@ -841,7 +841,7 @@ var LetAppsAccessMotion = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "User in control."}, {Value: "1", Description: "Force allow."}, {Value: "2", Description: "Force deny."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessMotion"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessMotion"},
 }
 
 // LetAppsAccessMotionForceAllowTheseApps: List of semi-colon delimited Package Family Names of Microsoft Store Apps. Listed apps are allowed access to motion data. This setting overrides the default LetAppsAccessMotion policy setting for the specified apps.
@@ -854,7 +854,7 @@ var LetAppsAccessMotionForceAllowTheseApps = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessMotion_ForceAllowTheseApps"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessMotion_ForceAllowTheseApps"},
 }
 
 // LetAppsAccessMotionForceDenyTheseApps: List of semi-colon delimited Package Family Names of Microsoft Store Apps. Listed apps are denied access to motion data. This setting overrides the default LetAppsAccessMotion policy setting for the specified apps.
@@ -867,7 +867,7 @@ var LetAppsAccessMotionForceDenyTheseApps = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessMotion_ForceDenyTheseApps"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessMotion_ForceDenyTheseApps"},
 }
 
 // LetAppsAccessMotionUserInControlOfTheseApps: List of semi-colon delimited Package Family Names of Microsoft Store Apps. The user is able to control the motion privacy setting for the listed apps. This setting overrides the default LetAppsAccessMotion policy setting for the specified apps.
@@ -880,7 +880,7 @@ var LetAppsAccessMotionUserInControlOfTheseApps = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessMotion_UserInControlOfTheseApps"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessMotion_UserInControlOfTheseApps"},
 }
 
 // LetAppsAccessNotifications: This policy setting specifies whether Windows apps can access notifications.
@@ -894,7 +894,7 @@ var LetAppsAccessNotifications = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "User in control."}, {Value: "1", Description: "Force allow."}, {Value: "2", Description: "Force deny."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessNotifications"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessNotifications"},
 }
 
 // LetAppsAccessNotificationsForceAllowTheseApps: List of semi-colon delimited Package Family Names of Microsoft Store Apps. Listed apps are allowed access to notifications. This setting overrides the default LetAppsAccessNotifications policy setting for the specified apps.
@@ -907,7 +907,7 @@ var LetAppsAccessNotificationsForceAllowTheseApps = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessNotifications_ForceAllowTheseApps"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessNotifications_ForceAllowTheseApps"},
 }
 
 // LetAppsAccessNotificationsForceDenyTheseApps: List of semi-colon delimited Package Family Names of Microsoft Store Apps. Listed apps are denied access to notifications. This setting overrides the default LetAppsAccessNotifications policy setting for the specified apps.
@@ -920,7 +920,7 @@ var LetAppsAccessNotificationsForceDenyTheseApps = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessNotifications_ForceDenyTheseApps"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessNotifications_ForceDenyTheseApps"},
 }
 
 // LetAppsAccessNotificationsUserInControlOfTheseApps: List of semi-colon delimited Package Family Names of Microsoft Store Apps. The user is able to control the notifications privacy setting for the listed apps. This setting overrides the default LetAppsAccessNotifications policy setting for the specified apps.
@@ -933,7 +933,7 @@ var LetAppsAccessNotificationsUserInControlOfTheseApps = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessNotifications_UserInControlOfTheseApps"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessNotifications_UserInControlOfTheseApps"},
 }
 
 // LetAppsAccessPhone: This policy setting specifies whether Windows apps can make phone calls
@@ -947,7 +947,7 @@ var LetAppsAccessPhone = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "User in control."}, {Value: "1", Description: "Force allow."}, {Value: "2", Description: "Force deny."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessPhone"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessPhone"},
 }
 
 // LetAppsAccessPhoneForceAllowTheseApps: List of semi-colon delimited Package Family Names of Microsoft Store Apps. Listed apps are allowed to make phone calls. This setting overrides the default LetAppsAccessPhone policy setting for the specified apps.
@@ -960,7 +960,7 @@ var LetAppsAccessPhoneForceAllowTheseApps = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessPhone_ForceAllowTheseApps"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessPhone_ForceAllowTheseApps"},
 }
 
 // LetAppsAccessPhoneForceDenyTheseApps: List of semi-colon delimited Package Family Names of Microsoft Store Apps. Listed apps are not allowed to make phone calls. This setting overrides the default LetAppsAccessPhone policy setting for the specified apps.
@@ -973,7 +973,7 @@ var LetAppsAccessPhoneForceDenyTheseApps = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessPhone_ForceDenyTheseApps"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessPhone_ForceDenyTheseApps"},
 }
 
 // LetAppsAccessPhoneUserInControlOfTheseApps: List of semi-colon delimited Package Family Names of Microsoft Store Apps. The user is able to control the phone call privacy setting for the listed apps. This setting overrides the default LetAppsAccessPhone policy setting for the specified apps.
@@ -986,7 +986,7 @@ var LetAppsAccessPhoneUserInControlOfTheseApps = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessPhone_UserInControlOfTheseApps"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessPhone_UserInControlOfTheseApps"},
 }
 
 // LetAppsAccessRadios: This policy setting specifies whether Windows apps have access to control radios.
@@ -1000,7 +1000,7 @@ var LetAppsAccessRadios = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "User in control."}, {Value: "1", Description: "Force allow."}, {Value: "2", Description: "Force deny."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessRadios"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessRadios"},
 }
 
 // LetAppsAccessRadiosForceAllowTheseApps: List of semi-colon delimited Package Family Names of Microsoft Store Apps. Listed apps will have access to control radios. This setting overrides the default LetAppsAccessRadios policy setting for the specified apps.
@@ -1013,7 +1013,7 @@ var LetAppsAccessRadiosForceAllowTheseApps = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessRadios_ForceAllowTheseApps"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessRadios_ForceAllowTheseApps"},
 }
 
 // LetAppsAccessRadiosForceDenyTheseApps: List of semi-colon delimited Package Family Names of Microsoft Store Apps. Listed apps will not have access to control radios. This setting overrides the default LetAppsAccessRadios policy setting for the specified apps.
@@ -1026,7 +1026,7 @@ var LetAppsAccessRadiosForceDenyTheseApps = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessRadios_ForceDenyTheseApps"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessRadios_ForceDenyTheseApps"},
 }
 
 // LetAppsAccessRadiosUserInControlOfTheseApps: List of semi-colon delimited Package Family Names of Microsoft Store Apps. The user is able to control the radios privacy setting for the listed apps. This setting overrides the default LetAppsAccessRadios policy setting for the specified apps.
@@ -1039,7 +1039,7 @@ var LetAppsAccessRadiosUserInControlOfTheseApps = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessRadios_UserInControlOfTheseApps"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessRadios_UserInControlOfTheseApps"},
 }
 
 // LetAppsAccessSystemAIModels: This policy setting specifies whether Windows apps can use text and image generation features of Windows.
@@ -1053,7 +1053,7 @@ var LetAppsAccessSystemAIModels = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessSystemAIModels"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessSystemAIModels"},
 }
 
 // LetAppsAccessSystemAIModelsForceAllowTheseApps: List of semi-colon delimited Package Family Names of Microsoft Store Apps. Listed apps are allowed to use text and image generation features of Windows. This setting overrides the default LetAppsAccessSystemAIModels policy setting for the specified apps.
@@ -1066,7 +1066,7 @@ var LetAppsAccessSystemAIModelsForceAllowTheseApps = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessSystemAIModels_ForceAllowTheseApps"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessSystemAIModels_ForceAllowTheseApps"},
 }
 
 // LetAppsAccessSystemAIModelsForceDenyTheseApps: List of semi-colon delimited Package Family Names of Microsoft Store Apps. Listed apps are denied the use text and image generation features of Windows. This setting overrides the default LetAppsAccessSystemAIModels policy setting for the specified apps.
@@ -1079,7 +1079,7 @@ var LetAppsAccessSystemAIModelsForceDenyTheseApps = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessSystemAIModels_ForceDenyTheseApps"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessSystemAIModels_ForceDenyTheseApps"},
 }
 
 // LetAppsAccessSystemAIModelsUserInControlOfTheseApps: List of semi-colon delimited Package Family Names of Microsoft Store Apps. The user is able to control the text and image generation setting for the listed apps. This setting overrides the default LetAppsAccessSystemAIModels policy setting for the specified apps.
@@ -1092,7 +1092,7 @@ var LetAppsAccessSystemAIModelsUserInControlOfTheseApps = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessSystemAIModels_UserInControlOfTheseApps"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessSystemAIModels_UserInControlOfTheseApps"},
 }
 
 // LetAppsAccessTasks: This policy setting specifies whether Windows apps can access tasks.
@@ -1106,7 +1106,7 @@ var LetAppsAccessTasks = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessTasks"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessTasks"},
 }
 
 // LetAppsAccessTasksForceAllowTheseApps: List of semi-colon delimited Package Family Names of Microsoft Store Apps. Listed apps are allowed access to tasks. This setting overrides the default LetAppsAccessTasks policy setting for the specified apps.
@@ -1119,7 +1119,7 @@ var LetAppsAccessTasksForceAllowTheseApps = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessTasks_ForceAllowTheseApps"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessTasks_ForceAllowTheseApps"},
 }
 
 // LetAppsAccessTasksForceDenyTheseApps: List of semi-colon delimited Package Family Names of Microsoft Store Apps. Listed apps are denied access to tasks. This setting overrides the default LetAppsAccessTasks policy setting for the specified apps.
@@ -1132,7 +1132,7 @@ var LetAppsAccessTasksForceDenyTheseApps = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessTasks_ForceDenyTheseApps"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessTasks_ForceDenyTheseApps"},
 }
 
 // LetAppsAccessTasksUserInControlOfTheseApps: List of semi-colon delimited Package Family Names of Microsoft Store Apps. The user is able to control the tasks privacy setting for the listed apps. This setting overrides the default LetAppsAccessTasks policy setting for the specified apps.
@@ -1145,7 +1145,7 @@ var LetAppsAccessTasksUserInControlOfTheseApps = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessTasks_UserInControlOfTheseApps"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessTasks_UserInControlOfTheseApps"},
 }
 
 // LetAppsAccessTrustedDevices: This policy setting specifies whether Windows apps can access trusted devices.
@@ -1159,7 +1159,7 @@ var LetAppsAccessTrustedDevices = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "User in control."}, {Value: "1", Description: "Force allow."}, {Value: "2", Description: "Force deny."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessTrustedDevices"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessTrustedDevices"},
 }
 
 // LetAppsAccessTrustedDevicesForceAllowTheseApps: List of semi-colon delimited Package Family Names of Microsoft Store Apps. Listed apps will have access to trusted devices. This setting overrides the default LetAppsAccessTrustedDevices policy setting for the specified apps.
@@ -1172,7 +1172,7 @@ var LetAppsAccessTrustedDevicesForceAllowTheseApps = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessTrustedDevices_ForceAllowTheseApps"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessTrustedDevices_ForceAllowTheseApps"},
 }
 
 // LetAppsAccessTrustedDevicesForceDenyTheseApps: List of semi-colon delimited Package Family Names of Microsoft Store Apps. Listed apps will not have access to trusted devices. This setting overrides the default LetAppsAccessTrustedDevices policy setting for the specified apps.
@@ -1185,7 +1185,7 @@ var LetAppsAccessTrustedDevicesForceDenyTheseApps = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessTrustedDevices_ForceDenyTheseApps"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessTrustedDevices_ForceDenyTheseApps"},
 }
 
 // LetAppsAccessTrustedDevicesUserInControlOfTheseApps: List of semi-colon delimited Package Family Names of Microsoft Store Apps. The user is able to control the 'trusted devices' privacy setting for the listed apps. This setting overrides the default LetAppsAccessTrustedDevices policy setting for the specified apps.
@@ -1198,7 +1198,7 @@ var LetAppsAccessTrustedDevicesUserInControlOfTheseApps = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsAccessTrustedDevices_UserInControlOfTheseApps"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsAccessTrustedDevices_UserInControlOfTheseApps"},
 }
 
 // LetAppsActivateWithVoice: This policy setting specifies whether Windows apps can be activated by voice.
@@ -1212,7 +1212,7 @@ var LetAppsActivateWithVoice = csp.Policy{
 	CSPVersion: "9.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "User in control. Users can decide if Windows apps can be activated by voice using Settings > Privacy options on the device."}, {Value: "1", Description: "Force allow. Windows apps can be activated by voice and users cannot change it."}, {Value: "2", Description: "Force deny. Windows apps cannot be activated by voice and users cannot change it."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsActivateWithVoice"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsActivateWithVoice"},
 }
 
 // LetAppsActivateWithVoiceAboveLock: This policy setting specifies whether Windows apps can be activated by voice while the system is locked.
@@ -1226,7 +1226,7 @@ var LetAppsActivateWithVoiceAboveLock = csp.Policy{
 	CSPVersion: "9.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "User in control. Users can decide if Windows apps can be activated by voice while the screen is locked using Settings > Privacy options on the device."}, {Value: "1", Description: "Force allow. Windows apps can be activated by voice while the screen is locked, and users cannot change it."}, {Value: "2", Description: "Force deny. Windows apps cannot be activated by voice while the screen is locked, and users cannot change it."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsActivateWithVoiceAboveLock"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsActivateWithVoiceAboveLock"},
 }
 
 // LetAppsGetDiagnosticInfo: This policy setting specifies whether Windows apps can get diagnostic information about other apps, including user names.
@@ -1240,7 +1240,7 @@ var LetAppsGetDiagnosticInfo = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "User in control."}, {Value: "1", Description: "Force allow."}, {Value: "2", Description: "Force deny."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsGetDiagnosticInfo"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsGetDiagnosticInfo"},
 }
 
 // LetAppsGetDiagnosticInfoForceAllowTheseApps: List of semi-colon delimited Package Family Names of Windows apps. Listed Windows apps are allowed to get diagnostic information about other apps, including user names. This setting overrides the default LetAppsGetDiagnosticInfo policy setting for the specified Windows apps.
@@ -1253,7 +1253,7 @@ var LetAppsGetDiagnosticInfoForceAllowTheseApps = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsGetDiagnosticInfo_ForceAllowTheseApps"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsGetDiagnosticInfo_ForceAllowTheseApps"},
 }
 
 // LetAppsGetDiagnosticInfoForceDenyTheseApps: List of semi-colon delimited Package Family Names of Windows apps. Listed Windows apps are not allowed to get diagnostic information about other apps, including user names. This setting overrides the default LetAppsGetDiagnosticInfo policy setting for the specified Windows apps.
@@ -1266,7 +1266,7 @@ var LetAppsGetDiagnosticInfoForceDenyTheseApps = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsGetDiagnosticInfo_ForceDenyTheseApps"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsGetDiagnosticInfo_ForceDenyTheseApps"},
 }
 
 // LetAppsGetDiagnosticInfoUserInControlOfTheseApps: List of semi-colon delimited Package Family Names of Windows apps. The user is able to control the app diagnostics privacy setting for the listed Windows apps. This setting overrides the default LetAppsGetDiagnosticInfo policy setting for the specified Windows apps.
@@ -1279,7 +1279,7 @@ var LetAppsGetDiagnosticInfoUserInControlOfTheseApps = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsGetDiagnosticInfo_UserInControlOfTheseApps"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsGetDiagnosticInfo_UserInControlOfTheseApps"},
 }
 
 // LetAppsRunInBackground: This policy setting specifies whether Windows apps can run in the background.
@@ -1293,7 +1293,7 @@ var LetAppsRunInBackground = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "."}, {Value: "1", Description: "Force allow."}, {Value: "2", Description: "Force deny."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsRunInBackground"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsRunInBackground"},
 }
 
 // LetAppsRunInBackgroundForceAllowTheseApps: List of semi-colon delimited Package Family Names of Windows apps. Listed Windows apps are allowed to run in the background. This setting overrides the default LetAppsRunInBackground policy setting for the specified Windows apps.
@@ -1306,7 +1306,7 @@ var LetAppsRunInBackgroundForceAllowTheseApps = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsRunInBackground_ForceAllowTheseApps"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsRunInBackground_ForceAllowTheseApps"},
 }
 
 // LetAppsRunInBackgroundForceDenyTheseApps: List of semi-colon delimited Package Family Names of Windows apps. Listed Windows apps are not allowed to run in the background. This setting overrides the default LetAppsRunInBackground policy setting for the specified Windows apps.
@@ -1319,7 +1319,7 @@ var LetAppsRunInBackgroundForceDenyTheseApps = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsRunInBackground_ForceDenyTheseApps"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsRunInBackground_ForceDenyTheseApps"},
 }
 
 // LetAppsRunInBackgroundUserInControlOfTheseApps: List of semi-colon delimited Package Family Names of Windows apps. The user is able to control the background apps privacy setting for the listed Windows apps. This setting overrides the default LetAppsRunInBackground policy setting for the specified Windows apps.
@@ -1332,7 +1332,7 @@ var LetAppsRunInBackgroundUserInControlOfTheseApps = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsRunInBackground_UserInControlOfTheseApps"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsRunInBackground_UserInControlOfTheseApps"},
 }
 
 // LetAppsSyncWithDevices: This policy setting specifies whether Windows apps can communicate with unpaired wireless devices.
@@ -1346,7 +1346,7 @@ var LetAppsSyncWithDevices = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "User in control."}, {Value: "1", Description: "Force allow."}, {Value: "2", Description: "Force deny."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsSyncWithDevices"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsSyncWithDevices"},
 }
 
 // LetAppsSyncWithDevicesForceAllowTheseApps: List of semi-colon delimited Package Family Names of Microsoft Store Apps. Listed apps will be allowed to communicate with unpaired wireless devices. This setting overrides the default LetAppsSyncWithDevices policy setting for the specified apps.
@@ -1359,7 +1359,7 @@ var LetAppsSyncWithDevicesForceAllowTheseApps = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsSyncWithDevices_ForceAllowTheseApps"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsSyncWithDevices_ForceAllowTheseApps"},
 }
 
 // LetAppsSyncWithDevicesForceDenyTheseApps: List of semi-colon delimited Package Family Names of Microsoft Store Apps. Listed apps will not be allowed to communicate with unpaired wireless devices. This setting overrides the default LetAppsSyncWithDevices policy setting for the specified apps.
@@ -1372,7 +1372,7 @@ var LetAppsSyncWithDevicesForceDenyTheseApps = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsSyncWithDevices_ForceDenyTheseApps"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsSyncWithDevices_ForceDenyTheseApps"},
 }
 
 // LetAppsSyncWithDevicesUserInControlOfTheseApps: List of semi-colon delimited Package Family Names of Microsoft Store Apps. The user is able to control the 'Communicate with unpaired wireless devices' privacy setting for the listed apps. This setting overrides the default LetAppsSyncWithDevices policy setting for the specified apps.
@@ -1385,7 +1385,7 @@ var LetAppsSyncWithDevicesUserInControlOfTheseApps = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LetAppsSyncWithDevices_UserInControlOfTheseApps"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "LetAppsSyncWithDevices_UserInControlOfTheseApps"},
 }
 
 // PublishUserActivities: Allows apps/system to publish 'User Activities' into ActivityFeed.
@@ -1399,7 +1399,7 @@ var PublishUserActivities = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Disabled. Apps/OS can't publish the user activities."}, {Value: "1", Description: "Enabled. Apps/OS can publish the user activities."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "PublishUserActivities"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "PublishUserActivities"},
 }
 
 // UploadUserActivities: Allows ActivityFeed to upload published 'User Activities'.
@@ -1413,7 +1413,7 @@ var UploadUserActivities = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "UploadUserActivities"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Privacy02", ResultClass: "MDM_Policy_Result01_Privacy02", InstanceID: "Privacy", ParentID: "./Vendor/MSFT/Policy/Config", Property: "UploadUserActivities"},
 }
 
 // All lists every policy in this CSP area.

@@ -13,7 +13,7 @@ var AllowRemoteShellAccess = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "WindowsRemoteShell~AT~WindowsComponents~WinRS", Name: "AllowRemoteShellAccess", File: "WindowsRemoteShell.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_RemoteShell02", ResultClass: "MDM_Policy_Result01_RemoteShell02", InstanceID: "RemoteShell", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowRemoteShellAccess"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_RemoteShell02", ResultClass: "MDM_Policy_Result01_RemoteShell02", InstanceID: "RemoteShell", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowRemoteShellAccess"},
 }
 
 var MaxConcurrentUsers = csp.Policy{
@@ -25,7 +25,7 @@ var MaxConcurrentUsers = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "WindowsRemoteShell~AT~WindowsComponents~WinRS", Name: "MaxConcurrentUsers", File: "WindowsRemoteShell.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_RemoteShell02", ResultClass: "MDM_Policy_Result01_RemoteShell02", InstanceID: "RemoteShell", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "MaxConcurrentUsers"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_RemoteShell02", ResultClass: "MDM_Policy_Result01_RemoteShell02", InstanceID: "RemoteShell", ParentID: "./Vendor/MSFT/Policy/Config", Property: "MaxConcurrentUsers"},
 }
 
 var SpecifyIdleTimeout = csp.Policy{
@@ -37,7 +37,7 @@ var SpecifyIdleTimeout = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "WindowsRemoteShell~AT~WindowsComponents~WinRS", Name: "IdleTimeout", File: "WindowsRemoteShell.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_RemoteShell02", ResultClass: "MDM_Policy_Result01_RemoteShell02", InstanceID: "RemoteShell", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "SpecifyIdleTimeout"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_RemoteShell02", ResultClass: "MDM_Policy_Result01_RemoteShell02", InstanceID: "RemoteShell", ParentID: "./Vendor/MSFT/Policy/Config", Property: "SpecifyIdleTimeout"},
 }
 
 var SpecifyMaxMemory = csp.Policy{
@@ -49,7 +49,7 @@ var SpecifyMaxMemory = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "WindowsRemoteShell~AT~WindowsComponents~WinRS", Name: "MaxMemoryPerShellMB", File: "WindowsRemoteShell.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_RemoteShell02", ResultClass: "MDM_Policy_Result01_RemoteShell02", InstanceID: "RemoteShell", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "SpecifyMaxMemory"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_RemoteShell02", ResultClass: "MDM_Policy_Result01_RemoteShell02", InstanceID: "RemoteShell", ParentID: "./Vendor/MSFT/Policy/Config", Property: "SpecifyMaxMemory"},
 }
 
 var SpecifyMaxProcesses = csp.Policy{
@@ -61,7 +61,7 @@ var SpecifyMaxProcesses = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "WindowsRemoteShell~AT~WindowsComponents~WinRS", Name: "MaxProcessesPerShell", File: "WindowsRemoteShell.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_RemoteShell02", ResultClass: "MDM_Policy_Result01_RemoteShell02", InstanceID: "RemoteShell", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "SpecifyMaxProcesses"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_RemoteShell02", ResultClass: "MDM_Policy_Result01_RemoteShell02", InstanceID: "RemoteShell", ParentID: "./Vendor/MSFT/Policy/Config", Property: "SpecifyMaxProcesses"},
 }
 
 var SpecifyMaxRemoteShells = csp.Policy{
@@ -73,7 +73,7 @@ var SpecifyMaxRemoteShells = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "WindowsRemoteShell~AT~WindowsComponents~WinRS", Name: "MaxShellsPerUser", File: "WindowsRemoteShell.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_RemoteShell02", ResultClass: "MDM_Policy_Result01_RemoteShell02", InstanceID: "RemoteShell", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "SpecifyMaxRemoteShells"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_RemoteShell02", ResultClass: "MDM_Policy_Result01_RemoteShell02", InstanceID: "RemoteShell", ParentID: "./Vendor/MSFT/Policy/Config", Property: "SpecifyMaxRemoteShells"},
 }
 
 var SpecifyShellTimeout = csp.Policy{
@@ -85,7 +85,7 @@ var SpecifyShellTimeout = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "WindowsRemoteShell~AT~WindowsComponents~WinRS", Name: "ShellTimeOut", File: "WindowsRemoteShell.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_RemoteShell02", ResultClass: "MDM_Policy_Result01_RemoteShell02", InstanceID: "RemoteShell", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "SpecifyShellTimeout"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_RemoteShell02", ResultClass: "MDM_Policy_Result01_RemoteShell02", InstanceID: "RemoteShell", ParentID: "./Vendor/MSFT/Policy/Config", Property: "SpecifyShellTimeout"},
 }
 
 // All lists every policy in this CSP area.

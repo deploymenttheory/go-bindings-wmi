@@ -15,7 +15,7 @@ var ConfigureComputerBrowserServiceStartupMode = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_SystemServices02", ResultClass: "MDM_Policy_Result01_SystemServices02", InstanceID: "SystemServices", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ConfigureComputerBrowserServiceStartupMode"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_SystemServices02", ResultClass: "MDM_Policy_Result01_SystemServices02", InstanceID: "SystemServices", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ConfigureComputerBrowserServiceStartupMode"},
 }
 
 // ConfigureHomeGroupListenerServiceStartupMode: This setting determines whether the service's start type is Automatic(2), Manual(3), Disabled(4). Default: Manual.
@@ -29,7 +29,7 @@ var ConfigureHomeGroupListenerServiceStartupMode = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_SystemServices02", ResultClass: "MDM_Policy_Result01_SystemServices02", InstanceID: "SystemServices", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ConfigureHomeGroupListenerServiceStartupMode"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_SystemServices02", ResultClass: "MDM_Policy_Result01_SystemServices02", InstanceID: "SystemServices", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ConfigureHomeGroupListenerServiceStartupMode"},
 }
 
 // ConfigureHomeGroupProviderServiceStartupMode: This setting determines whether the service's start type is Automatic(2), Manual(3), Disabled(4). Default: Manual.
@@ -43,7 +43,7 @@ var ConfigureHomeGroupProviderServiceStartupMode = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_SystemServices02", ResultClass: "MDM_Policy_Result01_SystemServices02", InstanceID: "SystemServices", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ConfigureHomeGroupProviderServiceStartupMode"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_SystemServices02", ResultClass: "MDM_Policy_Result01_SystemServices02", InstanceID: "SystemServices", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ConfigureHomeGroupProviderServiceStartupMode"},
 }
 
 // ConfigureIISAdminServiceStartupMode: This setting determines whether the service's start type is Automatic(2), Manual(3), Disabled(4). Default: Manual.
@@ -57,7 +57,7 @@ var ConfigureIISAdminServiceStartupMode = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_SystemServices02", ResultClass: "MDM_Policy_Result01_SystemServices02", InstanceID: "SystemServices", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ConfigureIISAdminServiceStartupMode"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_SystemServices02", ResultClass: "MDM_Policy_Result01_SystemServices02", InstanceID: "SystemServices", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ConfigureIISAdminServiceStartupMode"},
 }
 
 // ConfigureInfraredMonitorServiceStartupMode: This setting determines whether the service's start type is Automatic(2), Manual(3), Disabled(4). Default: Manual.
@@ -71,7 +71,7 @@ var ConfigureInfraredMonitorServiceStartupMode = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_SystemServices02", ResultClass: "MDM_Policy_Result01_SystemServices02", InstanceID: "SystemServices", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ConfigureInfraredMonitorServiceStartupMode"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_SystemServices02", ResultClass: "MDM_Policy_Result01_SystemServices02", InstanceID: "SystemServices", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ConfigureInfraredMonitorServiceStartupMode"},
 }
 
 // ConfigureInternetConnectionSharingServiceStartupMode: This setting determines whether the service's start type is Automatic(2), Manual(3), Disabled(4). Default: Manual.
@@ -85,7 +85,7 @@ var ConfigureInternetConnectionSharingServiceStartupMode = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_SystemServices02", ResultClass: "MDM_Policy_Result01_SystemServices02", InstanceID: "SystemServices", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ConfigureInternetConnectionSharingServiceStartupMode"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_SystemServices02", ResultClass: "MDM_Policy_Result01_SystemServices02", InstanceID: "SystemServices", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ConfigureInternetConnectionSharingServiceStartupMode"},
 }
 
 // ConfigureLxssManagerServiceStartupMode: This setting determines whether the service's start type is Automatic(2), Manual(3), Disabled(4). Default: Manual.
@@ -99,7 +99,7 @@ var ConfigureLxssManagerServiceStartupMode = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_SystemServices02", ResultClass: "MDM_Policy_Result01_SystemServices02", InstanceID: "SystemServices", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ConfigureLxssManagerServiceStartupMode"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_SystemServices02", ResultClass: "MDM_Policy_Result01_SystemServices02", InstanceID: "SystemServices", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ConfigureLxssManagerServiceStartupMode"},
 }
 
 // ConfigureMicrosoftFTPServiceStartupMode: This setting determines whether the service's start type is Automatic(2), Manual(3), Disabled(4). Default: Manual.
@@ -113,7 +113,7 @@ var ConfigureMicrosoftFTPServiceStartupMode = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_SystemServices02", ResultClass: "MDM_Policy_Result01_SystemServices02", InstanceID: "SystemServices", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ConfigureMicrosoftFTPServiceStartupMode"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_SystemServices02", ResultClass: "MDM_Policy_Result01_SystemServices02", InstanceID: "SystemServices", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ConfigureMicrosoftFTPServiceStartupMode"},
 }
 
 // ConfigureRemoteProcedureCallLocatorServiceStartupMode: This setting determines whether the service's start type is Automatic(2), Manual(3), Disabled(4). Default: Manual.
@@ -127,7 +127,7 @@ var ConfigureRemoteProcedureCallLocatorServiceStartupMode = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_SystemServices02", ResultClass: "MDM_Policy_Result01_SystemServices02", InstanceID: "SystemServices", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ConfigureRemoteProcedureCallLocatorServiceStartupMode"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_SystemServices02", ResultClass: "MDM_Policy_Result01_SystemServices02", InstanceID: "SystemServices", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ConfigureRemoteProcedureCallLocatorServiceStartupMode"},
 }
 
 // ConfigureRoutingAndRemoteAccessServiceStartupMode: This setting determines whether the service's start type is Automatic(2), Manual(3), Disabled(4). Default: Manual.
@@ -141,7 +141,7 @@ var ConfigureRoutingAndRemoteAccessServiceStartupMode = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_SystemServices02", ResultClass: "MDM_Policy_Result01_SystemServices02", InstanceID: "SystemServices", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ConfigureRoutingAndRemoteAccessServiceStartupMode"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_SystemServices02", ResultClass: "MDM_Policy_Result01_SystemServices02", InstanceID: "SystemServices", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ConfigureRoutingAndRemoteAccessServiceStartupMode"},
 }
 
 // ConfigureSSDPDiscoveryServiceStartupMode: This setting determines whether the service's start type is Automatic(2), Manual(3), Disabled(4). Default: Manual.
@@ -155,7 +155,7 @@ var ConfigureSSDPDiscoveryServiceStartupMode = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_SystemServices02", ResultClass: "MDM_Policy_Result01_SystemServices02", InstanceID: "SystemServices", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ConfigureSSDPDiscoveryServiceStartupMode"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_SystemServices02", ResultClass: "MDM_Policy_Result01_SystemServices02", InstanceID: "SystemServices", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ConfigureSSDPDiscoveryServiceStartupMode"},
 }
 
 // ConfigureSimpleTCPIPServicesStartupMode: This setting determines whether the service's start type is Automatic(2), Manual(3), Disabled(4). Default: Manual.
@@ -169,7 +169,7 @@ var ConfigureSimpleTCPIPServicesStartupMode = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_SystemServices02", ResultClass: "MDM_Policy_Result01_SystemServices02", InstanceID: "SystemServices", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ConfigureSimpleTCPIPServicesStartupMode"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_SystemServices02", ResultClass: "MDM_Policy_Result01_SystemServices02", InstanceID: "SystemServices", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ConfigureSimpleTCPIPServicesStartupMode"},
 }
 
 // ConfigureSpecialAdministrationConsoleHelperServiceStartupMode: This setting determines whether the service's start type is Automatic(2), Manual(3), Disabled(4). Default: Manual.
@@ -183,7 +183,7 @@ var ConfigureSpecialAdministrationConsoleHelperServiceStartupMode = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_SystemServices02", ResultClass: "MDM_Policy_Result01_SystemServices02", InstanceID: "SystemServices", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ConfigureSpecialAdministrationConsoleHelperServiceStartupMode"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_SystemServices02", ResultClass: "MDM_Policy_Result01_SystemServices02", InstanceID: "SystemServices", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ConfigureSpecialAdministrationConsoleHelperServiceStartupMode"},
 }
 
 // ConfigureUPnPDeviceHostServiceStartupMode: This setting determines whether the service's start type is Automatic(2), Manual(3), Disabled(4). Default: Manual.
@@ -197,7 +197,7 @@ var ConfigureUPnPDeviceHostServiceStartupMode = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_SystemServices02", ResultClass: "MDM_Policy_Result01_SystemServices02", InstanceID: "SystemServices", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ConfigureUPnPDeviceHostServiceStartupMode"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_SystemServices02", ResultClass: "MDM_Policy_Result01_SystemServices02", InstanceID: "SystemServices", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ConfigureUPnPDeviceHostServiceStartupMode"},
 }
 
 // ConfigureWebManagementServiceStartupMode: This setting determines whether the service's start type is Automatic(2), Manual(3), Disabled(4). Default: Manual.
@@ -211,7 +211,7 @@ var ConfigureWebManagementServiceStartupMode = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_SystemServices02", ResultClass: "MDM_Policy_Result01_SystemServices02", InstanceID: "SystemServices", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ConfigureWebManagementServiceStartupMode"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_SystemServices02", ResultClass: "MDM_Policy_Result01_SystemServices02", InstanceID: "SystemServices", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ConfigureWebManagementServiceStartupMode"},
 }
 
 // ConfigureWindowsMediaPlayerNetworkSharingServiceStartupMode: This setting determines whether the service's start type is Automatic(2), Manual(3), Disabled(4). Default: Manual.
@@ -225,7 +225,7 @@ var ConfigureWindowsMediaPlayerNetworkSharingServiceStartupMode = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_SystemServices02", ResultClass: "MDM_Policy_Result01_SystemServices02", InstanceID: "SystemServices", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ConfigureWindowsMediaPlayerNetworkSharingServiceStartupMode"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_SystemServices02", ResultClass: "MDM_Policy_Result01_SystemServices02", InstanceID: "SystemServices", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ConfigureWindowsMediaPlayerNetworkSharingServiceStartupMode"},
 }
 
 // ConfigureWindowsMobileHotspotServiceStartupMode: This setting determines whether the service's start type is Automatic(2), Manual(3), Disabled(4). Default: Manual.
@@ -239,7 +239,7 @@ var ConfigureWindowsMobileHotspotServiceStartupMode = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_SystemServices02", ResultClass: "MDM_Policy_Result01_SystemServices02", InstanceID: "SystemServices", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ConfigureWindowsMobileHotspotServiceStartupMode"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_SystemServices02", ResultClass: "MDM_Policy_Result01_SystemServices02", InstanceID: "SystemServices", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ConfigureWindowsMobileHotspotServiceStartupMode"},
 }
 
 // ConfigureWorldWideWebPublishingServiceStartupMode: This setting determines whether the service's start type is Automatic(2), Manual(3), Disabled(4). Default: Manual.
@@ -253,7 +253,7 @@ var ConfigureWorldWideWebPublishingServiceStartupMode = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_SystemServices02", ResultClass: "MDM_Policy_Result01_SystemServices02", InstanceID: "SystemServices", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ConfigureWorldWideWebPublishingServiceStartupMode"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_SystemServices02", ResultClass: "MDM_Policy_Result01_SystemServices02", InstanceID: "SystemServices", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ConfigureWorldWideWebPublishingServiceStartupMode"},
 }
 
 // ConfigureXboxAccessoryManagementServiceStartupMode: This setting determines whether the service's start type is Automatic(2), Manual(3), Disabled(4). Default: Manual.
@@ -267,7 +267,7 @@ var ConfigureXboxAccessoryManagementServiceStartupMode = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "2", Description: "Automatic"}, {Value: "3", Description: "Manual"}, {Value: "4", Description: "Disabled"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_SystemServices02", ResultClass: "MDM_Policy_Result01_SystemServices02", InstanceID: "SystemServices", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ConfigureXboxAccessoryManagementServiceStartupMode"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_SystemServices02", ResultClass: "MDM_Policy_Result01_SystemServices02", InstanceID: "SystemServices", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ConfigureXboxAccessoryManagementServiceStartupMode"},
 }
 
 // ConfigureXboxLiveAuthManagerServiceStartupMode: This setting determines whether the service's start type is Automatic(2), Manual(3), Disabled(4). Default: Manual.
@@ -281,7 +281,7 @@ var ConfigureXboxLiveAuthManagerServiceStartupMode = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "2", Description: "Automatic"}, {Value: "3", Description: "Manual"}, {Value: "4", Description: "Disabled"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_SystemServices02", ResultClass: "MDM_Policy_Result01_SystemServices02", InstanceID: "SystemServices", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ConfigureXboxLiveAuthManagerServiceStartupMode"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_SystemServices02", ResultClass: "MDM_Policy_Result01_SystemServices02", InstanceID: "SystemServices", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ConfigureXboxLiveAuthManagerServiceStartupMode"},
 }
 
 // ConfigureXboxLiveGameSaveServiceStartupMode: This setting determines whether the service's start type is Automatic(2), Manual(3), Disabled(4). Default: Manual.
@@ -295,7 +295,7 @@ var ConfigureXboxLiveGameSaveServiceStartupMode = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "2", Description: "Automatic"}, {Value: "3", Description: "Manual"}, {Value: "4", Description: "Disabled"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_SystemServices02", ResultClass: "MDM_Policy_Result01_SystemServices02", InstanceID: "SystemServices", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ConfigureXboxLiveGameSaveServiceStartupMode"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_SystemServices02", ResultClass: "MDM_Policy_Result01_SystemServices02", InstanceID: "SystemServices", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ConfigureXboxLiveGameSaveServiceStartupMode"},
 }
 
 // ConfigureXboxLiveNetworkingServiceStartupMode: This setting determines whether the service's start type is Automatic(2), Manual(3), Disabled(4). Default: Manual.
@@ -309,7 +309,7 @@ var ConfigureXboxLiveNetworkingServiceStartupMode = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "2", Description: "Automatic"}, {Value: "3", Description: "Manual"}, {Value: "4", Description: "Disabled"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_SystemServices02", ResultClass: "MDM_Policy_Result01_SystemServices02", InstanceID: "SystemServices", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ConfigureXboxLiveNetworkingServiceStartupMode"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_SystemServices02", ResultClass: "MDM_Policy_Result01_SystemServices02", InstanceID: "SystemServices", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ConfigureXboxLiveNetworkingServiceStartupMode"},
 }
 
 // All lists every policy in this CSP area.

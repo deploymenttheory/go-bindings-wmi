@@ -13,7 +13,7 @@ var CompanyName = csp.Policy{
 	MinOSBuild: "10.0.16299",
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WindowsDefenderSecurityCenter02", ResultClass: "MDM_Policy_Result01_WindowsDefenderSecurityCenter02", InstanceID: "WindowsDefenderSecurityCenter", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "CompanyName"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WindowsDefenderSecurityCenter02", ResultClass: "MDM_Policy_Result01_WindowsDefenderSecurityCenter02", InstanceID: "WindowsDefenderSecurityCenter", ParentID: "./Vendor/MSFT/Policy/Config", Property: "CompanyName"},
 }
 
 // DisableAccountProtectionUI: Use this policy setting to specify if to display the Account protection area in Windows Defender Security Center. If you disable or do not configure this setting, Windows defender Security Center will display this area.
@@ -27,7 +27,7 @@ var DisableAccountProtectionUI = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "(Disable) The users can see the display of the Account protection area in Windows Defender Security Center."}, {Value: "1", Description: "(Enable) The users cannot see the display of the Account protection area in Windows Defender Security Center."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WindowsDefenderSecurityCenter02", ResultClass: "MDM_Policy_Result01_WindowsDefenderSecurityCenter02", InstanceID: "WindowsDefenderSecurityCenter", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisableAccountProtectionUI"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WindowsDefenderSecurityCenter02", ResultClass: "MDM_Policy_Result01_WindowsDefenderSecurityCenter02", InstanceID: "WindowsDefenderSecurityCenter", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DisableAccountProtectionUI"},
 }
 
 // DisableAppBrowserUI: Use this policy setting if you want to disable the display of the app and browser protection area in Windows Defender Security Center. If you disable or do not configure this setting, Windows defender Security Center will display this area. Value type is integer. Supported operations are Add, Get, Replace and Delete.
@@ -41,7 +41,7 @@ var DisableAppBrowserUI = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "(Disable) The users can see the display of the app and browser protection area in Windows Defender Security Center."}, {Value: "1", Description: "(Enable) The users cannot see the display of the app and browser protection area in Windows Defender Security Center."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WindowsDefenderSecurityCenter02", ResultClass: "MDM_Policy_Result01_WindowsDefenderSecurityCenter02", InstanceID: "WindowsDefenderSecurityCenter", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisableAppBrowserUI"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WindowsDefenderSecurityCenter02", ResultClass: "MDM_Policy_Result01_WindowsDefenderSecurityCenter02", InstanceID: "WindowsDefenderSecurityCenter", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DisableAppBrowserUI"},
 }
 
 // DisableClearTpmButton: Disable the Clear TPM button in Windows Security. Enabled:The Clear TPM button will be unavailable for use. Disabled:The Clear TPM button will be available for use on supported systems. Not configured:Same as Disabled. Supported values:0 - Disabled (default)1 - Enabled
@@ -55,7 +55,7 @@ var DisableClearTpmButton = csp.Policy{
 	CSPVersion: "8.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "(Disabled or not configured) The security processor troubleshooting page shows a button that initiates the process to clear the security processor (TPM)."}, {Value: "1", Description: "(Enabled) The security processor troubleshooting page will not show a button to initiate the process to clear the security processor (TPM)"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WindowsDefenderSecurityCenter02", ResultClass: "MDM_Policy_Result01_WindowsDefenderSecurityCenter02", InstanceID: "WindowsDefenderSecurityCenter", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisableClearTpmButton"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WindowsDefenderSecurityCenter02", ResultClass: "MDM_Policy_Result01_WindowsDefenderSecurityCenter02", InstanceID: "WindowsDefenderSecurityCenter", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DisableClearTpmButton"},
 }
 
 // DisableDeviceSecurityUI: Use this policy setting if you want to disable the display of the Device security area in the Windows Defender Security Center. If you disable or do not configure this setting, Windows defender Security Center will display this area.
@@ -69,7 +69,7 @@ var DisableDeviceSecurityUI = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "(Disable) The users can see the display of the Device security area in Windows Defender Security Center."}, {Value: "1", Description: "(Enable) The users cannot see the display of the Device security area in Windows Defender Security Center."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WindowsDefenderSecurityCenter02", ResultClass: "MDM_Policy_Result01_WindowsDefenderSecurityCenter02", InstanceID: "WindowsDefenderSecurityCenter", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisableDeviceSecurityUI"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WindowsDefenderSecurityCenter02", ResultClass: "MDM_Policy_Result01_WindowsDefenderSecurityCenter02", InstanceID: "WindowsDefenderSecurityCenter", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DisableDeviceSecurityUI"},
 }
 
 // DisableEnhancedNotifications: Use this policy if you want Windows Defender Security Center to only display notifications which are considered critical. If you disable or do not configure this setting, Windows Defender Security Center will display critical and non-critical notifications to users. NoteIf Suppress notification is enabled then users will not see critical or non-critical messages. Value type is integer. Supported operations are Add, Get, Replace and Delete.
@@ -83,7 +83,7 @@ var DisableEnhancedNotifications = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "(Disable) Windows Defender Security Center will display critical and non-critical notifications to users.."}, {Value: "1", Description: "(Enable) Windows Defender Security Center only display notifications which are considered critical on clients."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WindowsDefenderSecurityCenter02", ResultClass: "MDM_Policy_Result01_WindowsDefenderSecurityCenter02", InstanceID: "WindowsDefenderSecurityCenter", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisableEnhancedNotifications"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WindowsDefenderSecurityCenter02", ResultClass: "MDM_Policy_Result01_WindowsDefenderSecurityCenter02", InstanceID: "WindowsDefenderSecurityCenter", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DisableEnhancedNotifications"},
 }
 
 // DisableFamilyUI: Use this policy setting if you want to disable the display of the family options area in Windows Defender Security Center. If you disable or do not configure this setting, Windows defender Security Center will display this area. Value type is integer. Supported operations are Add, Get, Replace and Delete.
@@ -97,7 +97,7 @@ var DisableFamilyUI = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "(Disable) The users can see the display of the family options area in Windows Defender Security Center."}, {Value: "1", Description: "(Enable) The users cannot see the display of the family options area in Windows Defender Security Center."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WindowsDefenderSecurityCenter02", ResultClass: "MDM_Policy_Result01_WindowsDefenderSecurityCenter02", InstanceID: "WindowsDefenderSecurityCenter", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisableFamilyUI"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WindowsDefenderSecurityCenter02", ResultClass: "MDM_Policy_Result01_WindowsDefenderSecurityCenter02", InstanceID: "WindowsDefenderSecurityCenter", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DisableFamilyUI"},
 }
 
 // DisableHealthUI: Use this policy setting if you want to disable the display of the device performance and health area in Windows Defender Security Center. If you disable or do not configure this setting, Windows defender Security Center will display this area. Value type is integer. Supported operations are Add, Get, Replace and Delete.
@@ -111,7 +111,7 @@ var DisableHealthUI = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "(Disable) The users can see the display of the device performance and health area in Windows Defender Security Center."}, {Value: "1", Description: "(Enable) The users cannot see the display of the device performance and health area in Windows Defender Security Center."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WindowsDefenderSecurityCenter02", ResultClass: "MDM_Policy_Result01_WindowsDefenderSecurityCenter02", InstanceID: "WindowsDefenderSecurityCenter", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisableHealthUI"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WindowsDefenderSecurityCenter02", ResultClass: "MDM_Policy_Result01_WindowsDefenderSecurityCenter02", InstanceID: "WindowsDefenderSecurityCenter", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DisableHealthUI"},
 }
 
 // DisableNetworkUI: Use this policy setting if you want to disable the display of the firewall and network protection area in Windows Defender Security Center. If you disable or do not configure this setting, Windows defender Security Center will display this area. Value type is integer. Supported operations are Add, Get, Replace and Delete.
@@ -125,7 +125,7 @@ var DisableNetworkUI = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "(Disable) The users can see the display of the firewall and network protection area in Windows Defender Security Center."}, {Value: "1", Description: "(Enable) The users cannot see the display of the firewall and network protection area in Windows Defender Security Center."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WindowsDefenderSecurityCenter02", ResultClass: "MDM_Policy_Result01_WindowsDefenderSecurityCenter02", InstanceID: "WindowsDefenderSecurityCenter", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisableNetworkUI"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WindowsDefenderSecurityCenter02", ResultClass: "MDM_Policy_Result01_WindowsDefenderSecurityCenter02", InstanceID: "WindowsDefenderSecurityCenter", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DisableNetworkUI"},
 }
 
 // DisableNotifications: Use this policy setting if you want to disable the display of Windows Defender Security Center notifications. If you disable or do not configure this setting, Windows Defender Security Center notifications will display on devices. Value type is integer. Supported operations are Add, Get, Replace and Delete.
@@ -139,7 +139,7 @@ var DisableNotifications = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "(Disable) The users can see the display of Windows Defender Security Center notifications."}, {Value: "1", Description: "(Enable) The users cannot see the display of Windows Defender Security Center notifications."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WindowsDefenderSecurityCenter02", ResultClass: "MDM_Policy_Result01_WindowsDefenderSecurityCenter02", InstanceID: "WindowsDefenderSecurityCenter", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisableNotifications"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WindowsDefenderSecurityCenter02", ResultClass: "MDM_Policy_Result01_WindowsDefenderSecurityCenter02", InstanceID: "WindowsDefenderSecurityCenter", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DisableNotifications"},
 }
 
 // DisableTpmFirmwareUpdateWarning: Hide the recommendation to update TPM Firmware when a vulnerable firmware is detected. Enabled:Users will not be shown a recommendation to update their TPM Firmware. Disabled:Users will see a recommendation to update their TPM Firmware if Windows Security detects the system contains a TPM with vulnerable firmware. Not configured:Same as Disabled. Supported values:0 - Disabled (default)1 - Enabled
@@ -153,7 +153,7 @@ var DisableTpmFirmwareUpdateWarning = csp.Policy{
 	CSPVersion: "8.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "(Disable or Not configured) A warning will be displayed if the firmware of the security processor (TPM) should be updated for TPMs that have a vulnerability."}, {Value: "1", Description: "(Enabled) No warning will be displayed if the firmware of the security processor (TPM) should be updated."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WindowsDefenderSecurityCenter02", ResultClass: "MDM_Policy_Result01_WindowsDefenderSecurityCenter02", InstanceID: "WindowsDefenderSecurityCenter", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisableTpmFirmwareUpdateWarning"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WindowsDefenderSecurityCenter02", ResultClass: "MDM_Policy_Result01_WindowsDefenderSecurityCenter02", InstanceID: "WindowsDefenderSecurityCenter", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DisableTpmFirmwareUpdateWarning"},
 }
 
 // DisableVirusUI: Use this policy setting if you want to disable the display of the virus and threat protection area in Windows Defender Security Center. If you disable or do not configure this setting, Windows defender Security Center will display this area. Value type is integer. Supported operations are Add, Get, Replace and Delete.
@@ -167,7 +167,7 @@ var DisableVirusUI = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "(Disable) The users can see the display of the virus and threat protection area in Windows Defender Security Center."}, {Value: "1", Description: "(Enable) The users cannot see the display of the virus and threat protection area in Windows Defender Security Center."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WindowsDefenderSecurityCenter02", ResultClass: "MDM_Policy_Result01_WindowsDefenderSecurityCenter02", InstanceID: "WindowsDefenderSecurityCenter", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisableVirusUI"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WindowsDefenderSecurityCenter02", ResultClass: "MDM_Policy_Result01_WindowsDefenderSecurityCenter02", InstanceID: "WindowsDefenderSecurityCenter", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DisableVirusUI"},
 }
 
 // DisallowExploitProtectionOverride: Prevent users from making changes to the exploit protection settings area in the Windows Defender Security Center. If you disable or do not configure this setting, local users can make changes in the exploit protection settings area. Value type is integer. Supported operations are Add, Get, Replace and Delete.
@@ -181,7 +181,7 @@ var DisallowExploitProtectionOverride = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "(Disable) Local users are allowed to make changes in the exploit protection settings area."}, {Value: "1", Description: "(Enable) Local users cannot make changes in the exploit protection settings area."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WindowsDefenderSecurityCenter02", ResultClass: "MDM_Policy_Result01_WindowsDefenderSecurityCenter02", InstanceID: "WindowsDefenderSecurityCenter", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisallowExploitProtectionOverride"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WindowsDefenderSecurityCenter02", ResultClass: "MDM_Policy_Result01_WindowsDefenderSecurityCenter02", InstanceID: "WindowsDefenderSecurityCenter", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DisallowExploitProtectionOverride"},
 }
 
 // Email: The email address that is displayed to users.  The default mail application is used to initiate email actions. If you disable or do not configure this setting, or do not have EnableCustomizedToasts or EnableInAppCustomization enabled, then devices will not display contact options. Value type is string. Supported operations are Add, Get, Replace and Delete.
@@ -193,7 +193,7 @@ var Email = csp.Policy{
 	MinOSBuild: "10.0.16299",
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WindowsDefenderSecurityCenter02", ResultClass: "MDM_Policy_Result01_WindowsDefenderSecurityCenter02", InstanceID: "WindowsDefenderSecurityCenter", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "Email"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WindowsDefenderSecurityCenter02", ResultClass: "MDM_Policy_Result01_WindowsDefenderSecurityCenter02", InstanceID: "WindowsDefenderSecurityCenter", ParentID: "./Vendor/MSFT/Policy/Config", Property: "Email"},
 }
 
 // EnableCustomizedToasts: Enable this policy to display your company name and contact options in the notifications. If you disable or do not configure this setting, or do not provide CompanyName and a minimum of one contact method (Phone using Skype, Email, Help portal URL) Windows Defender Security Center will display a default notification text. Value type is integer. Supported operations are Add, Get, Replace, and Delete.
@@ -207,7 +207,7 @@ var EnableCustomizedToasts = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "notification text."}, {Value: "1", Description: "(Enable) Notifications contain the company name and contact options."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WindowsDefenderSecurityCenter02", ResultClass: "MDM_Policy_Result01_WindowsDefenderSecurityCenter02", InstanceID: "WindowsDefenderSecurityCenter", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "EnableCustomizedToasts"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WindowsDefenderSecurityCenter02", ResultClass: "MDM_Policy_Result01_WindowsDefenderSecurityCenter02", InstanceID: "WindowsDefenderSecurityCenter", ParentID: "./Vendor/MSFT/Policy/Config", Property: "EnableCustomizedToasts"},
 }
 
 // EnableInAppCustomization: Enable this policy to have your company name and contact options displayed in a contact card fly out in Windows Defender Security Center. If you disable or do not configure this setting, or do not provide CompanyName and a minimum of one contact method (Phone using Skype, Email, Help portal URL) Windows Defender Security Center will not display the contact card fly out notification. Value type is integer. Supported operations are Add, Get, Replace, and Delete.
@@ -221,7 +221,7 @@ var EnableInAppCustomization = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "(Disable) Do not display the company name and contact options in the card fly out notification."}, {Value: "1", Description: "(Enable) Display the company name and contact options in the card fly out notification."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WindowsDefenderSecurityCenter02", ResultClass: "MDM_Policy_Result01_WindowsDefenderSecurityCenter02", InstanceID: "WindowsDefenderSecurityCenter", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "EnableInAppCustomization"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WindowsDefenderSecurityCenter02", ResultClass: "MDM_Policy_Result01_WindowsDefenderSecurityCenter02", InstanceID: "WindowsDefenderSecurityCenter", ParentID: "./Vendor/MSFT/Policy/Config", Property: "EnableInAppCustomization"},
 }
 
 // HideRansomwareDataRecovery: Use this policy setting to hide the Ransomware data recovery area in Windows Defender Security Center.
@@ -235,7 +235,7 @@ var HideRansomwareDataRecovery = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "(Disable or not configured) The Ransomware data recovery area will be visible."}, {Value: "1", Description: "(Enable) The Ransomware data recovery area is hidden."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WindowsDefenderSecurityCenter02", ResultClass: "MDM_Policy_Result01_WindowsDefenderSecurityCenter02", InstanceID: "WindowsDefenderSecurityCenter", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "HideRansomwareDataRecovery"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WindowsDefenderSecurityCenter02", ResultClass: "MDM_Policy_Result01_WindowsDefenderSecurityCenter02", InstanceID: "WindowsDefenderSecurityCenter", ParentID: "./Vendor/MSFT/Policy/Config", Property: "HideRansomwareDataRecovery"},
 }
 
 // HideSecureBoot: Use this policy to hide the Secure boot area in the Windows Defender Security Center.
@@ -249,7 +249,7 @@ var HideSecureBoot = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "(Disable or not configured) The Secure boot area is displayed."}, {Value: "1", Description: "(Enable) The Secure boot area is hidden."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WindowsDefenderSecurityCenter02", ResultClass: "MDM_Policy_Result01_WindowsDefenderSecurityCenter02", InstanceID: "WindowsDefenderSecurityCenter", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "HideSecureBoot"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WindowsDefenderSecurityCenter02", ResultClass: "MDM_Policy_Result01_WindowsDefenderSecurityCenter02", InstanceID: "WindowsDefenderSecurityCenter", ParentID: "./Vendor/MSFT/Policy/Config", Property: "HideSecureBoot"},
 }
 
 // HideTPMTroubleshooting: Use this policy to hide the Security processor (TPM) troubleshooting area in the Windows Defender Security Center.
@@ -263,7 +263,7 @@ var HideTPMTroubleshooting = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "(Disable or not configured) The Security processor (TPM) troubleshooting area is displayed."}, {Value: "1", Description: "(Enable) The Security processor (TPM) troubleshooting area is hidden."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WindowsDefenderSecurityCenter02", ResultClass: "MDM_Policy_Result01_WindowsDefenderSecurityCenter02", InstanceID: "WindowsDefenderSecurityCenter", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "HideTPMTroubleshooting"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WindowsDefenderSecurityCenter02", ResultClass: "MDM_Policy_Result01_WindowsDefenderSecurityCenter02", InstanceID: "WindowsDefenderSecurityCenter", ParentID: "./Vendor/MSFT/Policy/Config", Property: "HideTPMTroubleshooting"},
 }
 
 // HideWindowsSecurityNotificationAreaControl: This policy setting hides the Windows Security notification area control. The user needs to either sign out and sign in or reboot the computer for this setting to take effect. Enabled:Windows Security notification area control will be hidden. Disabled:Windows Security notification area control will be shown. Not configured:Same as Disabled. Supported values:0 - Disabled (default)1 - Enabled
@@ -277,7 +277,7 @@ var HideWindowsSecurityNotificationAreaControl = csp.Policy{
 	CSPVersion: "8.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: ""}, {Value: "1", Description: "Enabled"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WindowsDefenderSecurityCenter02", ResultClass: "MDM_Policy_Result01_WindowsDefenderSecurityCenter02", InstanceID: "WindowsDefenderSecurityCenter", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "HideWindowsSecurityNotificationAreaControl"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WindowsDefenderSecurityCenter02", ResultClass: "MDM_Policy_Result01_WindowsDefenderSecurityCenter02", InstanceID: "WindowsDefenderSecurityCenter", ParentID: "./Vendor/MSFT/Policy/Config", Property: "HideWindowsSecurityNotificationAreaControl"},
 }
 
 // Phone: The phone number or Skype ID that is displayed to users.  Skype is used to initiate the call. If you disable or do not configure this setting, or do not have EnableCustomizedToasts or EnableInAppCustomization enabled, then devices will not display contact options. Value type is string. Supported operations are Add, Get, Replace, and Delete.
@@ -289,7 +289,7 @@ var Phone = csp.Policy{
 	MinOSBuild: "10.0.16299",
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WindowsDefenderSecurityCenter02", ResultClass: "MDM_Policy_Result01_WindowsDefenderSecurityCenter02", InstanceID: "WindowsDefenderSecurityCenter", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "Phone"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WindowsDefenderSecurityCenter02", ResultClass: "MDM_Policy_Result01_WindowsDefenderSecurityCenter02", InstanceID: "WindowsDefenderSecurityCenter", ParentID: "./Vendor/MSFT/Policy/Config", Property: "Phone"},
 }
 
 // URL: The help portal URL this is displayed to users.  The default browser is used to initiate this action. If you disable or do not configure this setting, or do not have EnableCustomizedToasts or EnableInAppCustomization enabled, then the device will not display contact options. Value type is Value type is string. Supported operations are Add, Get, Replace, and Delete.
@@ -301,7 +301,7 @@ var URL = csp.Policy{
 	MinOSBuild: "10.0.16299",
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WindowsDefenderSecurityCenter02", ResultClass: "MDM_Policy_Result01_WindowsDefenderSecurityCenter02", InstanceID: "WindowsDefenderSecurityCenter", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "URL"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WindowsDefenderSecurityCenter02", ResultClass: "MDM_Policy_Result01_WindowsDefenderSecurityCenter02", InstanceID: "WindowsDefenderSecurityCenter", ParentID: "./Vendor/MSFT/Policy/Config", Property: "URL"},
 }
 
 // All lists every policy in this CSP area.

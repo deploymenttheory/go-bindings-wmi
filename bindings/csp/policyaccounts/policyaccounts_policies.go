@@ -15,7 +15,7 @@ var AllowAddingNonMicrosoftAccountsManually = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Accounts02", ResultClass: "MDM_Policy_Result01_Accounts02", InstanceID: "Accounts", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowAddingNonMicrosoftAccountsManually"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Accounts02", ResultClass: "MDM_Policy_Result01_Accounts02", InstanceID: "Accounts", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowAddingNonMicrosoftAccountsManually"},
 }
 
 // AllowMicrosoftAccountConnection: Specifies whether the user is allowed to use an MSA account for non-email related connection authentication and services. Most restricted value is 0.
@@ -29,7 +29,7 @@ var AllowMicrosoftAccountConnection = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Accounts02", ResultClass: "MDM_Policy_Result01_Accounts02", InstanceID: "Accounts", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowMicrosoftAccountConnection"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Accounts02", ResultClass: "MDM_Policy_Result01_Accounts02", InstanceID: "Accounts", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowMicrosoftAccountConnection"},
 }
 
 // AllowMicrosoftAccountSignInAssistant: Allows IT Admins the ability to disable the Microsoft Account Sign-In Assistant (wlidsvc) NT service. Note If the MSA service is disabled, Windows Update will no longer offer feature updates to devices running Windows 10 1709 or higher. See Feature updates are not being offered while other updates are. NoteIf the MSA service is disabled, the Subscription Activation feature will not work properly and your users will not be able to “step-up” from Windows 10 Pro to Windows 10 Enterprise, because the MSA ticket for license authentication cannot be generated. The machine will remain on Windows 10 Pro and no error will be displayed in the Activation Settings app.
@@ -43,7 +43,7 @@ var AllowMicrosoftAccountSignInAssistant = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Disabled."}, {Value: "1", Description: "Manual start."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Accounts02", ResultClass: "MDM_Policy_Result01_Accounts02", InstanceID: "Accounts", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowMicrosoftAccountSignInAssistant"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Accounts02", ResultClass: "MDM_Policy_Result01_Accounts02", InstanceID: "Accounts", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowMicrosoftAccountSignInAssistant"},
 }
 
 var DomainNamesForEmailSync = csp.Policy{
@@ -54,7 +54,7 @@ var DomainNamesForEmailSync = csp.Policy{
 	MinOSBuild: "10.0.14393",
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Accounts02", ResultClass: "MDM_Policy_Result01_Accounts02", InstanceID: "Accounts", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DomainNamesForEmailSync"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Accounts02", ResultClass: "MDM_Policy_Result01_Accounts02", InstanceID: "Accounts", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DomainNamesForEmailSync"},
 }
 
 // RestrictToEnterpriseDeviceAuthenticationOnly: This setting determines whether to only allow enterprise device authentication for the Microsoft Account Sign-in Assistant service (wlidsvc). By default, this setting is disabled and allows both user and device authentication. When the value is set to 1, only allow device authentication, and block user authentication.
@@ -68,7 +68,7 @@ var RestrictToEnterpriseDeviceAuthenticationOnly = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Allow both device and user authentication. Do not block user authentication."}, {Value: "1", Description: "Only allow device authentication. Block user authentication."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Accounts02", ResultClass: "MDM_Policy_Result01_Accounts02", InstanceID: "Accounts", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "RestrictToEnterpriseDeviceAuthenticationOnly"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Accounts02", ResultClass: "MDM_Policy_Result01_Accounts02", InstanceID: "Accounts", ParentID: "./Vendor/MSFT/Policy/Config", Property: "RestrictToEnterpriseDeviceAuthenticationOnly"},
 }
 
 // All lists every policy in this CSP area.

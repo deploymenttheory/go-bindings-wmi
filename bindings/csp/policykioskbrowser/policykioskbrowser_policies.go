@@ -14,7 +14,7 @@ var BlockedUrlExceptions = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_KioskBrowser02", ResultClass: "MDM_Policy_Result01_KioskBrowser02", InstanceID: "KioskBrowser", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "BlockedUrlExceptions"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_KioskBrowser02", ResultClass: "MDM_Policy_Result01_KioskBrowser02", InstanceID: "KioskBrowser", ParentID: "./Vendor/MSFT/Policy/Config", Property: "BlockedUrlExceptions"},
 }
 
 // BlockedUrls: List of blocked website URLs (with wildcard support). This is used to configure blocked URLs kiosk browsers can not navigate to.
@@ -27,7 +27,7 @@ var BlockedUrls = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_KioskBrowser02", ResultClass: "MDM_Policy_Result01_KioskBrowser02", InstanceID: "KioskBrowser", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "BlockedUrls"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_KioskBrowser02", ResultClass: "MDM_Policy_Result01_KioskBrowser02", InstanceID: "KioskBrowser", ParentID: "./Vendor/MSFT/Policy/Config", Property: "BlockedUrls"},
 }
 
 // DefaultURL: Configures the default URL kiosk browsers to navigate on launch and restart.
@@ -39,7 +39,7 @@ var DefaultURL = csp.Policy{
 	MinOSBuild: "10.0.17134",
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_KioskBrowser02", ResultClass: "MDM_Policy_Result01_KioskBrowser02", InstanceID: "KioskBrowser", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DefaultURL"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_KioskBrowser02", ResultClass: "MDM_Policy_Result01_KioskBrowser02", InstanceID: "KioskBrowser", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DefaultURL"},
 }
 
 // EnableEndSessionButton: Enable/disable kiosk browser's end session button.
@@ -53,7 +53,7 @@ var EnableEndSessionButton = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "1", Description: "Enable"}, {Value: "0", Description: "Disable"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_KioskBrowser02", ResultClass: "MDM_Policy_Result01_KioskBrowser02", InstanceID: "KioskBrowser", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "EnableEndSessionButton"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_KioskBrowser02", ResultClass: "MDM_Policy_Result01_KioskBrowser02", InstanceID: "KioskBrowser", ParentID: "./Vendor/MSFT/Policy/Config", Property: "EnableEndSessionButton"},
 }
 
 // EnableHomeButton: Enable/disable kiosk browser's home button.
@@ -67,7 +67,7 @@ var EnableHomeButton = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "1", Description: "Enable"}, {Value: "0", Description: "Disable"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_KioskBrowser02", ResultClass: "MDM_Policy_Result01_KioskBrowser02", InstanceID: "KioskBrowser", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "EnableHomeButton"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_KioskBrowser02", ResultClass: "MDM_Policy_Result01_KioskBrowser02", InstanceID: "KioskBrowser", ParentID: "./Vendor/MSFT/Policy/Config", Property: "EnableHomeButton"},
 }
 
 // EnableNavigationButtons: Enable/disable kiosk browser's navigation buttons (forward/back).
@@ -81,7 +81,7 @@ var EnableNavigationButtons = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "1", Description: "Enable"}, {Value: "0", Description: "Disable"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_KioskBrowser02", ResultClass: "MDM_Policy_Result01_KioskBrowser02", InstanceID: "KioskBrowser", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "EnableNavigationButtons"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_KioskBrowser02", ResultClass: "MDM_Policy_Result01_KioskBrowser02", InstanceID: "KioskBrowser", ParentID: "./Vendor/MSFT/Policy/Config", Property: "EnableNavigationButtons"},
 }
 
 // RestartOnIdleTime: Amount of time in minutes the session is idle until the kiosk browser restarts in a fresh state.
@@ -95,7 +95,7 @@ var RestartOnIdleTime = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_KioskBrowser02", ResultClass: "MDM_Policy_Result01_KioskBrowser02", InstanceID: "KioskBrowser", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "RestartOnIdleTime"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_KioskBrowser02", ResultClass: "MDM_Policy_Result01_KioskBrowser02", InstanceID: "KioskBrowser", ParentID: "./Vendor/MSFT/Policy/Config", Property: "RestartOnIdleTime"},
 }
 
 // All lists every policy in this CSP area.

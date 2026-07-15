@@ -13,7 +13,7 @@ var AllowPINLogon = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "CredentialProviders~AT~System~Logon", Name: "AllowDomainPINLogon", File: "credentialproviders.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_CredentialProviders02", ResultClass: "MDM_Policy_Result01_CredentialProviders02", InstanceID: "CredentialProviders", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowPINLogon"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_CredentialProviders02", ResultClass: "MDM_Policy_Result01_CredentialProviders02", InstanceID: "CredentialProviders", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowPINLogon"},
 }
 
 var BlockPicturePassword = csp.Policy{
@@ -25,7 +25,7 @@ var BlockPicturePassword = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "CredentialProviders~AT~System~Logon", Name: "BlockDomainPicturePassword", File: "credentialproviders.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_CredentialProviders02", ResultClass: "MDM_Policy_Result01_CredentialProviders02", InstanceID: "CredentialProviders", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "BlockPicturePassword"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_CredentialProviders02", ResultClass: "MDM_Policy_Result01_CredentialProviders02", InstanceID: "CredentialProviders", ParentID: "./Vendor/MSFT/Policy/Config", Property: "BlockPicturePassword"},
 }
 
 // DisableAutomaticReDeploymentCredentials: Boolean policy to disable the visibility of the credential provider that triggers the PC refresh on a device. This policy does not actually trigger the refresh. The admin user is required to authenticate to trigger the refresh on the target device. The Autopilot Reset feature allows admin to reset devices to a known good managed state while preserving the management enrollment. After the Autopilot Reset is triggered the devices are for ready for use by information workers or students.
@@ -39,7 +39,7 @@ var DisableAutomaticReDeploymentCredentials = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Enable the visibility of the credentials for Autopilot Reset."}, {Value: "1", Description: "Disable visibility of the credentials for Autopilot Reset."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_CredentialProviders02", ResultClass: "MDM_Policy_Result01_CredentialProviders02", InstanceID: "CredentialProviders", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisableAutomaticReDeploymentCredentials"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_CredentialProviders02", ResultClass: "MDM_Policy_Result01_CredentialProviders02", InstanceID: "CredentialProviders", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DisableAutomaticReDeploymentCredentials"},
 }
 
 // All lists every policy in this CSP area.

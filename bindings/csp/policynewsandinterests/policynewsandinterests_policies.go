@@ -15,7 +15,7 @@ var AllowNewsAndInterests = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_NewsAndInterests02", ResultClass: "MDM_Policy_Result01_NewsAndInterests02", InstanceID: "NewsAndInterests", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowNewsAndInterests"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_NewsAndInterests02", ResultClass: "MDM_Policy_Result01_NewsAndInterests02", InstanceID: "NewsAndInterests", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowNewsAndInterests"},
 }
 
 // DisableWidgetsBoard: Disable widgets board
@@ -29,7 +29,7 @@ var DisableWidgetsBoard = csp.Policy{
 	CSPVersion: "9.9",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Enabled."}, {Value: "1", Description: "Disabled."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_NewsAndInterests02", ResultClass: "MDM_Policy_Result01_NewsAndInterests02", InstanceID: "NewsAndInterests", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisableWidgetsBoard"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_NewsAndInterests02", ResultClass: "MDM_Policy_Result01_NewsAndInterests02", InstanceID: "NewsAndInterests", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DisableWidgetsBoard"},
 }
 
 // DisableWidgetsOnLockScreen: Disable widgets on lock screen
@@ -43,7 +43,7 @@ var DisableWidgetsOnLockScreen = csp.Policy{
 	CSPVersion: "9.9",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Enabled."}, {Value: "1", Description: "Disabled."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_NewsAndInterests02", ResultClass: "MDM_Policy_Result01_NewsAndInterests02", InstanceID: "NewsAndInterests", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisableWidgetsOnLockScreen"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_NewsAndInterests02", ResultClass: "MDM_Policy_Result01_NewsAndInterests02", InstanceID: "NewsAndInterests", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DisableWidgetsOnLockScreen"},
 }
 
 // All lists every policy in this CSP area.

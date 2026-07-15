@@ -15,7 +15,7 @@ var AuditInsecureGuestLogon = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Disabled"}, {Value: "1", Description: "Enabled"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_LanmanWorkstation02", ResultClass: "MDM_Policy_Result01_LanmanWorkstation02", InstanceID: "LanmanWorkstation", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AuditInsecureGuestLogon"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_LanmanWorkstation02", ResultClass: "MDM_Policy_Result01_LanmanWorkstation02", InstanceID: "LanmanWorkstation", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AuditInsecureGuestLogon"},
 }
 
 // AuditServerDoesNotSupportEncryption: This policy controls whether the SMB client will enable the audit event when the SMB server doesn't support encryption. If you enable this policy setting, the SMB client will log the event when the SMB server doesn't support encryption. If you disable or do not configure this policy setting, the SMB client will not log the event.
@@ -29,7 +29,7 @@ var AuditServerDoesNotSupportEncryption = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Disabled"}, {Value: "1", Description: "Enabled"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_LanmanWorkstation02", ResultClass: "MDM_Policy_Result01_LanmanWorkstation02", InstanceID: "LanmanWorkstation", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AuditServerDoesNotSupportEncryption"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_LanmanWorkstation02", ResultClass: "MDM_Policy_Result01_LanmanWorkstation02", InstanceID: "LanmanWorkstation", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AuditServerDoesNotSupportEncryption"},
 }
 
 // AuditServerDoesNotSupportSigning: This policy controls whether the SMB client will enable the audit event when the SMB server doesn't support signing. If you enable this policy setting, the SMB client will log the event when the SMB server doesn't support signing. If you disable or do not configure this policy setting, the SMB client will not log the event.
@@ -43,7 +43,7 @@ var AuditServerDoesNotSupportSigning = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Disabled"}, {Value: "1", Description: "Enabled"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_LanmanWorkstation02", ResultClass: "MDM_Policy_Result01_LanmanWorkstation02", InstanceID: "LanmanWorkstation", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AuditServerDoesNotSupportSigning"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_LanmanWorkstation02", ResultClass: "MDM_Policy_Result01_LanmanWorkstation02", InstanceID: "LanmanWorkstation", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AuditServerDoesNotSupportSigning"},
 }
 
 // EnableInsecureGuestLogons: This policy setting determines if the SMB client will allow insecure guest logons to an SMB server. If you enable this policy setting or if you do not configure this policy setting, the SMB client will allow insecure guest logons. If you disable this policy setting, the SMB client will reject insecure guest logons. Insecure guest logons are used by file servers to allow unauthenticated access to shared folders. While uncommon in an enterprise environment, insecure guest logons are frequently used by consumer Network Attached Storage (NAS) appliances acting as file servers. Windows file servers require authentication and do not use insecure guest logons by default. Since insecure guest logons are unauthenticated, important security features such as SMB Signing and SMB Encryption are disabled. As a result, clients that allow insecure guest logons are vulnerable to a variety of man-in-the-middle attacks that can result in data loss, data corruption, and exposure to malware. Additionally, any data written to a file server using an insecure guest logon is potentially accessible to anyone on the network. Microsoft recommends disabling insecure guest logons and configuring file servers to require authenticated access.
@@ -57,7 +57,7 @@ var EnableInsecureGuestLogons = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Disabled"}, {Value: "1", Description: "Enabled"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_LanmanWorkstation02", ResultClass: "MDM_Policy_Result01_LanmanWorkstation02", InstanceID: "LanmanWorkstation", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "EnableInsecureGuestLogons"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_LanmanWorkstation02", ResultClass: "MDM_Policy_Result01_LanmanWorkstation02", InstanceID: "LanmanWorkstation", ParentID: "./Vendor/MSFT/Policy/Config", Property: "EnableInsecureGuestLogons"},
 }
 
 // EnableMailslots: This policy controls whether the SMB client will enable or disable remote mailslots over MUP. If you disable this policy setting, remote mailslots will not function over MUP, hence they will not go through the SMB client redirector. If you do not configure this policy setting, remote mailslots may be allowed through MUP.
@@ -71,7 +71,7 @@ var EnableMailslots = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Disabled"}, {Value: "1", Description: "Enabled"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_LanmanWorkstation02", ResultClass: "MDM_Policy_Result01_LanmanWorkstation02", InstanceID: "LanmanWorkstation", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "EnableMailslots"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_LanmanWorkstation02", ResultClass: "MDM_Policy_Result01_LanmanWorkstation02", InstanceID: "LanmanWorkstation", ParentID: "./Vendor/MSFT/Policy/Config", Property: "EnableMailslots"},
 }
 
 // MaxSmb2Dialect: This policy controls the maximum version of SMB protocol. Note: This group policy does not prevent use of SMB 1 if that component is still installed and enabled.
@@ -85,7 +85,7 @@ var MaxSmb2Dialect = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "514", Description: "SMB 2.0.2"}, {Value: "528", Description: "SMB 2.1.0"}, {Value: "768", Description: "SMB 3.0.0"}, {Value: "770", Description: "SMB 3.0.2"}, {Value: "785", Description: "SMB 3.1.1"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_LanmanWorkstation02", ResultClass: "MDM_Policy_Result01_LanmanWorkstation02", InstanceID: "LanmanWorkstation", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "MaxSmb2Dialect"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_LanmanWorkstation02", ResultClass: "MDM_Policy_Result01_LanmanWorkstation02", InstanceID: "LanmanWorkstation", ParentID: "./Vendor/MSFT/Policy/Config", Property: "MaxSmb2Dialect"},
 }
 
 // MinSmb2Dialect: This policy controls the minimum version of SMB protocol. Note: This group policy does not prevent use of SMB 1 if that component is still installed and enabled.
@@ -99,7 +99,7 @@ var MinSmb2Dialect = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "514", Description: "SMB 2.0.2"}, {Value: "528", Description: "SMB 2.1.0"}, {Value: "768", Description: "SMB 3.0.0"}, {Value: "770", Description: "SMB 3.0.2"}, {Value: "785", Description: "SMB 3.1.1"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_LanmanWorkstation02", ResultClass: "MDM_Policy_Result01_LanmanWorkstation02", InstanceID: "LanmanWorkstation", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "MinSmb2Dialect"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_LanmanWorkstation02", ResultClass: "MDM_Policy_Result01_LanmanWorkstation02", InstanceID: "LanmanWorkstation", ParentID: "./Vendor/MSFT/Policy/Config", Property: "MinSmb2Dialect"},
 }
 
 // RequireEncryption: This policy controls whether the SMB client will require encryption. If you enable this policy setting, the SMB client will require the SMB server to support encryption and encrypt the data. If you disable or do not configure this policy setting, the SMB client will not require encryption. However, SMB encryption may still be required; see notes below. Note: This policy is combined with per-share, per-server, and per mapped drive connection properties, through which SMB encryption may be required. The SMB server must support and enable SMB encryption. For example, should this policy be disabled (or not configured), the SMB client may still perform encryption if an SMB server share has required encryption. Important: SMB encryption requires SMB 3.0 or later.
@@ -113,7 +113,7 @@ var RequireEncryption = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Disabled"}, {Value: "1", Description: "Enabled"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_LanmanWorkstation02", ResultClass: "MDM_Policy_Result01_LanmanWorkstation02", InstanceID: "LanmanWorkstation", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "RequireEncryption"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_LanmanWorkstation02", ResultClass: "MDM_Policy_Result01_LanmanWorkstation02", InstanceID: "LanmanWorkstation", ParentID: "./Vendor/MSFT/Policy/Config", Property: "RequireEncryption"},
 }
 
 // All lists every policy in this CSP area.

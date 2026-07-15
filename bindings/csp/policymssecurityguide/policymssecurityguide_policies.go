@@ -13,7 +13,7 @@ var ApplyUACRestrictionsToLocalAccountsOnNetworkLogon = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "SecGuide~AT~Cat_SecGuide", Name: "Pol_SecGuide_0201_LATFP", File: "SecGuide.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_MSSecurityGuide02", ResultClass: "MDM_Policy_Result01_MSSecurityGuide02", InstanceID: "MSSecurityGuide", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ApplyUACRestrictionsToLocalAccountsOnNetworkLogon"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_MSSecurityGuide02", ResultClass: "MDM_Policy_Result01_MSSecurityGuide02", InstanceID: "MSSecurityGuide", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ApplyUACRestrictionsToLocalAccountsOnNetworkLogon"},
 }
 
 var ConfigureSMBV1ClientDriver = csp.Policy{
@@ -25,7 +25,7 @@ var ConfigureSMBV1ClientDriver = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "SecGuide~AT~Cat_SecGuide", Name: "Pol_SecGuide_0002_SMBv1_ClientDriver", File: "SecGuide.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_MSSecurityGuide02", ResultClass: "MDM_Policy_Result01_MSSecurityGuide02", InstanceID: "MSSecurityGuide", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ConfigureSMBV1ClientDriver"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_MSSecurityGuide02", ResultClass: "MDM_Policy_Result01_MSSecurityGuide02", InstanceID: "MSSecurityGuide", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ConfigureSMBV1ClientDriver"},
 }
 
 var ConfigureSMBV1Server = csp.Policy{
@@ -37,7 +37,7 @@ var ConfigureSMBV1Server = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "SecGuide~AT~Cat_SecGuide", Name: "Pol_SecGuide_0001_SMBv1_Server", File: "SecGuide.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_MSSecurityGuide02", ResultClass: "MDM_Policy_Result01_MSSecurityGuide02", InstanceID: "MSSecurityGuide", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ConfigureSMBV1Server"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_MSSecurityGuide02", ResultClass: "MDM_Policy_Result01_MSSecurityGuide02", InstanceID: "MSSecurityGuide", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ConfigureSMBV1Server"},
 }
 
 var EnableStructuredExceptionHandlingOverwriteProtection = csp.Policy{
@@ -49,7 +49,7 @@ var EnableStructuredExceptionHandlingOverwriteProtection = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "SecGuide~AT~Cat_SecGuide", Name: "Pol_SecGuide_0102_SEHOP", File: "SecGuide.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_MSSecurityGuide02", ResultClass: "MDM_Policy_Result01_MSSecurityGuide02", InstanceID: "MSSecurityGuide", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "EnableStructuredExceptionHandlingOverwriteProtection"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_MSSecurityGuide02", ResultClass: "MDM_Policy_Result01_MSSecurityGuide02", InstanceID: "MSSecurityGuide", ParentID: "./Vendor/MSFT/Policy/Config", Property: "EnableStructuredExceptionHandlingOverwriteProtection"},
 }
 
 var NetBTNodeTypeConfiguration = csp.Policy{
@@ -61,7 +61,7 @@ var NetBTNodeTypeConfiguration = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "SecGuide~AT~Cat_SecGuide", Name: "Pol_SecGuide_0050_NetbtNodeTypeConfig", File: "SecGuide.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_MSSecurityGuide02", ResultClass: "MDM_Policy_Result01_MSSecurityGuide02", InstanceID: "MSSecurityGuide", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "NetBTNodeTypeConfiguration"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_MSSecurityGuide02", ResultClass: "MDM_Policy_Result01_MSSecurityGuide02", InstanceID: "MSSecurityGuide", ParentID: "./Vendor/MSFT/Policy/Config", Property: "NetBTNodeTypeConfiguration"},
 }
 
 var TurnOnWindowsDefenderProtectionAgainstPotentiallyUnwantedApplications = csp.Policy{
@@ -73,7 +73,7 @@ var TurnOnWindowsDefenderProtectionAgainstPotentiallyUnwantedApplications = csp.
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "SecGuide~AT~Cat_SecGuide", Name: "Pol_SecGuide_0101_WDPUA", File: "SecGuide.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_MSSecurityGuide02", ResultClass: "MDM_Policy_Result01_MSSecurityGuide02", InstanceID: "MSSecurityGuide", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "TurnOnWindowsDefenderProtectionAgainstPotentiallyUnwantedApplications"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_MSSecurityGuide02", ResultClass: "MDM_Policy_Result01_MSSecurityGuide02", InstanceID: "MSSecurityGuide", ParentID: "./Vendor/MSFT/Policy/Config", Property: "TurnOnWindowsDefenderProtectionAgainstPotentiallyUnwantedApplications"},
 }
 
 var WDigestAuthentication = csp.Policy{
@@ -85,7 +85,7 @@ var WDigestAuthentication = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "SecGuide~AT~Cat_SecGuide", Name: "Pol_SecGuide_0202_WDigestAuthn", File: "SecGuide.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_MSSecurityGuide02", ResultClass: "MDM_Policy_Result01_MSSecurityGuide02", InstanceID: "MSSecurityGuide", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "WDigestAuthentication"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_MSSecurityGuide02", ResultClass: "MDM_Policy_Result01_MSSecurityGuide02", InstanceID: "MSSecurityGuide", ParentID: "./Vendor/MSFT/Policy/Config", Property: "WDigestAuthentication"},
 }
 
 // All lists every policy in this CSP area.

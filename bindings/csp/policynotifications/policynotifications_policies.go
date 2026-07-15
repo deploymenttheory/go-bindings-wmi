@@ -15,7 +15,7 @@ var DisableAccountNotifications = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Disabled."}, {Value: "1", Description: "Enabled."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Notifications02", ResultClass: "MDM_Policy_Result01_Notifications02", InstanceID: "Notifications", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisableAccountNotifications"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Notifications02", ResultClass: "MDM_Policy_Result01_Notifications02", InstanceID: "Notifications", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DisableAccountNotifications"},
 }
 
 // DisallowCloudNotification: This policy setting blocks applications from using the network to send tile, badge, toast, and raw notifications. Specifically, this policy setting turns off the connection between Windows and the Windows Push Notification Service (WNS). This policy setting also stops applications from being able to use periodic (polling) notifications. If you enable this policy setting, applications and system features will not be able receive notifications from the network from WNS or via notification polling APIs. If you enable this policy setting, notifications can still be raised by applications running on the machine via local API calls from within the application. If you disable or do not configure this policy setting, the client computer will connect to WNS at user login and applications will be allowed to use periodic (polling) notifications. No reboots or service restarts are required for this policy setting to take effect. WarningThis policy is designed for zero exhaust. This policy may cause some MDM processes to break because WNS notification is used by the MDM server to send real time tasks to the device, such as remote wipe, unenroll, remote find, and mandatory app installation. When this policy is set to disallow WNS, those real time processes will no longer work and some time-sensitive actions such as remote wipe when the device is stolen or unenrollment when the device is compromised will not work.
@@ -29,7 +29,7 @@ var DisallowCloudNotification = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Enable cloud notification."}, {Value: "1", Description: "Disable cloud notification."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Notifications02", ResultClass: "MDM_Policy_Result01_Notifications02", InstanceID: "Notifications", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisallowCloudNotification"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Notifications02", ResultClass: "MDM_Policy_Result01_Notifications02", InstanceID: "Notifications", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DisallowCloudNotification"},
 }
 
 // DisallowNotificationMirroring: Boolean value that turns off notification mirroring. For each user logged into the device, if you enable this policy (set value to 1) the app and system notifications received by this user on this device will not get mirrored to other devices of the same logged in user. If you disable or do not configure this policy (set value to 0) the notifications received by this user on this device will be mirrored to other devices of the same logged in user. This feature can be turned off by apps that do not want to participate in Notification Mirroring. This feature can also be turned off by the user in the Cortana setting page. No reboot or service restart is required for this policy to take effect.
@@ -43,7 +43,7 @@ var DisallowNotificationMirroring = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Enable notification mirroring."}, {Value: "1", Description: "Disable notification mirroring."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Notifications02", ResultClass: "MDM_Policy_Result01_Notifications02", InstanceID: "Notifications", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisallowNotificationMirroring"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Notifications02", ResultClass: "MDM_Policy_Result01_Notifications02", InstanceID: "Notifications", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DisallowNotificationMirroring"},
 }
 
 // DisallowTileNotification: This policy setting turns off tile notifications. If you enable this policy setting, applications and system features will not be able to update their tiles and tile badges in the Start screen. If you disable or do not configure this policy setting, tile and badge notifications are enabled and can be turned off by the administrator or user. No reboots or service restarts are required for this policy setting to take effect.
@@ -57,7 +57,7 @@ var DisallowTileNotification = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Disabled."}, {Value: "1", Description: "Enabled."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Notifications02", ResultClass: "MDM_Policy_Result01_Notifications02", InstanceID: "Notifications", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisallowTileNotification"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Notifications02", ResultClass: "MDM_Policy_Result01_Notifications02", InstanceID: "Notifications", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DisallowTileNotification"},
 }
 
 // EnableExpandedToastNotifications: This policy setting turns on multiple expanded toast notifications in action center. If you enable this policy setting, the first three notifications of each application will be expanded by default in action center. If you disable or do not configure this policy setting, only the first notification of each application will be expanded by default in action center. Windows 10 only. This will be immediately deprecated for Windows 11. No reboots or service restarts are required for this policy setting to take effect.
@@ -71,7 +71,7 @@ var EnableExpandedToastNotifications = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Disable multiple expanded toasts in action center."}, {Value: "1", Description: "Enable multiple expanded toasts in action center."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Notifications02", ResultClass: "MDM_Policy_Result01_Notifications02", InstanceID: "Notifications", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "EnableExpandedToastNotifications"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Notifications02", ResultClass: "MDM_Policy_Result01_Notifications02", InstanceID: "Notifications", ParentID: "./Vendor/MSFT/Policy/Config", Property: "EnableExpandedToastNotifications"},
 }
 
 // WnsEndpoint: FQDN for the WNS endpoint
@@ -83,7 +83,7 @@ var WnsEndpoint = csp.Policy{
 	MinOSBuild: "10.0.22000",
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Notifications02", ResultClass: "MDM_Policy_Result01_Notifications02", InstanceID: "Notifications", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "WnsEndpoint"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Notifications02", ResultClass: "MDM_Policy_Result01_Notifications02", InstanceID: "Notifications", ParentID: "./Vendor/MSFT/Policy/Config", Property: "WnsEndpoint"},
 }
 
 // All lists every policy in this CSP area.

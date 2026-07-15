@@ -13,7 +13,7 @@ var AllowForestSearchOrder = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "Kerberos~AT~System~kerberos", Name: "ForestSearch", File: "Kerberos.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Kerberos02", ResultClass: "MDM_Policy_Result01_Kerberos02", InstanceID: "Kerberos", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowForestSearchOrder"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Kerberos02", ResultClass: "MDM_Policy_Result01_Kerberos02", InstanceID: "Kerberos", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowForestSearchOrder"},
 }
 
 // CloudKerberosTicketRetrievalEnabled: Allow retrieving the cloud kerberos ticket during the logon
@@ -27,7 +27,7 @@ var CloudKerberosTicketRetrievalEnabled = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Disabled."}, {Value: "1", Description: "Enabled."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Kerberos02", ResultClass: "MDM_Policy_Result01_Kerberos02", InstanceID: "Kerberos", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "CloudKerberosTicketRetrievalEnabled"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Kerberos02", ResultClass: "MDM_Policy_Result01_Kerberos02", InstanceID: "Kerberos", ParentID: "./Vendor/MSFT/Policy/Config", Property: "CloudKerberosTicketRetrievalEnabled"},
 }
 
 var KerberosClientSupportsClaimsCompoundArmor = csp.Policy{
@@ -39,7 +39,7 @@ var KerberosClientSupportsClaimsCompoundArmor = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "Kerberos~AT~System~kerberos", Name: "EnableCbacAndArmor", File: "Kerberos.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Kerberos02", ResultClass: "MDM_Policy_Result01_Kerberos02", InstanceID: "Kerberos", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "KerberosClientSupportsClaimsCompoundArmor"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Kerberos02", ResultClass: "MDM_Policy_Result01_Kerberos02", InstanceID: "Kerberos", ParentID: "./Vendor/MSFT/Policy/Config", Property: "KerberosClientSupportsClaimsCompoundArmor"},
 }
 
 // PKInitHashAlgorithmConfiguration: Configure hash algorithms for certificate logon
@@ -53,7 +53,7 @@ var PKInitHashAlgorithmConfiguration = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Disabled / Not Configured"}, {Value: "1", Description: "Enabled"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Kerberos02", ResultClass: "MDM_Policy_Result01_Kerberos02", InstanceID: "Kerberos", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "PKInitHashAlgorithmConfiguration"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Kerberos02", ResultClass: "MDM_Policy_Result01_Kerberos02", InstanceID: "Kerberos", ParentID: "./Vendor/MSFT/Policy/Config", Property: "PKInitHashAlgorithmConfiguration"},
 }
 
 // PKInitHashAlgorithmSHA1: Configure SHA-1 hash algorithm for certificate logon
@@ -67,7 +67,7 @@ var PKInitHashAlgorithmSHA1 = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not Supported"}, {Value: "1", Description: "Default"}, {Value: "2", Description: "Audited"}, {Value: "3", Description: "Supported"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Kerberos02", ResultClass: "MDM_Policy_Result01_Kerberos02", InstanceID: "Kerberos", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "PKInitHashAlgorithmSHA1"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Kerberos02", ResultClass: "MDM_Policy_Result01_Kerberos02", InstanceID: "Kerberos", ParentID: "./Vendor/MSFT/Policy/Config", Property: "PKInitHashAlgorithmSHA1"},
 }
 
 // PKInitHashAlgorithmSHA256: Configure SHA-256 hash algorithm for certificate logon
@@ -81,7 +81,7 @@ var PKInitHashAlgorithmSHA256 = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not Supported"}, {Value: "1", Description: "Default"}, {Value: "2", Description: "Audited"}, {Value: "3", Description: "Supported"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Kerberos02", ResultClass: "MDM_Policy_Result01_Kerberos02", InstanceID: "Kerberos", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "PKInitHashAlgorithmSHA256"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Kerberos02", ResultClass: "MDM_Policy_Result01_Kerberos02", InstanceID: "Kerberos", ParentID: "./Vendor/MSFT/Policy/Config", Property: "PKInitHashAlgorithmSHA256"},
 }
 
 // PKInitHashAlgorithmSHA384: Configure SHA-384 hash algorithm for certificate logon
@@ -95,7 +95,7 @@ var PKInitHashAlgorithmSHA384 = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not Supported"}, {Value: "1", Description: "Default"}, {Value: "2", Description: "Audited"}, {Value: "3", Description: "Supported"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Kerberos02", ResultClass: "MDM_Policy_Result01_Kerberos02", InstanceID: "Kerberos", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "PKInitHashAlgorithmSHA384"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Kerberos02", ResultClass: "MDM_Policy_Result01_Kerberos02", InstanceID: "Kerberos", ParentID: "./Vendor/MSFT/Policy/Config", Property: "PKInitHashAlgorithmSHA384"},
 }
 
 // PKInitHashAlgorithmSHA512: Configure SHA-512 hash algorithm for certificate logon
@@ -109,7 +109,7 @@ var PKInitHashAlgorithmSHA512 = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not Supported"}, {Value: "1", Description: "Default"}, {Value: "2", Description: "Audited"}, {Value: "3", Description: "Supported"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Kerberos02", ResultClass: "MDM_Policy_Result01_Kerberos02", InstanceID: "Kerberos", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "PKInitHashAlgorithmSHA512"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Kerberos02", ResultClass: "MDM_Policy_Result01_Kerberos02", InstanceID: "Kerberos", ParentID: "./Vendor/MSFT/Policy/Config", Property: "PKInitHashAlgorithmSHA512"},
 }
 
 var RequireKerberosArmoring = csp.Policy{
@@ -121,7 +121,7 @@ var RequireKerberosArmoring = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "Kerberos~AT~System~kerberos", Name: "ClientRequireFast", File: "Kerberos.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Kerberos02", ResultClass: "MDM_Policy_Result01_Kerberos02", InstanceID: "Kerberos", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "RequireKerberosArmoring"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Kerberos02", ResultClass: "MDM_Policy_Result01_Kerberos02", InstanceID: "Kerberos", ParentID: "./Vendor/MSFT/Policy/Config", Property: "RequireKerberosArmoring"},
 }
 
 var RequireStrictKDCValidation = csp.Policy{
@@ -133,7 +133,7 @@ var RequireStrictKDCValidation = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "Kerberos~AT~System~kerberos", Name: "ValidateKDC", File: "Kerberos.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Kerberos02", ResultClass: "MDM_Policy_Result01_Kerberos02", InstanceID: "Kerberos", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "RequireStrictKDCValidation"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Kerberos02", ResultClass: "MDM_Policy_Result01_Kerberos02", InstanceID: "Kerberos", ParentID: "./Vendor/MSFT/Policy/Config", Property: "RequireStrictKDCValidation"},
 }
 
 var SetMaximumContextTokenSize = csp.Policy{
@@ -145,7 +145,7 @@ var SetMaximumContextTokenSize = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "Kerberos~AT~System~kerberos", Name: "MaxTokenSize", File: "Kerberos.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Kerberos02", ResultClass: "MDM_Policy_Result01_Kerberos02", InstanceID: "Kerberos", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "SetMaximumContextTokenSize"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Kerberos02", ResultClass: "MDM_Policy_Result01_Kerberos02", InstanceID: "Kerberos", ParentID: "./Vendor/MSFT/Policy/Config", Property: "SetMaximumContextTokenSize"},
 }
 
 // UPNNameHints: Devices joined to Azure Active Directory in a hybrid environment need to interact with Active Directory Domain Controllers, but they lack the built-in ability to find a Domain Controller that a domain-joined device has. This can cause failures when such a device needs to resolve an AAD UPN into an Active Directory Principal.                                  This parameter adds a list of domains that an Azure Active Directory joined device should attempt to contact if it is otherwise unable to resolve a UPN to a principal.
@@ -158,7 +158,7 @@ var UPNNameHints = csp.Policy{
 	CSPVersion: "8.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Kerberos02", ResultClass: "MDM_Policy_Result01_Kerberos02", InstanceID: "Kerberos", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "UPNNameHints"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Kerberos02", ResultClass: "MDM_Policy_Result01_Kerberos02", InstanceID: "Kerberos", ParentID: "./Vendor/MSFT/Policy/Config", Property: "UPNNameHints"},
 }
 
 // All lists every policy in this CSP area.

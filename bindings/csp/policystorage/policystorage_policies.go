@@ -15,7 +15,7 @@ var AllowDiskHealthModelUpdates = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Do not allow"}, {Value: "1", Description: "Allow"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Storage02", ResultClass: "MDM_Policy_Result01_Storage02", InstanceID: "Storage", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowDiskHealthModelUpdates"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Storage02", ResultClass: "MDM_Policy_Result01_Storage02", InstanceID: "Storage", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowDiskHealthModelUpdates"},
 }
 
 // AllowStorageSenseGlobal: Storage Sense can automatically clean some of the user’s files to free up disk space. By default, Storage Sense is automatically turned on when the machine runs into low disk space and is set to run whenever the machine runs into storage pressure. This cadence can be changed in Storage settings or set with the Storage/ConfigStorageSenseGlobalCadence group policy. If you enable this policy setting without setting a cadence, Storage Sense is turned on for the machine with the default cadence of during low free disk space. Users cannot disable Storage Sense, but they can adjust the cadence (unless you also configure the Storage/ConfigStorageSenseGlobalCadence group policy). If you disable this policy setting, the machine will turn off Storage Sense. Users cannot enable Storage Sense. If you do not configure this policy setting, Storage Sense is turned off by default until the user runs into low disk space or the user enables it manually. Users can configure this setting in Storage settings.
@@ -29,7 +29,7 @@ var AllowStorageSenseGlobal = csp.Policy{
 	CSPVersion: "9.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "1", Description: "Allow"}, {Value: "0", Description: "Block"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Storage02", ResultClass: "MDM_Policy_Result01_Storage02", InstanceID: "Storage", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowStorageSenseGlobal"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Storage02", ResultClass: "MDM_Policy_Result01_Storage02", InstanceID: "Storage", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowStorageSenseGlobal"},
 }
 
 // AllowStorageSenseTemporaryFilesCleanup: When Storage Sense runs, it can delete the user’s temporary files that are not in use. If the Storage/AllowStorageSenseGlobal policy is disabled, then this policy does not have any effect. If you enable this policy setting, Storage Sense will delete the user’s temporary files that are not in use. Users cannot disable this setting in Storage settings. If you disable this policy setting, Storage Sense will not delete the user’s temporary files. Users cannot enable this setting in Storage settings. If you do not configure this policy setting, Storage Sense will delete the user’s temporary files by default. Users can configure this setting in Storage settings.
@@ -43,7 +43,7 @@ var AllowStorageSenseTemporaryFilesCleanup = csp.Policy{
 	CSPVersion: "9.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "1", Description: "Allow"}, {Value: "0", Description: "Block"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Storage02", ResultClass: "MDM_Policy_Result01_Storage02", InstanceID: "Storage", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowStorageSenseTemporaryFilesCleanup"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Storage02", ResultClass: "MDM_Policy_Result01_Storage02", InstanceID: "Storage", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowStorageSenseTemporaryFilesCleanup"},
 }
 
 // ConfigStorageSenseCloudContentDehydrationThreshold: When Storage Sense runs, it can dehydrate cloud-backed content that hasn’t been opened in a certain amount of days. If the Storage/AllowStorageSenseGlobal policy is disabled, then this policy does not have any effect. If you enable this policy setting, you must provide the minimum number of days a cloud-backed file can remain unopened before Storage Sense dehydrates it. Supported values are: 0–365. If you set this value to zero, Storage Sense will not dehydrate any cloud-backed content. The default value is 0, which never dehydrates cloud-backed content. If you disable or do not configure this policy setting, then Storage Sense will not dehydrate any cloud-backed content by default. Users can configure this setting in Storage settings.
@@ -57,7 +57,7 @@ var ConfigStorageSenseCloudContentDehydrationThreshold = csp.Policy{
 	CSPVersion: "9.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Storage02", ResultClass: "MDM_Policy_Result01_Storage02", InstanceID: "Storage", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ConfigStorageSenseCloudContentDehydrationThreshold"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Storage02", ResultClass: "MDM_Policy_Result01_Storage02", InstanceID: "Storage", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ConfigStorageSenseCloudContentDehydrationThreshold"},
 }
 
 // ConfigStorageSenseDownloadsCleanupThreshold: When Storage Sense runs, it can delete files in the user’s Downloads folder if they haven’t been opened for more than a certain number of days. If the Storage/AllowStorageSenseGlobal policy is disabled, then this policy does not have any effect. If you enable this policy setting, you must provide the minimum number of days a file can remain unopened before Storage Sense deletes it from the Downloads folder. Supported values are: 0-365. If you set this value to zero, Storage Sense will not delete files in the user’s Downloads folder. The default is 0, or never deleting files in the Downloads folder. If you disable or do not configure this policy setting, then Storage Sense will not delete files in the user’s Downloads folder by default. Users can configure this setting in Storage settings.
@@ -71,7 +71,7 @@ var ConfigStorageSenseDownloadsCleanupThreshold = csp.Policy{
 	CSPVersion: "9.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Storage02", ResultClass: "MDM_Policy_Result01_Storage02", InstanceID: "Storage", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ConfigStorageSenseDownloadsCleanupThreshold"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Storage02", ResultClass: "MDM_Policy_Result01_Storage02", InstanceID: "Storage", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ConfigStorageSenseDownloadsCleanupThreshold"},
 }
 
 // ConfigStorageSenseGlobalCadence: Storage Sense can automatically clean some of the user’s files to free up disk space. If the Storage/AllowStorageSenseGlobal policy is disabled, then this policy does not have any effect. If you enable this policy setting, you must provide the desired Storage Sense cadence. The following are supported options:1 – Daily7 – Weekly30 – Monthly0 – During low free disk spaceThe default is 0 (during low free disk space). If you do not configure this policy setting, then the Storage Sense cadence is set to “during low free disk space” by default. Users can configure this setting in Storage settings.
@@ -85,7 +85,7 @@ var ConfigStorageSenseGlobalCadence = csp.Policy{
 	CSPVersion: "9.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Storage02", ResultClass: "MDM_Policy_Result01_Storage02", InstanceID: "Storage", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ConfigStorageSenseGlobalCadence"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Storage02", ResultClass: "MDM_Policy_Result01_Storage02", InstanceID: "Storage", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ConfigStorageSenseGlobalCadence"},
 }
 
 // ConfigStorageSenseRecycleBinCleanupThreshold: When Storage Sense runs, it can delete files in the user’s Recycle Bin if they have been there for over a certain amount of days. If the Storage/AllowStorageSenseGlobal policy is disabled, then this policy does not have any effect. If you enable this policy setting, you must provide the minimum age threshold (in days) of a file in the Recycle Bin before Storage Sense will delete it. Supported values are: 0–365. If you set this value to zero, Storage Sense will not delete files in the user’s Recycle Bin. The default is 30 days. If you disable or do not configure this policy setting, Storage Sense will delete files in the user’s Recycle Bin that have been there for over 30 days by default. Users can configure this setting in Storage settings.
@@ -99,7 +99,7 @@ var ConfigStorageSenseRecycleBinCleanupThreshold = csp.Policy{
 	CSPVersion: "9.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Storage02", ResultClass: "MDM_Policy_Result01_Storage02", InstanceID: "Storage", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ConfigStorageSenseRecycleBinCleanupThreshold"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Storage02", ResultClass: "MDM_Policy_Result01_Storage02", InstanceID: "Storage", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ConfigStorageSenseRecycleBinCleanupThreshold"},
 }
 
 var EnhancedStorageDevices = csp.Policy{
@@ -111,7 +111,7 @@ var EnhancedStorageDevices = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "EnhancedStorage~AT~System~EnStorDeviceAccess", Name: "TCGSecurityActivationDisabled", File: "enhancedstorage.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Storage02", ResultClass: "MDM_Policy_Result01_Storage02", InstanceID: "Storage", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "EnhancedStorageDevices"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Storage02", ResultClass: "MDM_Policy_Result01_Storage02", InstanceID: "Storage", ParentID: "./Vendor/MSFT/Policy/Config", Property: "EnhancedStorageDevices"},
 }
 
 // RemovableDiskDenyWriteAccess: If you enable this policy setting, write access is denied to this removable storage class. If you disable or do not configure this policy setting, write access is allowed to this removable storage class. Note: To require that users write data to BitLocker-protected storage, enable the policy setting "Deny write access to drives not protected by BitLocker," which is located in "Computer Configuration\Administrative Templates\Windows Components\BitLocker Drive Encryption\Removable Data Drives."
@@ -125,7 +125,7 @@ var RemovableDiskDenyWriteAccess = csp.Policy{
 	CSPVersion: "8.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Disabled."}, {Value: "1", Description: "Enabled."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Storage02", ResultClass: "MDM_Policy_Result01_Storage02", InstanceID: "Storage", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "RemovableDiskDenyWriteAccess"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Storage02", ResultClass: "MDM_Policy_Result01_Storage02", InstanceID: "Storage", ParentID: "./Vendor/MSFT/Policy/Config", Property: "RemovableDiskDenyWriteAccess"},
 }
 
 var WPDDevicesDenyReadAccessPerDevice = csp.Policy{
@@ -137,7 +137,7 @@ var WPDDevicesDenyReadAccessPerDevice = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "RemovableStorage~AT~System~DeviceAccess", Name: "WPDDevices_DenyRead_Access_2", File: "RemovableStorage.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Storage02", ResultClass: "MDM_Policy_Result01_Storage02", InstanceID: "Storage", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "WPDDevicesDenyReadAccessPerDevice"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Storage02", ResultClass: "MDM_Policy_Result01_Storage02", InstanceID: "Storage", ParentID: "./Vendor/MSFT/Policy/Config", Property: "WPDDevicesDenyReadAccessPerDevice"},
 }
 
 var WPDDevicesDenyReadAccessPerUser = csp.Policy{
@@ -149,7 +149,7 @@ var WPDDevicesDenyReadAccessPerUser = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "RemovableStorage~AT~System~DeviceAccess", Name: "WPDDevices_DenyRead_Access_1", File: "RemovableStorage.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Storage02", ResultClass: "MDM_Policy_Result01_Storage02", InstanceID: "Storage", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "WPDDevicesDenyReadAccessPerUser"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Storage02", ResultClass: "MDM_Policy_Result01_Storage02", InstanceID: "Storage", ParentID: "./Vendor/MSFT/Policy/Config", Property: "WPDDevicesDenyReadAccessPerUser"},
 }
 
 var WPDDevicesDenyWriteAccessPerDevice = csp.Policy{
@@ -161,7 +161,7 @@ var WPDDevicesDenyWriteAccessPerDevice = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "RemovableStorage~AT~System~DeviceAccess", Name: "WPDDevices_DenyWrite_Access_2", File: "RemovableStorage.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Storage02", ResultClass: "MDM_Policy_Result01_Storage02", InstanceID: "Storage", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "WPDDevicesDenyWriteAccessPerDevice"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Storage02", ResultClass: "MDM_Policy_Result01_Storage02", InstanceID: "Storage", ParentID: "./Vendor/MSFT/Policy/Config", Property: "WPDDevicesDenyWriteAccessPerDevice"},
 }
 
 var WPDDevicesDenyWriteAccessPerUser = csp.Policy{
@@ -173,7 +173,7 @@ var WPDDevicesDenyWriteAccessPerUser = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "RemovableStorage~AT~System~DeviceAccess", Name: "WPDDevices_DenyWrite_Access_1", File: "RemovableStorage.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Storage02", ResultClass: "MDM_Policy_Result01_Storage02", InstanceID: "Storage", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "WPDDevicesDenyWriteAccessPerUser"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Storage02", ResultClass: "MDM_Policy_Result01_Storage02", InstanceID: "Storage", ParentID: "./Vendor/MSFT/Policy/Config", Property: "WPDDevicesDenyWriteAccessPerUser"},
 }
 
 // All lists every policy in this CSP area.

@@ -15,7 +15,7 @@ var ActiveHoursEnd = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ActiveHoursEnd"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ActiveHoursEnd"},
 }
 
 // ActiveHoursMaxRange: Allows the IT admin to specify the max active hours range. This value sets max number of active hours from start time. Supported values are 8-18. The default value is 18 (hours).
@@ -29,7 +29,7 @@ var ActiveHoursMaxRange = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ActiveHoursMaxRange"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ActiveHoursMaxRange"},
 }
 
 // ActiveHoursStart: Allows the IT admin (when used with Update/ActiveHoursEnd) to manage a range of hours where update reboots are not scheduled. This value sets the start time. There is a 12 hour maximum from end time. NoteÂ The default maximum difference from end time has been increased to 18 in Windows 10, version 1703. In this version of Windows 10, the maximum range of active hours can now be configured. See Update/ActiveHoursMaxRange above for more information. Supported values are 0-23, where 0 is 12 AM, 1 is 1 AM, etc. The default value is 8 (8 AM).
@@ -43,7 +43,7 @@ var ActiveHoursStart = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ActiveHoursStart"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ActiveHoursStart"},
 }
 
 // AllowAutoUpdate: Enables the IT admin to manage automatic update behavior to scan, download, and install updates. Supported operations are Get and Replace. Important. This option should be used only for systems under regulatory compliance, as you will not get security updates as well. If the policy is not configured, end-users get the default behavior (Auto install and restart).
@@ -57,7 +57,7 @@ var AllowAutoUpdate = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Notify the user before downloading the update. This policy is used by the enterprise who wants to enable the end-users to manage data usage. With this option users are notified when there are updates that apply to the device and are ready for download. Users can download and install the updates from the Windows Update control panel."}, {Value: "1", Description: "Auto install the update and then notify the user to schedule a device restart. Updates are downloaded automatically on non-metered networks and installed during \"Automatic Maintenance\" when the device is not in use and is not running on battery power. If automatic maintenance is unable to install updates for two days, Windows Update will install updates immediately. If the installation requires a restart, the end-user is prompted to schedule the restart time. After the update is installed, if the user has not scheduled a restart, the device will attempt to restart automatically. The user will be notified about the scheduled restart and can reschedule it if the proposed time is inconvenient. Enabling the end-user to control the start time reduces the risk of accidental data loss caused by applications that do not shutdown properly on restart."}, {Value: "2", Description: "Auto install and restart. Updates are downloaded automatically on non-metered networks and installed during \"Automatic Maintenance\" when the device is not in use and is not running on battery power. If automatic maintenance is unable to install updates for two days, Windows Update will install updates right away. If a restart is required, then the device is automatically restarted when the device is not actively being used. This is the default behavior for unmanaged devices. Devices are updated quickly, but it increases the risk of accidental data loss caused by an application that does not shutdown properly on restart."}, {Value: "3", Description: "Auto install and restart at a specified time. The IT specifies the installation day and time. If no day and time are specified, the default is 3 AM daily. Automatic installation happens at this time and device restart happens after a 15-minute countdown. If the user is logged in when Windows is ready to restart, the user can interrupt the 15-minute countdown to delay the restart."}, {Value: "4", Description: "Auto install and restart without end-user control. Updates are downloaded automatically on non-metered networks and installed during \"Automatic Maintenance\" when the device is not in use and is not running on battery power. If automatic maintenance is unable to install updates for two days, Windows Update will install updates right away. If a restart is required, then the device is automatically restarted when the device is not actively being used. This setting option also sets the end-user control panel to read-only."}, {Value: "5", Description: "Turn off automatic updates."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowAutoUpdate"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowAutoUpdate"},
 }
 
 // AllowAutoWindowsUpdateDownloadOverMeteredNetwork: Option to download updates automatically over metered connections (off by default). Value type is integer. A significant number of devices primarily use cellular data and do not have Wi-Fi access, which leads to a lower number of devices getting updates. Since a large number of devices have large data plans or unlimited data, this policy can unblock devices from getting updates. This policy is accessible through the Update setting in the user interface or Group Policy.
@@ -71,7 +71,7 @@ var AllowAutoWindowsUpdateDownloadOverMeteredNetwork = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed"}, {Value: "1", Description: "Allowed"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowAutoWindowsUpdateDownloadOverMeteredNetwork"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowAutoWindowsUpdateDownloadOverMeteredNetwork"},
 }
 
 // AllowMUUpdateService: Allows the IT admin to manage whether to scan for app updates from Microsoft Update.
@@ -85,7 +85,7 @@ var AllowMUUpdateService = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed or not configured."}, {Value: "1", Description: "Allowed. Accepts updates received through Microsoft Update."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowMUUpdateService"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowMUUpdateService"},
 }
 
 // AllowNonMicrosoftSignedUpdate: Allows the IT admin to manage whether Automatic Updates accepts updates signed by entities other than Microsoft when the update is found at the UpdateServiceUrl location. This policy supports using WSUS for 3rd party software and patch distribution. Supported operations are Get and Replace. This policy is specific to desktop and local publishing via WSUS for 3rd party updates (binaries and updates not hosted on Microsoft Update) and allows IT to manage whether Automatic Updates accepts updates signed by entities other than Microsoft when the update is found on an intranet Microsoft update service location.
@@ -99,7 +99,7 @@ var AllowNonMicrosoftSignedUpdate = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed or not configured. Updates from an intranet Microsoft update service location must be signed by Microsoft."}, {Value: "1", Description: "Allowed. Accepts updates received through an intranet Microsoft update service location, if they are signed by a certificate found in the 'Trusted Publishers' certificate store of the local computer."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowNonMicrosoftSignedUpdate"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowNonMicrosoftSignedUpdate"},
 }
 
 // AllowOptionalContent: This policy enables devices to get optional updates (including gradual feature rollouts (CFRs) - learn more by visiting aka.ms/AllowOptionalContent)
@@ -113,7 +113,7 @@ var AllowOptionalContent = csp.Policy{
 	CSPVersion: "10.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Don't receive optional updates"}, {Value: "1", Description: "Automatically receive optional updates (including CFRs)"}, {Value: "2", Description: "Automatically receive optional updates"}, {Value: "3", Description: "Users can select which optional updates to receive"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowOptionalContent"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowOptionalContent"},
 }
 
 // AllowTemporaryEnterpriseFeatureControl: Enable features that are off until the next feature update for managed devices
@@ -127,7 +127,7 @@ var AllowTemporaryEnterpriseFeatureControl = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed"}, {Value: "1", Description: "Allowed"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowTemporaryEnterpriseFeatureControl"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowTemporaryEnterpriseFeatureControl"},
 }
 
 // AllowUpdateService: Specifies whether the device could use Microsoft Update, Windows Server Update Services (WSUS), or Microsoft Store. Even when Windows Update is configured to receive updates from an intranet update service, it will periodically retrieve information from the public Windows Update service to enable future connections to Windows Update, and other services like Microsoft Update or the Microsoft Store. Enabling this policy will disable that functionality, and may cause connection to public services such as the Microsoft Store to stop working. NoteÂ This policy applies only when the desktop or device is configured to connect to an intranet update service using the Specify intranet Microsoft update service location policy.
@@ -141,7 +141,7 @@ var AllowUpdateService = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowUpdateService"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowUpdateService"},
 }
 
 // AlwaysAutoRebootAtScheduledTimeMinutes: Enable the policy, a restart timer will always begin immediately after Windows Update installs important updates. The restart timer can be configured to start with any value from 15 to 180 minutes. When the timer runs out, the restart will proceed even if the PC has signed-in users. The default is 15 min.
@@ -155,7 +155,7 @@ var AlwaysAutoRebootAtScheduledTimeMinutes = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AlwaysAutoRebootAtScheduledTimeMinutes"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AlwaysAutoRebootAtScheduledTimeMinutes"},
 }
 
 // AutoRestartDeadlinePeriodInDays: For Quality Updates, this policy specifies the deadline in days before automatically executing a scheduled restart outside of active hours. The deadline can be set between 2 and 30 days from the time the restart is scheduled. The system will reboot on or after the specified deadline. The reboot is prioritized over any configured Active Hours and any existing system and user busy checks. Value type is integer. Default is 7 days. Supported values range: 2-30. Note that the PC must restart for certain updates to take effect. If you enable this policy, a restart will automatically occur the specified number of days after the restart was scheduled. If you disable or do not configure this policy, the PC will restart according to the default schedule. If any of the following two policies are enabled, this policy has no effect:No auto-restart with logged on users for scheduled automatic updates installations. Always automatically restart at scheduled time.
@@ -169,7 +169,7 @@ var AutoRestartDeadlinePeriodInDays = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AutoRestartDeadlinePeriodInDays"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AutoRestartDeadlinePeriodInDays"},
 }
 
 // AutoRestartDeadlinePeriodInDaysForFeatureUpdates: For Feature Updates, this policy specifies the deadline in days before automatically executing a scheduled restart outside of active hours. The deadline can be set between 2 and 30 days from the time the restart is scheduled. The system will reboot on or after the specified deadline. The reboot is prioritized over any configured Active Hours and any existing system and user busy checks. Value type is integer. Default is 7 days. Supported values range: 2-30. Note that the PC must restart for certain updates to take effect. If you enable this policy, a restart will automatically occur the specified number of days after the restart was scheduled. If you disable or do not configure this policy, the PC will restart according to the default schedule. If any of the following two policies are enabled, this policy has no effect:No auto-restart with logged on users for scheduled automatic updates installations. Always automatically restart at scheduled time.
@@ -183,7 +183,7 @@ var AutoRestartDeadlinePeriodInDaysForFeatureUpdates = csp.Policy{
 	CSPVersion: "8.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AutoRestartDeadlinePeriodInDaysForFeatureUpdates"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AutoRestartDeadlinePeriodInDaysForFeatureUpdates"},
 }
 
 // AutoRestartNotificationSchedule: Allows the IT Admin to specify the period for auto-restart reminder notifications. The default value is 15 (minutes).
@@ -197,7 +197,7 @@ var AutoRestartNotificationSchedule = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "15", Description: "15 Minutes"}, {Value: "30", Description: "30 Minutes"}, {Value: "60", Description: "60 Minutes"}, {Value: "120", Description: "120 Minutes"}, {Value: "240", Description: "240 Minutes"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AutoRestartNotificationSchedule"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AutoRestartNotificationSchedule"},
 }
 
 // AutoRestartRequiredNotificationDismissal: Allows the IT Admin to specify the method by which the auto-restart required notification is dismissed.
@@ -211,7 +211,7 @@ var AutoRestartRequiredNotificationDismissal = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "1", Description: "Auto Dismissal."}, {Value: "2", Description: "User Dismissal."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AutoRestartRequiredNotificationDismissal"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AutoRestartRequiredNotificationDismissal"},
 }
 
 // AutomaticMaintenanceWakeUp: This policy setting allows you to configure Automatic Maintenance wake up policy.  The maintenance wakeup policy specifies if Automatic Maintenance should make a wake request to the OS for the daily scheduled maintenance. Note, that if the OS power wake policy is explicitly disabled, then this setting has no effect.  If you enable this policy setting, Automatic Maintenance will attempt to set OS wake policy and make a wake request for the daily scheduled time, if required.  If you disable or do not configure this policy setting, the wake setting as specified in Security and Maintenance/Automatic Maintenance Control Panel will apply.
@@ -225,7 +225,7 @@ var AutomaticMaintenanceWakeUp = csp.Policy{
 	CSPVersion: "9.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Disabled."}, {Value: "1", Description: "Enabled."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AutomaticMaintenanceWakeUp"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AutomaticMaintenanceWakeUp"},
 }
 
 // BranchReadinessLevel: Allows the IT admin to set which branch a device receives their updates from. As of 1903, the branch readiness levels of Semi-Annual Channel (Targeted) and Semi-Annual Channel have been combined into one Semi-Annual Channel set with a value of 16. For devices on 1903 and later releases, the value of 32 is not a supported value.
@@ -239,7 +239,7 @@ var BranchReadinessLevel = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "2", Description: "{0x2}  - Windows Insider build - Fast (added in Windows 10, version 1709)"}, {Value: "4", Description: "{0x4}  - Windows Insider build - Slow (added in Windows 10, version 1709)"}, {Value: "8", Description: "{0x8}  - Release Windows Insider build (added in Windows 10, version 1709)"}, {Value: "16", Description: "{0x10} - Semi-annual Channel (Targeted). Device gets all applicable feature updates from Semi-annual Channel (Targeted)."}, {Value: "32", Description: "2 {0x20} - Semi-annual Channel. Device gets feature updates from Semi-annual Channel. (*Only applicable to releases prior to 1903, for all releases 1903 and after the Semi-annual Channel and Semi-annual Channel (Targeted) into a single Semi-annual Channel with a value of 16)"}, {Value: "64", Description: "{0x40} - Release Preview of Quality Updates Only."}, {Value: "128", Description: "{0x80} - Canary Channel."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "BranchReadinessLevel"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "BranchReadinessLevel"},
 }
 
 // ConfigureDeadlineForFeatureUpdates: Number of days before feature updates are installed on devices automatically regardless of active hours. Before the deadline passes, users will be able to schedule restarts, and automatic restarts can happen outside of active hours. When set to 0, updates will download and install immediately, but might not finish within the day due to device availability and network connectivity.
@@ -253,7 +253,7 @@ var ConfigureDeadlineForFeatureUpdates = csp.Policy{
 	CSPVersion: "9.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ConfigureDeadlineForFeatureUpdates"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ConfigureDeadlineForFeatureUpdates"},
 }
 
 // ConfigureDeadlineForQualityUpdates: Number of days before quality updates are installed on devices automatically regardless of active hours. Before the deadline passes, users will be able to schedule restarts, and automatic restarts can happen outside of active hours. When set to 0, updates will download and install immediately, but might not finish within the day due to device availability and network connectivity.
@@ -267,7 +267,7 @@ var ConfigureDeadlineForQualityUpdates = csp.Policy{
 	CSPVersion: "9.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ConfigureDeadlineForQualityUpdates"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ConfigureDeadlineForQualityUpdates"},
 }
 
 // ConfigureDeadlineGracePeriod: Minimum number of days from update installation until restarts occur automatically for quality updates. This policy only takes effect when Update/ConfigureDeadlineForQualityUpdates is configured. If Update/ConfigureDeadlineForQualityUpdates is configured but this policy is not, then the default value of 2 days will take effect.
@@ -281,7 +281,7 @@ var ConfigureDeadlineGracePeriod = csp.Policy{
 	CSPVersion: "9.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ConfigureDeadlineGracePeriod"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ConfigureDeadlineGracePeriod"},
 }
 
 // ConfigureDeadlineGracePeriodForFeatureUpdates: Minimum number of days from update installation until restarts occur automatically for feature updates. This policy only takes effect when Update/ConfigureDeadlineForFeatureUpdates is configured. If Update/ConfigureDeadlineForFeatureUpdates is configured but this policy is not, then the value configured by Update/ConfigureDeadlineGracePeriod will be used. If Update/ConfigureDeadlineGracePeriod is also not configured, then the default value of 7 days will take effect.
@@ -295,7 +295,7 @@ var ConfigureDeadlineGracePeriodForFeatureUpdates = csp.Policy{
 	CSPVersion: "8.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ConfigureDeadlineGracePeriodForFeatureUpdates"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ConfigureDeadlineGracePeriodForFeatureUpdates"},
 }
 
 // ConfigureDeadlineNoAutoReboot: When enabled, devices will not automatically restart outside of active hours until the deadline and grace period have expired, even if an update is ready for restart. When disabled, an automatic restart may be attempted outside of active hours after update is ready for restart before the deadline is reached. Takes effect only if Update/ConfigureDeadlineForQualityUpdates or Update/ConfigureDeadlineForFeatureUpdates is configured.
@@ -309,7 +309,7 @@ var ConfigureDeadlineNoAutoReboot = csp.Policy{
 	CSPVersion: "9.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Disabled."}, {Value: "1", Description: "Enabled."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ConfigureDeadlineNoAutoReboot"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ConfigureDeadlineNoAutoReboot"},
 }
 
 // ConfigureDeadlineNoAutoRebootForFeatureUpdates: When enabled, devices will not automatically restart outside of active hours until the deadline and grace period have expired for feature updates, even if an update is ready for restart. When disabled, an automatic restart may be attempted outside of active hours after update is ready for restart before the deadline is reached. Takes effect only if Update/ConfigureDeadlineForFeatureUpdates is configured.
@@ -323,7 +323,7 @@ var ConfigureDeadlineNoAutoRebootForFeatureUpdates = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Disabled."}, {Value: "1", Description: "Enabled."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ConfigureDeadlineNoAutoRebootForFeatureUpdates"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ConfigureDeadlineNoAutoRebootForFeatureUpdates"},
 }
 
 // ConfigureDeadlineNoAutoRebootForQualityUpdates: When enabled, devices will not automatically restart outside of active hours until the deadline and grace period have expired for quality updates, even if an update is ready for restart. When disabled, an automatic restart may be attempted outside of active hours after update is ready for restart before the deadline is reached. Takes effect only if Update/ConfigureDeadlineForQualityUpdates is configured.
@@ -337,7 +337,7 @@ var ConfigureDeadlineNoAutoRebootForQualityUpdates = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Disabled."}, {Value: "1", Description: "Enabled."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ConfigureDeadlineNoAutoRebootForQualityUpdates"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ConfigureDeadlineNoAutoRebootForQualityUpdates"},
 }
 
 // ConfigureFeatureUpdateUninstallPeriod: Enable enterprises/IT admin to configure feature update uninstall period
@@ -351,7 +351,7 @@ var ConfigureFeatureUpdateUninstallPeriod = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ConfigureFeatureUpdateUninstallPeriod"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ConfigureFeatureUpdateUninstallPeriod"},
 }
 
 // DeferFeatureUpdatesPeriodInDays: Since this policy is not blocked, you will not get a failure message when you use it to configure a WindowsÂ 10 Mobile device. However, the policy will not take effect.  Defers Feature Updates for the specified number of days. Supported values are 0-365 days. ImportantÂ The default maximum number of days to defer an update has been increased from 180 (Windows 10, version 1607) to 365 in Windows 10, version 1703.
@@ -365,7 +365,7 @@ var DeferFeatureUpdatesPeriodInDays = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DeferFeatureUpdatesPeriodInDays"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DeferFeatureUpdatesPeriodInDays"},
 }
 
 // DeferQualityUpdatesPeriodInDays: Defers Quality Updates for the specified number of days. Supported values are 0-30.
@@ -379,7 +379,7 @@ var DeferQualityUpdatesPeriodInDays = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DeferQualityUpdatesPeriodInDays"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DeferQualityUpdatesPeriodInDays"},
 }
 
 // DeferUpdatePeriod: Note. Don't use this policy in WindowsÂ 10, version 1607 devices, instead use the new policies listed in Changes in Windows 10, version 1607 for update management. You can continue to use DeferUpdatePeriod for WindowsÂ 10, version 1511 devices. Allows IT Admins to specify update delays for up to 4 weeks. Supported values are 0-4, which refers to the number of weeks to defer updates. In WindowsÂ 10 Mobile Enterprise version 1511 devices set to automatic updates, for DeferUpdatePeriod to work, you must set the following:Update/RequireDeferUpgrade must be set to 1System/AllowTelemetry must be set to 1 or higherIf the Specify intranet Microsoft update service location policy is enabled, then the Defer upgrades by, Defer updates by and Pause Updates and Upgrades settings have no effect. If the Allow Telemetry policy is enabled and the Options value is set to 0, then the Defer upgrades by, Defer updates by and Pause Updates and Upgrades settings have no effect. OS upgrade:Maximum deferral: 8 monthsDeferral increment: 1 monthUpdate type/notes:Upgrade - 3689BDC8-B205-4AF4-8D4A-A63924C5E9D5Update:Maximum deferral: 1 monthDeferral increment: 1 weekUpdate type/notes:If a machine has Microsoft Update enabled, any Microsoft Updates in these categories will also observe Defer / Pause logic. - Security Update - 0FA1201D-4330-4FA8-8AE9-B877473B6441- Critical Update - E6CF1350-C01B-414D-A61F-263D14D133B4- Update Rollup - 28BC880E-0592-4CBF-8F95-C79B17911D5F- Service Pack - 68C5B0A3-D1A6-4553-AE49-01D3A7827828- Tools - B4832BD8-E735-4761-8DAF-37F882276DAB- Feature Pack - B54E7D24-7ADD-428F-8B75-90A396FA584F- Update - CD5FFD1E-E932-4E3A-BF74-18BF0B1BBD83- Driver - EBFC1FC5-71A4-4F7B-9ACA-3B9A503104A0Other/cannot defer:Maximum deferral: No deferralDeferral increment: No deferralUpdate type/notes:Any update category not specifically enumerated above falls into this category. - Definition Update - E0789628-CE08-4437-BE74-2495B842F43B
@@ -393,7 +393,7 @@ var DeferUpdatePeriod = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DeferUpdatePeriod"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DeferUpdatePeriod"},
 }
 
 // DeferUpgradePeriod: NoteSince this policy is not blocked, you will not get a failure message when you use it to configure a WindowsÂ 10 Mobile device. However, the policy will not take effect. Don't use this policy in WindowsÂ 10, version 1607 devices, instead use the new policies listed in Changes in Windows 10, version 1607 for update management. You can continue to use DeferUpgradePeriod for WindowsÂ 10, version 1511 devices. Allows IT Admins to specify additional upgrade delays for up to 8 months. Supported values are 0-8, which refers to the number of months to defer upgrades. If the Specify intranet Microsoft update service location policy is enabled, then the Defer upgrades by, Defer updates by and Pause Updates and Upgrades settings have no effect. If the Allow Telemetry policy is enabled and the Options value is set to 0, then the Defer upgrades by, Defer updates by and Pause Updates and Upgrades settings have no effect.
@@ -407,7 +407,7 @@ var DeferUpgradePeriod = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DeferUpgradePeriod"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DeferUpgradePeriod"},
 }
 
 // DetectionFrequency: Specifies the scan frequency from every 1 - 22 hours. Default is 22 hours.
@@ -421,7 +421,7 @@ var DetectionFrequency = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DetectionFrequency"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DetectionFrequency"},
 }
 
 // DisableDualScan: Do not allow update deferral policies to cause scans against Windows Update
@@ -435,7 +435,7 @@ var DisableDualScan = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "allow scan against Windows Update"}, {Value: "1", Description: "do not allow update deferral policies to cause scans against Windows Update"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisableDualScan"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DisableDualScan"},
 }
 
 // DisableWUfBSafeguards: This policy setting specifies that a Windows Update for Business device should skip safeguards.
@@ -449,7 +449,7 @@ var DisableWUfBSafeguards = csp.Policy{
 	CSPVersion: "8.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Safeguards are enabled and devices may be blocked for upgrades until the safeguard is cleared."}, {Value: "1", Description: "Safeguards are not enabled and upgrades will be deployed without blocking on safeguards."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisableWUfBSafeguards"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DisableWUfBSafeguards"},
 }
 
 var DoNotEnforceEnterpriseTLSCertPinningForUpdateDetection = csp.Policy{
@@ -462,7 +462,7 @@ var DoNotEnforceEnterpriseTLSCertPinningForUpdateDetection = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Disabled."}, {Value: "1", Description: "Enabled."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DoNotEnforceEnterpriseTLSCertPinningForUpdateDetection"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DoNotEnforceEnterpriseTLSCertPinningForUpdateDetection"},
 }
 
 // EngagedRestartDeadline: For Quality Updates, this policy specifies the deadline in days before automatically scheduling and executing a pending restart outside of active hours. The deadline can be set between 2 and 30 days from the time the restart becomes pending. If configured, the pending restart will transition from Auto-restart to Engaged restart (pending user schedule) to automatically executed, within the specified period. The system will reboot on or after the specified deadline. The reboot is prioritized over any configured Active Hours and any existing system and user busy checks. Note. If Update/EngagedDeadline is the only policy set (Update/EngagedRestartTransitionSchedule and Update/EngagedRestartSnoozeSchedule are not set), the behavior goes from reboot required -> engaged behavior -> forced reboot after deadline is reached with a 3-day snooze period. Value type is integer. Default is 14. Supported value range: 2 - 30. If no deadline is specified or deadline is set to 0, the restart will not be automatically executed and will remain Engaged restart (e. g. pending user scheduling). If you disable or do not configure this policy, the default behaviors will be used. If any of the following policies are configured, this policy has no effect:No auto-restart with logged on users for scheduled automatic updates installationsAlways automatically restart at scheduled timeSpecify deadline before auto-restart for update installation
@@ -476,7 +476,7 @@ var EngagedRestartDeadline = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "EngagedRestartDeadline"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "EngagedRestartDeadline"},
 }
 
 // EngagedRestartDeadlineForFeatureUpdates: For Feature Updates, this policy specifies the deadline in days before automatically scheduling and executing a pending restart outside of active hours. The deadline can be set between 2 and 30 days from the time the restart becomes pending. If configured, the pending restart will transition from Auto-restart to Engaged restart (pending user schedule) to automatically executed, within the specified period. Value type is integer. Default is 14. Supported value range: 2 - 30. If no deadline is specified or deadline is set to 0, the restart will not be automatically executed and will remain Engaged restart (e. g. pending user scheduling). If you disable or do not configure this policy, the default behaviors will be used. If any of the following policies are configured, this policy has no effect:No auto-restart with logged on users for scheduled automatic updates installationsAlways automatically restart at scheduled timeSpecify deadline before auto-restart for update installation
@@ -490,7 +490,7 @@ var EngagedRestartDeadlineForFeatureUpdates = csp.Policy{
 	CSPVersion: "8.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "EngagedRestartDeadlineForFeatureUpdates"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "EngagedRestartDeadlineForFeatureUpdates"},
 }
 
 // EngagedRestartSnoozeSchedule: For Quality Updates, this policy specifies the number of days a user can snooze Engaged restart reminder notifications. The snooze period can be set between 1 and 3 days. Value type is integer. Default is 3 days. Supported value range: 1 - 3. If you disable or do not configure this policy, the default behaviors will be used. If any of the following policies are configured, this policy has no effect:No auto-restart with logged on users for scheduled automatic updates installationsAlways automatically restart at scheduled timeSpecify deadline before auto-restart for update installation
@@ -504,7 +504,7 @@ var EngagedRestartSnoozeSchedule = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "EngagedRestartSnoozeSchedule"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "EngagedRestartSnoozeSchedule"},
 }
 
 // EngagedRestartSnoozeScheduleForFeatureUpdates: For Feature Updates, this policy specifies the number of days a user can snooze Engaged restart reminder notifications. The snooze period can be set between 1 and 3 days. Value type is integer. Default is 3 days. Supported value range: 1 - 3. If you disable or do not configure this policy, the default behaviors will be used. If any of the following policies are configured, this policy has no effect:No auto-restart with logged on users for scheduled automatic updates installationsAlways automatically restart at scheduled timeSpecify deadline before auto-restart for update installation
@@ -518,7 +518,7 @@ var EngagedRestartSnoozeScheduleForFeatureUpdates = csp.Policy{
 	CSPVersion: "8.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "EngagedRestartSnoozeScheduleForFeatureUpdates"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "EngagedRestartSnoozeScheduleForFeatureUpdates"},
 }
 
 // EngagedRestartTransitionSchedule: For Quality Updates, this policy specifies the timing before transitioning from Auto restarts scheduled outside of active hours to Engaged restart, which requires the user to schedule. The period can be set between 2 and 30 days from the time the restart becomes pending. Value type is integer. Default value is 7 days. Supported value range: 2 - 30. If you disable or do not configure this policy, the default behaviors will be used. If any of the following policies are configured, this policy has no effect:No auto-restart with logged on users for scheduled automatic updates installationsAlways automatically restart at scheduled timeSpecify deadline before auto-restart for update installation
@@ -532,7 +532,7 @@ var EngagedRestartTransitionSchedule = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "EngagedRestartTransitionSchedule"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "EngagedRestartTransitionSchedule"},
 }
 
 // EngagedRestartTransitionScheduleForFeatureUpdates: For Feature Updates, this policy specifies the timing before transitioning from Auto restarts scheduled_outside of active hours to Engaged restart, which requires the user to schedule. The period can be set between 2 and 30 days from the time the restart becomes pending. Value type is integer. Default value is 7 days. Supported value range: 2 - 30. If you disable or do not configure this policy, the default behaviors will be used. If any of the following policies are configured, this policy has no effect:No auto-restart with logged on users for scheduled automatic updates installationsAlways automatically restart at scheduled timeSpecify deadline before auto-restart for update installation
@@ -546,7 +546,7 @@ var EngagedRestartTransitionScheduleForFeatureUpdates = csp.Policy{
 	CSPVersion: "8.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "EngagedRestartTransitionScheduleForFeatureUpdates"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "EngagedRestartTransitionScheduleForFeatureUpdates"},
 }
 
 // ExcludeWUDriversInQualityUpdate: NoteSince this policy is not blocked, you will not get a failure message when you use it to configure a WindowsÂ 10 Mobile device. However, the policy will not take effect.  Allows IT Admins to exclude Windows Update (WU) drivers during updates.
@@ -560,7 +560,7 @@ var ExcludeWUDriversInQualityUpdate = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Allow Windows Update drivers."}, {Value: "1", Description: "Exclude Windows Update drivers."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ExcludeWUDriversInQualityUpdate"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ExcludeWUDriversInQualityUpdate"},
 }
 
 // FillEmptyContentUrls: Allows Windows Update Agent to determine the download URL when it is missing from the metadata. This scenario will occur when intranet update service stores the metadata files but the download contents are stored in the ISV file cache (specified as the alternate download URL). NoteThis setting should only be used in combination with an alternate download URL and configured to use ISV file cache. This setting is used when the intranet update service does not provide download URLs in the update metadata for files which are available on the alternate download server.
@@ -574,7 +574,7 @@ var FillEmptyContentUrls = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Disabled."}, {Value: "1", Description: "Enabled."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "FillEmptyContentUrls"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "FillEmptyContentUrls"},
 }
 
 // IgnoreMOAppDownloadLimit: Specifies whether to ignore the MO download limit (allow unlimited downloading) over a cellular network for apps and their updates. If lower-level limits (for example, mobile caps) are required, those limits are controlled by external policies. WarningSetting this policy might cause devices to incur costs from MO operators.
@@ -588,7 +588,7 @@ var IgnoreMOAppDownloadLimit = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Do not ignore MO download limit for apps and their updates."}, {Value: "1", Description: "Ignore MO download limit (allow unlimited downloading) for apps and their updates."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "IgnoreMOAppDownloadLimit"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "IgnoreMOAppDownloadLimit"},
 }
 
 // IgnoreMOUpdateDownloadLimit: Specifies whether to ignore the MO download limit (allow unlimited downloading) over a cellular network for OS updates. If lower-level limits (for example, mobile caps) are required, those limits are controlled by external policies. WarningSetting this policy might cause devices to incur costs from MO operators.
@@ -602,7 +602,7 @@ var IgnoreMOUpdateDownloadLimit = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Do not ignore MO download limit for OS updates."}, {Value: "1", Description: "Ignore MO download limit (allow unlimited downloading) for OS updates."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "IgnoreMOUpdateDownloadLimit"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "IgnoreMOUpdateDownloadLimit"},
 }
 
 // MaintenanceWindowDurationHours: Configure the duration of the maintenance window in hours. Minimum value is 2, maximum value is 24.
@@ -616,7 +616,7 @@ var MaintenanceWindowDurationHours = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "MaintenanceWindowDurationHours"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "MaintenanceWindowDurationHours"},
 }
 
 // MaintenanceWindowEnabled: Specifies whether maintenance window is enabled. This policy and its associated policies are currently in public preview.
@@ -630,7 +630,7 @@ var MaintenanceWindowEnabled = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "MaintenanceWindowEnabled"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "MaintenanceWindowEnabled"},
 }
 
 // MaintenanceWindowMonthlyMonthBasedDayOfMonth: If the maintenance window repeat schedule is set to monthly, and set to repeat on the same date each month, configure the day of the month to repeat maintenance window occurrence (for example, 2 = repeat on the 2nd day of the month). Maximum value is 28.
@@ -644,7 +644,7 @@ var MaintenanceWindowMonthlyMonthBasedDayOfMonth = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "MaintenanceWindowMonthlyMonthBasedDayOfMonth"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "MaintenanceWindowMonthlyMonthBasedDayOfMonth"},
 }
 
 // MaintenanceWindowMonthlySchedule: If the maintenance window repeat schedule is set to monthly, configure whether to repeat on the same date each month (the 1st of every month), a day within a specific week (for example, the second Tuesday of every month), or on the last day of each month. 1=repeat on same date each month, 2=repeat on a day of a specific week, 3=repeat on the last day of each month.
@@ -658,7 +658,7 @@ var MaintenanceWindowMonthlySchedule = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "1", Description: "Date-based"}, {Value: "2", Description: "Week-based"}, {Value: "3", Description: "Last day of the month"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "MaintenanceWindowMonthlySchedule"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "MaintenanceWindowMonthlySchedule"},
 }
 
 // MaintenanceWindowMonthlyWeekBasedDayOfTheWeek: If the maintenance window repeat schedule is set to monthly, and set to repeat on the a specific day of a specific week, configure the specific day of the week to repeat maintenance window occurrence: 1=Sunday, 2=Monday, 3=Tuesday, 4=Wednesday, 5=Thursday, 6=Friday, 7=Saturday
@@ -672,7 +672,7 @@ var MaintenanceWindowMonthlyWeekBasedDayOfTheWeek = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "1", Description: "Sunday"}, {Value: "2", Description: "Monday"}, {Value: "3", Description: "Tuesday"}, {Value: "4", Description: "Wednesday"}, {Value: "5", Description: "Thursday"}, {Value: "6", Description: "Friday"}, {Value: "7", Description: "Saturday"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "MaintenanceWindowMonthlyWeekBasedDayOfTheWeek"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "MaintenanceWindowMonthlyWeekBasedDayOfTheWeek"},
 }
 
 // MaintenanceWindowMonthlyWeekBasedOccurrenceInMonth: If the maintenance window repeat schedule is set to monthly, and set to repeat on the a specific day of a specific week, configure the specific week to repeat maintenance window occurrence. 1=first week, 2=second week, 3=third week, 4=fourth week, 5=last week.
@@ -686,7 +686,7 @@ var MaintenanceWindowMonthlyWeekBasedOccurrenceInMonth = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "1", Description: "First"}, {Value: "2", Description: "Second"}, {Value: "3", Description: "Third"}, {Value: "4", Description: "Fourth"}, {Value: "5", Description: "Last"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "MaintenanceWindowMonthlyWeekBasedOccurrenceInMonth"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "MaintenanceWindowMonthlyWeekBasedOccurrenceInMonth"},
 }
 
 // MaintenanceWindowRepeatScheduleOption: Configure whether and how often the maintenance window repeats, 1=no repeat, 2=daily, 3=weekly, 4=monthly. During preview, daily/weekly/monthly schedule will be repeated every day/week/month.
@@ -700,7 +700,7 @@ var MaintenanceWindowRepeatScheduleOption = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "1", Description: "No repeat"}, {Value: "2", Description: "Daily"}, {Value: "3", Description: "Weekly"}, {Value: "4", Description: "Monthly"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "MaintenanceWindowRepeatScheduleOption"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "MaintenanceWindowRepeatScheduleOption"},
 }
 
 // MaintenanceWindowStartDate: Configure the start date for the maintenance window in the format of YYYY-MM-DD (for example, 2025-12-16). During public preview, this field will only be honored for a non-repeating maintenance window. Repeating maintenance windows will start on the earliest date that meets the configured schedule.
@@ -712,7 +712,7 @@ var MaintenanceWindowStartDate = csp.Policy{
 	MinOSBuild: "99.9.99999",
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "MaintenanceWindowStartDate"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "MaintenanceWindowStartDate"},
 }
 
 // MaintenanceWindowStartTime: Configure the start time for the maintenance window in HH:MM format (for example, 23:30).
@@ -724,7 +724,7 @@ var MaintenanceWindowStartTime = csp.Policy{
 	MinOSBuild: "99.9.99999",
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "MaintenanceWindowStartTime"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "MaintenanceWindowStartTime"},
 }
 
 // MaintenanceWindowUpdateActions: Specifies which update operations are allowed only during the maintenance window, 1 = Download, install and restart, 2 = Install and restart, 3 = Restart only.
@@ -738,7 +738,7 @@ var MaintenanceWindowUpdateActions = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "1", Description: "Download, install and restart"}, {Value: "2", Description: "Install and restart"}, {Value: "3", Description: "Restart only"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "MaintenanceWindowUpdateActions"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "MaintenanceWindowUpdateActions"},
 }
 
 // MaintenanceWindowWeeklyFriday: If the maintenance window repeat schedule is set to weekly, configure whether Friday is included in the weekly schedule.
@@ -752,7 +752,7 @@ var MaintenanceWindowWeeklyFriday = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "MaintenanceWindowWeeklyFriday"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "MaintenanceWindowWeeklyFriday"},
 }
 
 // MaintenanceWindowWeeklyMonday: SIf the maintenance window repeat schedule is set to weekly, configure whether Monday is included in the weekly schedule.
@@ -766,7 +766,7 @@ var MaintenanceWindowWeeklyMonday = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "MaintenanceWindowWeeklyMonday"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "MaintenanceWindowWeeklyMonday"},
 }
 
 // MaintenanceWindowWeeklySaturday: If the maintenance window repeat schedule is set to weekly, configure whether Saturday is included in the weekly schedule.
@@ -780,7 +780,7 @@ var MaintenanceWindowWeeklySaturday = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "MaintenanceWindowWeeklySaturday"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "MaintenanceWindowWeeklySaturday"},
 }
 
 // MaintenanceWindowWeeklySunday: If the maintenance window repeat schedule is set to weekly, configure whether Sunday is included in the weekly schedule.
@@ -794,7 +794,7 @@ var MaintenanceWindowWeeklySunday = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "MaintenanceWindowWeeklySunday"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "MaintenanceWindowWeeklySunday"},
 }
 
 // MaintenanceWindowWeeklyThursday: If the maintenance window repeat schedule is set to weekly, configure whether Thursday is included in the weekly schedule.
@@ -808,7 +808,7 @@ var MaintenanceWindowWeeklyThursday = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "MaintenanceWindowWeeklyThursday"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "MaintenanceWindowWeeklyThursday"},
 }
 
 // MaintenanceWindowWeeklyTuesday: If the maintenance window repeat schedule is set to weekly, configure whether Tuesday is included in the weekly schedule.
@@ -822,7 +822,7 @@ var MaintenanceWindowWeeklyTuesday = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "MaintenanceWindowWeeklyTuesday"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "MaintenanceWindowWeeklyTuesday"},
 }
 
 // MaintenanceWindowWeeklyWednesday: If the maintenance window repeat schedule is set to weekly, configure whether Wednesday is included in the weekly schedule.
@@ -836,7 +836,7 @@ var MaintenanceWindowWeeklyWednesday = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "MaintenanceWindowWeeklyWednesday"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "MaintenanceWindowWeeklyWednesday"},
 }
 
 // ManagePreviewBuilds: Used to manage Windows 10 Insider Preview builds. Value type is integer.
@@ -850,7 +850,7 @@ var ManagePreviewBuilds = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Disable Preview builds"}, {Value: "1", Description: "Disable Preview builds once the next release is public"}, {Value: "2", Description: "Enable Preview builds"}, {Value: "3", Description: "Preview builds is left to user selection"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ManagePreviewBuilds"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ManagePreviewBuilds"},
 }
 
 // NoUpdateNotificationsDuringActiveHours: When enabled, notifications will only be disabled during active hours. Takes effect only if Update/UpdateNotificationLevel is configured to 1 or 2. To ensure that the device stays secure, a notification will still be shown if this option is selected once â€œSpecify deadlines for automatic updates and restartsâ€� deadline has been reached if configured, regardless of active hours.
@@ -864,7 +864,7 @@ var NoUpdateNotificationsDuringActiveHours = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Disabled."}, {Value: "1", Description: "Enabled."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "NoUpdateNotificationsDuringActiveHours"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "NoUpdateNotificationsDuringActiveHours"},
 }
 
 // PauseDeferrals: NoteDon't use this policy in WindowsÂ 10, version 1607 devices, instead use the new policies listed in Changes in Windows 10, version 1607 for update management. You can continue to use PauseDeferrals for WindowsÂ 10, version 1511 devices. Allows IT Admins to pause updates and upgrades for up to 5 weeks. Paused deferrals will be reset after 5 weeks. If the Specify intranet Microsoft update service location policy is enabled, then the Defer upgrades by, Defer updates by and Pause Updates and Upgrades settings have no effect. If the Allow Telemetry policy is enabled and the Options value is set to 0, then the Defer upgrades by, Defer updates by and Pause Updates and Upgrades settings have no effect.
@@ -878,7 +878,7 @@ var PauseDeferrals = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Deferrals are not paused."}, {Value: "1", Description: "Deferrals are paused."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "PauseDeferrals"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "PauseDeferrals"},
 }
 
 // PauseFeatureUpdates: Since this policy is not blocked, you will not get a failure message when you use it to configure a WindowsÂ 10 Mobile device. However, the policy will not take effect.  Allows IT Admins to pause Feature Updates for up to 60 days.
@@ -892,7 +892,7 @@ var PauseFeatureUpdates = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Feature Updates are not paused."}, {Value: "1", Description: "Feature Updates are paused for 60 days or until value set to back to 0, whichever is sooner."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "PauseFeatureUpdates"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "PauseFeatureUpdates"},
 }
 
 // PauseFeatureUpdatesStartTime: Specifies the date and time when the IT admin wants to start pausing the Feature Updates. Value type is string (yyyy-mm-dd, ex. 2018-10-28). Supported operations are Add, Get, Delete, and Replace.
@@ -904,7 +904,7 @@ var PauseFeatureUpdatesStartTime = csp.Policy{
 	MinOSBuild: "10.0.15063",
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "PauseFeatureUpdatesStartTime"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "PauseFeatureUpdatesStartTime"},
 }
 
 // PauseQualityUpdates: Allows IT Admins to pause Quality Updates.
@@ -918,7 +918,7 @@ var PauseQualityUpdates = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Quality Updates are not paused."}, {Value: "1", Description: "Quality Updates are paused for 35 days or until value set back to 0, whichever is sooner."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "PauseQualityUpdates"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "PauseQualityUpdates"},
 }
 
 // PauseQualityUpdatesStartTime: Specifies the date and time when the IT admin wants to start pausing the Quality Updates. Value type is string (yyyy-mm-dd, ex. 2018-10-28). Supported operations are Add, Get, Delete, and Replace.
@@ -930,7 +930,7 @@ var PauseQualityUpdatesStartTime = csp.Policy{
 	MinOSBuild: "10.0.15063",
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "PauseQualityUpdatesStartTime"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "PauseQualityUpdatesStartTime"},
 }
 
 // PhoneUpdateRestrictions: This policy is deprecated. Use Update/RequireUpdateApproval instead.
@@ -944,7 +944,7 @@ var PhoneUpdateRestrictions = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "PhoneUpdateRestrictions"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "PhoneUpdateRestrictions"},
 }
 
 // ProductVersion: Enables IT administrators to specify the product version associated with the target feature update they would like their device(s) to move to and/or stay on until they reach end of service or reconfigure the policy. For details about different Windows 10 versions, see Windows release information.
@@ -956,7 +956,7 @@ var ProductVersion = csp.Policy{
 	MinOSBuild: "10.0.22000, 10.0.19043.1202, 10.0.19042.1202, 10.0.19041.1202",
 	CSPVersion: "10.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ProductVersion"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ProductVersion"},
 }
 
 // RequireDeferUpgrade: NoteDon't use this policy in WindowsÂ 10, version 1607 devices, instead use the new policies listed in Changes in Windows 10, version 1607 for update management. You can continue to use RequireDeferUpgrade for WindowsÂ 10, version 1511 devices. Allows the IT admin to set a device to Semi-Annual Channel train.
@@ -970,7 +970,7 @@ var RequireDeferUpgrade = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "User gets upgrades from Semi-Annual Channel (Targeted)."}, {Value: "1", Description: "User gets upgrades from Semi-Annual Channel."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "RequireDeferUpgrade"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "RequireDeferUpgrade"},
 }
 
 // RequireUpdateApproval: NoteÂ If you previously used the Update/PhoneUpdateRestrictions policy in previous versions of Windows, it has been deprecated. Please use this policy instead. Allows the IT admin to restrict the updates that are installed on a device to only those on an update approval list. It enables IT to accept the End User License Agreement (EULA) associated with the approved update on behalf of the end-user. EULAs are approved once an update is approved. Supported operations are Get and Replace.
@@ -984,7 +984,7 @@ var RequireUpdateApproval = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not configured. The device installs all applicable updates."}, {Value: "1", Description: "The device only installs updates that are both applicable and on the Approved Updates list. Set this policy to 1 if IT wants to control the deployment of updates on devices, such as when testing is required prior to deployment."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "RequireUpdateApproval"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "RequireUpdateApproval"},
 }
 
 // ScheduleImminentRestartWarning: Allows the IT Admin to specify the period for auto-restart imminent warning notifications. The default value is 15 (minutes).
@@ -998,7 +998,7 @@ var ScheduleImminentRestartWarning = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "15", Description: "15 Minutes"}, {Value: "30", Description: "30 Minutes"}, {Value: "60", Description: "60 Minutes"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ScheduleImminentRestartWarning"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ScheduleImminentRestartWarning"},
 }
 
 // ScheduleRestartWarning: NoteÂ This policy is available on WindowsÂ 10 Pro, WindowsÂ 10 Enterprise, WindowsÂ 10 Education, and WindowsÂ 10 Mobile Enterprise Allows the IT Admin to specify the period for auto-restart warning reminder notifications. The default value is 4 (hours).
@@ -1012,7 +1012,7 @@ var ScheduleRestartWarning = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "2", Description: "2 Hours"}, {Value: "4", Description: "4 Hours"}, {Value: "8", Description: "8 Hours"}, {Value: "12", Description: "12 Hours"}, {Value: "24", Description: "24 Hours"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ScheduleRestartWarning"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ScheduleRestartWarning"},
 }
 
 // ScheduledInstallDay: Enables the IT admin to schedule the day of the update installation. The data type is a integer. Supported operations are Add, Delete, Get, and Replace.
@@ -1026,7 +1026,7 @@ var ScheduledInstallDay = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Every day"}, {Value: "1", Description: "Sunday"}, {Value: "2", Description: "Monday"}, {Value: "3", Description: "Tuesday"}, {Value: "4", Description: "Wednesday"}, {Value: "5", Description: "Thursday"}, {Value: "6", Description: "Friday"}, {Value: "7", Description: "Saturday"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ScheduledInstallDay"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ScheduledInstallDay"},
 }
 
 // ScheduledInstallEveryWeek: Enables the IT admin to schedule the update installation on the every week. Value type is integer. Supported values:0 - no update in the schedule1 - update is scheduled every week
@@ -1040,7 +1040,7 @@ var ScheduledInstallEveryWeek = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "no update in the schedule"}, {Value: "1", Description: "update is scheduled every week"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ScheduledInstallEveryWeek"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ScheduledInstallEveryWeek"},
 }
 
 // ScheduledInstallFirstWeek: Enables the IT admin to schedule the update installation on the first week of the month. Value type is integer. Supported values:0 - no update in the schedule1 - update is scheduled every first week of the month
@@ -1054,7 +1054,7 @@ var ScheduledInstallFirstWeek = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "no update in the schedule"}, {Value: "1", Description: "update is scheduled every first week of the month"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ScheduledInstallFirstWeek"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ScheduledInstallFirstWeek"},
 }
 
 // ScheduledInstallFourthWeek: Enables the IT admin to schedule the update installation on the fourth week of the month. Value type is integer. Supported values:0 - no update in the schedule1 - update is scheduled every fourth week of the month
@@ -1068,7 +1068,7 @@ var ScheduledInstallFourthWeek = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "no update in the schedule"}, {Value: "1", Description: "update is scheduled every fourth week of the month"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ScheduledInstallFourthWeek"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ScheduledInstallFourthWeek"},
 }
 
 // ScheduledInstallSecondWeek: Enables the IT admin to schedule the update installation on the second week of the month. Value type is integer. Supported values:0 - no update in the schedule1 - update is scheduled every second week of the month
@@ -1082,7 +1082,7 @@ var ScheduledInstallSecondWeek = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "no update in the schedule"}, {Value: "1", Description: "update is scheduled every second week of the month"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ScheduledInstallSecondWeek"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ScheduledInstallSecondWeek"},
 }
 
 // ScheduledInstallThirdWeek: Enables the IT admin to schedule the update installation on the third week of the month. Value type is integer. Supported values:0 - no update in the schedule1 - update is scheduled every third week of the month
@@ -1096,7 +1096,7 @@ var ScheduledInstallThirdWeek = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "no update in the schedule"}, {Value: "1", Description: "update is scheduled every third week of the month"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ScheduledInstallThirdWeek"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ScheduledInstallThirdWeek"},
 }
 
 // ScheduledInstallTime: NoteÂ This policy is available on WindowsÂ 10 Pro, WindowsÂ 10 Enterprise, WindowsÂ 10 Education, and WindowsÂ 10 Mobile EnterpriseEnables the IT admin to schedule the time of the update installation. The data type is a integer. Supported operations are Add, Delete, Get, and Replace. Supported values are 0-23, where 0 = 12 AM and 23 = 11 PM. The default value is 3.
@@ -1110,7 +1110,7 @@ var ScheduledInstallTime = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "Range"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ScheduledInstallTime"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ScheduledInstallTime"},
 }
 
 // SetAutoRestartNotificationDisable: Allows the IT Admin to disable auto-restart notifications for update installations.
@@ -1124,7 +1124,7 @@ var SetAutoRestartNotificationDisable = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Enabled"}, {Value: "1", Description: "Disabled"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "SetAutoRestartNotificationDisable"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "SetAutoRestartNotificationDisable"},
 }
 
 // SetDisablePauseUXAccess: This policy allows the IT admin to disable the Pause Updates feature. When this policy is enabled, the user cannot access the Pause updates feature. Value type is integer. Default is 0. Supported values 0, 1.
@@ -1138,7 +1138,7 @@ var SetDisablePauseUXAccess = csp.Policy{
 	CSPVersion: "8.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "1", Description: "Enable"}, {Value: "0", Description: "Disable"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "SetDisablePauseUXAccess"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "SetDisablePauseUXAccess"},
 }
 
 // SetDisableUXWUAccess: This policy allows the IT admin to remove access to scan Windows Update. When this policy is enabled, the user cannot access the Windows Update scan, download, and install features. Value type is integer. Default is 0. Supported values 0, 1.
@@ -1152,7 +1152,7 @@ var SetDisableUXWUAccess = csp.Policy{
 	CSPVersion: "8.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Disabled"}, {Value: "1", Description: "Enabled"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "SetDisableUXWUAccess"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "SetDisableUXWUAccess"},
 }
 
 // SetEDURestart: For devices in a cart, this policy skips all restart checks to ensure that the reboot will happen at ScheduledInstallTime. When you set this policy along with Update/ActiveHoursStart, Update/ActiveHoursEnd, and ShareCartPC, it will defer all the update processes (scan, download, install, and reboot) to a time after Active Hours. After a buffer period after ActiveHoursEnd, the device will wake up several times to complete the processes. All processes are blocked before ActiveHoursStart.
@@ -1166,7 +1166,7 @@ var SetEDURestart = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "not configured"}, {Value: "1", Description: "configured"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "SetEDURestart"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "SetEDURestart"},
 }
 
 var SetPolicyDrivenUpdateSourceForDriverUpdates = csp.Policy{
@@ -1179,7 +1179,7 @@ var SetPolicyDrivenUpdateSourceForDriverUpdates = csp.Policy{
 	CSPVersion: "10.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Detect, download and deploy Driver Updates from Windows Update"}, {Value: "1", Description: "Detect, download and deploy Driver Updates from Windows Server Update Services (WSUS)"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "SetPolicyDrivenUpdateSourceForDriverUpdates"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "SetPolicyDrivenUpdateSourceForDriverUpdates"},
 }
 
 var SetPolicyDrivenUpdateSourceForFeatureUpdates = csp.Policy{
@@ -1192,7 +1192,7 @@ var SetPolicyDrivenUpdateSourceForFeatureUpdates = csp.Policy{
 	CSPVersion: "10.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Detect, download and deploy Feature Updates from Windows Update"}, {Value: "1", Description: "Detect, download and deploy Feature Updates from Windows Server Update Services (WSUS)"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "SetPolicyDrivenUpdateSourceForFeatureUpdates"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "SetPolicyDrivenUpdateSourceForFeatureUpdates"},
 }
 
 var SetPolicyDrivenUpdateSourceForOtherUpdates = csp.Policy{
@@ -1205,7 +1205,7 @@ var SetPolicyDrivenUpdateSourceForOtherUpdates = csp.Policy{
 	CSPVersion: "10.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Detect, download and deploy other Updates from Windows Update"}, {Value: "1", Description: "Detect, download and deploy other Updates from Windows Server Update Services (WSUS)"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "SetPolicyDrivenUpdateSourceForOtherUpdates"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "SetPolicyDrivenUpdateSourceForOtherUpdates"},
 }
 
 var SetPolicyDrivenUpdateSourceForQualityUpdates = csp.Policy{
@@ -1218,7 +1218,7 @@ var SetPolicyDrivenUpdateSourceForQualityUpdates = csp.Policy{
 	CSPVersion: "10.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Detect, download and deploy Quality Updates from Windows Update"}, {Value: "1", Description: "Detect, download and deploy Quality Updates from Windows Server Update Services (WSUS)"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "SetPolicyDrivenUpdateSourceForQualityUpdates"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "SetPolicyDrivenUpdateSourceForQualityUpdates"},
 }
 
 var SetProxyBehaviorForUpdateDetection = csp.Policy{
@@ -1231,7 +1231,7 @@ var SetProxyBehaviorForUpdateDetection = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Only use system proxy for detecting updates (default)"}, {Value: "1", Description: "Allow user proxy to be used as a fallback if detection using system proxy fails"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "SetProxyBehaviorForUpdateDetection"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "SetProxyBehaviorForUpdateDetection"},
 }
 
 // TargetReleaseVersion: Available in Windows 10, version 1803 and later. Enables IT administrators to specify which version they would like their device(s) to move to and/or stay on until they reach end of service or reconfigure the policy. For details about different Windows 10 versions, see Windows 10 release information.
@@ -1243,7 +1243,7 @@ var TargetReleaseVersion = csp.Policy{
 	MinOSBuild: "10.0.19041, 10.0.18363.836, 10.0.18362.836, 10.0.17763.1217, 10.0.17134.1488",
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "TargetReleaseVersion"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "TargetReleaseVersion"},
 }
 
 // UpdateNotificationLevel: Display options for update notifications. This policy allows you to define what Windows Update notifications users see. This policy doesn't control how and when updates are downloaded and installed. Options:0 (default) â€“ Use the default Windows Update notifications1 â€“ Turn off all notifications, excluding restart warnings2 â€“ Turn off all notifications, including restart warnings. Important. If you choose not to get update notifications and also define other Group policies so that devices aren't automatically getting updates, neither you nor device users will be aware of critical security, quality, or feature updates, and your devices may be at risk.
@@ -1257,7 +1257,7 @@ var UpdateNotificationLevel = csp.Policy{
 	CSPVersion: "8.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Use the default Windows Update notifications"}, {Value: "1", Description: "Turn off all notifications, excluding restart warnings"}, {Value: "2", Description: "Turn off all notifications, including restart warnings"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "UpdateNotificationLevel"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "UpdateNotificationLevel"},
 }
 
 // UpdateServiceUrl: ImportantStarting in Windows 10, version 1703 this policy is not supported in Windows 10 Mobile Enterprise and IoT Mobile. Allows the device to check for updates from a WSUS server instead of Microsoft Update. This is useful for on-premises MDMs that need to update devices that cannot connect to the Internet. Supported operations are Get and Replace.
@@ -1270,7 +1270,7 @@ var UpdateServiceUrl = csp.Policy{
 	MinOSBuild: "10.0.10240",
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "UpdateServiceUrl"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "UpdateServiceUrl"},
 }
 
 // UpdateServiceUrlAlternate: Specifies an alternate intranet server to host updates from Microsoft Update. You can then use this update service to automatically update computers on your network. This setting lets you specify a server on your network to function as an internal update service. The Automatic Updates client will search this service for updates that apply to the computers on your network. To use this setting, you must set two server name values: the server from which the Automatic Updates client detects and downloads updates, and the server to which updated workstations upload statistics. You can set both values to be the same server. An optional server name value can be specified to configure Windows Update agent, and download updates from an alternate download server instead of WSUS Server. Value type is string and the default value is an empty string, . If the setting is not configured, and if Automatic Updates is not disabled by policy or user preference, the Automatic Updates client connects directly to the Windows Update site on the Internet. NoteIf the Configure Automatic Updates Group Policy is disabled, then this policy has no effect. If the Alternate Download Server Group Policy is not set, it will use the WSUS server by default to download updates. This policy is not supported on Windows RT. Setting this policy will not have any effect on Windows RT PCs.
@@ -1282,7 +1282,7 @@ var UpdateServiceUrlAlternate = csp.Policy{
 	MinOSBuild: "10.0.14393",
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "UpdateServiceUrlAlternate"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Update02", ResultClass: "MDM_Policy_Result01_Update02", InstanceID: "Update", ParentID: "./Vendor/MSFT/Policy/Config", Property: "UpdateServiceUrlAlternate"},
 }
 
 // All lists every policy in this CSP area.

@@ -15,7 +15,7 @@ var AllowEndTask = csp.Policy{
 	CSPVersion: "8.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Disabled. EndTask functionality is blocked in TaskManager."}, {Value: "1", Description: "Enabled. Users can perform EndTask in TaskManager."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_TaskManager02", ResultClass: "MDM_Policy_Result01_TaskManager02", InstanceID: "TaskManager", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowEndTask"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_TaskManager02", ResultClass: "MDM_Policy_Result01_TaskManager02", InstanceID: "TaskManager", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowEndTask"},
 }
 
 // All lists every policy in this CSP area.

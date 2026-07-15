@@ -15,7 +15,7 @@ var ForceAllowDimWhenExternalDisplayConnected = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "2", Description: "ForcedUnchecked."}, {Value: "1", Description: "ForcedChecked."}, {Value: "0", Description: "DefaultToUserChoice."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_HumanPresence02", ResultClass: "MDM_Policy_Result01_HumanPresence02", InstanceID: "HumanPresence", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ForceAllowDimWhenExternalDisplayConnected"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_HumanPresence02", ResultClass: "MDM_Policy_Result01_HumanPresence02", InstanceID: "HumanPresence", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ForceAllowDimWhenExternalDisplayConnected"},
 }
 
 // ForceAllowLockWhenExternalDisplayConnected: Determines whether Allow Lock on Leave When External Display Connected checkbox is forced checked/unchecked by the MDM policy. The user will not be able to change this setting and the checkbox in the UI will be greyed out.
@@ -29,7 +29,7 @@ var ForceAllowLockWhenExternalDisplayConnected = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "2", Description: "ForcedUnchecked."}, {Value: "1", Description: "ForcedChecked."}, {Value: "0", Description: "DefaultToUserChoice."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_HumanPresence02", ResultClass: "MDM_Policy_Result01_HumanPresence02", InstanceID: "HumanPresence", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ForceAllowLockWhenExternalDisplayConnected"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_HumanPresence02", ResultClass: "MDM_Policy_Result01_HumanPresence02", InstanceID: "HumanPresence", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ForceAllowLockWhenExternalDisplayConnected"},
 }
 
 // ForceAllowWakeWhenExternalDisplayConnected: Determines whether Allow Wake on Approach When External Display Connected checkbox is forced checked/unchecked by the MDM policy. The user will not be able to change this setting and the checkbox in the UI will be greyed out.
@@ -43,7 +43,7 @@ var ForceAllowWakeWhenExternalDisplayConnected = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "2", Description: "ForcedUnchecked."}, {Value: "1", Description: "ForcedChecked."}, {Value: "0", Description: "DefaultToUserChoice."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_HumanPresence02", ResultClass: "MDM_Policy_Result01_HumanPresence02", InstanceID: "HumanPresence", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ForceAllowWakeWhenExternalDisplayConnected"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_HumanPresence02", ResultClass: "MDM_Policy_Result01_HumanPresence02", InstanceID: "HumanPresence", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ForceAllowWakeWhenExternalDisplayConnected"},
 }
 
 // ForceDisableWakeWhenBatterySaverOn: Determines whether Disable Wake on Approach When Battery Saver On checkbox is forced checked/unchecked by the MDM policy. The user will not be able to change this setting and the checkbox in the UI will be greyed out.
@@ -57,7 +57,7 @@ var ForceDisableWakeWhenBatterySaverOn = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "2", Description: "ForcedUnchecked."}, {Value: "1", Description: "ForcedChecked."}, {Value: "0", Description: "DefaultToUserChoice."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_HumanPresence02", ResultClass: "MDM_Policy_Result01_HumanPresence02", InstanceID: "HumanPresence", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ForceDisableWakeWhenBatterySaverOn"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_HumanPresence02", ResultClass: "MDM_Policy_Result01_HumanPresence02", InstanceID: "HumanPresence", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ForceDisableWakeWhenBatterySaverOn"},
 }
 
 // ForceInstantDim: Determines whether Attention Based Display Dimming is forced on/off by the MDM policy. The user will not be able to change this setting and the toggle in the UI will be greyed out.
@@ -71,7 +71,7 @@ var ForceInstantDim = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "2", Description: "ForcedOff."}, {Value: "1", Description: "ForcedOn."}, {Value: "0", Description: "DefaultToUserChoice."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_HumanPresence02", ResultClass: "MDM_Policy_Result01_HumanPresence02", InstanceID: "HumanPresence", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ForceInstantDim"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_HumanPresence02", ResultClass: "MDM_Policy_Result01_HumanPresence02", InstanceID: "HumanPresence", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ForceInstantDim"},
 }
 
 // ForceInstantLock: Determines whether Lock on Leave is forced on/off by the MDM policy. The user will not be able to change this setting and the toggle in the UI will be greyed out.
@@ -85,7 +85,7 @@ var ForceInstantLock = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "2", Description: "ForcedOff."}, {Value: "1", Description: "ForcedOn."}, {Value: "0", Description: "DefaultToUserChoice."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_HumanPresence02", ResultClass: "MDM_Policy_Result01_HumanPresence02", InstanceID: "HumanPresence", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ForceInstantLock"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_HumanPresence02", ResultClass: "MDM_Policy_Result01_HumanPresence02", InstanceID: "HumanPresence", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ForceInstantLock"},
 }
 
 // ForceInstantWake: Determines whether Wake on Arrival is forced on/off by the MDM policy. The user will not be able to change this setting and the toggle in the UI will be greyed out.
@@ -99,7 +99,7 @@ var ForceInstantWake = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "2", Description: "ForcedOff."}, {Value: "1", Description: "ForcedOn."}, {Value: "0", Description: "DefaultToUserChoice."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_HumanPresence02", ResultClass: "MDM_Policy_Result01_HumanPresence02", InstanceID: "HumanPresence", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ForceInstantWake"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_HumanPresence02", ResultClass: "MDM_Policy_Result01_HumanPresence02", InstanceID: "HumanPresence", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ForceInstantWake"},
 }
 
 // ForceLockTimeout: Determines the timeout for Lock on Leave forced by the MDM policy. The user will be unable to change this setting and the toggle in the UI will be greyed out.
@@ -113,7 +113,7 @@ var ForceLockTimeout = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "120", Description: "TwoMinutes"}, {Value: "30", Description: "ThirtySeconds."}, {Value: "10", Description: "TenSeconds."}, {Value: "1", Description: "Immediate."}, {Value: "0", Description: "DefaultToUserChoice."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_HumanPresence02", ResultClass: "MDM_Policy_Result01_HumanPresence02", InstanceID: "HumanPresence", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ForceLockTimeout"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_HumanPresence02", ResultClass: "MDM_Policy_Result01_HumanPresence02", InstanceID: "HumanPresence", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ForceLockTimeout"},
 }
 
 // ForceOnlookerDetection: Determines whether detect when other people are looking at my screen is forced on/off by the MDM policy. The user will not be able to change this setting and the UI will be greyed out.
@@ -127,7 +127,7 @@ var ForceOnlookerDetection = csp.Policy{
 	CSPVersion: "9.9",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "2", Description: "ForcedOff."}, {Value: "1", Description: "ForcedOn."}, {Value: "0", Description: "DefaultToUserChoice."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_HumanPresence02", ResultClass: "MDM_Policy_Result01_HumanPresence02", InstanceID: "HumanPresence", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ForceOnlookerDetection"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_HumanPresence02", ResultClass: "MDM_Policy_Result01_HumanPresence02", InstanceID: "HumanPresence", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ForceOnlookerDetection"},
 }
 
 // ForceOnlookerDetectionAction: Determines whether the Onlooker Detection action is forced by the MDM policy. The user will not be able to change this setting and the toggle in the UI will be greyed out.
@@ -141,7 +141,7 @@ var ForceOnlookerDetectionAction = csp.Policy{
 	CSPVersion: "9.9",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "3", Description: "ForcedDimAndNotify."}, {Value: "2", Description: "ForcedNotify."}, {Value: "0", Description: "DefaultToUserChoice."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_HumanPresence02", ResultClass: "MDM_Policy_Result01_HumanPresence02", InstanceID: "HumanPresence", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ForceOnlookerDetectionAction"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_HumanPresence02", ResultClass: "MDM_Policy_Result01_HumanPresence02", InstanceID: "HumanPresence", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ForceOnlookerDetectionAction"},
 }
 
 // All lists every policy in this CSP area.

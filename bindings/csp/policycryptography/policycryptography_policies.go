@@ -15,7 +15,7 @@ var AllowFipsAlgorithmPolicy = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "1", Description: "Allow"}, {Value: "0", Description: "Block"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Cryptography02", ResultClass: "MDM_Policy_Result01_Cryptography02", InstanceID: "Cryptography", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowFipsAlgorithmPolicy"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Cryptography02", ResultClass: "MDM_Policy_Result01_Cryptography02", InstanceID: "Cryptography", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowFipsAlgorithmPolicy"},
 }
 
 // ConfigureEllipticCurveCryptography: TLS Elliptic Curves to enable. Format is a semicolon delimited list. Last write wins.
@@ -28,7 +28,7 @@ var ConfigureEllipticCurveCryptography = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Cryptography02", ResultClass: "MDM_Policy_Result01_Cryptography02", InstanceID: "Cryptography", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ConfigureEllipticCurveCryptography"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Cryptography02", ResultClass: "MDM_Policy_Result01_Cryptography02", InstanceID: "Cryptography", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ConfigureEllipticCurveCryptography"},
 }
 
 // ConfigureSystemCryptographyForceStrongKeyProtection: System cryptography: Force strong key protection for user keys stored on the computer. Last write wins.
@@ -42,7 +42,7 @@ var ConfigureSystemCryptographyForceStrongKeyProtection = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "Flag", Enum: []csp.EnumValue{{Value: "8", Description: "An app container has accessed a medium key that is not strongly protected. For example, a key that is for user consent only, or is password or fingerprint protected"}, {Value: "2", Description: "Force high protection"}, {Value: "1", Description: "Display the strong key user interface as needed"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Cryptography02", ResultClass: "MDM_Policy_Result01_Cryptography02", InstanceID: "Cryptography", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ConfigureSystemCryptographyForceStrongKeyProtection"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Cryptography02", ResultClass: "MDM_Policy_Result01_Cryptography02", InstanceID: "Cryptography", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ConfigureSystemCryptographyForceStrongKeyProtection"},
 }
 
 // OverrideMinimumEnabledDTLSVersionClient: Override minimal enabled TLS version for client role. Last write wins.
@@ -54,7 +54,7 @@ var OverrideMinimumEnabledDTLSVersionClient = csp.Policy{
 	MinOSBuild: "10.0.26100",
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Cryptography02", ResultClass: "MDM_Policy_Result01_Cryptography02", InstanceID: "Cryptography", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "OverrideMinimumEnabledDTLSVersionClient"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Cryptography02", ResultClass: "MDM_Policy_Result01_Cryptography02", InstanceID: "Cryptography", ParentID: "./Vendor/MSFT/Policy/Config", Property: "OverrideMinimumEnabledDTLSVersionClient"},
 }
 
 // OverrideMinimumEnabledDTLSVersionServer: Override minimal enabled TLS version for server role. Last write wins.
@@ -66,7 +66,7 @@ var OverrideMinimumEnabledDTLSVersionServer = csp.Policy{
 	MinOSBuild: "10.0.26100",
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Cryptography02", ResultClass: "MDM_Policy_Result01_Cryptography02", InstanceID: "Cryptography", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "OverrideMinimumEnabledDTLSVersionServer"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Cryptography02", ResultClass: "MDM_Policy_Result01_Cryptography02", InstanceID: "Cryptography", ParentID: "./Vendor/MSFT/Policy/Config", Property: "OverrideMinimumEnabledDTLSVersionServer"},
 }
 
 // OverrideMinimumEnabledTLSVersionClient: Override minimal enabled TLS version for client role. Last write wins.
@@ -78,7 +78,7 @@ var OverrideMinimumEnabledTLSVersionClient = csp.Policy{
 	MinOSBuild: "10.0.26100",
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Cryptography02", ResultClass: "MDM_Policy_Result01_Cryptography02", InstanceID: "Cryptography", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "OverrideMinimumEnabledTLSVersionClient"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Cryptography02", ResultClass: "MDM_Policy_Result01_Cryptography02", InstanceID: "Cryptography", ParentID: "./Vendor/MSFT/Policy/Config", Property: "OverrideMinimumEnabledTLSVersionClient"},
 }
 
 // OverrideMinimumEnabledTLSVersionServer: Override minimal enabled TLS version for server role. Last write wins.
@@ -90,7 +90,7 @@ var OverrideMinimumEnabledTLSVersionServer = csp.Policy{
 	MinOSBuild: "10.0.26100",
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Cryptography02", ResultClass: "MDM_Policy_Result01_Cryptography02", InstanceID: "Cryptography", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "OverrideMinimumEnabledTLSVersionServer"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Cryptography02", ResultClass: "MDM_Policy_Result01_Cryptography02", InstanceID: "Cryptography", ParentID: "./Vendor/MSFT/Policy/Config", Property: "OverrideMinimumEnabledTLSVersionServer"},
 }
 
 // TLSCipherSuites: Lists the Cryptographic Cipher Algorithms allowed for SSL connections. Format is a comma delimited list. Last write wins.
@@ -103,7 +103,7 @@ var TLSCipherSuites = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "None"},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Cryptography02", ResultClass: "MDM_Policy_Result01_Cryptography02", InstanceID: "Cryptography", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "TLSCipherSuites"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Cryptography02", ResultClass: "MDM_Policy_Result01_Cryptography02", InstanceID: "Cryptography", ParentID: "./Vendor/MSFT/Policy/Config", Property: "TLSCipherSuites"},
 }
 
 // All lists every policy in this CSP area.

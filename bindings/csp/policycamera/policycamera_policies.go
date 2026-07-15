@@ -15,7 +15,7 @@ var AllowCamera = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Camera02", ResultClass: "MDM_Policy_Result01_Camera02", InstanceID: "Camera", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowCamera"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Camera02", ResultClass: "MDM_Policy_Result01_Camera02", InstanceID: "Camera", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowCamera"},
 }
 
 // All lists every policy in this CSP area.

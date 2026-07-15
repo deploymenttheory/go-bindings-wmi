@@ -13,7 +13,7 @@ var AllowAutomaticRestartSignOn = csp.Policy{
 	CSPVersion: "9.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "WinLogon~AT~WindowsComponents~Logon", Name: "AutomaticRestartSignOn", File: "WinLogon.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WindowsLogon02", ResultClass: "MDM_Policy_Result01_WindowsLogon02", InstanceID: "WindowsLogon", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowAutomaticRestartSignOn"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WindowsLogon02", ResultClass: "MDM_Policy_Result01_WindowsLogon02", InstanceID: "WindowsLogon", ParentID: "./Vendor/MSFT/Policy/Config", Property: "AllowAutomaticRestartSignOn"},
 }
 
 var ConfigAutomaticRestartSignOn = csp.Policy{
@@ -25,7 +25,7 @@ var ConfigAutomaticRestartSignOn = csp.Policy{
 	CSPVersion: "9.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "WinLogon~AT~WindowsComponents~Logon", Name: "ConfigAutomaticRestartSignOn", File: "WinLogon.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WindowsLogon02", ResultClass: "MDM_Policy_Result01_WindowsLogon02", InstanceID: "WindowsLogon", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ConfigAutomaticRestartSignOn"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WindowsLogon02", ResultClass: "MDM_Policy_Result01_WindowsLogon02", InstanceID: "WindowsLogon", ParentID: "./Vendor/MSFT/Policy/Config", Property: "ConfigAutomaticRestartSignOn"},
 }
 
 var DisableLockScreenAppNotifications = csp.Policy{
@@ -37,7 +37,7 @@ var DisableLockScreenAppNotifications = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "Logon~AT~System~Logon", Name: "DisableLockScreenAppNotifications", File: "logon.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WindowsLogon02", ResultClass: "MDM_Policy_Result01_WindowsLogon02", InstanceID: "WindowsLogon", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisableLockScreenAppNotifications"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WindowsLogon02", ResultClass: "MDM_Policy_Result01_WindowsLogon02", InstanceID: "WindowsLogon", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DisableLockScreenAppNotifications"},
 }
 
 var DontDisplayNetworkSelectionUI = csp.Policy{
@@ -49,7 +49,7 @@ var DontDisplayNetworkSelectionUI = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "Logon~AT~System~Logon", Name: "DontDisplayNetworkSelectionUI", File: "logon.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WindowsLogon02", ResultClass: "MDM_Policy_Result01_WindowsLogon02", InstanceID: "WindowsLogon", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DontDisplayNetworkSelectionUI"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WindowsLogon02", ResultClass: "MDM_Policy_Result01_WindowsLogon02", InstanceID: "WindowsLogon", ParentID: "./Vendor/MSFT/Policy/Config", Property: "DontDisplayNetworkSelectionUI"},
 }
 
 // EnableFirstLogonAnimation: This policy setting allows you to control whether users see the first sign-in animation when signing in to the computer for the first time.  This applies to both the first user of the computer who completes the initial setup and users who are added to the computer later.  It also controls if Microsoft account users will be offered the opt-in prompt for services during their first sign-in.  If you enable this policy setting, Microsoft account users will see the opt-in prompt for services, and users with other accounts will see the sign-in animation.  If you disable this policy setting, users will not see the animation and Microsoft account users will not see the opt-in prompt for services.  If you do not configure this policy setting, the user who completes the initial Windows setup will see the animation during their first sign-in. If the first user had already completed the initial setup and this policy setting is not configured, users new to this computer will not see the animation.  Note: The first sign-in animation will not be shown on Server, so this policy will have no effect.
@@ -63,7 +63,7 @@ var EnableFirstLogonAnimation = csp.Policy{
 	CSPVersion: "9.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Disabled."}, {Value: "1", Description: "Enabled."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WindowsLogon02", ResultClass: "MDM_Policy_Result01_WindowsLogon02", InstanceID: "WindowsLogon", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "EnableFirstLogonAnimation"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WindowsLogon02", ResultClass: "MDM_Policy_Result01_WindowsLogon02", InstanceID: "WindowsLogon", ParentID: "./Vendor/MSFT/Policy/Config", Property: "EnableFirstLogonAnimation"},
 }
 
 var EnableMPRNotifications = csp.Policy{
@@ -75,7 +75,7 @@ var EnableMPRNotifications = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "WinLogon~AT~WindowsComponents~Logon", Name: "EnableMPRNotifications", File: "WinLogon.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WindowsLogon02", ResultClass: "MDM_Policy_Result01_WindowsLogon02", InstanceID: "WindowsLogon", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "EnableMPRNotifications"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WindowsLogon02", ResultClass: "MDM_Policy_Result01_WindowsLogon02", InstanceID: "WindowsLogon", ParentID: "./Vendor/MSFT/Policy/Config", Property: "EnableMPRNotifications"},
 }
 
 var EnumerateLocalUsersOnDomainJoinedComputers = csp.Policy{
@@ -87,7 +87,7 @@ var EnumerateLocalUsersOnDomainJoinedComputers = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "Logon~AT~System~Logon", Name: "EnumerateLocalUsers", File: "logon.admx"}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WindowsLogon02", ResultClass: "MDM_Policy_Result01_WindowsLogon02", InstanceID: "WindowsLogon", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "EnumerateLocalUsersOnDomainJoinedComputers"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WindowsLogon02", ResultClass: "MDM_Policy_Result01_WindowsLogon02", InstanceID: "WindowsLogon", ParentID: "./Vendor/MSFT/Policy/Config", Property: "EnumerateLocalUsersOnDomainJoinedComputers"},
 }
 
 // HideFastUserSwitching: This policy setting allows you to hide the Switch User interface in the Logon UI, the Start menu and the Task Manager. If you enable this policy setting, the Switch User interface is hidden from the user who is attempting to log on or is logged on to the computer that has this policy applied. The locations that Switch User interface appear are in the Logon UI, the Start menu and the Task Manager. If you disable or do not configure this policy setting, the Switch User interface is accessible to the user in the three locations.
@@ -101,7 +101,7 @@ var HideFastUserSwitching = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Disabled (visible)."}, {Value: "1", Description: "Enabled (hidden)."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WindowsLogon02", ResultClass: "MDM_Policy_Result01_WindowsLogon02", InstanceID: "WindowsLogon", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "HideFastUserSwitching"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WindowsLogon02", ResultClass: "MDM_Policy_Result01_WindowsLogon02", InstanceID: "WindowsLogon", ParentID: "./Vendor/MSFT/Policy/Config", Property: "HideFastUserSwitching"},
 }
 
 // OverrideShellProgram: OverrideShellProgram policy allows IT admin to configure the shell program for Windows OS on a device. This policy has the highest precedence over other ways of configuring the shell program. The policy currently supports below options: 1. Not Configured: Default shell will be launched. 2. Apply Lightweight Shell: Lightweight shell does not have a user interface and helps the device to achieve better performance as the shell consumes limited resources over default shell. Lightweight shell contains a limited set of features which could be consumed by applications. This configuration can be useful if the device needs to have a continuous running user interface application which would consume features offered by Lightweight shell. If you disable or do not configure this policy setting, then the default shell will be launched.
@@ -115,7 +115,7 @@ var OverrideShellProgram = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not Configured"}, {Value: "1", Description: "Apply Lightweight shell"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WindowsLogon02", ResultClass: "MDM_Policy_Result01_WindowsLogon02", InstanceID: "WindowsLogon", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "OverrideShellProgram"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WindowsLogon02", ResultClass: "MDM_Policy_Result01_WindowsLogon02", InstanceID: "WindowsLogon", ParentID: "./Vendor/MSFT/Policy/Config", Property: "OverrideShellProgram"},
 }
 
 // All lists every policy in this CSP area.

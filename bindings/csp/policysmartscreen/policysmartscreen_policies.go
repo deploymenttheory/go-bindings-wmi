@@ -15,7 +15,7 @@ var EnableAppInstallControl = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Turns off Application Installation Control, allowing users to download and install files from anywhere on the web."}, {Value: "1", Description: "Turns on Application Installation Control, allowing users to only install apps from the Store."}, {Value: "2", Description: "Turns on Application Installation Control, letting users know that there's a comparable app in the Store"}, {Value: "3", Description: "Turns on Application Installation Control, warning users before installing apps from outside the Store"}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_SmartScreen02", ResultClass: "MDM_Policy_Result01_SmartScreen02", InstanceID: "SmartScreen", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "EnableAppInstallControl"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_SmartScreen02", ResultClass: "MDM_Policy_Result01_SmartScreen02", InstanceID: "SmartScreen", ParentID: "./Vendor/MSFT/Policy/Config", Property: "EnableAppInstallControl"},
 }
 
 // EnableSmartScreenInShell: Allows IT Admins to configure SmartScreen for Windows.
@@ -29,7 +29,7 @@ var EnableSmartScreenInShell = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Disabled."}, {Value: "1", Description: "Enabled."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_SmartScreen02", ResultClass: "MDM_Policy_Result01_SmartScreen02", InstanceID: "SmartScreen", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "EnableSmartScreenInShell"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_SmartScreen02", ResultClass: "MDM_Policy_Result01_SmartScreen02", InstanceID: "SmartScreen", ParentID: "./Vendor/MSFT/Policy/Config", Property: "EnableSmartScreenInShell"},
 }
 
 // PreventOverrideForFilesInShell: Allows IT Admins to control whether users can ignore SmartScreen warnings and run malicious files.
@@ -43,7 +43,7 @@ var PreventOverrideForFilesInShell = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Do not prevent override."}, {Value: "1", Description: "Prevent override."}}},
-	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_SmartScreen02", ResultClass: "MDM_Policy_Result01_SmartScreen02", InstanceID: "SmartScreen", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "PreventOverrideForFilesInShell"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_SmartScreen02", ResultClass: "MDM_Policy_Result01_SmartScreen02", InstanceID: "SmartScreen", ParentID: "./Vendor/MSFT/Policy/Config", Property: "PreventOverrideForFilesInShell"},
 }
 
 // All lists every policy in this CSP area.
