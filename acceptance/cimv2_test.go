@@ -58,6 +58,64 @@ func TestQueryLogicalDisks(t *testing.T) {
 	}
 }
 
+func TestArrayFieldsDecoded(t *testing.T) {
+	svc, err := wmi.Connect(`root\cimv2`)
+	if err != nil {
+		t.Fatalf("Connect: %v", err)
+	}
+	defer svc.Close()
+
+	// Win32_ComputerSystem.Roles is a CIM string array that is always
+	// populated (e.g. LM_Workstation); an empty slice here means SAFEARRAY
+	// decoding regressed to nil.
+	systems, err := cimv2.QueryWin32ComputerSystem(svc, "")
+	if err != nil {
+		t.Fatalf("QueryWin32ComputerSystem: %v", err)
+	}
+	if len(systems) == 0 {
+		t.Fatal("no Win32_ComputerSystem instances")
+	}
+	if len(systems[0].Roles) == 0 {
+		t.Error("Win32_ComputerSystem.Roles is empty (SAFEARRAY decoding regressed?)")
+	}
+	t.Logf("Roles: %v", systems[0].Roles)
+
+	// IPAddress on an enabled adapter exercises string arrays through a
+	// WHERE-filtered query.
+	nics, err := cimv2.QueryWin32NetworkAdapterConfiguration(svc, "IPEnabled = TRUE")
+	if err != nil {
+		t.Fatalf("QueryWin32NetworkAdapterConfiguration: %v", err)
+	}
+	if len(nics) == 0 {
+		t.Skip("no IP-enabled adapters")
+	}
+	if len(nics[0].IPAddress) == 0 {
+		t.Errorf("enabled adapter %s has no IPAddress entries", nics[0].Description)
+	}
+	t.Logf("%s: %v", nics[0].Description, nics[0].IPAddress)
+}
+
+func TestDatetimeParses(t *testing.T) {
+	svc, err := wmi.Connect(`root\cimv2`)
+	if err != nil {
+		t.Fatalf("Connect: %v", err)
+	}
+	defer svc.Close()
+
+	os, err := cimv2.QueryWin32OperatingSystem(svc, "")
+	if err != nil || len(os) == 0 {
+		t.Fatalf("QueryWin32OperatingSystem: %v (%d rows)", err, len(os))
+	}
+	boot, err := wmi.ParseDMTF(os[0].LastBootUpTime)
+	if err != nil {
+		t.Fatalf("ParseDMTF(%q): %v", os[0].LastBootUpTime, err)
+	}
+	if boot.Year() < 2000 {
+		t.Errorf("implausible boot time %v from %q", boot, os[0].LastBootUpTime)
+	}
+	t.Logf("LastBootUpTime: %s → %v", os[0].LastBootUpTime, boot)
+}
+
 func TestNumericFieldsCoerced(t *testing.T) {
 	svc, err := wmi.Connect(`root\cimv2`)
 	if err != nil {
