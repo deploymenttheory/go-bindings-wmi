@@ -1,7 +1,7 @@
 <#
 .SYNOPSIS
     Captures a CIM schema snapshot from a namespace that requires the SYSTEM
-    account — chiefly the MDM bridge (root\cimv2\mdm\dmmap), whose WMI
+    account - chiefly the MDM bridge (root\cimv2\mdm\dmmap), whose WMI
     provider denies access to anything below SYSTEM (elevation is not
     enough).
 
@@ -117,7 +117,7 @@ try {
     Remove-Item $exe -Force -ErrorAction SilentlyContinue
 
     if ($result -ne '0') {
-        Fail "Capture (as SYSTEM) exited with code $result. See the output above — access-denied here usually means the MDM bridge is unavailable on this host (not enrolled)."
+        Fail "Capture (as SYSTEM) exited with code $result. See the output above - access-denied here usually means the MDM bridge is unavailable on this host (not enrolled)."
     }
 
     $leaf = ($Namespace -split '\\')[-1].ToLower()
