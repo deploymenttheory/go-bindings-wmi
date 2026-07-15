@@ -79,7 +79,7 @@ values. This is also the seed of a general OLE-automation ergonomics layer
 
 ## Coverage
 
-Three namespaces are captured, each its own generated package
+Four namespaces are captured, each its own generated package
 (`go run ./cmd/capture` enumerates a whole namespace by default; `-classes a,b`
 narrows):
 
@@ -89,10 +89,14 @@ narrows):
   networking (MSFT_NetAdapter, MSFT_NetIPAddress, MSFT_NetRoute, …).
 - **`root\SecurityCenter2`** (69) → `bindings/cim/securitycenter2` —
   registered AV / firewall / anti-spyware products (client SKUs only).
+- **`root\cimv2\mdm\dmmap`** (467, incl. ~400 `MDM_*`) → `bindings/cim/dmmap`
+  — the MDM bridge: Windows' CSP policy surface (AppLocker, ActiveSync,
+  BitLocker, …) as WMI classes. Capturing **and querying** it require the
+  **SYSTEM** account; see [docs/mdm-bridge.md](docs/mdm-bridge.md) and
+  `scripts/Capture-MdmBridge.ps1`, which automates the capture.
 
-Other namespaces (`root\Microsoft\Windows\*`, the `root\cimv2\mdm\dmmap` MDM
-bridge — which requires an elevated/SYSTEM capture context) are additive:
-capture with `-namespace` and regenerate.
+Any other namespace (`root\Microsoft\Windows\*`, …) is just
+`go run ./cmd/capture -namespace <ns>` then regenerate.
 
 ### CSP policy catalog (DDF v2)
 
@@ -129,6 +133,7 @@ schema; the MDM WMI bridge is the local runtime for driving those policies.
   key lookups, ASSOCIATORS OF
 - [CSP policy bindings (DDF v2)](docs/csp-and-ddf.md) — the DDF pipeline:
   fetch, parse, the typed policy catalog
+
 - [`CLAUDE.md`](CLAUDE.md) — the capture doctrine and why the CLI is minimal
 
 ## Related projects
