@@ -15,6 +15,7 @@ var AllowAddProvisioningPackage = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Security02", ResultClass: "MDM_Policy_Result01_Security02", InstanceID: "Security", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowAddProvisioningPackage"},
 }
 
 // AllowManualRootCertificateInstallation: This policy is deprecated.
@@ -30,6 +31,7 @@ var AllowManualRootCertificateInstallation = csp.Policy{
 	CSPVersion:        "1.0",
 	Editions:          "0x87;0x88;0x88*",
 	Allowed:           &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
+	Bridge:            &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Security02", ResultClass: "MDM_Policy_Result01_Security02", InstanceID: "Security", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowManualRootCertificateInstallation"},
 }
 
 // AllowRemoveProvisioningPackage: Specifies whether to allow the runtime configuration agent to remove provisioning packages.
@@ -43,6 +45,7 @@ var AllowRemoveProvisioningPackage = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Security02", ResultClass: "MDM_Policy_Result01_Security02", InstanceID: "Security", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowRemoveProvisioningPackage"},
 }
 
 // AntiTheftMode: This policy is deprecated.
@@ -57,6 +60,7 @@ var AntiTheftMode = csp.Policy{
 	MinOSBuild:        "10.0.10240",
 	CSPVersion:        "1.0",
 	Allowed:           &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Disabled."}, {Value: "1", Description: "Enabled."}}},
+	Bridge:            &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Security02", ResultClass: "MDM_Policy_Result01_Security02", InstanceID: "Security", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AntiTheftMode"},
 }
 
 // ClearTPMIfNotReady: Admin access is required. The prompt will appear on first admin logon after a reboot when the TPM is in a non-ready state that can be remediated with a TPM Clear. The prompt will have a description of what clearing the TPM does and that it requires a reboot. The user can dismiss it, but it will appear on next admin logon after restart.
@@ -70,6 +74,7 @@ var ClearTPMIfNotReady = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Will not force recovery from a non-ready TPM state."}, {Value: "1", Description: "Will prompt to clear the TPM if the TPM is in a non-ready state (or reduced functionality) which can be remediated with a TPM Clear."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Security02", ResultClass: "MDM_Policy_Result01_Security02", InstanceID: "Security", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ClearTPMIfNotReady"},
 }
 
 // ConfigureWindowsPasswords: Configures the use of passwords for Windows features
@@ -83,6 +88,7 @@ var ConfigureWindowsPasswords = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "-Disallow passwords (Asymmetric credentials will be promoted to replace passwords on Windows features)"}, {Value: "1", Description: "Allow passwords (Passwords continue to be allowed to be used for Windows features)"}, {Value: "2", Description: "as per SKU and device capabilities. Windows 10 S devices will exhibit \"Disallow passwords\" default, and all other devices will default to \"Allow passwords\")"}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Security02", ResultClass: "MDM_Policy_Result01_Security02", InstanceID: "Security", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ConfigureWindowsPasswords"},
 }
 
 // PreventAutomaticDeviceEncryptionForAzureADJoinedDevices: Specifies whether to allow automatic device encryption during OOBE when the device is Azure AD joined.
@@ -96,6 +102,7 @@ var PreventAutomaticDeviceEncryptionForAzureADJoinedDevices = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Encryption enabled."}, {Value: "1", Description: "Encryption disabled."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Security02", ResultClass: "MDM_Policy_Result01_Security02", InstanceID: "Security", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "PreventAutomaticDeviceEncryptionForAzureADJoinedDevices"},
 }
 
 // RecoveryEnvironmentAuthentication: This policy controls the requirement of Admin Authentication in RecoveryEnvironment.
@@ -109,6 +116,7 @@ var RecoveryEnvironmentAuthentication = csp.Policy{
 	CSPVersion: "8.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "current) behavior"}, {Value: "1", Description: "RequireAuthentication: Admin Authentication is always required for components in RecoveryEnvironment"}, {Value: "2", Description: "NoRequireAuthentication: Admin Authentication is not required for components in RecoveryEnvironment"}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Security02", ResultClass: "MDM_Policy_Result01_Security02", InstanceID: "Security", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "RecoveryEnvironmentAuthentication"},
 }
 
 // RequireDeviceEncryption: Allows enterprise to turn on internal storage encryption. Most restricted value is 1. Important. If encryption has been enabled, it cannot be turned off by using this policy.
@@ -122,6 +130,7 @@ var RequireDeviceEncryption = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Encryption is not required."}, {Value: "1", Description: "Encryption is required."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Security02", ResultClass: "MDM_Policy_Result01_Security02", InstanceID: "Security", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "RequireDeviceEncryption"},
 }
 
 // RequireProvisioningPackageSignature: Specifies whether provisioning packages must have a certificate signed by a device trusted authority.
@@ -135,6 +144,7 @@ var RequireProvisioningPackageSignature = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not required."}, {Value: "1", Description: "Required."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Security02", ResultClass: "MDM_Policy_Result01_Security02", InstanceID: "Security", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "RequireProvisioningPackageSignature"},
 }
 
 // RequireRetrieveHealthCertificateOnBoot: Specifies whether to retrieve and post TCG Boot logs, and get or cache an encrypted or signed Health Attestation Report from the Microsoft Health Attestation Service (HAS) when a device boots or reboots. Setting this policy to 1 (Required):Determines whether a device is capable of Remote Device Health Attestation, by verifying if the device has TPM 2. 0. Improves the performance of the device by enabling the device to fetch and cache data to reduce the latency during Device Health Verification. Note We recommend that this policy is set to Required after MDM enrollment.  Most restricted value is 1.
@@ -148,6 +158,7 @@ var RequireRetrieveHealthCertificateOnBoot = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x62;0x63;0x64;0x65;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not required."}, {Value: "1", Description: "Required."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Security02", ResultClass: "MDM_Policy_Result01_Security02", InstanceID: "Security", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "RequireRetrieveHealthCertificateOnBoot"},
 }
 
 // All lists every policy in this CSP area.

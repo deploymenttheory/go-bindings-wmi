@@ -13,6 +13,7 @@ var CustomizeWarningMessages = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "RemoteAssistance~AT~System~RemoteAssist", Name: "RA_Options", File: "remoteassistance.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_RemoteAssistance02", ResultClass: "MDM_Policy_Result01_RemoteAssistance02", InstanceID: "RemoteAssistance", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "CustomizeWarningMessages"},
 }
 
 var SessionLogging = csp.Policy{
@@ -24,6 +25,7 @@ var SessionLogging = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "RemoteAssistance~AT~System~RemoteAssist", Name: "RA_Logging", File: "remoteassistance.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_RemoteAssistance02", ResultClass: "MDM_Policy_Result01_RemoteAssistance02", InstanceID: "RemoteAssistance", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "SessionLogging"},
 }
 
 var SolicitedRemoteAssistance = csp.Policy{
@@ -35,6 +37,7 @@ var SolicitedRemoteAssistance = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "RemoteAssistance~AT~System~RemoteAssist", Name: "RA_Solicit", File: "remoteassistance.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_RemoteAssistance02", ResultClass: "MDM_Policy_Result01_RemoteAssistance02", InstanceID: "RemoteAssistance", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "SolicitedRemoteAssistance"},
 }
 
 var UnsolicitedRemoteAssistance = csp.Policy{
@@ -46,6 +49,7 @@ var UnsolicitedRemoteAssistance = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "RemoteAssistance~AT~System~RemoteAssist", Name: "RA_Unsolicit", File: "remoteassistance.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_RemoteAssistance02", ResultClass: "MDM_Policy_Result01_RemoteAssistance02", InstanceID: "RemoteAssistance", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "UnsolicitedRemoteAssistance"},
 }
 
 // All lists every policy in this CSP area.

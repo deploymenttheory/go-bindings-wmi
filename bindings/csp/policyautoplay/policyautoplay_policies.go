@@ -13,6 +13,7 @@ var DisallowAutoplayForNonVolumeDevices = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "AutoPlay~AT~WindowsComponents~AutoPlay", Name: "NoAutoplayfornonVolume", File: "AutoPlay.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Autoplay02", ResultClass: "MDM_Policy_Result01_Autoplay02", InstanceID: "Autoplay", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisallowAutoplayForNonVolumeDevices"},
 }
 
 var SetDefaultAutoRunBehavior = csp.Policy{
@@ -24,6 +25,7 @@ var SetDefaultAutoRunBehavior = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "AutoPlay~AT~WindowsComponents~AutoPlay", Name: "NoAutorun", File: "AutoPlay.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Autoplay02", ResultClass: "MDM_Policy_Result01_Autoplay02", InstanceID: "Autoplay", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "SetDefaultAutoRunBehavior"},
 }
 
 var TurnOffAutoPlay = csp.Policy{
@@ -35,6 +37,7 @@ var TurnOffAutoPlay = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "AutoPlay~AT~WindowsComponents~AutoPlay", Name: "Autorun", File: "AutoPlay.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Autoplay02", ResultClass: "MDM_Policy_Result01_Autoplay02", InstanceID: "Autoplay", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "TurnOffAutoPlay"},
 }
 
 // All lists every policy in this CSP area.

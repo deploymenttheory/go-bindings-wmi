@@ -15,6 +15,7 @@ var AllowDeviceHealthMonitoring = csp.Policy{
 	CSPVersion: "9.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "1", Description: "The DeviceHealthMonitoring connection is enabled."}, {Value: "0", Description: "The DeviceHealthMonitoring connection is disabled."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeviceHealthMonitoring02", ResultClass: "MDM_Policy_Result01_DeviceHealthMonitoring02", InstanceID: "DeviceHealthMonitoring", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowDeviceHealthMonitoring"},
 }
 
 // ConfigDeviceHealthMonitoringScope: If the device is not opted-in to the DeviceHealthMonitoring service via the AllowDeviceHealthMonitoring then this policy has no meaning. For devices which are opted in, the value of this policy modifies which types of events are monitored.
@@ -26,6 +27,7 @@ var ConfigDeviceHealthMonitoringScope = csp.Policy{
 	MinOSBuild: "10.0.18362",
 	CSPVersion: "9.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeviceHealthMonitoring02", ResultClass: "MDM_Policy_Result01_DeviceHealthMonitoring02", InstanceID: "DeviceHealthMonitoring", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ConfigDeviceHealthMonitoringScope"},
 }
 
 // ConfigDeviceHealthMonitoringServiceInstance: If the device is not opted-in to the DeviceHealthMonitoring service via the AllowDeviceHealthMonitoring then this policy has no meaning. For devices which are opted in, the value of this policy modifies which service instance to which events are to be uploaded.
@@ -37,6 +39,7 @@ var ConfigDeviceHealthMonitoringServiceInstance = csp.Policy{
 	MinOSBuild: "10.0.22000",
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeviceHealthMonitoring02", ResultClass: "MDM_Policy_Result01_DeviceHealthMonitoring02", InstanceID: "DeviceHealthMonitoring", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ConfigDeviceHealthMonitoringServiceInstance"},
 }
 
 // ConfigDeviceHealthMonitoringUploadDestination: If the device is not opted-in to the DeviceHealthMonitoring service via the AllowDeviceHealthMonitoring then this policy has no meaning. For devices which are opted in, the value of this policy modifies which destinations are in-scope for monitored events to be uploaded.
@@ -48,6 +51,7 @@ var ConfigDeviceHealthMonitoringUploadDestination = csp.Policy{
 	MinOSBuild: "10.0.18362",
 	CSPVersion: "9.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeviceHealthMonitoring02", ResultClass: "MDM_Policy_Result01_DeviceHealthMonitoring02", InstanceID: "DeviceHealthMonitoring", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ConfigDeviceHealthMonitoringUploadDestination"},
 }
 
 // All lists every policy in this CSP area.

@@ -14,6 +14,7 @@ var AllowMMS = csp.Policy{
 	MinOSBuild: "10.0.15063",
 	CSPVersion: "5.0",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "1", Description: "Allow"}, {Value: "0", Description: "Block"}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Messaging02", ResultClass: "MDM_Policy_Result01_Messaging02", InstanceID: "Messaging", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowMMS"},
 }
 
 // AllowMessageSync: This policy setting allows backup and restore of cellular text messages to Microsoft's cloud services.
@@ -27,6 +28,7 @@ var AllowMessageSync = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "message sync is not allowed and cannot be changed by the user."}, {Value: "1", Description: "message sync is allowed. The user can change this setting."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Messaging02", ResultClass: "MDM_Policy_Result01_Messaging02", InstanceID: "Messaging", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowMessageSync"},
 }
 
 // AllowRCS: This policy setting allows you to enable or disable the sending and receiving of cellular RCS (Rich Communication Services) messages.
@@ -39,6 +41,7 @@ var AllowRCS = csp.Policy{
 	MinOSBuild: "10.0.15063",
 	CSPVersion: "5.0",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "1", Description: "Allow"}, {Value: "0", Description: "Block"}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Messaging02", ResultClass: "MDM_Policy_Result01_Messaging02", InstanceID: "Messaging", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowRCS"},
 }
 
 // All lists every policy in this CSP area.

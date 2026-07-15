@@ -15,6 +15,7 @@ var AllowAudioInput = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WindowsSandbox02", ResultClass: "MDM_Policy_Result01_WindowsSandbox02", InstanceID: "WindowsSandbox", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowAudioInput"},
 }
 
 // AllowClipboardRedirection: Allow clipboard sharing with Windows Sandbox
@@ -28,6 +29,7 @@ var AllowClipboardRedirection = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WindowsSandbox02", ResultClass: "MDM_Policy_Result01_WindowsSandbox02", InstanceID: "WindowsSandbox", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowClipboardRedirection"},
 }
 
 // AllowMappedFolders: Allow mapping folders into Windows Sandbox
@@ -41,6 +43,7 @@ var AllowMappedFolders = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WindowsSandbox02", ResultClass: "MDM_Policy_Result01_WindowsSandbox02", InstanceID: "WindowsSandbox", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowMappedFolders"},
 }
 
 // AllowNetworking: Allow networking in Windows Sandbox
@@ -54,6 +57,7 @@ var AllowNetworking = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WindowsSandbox02", ResultClass: "MDM_Policy_Result01_WindowsSandbox02", InstanceID: "WindowsSandbox", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowNetworking"},
 }
 
 // AllowPrinterRedirection: Allow printer sharing with Windows Sandbox
@@ -67,6 +71,7 @@ var AllowPrinterRedirection = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WindowsSandbox02", ResultClass: "MDM_Policy_Result01_WindowsSandbox02", InstanceID: "WindowsSandbox", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowPrinterRedirection"},
 }
 
 // AllowVGPU: Allow vGPU sharing for Windows Sandbox
@@ -80,6 +85,7 @@ var AllowVGPU = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WindowsSandbox02", ResultClass: "MDM_Policy_Result01_WindowsSandbox02", InstanceID: "WindowsSandbox", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowVGPU"},
 }
 
 // AllowVideoInput: Allow video input in Windows Sandbox
@@ -93,6 +99,7 @@ var AllowVideoInput = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WindowsSandbox02", ResultClass: "MDM_Policy_Result01_WindowsSandbox02", InstanceID: "WindowsSandbox", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowVideoInput"},
 }
 
 // AllowWriteToMappedFolders: Allow Sandbox to write to mapped folders
@@ -106,6 +113,7 @@ var AllowWriteToMappedFolders = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_WindowsSandbox02", ResultClass: "MDM_Policy_Result01_WindowsSandbox02", InstanceID: "WindowsSandbox", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowWriteToMappedFolders"},
 }
 
 // All lists every policy in this CSP area.

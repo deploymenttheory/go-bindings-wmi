@@ -45,6 +45,11 @@ func run(metadataDir, outDir string) error {
 		return fmt.Errorf("no CSP snapshots in %s (run cmd/fetchddf)", metadataDir)
 	}
 
+	bridgeAreas, err := loadBridgeAreas(metadataDir)
+	if err != nil {
+		return err
+	}
+
 	// Pass 1: load CSPs and claim package names (fail fast on collision).
 	type area struct {
 		pkg string
@@ -54,7 +59,7 @@ func run(metadataDir, outDir string) error {
 	packages := map[string]string{}
 	for _, entry := range entries {
 		base := strings.TrimSuffix(filepath.Base(entry), ".json")
-		if base == "PROVENANCE" {
+		if base == "PROVENANCE" || base == bridgeFile {
 			continue
 		}
 		data, err := os.ReadFile(entry)
@@ -75,7 +80,7 @@ func run(metadataDir, outDir string) error {
 
 	written := map[string]bool{}
 	for _, a := range areas {
-		files, err := renderPackage(a.pkg, a.csp)
+		files, err := renderPackage(a.pkg, a.csp, bridgeAreas)
 		if err != nil {
 			return fmt.Errorf("%s: %w", a.csp.Name, err)
 		}
@@ -98,22 +103,31 @@ func run(metadataDir, outDir string) error {
 	return pruneStale(outDir, written)
 }
 
-// policy is a flattened leaf node with its generated Go name.
+// policy is a flattened leaf node with its generated Go name and the path
+// segments below the CSP root (segs; a direct area setting has one segment).
 type policy struct {
 	goName string
+	segs   []string
 	node   cspschema.Node
 }
 
-func renderPackage(pkg string, csp *cspschema.CSP) (map[string][]byte, error) {
+func renderPackage(pkg string, csp *cspschema.CSP, bridgeAreas map[string]string) (map[string][]byte, error) {
 	policies := uniquify(flatten(csp.Nodes, nil))
 	if len(policies) == 0 {
 		return nil, nil
 	}
 
+	// Resolve the bridge area for this CSP: a native Policy area whose name
+	// the captured bridge exposes. Its direct settings become executable.
+	bridge := ""
+	if csp.PolicyArea() {
+		bridge = bridgeAreas[strings.ToLower(csp.Name)]
+	}
+
 	var policiesBody, constsBody strings.Builder
 	all := make([]string, 0, len(policies))
 	for _, p := range policies {
-		renderPolicy(&policiesBody, p)
+		renderPolicy(&policiesBody, p, bridge, csp.Path)
 		renderConstants(&constsBody, p)
 		all = append(all, p.goName)
 	}
@@ -180,14 +194,14 @@ func flatten(nodes []cspschema.Node, prefix []string) []policy {
 	for _, n := range nodes {
 		segs := append(slices.Clone(prefix), n.Name)
 		if n.Leaf() {
-			out = append(out, policy{goName: joinExport(segs), node: n})
+			out = append(out, policy{goName: joinExport(segs), segs: segs, node: n})
 		}
 		out = append(out, flatten(n.Children, segs)...)
 	}
 	return out
 }
 
-func renderPolicy(b *strings.Builder, p policy) {
+func renderPolicy(b *strings.Builder, p policy, bridgeArea, cspPath string) {
 	n := p.node
 	if n.Description != "" {
 		fmt.Fprintf(b, "// %s: %s\n", p.goName, firstLine(n.Description))
@@ -237,6 +251,15 @@ func renderPolicy(b *strings.Builder, p policy) {
 			b.WriteString("}")
 		}
 		b.WriteString("},\n")
+	}
+	// Bridge mapping: only for a native Policy area's direct settings (one
+	// segment below the area), which the bridge exposes as area-instance
+	// properties.
+	if bridgeArea != "" && len(p.segs) == 1 {
+		fmt.Fprintf(b, "\tBridge: &csp.Bridge{ConfigClass: %q, ResultClass: %q, InstanceID: %q, ParentID: %q, Property: %q},\n",
+			"MDM_Policy_Config01_"+bridgeArea+"02",
+			"MDM_Policy_Result01_"+bridgeArea+"02",
+			bridgeArea, cspPath, n.Name)
 	}
 	b.WriteString("}\n\n")
 }

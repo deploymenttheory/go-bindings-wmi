@@ -71,11 +71,42 @@ Package naming: policy areas are prefixed `policy` (`Bitlocker_AreaDDF` →
 `policybitlocker`) so they never collide with a same-named standalone CSP
 (`BitLocker` → `bitlocker`).
 
+## Executing policies (LCRUD via the bridge)
+
+The DDF gives the schema; the MDM WMI bridge (`root\cimv2\mdm\dmmap`) is the
+local runtime. `cmd/gencsp` joins the two: it cross-checks each policy area
+against the bridge classes captured from a live device
+(`metadata/csp/bridge-policy-classes.json`) and attaches a `csp.Bridge`
+mapping to every policy the bridge exposes — the ~1,500 direct settings of
+the native Policy areas. Those policies report `Executable() == true` and can
+be read, set, and deleted through `runtime/csp`:
+
+```go
+import "github.com/deploymenttheory/go-bindings-wmi/runtime/csp"
+
+svc, err := csp.Connect()          // opens root\cimv2\mdm\dmmap — needs SYSTEM
+defer svc.Close()
+
+v, err := csp.Read(svc, policybrowser.AllowCookies)          // R (effective value)
+err = csp.Set(svc, policybrowser.AllowCookies, int64(2))     // C/U (Add/Replace)
+err = csp.Delete(svc, policybrowser.AllowCookies)            // D (unmanage the area)
+```
+
+The mapping is grounded in real captured bridge classes, so the projection
+(`MDM_Policy_Config01_<Area>02`, keyed `ParentID`+`InstanceID`, the leaf as
+the property) is exact, not guessed. Non-Policy CSPs and ADMX-ingested
+policies carry no `Bridge` yet (`Executable() == false`) — their schema is
+known but they are not drivable through this runtime.
+
+**Constraints:** the bridge answers only the **SYSTEM** account, and writes
+**mutate real device configuration**. A policy area's Config instance is a
+singleton, so `Delete` unmanages the whole area — prefer `Set`-to-default to
+clear one setting. See `examples/csp-policy` for a read-only-by-default,
+self-restoring cycle.
+
 ## DDF vs the MDM WMI bridge
 
 The DDF gives the **canonical, versioned schema** — what policies exist,
 their types, allowed values, and applicability — independent of any device.
-The MDM WMI bridge (`root\cimv2\mdm\dmmap`) is the **local runtime** for
-reading and writing those policies on a device. A policy descriptor's `URI`
-and `Format` tell you how to drive it through the bridge. The two are
-complementary: DDF for the schema, the bridge for execution.
+The MDM WMI bridge is the **local runtime** for reading and writing those
+policies. Complementary: DDF for the schema, the bridge for execution.

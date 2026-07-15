@@ -15,6 +15,7 @@ var AllowCloudSearch = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Search02", ResultClass: "MDM_Policy_Result01_Search02", InstanceID: "Search", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowCloudSearch"},
 }
 
 // AllowCortanaInAAD: This features allows you to show the cortana opt-in page during Windows Setup
@@ -28,6 +29,7 @@ var AllowCortanaInAAD = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed. The Cortana consent page will not appear in AAD OOBE during setup."}, {Value: "1", Description: "Allowed. The Cortana consent page will appear in Azure AAD OOBE during setup."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Search02", ResultClass: "MDM_Policy_Result01_Search02", InstanceID: "Search", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowCortanaInAAD"},
 }
 
 // AllowFindMyFiles: This feature allows you to disable find my files completely on the machine
@@ -41,6 +43,7 @@ var AllowFindMyFiles = csp.Policy{
 	CSPVersion: "9.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "1", Description: "Find My Files feature can be toggled (still off by default), and the settings UI is present."}, {Value: "0", Description: "Find My Files feature is turned off completely, and the settings UI is disabled."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Search02", ResultClass: "MDM_Policy_Result01_Search02", InstanceID: "Search", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowFindMyFiles"},
 }
 
 // AllowIndexingEncryptedStoresOrItems: Allows or disallows the indexing of items. This switch is for the Windows Search Indexer, which controls whether it will index items that are encrypted, such as the Windows Information Protection (WIP) protected files. When the policy is enabled, WIP protected items are indexed and the metadata about them are stored in an unencrypted location. The metadata includes things like file path and date modified. When the policy is disabled, the WIP protected items are not indexed and do not show up in the results in Cortana or file explorer. There may also be a performance impact on photos and Groove apps if there are a lot of WIP protected media files on the device. Most restricted value is 0.
@@ -54,6 +57,7 @@ var AllowIndexingEncryptedStoresOrItems = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Search02", ResultClass: "MDM_Policy_Result01_Search02", InstanceID: "Search", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowIndexingEncryptedStoresOrItems"},
 }
 
 var AllowSearchHighlights = csp.Policy{
@@ -66,6 +70,7 @@ var AllowSearchHighlights = csp.Policy{
 	CSPVersion: "10.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "Range"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Search02", ResultClass: "MDM_Policy_Result01_Search02", InstanceID: "Search", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowSearchHighlights"},
 }
 
 // AllowSearchToUseLocation: Specifies whether search can leverage location information. Most restricted value is 0.
@@ -79,6 +84,7 @@ var AllowSearchToUseLocation = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Search02", ResultClass: "MDM_Policy_Result01_Search02", InstanceID: "Search", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowSearchToUseLocation"},
 }
 
 // AllowStoringImagesFromVisionSearch: This policy has been deprecated.
@@ -92,6 +98,7 @@ var AllowStoringImagesFromVisionSearch = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Search02", ResultClass: "MDM_Policy_Result01_Search02", InstanceID: "Search", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowStoringImagesFromVisionSearch"},
 }
 
 // AllowUsingDiacritics: Allows the use of diacritics. Most restricted value is 0.
@@ -105,6 +112,7 @@ var AllowUsingDiacritics = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Search02", ResultClass: "MDM_Policy_Result01_Search02", InstanceID: "Search", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowUsingDiacritics"},
 }
 
 // AllowWindowsIndexer: Allow Windows indexer. Value type is integer.
@@ -118,6 +126,7 @@ var AllowWindowsIndexer = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "Range"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Search02", ResultClass: "MDM_Policy_Result01_Search02", InstanceID: "Search", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowWindowsIndexer"},
 }
 
 // AlwaysUseAutoLangDetection: Specifies whether to always use automatic language detection when indexing content and properties. Most restricted value is 0.
@@ -131,6 +140,7 @@ var AlwaysUseAutoLangDetection = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Search02", ResultClass: "MDM_Policy_Result01_Search02", InstanceID: "Search", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AlwaysUseAutoLangDetection"},
 }
 
 // ConfigureSearchOnTaskbarMode: Configures search on the taskbar. If you disable this policy setting or do not configure it, users can see and change this setting.
@@ -144,6 +154,7 @@ var ConfigureSearchOnTaskbarMode = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Hide"}, {Value: "1", Description: "Search icon only"}, {Value: "2", Description: "Search icon and label"}, {Value: "3", Description: "Search box"}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Search02", ResultClass: "MDM_Policy_Result01_Search02", InstanceID: "Search", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ConfigureSearchOnTaskbarMode"},
 }
 
 // DisableBackoff: If enabled, the search indexer backoff feature will be disabled. Indexing will continue at full speed even when system activity is high. If disabled, backoff logic will be used to throttle back indexing activity when system activity is high. Default is disabled.
@@ -157,6 +168,7 @@ var DisableBackoff = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Disable."}, {Value: "1", Description: "Enable."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Search02", ResultClass: "MDM_Policy_Result01_Search02", InstanceID: "Search", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisableBackoff"},
 }
 
 // DisableRemovableDriveIndexing: This policy setting configures whether or not locations on removable drives can be added to libraries. If you enable this policy setting, locations on removable drives cannot be added to libraries. In addition, locations on removable drives cannot be indexed. If you disable or do not configure this policy setting, locations on removable drives can be added to libraries. In addition, locations on removable drives can be indexed.
@@ -170,6 +182,7 @@ var DisableRemovableDriveIndexing = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Disable."}, {Value: "1", Description: "Enable."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Search02", ResultClass: "MDM_Policy_Result01_Search02", InstanceID: "Search", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisableRemovableDriveIndexing"},
 }
 
 // DisableSearch: Enabling this policy completely disables Search UI and all its entry points such as keyboard shortcuts and touchpad gestures. It removes the Search button from the Taskbar and the corresponding option in the Settings. It also disables type-to-search in the Start menu and removes the Start menu's search box.
@@ -183,6 +196,7 @@ var DisableSearch = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Do not disable."}, {Value: "1", Description: "Disable."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Search02", ResultClass: "MDM_Policy_Result01_Search02", InstanceID: "Search", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisableSearch"},
 }
 
 // DoNotUseWebResults: Don't search the web or display web results in Search. This policy setting allows you to control whether or not Search can perform queries on the web, and if the web results are displayed in Search. If you enable this policy setting, queries won't be performed on the web and web results won't be displayed when a user performs a query in Search. If you disable this policy setting, queries will be performed on the web and web results will be displayed when a user performs a query in Search.
@@ -196,6 +210,7 @@ var DoNotUseWebResults = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed. Queries won't be performed on the web and web results won't be displayed when a user performs a query in Search."}, {Value: "1", Description: "Allowed. Queries will be performed on the web and web results will be displayed when a user performs a query in Search."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Search02", ResultClass: "MDM_Policy_Result01_Search02", InstanceID: "Search", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DoNotUseWebResults"},
 }
 
 // PreventIndexingLowDiskSpaceMB: Enabling this policy prevents indexing from continuing after less than the specified amount of hard drive space is left on the same drive as the index location. Select between 0 and 1. Enable this policy if computers in your environment have extremely limited hard drive space. When this policy is disabled or not configured, Windows Desktop Search automatically manages your index size.
@@ -209,6 +224,7 @@ var PreventIndexingLowDiskSpaceMB = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Disable."}, {Value: "1", Description: "Enable."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Search02", ResultClass: "MDM_Policy_Result01_Search02", InstanceID: "Search", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "PreventIndexingLowDiskSpaceMB"},
 }
 
 // PreventRemoteQueries: If enabled, clients will be unable to query this computer's index remotely. Thus, when they are browsing network shares that are stored on this computer, they will not search them using the index. If disabled, client search requests will use this computer's index. .
@@ -222,6 +238,7 @@ var PreventRemoteQueries = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Disable."}, {Value: "1", Description: "Enable."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Search02", ResultClass: "MDM_Policy_Result01_Search02", InstanceID: "Search", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "PreventRemoteQueries"},
 }
 
 // SafeSearchPermissions: This policy is deprecated.
@@ -236,6 +253,7 @@ var SafeSearchPermissions = csp.Policy{
 	MinOSBuild:        "10.0.14393",
 	CSPVersion:        "4.1",
 	Allowed:           &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "1", Description: "Enable"}, {Value: "0", Description: "Disable"}}},
+	Bridge:            &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Search02", ResultClass: "MDM_Policy_Result01_Search02", InstanceID: "Search", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "SafeSearchPermissions"},
 }
 
 // All lists every policy in this CSP area.

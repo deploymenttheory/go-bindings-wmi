@@ -15,6 +15,7 @@ var AllNetworksNetworkIcon = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "User can change icon"}, {Value: "1", Description: "User cannot change icon"}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_NetworkListManager02", ResultClass: "MDM_Policy_Result01_NetworkListManager02", InstanceID: "NetworkListManager", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllNetworks_NetworkIcon"},
 }
 
 // AllNetworksNetworkLocation: This policy setting allows you to specify whether users can change the network location for all networks to which the user connects.
@@ -28,6 +29,7 @@ var AllNetworksNetworkLocation = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "User can change location"}, {Value: "1", Description: "User cannot change location"}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_NetworkListManager02", ResultClass: "MDM_Policy_Result01_NetworkListManager02", InstanceID: "NetworkListManager", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllNetworks_NetworkLocation"},
 }
 
 // AllNetworksNetworkName: This policy setting allows you to specify whether users can change the network name for all networks to which the user connects.
@@ -41,6 +43,7 @@ var AllNetworksNetworkName = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "User can change name"}, {Value: "1", Description: "User cannot change name"}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_NetworkListManager02", ResultClass: "MDM_Policy_Result01_NetworkListManager02", InstanceID: "NetworkListManager", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllNetworks_NetworkName"},
 }
 
 // AllowedTlsAuthenticationEndpoints: List of URLs (seperated by Unicode character 0xF000) to endpoints accessible only within an enterprise's network. If any of the URLs can be resolved over HTTPS, the network would be considered authenticated.
@@ -53,6 +56,7 @@ var AllowedTlsAuthenticationEndpoints = csp.Policy{
 	CSPVersion: "10.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "None"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_NetworkListManager02", ResultClass: "MDM_Policy_Result01_NetworkListManager02", InstanceID: "NetworkListManager", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowedTlsAuthenticationEndpoints"},
 }
 
 // ConfiguredTlsAuthenticationNetworkName: The string will be used to name the network authenticated against one of the endpoints listed in AllowedTlsAuthenticationEndpoints policy
@@ -64,6 +68,7 @@ var ConfiguredTlsAuthenticationNetworkName = csp.Policy{
 	MinOSBuild: "10.0.19042",
 	CSPVersion: "10.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCD;0xCF;",
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_NetworkListManager02", ResultClass: "MDM_Policy_Result01_NetworkListManager02", InstanceID: "NetworkListManager", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ConfiguredTlsAuthenticationNetworkName"},
 }
 
 // IdentifyingNetworksLocationType: This policy setting allows you to configure the Network Location for networks that are in a temporary state while Windows works to identify the network and location type. A network location identifies the type of network that a computer is connected to and automatically sets the appropriate firewall settings for that location.
@@ -77,6 +82,7 @@ var IdentifyingNetworksLocationType = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Public"}, {Value: "1", Description: "Private"}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_NetworkListManager02", ResultClass: "MDM_Policy_Result01_NetworkListManager02", InstanceID: "NetworkListManager", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "IdentifyingNetworks_LocationType"},
 }
 
 // UnidentifiedNetworksLocationType: This policy setting allows you to configure the Network Location type for networks that Windows cannot identify due to a network issue or a lack of identifiable characters in the network information received by the operating system from the network. A network location identifies the type of network that a computer is connected to and automatically sets the appropriate firewall settings for that location.
@@ -90,6 +96,7 @@ var UnidentifiedNetworksLocationType = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Public"}, {Value: "1", Description: "Private"}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_NetworkListManager02", ResultClass: "MDM_Policy_Result01_NetworkListManager02", InstanceID: "NetworkListManager", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "UnidentifiedNetworks_LocationType"},
 }
 
 // UnidentifiedNetworksUserPermissions: This policy setting allows you to configure the Network Location user permissions for networks that Windows cannot identify due to a network issue or a lack of identifiable characters in the network information received by the operating system from the network.
@@ -103,6 +110,7 @@ var UnidentifiedNetworksUserPermissions = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "User can change location"}, {Value: "1", Description: "User cannot change location"}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_NetworkListManager02", ResultClass: "MDM_Policy_Result01_NetworkListManager02", InstanceID: "NetworkListManager", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "UnidentifiedNetworks_UserPermissions"},
 }
 
 // All lists every policy in this CSP area.

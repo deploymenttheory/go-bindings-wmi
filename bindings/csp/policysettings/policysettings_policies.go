@@ -15,6 +15,7 @@ var AllowAutoPlay = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Settings02", ResultClass: "MDM_Policy_Result01_Settings02", InstanceID: "Settings", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowAutoPlay"},
 }
 
 // AllowDataSense: Allows the user to change Data Sense settings.
@@ -28,6 +29,7 @@ var AllowDataSense = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Settings02", ResultClass: "MDM_Policy_Result01_Settings02", InstanceID: "Settings", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowDataSense"},
 }
 
 // AllowDateTime: Allows the user to change date and time settings.
@@ -41,6 +43,7 @@ var AllowDateTime = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Settings02", ResultClass: "MDM_Policy_Result01_Settings02", InstanceID: "Settings", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowDateTime"},
 }
 
 // AllowEditDeviceName: This policy is deprecated.
@@ -55,6 +58,7 @@ var AllowEditDeviceName = csp.Policy{
 	MinOSBuild:        "10.0.14393",
 	CSPVersion:        "4.1",
 	Allowed:           &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
+	Bridge:            &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Settings02", ResultClass: "MDM_Policy_Result01_Settings02", InstanceID: "Settings", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowEditDeviceName"},
 }
 
 // AllowLanguage: Allows the user to change the language settings.
@@ -68,6 +72,7 @@ var AllowLanguage = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Settings02", ResultClass: "MDM_Policy_Result01_Settings02", InstanceID: "Settings", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowLanguage"},
 }
 
 // AllowOnlineTips: Enables or disables the retrieval of online tips and help for the Settings app. If disabled, Settings will not contact Microsoft content services to retrieve tips and help content.
@@ -81,6 +86,7 @@ var AllowOnlineTips = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Settings02", ResultClass: "MDM_Policy_Result01_Settings02", InstanceID: "Settings", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowOnlineTips"},
 }
 
 // AllowPowerSleep: Allows the user to change power and sleep settings.
@@ -94,6 +100,7 @@ var AllowPowerSleep = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Settings02", ResultClass: "MDM_Policy_Result01_Settings02", InstanceID: "Settings", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowPowerSleep"},
 }
 
 // AllowRegion: Allows the user to change the region settings.
@@ -107,6 +114,7 @@ var AllowRegion = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Settings02", ResultClass: "MDM_Policy_Result01_Settings02", InstanceID: "Settings", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowRegion"},
 }
 
 // AllowSignInOptions: Allows the user to change sign-in options.
@@ -120,6 +128,7 @@ var AllowSignInOptions = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Settings02", ResultClass: "MDM_Policy_Result01_Settings02", InstanceID: "Settings", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowSignInOptions"},
 }
 
 // AllowVPN: Allows the user to change VPN settings.
@@ -133,6 +142,7 @@ var AllowVPN = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Settings02", ResultClass: "MDM_Policy_Result01_Settings02", InstanceID: "Settings", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowVPN"},
 }
 
 // AllowWorkplace: Allows user to change workplace settings.
@@ -146,6 +156,7 @@ var AllowWorkplace = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Settings02", ResultClass: "MDM_Policy_Result01_Settings02", InstanceID: "Settings", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowWorkplace"},
 }
 
 // AllowYourAccount: Allows user to change account settings.
@@ -159,6 +170,7 @@ var AllowYourAccount = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Settings02", ResultClass: "MDM_Policy_Result01_Settings02", InstanceID: "Settings", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowYourAccount"},
 }
 
 // ConfigureTaskbarCalendar: Allows IT Admins to configure the default setting for showing additional calendars (besides the default calendar for the locale) in the taskbar clock and calendar flyout. In this version of Windows 10, supported additional calendars are: Simplified or Traditional Chinese lunar calendar. Turning on one of these calendars will display Chinese lunar dates below the default calendar for the locale. Select Don't show additional calendars to prevent showing other calendars besides the default calendar for the locale.
@@ -172,6 +184,7 @@ var ConfigureTaskbarCalendar = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "User will be allowed to configure the setting."}, {Value: "1", Description: "Don't show additional calendars."}, {Value: "2", Description: "Simplified Chinese (Lunar)."}, {Value: "3", Description: "Traditional Chinese (Lunar)."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Settings02", ResultClass: "MDM_Policy_Result01_Settings02", InstanceID: "Settings", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ConfigureTaskbarCalendar"},
 }
 
 // PageVisibilityList: Allows IT Admins to either prevent specific pages in the System Settings app from being visible or accessible, or to do so for all pages except those specified. The mode will be specified by the policy string beginning with either the string showonly: or hide:.  Pages are identified by a shortened version of their already published URIs, which is the URI minus the ms-settings: prefix. For example, if the URI for a settings page is ms-settings:bluetooth, the page identifier used in the policy will be just bluetooth. Multiple page identifiers are separated by semicolons. The following example illustrates a policy that would allow access only to the about and bluetooth pages, which have URI ms-settings:about and ms-settings:bluetooth respectively:showonly:about;bluetooth. If the policy is not specified, the behavior will be that no pages are affected. If the policy string is formatted incorrectly, it will be ignored entirely (i. e. treated as not set) to prevent the machine from becoming unserviceable if data corruption occurs. Note that if a page is already hidden for another reason, then it will remain hidden even if it is in a showonly: list. The format of the PageVisibilityList value is as follows: The value is a unicode string up to 10,000 characters long, which will be used without case sensitivity. There are two variants: one that shows only the given pages and one which hides the given pages. The first variant starts with the string showonly: and the second with the string hide:. Following the variant identifier is a semicolon-delimited list of page identifiers, which must not have any extra whitespace. Each page identifier is the ms-settings:xyz URI for the page, minus the ms-settings: prefix, so the identifier for the page with URI ms-settings:network-wifi would be just network-wifi. The default value for this setting is an empty string, which is interpreted as show everything. Example 1, specifies that only the wifi and bluetooth pages should be shown (they have URIs ms-settings:network-wifi and ms-settings:bluetooth). All other pages (and the categories they're in) will be hidden:showonly:network-wifi;bluetooth. Example 2, specifies that the wifi page should not be shown:hide:network-wifi
@@ -183,6 +196,7 @@ var PageVisibilityList = csp.Policy{
 	MinOSBuild: "10.0.15063",
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Settings02", ResultClass: "MDM_Policy_Result01_Settings02", InstanceID: "Settings", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "PageVisibilityList"},
 }
 
 // All lists every policy in this CSP area.

@@ -15,6 +15,7 @@ var AllowCrashDump = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Disable crash dump collection."}, {Value: "1", Description: "Allow crash dump collection."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_MemoryDump02", ResultClass: "MDM_Policy_Result01_MemoryDump02", InstanceID: "MemoryDump", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowCrashDump"},
 }
 
 // AllowLiveDump: This policy setting decides if live dump collection on the machine is allowed or not.  Supported values: 0 - Disable live dump collection. 1 (default) - Allow live dump collection.
@@ -28,6 +29,7 @@ var AllowLiveDump = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Disable live dump collection."}, {Value: "1", Description: "Allow live dump collection."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_MemoryDump02", ResultClass: "MDM_Policy_Result01_MemoryDump02", InstanceID: "MemoryDump", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowLiveDump"},
 }
 
 // All lists every policy in this CSP area.

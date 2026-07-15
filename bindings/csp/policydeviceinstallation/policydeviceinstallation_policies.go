@@ -13,6 +13,7 @@ var AllowInstallationOfMatchingDeviceIDs = csp.Policy{
 	CSPVersion: "8.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "DeviceInstallation~AT~System~DeviceInstall_Category~DeviceInstall_Restrictions_Category", Name: "DeviceInstall_IDs_Allow", File: "deviceinstallation.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeviceInstallation02", ResultClass: "MDM_Policy_Result01_DeviceInstallation02", InstanceID: "DeviceInstallation", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowInstallationOfMatchingDeviceIDs"},
 }
 
 var AllowInstallationOfMatchingDeviceInstanceIDs = csp.Policy{
@@ -24,6 +25,7 @@ var AllowInstallationOfMatchingDeviceInstanceIDs = csp.Policy{
 	CSPVersion: "10.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "DeviceInstallation~AT~System~DeviceInstall_Category~DeviceInstall_Restrictions_Category", Name: "DeviceInstall_Instance_IDs_Allow", File: "deviceinstallation.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeviceInstallation02", ResultClass: "MDM_Policy_Result01_DeviceInstallation02", InstanceID: "DeviceInstallation", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowInstallationOfMatchingDeviceInstanceIDs"},
 }
 
 var AllowInstallationOfMatchingDeviceSetupClasses = csp.Policy{
@@ -35,6 +37,7 @@ var AllowInstallationOfMatchingDeviceSetupClasses = csp.Policy{
 	CSPVersion: "8.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "DeviceInstallation~AT~System~DeviceInstall_Category~DeviceInstall_Restrictions_Category", Name: "DeviceInstall_Classes_Allow", File: "deviceinstallation.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeviceInstallation02", ResultClass: "MDM_Policy_Result01_DeviceInstallation02", InstanceID: "DeviceInstallation", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowInstallationOfMatchingDeviceSetupClasses"},
 }
 
 var EnableInstallationPolicyLayering = csp.Policy{
@@ -46,6 +49,7 @@ var EnableInstallationPolicyLayering = csp.Policy{
 	CSPVersion: "8.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "DeviceInstallation~AT~System~DeviceInstall_Category~DeviceInstall_Restrictions_Category", Name: "DeviceInstall_Allow_Deny_Layered", File: "deviceinstallation.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeviceInstallation02", ResultClass: "MDM_Policy_Result01_DeviceInstallation02", InstanceID: "DeviceInstallation", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "EnableInstallationPolicyLayering"},
 }
 
 var PreventDeviceMetadataFromNetwork = csp.Policy{
@@ -57,6 +61,7 @@ var PreventDeviceMetadataFromNetwork = csp.Policy{
 	CSPVersion: "8.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "DeviceInstallation~AT~System~DeviceInstall_Category~DeviceInstall_Restrictions_Category", Name: "DeviceMetadata_PreventDeviceMetadataFromNetwork", File: "DeviceSetup.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeviceInstallation02", ResultClass: "MDM_Policy_Result01_DeviceInstallation02", InstanceID: "DeviceInstallation", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "PreventDeviceMetadataFromNetwork"},
 }
 
 var PreventInstallationOfDevicesNotDescribedByOtherPolicySettings = csp.Policy{
@@ -68,6 +73,7 @@ var PreventInstallationOfDevicesNotDescribedByOtherPolicySettings = csp.Policy{
 	CSPVersion: "8.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "DeviceInstallation~AT~System~DeviceInstall_Category~DeviceInstall_Restrictions_Category", Name: "DeviceInstall_Unspecified_Deny", File: "deviceinstallation.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeviceInstallation02", ResultClass: "MDM_Policy_Result01_DeviceInstallation02", InstanceID: "DeviceInstallation", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "PreventInstallationOfDevicesNotDescribedByOtherPolicySettings"},
 }
 
 var PreventInstallationOfMatchingDeviceIDs = csp.Policy{
@@ -79,6 +85,7 @@ var PreventInstallationOfMatchingDeviceIDs = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "DeviceInstallation~AT~System~DeviceInstall_Category~DeviceInstall_Restrictions_Category", Name: "DeviceInstall_IDs_Deny", File: "deviceinstallation.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeviceInstallation02", ResultClass: "MDM_Policy_Result01_DeviceInstallation02", InstanceID: "DeviceInstallation", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "PreventInstallationOfMatchingDeviceIDs"},
 }
 
 var PreventInstallationOfMatchingDeviceInstanceIDs = csp.Policy{
@@ -90,6 +97,7 @@ var PreventInstallationOfMatchingDeviceInstanceIDs = csp.Policy{
 	CSPVersion: "10.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "DeviceInstallation~AT~System~DeviceInstall_Category~DeviceInstall_Restrictions_Category", Name: "DeviceInstall_Instance_IDs_Deny", File: "deviceinstallation.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeviceInstallation02", ResultClass: "MDM_Policy_Result01_DeviceInstallation02", InstanceID: "DeviceInstallation", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "PreventInstallationOfMatchingDeviceInstanceIDs"},
 }
 
 var PreventInstallationOfMatchingDeviceSetupClasses = csp.Policy{
@@ -101,6 +109,7 @@ var PreventInstallationOfMatchingDeviceSetupClasses = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "DeviceInstallation~AT~System~DeviceInstall_Category~DeviceInstall_Restrictions_Category", Name: "DeviceInstall_Classes_Deny", File: "deviceinstallation.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_DeviceInstallation02", ResultClass: "MDM_Policy_Result01_DeviceInstallation02", InstanceID: "DeviceInstallation", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "PreventInstallationOfMatchingDeviceSetupClasses"},
 }
 
 // All lists every policy in this CSP area.

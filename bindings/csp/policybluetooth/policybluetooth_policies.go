@@ -15,6 +15,7 @@ var AllowAdvertising = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed. When set to 0, the device will not send out advertisements. To verify, use any Bluetooth LE app and enable it to do advertising. Then, verify that the advertisement is not received by the peripheral."}, {Value: "1", Description: "Allowed. When set to 1, the device will send out advertisements. To verify, use any Bluetooth LE app and enable it to do advertising. Then, verify that the advertisement is received by the peripheral."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Bluetooth02", ResultClass: "MDM_Policy_Result01_Bluetooth02", InstanceID: "Bluetooth", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowAdvertising"},
 }
 
 // AllowDiscoverableMode: Specifies whether other Bluetooth-enabled devices can discover the device. If this is not set or it is deleted, the default value of 1 (Allow) is used. Most restricted value is 0.
@@ -28,6 +29,7 @@ var AllowDiscoverableMode = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed. When set to 0, other devices will not be able to detect the device. To verify, open the Bluetooth control panel on the device. Then, go to another Bluetooth-enabled device, open the Bluetooth control panel, and verify that you cannot see the name of the device."}, {Value: "1", Description: "Allowed. When set to 1, other devices will be able to detect the device. To verify, open the Bluetooth control panel on the device. Then, go to another Bluetooth-enabled device, open the Bluetooth control panel and verify that you can discover it."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Bluetooth02", ResultClass: "MDM_Policy_Result01_Bluetooth02", InstanceID: "Bluetooth", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowDiscoverableMode"},
 }
 
 // AllowPrepairing: Specifies whether to allow specific bundled Bluetooth peripherals to automatically pair with the host device.
@@ -41,6 +43,7 @@ var AllowPrepairing = csp.Policy{
 	CSPVersion: "4.1",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Not allowed."}, {Value: "1", Description: "Allowed."}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Bluetooth02", ResultClass: "MDM_Policy_Result01_Bluetooth02", InstanceID: "Bluetooth", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowPrepairing"},
 }
 
 // AllowPromptedProximalConnections: This policy allows the IT admin to block users on these managed devices from using Swift Pair and other proximity based scenarios.
@@ -54,6 +57,7 @@ var AllowPromptedProximalConnections = csp.Policy{
 	CSPVersion: "7.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ENUM", Enum: []csp.EnumValue{{Value: "0", Description: "Disallow. Block users on these managed devices from using Swift Pair and other proximity based scenarios"}, {Value: "1", Description: "Allow. Allow users on these managed devices to use Swift Pair and other proximity based scenarios"}}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Bluetooth02", ResultClass: "MDM_Policy_Result01_Bluetooth02", InstanceID: "Bluetooth", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowPromptedProximalConnections"},
 }
 
 // LocalDeviceName: Sets the local Bluetooth device name. If this is set, the value that it is set to will be used as the Bluetooth device name. To verify the policy is set, open the Bluetooth control panel on the device. Then, go to another Bluetooth-enabled device, open the Bluetooth control panel, and verify that the value that was specified. If this policy is not set or it is deleted, the default local radio name is used.
@@ -65,6 +69,7 @@ var LocalDeviceName = csp.Policy{
 	MinOSBuild: "10.0.10240",
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x88;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Bluetooth02", ResultClass: "MDM_Policy_Result01_Bluetooth02", InstanceID: "Bluetooth", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LocalDeviceName"},
 }
 
 // ServicesAllowedList: Set a list of allowable services and profiles. String hex formatted array of Bluetooth service UUIDs in canonical format, delimited by semicolons. For example, {782AFCFC-7CAA-436C-8BF0-78CD0FFBD4AF}. The default value is an empty string. For more information, see ServicesAllowedList usage guide
@@ -77,6 +82,7 @@ var ServicesAllowedList = csp.Policy{
 	CSPVersion: "1.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "None"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Bluetooth02", ResultClass: "MDM_Policy_Result01_Bluetooth02", InstanceID: "Bluetooth", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ServicesAllowedList"},
 }
 
 // SetMinimumEncryptionKeySize: There are multiple levels of encryption strength when pairing Bluetooth devices. This policy helps prevent weaker devices cryptographically being used in high security environments.
@@ -90,6 +96,7 @@ var SetMinimumEncryptionKeySize = csp.Policy{
 	CSPVersion: "10.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "Range"},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_Bluetooth02", ResultClass: "MDM_Policy_Result01_Bluetooth02", InstanceID: "Bluetooth", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "SetMinimumEncryptionKeySize"},
 }
 
 // All lists every policy in this CSP area.

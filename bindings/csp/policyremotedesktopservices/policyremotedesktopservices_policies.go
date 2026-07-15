@@ -13,6 +13,7 @@ var AllowUsersToConnectRemotely = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "TerminalServer~AT~WindowsComponents~TS_GP_NODE~TS_TERMINAL_SERVER~TS_CONNECTIONS", Name: "TS_DISABLE_CONNECTIONS", File: "terminalserver.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_RemoteDesktopServices02", ResultClass: "MDM_Policy_Result01_RemoteDesktopServices02", InstanceID: "RemoteDesktopServices", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowUsersToConnectRemotely"},
 }
 
 var ClientConnectionEncryptionLevel = csp.Policy{
@@ -24,6 +25,7 @@ var ClientConnectionEncryptionLevel = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "TerminalServer~AT~WindowsComponents~TS_GP_NODE~TS_TERMINAL_SERVER~TS_SECURITY", Name: "TS_ENCRYPTION_POLICY", File: "terminalserver.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_RemoteDesktopServices02", ResultClass: "MDM_Policy_Result01_RemoteDesktopServices02", InstanceID: "RemoteDesktopServices", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "ClientConnectionEncryptionLevel"},
 }
 
 var DisconnectOnLockLegacyAuthn = csp.Policy{
@@ -35,6 +37,7 @@ var DisconnectOnLockLegacyAuthn = csp.Policy{
 	CSPVersion: "10.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "TerminalServer~AT~WindowsComponents~TS_GP_NODE~TS_TERMINAL_SERVER~TS_SECURITY", Name: "TS_DISCONNECT_ON_LOCK_POLICY", File: "terminalserver.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_RemoteDesktopServices02", ResultClass: "MDM_Policy_Result01_RemoteDesktopServices02", InstanceID: "RemoteDesktopServices", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisconnectOnLockLegacyAuthn"},
 }
 
 var DisconnectOnLockMicrosoftIdentityAuthn = csp.Policy{
@@ -46,6 +49,7 @@ var DisconnectOnLockMicrosoftIdentityAuthn = csp.Policy{
 	CSPVersion: "10.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "TerminalServer~AT~WindowsComponents~TS_GP_NODE~TS_TERMINAL_SERVER~TS_SECURITY", Name: "TS_DISCONNECT_ON_LOCK_AAD_POLICY", File: "terminalserver.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_RemoteDesktopServices02", ResultClass: "MDM_Policy_Result01_RemoteDesktopServices02", InstanceID: "RemoteDesktopServices", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisconnectOnLockMicrosoftIdentityAuthn"},
 }
 
 var DoNotAllowDriveRedirection = csp.Policy{
@@ -57,6 +61,7 @@ var DoNotAllowDriveRedirection = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "TerminalServer~AT~WindowsComponents~TS_GP_NODE~TS_TERMINAL_SERVER~TS_REDIRECTION", Name: "TS_CLIENT_DRIVE_M", File: "terminalserver.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_RemoteDesktopServices02", ResultClass: "MDM_Policy_Result01_RemoteDesktopServices02", InstanceID: "RemoteDesktopServices", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DoNotAllowDriveRedirection"},
 }
 
 var DoNotAllowPasswordSaving = csp.Policy{
@@ -68,6 +73,7 @@ var DoNotAllowPasswordSaving = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "TerminalServer~AT~WindowsComponents~TS_GP_NODE~TS_CLIENT", Name: "TS_CLIENT_DISABLE_PASSWORD_SAVING_2", File: "terminalserver.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_RemoteDesktopServices02", ResultClass: "MDM_Policy_Result01_RemoteDesktopServices02", InstanceID: "RemoteDesktopServices", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DoNotAllowPasswordSaving"},
 }
 
 var DoNotAllowWebAuthnRedirection = csp.Policy{
@@ -79,6 +85,7 @@ var DoNotAllowWebAuthnRedirection = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "TerminalServer~AT~WindowsComponents~TS_GP_NODE~TS_TERMINAL_SERVER~TS_REDIRECTION", Name: "TS_WEBAUTHN", File: "terminalserver.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_RemoteDesktopServices02", ResultClass: "MDM_Policy_Result01_RemoteDesktopServices02", InstanceID: "RemoteDesktopServices", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DoNotAllowWebAuthnRedirection"},
 }
 
 var LimitClientToServerClipboardRedirection = csp.Policy{
@@ -90,6 +97,7 @@ var LimitClientToServerClipboardRedirection = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "TerminalServer~AT~WindowsComponents~TS_GP_NODE~TS_TERMINAL_SERVER~TS_REDIRECTION", Name: "TS_CLIENT_CLIPBOARDRESTRICTION_CS", File: "terminalserver.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_RemoteDesktopServices02", ResultClass: "MDM_Policy_Result01_RemoteDesktopServices02", InstanceID: "RemoteDesktopServices", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LimitClientToServerClipboardRedirection"},
 }
 
 var LimitServerToClientClipboardRedirection = csp.Policy{
@@ -101,6 +109,7 @@ var LimitServerToClientClipboardRedirection = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "TerminalServer~AT~WindowsComponents~TS_GP_NODE~TS_TERMINAL_SERVER~TS_REDIRECTION", Name: "TS_CLIENT_CLIPBOARDRESTRICTION_SC", File: "terminalserver.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_RemoteDesktopServices02", ResultClass: "MDM_Policy_Result01_RemoteDesktopServices02", InstanceID: "RemoteDesktopServices", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "LimitServerToClientClipboardRedirection"},
 }
 
 var PromptForPasswordUponConnection = csp.Policy{
@@ -112,6 +121,7 @@ var PromptForPasswordUponConnection = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "TerminalServer~AT~WindowsComponents~TS_GP_NODE~TS_TERMINAL_SERVER~TS_SECURITY", Name: "TS_PASSWORD", File: "terminalserver.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_RemoteDesktopServices02", ResultClass: "MDM_Policy_Result01_RemoteDesktopServices02", InstanceID: "RemoteDesktopServices", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "PromptForPasswordUponConnection"},
 }
 
 var RequireSecureRPCCommunication = csp.Policy{
@@ -123,6 +133,7 @@ var RequireSecureRPCCommunication = csp.Policy{
 	CSPVersion: "5.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "TerminalServer~AT~WindowsComponents~TS_GP_NODE~TS_TERMINAL_SERVER~TS_SECURITY", Name: "TS_RPC_ENCRYPTION", File: "terminalserver.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_RemoteDesktopServices02", ResultClass: "MDM_Policy_Result01_RemoteDesktopServices02", InstanceID: "RemoteDesktopServices", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "RequireSecureRPCCommunication"},
 }
 
 var TSSERVERREMOTEAPPUSESHELLAPPRUNTIME = csp.Policy{
@@ -134,6 +145,7 @@ var TSSERVERREMOTEAPPUSESHELLAPPRUNTIME = csp.Policy{
 	CSPVersion: "11.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;0xD2;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "TerminalServer~AT~WindowsComponents~TS_GP_NODE~TS_TERMINAL_SERVER~TS_SESSIONS", Name: "TS_SERVER_REMOTEAPP_USE_SHELLAPPRUNTIME", File: "TerminalServer.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_RemoteDesktopServices02", ResultClass: "MDM_Policy_Result01_RemoteDesktopServices02", InstanceID: "RemoteDesktopServices", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "TS_SERVER_REMOTEAPP_USE_SHELLAPPRUNTIME"},
 }
 
 // All lists every policy in this CSP area.

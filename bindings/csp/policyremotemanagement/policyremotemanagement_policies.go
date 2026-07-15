@@ -13,6 +13,7 @@ var AllowBasicAuthenticationClient = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "WindowsRemoteManagement~AT~WindowsComponents~WinRM~WinRMClient", Name: "AllowBasic_2", File: "WindowsRemoteManagement.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_RemoteManagement02", ResultClass: "MDM_Policy_Result01_RemoteManagement02", InstanceID: "RemoteManagement", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowBasicAuthentication_Client"},
 }
 
 var AllowBasicAuthenticationService = csp.Policy{
@@ -24,6 +25,7 @@ var AllowBasicAuthenticationService = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "WindowsRemoteManagement~AT~WindowsComponents~WinRM~WinRMService", Name: "AllowBasic_1", File: "WindowsRemoteManagement.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_RemoteManagement02", ResultClass: "MDM_Policy_Result01_RemoteManagement02", InstanceID: "RemoteManagement", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowBasicAuthentication_Service"},
 }
 
 var AllowCredSSPAuthenticationClient = csp.Policy{
@@ -35,6 +37,7 @@ var AllowCredSSPAuthenticationClient = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "WindowsRemoteManagement~AT~WindowsComponents~WinRMClient", Name: "AllowCredSSP_2", File: "WindowsRemoteManagement.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_RemoteManagement02", ResultClass: "MDM_Policy_Result01_RemoteManagement02", InstanceID: "RemoteManagement", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowCredSSPAuthenticationClient"},
 }
 
 var AllowCredSSPAuthenticationService = csp.Policy{
@@ -46,6 +49,7 @@ var AllowCredSSPAuthenticationService = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "WindowsRemoteManagement~AT~WindowsComponents~WinRM~WinRMService", Name: "AllowCredSSP_1", File: "WindowsRemoteManagement.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_RemoteManagement02", ResultClass: "MDM_Policy_Result01_RemoteManagement02", InstanceID: "RemoteManagement", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowCredSSPAuthenticationService"},
 }
 
 var AllowRemoteServerManagement = csp.Policy{
@@ -57,6 +61,7 @@ var AllowRemoteServerManagement = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "WindowsRemoteManagement~AT~WindowsComponents~WinRM~WinRMService", Name: "AllowAutoConfig", File: "WindowsRemoteManagement.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_RemoteManagement02", ResultClass: "MDM_Policy_Result01_RemoteManagement02", InstanceID: "RemoteManagement", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowRemoteServerManagement"},
 }
 
 var AllowUnencryptedTrafficClient = csp.Policy{
@@ -68,6 +73,7 @@ var AllowUnencryptedTrafficClient = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "WindowsRemoteManagement~AT~WindowsComponents~WinRM~WinRMClient", Name: "AllowUnencrypted_2", File: "WindowsRemoteManagement.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_RemoteManagement02", ResultClass: "MDM_Policy_Result01_RemoteManagement02", InstanceID: "RemoteManagement", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowUnencryptedTraffic_Client"},
 }
 
 var AllowUnencryptedTrafficService = csp.Policy{
@@ -79,6 +85,7 @@ var AllowUnencryptedTrafficService = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "WindowsRemoteManagement~AT~WindowsComponents~WinRM~WinRMService", Name: "AllowUnencrypted_1", File: "WindowsRemoteManagement.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_RemoteManagement02", ResultClass: "MDM_Policy_Result01_RemoteManagement02", InstanceID: "RemoteManagement", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "AllowUnencryptedTraffic_Service"},
 }
 
 var DisallowDigestAuthentication = csp.Policy{
@@ -90,6 +97,7 @@ var DisallowDigestAuthentication = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "WindowsRemoteManagement~AT~WindowsComponents~WinRM~WinRMClient", Name: "DisallowDigest", File: "WindowsRemoteManagement.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_RemoteManagement02", ResultClass: "MDM_Policy_Result01_RemoteManagement02", InstanceID: "RemoteManagement", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisallowDigestAuthentication"},
 }
 
 var DisallowNegotiateAuthenticationClient = csp.Policy{
@@ -101,6 +109,7 @@ var DisallowNegotiateAuthenticationClient = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "WindowsRemoteManagement~AT~WindowsComponents~WinRM~WinRMClient", Name: "DisallowNegotiate_2", File: "WindowsRemoteManagement.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_RemoteManagement02", ResultClass: "MDM_Policy_Result01_RemoteManagement02", InstanceID: "RemoteManagement", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisallowNegotiateAuthenticationClient"},
 }
 
 var DisallowNegotiateAuthenticationService = csp.Policy{
@@ -112,6 +121,7 @@ var DisallowNegotiateAuthenticationService = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "WindowsRemoteManagement~AT~WindowsComponents~WinRM~WinRMService", Name: "DisallowNegotiate_1", File: "WindowsRemoteManagement.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_RemoteManagement02", ResultClass: "MDM_Policy_Result01_RemoteManagement02", InstanceID: "RemoteManagement", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisallowNegotiateAuthenticationService"},
 }
 
 var DisallowStoringOfRunAsCredentials = csp.Policy{
@@ -123,6 +133,7 @@ var DisallowStoringOfRunAsCredentials = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "WindowsRemoteManagement~AT~WindowsComponents~WinRM~WinRMService", Name: "DisableRunAs", File: "WindowsRemoteManagement.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_RemoteManagement02", ResultClass: "MDM_Policy_Result01_RemoteManagement02", InstanceID: "RemoteManagement", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "DisallowStoringOfRunAsCredentials"},
 }
 
 var SpecifyChannelBindingTokenHardeningLevel = csp.Policy{
@@ -134,6 +145,7 @@ var SpecifyChannelBindingTokenHardeningLevel = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "WindowsRemoteManagement~AT~WindowsComponents~WinRM~WinRMService", Name: "CBTHardeningLevel_1", File: "WindowsRemoteManagement.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_RemoteManagement02", ResultClass: "MDM_Policy_Result01_RemoteManagement02", InstanceID: "RemoteManagement", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "SpecifyChannelBindingTokenHardeningLevel"},
 }
 
 var TrustedHosts = csp.Policy{
@@ -145,6 +157,7 @@ var TrustedHosts = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "WindowsRemoteManagement~AT~WindowsComponents~WinRM~WinRMClient", Name: "TrustedHosts", File: "WindowsRemoteManagement.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_RemoteManagement02", ResultClass: "MDM_Policy_Result01_RemoteManagement02", InstanceID: "RemoteManagement", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "TrustedHosts"},
 }
 
 var TurnOnCompatibilityHTTPListener = csp.Policy{
@@ -156,6 +169,7 @@ var TurnOnCompatibilityHTTPListener = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "WindowsRemoteManagement~AT~WindowsComponents~WinRM~WinRMService", Name: "HttpCompatibilityListener", File: "WindowsRemoteManagement.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_RemoteManagement02", ResultClass: "MDM_Policy_Result01_RemoteManagement02", InstanceID: "RemoteManagement", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "TurnOnCompatibilityHTTPListener"},
 }
 
 var TurnOnCompatibilityHTTPSListener = csp.Policy{
@@ -167,6 +181,7 @@ var TurnOnCompatibilityHTTPSListener = csp.Policy{
 	CSPVersion: "6.0",
 	Editions:   "0x4;0x1B;0x30;0x31;0x48;0x54;0x79;0x7A;0x7D;0x7E;0x81;0x82;0x8A;0x8B;0xA1;0xA2;0xA4;0xA5;0xAB;0xAC;0xAF;0xBC;0xBF;0xCA;0xCB;0xCD;0xCF;",
 	Allowed:    &csp.Allowed{Type: "ADMX", ADMX: &csp.ADMXBacking{Area: "WindowsRemoteManagement~AT~WindowsComponents~WinRM~WinRMService", Name: "HttpsCompatibilityListener", File: "WindowsRemoteManagement.admx"}},
+	Bridge:     &csp.Bridge{ConfigClass: "MDM_Policy_Config01_RemoteManagement02", ResultClass: "MDM_Policy_Result01_RemoteManagement02", InstanceID: "RemoteManagement", ParentID: "./Device/Vendor/MSFT/Policy/Config", Property: "TurnOnCompatibilityHTTPSListener"},
 }
 
 // All lists every policy in this CSP area.
