@@ -38,10 +38,14 @@ DDF-sourced policy catalog:
   read its value, and (with `-write`) set and restore it — the R/U/D of
   policy values. Requires the **SYSTEM** account; read-only unless `-write`
   is passed, and self-restoring.
-- **[`csp-lcrud`](csp-lcrud)** — one subcommand per LCRUD operation
-  (`list`/`read`/`set`/`delete`/`cycle`) on `Browser/AllowCookies`. Because
-  the bridge needs **SYSTEM** (an elevated prompt is not SYSTEM), run the
-  bridge verbs via the helper, which elevates to SYSTEM for you:
+- **[`csp-lcrud`](csp-lcrud)** — the generated registry in action: one
+  `mdm.Open()` client with typed services per area
+  (`client.PolicyBrowser.SetAllowCookies(2)`), the non-Policy areas
+  (`client.WindowsLicensing.GetEdition()`), and `client.Custom` for bridge
+  targets outside the DDF export — no descriptor plumbing at the call site.
+  Subcommands `list`/`read`/`set`/`delete`/`cycle`/`nonpolicy`/`custom`/`inspect`.
+  Because the bridge needs **SYSTEM** (an elevated prompt is not SYSTEM), run
+  the bridge verbs via the helper, which elevates to SYSTEM for you:
 
   ```powershell
   # from an ELEVATED PowerShell or cmd prompt, at the repo root:

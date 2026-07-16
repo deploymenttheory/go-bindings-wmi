@@ -112,13 +112,19 @@ DDF v2 zip (pinned) → committed snapshots → deterministic codegen → typed 
   the DDF-format→Go-type mapping.
 - **`cmd/gencsp`** — snapshot → `bindings/csp/<area>`: one `csp.Policy`
   descriptor per leaf node (URI, format, access, applicability, allowed
-  values, deprecation) plus typed enum constants. Self-cleaning,
-  byte-deterministic; CI regenerates and diffs both pipelines.
+  values, deprecation), typed enum constants, and — for bridge-backed
+  policies — a Windows-only `Service` with typed `Get`/`Set`/`Delete` methods
+  bound per policy. The `bindings/csp/mdm` package aggregates every area
+  `Service` under one connected `Client` (`mdm.Open`), plus a `Custom`
+  service. Self-cleaning, byte-deterministic; CI regenerates and diffs both
+  pipelines.
 - **`runtime/csp`** — the hand-written `csp.Policy` descriptor types the
   generated bindings reference (pure data, any OS) plus a Windows-only
   execution layer (`exec_windows.go`): `Connect`/`Read`/`ReadDesired`/`Set`/
   `Delete` drive a policy through the bridge via `runtime/wmi`'s instance
-  CRUD. Only bridge-backed policies (`Executable()`) can be driven.
+  CRUD (only `Executable()` policies), and `Custom`/`Target`
+  (`custom_windows.go`) drive arbitrary bridge coordinates for policies the
+  DDF export doesn't cover (dynamic instances, third-party CSPs).
 
 The DDF is the canonical *schema*; the MDM WMI bridge (`root\cimv2\mdm\dmmap`)
 is the local *runtime* for driving those policies. `cmd/gencsp` joins them —

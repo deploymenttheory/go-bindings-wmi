@@ -90,28 +90,58 @@ native Policy settings and ~260 non-Policy CSP settings):
 The key convention is uniform and verified against device truth: `InstanceID`
 is the instance-node's name, `ParentID` the scope-relative path of its parent
 (`./Vendor/MSFT/Policy/Config` for a Policy area, `./Vendor/MSFT` for
-WindowsLicensing, `./DevDetail` for DevDetail/Ext). **Dynamic-instance nodes
-(`{GUID}`) carry no static mapping** — they need a runtime instance id;
-construct a `csp.Bridge` by hand for those. Bridge-backed policies report
-`Executable() == true` and can be read, set, and deleted through
-`runtime/csp`:
+WindowsLicensing, `./DevDetail` for DevDetail/Ext). Bridge-backed policies
+report `Executable() == true`.
+
+### The registry: typed services (no boilerplate)
+
+Each area package emits a `Service` with typed `Get`/`Set`/`Delete` methods
+bound per policy, and the `mdm` package aggregates every executable area
+under one connected client — so a caller writes no descriptor plumbing,
+coercion, or connection wiring:
+
+```go
+import "github.com/deploymenttheory/go-bindings-wmi/bindings/csp/mdm"
+
+client, err := mdm.Open()          // connects to the bridge — needs SYSTEM
+defer client.Close()
+
+v, err := client.PolicyBrowser.GetAllowCookies()             // R → int64
+err = client.PolicyBrowser.SetAllowCookies(2)                // C/U (Add/Replace)
+err = client.PolicyBrowser.DeleteAllowCookies()              // D (unmanage)
+
+edition, err := client.WindowsLicensing.GetEdition()         // non-Policy area
+```
+
+`Get` returns the policy's Go type; `Set`/`Delete` are emitted per the DDF
+`AccessType` (read-only settings get only `Get`). Enum constants pair with
+the setters: `client.PolicyBrowser.SetAllowCookies(policybrowser.AllowCookiesAllowAllCookiesFromAllSites)`.
+
+The lower-level free functions remain for descriptor-driven code:
 
 ```go
 import "github.com/deploymenttheory/go-bindings-wmi/runtime/csp"
+v, err := csp.Read(svc, policybrowser.AllowCookies)
+```
 
-svc, err := csp.Connect()          // opens root\cimv2\mdm\dmmap — needs SYSTEM
-defer svc.Close()
+### Custom targets (outside the DDF export)
 
-v, err := csp.Read(svc, policybrowser.AllowCookies)          // R (effective value)
-err = csp.Set(svc, policybrowser.AllowCookies, int64(2))     // C/U (Add/Replace)
-err = csp.Delete(svc, policybrowser.AllowCookies)            // D (unmanage the area)
+Dynamic-instance nodes (`{GUID}`), third-party CSPs, and anything the DDF
+export doesn't cover carry no generated binding. Drive them through
+`client.Custom` with a `csp.Target` — the same read/set/delete, keyed
+explicitly (use `client.Custom.Query(class)` to discover a class's instances
+and their keys):
+
+```go
+v, err := client.Custom.Read(csp.Target{
+    Class: "MDM_SomeCsp01", InstanceID: "<id>",
+    ParentID: "./Vendor/MSFT/SomeCsp", Property: "SomeSetting",
+})
 ```
 
 The mapping is grounded in real captured bridge classes, so the projection
 (`MDM_Policy_Config01_<Area>02`, keyed `ParentID`+`InstanceID`, the leaf as
-the property) is exact, not guessed. Non-Policy CSPs and ADMX-ingested
-policies carry no `Bridge` yet (`Executable() == false`) — their schema is
-known but they are not drivable through this runtime.
+the property) is exact, not guessed.
 
 **Constraints:** the bridge answers only the **SYSTEM** account, and writes
 **mutate real device configuration**. A policy area's Config instance is a

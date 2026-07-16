@@ -1,18 +1,21 @@
 //go:build windows
 
-// Command csp-lcrud demonstrates each LCRUD operation on a CSP policy
-// through the MDM WMI bridge, one per subcommand. The target is a benign,
-// reversible Edge setting (Browser/AllowCookies) from the generated catalog.
+// Command csp-lcrud demonstrates the generated CSP registry: one connected
+// client (mdm.Open) exposing every executable area as a typed service, with
+// Get/Set/Delete bound per policy — no descriptor plumbing at the call site.
+// Plus Custom, the escape hatch for bridge targets outside the DDF export.
 //
-// The bridge requires the SYSTEM account (elevation alone is not enough), so
-// run this via scripts/Invoke-CspLcrud.ps1, which executes it as SYSTEM from
-// an elevated prompt. `list` needs no device access and runs anywhere.
+// The bridge requires the SYSTEM account, so run this via
+// scripts/Invoke-CspLcrud.ps1. `list` needs no device access.
 //
-//	go run ./examples/csp-lcrud list           # L: list the area's policies
-//	go run ./examples/csp-lcrud read           # R: read the effective value
-//	go run ./examples/csp-lcrud set 1          # C/U: set the value (Add/Replace)
-//	go run ./examples/csp-lcrud delete         # D: unmanage the area
-//	go run ./examples/csp-lcrud cycle          # full LCRUD, self-restoring
+//	go run ./examples/csp-lcrud list                # catalog (any OS)
+//	go run ./examples/csp-lcrud read                # client.PolicyBrowser.GetAllowCookies()
+//	go run ./examples/csp-lcrud set 1               # ...SetAllowCookies(1)
+//	go run ./examples/csp-lcrud delete              # ...DeleteAllowCookies()
+//	go run ./examples/csp-lcrud cycle               # full LCRUD, self-restoring
+//	go run ./examples/csp-lcrud nonpolicy           # non-Policy area services
+//	go run ./examples/csp-lcrud custom              # drive a raw bridge target
+//	go run ./examples/csp-lcrud inspect <class>     # dump a bridge class
 package main
 
 import (
@@ -21,14 +24,10 @@ import (
 	"os"
 	"strconv"
 
+	"github.com/deploymenttheory/go-bindings-wmi/bindings/csp/mdm"
 	"github.com/deploymenttheory/go-bindings-wmi/bindings/csp/policybrowser"
-	"github.com/deploymenttheory/go-bindings-wmi/bindings/csp/windowslicensing"
 	"github.com/deploymenttheory/go-bindings-wmi/runtime/csp"
-	"github.com/deploymenttheory/go-bindings-wmi/runtime/wmi"
 )
-
-// target is the policy every subcommand operates on.
-var target = policybrowser.AllowCookies
 
 func main() {
 	args := os.Args[1:]
@@ -36,192 +35,163 @@ func main() {
 		usage()
 		return
 	}
-	switch args[0] {
-	case "list":
+	// list reads the generated catalog; no device access.
+	if args[0] == "list" {
 		list()
-		return
-	case "inspect":
-		if len(args) < 2 {
-			fmt.Println("usage: csp-lcrud inspect <BridgeClassName>")
-			os.Exit(2)
-		}
-		inspect(args[1])
-		return
-	case "nonpolicy":
-		nonpolicy()
 		return
 	}
 
-	// Every other verb drives the bridge, which needs SYSTEM.
-	svc, err := csp.Connect()
+	// Everything else drives the bridge through the registry — one call to
+	// connect (SYSTEM), then typed services.
+	client, err := mdm.Open()
 	if err != nil {
 		fmt.Printf("connect to the MDM bridge failed: %v\n", err)
 		fmt.Println("the bridge needs the SYSTEM account - run via scripts/Invoke-CspLcrud.ps1.")
 		os.Exit(1)
 	}
-	defer svc.Close()
+	defer client.Close()
 
 	switch args[0] {
 	case "read":
-		read(svc)
+		v, err := client.PolicyBrowser.GetAllowCookies()
+		fmt.Printf("AllowCookies = %s\n", describe(v, err))
 	case "set":
 		if len(args) < 2 {
 			fmt.Println("usage: csp-lcrud set <value>")
 			os.Exit(2)
 		}
-		set(svc, args[1])
+		set(client, args[1])
 	case "delete":
-		del(svc)
+		del(client)
 	case "cycle":
-		cycle(svc)
+		cycle(client)
+	case "nonpolicy":
+		nonpolicy(client)
+	case "custom":
+		custom(client)
+	case "inspect":
+		if len(args) < 2 {
+			fmt.Println("usage: csp-lcrud inspect <BridgeClassName>")
+			os.Exit(2)
+		}
+		inspect(client, args[1])
 	default:
 		usage()
 	}
 }
 
-// inspect enumerates a raw bridge class and dumps each instance's keys and
-// properties — a read-only diagnostic for discovering how a non-Policy CSP
-// keys its bridge instances (InstanceID / ParentID), which the DDF does not
-// reveal. It needs the SYSTEM account (run via the helper).
-func inspect(class string) {
-	svc, err := csp.Connect()
-	if err != nil {
-		fmt.Printf("connect failed: %v\n(run via scripts/Invoke-CspLcrud.ps1 as SYSTEM)\n", err)
-		os.Exit(1)
-	}
-	defer svc.Close()
-
-	rows, err := svc.Query("SELECT * FROM " + class)
-	if err != nil {
-		fmt.Printf("query %s failed: %v\n", class, err)
-		os.Exit(1)
-	}
-	fmt.Printf("%s: %d instance(s)\n", class, len(rows))
-	for i, row := range rows {
-		fmt.Printf("--- instance %d ---\n", i)
-		fmt.Printf("  InstanceID = %q\n", wmi.AsString(row["InstanceID"]))
-		fmt.Printf("  ParentID   = %q\n", wmi.AsString(row["ParentID"]))
-		for k, v := range row {
-			if k == "InstanceID" || k == "ParentID" || len(k) >= 2 && k[:2] == "__" {
-				continue
-			}
-			if v != nil {
-				fmt.Printf("  %s = %v\n", k, v)
-			}
-		}
-	}
-}
-
-// nonpolicy reads a few non-Policy CSP settings through their generated
-// Bridge mappings — proving the DDF↔bridge join beyond the native Policy
-// areas. Read-only; needs SYSTEM.
-func nonpolicy() {
-	svc, err := csp.Connect()
-	if err != nil {
-		fmt.Printf("connect failed: %v\n(run via scripts/Invoke-CspLcrud.ps1 as SYSTEM)\n", err)
-		os.Exit(1)
-	}
-	defer svc.Close()
-
-	for _, p := range []csp.Policy{
-		windowslicensing.Status,
-		windowslicensing.Edition,
-		windowslicensing.LicenseKeyType,
-	} {
-		v, err := csp.Read(svc, p)
-		fmt.Printf("%-14s (%s) = %s\n", p.Name, p.Bridge.ConfigClass, describe(v, err))
-	}
-}
-
-// list — L: enumerate the area's policies from the generated catalog (no
-// device access needed).
-func list() {
-	fmt.Printf("Browser area - %d policies:\n", len(policybrowser.All))
-	for _, p := range policybrowser.All {
-		mark := " "
-		if p.Executable() {
-			mark = "*"
-		}
-		fmt.Printf("  %s %-40s %s\n", mark, p.Name, p.Format)
-	}
-	fmt.Printf("\n(* = executable through the bridge; target = %s)\n", target.Name)
-}
-
-// read — R: the effective (applied) value.
-func read(svc *wmi.Service) {
-	v, err := csp.Read(svc, target)
-	fmt.Printf("%s = %s\n", target.Name, describe(v, err))
-}
-
-// set — C/U: Add/Replace the value.
-func set(svc *wmi.Service, raw string) {
+// set — C/U via the typed service method.
+func set(c *mdm.Client, raw string) {
 	value, err := strconv.ParseInt(raw, 10, 64)
 	if err != nil {
-		fmt.Printf("value must be an integer (%s is a %s policy): %v\n", target.Name, target.Format, err)
+		fmt.Printf("value must be an integer: %v\n", err)
 		os.Exit(2)
 	}
-	if err := csp.Set(svc, target, value); err != nil {
+	if err := c.PolicyBrowser.SetAllowCookies(value); err != nil {
 		fmt.Printf("set failed: %v\n", err)
 		os.Exit(1)
 	}
-	after, err := csp.Read(svc, target)
-	fmt.Printf("set %s = %d; now reads %s\n", target.Name, value, describe(after, err))
+	after, err := c.PolicyBrowser.GetAllowCookies()
+	fmt.Printf("set AllowCookies = %d; now reads %s\n", value, describe(after, err))
 }
 
-// del — D: unmanage the area (clears its managed settings).
-func del(svc *wmi.Service) {
-	err := csp.Delete(svc, target)
+// del — D via the typed service method (unmanages the Browser area).
+func del(c *mdm.Client) {
+	err := c.PolicyBrowser.DeleteAllowCookies()
 	if errors.Is(err, csp.ErrNotConfigured) {
-		fmt.Printf("%s was not configured\n", target.Name)
+		fmt.Println("AllowCookies was not configured")
 		return
 	}
 	if err != nil {
 		fmt.Printf("delete failed: %v\n", err)
 		os.Exit(1)
 	}
-	fmt.Printf("deleted (unmanaged) the %s area\n", target.Bridge.InstanceID)
+	fmt.Println("deleted (unmanaged) the Browser area")
 }
 
-// cycle — the full LCRUD, restoring the original value at the end.
-func cycle(svc *wmi.Service) {
-	fmt.Printf("L: Browser area has %d policies (%d executable)\n", len(policybrowser.All), countExecutable())
+// cycle — the full LCRUD through the registry, restoring the original value.
+func cycle(c *mdm.Client) {
+	fmt.Printf("L: Browser area has %d policies\n", len(policybrowser.All))
 
-	original, origErr := csp.Read(svc, target)
-	fmt.Printf("R: %s = %s\n", target.Name, describe(original, origErr))
+	original, origErr := c.PolicyBrowser.GetAllowCookies()
+	fmt.Printf("R: AllowCookies = %s\n", describe64(original, origErr))
 
 	next := int64(policybrowser.AllowCookiesAllowAllCookiesFromAllSites)
-	if origErr == nil && fmt.Sprintf("%v", original) == strconv.FormatInt(next, 10) {
+	if origErr == nil && original == next {
 		next = int64(policybrowser.AllowCookiesBlockAllCookiesFromAllSites)
 	}
-	if err := csp.Set(svc, target, next); err != nil {
+	if err := c.PolicyBrowser.SetAllowCookies(next); err != nil {
 		fmt.Printf("U: set failed: %v\n", err)
 		os.Exit(1)
 	}
-	got, err := csp.Read(svc, target)
-	fmt.Printf("U: set %s = %d; now reads %s\n", target.Name, next, describe(got, err))
+	got, err := c.PolicyBrowser.GetAllowCookies()
+	fmt.Printf("U: set AllowCookies = %d; now reads %s\n", next, describe64(got, err))
 
 	fmt.Print("D: restoring original ... ")
 	if errors.Is(origErr, csp.ErrNotConfigured) {
-		err = csp.Delete(svc, target)
+		err = c.PolicyBrowser.DeleteAllowCookies()
 	} else {
-		err = csp.Set(svc, target, original)
+		err = c.PolicyBrowser.SetAllowCookies(original)
 	}
 	if err != nil && !errors.Is(err, csp.ErrNotConfigured) {
 		fmt.Printf("restore failed: %v\n", err)
 		os.Exit(1)
 	}
-	final, err := csp.Read(svc, target)
-	fmt.Printf("restored; now reads %s\n", describe(final, err))
+	final, err := c.PolicyBrowser.GetAllowCookies()
+	fmt.Printf("restored; now reads %s\n", describe64(final, err))
 }
 
-func countExecutable() int {
-	n := 0
-	for _, p := range policybrowser.All {
-		if p.Executable() {
-			n++
+// nonpolicy — non-Policy area services (read-only device state).
+func nonpolicy(c *mdm.Client) {
+	edition, err := c.WindowsLicensing.GetEdition()
+	fmt.Printf("WindowsLicensing.Edition = %s\n", describe64(edition, err))
+	status, err := c.WindowsLicensing.GetStatus()
+	fmt.Printf("WindowsLicensing.Status  = %s\n", describe64(status, err))
+	keyType, err := c.WindowsLicensing.GetLicenseKeyType()
+	fmt.Printf("WindowsLicensing.LicenseKeyType = %s\n", describe(keyType, err))
+}
+
+// custom — the escape hatch: drive a bridge target with no generated
+// binding by supplying its coordinates. Here it reads AllowCookies the
+// "manual" way, to show the shape (use inspect to discover real classes).
+func custom(c *mdm.Client) {
+	target := csp.Target{
+		Class:       "MDM_Policy_Result01_Browser02",
+		InstanceID:  "Browser",
+		ParentID:    "./Vendor/MSFT/Policy/Result",
+		Property:    "AllowCookies",
+	}
+	v, err := c.Custom.Read(target)
+	fmt.Printf("custom read %s.%s = %s\n", target.Class, target.Property, describe(v, err))
+}
+
+// inspect enumerates a raw bridge class — read-only discovery.
+func inspect(c *mdm.Client, class string) {
+	rows, err := c.Custom.Query(class)
+	if err != nil {
+		fmt.Printf("query %s failed: %v\n", class, err)
+		os.Exit(1)
+	}
+	fmt.Printf("%s: %d instance(s)\n", class, len(rows))
+	for i, row := range rows {
+		fmt.Printf("--- instance %d: InstanceID=%q ParentID=%q ---\n", i, row["InstanceID"], row["ParentID"])
+		for k, v := range row {
+			if k != "InstanceID" && k != "ParentID" && (len(k) < 2 || k[:2] != "__") && v != nil {
+				fmt.Printf("  %s = %v\n", k, v)
+			}
 		}
 	}
-	return n
+}
+
+// list — L: enumerate the catalog (cross-platform, no device access).
+func list() {
+	executable := 0
+	for _, p := range policybrowser.All {
+		if p.Executable() {
+			executable++
+		}
+	}
+	fmt.Printf("Browser: %d policies, %d executable via the bridge\n", len(policybrowser.All), executable)
 }
 
 func describe(v any, err error) string {
@@ -234,6 +204,16 @@ func describe(v any, err error) string {
 	return fmt.Sprintf("%v", v)
 }
 
+func describe64(v int64, err error) string {
+	if errors.Is(err, csp.ErrNotConfigured) {
+		return "(not configured)"
+	}
+	if err != nil {
+		return "error: " + err.Error()
+	}
+	return strconv.FormatInt(v, 10)
+}
+
 func usage() {
-	fmt.Println("usage: csp-lcrud <list|read|set <value>|delete|cycle|inspect <class>|nonpolicy>")
+	fmt.Println("usage: csp-lcrud <list|read|set <value>|delete|cycle|nonpolicy|custom|inspect <class>>")
 }
