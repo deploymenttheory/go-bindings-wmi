@@ -83,6 +83,7 @@ func run(metadataDir, outDir string) error {
 	}
 
 	written := map[string]bool{}
+	var services []serviceArea // areas that emitted a Service, for the registry
 	for _, a := range areas {
 		files, err := renderPackage(a.pkg, a.csp, bridgeAreas, cspClasses)
 		if err != nil {
@@ -102,8 +103,37 @@ func run(metadataDir, outDir string) error {
 			}
 			written[path] = true
 		}
+		if _, ok := files[a.pkg+"_service.go"]; ok {
+			services = append(services, serviceArea{field: registryField(a.csp), pkg: a.pkg})
+		}
 	}
-	fmt.Printf("generated %d CSP packages → %s\n", len(packages), outDir)
+
+	// Top-level registry: every area Service under one connected client.
+	if len(services) > 0 {
+		regDir := filepath.Join(outDir, registryPkg)
+		if err := os.MkdirAll(regDir, 0o755); err != nil {
+			return err
+		}
+		src, err := renderRegistry(services)
+		if err != nil {
+			return fmt.Errorf("registry: %w", err)
+		}
+		regPath := filepath.Join(regDir, registryPkg+".go")
+		if err := os.WriteFile(regPath, src, 0o644); err != nil {
+			return err
+		}
+		written[regPath] = true
+
+		// A cross-platform doc.go keeps the package buildable on non-Windows
+		// (the registry itself is Windows-only).
+		docPath := filepath.Join(regDir, "doc.go")
+		if err := os.WriteFile(docPath, []byte(registryDoc), 0o644); err != nil {
+			return err
+		}
+		written[docPath] = true
+	}
+
+	fmt.Printf("generated %d CSP packages (%d with services) → %s\n", len(packages), len(services), outDir)
 	return pruneStale(outDir, written)
 }
 
@@ -130,10 +160,15 @@ func renderPackage(pkg string, csp *cspschema.CSP, bridgeAreas map[string]string
 
 	var policiesBody, constsBody strings.Builder
 	all := make([]string, 0, len(policies))
+	var execs []policy // policies with a bridge mapping, in order
 	for _, p := range policies {
-		renderPolicy(&policiesBody, p, resolveBridge(p, bridgeArea, csp.Path, cspClasses))
+		spec := resolveBridge(p, bridgeArea, csp.Path, cspClasses)
+		renderPolicy(&policiesBody, p, spec)
 		renderConstants(&constsBody, p)
 		all = append(all, p.goName)
+		if spec != nil {
+			execs = append(execs, p)
+		}
 	}
 
 	// All: every policy in the area, for enumeration.
@@ -143,6 +178,9 @@ func renderPackage(pkg string, csp *cspschema.CSP, bridgeAreas map[string]string
 		fmt.Fprintf(&policiesBody, "\t%s,\n", name)
 	}
 	policiesBody.WriteString("}\n")
+
+	var serviceBody strings.Builder
+	renderService(&serviceBody, execs)
 
 	files := map[string][]byte{}
 	doc, err := assemble(pkg, fmt.Sprintf("// Package %s binds the %s CSP (%s).\n",
@@ -163,6 +201,13 @@ func renderPackage(pkg string, csp *cspschema.CSP, bridgeAreas map[string]string
 			return nil, fmt.Errorf("%s: %w", name, err)
 		}
 		files[name] = src
+	}
+	if strings.TrimSpace(serviceBody.String()) != "" {
+		src, err := assembleService(pkg, serviceBody.String())
+		if err != nil {
+			return nil, fmt.Errorf("%s_service.go: %w", pkg, err)
+		}
+		files[pkg+"_service.go"] = src
 	}
 	return files, nil
 }
@@ -369,6 +414,179 @@ func renderConstants(b *strings.Builder, p policy) {
 		fmt.Fprintf(b, "\t%s %s\n", e.name, e.spec)
 	}
 	b.WriteString(")\n\n")
+}
+
+const (
+	registryPkg = "mdm"
+	modulePath  = "github.com/deploymenttheory/go-bindings-wmi"
+)
+
+// registryDoc is the cross-platform doc.go for the registry package (the
+// Client itself is Windows-only; this keeps the package buildable elsewhere).
+const registryDoc = header + `
+// Package mdm is the CSP policy registry: every executable CSP area as a
+// typed service under one connected MDM-bridge client (mdm.Open), plus
+// Custom for targets outside the DDF export. The client and its services are
+// Windows-only (they drive the bridge); this file keeps the package
+// buildable on other platforms.
+package mdm
+`
+
+// serviceArea is an area whose package exposes a Service, for the registry.
+type serviceArea struct {
+	field string // exported registry field name
+	pkg   string // package name = import base
+}
+
+// registryField derives the registry field name: policy areas are prefixed
+// "Policy" (matching the package convention) so they never collide with a
+// same-named standalone CSP.
+func registryField(csp *cspschema.CSP) string {
+	name := exportName(csp.Name)
+	if csp.PolicyArea() {
+		return "Policy" + name
+	}
+	return name
+}
+
+// renderRegistry emits the mdm.Client — every executable area Service under
+// one bridge connection, plus Custom for targets outside the DDF export.
+func renderRegistry(services []serviceArea) ([]byte, error) {
+	// Deduplicate field names deterministically (belt-and-suspenders).
+	claimed := map[string]bool{}
+	for i := range services {
+		name := services[i].field
+		for n := 2; claimed[name]; n++ {
+			name = fmt.Sprintf("%s%d", services[i].field, n)
+		}
+		claimed[name] = true
+		services[i].field = name
+	}
+	sort.Slice(services, func(i, j int) bool { return services[i].field < services[j].field })
+
+	var b strings.Builder
+	b.WriteString(header)
+	b.WriteString("\n//go:build windows\n\n")
+	b.WriteString("// Package mdm is the CSP policy registry: every executable area as a\n")
+	b.WriteString("// typed service under one connected MDM-bridge client, plus Custom for\n")
+	b.WriteString("// targets the DDF export does not cover.\n")
+	fmt.Fprintf(&b, "package %s\n\n", registryPkg)
+	b.WriteString("import (\n")
+	b.WriteString("\tcsp \"github.com/deploymenttheory/go-bindings-wmi/runtime/csp\"\n")
+	b.WriteString("\twmi \"github.com/deploymenttheory/go-bindings-wmi/runtime/wmi\"\n\n")
+	for _, s := range services {
+		fmt.Fprintf(&b, "\t%s %q\n", s.pkg, modulePath+"/bindings/csp/"+s.pkg)
+	}
+	b.WriteString(")\n\n")
+
+	b.WriteString("// Client holds a connected MDM-bridge session and every executable CSP\n")
+	b.WriteString("// area's typed service. Open it with Open (requires SYSTEM); Close releases it.\n")
+	b.WriteString("type Client struct {\n")
+	b.WriteString("\tsvc *wmi.Service\n\n")
+	b.WriteString("\t// Custom drives bridge targets outside the generated bindings\n")
+	b.WriteString("\t// (dynamic instances, third-party CSPs).\n")
+	b.WriteString("\tCustom *csp.Custom\n\n")
+	for _, s := range services {
+		fmt.Fprintf(&b, "\t%s *%s.Service\n", s.field, s.pkg)
+	}
+	b.WriteString("}\n\n")
+
+	b.WriteString("// Open connects to the MDM bridge namespace (root\\cimv2\\mdm\\dmmap),\n")
+	b.WriteString("// which requires the SYSTEM account, and wires every area service.\n")
+	b.WriteString("func Open() (*Client, error) {\n")
+	b.WriteString("\tsvc, err := csp.Connect()\n")
+	b.WriteString("\tif err != nil {\n\t\treturn nil, err\n\t}\n")
+	b.WriteString("\treturn &Client{\n")
+	b.WriteString("\t\tsvc:    svc,\n")
+	b.WriteString("\t\tCustom: csp.NewCustom(svc),\n")
+	for _, s := range services {
+		fmt.Fprintf(&b, "\t\t%s: %s.New(svc),\n", s.field, s.pkg)
+	}
+	b.WriteString("\t}, nil\n}\n\n")
+	b.WriteString("// Close releases the bridge session.\n")
+	b.WriteString("func (c *Client) Close() { c.svc.Close() }\n")
+	return format.Source([]byte(b.String()))
+}
+
+// readCoercers maps a policy's Go value type to the runtime helper that
+// converts the bridge's raw VARIANT into it. Types absent here are returned
+// as `any`.
+var readCoercers = map[string]string{
+	"int64":   "AsInt64",
+	"bool":    "AsBool",
+	"float64": "AsFloat64",
+	"string":  "AsString",
+}
+
+// zeroValue is the typed zero returned on a read error.
+var zeroValue = map[string]string{"int64": "0", "bool": "false", "float64": "0", "string": `""`}
+
+// renderService emits an area Service with typed Get/Set/Delete methods for
+// each executable policy — the ergonomic layer over runtime/csp. Get returns
+// the policy's Go type; Set/Delete are emitted per the DDF AccessType (only
+// writable settings get Set, only deletable ones get Delete).
+func renderService(b *strings.Builder, execs []policy) {
+	if len(execs) == 0 {
+		return
+	}
+	b.WriteString("// Service drives this CSP area's policies through the MDM bridge.\n")
+	b.WriteString("// Construct it with New, passing a wmi.Service connected to the bridge\n")
+	b.WriteString("// namespace (csp.Connect, which requires the SYSTEM account).\n")
+	b.WriteString("type Service struct{ svc *wmi.Service }\n\n")
+	b.WriteString("// New returns a Service bound to a connected bridge session.\n")
+	b.WriteString("func New(svc *wmi.Service) *Service { return &Service{svc: svc} }\n\n")
+
+	for _, p := range execs {
+		goType := cspschema.GoType(p.node)
+		coercer, typed := readCoercers[goType]
+		retType := goType
+		if !typed {
+			retType = "any"
+		}
+
+		// Get — always (any executable policy is readable).
+		fmt.Fprintf(b, "// Get%s reads the effective value of %s.\n", p.goName, p.node.Name)
+		fmt.Fprintf(b, "func (s *Service) Get%s() (%s, error) {\n", p.goName, retType)
+		if typed {
+			fmt.Fprintf(b, "\tv, err := csp.Read(s.svc, %s)\n", p.goName)
+			fmt.Fprintf(b, "\tif err != nil {\n\t\treturn %s, err\n\t}\n", zeroValue[goType])
+			fmt.Fprintf(b, "\treturn wmi.%s(v), nil\n}\n\n", coercer)
+		} else {
+			fmt.Fprintf(b, "\treturn csp.Read(s.svc, %s)\n}\n\n", p.goName)
+		}
+
+		if hasAccess(p.node.Access, "Add") || hasAccess(p.node.Access, "Replace") {
+			fmt.Fprintf(b, "// Set%s sets %s (OMA-DM Add/Replace).\n", p.goName, p.node.Name)
+			fmt.Fprintf(b, "func (s *Service) Set%s(v %s) error { return csp.Set(s.svc, %s, v) }\n\n",
+				p.goName, goType, p.goName)
+		}
+		if hasAccess(p.node.Access, "Delete") {
+			fmt.Fprintf(b, "// Delete%s unmanages %s (OMA-DM Delete).\n", p.goName, p.node.Name)
+			fmt.Fprintf(b, "func (s *Service) Delete%s() error { return csp.Delete(s.svc, %s) }\n\n",
+				p.goName, p.goName)
+		}
+	}
+}
+
+func hasAccess(access []string, verb string) bool {
+	return slices.Contains(access, verb)
+}
+
+// assembleService wraps the generated area Service in a windows-tagged file
+// (it drives the bridge via the Windows-only runtime).
+func assembleService(pkg, body string) ([]byte, error) {
+	var b strings.Builder
+	b.WriteString(header)
+	b.WriteString("\n//go:build windows\n\n")
+	fmt.Fprintf(&b, "package %s\n\n", pkg)
+	b.WriteString("import (\n")
+	b.WriteString("\tcsp \"github.com/deploymenttheory/go-bindings-wmi/runtime/csp\"\n")
+	if strings.Contains(body, "wmi.") {
+		b.WriteString("\twmi \"github.com/deploymenttheory/go-bindings-wmi/runtime/wmi\"\n")
+	}
+	b.WriteString(")\n\n")
+	b.WriteString(body)
+	return format.Source([]byte(b.String()))
 }
 
 func assemble(pkg, doc, body string) ([]byte, error) {

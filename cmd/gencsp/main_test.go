@@ -35,7 +35,7 @@ func TestGenerateGolden(t *testing.T) {
 		got[e.Name()] = b
 	}
 
-	want := []string{"doc.go", "policydemo_constants.go", "policydemo_policies.go"}
+	want := []string{"doc.go", "policydemo_constants.go", "policydemo_policies.go", "policydemo_service.go"}
 	if names := sortedKeys(got); !slices.Equal(names, want) {
 		t.Errorf("generated files = %v, want %v", names, want)
 	}
@@ -103,6 +103,23 @@ func TestJoinExport(t *testing.T) {
 	for _, c := range cases {
 		if got := joinExport(c.segs); got != c.want {
 			t.Errorf("joinExport(%v) = %q, want %q", c.segs, got, c.want)
+		}
+	}
+}
+
+func TestRegistryField(t *testing.T) {
+	cases := []struct {
+		name, path, want string
+	}{
+		{"Browser", "./Device/Vendor/MSFT/Policy/Config", "PolicyBrowser"},       // policy area → prefixed
+		{"Bitlocker", "./Device/Vendor/MSFT/Policy/Config", "PolicyBitlocker"},   // avoids the BitLocker CSP
+		{"WindowsLicensing", "./Vendor/MSFT", "WindowsLicensing"},                // non-policy → bare
+		{"DevDetail", ".", "DevDetail"},
+	}
+	for _, c := range cases {
+		got := registryField(&cspschema.CSP{Name: c.name, Path: c.path})
+		if got != c.want {
+			t.Errorf("registryField(%q, %q) = %q, want %q", c.name, c.path, got, c.want)
 		}
 	}
 }
