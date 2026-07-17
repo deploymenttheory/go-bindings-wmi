@@ -43,13 +43,9 @@ jobs:
           cache: true
 
       # The pure packages (coercion, DMTF parsing, snapshot formats, the
-      # generators, DDF parsing) build and test on any OS.
+      # generator) build and test on any OS.
       - name: Unit tests
         run: go test ./cmd/... ./internal/... ./runtime/...
-
-      # The DDF-sourced CSP bindings are pure Go — build them natively.
-      - name: Build CSP bindings
-        run: go build ./bindings/csp/...
 
       - name: Cross-compile (windows/amd64 + windows/arm64)
         run: |
@@ -68,13 +64,10 @@ jobs:
           cache: true
 
       # Codegen is offline and deterministic from the committed snapshots
-      # (acquisition — capture / fetchddf — is a separate step), so the gate
-      # runs on the fast runner. Both pipelines regenerate: CIM classes from
-      # metadata/cim, CSP policies from metadata/csp.
+      # (acquisition — capture — is a separate step), so the gate runs on
+      # the fast runner: CIM classes regenerate from metadata/cim.
       - name: Regenerate from the committed snapshots
-        run: |
-          go run ./cmd/generate
-          go run ./cmd/gencsp
+        run: go run ./cmd/generate
 
       - name: Generated output must match the committed tree
         run: |

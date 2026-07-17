@@ -98,26 +98,18 @@ narrows):
 Any other namespace (`root\Microsoft\Windows\*`, …) is just
 `go run ./cmd/capture -namespace <ns>` then regenerate.
 
-### CSP policy catalog (DDF v2)
+### CSP policies (DDF v2)
 
-A second pipeline generates a typed catalog of the entire Windows **MDM
-policy / CSP surface** (~5,100 settings across ~313 areas) from Microsoft's
-canonical, versioned **DDF v2** files — the winmd-NuGet analogue for MDM.
-Acquisition is a pinned download with provenance; codegen is offline and the
-bindings are **pure Go** (no Windows dependency):
+The Windows **MDM policy / CSP surface** now has a dedicated project:
+[go-sdk-windowscsp](https://github.com/deploymenttheory/go-sdk-windowscsp)
+generates a full LCRUD SDK from Microsoft's canonical DDF v2 schema
+(typed services per CSP, OMA-URIs, allowed-value enums, SyncML support).
+The DDF pipeline that used to live in this repo moved there.
 
-```sh
-go run ./cmd/fetchddf     # download the pinned DDF v2 zip, verify sha256 → metadata/csp/ (committed)
-go run ./cmd/gencsp       # snapshots → bindings/csp/<area> (typed policy descriptors + enum constants)
-```
-
-```go
-import "github.com/deploymenttheory/go-bindings-wmi/bindings/csp/policybitlocker"
-p := policybitlocker.EncryptionMethod   // URI, format, applicability, allowed values, …
-```
-
-See [docs/csp-and-ddf.md](docs/csp-and-ddf.md). The DDF gives the canonical
-schema; the MDM WMI bridge is the local runtime for driving those policies.
+This repo keeps the WMI side of the story: `bindings/cim/dmmap` is the MDM
+bridge namespace — the local WMI face of those same CSPs — and a natural
+place to implement go-sdk-windowscsp's `client.Client` transport for
+on-device execution.
 
 ## Examples & docs
 
@@ -131,8 +123,6 @@ schema; the MDM WMI bridge is the local runtime for driving those policies.
   subscriptions, streaming, remote
 - [Instances and associations](docs/instances-and-associations.md) — CRUD,
   key lookups, ASSOCIATORS OF
-- [CSP policy bindings (DDF v2)](docs/csp-and-ddf.md) — the DDF pipeline:
-  fetch, parse, the typed policy catalog
 
 - [`CLAUDE.md`](CLAUDE.md) — the capture doctrine and why the CLI is minimal
 

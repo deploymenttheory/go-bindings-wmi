@@ -92,41 +92,16 @@ tracking.
 - **`bindings/cim/<ns>`** — generated typed classes + `Query<Class>` helpers.
   Never hand-edited.
 
-## The second pipeline: CSP policy bindings (DDF v2)
+## CSP policies (DDF v2) live elsewhere
 
-Alongside the live-CIM pipeline, the repo generates a typed catalog of the
-Windows MDM policy / CSP surface from Microsoft's **DDF v2** files. Unlike
-the CIM side, this metadata *is* a versioned download — so it follows the
-winmd doctrine directly (the DDF v2 zip is the winmd-NuGet analogue):
-
-```
-DDF v2 zip (pinned) → committed snapshots → deterministic codegen → typed policy catalog
-  cmd/fetchddf        metadata/csp/*.json    cmd/gencsp             bindings/csp/<area>
-```
-
-- **`cmd/fetchddf`** (cross-platform) — the acquisition stage: download the
-  pinned DDF zip, verify SHA-256, parse every CSP/policy-area DDF into
-  `metadata/csp/<area>.json` + `PROVENANCE.json`. Bump the pin and re-run to
-  adopt a new Microsoft drop; `ddf-update.yml` automates the PR.
-- **`internal/cspschema`** — the DDF snapshot format + the DDF XML parser +
-  the DDF-format→Go-type mapping.
-- **`cmd/gencsp`** — snapshot → `bindings/csp/<area>`: one `csp.Policy`
-  descriptor per leaf node (URI, format, access, applicability, allowed
-  values, deprecation) plus typed enum constants. Self-cleaning,
-  byte-deterministic; CI regenerates and diffs both pipelines.
-- **`runtime/csp`** — the hand-written `csp.Policy` descriptor types the
-  generated bindings reference (pure data, any OS) plus a Windows-only
-  execution layer (`exec_windows.go`): `Connect`/`Read`/`ReadDesired`/`Set`/
-  `Delete` drive a policy through the bridge via `runtime/wmi`'s instance
-  CRUD. Only bridge-backed policies (`Executable()`) can be driven.
-
-The DDF is the canonical *schema*; the MDM WMI bridge (`root\cimv2\mdm\dmmap`)
-is the local *runtime* for driving those policies. `cmd/gencsp` joins them —
-cross-checking DDF policy areas against the bridge classes captured into
-`metadata/csp/bridge-policy-classes.json` — so each policy's `csp.Bridge`
-mapping (`MDM_Policy_Config01_<Area>02`, keyed `ParentID`+`InstanceID`) is
-grounded in a real capture, not a guessed convention. Execution needs the
-SYSTEM account and mutates device config.
+The DDF v2 pipeline (fetchddf → metadata/csp → gencsp → bindings/csp) that
+used to live here moved to its own project:
+[go-sdk-windowscsp](https://github.com/deploymenttheory/go-sdk-windowscsp)
+generates a full LCRUD SDK from the DDF v2 schema. This repo keeps the WMI
+side: `bindings/cim/dmmap` is the MDM bridge namespace — the local WMI face
+of the same CSP surface (SYSTEM-gated; see docs/mdm-bridge.md) — and the
+natural place to build go-sdk-windowscsp's `client.Client` transport for
+on-device execution.
 
 ## Growing coverage
 
