@@ -59,7 +59,7 @@ jobs:
 
       - name: Open the update PR
         if: steps.diff.outputs.updated == 'true'
-        uses: peter-evans/create-pull-request@v7
+        uses: peter-evans/create-pull-request@v8
         with:
           branch: chore/schema-update
           title: "chore(metadata): refresh root\\cimv2 snapshot (build ${{ steps.diff.outputs.build }})"
