@@ -4,7 +4,7 @@ import "maps"
 
 // Row is one WMI instance: property name → decoded Go value. Scalars widen
 // to string, int64, uint64, bool, or float64; array properties decode to
-// []any of those; embedded CIM objects decode to a nested Row (its __CLASS
+// typed slices of those; embedded CIM objects decode to a nested Row (its __CLASS
 // system property names the embedded class); NULL properties are nil.
 type Row map[string]any
 

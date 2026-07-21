@@ -37,17 +37,12 @@ func TestEncodeRowArray(t *testing.T) {
 		t.Errorf("VARIANT type = %#x, want %#x", scalar.Vt, want)
 	}
 
-	// The SAFEARRAY decodes back to two embedded Rows.
-	decoded, ok := decodeVariant(&v).([]any)
+	// The SAFEARRAY decodes back to two embedded Rows (typed slice).
+	decoded, ok := decodeVariant(&v).([]Row)
 	if !ok || len(decoded) != 2 {
-		t.Fatalf("decoded = %#v, want 2 elements", decoded)
+		t.Fatalf("decoded = %#v, want []Row of 2", decoded)
 	}
-	for i, elem := range decoded {
-		row, ok := elem.(Row)
-		if !ok {
-			t.Errorf("element %d is %T, want Row", i, elem)
-			continue
-		}
+	for i, row := range decoded {
 		if class := AsString(row["__CLASS"]); class != "Win32_ProcessStartup" {
 			t.Errorf("element %d __CLASS = %q", i, class)
 		}

@@ -377,7 +377,7 @@ func decodeObject(obj *wmi.IWbemClassObject) (Row, error) {
 }
 
 // decodeVariant converts a VARIANT to a Go value: scalars widen to string,
-// int64, uint64, bool, or float64; SAFEARRAYs decode to []any of those
+// int64, uint64, bool, or float64; SAFEARRAYs decode to typed slices of those
 // widened elements; embedded CIM objects (VT_UNKNOWN/VT_DISPATCH) decode to
 // a nested Row. Unsupported types return nil.
 func decodeVariant(v *variant.VARIANT) any {
