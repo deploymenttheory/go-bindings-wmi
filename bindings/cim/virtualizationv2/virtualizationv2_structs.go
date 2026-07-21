@@ -6,6 +6,21 @@ package virtualizationv2
 
 import wmi "github.com/deploymenttheory/go-bindings-wmi/runtime/wmi"
 
+// MsvmAllocationCapabilities is the Msvm_AllocationCapabilities CIM class.
+type MsvmAllocationCapabilities struct {
+	Caption               string   `cim:"Caption"`
+	Description           string   `cim:"Description"`
+	ElementName           string   `cim:"ElementName"`
+	InstanceID            string   `cim:"InstanceID"`
+	OtherResourceType     string   `cim:"OtherResourceType"`
+	RequestTypesSupported uint16   `cim:"RequestTypesSupported"`
+	ResourceSubType       string   `cim:"ResourceSubType"`
+	ResourceType          uint16   `cim:"ResourceType"`
+	SharingMode           uint16   `cim:"SharingMode"`
+	SupportedAddStates    []uint16 `cim:"SupportedAddStates"`
+	SupportedRemoveStates []uint16 `cim:"SupportedRemoveStates"`
+}
+
 // MsvmBootSourceSettingData is the Msvm_BootSourceSettingData CIM class.
 type MsvmBootSourceSettingData struct {
 	BootSourceDescription string  `cim:"BootSourceDescription"`
@@ -319,6 +334,48 @@ type MsvmKvpExchangeComponent struct {
 	TransitioningToState                      uint16   `cim:"TransitioningToState"`
 }
 
+// MsvmKvpExchangeComponentSettingData is the Msvm_KvpExchangeComponentSettingData CIM class.
+type MsvmKvpExchangeComponentSettingData struct {
+	Address               string   `cim:"Address"`
+	AddressOnParent       string   `cim:"AddressOnParent"`
+	AllocationUnits       string   `cim:"AllocationUnits"`
+	AutomaticAllocation   bool     `cim:"AutomaticAllocation"`
+	AutomaticDeallocation bool     `cim:"AutomaticDeallocation"`
+	Caption               string   `cim:"Caption"`
+	Connection            []string `cim:"Connection"`
+	ConsumerVisibility    uint16   `cim:"ConsumerVisibility"`
+	Description           string   `cim:"Description"`
+	DisableHostKVPItems   bool     `cim:"DisableHostKVPItems"`
+	ElementName           string   `cim:"ElementName"`
+	EnabledState          uint16   `cim:"EnabledState"`
+	HostExchangeItems     []string `cim:"HostExchangeItems"`
+	HostOnlyItems         []string `cim:"HostOnlyItems"`
+	HostResource          []string `cim:"HostResource"`
+	InstanceID            string   `cim:"InstanceID"`
+	Limit                 uint64   `cim:"Limit"`
+	MappingBehavior       uint16   `cim:"MappingBehavior"`
+	OtherResourceType     string   `cim:"OtherResourceType"`
+	Parent                string   `cim:"Parent"`
+	PoolID                string   `cim:"PoolID"`
+	Reservation           uint64   `cim:"Reservation"`
+	ResourceSubType       string   `cim:"ResourceSubType"`
+	ResourceType          uint16   `cim:"ResourceType"`
+	VirtualQuantity       uint64   `cim:"VirtualQuantity"`
+	VirtualQuantityUnits  string   `cim:"VirtualQuantityUnits"`
+	Weight                uint32   `cim:"Weight"`
+}
+
+// MsvmKvpExchangeDataItem is the Msvm_KvpExchangeDataItem CIM class.
+type MsvmKvpExchangeDataItem struct {
+	Caption     string `cim:"Caption"`
+	Data        string `cim:"Data"`
+	Description string `cim:"Description"`
+	ElementName string `cim:"ElementName"`
+	InstanceID  string `cim:"InstanceID"`
+	Name        string `cim:"Name"`
+	Source      uint16 `cim:"Source"`
+}
+
 // MsvmMemorySettingData is the Msvm_MemorySettingData CIM class.
 type MsvmMemorySettingData struct {
 	Address                       string   `cim:"Address"`
@@ -538,6 +595,16 @@ type MsvmSerialPortSettingData struct {
 	VirtualQuantity       uint64   `cim:"VirtualQuantity"`
 	VirtualQuantityUnits  string   `cim:"VirtualQuantityUnits"`
 	Weight                uint32   `cim:"Weight"`
+}
+
+// MsvmSettingsDefineCapabilities is the Msvm_SettingsDefineCapabilities CIM class.
+type MsvmSettingsDefineCapabilities struct {
+	GroupComponent   string `cim:"GroupComponent"`
+	PartComponent    string `cim:"PartComponent"`
+	PropertyPolicy   uint16 `cim:"PropertyPolicy"`
+	SupportStatement uint16 `cim:"SupportStatement"`
+	ValueRange       uint16 `cim:"ValueRange"`
+	ValueRole        uint16 `cim:"ValueRole"`
 }
 
 // MsvmShutdownComponent is the Msvm_ShutdownComponent CIM class.

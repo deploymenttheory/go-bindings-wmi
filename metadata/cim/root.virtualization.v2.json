@@ -6,6 +6,58 @@
   },
   "classes": [
     {
+      "name": "Msvm_AllocationCapabilities",
+      "properties": [
+        {
+          "name": "Caption",
+          "cimType": 8
+        },
+        {
+          "name": "Description",
+          "cimType": 8
+        },
+        {
+          "name": "ElementName",
+          "cimType": 8
+        },
+        {
+          "name": "InstanceID",
+          "cimType": 8,
+          "key": true
+        },
+        {
+          "name": "OtherResourceType",
+          "cimType": 8
+        },
+        {
+          "name": "RequestTypesSupported",
+          "cimType": 18
+        },
+        {
+          "name": "ResourceSubType",
+          "cimType": 8
+        },
+        {
+          "name": "ResourceType",
+          "cimType": 18
+        },
+        {
+          "name": "SharingMode",
+          "cimType": 18
+        },
+        {
+          "name": "SupportedAddStates",
+          "cimType": 18,
+          "array": true
+        },
+        {
+          "name": "SupportedRemoveStates",
+          "cimType": 18,
+          "array": true
+        }
+      ]
+    },
+    {
       "name": "Msvm_BootSourceSettingData",
       "properties": [
         {
@@ -2804,6 +2856,157 @@
       ]
     },
     {
+      "name": "Msvm_KvpExchangeComponentSettingData",
+      "properties": [
+        {
+          "name": "Address",
+          "cimType": 8
+        },
+        {
+          "name": "AddressOnParent",
+          "cimType": 8
+        },
+        {
+          "name": "AllocationUnits",
+          "cimType": 8
+        },
+        {
+          "name": "AutomaticAllocation",
+          "cimType": 11
+        },
+        {
+          "name": "AutomaticDeallocation",
+          "cimType": 11
+        },
+        {
+          "name": "Caption",
+          "cimType": 8
+        },
+        {
+          "name": "Connection",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "ConsumerVisibility",
+          "cimType": 18
+        },
+        {
+          "name": "Description",
+          "cimType": 8
+        },
+        {
+          "name": "DisableHostKVPItems",
+          "cimType": 11
+        },
+        {
+          "name": "ElementName",
+          "cimType": 8
+        },
+        {
+          "name": "EnabledState",
+          "cimType": 18
+        },
+        {
+          "name": "HostExchangeItems",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "HostOnlyItems",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "HostResource",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "InstanceID",
+          "cimType": 8,
+          "key": true
+        },
+        {
+          "name": "Limit",
+          "cimType": 21
+        },
+        {
+          "name": "MappingBehavior",
+          "cimType": 18
+        },
+        {
+          "name": "OtherResourceType",
+          "cimType": 8
+        },
+        {
+          "name": "Parent",
+          "cimType": 8
+        },
+        {
+          "name": "PoolID",
+          "cimType": 8
+        },
+        {
+          "name": "Reservation",
+          "cimType": 21
+        },
+        {
+          "name": "ResourceSubType",
+          "cimType": 8
+        },
+        {
+          "name": "ResourceType",
+          "cimType": 18
+        },
+        {
+          "name": "VirtualQuantity",
+          "cimType": 21
+        },
+        {
+          "name": "VirtualQuantityUnits",
+          "cimType": 8
+        },
+        {
+          "name": "Weight",
+          "cimType": 19
+        }
+      ]
+    },
+    {
+      "name": "Msvm_KvpExchangeDataItem",
+      "properties": [
+        {
+          "name": "Caption",
+          "cimType": 8
+        },
+        {
+          "name": "Data",
+          "cimType": 8
+        },
+        {
+          "name": "Description",
+          "cimType": 8
+        },
+        {
+          "name": "ElementName",
+          "cimType": 8
+        },
+        {
+          "name": "InstanceID",
+          "cimType": 8
+        },
+        {
+          "name": "Name",
+          "cimType": 8
+        },
+        {
+          "name": "Source",
+          "cimType": 18
+        }
+      ]
+    },
+    {
       "name": "Msvm_MemorySettingData",
       "properties": [
         {
@@ -3889,6 +4092,47 @@
         {
           "name": "Weight",
           "cimType": 19
+        }
+      ]
+    },
+    {
+      "name": "Msvm_SettingsDefineCapabilities",
+      "properties": [
+        {
+          "name": "GroupComponent",
+          "cimType": 102,
+          "key": true
+        },
+        {
+          "name": "PartComponent",
+          "cimType": 102,
+          "key": true
+        },
+        {
+          "name": "PropertyPolicy",
+          "cimType": 18
+        },
+        {
+          "name": "SupportStatement",
+          "cimType": 18,
+          "values": [
+            "Production",
+            "Prerelease",
+            "Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            ".."
+          ]
+        },
+        {
+          "name": "ValueRange",
+          "cimType": 18
+        },
+        {
+          "name": "ValueRole",
+          "cimType": 18
         }
       ]
     },

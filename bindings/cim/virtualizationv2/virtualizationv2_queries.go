@@ -6,6 +6,48 @@ package virtualizationv2
 
 import wmi "github.com/deploymenttheory/go-bindings-wmi/runtime/wmi"
 
+// QueryMsvmAllocationCapabilities runs the WQL query against the class and decodes each
+// instance into a MsvmAllocationCapabilities. Pass the WHERE clause (or "" for all).
+func QueryMsvmAllocationCapabilities(svc *wmi.Service, where string) ([]MsvmAllocationCapabilities, error) {
+	q := "SELECT * FROM Msvm_AllocationCapabilities"
+	if where != "" {
+		q += " WHERE " + where
+	}
+	rows, err := svc.Query(q)
+	if err != nil {
+		return nil, err
+	}
+	out := make([]MsvmAllocationCapabilities, len(rows))
+	for i, row := range rows {
+		out[i].Caption = wmi.AsString(row["Caption"])
+		out[i].Description = wmi.AsString(row["Description"])
+		out[i].ElementName = wmi.AsString(row["ElementName"])
+		out[i].InstanceID = wmi.AsString(row["InstanceID"])
+		out[i].OtherResourceType = wmi.AsString(row["OtherResourceType"])
+		out[i].RequestTypesSupported = wmi.AsUint16(row["RequestTypesSupported"])
+		out[i].ResourceSubType = wmi.AsString(row["ResourceSubType"])
+		out[i].ResourceType = wmi.AsUint16(row["ResourceType"])
+		out[i].SharingMode = wmi.AsUint16(row["SharingMode"])
+		out[i].SupportedAddStates = wmi.AsUint16Slice(row["SupportedAddStates"])
+		out[i].SupportedRemoveStates = wmi.AsUint16Slice(row["SupportedRemoveStates"])
+	}
+	return out, nil
+}
+
+// GetMsvmAllocationCapabilities returns the Msvm_AllocationCapabilities instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMsvmAllocationCapabilities(svc *wmi.Service, instanceID string) (*MsvmAllocationCapabilities, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMsvmAllocationCapabilities(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryMsvmBootSourceSettingData runs the WQL query against the class and decodes each
 // instance into a MsvmBootSourceSettingData. Pass the WHERE clause (or "" for all).
 func QueryMsvmBootSourceSettingData(svc *wmi.Service, where string) ([]MsvmBootSourceSettingData, error) {
@@ -548,6 +590,88 @@ func GetMsvmKvpExchangeComponent(svc *wmi.Service, creationClassName string, dev
 	return &out[0], nil
 }
 
+// QueryMsvmKvpExchangeComponentSettingData runs the WQL query against the class and decodes each
+// instance into a MsvmKvpExchangeComponentSettingData. Pass the WHERE clause (or "" for all).
+func QueryMsvmKvpExchangeComponentSettingData(svc *wmi.Service, where string) ([]MsvmKvpExchangeComponentSettingData, error) {
+	q := "SELECT * FROM Msvm_KvpExchangeComponentSettingData"
+	if where != "" {
+		q += " WHERE " + where
+	}
+	rows, err := svc.Query(q)
+	if err != nil {
+		return nil, err
+	}
+	out := make([]MsvmKvpExchangeComponentSettingData, len(rows))
+	for i, row := range rows {
+		out[i].Address = wmi.AsString(row["Address"])
+		out[i].AddressOnParent = wmi.AsString(row["AddressOnParent"])
+		out[i].AllocationUnits = wmi.AsString(row["AllocationUnits"])
+		out[i].AutomaticAllocation = wmi.AsBool(row["AutomaticAllocation"])
+		out[i].AutomaticDeallocation = wmi.AsBool(row["AutomaticDeallocation"])
+		out[i].Caption = wmi.AsString(row["Caption"])
+		out[i].Connection = wmi.AsStringSlice(row["Connection"])
+		out[i].ConsumerVisibility = wmi.AsUint16(row["ConsumerVisibility"])
+		out[i].Description = wmi.AsString(row["Description"])
+		out[i].DisableHostKVPItems = wmi.AsBool(row["DisableHostKVPItems"])
+		out[i].ElementName = wmi.AsString(row["ElementName"])
+		out[i].EnabledState = wmi.AsUint16(row["EnabledState"])
+		out[i].HostExchangeItems = wmi.AsStringSlice(row["HostExchangeItems"])
+		out[i].HostOnlyItems = wmi.AsStringSlice(row["HostOnlyItems"])
+		out[i].HostResource = wmi.AsStringSlice(row["HostResource"])
+		out[i].InstanceID = wmi.AsString(row["InstanceID"])
+		out[i].Limit = wmi.AsUint64(row["Limit"])
+		out[i].MappingBehavior = wmi.AsUint16(row["MappingBehavior"])
+		out[i].OtherResourceType = wmi.AsString(row["OtherResourceType"])
+		out[i].Parent = wmi.AsString(row["Parent"])
+		out[i].PoolID = wmi.AsString(row["PoolID"])
+		out[i].Reservation = wmi.AsUint64(row["Reservation"])
+		out[i].ResourceSubType = wmi.AsString(row["ResourceSubType"])
+		out[i].ResourceType = wmi.AsUint16(row["ResourceType"])
+		out[i].VirtualQuantity = wmi.AsUint64(row["VirtualQuantity"])
+		out[i].VirtualQuantityUnits = wmi.AsString(row["VirtualQuantityUnits"])
+		out[i].Weight = wmi.AsUint32(row["Weight"])
+	}
+	return out, nil
+}
+
+// GetMsvmKvpExchangeComponentSettingData returns the Msvm_KvpExchangeComponentSettingData instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMsvmKvpExchangeComponentSettingData(svc *wmi.Service, instanceID string) (*MsvmKvpExchangeComponentSettingData, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	out, err := QueryMsvmKvpExchangeComponentSettingData(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
+// QueryMsvmKvpExchangeDataItem runs the WQL query against the class and decodes each
+// instance into a MsvmKvpExchangeDataItem. Pass the WHERE clause (or "" for all).
+func QueryMsvmKvpExchangeDataItem(svc *wmi.Service, where string) ([]MsvmKvpExchangeDataItem, error) {
+	q := "SELECT * FROM Msvm_KvpExchangeDataItem"
+	if where != "" {
+		q += " WHERE " + where
+	}
+	rows, err := svc.Query(q)
+	if err != nil {
+		return nil, err
+	}
+	out := make([]MsvmKvpExchangeDataItem, len(rows))
+	for i, row := range rows {
+		out[i].Caption = wmi.AsString(row["Caption"])
+		out[i].Data = wmi.AsString(row["Data"])
+		out[i].Description = wmi.AsString(row["Description"])
+		out[i].ElementName = wmi.AsString(row["ElementName"])
+		out[i].InstanceID = wmi.AsString(row["InstanceID"])
+		out[i].Name = wmi.AsString(row["Name"])
+		out[i].Source = wmi.AsUint16(row["Source"])
+	}
+	return out, nil
+}
+
 // QueryMsvmMemorySettingData runs the WQL query against the class and decodes each
 // instance into a MsvmMemorySettingData. Pass the WHERE clause (or "" for all).
 func QueryMsvmMemorySettingData(svc *wmi.Service, where string) ([]MsvmMemorySettingData, error) {
@@ -953,6 +1077,44 @@ func QueryMsvmSerialPortSettingData(svc *wmi.Service, where string) ([]MsvmSeria
 func GetMsvmSerialPortSettingData(svc *wmi.Service, instanceID string) (*MsvmSerialPortSettingData, error) {
 	where := "InstanceID = " + wmi.WQLValue(instanceID)
 	out, err := QueryMsvmSerialPortSettingData(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
+// QueryMsvmSettingsDefineCapabilities runs the WQL query against the class and decodes each
+// instance into a MsvmSettingsDefineCapabilities. Pass the WHERE clause (or "" for all).
+func QueryMsvmSettingsDefineCapabilities(svc *wmi.Service, where string) ([]MsvmSettingsDefineCapabilities, error) {
+	q := "SELECT * FROM Msvm_SettingsDefineCapabilities"
+	if where != "" {
+		q += " WHERE " + where
+	}
+	rows, err := svc.Query(q)
+	if err != nil {
+		return nil, err
+	}
+	out := make([]MsvmSettingsDefineCapabilities, len(rows))
+	for i, row := range rows {
+		out[i].GroupComponent = wmi.AsString(row["GroupComponent"])
+		out[i].PartComponent = wmi.AsString(row["PartComponent"])
+		out[i].PropertyPolicy = wmi.AsUint16(row["PropertyPolicy"])
+		out[i].SupportStatement = wmi.AsUint16(row["SupportStatement"])
+		out[i].ValueRange = wmi.AsUint16(row["ValueRange"])
+		out[i].ValueRole = wmi.AsUint16(row["ValueRole"])
+	}
+	return out, nil
+}
+
+// GetMsvmSettingsDefineCapabilities returns the Msvm_SettingsDefineCapabilities instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMsvmSettingsDefineCapabilities(svc *wmi.Service, groupComponent string, partComponent string) (*MsvmSettingsDefineCapabilities, error) {
+	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
+		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+	out, err := QueryMsvmSettingsDefineCapabilities(svc, where)
 	if err != nil {
 		return nil, err
 	}

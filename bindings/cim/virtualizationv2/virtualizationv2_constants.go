@@ -280,6 +280,12 @@ const (
 	MsvmProcessorSettingDataLimitProcessorFeaturesModeClusterNodeCommonFeatures uint8 = 1
 )
 
+// Msvm_SettingsDefineCapabilities.SupportStatement values.
+const (
+	MsvmSettingsDefineCapabilitiesSupportStatementProduction uint16 = 0
+	MsvmSettingsDefineCapabilitiesSupportStatementPrerelease uint16 = 1
+)
+
 // Msvm_StorageAllocationSettingData.CachingMode values.
 const (
 	MsvmStorageAllocationSettingDataCachingModeUnknown              uint16 = 0
