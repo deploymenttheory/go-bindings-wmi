@@ -9,9 +9,9 @@ import (
 	"github.com/deploymenttheory/go-bindings-wmi/runtime/wmi"
 )
 
-// TestObjectText renders a built-up embedded instance as MOF text — the
-// string shape providers like Hyper-V's virtualization namespace take for
-// their *Settings method parameters.
+// TestObjectText renders a built-up embedded instance as CIM DTD 2.0 XML —
+// the string shape providers like Hyper-V's virtualization namespace take
+// for their *Settings method parameters (MOF text is rejected there).
 func TestObjectText(t *testing.T) {
 	svc, err := wmi.Connect(`root\cimv2`)
 	if err != nil {
@@ -20,14 +20,19 @@ func TestObjectText(t *testing.T) {
 	defer svc.Close()
 
 	text, err := svc.ObjectText(wmi.Instance("Win32_ProcessStartup", map[string]any{
-		"Title":       "objecttext-probe",
-		"ShowWindow":  0,
+		"Title":         "objecttext-probe",
+		"ShowWindow":    0,
 		"PriorityClass": 32,
 	}))
 	if err != nil {
 		t.Fatalf("ObjectText: %v", err)
 	}
-	for _, want := range []string{"instance of Win32_ProcessStartup", `Title = "objecttext-probe"`, "PriorityClass = 32"} {
+	for _, want := range []string{
+		`<INSTANCE CLASSNAME="Win32_ProcessStartup"`,
+		`<PROPERTY NAME="Title"`,
+		`<VALUE>objecttext-probe</VALUE>`,
+		`<VALUE>32</VALUE>`,
+	} {
 		if !strings.Contains(text, want) {
 			t.Errorf("ObjectText missing %q in:\n%s", want, text)
 		}
@@ -39,7 +44,7 @@ func TestObjectText(t *testing.T) {
 	}
 }
 
-// TestObjectTextOfPath round-trips a live instance into MOF text with an
+// TestObjectTextOfPath round-trips a live instance into CIM-XML text with an
 // in-memory override, without persisting anything.
 func TestObjectTextOfPath(t *testing.T) {
 	svc, err := wmi.Connect(`root\cimv2`)
@@ -61,10 +66,10 @@ func TestObjectTextOfPath(t *testing.T) {
 	if err != nil {
 		t.Fatalf("ObjectTextOfPath: %v", err)
 	}
-	if !strings.Contains(text, "instance of Win32_Service") {
+	if !strings.Contains(text, `<INSTANCE CLASSNAME="Win32_Service"`) {
 		t.Errorf("ObjectTextOfPath missing class header in:\n%s", text)
 	}
-	if !strings.Contains(text, `Description = "objecttext-override"`) {
+	if !strings.Contains(text, `<VALUE>objecttext-override</VALUE>`) {
 		t.Errorf("override not applied in:\n%s", text)
 	}
 
