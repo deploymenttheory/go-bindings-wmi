@@ -1,0 +1,3966 @@
+{
+  "namespace": "root\\Microsoft\\Windows\\Hgs",
+  "provenance": {
+    "osBuild": "26200",
+    "captured": "2026-07-21"
+  },
+  "classes": [
+    {
+      "name": "CIM_ClassCreation",
+      "properties": [
+        {
+          "name": "ClassDefinition",
+          "cimType": 13
+        },
+        {
+          "name": "CorrelatedIndications",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "IndicationFilterName",
+          "cimType": 8
+        },
+        {
+          "name": "IndicationIdentifier",
+          "cimType": 8
+        },
+        {
+          "name": "IndicationTime",
+          "cimType": 101
+        },
+        {
+          "name": "OtherSeverity",
+          "cimType": 8
+        },
+        {
+          "name": "PerceivedSeverity",
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Other",
+            "Information",
+            "Degraded/Warning",
+            "Minor",
+            "Major",
+            "Critical",
+            "Fatal/NonRecoverable",
+            "DMTF Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            ".."
+          ]
+        },
+        {
+          "name": "SequenceContext",
+          "cimType": 8
+        },
+        {
+          "name": "SequenceNumber",
+          "cimType": 20
+        }
+      ]
+    },
+    {
+      "name": "CIM_ClassDeletion",
+      "properties": [
+        {
+          "name": "ClassDefinition",
+          "cimType": 13
+        },
+        {
+          "name": "CorrelatedIndications",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "IndicationFilterName",
+          "cimType": 8
+        },
+        {
+          "name": "IndicationIdentifier",
+          "cimType": 8
+        },
+        {
+          "name": "IndicationTime",
+          "cimType": 101
+        },
+        {
+          "name": "OtherSeverity",
+          "cimType": 8
+        },
+        {
+          "name": "PerceivedSeverity",
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Other",
+            "Information",
+            "Degraded/Warning",
+            "Minor",
+            "Major",
+            "Critical",
+            "Fatal/NonRecoverable",
+            "DMTF Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            ".."
+          ]
+        },
+        {
+          "name": "SequenceContext",
+          "cimType": 8
+        },
+        {
+          "name": "SequenceNumber",
+          "cimType": 20
+        }
+      ]
+    },
+    {
+      "name": "CIM_ClassIndication",
+      "properties": [
+        {
+          "name": "ClassDefinition",
+          "cimType": 13
+        },
+        {
+          "name": "CorrelatedIndications",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "IndicationFilterName",
+          "cimType": 8
+        },
+        {
+          "name": "IndicationIdentifier",
+          "cimType": 8
+        },
+        {
+          "name": "IndicationTime",
+          "cimType": 101
+        },
+        {
+          "name": "OtherSeverity",
+          "cimType": 8
+        },
+        {
+          "name": "PerceivedSeverity",
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Other",
+            "Information",
+            "Degraded/Warning",
+            "Minor",
+            "Major",
+            "Critical",
+            "Fatal/NonRecoverable",
+            "DMTF Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            ".."
+          ]
+        },
+        {
+          "name": "SequenceContext",
+          "cimType": 8
+        },
+        {
+          "name": "SequenceNumber",
+          "cimType": 20
+        }
+      ]
+    },
+    {
+      "name": "CIM_ClassModification",
+      "properties": [
+        {
+          "name": "ClassDefinition",
+          "cimType": 13
+        },
+        {
+          "name": "CorrelatedIndications",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "IndicationFilterName",
+          "cimType": 8
+        },
+        {
+          "name": "IndicationIdentifier",
+          "cimType": 8
+        },
+        {
+          "name": "IndicationTime",
+          "cimType": 101
+        },
+        {
+          "name": "OtherSeverity",
+          "cimType": 8
+        },
+        {
+          "name": "PerceivedSeverity",
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Other",
+            "Information",
+            "Degraded/Warning",
+            "Minor",
+            "Major",
+            "Critical",
+            "Fatal/NonRecoverable",
+            "DMTF Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            ".."
+          ]
+        },
+        {
+          "name": "PreviousClassDefinition",
+          "cimType": 13
+        },
+        {
+          "name": "SequenceContext",
+          "cimType": 8
+        },
+        {
+          "name": "SequenceNumber",
+          "cimType": 20
+        }
+      ]
+    },
+    {
+      "name": "CIM_Error",
+      "properties": [
+        {
+          "name": "CIMStatusCode",
+          "cimType": 19,
+          "values": [
+            "CIM_ERR_FAILED",
+            "CIM_ERR_ACCESS_DENIED",
+            "CIM_ERR_INVALID_NAMESPACE",
+            "CIM_ERR_INVALID_PARAMETER",
+            "CIM_ERR_INVALID_CLASS",
+            "CIM_ERR_NOT_FOUND",
+            "CIM_ERR_NOT_SUPPORTED",
+            "CIM_ERR_CLASS_HAS_CHILDREN",
+            "CIM_ERR_CLASS_HAS_INSTANCES",
+            "CIM_ERR_INVALID_SUPERCLASS",
+            "CIM_ERR_ALREADY_EXISTS",
+            "CIM_ERR_NO_SUCH_PROPERTY",
+            "CIM_ERR_TYPE_MISMATCH",
+            "CIM_ERR_QUERY_LANGUAGE_NOT_SUPPORTED",
+            "CIM_ERR_INVALID_QUERY",
+            "CIM_ERR_METHOD_NOT_AVAILABLE",
+            "CIM_ERR_METHOD_NOT_FOUND",
+            "CIM_ERR_UNEXPECTED_RESPONSE",
+            "CIM_ERR_INVALID_RESPONSE_DESTINATION",
+            "CIM_ERR_NAMESPACE_NOT_EMPTY",
+            "CIM_ERR_INVALID_ENUMERATION_CONTEXT",
+            "CIM_ERR_INVALID_OPERATION_TIMEOUT",
+            "CIM_ERR_PULL_HAS_BEEN_ABANDONED",
+            "CIM_ERR_PULL_CANNOT_BE_ABANDONED",
+            "CIM_ERR_FILTERED_ENUMERATION_NOT_SUPPORTED",
+            "CIM_ERR_CONTINUATION_ON_ERROR_NOT_SUPPORTED",
+            "CIM_ERR_SERVER_LIMITS_EXCEEDED",
+            "CIM_ERR_SERVER_IS_SHUTTING_DOWN",
+            "CIM_ERR_QUERY_FEATURE_NOT_SUPPORTED",
+            "DMTF Reserved"
+          ],
+          "valueMap": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            ".."
+          ]
+        },
+        {
+          "name": "CIMStatusCodeDescription",
+          "cimType": 8
+        },
+        {
+          "name": "ErrorSource",
+          "cimType": 8
+        },
+        {
+          "name": "ErrorSourceFormat",
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Other",
+            "CIMObjectPath",
+            "DMTF Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            ".."
+          ]
+        },
+        {
+          "name": "ErrorType",
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Other",
+            "Communications Error",
+            "Quality of Service Error",
+            "Software Error",
+            "Hardware Error",
+            "Environmental Error",
+            "Security Error",
+            "Oversubscription Error",
+            "Unavailable Resource Error",
+            "Unsupported Operation Error",
+            "DMTF Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            ".."
+          ]
+        },
+        {
+          "name": "Message",
+          "cimType": 8
+        },
+        {
+          "name": "MessageArguments",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "MessageID",
+          "cimType": 8
+        },
+        {
+          "name": "OtherErrorSourceFormat",
+          "cimType": 8
+        },
+        {
+          "name": "OtherErrorType",
+          "cimType": 8
+        },
+        {
+          "name": "OwningEntity",
+          "cimType": 8
+        },
+        {
+          "name": "PerceivedSeverity",
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Other",
+            "Information",
+            "Degraded/Warning",
+            "Minor",
+            "Major",
+            "Critical",
+            "Fatal/NonRecoverable",
+            "DMTF Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            ".."
+          ]
+        },
+        {
+          "name": "ProbableCause",
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Other",
+            "Adapter/Card Error",
+            "Application Subsystem Failure",
+            "Bandwidth Reduced",
+            "Connection Establishment Error",
+            "Communications Protocol Error",
+            "Communications Subsystem Failure",
+            "Configuration/Customization Error",
+            "Congestion",
+            "Corrupt Data",
+            "CPU Cycles Limit Exceeded",
+            "Dataset/Modem Error",
+            "Degraded Signal",
+            "DTE-DCE Interface Error",
+            "Enclosure Door Open",
+            "Equipment Malfunction",
+            "Excessive Vibration",
+            "File Format Error",
+            "Fire Detected",
+            "Flood Detected",
+            "Framing Error",
+            "HVAC Problem",
+            "Humidity Unacceptable",
+            "I/O Device Error",
+            "Input Device Error",
+            "LAN Error",
+            "Non-Toxic Leak Detected",
+            "Local Node Transmission Error",
+            "Loss of Frame",
+            "Loss of Signal",
+            "Material Supply Exhausted",
+            "Multiplexer Problem",
+            "Out of Memory",
+            "Output Device Error",
+            "Performance Degraded",
+            "Power Problem",
+            "Pressure Unacceptable",
+            "Processor Problem (Internal Machine Error)",
+            "Pump Failure",
+            "Queue Size Exceeded",
+            "Receive Failure",
+            "Receiver Failure",
+            "Remote Node Transmission Error",
+            "Resource at or Nearing Capacity",
+            "Response Time Excessive",
+            "Retransmission Rate Excessive",
+            "Software Error",
+            "Software Program Abnormally Terminated",
+            "Software Program Error (Incorrect Results)",
+            "Storage Capacity Problem",
+            "Temperature Unacceptable",
+            "Threshold Crossed",
+            "Timing Problem",
+            "Toxic Leak Detected",
+            "Transmit Failure",
+            "Transmitter Failure",
+            "Underlying Resource Unavailable",
+            "Version Mismatch",
+            "Previous Alert Cleared",
+            "Login Attempts Failed",
+            "Software Virus Detected",
+            "Hardware Security Breached",
+            "Denial of Service Detected",
+            "Security Credential Mismatch",
+            "Unauthorized Access",
+            "Alarm Received",
+            "Loss of Pointer",
+            "Payload Mismatch",
+            "Transmission Error",
+            "Excessive Error Rate",
+            "Trace Problem",
+            "Element Unavailable",
+            "Element Missing",
+            "Loss of Multi Frame",
+            "Broadcast Channel Failure",
+            "Invalid Message Received",
+            "Routing Failure",
+            "Backplane Failure",
+            "Identifier Duplication",
+            "Protection Path Failure",
+            "Sync Loss or Mismatch",
+            "Terminal Problem",
+            "Real Time Clock Failure",
+            "Antenna Failure",
+            "Battery Charging Failure",
+            "Disk Failure",
+            "Frequency Hopping Failure",
+            "Loss of Redundancy",
+            "Power Supply Failure",
+            "Signal Quality Problem",
+            "Battery Discharging",
+            "Battery Failure",
+            "Commercial Power Problem",
+            "Fan Failure",
+            "Engine Failure",
+            "Sensor Failure",
+            "Fuse Failure",
+            "Generator Failure",
+            "Low Battery",
+            "Low Fuel",
+            "Low Water",
+            "Explosive Gas",
+            "High Winds",
+            "Ice Buildup",
+            "Smoke",
+            "Memory Mismatch",
+            "Out of CPU Cycles",
+            "Software Environment Problem",
+            "Software Download Failure",
+            "Element Reinitialized",
+            "Timeout",
+            "Logging Problems",
+            "Leak Detected",
+            "Protection Mechanism Failure",
+            "Protecting Resource Failure",
+            "Database Inconsistency",
+            "Authentication Failure",
+            "Breach of Confidentiality",
+            "Cable Tamper",
+            "Delayed Information",
+            "Duplicate Information",
+            "Information Missing",
+            "Information Modification",
+            "Information Out of Sequence",
+            "Key Expired",
+            "Non-Repudiation Failure",
+            "Out of Hours Activity",
+            "Out of Service",
+            "Procedural Error",
+            "Unexpected Information",
+            "DMTF Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31",
+            "32",
+            "33",
+            "34",
+            "35",
+            "36",
+            "37",
+            "38",
+            "39",
+            "40",
+            "41",
+            "42",
+            "43",
+            "44",
+            "45",
+            "46",
+            "47",
+            "48",
+            "49",
+            "50",
+            "51",
+            "52",
+            "53",
+            "54",
+            "55",
+            "56",
+            "57",
+            "58",
+            "59",
+            "60",
+            "61",
+            "62",
+            "63",
+            "64",
+            "65",
+            "66",
+            "67",
+            "68",
+            "69",
+            "70",
+            "71",
+            "72",
+            "73",
+            "74",
+            "75",
+            "76",
+            "77",
+            "78",
+            "79",
+            "80",
+            "81",
+            "82",
+            "83",
+            "84",
+            "85",
+            "86",
+            "87",
+            "88",
+            "89",
+            "90",
+            "91",
+            "92",
+            "93",
+            "94",
+            "95",
+            "96",
+            "97",
+            "98",
+            "99",
+            "100",
+            "101",
+            "102",
+            "103",
+            "104",
+            "105",
+            "106",
+            "107",
+            "108",
+            "109",
+            "110",
+            "111",
+            "112",
+            "113",
+            "114",
+            "115",
+            "116",
+            "117",
+            "118",
+            "119",
+            "120",
+            "121",
+            "122",
+            "123",
+            "124",
+            "125",
+            "126",
+            "127",
+            "128",
+            "129",
+            "130",
+            ".."
+          ]
+        },
+        {
+          "name": "ProbableCauseDescription",
+          "cimType": 8
+        },
+        {
+          "name": "RecommendedActions",
+          "cimType": 8,
+          "array": true
+        }
+      ]
+    },
+    {
+      "name": "CIM_Indication",
+      "properties": [
+        {
+          "name": "CorrelatedIndications",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "IndicationFilterName",
+          "cimType": 8
+        },
+        {
+          "name": "IndicationIdentifier",
+          "cimType": 8
+        },
+        {
+          "name": "IndicationTime",
+          "cimType": 101
+        },
+        {
+          "name": "OtherSeverity",
+          "cimType": 8
+        },
+        {
+          "name": "PerceivedSeverity",
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Other",
+            "Information",
+            "Degraded/Warning",
+            "Minor",
+            "Major",
+            "Critical",
+            "Fatal/NonRecoverable",
+            "DMTF Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            ".."
+          ]
+        },
+        {
+          "name": "SequenceContext",
+          "cimType": 8
+        },
+        {
+          "name": "SequenceNumber",
+          "cimType": 20
+        }
+      ]
+    },
+    {
+      "name": "CIM_InstCreation",
+      "properties": [
+        {
+          "name": "CorrelatedIndications",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "IndicationFilterName",
+          "cimType": 8
+        },
+        {
+          "name": "IndicationIdentifier",
+          "cimType": 8
+        },
+        {
+          "name": "IndicationTime",
+          "cimType": 101
+        },
+        {
+          "name": "OtherSeverity",
+          "cimType": 8
+        },
+        {
+          "name": "PerceivedSeverity",
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Other",
+            "Information",
+            "Degraded/Warning",
+            "Minor",
+            "Major",
+            "Critical",
+            "Fatal/NonRecoverable",
+            "DMTF Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            ".."
+          ]
+        },
+        {
+          "name": "SequenceContext",
+          "cimType": 8
+        },
+        {
+          "name": "SequenceNumber",
+          "cimType": 20
+        },
+        {
+          "name": "SourceInstance",
+          "cimType": 13
+        },
+        {
+          "name": "SourceInstanceHost",
+          "cimType": 8
+        },
+        {
+          "name": "SourceInstanceModelPath",
+          "cimType": 8
+        }
+      ]
+    },
+    {
+      "name": "CIM_InstDeletion",
+      "properties": [
+        {
+          "name": "CorrelatedIndications",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "IndicationFilterName",
+          "cimType": 8
+        },
+        {
+          "name": "IndicationIdentifier",
+          "cimType": 8
+        },
+        {
+          "name": "IndicationTime",
+          "cimType": 101
+        },
+        {
+          "name": "OtherSeverity",
+          "cimType": 8
+        },
+        {
+          "name": "PerceivedSeverity",
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Other",
+            "Information",
+            "Degraded/Warning",
+            "Minor",
+            "Major",
+            "Critical",
+            "Fatal/NonRecoverable",
+            "DMTF Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            ".."
+          ]
+        },
+        {
+          "name": "SequenceContext",
+          "cimType": 8
+        },
+        {
+          "name": "SequenceNumber",
+          "cimType": 20
+        },
+        {
+          "name": "SourceInstance",
+          "cimType": 13
+        },
+        {
+          "name": "SourceInstanceHost",
+          "cimType": 8
+        },
+        {
+          "name": "SourceInstanceModelPath",
+          "cimType": 8
+        }
+      ]
+    },
+    {
+      "name": "CIM_InstIndication",
+      "properties": [
+        {
+          "name": "CorrelatedIndications",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "IndicationFilterName",
+          "cimType": 8
+        },
+        {
+          "name": "IndicationIdentifier",
+          "cimType": 8
+        },
+        {
+          "name": "IndicationTime",
+          "cimType": 101
+        },
+        {
+          "name": "OtherSeverity",
+          "cimType": 8
+        },
+        {
+          "name": "PerceivedSeverity",
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Other",
+            "Information",
+            "Degraded/Warning",
+            "Minor",
+            "Major",
+            "Critical",
+            "Fatal/NonRecoverable",
+            "DMTF Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            ".."
+          ]
+        },
+        {
+          "name": "SequenceContext",
+          "cimType": 8
+        },
+        {
+          "name": "SequenceNumber",
+          "cimType": 20
+        },
+        {
+          "name": "SourceInstance",
+          "cimType": 13
+        },
+        {
+          "name": "SourceInstanceHost",
+          "cimType": 8
+        },
+        {
+          "name": "SourceInstanceModelPath",
+          "cimType": 8
+        }
+      ]
+    },
+    {
+      "name": "CIM_InstModification",
+      "properties": [
+        {
+          "name": "CorrelatedIndications",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "IndicationFilterName",
+          "cimType": 8
+        },
+        {
+          "name": "IndicationIdentifier",
+          "cimType": 8
+        },
+        {
+          "name": "IndicationTime",
+          "cimType": 101
+        },
+        {
+          "name": "OtherSeverity",
+          "cimType": 8
+        },
+        {
+          "name": "PerceivedSeverity",
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Other",
+            "Information",
+            "Degraded/Warning",
+            "Minor",
+            "Major",
+            "Critical",
+            "Fatal/NonRecoverable",
+            "DMTF Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            ".."
+          ]
+        },
+        {
+          "name": "PreviousInstance",
+          "cimType": 13
+        },
+        {
+          "name": "SequenceContext",
+          "cimType": 8
+        },
+        {
+          "name": "SequenceNumber",
+          "cimType": 20
+        },
+        {
+          "name": "SourceInstance",
+          "cimType": 13
+        },
+        {
+          "name": "SourceInstanceHost",
+          "cimType": 8
+        },
+        {
+          "name": "SourceInstanceModelPath",
+          "cimType": 8
+        }
+      ]
+    },
+    {
+      "name": "MSFT_ExtendedStatus",
+      "properties": [
+        {
+          "name": "CIMStatusCode",
+          "cimType": 19,
+          "values": [
+            "CIM_ERR_FAILED",
+            "CIM_ERR_ACCESS_DENIED",
+            "CIM_ERR_INVALID_NAMESPACE",
+            "CIM_ERR_INVALID_PARAMETER",
+            "CIM_ERR_INVALID_CLASS",
+            "CIM_ERR_NOT_FOUND",
+            "CIM_ERR_NOT_SUPPORTED",
+            "CIM_ERR_CLASS_HAS_CHILDREN",
+            "CIM_ERR_CLASS_HAS_INSTANCES",
+            "CIM_ERR_INVALID_SUPERCLASS",
+            "CIM_ERR_ALREADY_EXISTS",
+            "CIM_ERR_NO_SUCH_PROPERTY",
+            "CIM_ERR_TYPE_MISMATCH",
+            "CIM_ERR_QUERY_LANGUAGE_NOT_SUPPORTED",
+            "CIM_ERR_INVALID_QUERY",
+            "CIM_ERR_METHOD_NOT_AVAILABLE",
+            "CIM_ERR_METHOD_NOT_FOUND",
+            "CIM_ERR_UNEXPECTED_RESPONSE",
+            "CIM_ERR_INVALID_RESPONSE_DESTINATION",
+            "CIM_ERR_NAMESPACE_NOT_EMPTY",
+            "CIM_ERR_INVALID_ENUMERATION_CONTEXT",
+            "CIM_ERR_INVALID_OPERATION_TIMEOUT",
+            "CIM_ERR_PULL_HAS_BEEN_ABANDONED",
+            "CIM_ERR_PULL_CANNOT_BE_ABANDONED",
+            "CIM_ERR_FILTERED_ENUMERATION_NOT_SUPPORTED",
+            "CIM_ERR_CONTINUATION_ON_ERROR_NOT_SUPPORTED",
+            "CIM_ERR_SERVER_LIMITS_EXCEEDED",
+            "CIM_ERR_SERVER_IS_SHUTTING_DOWN",
+            "CIM_ERR_QUERY_FEATURE_NOT_SUPPORTED",
+            "DMTF Reserved"
+          ],
+          "valueMap": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            ".."
+          ]
+        },
+        {
+          "name": "CIMStatusCodeDescription",
+          "cimType": 8
+        },
+        {
+          "name": "ErrorSource",
+          "cimType": 8
+        },
+        {
+          "name": "ErrorSourceFormat",
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Other",
+            "CIMObjectPath",
+            "DMTF Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            ".."
+          ]
+        },
+        {
+          "name": "ErrorType",
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Other",
+            "Communications Error",
+            "Quality of Service Error",
+            "Software Error",
+            "Hardware Error",
+            "Environmental Error",
+            "Security Error",
+            "Oversubscription Error",
+            "Unavailable Resource Error",
+            "Unsupported Operation Error",
+            "DMTF Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            ".."
+          ]
+        },
+        {
+          "name": "Message",
+          "cimType": 8
+        },
+        {
+          "name": "MessageArguments",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "MessageID",
+          "cimType": 8
+        },
+        {
+          "name": "OtherErrorSourceFormat",
+          "cimType": 8
+        },
+        {
+          "name": "OtherErrorType",
+          "cimType": 8
+        },
+        {
+          "name": "OwningEntity",
+          "cimType": 8
+        },
+        {
+          "name": "PerceivedSeverity",
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Other",
+            "Information",
+            "Degraded/Warning",
+            "Minor",
+            "Major",
+            "Critical",
+            "Fatal/NonRecoverable",
+            "DMTF Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            ".."
+          ]
+        },
+        {
+          "name": "ProbableCause",
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Other",
+            "Adapter/Card Error",
+            "Application Subsystem Failure",
+            "Bandwidth Reduced",
+            "Connection Establishment Error",
+            "Communications Protocol Error",
+            "Communications Subsystem Failure",
+            "Configuration/Customization Error",
+            "Congestion",
+            "Corrupt Data",
+            "CPU Cycles Limit Exceeded",
+            "Dataset/Modem Error",
+            "Degraded Signal",
+            "DTE-DCE Interface Error",
+            "Enclosure Door Open",
+            "Equipment Malfunction",
+            "Excessive Vibration",
+            "File Format Error",
+            "Fire Detected",
+            "Flood Detected",
+            "Framing Error",
+            "HVAC Problem",
+            "Humidity Unacceptable",
+            "I/O Device Error",
+            "Input Device Error",
+            "LAN Error",
+            "Non-Toxic Leak Detected",
+            "Local Node Transmission Error",
+            "Loss of Frame",
+            "Loss of Signal",
+            "Material Supply Exhausted",
+            "Multiplexer Problem",
+            "Out of Memory",
+            "Output Device Error",
+            "Performance Degraded",
+            "Power Problem",
+            "Pressure Unacceptable",
+            "Processor Problem (Internal Machine Error)",
+            "Pump Failure",
+            "Queue Size Exceeded",
+            "Receive Failure",
+            "Receiver Failure",
+            "Remote Node Transmission Error",
+            "Resource at or Nearing Capacity",
+            "Response Time Excessive",
+            "Retransmission Rate Excessive",
+            "Software Error",
+            "Software Program Abnormally Terminated",
+            "Software Program Error (Incorrect Results)",
+            "Storage Capacity Problem",
+            "Temperature Unacceptable",
+            "Threshold Crossed",
+            "Timing Problem",
+            "Toxic Leak Detected",
+            "Transmit Failure",
+            "Transmitter Failure",
+            "Underlying Resource Unavailable",
+            "Version Mismatch",
+            "Previous Alert Cleared",
+            "Login Attempts Failed",
+            "Software Virus Detected",
+            "Hardware Security Breached",
+            "Denial of Service Detected",
+            "Security Credential Mismatch",
+            "Unauthorized Access",
+            "Alarm Received",
+            "Loss of Pointer",
+            "Payload Mismatch",
+            "Transmission Error",
+            "Excessive Error Rate",
+            "Trace Problem",
+            "Element Unavailable",
+            "Element Missing",
+            "Loss of Multi Frame",
+            "Broadcast Channel Failure",
+            "Invalid Message Received",
+            "Routing Failure",
+            "Backplane Failure",
+            "Identifier Duplication",
+            "Protection Path Failure",
+            "Sync Loss or Mismatch",
+            "Terminal Problem",
+            "Real Time Clock Failure",
+            "Antenna Failure",
+            "Battery Charging Failure",
+            "Disk Failure",
+            "Frequency Hopping Failure",
+            "Loss of Redundancy",
+            "Power Supply Failure",
+            "Signal Quality Problem",
+            "Battery Discharging",
+            "Battery Failure",
+            "Commercial Power Problem",
+            "Fan Failure",
+            "Engine Failure",
+            "Sensor Failure",
+            "Fuse Failure",
+            "Generator Failure",
+            "Low Battery",
+            "Low Fuel",
+            "Low Water",
+            "Explosive Gas",
+            "High Winds",
+            "Ice Buildup",
+            "Smoke",
+            "Memory Mismatch",
+            "Out of CPU Cycles",
+            "Software Environment Problem",
+            "Software Download Failure",
+            "Element Reinitialized",
+            "Timeout",
+            "Logging Problems",
+            "Leak Detected",
+            "Protection Mechanism Failure",
+            "Protecting Resource Failure",
+            "Database Inconsistency",
+            "Authentication Failure",
+            "Breach of Confidentiality",
+            "Cable Tamper",
+            "Delayed Information",
+            "Duplicate Information",
+            "Information Missing",
+            "Information Modification",
+            "Information Out of Sequence",
+            "Key Expired",
+            "Non-Repudiation Failure",
+            "Out of Hours Activity",
+            "Out of Service",
+            "Procedural Error",
+            "Unexpected Information",
+            "DMTF Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31",
+            "32",
+            "33",
+            "34",
+            "35",
+            "36",
+            "37",
+            "38",
+            "39",
+            "40",
+            "41",
+            "42",
+            "43",
+            "44",
+            "45",
+            "46",
+            "47",
+            "48",
+            "49",
+            "50",
+            "51",
+            "52",
+            "53",
+            "54",
+            "55",
+            "56",
+            "57",
+            "58",
+            "59",
+            "60",
+            "61",
+            "62",
+            "63",
+            "64",
+            "65",
+            "66",
+            "67",
+            "68",
+            "69",
+            "70",
+            "71",
+            "72",
+            "73",
+            "74",
+            "75",
+            "76",
+            "77",
+            "78",
+            "79",
+            "80",
+            "81",
+            "82",
+            "83",
+            "84",
+            "85",
+            "86",
+            "87",
+            "88",
+            "89",
+            "90",
+            "91",
+            "92",
+            "93",
+            "94",
+            "95",
+            "96",
+            "97",
+            "98",
+            "99",
+            "100",
+            "101",
+            "102",
+            "103",
+            "104",
+            "105",
+            "106",
+            "107",
+            "108",
+            "109",
+            "110",
+            "111",
+            "112",
+            "113",
+            "114",
+            "115",
+            "116",
+            "117",
+            "118",
+            "119",
+            "120",
+            "121",
+            "122",
+            "123",
+            "124",
+            "125",
+            "126",
+            "127",
+            "128",
+            "129",
+            "130",
+            ".."
+          ]
+        },
+        {
+          "name": "ProbableCauseDescription",
+          "cimType": 8
+        },
+        {
+          "name": "RecommendedActions",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "error_Category",
+          "cimType": 18
+        },
+        {
+          "name": "error_Code",
+          "cimType": 19
+        },
+        {
+          "name": "error_Type",
+          "cimType": 8
+        },
+        {
+          "name": "error_WindowsErrorMessage",
+          "cimType": 8
+        },
+        {
+          "name": "original_error",
+          "cimType": 13
+        }
+      ]
+    },
+    {
+      "name": "MSFT_HgsClientConfiguration",
+      "properties": [
+        {
+          "name": "AttestationOperationMode",
+          "cimType": 18
+        },
+        {
+          "name": "AttestationServerUrl",
+          "cimType": 8
+        },
+        {
+          "name": "AttestationStatus",
+          "cimType": 18
+        },
+        {
+          "name": "AttestationSubstatus",
+          "cimType": 21
+        },
+        {
+          "name": "FallbackAttestationServerUrl",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "FallbackKeyProtectionServerUrl",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "IsHostGuarded",
+          "cimType": 11
+        },
+        {
+          "name": "KeyProtectionServerUrl",
+          "cimType": 8
+        },
+        {
+          "name": "LastAttestationServerUrl",
+          "cimType": 8
+        },
+        {
+          "name": "LastKeyProtectionServerUrl",
+          "cimType": 8
+        },
+        {
+          "name": "Mode",
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Local Mode",
+            "Secure Hosting Service Mode"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2"
+          ]
+        }
+      ],
+      "methods": [
+        {
+          "name": "Get",
+          "static": true,
+          "out": [
+            {
+              "name": "cmdletOutput",
+              "cimType": 13
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "IsHostTrusted",
+          "static": true,
+          "in": [
+            {
+              "name": "AttestationServerUrl",
+              "cimType": 8
+            }
+          ],
+          "out": [
+            {
+              "name": "IsHostGuarded",
+              "cimType": 11
+            },
+            {
+              "name": "AttestationOperationMode",
+              "cimType": 18
+            },
+            {
+              "name": "AttestationStatus",
+              "cimType": 18
+            },
+            {
+              "name": "AttestationSubstatus",
+              "cimType": 21
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "SetByChangeToLocalMode",
+          "static": true,
+          "in": [
+            {
+              "name": "EnableLocalMode",
+              "cimType": 11
+            }
+          ],
+          "out": [
+            {
+              "name": "cmdletOutput",
+              "cimType": 13
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "SetBySecureHostingServiceMode",
+          "static": true,
+          "in": [
+            {
+              "name": "KeyProtectionServerUrl",
+              "cimType": 8
+            },
+            {
+              "name": "AttestationServerUrl",
+              "cimType": 8
+            },
+            {
+              "name": "FallbackKeyProtectionServerUrl",
+              "cimType": 8,
+              "array": true
+            },
+            {
+              "name": "FallbackAttestationServerUrl",
+              "cimType": 8,
+              "array": true
+            }
+          ],
+          "out": [
+            {
+              "name": "cmdletOutput",
+              "cimType": 13
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "MSFT_HgsGuardian",
+      "properties": [
+        {
+          "name": "EncryptionCertificate",
+          "cimType": 17,
+          "array": true
+        },
+        {
+          "name": "EncryptionCertificateSignature",
+          "cimType": 8
+        },
+        {
+          "name": "EncryptionCertificateSignatureAlgorithm",
+          "cimType": 8
+        },
+        {
+          "name": "GuardianMetadataVersion",
+          "cimType": 19
+        },
+        {
+          "name": "HasPrivateSigningKey",
+          "cimType": 11
+        },
+        {
+          "name": "Name",
+          "cimType": 8,
+          "key": true
+        },
+        {
+          "name": "SigningCertificate",
+          "cimType": 17,
+          "array": true
+        }
+      ],
+      "methods": [
+        {
+          "name": "Export",
+          "static": true,
+          "in": [
+            {
+              "name": "Path",
+              "cimType": 8
+            },
+            {
+              "name": "InputObject",
+              "cimType": 13
+            }
+          ],
+          "out": [
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "Import",
+          "static": true,
+          "in": [
+            {
+              "name": "Path",
+              "cimType": 8
+            },
+            {
+              "name": "Name",
+              "cimType": 8
+            },
+            {
+              "name": "AllowExpired",
+              "cimType": 11
+            },
+            {
+              "name": "AllowUntrustedRoot",
+              "cimType": 11
+            }
+          ],
+          "out": [
+            {
+              "name": "cmdletOutput",
+              "cimType": 13
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "NewByAcceptCertificates",
+          "static": true,
+          "in": [
+            {
+              "name": "Name",
+              "cimType": 8
+            },
+            {
+              "name": "EncryptionCertificate",
+              "cimType": 8
+            },
+            {
+              "name": "SigningCertificate",
+              "cimType": 8
+            },
+            {
+              "name": "SigningCertificatePassword",
+              "cimType": 8
+            },
+            {
+              "name": "EncryptionCertificatePassword",
+              "cimType": 8
+            },
+            {
+              "name": "AllowExpired",
+              "cimType": 11
+            },
+            {
+              "name": "AllowUntrustedRoot",
+              "cimType": 11
+            }
+          ],
+          "out": [
+            {
+              "name": "cmdletOutput",
+              "cimType": 13
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "NewByCertificateThumbprints",
+          "static": true,
+          "in": [
+            {
+              "name": "Name",
+              "cimType": 8
+            },
+            {
+              "name": "SigningCertificateThumbprint",
+              "cimType": 8
+            },
+            {
+              "name": "EncryptionCertificateThumbprint",
+              "cimType": 8
+            },
+            {
+              "name": "AllowExpired",
+              "cimType": 11
+            },
+            {
+              "name": "AllowUntrustedRoot",
+              "cimType": 11
+            }
+          ],
+          "out": [
+            {
+              "name": "cmdletOutput",
+              "cimType": 13
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "NewByGenerateCertificates",
+          "static": true,
+          "in": [
+            {
+              "name": "Name",
+              "cimType": 8
+            },
+            {
+              "name": "GenerateCertificates",
+              "cimType": 11
+            }
+          ],
+          "out": [
+            {
+              "name": "cmdletOutput",
+              "cimType": 13
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "Remove",
+          "static": true,
+          "in": [
+            {
+              "name": "Name",
+              "cimType": 8
+            }
+          ],
+          "out": [
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "MSFT_HgsKeyProtector",
+      "properties": [
+        {
+          "name": "Guardians",
+          "cimType": 13,
+          "array": true
+        },
+        {
+          "name": "Owner",
+          "cimType": 13
+        },
+        {
+          "name": "RawData",
+          "cimType": 17,
+          "array": true
+        }
+      ],
+      "methods": [
+        {
+          "name": "ConvertToByRawBytes",
+          "static": true,
+          "in": [
+            {
+              "name": "Bytes",
+              "cimType": 17,
+              "array": true
+            }
+          ],
+          "out": [
+            {
+              "name": "cmdletOutput",
+              "cimType": 13
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "Grant",
+          "static": true,
+          "in": [
+            {
+              "name": "KeyProtector",
+              "cimType": 13
+            },
+            {
+              "name": "Guardian",
+              "cimType": 13
+            },
+            {
+              "name": "AllowExpired",
+              "cimType": 11
+            },
+            {
+              "name": "AllowUntrustedRoot",
+              "cimType": 11
+            }
+          ],
+          "out": [
+            {
+              "name": "cmdletOutput",
+              "cimType": 13
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "NewByGuardians",
+          "static": true,
+          "in": [
+            {
+              "name": "AllowUntrustedRoot",
+              "cimType": 11
+            },
+            {
+              "name": "AllowExpired",
+              "cimType": 11
+            },
+            {
+              "name": "Owner",
+              "cimType": 13
+            },
+            {
+              "name": "Guardian",
+              "cimType": 13,
+              "array": true
+            }
+          ],
+          "out": [
+            {
+              "name": "cmdletOutput",
+              "cimType": 13
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "Revoke",
+          "static": true,
+          "in": [
+            {
+              "name": "KeyProtector",
+              "cimType": 13
+            },
+            {
+              "name": "Guardian",
+              "cimType": 13
+            }
+          ],
+          "out": [
+            {
+              "name": "cmdletOutput",
+              "cimType": 13
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "MSFT_HgsKeyProtectorOperations",
+      "properties": null,
+      "methods": [
+        {
+          "name": "CreateKeyProtector",
+          "static": true,
+          "out": [
+            {
+              "name": "EncryptedTransferKey",
+              "cimType": 17,
+              "array": true
+            },
+            {
+              "name": "EncryptedWrappingKey",
+              "cimType": 17,
+              "array": true
+            },
+            {
+              "name": "EncryptedKeys",
+              "cimType": 17,
+              "array": true
+            },
+            {
+              "name": "EgressKeyProtector",
+              "cimType": 17,
+              "array": true
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "DecryptDataWithKeyProtector",
+          "static": true,
+          "in": [
+            {
+              "name": "BaseKeyProtector",
+              "cimType": 17,
+              "array": true
+            },
+            {
+              "name": "EncryptedData",
+              "cimType": 17,
+              "array": true
+            }
+          ],
+          "out": [
+            {
+              "name": "PlaintextData",
+              "cimType": 17,
+              "array": true
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "EncryptDataWithKeyProtector",
+          "static": true,
+          "in": [
+            {
+              "name": "BaseKeyProtector",
+              "cimType": 17,
+              "array": true
+            },
+            {
+              "name": "UniqueEncryptionIdentifier",
+              "cimType": 19
+            },
+            {
+              "name": "PlaintextData",
+              "cimType": 17,
+              "array": true
+            },
+            {
+              "name": "RollKeyProtector",
+              "cimType": 11
+            }
+          ],
+          "out": [
+            {
+              "name": "EgressKeyProtector",
+              "cimType": 17,
+              "array": true
+            },
+            {
+              "name": "EncryptedData",
+              "cimType": 17,
+              "array": true
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "UnwrapKeyProtector",
+          "static": true,
+          "in": [
+            {
+              "name": "IngressKeyProtector",
+              "cimType": 17,
+              "array": true
+            }
+          ],
+          "out": [
+            {
+              "name": "EncryptedTransferKey",
+              "cimType": 17,
+              "array": true
+            },
+            {
+              "name": "EncryptedWrappingKey",
+              "cimType": 17,
+              "array": true
+            },
+            {
+              "name": "EncryptedKeys",
+              "cimType": 17,
+              "array": true
+            },
+            {
+              "name": "EgressKeyProtector",
+              "cimType": 17,
+              "array": true
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "MSFT_WmiError",
+      "properties": [
+        {
+          "name": "CIMStatusCode",
+          "cimType": 19,
+          "values": [
+            "CIM_ERR_FAILED",
+            "CIM_ERR_ACCESS_DENIED",
+            "CIM_ERR_INVALID_NAMESPACE",
+            "CIM_ERR_INVALID_PARAMETER",
+            "CIM_ERR_INVALID_CLASS",
+            "CIM_ERR_NOT_FOUND",
+            "CIM_ERR_NOT_SUPPORTED",
+            "CIM_ERR_CLASS_HAS_CHILDREN",
+            "CIM_ERR_CLASS_HAS_INSTANCES",
+            "CIM_ERR_INVALID_SUPERCLASS",
+            "CIM_ERR_ALREADY_EXISTS",
+            "CIM_ERR_NO_SUCH_PROPERTY",
+            "CIM_ERR_TYPE_MISMATCH",
+            "CIM_ERR_QUERY_LANGUAGE_NOT_SUPPORTED",
+            "CIM_ERR_INVALID_QUERY",
+            "CIM_ERR_METHOD_NOT_AVAILABLE",
+            "CIM_ERR_METHOD_NOT_FOUND",
+            "CIM_ERR_UNEXPECTED_RESPONSE",
+            "CIM_ERR_INVALID_RESPONSE_DESTINATION",
+            "CIM_ERR_NAMESPACE_NOT_EMPTY",
+            "CIM_ERR_INVALID_ENUMERATION_CONTEXT",
+            "CIM_ERR_INVALID_OPERATION_TIMEOUT",
+            "CIM_ERR_PULL_HAS_BEEN_ABANDONED",
+            "CIM_ERR_PULL_CANNOT_BE_ABANDONED",
+            "CIM_ERR_FILTERED_ENUMERATION_NOT_SUPPORTED",
+            "CIM_ERR_CONTINUATION_ON_ERROR_NOT_SUPPORTED",
+            "CIM_ERR_SERVER_LIMITS_EXCEEDED",
+            "CIM_ERR_SERVER_IS_SHUTTING_DOWN",
+            "CIM_ERR_QUERY_FEATURE_NOT_SUPPORTED",
+            "DMTF Reserved"
+          ],
+          "valueMap": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            ".."
+          ]
+        },
+        {
+          "name": "CIMStatusCodeDescription",
+          "cimType": 8
+        },
+        {
+          "name": "ErrorSource",
+          "cimType": 8
+        },
+        {
+          "name": "ErrorSourceFormat",
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Other",
+            "CIMObjectPath",
+            "DMTF Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            ".."
+          ]
+        },
+        {
+          "name": "ErrorType",
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Other",
+            "Communications Error",
+            "Quality of Service Error",
+            "Software Error",
+            "Hardware Error",
+            "Environmental Error",
+            "Security Error",
+            "Oversubscription Error",
+            "Unavailable Resource Error",
+            "Unsupported Operation Error",
+            "DMTF Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            ".."
+          ]
+        },
+        {
+          "name": "Message",
+          "cimType": 8
+        },
+        {
+          "name": "MessageArguments",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "MessageID",
+          "cimType": 8
+        },
+        {
+          "name": "OtherErrorSourceFormat",
+          "cimType": 8
+        },
+        {
+          "name": "OtherErrorType",
+          "cimType": 8
+        },
+        {
+          "name": "OwningEntity",
+          "cimType": 8
+        },
+        {
+          "name": "PerceivedSeverity",
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Other",
+            "Information",
+            "Degraded/Warning",
+            "Minor",
+            "Major",
+            "Critical",
+            "Fatal/NonRecoverable",
+            "DMTF Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            ".."
+          ]
+        },
+        {
+          "name": "ProbableCause",
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Other",
+            "Adapter/Card Error",
+            "Application Subsystem Failure",
+            "Bandwidth Reduced",
+            "Connection Establishment Error",
+            "Communications Protocol Error",
+            "Communications Subsystem Failure",
+            "Configuration/Customization Error",
+            "Congestion",
+            "Corrupt Data",
+            "CPU Cycles Limit Exceeded",
+            "Dataset/Modem Error",
+            "Degraded Signal",
+            "DTE-DCE Interface Error",
+            "Enclosure Door Open",
+            "Equipment Malfunction",
+            "Excessive Vibration",
+            "File Format Error",
+            "Fire Detected",
+            "Flood Detected",
+            "Framing Error",
+            "HVAC Problem",
+            "Humidity Unacceptable",
+            "I/O Device Error",
+            "Input Device Error",
+            "LAN Error",
+            "Non-Toxic Leak Detected",
+            "Local Node Transmission Error",
+            "Loss of Frame",
+            "Loss of Signal",
+            "Material Supply Exhausted",
+            "Multiplexer Problem",
+            "Out of Memory",
+            "Output Device Error",
+            "Performance Degraded",
+            "Power Problem",
+            "Pressure Unacceptable",
+            "Processor Problem (Internal Machine Error)",
+            "Pump Failure",
+            "Queue Size Exceeded",
+            "Receive Failure",
+            "Receiver Failure",
+            "Remote Node Transmission Error",
+            "Resource at or Nearing Capacity",
+            "Response Time Excessive",
+            "Retransmission Rate Excessive",
+            "Software Error",
+            "Software Program Abnormally Terminated",
+            "Software Program Error (Incorrect Results)",
+            "Storage Capacity Problem",
+            "Temperature Unacceptable",
+            "Threshold Crossed",
+            "Timing Problem",
+            "Toxic Leak Detected",
+            "Transmit Failure",
+            "Transmitter Failure",
+            "Underlying Resource Unavailable",
+            "Version Mismatch",
+            "Previous Alert Cleared",
+            "Login Attempts Failed",
+            "Software Virus Detected",
+            "Hardware Security Breached",
+            "Denial of Service Detected",
+            "Security Credential Mismatch",
+            "Unauthorized Access",
+            "Alarm Received",
+            "Loss of Pointer",
+            "Payload Mismatch",
+            "Transmission Error",
+            "Excessive Error Rate",
+            "Trace Problem",
+            "Element Unavailable",
+            "Element Missing",
+            "Loss of Multi Frame",
+            "Broadcast Channel Failure",
+            "Invalid Message Received",
+            "Routing Failure",
+            "Backplane Failure",
+            "Identifier Duplication",
+            "Protection Path Failure",
+            "Sync Loss or Mismatch",
+            "Terminal Problem",
+            "Real Time Clock Failure",
+            "Antenna Failure",
+            "Battery Charging Failure",
+            "Disk Failure",
+            "Frequency Hopping Failure",
+            "Loss of Redundancy",
+            "Power Supply Failure",
+            "Signal Quality Problem",
+            "Battery Discharging",
+            "Battery Failure",
+            "Commercial Power Problem",
+            "Fan Failure",
+            "Engine Failure",
+            "Sensor Failure",
+            "Fuse Failure",
+            "Generator Failure",
+            "Low Battery",
+            "Low Fuel",
+            "Low Water",
+            "Explosive Gas",
+            "High Winds",
+            "Ice Buildup",
+            "Smoke",
+            "Memory Mismatch",
+            "Out of CPU Cycles",
+            "Software Environment Problem",
+            "Software Download Failure",
+            "Element Reinitialized",
+            "Timeout",
+            "Logging Problems",
+            "Leak Detected",
+            "Protection Mechanism Failure",
+            "Protecting Resource Failure",
+            "Database Inconsistency",
+            "Authentication Failure",
+            "Breach of Confidentiality",
+            "Cable Tamper",
+            "Delayed Information",
+            "Duplicate Information",
+            "Information Missing",
+            "Information Modification",
+            "Information Out of Sequence",
+            "Key Expired",
+            "Non-Repudiation Failure",
+            "Out of Hours Activity",
+            "Out of Service",
+            "Procedural Error",
+            "Unexpected Information",
+            "DMTF Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31",
+            "32",
+            "33",
+            "34",
+            "35",
+            "36",
+            "37",
+            "38",
+            "39",
+            "40",
+            "41",
+            "42",
+            "43",
+            "44",
+            "45",
+            "46",
+            "47",
+            "48",
+            "49",
+            "50",
+            "51",
+            "52",
+            "53",
+            "54",
+            "55",
+            "56",
+            "57",
+            "58",
+            "59",
+            "60",
+            "61",
+            "62",
+            "63",
+            "64",
+            "65",
+            "66",
+            "67",
+            "68",
+            "69",
+            "70",
+            "71",
+            "72",
+            "73",
+            "74",
+            "75",
+            "76",
+            "77",
+            "78",
+            "79",
+            "80",
+            "81",
+            "82",
+            "83",
+            "84",
+            "85",
+            "86",
+            "87",
+            "88",
+            "89",
+            "90",
+            "91",
+            "92",
+            "93",
+            "94",
+            "95",
+            "96",
+            "97",
+            "98",
+            "99",
+            "100",
+            "101",
+            "102",
+            "103",
+            "104",
+            "105",
+            "106",
+            "107",
+            "108",
+            "109",
+            "110",
+            "111",
+            "112",
+            "113",
+            "114",
+            "115",
+            "116",
+            "117",
+            "118",
+            "119",
+            "120",
+            "121",
+            "122",
+            "123",
+            "124",
+            "125",
+            "126",
+            "127",
+            "128",
+            "129",
+            "130",
+            ".."
+          ]
+        },
+        {
+          "name": "ProbableCauseDescription",
+          "cimType": 8
+        },
+        {
+          "name": "RecommendedActions",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "error_Category",
+          "cimType": 18
+        },
+        {
+          "name": "error_Code",
+          "cimType": 19
+        },
+        {
+          "name": "error_Type",
+          "cimType": 8
+        },
+        {
+          "name": "error_WindowsErrorMessage",
+          "cimType": 8
+        }
+      ]
+    },
+    {
+      "name": "__ACE",
+      "properties": [
+        {
+          "name": "AccessMask",
+          "cimType": 19
+        },
+        {
+          "name": "AceFlags",
+          "cimType": 19
+        },
+        {
+          "name": "AceType",
+          "cimType": 19
+        },
+        {
+          "name": "GuidInheritedObjectType",
+          "cimType": 8
+        },
+        {
+          "name": "GuidObjectType",
+          "cimType": 8
+        },
+        {
+          "name": "TIME_CREATED",
+          "cimType": 21
+        },
+        {
+          "name": "Trustee",
+          "cimType": 13
+        }
+      ]
+    },
+    {
+      "name": "__AbsoluteTimerInstruction",
+      "properties": [
+        {
+          "name": "EventDateTime",
+          "cimType": 101
+        },
+        {
+          "name": "SkipIfPassed",
+          "cimType": 11
+        },
+        {
+          "name": "TimerId",
+          "cimType": 8,
+          "key": true
+        }
+      ]
+    },
+    {
+      "name": "__AggregateEvent",
+      "properties": [
+        {
+          "name": "NumberOfEvents",
+          "cimType": 19
+        },
+        {
+          "name": "Representative",
+          "cimType": 13
+        }
+      ]
+    },
+    {
+      "name": "__ClassCreationEvent",
+      "properties": [
+        {
+          "name": "SECURITY_DESCRIPTOR",
+          "cimType": 17,
+          "array": true
+        },
+        {
+          "name": "TIME_CREATED",
+          "cimType": 21
+        },
+        {
+          "name": "TargetClass",
+          "cimType": 13
+        }
+      ]
+    },
+    {
+      "name": "__ClassDeletionEvent",
+      "properties": [
+        {
+          "name": "SECURITY_DESCRIPTOR",
+          "cimType": 17,
+          "array": true
+        },
+        {
+          "name": "TIME_CREATED",
+          "cimType": 21
+        },
+        {
+          "name": "TargetClass",
+          "cimType": 13
+        }
+      ]
+    },
+    {
+      "name": "__ClassModificationEvent",
+      "properties": [
+        {
+          "name": "PreviousClass",
+          "cimType": 13
+        },
+        {
+          "name": "SECURITY_DESCRIPTOR",
+          "cimType": 17,
+          "array": true
+        },
+        {
+          "name": "TIME_CREATED",
+          "cimType": 21
+        },
+        {
+          "name": "TargetClass",
+          "cimType": 13
+        }
+      ]
+    },
+    {
+      "name": "__ClassOperationEvent",
+      "properties": [
+        {
+          "name": "SECURITY_DESCRIPTOR",
+          "cimType": 17,
+          "array": true
+        },
+        {
+          "name": "TIME_CREATED",
+          "cimType": 21
+        },
+        {
+          "name": "TargetClass",
+          "cimType": 13
+        }
+      ]
+    },
+    {
+      "name": "__ClassProviderRegistration",
+      "properties": [
+        {
+          "name": "CacheRefreshInterval",
+          "cimType": 101
+        },
+        {
+          "name": "InteractionType",
+          "cimType": 3,
+          "values": [
+            "Pull",
+            "Push",
+            "PushVerify"
+          ]
+        },
+        {
+          "name": "PerUserSchema",
+          "cimType": 11
+        },
+        {
+          "name": "QuerySupportLevels",
+          "cimType": 8,
+          "array": true,
+          "valueMap": [
+            "WQL:UnarySelect",
+            "WQL:References",
+            "WQL:Associators",
+            "WQL:V1ProviderDefined"
+          ]
+        },
+        {
+          "name": "ReSynchroniseOnNamespaceOpen",
+          "cimType": 11
+        },
+        {
+          "name": "ReferencedSetQueries",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "ResultSetQueries",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "SupportsBatching",
+          "cimType": 11
+        },
+        {
+          "name": "SupportsDelete",
+          "cimType": 11
+        },
+        {
+          "name": "SupportsEnumeration",
+          "cimType": 11
+        },
+        {
+          "name": "SupportsGet",
+          "cimType": 11
+        },
+        {
+          "name": "SupportsPut",
+          "cimType": 11
+        },
+        {
+          "name": "SupportsTransactions",
+          "cimType": 11
+        },
+        {
+          "name": "UnsupportedQueries",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "Version",
+          "cimType": 19
+        },
+        {
+          "name": "provider",
+          "cimType": 102,
+          "key": true
+        }
+      ]
+    },
+    {
+      "name": "__ConsumerFailureEvent",
+      "properties": [
+        {
+          "name": "ErrorCode",
+          "cimType": 19
+        },
+        {
+          "name": "ErrorDescription",
+          "cimType": 8
+        },
+        {
+          "name": "ErrorObject",
+          "cimType": 13
+        },
+        {
+          "name": "Event",
+          "cimType": 13
+        },
+        {
+          "name": "IntendedConsumer",
+          "cimType": 102
+        },
+        {
+          "name": "SECURITY_DESCRIPTOR",
+          "cimType": 17,
+          "array": true
+        },
+        {
+          "name": "TIME_CREATED",
+          "cimType": 21
+        }
+      ]
+    },
+    {
+      "name": "__Event",
+      "properties": [
+        {
+          "name": "SECURITY_DESCRIPTOR",
+          "cimType": 17,
+          "array": true
+        },
+        {
+          "name": "TIME_CREATED",
+          "cimType": 21
+        }
+      ]
+    },
+    {
+      "name": "__EventConsumer",
+      "properties": [
+        {
+          "name": "CreatorSID",
+          "cimType": 17,
+          "array": true
+        },
+        {
+          "name": "MachineName",
+          "cimType": 8
+        },
+        {
+          "name": "MaximumQueueSize",
+          "cimType": 19
+        }
+      ]
+    },
+    {
+      "name": "__EventConsumerProviderRegistration",
+      "properties": [
+        {
+          "name": "ConsumerClassNames",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "provider",
+          "cimType": 102,
+          "key": true
+        }
+      ]
+    },
+    {
+      "name": "__EventDroppedEvent",
+      "properties": [
+        {
+          "name": "Event",
+          "cimType": 13
+        },
+        {
+          "name": "IntendedConsumer",
+          "cimType": 102
+        },
+        {
+          "name": "SECURITY_DESCRIPTOR",
+          "cimType": 17,
+          "array": true
+        },
+        {
+          "name": "TIME_CREATED",
+          "cimType": 21
+        }
+      ]
+    },
+    {
+      "name": "__EventFilter",
+      "properties": [
+        {
+          "name": "CreatorSID",
+          "cimType": 17,
+          "array": true
+        },
+        {
+          "name": "EventAccess",
+          "cimType": 8
+        },
+        {
+          "name": "EventNamespace",
+          "cimType": 8
+        },
+        {
+          "name": "Name",
+          "cimType": 8,
+          "key": true
+        },
+        {
+          "name": "Query",
+          "cimType": 8
+        },
+        {
+          "name": "QueryLanguage",
+          "cimType": 8
+        }
+      ]
+    },
+    {
+      "name": "__EventGenerator",
+      "properties": null
+    },
+    {
+      "name": "__EventProviderRegistration",
+      "properties": [
+        {
+          "name": "EventQueryList",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "provider",
+          "cimType": 102,
+          "key": true
+        }
+      ]
+    },
+    {
+      "name": "__EventQueueOverflowEvent",
+      "properties": [
+        {
+          "name": "CurrentQueueSize",
+          "cimType": 19
+        },
+        {
+          "name": "Event",
+          "cimType": 13
+        },
+        {
+          "name": "IntendedConsumer",
+          "cimType": 102
+        },
+        {
+          "name": "SECURITY_DESCRIPTOR",
+          "cimType": 17,
+          "array": true
+        },
+        {
+          "name": "TIME_CREATED",
+          "cimType": 21
+        }
+      ]
+    },
+    {
+      "name": "__ExtendedStatus",
+      "properties": [
+        {
+          "name": "Description",
+          "cimType": 8
+        },
+        {
+          "name": "Operation",
+          "cimType": 8
+        },
+        {
+          "name": "ParameterInfo",
+          "cimType": 8
+        },
+        {
+          "name": "ProviderName",
+          "cimType": 8
+        },
+        {
+          "name": "StatusCode",
+          "cimType": 19
+        }
+      ]
+    },
+    {
+      "name": "__ExtrinsicEvent",
+      "properties": [
+        {
+          "name": "SECURITY_DESCRIPTOR",
+          "cimType": 17,
+          "array": true
+        },
+        {
+          "name": "TIME_CREATED",
+          "cimType": 21
+        }
+      ]
+    },
+    {
+      "name": "__FilterToConsumerBinding",
+      "properties": [
+        {
+          "name": "Consumer",
+          "cimType": 102,
+          "key": true
+        },
+        {
+          "name": "CreatorSID",
+          "cimType": 17,
+          "array": true
+        },
+        {
+          "name": "DeliverSynchronously",
+          "cimType": 11
+        },
+        {
+          "name": "DeliveryQoS",
+          "cimType": 19
+        },
+        {
+          "name": "Filter",
+          "cimType": 102,
+          "key": true
+        },
+        {
+          "name": "MaintainSecurityContext",
+          "cimType": 11
+        },
+        {
+          "name": "SlowDownProviders",
+          "cimType": 11
+        }
+      ]
+    },
+    {
+      "name": "__IndicationRelated",
+      "properties": null
+    },
+    {
+      "name": "__InstanceCreationEvent",
+      "properties": [
+        {
+          "name": "SECURITY_DESCRIPTOR",
+          "cimType": 17,
+          "array": true
+        },
+        {
+          "name": "TIME_CREATED",
+          "cimType": 21
+        },
+        {
+          "name": "TargetInstance",
+          "cimType": 13
+        }
+      ]
+    },
+    {
+      "name": "__InstanceDeletionEvent",
+      "properties": [
+        {
+          "name": "SECURITY_DESCRIPTOR",
+          "cimType": 17,
+          "array": true
+        },
+        {
+          "name": "TIME_CREATED",
+          "cimType": 21
+        },
+        {
+          "name": "TargetInstance",
+          "cimType": 13
+        }
+      ]
+    },
+    {
+      "name": "__InstanceModificationEvent",
+      "properties": [
+        {
+          "name": "PreviousInstance",
+          "cimType": 13
+        },
+        {
+          "name": "SECURITY_DESCRIPTOR",
+          "cimType": 17,
+          "array": true
+        },
+        {
+          "name": "TIME_CREATED",
+          "cimType": 21
+        },
+        {
+          "name": "TargetInstance",
+          "cimType": 13
+        }
+      ]
+    },
+    {
+      "name": "__InstanceOperationEvent",
+      "properties": [
+        {
+          "name": "SECURITY_DESCRIPTOR",
+          "cimType": 17,
+          "array": true
+        },
+        {
+          "name": "TIME_CREATED",
+          "cimType": 21
+        },
+        {
+          "name": "TargetInstance",
+          "cimType": 13
+        }
+      ]
+    },
+    {
+      "name": "__InstanceProviderRegistration",
+      "properties": [
+        {
+          "name": "InteractionType",
+          "cimType": 3,
+          "values": [
+            "Pull",
+            "Push",
+            "PushVerify"
+          ]
+        },
+        {
+          "name": "QuerySupportLevels",
+          "cimType": 8,
+          "array": true,
+          "valueMap": [
+            "WQL:UnarySelect",
+            "WQL:References",
+            "WQL:Associators",
+            "WQL:V1ProviderDefined"
+          ]
+        },
+        {
+          "name": "SupportsBatching",
+          "cimType": 11
+        },
+        {
+          "name": "SupportsDelete",
+          "cimType": 11
+        },
+        {
+          "name": "SupportsEnumeration",
+          "cimType": 11
+        },
+        {
+          "name": "SupportsGet",
+          "cimType": 11
+        },
+        {
+          "name": "SupportsPut",
+          "cimType": 11
+        },
+        {
+          "name": "SupportsTransactions",
+          "cimType": 11
+        },
+        {
+          "name": "provider",
+          "cimType": 102,
+          "key": true
+        }
+      ]
+    },
+    {
+      "name": "__IntervalTimerInstruction",
+      "properties": [
+        {
+          "name": "IntervalBetweenEvents",
+          "cimType": 19
+        },
+        {
+          "name": "SkipIfPassed",
+          "cimType": 11
+        },
+        {
+          "name": "TimerId",
+          "cimType": 8,
+          "key": true
+        }
+      ]
+    },
+    {
+      "name": "__MethodInvocationEvent",
+      "properties": [
+        {
+          "name": "Method",
+          "cimType": 8
+        },
+        {
+          "name": "Parameters",
+          "cimType": 13
+        },
+        {
+          "name": "PreCall",
+          "cimType": 11
+        },
+        {
+          "name": "SECURITY_DESCRIPTOR",
+          "cimType": 17,
+          "array": true
+        },
+        {
+          "name": "TIME_CREATED",
+          "cimType": 21
+        },
+        {
+          "name": "TargetInstance",
+          "cimType": 13
+        }
+      ]
+    },
+    {
+      "name": "__MethodProviderRegistration",
+      "properties": [
+        {
+          "name": "provider",
+          "cimType": 102,
+          "key": true
+        }
+      ]
+    },
+    {
+      "name": "__NAMESPACE",
+      "properties": [
+        {
+          "name": "Name",
+          "cimType": 8,
+          "key": true
+        }
+      ]
+    },
+    {
+      "name": "__NTLMUser9X",
+      "properties": [
+        {
+          "name": "Authority",
+          "cimType": 8
+        },
+        {
+          "name": "Flags",
+          "cimType": 3
+        },
+        {
+          "name": "Mask",
+          "cimType": 3
+        },
+        {
+          "name": "Name",
+          "cimType": 8
+        },
+        {
+          "name": "Type",
+          "cimType": 3
+        }
+      ]
+    },
+    {
+      "name": "__NamespaceCreationEvent",
+      "properties": [
+        {
+          "name": "SECURITY_DESCRIPTOR",
+          "cimType": 17,
+          "array": true
+        },
+        {
+          "name": "TIME_CREATED",
+          "cimType": 21
+        },
+        {
+          "name": "TargetNamespace",
+          "cimType": 13
+        }
+      ]
+    },
+    {
+      "name": "__NamespaceDeletionEvent",
+      "properties": [
+        {
+          "name": "SECURITY_DESCRIPTOR",
+          "cimType": 17,
+          "array": true
+        },
+        {
+          "name": "TIME_CREATED",
+          "cimType": 21
+        },
+        {
+          "name": "TargetNamespace",
+          "cimType": 13
+        }
+      ]
+    },
+    {
+      "name": "__NamespaceModificationEvent",
+      "properties": [
+        {
+          "name": "PreviousNamespace",
+          "cimType": 13
+        },
+        {
+          "name": "SECURITY_DESCRIPTOR",
+          "cimType": 17,
+          "array": true
+        },
+        {
+          "name": "TIME_CREATED",
+          "cimType": 21
+        },
+        {
+          "name": "TargetNamespace",
+          "cimType": 13
+        }
+      ]
+    },
+    {
+      "name": "__NamespaceOperationEvent",
+      "properties": [
+        {
+          "name": "SECURITY_DESCRIPTOR",
+          "cimType": 17,
+          "array": true
+        },
+        {
+          "name": "TIME_CREATED",
+          "cimType": 21
+        },
+        {
+          "name": "TargetNamespace",
+          "cimType": 13
+        }
+      ]
+    },
+    {
+      "name": "__NotifyStatus",
+      "properties": [
+        {
+          "name": "StatusCode",
+          "cimType": 19
+        }
+      ]
+    },
+    {
+      "name": "__ObjectProviderRegistration",
+      "properties": [
+        {
+          "name": "InteractionType",
+          "cimType": 3,
+          "values": [
+            "Pull",
+            "Push",
+            "PushVerify"
+          ]
+        },
+        {
+          "name": "QuerySupportLevels",
+          "cimType": 8,
+          "array": true,
+          "valueMap": [
+            "WQL:UnarySelect",
+            "WQL:References",
+            "WQL:Associators",
+            "WQL:V1ProviderDefined"
+          ]
+        },
+        {
+          "name": "SupportsBatching",
+          "cimType": 11
+        },
+        {
+          "name": "SupportsDelete",
+          "cimType": 11
+        },
+        {
+          "name": "SupportsEnumeration",
+          "cimType": 11
+        },
+        {
+          "name": "SupportsGet",
+          "cimType": 11
+        },
+        {
+          "name": "SupportsPut",
+          "cimType": 11
+        },
+        {
+          "name": "SupportsTransactions",
+          "cimType": 11
+        },
+        {
+          "name": "provider",
+          "cimType": 102
+        }
+      ]
+    },
+    {
+      "name": "__PARAMETERS",
+      "properties": null
+    },
+    {
+      "name": "__PropertyProviderRegistration",
+      "properties": [
+        {
+          "name": "SupportsGet",
+          "cimType": 11
+        },
+        {
+          "name": "SupportsPut",
+          "cimType": 11
+        },
+        {
+          "name": "provider",
+          "cimType": 102,
+          "key": true
+        }
+      ]
+    },
+    {
+      "name": "__Provider",
+      "properties": [
+        {
+          "name": "Name",
+          "cimType": 8,
+          "key": true
+        }
+      ]
+    },
+    {
+      "name": "__ProviderRegistration",
+      "properties": [
+        {
+          "name": "provider",
+          "cimType": 102
+        }
+      ]
+    },
+    {
+      "name": "__QOSFailureEvent",
+      "properties": [
+        {
+          "name": "ErrorCode",
+          "cimType": 19
+        },
+        {
+          "name": "ErrorDescription",
+          "cimType": 8
+        },
+        {
+          "name": "Event",
+          "cimType": 13
+        },
+        {
+          "name": "IntendedConsumer",
+          "cimType": 102
+        },
+        {
+          "name": "SECURITY_DESCRIPTOR",
+          "cimType": 17,
+          "array": true
+        },
+        {
+          "name": "TIME_CREATED",
+          "cimType": 21
+        }
+      ]
+    },
+    {
+      "name": "__SecurityDescriptor",
+      "properties": [
+        {
+          "name": "ControlFlags",
+          "cimType": 19
+        },
+        {
+          "name": "DACL",
+          "cimType": 13,
+          "array": true
+        },
+        {
+          "name": "Group",
+          "cimType": 13
+        },
+        {
+          "name": "Owner",
+          "cimType": 13
+        },
+        {
+          "name": "SACL",
+          "cimType": 13,
+          "array": true
+        },
+        {
+          "name": "TIME_CREATED",
+          "cimType": 21
+        }
+      ]
+    },
+    {
+      "name": "__SecurityRelatedClass",
+      "properties": null
+    },
+    {
+      "name": "__SystemClass",
+      "properties": null
+    },
+    {
+      "name": "__SystemEvent",
+      "properties": [
+        {
+          "name": "SECURITY_DESCRIPTOR",
+          "cimType": 17,
+          "array": true
+        },
+        {
+          "name": "TIME_CREATED",
+          "cimType": 21
+        }
+      ]
+    },
+    {
+      "name": "__SystemSecurity",
+      "properties": null,
+      "methods": [
+        {
+          "name": "Get9XUserList",
+          "static": true,
+          "out": [
+            {
+              "name": "ul",
+              "cimType": 13,
+              "array": true
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "GetCallerAccessRights",
+          "static": true,
+          "out": [
+            {
+              "name": "rights",
+              "cimType": 3
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "GetSD",
+          "static": true,
+          "out": [
+            {
+              "name": "SD",
+              "cimType": 17,
+              "array": true
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "GetSecurityDescriptor",
+          "static": true,
+          "out": [
+            {
+              "name": "Descriptor",
+              "cimType": 13
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "Set9XUserList",
+          "static": true,
+          "in": [
+            {
+              "name": "ul",
+              "cimType": 13,
+              "array": true
+            }
+          ],
+          "out": [
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "SetSD",
+          "static": true,
+          "in": [
+            {
+              "name": "SD",
+              "cimType": 17,
+              "array": true
+            }
+          ],
+          "out": [
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "SetSecurityDescriptor",
+          "static": true,
+          "in": [
+            {
+              "name": "Descriptor",
+              "cimType": 13
+            }
+          ],
+          "out": [
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "__TimerEvent",
+      "properties": [
+        {
+          "name": "NumFirings",
+          "cimType": 19
+        },
+        {
+          "name": "SECURITY_DESCRIPTOR",
+          "cimType": 17,
+          "array": true
+        },
+        {
+          "name": "TIME_CREATED",
+          "cimType": 21
+        },
+        {
+          "name": "TimerId",
+          "cimType": 8
+        }
+      ]
+    },
+    {
+      "name": "__TimerInstruction",
+      "properties": [
+        {
+          "name": "SkipIfPassed",
+          "cimType": 11
+        },
+        {
+          "name": "TimerId",
+          "cimType": 8,
+          "key": true
+        }
+      ]
+    },
+    {
+      "name": "__TimerNextFiring",
+      "properties": [
+        {
+          "name": "NextEvent64BitTime",
+          "cimType": 20
+        },
+        {
+          "name": "TimerId",
+          "cimType": 8,
+          "key": true
+        }
+      ]
+    },
+    {
+      "name": "__Trustee",
+      "properties": [
+        {
+          "name": "Domain",
+          "cimType": 8
+        },
+        {
+          "name": "Name",
+          "cimType": 8
+        },
+        {
+          "name": "SID",
+          "cimType": 17,
+          "array": true
+        },
+        {
+          "name": "SIDString",
+          "cimType": 8
+        },
+        {
+          "name": "SidLength",
+          "cimType": 19
+        },
+        {
+          "name": "TIME_CREATED",
+          "cimType": 21
+        }
+      ]
+    },
+    {
+      "name": "__Win32Provider",
+      "properties": [
+        {
+          "name": "CLSID",
+          "cimType": 8
+        },
+        {
+          "name": "ClientLoadableCLSID",
+          "cimType": 8
+        },
+        {
+          "name": "Concurrency",
+          "cimType": 3
+        },
+        {
+          "name": "DefaultMachineName",
+          "cimType": 8
+        },
+        {
+          "name": "Enabled",
+          "cimType": 11
+        },
+        {
+          "name": "HostingModel",
+          "cimType": 8
+        },
+        {
+          "name": "ImpersonationLevel",
+          "cimType": 3,
+          "values": [
+            "None"
+          ]
+        },
+        {
+          "name": "InitializationReentrancy",
+          "cimType": 3,
+          "values": [
+            "CLSID",
+            "Namespace",
+            "COM Object"
+          ]
+        },
+        {
+          "name": "InitializationTimeoutInterval",
+          "cimType": 101
+        },
+        {
+          "name": "InitializeAsAdminFirst",
+          "cimType": 11
+        },
+        {
+          "name": "Name",
+          "cimType": 8,
+          "key": true
+        },
+        {
+          "name": "OperationTimeoutInterval",
+          "cimType": 101
+        },
+        {
+          "name": "PerLocaleInitialization",
+          "cimType": 11
+        },
+        {
+          "name": "PerUserInitialization",
+          "cimType": 11
+        },
+        {
+          "name": "Pure",
+          "cimType": 11
+        },
+        {
+          "name": "SecurityDescriptor",
+          "cimType": 8
+        },
+        {
+          "name": "SupportsExplicitShutdown",
+          "cimType": 11
+        },
+        {
+          "name": "SupportsExtendedStatus",
+          "cimType": 11
+        },
+        {
+          "name": "SupportsQuotas",
+          "cimType": 11
+        },
+        {
+          "name": "SupportsSendStatus",
+          "cimType": 11
+        },
+        {
+          "name": "SupportsShutdown",
+          "cimType": 11
+        },
+        {
+          "name": "SupportsThrottling",
+          "cimType": 11
+        },
+        {
+          "name": "UnloadTimeout",
+          "cimType": 101
+        },
+        {
+          "name": "Version",
+          "cimType": 19
+        }
+      ]
+    },
+    {
+      "name": "__thisNAMESPACE",
+      "properties": [
+        {
+          "name": "SECURITY_DESCRIPTOR",
+          "cimType": 17,
+          "array": true
+        }
+      ]
+    }
+  ]
+}
