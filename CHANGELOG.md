@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.2.0](https://github.com/deploymenttheory/go-bindings-wmi/compare/v0.1.0...v0.2.0) (2026-07-21)
+
+
+### Features
+
+* added virtualization v2 ([6fc9fa6](https://github.com/deploymenttheory/go-bindings-wmi/commit/6fc9fa608cd274c96a3d6d653bd4a10af5a75f92))
+* capture root\virtualization\v2 (Hyper-V) typed bindings + MOF object text ([f79b767](https://github.com/deploymenttheory/go-bindings-wmi/commit/f79b767d652c07d4fe3aa3906a437f85e9397b62))
+* **hgs:** capture root\Microsoft\Windows\Hgs and generate typed bindings ([22faf8c](https://github.com/deploymenttheory/go-bindings-wmi/commit/22faf8c064c3332a1c52b81a3d31f5ef7d46f111))
+* **virtualizationv2:** capture 4 more classes — no untyped gaps ([f05a7bc](https://github.com/deploymenttheory/go-bindings-wmi/commit/f05a7bc3ba450d1a2d86f65e02f147779941ca12))
+
+
+### Bug Fixes
+
+* **wmi:** decode SAFEARRAYs to typed slices so Rows round-trip through Put ([0fe3c6a](https://github.com/deploymenttheory/go-bindings-wmi/commit/0fe3c6aa8074945b93c1748df617635cc43e90ef))
+* **wmi:** ObjectText must emit CIM DTD 2.0 XML, not MOF ([4d905c9](https://github.com/deploymenttheory/go-bindings-wmi/commit/4d905c9da79cdc9a33378014ba09ac40b26ab02a))
+
 ## 0.1.0 (2026-07-17)
 
 
