@@ -11,11 +11,12 @@ import (
 	"github.com/deploymenttheory/go-bindings-win32/bindings/win32/system/variant"
 )
 
-// decodeSafeArray decodes a one-dimensional SAFEARRAY of scalar elements into
-// []any, widening each element exactly as decodeVariant widens scalars
-// (string, int64, uint64, bool, float64). Elements of unsupported types
-// decode to nil; multi-dimensional arrays (which WMI does not produce for
-// class properties) decode to nil as a whole.
+// decodeSafeArray decodes a one-dimensional SAFEARRAY into a TYPED Go slice
+// — []string, []bool, []byte, []int16..., []Row — preserving the element
+// width so a decoded Row can be encoded back (putValue/encodeVariant have a
+// case for each of these types; CIM uint64/sint64 arrays travel as decimal
+// strings both ways). Unsupported element types and multi-dimensional
+// arrays (which WMI does not produce for class properties) decode to nil.
 func decodeSafeArray(psa *com.SAFEARRAY) any {
 	if psa == nil || ole.SafeArrayGetDim(psa) != 1 {
 		return nil
@@ -32,58 +33,66 @@ func decodeSafeArray(psa *com.SAFEARRAY) any {
 		return nil
 	}
 	n := int(hi) - int(lo) + 1
-	if n <= 0 {
-		return []any{}
+	if n < 0 {
+		return nil
 	}
 
 	var data unsafe.Pointer
-	if err := ole.SafeArrayAccessData(psa, &data); err != nil {
-		return nil
+	if n > 0 {
+		if err := ole.SafeArrayAccessData(psa, &data); err != nil {
+			return nil
+		}
+		defer func() { _ = ole.SafeArrayUnaccessData(psa) }()
 	}
-	defer func() { _ = ole.SafeArrayUnaccessData(psa) }()
-
 	size := uintptr(ole.SafeArrayGetElemsize(psa))
-	out := make([]any, n)
-	for i := range out {
-		out[i] = decodeArrayElement(vt, unsafe.Add(data, uintptr(i)*size))
-	}
-	return out
-}
+	at := func(i int) unsafe.Pointer { return unsafe.Add(data, uintptr(i)*size) }
 
-// decodeArrayElement reads one SAFEARRAY element in place. The element is
-// owned by the (locked) array; BSTRs are copied out, never retained.
-func decodeArrayElement(vt variant.VARENUM, p unsafe.Pointer) any {
 	switch vt {
 	case variant.VT_BSTR:
-		b := *(**uint16)(p)
-		if b == nil {
+		return decodeElements(n, func(i int) string {
+			if b := *(**uint16)(at(i)); b != nil {
+				return win32.UTF16ToString(b)
+			}
 			return ""
-		}
-		return win32.UTF16ToString(b)
+		})
 	case variant.VT_BOOL:
-		return *(*int16)(p) != 0
-	case variant.VT_I1:
-		return int64(*(*int8)(p))
-	case variant.VT_I2:
-		return int64(*(*int16)(p))
-	case variant.VT_I4, variant.VT_INT:
-		return int64(*(*int32)(p))
-	case variant.VT_I8:
-		return *(*int64)(p)
+		return decodeElements(n, func(i int) bool { return *(*int16)(at(i)) != 0 })
 	case variant.VT_UI1:
-		return uint64(*(*uint8)(p))
+		return decodeElements(n, func(i int) byte { return *(*uint8)(at(i)) })
+	case variant.VT_I1:
+		return decodeElements(n, func(i int) int8 { return *(*int8)(at(i)) })
+	case variant.VT_I2:
+		return decodeElements(n, func(i int) int16 { return *(*int16)(at(i)) })
+	case variant.VT_I4, variant.VT_INT:
+		return decodeElements(n, func(i int) int32 { return *(*int32)(at(i)) })
+	case variant.VT_I8:
+		return decodeElements(n, func(i int) int64 { return *(*int64)(at(i)) })
 	case variant.VT_UI2:
-		return uint64(*(*uint16)(p))
+		return decodeElements(n, func(i int) uint16 { return *(*uint16)(at(i)) })
 	case variant.VT_UI4, variant.VT_UINT:
-		return uint64(*(*uint32)(p))
+		return decodeElements(n, func(i int) uint32 { return *(*uint32)(at(i)) })
 	case variant.VT_UI8:
-		return *(*uint64)(p)
+		return decodeElements(n, func(i int) uint64 { return *(*uint64)(at(i)) })
 	case variant.VT_R4:
-		return float64(*(*float32)(p))
+		return decodeElements(n, func(i int) float32 { return *(*float32)(at(i)) })
 	case variant.VT_R8:
-		return *(*float64)(p)
+		return decodeElements(n, func(i int) float64 { return *(*float64)(at(i)) })
 	case variant.VT_UNKNOWN, variant.VT_DISPATCH:
-		return decodeEmbedded(*(*unsafe.Pointer)(p))
+		rows := make([]Row, n)
+		for i := range rows {
+			row, _ := decodeEmbedded(*(*unsafe.Pointer)(at(i))).(Row)
+			rows[i] = row
+		}
+		return rows
 	}
 	return nil
+}
+
+// decodeElements materializes n elements through get.
+func decodeElements[T any](n int, get func(int) T) []T {
+	out := make([]T, n)
+	for i := range out {
+		out[i] = get(i)
+	}
+	return out
 }

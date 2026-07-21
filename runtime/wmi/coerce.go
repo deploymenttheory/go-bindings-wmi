@@ -115,17 +115,66 @@ func AsUint16(v any) uint16   { return uint16(AsUint64(v)) }
 func AsUint32(v any) uint32   { return uint32(AsUint64(v)) }
 func AsFloat32(v any) float32 { return float32(AsFloat64(v)) }
 
-// asSlice coerces the []any that the runtime produces for SAFEARRAY
-// properties into a typed slice, coercing each element like the scalar
-// helpers do. Non-array values (including nil) coerce to a nil slice.
+// asSlice coerces a decoded SAFEARRAY property into the requested slice
+// type: the runtime produces typed slices (see decodeSafeArray), so the
+// direct case is a cast; any other slice shape is coerced element-wise like
+// the scalar helpers do. Non-array values (including nil) coerce to a nil
+// slice.
 func asSlice[T any](v any, coerce func(any) T) []T {
-	items, ok := v.([]any)
-	if !ok {
+	if direct, ok := v.([]T); ok {
+		return direct
+	}
+	items := anySlice(v)
+	if items == nil {
 		return nil
 	}
 	out := make([]T, len(items))
 	for i, item := range items {
 		out[i] = coerce(item)
+	}
+	return out
+}
+
+// anySlice widens any slice shape the runtime can produce to []any for
+// element-wise coercion.
+func anySlice(v any) []any {
+	switch t := v.(type) {
+	case []any:
+		return t
+	case []string:
+		return widen(t)
+	case []bool:
+		return widen(t)
+	case []byte:
+		return widen(t)
+	case []int8:
+		return widen(t)
+	case []int16:
+		return widen(t)
+	case []int32:
+		return widen(t)
+	case []int64:
+		return widen(t)
+	case []uint16:
+		return widen(t)
+	case []uint32:
+		return widen(t)
+	case []uint64:
+		return widen(t)
+	case []float32:
+		return widen(t)
+	case []float64:
+		return widen(t)
+	case []Row:
+		return widen(t)
+	}
+	return nil
+}
+
+func widen[T any](in []T) []any {
+	out := make([]any, len(in))
+	for i, v := range in {
+		out[i] = v
 	}
 	return out
 }

@@ -1,0 +1,7940 @@
+{
+  "namespace": "root\\virtualization\\v2",
+  "provenance": {
+    "osBuild": "26200",
+    "captured": "2026-07-21"
+  },
+  "classes": [
+    {
+      "name": "Msvm_AllocationCapabilities",
+      "properties": [
+        {
+          "name": "Caption",
+          "cimType": 8
+        },
+        {
+          "name": "Description",
+          "cimType": 8
+        },
+        {
+          "name": "ElementName",
+          "cimType": 8
+        },
+        {
+          "name": "InstanceID",
+          "cimType": 8,
+          "key": true
+        },
+        {
+          "name": "OtherResourceType",
+          "cimType": 8
+        },
+        {
+          "name": "RequestTypesSupported",
+          "cimType": 18
+        },
+        {
+          "name": "ResourceSubType",
+          "cimType": 8
+        },
+        {
+          "name": "ResourceType",
+          "cimType": 18
+        },
+        {
+          "name": "SharingMode",
+          "cimType": 18
+        },
+        {
+          "name": "SupportedAddStates",
+          "cimType": 18,
+          "array": true
+        },
+        {
+          "name": "SupportedRemoveStates",
+          "cimType": 18,
+          "array": true
+        }
+      ]
+    },
+    {
+      "name": "Msvm_BootSourceSettingData",
+      "properties": [
+        {
+          "name": "BootSourceDescription",
+          "cimType": 8
+        },
+        {
+          "name": "BootSourceType",
+          "cimType": 19,
+          "values": [
+            "Unknown",
+            "Drive",
+            "Network",
+            "File"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3"
+          ]
+        },
+        {
+          "name": "Caption",
+          "cimType": 8
+        },
+        {
+          "name": "Description",
+          "cimType": 8
+        },
+        {
+          "name": "ElementName",
+          "cimType": 8
+        },
+        {
+          "name": "FirmwareDevicePath",
+          "cimType": 8
+        },
+        {
+          "name": "InstanceID",
+          "cimType": 8,
+          "key": true
+        },
+        {
+          "name": "OptionalData",
+          "cimType": 17,
+          "array": true
+        },
+        {
+          "name": "OtherLocation",
+          "cimType": 8
+        }
+      ]
+    },
+    {
+      "name": "Msvm_ComputerSystem",
+      "properties": [
+        {
+          "name": "AvailableRequestedStates",
+          "cimType": 18,
+          "array": true
+        },
+        {
+          "name": "Caption",
+          "cimType": 8
+        },
+        {
+          "name": "CommunicationStatus",
+          "cimType": 18
+        },
+        {
+          "name": "CreationClassName",
+          "cimType": 8,
+          "key": true
+        },
+        {
+          "name": "Dedicated",
+          "cimType": 18,
+          "array": true
+        },
+        {
+          "name": "Description",
+          "cimType": 8
+        },
+        {
+          "name": "DetailedStatus",
+          "cimType": 18
+        },
+        {
+          "name": "ElementName",
+          "cimType": 8
+        },
+        {
+          "name": "EnabledDefault",
+          "cimType": 18
+        },
+        {
+          "name": "EnabledState",
+          "cimType": 18
+        },
+        {
+          "name": "EnhancedSessionModeState",
+          "cimType": 18,
+          "values": [
+            "Allowed and available",
+            "Not allowed",
+            "Allowed but not available"
+          ],
+          "valueMap": [
+            "2",
+            "3",
+            "6"
+          ]
+        },
+        {
+          "name": "FailedOverReplicationType",
+          "cimType": 18,
+          "values": [
+            "None",
+            "Regular",
+            "Application consistent",
+            "Planned"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3"
+          ]
+        },
+        {
+          "name": "HealthState",
+          "cimType": 18
+        },
+        {
+          "name": "HwThreadsPerCoreRealized",
+          "cimType": 19
+        },
+        {
+          "name": "IdentifyingDescriptions",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "InstallDate",
+          "cimType": 101
+        },
+        {
+          "name": "InstanceID",
+          "cimType": 8
+        },
+        {
+          "name": "LastApplicationConsistentReplicationTime",
+          "cimType": 101
+        },
+        {
+          "name": "LastReplicationTime",
+          "cimType": 101
+        },
+        {
+          "name": "LastReplicationType",
+          "cimType": 18,
+          "values": [
+            "None",
+            "Regular",
+            "Application consistent",
+            "Planned"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3"
+          ]
+        },
+        {
+          "name": "LastSuccessfulBackupTime",
+          "cimType": 101
+        },
+        {
+          "name": "ManagementVtlImageFileName",
+          "cimType": 8
+        },
+        {
+          "name": "ManagementVtlImageVersion",
+          "cimType": 8
+        },
+        {
+          "name": "Name",
+          "cimType": 8,
+          "key": true
+        },
+        {
+          "name": "NameFormat",
+          "cimType": 8
+        },
+        {
+          "name": "NumberOfNumaNodes",
+          "cimType": 18
+        },
+        {
+          "name": "OnTimeInMilliseconds",
+          "cimType": 21
+        },
+        {
+          "name": "OperatingStatus",
+          "cimType": 18
+        },
+        {
+          "name": "OperationalStatus",
+          "cimType": 18,
+          "array": true
+        },
+        {
+          "name": "OtherDedicatedDescriptions",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "OtherEnabledState",
+          "cimType": 8
+        },
+        {
+          "name": "OtherIdentifyingInfo",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "PowerManagementCapabilities",
+          "cimType": 18,
+          "array": true
+        },
+        {
+          "name": "PrimaryOwnerContact",
+          "cimType": 8
+        },
+        {
+          "name": "PrimaryOwnerName",
+          "cimType": 8
+        },
+        {
+          "name": "PrimaryStatus",
+          "cimType": 18
+        },
+        {
+          "name": "ProcessID",
+          "cimType": 19
+        },
+        {
+          "name": "ReplicationHealth",
+          "cimType": 18,
+          "values": [
+            "Not applicable",
+            "Ok",
+            "Warning",
+            "Critical"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3"
+          ]
+        },
+        {
+          "name": "ReplicationMode",
+          "cimType": 18,
+          "values": [
+            "None",
+            "Primary",
+            "Replica",
+            "Test Replica",
+            "Extended Replica"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4"
+          ]
+        },
+        {
+          "name": "ReplicationState",
+          "cimType": 18,
+          "values": [
+            "Disabled",
+            "Ready for replication",
+            "Waiting to complete initial replication",
+            "Replicating",
+            "Synced replication complete",
+            "Recovered",
+            "Committed",
+            "Suspended",
+            "Critical",
+            "Waiting to start resynchronization",
+            "Resynchronizing",
+            "Resynchronization suspended",
+            "Failover in progress",
+            "Failback in progress",
+            "Failback complete"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14"
+          ]
+        },
+        {
+          "name": "RequestedState",
+          "cimType": 18
+        },
+        {
+          "name": "ResetCapability",
+          "cimType": 18
+        },
+        {
+          "name": "Roles",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "Status",
+          "cimType": 8
+        },
+        {
+          "name": "StatusDescriptions",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "TimeOfLastConfigurationChange",
+          "cimType": 101
+        },
+        {
+          "name": "TimeOfLastStateChange",
+          "cimType": 101
+        },
+        {
+          "name": "TransitioningToState",
+          "cimType": 18
+        }
+      ],
+      "methods": [
+        {
+          "name": "InjectNonMaskableInterrupt",
+          "out": [
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "InjectNonMaskableInterruptEx",
+          "in": [
+            {
+              "name": "Vtl",
+              "cimType": 17
+            }
+          ],
+          "out": [
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "RequestCustomRestore",
+          "in": [
+            {
+              "name": "RestoreSettings",
+              "cimType": 8
+            }
+          ],
+          "out": [
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "RequestReplicationStateChange",
+          "in": [
+            {
+              "name": "RequestedState",
+              "cimType": 18
+            },
+            {
+              "name": "TimeoutPeriod",
+              "cimType": 101
+            }
+          ],
+          "out": [
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "RequestReplicationStateChangeEx",
+          "in": [
+            {
+              "name": "ReplicationRelationship",
+              "cimType": 8
+            },
+            {
+              "name": "RequestedState",
+              "cimType": 18
+            },
+            {
+              "name": "TimeoutPeriod",
+              "cimType": 101
+            }
+          ],
+          "out": [
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "RequestStateChange",
+          "in": [
+            {
+              "name": "RequestedState",
+              "cimType": 18
+            },
+            {
+              "name": "TimeoutPeriod",
+              "cimType": 101
+            }
+          ],
+          "out": [
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "SetPowerState",
+          "in": [
+            {
+              "name": "PowerState",
+              "cimType": 19
+            },
+            {
+              "name": "Time",
+              "cimType": 101
+            }
+          ],
+          "out": [
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Msvm_ConcreteJob",
+      "properties": [
+        {
+          "name": "Cancellable",
+          "cimType": 11
+        },
+        {
+          "name": "Caption",
+          "cimType": 8
+        },
+        {
+          "name": "CommunicationStatus",
+          "cimType": 18
+        },
+        {
+          "name": "DeleteOnCompletion",
+          "cimType": 11
+        },
+        {
+          "name": "Description",
+          "cimType": 8
+        },
+        {
+          "name": "DetailedStatus",
+          "cimType": 18
+        },
+        {
+          "name": "ElapsedTime",
+          "cimType": 101
+        },
+        {
+          "name": "ElementName",
+          "cimType": 8
+        },
+        {
+          "name": "ErrorCode",
+          "cimType": 18
+        },
+        {
+          "name": "ErrorDescription",
+          "cimType": 8
+        },
+        {
+          "name": "ErrorSummaryDescription",
+          "cimType": 8
+        },
+        {
+          "name": "HealthState",
+          "cimType": 18
+        },
+        {
+          "name": "InstallDate",
+          "cimType": 101
+        },
+        {
+          "name": "InstanceID",
+          "cimType": 8,
+          "key": true
+        },
+        {
+          "name": "JobRunTimes",
+          "cimType": 19
+        },
+        {
+          "name": "JobState",
+          "cimType": 18
+        },
+        {
+          "name": "JobStatus",
+          "cimType": 8
+        },
+        {
+          "name": "JobType",
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Define Virtual Machine",
+            "Modify Virtual Machine",
+            "Destroy Virtual Machine",
+            "Modify Management Service Settings",
+            "Initialize Virtual Machine",
+            "Waiting to Start Virtual Machine",
+            "Start Virtual Machine",
+            "Power Off Virtual Machine",
+            "Save Virtual Machine",
+            "Restore Virtual Machine",
+            "Shut Down Virtual Machine",
+            "Pause Virtual Machine",
+            "Resume Virtual Machine",
+            "Reset Virtual Machine",
+            "Reboot Virtual Machine",
+            "Add Virtual Machine Resources",
+            "Modify Virtual Machine Resources",
+            "Remove Virtual Machine Resources",
+            "Request Initial Virtual Machine Memory",
+            "Add Memory to Virtual Machine",
+            "Remove Memory from Virtual Machine",
+            "Merging VHD Disks",
+            "Create VSS Snapshot inside Virtual Machine",
+            "Get Import Setting Data",
+            "Import Virtual Machine",
+            "Export Virtual Machine",
+            "Register Configuration",
+            "Unregister Configuration",
+            "Snapshot Virtual Machine",
+            "Apply Virtual Machine Snapshot",
+            "Delete Virtual Machine Snapshot",
+            "Clear Virtual Machine Snapshot State",
+            "Add Resources to Resource Pool",
+            "Remove Resources from Resource Pool",
+            "Modify Replication Server Settings",
+            "Create Replication Relationship",
+            "Modify Replication Relationship Settings",
+            "Remove Replication Relationship",
+            "Start Inband Initial Replication",
+            "Import Replication",
+            "Replicate State Change",
+            "Initiate Failover",
+            "Revert Failover",
+            "Commit Failover",
+            "Inititate Synced Replication",
+            "Cancel Synced Replication",
+            "Initiate Test Replica",
+            "Remove Test Replica",
+            "Reverse Replication",
+            "Replication Sending Delta",
+            "Replication Receiving Delta",
+            "Resynchronizing",
+            "Apply change log",
+            "Stop Initial Replication",
+            "Stop Resynchronizing",
+            "Get Replica statistics",
+            "Prepare for Consistency Checker",
+            "Consistency Checker",
+            "Stop Consistency Checker",
+            "Test Replication Connection",
+            "Sending Initial Replica",
+            "Start Resync Initial Replication",
+            "Start Export Initial Replication",
+            "Reset Replica Statistics",
+            "Apply Registered Deltas",
+            "Resynchronizing Extended Replication",
+            "Reading Test Replica Configuration",
+            "Change the replication mode to primary",
+            "Initiate Failback",
+            "Update Disk Set",
+            "Define Ethernet Switch",
+            "Modify Ethernet Switch Settings",
+            "Destroy Ethernet Switch",
+            "Add Ethernet Switch Resources",
+            "Modify Ethernet Switch Resources",
+            "Remove Ethernet Switch Resources",
+            "Validate Planned Virtual Machine",
+            "Realizing Virtual Machine",
+            "Creating a Resource Pool",
+            "Changing the Parent Resources of a Resource Pool",
+            "Changing the Non-alloction Settings of a Resource Pool",
+            "Deleting a Resource Pool",
+            "Enable RemoteFx GPU",
+            "Disable RemoteFx GPU",
+            "Modify 3D Service Settings",
+            "Backup Virtual Machine",
+            "Guest Service Interface",
+            "Query Guest Cluster Information",
+            "Define Collection",
+            "Destroy Collection",
+            "Rename Collection",
+            "Add Member to Collection",
+            "Remove Member from Collection",
+            "Add Setting to Collection",
+            "Remove Setting from Collection",
+            "Modify Setting on Collection",
+            "Snapshot Collection",
+            "Convert Snapshot to Reference Point",
+            "Create Reference Point",
+            "Delete Reference Point",
+            "Export Reference Point",
+            "Remove Associated Data from Reference Point",
+            "Create Reference Point on Collection",
+            "Export Reference Point on Collection",
+            "Remove Associated Data from Reference Point on Collection",
+            "Delete Reference Point on Collection",
+            "Import Reference Point metadata",
+            "Mount or Dismount Assignable Device"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31",
+            "32",
+            "40",
+            "41",
+            "42",
+            "50",
+            "51",
+            "60",
+            "61",
+            "62",
+            "63",
+            "64",
+            "70",
+            "71",
+            "72",
+            "73",
+            "80",
+            "81",
+            "90",
+            "91",
+            "92",
+            "93",
+            "94",
+            "95",
+            "96",
+            "97",
+            "98",
+            "99",
+            "100",
+            "101",
+            "102",
+            "103",
+            "104",
+            "105",
+            "106",
+            "107",
+            "108",
+            "109",
+            "110",
+            "111",
+            "112",
+            "113",
+            "114",
+            "115",
+            "116",
+            "117",
+            "118",
+            "119",
+            "120",
+            "121",
+            "122",
+            "123",
+            "124",
+            "125",
+            "130",
+            "131",
+            "132",
+            "133",
+            "134",
+            "135",
+            "140",
+            "141",
+            "150",
+            "151",
+            "152",
+            "153",
+            "160",
+            "161",
+            "162",
+            "170",
+            "180",
+            "181",
+            "190",
+            "191",
+            "192",
+            "193",
+            "194",
+            "195",
+            "196",
+            "197",
+            "198",
+            "200",
+            "201",
+            "202",
+            "203",
+            "204",
+            "205",
+            "206",
+            "207",
+            "208",
+            "209",
+            "260"
+          ]
+        },
+        {
+          "name": "LocalOrUtcTime",
+          "cimType": 18
+        },
+        {
+          "name": "Name",
+          "cimType": 8
+        },
+        {
+          "name": "Notify",
+          "cimType": 8
+        },
+        {
+          "name": "OperatingStatus",
+          "cimType": 18
+        },
+        {
+          "name": "OperationalStatus",
+          "cimType": 18,
+          "array": true
+        },
+        {
+          "name": "OtherRecoveryAction",
+          "cimType": 8
+        },
+        {
+          "name": "Owner",
+          "cimType": 8
+        },
+        {
+          "name": "PercentComplete",
+          "cimType": 18
+        },
+        {
+          "name": "PrimaryStatus",
+          "cimType": 18
+        },
+        {
+          "name": "Priority",
+          "cimType": 19
+        },
+        {
+          "name": "RecoveryAction",
+          "cimType": 18
+        },
+        {
+          "name": "RunDay",
+          "cimType": 16
+        },
+        {
+          "name": "RunDayOfWeek",
+          "cimType": 16
+        },
+        {
+          "name": "RunMonth",
+          "cimType": 17
+        },
+        {
+          "name": "RunStartInterval",
+          "cimType": 101
+        },
+        {
+          "name": "ScheduledStartTime",
+          "cimType": 101
+        },
+        {
+          "name": "StartTime",
+          "cimType": 101
+        },
+        {
+          "name": "Status",
+          "cimType": 8
+        },
+        {
+          "name": "StatusDescriptions",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "TimeBeforeRemoval",
+          "cimType": 101
+        },
+        {
+          "name": "TimeOfLastStateChange",
+          "cimType": 101
+        },
+        {
+          "name": "TimeSubmitted",
+          "cimType": 101
+        },
+        {
+          "name": "UntilTime",
+          "cimType": 101
+        }
+      ],
+      "methods": [
+        {
+          "name": "GetError",
+          "out": [
+            {
+              "name": "Error",
+              "cimType": 8
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "GetErrorEx",
+          "out": [
+            {
+              "name": "Errors",
+              "cimType": 8,
+              "array": true
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "KillJob",
+          "in": [
+            {
+              "name": "DeleteOnKill",
+              "cimType": 11
+            }
+          ],
+          "out": [
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "RequestStateChange",
+          "in": [
+            {
+              "name": "RequestedState",
+              "cimType": 18
+            },
+            {
+              "name": "TimeoutPeriod",
+              "cimType": 101
+            }
+          ],
+          "out": [
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Msvm_EthernetPortAllocationSettingData",
+      "properties": [
+        {
+          "name": "Address",
+          "cimType": 8
+        },
+        {
+          "name": "AddressOnParent",
+          "cimType": 8
+        },
+        {
+          "name": "AllocationUnits",
+          "cimType": 8
+        },
+        {
+          "name": "AutomaticAllocation",
+          "cimType": 11
+        },
+        {
+          "name": "AutomaticDeallocation",
+          "cimType": 11
+        },
+        {
+          "name": "Caption",
+          "cimType": 8
+        },
+        {
+          "name": "CompartmentGuid",
+          "cimType": 8
+        },
+        {
+          "name": "Connection",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "ConsumerVisibility",
+          "cimType": 18
+        },
+        {
+          "name": "Description",
+          "cimType": 8
+        },
+        {
+          "name": "DesiredVLANEndpointMode",
+          "cimType": 18
+        },
+        {
+          "name": "ElementName",
+          "cimType": 8
+        },
+        {
+          "name": "EnabledState",
+          "cimType": 18,
+          "values": [
+            "Enabled",
+            "Disabled"
+          ],
+          "valueMap": [
+            "2",
+            "3"
+          ]
+        },
+        {
+          "name": "HostResource",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "InstanceID",
+          "cimType": 8,
+          "key": true
+        },
+        {
+          "name": "LastKnownSwitchName",
+          "cimType": 8
+        },
+        {
+          "name": "Limit",
+          "cimType": 21
+        },
+        {
+          "name": "MappingBehavior",
+          "cimType": 18
+        },
+        {
+          "name": "OtherEndpointMode",
+          "cimType": 8
+        },
+        {
+          "name": "OtherResourceType",
+          "cimType": 8
+        },
+        {
+          "name": "Parent",
+          "cimType": 8
+        },
+        {
+          "name": "PoolID",
+          "cimType": 8
+        },
+        {
+          "name": "PortName",
+          "cimType": 8
+        },
+        {
+          "name": "RequiredFeatureHints",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "RequiredFeatures",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "Reservation",
+          "cimType": 21
+        },
+        {
+          "name": "ResourceSubType",
+          "cimType": 8
+        },
+        {
+          "name": "ResourceType",
+          "cimType": 18
+        },
+        {
+          "name": "TestReplicaPoolID",
+          "cimType": 8
+        },
+        {
+          "name": "TestReplicaSwitchName",
+          "cimType": 8
+        },
+        {
+          "name": "VirtualQuantity",
+          "cimType": 21
+        },
+        {
+          "name": "VirtualQuantityUnits",
+          "cimType": 8
+        },
+        {
+          "name": "Weight",
+          "cimType": 19
+        }
+      ]
+    },
+    {
+      "name": "Msvm_HeartbeatComponent",
+      "properties": [
+        {
+          "name": "AdditionalAvailability",
+          "cimType": 18,
+          "array": true
+        },
+        {
+          "name": "Availability",
+          "cimType": 18
+        },
+        {
+          "name": "AvailableRequestedStates",
+          "cimType": 18,
+          "array": true
+        },
+        {
+          "name": "Caption",
+          "cimType": 8
+        },
+        {
+          "name": "CommunicationStatus",
+          "cimType": 18
+        },
+        {
+          "name": "CreationClassName",
+          "cimType": 8,
+          "key": true
+        },
+        {
+          "name": "Description",
+          "cimType": 8
+        },
+        {
+          "name": "DetailedStatus",
+          "cimType": 18
+        },
+        {
+          "name": "DeviceID",
+          "cimType": 8,
+          "key": true
+        },
+        {
+          "name": "ElementName",
+          "cimType": 8
+        },
+        {
+          "name": "EnabledDefault",
+          "cimType": 18
+        },
+        {
+          "name": "EnabledState",
+          "cimType": 18
+        },
+        {
+          "name": "ErrorCleared",
+          "cimType": 11
+        },
+        {
+          "name": "ErrorDescription",
+          "cimType": 8
+        },
+        {
+          "name": "HealthState",
+          "cimType": 18
+        },
+        {
+          "name": "IdentifyingDescriptions",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "InstallDate",
+          "cimType": 101
+        },
+        {
+          "name": "InstanceID",
+          "cimType": 8
+        },
+        {
+          "name": "LastErrorCode",
+          "cimType": 19
+        },
+        {
+          "name": "MaxQuiesceTime",
+          "cimType": 21
+        },
+        {
+          "name": "Name",
+          "cimType": 8
+        },
+        {
+          "name": "OperatingStatus",
+          "cimType": 18
+        },
+        {
+          "name": "OperationalStatus",
+          "cimType": 18,
+          "array": true,
+          "values": [
+            "OK",
+            "Degraded",
+            "Non-Recoverable Error",
+            "No Contact",
+            "Lost Communication",
+            "Protocol Mismatch",
+            "Application Critical State",
+            "Communication Timed Out",
+            "Communication Failed"
+          ],
+          "valueMap": [
+            "2",
+            "3",
+            "7",
+            "12",
+            "13",
+            "32775",
+            "32782",
+            "32783",
+            "32784"
+          ]
+        },
+        {
+          "name": "OtherEnabledState",
+          "cimType": 8
+        },
+        {
+          "name": "OtherIdentifyingInfo",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "PowerManagementCapabilities",
+          "cimType": 18,
+          "array": true
+        },
+        {
+          "name": "PowerManagementSupported",
+          "cimType": 11
+        },
+        {
+          "name": "PowerOnHours",
+          "cimType": 21
+        },
+        {
+          "name": "PrimaryStatus",
+          "cimType": 18
+        },
+        {
+          "name": "RequestedState",
+          "cimType": 18
+        },
+        {
+          "name": "Status",
+          "cimType": 8
+        },
+        {
+          "name": "StatusDescriptions",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "StatusInfo",
+          "cimType": 18
+        },
+        {
+          "name": "SystemCreationClassName",
+          "cimType": 8,
+          "key": true
+        },
+        {
+          "name": "SystemName",
+          "cimType": 8,
+          "key": true
+        },
+        {
+          "name": "TimeOfLastStateChange",
+          "cimType": 101
+        },
+        {
+          "name": "TotalPowerOnHours",
+          "cimType": 21
+        },
+        {
+          "name": "TransitioningToState",
+          "cimType": 18
+        }
+      ],
+      "methods": [
+        {
+          "name": "EnableDevice",
+          "in": [
+            {
+              "name": "Enabled",
+              "cimType": 11
+            }
+          ],
+          "out": [
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "OnlineDevice",
+          "in": [
+            {
+              "name": "Online",
+              "cimType": 11
+            }
+          ],
+          "out": [
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "QuiesceDevice",
+          "in": [
+            {
+              "name": "Quiesce",
+              "cimType": 11
+            }
+          ],
+          "out": [
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "RequestStateChange",
+          "in": [
+            {
+              "name": "RequestedState",
+              "cimType": 18
+            },
+            {
+              "name": "TimeoutPeriod",
+              "cimType": 101
+            }
+          ],
+          "out": [
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "Reset",
+          "out": [
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "RestoreProperties",
+          "out": [
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "SaveProperties",
+          "out": [
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "SetPowerState",
+          "in": [
+            {
+              "name": "PowerState",
+              "cimType": 18
+            },
+            {
+              "name": "Time",
+              "cimType": 101
+            }
+          ],
+          "out": [
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Msvm_ImageManagementService",
+      "properties": [
+        {
+          "name": "AvailableRequestedStates",
+          "cimType": 18,
+          "array": true
+        },
+        {
+          "name": "Caption",
+          "cimType": 8
+        },
+        {
+          "name": "CommunicationStatus",
+          "cimType": 18
+        },
+        {
+          "name": "CreationClassName",
+          "cimType": 8,
+          "key": true
+        },
+        {
+          "name": "Description",
+          "cimType": 8
+        },
+        {
+          "name": "DetailedStatus",
+          "cimType": 18
+        },
+        {
+          "name": "ElementName",
+          "cimType": 8
+        },
+        {
+          "name": "EnabledDefault",
+          "cimType": 18
+        },
+        {
+          "name": "EnabledState",
+          "cimType": 18
+        },
+        {
+          "name": "HealthState",
+          "cimType": 18
+        },
+        {
+          "name": "InstallDate",
+          "cimType": 101
+        },
+        {
+          "name": "InstanceID",
+          "cimType": 8
+        },
+        {
+          "name": "Name",
+          "cimType": 8,
+          "key": true
+        },
+        {
+          "name": "OperatingStatus",
+          "cimType": 18
+        },
+        {
+          "name": "OperationalStatus",
+          "cimType": 18,
+          "array": true
+        },
+        {
+          "name": "OtherEnabledState",
+          "cimType": 8
+        },
+        {
+          "name": "PrimaryOwnerContact",
+          "cimType": 8
+        },
+        {
+          "name": "PrimaryOwnerName",
+          "cimType": 8
+        },
+        {
+          "name": "PrimaryStatus",
+          "cimType": 18
+        },
+        {
+          "name": "RequestedState",
+          "cimType": 18
+        },
+        {
+          "name": "StartMode",
+          "cimType": 8
+        },
+        {
+          "name": "Started",
+          "cimType": 11
+        },
+        {
+          "name": "Status",
+          "cimType": 8
+        },
+        {
+          "name": "StatusDescriptions",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "SystemCreationClassName",
+          "cimType": 8,
+          "key": true
+        },
+        {
+          "name": "SystemName",
+          "cimType": 8,
+          "key": true
+        },
+        {
+          "name": "TimeOfLastStateChange",
+          "cimType": 101
+        },
+        {
+          "name": "TransitioningToState",
+          "cimType": 18
+        }
+      ],
+      "methods": [
+        {
+          "name": "AttachVirtualHardDisk",
+          "in": [
+            {
+              "name": "Path",
+              "cimType": 8
+            },
+            {
+              "name": "AssignDriveLetter",
+              "cimType": 11
+            },
+            {
+              "name": "ReadOnly",
+              "cimType": 11
+            }
+          ],
+          "out": [
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "CompactVirtualHardDisk",
+          "in": [
+            {
+              "name": "Path",
+              "cimType": 8
+            },
+            {
+              "name": "Mode",
+              "cimType": 18
+            }
+          ],
+          "out": [
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "ConvertVirtualHardDisk",
+          "in": [
+            {
+              "name": "SourcePath",
+              "cimType": 8
+            },
+            {
+              "name": "VirtualDiskSettingData",
+              "cimType": 8
+            }
+          ],
+          "out": [
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "ConvertVirtualHardDiskToVHDSet",
+          "in": [
+            {
+              "name": "VirtualHardDiskPath",
+              "cimType": 8
+            }
+          ],
+          "out": [
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "CreateVirtualFloppyDisk",
+          "in": [
+            {
+              "name": "Path",
+              "cimType": 8
+            }
+          ],
+          "out": [
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "CreateVirtualHardDisk",
+          "in": [
+            {
+              "name": "VirtualDiskSettingData",
+              "cimType": 8
+            }
+          ],
+          "out": [
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "DeleteVHDSnapshot",
+          "in": [
+            {
+              "name": "VHDSetPath",
+              "cimType": 8
+            },
+            {
+              "name": "SnapshotId",
+              "cimType": 8
+            },
+            {
+              "name": "PersistReferenceSnapshot",
+              "cimType": 11
+            }
+          ],
+          "out": [
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "FindMountedStorageImageInstance",
+          "in": [
+            {
+              "name": "SelectionCriterion",
+              "cimType": 8
+            },
+            {
+              "name": "CriterionType",
+              "cimType": 18
+            }
+          ],
+          "out": [
+            {
+              "name": "Image",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "GetVHDSetInformation",
+          "in": [
+            {
+              "name": "VHDSetPath",
+              "cimType": 8
+            },
+            {
+              "name": "AdditionalInformation",
+              "cimType": 19,
+              "array": true
+            }
+          ],
+          "out": [
+            {
+              "name": "Information",
+              "cimType": 8
+            },
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "GetVHDSnapshotInformation",
+          "in": [
+            {
+              "name": "VHDSetPath",
+              "cimType": 8
+            },
+            {
+              "name": "SnapshotIds",
+              "cimType": 8,
+              "array": true
+            },
+            {
+              "name": "AdditionalInformation",
+              "cimType": 19,
+              "array": true
+            }
+          ],
+          "out": [
+            {
+              "name": "SnapshotInformation",
+              "cimType": 8,
+              "array": true
+            },
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "GetVirtualDiskChanges",
+          "in": [
+            {
+              "name": "Path",
+              "cimType": 8
+            },
+            {
+              "name": "LimitId",
+              "cimType": 8
+            },
+            {
+              "name": "TargetSnapshotId",
+              "cimType": 8
+            },
+            {
+              "name": "ByteOffset",
+              "cimType": 21
+            },
+            {
+              "name": "ByteLength",
+              "cimType": 21
+            }
+          ],
+          "out": [
+            {
+              "name": "ProcessedByteLength",
+              "cimType": 21
+            },
+            {
+              "name": "ChangedByteOffsets",
+              "cimType": 21,
+              "array": true
+            },
+            {
+              "name": "ChangedByteLengths",
+              "cimType": 21,
+              "array": true
+            },
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "GetVirtualHardDiskSettingData",
+          "in": [
+            {
+              "name": "Path",
+              "cimType": 8
+            }
+          ],
+          "out": [
+            {
+              "name": "SettingData",
+              "cimType": 8
+            },
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "GetVirtualHardDiskState",
+          "in": [
+            {
+              "name": "Path",
+              "cimType": 8
+            }
+          ],
+          "out": [
+            {
+              "name": "State",
+              "cimType": 8
+            },
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "MergeVirtualHardDisk",
+          "in": [
+            {
+              "name": "SourcePath",
+              "cimType": 8
+            },
+            {
+              "name": "DestinationPath",
+              "cimType": 8
+            }
+          ],
+          "out": [
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "OptimizeVHDSet",
+          "in": [
+            {
+              "name": "VHDSetPath",
+              "cimType": 8
+            }
+          ],
+          "out": [
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "RequestStateChange",
+          "in": [
+            {
+              "name": "RequestedState",
+              "cimType": 18
+            },
+            {
+              "name": "TimeoutPeriod",
+              "cimType": 101
+            }
+          ],
+          "out": [
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "ResizeVirtualHardDisk",
+          "in": [
+            {
+              "name": "Path",
+              "cimType": 8
+            },
+            {
+              "name": "MaxInternalSize",
+              "cimType": 21
+            }
+          ],
+          "out": [
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "SetParentVirtualHardDisk",
+          "in": [
+            {
+              "name": "ChildPath",
+              "cimType": 8
+            },
+            {
+              "name": "ParentPath",
+              "cimType": 8
+            },
+            {
+              "name": "LeafPath",
+              "cimType": 8
+            },
+            {
+              "name": "IgnoreIDMismatch",
+              "cimType": 11
+            }
+          ],
+          "out": [
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "SetVHDSnapshotInformation",
+          "in": [
+            {
+              "name": "Information",
+              "cimType": 8
+            }
+          ],
+          "out": [
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "SetVirtualHardDiskSettingData",
+          "in": [
+            {
+              "name": "VirtualDiskSettingData",
+              "cimType": 8
+            }
+          ],
+          "out": [
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "StartService",
+          "out": [
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "StopService",
+          "out": [
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "ValidatePersistentReservationSupport",
+          "in": [
+            {
+              "name": "Path",
+              "cimType": 8
+            }
+          ],
+          "out": [
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "ValidateVirtualHardDisk",
+          "in": [
+            {
+              "name": "Path",
+              "cimType": 8
+            }
+          ],
+          "out": [
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Msvm_Keyboard",
+      "properties": [
+        {
+          "name": "AdditionalAvailability",
+          "cimType": 18,
+          "array": true
+        },
+        {
+          "name": "Availability",
+          "cimType": 18
+        },
+        {
+          "name": "AvailableRequestedStates",
+          "cimType": 18,
+          "array": true
+        },
+        {
+          "name": "Caption",
+          "cimType": 8
+        },
+        {
+          "name": "CommunicationStatus",
+          "cimType": 18
+        },
+        {
+          "name": "CreationClassName",
+          "cimType": 8,
+          "key": true
+        },
+        {
+          "name": "Description",
+          "cimType": 8
+        },
+        {
+          "name": "DetailedStatus",
+          "cimType": 18
+        },
+        {
+          "name": "DeviceID",
+          "cimType": 8,
+          "key": true
+        },
+        {
+          "name": "ElementName",
+          "cimType": 8
+        },
+        {
+          "name": "EnabledDefault",
+          "cimType": 18
+        },
+        {
+          "name": "EnabledState",
+          "cimType": 18
+        },
+        {
+          "name": "ErrorCleared",
+          "cimType": 11
+        },
+        {
+          "name": "ErrorDescription",
+          "cimType": 8
+        },
+        {
+          "name": "HealthState",
+          "cimType": 18
+        },
+        {
+          "name": "IdentifyingDescriptions",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "InstallDate",
+          "cimType": 101
+        },
+        {
+          "name": "InstanceID",
+          "cimType": 8
+        },
+        {
+          "name": "IsLocked",
+          "cimType": 11
+        },
+        {
+          "name": "LastErrorCode",
+          "cimType": 19
+        },
+        {
+          "name": "Layout",
+          "cimType": 8
+        },
+        {
+          "name": "MaxQuiesceTime",
+          "cimType": 21
+        },
+        {
+          "name": "Name",
+          "cimType": 8
+        },
+        {
+          "name": "NumberOfFunctionKeys",
+          "cimType": 18
+        },
+        {
+          "name": "OperatingStatus",
+          "cimType": 18
+        },
+        {
+          "name": "OperationalStatus",
+          "cimType": 18,
+          "array": true
+        },
+        {
+          "name": "OtherEnabledState",
+          "cimType": 8
+        },
+        {
+          "name": "OtherIdentifyingInfo",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "Password",
+          "cimType": 18
+        },
+        {
+          "name": "PowerManagementCapabilities",
+          "cimType": 18,
+          "array": true
+        },
+        {
+          "name": "PowerManagementSupported",
+          "cimType": 11
+        },
+        {
+          "name": "PowerOnHours",
+          "cimType": 21
+        },
+        {
+          "name": "PrimaryStatus",
+          "cimType": 18
+        },
+        {
+          "name": "RequestedState",
+          "cimType": 18
+        },
+        {
+          "name": "Status",
+          "cimType": 8
+        },
+        {
+          "name": "StatusDescriptions",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "StatusInfo",
+          "cimType": 18
+        },
+        {
+          "name": "SystemCreationClassName",
+          "cimType": 8,
+          "key": true
+        },
+        {
+          "name": "SystemName",
+          "cimType": 8,
+          "key": true
+        },
+        {
+          "name": "TimeOfLastStateChange",
+          "cimType": 101
+        },
+        {
+          "name": "TotalPowerOnHours",
+          "cimType": 21
+        },
+        {
+          "name": "TransitioningToState",
+          "cimType": 18
+        },
+        {
+          "name": "UnicodeSupported",
+          "cimType": 11
+        }
+      ],
+      "methods": [
+        {
+          "name": "EnableDevice",
+          "in": [
+            {
+              "name": "Enabled",
+              "cimType": 11
+            }
+          ],
+          "out": [
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "IsKeyPressed",
+          "in": [
+            {
+              "name": "KeyCode",
+              "cimType": 19
+            }
+          ],
+          "out": [
+            {
+              "name": "KeyState",
+              "cimType": 11
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "OnlineDevice",
+          "in": [
+            {
+              "name": "Online",
+              "cimType": 11
+            }
+          ],
+          "out": [
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "PressKey",
+          "in": [
+            {
+              "name": "KeyCode",
+              "cimType": 19
+            }
+          ],
+          "out": [
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "QuiesceDevice",
+          "in": [
+            {
+              "name": "Quiesce",
+              "cimType": 11
+            }
+          ],
+          "out": [
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "ReleaseKey",
+          "in": [
+            {
+              "name": "KeyCode",
+              "cimType": 19
+            }
+          ],
+          "out": [
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "RequestStateChange",
+          "in": [
+            {
+              "name": "RequestedState",
+              "cimType": 18
+            },
+            {
+              "name": "TimeoutPeriod",
+              "cimType": 101
+            }
+          ],
+          "out": [
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "Reset",
+          "out": [
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "RestoreProperties",
+          "out": [
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "SaveProperties",
+          "out": [
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "SetPowerState",
+          "in": [
+            {
+              "name": "PowerState",
+              "cimType": 18
+            },
+            {
+              "name": "Time",
+              "cimType": 101
+            }
+          ],
+          "out": [
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "TypeCtrlAltDel",
+          "out": [
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "TypeKey",
+          "in": [
+            {
+              "name": "KeyCode",
+              "cimType": 19
+            }
+          ],
+          "out": [
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "TypeScancodes",
+          "in": [
+            {
+              "name": "Scancodes",
+              "cimType": 17,
+              "array": true
+            }
+          ],
+          "out": [
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "TypeText",
+          "in": [
+            {
+              "name": "AsciiText",
+              "cimType": 8
+            }
+          ],
+          "out": [
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Msvm_KvpExchangeComponent",
+      "properties": [
+        {
+          "name": "AdditionalAvailability",
+          "cimType": 18,
+          "array": true
+        },
+        {
+          "name": "Availability",
+          "cimType": 18
+        },
+        {
+          "name": "AvailableRequestedStates",
+          "cimType": 18,
+          "array": true
+        },
+        {
+          "name": "Caption",
+          "cimType": 8
+        },
+        {
+          "name": "CommunicationStatus",
+          "cimType": 18
+        },
+        {
+          "name": "CreationClassName",
+          "cimType": 8,
+          "key": true
+        },
+        {
+          "name": "Description",
+          "cimType": 8
+        },
+        {
+          "name": "DetailedStatus",
+          "cimType": 18
+        },
+        {
+          "name": "DeviceID",
+          "cimType": 8,
+          "key": true
+        },
+        {
+          "name": "ElementName",
+          "cimType": 8
+        },
+        {
+          "name": "EnabledDefault",
+          "cimType": 18
+        },
+        {
+          "name": "EnabledState",
+          "cimType": 18
+        },
+        {
+          "name": "ErrorCleared",
+          "cimType": 11
+        },
+        {
+          "name": "ErrorDescription",
+          "cimType": 8
+        },
+        {
+          "name": "GuestExchangeItems",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "GuestIntrinsicExchangeItems",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "GuestIntrinsicExchangeItemsHypervisorOnly",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "HealthState",
+          "cimType": 18
+        },
+        {
+          "name": "IdentifyingDescriptions",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "InstallDate",
+          "cimType": 101
+        },
+        {
+          "name": "InstanceID",
+          "cimType": 8
+        },
+        {
+          "name": "LastErrorCode",
+          "cimType": 19
+        },
+        {
+          "name": "MaxQuiesceTime",
+          "cimType": 21
+        },
+        {
+          "name": "Name",
+          "cimType": 8
+        },
+        {
+          "name": "OperatingStatus",
+          "cimType": 18
+        },
+        {
+          "name": "OperationalStatus",
+          "cimType": 18,
+          "array": true
+        },
+        {
+          "name": "OtherEnabledState",
+          "cimType": 8
+        },
+        {
+          "name": "OtherIdentifyingInfo",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "PowerManagementCapabilities",
+          "cimType": 18,
+          "array": true
+        },
+        {
+          "name": "PowerManagementSupported",
+          "cimType": 11
+        },
+        {
+          "name": "PowerOnHours",
+          "cimType": 21
+        },
+        {
+          "name": "PrimaryStatus",
+          "cimType": 18
+        },
+        {
+          "name": "RequestedState",
+          "cimType": 18
+        },
+        {
+          "name": "Status",
+          "cimType": 8
+        },
+        {
+          "name": "StatusDescriptions",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "StatusInfo",
+          "cimType": 18
+        },
+        {
+          "name": "SystemCreationClassName",
+          "cimType": 8,
+          "key": true
+        },
+        {
+          "name": "SystemName",
+          "cimType": 8,
+          "key": true
+        },
+        {
+          "name": "TimeOfLastStateChange",
+          "cimType": 101
+        },
+        {
+          "name": "TotalPowerOnHours",
+          "cimType": 21
+        },
+        {
+          "name": "TransitioningToState",
+          "cimType": 18
+        }
+      ],
+      "methods": [
+        {
+          "name": "EnableDevice",
+          "in": [
+            {
+              "name": "Enabled",
+              "cimType": 11
+            }
+          ],
+          "out": [
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "OnlineDevice",
+          "in": [
+            {
+              "name": "Online",
+              "cimType": 11
+            }
+          ],
+          "out": [
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "QuiesceDevice",
+          "in": [
+            {
+              "name": "Quiesce",
+              "cimType": 11
+            }
+          ],
+          "out": [
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "RequestStateChange",
+          "in": [
+            {
+              "name": "RequestedState",
+              "cimType": 18
+            },
+            {
+              "name": "TimeoutPeriod",
+              "cimType": 101
+            }
+          ],
+          "out": [
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "Reset",
+          "out": [
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "RestoreProperties",
+          "out": [
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "SaveProperties",
+          "out": [
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "SetPowerState",
+          "in": [
+            {
+              "name": "PowerState",
+              "cimType": 18
+            },
+            {
+              "name": "Time",
+              "cimType": 101
+            }
+          ],
+          "out": [
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Msvm_KvpExchangeComponentSettingData",
+      "properties": [
+        {
+          "name": "Address",
+          "cimType": 8
+        },
+        {
+          "name": "AddressOnParent",
+          "cimType": 8
+        },
+        {
+          "name": "AllocationUnits",
+          "cimType": 8
+        },
+        {
+          "name": "AutomaticAllocation",
+          "cimType": 11
+        },
+        {
+          "name": "AutomaticDeallocation",
+          "cimType": 11
+        },
+        {
+          "name": "Caption",
+          "cimType": 8
+        },
+        {
+          "name": "Connection",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "ConsumerVisibility",
+          "cimType": 18
+        },
+        {
+          "name": "Description",
+          "cimType": 8
+        },
+        {
+          "name": "DisableHostKVPItems",
+          "cimType": 11
+        },
+        {
+          "name": "ElementName",
+          "cimType": 8
+        },
+        {
+          "name": "EnabledState",
+          "cimType": 18
+        },
+        {
+          "name": "HostExchangeItems",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "HostOnlyItems",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "HostResource",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "InstanceID",
+          "cimType": 8,
+          "key": true
+        },
+        {
+          "name": "Limit",
+          "cimType": 21
+        },
+        {
+          "name": "MappingBehavior",
+          "cimType": 18
+        },
+        {
+          "name": "OtherResourceType",
+          "cimType": 8
+        },
+        {
+          "name": "Parent",
+          "cimType": 8
+        },
+        {
+          "name": "PoolID",
+          "cimType": 8
+        },
+        {
+          "name": "Reservation",
+          "cimType": 21
+        },
+        {
+          "name": "ResourceSubType",
+          "cimType": 8
+        },
+        {
+          "name": "ResourceType",
+          "cimType": 18
+        },
+        {
+          "name": "VirtualQuantity",
+          "cimType": 21
+        },
+        {
+          "name": "VirtualQuantityUnits",
+          "cimType": 8
+        },
+        {
+          "name": "Weight",
+          "cimType": 19
+        }
+      ]
+    },
+    {
+      "name": "Msvm_KvpExchangeDataItem",
+      "properties": [
+        {
+          "name": "Caption",
+          "cimType": 8
+        },
+        {
+          "name": "Data",
+          "cimType": 8
+        },
+        {
+          "name": "Description",
+          "cimType": 8
+        },
+        {
+          "name": "ElementName",
+          "cimType": 8
+        },
+        {
+          "name": "InstanceID",
+          "cimType": 8
+        },
+        {
+          "name": "Name",
+          "cimType": 8
+        },
+        {
+          "name": "Source",
+          "cimType": 18
+        }
+      ]
+    },
+    {
+      "name": "Msvm_MemorySettingData",
+      "properties": [
+        {
+          "name": "Address",
+          "cimType": 8
+        },
+        {
+          "name": "AddressOnParent",
+          "cimType": 8
+        },
+        {
+          "name": "AllocationUnits",
+          "cimType": 8
+        },
+        {
+          "name": "AutomaticAllocation",
+          "cimType": 11
+        },
+        {
+          "name": "AutomaticDeallocation",
+          "cimType": 11
+        },
+        {
+          "name": "BackingPageSize",
+          "cimType": 17,
+          "values": [
+            "Small",
+            "Large",
+            "Huge"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2"
+          ]
+        },
+        {
+          "name": "BackingType",
+          "cimType": 17,
+          "values": [
+            "Physical",
+            "Virtual",
+            "Hybrid"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2"
+          ]
+        },
+        {
+          "name": "Caption",
+          "cimType": 8
+        },
+        {
+          "name": "Connection",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "ConsumerVisibility",
+          "cimType": 18
+        },
+        {
+          "name": "Description",
+          "cimType": 8
+        },
+        {
+          "name": "DynamicMemoryEnabled",
+          "cimType": 11
+        },
+        {
+          "name": "ElementName",
+          "cimType": 8
+        },
+        {
+          "name": "EnableColdHint",
+          "cimType": 11
+        },
+        {
+          "name": "EnableEpf",
+          "cimType": 11
+        },
+        {
+          "name": "EnableHotHint",
+          "cimType": 11
+        },
+        {
+          "name": "EnablePrivateCompressionStore",
+          "cimType": 11
+        },
+        {
+          "name": "HostResource",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "HugePagesEnabled",
+          "cimType": 11
+        },
+        {
+          "name": "InstanceID",
+          "cimType": 8,
+          "key": true
+        },
+        {
+          "name": "IsVirtualized",
+          "cimType": 11
+        },
+        {
+          "name": "Limit",
+          "cimType": 21
+        },
+        {
+          "name": "MappingBehavior",
+          "cimType": 18
+        },
+        {
+          "name": "MaxMemoryBlocksPerNumaNode",
+          "cimType": 21
+        },
+        {
+          "name": "MemoryAccessTrackingPolicy",
+          "cimType": 17,
+          "values": [
+            "GranularityBest",
+            "Granularity4KB",
+            "Granularity2MB",
+            "Granularity1GB"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3"
+          ]
+        },
+        {
+          "name": "MemoryAccessTrackingState",
+          "cimType": 17,
+          "values": [
+            "TrackingDisabled",
+            "TrackingEnabled",
+            "UsePerNUMAConfiguration"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2"
+          ]
+        },
+        {
+          "name": "MemoryEncryptionPolicy",
+          "cimType": 17,
+          "values": [
+            "Disabled",
+            "EnabledIfSupported",
+            "AlwaysEnabled"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2"
+          ]
+        },
+        {
+          "name": "OtherResourceType",
+          "cimType": 8
+        },
+        {
+          "name": "Parent",
+          "cimType": 8
+        },
+        {
+          "name": "PoolID",
+          "cimType": 8
+        },
+        {
+          "name": "Reservation",
+          "cimType": 21
+        },
+        {
+          "name": "ResourceSubType",
+          "cimType": 8
+        },
+        {
+          "name": "ResourceType",
+          "cimType": 18
+        },
+        {
+          "name": "SgxEnabled",
+          "cimType": 11
+        },
+        {
+          "name": "SgxLaunchControlDefault",
+          "cimType": 8
+        },
+        {
+          "name": "SgxLaunchControlMode",
+          "cimType": 19,
+          "values": [
+            "No access",
+            "Read-only",
+            "Read-write"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2"
+          ]
+        },
+        {
+          "name": "SgxSize",
+          "cimType": 21
+        },
+        {
+          "name": "SwapFilesInUse",
+          "cimType": 11
+        },
+        {
+          "name": "TargetMemoryBuffer",
+          "cimType": 19
+        },
+        {
+          "name": "VirtualQuantity",
+          "cimType": 21
+        },
+        {
+          "name": "VirtualQuantityUnits",
+          "cimType": 8
+        },
+        {
+          "name": "Weight",
+          "cimType": 19
+        }
+      ]
+    },
+    {
+      "name": "Msvm_MostCurrentSnapshotInBranch",
+      "properties": [
+        {
+          "name": "Antecedent",
+          "cimType": 102,
+          "key": true
+        },
+        {
+          "name": "Dependent",
+          "cimType": 102,
+          "key": true
+        }
+      ]
+    },
+    {
+      "name": "Msvm_ProcessorSettingData",
+      "properties": [
+        {
+          "name": "Address",
+          "cimType": 8
+        },
+        {
+          "name": "AddressOnParent",
+          "cimType": 8
+        },
+        {
+          "name": "AllocationUnits",
+          "cimType": 8
+        },
+        {
+          "name": "AllowACountMCount",
+          "cimType": 11
+        },
+        {
+          "name": "ApicMode",
+          "cimType": 17,
+          "values": [
+            "Default",
+            "Legacy",
+            "x2Apic",
+            "Apic"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3"
+          ]
+        },
+        {
+          "name": "AutomaticAllocation",
+          "cimType": 11
+        },
+        {
+          "name": "AutomaticDeallocation",
+          "cimType": 11
+        },
+        {
+          "name": "Caption",
+          "cimType": 8
+        },
+        {
+          "name": "Connection",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "ConsumerVisibility",
+          "cimType": 18
+        },
+        {
+          "name": "CpuBrandString",
+          "cimType": 8
+        },
+        {
+          "name": "CpuGroupId",
+          "cimType": 8
+        },
+        {
+          "name": "Description",
+          "cimType": 8
+        },
+        {
+          "name": "DisableSpeculationControls",
+          "cimType": 11
+        },
+        {
+          "name": "ElementName",
+          "cimType": 8
+        },
+        {
+          "name": "EnableHierarchicalVirtualization",
+          "cimType": 11
+        },
+        {
+          "name": "EnableHostResourceProtection",
+          "cimType": 11
+        },
+        {
+          "name": "EnableLegacyApicMode",
+          "cimType": 11
+        },
+        {
+          "name": "EnablePageShattering",
+          "cimType": 17,
+          "values": [
+            "Default",
+            "AlwaysEnabled",
+            "AlwaysDisabled"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2"
+          ]
+        },
+        {
+          "name": "EnablePerfmonArchPmu",
+          "cimType": 11
+        },
+        {
+          "name": "EnablePerfmonIpt",
+          "cimType": 11
+        },
+        {
+          "name": "EnablePerfmonLbr",
+          "cimType": 11
+        },
+        {
+          "name": "EnablePerfmonPebs",
+          "cimType": 11
+        },
+        {
+          "name": "EnablePerfmonPmu",
+          "cimType": 11
+        },
+        {
+          "name": "EnableSocketTopology",
+          "cimType": 11
+        },
+        {
+          "name": "EnlightenmentSet",
+          "cimType": 8
+        },
+        {
+          "name": "ExposeVirtualizationExtensions",
+          "cimType": 11
+        },
+        {
+          "name": "ExtendedVirtualizationExtensions",
+          "cimType": 19,
+          "values": [
+            "HardwareIsolation"
+          ],
+          "valueMap": [
+            "1"
+          ]
+        },
+        {
+          "name": "HideHypervisorPresent",
+          "cimType": 11
+        },
+        {
+          "name": "HostResource",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "HwThreadsPerCore",
+          "cimType": 21
+        },
+        {
+          "name": "InstanceID",
+          "cimType": 8,
+          "key": true
+        },
+        {
+          "name": "L3CacheWays",
+          "cimType": 19
+        },
+        {
+          "name": "L3ProcessorDistributionPolicy",
+          "cimType": 17,
+          "values": [
+            "SmallToLarge (Default)",
+            "LargeToSmall",
+            "EvenSmallToLarge",
+            "EvenLargeToSmall"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3"
+          ]
+        },
+        {
+          "name": "Limit",
+          "cimType": 21
+        },
+        {
+          "name": "LimitCPUID",
+          "cimType": 11
+        },
+        {
+          "name": "LimitProcessorFeatures",
+          "cimType": 11
+        },
+        {
+          "name": "LimitProcessorFeaturesMode",
+          "cimType": 17,
+          "values": [
+            "DefaultMinimumFeatures",
+            "ClusterNodeCommonFeatures"
+          ],
+          "valueMap": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "name": "MappingBehavior",
+          "cimType": 18
+        },
+        {
+          "name": "MaxClusterCountPerSocket",
+          "cimType": 19
+        },
+        {
+          "name": "MaxHierarchicalPartitions",
+          "cimType": 19
+        },
+        {
+          "name": "MaxHierarchicalVps",
+          "cimType": 19
+        },
+        {
+          "name": "MaxHwIsolatedGuests",
+          "cimType": 19
+        },
+        {
+          "name": "MaxNumaNodesPerSocket",
+          "cimType": 21
+        },
+        {
+          "name": "MaxProcessorCountPerL3",
+          "cimType": 19
+        },
+        {
+          "name": "MaxProcessorsPerNumaNode",
+          "cimType": 21
+        },
+        {
+          "name": "OtherResourceType",
+          "cimType": 8
+        },
+        {
+          "name": "Parent",
+          "cimType": 8
+        },
+        {
+          "name": "PartitionDiagnosticBufferCount",
+          "cimType": 19
+        },
+        {
+          "name": "PartitionDiagnosticBufferSizeInPages",
+          "cimType": 19
+        },
+        {
+          "name": "PerfCpuFreqCapMhz",
+          "cimType": 19
+        },
+        {
+          "name": "PhysicalAddressWidth",
+          "cimType": 19
+        },
+        {
+          "name": "PoolID",
+          "cimType": 8
+        },
+        {
+          "name": "ProcessorFeatureSet",
+          "cimType": 8
+        },
+        {
+          "name": "Reservation",
+          "cimType": 21
+        },
+        {
+          "name": "ResourceSubType",
+          "cimType": 8
+        },
+        {
+          "name": "ResourceType",
+          "cimType": 18
+        },
+        {
+          "name": "VirtualQuantity",
+          "cimType": 21
+        },
+        {
+          "name": "VirtualQuantityUnits",
+          "cimType": 8
+        },
+        {
+          "name": "Weight",
+          "cimType": 19
+        }
+      ]
+    },
+    {
+      "name": "Msvm_ResourceAllocationSettingData",
+      "properties": [
+        {
+          "name": "Address",
+          "cimType": 8
+        },
+        {
+          "name": "AddressOnParent",
+          "cimType": 8
+        },
+        {
+          "name": "AllocationUnits",
+          "cimType": 8
+        },
+        {
+          "name": "AutomaticAllocation",
+          "cimType": 11
+        },
+        {
+          "name": "AutomaticDeallocation",
+          "cimType": 11
+        },
+        {
+          "name": "Caption",
+          "cimType": 8
+        },
+        {
+          "name": "Connection",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "ConsumerVisibility",
+          "cimType": 18
+        },
+        {
+          "name": "Description",
+          "cimType": 8
+        },
+        {
+          "name": "ElementName",
+          "cimType": 8
+        },
+        {
+          "name": "HostResource",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "InstanceID",
+          "cimType": 8,
+          "key": true
+        },
+        {
+          "name": "Limit",
+          "cimType": 21
+        },
+        {
+          "name": "MappingBehavior",
+          "cimType": 18
+        },
+        {
+          "name": "OtherResourceType",
+          "cimType": 8
+        },
+        {
+          "name": "Parent",
+          "cimType": 8
+        },
+        {
+          "name": "PoolID",
+          "cimType": 8
+        },
+        {
+          "name": "Reservation",
+          "cimType": 21
+        },
+        {
+          "name": "ResourceSubType",
+          "cimType": 8
+        },
+        {
+          "name": "ResourceType",
+          "cimType": 18
+        },
+        {
+          "name": "TargetVtl",
+          "cimType": 17
+        },
+        {
+          "name": "VirtualQuantity",
+          "cimType": 21
+        },
+        {
+          "name": "VirtualQuantityUnits",
+          "cimType": 8
+        },
+        {
+          "name": "VirtualSystemIdentifiers",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "Weight",
+          "cimType": 19
+        }
+      ]
+    },
+    {
+      "name": "Msvm_SecurityService",
+      "properties": [
+        {
+          "name": "AvailableRequestedStates",
+          "cimType": 18,
+          "array": true
+        },
+        {
+          "name": "Caption",
+          "cimType": 8
+        },
+        {
+          "name": "CommunicationStatus",
+          "cimType": 18
+        },
+        {
+          "name": "CreationClassName",
+          "cimType": 8,
+          "key": true
+        },
+        {
+          "name": "Description",
+          "cimType": 8
+        },
+        {
+          "name": "DetailedStatus",
+          "cimType": 18
+        },
+        {
+          "name": "ElementName",
+          "cimType": 8
+        },
+        {
+          "name": "EnabledDefault",
+          "cimType": 18
+        },
+        {
+          "name": "EnabledState",
+          "cimType": 18
+        },
+        {
+          "name": "HealthState",
+          "cimType": 18
+        },
+        {
+          "name": "InstallDate",
+          "cimType": 101
+        },
+        {
+          "name": "InstanceID",
+          "cimType": 8
+        },
+        {
+          "name": "Name",
+          "cimType": 8,
+          "key": true
+        },
+        {
+          "name": "OperatingStatus",
+          "cimType": 18
+        },
+        {
+          "name": "OperationalStatus",
+          "cimType": 18,
+          "array": true
+        },
+        {
+          "name": "OtherEnabledState",
+          "cimType": 8
+        },
+        {
+          "name": "PrimaryOwnerContact",
+          "cimType": 8
+        },
+        {
+          "name": "PrimaryOwnerName",
+          "cimType": 8
+        },
+        {
+          "name": "PrimaryStatus",
+          "cimType": 18
+        },
+        {
+          "name": "RequestedState",
+          "cimType": 18
+        },
+        {
+          "name": "StartMode",
+          "cimType": 8
+        },
+        {
+          "name": "Started",
+          "cimType": 11
+        },
+        {
+          "name": "Status",
+          "cimType": 8
+        },
+        {
+          "name": "StatusDescriptions",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "SystemCreationClassName",
+          "cimType": 8,
+          "key": true
+        },
+        {
+          "name": "SystemName",
+          "cimType": 8,
+          "key": true
+        },
+        {
+          "name": "TimeOfLastStateChange",
+          "cimType": 101
+        },
+        {
+          "name": "TransitioningToState",
+          "cimType": 18
+        }
+      ],
+      "methods": [
+        {
+          "name": "GetKeyProtector",
+          "in": [
+            {
+              "name": "SecuritySettingData",
+              "cimType": 8
+            }
+          ],
+          "out": [
+            {
+              "name": "KeyProtector",
+              "cimType": 17,
+              "array": true
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "ModifySecuritySettings",
+          "in": [
+            {
+              "name": "SecuritySettingData",
+              "cimType": 8
+            }
+          ],
+          "out": [
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "RequestStateChange",
+          "in": [
+            {
+              "name": "RequestedState",
+              "cimType": 18
+            },
+            {
+              "name": "TimeoutPeriod",
+              "cimType": 101
+            }
+          ],
+          "out": [
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "RestoreLastKnownGoodKeyProtector",
+          "in": [
+            {
+              "name": "SecuritySettingData",
+              "cimType": 8
+            }
+          ],
+          "out": [
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "SetKeyProtector",
+          "in": [
+            {
+              "name": "SecuritySettingData",
+              "cimType": 8
+            },
+            {
+              "name": "KeyProtector",
+              "cimType": 17,
+              "array": true
+            }
+          ],
+          "out": [
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "SetSecurityPolicy",
+          "in": [
+            {
+              "name": "SecuritySettingData",
+              "cimType": 8
+            },
+            {
+              "name": "SecurityPolicy",
+              "cimType": 17,
+              "array": true
+            }
+          ],
+          "out": [
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "StartService",
+          "out": [
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "StopService",
+          "out": [
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Msvm_SecuritySettingData",
+      "properties": [
+        {
+          "name": "AppContainerLaunchOptOut",
+          "cimType": 11
+        },
+        {
+          "name": "BindToHostTpm",
+          "cimType": 11
+        },
+        {
+          "name": "Caption",
+          "cimType": 8
+        },
+        {
+          "name": "DataProtectionRequested",
+          "cimType": 11
+        },
+        {
+          "name": "Description",
+          "cimType": 8
+        },
+        {
+          "name": "ElementName",
+          "cimType": 8
+        },
+        {
+          "name": "EncryptStateAndVmMigrationTraffic",
+          "cimType": 11
+        },
+        {
+          "name": "InstanceID",
+          "cimType": 8,
+          "key": true
+        },
+        {
+          "name": "KsdEnabled",
+          "cimType": 11
+        },
+        {
+          "name": "ShieldingRequested",
+          "cimType": 11
+        },
+        {
+          "name": "TpmEnabled",
+          "cimType": 11
+        },
+        {
+          "name": "VirtualizationBasedSecurityOptOut",
+          "cimType": 11
+        }
+      ]
+    },
+    {
+      "name": "Msvm_SerialPortSettingData",
+      "properties": [
+        {
+          "name": "Address",
+          "cimType": 8
+        },
+        {
+          "name": "AddressOnParent",
+          "cimType": 8
+        },
+        {
+          "name": "AllocationUnits",
+          "cimType": 8
+        },
+        {
+          "name": "AutomaticAllocation",
+          "cimType": 11
+        },
+        {
+          "name": "AutomaticDeallocation",
+          "cimType": 11
+        },
+        {
+          "name": "Caption",
+          "cimType": 8
+        },
+        {
+          "name": "Connection",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "ConsumerVisibility",
+          "cimType": 18
+        },
+        {
+          "name": "DebuggerMode",
+          "cimType": 11
+        },
+        {
+          "name": "Description",
+          "cimType": 8
+        },
+        {
+          "name": "ElementName",
+          "cimType": 8
+        },
+        {
+          "name": "HostResource",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "InstanceID",
+          "cimType": 8,
+          "key": true
+        },
+        {
+          "name": "Limit",
+          "cimType": 21
+        },
+        {
+          "name": "MappingBehavior",
+          "cimType": 18
+        },
+        {
+          "name": "OtherResourceType",
+          "cimType": 8
+        },
+        {
+          "name": "Parent",
+          "cimType": 8
+        },
+        {
+          "name": "PoolID",
+          "cimType": 8
+        },
+        {
+          "name": "Reservation",
+          "cimType": 21
+        },
+        {
+          "name": "ResourceSubType",
+          "cimType": 8
+        },
+        {
+          "name": "ResourceType",
+          "cimType": 18
+        },
+        {
+          "name": "VirtualQuantity",
+          "cimType": 21
+        },
+        {
+          "name": "VirtualQuantityUnits",
+          "cimType": 8
+        },
+        {
+          "name": "Weight",
+          "cimType": 19
+        }
+      ]
+    },
+    {
+      "name": "Msvm_SettingsDefineCapabilities",
+      "properties": [
+        {
+          "name": "GroupComponent",
+          "cimType": 102,
+          "key": true
+        },
+        {
+          "name": "PartComponent",
+          "cimType": 102,
+          "key": true
+        },
+        {
+          "name": "PropertyPolicy",
+          "cimType": 18
+        },
+        {
+          "name": "SupportStatement",
+          "cimType": 18,
+          "values": [
+            "Production",
+            "Prerelease",
+            "Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            ".."
+          ]
+        },
+        {
+          "name": "ValueRange",
+          "cimType": 18
+        },
+        {
+          "name": "ValueRole",
+          "cimType": 18
+        }
+      ]
+    },
+    {
+      "name": "Msvm_ShutdownComponent",
+      "properties": [
+        {
+          "name": "AdditionalAvailability",
+          "cimType": 18,
+          "array": true
+        },
+        {
+          "name": "Availability",
+          "cimType": 18
+        },
+        {
+          "name": "AvailableRequestedStates",
+          "cimType": 18,
+          "array": true
+        },
+        {
+          "name": "Caption",
+          "cimType": 8
+        },
+        {
+          "name": "CommunicationStatus",
+          "cimType": 18
+        },
+        {
+          "name": "CreationClassName",
+          "cimType": 8,
+          "key": true
+        },
+        {
+          "name": "Description",
+          "cimType": 8
+        },
+        {
+          "name": "DetailedStatus",
+          "cimType": 18
+        },
+        {
+          "name": "DeviceID",
+          "cimType": 8,
+          "key": true
+        },
+        {
+          "name": "ElementName",
+          "cimType": 8
+        },
+        {
+          "name": "EnabledDefault",
+          "cimType": 18
+        },
+        {
+          "name": "EnabledState",
+          "cimType": 18
+        },
+        {
+          "name": "ErrorCleared",
+          "cimType": 11
+        },
+        {
+          "name": "ErrorDescription",
+          "cimType": 8
+        },
+        {
+          "name": "HealthState",
+          "cimType": 18
+        },
+        {
+          "name": "IdentifyingDescriptions",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "InstallDate",
+          "cimType": 101
+        },
+        {
+          "name": "InstanceID",
+          "cimType": 8
+        },
+        {
+          "name": "LastErrorCode",
+          "cimType": 19
+        },
+        {
+          "name": "MaxQuiesceTime",
+          "cimType": 21
+        },
+        {
+          "name": "Name",
+          "cimType": 8
+        },
+        {
+          "name": "OperatingStatus",
+          "cimType": 18
+        },
+        {
+          "name": "OperationalStatus",
+          "cimType": 18,
+          "array": true
+        },
+        {
+          "name": "OtherEnabledState",
+          "cimType": 8
+        },
+        {
+          "name": "OtherIdentifyingInfo",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "PowerManagementCapabilities",
+          "cimType": 18,
+          "array": true
+        },
+        {
+          "name": "PowerManagementSupported",
+          "cimType": 11
+        },
+        {
+          "name": "PowerOnHours",
+          "cimType": 21
+        },
+        {
+          "name": "PrimaryStatus",
+          "cimType": 18
+        },
+        {
+          "name": "RequestedState",
+          "cimType": 18
+        },
+        {
+          "name": "Status",
+          "cimType": 8
+        },
+        {
+          "name": "StatusDescriptions",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "StatusInfo",
+          "cimType": 18
+        },
+        {
+          "name": "SystemCreationClassName",
+          "cimType": 8,
+          "key": true
+        },
+        {
+          "name": "SystemName",
+          "cimType": 8,
+          "key": true
+        },
+        {
+          "name": "TimeOfLastStateChange",
+          "cimType": 101
+        },
+        {
+          "name": "TotalPowerOnHours",
+          "cimType": 21
+        },
+        {
+          "name": "TransitioningToState",
+          "cimType": 18
+        }
+      ],
+      "methods": [
+        {
+          "name": "EnableDevice",
+          "in": [
+            {
+              "name": "Enabled",
+              "cimType": 11
+            }
+          ],
+          "out": [
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "InitiateHibernate",
+          "out": [
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "InitiateReboot",
+          "in": [
+            {
+              "name": "Force",
+              "cimType": 11
+            },
+            {
+              "name": "Reason",
+              "cimType": 8
+            }
+          ],
+          "out": [
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "InitiateShutdown",
+          "in": [
+            {
+              "name": "Force",
+              "cimType": 11
+            },
+            {
+              "name": "Reason",
+              "cimType": 8
+            }
+          ],
+          "out": [
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "OnlineDevice",
+          "in": [
+            {
+              "name": "Online",
+              "cimType": 11
+            }
+          ],
+          "out": [
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "QuiesceDevice",
+          "in": [
+            {
+              "name": "Quiesce",
+              "cimType": 11
+            }
+          ],
+          "out": [
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "RequestStateChange",
+          "in": [
+            {
+              "name": "RequestedState",
+              "cimType": 18
+            },
+            {
+              "name": "TimeoutPeriod",
+              "cimType": 101
+            }
+          ],
+          "out": [
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "Reset",
+          "out": [
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "RestoreProperties",
+          "out": [
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "SaveProperties",
+          "out": [
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "SetPowerState",
+          "in": [
+            {
+              "name": "PowerState",
+              "cimType": 18
+            },
+            {
+              "name": "Time",
+              "cimType": 101
+            }
+          ],
+          "out": [
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Msvm_SnapshotOfVirtualSystem",
+      "properties": [
+        {
+          "name": "Antecedent",
+          "cimType": 102,
+          "key": true
+        },
+        {
+          "name": "Dependent",
+          "cimType": 102,
+          "key": true
+        }
+      ]
+    },
+    {
+      "name": "Msvm_StorageAllocationSettingData",
+      "properties": [
+        {
+          "name": "Access",
+          "cimType": 18
+        },
+        {
+          "name": "Address",
+          "cimType": 8
+        },
+        {
+          "name": "AddressOnParent",
+          "cimType": 8
+        },
+        {
+          "name": "AllocationUnits",
+          "cimType": 8
+        },
+        {
+          "name": "AutomaticAllocation",
+          "cimType": 11
+        },
+        {
+          "name": "AutomaticDeallocation",
+          "cimType": 11
+        },
+        {
+          "name": "CachingMode",
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Default",
+            "No Caching",
+            "Cache Sharable Parents"
+          ],
+          "valueMap": [
+            "0",
+            "2",
+            "3",
+            "4"
+          ]
+        },
+        {
+          "name": "Caption",
+          "cimType": 8
+        },
+        {
+          "name": "Connection",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "ConsumerVisibility",
+          "cimType": 18
+        },
+        {
+          "name": "Description",
+          "cimType": 8
+        },
+        {
+          "name": "ElementName",
+          "cimType": 8
+        },
+        {
+          "name": "HostExtentName",
+          "cimType": 8
+        },
+        {
+          "name": "HostExtentNameFormat",
+          "cimType": 18
+        },
+        {
+          "name": "HostExtentNameNamespace",
+          "cimType": 18
+        },
+        {
+          "name": "HostExtentStartingAddress",
+          "cimType": 21
+        },
+        {
+          "name": "HostResource",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "HostResourceBlockSize",
+          "cimType": 21
+        },
+        {
+          "name": "IOPSAllocationUnits",
+          "cimType": 8
+        },
+        {
+          "name": "IOPSLimit",
+          "cimType": 21
+        },
+        {
+          "name": "IOPSReservation",
+          "cimType": 21
+        },
+        {
+          "name": "IgnoreFlushes",
+          "cimType": 11
+        },
+        {
+          "name": "InstanceID",
+          "cimType": 8,
+          "key": true
+        },
+        {
+          "name": "Limit",
+          "cimType": 21
+        },
+        {
+          "name": "MappingBehavior",
+          "cimType": 18
+        },
+        {
+          "name": "OtherHostExtentNameFormat",
+          "cimType": 8
+        },
+        {
+          "name": "OtherHostExtentNameNamespace",
+          "cimType": 8
+        },
+        {
+          "name": "OtherResourceType",
+          "cimType": 8
+        },
+        {
+          "name": "Parent",
+          "cimType": 8
+        },
+        {
+          "name": "PersistentReservationsSupported",
+          "cimType": 11
+        },
+        {
+          "name": "PoolID",
+          "cimType": 8
+        },
+        {
+          "name": "Reservation",
+          "cimType": 21
+        },
+        {
+          "name": "ResourceSubType",
+          "cimType": 8
+        },
+        {
+          "name": "ResourceType",
+          "cimType": 18
+        },
+        {
+          "name": "SnapshotId",
+          "cimType": 8
+        },
+        {
+          "name": "StorageQoSPolicyID",
+          "cimType": 8
+        },
+        {
+          "name": "VirtualQuantity",
+          "cimType": 21
+        },
+        {
+          "name": "VirtualQuantityUnits",
+          "cimType": 8
+        },
+        {
+          "name": "VirtualResourceBlockSize",
+          "cimType": 21
+        },
+        {
+          "name": "Weight",
+          "cimType": 19
+        },
+        {
+          "name": "WriteHardeningMethod",
+          "cimType": 18,
+          "values": [
+            "Default",
+            "WriteCacheEnabled",
+            "WriteCacheandFUAEnabled",
+            "WriteCacheDisabled"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Msvm_SummaryInformation",
+      "properties": [
+        {
+          "name": "AllocatedGPU",
+          "cimType": 8
+        },
+        {
+          "name": "ApplicationHealth",
+          "cimType": 18,
+          "values": [
+            "OK",
+            "Application Critical",
+            "Disabled"
+          ],
+          "valueMap": [
+            "2",
+            "32782",
+            "32896"
+          ]
+        },
+        {
+          "name": "AsynchronousTasks",
+          "cimType": 13,
+          "array": true
+        },
+        {
+          "name": "AvailableMemoryBuffer",
+          "cimType": 3
+        },
+        {
+          "name": "Caption",
+          "cimType": 8
+        },
+        {
+          "name": "CreationTime",
+          "cimType": 101
+        },
+        {
+          "name": "Description",
+          "cimType": 8
+        },
+        {
+          "name": "ElementName",
+          "cimType": 8
+        },
+        {
+          "name": "EnabledState",
+          "cimType": 18
+        },
+        {
+          "name": "EnhancedSessionModeState",
+          "cimType": 18
+        },
+        {
+          "name": "GuestOperatingSystem",
+          "cimType": 8
+        },
+        {
+          "name": "HealthState",
+          "cimType": 18
+        },
+        {
+          "name": "Heartbeat",
+          "cimType": 18
+        },
+        {
+          "name": "HostComputerSystemName",
+          "cimType": 8
+        },
+        {
+          "name": "HypervisorPartitionId",
+          "cimType": 21
+        },
+        {
+          "name": "InstanceID",
+          "cimType": 8,
+          "key": true
+        },
+        {
+          "name": "IntegrationServicesVersionState",
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "UpToDate",
+            "Mismatch"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2"
+          ]
+        },
+        {
+          "name": "MemoryAvailable",
+          "cimType": 3
+        },
+        {
+          "name": "MemorySpansPhysicalNumaNodes",
+          "cimType": 11
+        },
+        {
+          "name": "MemoryUsage",
+          "cimType": 21
+        },
+        {
+          "name": "Name",
+          "cimType": 8
+        },
+        {
+          "name": "Notes",
+          "cimType": 8
+        },
+        {
+          "name": "NumberOfProcessors",
+          "cimType": 18
+        },
+        {
+          "name": "OperationalStatus",
+          "cimType": 18,
+          "array": true
+        },
+        {
+          "name": "OtherEnabledState",
+          "cimType": 8
+        },
+        {
+          "name": "ProcessorLoad",
+          "cimType": 18
+        },
+        {
+          "name": "ProcessorLoadHistory",
+          "cimType": 18,
+          "array": true
+        },
+        {
+          "name": "ReplicationHealth",
+          "cimType": 18,
+          "values": [
+            "Not applicable",
+            "Ok",
+            "Warning",
+            "Critical"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3"
+          ]
+        },
+        {
+          "name": "ReplicationHealthEx",
+          "cimType": 18,
+          "array": true,
+          "values": [
+            "Not applicable",
+            "Ok",
+            "Warning",
+            "Critical"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3"
+          ]
+        },
+        {
+          "name": "ReplicationMode",
+          "cimType": 18,
+          "values": [
+            "None",
+            "Primary",
+            "Replica",
+            "Test Replica",
+            "Extended Replica"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4"
+          ]
+        },
+        {
+          "name": "ReplicationProviderId",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "ReplicationState",
+          "cimType": 18,
+          "values": [
+            "Disabled",
+            "Ready for replication",
+            "Waiting to complete initial replication",
+            "Replicating",
+            "Synced replication complete",
+            "Recovered",
+            "Committed",
+            "Suspended",
+            "Critical",
+            "Waiting to start resynchronization",
+            "Resynchronizing",
+            "Resynchronization suspended",
+            "Failover in progress"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12"
+          ]
+        },
+        {
+          "name": "ReplicationStateEx",
+          "cimType": 18,
+          "array": true,
+          "values": [
+            "Disabled",
+            "Ready for replication",
+            "Waiting to complete initial replication",
+            "Replicating",
+            "Synced replication complete",
+            "Recovered",
+            "Committed",
+            "Suspended",
+            "Critical",
+            "Waiting to start resynchronization",
+            "Resynchronizing",
+            "Resynchronization suspended",
+            "Failover in progress",
+            "Failback in progress",
+            "Failback complete",
+            "Disk update in progress",
+            "Disk update critical",
+            "Unknown",
+            "Repurpose replication in progress",
+            "Prepared for sync replication",
+            "Prepared for group reverse replication",
+            "Firedrill in progress"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21"
+          ]
+        },
+        {
+          "name": "Shielded",
+          "cimType": 11
+        },
+        {
+          "name": "Snapshots",
+          "cimType": 13,
+          "array": true
+        },
+        {
+          "name": "StatusDescriptions",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "SwapFilesInUse",
+          "cimType": 11
+        },
+        {
+          "name": "TestReplicaSystem",
+          "cimType": 102
+        },
+        {
+          "name": "ThumbnailImage",
+          "cimType": 17,
+          "array": true
+        },
+        {
+          "name": "ThumbnailImageHeight",
+          "cimType": 18
+        },
+        {
+          "name": "ThumbnailImageWidth",
+          "cimType": 18
+        },
+        {
+          "name": "UpTime",
+          "cimType": 21
+        },
+        {
+          "name": "Version",
+          "cimType": 8
+        },
+        {
+          "name": "VirtualSwitchNames",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "VirtualSystemSubType",
+          "cimType": 8
+        }
+      ]
+    },
+    {
+      "name": "Msvm_SyntheticEthernetPortSettingData",
+      "properties": [
+        {
+          "name": "Address",
+          "cimType": 8
+        },
+        {
+          "name": "AddressOnParent",
+          "cimType": 8
+        },
+        {
+          "name": "AllocationUnits",
+          "cimType": 8
+        },
+        {
+          "name": "AllowDirectTranslatedP2P",
+          "cimType": 11
+        },
+        {
+          "name": "AllowPacketDirect",
+          "cimType": 11
+        },
+        {
+          "name": "AutomaticAllocation",
+          "cimType": 11
+        },
+        {
+          "name": "AutomaticDeallocation",
+          "cimType": 11
+        },
+        {
+          "name": "Caption",
+          "cimType": 8
+        },
+        {
+          "name": "ClusterMonitored",
+          "cimType": 11
+        },
+        {
+          "name": "Connection",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "ConsumerVisibility",
+          "cimType": 18
+        },
+        {
+          "name": "Description",
+          "cimType": 8
+        },
+        {
+          "name": "DesiredVLANEndpointMode",
+          "cimType": 18
+        },
+        {
+          "name": "DeviceNamingEnabled",
+          "cimType": 11
+        },
+        {
+          "name": "ElementName",
+          "cimType": 8
+        },
+        {
+          "name": "HostResource",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "InstanceID",
+          "cimType": 8,
+          "key": true
+        },
+        {
+          "name": "InterruptModeration",
+          "cimType": 11
+        },
+        {
+          "name": "Limit",
+          "cimType": 21
+        },
+        {
+          "name": "MappingBehavior",
+          "cimType": 18
+        },
+        {
+          "name": "MediaType",
+          "cimType": 19
+        },
+        {
+          "name": "NumaAwarePlacement",
+          "cimType": 11
+        },
+        {
+          "name": "OtherEndpointMode",
+          "cimType": 8
+        },
+        {
+          "name": "OtherResourceType",
+          "cimType": 8
+        },
+        {
+          "name": "Parent",
+          "cimType": 8
+        },
+        {
+          "name": "PoolID",
+          "cimType": 8
+        },
+        {
+          "name": "Reservation",
+          "cimType": 21
+        },
+        {
+          "name": "ResourceSubType",
+          "cimType": 8
+        },
+        {
+          "name": "ResourceType",
+          "cimType": 18
+        },
+        {
+          "name": "StaticMacAddress",
+          "cimType": 11
+        },
+        {
+          "name": "VirtualQuantity",
+          "cimType": 21
+        },
+        {
+          "name": "VirtualQuantityUnits",
+          "cimType": 8
+        },
+        {
+          "name": "VirtualSystemIdentifiers",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "Weight",
+          "cimType": 19
+        }
+      ]
+    },
+    {
+      "name": "Msvm_VirtualEthernetSwitch",
+      "properties": [
+        {
+          "name": "AvailableRequestedStates",
+          "cimType": 18,
+          "array": true
+        },
+        {
+          "name": "Caption",
+          "cimType": 8
+        },
+        {
+          "name": "CommunicationStatus",
+          "cimType": 18
+        },
+        {
+          "name": "CreationClassName",
+          "cimType": 8,
+          "key": true
+        },
+        {
+          "name": "Dedicated",
+          "cimType": 18,
+          "array": true
+        },
+        {
+          "name": "Description",
+          "cimType": 8
+        },
+        {
+          "name": "DetailedStatus",
+          "cimType": 18
+        },
+        {
+          "name": "ElementName",
+          "cimType": 8
+        },
+        {
+          "name": "EnabledDefault",
+          "cimType": 18
+        },
+        {
+          "name": "EnabledState",
+          "cimType": 18
+        },
+        {
+          "name": "HealthState",
+          "cimType": 18
+        },
+        {
+          "name": "IdentifyingDescriptions",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "InstallDate",
+          "cimType": 101
+        },
+        {
+          "name": "InstanceID",
+          "cimType": 8
+        },
+        {
+          "name": "MaxIOVOffloads",
+          "cimType": 19
+        },
+        {
+          "name": "MaxVMQOffloads",
+          "cimType": 19
+        },
+        {
+          "name": "Name",
+          "cimType": 8,
+          "key": true
+        },
+        {
+          "name": "NameFormat",
+          "cimType": 8
+        },
+        {
+          "name": "OperatingStatus",
+          "cimType": 18
+        },
+        {
+          "name": "OperationalStatus",
+          "cimType": 18,
+          "array": true
+        },
+        {
+          "name": "OtherDedicatedDescriptions",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "OtherEnabledState",
+          "cimType": 8
+        },
+        {
+          "name": "OtherIdentifyingInfo",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "PowerManagementCapabilities",
+          "cimType": 18,
+          "array": true
+        },
+        {
+          "name": "PrimaryOwnerContact",
+          "cimType": 8
+        },
+        {
+          "name": "PrimaryOwnerName",
+          "cimType": 8
+        },
+        {
+          "name": "PrimaryStatus",
+          "cimType": 18
+        },
+        {
+          "name": "RequestedState",
+          "cimType": 18
+        },
+        {
+          "name": "ResetCapability",
+          "cimType": 18
+        },
+        {
+          "name": "Roles",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "Status",
+          "cimType": 8
+        },
+        {
+          "name": "StatusDescriptions",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "TimeOfLastStateChange",
+          "cimType": 101
+        },
+        {
+          "name": "TransitioningToState",
+          "cimType": 18
+        }
+      ],
+      "methods": [
+        {
+          "name": "RequestStateChange",
+          "in": [
+            {
+              "name": "RequestedState",
+              "cimType": 18
+            },
+            {
+              "name": "TimeoutPeriod",
+              "cimType": 101
+            }
+          ],
+          "out": [
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "SetPowerState",
+          "in": [
+            {
+              "name": "PowerState",
+              "cimType": 19
+            },
+            {
+              "name": "Time",
+              "cimType": 101
+            }
+          ],
+          "out": [
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Msvm_VirtualEthernetSwitchManagementService",
+      "properties": [
+        {
+          "name": "AvailableRequestedStates",
+          "cimType": 18,
+          "array": true
+        },
+        {
+          "name": "Caption",
+          "cimType": 8
+        },
+        {
+          "name": "CommunicationStatus",
+          "cimType": 18
+        },
+        {
+          "name": "CreationClassName",
+          "cimType": 8,
+          "key": true
+        },
+        {
+          "name": "Description",
+          "cimType": 8
+        },
+        {
+          "name": "DetailedStatus",
+          "cimType": 18
+        },
+        {
+          "name": "ElementName",
+          "cimType": 8
+        },
+        {
+          "name": "EnabledDefault",
+          "cimType": 18
+        },
+        {
+          "name": "EnabledState",
+          "cimType": 18
+        },
+        {
+          "name": "HealthState",
+          "cimType": 18
+        },
+        {
+          "name": "InstallDate",
+          "cimType": 101
+        },
+        {
+          "name": "InstanceID",
+          "cimType": 8
+        },
+        {
+          "name": "Name",
+          "cimType": 8,
+          "key": true
+        },
+        {
+          "name": "OperatingStatus",
+          "cimType": 18
+        },
+        {
+          "name": "OperationalStatus",
+          "cimType": 18,
+          "array": true
+        },
+        {
+          "name": "OtherEnabledState",
+          "cimType": 8
+        },
+        {
+          "name": "PrimaryOwnerContact",
+          "cimType": 8
+        },
+        {
+          "name": "PrimaryOwnerName",
+          "cimType": 8
+        },
+        {
+          "name": "PrimaryStatus",
+          "cimType": 18
+        },
+        {
+          "name": "RequestedState",
+          "cimType": 18
+        },
+        {
+          "name": "StartMode",
+          "cimType": 8
+        },
+        {
+          "name": "Started",
+          "cimType": 11
+        },
+        {
+          "name": "Status",
+          "cimType": 8
+        },
+        {
+          "name": "StatusDescriptions",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "SystemCreationClassName",
+          "cimType": 8,
+          "key": true
+        },
+        {
+          "name": "SystemName",
+          "cimType": 8,
+          "key": true
+        },
+        {
+          "name": "TimeOfLastStateChange",
+          "cimType": 101
+        },
+        {
+          "name": "TransitioningToState",
+          "cimType": 18
+        }
+      ],
+      "methods": [
+        {
+          "name": "AddFeatureSettings",
+          "in": [
+            {
+              "name": "AffectedConfiguration",
+              "cimType": 102
+            },
+            {
+              "name": "FeatureSettings",
+              "cimType": 8,
+              "array": true
+            }
+          ],
+          "out": [
+            {
+              "name": "ResultingFeatureSettings",
+              "cimType": 102,
+              "array": true
+            },
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "AddResourceSettings",
+          "in": [
+            {
+              "name": "AffectedConfiguration",
+              "cimType": 102
+            },
+            {
+              "name": "ResourceSettings",
+              "cimType": 8,
+              "array": true
+            }
+          ],
+          "out": [
+            {
+              "name": "ResultingResourceSettings",
+              "cimType": 102,
+              "array": true
+            },
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "DefineSystem",
+          "in": [
+            {
+              "name": "SystemSettings",
+              "cimType": 8
+            },
+            {
+              "name": "ResourceSettings",
+              "cimType": 8,
+              "array": true
+            },
+            {
+              "name": "ReferenceConfiguration",
+              "cimType": 102
+            }
+          ],
+          "out": [
+            {
+              "name": "ResultingSystem",
+              "cimType": 102
+            },
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "DestroySystem",
+          "in": [
+            {
+              "name": "AffectedSystem",
+              "cimType": 102
+            }
+          ],
+          "out": [
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "ModifyFeatureSettings",
+          "in": [
+            {
+              "name": "FeatureSettings",
+              "cimType": 8,
+              "array": true
+            }
+          ],
+          "out": [
+            {
+              "name": "ResultingFeatureSettings",
+              "cimType": 102,
+              "array": true
+            },
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "ModifyResourceSettings",
+          "in": [
+            {
+              "name": "ResourceSettings",
+              "cimType": 8,
+              "array": true
+            }
+          ],
+          "out": [
+            {
+              "name": "ResultingResourceSettings",
+              "cimType": 102,
+              "array": true
+            },
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "ModifySystemSettings",
+          "in": [
+            {
+              "name": "SystemSettings",
+              "cimType": 8
+            }
+          ],
+          "out": [
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "RemoveFeatureSettings",
+          "in": [
+            {
+              "name": "FeatureSettings",
+              "cimType": 102,
+              "array": true
+            }
+          ],
+          "out": [
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "RemoveResourceSettings",
+          "in": [
+            {
+              "name": "ResourceSettings",
+              "cimType": 102,
+              "array": true
+            }
+          ],
+          "out": [
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "RequestStateChange",
+          "in": [
+            {
+              "name": "RequestedState",
+              "cimType": 18
+            },
+            {
+              "name": "TimeoutPeriod",
+              "cimType": 101
+            }
+          ],
+          "out": [
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "StartService",
+          "out": [
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "StopService",
+          "out": [
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Msvm_VirtualEthernetSwitchSettingData",
+      "properties": [
+        {
+          "name": "AllowNetLbfoTeams",
+          "cimType": 11
+        },
+        {
+          "name": "AssociatedResourcePool",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "AutomaticRecoveryAction",
+          "cimType": 18
+        },
+        {
+          "name": "AutomaticShutdownAction",
+          "cimType": 18
+        },
+        {
+          "name": "AutomaticStartupAction",
+          "cimType": 18
+        },
+        {
+          "name": "AutomaticStartupActionDelay",
+          "cimType": 101
+        },
+        {
+          "name": "AutomaticStartupActionSequenceNumber",
+          "cimType": 18
+        },
+        {
+          "name": "BandwidthReservationMode",
+          "cimType": 19,
+          "values": [
+            "Default",
+            "Weight",
+            "Absolute",
+            "None"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3"
+          ]
+        },
+        {
+          "name": "BypassExtensionStack",
+          "cimType": 11
+        },
+        {
+          "name": "Caption",
+          "cimType": 8
+        },
+        {
+          "name": "ConfigurationDataRoot",
+          "cimType": 8
+        },
+        {
+          "name": "ConfigurationFile",
+          "cimType": 8
+        },
+        {
+          "name": "ConfigurationID",
+          "cimType": 8
+        },
+        {
+          "name": "CreationTime",
+          "cimType": 101
+        },
+        {
+          "name": "Description",
+          "cimType": 8
+        },
+        {
+          "name": "ElementName",
+          "cimType": 8
+        },
+        {
+          "name": "ExtensionOrder",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "IOVPreferred",
+          "cimType": 11
+        },
+        {
+          "name": "InstanceID",
+          "cimType": 8,
+          "key": true
+        },
+        {
+          "name": "LogDataRoot",
+          "cimType": 8
+        },
+        {
+          "name": "MaxNumMACAddress",
+          "cimType": 19
+        },
+        {
+          "name": "Notes",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "PacketDirectEnabled",
+          "cimType": 11
+        },
+        {
+          "name": "RecoveryFile",
+          "cimType": 8
+        },
+        {
+          "name": "RequiredExtensionIds",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "SnapshotDataRoot",
+          "cimType": 8
+        },
+        {
+          "name": "SuspendDataRoot",
+          "cimType": 8
+        },
+        {
+          "name": "SwapFileDataRoot",
+          "cimType": 8
+        },
+        {
+          "name": "TeamingEnabled",
+          "cimType": 11
+        },
+        {
+          "name": "VLANConnection",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "VirtualSystemIdentifier",
+          "cimType": 8
+        },
+        {
+          "name": "VirtualSystemType",
+          "cimType": 8
+        }
+      ]
+    },
+    {
+      "name": "Msvm_VirtualSystemManagementService",
+      "properties": [
+        {
+          "name": "AvailableRequestedStates",
+          "cimType": 18,
+          "array": true
+        },
+        {
+          "name": "Caption",
+          "cimType": 8
+        },
+        {
+          "name": "CommunicationStatus",
+          "cimType": 18
+        },
+        {
+          "name": "CreationClassName",
+          "cimType": 8,
+          "key": true
+        },
+        {
+          "name": "Description",
+          "cimType": 8
+        },
+        {
+          "name": "DetailedStatus",
+          "cimType": 18
+        },
+        {
+          "name": "ElementName",
+          "cimType": 8
+        },
+        {
+          "name": "EnabledDefault",
+          "cimType": 18
+        },
+        {
+          "name": "EnabledState",
+          "cimType": 18
+        },
+        {
+          "name": "HealthState",
+          "cimType": 18
+        },
+        {
+          "name": "InstallDate",
+          "cimType": 101
+        },
+        {
+          "name": "InstanceID",
+          "cimType": 8
+        },
+        {
+          "name": "Name",
+          "cimType": 8,
+          "key": true
+        },
+        {
+          "name": "OperatingStatus",
+          "cimType": 18
+        },
+        {
+          "name": "OperationalStatus",
+          "cimType": 18,
+          "array": true
+        },
+        {
+          "name": "OtherEnabledState",
+          "cimType": 8
+        },
+        {
+          "name": "PrimaryOwnerContact",
+          "cimType": 8
+        },
+        {
+          "name": "PrimaryOwnerName",
+          "cimType": 8
+        },
+        {
+          "name": "PrimaryStatus",
+          "cimType": 18
+        },
+        {
+          "name": "RequestedState",
+          "cimType": 18
+        },
+        {
+          "name": "StartMode",
+          "cimType": 8
+        },
+        {
+          "name": "Started",
+          "cimType": 11
+        },
+        {
+          "name": "Status",
+          "cimType": 8
+        },
+        {
+          "name": "StatusDescriptions",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "SystemCreationClassName",
+          "cimType": 8,
+          "key": true
+        },
+        {
+          "name": "SystemName",
+          "cimType": 8,
+          "key": true
+        },
+        {
+          "name": "TimeOfLastStateChange",
+          "cimType": 101
+        },
+        {
+          "name": "TransitioningToState",
+          "cimType": 18
+        }
+      ],
+      "methods": [
+        {
+          "name": "AddBootSourceSettings",
+          "in": [
+            {
+              "name": "AffectedConfiguration",
+              "cimType": 102
+            },
+            {
+              "name": "BootSourceSettings",
+              "cimType": 8,
+              "array": true
+            }
+          ],
+          "out": [
+            {
+              "name": "ResultingBootSourceSettings",
+              "cimType": 102,
+              "array": true
+            },
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "AddFeatureSettings",
+          "in": [
+            {
+              "name": "AffectedConfiguration",
+              "cimType": 102
+            },
+            {
+              "name": "FeatureSettings",
+              "cimType": 8,
+              "array": true
+            }
+          ],
+          "out": [
+            {
+              "name": "ResultingFeatureSettings",
+              "cimType": 102,
+              "array": true
+            },
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "AddFibreChannelChap",
+          "in": [
+            {
+              "name": "FcPortSettings",
+              "cimType": 8,
+              "array": true
+            },
+            {
+              "name": "SecretEncoding",
+              "cimType": 17
+            },
+            {
+              "name": "SharedSecret",
+              "cimType": 17,
+              "array": true
+            }
+          ],
+          "out": [
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "AddGuestServiceSettings",
+          "in": [
+            {
+              "name": "AffectedConfiguration",
+              "cimType": 102
+            },
+            {
+              "name": "GuestServiceSettings",
+              "cimType": 8,
+              "array": true
+            }
+          ],
+          "out": [
+            {
+              "name": "ResultingGuestServiceSettings",
+              "cimType": 102,
+              "array": true
+            },
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "AddKvpItems",
+          "in": [
+            {
+              "name": "TargetSystem",
+              "cimType": 102
+            },
+            {
+              "name": "DataItems",
+              "cimType": 8,
+              "array": true
+            }
+          ],
+          "out": [
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "AddResourceSettings",
+          "in": [
+            {
+              "name": "AffectedConfiguration",
+              "cimType": 102
+            },
+            {
+              "name": "ResourceSettings",
+              "cimType": 8,
+              "array": true
+            }
+          ],
+          "out": [
+            {
+              "name": "ResultingResourceSettings",
+              "cimType": 102,
+              "array": true
+            },
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "AddSystemComponentSettings",
+          "in": [
+            {
+              "name": "AffectedConfiguration",
+              "cimType": 102
+            },
+            {
+              "name": "ComponentSettings",
+              "cimType": 8,
+              "array": true
+            }
+          ],
+          "out": [
+            {
+              "name": "ResultingComponentSettings",
+              "cimType": 102,
+              "array": true
+            },
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "DefinePlannedSystem",
+          "in": [
+            {
+              "name": "SystemSettings",
+              "cimType": 8
+            },
+            {
+              "name": "ResourceSettings",
+              "cimType": 8,
+              "array": true
+            },
+            {
+              "name": "ReferenceConfiguration",
+              "cimType": 102
+            }
+          ],
+          "out": [
+            {
+              "name": "ResultingSystem",
+              "cimType": 102
+            },
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "DefineSystem",
+          "in": [
+            {
+              "name": "SystemSettings",
+              "cimType": 8
+            },
+            {
+              "name": "ResourceSettings",
+              "cimType": 8,
+              "array": true
+            },
+            {
+              "name": "ReferenceConfiguration",
+              "cimType": 102
+            }
+          ],
+          "out": [
+            {
+              "name": "ResultingSystem",
+              "cimType": 102
+            },
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "DestroySystem",
+          "in": [
+            {
+              "name": "AffectedSystem",
+              "cimType": 102
+            }
+          ],
+          "out": [
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "DiagnoseNetworkConnection",
+          "in": [
+            {
+              "name": "TargetNetworkAdapter",
+              "cimType": 102
+            },
+            {
+              "name": "DiagnosticSettings",
+              "cimType": 8
+            }
+          ],
+          "out": [
+            {
+              "name": "DiagnosticInformation",
+              "cimType": 8
+            },
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "ExportSystemDefinition",
+          "in": [
+            {
+              "name": "ComputerSystem",
+              "cimType": 102
+            },
+            {
+              "name": "ExportDirectory",
+              "cimType": 8
+            },
+            {
+              "name": "ExportSettingData",
+              "cimType": 8
+            }
+          ],
+          "out": [
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "FormatError",
+          "in": [
+            {
+              "name": "Errors",
+              "cimType": 8,
+              "array": true
+            }
+          ],
+          "out": [
+            {
+              "name": "ErrorMessage",
+              "cimType": 8
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "GenerateWwpn",
+          "in": [
+            {
+              "name": "NumberOfWwpns",
+              "cimType": 19
+            }
+          ],
+          "out": [
+            {
+              "name": "GeneratedWwpn",
+              "cimType": 8,
+              "array": true
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "GetCurrentWwpnFromGenerator",
+          "out": [
+            {
+              "name": "CurrentWwpn",
+              "cimType": 8
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "GetDefinitionFileSummaryInformation",
+          "in": [
+            {
+              "name": "DefinitionFiles",
+              "cimType": 8,
+              "array": true
+            }
+          ],
+          "out": [
+            {
+              "name": "SummaryInformation",
+              "cimType": 13,
+              "array": true
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "GetSizeOfSystemFiles",
+          "in": [
+            {
+              "name": "Vssd",
+              "cimType": 102
+            }
+          ],
+          "out": [
+            {
+              "name": "Size",
+              "cimType": 21
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "GetSummaryInformation",
+          "in": [
+            {
+              "name": "SettingData",
+              "cimType": 102,
+              "array": true
+            },
+            {
+              "name": "RequestedInformation",
+              "cimType": 19,
+              "array": true
+            }
+          ],
+          "out": [
+            {
+              "name": "SummaryInformation",
+              "cimType": 13,
+              "array": true
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "GetVirtualSystemThumbnailImage",
+          "in": [
+            {
+              "name": "TargetSystem",
+              "cimType": 102
+            },
+            {
+              "name": "WidthPixels",
+              "cimType": 18
+            },
+            {
+              "name": "HeightPixels",
+              "cimType": 18
+            }
+          ],
+          "out": [
+            {
+              "name": "ImageData",
+              "cimType": 17,
+              "array": true
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "ImportSnapshotDefinitions",
+          "in": [
+            {
+              "name": "PlannedSystem",
+              "cimType": 102
+            },
+            {
+              "name": "SnapshotFolder",
+              "cimType": 8
+            }
+          ],
+          "out": [
+            {
+              "name": "ImportedSnapshots",
+              "cimType": 102,
+              "array": true
+            },
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "ImportSystemDefinition",
+          "in": [
+            {
+              "name": "SystemDefinitionFile",
+              "cimType": 8
+            },
+            {
+              "name": "SnapshotFolder",
+              "cimType": 8
+            },
+            {
+              "name": "GenerateNewSystemIdentifier",
+              "cimType": 11
+            }
+          ],
+          "out": [
+            {
+              "name": "ImportedSystem",
+              "cimType": 102
+            },
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "ModifyDiskMergeSettings",
+          "in": [
+            {
+              "name": "SettingData",
+              "cimType": 8
+            }
+          ],
+          "out": [
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "ModifyFeatureSettings",
+          "in": [
+            {
+              "name": "FeatureSettings",
+              "cimType": 8,
+              "array": true
+            }
+          ],
+          "out": [
+            {
+              "name": "ResultingFeatureSettings",
+              "cimType": 102,
+              "array": true
+            },
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "ModifyGuestServiceSettings",
+          "in": [
+            {
+              "name": "GuestServiceSettings",
+              "cimType": 8,
+              "array": true
+            }
+          ],
+          "out": [
+            {
+              "name": "ResultingGuestServiceSettings",
+              "cimType": 102,
+              "array": true
+            },
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "ModifyKvpItems",
+          "in": [
+            {
+              "name": "TargetSystem",
+              "cimType": 102
+            },
+            {
+              "name": "DataItems",
+              "cimType": 8,
+              "array": true
+            }
+          ],
+          "out": [
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "ModifyResourceSettings",
+          "in": [
+            {
+              "name": "ResourceSettings",
+              "cimType": 8,
+              "array": true
+            }
+          ],
+          "out": [
+            {
+              "name": "ResultingResourceSettings",
+              "cimType": 102,
+              "array": true
+            },
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "ModifyServiceSettings",
+          "in": [
+            {
+              "name": "SettingData",
+              "cimType": 8
+            }
+          ],
+          "out": [
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "ModifySystemComponentSettings",
+          "in": [
+            {
+              "name": "ComponentSettings",
+              "cimType": 8,
+              "array": true
+            }
+          ],
+          "out": [
+            {
+              "name": "ResultingComponentSettings",
+              "cimType": 102,
+              "array": true
+            },
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "ModifySystemSettings",
+          "in": [
+            {
+              "name": "SystemSettings",
+              "cimType": 8
+            }
+          ],
+          "out": [
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "RealizePlannedSystem",
+          "in": [
+            {
+              "name": "PlannedSystem",
+              "cimType": 102
+            }
+          ],
+          "out": [
+            {
+              "name": "ResultingSystem",
+              "cimType": 102
+            },
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "RemoveBootSourceSettings",
+          "in": [
+            {
+              "name": "BootSourceSettings",
+              "cimType": 102,
+              "array": true
+            }
+          ],
+          "out": [
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "RemoveFeatureSettings",
+          "in": [
+            {
+              "name": "FeatureSettings",
+              "cimType": 102,
+              "array": true
+            }
+          ],
+          "out": [
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "RemoveFibreChannelChap",
+          "in": [
+            {
+              "name": "FcPortSettings",
+              "cimType": 8,
+              "array": true
+            }
+          ],
+          "out": [
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "RemoveGuestServiceSettings",
+          "in": [
+            {
+              "name": "GuestServiceSettings",
+              "cimType": 102,
+              "array": true
+            }
+          ],
+          "out": [
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "RemoveKvpItems",
+          "in": [
+            {
+              "name": "TargetSystem",
+              "cimType": 102
+            },
+            {
+              "name": "DataItems",
+              "cimType": 8,
+              "array": true
+            }
+          ],
+          "out": [
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "RemoveResourceSettings",
+          "in": [
+            {
+              "name": "ResourceSettings",
+              "cimType": 102,
+              "array": true
+            }
+          ],
+          "out": [
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "RemoveSystemComponentSettings",
+          "in": [
+            {
+              "name": "ComponentSettings",
+              "cimType": 102,
+              "array": true
+            }
+          ],
+          "out": [
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "RequestStateChange",
+          "in": [
+            {
+              "name": "RequestedState",
+              "cimType": 18
+            },
+            {
+              "name": "TimeoutPeriod",
+              "cimType": 101
+            }
+          ],
+          "out": [
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "SetGuestNetworkAdapterConfiguration",
+          "in": [
+            {
+              "name": "ComputerSystem",
+              "cimType": 102
+            },
+            {
+              "name": "NetworkConfiguration",
+              "cimType": 8,
+              "array": true
+            }
+          ],
+          "out": [
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "SetInitialMachineConfigurationData",
+          "in": [
+            {
+              "name": "TargetSystem",
+              "cimType": 102
+            },
+            {
+              "name": "ImcData",
+              "cimType": 17,
+              "array": true
+            }
+          ],
+          "out": [
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "StartService",
+          "out": [
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "StopService",
+          "out": [
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "TestNetworkConnection",
+          "in": [
+            {
+              "name": "TargetNetworkAdapter",
+              "cimType": 102
+            },
+            {
+              "name": "IsSender",
+              "cimType": 11
+            },
+            {
+              "name": "SenderIP",
+              "cimType": 8
+            },
+            {
+              "name": "ReceiverIP",
+              "cimType": 8
+            },
+            {
+              "name": "ReceiverMac",
+              "cimType": 8
+            },
+            {
+              "name": "IsolationId",
+              "cimType": 19
+            },
+            {
+              "name": "SequenceNumber",
+              "cimType": 19
+            }
+          ],
+          "out": [
+            {
+              "name": "RoundTripTime",
+              "cimType": 19
+            },
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "UpgradeSystemVersion",
+          "in": [
+            {
+              "name": "ComputerSystem",
+              "cimType": 102
+            },
+            {
+              "name": "UpgradeSettingData",
+              "cimType": 8
+            }
+          ],
+          "out": [
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "ValidatePlannedSystem",
+          "in": [
+            {
+              "name": "PlannedSystem",
+              "cimType": 102
+            }
+          ],
+          "out": [
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Msvm_VirtualSystemSettingData",
+      "properties": [
+        {
+          "name": "AdditionalRecoveryInformation",
+          "cimType": 8
+        },
+        {
+          "name": "AllowFullSCSICommandSet",
+          "cimType": 11
+        },
+        {
+          "name": "AllowReducedFcRedundancy",
+          "cimType": 11
+        },
+        {
+          "name": "Architecture",
+          "cimType": 8,
+          "values": [
+            "x64",
+            "arm64"
+          ]
+        },
+        {
+          "name": "AutomaticCriticalErrorAction",
+          "cimType": 18,
+          "values": [
+            "None",
+            "Pause Resume"
+          ],
+          "valueMap": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "name": "AutomaticCriticalErrorActionTimeout",
+          "cimType": 101
+        },
+        {
+          "name": "AutomaticRecoveryAction",
+          "cimType": 18
+        },
+        {
+          "name": "AutomaticShutdownAction",
+          "cimType": 18
+        },
+        {
+          "name": "AutomaticSnapshotsEnabled",
+          "cimType": 11
+        },
+        {
+          "name": "AutomaticStartupAction",
+          "cimType": 18
+        },
+        {
+          "name": "AutomaticStartupActionDelay",
+          "cimType": 101
+        },
+        {
+          "name": "AutomaticStartupActionSequenceNumber",
+          "cimType": 18
+        },
+        {
+          "name": "BIOSGUID",
+          "cimType": 8
+        },
+        {
+          "name": "BIOSNumLock",
+          "cimType": 11
+        },
+        {
+          "name": "BIOSSerialNumber",
+          "cimType": 8
+        },
+        {
+          "name": "BaseBoardSerialNumber",
+          "cimType": 8
+        },
+        {
+          "name": "BootOrder",
+          "cimType": 18,
+          "array": true,
+          "values": [
+            "Floppy",
+            "CD-ROM",
+            "IDE Hard Drive",
+            "PXE Boot",
+            "SCSI Hard Drive",
+            "Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5..65535"
+          ]
+        },
+        {
+          "name": "BootPciExpress",
+          "cimType": 11
+        },
+        {
+          "name": "BootPciExpressInstanceFilter",
+          "cimType": 8
+        },
+        {
+          "name": "BootSourceOrder",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "Caption",
+          "cimType": 8
+        },
+        {
+          "name": "ChassisAssetTag",
+          "cimType": 8
+        },
+        {
+          "name": "ChassisSerialNumber",
+          "cimType": 8
+        },
+        {
+          "name": "ClusterWideNodeCapabilitiesValidationMode",
+          "cimType": 18,
+          "values": [
+            "Default",
+            "Override"
+          ],
+          "valueMap": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "name": "ConfigurationDataRoot",
+          "cimType": 8
+        },
+        {
+          "name": "ConfigurationFile",
+          "cimType": 8
+        },
+        {
+          "name": "ConfigurationID",
+          "cimType": 8
+        },
+        {
+          "name": "ConsoleMode",
+          "cimType": 18,
+          "values": [
+            "Default",
+            "COM1",
+            "COM2",
+            "None"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3"
+          ]
+        },
+        {
+          "name": "CreationTime",
+          "cimType": 101
+        },
+        {
+          "name": "DebugChannelId",
+          "cimType": 19
+        },
+        {
+          "name": "DebugPort",
+          "cimType": 19
+        },
+        {
+          "name": "DebugPortEnabled",
+          "cimType": 18,
+          "values": [
+            " Off",
+            "On",
+            "OnAutoAssigned"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2"
+          ]
+        },
+        {
+          "name": "Description",
+          "cimType": 8
+        },
+        {
+          "name": "ElementName",
+          "cimType": 8
+        },
+        {
+          "name": "EnableHibernation",
+          "cimType": 11
+        },
+        {
+          "name": "EnhancedSessionTransportType",
+          "cimType": 18,
+          "values": [
+            "VMBus Pipe",
+            "Hyper-V Socket"
+          ],
+          "valueMap": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "name": "FirmwareFile",
+          "cimType": 8
+        },
+        {
+          "name": "FirmwareParameters",
+          "cimType": 17,
+          "array": true
+        },
+        {
+          "name": "GuestControlledCacheTypes",
+          "cimType": 11
+        },
+        {
+          "name": "GuestFeatureSet",
+          "cimType": 21
+        },
+        {
+          "name": "GuestStateDataRoot",
+          "cimType": 8
+        },
+        {
+          "name": "GuestStateFile",
+          "cimType": 8
+        },
+        {
+          "name": "GuestStateIsolationEnabled",
+          "cimType": 11
+        },
+        {
+          "name": "GuestStateIsolationMode",
+          "cimType": 18,
+          "values": [
+            "Default",
+            "NoPersistentSecrets",
+            "NoManagementVtl"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2"
+          ]
+        },
+        {
+          "name": "GuestStateIsolationType",
+          "cimType": 18,
+          "values": [
+            "Trusted Launch",
+            "Reserved",
+            "SEV-SNP",
+            "TDX",
+            "OpenHCL",
+            "Reserved",
+            "Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "16",
+            "18",
+            "19"
+          ]
+        },
+        {
+          "name": "HighMmioGapBase",
+          "cimType": 21
+        },
+        {
+          "name": "HighMmioGapSize",
+          "cimType": 21
+        },
+        {
+          "name": "IncrementalBackupEnabled",
+          "cimType": 11
+        },
+        {
+          "name": "InstanceID",
+          "cimType": 8,
+          "key": true
+        },
+        {
+          "name": "IsAutomaticSnapshot",
+          "cimType": 11
+        },
+        {
+          "name": "IsSaved",
+          "cimType": 11
+        },
+        {
+          "name": "LockOnDisconnect",
+          "cimType": 11
+        },
+        {
+          "name": "LogDataRoot",
+          "cimType": 8
+        },
+        {
+          "name": "LowMmioGapSize",
+          "cimType": 21
+        },
+        {
+          "name": "ManagementVtlUpdatePolicy",
+          "cimType": 18,
+          "values": [
+            "Default",
+            "OfflineOnly",
+            "Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2..65535"
+          ]
+        },
+        {
+          "name": "MemoryHostingJobObjectName",
+          "cimType": 8
+        },
+        {
+          "name": "NetworkBootPreferredProtocol",
+          "cimType": 18,
+          "values": [
+            "IPv4",
+            "IPv6"
+          ],
+          "valueMap": [
+            "4096",
+            "4097"
+          ]
+        },
+        {
+          "name": "Notes",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "NumaNodeTopologyArray",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "Parent",
+          "cimType": 8
+        },
+        {
+          "name": "PauseAfterBootFailure",
+          "cimType": 11
+        },
+        {
+          "name": "RecoveryFile",
+          "cimType": 8
+        },
+        {
+          "name": "SecureBootEnabled",
+          "cimType": 11
+        },
+        {
+          "name": "SecureBootTemplateId",
+          "cimType": 8
+        },
+        {
+          "name": "SnapshotDataRoot",
+          "cimType": 8
+        },
+        {
+          "name": "SourceGuestStateFile",
+          "cimType": 8
+        },
+        {
+          "name": "SuspendDataRoot",
+          "cimType": 8
+        },
+        {
+          "name": "SwapFileDataRoot",
+          "cimType": 8
+        },
+        {
+          "name": "TurnOffOnGuestRestart",
+          "cimType": 11
+        },
+        {
+          "name": "UserSnapshotType",
+          "cimType": 18,
+          "values": [
+            "Disable",
+            "ProductionFallbackToTest",
+            "ProductionNoFallback",
+            "Test"
+          ],
+          "valueMap": [
+            "2",
+            "3",
+            "4",
+            "5"
+          ]
+        },
+        {
+          "name": "VMBusMessageRedirection",
+          "cimType": 18,
+          "values": [
+            "None",
+            "RedirectToVtl2"
+          ],
+          "valueMap": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "name": "Version",
+          "cimType": 8
+        },
+        {
+          "name": "VirtualNumaEnabled",
+          "cimType": 11
+        },
+        {
+          "name": "VirtualSlitType",
+          "cimType": 18,
+          "values": [
+            "None",
+            "Firmware",
+            "Measured",
+            "FirmwareFallbackMeasured"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3"
+          ]
+        },
+        {
+          "name": "VirtualSystemIdentifier",
+          "cimType": 8
+        },
+        {
+          "name": "VirtualSystemSubType",
+          "cimType": 8,
+          "values": [
+            "Microsoft:Hyper-V:SubType:1",
+            "Microsoft:Hyper-V:SubType:2"
+          ]
+        },
+        {
+          "name": "VirtualSystemType",
+          "cimType": 8
+        },
+        {
+          "name": "Vtl2AddressRangeBase",
+          "cimType": 21
+        },
+        {
+          "name": "Vtl2AddressRangeSize",
+          "cimType": 21
+        },
+        {
+          "name": "Vtl2AddressSpaceConfigurationMode",
+          "cimType": 18,
+          "values": [
+            "Default",
+            "ConfigurableSizePlacement",
+            "ExplicitPlacement"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2"
+          ]
+        },
+        {
+          "name": "Vtl2MmioAddressRangeSize",
+          "cimType": 21
+        },
+        {
+          "name": "WatchdogEnabled",
+          "cimType": 11
+        },
+        {
+          "name": "WorkerJobObjectName",
+          "cimType": 8
+        }
+      ]
+    },
+    {
+      "name": "Msvm_VirtualSystemSnapshotService",
+      "properties": [
+        {
+          "name": "AvailableRequestedStates",
+          "cimType": 18,
+          "array": true
+        },
+        {
+          "name": "Caption",
+          "cimType": 8
+        },
+        {
+          "name": "CommunicationStatus",
+          "cimType": 18
+        },
+        {
+          "name": "CreationClassName",
+          "cimType": 8,
+          "key": true
+        },
+        {
+          "name": "Description",
+          "cimType": 8
+        },
+        {
+          "name": "DetailedStatus",
+          "cimType": 18
+        },
+        {
+          "name": "ElementName",
+          "cimType": 8
+        },
+        {
+          "name": "EnabledDefault",
+          "cimType": 18
+        },
+        {
+          "name": "EnabledState",
+          "cimType": 18
+        },
+        {
+          "name": "HealthState",
+          "cimType": 18
+        },
+        {
+          "name": "InstallDate",
+          "cimType": 101
+        },
+        {
+          "name": "InstanceID",
+          "cimType": 8
+        },
+        {
+          "name": "Name",
+          "cimType": 8,
+          "key": true
+        },
+        {
+          "name": "OperatingStatus",
+          "cimType": 18
+        },
+        {
+          "name": "OperationalStatus",
+          "cimType": 18,
+          "array": true
+        },
+        {
+          "name": "OtherEnabledState",
+          "cimType": 8
+        },
+        {
+          "name": "PrimaryOwnerContact",
+          "cimType": 8
+        },
+        {
+          "name": "PrimaryOwnerName",
+          "cimType": 8
+        },
+        {
+          "name": "PrimaryStatus",
+          "cimType": 18
+        },
+        {
+          "name": "RequestedState",
+          "cimType": 18
+        },
+        {
+          "name": "StartMode",
+          "cimType": 8
+        },
+        {
+          "name": "Started",
+          "cimType": 11
+        },
+        {
+          "name": "Status",
+          "cimType": 8
+        },
+        {
+          "name": "StatusDescriptions",
+          "cimType": 8,
+          "array": true
+        },
+        {
+          "name": "SystemCreationClassName",
+          "cimType": 8,
+          "key": true
+        },
+        {
+          "name": "SystemName",
+          "cimType": 8,
+          "key": true
+        },
+        {
+          "name": "TimeOfLastStateChange",
+          "cimType": 101
+        },
+        {
+          "name": "TransitioningToState",
+          "cimType": 18
+        }
+      ],
+      "methods": [
+        {
+          "name": "ApplySnapshot",
+          "in": [
+            {
+              "name": "Snapshot",
+              "cimType": 102
+            }
+          ],
+          "out": [
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "ClearSnapshotState",
+          "in": [
+            {
+              "name": "SnapshotSettingData",
+              "cimType": 102
+            }
+          ],
+          "out": [
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "ConvertToReferencePoint",
+          "in": [
+            {
+              "name": "AffectedSnapshot",
+              "cimType": 102
+            },
+            {
+              "name": "ReferencePointSettings",
+              "cimType": 8
+            },
+            {
+              "name": "ResultingReferencePoint",
+              "cimType": 102
+            }
+          ],
+          "out": [
+            {
+              "name": "ResultingReferencePoint",
+              "cimType": 102
+            },
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "CreateSnapshot",
+          "in": [
+            {
+              "name": "AffectedSystem",
+              "cimType": 102
+            },
+            {
+              "name": "SnapshotSettings",
+              "cimType": 8
+            },
+            {
+              "name": "SnapshotType",
+              "cimType": 18
+            },
+            {
+              "name": "ResultingSnapshot",
+              "cimType": 102
+            }
+          ],
+          "out": [
+            {
+              "name": "ResultingSnapshot",
+              "cimType": 102
+            },
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "DestroySnapshot",
+          "in": [
+            {
+              "name": "AffectedSnapshot",
+              "cimType": 102
+            }
+          ],
+          "out": [
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "DestroySnapshotTree",
+          "in": [
+            {
+              "name": "SnapshotSettingData",
+              "cimType": 102
+            }
+          ],
+          "out": [
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "RequestStateChange",
+          "in": [
+            {
+              "name": "RequestedState",
+              "cimType": 18
+            },
+            {
+              "name": "TimeoutPeriod",
+              "cimType": 101
+            }
+          ],
+          "out": [
+            {
+              "name": "Job",
+              "cimType": 102
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "StartService",
+          "out": [
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        },
+        {
+          "name": "StopService",
+          "out": [
+            {
+              "name": "ReturnValue",
+              "cimType": 19
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Msvm_VirtualSystemSnapshotSettingData",
+      "properties": [
+        {
+          "name": "Caption",
+          "cimType": 8
+        },
+        {
+          "name": "ConsistencyLevel",
+          "cimType": 17,
+          "values": [
+            "Unknown",
+            "Application Consistent",
+            "Crash Consistent"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2"
+          ]
+        },
+        {
+          "name": "Description",
+          "cimType": 8
+        },
+        {
+          "name": "ElementName",
+          "cimType": 8
+        },
+        {
+          "name": "GuestBackupType",
+          "cimType": 17,
+          "values": [
+            "Undefined",
+            "Full",
+            "Copy"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2"
+          ]
+        },
+        {
+          "name": "IgnoreNonSnapshottableDisks",
+          "cimType": 11
+        },
+        {
+          "name": "InstanceID",
+          "cimType": 8,
+          "key": true
+        }
+      ]
+    }
+  ]
+}

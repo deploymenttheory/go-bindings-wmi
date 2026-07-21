@@ -175,10 +175,30 @@ func run(metadataDir, outDir string) error {
 }
 
 // packageName derives a Go package name from a CIM namespace
-// (root\cimv2 → cimv2).
+// (root\cimv2 → cimv2). A pure version leaf (root\virtualization\v2 → "v2")
+// would make an opaque, collision-prone package name, so it folds into its
+// parent (→ "virtualizationv2").
 func packageName(namespace string) string {
 	parts := strings.Split(namespace, `\`)
-	return strings.ToLower(parts[len(parts)-1])
+	leaf := strings.ToLower(parts[len(parts)-1])
+	if len(parts) >= 2 && isVersionLeaf(leaf) {
+		leaf = strings.ToLower(parts[len(parts)-2]) + leaf
+	}
+	return leaf
+}
+
+// isVersionLeaf reports whether a namespace leaf is a bare version tag like
+// "v2" — 'v' followed by digits only.
+func isVersionLeaf(leaf string) bool {
+	if len(leaf) < 2 || leaf[0] != 'v' {
+		return false
+	}
+	for _, r := range leaf[1:] {
+		if r < '0' || r > '9' {
+			return false
+		}
+	}
+	return true
 }
 
 // renderPackage renders one namespace into its per-construct files —

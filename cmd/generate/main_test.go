@@ -197,6 +197,7 @@ func TestPackageName(t *testing.T) {
 		{`root\cimv2`, "cimv2"},
 		{`root\StandardCimv2`, "standardcimv2"},
 		{`root\Microsoft\Windows\Storage`, "storage"},
+		{`root\virtualization\v2`, "virtualizationv2"},
 		{`root`, "root"},
 	}
 	for _, c := range cases {
