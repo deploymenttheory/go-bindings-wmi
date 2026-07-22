@@ -44,6 +44,44 @@ func TestObjectText(t *testing.T) {
 	}
 }
 
+// TestParseObjectText round-trips an embedded instance through its CIM-XML
+// text form: ObjectText → ParseObjectText must yield the same typed values.
+// This is the decode path for providers that return embedded instances as
+// serialized strings (Hyper-V KVP items).
+func TestParseObjectText(t *testing.T) {
+	svc, err := wmi.Connect(`root\cimv2`)
+	if err != nil {
+		t.Fatalf("Connect: %v", err)
+	}
+	defer svc.Close()
+
+	text, err := svc.ObjectText(wmi.Instance("Win32_ProcessStartup", map[string]any{
+		"Title":         "parse-probe",
+		"PriorityClass": 32,
+	}))
+	if err != nil {
+		t.Fatalf("ObjectText: %v", err)
+	}
+	row, err := wmi.ParseObjectText(text)
+	if err != nil {
+		t.Fatalf("ParseObjectText: %v", err)
+	}
+	if class := wmi.AsString(row["__CLASS"]); class != "Win32_ProcessStartup" {
+		t.Errorf("__CLASS = %q", class)
+	}
+	if title := wmi.AsString(row["Title"]); title != "parse-probe" {
+		t.Errorf("Title = %q", title)
+	}
+	if priority := wmi.AsInt64(row["PriorityClass"]); priority != 32 {
+		t.Errorf("PriorityClass = %d, want 32 (typed, not a string)", priority)
+	}
+
+	// Garbage in → error out, not a zero Row.
+	if _, err := wmi.ParseObjectText("not xml"); err == nil {
+		t.Error("ParseObjectText of garbage should fail")
+	}
+}
+
 // TestObjectTextOfPath round-trips a live instance into CIM-XML text with an
 // in-memory override, without persisting anything.
 func TestObjectTextOfPath(t *testing.T) {

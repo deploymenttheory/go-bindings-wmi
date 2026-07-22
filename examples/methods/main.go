@@ -24,14 +24,14 @@ func main() {
 	}
 	defer svc.Close()
 
-	// Instance method: query our own process row, then call GetOwner on its
-	// __PATH.
-	rows, err := svc.Query(fmt.Sprintf("SELECT __PATH FROM Win32_Process WHERE ProcessId = %d", os.Getpid()))
-	if err != nil || len(rows) == 0 {
+	// Instance method: fetch our own process (typed, WMIPath included), then
+	// call GetOwner on its path.
+	proc, err := cimv2.QueryOneWin32Process(svc, wmi.Where("ProcessId = ?", os.Getpid()))
+	if err != nil {
 		fmt.Println("query self:", err)
 		return
 	}
-	owner, err := cimv2.Win32ProcessGetOwner(svc, wmi.AsString(rows[0]["__PATH"]))
+	owner, err := cimv2.Win32ProcessGetOwner(svc, proc.WMIPath)
 	if err != nil {
 		fmt.Println("GetOwner:", err)
 		return
@@ -39,14 +39,19 @@ func main() {
 	fmt.Printf("this process runs as %s\\%s\n", owner.Domain, owner.User)
 
 	// Static method with an embedded-object in-parameter: spawn a hidden,
-	// immediately-exiting cmd.exe.
+	// immediately-exiting cmd.exe. Nil in-parameters are omitted; wmi.Ptr
+	// builds the present ones inline.
 	startup := wmi.Instance("Win32_ProcessStartup", map[string]any{
 		"ShowWindow": uint16(0), // SW_HIDE
 	})
-	res, err := cimv2.Win32ProcessCreate(svc, "cmd.exe /c exit 0", "", startup)
+	res, err := cimv2.Win32ProcessCreate(svc, wmi.Ptr("cmd.exe /c exit 0"), nil, startup)
 	if err != nil {
 		fmt.Println("Create:", err)
 		return
 	}
-	fmt.Printf("spawned hidden pid %d (ReturnValue %d)\n", res.ProcessId, res.ReturnValue)
+	if err := res.Err(); err != nil {
+		fmt.Println("Create:", err)
+		return
+	}
+	fmt.Printf("spawned hidden pid %d\n", res.ProcessId)
 }

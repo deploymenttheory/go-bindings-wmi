@@ -4,32 +4,15 @@
 
 package demo
 
-// Demo_Widget.DriveType values.
+// Demo_Widget.Caps values.
 const (
-	DemoWidgetDriveTypeUnknown         uint32 = 0
-	DemoWidgetDriveTypeNoRootDirectory uint32 = 1
-	DemoWidgetDriveTypeRemovableDisk   uint32 = 2
-	DemoWidgetDriveTypeLocalDisk       uint32 = 3
+	DemoWidgetCapsNone  uint16 = 0
+	DemoWidgetCapsBasic uint16 = 1
+	DemoWidgetCapsFull  uint16 = 2
 )
 
-// Demo_Widget.Family values.
+// Demo_Widget.Mode values.
 const (
-	DemoWidgetFamilyOther    uint32 = 1
-	DemoWidgetFamilyReserved uint32 = 2
-)
-
-// Demo_Widget.Phase values.
-const (
-	DemoWidgetPhaseIdle     uint32 = 0
-	DemoWidgetPhaseRunning  uint32 = 1
-	DemoWidgetPhaseReserved uint32 = 2
-)
-
-// Demo_Widget.StartMode values.
-const (
-	DemoWidgetStartModeBoot     = "Boot"
-	DemoWidgetStartModeSystem   = "System"
-	DemoWidgetStartModeAuto     = "Auto"
-	DemoWidgetStartModeManual   = "Manual"
-	DemoWidgetStartModeDisabled = "Disabled"
+	DemoWidgetModeOn  uint16 = 1
+	DemoWidgetModeOff uint16 = 2
 )

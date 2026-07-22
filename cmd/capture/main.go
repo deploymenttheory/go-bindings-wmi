@@ -110,12 +110,14 @@ func run(namespace, classFilter, osBuild, captured, outDir string) error {
 				continue // WMI system properties (__CLASS, __PATH, …) are not class schema
 			}
 			class.Properties = append(class.Properties, cimschema.Property{
-				Name:     p.Name,
-				CIMType:  p.CIMType &^ cimschema.CIMFlagArray,
-				Array:    p.CIMType&cimschema.CIMFlagArray != 0,
-				Key:      p.Key,
-				Values:   p.Values,
-				ValueMap: p.ValueMap,
+				Name:      p.Name,
+				CIMType:   p.CIMType &^ cimschema.CIMFlagArray,
+				Array:     p.CIMType&cimschema.CIMFlagArray != 0,
+				Key:       p.Key,
+				Values:    p.Values,
+				ValueMap:  p.ValueMap,
+				BitValues: p.BitValues,
+				BitMap:    p.BitMap,
 			})
 		}
 		methods, err := svc.ClassMethods(className)
@@ -151,14 +153,20 @@ func run(namespace, classFilter, osBuild, captured, outDir string) error {
 }
 
 // captureParams converts runtime parameter schemas (declaration-ordered)
-// into snapshot params.
+// into snapshot params. Key is meaningless on parameters and dropped; the
+// enumeration/bitmask qualifiers carry through to type the generated method
+// surfaces.
 func captureParams(params []wmi.PropertyInfo) []cimschema.Param {
 	out := make([]cimschema.Param, 0, len(params))
 	for _, p := range params {
 		out = append(out, cimschema.Param{
-			Name:    p.Name,
-			CIMType: p.CIMType &^ cimschema.CIMFlagArray,
-			Array:   p.CIMType&cimschema.CIMFlagArray != 0,
+			Name:      p.Name,
+			CIMType:   p.CIMType &^ cimschema.CIMFlagArray,
+			Array:     p.CIMType&cimschema.CIMFlagArray != 0,
+			Values:    p.Values,
+			ValueMap:  p.ValueMap,
+			BitValues: p.BitValues,
+			BitMap:    p.BitMap,
 		})
 	}
 	return out

@@ -1,7 +1,8 @@
 // Command generate turns committed CIM schema snapshots (metadata/cim/*.json)
 // into typed Go bindings under bindings/cim/<namespace>: one struct per class
-// plus a typed query helper. Self-cleaning and byte-deterministic — running
-// it twice produces no diff. Every run validates the snapshots first.
+// plus typed query helpers, row decoders, enumeration types, and method
+// wrappers. Self-cleaning and byte-deterministic — running it twice produces
+// no diff. Every run validates the snapshots first.
 //
 //	go run ./cmd/generate                       # regenerate bindings/cim from metadata/cim
 //	go run ./cmd/generate validate [dir]        # validate snapshots without generating
@@ -201,15 +202,205 @@ func isVersionLeaf(leaf string) bool {
 	return true
 }
 
-// renderPackage renders one namespace into its per-construct files —
-// <pkg>_structs.go (one struct per class), <pkg>_queries.go (Query<Class>
-// and Get<Class> helpers), <pkg>_methods.go (method wrappers + result
-// structs), and doc.go — keyed by file name. Empty files are not emitted.
-func renderPackage(pkg string, snapshot *cimschema.Snapshot) (map[string][]byte, error) {
-	var structs, queries, methods, constants strings.Builder
+// enumSpec is one enumeration planned from Values/ValueMap (or bitmask
+// planned from BitValues/BitMap) qualifiers: a named Go type when its name
+// was free, or a flat const block (the fallback) when the name was already
+// claimed.
+type enumSpec struct {
+	// typeName is the named Go type; "" renders flat fallback constants.
+	typeName string
+	// elemType is the underlying scalar Go type.
+	elemType string
+	isString bool
+	// bitmask marks BitValues/BitMap-derived flag sets (combined with |).
+	bitmask bool
+	// owner is the doc anchor, e.g. "Msvm_ComputerSystem.EnabledState".
+	owner   string
+	entries []enumEntry
+}
 
-	// Pass 1: claim every class-level symbol first, so a method wrapper can
-	// never steal a later class's type or query-helper name.
+// enumEntry is one enumeration constant.
+type enumEntry struct {
+	// name is the constant identifier, literal its rendered Go value, and
+	// display the schema's Values display name.
+	name, literal, display string
+}
+
+// planEnum builds the enumeration for one Values/ValueMap qualifier pair,
+// claiming the constant names and — when free — the type name. Returns nil
+// when nothing is expressible (no nameable entries, or a non-scalar shape).
+// wantType false skips the named type (array properties keep flat constants).
+func planEnum(claimed map[string]bool, typeName, prefix, owner string, cimType int32, wantType bool, values, valueMap []string) *enumSpec {
+	elemType := cimschema.GoTypeFor(cimType, false)
+	isString := elemType == "string"
+	isInteger := strings.HasPrefix(elemType, "int") || strings.HasPrefix(elemType, "uint")
+	if !isString && !isInteger {
+		return nil // enumeration qualifiers on other shapes are not expressible
+	}
+	if len(values) == 0 && isString {
+		// ValueMap-only string enumeration (common in the Win32 schema, e.g.
+		// Win32_Service.StartMode): the stored strings are their own display
+		// names. Integer ValueMap-only enumerations stay unemitted — bare
+		// numbers make no constant names.
+		values = valueMap
+	}
+
+	var entries []enumEntry
+	for i, display := range values {
+		name := prefix + constName(display)
+		if name == prefix || claimed[name] {
+			continue // unnameable display value or a collision; first wins
+		}
+		stored := ""
+		if i < len(valueMap) {
+			stored = valueMap[i]
+		}
+		var literal string
+		if isString {
+			if stored == "" {
+				stored = display
+			}
+			literal = fmt.Sprintf("%q", stored)
+		} else {
+			if stored == "" && len(valueMap) == 0 {
+				stored = strconv.Itoa(i) // no ValueMap → consecutive indices
+			}
+			var ok bool
+			literal, ok = intLiteral(stored, elemType)
+			if !ok {
+				continue // ranges, free-form, or out-of-range entries
+			}
+		}
+		claimed[name] = true
+		entries = append(entries, enumEntry{name, literal, display})
+	}
+	if len(entries) == 0 {
+		return nil
+	}
+
+	spec := &enumSpec{elemType: elemType, isString: isString, owner: owner, entries: entries}
+	if wantType && !claimed[typeName] {
+		claimed[typeName] = true
+		spec.typeName = typeName
+	}
+	return spec
+}
+
+// planBitmask builds the flag set for one BitValues/BitMap qualifier pair —
+// the bitmask analogue of planEnum. Constants are 1 << position, positions
+// from BitMap (consecutive without one). Only unsigned integer scalars are
+// expressible.
+func planBitmask(claimed map[string]bool, typeName, prefix, owner string, cimType int32, wantType bool, bitValues, bitMap []string) *enumSpec {
+	elemType := cimschema.GoTypeFor(cimType, false)
+	if !strings.HasPrefix(elemType, "uint") {
+		return nil
+	}
+	bits := map[string]int{"uint8": 8, "uint16": 16, "uint32": 32, "uint64": 64}[elemType]
+
+	var entries []enumEntry
+	for i, display := range bitValues {
+		name := prefix + constName(display)
+		if name == prefix || claimed[name] {
+			continue // unnameable display value or a collision; first wins
+		}
+		position := uint64(i)
+		if i < len(bitMap) {
+			p, err := strconv.ParseUint(bitMap[i], 0, 64)
+			if err != nil {
+				continue // free-form entry
+			}
+			position = p
+		}
+		if position >= uint64(bits) {
+			continue // out of the type's width
+		}
+		claimed[name] = true
+		entries = append(entries, enumEntry{name, fmt.Sprintf("1 << %d", position), display})
+	}
+	if len(entries) == 0 {
+		return nil
+	}
+
+	spec := &enumSpec{elemType: elemType, bitmask: true, owner: owner, entries: entries}
+	if wantType && !claimed[typeName] {
+		claimed[typeName] = true
+		spec.typeName = typeName
+	}
+	return spec
+}
+
+// renderEnum emits one planned enumeration: a named type with typed
+// constants (and, for integer enums, a String method) into the enums
+// builder, or — when the type name was claimed — flat constants into the
+// constants builder.
+func renderEnum(enums, constants *strings.Builder, spec *enumSpec) {
+	if spec.typeName == "" {
+		fmt.Fprintf(constants, "// %s values.\n", spec.owner)
+		constants.WriteString("const (\n")
+		for _, e := range spec.entries {
+			if spec.isString {
+				fmt.Fprintf(constants, "\t%s = %s\n", e.name, e.literal)
+			} else {
+				fmt.Fprintf(constants, "\t%s %s = %s\n", e.name, spec.elemType, e.literal)
+			}
+		}
+		constants.WriteString(")\n\n")
+		return
+	}
+
+	if spec.bitmask {
+		fmt.Fprintf(enums, "// %s is the %s bitmask — values may be\n", spec.typeName, spec.owner)
+		enums.WriteString("// combined with |. Unknown bits decode and compare as the underlying scalar.\n")
+	} else {
+		fmt.Fprintf(enums, "// %s is the %s enumeration. It is open: values\n", spec.typeName, spec.owner)
+		enums.WriteString("// outside the enumeration decode and compare as their underlying scalar.\n")
+	}
+	fmt.Fprintf(enums, "type %s %s\n\n", spec.typeName, spec.elemType)
+
+	fmt.Fprintf(enums, "// %s values.\n", spec.owner)
+	enums.WriteString("const (\n")
+	for _, e := range spec.entries {
+		fmt.Fprintf(enums, "\t%s %s = %s\n", e.name, spec.typeName, e.literal)
+	}
+	enums.WriteString(")\n\n")
+
+	if spec.isString || spec.bitmask {
+		return // a string value is its own display; flag sets have no single name
+	}
+	fmt.Fprintf(enums, "// String returns the schema display name, or %q for\n", spec.typeName+"(n)")
+	enums.WriteString("// values outside the enumeration.\n")
+	fmt.Fprintf(enums, "func (v %s) String() string {\n", spec.typeName)
+	enums.WriteString("\tswitch v {\n")
+	seen := map[string]bool{}
+	for _, e := range spec.entries {
+		if seen[e.literal] {
+			continue // duplicate stored value; first display name wins
+		}
+		seen[e.literal] = true
+		fmt.Fprintf(enums, "\tcase %s:\n\t\treturn %q\n", e.literal, e.display)
+	}
+	enums.WriteString("\t}\n")
+	fmt.Fprintf(enums, "\treturn fmt.Sprintf(\"%s(%%d)\", %s(v))\n", spec.typeName, spec.elemType)
+	enums.WriteString("}\n\n")
+}
+
+// renderPackage renders one namespace into its per-construct files, keyed by
+// file name — the family's <pkg>_<construct>.go layout:
+//
+//	<pkg>_structs.go    one struct per class (WMIPath first)
+//	<pkg>_enums.go      named enumeration types + constants + String()
+//	<pkg>_constants.go  flat fallback constants (claimed type names, arrays)
+//	<pkg>_rows.go       <Class>FromRow decoders
+//	<pkg>_queries.go    Query<Class>, QueryOne<Class>, Get<Class>
+//	<pkg>_methods.go    method wrappers + result structs (+ Wait/Err)
+//	doc.go
+//
+// Empty files are not emitted.
+func renderPackage(pkg string, snapshot *cimschema.Snapshot) (map[string][]byte, error) {
+	var structs, enums, constants, rows, queries, methods strings.Builder
+
+	// Pass 1: claim every class-level symbol first, so a method wrapper or
+	// enum type can never steal a later class's type or helper name.
 	claimed := map[string]bool{}
 	include := map[string]bool{}
 	for _, class := range snapshot.Classes {
@@ -219,7 +410,35 @@ func renderPackage(pkg string, snapshot *cimschema.Snapshot) (map[string][]byte,
 		}
 		claimed[goName] = true
 		claimed["Query"+goName] = true
+		claimed["QueryOne"+goName] = true
+		claimed[goName+"FromRow"] = true
 		include[class.Name] = true
+	}
+
+	// Pass 1b: claim every method wrapper and result name before any enum
+	// planning — a parameter enum type (<Class><Method><Param>) could
+	// otherwise steal a sibling method's wrapper name (Win32_Service.Change's
+	// StartMode parameter vs the ChangeStartMode method).
+	ownedMethod := map[string]bool{}
+	for _, class := range snapshot.Classes {
+		if !include[class.Name] {
+			continue
+		}
+		goName := exportName(class.Name)
+		for _, m := range class.Methods {
+			methodName := exportName(m.Name)
+			if methodName == "" {
+				continue
+			}
+			funcName := goName + methodName
+			resultName := funcName + "Result"
+			if claimed[funcName] || claimed[resultName] {
+				continue // symbol collision; the first claimant wins
+			}
+			claimed[funcName] = true
+			claimed[resultName] = true
+			ownedMethod[class.Name+"\x00"+m.Name] = true
+		}
 	}
 
 	for _, class := range snapshot.Classes {
@@ -227,63 +446,101 @@ func renderPackage(pkg string, snapshot *cimschema.Snapshot) (map[string][]byte,
 			continue
 		}
 		goName := exportName(class.Name)
-		b := &structs
+
+		// Enumerations first: struct fields and decoders reference the
+		// planned type names. Array properties keep flat constants (their
+		// fields stay bare slices).
+		plans := map[string]*enumSpec{}
+		for _, p := range class.Properties {
+			field := exportName(p.Name)
+			if field == "" {
+				continue
+			}
+			owner := class.Name + "." + p.Name
+			var plan *enumSpec
+			switch {
+			case len(p.Values) > 0 || len(p.ValueMap) > 0:
+				plan = planEnum(claimed, goName+field, goName+field, owner, p.CIMType, !p.Array, p.Values, p.ValueMap)
+			case len(p.BitValues) > 0 || len(p.BitMap) > 0:
+				plan = planBitmask(claimed, goName+field, goName+field, owner, p.CIMType, !p.Array, p.BitValues, p.BitMap)
+			}
+			if plan == nil {
+				continue
+			}
+			plans[p.Name] = plan
+			renderEnum(&enums, &constants, plan)
+		}
 
 		// Deduplicate fields by exported Go name (CIM property names can
-		// collapse to the same identifier); first occurrence wins.
-		type field struct {
-			name, goType, cim string
-		}
-		var fields []field
-		seenField := map[string]bool{}
+		// collapse to the same identifier); first occurrence wins. WMIPath is
+		// reserved for the __PATH system property.
+		var fields []classField
+		seenField := map[string]bool{"WMIPath": true}
 		for _, p := range class.Properties {
 			fn := exportName(p.Name)
 			if fn == "" || fn == goName || seenField[fn] {
 				continue
 			}
 			seenField[fn] = true
-			fields = append(fields, field{fn, cimschema.GoType(p), p.Name})
+			f := classField{name: fn, goType: cimschema.GoType(p), cim: p.Name}
+			if plan := plans[p.Name]; plan != nil && plan.typeName != "" && !p.Array {
+				f.goType, f.enumType, f.elemType = plan.typeName, plan.typeName, plan.elemType
+			}
+			fields = append(fields, f)
 		}
 
+		b := &structs
 		fmt.Fprintf(b, "// %s is the %s CIM class.\n", goName, class.Name)
 		fmt.Fprintf(b, "type %s struct {\n", goName)
+		b.WriteString("\t// WMIPath is the instance's __PATH — pass it to the method\n")
+		b.WriteString("\t// wrappers and instance APIs. Empty when the row lacks system\n")
+		b.WriteString("\t// properties.\n")
+		b.WriteString("\tWMIPath string `cim:\"__PATH\"`\n")
 		for _, f := range fields {
 			fmt.Fprintf(b, "\t%s %s `cim:%q`\n", f.name, f.goType, f.cim)
 		}
 		b.WriteString("}\n\n")
 
-		// Typed query helper: run WQL and unmarshal rows into []T.
+		r := &rows
+		fmt.Fprintf(r, "// %sFromRow decodes one Row — from a query, GetInstance, Associators,\n", goName)
+		fmt.Fprintf(r, "// an event, or ParseObjectText — into a %s.\n", goName)
+		fmt.Fprintf(r, "func %sFromRow(row wmi.Row) %s {\n", goName, goName)
+		fmt.Fprintf(r, "\tvar out %s\n", goName)
+		r.WriteString("\tout.WMIPath = wmi.AsString(row[\"__PATH\"])\n")
+		for _, f := range fields {
+			// WMI returns values in a different width/shape than the
+			// CIM-declared type; coerce rather than assert.
+			writeDecode(r, "\t", "out."+f.name, fmt.Sprintf("row[%q]", f.cim), f.goType, f.enumType, f.elemType)
+		}
+		r.WriteString("\treturn out\n}\n\n")
+
 		q := &queries
 		fmt.Fprintf(q, "// Query%s runs the WQL query against the class and decodes each\n", goName)
-		fmt.Fprintf(q, "// instance into a %s. Pass the WHERE clause (or \"\" for all).\n", goName)
+		fmt.Fprintf(q, "// instance into a %s. Pass the WHERE clause (or \"\" for all);\n", goName)
+		q.WriteString("// build safe clauses with wmi.Where.\n")
 		fmt.Fprintf(q, "func Query%s(svc *wmi.Service, where string) ([]%s, error) {\n", goName, goName)
 		fmt.Fprintf(q, "\tq := \"SELECT * FROM %s\"\n", class.Name)
 		q.WriteString("\tif where != \"\" {\n\t\tq += \" WHERE \" + where\n\t}\n")
 		q.WriteString("\trows, err := svc.Query(q)\n\tif err != nil {\n\t\treturn nil, err\n\t}\n")
 		fmt.Fprintf(q, "\tout := make([]%s, len(rows))\n", goName)
-		if len(fields) > 0 {
-			q.WriteString("\tfor i, row := range rows {\n")
-			for _, f := range fields {
-				// WMI returns values in a different width/shape than the
-				// CIM-declared type; coerce rather than assert.
-				if coercer, ok := scalarCoercers[f.goType]; ok {
-					fmt.Fprintf(q, "\t\tout[i].%s = wmi.%s(row[%q])\n", f.name, coercer, f.cim)
-				} else if coercer, ok := sliceCoercers[f.goType]; ok {
-					fmt.Fprintf(q, "\t\tout[i].%s = wmi.%s(row[%q])\n", f.name, coercer, f.cim)
-				} else {
-					// `any` and []any: assert, leave zero on mismatch.
-					fmt.Fprintf(q, "\t\tif v, ok := row[%q].(%s); ok {\n\t\t\tout[i].%s = v\n\t\t}\n",
-						f.cim, f.goType, f.name)
-				}
-			}
-			q.WriteString("\t}\n")
-		}
-		q.WriteString("\treturn out, nil\n}\n\n")
+		q.WriteString("\tfor i, row := range rows {\n")
+		fmt.Fprintf(q, "\t\tout[i] = %sFromRow(row)\n", goName)
+		q.WriteString("\t}\n\treturn out, nil\n}\n\n")
 
-		renderGetByKey(q, claimed, goName, class)
-		renderConstants(&constants, claimed, goName, class)
+		fmt.Fprintf(q, "// QueryOne%s returns the single %s matching the WHERE\n", goName, class.Name)
+		q.WriteString("// clause (\"\" when one instance exists), or wmi.ErrNotFound when none match.\n")
+		fmt.Fprintf(q, "func QueryOne%s(svc *wmi.Service, where string) (*%s, error) {\n", goName, goName)
+		fmt.Fprintf(q, "\tout, err := Query%s(svc, where)\n", goName)
+		q.WriteString("\tif err != nil {\n\t\treturn nil, err\n\t}\n")
+		q.WriteString("\tif len(out) == 0 {\n\t\treturn nil, wmi.ErrNotFound\n\t}\n")
+		q.WriteString("\treturn &out[0], nil\n}\n\n")
+
+		renderGetByKey(q, claimed, goName, class, plans)
 		for _, method := range class.Methods {
-			renderMethod(&methods, claimed, goName, class.Name, method)
+			if !ownedMethod[class.Name+"\x00"+method.Name] {
+				continue // wrapper symbols were claimed elsewhere; first wins
+			}
+			renderMethod(&methods, &enums, claimed, goName, class.Name, method)
 		}
 	}
 
@@ -296,9 +553,11 @@ func renderPackage(pkg string, snapshot *cimschema.Snapshot) (map[string][]byte,
 	files["doc.go"] = docSource
 	for name, body := range map[string]string{
 		pkg + "_structs.go":   structs.String(),
+		pkg + "_enums.go":     enums.String(),
+		pkg + "_constants.go": constants.String(),
+		pkg + "_rows.go":      rows.String(),
 		pkg + "_queries.go":   queries.String(),
 		pkg + "_methods.go":   methods.String(),
-		pkg + "_constants.go": constants.String(),
 	} {
 		if body == "" {
 			continue // empty files are not written
@@ -312,85 +571,72 @@ func renderPackage(pkg string, snapshot *cimschema.Snapshot) (map[string][]byte,
 	return files, nil
 }
 
+// classField is one resolved struct field: its exported name, Go type
+// (the enum type name when the property is a scalar enumeration), and the
+// CIM property it decodes from.
+type classField struct {
+	name, goType, cim string
+	// enumType/elemType are set for enum-typed fields: the named type and
+	// the underlying scalar it converts from.
+	enumType, elemType string
+}
+
+// writeDecode emits one dst = decode(src) assignment: coercer calls for
+// known scalar/slice types (wrapped in the enum conversion when typed),
+// direct assignment for any, a checked assertion otherwise.
+func writeDecode(b *strings.Builder, indent, dst, src, goType, enumType, elemType string) {
+	if enumType != "" {
+		fmt.Fprintf(b, "%s%s = %s(wmi.%s(%s))\n", indent, dst, enumType, scalarCoercers[elemType], src)
+		return
+	}
+	if coercer, ok := scalarCoercers[goType]; ok {
+		fmt.Fprintf(b, "%s%s = wmi.%s(%s)\n", indent, dst, coercer, src)
+		return
+	}
+	if coercer, ok := sliceCoercers[goType]; ok {
+		fmt.Fprintf(b, "%s%s = wmi.%s(%s)\n", indent, dst, coercer, src)
+		return
+	}
+	if goType == "any" {
+		fmt.Fprintf(b, "%s%s = %s\n", indent, dst, src)
+		return
+	}
+	// []any and future shapes: assert, leave zero on mismatch.
+	fmt.Fprintf(b, "%sif v, ok := %s.(%s); ok {\n%s\t%s = v\n%s}\n", indent, src, goType, indent, dst, indent)
+}
+
 // assembleFile wraps a rendered body with the generated header, build tag,
-// package clause, and (when the body references it) the runtime import.
+// package clause, and the imports the body references (a fixed candidate
+// list keeps detection deterministic).
 func assembleFile(pkg, doc, body string) ([]byte, error) {
 	var b strings.Builder
 	b.WriteString(header)
 	b.WriteString("\n//go:build windows\n\n")
 	b.WriteString(doc)
 	fmt.Fprintf(&b, "package %s\n\n", pkg)
-	if strings.Contains(body, "wmi.") {
-		b.WriteString("import wmi \"github.com/deploymenttheory/go-bindings-wmi/runtime/wmi\"\n\n")
+
+	var std []string
+	for _, imp := range []string{"context", "fmt"} {
+		if strings.Contains(body, imp+".") {
+			std = append(std, imp)
+		}
 	}
-	b.WriteString(body)
-	return format.Source([]byte(b.String()))
-}
-
-// renderConstants emits named constants for a class's enumerated properties
-// (the Values/ValueMap qualifiers): one const block per property. Integer
-// properties get typed constants from the parsed ValueMap (entries that
-// don't parse — ranges like "128..65535" — are skipped; a missing ValueMap
-// implies consecutive indices); string properties get the stored string
-// (the ValueMap entry when present, else the display name).
-func renderConstants(b *strings.Builder, claimed map[string]bool, goName string, class cimschema.Class) {
-	for _, p := range class.Properties {
-		if len(p.Values) == 0 {
-			continue
+	needsWmi := strings.Contains(body, "wmi.")
+	switch {
+	case len(std) == 0 && needsWmi:
+		b.WriteString("import wmi \"github.com/deploymenttheory/go-bindings-wmi/runtime/wmi\"\n\n")
+	case len(std) > 0:
+		b.WriteString("import (\n")
+		for _, imp := range std {
+			fmt.Fprintf(&b, "\t%q\n", imp)
 		}
-		field := exportName(p.Name)
-		if field == "" {
-			continue
-		}
-		elemType := cimschema.GoTypeFor(p.CIMType, false)
-		isString := elemType == "string"
-		isInteger := strings.HasPrefix(elemType, "int") || strings.HasPrefix(elemType, "uint")
-		if !isString && !isInteger {
-			continue // enumeration qualifiers on other shapes are not expressible
-		}
-
-		type entry struct {
-			name, spec string
-		}
-		var entries []entry
-		for i, display := range p.Values {
-			name := goName + field + constName(display)
-			if name == goName+field || claimed[name] {
-				continue // unnameable display value or a collision; first wins
-			}
-			stored := ""
-			if i < len(p.ValueMap) {
-				stored = p.ValueMap[i]
-			}
-			var spec string
-			if isString {
-				if stored == "" {
-					stored = display
-				}
-				spec = fmt.Sprintf("= %q", stored)
-			} else {
-				if stored == "" && len(p.ValueMap) == 0 {
-					stored = strconv.Itoa(i) // no ValueMap → consecutive indices
-				}
-				literal, ok := intLiteral(stored, elemType)
-				if !ok {
-					continue // ranges, free-form, or out-of-range entries
-				}
-				spec = fmt.Sprintf("%s = %s", elemType, literal)
-			}
-			claimed[name] = true
-			entries = append(entries, entry{name, spec})
-		}
-		if len(entries) == 0 {
-			continue
-		}
-		fmt.Fprintf(b, "// %s.%s values.\n", class.Name, p.Name)
-		b.WriteString("const (\n")
-		for _, e := range entries {
-			fmt.Fprintf(b, "\t%s %s\n", e.name, e.spec)
+		if needsWmi {
+			b.WriteString("\n\twmi \"github.com/deploymenttheory/go-bindings-wmi/runtime/wmi\"\n")
 		}
 		b.WriteString(")\n\n")
 	}
+	b.WriteString(body)
+	return format.Source([]byte(b.String()))
 }
 
 // intLiteral renders a ValueMap entry as a Go integer literal for elemType.
@@ -451,8 +697,9 @@ func constName(display string) string {
 // renderGetByKey emits Get<Class>, a lookup by the class's [key] properties
 // returning the single matching instance or wmi.ErrNotFound. Classes
 // without keys (abstract/association-less classes) get no helper. Key
-// values render as WQL literals via wmi.WQLValue.
-func renderGetByKey(b *strings.Builder, claimed map[string]bool, goName string, class cimschema.Class) {
+// values render as WQL literals via wmi.WQLValue (enum-typed keys render as
+// their underlying scalar).
+func renderGetByKey(b *strings.Builder, claimed map[string]bool, goName string, class cimschema.Class, plans map[string]*enumSpec) {
 	type key struct {
 		ident, cim string
 		goType     string
@@ -468,7 +715,11 @@ func renderGetByKey(b *strings.Builder, claimed map[string]bool, goName string, 
 			return // an unnameable key makes the lookup unusable
 		}
 		usedIdents[ident] = true
-		keys = append(keys, key{ident, p.Name, cimschema.GoType(p)})
+		goType := cimschema.GoType(p)
+		if plan := plans[p.Name]; plan != nil && plan.typeName != "" && !p.Array {
+			goType = plan.typeName
+		}
+		keys = append(keys, key{ident, p.Name, goType})
 	}
 	if len(keys) == 0 {
 		return
@@ -494,34 +745,45 @@ func renderGetByKey(b *strings.Builder, claimed map[string]bool, goName string, 
 		fmt.Fprintf(b, "%q + wmi.WQLValue(%s)", k.cim+" = ", k.ident)
 	}
 	b.WriteString("\n")
-	fmt.Fprintf(b, "\tout, err := Query%s(svc, where)\n", goName)
-	b.WriteString("\tif err != nil {\n\t\treturn nil, err\n\t}\n")
-	b.WriteString("\tif len(out) == 0 {\n\t\treturn nil, wmi.ErrNotFound\n\t}\n")
-	b.WriteString("\treturn &out[0], nil\n}\n\n")
+	fmt.Fprintf(b, "\treturn QueryOne%s(svc, where)\n}\n\n", goName)
+}
+
+// methodParam is one resolved method parameter or out-field.
+type methodParam struct {
+	ident, goType, cim string
+	// enumType/elemType are set for enum-typed params.
+	enumType, elemType string
+	// pointer marks scalar in-parameters, passed as *T (nil = omitted).
+	pointer bool
 }
 
 // renderMethod emits a result struct and a typed wrapper for one CIM method.
 // Static methods target the class; instance methods take the instance's
-// __PATH. Zero-valued in-parameters are omitted from the call so the
-// provider applies its defaults (pass values via wmi.Service.ExecMethod's
-// map API when explicit zeros are needed).
-func renderMethod(b *strings.Builder, claimed map[string]bool, goName, cimClass string, m cimschema.Method) {
-	methodName := exportName(m.Name)
-	if methodName == "" {
-		return
-	}
-	funcName := goName + methodName
+// __PATH. Scalar in-parameters are pointers: nil is omitted from the call so
+// the provider applies its default, a non-nil value is always sent —
+// including zeros (build them inline with wmi.Ptr). Methods returning the
+// CIM async (ReturnValue, Job) pair get a Wait method on their result;
+// other uint32-ReturnValue methods get Err.
+func renderMethod(b, enums *strings.Builder, claimed map[string]bool, goName, cimClass string, m cimschema.Method) {
+	// Wrapper symbols were claimed in pass 1b; the caller filters to owned
+	// methods.
+	funcName := goName + exportName(m.Name)
 	resultName := funcName + "Result"
-	if claimed[funcName] || claimed[resultName] {
-		return // symbol collision; the first claimant wins
-	}
-	claimed[funcName] = true
-	claimed[resultName] = true
+	what := cimClass + "." + m.Name
 
-	type param struct {
-		ident, goType, cim string
+	// Async contract detection on the raw out-params: a CIM_ConcreteJob REF
+	// plus the standard uint32 ReturnValue.
+	var hasJobRef, hasReturnValue bool
+	for _, p := range m.Out {
+		switch {
+		case p.Name == "Job" && p.CIMType == cimschema.CIMReference && !p.Array:
+			hasJobRef = true
+		case p.Name == "ReturnValue" && p.CIMType == cimschema.CIMUint32 && !p.Array:
+			hasReturnValue = true
+		}
 	}
-	var outs []param
+
+	var outs []methodParam
 	seenOut := map[string]bool{}
 	for _, p := range m.Out {
 		field := exportName(p.Name)
@@ -529,10 +791,15 @@ func renderMethod(b *strings.Builder, claimed map[string]bool, goName, cimClass 
 			continue
 		}
 		seenOut[field] = true
-		outs = append(outs, param{field, cimschema.ParamGoType(p), p.Name})
+		out := methodParam{ident: field, goType: cimschema.ParamGoType(p), cim: p.Name}
+		if plan := planParamEnum(claimed, funcName, what, p); plan != nil {
+			renderEnum(enums, nil, plan)
+			out.goType, out.enumType, out.elemType = plan.typeName, plan.typeName, plan.elemType
+		}
+		outs = append(outs, out)
 	}
 
-	var ins []param
+	var ins []methodParam
 	usedIdents := map[string]bool{"svc": true, "objectPath": true, "in": true, "row": true, "err": true, "out": true, "wmi": true}
 	for _, p := range m.In {
 		ident := paramIdent(p.Name, usedIdents)
@@ -540,27 +807,57 @@ func renderMethod(b *strings.Builder, claimed map[string]bool, goName, cimClass 
 			continue
 		}
 		usedIdents[ident] = true
-		ins = append(ins, param{ident, cimschema.ParamGoType(p), p.Name})
+		in := methodParam{ident: ident, goType: cimschema.ParamGoType(p), cim: p.Name}
+		in.pointer = isScalarType(in.goType)
+		if plan := planParamEnum(claimed, funcName, what, p); plan != nil {
+			renderEnum(enums, nil, plan)
+			in.goType, in.enumType, in.elemType = plan.typeName, plan.typeName, plan.elemType
+		}
+		ins = append(ins, in)
 	}
 
-	fmt.Fprintf(b, "// %s holds the out-parameters of %s.%s.\n", resultName, cimClass, m.Name)
+	fmt.Fprintf(b, "// %s holds the out-parameters of %s.\n", resultName, what)
 	fmt.Fprintf(b, "type %s struct {\n", resultName)
 	for _, f := range outs {
 		fmt.Fprintf(b, "\t%s %s\n", f.ident, f.goType)
 	}
 	b.WriteString("}\n\n")
 
+	switch {
+	case hasJobRef && hasReturnValue:
+		fmt.Fprintf(b, "// Wait resolves the CIM async contract of this result: ReturnValue 0 is\n")
+		b.WriteString("// done, 4096 polls the started job to a terminal state, and anything\n")
+		b.WriteString("// else — or a failed job — is a *wmi.JobError.\n")
+		fmt.Fprintf(b, "func (r *%s) Wait(ctx context.Context, svc *wmi.Service) error {\n", resultName)
+		fmt.Fprintf(b, "\treturn svc.WaitJob(ctx, %q, uint32(r.ReturnValue), r.Job)\n", what)
+		b.WriteString("}\n\n")
+	case hasReturnValue:
+		fmt.Fprintf(b, "// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying\n")
+		b.WriteString("// the code.\n")
+		fmt.Fprintf(b, "func (r *%s) Err() error {\n", resultName)
+		b.WriteString("\tif r.ReturnValue == 0 {\n\t\treturn nil\n\t}\n")
+		fmt.Fprintf(b, "\treturn &wmi.JobError{What: %q, ReturnValue: uint32(r.ReturnValue)}\n", what)
+		b.WriteString("}\n\n")
+	}
+
 	if m.Static {
-		fmt.Fprintf(b, "// %s invokes the static %s.%s method. Zero-valued\n", funcName, cimClass, m.Name)
-		b.WriteString("// in-parameters are omitted so the provider applies its defaults.\n")
+		fmt.Fprintf(b, "// %s invokes the static %s method. Nil in-parameters\n", funcName, what)
+		b.WriteString("// are omitted so the provider applies its defaults; non-nil values are\n")
+		b.WriteString("// always sent, including zeros (build them inline with wmi.Ptr).\n")
 		fmt.Fprintf(b, "func %s(svc *wmi.Service", funcName)
 	} else {
-		fmt.Fprintf(b, "// %s invokes %s.%s on the instance at objectPath\n", funcName, cimClass, m.Name)
-		b.WriteString("// (the __PATH property of a queried row). Zero-valued in-parameters are\n// omitted so the provider applies its defaults.\n")
+		fmt.Fprintf(b, "// %s invokes %s on the instance at objectPath\n", funcName, what)
+		b.WriteString("// (the WMIPath of a queried instance). Nil in-parameters are omitted so\n")
+		b.WriteString("// the provider applies its defaults; non-nil values are always sent,\n")
+		b.WriteString("// including zeros (build them inline with wmi.Ptr).\n")
 		fmt.Fprintf(b, "func %s(svc *wmi.Service, objectPath string", funcName)
 	}
 	for _, p := range ins {
-		fmt.Fprintf(b, ", %s %s", p.ident, p.goType)
+		if p.pointer {
+			fmt.Fprintf(b, ", %s *%s", p.ident, p.goType)
+		} else {
+			fmt.Fprintf(b, ", %s %s", p.ident, p.goType)
+		}
 	}
 	fmt.Fprintf(b, ") (*%s, error) {\n", resultName)
 
@@ -569,7 +866,15 @@ func renderMethod(b *strings.Builder, claimed map[string]bool, goName, cimClass 
 		inArg = "in"
 		b.WriteString("\tin := map[string]any{}\n")
 		for _, p := range ins {
-			fmt.Fprintf(b, "\tif %s {\n\t\tin[%q] = %s\n\t}\n", nonZeroExpr(p.ident, p.goType), p.cim, p.ident)
+			value := p.ident
+			if p.pointer {
+				value = "*" + p.ident
+				if p.enumType != "" {
+					// The runtime encodes underlying scalars, not named types.
+					value = fmt.Sprintf("%s(*%s)", p.elemType, p.ident)
+				}
+			}
+			fmt.Fprintf(b, "\tif %s != nil {\n\t\tin[%q] = %s\n\t}\n", p.ident, p.cim, value)
 		}
 	}
 	target := "objectPath"
@@ -580,33 +885,48 @@ func renderMethod(b *strings.Builder, claimed map[string]bool, goName, cimClass 
 	b.WriteString("\tif err != nil {\n\t\treturn nil, err\n\t}\n")
 	fmt.Fprintf(b, "\tout := &%s{}\n", resultName)
 	for _, f := range outs {
-		switch coercer, ok := scalarCoercers[f.goType]; {
-		case ok:
-			fmt.Fprintf(b, "\tout.%s = wmi.%s(row[%q])\n", f.ident, coercer, f.cim)
-		case sliceCoercers[f.goType] != "":
-			fmt.Fprintf(b, "\tout.%s = wmi.%s(row[%q])\n", f.ident, sliceCoercers[f.goType], f.cim)
-		case f.goType == "any":
-			fmt.Fprintf(b, "\tout.%s = row[%q]\n", f.ident, f.cim)
-		default:
-			// []any and future shapes: assert, leave zero on mismatch.
-			fmt.Fprintf(b, "\tif v, ok := row[%q].(%s); ok {\n\t\tout.%s = v\n\t}\n", f.cim, f.goType, f.ident)
-		}
+		writeDecode(b, "\t", "out."+f.ident, fmt.Sprintf("row[%q]", f.cim), f.goType, f.enumType, f.elemType)
 	}
 	b.WriteString("\treturn out, nil\n}\n\n")
 }
 
-// nonZeroExpr renders the zero-value guard for an in-parameter.
-func nonZeroExpr(ident, goType string) string {
-	switch {
-	case goType == "bool":
-		return ident
-	case goType == "string":
-		return ident + ` != ""`
-	case goType == "any" || goType == "wmi.Row" || strings.HasPrefix(goType, "[]"):
-		return ident + " != nil"
-	default:
-		return ident + " != 0"
+// planParamEnum plans the named enumeration or bitmask for one qualified
+// scalar method parameter (in or out). The type is always method-qualified
+// (<Class><Method><Param>) — never aliased to a same-named property's type,
+// so names stay stable when either side's values drift. Returns nil when
+// the parameter carries no expressible enumeration or the name is taken
+// (the parameter then stays untyped; no fallback constants).
+func planParamEnum(claimed map[string]bool, funcName, what string, p cimschema.Param) *enumSpec {
+	if p.Array {
+		return nil
 	}
+	field := exportName(p.Name)
+	if field == "" {
+		return nil
+	}
+	typeName := funcName + field
+	if claimed[typeName] {
+		return nil
+	}
+	owner := what + "(" + p.Name + ")"
+	var plan *enumSpec
+	switch {
+	case len(p.Values) > 0 || len(p.ValueMap) > 0:
+		plan = planEnum(claimed, typeName, typeName, owner, p.CIMType, true, p.Values, p.ValueMap)
+	case len(p.BitValues) > 0 || len(p.BitMap) > 0:
+		plan = planBitmask(claimed, typeName, typeName, owner, p.CIMType, true, p.BitValues, p.BitMap)
+	}
+	if plan == nil || plan.typeName == "" {
+		return nil
+	}
+	return plan
+}
+
+// isScalarType reports whether a Go parameter type is a plain scalar —
+// passed as a pointer so nil can mean "omitted" while zero values remain
+// sendable. Slices, embedded objects, and any already have a nil state.
+func isScalarType(goType string) bool {
+	return !strings.HasPrefix(goType, "[]") && goType != "wmi.Row" && goType != "any"
 }
 
 // paramIdent derives a Go parameter identifier from a CIM parameter name,

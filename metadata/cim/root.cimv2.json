@@ -2,7 +2,7 @@
   "namespace": "root\\cimv2",
   "provenance": {
     "osBuild": "26200",
-    "captured": "2026-07-15"
+    "captured": "2026-07-22"
   },
   "classes": [
     {
@@ -472,7 +472,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -777,7 +785,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -1089,7 +1105,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -2075,7 +2099,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -2369,7 +2401,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -2464,7 +2504,14 @@
         },
         {
           "name": "Type",
-          "cimType": 19
+          "cimType": 19,
+          "bitValues": [
+            "Write",
+            "Read",
+            "Redirected",
+            "Net_Attached",
+            "unknown"
+          ]
         }
       ]
     },
@@ -2902,7 +2949,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -3450,7 +3505,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -4548,7 +4611,14 @@
         },
         {
           "name": "Type",
-          "cimType": 19
+          "cimType": 19,
+          "bitValues": [
+            "Write",
+            "Read",
+            "Redirected",
+            "Net_Attached",
+            "unknown"
+          ]
         }
       ]
     },
@@ -5430,7 +5500,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -5712,7 +5790,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -6324,7 +6410,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -6535,7 +6629,39 @@
       "properties": [
         {
           "name": "AccessMask",
-          "cimType": 19
+          "cimType": 19,
+          "bitValues": [
+            "FILE_READ_DATA (file) or FILE_LIST_DIRECTORY (directory)",
+            "FILE_WRITE_DATA (file) or FILE_ADD_FILE (directory)",
+            "FILE_APPEND_DATA (file) or FILE_ADD_SUBDIRECTORY (directory)",
+            "FILE_READ_EA",
+            "FILE_WRITE_EA",
+            "FILE_EXECUTE (file) or FILE_TRAVERSE (directory)",
+            "FILE_DELETE_CHILD (directory)",
+            "FILE_READ_ATTRIBUTES",
+            "FILE_WRITE_ATTRIBUTES",
+            "DELETE",
+            "READ_CONTROL",
+            "WRITE_DAC",
+            "WRITE_OWNER",
+            "SYNCHRONIZE"
+          ],
+          "bitMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20"
+          ]
         },
         {
           "name": "Archive",
@@ -6705,7 +6831,13 @@
             },
             {
               "name": "Option",
-              "cimType": 19
+              "cimType": 19,
+              "bitMap": [
+                "0",
+                "1",
+                "2",
+                "3"
+              ]
             }
           ],
           "out": [
@@ -6724,7 +6856,13 @@
             },
             {
               "name": "Option",
-              "cimType": 19
+              "cimType": 19,
+              "bitMap": [
+                "0",
+                "1",
+                "2",
+                "3"
+              ]
             },
             {
               "name": "StartFileName",
@@ -6853,7 +6991,23 @@
           "in": [
             {
               "name": "Permissions",
-              "cimType": 19
+              "cimType": 19,
+              "bitMap": [
+                "0",
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "16",
+                "17",
+                "18",
+                "19",
+                "20"
+              ]
             }
           ],
           "out": [
@@ -7260,7 +7414,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -7371,7 +7533,15 @@
           "in": [
             {
               "name": "SelectedCounter",
-              "cimType": 18
+              "cimType": 18,
+              "values": [
+                "All",
+                "Indeterminate Error Counter",
+                "Critical Error Counter",
+                "Major Error Counter",
+                "Minor Error Counter",
+                "Warning Counter"
+              ]
             }
           ],
           "out": [
@@ -7388,7 +7558,39 @@
       "properties": [
         {
           "name": "AccessMask",
-          "cimType": 19
+          "cimType": 19,
+          "bitValues": [
+            "FILE_READ_DATA (file) or FILE_LIST_DIRECTORY (directory)",
+            "FILE_WRITE_DATA (file) or FILE_ADD_FILE (directory)",
+            "FILE_APPEND_DATA (file) or FILE_ADD_SUBDIRECTORY (directory)",
+            "FILE_READ_EA",
+            "FILE_WRITE_EA",
+            "FILE_EXECUTE (file) or FILE_TRAVERSE (directory)",
+            "FILE_DELETE_CHILD (directory)",
+            "FILE_READ_ATTRIBUTES",
+            "FILE_WRITE_ATTRIBUTES",
+            "DELETE",
+            "READ_CONTROL",
+            "WRITE_DAC",
+            "WRITE_OWNER",
+            "SYNCHRONIZE"
+          ],
+          "bitMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20"
+          ]
         },
         {
           "name": "Archive",
@@ -7550,7 +7752,13 @@
             },
             {
               "name": "Option",
-              "cimType": 19
+              "cimType": 19,
+              "bitMap": [
+                "0",
+                "1",
+                "2",
+                "3"
+              ]
             }
           ],
           "out": [
@@ -7569,7 +7777,13 @@
             },
             {
               "name": "Option",
-              "cimType": 19
+              "cimType": 19,
+              "bitMap": [
+                "0",
+                "1",
+                "2",
+                "3"
+              ]
             },
             {
               "name": "StartFileName",
@@ -7698,7 +7912,23 @@
           "in": [
             {
               "name": "Permissions",
-              "cimType": 19
+              "cimType": 19,
+              "bitMap": [
+                "0",
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "16",
+                "17",
+                "18",
+                "19",
+                "20"
+              ]
             }
           ],
           "out": [
@@ -7852,7 +8082,39 @@
       "properties": [
         {
           "name": "AccessMask",
-          "cimType": 19
+          "cimType": 19,
+          "bitValues": [
+            "FILE_READ_DATA (file) or FILE_LIST_DIRECTORY (directory)",
+            "FILE_WRITE_DATA (file) or FILE_ADD_FILE (directory)",
+            "FILE_APPEND_DATA (file) or FILE_ADD_SUBDIRECTORY (directory)",
+            "FILE_READ_EA",
+            "FILE_WRITE_EA",
+            "FILE_EXECUTE (file) or FILE_TRAVERSE (directory)",
+            "FILE_DELETE_CHILD (directory)",
+            "FILE_READ_ATTRIBUTES",
+            "FILE_WRITE_ATTRIBUTES",
+            "DELETE",
+            "READ_CONTROL",
+            "WRITE_DAC",
+            "WRITE_OWNER",
+            "SYNCHRONIZE"
+          ],
+          "bitMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20"
+          ]
         },
         {
           "name": "Archive",
@@ -8014,7 +8276,13 @@
             },
             {
               "name": "Option",
-              "cimType": 19
+              "cimType": 19,
+              "bitMap": [
+                "0",
+                "1",
+                "2",
+                "3"
+              ]
             }
           ],
           "out": [
@@ -8033,7 +8301,13 @@
             },
             {
               "name": "Option",
-              "cimType": 19
+              "cimType": 19,
+              "bitMap": [
+                "0",
+                "1",
+                "2",
+                "3"
+              ]
             },
             {
               "name": "StartFileName",
@@ -8162,7 +8436,23 @@
           "in": [
             {
               "name": "Permissions",
-              "cimType": 19
+              "cimType": 19,
+              "bitMap": [
+                "0",
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "16",
+                "17",
+                "18",
+                "19",
+                "20"
+              ]
             }
           ],
           "out": [
@@ -8839,7 +9129,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -9174,7 +9472,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -9487,7 +9793,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -9949,7 +10263,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -10231,7 +10553,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -11347,7 +11677,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -12103,7 +12441,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -12411,7 +12757,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -13061,7 +13415,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -13857,7 +14219,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -14291,7 +14661,23 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "values": [
+                "Full Power",
+                "Power Save - Low Power Mode",
+                "Power Save - Standby",
+                "Power Save - Other",
+                "Power Cycle",
+                "Power Off"
+              ],
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -14604,7 +14990,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -14720,7 +15114,39 @@
       "properties": [
         {
           "name": "AccessMask",
-          "cimType": 19
+          "cimType": 19,
+          "bitValues": [
+            "FILE_READ_DATA (file) or FILE_LIST_DIRECTORY (directory)",
+            "FILE_WRITE_DATA (file) or FILE_ADD_FILE (directory)",
+            "FILE_APPEND_DATA (file) or FILE_ADD_SUBDIRECTORY (directory)",
+            "FILE_READ_EA",
+            "FILE_WRITE_EA",
+            "FILE_EXECUTE (file) or FILE_TRAVERSE (directory)",
+            "FILE_DELETE_CHILD (directory)",
+            "FILE_READ_ATTRIBUTES",
+            "FILE_WRITE_ATTRIBUTES",
+            "DELETE",
+            "READ_CONTROL",
+            "WRITE_DAC",
+            "WRITE_OWNER",
+            "SYNCHRONIZE"
+          ],
+          "bitMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20"
+          ]
         },
         {
           "name": "Archive",
@@ -14882,7 +15308,19 @@
             },
             {
               "name": "Option",
-              "cimType": 19
+              "cimType": 19,
+              "bitValues": [
+                "Change_Owner_Security_Information",
+                "Change_Group_Security_Information",
+                "Change_Dacl_Security_Information",
+                "Change_Sacl_Security_Information"
+              ],
+              "bitMap": [
+                "0",
+                "1",
+                "2",
+                "3"
+              ]
             }
           ],
           "out": [
@@ -14901,7 +15339,19 @@
             },
             {
               "name": "Option",
-              "cimType": 19
+              "cimType": 19,
+              "bitValues": [
+                "Change_Owner_Security_Information",
+                "Change_Group_Security_Information",
+                "Change_Dacl_Security_Information",
+                "Change_Sacl_Security_Information"
+              ],
+              "bitMap": [
+                "0",
+                "1",
+                "2",
+                "3"
+              ]
             },
             {
               "name": "StartFileName",
@@ -15030,7 +15480,39 @@
           "in": [
             {
               "name": "Permissions",
-              "cimType": 19
+              "cimType": 19,
+              "bitValues": [
+                "FILE_READ_DATA (file) or FILE_LIST_DIRECTORY (directory)",
+                "FILE_WRITE_DATA (file) or FILE_ADD_FILE (directory)",
+                "FILE_APPEND_DATA (file) or FILE_ADD_SUBDIRECTORY (directory)",
+                "FILE_READ_EA",
+                "FILE_WRITE_EA",
+                "FILE_EXECUTE (file) or FILE_TRAVERSE (directory)",
+                "FILE_DELETE_CHILD (directory)",
+                "FILE_READ_ATTRIBUTES",
+                "FILE_WRITE_ATTRIBUTES",
+                "DELETE",
+                "READ_CONTROL",
+                "WRITE_DAC",
+                "WRITE_OWNER",
+                "SYNCHRONIZE"
+              ],
+              "bitMap": [
+                "0",
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "16",
+                "17",
+                "18",
+                "19",
+                "20"
+              ]
             }
           ],
           "out": [
@@ -15455,7 +15937,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -15917,7 +16407,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -16252,7 +16750,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -16679,7 +17185,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -17479,7 +17993,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -17958,7 +18480,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -18376,7 +18906,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -18718,7 +19256,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -19489,7 +20035,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -19881,7 +20435,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -20425,7 +20987,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -20958,7 +21528,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -21742,7 +22320,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -22919,7 +23505,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -23318,7 +23912,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -23676,7 +24278,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -24632,7 +25242,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -25376,7 +25994,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -25809,7 +26435,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -26572,7 +27206,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -27448,7 +28090,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -27772,7 +28422,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -28050,7 +28708,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -28472,7 +29138,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -28733,7 +29407,14 @@
         },
         {
           "name": "Type",
-          "cimType": 19
+          "cimType": 19,
+          "bitValues": [
+            "Write",
+            "Read",
+            "Redirected",
+            "Net_Attached",
+            "unknown"
+          ]
         }
       ]
     },
@@ -30218,7 +30899,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -30606,7 +31295,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -31275,7 +31972,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -31622,7 +32327,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -31964,7 +32677,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -32494,7 +33215,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -32875,7 +33604,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -33226,7 +33963,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -33612,7 +34357,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -33802,7 +34555,27 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "values": [
+                "Full Power",
+                "Power Save - Low Power Mode",
+                "Power Save - Standby",
+                "Power Save - Other",
+                "Power Cycle",
+                "Power Off",
+                "Hibernate",
+                "Soft Off"
+              ],
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8"
+              ]
             },
             {
               "name": "Time",
@@ -34084,7 +34857,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -35015,7 +35796,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -35517,7 +36306,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -35859,7 +36656,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -36172,7 +36977,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -36507,7 +37320,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -41478,8 +42299,8 @@
           "name": "IsKeyManagementServiceMachine",
           "cimType": 19,
           "values": [
-            "0",
-            "1"
+            "",
+            ""
           ]
         },
         {
@@ -41550,13 +42371,13 @@
           "name": "LicenseStatus",
           "cimType": 19,
           "values": [
-            "0",
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6"
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
           ]
         },
         {
@@ -41924,8 +42745,8 @@
           "name": "IsKeyManagementServiceMachine",
           "cimType": 19,
           "values": [
-            "0",
-            "1"
+            "",
+            ""
           ]
         },
         {
@@ -42004,10 +42825,10 @@
           "name": "OA2xBiosMarkerStatus",
           "cimType": 19,
           "values": [
-            "0",
-            "1",
-            "2",
-            "3"
+            "",
+            "",
+            "",
+            ""
           ]
         },
         {
@@ -43412,7 +44233,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -44463,15 +45292,52 @@
             },
             {
               "name": "ServiceType",
-              "cimType": 17
+              "cimType": 17,
+              "bitValues": [
+                "Kernel Driver",
+                "File System Driver",
+                "Adapter",
+                "Recognizer Driver",
+                "Own Process",
+                "Share Process"
+              ],
+              "bitMap": [
+                "0",
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "8"
+              ]
             },
             {
               "name": "ErrorControl",
-              "cimType": 17
+              "cimType": 17,
+              "values": [
+                "Ignore",
+                "Normal",
+                "Severe",
+                "Critical"
+              ]
             },
             {
               "name": "StartMode",
-              "cimType": 8
+              "cimType": 8,
+              "values": [
+                "Boot Start",
+                "System Start",
+                "Auto Start",
+                "Demand Start",
+                "Disabled"
+              ],
+              "valueMap": [
+                "Boot",
+                "System",
+                "Automatic",
+                "Manual",
+                "Disabled"
+              ]
             },
             {
               "name": "DesktopInteract",
@@ -44512,7 +45378,21 @@
           "in": [
             {
               "name": "StartMode",
-              "cimType": 8
+              "cimType": 8,
+              "values": [
+                "Boot Start",
+                "System Start",
+                "Auto Start",
+                "Demand Start",
+                "Disabled"
+              ],
+              "valueMap": [
+                "Boot",
+                "System",
+                "Automatic",
+                "Manual",
+                "Disabled"
+              ]
             }
           ],
           "out": [
@@ -44540,15 +45420,52 @@
             },
             {
               "name": "ServiceType",
-              "cimType": 17
+              "cimType": 17,
+              "bitValues": [
+                "Kernel Driver",
+                "File System Driver",
+                "Adapter",
+                "Recognizer Driver",
+                "Own Process",
+                "Share Process"
+              ],
+              "bitMap": [
+                "0",
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "8"
+              ]
             },
             {
               "name": "ErrorControl",
-              "cimType": 17
+              "cimType": 17,
+              "values": [
+                "Ignore",
+                "Normal",
+                "Severe",
+                "Critical"
+              ]
             },
             {
               "name": "StartMode",
-              "cimType": 8
+              "cimType": 8,
+              "values": [
+                "Boot Start",
+                "System Start",
+                "Auto Start",
+                "Demand Start",
+                "Disabled"
+              ],
+              "valueMap": [
+                "Boot",
+                "System",
+                "Automatic",
+                "Manual",
+                "Disabled"
+              ]
             },
             {
               "name": "DesktopInteract",
@@ -45020,7 +45937,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -45555,7 +46480,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -45776,7 +46709,39 @@
         },
         {
           "name": "FileSystemFlagsEx",
-          "cimType": 19
+          "cimType": 19,
+          "bitValues": [
+            "Case Sensitive Search",
+            "Case Preserved Names",
+            "Unicode On Disk",
+            "Persistent ACLs",
+            "File Compression",
+            "Volume Quotas",
+            "Supports Sparse Files",
+            "Supports Reparse Points",
+            "Supports Remote Storage",
+            "Supports Long Names",
+            "Volume Is Compressed",
+            "Supports Object IDs",
+            "Supports Encryption",
+            "Supports Named Streams"
+          ],
+          "bitMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18"
+          ]
         },
         {
           "name": "Id",
@@ -45977,7 +46942,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -46774,7 +47747,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -47381,7 +48362,39 @@
       "properties": [
         {
           "name": "AccessMask",
-          "cimType": 19
+          "cimType": 19,
+          "bitValues": [
+            "FILE_READ_DATA (file) or FILE_LIST_DIRECTORY (directory)",
+            "FILE_WRITE_DATA (file) or FILE_ADD_FILE (directory)",
+            "FILE_APPEND_DATA (file) or FILE_ADD_SUBDIRECTORY (directory)",
+            "FILE_READ_EA",
+            "FILE_WRITE_EA",
+            "FILE_EXECUTE (file) or FILE_TRAVERSE (directory)",
+            "FILE_DELETE_CHILD (directory)",
+            "FILE_READ_ATTRIBUTES",
+            "FILE_WRITE_ATTRIBUTES",
+            "DELETE",
+            "READ_CONTROL",
+            "WRITE_DAC",
+            "WRITE_OWNER",
+            "SYNCHRONIZE"
+          ],
+          "bitMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20"
+          ]
         },
         {
           "name": "Archive",
@@ -47559,7 +48572,13 @@
             },
             {
               "name": "Option",
-              "cimType": 19
+              "cimType": 19,
+              "bitMap": [
+                "0",
+                "1",
+                "2",
+                "3"
+              ]
             }
           ],
           "out": [
@@ -47578,7 +48597,13 @@
             },
             {
               "name": "Option",
-              "cimType": 19
+              "cimType": 19,
+              "bitMap": [
+                "0",
+                "1",
+                "2",
+                "3"
+              ]
             },
             {
               "name": "StartFileName",
@@ -47707,7 +48732,23 @@
           "in": [
             {
               "name": "Permissions",
-              "cimType": 19
+              "cimType": 19,
+              "bitMap": [
+                "0",
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "16",
+                "17",
+                "18",
+                "19",
+                "20"
+              ]
             }
           ],
           "out": [
@@ -47911,7 +48952,14 @@
         },
         {
           "name": "Type",
-          "cimType": 19
+          "cimType": 19,
+          "bitValues": [
+            "Write",
+            "Read",
+            "Redirected",
+            "Net_Attached",
+            "unknown"
+          ]
         }
       ]
     },
@@ -48564,7 +49612,29 @@
             },
             {
               "name": "FJoinOptions",
-              "cimType": 19
+              "cimType": 19,
+              "bitValues": [
+                "Join Domain",
+                "Acct Create",
+                "Acct Delete",
+                "Win9X Upgrade",
+                "Domain Join If Joined",
+                "Join Unsecure",
+                "Machine Password Passed",
+                "Deferred SPN Set",
+                "Install Invocation"
+              ],
+              "bitMap": [
+                "0",
+                "1",
+                "2",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "18"
+              ]
             }
           ],
           "out": [
@@ -48602,7 +49672,17 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8"
+              ]
             },
             {
               "name": "Time",
@@ -48629,7 +49709,13 @@
             },
             {
               "name": "FUnjoinOptions",
-              "cimType": 19
+              "cimType": 19,
+              "bitValues": [
+                "Acct Delete"
+              ],
+              "bitMap": [
+                "2"
+              ]
             }
           ],
           "out": [
@@ -49362,7 +50448,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -50397,7 +51491,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -50732,7 +51834,17 @@
         },
         {
           "name": "State",
-          "cimType": 19
+          "cimType": 19,
+          "bitValues": [
+            "Offline",
+            "Online",
+            "Active"
+          ],
+          "bitMap": [
+            "0",
+            "1",
+            "2"
+          ]
         },
         {
           "name": "Status",
@@ -50773,7 +51885,39 @@
       "properties": [
         {
           "name": "AccessMask",
-          "cimType": 19
+          "cimType": 19,
+          "bitValues": [
+            "FILE_READ_DATA (file) or FILE_LIST_DIRECTORY (directory)",
+            "FILE_WRITE_DATA (file) or FILE_ADD_FILE (directory)",
+            "FILE_APPEND_DATA (file) or FILE_ADD_SUBDIRECTORY (directory)",
+            "FILE_READ_EA",
+            "FILE_WRITE_EA",
+            "FILE_EXECUTE (file) or FILE_TRAVERSE (directory)",
+            "FILE_DELETE_CHILD (directory)",
+            "FILE_READ_ATTRIBUTES",
+            "FILE_WRITE_ATTRIBUTES",
+            "DELETE",
+            "READ_CONTROL",
+            "WRITE_DAC",
+            "WRITE_OWNER",
+            "SYNCHRONIZE"
+          ],
+          "bitMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20"
+          ]
         },
         {
           "name": "Archive",
@@ -50935,7 +52079,13 @@
             },
             {
               "name": "Option",
-              "cimType": 19
+              "cimType": 19,
+              "bitMap": [
+                "0",
+                "1",
+                "2",
+                "3"
+              ]
             }
           ],
           "out": [
@@ -50954,7 +52104,13 @@
             },
             {
               "name": "Option",
-              "cimType": 19
+              "cimType": 19,
+              "bitMap": [
+                "0",
+                "1",
+                "2",
+                "3"
+              ]
             },
             {
               "name": "StartFileName",
@@ -51083,7 +52239,23 @@
           "in": [
             {
               "name": "Permissions",
-              "cimType": 19
+              "cimType": 19,
+              "bitMap": [
+                "0",
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "16",
+                "17",
+                "18",
+                "19",
+                "20"
+              ]
             }
           ],
           "out": [
@@ -51751,7 +52923,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -52144,7 +53324,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -53155,7 +54343,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -54070,7 +55266,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -54463,7 +55667,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -55283,7 +56495,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -55905,7 +57125,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -56683,7 +57911,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -57795,7 +59031,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -58244,7 +59488,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -58708,7 +59960,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -59089,7 +60349,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -59427,7 +60695,39 @@
       "properties": [
         {
           "name": "AccessMask",
-          "cimType": 19
+          "cimType": 19,
+          "bitValues": [
+            "FILE_READ_DATA (file) or FILE_LIST_DIRECTORY (directory)",
+            "FILE_WRITE_DATA (file) or FILE_ADD_FILE (directory)",
+            "FILE_APPEND_DATA (file) or FILE_ADD_SUBDIRECTORY (directory)",
+            "FILE_READ_EA",
+            "FILE_WRITE_EA",
+            "FILE_EXECUTE (file) or FILE_TRAVERSE (directory)",
+            "FILE_DELETE_CHILD (directory)",
+            "FILE_READ_ATTRIBUTES",
+            "FILE_WRITE_ATTRIBUTES",
+            "DELETE",
+            "READ_CONTROL",
+            "WRITE_DAC",
+            "WRITE_OWNER",
+            "SYNCHRONIZE"
+          ],
+          "bitMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20"
+          ]
         },
         {
           "name": "Archive",
@@ -59647,7 +60947,13 @@
             },
             {
               "name": "Option",
-              "cimType": 19
+              "cimType": 19,
+              "bitMap": [
+                "0",
+                "1",
+                "2",
+                "3"
+              ]
             }
           ],
           "out": [
@@ -59666,7 +60972,13 @@
             },
             {
               "name": "Option",
-              "cimType": 19
+              "cimType": 19,
+              "bitMap": [
+                "0",
+                "1",
+                "2",
+                "3"
+              ]
             },
             {
               "name": "StartFileName",
@@ -59810,7 +61122,23 @@
           "in": [
             {
               "name": "Permissions",
-              "cimType": 19
+              "cimType": 19,
+              "bitMap": [
+                "0",
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "16",
+                "17",
+                "18",
+                "19",
+                "20"
+              ]
             }
           ],
           "out": [
@@ -60056,7 +61384,17 @@
       "properties": [
         {
           "name": "BasicUIRestrictions",
-          "cimType": 19
+          "cimType": 19,
+          "bitValues": [
+            "Desktop",
+            "Display Settings",
+            "Exit Windows",
+            "Global Atoms",
+            "Handles",
+            "Read Clipboard",
+            "System Parameters",
+            "Write Clipboard"
+          ]
         },
         {
           "name": "Caption",
@@ -60195,7 +61533,22 @@
         },
         {
           "name": "LimitFlags",
-          "cimType": 19
+          "cimType": 19,
+          "bitValues": [
+            "Limit Working Set",
+            "Limit Process Time",
+            "Limit Job Time",
+            "Active Process Limit",
+            "Limit Affinity",
+            "Limit Priority Class",
+            "Limit Preserve Job Time",
+            "Limit Scheduling Class",
+            "Limit Process Memory",
+            "Limit Job Memory",
+            "Limit Die On Unhandled Exception",
+            "Limit Breakaway OK",
+            "Silent Breakaway OK"
+          ]
         },
         {
           "name": "MaximumWorkingSetSize",
@@ -60763,7 +62116,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -61464,7 +62825,12 @@
           "in": [
             {
               "name": "IGMPLevel",
-              "cimType": 17
+              "cimType": 17,
+              "values": [
+                "No Multicast",
+                "IP Multicast",
+                "IP \u0026 IGMP multicast"
+              ]
             }
           ],
           "out": [
@@ -61516,7 +62882,21 @@
             {
               "name": "IPXFrameType",
               "cimType": 19,
-              "array": true
+              "array": true,
+              "values": [
+                "Ethernet II",
+                "Ethernet 802.3",
+                "Ethernet 802.2",
+                "Ethernet SNAP",
+                "AUTO"
+              ],
+              "valueMap": [
+                "0",
+                "1",
+                "2",
+                "3",
+                "255"
+              ]
             }
           ],
           "out": [
@@ -61723,7 +63103,12 @@
           "in": [
             {
               "name": "TcpipNetbiosOptions",
-              "cimType": 19
+              "cimType": 19,
+              "values": [
+                "EnableNetbiosViaDhcp",
+                "EnableNetbios",
+                "DisableNetbios"
+              ]
             }
           ],
           "out": [
@@ -61832,7 +63217,39 @@
       "properties": [
         {
           "name": "AccessMask",
-          "cimType": 19
+          "cimType": 19,
+          "bitValues": [
+            "FILE_READ_DATA (file) or FILE_LIST_DIRECTORY (directory)",
+            "FILE_WRITE_DATA (file) or FILE_ADD_FILE (directory)",
+            "FILE_APPEND_DATA (file) or FILE_ADD_SUBDIRECTORY (directory)",
+            "FILE_READ_EA",
+            "FILE_WRITE_EA",
+            "FILE_EXECUTE (file) or FILE_TRAVERSE (directory)",
+            "FILE_DELETE_CHILD (directory)",
+            "FILE_READ_ATTRIBUTES",
+            "FILE_WRITE_ATTRIBUTES",
+            "DELETE",
+            "READ_CONTROL",
+            "WRITE_DAC",
+            "WRITE_OWNER",
+            "SYNCHRONIZE"
+          ],
+          "bitMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20"
+          ]
         },
         {
           "name": "Caption",
@@ -61984,7 +63401,13 @@
         },
         {
           "name": "AuthorizationFlags",
-          "cimType": 19
+          "cimType": 19,
+          "bitValues": [
+            "Printer",
+            "Communication",
+            "Server",
+            "Accounts"
+          ]
         },
         {
           "name": "BadPasswordCount",
@@ -62012,7 +63435,51 @@
         },
         {
           "name": "Flags",
-          "cimType": 19
+          "cimType": 19,
+          "bitValues": [
+            "Script",
+            "Account Disabled",
+            "Home Dir Required",
+            "Lockout",
+            "Password Not Required",
+            "Paswword Can't Change",
+            "Encrypted Test Password Allowed",
+            "Temp Duplicate Account",
+            "Normal Account",
+            "InterDomain Trust Account",
+            "WorkStation Trust Account",
+            "Server Trust Account",
+            "Don't Expire Password",
+            "MNS Logon Account",
+            "Smartcard Required",
+            "Trusted For Delegation",
+            "Not Delegated",
+            "Use DES Key Only",
+            "Don't Require Preauthorization",
+            "Password Expired"
+          ],
+          "bitMap": [
+            "0",
+            "1",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "11",
+            "12",
+            "13",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23"
+          ]
         },
         {
           "name": "FullName",
@@ -63878,7 +65345,17 @@
         },
         {
           "name": "OSProductSuite",
-          "cimType": 19
+          "cimType": 19,
+          "bitValues": [
+            "Small Business",
+            "Enterprise",
+            "BackOffice",
+            "Communication Server",
+            "Terminal Server",
+            "Small Business(Restricted)",
+            "Embedded NT",
+            "Data Center"
+          ]
         },
         {
           "name": "OSType",
@@ -64106,7 +65583,33 @@
         },
         {
           "name": "SuiteMask",
-          "cimType": 19
+          "cimType": 19,
+          "bitValues": [
+            "Windows Server 2003, Small Business Edition",
+            "Windows Server 2003, Enterprise Edition",
+            "Windows Server 2003, Backoffice Edition",
+            "Windows Server 2003, Communications Edition",
+            "Microsoft Terminal Services",
+            "Windows Server 2003, Small Business Edition Restricted",
+            "Windows XP Embedded",
+            "Windows Server 2003, Datacenter Edition",
+            "Single User",
+            "Windows XP Home Edition",
+            "Windows Server 2003, Web Edition"
+          ],
+          "bitMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10"
+          ]
         },
         {
           "name": "SystemDevice",
@@ -64180,7 +65683,14 @@
           "in": [
             {
               "name": "Flags",
-              "cimType": 3
+              "cimType": 3,
+              "bitValues": [
+                "Shutdown",
+                "Reboot",
+                "Force",
+                "Power Off",
+                "Force If Hung"
+              ]
             },
             {
               "name": "Reserved",
@@ -64211,7 +65721,14 @@
             },
             {
               "name": "Flags",
-              "cimType": 3
+              "cimType": 3,
+              "bitValues": [
+                "Shutdown",
+                "Reboot",
+                "Force",
+                "Power Off",
+                "Force If Hung"
+              ]
             }
           ],
           "out": [
@@ -64700,7 +66217,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -65318,7 +66843,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -65379,7 +66912,39 @@
       "properties": [
         {
           "name": "AccessMask",
-          "cimType": 19
+          "cimType": 19,
+          "bitValues": [
+            "FILE_READ_DATA (file) or FILE_LIST_DIRECTORY (directory)",
+            "FILE_WRITE_DATA (file) or FILE_ADD_FILE (directory)",
+            "FILE_APPEND_DATA (file) or FILE_ADD_SUBDIRECTORY (directory)",
+            "FILE_READ_EA",
+            "FILE_WRITE_EA",
+            "FILE_EXECUTE (file) or FILE_TRAVERSE (directory)",
+            "FILE_DELETE_CHILD (directory)",
+            "FILE_READ_ATTRIBUTES",
+            "FILE_WRITE_ATTRIBUTES",
+            "DELETE",
+            "READ_CONTROL",
+            "WRITE_DAC",
+            "WRITE_OWNER",
+            "SYNCHRONIZE"
+          ],
+          "bitMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20"
+          ]
         },
         {
           "name": "Archive",
@@ -65561,7 +67126,13 @@
             },
             {
               "name": "Option",
-              "cimType": 19
+              "cimType": 19,
+              "bitMap": [
+                "0",
+                "1",
+                "2",
+                "3"
+              ]
             }
           ],
           "out": [
@@ -65580,7 +67151,13 @@
             },
             {
               "name": "Option",
-              "cimType": 19
+              "cimType": 19,
+              "bitMap": [
+                "0",
+                "1",
+                "2",
+                "3"
+              ]
             },
             {
               "name": "StartFileName",
@@ -65709,7 +67286,23 @@
           "in": [
             {
               "name": "Permissions",
-              "cimType": 19
+              "cimType": 19,
+              "bitMap": [
+                "0",
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "16",
+                "17",
+                "18",
+                "19",
+                "20"
+              ]
             }
           ],
           "out": [
@@ -66317,7 +67910,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -119183,7 +120784,22 @@
         },
         {
           "name": "TypeDetail",
-          "cimType": 18
+          "cimType": 18,
+          "bitValues": [
+            "Reserved",
+            "Other",
+            "Unknown",
+            "Fast-paged",
+            "Static column",
+            "Pseudo-static",
+            "RAMBUS",
+            "Synchronous",
+            "CMOS",
+            "EDO",
+            "Window DRAM",
+            "Cache DRAM",
+            "Non-volatile"
+          ]
         },
         {
           "name": "Version",
@@ -123307,7 +124923,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -123885,7 +125509,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -124604,7 +126236,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -124790,7 +126430,21 @@
         },
         {
           "name": "StatusMask",
-          "cimType": 19
+          "cimType": 19,
+          "bitValues": [
+            "Paused",
+            "Error",
+            "Deleting",
+            "Spooling",
+            "Printing",
+            "Offline",
+            "Paperout",
+            "Printed",
+            "Deleted",
+            "Blocked_DevQ",
+            "User_Intervention_Req",
+            "Restart"
+          ]
         },
         {
           "name": "TimeSubmitted",
@@ -124831,7 +126485,23 @@
       "properties": [
         {
           "name": "Attributes",
-          "cimType": 19
+          "cimType": 19,
+          "bitValues": [
+            "Queued",
+            "Direct",
+            "Default",
+            "Shared",
+            "Network",
+            "Hidden",
+            "Local",
+            "EnableDevQ",
+            "KeepPrintedJobs",
+            "DoCompleteFirst",
+            "WorkOffline",
+            "EnableBIDI",
+            "RawOnly",
+            "Published"
+          ]
         },
         {
           "name": "Availability",
@@ -126082,7 +127752,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -126945,7 +128623,23 @@
           "in": [
             {
               "name": "Priority",
-              "cimType": 3
+              "cimType": 3,
+              "values": [
+                "Idle",
+                "Below Normal",
+                "Normal",
+                "Above Normal",
+                "High Priority",
+                "Realtime"
+              ],
+              "valueMap": [
+                "0x00000040",
+                "0x00004000",
+                "0x00000020",
+                "0x00008000",
+                "0x00000080",
+                "0x00000100"
+              ]
             }
           ],
           "out": [
@@ -127012,7 +128706,27 @@
       "properties": [
         {
           "name": "CreateFlags",
-          "cimType": 19
+          "cimType": 19,
+          "bitValues": [
+            "Debug_Process",
+            "Debug_Only_This_Process",
+            "Create_Suspended",
+            "Detached_Process",
+            "Create_New_Console",
+            "Create_New_Process_Group",
+            "Create_Unicode_Environment",
+            "Create_Default_Error_Mode"
+          ],
+          "bitMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "9",
+            "10",
+            "26"
+          ]
         },
         {
           "name": "EnvironmentVariables",
@@ -127021,11 +128735,27 @@
         },
         {
           "name": "ErrorMode",
-          "cimType": 18
+          "cimType": 18,
+          "bitValues": [
+            "Fail_Critical_Errors",
+            "No_GP_Fault_Error_Box",
+            "No_Alignment_Fault_Except",
+            "No_Open_File_Error_Box"
+          ]
         },
         {
           "name": "FillAttribute",
-          "cimType": 19
+          "cimType": 19,
+          "bitValues": [
+            "Foreground_Blue",
+            "Foreground_Green",
+            "Foreground_Red",
+            "Foreground_Intensity",
+            "Background_Blue",
+            "Background_Green",
+            "Background_Red",
+            "Background_Intensity"
+          ]
         },
         {
           "name": "PriorityClass",
@@ -127872,7 +129602,12 @@
         },
         {
           "name": "VoltageCaps",
-          "cimType": 19
+          "cimType": 19,
+          "bitValues": [
+            "5",
+            "3.3",
+            "2.9"
+          ]
         }
       ],
       "methods": [
@@ -127890,7 +129625,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -128095,11 +129838,31 @@
           "in": [
             {
               "name": "InstallState",
-              "cimType": 18
+              "cimType": 18,
+              "values": [
+                "Default",
+                "Local",
+                "Source"
+              ],
+              "valueMap": [
+                "1",
+                "2",
+                "3"
+              ]
             },
             {
               "name": "InstallLevel",
-              "cimType": 18
+              "cimType": 18,
+              "values": [
+                "Default",
+                "Minimum",
+                "Maximum"
+              ],
+              "valueMap": [
+                "1",
+                "2",
+                "3"
+              ]
             },
             {
               "name": "Options",
@@ -128142,7 +129905,31 @@
           "in": [
             {
               "name": "ReinstallMode",
-              "cimType": 18
+              "cimType": 18,
+              "values": [
+                "FileMissing",
+                "FileOlderVersion",
+                "FileEqualVersion",
+                "FileExact",
+                "FileVerify",
+                "FileReplace",
+                "UserData",
+                "MachineData",
+                "Shortcut",
+                "Package"
+              ],
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10"
+              ]
             }
           ],
           "out": [
@@ -129013,7 +130800,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -129147,12 +130942,12 @@
             "HKEY_USERS"
           ],
           "valueMap": [
-            "-1",
-            "-1",
-            "0",
-            "1",
-            "2",
-            "3"
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
           ]
         },
         {
@@ -130392,7 +132187,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -130904,7 +132707,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -130933,11 +132744,53 @@
         },
         {
           "name": "DaysOfMonth",
-          "cimType": 19
+          "cimType": 19,
+          "bitValues": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31"
+          ]
         },
         {
           "name": "DaysOfWeek",
-          "cimType": 19
+          "cimType": 19,
+          "bitValues": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ]
         },
         {
           "name": "Description",
@@ -131052,11 +132905,53 @@
             },
             {
               "name": "DaysOfWeek",
-              "cimType": 19
+              "cimType": 19,
+              "bitValues": [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+                "Saturday",
+                "Sunday"
+              ]
             },
             {
               "name": "DaysOfMonth",
-              "cimType": 19
+              "cimType": 19,
+              "bitValues": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "12",
+                "13",
+                "14",
+                "15",
+                "16",
+                "17",
+                "18",
+                "19",
+                "20",
+                "21",
+                "22",
+                "23",
+                "24",
+                "25",
+                "26",
+                "27",
+                "28",
+                "29",
+                "30",
+                "31"
+              ]
             },
             {
               "name": "InteractWithDesktop",
@@ -132093,7 +133988,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -132690,7 +134593,16 @@
             },
             {
               "name": "ServiceType",
-              "cimType": 17
+              "cimType": 17,
+              "bitMap": [
+                "0",
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "8"
+              ]
             },
             {
               "name": "ErrorControl",
@@ -132698,7 +134610,14 @@
             },
             {
               "name": "StartMode",
-              "cimType": 8
+              "cimType": 8,
+              "valueMap": [
+                "Boot",
+                "System",
+                "Automatic",
+                "Manual",
+                "Disabled"
+              ]
             },
             {
               "name": "DesktopInteract",
@@ -132739,7 +134658,14 @@
           "in": [
             {
               "name": "StartMode",
-              "cimType": 8
+              "cimType": 8,
+              "valueMap": [
+                "Boot",
+                "System",
+                "Automatic",
+                "Manual",
+                "Disabled"
+              ]
             }
           ],
           "out": [
@@ -132767,7 +134693,16 @@
             },
             {
               "name": "ServiceType",
-              "cimType": 17
+              "cimType": 17,
+              "bitMap": [
+                "0",
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "8"
+              ]
             },
             {
               "name": "ErrorControl",
@@ -132775,7 +134710,14 @@
             },
             {
               "name": "StartMode",
-              "cimType": 8
+              "cimType": 8,
+              "valueMap": [
+                "Boot",
+                "System",
+                "Automatic",
+                "Manual",
+                "Disabled"
+              ]
             },
             {
               "name": "DesktopInteract",
@@ -134103,7 +136045,39 @@
       "properties": [
         {
           "name": "AccessMask",
-          "cimType": 19
+          "cimType": 19,
+          "bitValues": [
+            "FILE_READ_DATA (file) or FILE_LIST_DIRECTORY (directory)",
+            "FILE_WRITE_DATA (file) or FILE_ADD_FILE (directory)",
+            "FILE_APPEND_DATA (file) or FILE_ADD_SUBDIRECTORY (directory)",
+            "FILE_READ_EA",
+            "FILE_WRITE_EA",
+            "FILE_EXECUTE (file) or FILE_TRAVERSE (directory)",
+            "FILE_DELETE_CHILD (directory)",
+            "FILE_READ_ATTRIBUTES",
+            "FILE_WRITE_ATTRIBUTES",
+            "DELETE",
+            "READ_CONTROL",
+            "WRITE_DAC",
+            "WRITE_OWNER",
+            "SYNCHRONIZE"
+          ],
+          "bitMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20"
+          ]
         },
         {
           "name": "Archive",
@@ -134277,7 +136251,13 @@
             },
             {
               "name": "Option",
-              "cimType": 19
+              "cimType": 19,
+              "bitMap": [
+                "0",
+                "1",
+                "2",
+                "3"
+              ]
             }
           ],
           "out": [
@@ -134296,7 +136276,13 @@
             },
             {
               "name": "Option",
-              "cimType": 19
+              "cimType": 19,
+              "bitMap": [
+                "0",
+                "1",
+                "2",
+                "3"
+              ]
             },
             {
               "name": "StartFileName",
@@ -134425,7 +136411,23 @@
           "in": [
             {
               "name": "Permissions",
-              "cimType": 19
+              "cimType": 19,
+              "bitMap": [
+                "0",
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "16",
+                "17",
+                "18",
+                "19",
+                "20"
+              ]
             }
           ],
           "out": [
@@ -135025,7 +137027,21 @@
           "in": [
             {
               "name": "InstallState",
-              "cimType": 18
+              "cimType": 18,
+              "values": [
+                "Default",
+                "Advertise",
+                "Local",
+                "Absent",
+                "Source"
+              ],
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5"
+              ]
             }
           ],
           "out": [
@@ -135040,7 +137056,31 @@
           "in": [
             {
               "name": "ReinstallMode",
-              "cimType": 18
+              "cimType": 18,
+              "values": [
+                "FileMissing",
+                "FileOlderVersion",
+                "FileEqualVersion",
+                "FileExact",
+                "FileVerify",
+                "FileReplace",
+                "UserData",
+                "MachineData",
+                "Shortcut",
+                "Package"
+              ],
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10"
+              ]
             }
           ],
           "out": [
@@ -135391,7 +137431,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -135872,7 +137920,16 @@
             },
             {
               "name": "ServiceType",
-              "cimType": 17
+              "cimType": 17,
+              "bitMap": [
+                "0",
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "8"
+              ]
             },
             {
               "name": "ErrorControl",
@@ -135880,7 +137937,14 @@
             },
             {
               "name": "StartMode",
-              "cimType": 8
+              "cimType": 8,
+              "valueMap": [
+                "Boot",
+                "System",
+                "Automatic",
+                "Manual",
+                "Disabled"
+              ]
             },
             {
               "name": "DesktopInteract",
@@ -135921,7 +137985,14 @@
           "in": [
             {
               "name": "StartMode",
-              "cimType": 8
+              "cimType": 8,
+              "valueMap": [
+                "Boot",
+                "System",
+                "Automatic",
+                "Manual",
+                "Disabled"
+              ]
             }
           ],
           "out": [
@@ -135949,7 +138020,16 @@
             },
             {
               "name": "ServiceType",
-              "cimType": 17
+              "cimType": 17,
+              "bitMap": [
+                "0",
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "8"
+              ]
             },
             {
               "name": "ErrorControl",
@@ -135957,7 +138037,14 @@
             },
             {
               "name": "StartMode",
-              "cimType": 8
+              "cimType": 8,
+              "valueMap": [
+                "Boot",
+                "System",
+                "Automatic",
+                "Manual",
+                "Disabled"
+              ]
             },
             {
               "name": "DesktopInteract",
@@ -137060,7 +139147,14 @@
         },
         {
           "name": "Type",
-          "cimType": 19
+          "cimType": 19,
+          "bitValues": [
+            "Write",
+            "Read",
+            "Redirected",
+            "Net_Attached",
+            "unknown"
+          ]
         }
       ]
     },
@@ -137432,7 +139526,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -137775,7 +139877,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -138016,7 +140126,16 @@
             },
             {
               "name": "ServiceType",
-              "cimType": 17
+              "cimType": 17,
+              "bitMap": [
+                "0",
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "8"
+              ]
             },
             {
               "name": "ErrorControl",
@@ -138024,7 +140143,14 @@
             },
             {
               "name": "StartMode",
-              "cimType": 8
+              "cimType": 8,
+              "valueMap": [
+                "Boot",
+                "System",
+                "Automatic",
+                "Manual",
+                "Disabled"
+              ]
             },
             {
               "name": "DesktopInteract",
@@ -138065,7 +140191,14 @@
           "in": [
             {
               "name": "StartMode",
-              "cimType": 8
+              "cimType": 8,
+              "valueMap": [
+                "Boot",
+                "System",
+                "Automatic",
+                "Manual",
+                "Disabled"
+              ]
             }
           ],
           "out": [
@@ -138093,7 +140226,16 @@
             },
             {
               "name": "ServiceType",
-              "cimType": 17
+              "cimType": 17,
+              "bitMap": [
+                "0",
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "8"
+              ]
             },
             {
               "name": "ErrorControl",
@@ -138101,7 +140243,14 @@
             },
             {
               "name": "StartMode",
-              "cimType": 8
+              "cimType": 8,
+              "valueMap": [
+                "Boot",
+                "System",
+                "Automatic",
+                "Manual",
+                "Disabled"
+              ]
             },
             {
               "name": "DesktopInteract",
@@ -139245,7 +141394,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -139637,7 +141794,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -139703,7 +141868,21 @@
       "properties": [
         {
           "name": "AccountType",
-          "cimType": 19
+          "cimType": 19,
+          "bitValues": [
+            "Temporary duplicate account",
+            "Normal account",
+            "Interdomain trust account",
+            "Workstation trust account",
+            "Server trust account"
+          ],
+          "bitMap": [
+            "8",
+            "9",
+            "11",
+            "12",
+            "13"
+          ]
         },
         {
           "name": "Caption",
@@ -139992,7 +142171,19 @@
         },
         {
           "name": "Status",
-          "cimType": 19
+          "cimType": 19,
+          "bitValues": [
+            "Temporary",
+            "Roaming",
+            "Mandatory",
+            "Corrupted"
+          ],
+          "bitMap": [
+            "0",
+            "1",
+            "2",
+            "3"
+          ]
         },
         {
           "name": "Videos",
@@ -140009,7 +142200,15 @@
             },
             {
               "name": "Flags",
-              "cimType": 19
+              "cimType": 19,
+              "bitValues": [
+                "ReplaceNewOwnerProfile",
+                "DeleteReplacedProfile"
+              ],
+              "bitMap": [
+                "0",
+                "1"
+              ]
             }
           ],
           "out": [
@@ -140830,7 +143029,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -141188,7 +143395,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -141696,7 +143911,21 @@
           "in": [
             {
               "name": "FileSystem",
-              "cimType": 8
+              "cimType": 8,
+              "values": [
+                "NTFS",
+                "FAT32",
+                "FAT",
+                "UDF",
+                "EXFAT"
+              ],
+              "valueMap": [
+                "NTFS",
+                "FAT32",
+                "FAT",
+                "UDF",
+                "EXFAT"
+              ]
             },
             {
               "name": "QuickFormat",
@@ -141716,7 +143945,27 @@
             },
             {
               "name": "Version",
-              "cimType": 19
+              "cimType": 19,
+              "values": [
+                "Default",
+                "1.00",
+                "1.01",
+                "1.02",
+                "1.50",
+                "2.00",
+                "2.01",
+                "2.50"
+              ],
+              "valueMap": [
+                "0",
+                "256",
+                "257",
+                "258",
+                "336",
+                "513",
+                "514",
+                "592"
+              ]
             }
           ],
           "out": [
@@ -141766,7 +144015,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",

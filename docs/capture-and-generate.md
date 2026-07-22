@@ -49,11 +49,20 @@ Reads `metadata/cim/*.json`, validates each snapshot, and writes
 file layout:
 
 - `doc.go` — the package doc
-- `<leaf>_structs.go` — one struct per class
-- `<leaf>_queries.go` — the `Query<Class>` and `Get<Class>` helpers
-- `<leaf>_methods.go` — method wrappers and their result structs
-- `<leaf>_constants.go` — named constants for enumerated properties (the
-  `Values`/`ValueMap` qualifiers)
+- `<leaf>_structs.go` — one struct per class (`WMIPath` first: the instance's
+  `__PATH`, ready for the method wrappers)
+- `<leaf>_enums.go` — named enumeration types for `Values`/`ValueMap`
+  qualifiers (with `String()` on integer enums) and bitmask types for
+  `BitValues`/`BitMap`
+- `<leaf>_constants.go` — flat fallback constants (array enum properties, and
+  enums whose type name a class already claimed)
+- `<leaf>_rows.go` — `<Class>FromRow` decoders (`wmi.Row` → typed struct;
+  shared by queries, `GetInstance`, `Associators`, events, `ParseObjectText`)
+- `<leaf>_queries.go` — the `Query<Class>`, `QueryOne<Class>`, and
+  `Get<Class>` helpers
+- `<leaf>_methods.go` — method wrappers and their result structs; async
+  `(ReturnValue, Job)` methods get `result.Wait(ctx, svc)`, plain
+  `ReturnValue` methods get `result.Err()`
 
 Empty files are not written. Self-cleaning (stale files pruned) and
 **byte-deterministic** — running it twice produces no diff, which CI enforces

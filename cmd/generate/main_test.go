@@ -39,13 +39,15 @@ func generatedFiles(t *testing.T) map[string][]byte {
 
 // TestGenerateGolden runs the generator against a fixture snapshot that
 // exercises the long tail — zero-property classes, class- and property-name
-// collisions, a property named like its class, arrays, keys, methods, and
-// an unknown CIM type — and compares each emitted file (doc.go, _structs,
-// _queries, _methods) byte-for-byte against a committed golden. Run with
-// -update to regenerate the goldens.
+// collisions, an enum whose type name collides with a class (the flat
+// constants fallback), a property named like its class, arrays, keys, a
+// string-enum key, duplicate ValueMap entries, enum-qualified method
+// parameters, an async (ReturnValue, Job) method, and an unknown CIM type —
+// and compares each emitted file byte-for-byte against a committed golden.
+// Run with -update to regenerate the goldens.
 func TestGenerateGolden(t *testing.T) {
 	files := generatedFiles(t)
-	want := []string{"demo_constants.go", "demo_methods.go", "demo_queries.go", "demo_structs.go", "doc.go"}
+	want := []string{"demo_constants.go", "demo_enums.go", "demo_methods.go", "demo_queries.go", "demo_rows.go", "demo_structs.go", "doc.go"}
 	if len(files) != len(want) {
 		t.Errorf("generated files = %v, want %v", slices.Sorted(maps.Keys(files)), want)
 	}

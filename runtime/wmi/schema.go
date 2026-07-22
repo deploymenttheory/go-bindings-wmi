@@ -21,9 +21,22 @@ type PropertyInfo struct {
 	CIMType int32 // CIMTYPE_ENUMERATION, with the CIM_FLAG_ARRAY (0x2000) bit intact
 	Key     bool  // the [key] qualifier
 	// Values and ValueMap are the CIM enumeration qualifiers (display names
-	// and stored values respectively).
-	Values   []string
-	ValueMap []string
+	// and stored values respectively); BitValues and BitMap the bitmask
+	// equivalents (flag names and bit positions).
+	Values    []string
+	ValueMap  []string
+	BitValues []string
+	BitMap    []string
+}
+
+// enumQuals are the enumeration/bitmask qualifiers a derived class inherits
+// from the declaring base class.
+type enumQuals struct {
+	values, valueMap, bitValues, bitMap []string
+}
+
+func (q enumQuals) empty() bool {
+	return len(q.values) == 0 && len(q.valueMap) == 0 && len(q.bitValues) == 0 && len(q.bitMap) == 0
 }
 
 // MethodInfo describes one CIM class method: its in/out parameters in
@@ -122,13 +135,99 @@ func (s *Service) ClassProperties(className string) ([]PropertyInfo, error) {
 		readPropertyQualifiers(class, &props[i])
 	}
 
+	// Enumeration qualifiers are declared once, on the class that introduces
+	// the property — a derived class's qualifier set does not carry them
+	// (EnabledState's values live on CIM_EnabledLogicalElement, not on
+	// Msvm_ComputerSystem). Fill the gaps from the derivation chain.
+	s.inheritEnumQualifiers(class, props)
+
 	sort.Slice(props, func(i, j int) bool { return props[i].Name < props[j].Name })
 	return props, nil
 }
 
-// readPropertyQualifiers fills a property's [key], Values, and ValueMap
-// qualifiers. System properties (__*) have no qualifier set; absence means
-// zero values.
+// inheritEnumQualifiers fills missing Values/ValueMap/BitValues/BitMap from
+// the class's __DERIVATION chain (nearest ancestor first; the first ancestor
+// declaring any of them for the property wins). Ancestor qualifier tables
+// are cached on the Service — base classes repeat across a namespace sweep.
+func (s *Service) inheritEnumQualifiers(class *wmi.IWbemClassObject, props []PropertyInfo) {
+	var derivation []string
+	loaded := false
+	for i := range props {
+		p := &props[i]
+		if strings.HasPrefix(p.Name, "__") ||
+			len(p.Values) > 0 || len(p.ValueMap) > 0 || len(p.BitValues) > 0 || len(p.BitMap) > 0 {
+			continue
+		}
+		if !loaded {
+			derivation = classDerivation(class)
+			loaded = true
+		}
+		for _, ancestor := range derivation {
+			if q, ok := s.ancestorEnumQualifiers(ancestor)[p.Name]; ok {
+				p.Values, p.ValueMap, p.BitValues, p.BitMap = q.values, q.valueMap, q.bitValues, q.bitMap
+				break
+			}
+		}
+	}
+}
+
+// classDerivation reads the __DERIVATION system property: the ancestor class
+// names, nearest first.
+func classDerivation(class *wmi.IWbemClassObject) []string {
+	var value variant.VARIANT
+	variant.VariantInit(&value)
+	defer variant.VariantClear(&value)
+	if err := class.Get("__DERIVATION", 0, &value, nil, nil); err != nil {
+		return nil
+	}
+	return AsStringSlice(decodeVariant(&value))
+}
+
+// ancestorEnumQualifiers returns the enumeration/bitmask qualifiers an
+// ancestor class declares, keyed by property name (only properties declaring
+// any are present). Results — including misses — are memoized on the Service.
+func (s *Service) ancestorEnumQualifiers(className string) map[string]enumQuals {
+	if cached, ok := s.enumQualCache[className]; ok {
+		return cached
+	}
+	if s.enumQualCache == nil {
+		s.enumQualCache = map[string]map[string]enumQuals{}
+	}
+	quals := map[string]enumQuals{}
+	s.enumQualCache[className] = quals // even on failure: don't refetch
+
+	name := foundation.SysAllocString(className)
+	defer foundation.SysFreeString(name)
+	var class *wmi.IWbemClassObject
+	var callResult *wmi.IWbemCallResult
+	if err := s.services.GetObject(name, wbemFlagUseAmendedQualifiers, nil, &class, &callResult); err != nil {
+		return quals
+	}
+	defer class.Release()
+
+	props, err := enumerateProperties(class)
+	if err != nil {
+		return quals
+	}
+	for i := range props {
+		if strings.HasPrefix(props[i].Name, "__") {
+			continue
+		}
+		readPropertyQualifiers(class, &props[i])
+		q := enumQuals{
+			values: props[i].Values, valueMap: props[i].ValueMap,
+			bitValues: props[i].BitValues, bitMap: props[i].BitMap,
+		}
+		if !q.empty() {
+			quals[props[i].Name] = q
+		}
+	}
+	return quals
+}
+
+// readPropertyQualifiers fills a property's [key], Values/ValueMap, and
+// BitValues/BitMap qualifiers. System properties (__*) have no qualifier
+// set; absence means zero values.
 func readPropertyQualifiers(class *wmi.IWbemClassObject, p *PropertyInfo) {
 	var qualifiers *wmi.IWbemQualifierSet
 	if err := class.GetPropertyQualifierSet(p.Name, &qualifiers); err != nil || qualifiers == nil {
@@ -139,6 +238,8 @@ func readPropertyQualifiers(class *wmi.IWbemClassObject, p *PropertyInfo) {
 	p.Key = boolQualifier(qualifiers, "key")
 	p.Values = stringsQualifier(qualifiers, "Values")
 	p.ValueMap = stringsQualifier(qualifiers, "ValueMap")
+	p.BitValues = stringsQualifier(qualifiers, "BitValues")
+	p.BitMap = stringsQualifier(qualifiers, "BitMap")
 }
 
 // boolQualifier reads one boolean qualifier; absence is false.
@@ -280,6 +381,12 @@ func signatureParameters(signature *wmi.IWbemClassObject) ([]PropertyInfo, error
 			continue // signature system properties are not parameters
 		}
 		params = append(params, p)
+	}
+	// Parameter qualifier sets carry the enumeration/bitmask qualifiers
+	// directly (parameters do not inherit); Key is meaningless here and the
+	// capture layer drops it.
+	for i := range params {
+		readPropertyQualifiers(signature, &params[i])
 	}
 	ids := make(map[string]int32, len(params))
 	for _, p := range params {

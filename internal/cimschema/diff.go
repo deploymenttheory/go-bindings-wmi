@@ -146,7 +146,7 @@ func MethodSignature(m Method) string {
 		if i > 0 {
 			b.WriteString(", ")
 		}
-		b.WriteString(p.Name + " " + ParamGoType(p))
+		b.WriteString(p.Name + " " + describeParam(p))
 	}
 	b.WriteString(")")
 	if len(m.Out) > 0 {
@@ -155,7 +155,7 @@ func MethodSignature(m Method) string {
 			if i > 0 {
 				b.WriteString(", ")
 			}
-			b.WriteString(p.Name + " " + ParamGoType(p))
+			b.WriteString(p.Name + " " + describeParam(p))
 		}
 		b.WriteString(")")
 	}
@@ -228,11 +228,33 @@ func (r *DiffReport) Markdown() string {
 }
 
 // describeProperty renders a property's shape for diff output, e.g.
-// "uint64", "[]string", "string, key".
+// "uint64", "[]string", "string, key", "uint16, enum". The enum/bitmask
+// markers keep qualifier-only recaptures compact — the value tables
+// themselves stay out of the PR body.
 func describeProperty(p Property) string {
 	s := GoType(p)
 	if p.Key {
 		s += ", key"
+	}
+	if len(p.Values) > 0 || len(p.ValueMap) > 0 {
+		s += ", enum"
+	}
+	if len(p.BitValues) > 0 || len(p.BitMap) > 0 {
+		s += ", bitmask"
+	}
+	return s
+}
+
+// describeParam renders a parameter's shape for method signatures, e.g.
+// "uint16", "uint16{enum}" — the marker surfaces qualifier captures without
+// dumping value tables.
+func describeParam(p Param) string {
+	s := ParamGoType(p)
+	if len(p.Values) > 0 || len(p.ValueMap) > 0 {
+		s += "{enum}"
+	}
+	if len(p.BitValues) > 0 || len(p.BitMap) > 0 {
+		s += "{bitmask}"
 	}
 	return s
 }

@@ -71,14 +71,15 @@ func (s *Service) ObjectTextOfPath(objectPath string, overrides map[string]any) 
 }
 
 // objectText serializes an object as CIM DTD 2.0 XML via a transient
-// WbemObjectTextSrc (an in-proc factory; creation is cheap).
+// WbemObjectTextSrc (an in-proc factory; creation is cheap). The inverse —
+// text back to values — is ParseObjectText: Windows declines to implement
+// IWbemObjectTextSrc::CreateFromText (WBEM_E_METHOD_NOT_IMPLEMENTED), so
+// parsing is pure Go.
 func objectText(instance *wmi.IWbemClassObject) (string, error) {
-	var unk *win32.IUnknown
-	if err := com.CoCreateInstance(&clsidWbemObjectTextSrc, nil, clsctxInprocServer,
-		&wmi.IID_IWbemObjectTextSrc, &unk); err != nil {
-		return "", fmt.Errorf("wmi: CoCreateInstance(WbemObjectTextSrc): %w", err)
+	src, err := objectTextSrc()
+	if err != nil {
+		return "", err
 	}
-	src := (*wmi.IWbemObjectTextSrc)(unsafe.Pointer(unk))
 	defer src.Release()
 
 	var text foundation.BSTR
@@ -87,4 +88,15 @@ func objectText(instance *wmi.IWbemClassObject) (string, error) {
 	}
 	defer foundation.SysFreeString(text)
 	return win32.UTF16ToString((*uint16)(text)), nil
+}
+
+// objectTextSrc creates a transient WbemObjectTextSrc (an in-proc factory;
+// creation is cheap).
+func objectTextSrc() (*wmi.IWbemObjectTextSrc, error) {
+	var unk *win32.IUnknown
+	if err := com.CoCreateInstance(&clsidWbemObjectTextSrc, nil, clsctxInprocServer,
+		&wmi.IID_IWbemObjectTextSrc, &unk); err != nil {
+		return nil, fmt.Errorf("wmi: CoCreateInstance(WbemObjectTextSrc): %w", err)
+	}
+	return (*wmi.IWbemObjectTextSrc)(unsafe.Pointer(unk)), nil
 }
