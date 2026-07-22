@@ -2,34 +2,41 @@
 
 ## Invoking CIM methods
 
-Method schemas are captured into the snapshot alongside properties, so the
-generator emits one typed wrapper per method plus a result struct holding
-the out-parameters (always including `ReturnValue`).
+Method schemas are captured into the snapshot alongside properties
+(including parameter enumeration qualifiers), so the generator emits one
+typed wrapper per method plus a result struct holding the out-parameters
+(always including `ReturnValue`, enum-typed when the schema declares its
+values).
 
 **Static methods** target the class:
 
 ```go
-res, err := cimv2.Win32ProcessCreate(svc, `notepad.exe`, "", nil)
-// res.ProcessId, res.ReturnValue
+res, err := cimv2.Win32ProcessCreate(svc, wmi.Ptr("notepad.exe"), nil, nil)
+if err := res.Err(); err != nil { /* non-zero ReturnValue as *wmi.JobError */ }
+// res.ProcessId
 ```
 
-**Instance methods** take the instance's object path — the `__PATH` system
-property every queried row carries:
+**Instance methods** take the instance's object path — every generated
+struct carries it as `WMIPath`:
 
 ```go
-rows, _ := svc.Query(`SELECT * FROM Win32_Service WHERE Name = 'Spooler'`)
-path := wmi.AsString(rows[0]["__PATH"])
-res, _ := cimv2.Win32ServiceStopService(svc, path)
+spooler, _ := cimv2.GetWin32Service(svc, "Spooler")
+res, _ := cimv2.Win32ServiceStopService(svc, spooler.WMIPath)
 ```
 
-**Zero-value semantics:** generated wrappers omit zero-valued in-parameters
-(`""`, `0`, `false`, `nil`), leaving them NULL so the provider applies its
-defaults. When an explicit zero matters, drop to the runtime map API, which
-sends exactly what you give it and skips only `nil`:
+**In-parameter semantics:** scalar in-parameters are pointers. `nil` omits
+the parameter (NULL — the provider applies its default); a non-nil value is
+always sent, **including zeros**. `wmi.Ptr` builds pointers inline:
 
 ```go
-out, err := svc.ExecMethod(path, "SetPriority", map[string]any{"Priority": int32(0)})
+res, err := cimv2.Win32ProcessSetPriority(svc, path, wmi.Ptr(cimv2.Win32ProcessSetPriorityPriorityIdle))
 ```
+
+Enum-qualified parameters get named types
+(`<Class><Method><Param>`) with generated constants, so valid values are
+discoverable and comparisons are typed. Slices, embedded objects
+(`wmi.Row`), and `any` parameters keep their natural nil state and are
+passed directly.
 
 Values encode per WMI's conventions: integers as `VT_I4` when they fit 32
 bits, as decimal strings otherwise (WMI's own 64-bit shape), strings as
@@ -44,7 +51,7 @@ properties (recursively, so objects nest), and passes it as `VT_UNKNOWN`:
 startup := wmi.Instance("Win32_ProcessStartup", map[string]any{
     "ShowWindow": uint16(0), // SW_HIDE
 })
-res, _ := cimv2.Win32ProcessCreate(svc, "cmd.exe /c exit 0", "", startup)
+res, _ := cimv2.Win32ProcessCreate(svc, wmi.Ptr("cmd.exe /c exit 0"), nil, startup)
 ```
 
 A `wmi.Row` returned by a query also works — it already carries `__CLASS`.
@@ -59,6 +66,29 @@ the provider may finish it anyway.
 Abstract base classes (`CIM_*`) declare methods their providers often don't
 implement; the wrappers are generated faithfully and the provider's error
 surfaces at call time.
+
+## Async methods and jobs
+
+Providers like Hyper-V return the CIM async pair: `ReturnValue` 0 means
+done, 4096 means a `CIM_ConcreteJob` was started (its REF is in the `Job`
+out-parameter). Results with that shape get a generated `Wait` that
+resolves the whole contract — immediate success, job polling to a terminal
+state, and failure as a `*wmi.JobError` carrying the job's state, error
+code, and description:
+
+```go
+res, err := v2.MsvmComputerSystemRequestStateChange(svc, vm.WMIPath,
+    wmi.Ptr(v2.MsvmComputerSystemRequestStateChangeRequestedStateEnabled), nil)
+if err != nil { /* transport error */ }
+if err := res.Wait(ctx, svc); err != nil { /* rejected, or the job failed */ }
+```
+
+Under the hood that is `svc.WaitJob(ctx, what, returnValue, jobPath)` —
+usable directly with the raw `ExecMethod` API, with `WaitJobEvery` for a
+custom poll interval. Cancelling `ctx` abandons the wait, not the job.
+Methods with a plain `uint32 ReturnValue` and no job get `Err()` instead:
+`nil` on 0, a `*wmi.JobError` otherwise (typed `ReturnValue`s print their
+schema display name).
 
 ## Event subscriptions
 

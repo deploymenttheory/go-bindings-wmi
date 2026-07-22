@@ -25,28 +25,42 @@ defer svc.Close()
 os, err := cimv2.QueryWin32OperatingSystem(svc, "")   // typed []Win32OperatingSystem
 fmt.Println(os[0].Caption, os[0].BuildNumber)
 
-disks, _ := cimv2.QueryWin32LogicalDisk(svc, "DriveType = 3")
+disks, _ := cimv2.QueryWin32LogicalDisk(svc, wmi.Where("DriveType = ?", cimv2.Win32LogicalDiskDriveTypeLocalDisk))
 for _, d := range disks {
-	fmt.Printf("%s %d/%d bytes free\n", d.DeviceID, d.FreeSpace, d.Size)
+	fmt.Printf("%s (%s) %d/%d bytes free\n", d.DeviceID, d.DriveType, d.FreeSpace, d.Size)
 }
 ```
 
 No stringly-typed WQL result maps: one Go struct per CIM class with typed
-fields (CIM types → Go types, arrays → slices), plus a generated
-`Query<Class>` helper that runs the WQL and unmarshals each instance — and
-one typed wrapper per CIM method:
+fields (CIM types → Go types, arrays → slices, `WMIPath` carrying the
+instance's `__PATH`), **named enumeration types** from the schema's
+Values/ValueMap qualifiers (open enums with `String()` display names, plus
+bitmask types), `Query<Class>`/`QueryOne<Class>`/`Get<Class>` helpers, a
+`<Class>FromRow` decoder per class — and one typed wrapper per CIM method,
+with typed enum parameters, `Err()` on plain results, and `Wait(ctx, svc)`
+resolving the CIM async job contract on `(ReturnValue, Job)` results:
 
 ```go
-owner, _ := cimv2.Win32ProcessGetOwner(svc, path)   // instance method via __PATH
-res, _ := cimv2.Win32ProcessCreate(svc, "notepad.exe", "", nil) // static method
+proc, _ := cimv2.QueryOneWin32Process(svc, wmi.Where("ProcessId = ?", pid))
+owner, _ := cimv2.Win32ProcessGetOwner(svc, proc.WMIPath)     // instance method
+
+res, _ := cimv2.Win32ProcessCreate(svc, wmi.Ptr("notepad.exe"), nil, nil) // static;
+if err := res.Err(); err != nil { /* typed ReturnValue, readable message */ }
 ```
+
+Nil in-parameters are omitted so the provider applies its defaults; non-nil
+values are always sent — including zeros (`wmi.Ptr` builds them inline).
 
 The runtime also provides the full instance lifecycle
 (`CreateInstance`/`UpdateInstance`/`DeleteInstance`/`GetInstance`, plus
 generated `Get<Class>` key lookups), association traversal
-(`Associators`/`References`), event subscriptions (`SubscribeEvents`),
-streaming (`QuerySeq`) and cancellable (`QueryContext`) queries, remote
-connections (`ConnectWith`), and DMTF datetime parsing (`ParseDMTF`).
+(`Associators`/`References`), CIM async-job waiting (`WaitJob`, backing the
+generated `Wait`), object-path build/parse (`ObjectPath`/`ParsePath`),
+WQL helpers (`Where` placeholder substitution, `WQLValue`, `QuoteWQL`),
+embedded-instance text encode/decode (`ObjectText`/`ParseObjectText`),
+event subscriptions (`SubscribeEvents`), streaming (`QuerySeq`) and
+cancellable (`QueryContext`) queries, remote connections (`ConnectWith`),
+and DMTF datetime parsing (`ParseDMTF`).
 
 ## How it's built
 
@@ -79,7 +93,7 @@ values. This is also the seed of a general OLE-automation ergonomics layer
 
 ## Coverage
 
-Four namespaces are captured, each its own generated package
+Six namespaces are captured, each its own generated package
 (`go run ./cmd/capture` enumerates a whole namespace by default; `-classes a,b`
 narrows):
 
@@ -89,6 +103,11 @@ narrows):
   networking (MSFT_NetAdapter, MSFT_NetIPAddress, MSFT_NetRoute, …).
 - **`root\SecurityCenter2`** (69) → `bindings/cim/securitycenter2` —
   registered AV / firewall / anti-spyware products (client SKUs only).
+- **`root\virtualization\v2`** (31 curated Msvm_*) →
+  `bindings/cim/virtualizationv2` — Hyper-V: VM lifecycle, resources,
+  snapshots, networking, security/vTPM, KVP, jobs.
+- **`root\Microsoft\Windows\Hgs`** (69) → `bindings/cim/hgs` — the host
+  guardian service backing Hyper-V key protectors / vTPM.
 - **`root\cimv2\mdm\dmmap`** (467, incl. ~400 `MDM_*`) → `bindings/cim/dmmap`
   — the MDM bridge: Windows' CSP policy surface (AppLocker, ActiveSync,
   BitLocker, …) as WMI classes. Capturing **and querying** it require the
