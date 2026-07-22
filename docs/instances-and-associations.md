@@ -13,14 +13,19 @@ Queries are the usual bulk read. For point reads:
 // captured into the snapshot. Misses return wmi.ErrNotFound.
 spooler, err := cimv2.GetWin32Service(svc, "Spooler")
 
-// Runtime read by object path (a __PATH from a query, or a key-qualified
-// relative path).
-row, err := svc.GetInstance(`Win32_Service.Name="Spooler"`)
+// Runtime read by object path (a WMIPath from a typed query, or a
+// key-qualified relative path — wmi.ObjectPath builds one with correct
+// escaping).
+row, err := svc.GetInstance(wmi.ObjectPath("Win32_Service", map[string]any{"Name": "Spooler"}))
+
+// A Row from GetInstance/Associators/events decodes into the typed struct:
+spooler2 := cimv2.Win32ServiceFromRow(row)
 ```
 
 Key values are rendered as WQL literals by `wmi.WQLValue`/`wmi.QuoteWQL`
 (quotes and backslashes escaped), so paths and names with special
-characters are safe.
+characters are safe; `wmi.ParsePath` goes the other way, splitting a
+`__PATH` into server, namespace, class, and unescaped key values.
 
 ## Create / Update / Delete
 
@@ -57,5 +62,6 @@ links, err := svc.References(diskPath, "Win32_LogicalDiskToPartition")
 
 `AssociatorFilter` maps one-to-one onto the WQL `ASSOCIATORS OF` clauses
 (`AssocClass`, `ResultClass`, `ResultRole`, `Role`); the zero filter
-returns every associated instance. See `examples/associators` for a
-disk → partition → drive walk.
+returns every associated instance. The returned Rows decode into typed
+structs via the generated `<Class>FromRow` helpers. See
+`examples/associators` for a disk → partition → drive walk.

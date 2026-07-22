@@ -3,14 +3,19 @@
 ## WQL
 
 Queries use WQL (a SQL subset). The generated `Query<Class>(svc, where)` helpers
-build `SELECT * FROM <Class>` and append your `WHERE` clause:
+build `SELECT * FROM <Class>` and append your `WHERE` clause; `wmi.Where`
+substitutes each `?` with a correctly quoted/escaped literal (named enum
+types render as their underlying scalar):
 
 ```go
-cimv2.QueryWin32Service(svc, "State = 'Running' AND StartMode = 'Auto'")
+cimv2.QueryWin32Service(svc, wmi.Where("State = ? AND StartMode = ?",
+	"Running", cimv2.Win32ServiceStartModeAuto))
 ```
 
 For anything WQL supports beyond a single class projection, use the runtime
 directly: `svc.Query("SELECT Name FROM Win32_Process WHERE WorkingSetSize > 100000000")`.
+Note projected queries return rows without `__PATH` — the typed helpers
+always `SELECT *`, so `WMIPath` is populated.
 
 ## CIM → Go types
 

@@ -26,15 +26,26 @@ defer svc.Close()
 os, err := cimv2.QueryWin32OperatingSystem(svc, "") // typed []Win32OperatingSystem
 fmt.Println(os[0].Caption, os[0].BuildNumber)
 
-disks, _ := cimv2.QueryWin32LogicalDisk(svc, "DriveType = 3") // WHERE clause
+disks, _ := cimv2.QueryWin32LogicalDisk(svc,
+	wmi.Where("DriveType = ?", cimv2.Win32LogicalDiskDriveTypeLocalDisk))
 for _, d := range disks {
-	fmt.Printf("%s %d/%d bytes free\n", d.DeviceID, d.FreeSpace, d.Size)
+	fmt.Printf("%s (%s) %d/%d bytes free\n", d.DeviceID, d.DriveType, d.FreeSpace, d.Size)
 }
 ```
 
-Every captured class has a generated struct (typed fields) and a
-`Query<Class>(svc, where)` helper. The second argument is the WQL `WHERE`
-clause, or `""` for all instances.
+Every captured class has a generated struct (typed fields — enumerated
+properties get named enum types with `String()` display names, and
+`WMIPath` carries the instance's `__PATH` for method calls and instance
+APIs), a `<Class>FromRow` decoder, and `Query<Class>`/`QueryOne<Class>`
+helpers. The second argument is the WQL `WHERE` clause, or `""` for all
+instances — build it safely with `wmi.Where("Name = ?", value)`, which
+quotes and escapes each `?` substitution. `QueryOne<Class>` returns the
+single match (or `wmi.ErrNotFound`):
+
+```go
+proc, err := cimv2.QueryOneWin32Process(svc, wmi.Where("ProcessId = ?", os.Getpid()))
+owner, _ := cimv2.Win32ProcessGetOwner(svc, proc.WMIPath)
+```
 
 ## Untyped queries
 
