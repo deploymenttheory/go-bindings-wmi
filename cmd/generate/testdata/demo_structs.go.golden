@@ -8,6 +8,10 @@ import wmi "github.com/deploymenttheory/go-bindings-wmi/runtime/wmi"
 
 // DemoBinding is the Demo_Binding CIM class.
 type DemoBinding struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath    string  `cim:"__PATH"`
 	Antecedent string  `cim:"Antecedent"`
 	Index      uint32  `cim:"Index"`
 	Weight     float64 `cim:"Weight"`
@@ -15,24 +19,54 @@ type DemoBinding struct {
 
 // DemoEmpty is the Demo_Empty CIM class.
 type DemoEmpty struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath string `cim:"__PATH"`
+}
+
+// DemoProfile is the Demo_Profile CIM class.
+type DemoProfile struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath string          `cim:"__PATH"`
+	Kind    DemoProfileKind `cim:"Kind"`
+	Note    string          `cim:"Note"`
 }
 
 // DemoWidget is the Demo_Widget CIM class.
 type DemoWidget struct {
-	Caps      []uint16  `cim:"Caps"`
-	DriveType uint32    `cim:"DriveType"`
-	Enabled   bool      `cim:"Enabled"`
-	Exotic    any       `cim:"Exotic"`
-	Family    uint32    `cim:"Family"`
-	FooBar    int32     `cim:"FooBar"`
-	Installed string    `cim:"Installed"`
-	Name      string    `cim:"Name"`
-	Owner     string    `cim:"Owner"`
-	Parts     []wmi.Row `cim:"Parts"`
-	Phase     uint32    `cim:"Phase"`
-	Ratio     float32   `cim:"Ratio"`
-	Size      uint64    `cim:"Size"`
-	StartMode string    `cim:"StartMode"`
-	Startup   wmi.Row   `cim:"Startup"`
-	Tags      []string  `cim:"Tags"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath   string              `cim:"__PATH"`
+	Caps      []uint16            `cim:"Caps"`
+	DriveType DemoWidgetDriveType `cim:"DriveType"`
+	Enabled   bool                `cim:"Enabled"`
+	Exotic    any                 `cim:"Exotic"`
+	Family    DemoWidgetFamily    `cim:"Family"`
+	Flags     DemoWidgetFlags     `cim:"Flags"`
+	FooBar    int32               `cim:"FooBar"`
+	Health    DemoWidgetHealth    `cim:"Health"`
+	Installed string              `cim:"Installed"`
+	Mode      uint16              `cim:"Mode"`
+	Name      string              `cim:"Name"`
+	Owner     string              `cim:"Owner"`
+	Parts     []wmi.Row           `cim:"Parts"`
+	Phase     DemoWidgetPhase     `cim:"Phase"`
+	Ratio     float32             `cim:"Ratio"`
+	Size      uint64              `cim:"Size"`
+	StartMode DemoWidgetStartMode `cim:"StartMode"`
+	Startup   wmi.Row             `cim:"Startup"`
+	Tags      []string            `cim:"Tags"`
+}
+
+// DemoWidgetMode is the Demo_WidgetMode CIM class.
+type DemoWidgetMode struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath string `cim:"__PATH"`
+	Value   string `cim:"Value"`
 }

@@ -2,7 +2,7 @@
   "namespace": "root\\StandardCimv2",
   "provenance": {
     "osBuild": "26200",
-    "captured": "2026-07-15"
+    "captured": "2026-07-22"
   },
   "classes": [
     {
@@ -814,7 +814,25 @@
           "in": [
             {
               "name": "RequestedState",
-              "cimType": 18
+              "cimType": 18,
+              "values": [
+                "Start",
+                "Suspend",
+                "Terminate",
+                "Kill",
+                "Service",
+                "DMTF Reserved",
+                "Vendor Reserved"
+              ],
+              "valueMap": [
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7..32767",
+                "32768..65535"
+              ]
             },
             {
               "name": "TimeoutPeriod",
@@ -1952,7 +1970,20 @@
           "in": [
             {
               "name": "RequestedState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "2",
+                "3",
+                "4",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "..",
+                "32768..65535"
+              ]
             },
             {
               "name": "TimeoutPeriod",
@@ -2471,7 +2502,33 @@
           "in": [
             {
               "name": "RequestedState",
-              "cimType": 18
+              "cimType": 18,
+              "values": [
+                "Enabled",
+                "Disabled",
+                "Shut Down",
+                "Offline",
+                "Test",
+                "Defer",
+                "Quiesce",
+                "Reboot",
+                "Reset",
+                "DMTF Reserved",
+                "Vendor Reserved"
+              ],
+              "valueMap": [
+                "2",
+                "3",
+                "4",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "..",
+                "32768..65535"
+              ]
             },
             {
               "name": "TimeoutPeriod",
@@ -4690,7 +4747,20 @@
           "in": [
             {
               "name": "RequestedState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "2",
+                "3",
+                "4",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "..",
+                "32768..65535"
+              ]
             },
             {
               "name": "TimeoutPeriod",
@@ -5374,7 +5444,20 @@
           "in": [
             {
               "name": "RequestedState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "2",
+                "3",
+                "4",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "..",
+                "32768..65535"
+              ]
             },
             {
               "name": "TimeoutPeriod",
@@ -6490,7 +6573,20 @@
           "in": [
             {
               "name": "RequestedState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "2",
+                "3",
+                "4",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "..",
+                "32768..65535"
+              ]
             },
             {
               "name": "TimeoutPeriod",
@@ -8363,7 +8459,20 @@
           "in": [
             {
               "name": "RequestedState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "2",
+                "3",
+                "4",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "..",
+                "32768..65535"
+              ]
             },
             {
               "name": "TimeoutPeriod",
@@ -9040,7 +9149,20 @@
           "in": [
             {
               "name": "RequestedState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "2",
+                "3",
+                "4",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "..",
+                "32768..65535"
+              ]
             },
             {
               "name": "TimeoutPeriod",
@@ -9090,7 +9212,23 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "values": [
+                "Full Power",
+                "Power Save - Low Power Mode",
+                "Power Save - Standby",
+                "Power Save - Other",
+                "Power Cycle",
+                "Power Off"
+              ],
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -10053,7 +10191,20 @@
           "in": [
             {
               "name": "RequestedState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "2",
+                "3",
+                "4",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "..",
+                "32768..65535"
+              ]
             },
             {
               "name": "TimeoutPeriod",
@@ -10103,7 +10254,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -10821,7 +10980,20 @@
           "in": [
             {
               "name": "RequestedState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "2",
+                "3",
+                "4",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "..",
+                "32768..65535"
+              ]
             },
             {
               "name": "TimeoutPeriod",
@@ -11617,7 +11789,20 @@
           "in": [
             {
               "name": "RequestedState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "2",
+                "3",
+                "4",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "..",
+                "32768..65535"
+              ]
             },
             {
               "name": "TimeoutPeriod",
@@ -11667,7 +11852,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -13157,7 +13350,20 @@
           "in": [
             {
               "name": "RequestedState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "2",
+                "3",
+                "4",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "..",
+                "32768..65535"
+              ]
             },
             {
               "name": "TimeoutPeriod",
@@ -13711,7 +13917,20 @@
           "in": [
             {
               "name": "RequestedState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "2",
+                "3",
+                "4",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "..",
+                "32768..65535"
+              ]
             },
             {
               "name": "TimeoutPeriod",
@@ -15156,7 +15375,20 @@
           "in": [
             {
               "name": "RequestedState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "2",
+                "3",
+                "4",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "..",
+                "32768..65535"
+              ]
             },
             {
               "name": "TimeoutPeriod",
@@ -15602,7 +15834,20 @@
           "in": [
             {
               "name": "RequestedState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "2",
+                "3",
+                "4",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "..",
+                "32768..65535"
+              ]
             },
             {
               "name": "TimeoutPeriod",
@@ -15919,7 +16164,36 @@
         },
         {
           "name": "PrinterStatus",
-          "cimType": 19
+          "cimType": 19,
+          "bitValues": [
+            "Paused",
+            "Error",
+            "Pending Deletion",
+            "Paper Jam",
+            "Paper Out",
+            "Manual Feed",
+            "Paper Problem",
+            "Offline",
+            "IO Active",
+            "Busy",
+            "Printing",
+            "Output Bin Full",
+            "Not Available",
+            "Waiting",
+            "Processing",
+            "Initializing",
+            "Warming Up",
+            "Toner Low",
+            "No Toner",
+            "Page Punt",
+            "User Intervention",
+            "Out Of Memory",
+            "Door Open",
+            "Server Unknown",
+            "Power Save",
+            "Server Offline",
+            "Driver Update Needed"
+          ]
         },
         {
           "name": "Priority",
@@ -17934,7 +18208,20 @@
           "in": [
             {
               "name": "RequestedState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "2",
+                "3",
+                "4",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "..",
+                "32768..65535"
+              ]
             },
             {
               "name": "TimeoutPeriod",
@@ -18611,7 +18898,20 @@
           "in": [
             {
               "name": "RequestedState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "2",
+                "3",
+                "4",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "..",
+                "32768..65535"
+              ]
             },
             {
               "name": "TimeoutPeriod",
@@ -19268,7 +19568,20 @@
           "in": [
             {
               "name": "RequestedState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "2",
+                "3",
+                "4",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "..",
+                "32768..65535"
+              ]
             },
             {
               "name": "TimeoutPeriod",
@@ -21729,7 +22042,20 @@
           "in": [
             {
               "name": "RequestedState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "2",
+                "3",
+                "4",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "..",
+                "32768..65535"
+              ]
             },
             {
               "name": "TimeoutPeriod",
@@ -21792,7 +22118,15 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -29693,7 +30027,20 @@
           "in": [
             {
               "name": "RequestedState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "2",
+                "3",
+                "4",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "..",
+                "32768..65535"
+              ]
             },
             {
               "name": "TimeoutPeriod",
@@ -33093,7 +33440,15 @@
           "in": [
             {
               "name": "Action",
-              "cimType": 18
+              "cimType": 18,
+              "values": [
+                "Add",
+                "Delete"
+              ],
+              "valueMap": [
+                "0",
+                "1"
+              ]
             },
             {
               "name": "IPv6Addresses",
@@ -33107,7 +33462,15 @@
             },
             {
               "name": "EndpointType",
-              "cimType": 18
+              "cimType": 18,
+              "values": [
+                "Endpoint1",
+                "Endpoint2"
+              ],
+              "valueMap": [
+                "0",
+                "1"
+              ]
             },
             {
               "name": "PassThru",
@@ -33141,11 +33504,28 @@
             },
             {
               "name": "EndpointType",
-              "cimType": 18
+              "cimType": 18,
+              "values": [
+                "Endpoint1",
+                "Endpoint2"
+              ],
+              "valueMap": [
+                "0",
+                "1"
+              ]
             },
             {
               "name": "AddressType",
-              "cimType": 18
+              "cimType": 18,
+              "values": [
+                "IPv4",
+                "IPv6"
+              ],
+              "valueMap": [
+                "0",
+                "1",
+                "2"
+              ]
             },
             {
               "name": "DnsServers",
@@ -37209,7 +37589,19 @@
         },
         {
           "name": "Profiles",
-          "cimType": 18
+          "cimType": 18,
+          "bitValues": [
+            "Any",
+            "Public",
+            "Private",
+            "Domain"
+          ],
+          "bitMap": [
+            "0",
+            "0x4",
+            "0x2",
+            "0x1"
+          ]
         },
         {
           "name": "Protocol",
@@ -42139,7 +42531,20 @@
           "in": [
             {
               "name": "RequestedState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "2",
+                "3",
+                "4",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "..",
+                "32768..65535"
+              ]
             },
             {
               "name": "TimeoutPeriod",
@@ -43800,7 +44205,20 @@
           "in": [
             {
               "name": "RequestedState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "2",
+                "3",
+                "4",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "..",
+                "32768..65535"
+              ]
             },
             {
               "name": "TimeoutPeriod",
@@ -45320,7 +45738,20 @@
           "in": [
             {
               "name": "RequestedState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "2",
+                "3",
+                "4",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "..",
+                "32768..65535"
+              ]
             },
             {
               "name": "TimeoutPeriod",
@@ -46558,7 +46989,20 @@
           "in": [
             {
               "name": "RequestedState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "2",
+                "3",
+                "4",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "..",
+                "32768..65535"
+              ]
             },
             {
               "name": "TimeoutPeriod",
@@ -47175,7 +47619,20 @@
           "in": [
             {
               "name": "RequestedState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "2",
+                "3",
+                "4",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "..",
+                "32768..65535"
+              ]
             },
             {
               "name": "TimeoutPeriod",
@@ -48323,7 +48780,20 @@
           "in": [
             {
               "name": "RequestedState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "2",
+                "3",
+                "4",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "..",
+                "32768..65535"
+              ]
             },
             {
               "name": "TimeoutPeriod",
@@ -48790,7 +49260,20 @@
           "in": [
             {
               "name": "RequestedState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "2",
+                "3",
+                "4",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "..",
+                "32768..65535"
+              ]
             },
             {
               "name": "TimeoutPeriod",
@@ -50533,7 +51016,20 @@
           "in": [
             {
               "name": "RequestedState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "2",
+                "3",
+                "4",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "..",
+                "32768..65535"
+              ]
             },
             {
               "name": "TimeoutPeriod",
@@ -51735,7 +52231,20 @@
           "in": [
             {
               "name": "RequestedState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "2",
+                "3",
+                "4",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "..",
+                "32768..65535"
+              ]
             },
             {
               "name": "TimeoutPeriod",
@@ -52657,7 +53166,17 @@
         },
         {
           "name": "NetworkProfile",
-          "cimType": 19
+          "cimType": 19,
+          "bitValues": [
+            "Domain",
+            "Public",
+            "Private"
+          ],
+          "bitMap": [
+            "0",
+            "1",
+            "2"
+          ]
         },
         {
           "name": "Owner",
@@ -54105,7 +54624,20 @@
           "in": [
             {
               "name": "RequestedState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "2",
+                "3",
+                "4",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "..",
+                "32768..65535"
+              ]
             },
             {
               "name": "TimeoutPeriod",
@@ -55912,7 +56444,20 @@
           "in": [
             {
               "name": "RequestedState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "2",
+                "3",
+                "4",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "..",
+                "32768..65535"
+              ]
             },
             {
               "name": "TimeoutPeriod",
@@ -56478,7 +57023,20 @@
           "in": [
             {
               "name": "RequestedState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "2",
+                "3",
+                "4",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "..",
+                "32768..65535"
+              ]
             },
             {
               "name": "TimeoutPeriod",
@@ -57423,7 +57981,20 @@
           "in": [
             {
               "name": "RequestedState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "2",
+                "3",
+                "4",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "..",
+                "32768..65535"
+              ]
             },
             {
               "name": "TimeoutPeriod",
@@ -58211,7 +58782,20 @@
           "in": [
             {
               "name": "RequestedState",
-              "cimType": 18
+              "cimType": 18,
+              "valueMap": [
+                "2",
+                "3",
+                "4",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "..",
+                "32768..65535"
+              ]
             },
             {
               "name": "TimeoutPeriod",
@@ -58415,7 +58999,24 @@
         },
         {
           "name": "JobStatus",
-          "cimType": 19
+          "cimType": 19,
+          "bitValues": [
+            "Paused",
+            "Error",
+            "Deleting",
+            "Spooling",
+            "Printing",
+            "Offline",
+            "Paper Out",
+            "Printed",
+            "Deleted",
+            "Blocked",
+            "User Intervention",
+            "Restart",
+            "Complete",
+            "Retained",
+            "Rendering Locally"
+          ]
         },
         {
           "name": "JobTime",
@@ -59172,7 +59773,36 @@
         },
         {
           "name": "PrinterStatus",
-          "cimType": 19
+          "cimType": 19,
+          "bitValues": [
+            "Paused",
+            "Error",
+            "Pending Deletion",
+            "Paper Jam",
+            "Paper Out",
+            "Manual Feed",
+            "Paper Problem",
+            "Offline",
+            "IO Active",
+            "Busy",
+            "Printing",
+            "Output Bin Full",
+            "Not Available",
+            "Waiting",
+            "Processing",
+            "Initializing",
+            "Warming Up",
+            "Toner Low",
+            "No Toner",
+            "Page Punt",
+            "User Intervention",
+            "Out Of Memory",
+            "Door Open",
+            "Server Unknown",
+            "Power Save",
+            "Server Offline",
+            "Driver Update Needed"
+          ]
         },
         {
           "name": "Priority",

@@ -8,151 +8,195 @@ import wmi "github.com/deploymenttheory/go-bindings-wmi/runtime/wmi"
 
 // CIMClassCreation is the CIM_ClassCreation CIM class.
 type CIMClassCreation struct {
-	ClassDefinition       wmi.Row  `cim:"ClassDefinition"`
-	CorrelatedIndications []string `cim:"CorrelatedIndications"`
-	IndicationFilterName  string   `cim:"IndicationFilterName"`
-	IndicationIdentifier  string   `cim:"IndicationIdentifier"`
-	IndicationTime        string   `cim:"IndicationTime"`
-	OtherSeverity         string   `cim:"OtherSeverity"`
-	PerceivedSeverity     uint16   `cim:"PerceivedSeverity"`
-	SequenceContext       string   `cim:"SequenceContext"`
-	SequenceNumber        int64    `cim:"SequenceNumber"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath               string                            `cim:"__PATH"`
+	ClassDefinition       wmi.Row                           `cim:"ClassDefinition"`
+	CorrelatedIndications []string                          `cim:"CorrelatedIndications"`
+	IndicationFilterName  string                            `cim:"IndicationFilterName"`
+	IndicationIdentifier  string                            `cim:"IndicationIdentifier"`
+	IndicationTime        string                            `cim:"IndicationTime"`
+	OtherSeverity         string                            `cim:"OtherSeverity"`
+	PerceivedSeverity     CIMClassCreationPerceivedSeverity `cim:"PerceivedSeverity"`
+	SequenceContext       string                            `cim:"SequenceContext"`
+	SequenceNumber        int64                             `cim:"SequenceNumber"`
 }
 
 // CIMClassDeletion is the CIM_ClassDeletion CIM class.
 type CIMClassDeletion struct {
-	ClassDefinition       wmi.Row  `cim:"ClassDefinition"`
-	CorrelatedIndications []string `cim:"CorrelatedIndications"`
-	IndicationFilterName  string   `cim:"IndicationFilterName"`
-	IndicationIdentifier  string   `cim:"IndicationIdentifier"`
-	IndicationTime        string   `cim:"IndicationTime"`
-	OtherSeverity         string   `cim:"OtherSeverity"`
-	PerceivedSeverity     uint16   `cim:"PerceivedSeverity"`
-	SequenceContext       string   `cim:"SequenceContext"`
-	SequenceNumber        int64    `cim:"SequenceNumber"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath               string                            `cim:"__PATH"`
+	ClassDefinition       wmi.Row                           `cim:"ClassDefinition"`
+	CorrelatedIndications []string                          `cim:"CorrelatedIndications"`
+	IndicationFilterName  string                            `cim:"IndicationFilterName"`
+	IndicationIdentifier  string                            `cim:"IndicationIdentifier"`
+	IndicationTime        string                            `cim:"IndicationTime"`
+	OtherSeverity         string                            `cim:"OtherSeverity"`
+	PerceivedSeverity     CIMClassDeletionPerceivedSeverity `cim:"PerceivedSeverity"`
+	SequenceContext       string                            `cim:"SequenceContext"`
+	SequenceNumber        int64                             `cim:"SequenceNumber"`
 }
 
 // CIMClassIndication is the CIM_ClassIndication CIM class.
 type CIMClassIndication struct {
-	ClassDefinition       wmi.Row  `cim:"ClassDefinition"`
-	CorrelatedIndications []string `cim:"CorrelatedIndications"`
-	IndicationFilterName  string   `cim:"IndicationFilterName"`
-	IndicationIdentifier  string   `cim:"IndicationIdentifier"`
-	IndicationTime        string   `cim:"IndicationTime"`
-	OtherSeverity         string   `cim:"OtherSeverity"`
-	PerceivedSeverity     uint16   `cim:"PerceivedSeverity"`
-	SequenceContext       string   `cim:"SequenceContext"`
-	SequenceNumber        int64    `cim:"SequenceNumber"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath               string                              `cim:"__PATH"`
+	ClassDefinition       wmi.Row                             `cim:"ClassDefinition"`
+	CorrelatedIndications []string                            `cim:"CorrelatedIndications"`
+	IndicationFilterName  string                              `cim:"IndicationFilterName"`
+	IndicationIdentifier  string                              `cim:"IndicationIdentifier"`
+	IndicationTime        string                              `cim:"IndicationTime"`
+	OtherSeverity         string                              `cim:"OtherSeverity"`
+	PerceivedSeverity     CIMClassIndicationPerceivedSeverity `cim:"PerceivedSeverity"`
+	SequenceContext       string                              `cim:"SequenceContext"`
+	SequenceNumber        int64                               `cim:"SequenceNumber"`
 }
 
 // CIMClassModification is the CIM_ClassModification CIM class.
 type CIMClassModification struct {
-	ClassDefinition         wmi.Row  `cim:"ClassDefinition"`
-	CorrelatedIndications   []string `cim:"CorrelatedIndications"`
-	IndicationFilterName    string   `cim:"IndicationFilterName"`
-	IndicationIdentifier    string   `cim:"IndicationIdentifier"`
-	IndicationTime          string   `cim:"IndicationTime"`
-	OtherSeverity           string   `cim:"OtherSeverity"`
-	PerceivedSeverity       uint16   `cim:"PerceivedSeverity"`
-	PreviousClassDefinition wmi.Row  `cim:"PreviousClassDefinition"`
-	SequenceContext         string   `cim:"SequenceContext"`
-	SequenceNumber          int64    `cim:"SequenceNumber"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                 string                                `cim:"__PATH"`
+	ClassDefinition         wmi.Row                               `cim:"ClassDefinition"`
+	CorrelatedIndications   []string                              `cim:"CorrelatedIndications"`
+	IndicationFilterName    string                                `cim:"IndicationFilterName"`
+	IndicationIdentifier    string                                `cim:"IndicationIdentifier"`
+	IndicationTime          string                                `cim:"IndicationTime"`
+	OtherSeverity           string                                `cim:"OtherSeverity"`
+	PerceivedSeverity       CIMClassModificationPerceivedSeverity `cim:"PerceivedSeverity"`
+	PreviousClassDefinition wmi.Row                               `cim:"PreviousClassDefinition"`
+	SequenceContext         string                                `cim:"SequenceContext"`
+	SequenceNumber          int64                                 `cim:"SequenceNumber"`
 }
 
 // CIMError is the CIM_Error CIM class.
 type CIMError struct {
-	CIMStatusCode            uint32   `cim:"CIMStatusCode"`
-	CIMStatusCodeDescription string   `cim:"CIMStatusCodeDescription"`
-	ErrorSource              string   `cim:"ErrorSource"`
-	ErrorSourceFormat        uint16   `cim:"ErrorSourceFormat"`
-	ErrorType                uint16   `cim:"ErrorType"`
-	Message                  string   `cim:"Message"`
-	MessageArguments         []string `cim:"MessageArguments"`
-	MessageID                string   `cim:"MessageID"`
-	OtherErrorSourceFormat   string   `cim:"OtherErrorSourceFormat"`
-	OtherErrorType           string   `cim:"OtherErrorType"`
-	OwningEntity             string   `cim:"OwningEntity"`
-	PerceivedSeverity        uint16   `cim:"PerceivedSeverity"`
-	ProbableCause            uint16   `cim:"ProbableCause"`
-	ProbableCauseDescription string   `cim:"ProbableCauseDescription"`
-	RecommendedActions       []string `cim:"RecommendedActions"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                  string                    `cim:"__PATH"`
+	CIMStatusCode            CIMErrorCIMStatusCode     `cim:"CIMStatusCode"`
+	CIMStatusCodeDescription string                    `cim:"CIMStatusCodeDescription"`
+	ErrorSource              string                    `cim:"ErrorSource"`
+	ErrorSourceFormat        CIMErrorErrorSourceFormat `cim:"ErrorSourceFormat"`
+	ErrorType                CIMErrorErrorType         `cim:"ErrorType"`
+	Message                  string                    `cim:"Message"`
+	MessageArguments         []string                  `cim:"MessageArguments"`
+	MessageID                string                    `cim:"MessageID"`
+	OtherErrorSourceFormat   string                    `cim:"OtherErrorSourceFormat"`
+	OtherErrorType           string                    `cim:"OtherErrorType"`
+	OwningEntity             string                    `cim:"OwningEntity"`
+	PerceivedSeverity        CIMErrorPerceivedSeverity `cim:"PerceivedSeverity"`
+	ProbableCause            CIMErrorProbableCause     `cim:"ProbableCause"`
+	ProbableCauseDescription string                    `cim:"ProbableCauseDescription"`
+	RecommendedActions       []string                  `cim:"RecommendedActions"`
 }
 
 // CIMIndication is the CIM_Indication CIM class.
 type CIMIndication struct {
-	CorrelatedIndications []string `cim:"CorrelatedIndications"`
-	IndicationFilterName  string   `cim:"IndicationFilterName"`
-	IndicationIdentifier  string   `cim:"IndicationIdentifier"`
-	IndicationTime        string   `cim:"IndicationTime"`
-	OtherSeverity         string   `cim:"OtherSeverity"`
-	PerceivedSeverity     uint16   `cim:"PerceivedSeverity"`
-	SequenceContext       string   `cim:"SequenceContext"`
-	SequenceNumber        int64    `cim:"SequenceNumber"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath               string                         `cim:"__PATH"`
+	CorrelatedIndications []string                       `cim:"CorrelatedIndications"`
+	IndicationFilterName  string                         `cim:"IndicationFilterName"`
+	IndicationIdentifier  string                         `cim:"IndicationIdentifier"`
+	IndicationTime        string                         `cim:"IndicationTime"`
+	OtherSeverity         string                         `cim:"OtherSeverity"`
+	PerceivedSeverity     CIMIndicationPerceivedSeverity `cim:"PerceivedSeverity"`
+	SequenceContext       string                         `cim:"SequenceContext"`
+	SequenceNumber        int64                          `cim:"SequenceNumber"`
 }
 
 // CIMInstCreation is the CIM_InstCreation CIM class.
 type CIMInstCreation struct {
-	CorrelatedIndications   []string `cim:"CorrelatedIndications"`
-	IndicationFilterName    string   `cim:"IndicationFilterName"`
-	IndicationIdentifier    string   `cim:"IndicationIdentifier"`
-	IndicationTime          string   `cim:"IndicationTime"`
-	OtherSeverity           string   `cim:"OtherSeverity"`
-	PerceivedSeverity       uint16   `cim:"PerceivedSeverity"`
-	SequenceContext         string   `cim:"SequenceContext"`
-	SequenceNumber          int64    `cim:"SequenceNumber"`
-	SourceInstance          wmi.Row  `cim:"SourceInstance"`
-	SourceInstanceHost      string   `cim:"SourceInstanceHost"`
-	SourceInstanceModelPath string   `cim:"SourceInstanceModelPath"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                 string                           `cim:"__PATH"`
+	CorrelatedIndications   []string                         `cim:"CorrelatedIndications"`
+	IndicationFilterName    string                           `cim:"IndicationFilterName"`
+	IndicationIdentifier    string                           `cim:"IndicationIdentifier"`
+	IndicationTime          string                           `cim:"IndicationTime"`
+	OtherSeverity           string                           `cim:"OtherSeverity"`
+	PerceivedSeverity       CIMInstCreationPerceivedSeverity `cim:"PerceivedSeverity"`
+	SequenceContext         string                           `cim:"SequenceContext"`
+	SequenceNumber          int64                            `cim:"SequenceNumber"`
+	SourceInstance          wmi.Row                          `cim:"SourceInstance"`
+	SourceInstanceHost      string                           `cim:"SourceInstanceHost"`
+	SourceInstanceModelPath string                           `cim:"SourceInstanceModelPath"`
 }
 
 // CIMInstDeletion is the CIM_InstDeletion CIM class.
 type CIMInstDeletion struct {
-	CorrelatedIndications   []string `cim:"CorrelatedIndications"`
-	IndicationFilterName    string   `cim:"IndicationFilterName"`
-	IndicationIdentifier    string   `cim:"IndicationIdentifier"`
-	IndicationTime          string   `cim:"IndicationTime"`
-	OtherSeverity           string   `cim:"OtherSeverity"`
-	PerceivedSeverity       uint16   `cim:"PerceivedSeverity"`
-	SequenceContext         string   `cim:"SequenceContext"`
-	SequenceNumber          int64    `cim:"SequenceNumber"`
-	SourceInstance          wmi.Row  `cim:"SourceInstance"`
-	SourceInstanceHost      string   `cim:"SourceInstanceHost"`
-	SourceInstanceModelPath string   `cim:"SourceInstanceModelPath"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                 string                           `cim:"__PATH"`
+	CorrelatedIndications   []string                         `cim:"CorrelatedIndications"`
+	IndicationFilterName    string                           `cim:"IndicationFilterName"`
+	IndicationIdentifier    string                           `cim:"IndicationIdentifier"`
+	IndicationTime          string                           `cim:"IndicationTime"`
+	OtherSeverity           string                           `cim:"OtherSeverity"`
+	PerceivedSeverity       CIMInstDeletionPerceivedSeverity `cim:"PerceivedSeverity"`
+	SequenceContext         string                           `cim:"SequenceContext"`
+	SequenceNumber          int64                            `cim:"SequenceNumber"`
+	SourceInstance          wmi.Row                          `cim:"SourceInstance"`
+	SourceInstanceHost      string                           `cim:"SourceInstanceHost"`
+	SourceInstanceModelPath string                           `cim:"SourceInstanceModelPath"`
 }
 
 // CIMInstIndication is the CIM_InstIndication CIM class.
 type CIMInstIndication struct {
-	CorrelatedIndications   []string `cim:"CorrelatedIndications"`
-	IndicationFilterName    string   `cim:"IndicationFilterName"`
-	IndicationIdentifier    string   `cim:"IndicationIdentifier"`
-	IndicationTime          string   `cim:"IndicationTime"`
-	OtherSeverity           string   `cim:"OtherSeverity"`
-	PerceivedSeverity       uint16   `cim:"PerceivedSeverity"`
-	SequenceContext         string   `cim:"SequenceContext"`
-	SequenceNumber          int64    `cim:"SequenceNumber"`
-	SourceInstance          wmi.Row  `cim:"SourceInstance"`
-	SourceInstanceHost      string   `cim:"SourceInstanceHost"`
-	SourceInstanceModelPath string   `cim:"SourceInstanceModelPath"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                 string                             `cim:"__PATH"`
+	CorrelatedIndications   []string                           `cim:"CorrelatedIndications"`
+	IndicationFilterName    string                             `cim:"IndicationFilterName"`
+	IndicationIdentifier    string                             `cim:"IndicationIdentifier"`
+	IndicationTime          string                             `cim:"IndicationTime"`
+	OtherSeverity           string                             `cim:"OtherSeverity"`
+	PerceivedSeverity       CIMInstIndicationPerceivedSeverity `cim:"PerceivedSeverity"`
+	SequenceContext         string                             `cim:"SequenceContext"`
+	SequenceNumber          int64                              `cim:"SequenceNumber"`
+	SourceInstance          wmi.Row                            `cim:"SourceInstance"`
+	SourceInstanceHost      string                             `cim:"SourceInstanceHost"`
+	SourceInstanceModelPath string                             `cim:"SourceInstanceModelPath"`
 }
 
 // CIMInstModification is the CIM_InstModification CIM class.
 type CIMInstModification struct {
-	CorrelatedIndications   []string `cim:"CorrelatedIndications"`
-	IndicationFilterName    string   `cim:"IndicationFilterName"`
-	IndicationIdentifier    string   `cim:"IndicationIdentifier"`
-	IndicationTime          string   `cim:"IndicationTime"`
-	OtherSeverity           string   `cim:"OtherSeverity"`
-	PerceivedSeverity       uint16   `cim:"PerceivedSeverity"`
-	PreviousInstance        wmi.Row  `cim:"PreviousInstance"`
-	SequenceContext         string   `cim:"SequenceContext"`
-	SequenceNumber          int64    `cim:"SequenceNumber"`
-	SourceInstance          wmi.Row  `cim:"SourceInstance"`
-	SourceInstanceHost      string   `cim:"SourceInstanceHost"`
-	SourceInstanceModelPath string   `cim:"SourceInstanceModelPath"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                 string                               `cim:"__PATH"`
+	CorrelatedIndications   []string                             `cim:"CorrelatedIndications"`
+	IndicationFilterName    string                               `cim:"IndicationFilterName"`
+	IndicationIdentifier    string                               `cim:"IndicationIdentifier"`
+	IndicationTime          string                               `cim:"IndicationTime"`
+	OtherSeverity           string                               `cim:"OtherSeverity"`
+	PerceivedSeverity       CIMInstModificationPerceivedSeverity `cim:"PerceivedSeverity"`
+	PreviousInstance        wmi.Row                              `cim:"PreviousInstance"`
+	SequenceContext         string                               `cim:"SequenceContext"`
+	SequenceNumber          int64                                `cim:"SequenceNumber"`
+	SourceInstance          wmi.Row                              `cim:"SourceInstance"`
+	SourceInstanceHost      string                               `cim:"SourceInstanceHost"`
+	SourceInstanceModelPath string                               `cim:"SourceInstanceModelPath"`
 }
 
 // MDMActiveSyncUserAccounts0101 is the MDM_ActiveSync_User_Accounts01_01 CIM class.
 type MDMActiveSyncUserAccounts0101 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath      string `cim:"__PATH"`
 	AccountIcon  string `cim:"AccountIcon"`
 	AccountName  string `cim:"AccountName"`
 	AccountType  string `cim:"AccountType"`
@@ -167,6 +211,10 @@ type MDMActiveSyncUserAccounts0101 struct {
 
 // MDMActiveSyncUserContentTypes0401 is the MDM_ActiveSync_User_ContentTypes04_01 CIM class.
 type MDMActiveSyncUserContentTypes0401 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath    string `cim:"__PATH"`
 	Enabled    string `cim:"Enabled"`
 	InstanceID string `cim:"InstanceID"`
 	Name       string `cim:"Name"`
@@ -175,6 +223,10 @@ type MDMActiveSyncUserContentTypes0401 struct {
 
 // MDMActiveSyncUserOptions03 is the MDM_ActiveSync_User_Options03 CIM class.
 type MDMActiveSyncUserOptions03 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath       string `cim:"__PATH"`
 	InstanceID    string `cim:"InstanceID"`
 	Logging       string `cim:"Logging"`
 	MailAgeFilter string `cim:"MailAgeFilter"`
@@ -185,6 +237,10 @@ type MDMActiveSyncUserOptions03 struct {
 
 // MDMAppLockerApplicationLaunchRestrictions01EXE03 is the MDM_AppLocker_ApplicationLaunchRestrictions01_EXE03 CIM class.
 type MDMAppLockerApplicationLaunchRestrictions01EXE03 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                          string `cim:"__PATH"`
 	EnforcementMode                  string `cim:"EnforcementMode"`
 	InstanceID                       string `cim:"InstanceID"`
 	NonInteractiveProcessEnforcement string `cim:"NonInteractiveProcessEnforcement"`
@@ -194,6 +250,10 @@ type MDMAppLockerApplicationLaunchRestrictions01EXE03 struct {
 
 // MDMAppLockerApplicationLaunchRestrictions01StoreApps03 is the MDM_AppLocker_ApplicationLaunchRestrictions01_StoreApps03 CIM class.
 type MDMAppLockerApplicationLaunchRestrictions01StoreApps03 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath         string `cim:"__PATH"`
 	EnforcementMode string `cim:"EnforcementMode"`
 	InstanceID      string `cim:"InstanceID"`
 	ParentID        string `cim:"ParentID"`
@@ -202,6 +262,10 @@ type MDMAppLockerApplicationLaunchRestrictions01StoreApps03 struct {
 
 // MDMAppLockerCodeIntegrity03 is the MDM_AppLocker_CodeIntegrity03 CIM class.
 type MDMAppLockerCodeIntegrity03 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath    string `cim:"__PATH"`
 	InstanceID string `cim:"InstanceID"`
 	ParentID   string `cim:"ParentID"`
 	Policy     string `cim:"Policy"`
@@ -209,6 +273,10 @@ type MDMAppLockerCodeIntegrity03 struct {
 
 // MDMAppLockerDLL03 is the MDM_AppLocker_DLL03 CIM class.
 type MDMAppLockerDLL03 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                          string `cim:"__PATH"`
 	EnforcementMode                  string `cim:"EnforcementMode"`
 	InstanceID                       string `cim:"InstanceID"`
 	NonInteractiveProcessEnforcement string `cim:"NonInteractiveProcessEnforcement"`
@@ -218,6 +286,10 @@ type MDMAppLockerDLL03 struct {
 
 // MDMAppLockerEnterpriseDataProtection01EXE03 is the MDM_AppLocker_EnterpriseDataProtection01_EXE03 CIM class.
 type MDMAppLockerEnterpriseDataProtection01EXE03 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath    string `cim:"__PATH"`
 	InstanceID string `cim:"InstanceID"`
 	ParentID   string `cim:"ParentID"`
 	Policy     string `cim:"Policy"`
@@ -225,6 +297,10 @@ type MDMAppLockerEnterpriseDataProtection01EXE03 struct {
 
 // MDMAppLockerEnterpriseDataProtection01StoreApps03 is the MDM_AppLocker_EnterpriseDataProtection01_StoreApps03 CIM class.
 type MDMAppLockerEnterpriseDataProtection01StoreApps03 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath    string `cim:"__PATH"`
 	InstanceID string `cim:"InstanceID"`
 	ParentID   string `cim:"ParentID"`
 	Policy     string `cim:"Policy"`
@@ -232,6 +308,10 @@ type MDMAppLockerEnterpriseDataProtection01StoreApps03 struct {
 
 // MDMAppLockerMSI03 is the MDM_AppLocker_MSI03 CIM class.
 type MDMAppLockerMSI03 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath         string `cim:"__PATH"`
 	EnforcementMode string `cim:"EnforcementMode"`
 	InstanceID      string `cim:"InstanceID"`
 	ParentID        string `cim:"ParentID"`
@@ -240,6 +320,10 @@ type MDMAppLockerMSI03 struct {
 
 // MDMAppLockerScript03 is the MDM_AppLocker_Script03 CIM class.
 type MDMAppLockerScript03 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath         string `cim:"__PATH"`
 	EnforcementMode string `cim:"EnforcementMode"`
 	InstanceID      string `cim:"InstanceID"`
 	ParentID        string `cim:"ParentID"`
@@ -248,6 +332,10 @@ type MDMAppLockerScript03 struct {
 
 // MDMApplicationControl is the MDM_ApplicationControl CIM class.
 type MDMApplicationControl struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath    string `cim:"__PATH"`
 	DeviceID   string `cim:"DeviceID"`
 	InstanceID string `cim:"InstanceID"`
 	ParentID   string `cim:"ParentID"`
@@ -256,6 +344,10 @@ type MDMApplicationControl struct {
 
 // MDMApplicationControlPolicies0101 is the MDM_ApplicationControl_Policies01_01 CIM class.
 type MDMApplicationControlPolicies0101 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath    string `cim:"__PATH"`
 	InstanceID string `cim:"InstanceID"`
 	ParentID   string `cim:"ParentID"`
 	Policy     string `cim:"Policy"`
@@ -263,6 +355,10 @@ type MDMApplicationControlPolicies0101 struct {
 
 // MDMApplicationControlPolicyIDs03 is the MDM_ApplicationControl_PolicyIDs03 CIM class.
 type MDMApplicationControlPolicyIDs03 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string `cim:"__PATH"`
 	InstanceID     string `cim:"InstanceID"`
 	IsVariableLeaf bool   `cim:"IsVariableLeaf"`
 	ParentID       string `cim:"ParentID"`
@@ -271,6 +367,10 @@ type MDMApplicationControlPolicyIDs03 struct {
 
 // MDMApplicationControlPolicyInfo03 is the MDM_ApplicationControl_PolicyInfo03 CIM class.
 type MDMApplicationControlPolicyInfo03 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string `cim:"__PATH"`
 	BasePolicyId   string `cim:"BasePolicyId"`
 	FriendlyName   string `cim:"FriendlyName"`
 	InstanceID     string `cim:"InstanceID"`
@@ -287,6 +387,10 @@ type MDMApplicationControlPolicyInfo03 struct {
 
 // MDMApplicationControlToken03 is the MDM_ApplicationControl_Token03 CIM class.
 type MDMApplicationControlToken03 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string `cim:"__PATH"`
 	InstanceID     string `cim:"InstanceID"`
 	IsVariableLeaf bool   `cim:"IsVariableLeaf"`
 	ParentID       string `cim:"ParentID"`
@@ -295,6 +399,10 @@ type MDMApplicationControlToken03 struct {
 
 // MDMApplicationControlTokenInfo03 is the MDM_ApplicationControl_TokenInfo03 CIM class.
 type MDMApplicationControlTokenInfo03 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath    string `cim:"__PATH"`
 	InstanceID string `cim:"InstanceID"`
 	ParentID   string `cim:"ParentID"`
 	Status     int32  `cim:"Status"`
@@ -303,6 +411,10 @@ type MDMApplicationControlTokenInfo03 struct {
 
 // MDMApplicationControlTokens0101 is the MDM_ApplicationControl_Tokens01_01 CIM class.
 type MDMApplicationControlTokens0101 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath    string `cim:"__PATH"`
 	InstanceID string `cim:"InstanceID"`
 	ParentID   string `cim:"ParentID"`
 	Token      string `cim:"Token"`
@@ -310,6 +422,10 @@ type MDMApplicationControlTokens0101 struct {
 
 // MDMAssignedAccess is the MDM_AssignedAccess CIM class.
 type MDMAssignedAccess struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath       string `cim:"__PATH"`
 	Configuration string `cim:"Configuration"`
 	InstanceID    string `cim:"InstanceID"`
 	KioskModeApp  string `cim:"KioskModeApp"`
@@ -319,6 +435,10 @@ type MDMAssignedAccess struct {
 
 // MDMBitLocker is the MDM_BitLocker CIM class.
 type MDMBitLocker struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                                string `cim:"__PATH"`
 	AllowStandardUserEncryption                            int32  `cim:"AllowStandardUserEncryption"`
 	AllowWarningForOtherDiskEncryption                     int32  `cim:"AllowWarningForOtherDiskEncryption"`
 	ConfigureRecoveryPasswordRotation                      int32  `cim:"ConfigureRecoveryPasswordRotation"`
@@ -348,6 +468,10 @@ type MDMBitLocker struct {
 
 // MDMBitLockerStatus01 is the MDM_BitLocker_Status01 CIM class.
 type MDMBitLockerStatus01 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                          string `cim:"__PATH"`
 	DeviceEncryptionStatus           int32  `cim:"DeviceEncryptionStatus"`
 	InstanceID                       string `cim:"InstanceID"`
 	ParentID                         string `cim:"ParentID"`
@@ -358,10 +482,18 @@ type MDMBitLockerStatus01 struct {
 
 // MDMBridgeMgmtTransaction is the MDM_BridgeMgmt_Transaction CIM class.
 type MDMBridgeMgmtTransaction struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath string `cim:"__PATH"`
 }
 
 // MDMClientCertificateInstallInstall03 is the MDM_ClientCertificateInstall_Install03 CIM class.
 type MDMClientCertificateInstallInstall03 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                  string `cim:"__PATH"`
 	AADKeyIdentifierList     string `cim:"AADKeyIdentifierList"`
 	CAThumbprint             string `cim:"CAThumbprint"`
 	Challenge                string `cim:"Challenge"`
@@ -386,6 +518,10 @@ type MDMClientCertificateInstallInstall03 struct {
 
 // MDMClientCertificateInstallPFXCertInstall0101 is the MDM_ClientCertificateInstall_PFXCertInstall01_01 CIM class.
 type MDMClientCertificateInstallPFXCertInstall0101 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                        string `cim:"__PATH"`
 	ContainerName                  string `cim:"ContainerName"`
 	InstanceID                     string `cim:"InstanceID"`
 	KeyLocation                    int32  `cim:"KeyLocation"`
@@ -401,6 +537,10 @@ type MDMClientCertificateInstallPFXCertInstall0101 struct {
 
 // MDMClientCertificateInstallSCEP0101 is the MDM_ClientCertificateInstall_SCEP01_01 CIM class.
 type MDMClientCertificateInstallSCEP0101 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath             string `cim:"__PATH"`
 	CertThumbprint      string `cim:"CertThumbprint"`
 	ErrorCode           int32  `cim:"ErrorCode"`
 	InstanceID          string `cim:"InstanceID"`
@@ -411,6 +551,10 @@ type MDMClientCertificateInstallSCEP0101 struct {
 
 // MDMDevDetail is the MDM_DevDetail CIM class.
 type MDMDevDetail struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath    string `cim:"__PATH"`
 	DevTyp     string `cim:"DevTyp"`
 	FwV        string `cim:"FwV"`
 	HwV        string `cim:"HwV"`
@@ -423,6 +567,10 @@ type MDMDevDetail struct {
 
 // MDMDevDetailExt01 is the MDM_DevDetail_Ext01 CIM class.
 type MDMDevDetailExt01 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath            string `cim:"__PATH"`
 	DeviceHardwareData string `cim:"DeviceHardwareData"`
 	InstanceID         string `cim:"InstanceID"`
 	ParentID           string `cim:"ParentID"`
@@ -431,6 +579,10 @@ type MDMDevDetailExt01 struct {
 
 // MDMDevDetailMicrosoft02 is the MDM_DevDetail_Microsoft02 CIM class.
 type MDMDevDetailMicrosoft02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                   string `cim:"__PATH"`
 	CommercializationOperator string `cim:"CommercializationOperator"`
 	DeviceName                string `cim:"DeviceName"`
 	InstanceID                string `cim:"InstanceID"`
@@ -447,6 +599,10 @@ type MDMDevDetailMicrosoft02 struct {
 
 // MDMDeviceManageabilityProvider0101 is the MDM_DeviceManageability_Provider01_01 CIM class.
 type MDMDeviceManageabilityProvider0101 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string `cim:"__PATH"`
 	ConfigInfo     string `cim:"ConfigInfo"`
 	EnrollmentInfo string `cim:"EnrollmentInfo"`
 	InstanceID     string `cim:"InstanceID"`
@@ -455,6 +611,10 @@ type MDMDeviceManageabilityProvider0101 struct {
 
 // MDMDevicePreparation is the MDM_DevicePreparation CIM class.
 type MDMDevicePreparation struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                       string `cim:"__PATH"`
 	InstanceID                    string `cim:"InstanceID"`
 	IsPostOobeProvisioningAllowed bool   `cim:"IsPostOobeProvisioningAllowed"`
 	PageEnabled                   bool   `cim:"PageEnabled"`
@@ -468,6 +628,10 @@ type MDMDevicePreparation struct {
 
 // MDMDevicePreparationBootstrapperAgent01 is the MDM_DevicePreparation_BootstrapperAgent01 CIM class.
 type MDMDevicePreparationBootstrapperAgent01 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath          string `cim:"__PATH"`
 	ExecutionContext string `cim:"ExecutionContext"`
 	InstanceID       string `cim:"InstanceID"`
 	ParentID         string `cim:"ParentID"`
@@ -475,6 +639,10 @@ type MDMDevicePreparationBootstrapperAgent01 struct {
 
 // MDMDevicePreparationMDMProvider01 is the MDM_DevicePreparation_MDMProvider01 CIM class.
 type MDMDevicePreparationMDMProvider01 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath           string `cim:"__PATH"`
 	InstanceID        string `cim:"InstanceID"`
 	MdmAgentInstalled bool   `cim:"MdmAgentInstalled"`
 	ParentID          string `cim:"ParentID"`
@@ -484,6 +652,10 @@ type MDMDevicePreparationMDMProvider01 struct {
 
 // MDMDeviceStatus is the MDM_DeviceStatus CIM class.
 type MDMDeviceStatus struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath         string `cim:"__PATH"`
 	DomainName      string `cim:"DomainName"`
 	InstanceID      string `cim:"InstanceID"`
 	ParentID        string `cim:"ParentID"`
@@ -492,6 +664,10 @@ type MDMDeviceStatus struct {
 
 // MDMDeviceStatusAntispyware01 is the MDM_DeviceStatus_Antispyware01 CIM class.
 type MDMDeviceStatusAntispyware01 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath         string `cim:"__PATH"`
 	InstanceID      string `cim:"InstanceID"`
 	ParentID        string `cim:"ParentID"`
 	SignatureStatus int32  `cim:"SignatureStatus"`
@@ -500,6 +676,10 @@ type MDMDeviceStatusAntispyware01 struct {
 
 // MDMDeviceStatusAntivirus01 is the MDM_DeviceStatus_Antivirus01 CIM class.
 type MDMDeviceStatusAntivirus01 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath         string `cim:"__PATH"`
 	InstanceID      string `cim:"InstanceID"`
 	ParentID        string `cim:"ParentID"`
 	SignatureStatus int32  `cim:"SignatureStatus"`
@@ -508,6 +688,10 @@ type MDMDeviceStatusAntivirus01 struct {
 
 // MDMDeviceStatusBattery01 is the MDM_DeviceStatus_Battery01 CIM class.
 type MDMDeviceStatusBattery01 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                  string `cim:"__PATH"`
 	EstimatedChargeRemaining int32  `cim:"EstimatedChargeRemaining"`
 	EstimatedRuntime         int32  `cim:"EstimatedRuntime"`
 	InstanceID               string `cim:"InstanceID"`
@@ -517,6 +701,10 @@ type MDMDeviceStatusBattery01 struct {
 
 // MDMDeviceStatusCellularIdentities0101 is the MDM_DeviceStatus_CellularIdentities01_01 CIM class.
 type MDMDeviceStatusCellularIdentities0101 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                   string `cim:"__PATH"`
 	CommercializationOperator string `cim:"CommercializationOperator"`
 	ICCID                     string `cim:"ICCID"`
 	IMSI                      string `cim:"IMSI"`
@@ -529,6 +717,10 @@ type MDMDeviceStatusCellularIdentities0101 struct {
 
 // MDMDeviceStatusCompliance01 is the MDM_DeviceStatus_Compliance01 CIM class.
 type MDMDeviceStatusCompliance01 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath              string `cim:"__PATH"`
 	EncryptionCompliance bool   `cim:"EncryptionCompliance"`
 	InstanceID           string `cim:"InstanceID"`
 	ParentID             string `cim:"ParentID"`
@@ -536,6 +728,10 @@ type MDMDeviceStatusCompliance01 struct {
 
 // MDMDeviceStatusDMA01 is the MDM_DeviceStatus_DMA01 CIM class.
 type MDMDeviceStatusDMA01 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                 string `cim:"__PATH"`
 	BootDMAProtectionStatus int32  `cim:"BootDMAProtectionStatus"`
 	InstanceID              string `cim:"InstanceID"`
 	ParentID                string `cim:"ParentID"`
@@ -543,6 +739,10 @@ type MDMDeviceStatusDMA01 struct {
 
 // MDMDeviceStatusDeviceGuard01 is the MDM_DeviceStatus_DeviceGuard01 CIM class.
 type MDMDeviceStatusDeviceGuard01 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                               string `cim:"__PATH"`
 	HypervisorEnforcedCodeIntegrityStatus int32  `cim:"HypervisorEnforcedCodeIntegrityStatus"`
 	InstanceID                            string `cim:"InstanceID"`
 	LsaCfgCredGuardStatus                 int32  `cim:"LsaCfgCredGuardStatus"`
@@ -554,6 +754,10 @@ type MDMDeviceStatusDeviceGuard01 struct {
 
 // MDMDeviceStatusFirewall01 is the MDM_DeviceStatus_Firewall01 CIM class.
 type MDMDeviceStatusFirewall01 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath    string `cim:"__PATH"`
 	InstanceID string `cim:"InstanceID"`
 	ParentID   string `cim:"ParentID"`
 	Status     int32  `cim:"Status"`
@@ -561,6 +765,10 @@ type MDMDeviceStatusFirewall01 struct {
 
 // MDMDeviceStatusNetworkIdentifiers0101 is the MDM_DeviceStatus_NetworkIdentifiers01_01 CIM class.
 type MDMDeviceStatusNetworkIdentifiers0101 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath     string `cim:"__PATH"`
 	IPAddressV4 string `cim:"IPAddressV4"`
 	IPAddressV6 string `cim:"IPAddressV6"`
 	InstanceID  string `cim:"InstanceID"`
@@ -571,6 +779,10 @@ type MDMDeviceStatusNetworkIdentifiers0101 struct {
 
 // MDMDeviceStatusOS01 is the MDM_DeviceStatus_OS01 CIM class.
 type MDMDeviceStatusOS01 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath    string `cim:"__PATH"`
 	Edition    string `cim:"Edition"`
 	InstanceID string `cim:"InstanceID"`
 	Mode       string `cim:"Mode"`
@@ -579,6 +791,10 @@ type MDMDeviceStatusOS01 struct {
 
 // MDMDeviceStatusTPM01 is the MDM_DeviceStatus_TPM01 CIM class.
 type MDMDeviceStatusTPM01 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath              string `cim:"__PATH"`
 	InstanceID           string `cim:"InstanceID"`
 	ParentID             string `cim:"ParentID"`
 	SpecificationVersion string `cim:"SpecificationVersion"`
@@ -586,6 +802,10 @@ type MDMDeviceStatusTPM01 struct {
 
 // MDMDeviceStatusUAC01 is the MDM_DeviceStatus_UAC01 CIM class.
 type MDMDeviceStatusUAC01 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath    string `cim:"__PATH"`
 	InstanceID string `cim:"InstanceID"`
 	ParentID   string `cim:"ParentID"`
 	Status     int32  `cim:"Status"`
@@ -593,6 +813,10 @@ type MDMDeviceStatusUAC01 struct {
 
 // MDMDeviceUpdateCenterDesiredUpdates01 is the MDM_DeviceUpdateCenter_DesiredUpdates01 CIM class.
 type MDMDeviceUpdateCenterDesiredUpdates01 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath               string `cim:"__PATH"`
 	InstanceID            string `cim:"InstanceID"`
 	OcpVersion            string `cim:"OcpVersion"`
 	OsVersion             string `cim:"OsVersion"`
@@ -602,6 +826,10 @@ type MDMDeviceUpdateCenterDesiredUpdates01 struct {
 
 // MDMDeviceUpdateCenterEnrollment01 is the MDM_DeviceUpdateCenter_Enrollment01 CIM class.
 type MDMDeviceUpdateCenterEnrollment01 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath         string `cim:"__PATH"`
 	CustomPackageId string `cim:"CustomPackageId"`
 	DeviceModelId   string `cim:"DeviceModelId"`
 	InstanceID      string `cim:"InstanceID"`
@@ -612,6 +840,10 @@ type MDMDeviceUpdateCenterEnrollment01 struct {
 
 // MDMEnrollmentStatusTrackingPolicyProviders0201 is the MDM_EnrollmentStatusTracking_PolicyProviders02_01 CIM class.
 type MDMEnrollmentStatusTrackingPolicyProviders0201 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath           string `cim:"__PATH"`
 	InstallationState int32  `cim:"InstallationState"`
 	InstanceID        string `cim:"InstanceID"`
 	LastError         int32  `cim:"LastError"`
@@ -621,6 +853,10 @@ type MDMEnrollmentStatusTrackingPolicyProviders0201 struct {
 
 // MDMEnrollmentStatusTrackingPolicyProviders0301 is the MDM_EnrollmentStatusTracking_PolicyProviders03_01 CIM class.
 type MDMEnrollmentStatusTrackingPolicyProviders0301 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                 string `cim:"__PATH"`
 	InstanceID              string `cim:"InstanceID"`
 	ParentID                string `cim:"ParentID"`
 	TrackingPoliciesCreated bool   `cim:"TrackingPoliciesCreated"`
@@ -628,6 +864,10 @@ type MDMEnrollmentStatusTrackingPolicyProviders0301 struct {
 
 // MDMEnrollmentStatusTrackingSetup01 is the MDM_EnrollmentStatusTracking_Setup01 CIM class.
 type MDMEnrollmentStatusTrackingSetup01 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                  string `cim:"__PATH"`
 	HasProvisioningCompleted bool   `cim:"HasProvisioningCompleted"`
 	InstanceID               string `cim:"InstanceID"`
 	ParentID                 string `cim:"ParentID"`
@@ -635,6 +875,10 @@ type MDMEnrollmentStatusTrackingSetup01 struct {
 
 // MDMEnrollmentStatusTrackingTrackedResourceTypes04 is the MDM_EnrollmentStatusTracking_TrackedResourceTypes04 CIM class.
 type MDMEnrollmentStatusTrackingTrackedResourceTypes04 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath    string `cim:"__PATH"`
 	Apps       bool   `cim:"Apps"`
 	InstanceID string `cim:"InstanceID"`
 	ParentID   string `cim:"ParentID"`
@@ -642,6 +886,10 @@ type MDMEnrollmentStatusTrackingTrackedResourceTypes04 struct {
 
 // MDMEnrollmentStatusTrackingTracking0302 is the MDM_EnrollmentStatusTracking_Tracking03_02 CIM class.
 type MDMEnrollmentStatusTrackingTracking0302 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath           string `cim:"__PATH"`
 	AppId             string `cim:"AppId"`
 	DisplayName       string `cim:"DisplayName"`
 	ErrorHresult      int32  `cim:"ErrorHresult"`
@@ -654,6 +902,10 @@ type MDMEnrollmentStatusTrackingTracking0302 struct {
 
 // MDMEnterpriseAPN01 is the MDM_EnterpriseAPN_01 CIM class.
 type MDMEnterpriseAPN01 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath     string `cim:"__PATH"`
 	APNName     string `cim:"APNName"`
 	AlwaysOn    bool   `cim:"AlwaysOn"`
 	AuthType    string `cim:"AuthType"`
@@ -671,6 +923,10 @@ type MDMEnterpriseAPN01 struct {
 
 // MDMEnterpriseAPNSettings01 is the MDM_EnterpriseAPN_Settings01 CIM class.
 type MDMEnterpriseAPNSettings01 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath          string `cim:"__PATH"`
 	AllowUserControl bool   `cim:"AllowUserControl"`
 	HideView         bool   `cim:"HideView"`
 	InstanceID       string `cim:"InstanceID"`
@@ -679,6 +935,10 @@ type MDMEnterpriseAPNSettings01 struct {
 
 // MDMEnterpriseDataProtection is the MDM_EnterpriseDataProtection CIM class.
 type MDMEnterpriseDataProtection struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath    string `cim:"__PATH"`
 	InstanceID string `cim:"InstanceID"`
 	ParentID   string `cim:"ParentID"`
 	Status     int32  `cim:"Status"`
@@ -686,6 +946,10 @@ type MDMEnterpriseDataProtection struct {
 
 // MDMEnterpriseDataProtectionSettings01 is the MDM_EnterpriseDataProtection_Settings01 CIM class.
 type MDMEnterpriseDataProtectionSettings01 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                        string `cim:"__PATH"`
 	AllowAzureRMSForEDP            int32  `cim:"AllowAzureRMSForEDP"`
 	AllowUserDecryption            int32  `cim:"AllowUserDecryption"`
 	DataRecoveryCertificate        string `cim:"DataRecoveryCertificate"`
@@ -701,6 +965,10 @@ type MDMEnterpriseDataProtectionSettings01 struct {
 
 // MDMEnterpriseModernAppManagementAppInstallation0101 is the MDM_EnterpriseModernAppManagement_AppInstallation01_01 CIM class.
 type MDMEnterpriseModernAppManagementAppInstallation0101 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string `cim:"__PATH"`
 	HostedInstall  string `cim:"HostedInstall"`
 	InstanceID     string `cim:"InstanceID"`
 	LastError      int32  `cim:"LastError"`
@@ -713,6 +981,10 @@ type MDMEnterpriseModernAppManagementAppInstallation0101 struct {
 
 // MDMEnterpriseModernAppManagementAppManagement01 is the MDM_EnterpriseModernAppManagement_AppManagement01 CIM class.
 type MDMEnterpriseModernAppManagementAppManagement01 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath             string `cim:"__PATH"`
 	AppInventoryQuery   string `cim:"AppInventoryQuery"`
 	AppInventoryResults string `cim:"AppInventoryResults"`
 	InstanceID          string `cim:"InstanceID"`
@@ -723,6 +995,10 @@ type MDMEnterpriseModernAppManagementAppManagement01 struct {
 
 // MDMEnterpriseModernAppManagementAppManagement0102 is the MDM_EnterpriseModernAppManagement_AppManagement01_02 CIM class.
 type MDMEnterpriseModernAppManagementAppManagement0102 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                               string `cim:"__PATH"`
 	DoNotUpdate                           int32  `cim:"DoNotUpdate"`
 	InstanceID                            string `cim:"InstanceID"`
 	MaintainProcessorArchitectureOnUpdate int32  `cim:"MaintainProcessorArchitectureOnUpdate"`
@@ -731,6 +1007,10 @@ type MDMEnterpriseModernAppManagementAppManagement0102 struct {
 
 // MDMEnterpriseModernAppManagementAppManagement0103 is the MDM_EnterpriseModernAppManagement_AppManagement01_03 CIM class.
 type MDMEnterpriseModernAppManagementAppManagement0103 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath           string `cim:"__PATH"`
 	Architecture      string `cim:"Architecture"`
 	InstallDate       string `cim:"InstallDate"`
 	InstallLocation   string `cim:"InstallLocation"`
@@ -751,6 +1031,10 @@ type MDMEnterpriseModernAppManagementAppManagement0103 struct {
 
 // MDMEnterpriseModernAppManagementAppSettingPolicy04 is the MDM_EnterpriseModernAppManagement_AppSettingPolicy04 CIM class.
 type MDMEnterpriseModernAppManagementAppSettingPolicy04 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string `cim:"__PATH"`
 	InstanceID     string `cim:"InstanceID"`
 	IsVariableLeaf bool   `cim:"IsVariableLeaf"`
 	ParentID       string `cim:"ParentID"`
@@ -759,6 +1043,10 @@ type MDMEnterpriseModernAppManagementAppSettingPolicy04 struct {
 
 // MDMEnterpriseModernAppManagementAutoRepair05 is the MDM_EnterpriseModernAppManagement_AutoRepair05 CIM class.
 type MDMEnterpriseModernAppManagementAutoRepair05 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath       string `cim:"__PATH"`
 	InstanceID    string `cim:"InstanceID"`
 	PackageSource string `cim:"PackageSource"`
 	ParentID      string `cim:"ParentID"`
@@ -766,6 +1054,10 @@ type MDMEnterpriseModernAppManagementAutoRepair05 struct {
 
 // MDMEnterpriseModernAppManagementAutoUpdateSettings05 is the MDM_EnterpriseModernAppManagement_AutoUpdateSettings05 CIM class.
 type MDMEnterpriseModernAppManagementAutoUpdateSettings05 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                   string `cim:"__PATH"`
 	AutomaticBackgroundTask   bool   `cim:"AutomaticBackgroundTask"`
 	Disable                   bool   `cim:"Disable"`
 	ForceUpdateFromAnyVersion bool   `cim:"ForceUpdateFromAnyVersion"`
@@ -780,6 +1072,10 @@ type MDMEnterpriseModernAppManagementAutoUpdateSettings05 struct {
 
 // MDMEnterpriseModernAppManagementEffectiveRelease03 is the MDM_EnterpriseModernAppManagement_EffectiveRelease03 CIM class.
 type MDMEnterpriseModernAppManagementEffectiveRelease03 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath             string `cim:"__PATH"`
 	ChannelId           string `cim:"ChannelId"`
 	InstanceID          string `cim:"InstanceID"`
 	ParentID            string `cim:"ParentID"`
@@ -788,6 +1084,10 @@ type MDMEnterpriseModernAppManagementEffectiveRelease03 struct {
 
 // MDMEnterpriseModernAppManagementEffectiveRelease05 is the MDM_EnterpriseModernAppManagement_EffectiveRelease05 CIM class.
 type MDMEnterpriseModernAppManagementEffectiveRelease05 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath             string `cim:"__PATH"`
 	ChannelId           string `cim:"ChannelId"`
 	InstanceID          string `cim:"InstanceID"`
 	ParentID            string `cim:"ParentID"`
@@ -796,6 +1096,10 @@ type MDMEnterpriseModernAppManagementEffectiveRelease05 struct {
 
 // MDMEnterpriseModernAppManagementReleaseManagement0101 is the MDM_EnterpriseModernAppManagement_ReleaseManagement01_01 CIM class.
 type MDMEnterpriseModernAppManagementReleaseManagement0101 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath             string `cim:"__PATH"`
 	ChannelId           string `cim:"ChannelId"`
 	InstanceID          string `cim:"InstanceID"`
 	ParentID            string `cim:"ParentID"`
@@ -804,6 +1108,10 @@ type MDMEnterpriseModernAppManagementReleaseManagement0101 struct {
 
 // MDMEnterpriseModernAppManagementReleaseManagement0301 is the MDM_EnterpriseModernAppManagement_ReleaseManagement03_01 CIM class.
 type MDMEnterpriseModernAppManagementReleaseManagement0301 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath             string `cim:"__PATH"`
 	ChannelId           string `cim:"ChannelId"`
 	InstanceID          string `cim:"InstanceID"`
 	ParentID            string `cim:"ParentID"`
@@ -812,6 +1120,10 @@ type MDMEnterpriseModernAppManagementReleaseManagement0301 struct {
 
 // MDMEnterpriseModernAppManagementStoreLicenses0201 is the MDM_EnterpriseModernAppManagement_StoreLicenses02_01 CIM class.
 type MDMEnterpriseModernAppManagementStoreLicenses0201 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath         string `cim:"__PATH"`
 	InstanceID      string `cim:"InstanceID"`
 	LicenseCategory string `cim:"LicenseCategory"`
 	LicenseUsage    string `cim:"LicenseUsage"`
@@ -821,6 +1133,10 @@ type MDMEnterpriseModernAppManagementStoreLicenses0201 struct {
 
 // MDMFirewallAction04 is the MDM_Firewall_Action04 CIM class.
 type MDMFirewallAction04 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath    string `cim:"__PATH"`
 	InstanceID string `cim:"InstanceID"`
 	ParentID   string `cim:"ParentID"`
 	Type       int32  `cim:"Type"`
@@ -828,6 +1144,10 @@ type MDMFirewallAction04 struct {
 
 // MDMFirewallAddresses0301 is the MDM_Firewall_Addresses03_01 CIM class.
 type MDMFirewallAddresses0301 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath     string `cim:"__PATH"`
 	Addresses   string `cim:"Addresses"`
 	AutoResolve bool   `cim:"AutoResolve"`
 	InstanceID  string `cim:"InstanceID"`
@@ -837,6 +1157,10 @@ type MDMFirewallAddresses0301 struct {
 
 // MDMFirewallApp04 is the MDM_Firewall_App04 CIM class.
 type MDMFirewallApp04 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath           string `cim:"__PATH"`
 	FilePath          string `cim:"FilePath"`
 	Fqbn              string `cim:"Fqbn"`
 	InstanceID        string `cim:"InstanceID"`
@@ -847,6 +1171,10 @@ type MDMFirewallApp04 struct {
 
 // MDMFirewallDomainProfile02 is the MDM_Firewall_DomainProfile02 CIM class.
 type MDMFirewallDomainProfile02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                       string `cim:"__PATH"`
 	AllowLocalIpsecPolicyMerge                    bool   `cim:"AllowLocalIpsecPolicyMerge"`
 	AllowLocalPolicyMerge                         bool   `cim:"AllowLocalPolicyMerge"`
 	AuthAppsAllowUserPrefMerge                    bool   `cim:"AuthAppsAllowUserPrefMerge"`
@@ -870,6 +1198,10 @@ type MDMFirewallDomainProfile02 struct {
 
 // MDMFirewallFirewallRules0201 is the MDM_Firewall_FirewallRules02_01 CIM class.
 type MDMFirewallFirewallRules0201 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                      string `cim:"__PATH"`
 	Description                  string `cim:"Description"`
 	Direction                    string `cim:"Direction"`
 	EdgeTraversal                bool   `cim:"EdgeTraversal"`
@@ -894,6 +1226,10 @@ type MDMFirewallFirewallRules0201 struct {
 
 // MDMFirewallGlobal02 is the MDM_Firewall_Global02 CIM class.
 type MDMFirewallGlobal02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                            string `cim:"__PATH"`
 	BinaryVersionSupported             string `cim:"BinaryVersionSupported"`
 	CRLcheck                           int32  `cim:"CRLcheck"`
 	CurrentProfiles                    int32  `cim:"CurrentProfiles"`
@@ -912,6 +1248,10 @@ type MDMFirewallGlobal02 struct {
 
 // MDMFirewallPrivateProfile02 is the MDM_Firewall_PrivateProfile02 CIM class.
 type MDMFirewallPrivateProfile02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                       string `cim:"__PATH"`
 	AllowLocalIpsecPolicyMerge                    bool   `cim:"AllowLocalIpsecPolicyMerge"`
 	AllowLocalPolicyMerge                         bool   `cim:"AllowLocalPolicyMerge"`
 	AuthAppsAllowUserPrefMerge                    bool   `cim:"AuthAppsAllowUserPrefMerge"`
@@ -935,6 +1275,10 @@ type MDMFirewallPrivateProfile02 struct {
 
 // MDMFirewallPublicProfile02 is the MDM_Firewall_PublicProfile02 CIM class.
 type MDMFirewallPublicProfile02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                       string `cim:"__PATH"`
 	AllowLocalIpsecPolicyMerge                    bool   `cim:"AllowLocalIpsecPolicyMerge"`
 	AllowLocalPolicyMerge                         bool   `cim:"AllowLocalPolicyMerge"`
 	AuthAppsAllowUserPrefMerge                    bool   `cim:"AuthAppsAllowUserPrefMerge"`
@@ -958,6 +1302,10 @@ type MDMFirewallPublicProfile02 struct {
 
 // MDMHealthAttestation is the MDM_HealthAttestation CIM class.
 type MDMHealthAttestation struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                     string `cim:"__PATH"`
 	Certificate                 string `cim:"Certificate"`
 	CorrelationID               string `cim:"CorrelationID"`
 	CurrentProtocolVersion      int32  `cim:"CurrentProtocolVersion"`
@@ -974,6 +1322,10 @@ type MDMHealthAttestation struct {
 
 // MDMLanguagePackManagementInstall0101 is the MDM_LanguagePackManagement_Install01_01 CIM class.
 type MDMLanguagePackManagementInstall0101 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                            string `cim:"__PATH"`
 	CopyToDeviceInternationalSettings  bool   `cim:"CopyToDeviceInternationalSettings"`
 	EnableLanguageFeatureInstallations bool   `cim:"EnableLanguageFeatureInstallations"`
 	ErrorCode                          int32  `cim:"ErrorCode"`
@@ -984,6 +1336,10 @@ type MDMLanguagePackManagementInstall0101 struct {
 
 // MDMLanguagePackManagementInstalledLanguages0101 is the MDM_LanguagePackManagement_InstalledLanguages01_01 CIM class.
 type MDMLanguagePackManagementInstalledLanguages0101 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath          string `cim:"__PATH"`
 	InstanceID       string `cim:"InstanceID"`
 	LanguageFeatures int32  `cim:"LanguageFeatures"`
 	ParentID         string `cim:"ParentID"`
@@ -992,6 +1348,10 @@ type MDMLanguagePackManagementInstalledLanguages0101 struct {
 
 // MDMLanguagePackManagementLanguageSettings01 is the MDM_LanguagePackManagement_LanguageSettings01 CIM class.
 type MDMLanguagePackManagementLanguageSettings01 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                    string `cim:"__PATH"`
 	InstanceID                 string `cim:"InstanceID"`
 	ParentID                   string `cim:"ParentID"`
 	SystemPreferredUILanguages string `cim:"SystemPreferredUILanguages"`
@@ -999,6 +1359,10 @@ type MDMLanguagePackManagementLanguageSettings01 struct {
 
 // MDMMultiSIM01 is the MDM_MultiSIM_01 CIM class.
 type MDMMultiSIM01 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath    string `cim:"__PATH"`
 	Identifier string `cim:"Identifier"`
 	InstanceID string `cim:"InstanceID"`
 	IsEmbedded bool   `cim:"IsEmbedded"`
@@ -1007,6 +1371,10 @@ type MDMMultiSIM01 struct {
 
 // MDMMultiSIMPolicies02 is the MDM_MultiSIM_Policies02 CIM class.
 type MDMMultiSIMPolicies02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath              string `cim:"__PATH"`
 	InstanceID           string `cim:"InstanceID"`
 	ParentID             string `cim:"ParentID"`
 	SlotSelectionEnabled bool   `cim:"SlotSelectionEnabled"`
@@ -1014,6 +1382,10 @@ type MDMMultiSIMPolicies02 struct {
 
 // MDMMultiSIMSlots0201 is the MDM_MultiSIM_Slots02_01 CIM class.
 type MDMMultiSIMSlots0201 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath    string `cim:"__PATH"`
 	Identifier int32  `cim:"Identifier"`
 	InstanceID string `cim:"InstanceID"`
 	IsEmbedded bool   `cim:"IsEmbedded"`
@@ -1024,6 +1396,10 @@ type MDMMultiSIMSlots0201 struct {
 
 // MDMPassportForWork is the MDM_PassportForWork CIM class.
 type MDMPassportForWork struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath       string `cim:"__PATH"`
 	InstanceID    string `cim:"InstanceID"`
 	ParentID      string `cim:"ParentID"`
 	UseBiometrics bool   `cim:"UseBiometrics"`
@@ -1031,6 +1407,10 @@ type MDMPassportForWork struct {
 
 // MDMPassportForWorkBiometrics01 is the MDM_PassportForWork_Biometrics01 CIM class.
 type MDMPassportForWorkBiometrics01 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                               string `cim:"__PATH"`
 	FacialFeaturesUseEnhancedAntiSpoofing bool   `cim:"FacialFeaturesUseEnhancedAntiSpoofing"`
 	InstanceID                            string `cim:"InstanceID"`
 	ParentID                              string `cim:"ParentID"`
@@ -1039,6 +1419,10 @@ type MDMPassportForWorkBiometrics01 struct {
 
 // MDMPassportForWorkDeviceUnlock01 is the MDM_PassportForWork_DeviceUnlock01 CIM class.
 type MDMPassportForWorkDeviceUnlock01 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath    string `cim:"__PATH"`
 	GroupA     string `cim:"GroupA"`
 	GroupB     string `cim:"GroupB"`
 	InstanceID string `cim:"InstanceID"`
@@ -1048,6 +1432,10 @@ type MDMPassportForWorkDeviceUnlock01 struct {
 
 // MDMPassportForWorkDevicePolicies02 is the MDM_PassportForWork_Device_Policies02 CIM class.
 type MDMPassportForWorkDevicePolicies02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                     string `cim:"__PATH"`
 	InstanceID                  string `cim:"InstanceID"`
 	ParentID                    string `cim:"ParentID"`
 	UseCertificateForOnPremAuth bool   `cim:"UseCertificateForOnPremAuth"`
@@ -1055,6 +1443,10 @@ type MDMPassportForWorkDevicePolicies02 struct {
 
 // MDMPassportForWorkDynamicLock01 is the MDM_PassportForWork_DynamicLock01 CIM class.
 type MDMPassportForWorkDynamicLock01 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath     string `cim:"__PATH"`
 	DynamicLock bool   `cim:"DynamicLock"`
 	InstanceID  string `cim:"InstanceID"`
 	ParentID    string `cim:"ParentID"`
@@ -1063,6 +1455,10 @@ type MDMPassportForWorkDynamicLock01 struct {
 
 // MDMPassportForWorkExcludeSecurityDevices03 is the MDM_PassportForWork_ExcludeSecurityDevices03 CIM class.
 type MDMPassportForWorkExcludeSecurityDevices03 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath    string `cim:"__PATH"`
 	InstanceID string `cim:"InstanceID"`
 	ParentID   string `cim:"ParentID"`
 	TPM12      bool   `cim:"TPM12"`
@@ -1070,6 +1466,10 @@ type MDMPassportForWorkExcludeSecurityDevices03 struct {
 
 // MDMPassportForWorkPINComplexity03 is the MDM_PassportForWork_PINComplexity03 CIM class.
 type MDMPassportForWorkPINComplexity03 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath           string `cim:"__PATH"`
 	Digits            int32  `cim:"Digits"`
 	Expiration        int32  `cim:"Expiration"`
 	History           int32  `cim:"History"`
@@ -1084,6 +1484,10 @@ type MDMPassportForWorkPINComplexity03 struct {
 
 // MDMPassportForWorkPolicies02 is the MDM_PassportForWork_Policies02 CIM class.
 type MDMPassportForWorkPolicies02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                     string `cim:"__PATH"`
 	EnablePinRecovery                           bool   `cim:"EnablePinRecovery"`
 	InstanceID                                  string `cim:"InstanceID"`
 	ParentID                                    string `cim:"ParentID"`
@@ -1094,6 +1498,10 @@ type MDMPassportForWorkPolicies02 struct {
 
 // MDMPassportForWorkRemote03 is the MDM_PassportForWork_Remote03 CIM class.
 type MDMPassportForWorkRemote03 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath           string `cim:"__PATH"`
 	InstanceID        string `cim:"InstanceID"`
 	ParentID          string `cim:"ParentID"`
 	UseRemotePassport bool   `cim:"UseRemotePassport"`
@@ -1101,6 +1509,10 @@ type MDMPassportForWorkRemote03 struct {
 
 // MDMPassportForWorkUserPolicies02 is the MDM_PassportForWork_User_Policies02 CIM class.
 type MDMPassportForWorkUserPolicies02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath               string `cim:"__PATH"`
 	EnablePinRecovery     bool   `cim:"EnablePinRecovery"`
 	InstanceID            string `cim:"InstanceID"`
 	ParentID              string `cim:"ParentID"`
@@ -1110,6 +1522,10 @@ type MDMPassportForWorkUserPolicies02 struct {
 
 // MDMPersonalization is the MDM_Personalization CIM class.
 type MDMPersonalization struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath               string `cim:"__PATH"`
 	DesktopImageStatus    int32  `cim:"DesktopImageStatus"`
 	DesktopImageUrl       string `cim:"DesktopImageUrl"`
 	InstanceID            string `cim:"InstanceID"`
@@ -1120,6 +1536,10 @@ type MDMPersonalization struct {
 
 // MDMPolicyConfig01AboveLock02 is the MDM_Policy_Config01_AboveLock02 CIM class.
 type MDMPolicyConfig01AboveLock02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath               string `cim:"__PATH"`
 	AllowCortanaAboveLock int32  `cim:"AllowCortanaAboveLock"`
 	AllowToasts           int32  `cim:"AllowToasts"`
 	InstanceID            string `cim:"InstanceID"`
@@ -1128,6 +1548,10 @@ type MDMPolicyConfig01AboveLock02 struct {
 
 // MDMPolicyConfig01Accounts02 is the MDM_Policy_Config01_Accounts02 CIM class.
 type MDMPolicyConfig01Accounts02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                 string `cim:"__PATH"`
 	AllowAddingNonMicrosoftAccountsManually int32  `cim:"AllowAddingNonMicrosoftAccountsManually"`
 	AllowMicrosoftAccountConnection         int32  `cim:"AllowMicrosoftAccountConnection"`
 	AllowMicrosoftAccountSignInAssistant    int32  `cim:"AllowMicrosoftAccountSignInAssistant"`
@@ -1138,6 +1562,10 @@ type MDMPolicyConfig01Accounts02 struct {
 
 // MDMPolicyConfig01ActiveXControls02 is the MDM_Policy_Config01_ActiveXControls02 CIM class.
 type MDMPolicyConfig01ActiveXControls02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                   string `cim:"__PATH"`
 	ApprovedInstallationSites string `cim:"ApprovedInstallationSites"`
 	InstanceID                string `cim:"InstanceID"`
 	ParentID                  string `cim:"ParentID"`
@@ -1145,6 +1573,10 @@ type MDMPolicyConfig01ActiveXControls02 struct {
 
 // MDMPolicyConfig01AppRuntime02 is the MDM_Policy_Config01_AppRuntime02 CIM class.
 type MDMPolicyConfig01AppRuntime02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                            string `cim:"__PATH"`
 	AllowMicrosoftAccountsToBeOptional string `cim:"AllowMicrosoftAccountsToBeOptional"`
 	InstanceID                         string `cim:"InstanceID"`
 	ParentID                           string `cim:"ParentID"`
@@ -1152,6 +1584,10 @@ type MDMPolicyConfig01AppRuntime02 struct {
 
 // MDMPolicyConfig01AppVirtualization02 is the MDM_Policy_Config01_AppVirtualization02 CIM class.
 type MDMPolicyConfig01AppVirtualization02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                     string `cim:"__PATH"`
 	AllowAppVClient                             string `cim:"AllowAppVClient"`
 	AllowDynamicVirtualization                  string `cim:"AllowDynamicVirtualization"`
 	AllowPackageCleanup                         string `cim:"AllowPackageCleanup"`
@@ -1186,6 +1622,10 @@ type MDMPolicyConfig01AppVirtualization02 struct {
 
 // MDMPolicyConfig01ApplicationDefaults02 is the MDM_Policy_Config01_ApplicationDefaults02 CIM class.
 type MDMPolicyConfig01ApplicationDefaults02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                          string `cim:"__PATH"`
 	DefaultAssociationsConfiguration string `cim:"DefaultAssociationsConfiguration"`
 	EnableAppUriHandlers             int32  `cim:"EnableAppUriHandlers"`
 	InstanceID                       string `cim:"InstanceID"`
@@ -1194,6 +1634,10 @@ type MDMPolicyConfig01ApplicationDefaults02 struct {
 
 // MDMPolicyConfig01ApplicationManagement02 is the MDM_Policy_Config01_ApplicationManagement02 CIM class.
 type MDMPolicyConfig01ApplicationManagement02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                string `cim:"__PATH"`
 	AllowAllTrustedApps                    int32  `cim:"AllowAllTrustedApps"`
 	AllowAppStoreAutoUpdate                int32  `cim:"AllowAppStoreAutoUpdate"`
 	AllowAutomaticAppArchiving             int32  `cim:"AllowAutomaticAppArchiving"`
@@ -1215,6 +1659,10 @@ type MDMPolicyConfig01ApplicationManagement02 struct {
 
 // MDMPolicyConfig01Audit02 is the MDM_Policy_Config01_Audit02 CIM class.
 type MDMPolicyConfig01Audit02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                            string `cim:"__PATH"`
 	AccountLogonLogoffAuditAccountLockout              int32  `cim:"AccountLogonLogoff_AuditAccountLockout"`
 	AccountLogonLogoffAuditGroupMembership             int32  `cim:"AccountLogonLogoff_AuditGroupMembership"`
 	AccountLogonLogoffAuditIPsecExtendedMode           int32  `cim:"AccountLogonLogoff_AuditIPsecExtendedMode"`
@@ -1280,6 +1728,10 @@ type MDMPolicyConfig01Audit02 struct {
 
 // MDMPolicyConfig01Authentication02 is the MDM_Policy_Config01_Authentication02 CIM class.
 type MDMPolicyConfig01Authentication02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                            string `cim:"__PATH"`
 	AllowAadPasswordReset              int32  `cim:"AllowAadPasswordReset"`
 	AllowFastReconnect                 int32  `cim:"AllowFastReconnect"`
 	AllowSecondaryAuthenticationDevice int32  `cim:"AllowSecondaryAuthenticationDevice"`
@@ -1294,6 +1746,10 @@ type MDMPolicyConfig01Authentication02 struct {
 
 // MDMPolicyConfig01Autoplay02 is the MDM_Policy_Config01_Autoplay02 CIM class.
 type MDMPolicyConfig01Autoplay02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                             string `cim:"__PATH"`
 	DisallowAutoplayForNonVolumeDevices string `cim:"DisallowAutoplayForNonVolumeDevices"`
 	InstanceID                          string `cim:"InstanceID"`
 	ParentID                            string `cim:"ParentID"`
@@ -1303,6 +1759,10 @@ type MDMPolicyConfig01Autoplay02 struct {
 
 // MDMPolicyConfig01BITS02 is the MDM_Policy_Config01_BITS02 CIM class.
 type MDMPolicyConfig01BITS02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                 string `cim:"__PATH"`
 	BandwidthThrottlingEndTime              int32  `cim:"BandwidthThrottlingEndTime"`
 	BandwidthThrottlingStartTime            int32  `cim:"BandwidthThrottlingStartTime"`
 	BandwidthThrottlingTransferRate         int32  `cim:"BandwidthThrottlingTransferRate"`
@@ -1315,6 +1775,10 @@ type MDMPolicyConfig01BITS02 struct {
 
 // MDMPolicyConfig01Bitlocker02 is the MDM_Policy_Config01_Bitlocker02 CIM class.
 type MDMPolicyConfig01Bitlocker02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath          string `cim:"__PATH"`
 	EncryptionMethod int32  `cim:"EncryptionMethod"`
 	InstanceID       string `cim:"InstanceID"`
 	ParentID         string `cim:"ParentID"`
@@ -1322,6 +1786,10 @@ type MDMPolicyConfig01Bitlocker02 struct {
 
 // MDMPolicyConfig01Bluetooth02 is the MDM_Policy_Config01_Bluetooth02 CIM class.
 type MDMPolicyConfig01Bluetooth02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                          string `cim:"__PATH"`
 	AllowAdvertising                 int32  `cim:"AllowAdvertising"`
 	AllowDiscoverableMode            int32  `cim:"AllowDiscoverableMode"`
 	AllowPrepairing                  int32  `cim:"AllowPrepairing"`
@@ -1335,6 +1803,10 @@ type MDMPolicyConfig01Bluetooth02 struct {
 
 // MDMPolicyConfig01Browser02 is the MDM_Policy_Config01_Browser02 CIM class.
 type MDMPolicyConfig01Browser02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                       string `cim:"__PATH"`
 	AllowAddressBarDropdown                       int32  `cim:"AllowAddressBarDropdown"`
 	AllowAutofill                                 int32  `cim:"AllowAutofill"`
 	AllowConfigurationUpdateForBooksLibrary       int32  `cim:"AllowConfigurationUpdateForBooksLibrary"`
@@ -1402,6 +1874,10 @@ type MDMPolicyConfig01Browser02 struct {
 
 // MDMPolicyConfig01Camera02 is the MDM_Policy_Config01_Camera02 CIM class.
 type MDMPolicyConfig01Camera02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath     string `cim:"__PATH"`
 	AllowCamera int32  `cim:"AllowCamera"`
 	InstanceID  string `cim:"InstanceID"`
 	ParentID    string `cim:"ParentID"`
@@ -1409,6 +1885,10 @@ type MDMPolicyConfig01Camera02 struct {
 
 // MDMPolicyConfig01Cellular02 is the MDM_Policy_Config01_Cellular02 CIM class.
 type MDMPolicyConfig01Cellular02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                           string `cim:"__PATH"`
 	InstanceID                                        string `cim:"InstanceID"`
 	LetAppsAccessCellularData                         int32  `cim:"LetAppsAccessCellularData"`
 	LetAppsAccessCellularDataForceAllowTheseApps      string `cim:"LetAppsAccessCellularData_ForceAllowTheseApps"`
@@ -1420,6 +1900,10 @@ type MDMPolicyConfig01Cellular02 struct {
 
 // MDMPolicyConfig01Connectivity02 is the MDM_Policy_Config01_Connectivity02 CIM class.
 type MDMPolicyConfig01Connectivity02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                                         string `cim:"__PATH"`
 	AllowBluetooth                                                  int32  `cim:"AllowBluetooth"`
 	AllowCellularData                                               int32  `cim:"AllowCellularData"`
 	AllowCellularDataRoaming                                        int32  `cim:"AllowCellularDataRoaming"`
@@ -1439,6 +1923,10 @@ type MDMPolicyConfig01Connectivity02 struct {
 
 // MDMPolicyConfig01ControlPolicyConflict02 is the MDM_Policy_Config01_ControlPolicyConflict02 CIM class.
 type MDMPolicyConfig01ControlPolicyConflict02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath       string `cim:"__PATH"`
 	InstanceID    string `cim:"InstanceID"`
 	MDMWinsOverGP int32  `cim:"MDMWinsOverGP"`
 	ParentID      string `cim:"ParentID"`
@@ -1446,6 +1934,10 @@ type MDMPolicyConfig01ControlPolicyConflict02 struct {
 
 // MDMPolicyConfig01CredentialProviders02 is the MDM_Policy_Config01_CredentialProviders02 CIM class.
 type MDMPolicyConfig01CredentialProviders02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                 string `cim:"__PATH"`
 	AllowPINLogon                           string `cim:"AllowPINLogon"`
 	BlockPicturePassword                    string `cim:"BlockPicturePassword"`
 	DisableAutomaticReDeploymentCredentials int32  `cim:"DisableAutomaticReDeploymentCredentials"`
@@ -1455,6 +1947,10 @@ type MDMPolicyConfig01CredentialProviders02 struct {
 
 // MDMPolicyConfig01CredentialsDelegation02 is the MDM_Policy_Config01_CredentialsDelegation02 CIM class.
 type MDMPolicyConfig01CredentialsDelegation02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                              string `cim:"__PATH"`
 	InstanceID                                           string `cim:"InstanceID"`
 	ParentID                                             string `cim:"ParentID"`
 	RemoteHostAllowsDelegationOfNonExportableCredentials string `cim:"RemoteHostAllowsDelegationOfNonExportableCredentials"`
@@ -1462,6 +1958,10 @@ type MDMPolicyConfig01CredentialsDelegation02 struct {
 
 // MDMPolicyConfig01CredentialsUI02 is the MDM_Policy_Config01_CredentialsUI02 CIM class.
 type MDMPolicyConfig01CredentialsUI02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                 string `cim:"__PATH"`
 	DisablePasswordReveal   string `cim:"DisablePasswordReveal"`
 	EnumerateAdministrators string `cim:"EnumerateAdministrators"`
 	InstanceID              string `cim:"InstanceID"`
@@ -1470,6 +1970,10 @@ type MDMPolicyConfig01CredentialsUI02 struct {
 
 // MDMPolicyConfig01Cryptography02 is the MDM_Policy_Config01_Cryptography02 CIM class.
 type MDMPolicyConfig01Cryptography02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                  string `cim:"__PATH"`
 	AllowFipsAlgorithmPolicy int32  `cim:"AllowFipsAlgorithmPolicy"`
 	InstanceID               string `cim:"InstanceID"`
 	ParentID                 string `cim:"ParentID"`
@@ -1478,6 +1982,10 @@ type MDMPolicyConfig01Cryptography02 struct {
 
 // MDMPolicyConfig01DataProtection02 is the MDM_Policy_Config01_DataProtection02 CIM class.
 type MDMPolicyConfig01DataProtection02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                 string `cim:"__PATH"`
 	AllowDirectMemoryAccess int32  `cim:"AllowDirectMemoryAccess"`
 	InstanceID              string `cim:"InstanceID"`
 	LegacySelectiveWipeID   string `cim:"LegacySelectiveWipeID"`
@@ -1486,6 +1994,10 @@ type MDMPolicyConfig01DataProtection02 struct {
 
 // MDMPolicyConfig01DataUsage02 is the MDM_Policy_Config01_DataUsage02 CIM class.
 type MDMPolicyConfig01DataUsage02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath    string `cim:"__PATH"`
 	InstanceID string `cim:"InstanceID"`
 	ParentID   string `cim:"ParentID"`
 	SetCost3G  string `cim:"SetCost3G"`
@@ -1494,6 +2006,10 @@ type MDMPolicyConfig01DataUsage02 struct {
 
 // MDMPolicyConfig01Defender02 is the MDM_Policy_Config01_Defender02 CIM class.
 type MDMPolicyConfig01Defender02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                   string `cim:"__PATH"`
 	AllowArchiveScanning                      int32  `cim:"AllowArchiveScanning"`
 	AllowBehaviorMonitoring                   int32  `cim:"AllowBehaviorMonitoring"`
 	AllowCloudProtection                      int32  `cim:"AllowCloudProtection"`
@@ -1542,6 +2058,10 @@ type MDMPolicyConfig01Defender02 struct {
 
 // MDMPolicyConfig01DeliveryOptimization02 is the MDM_Policy_Config01_DeliveryOptimization02 CIM class.
 type MDMPolicyConfig01DeliveryOptimization02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                      string `cim:"__PATH"`
 	DOAbsoluteMaxCacheSize                       int32  `cim:"DOAbsoluteMaxCacheSize"`
 	DOAllowVPNPeerCaching                        int32  `cim:"DOAllowVPNPeerCaching"`
 	DOCacheHost                                  string `cim:"DOCacheHost"`
@@ -1575,6 +2095,10 @@ type MDMPolicyConfig01DeliveryOptimization02 struct {
 
 // MDMPolicyConfig01DeviceGuard02 is the MDM_Policy_Config01_DeviceGuard02 CIM class.
 type MDMPolicyConfig01DeviceGuard02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                           string `cim:"__PATH"`
 	ConfigureSystemGuardLaunch        int32  `cim:"ConfigureSystemGuardLaunch"`
 	EnableVirtualizationBasedSecurity int32  `cim:"EnableVirtualizationBasedSecurity"`
 	InstanceID                        string `cim:"InstanceID"`
@@ -1585,6 +2109,10 @@ type MDMPolicyConfig01DeviceGuard02 struct {
 
 // MDMPolicyConfig01DeviceHealthMonitoring02 is the MDM_Policy_Config01_DeviceHealthMonitoring02 CIM class.
 type MDMPolicyConfig01DeviceHealthMonitoring02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                       string `cim:"__PATH"`
 	AllowDeviceHealthMonitoring                   int32  `cim:"AllowDeviceHealthMonitoring"`
 	ConfigDeviceHealthMonitoringScope             string `cim:"ConfigDeviceHealthMonitoringScope"`
 	ConfigDeviceHealthMonitoringServiceInstance   string `cim:"ConfigDeviceHealthMonitoringServiceInstance"`
@@ -1595,6 +2123,10 @@ type MDMPolicyConfig01DeviceHealthMonitoring02 struct {
 
 // MDMPolicyConfig01DeviceInstallation02 is the MDM_Policy_Config01_DeviceInstallation02 CIM class.
 type MDMPolicyConfig01DeviceInstallation02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                                       string `cim:"__PATH"`
 	AllowInstallationOfMatchingDeviceIDs                          string `cim:"AllowInstallationOfMatchingDeviceIDs"`
 	AllowInstallationOfMatchingDeviceInstanceIDs                  string `cim:"AllowInstallationOfMatchingDeviceInstanceIDs"`
 	AllowInstallationOfMatchingDeviceSetupClasses                 string `cim:"AllowInstallationOfMatchingDeviceSetupClasses"`
@@ -1610,6 +2142,10 @@ type MDMPolicyConfig01DeviceInstallation02 struct {
 
 // MDMPolicyConfig01DeviceLock02 is the MDM_Policy_Config01_DeviceLock02 CIM class.
 type MDMPolicyConfig01DeviceLock02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                 string `cim:"__PATH"`
 	AllowScreenTimeoutWhileLockedUserConfig int32  `cim:"AllowScreenTimeoutWhileLockedUserConfig"`
 	AllowSimpleDevicePassword               int32  `cim:"AllowSimpleDevicePassword"`
 	AlphanumericDevicePasswordRequired      int32  `cim:"AlphanumericDevicePasswordRequired"`
@@ -1632,6 +2168,10 @@ type MDMPolicyConfig01DeviceLock02 struct {
 
 // MDMPolicyConfig01Display02 is the MDM_Policy_Config01_Display02 CIM class.
 type MDMPolicyConfig01Display02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                     string `cim:"__PATH"`
 	DisablePerProcessDpiForApps string `cim:"DisablePerProcessDpiForApps"`
 	EnablePerProcessDpi         int32  `cim:"EnablePerProcessDpi"`
 	EnablePerProcessDpiForApps  string `cim:"EnablePerProcessDpiForApps"`
@@ -1643,6 +2183,10 @@ type MDMPolicyConfig01Display02 struct {
 
 // MDMPolicyConfig01DisplayEnhancement02 is the MDM_Policy_Config01_DisplayEnhancement02 CIM class.
 type MDMPolicyConfig01DisplayEnhancement02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                  string `cim:"__PATH"`
 	AutobrightnessLuxToNitsCurve             string `cim:"AutobrightnessLuxToNitsCurve"`
 	DefaultAdaptiveColorAdaptationStrength   int32  `cim:"DefaultAdaptiveColorAdaptationStrength"`
 	DefaultBatterySaverBrightnessMultiplier  int32  `cim:"DefaultBatterySaverBrightnessMultiplier"`
@@ -1657,6 +2201,10 @@ type MDMPolicyConfig01DisplayEnhancement02 struct {
 
 // MDMPolicyConfig01DmaGuard02 is the MDM_Policy_Config01_DmaGuard02 CIM class.
 type MDMPolicyConfig01DmaGuard02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                 string `cim:"__PATH"`
 	DeviceEnumerationPolicy int32  `cim:"DeviceEnumerationPolicy"`
 	InstanceID              string `cim:"InstanceID"`
 	ParentID                string `cim:"ParentID"`
@@ -1664,6 +2212,10 @@ type MDMPolicyConfig01DmaGuard02 struct {
 
 // MDMPolicyConfig01Eap02 is the MDM_Policy_Config01_Eap02 CIM class.
 type MDMPolicyConfig01Eap02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath    string `cim:"__PATH"`
 	AllowTLS13 int32  `cim:"AllowTLS1_3"`
 	InstanceID string `cim:"InstanceID"`
 	ParentID   string `cim:"ParentID"`
@@ -1671,6 +2223,10 @@ type MDMPolicyConfig01Eap02 struct {
 
 // MDMPolicyConfig01ErrorReporting02 is the MDM_Policy_Config01_ErrorReporting02 CIM class.
 type MDMPolicyConfig01ErrorReporting02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                      string `cim:"__PATH"`
 	CustomizeConsentSettings     string `cim:"CustomizeConsentSettings"`
 	DisableWindowsErrorReporting string `cim:"DisableWindowsErrorReporting"`
 	DisplayErrorNotification     string `cim:"DisplayErrorNotification"`
@@ -1682,6 +2238,10 @@ type MDMPolicyConfig01ErrorReporting02 struct {
 
 // MDMPolicyConfig01EventLogService02 is the MDM_Policy_Config01_EventLogService02 CIM class.
 type MDMPolicyConfig01EventLogService02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                              string `cim:"__PATH"`
 	ControlEventLogBehavior              string `cim:"ControlEventLogBehavior"`
 	InstanceID                           string `cim:"InstanceID"`
 	ParentID                             string `cim:"ParentID"`
@@ -1692,6 +2252,10 @@ type MDMPolicyConfig01EventLogService02 struct {
 
 // MDMPolicyConfig01Experience02 is the MDM_Policy_Config01_Experience02 CIM class.
 type MDMPolicyConfig01Experience02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                 string `cim:"__PATH"`
 	AllowClipboardHistory                   int32  `cim:"AllowClipboardHistory"`
 	AllowCortana                            int32  `cim:"AllowCortana"`
 	AllowDeviceDiscovery                    int32  `cim:"AllowDeviceDiscovery"`
@@ -1716,6 +2280,10 @@ type MDMPolicyConfig01Experience02 struct {
 
 // MDMPolicyConfig01ExploitGuard02 is the MDM_Policy_Config01_ExploitGuard02 CIM class.
 type MDMPolicyConfig01ExploitGuard02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                   string `cim:"__PATH"`
 	ExploitProtectionSettings string `cim:"ExploitProtectionSettings"`
 	InstanceID                string `cim:"InstanceID"`
 	ParentID                  string `cim:"ParentID"`
@@ -1723,6 +2291,10 @@ type MDMPolicyConfig01ExploitGuard02 struct {
 
 // MDMPolicyConfig01FactoryComposer02 is the MDM_Policy_Config01_FactoryComposer02 CIM class.
 type MDMPolicyConfig01FactoryComposer02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath             string `cim:"__PATH"`
 	BackgroundImagePath string `cim:"BackgroundImagePath"`
 	InstanceID          string `cim:"InstanceID"`
 	OEMVersion          string `cim:"OEMVersion"`
@@ -1733,6 +2305,10 @@ type MDMPolicyConfig01FactoryComposer02 struct {
 
 // MDMPolicyConfig01Feeds02 is the MDM_Policy_Config01_Feeds02 CIM class.
 type MDMPolicyConfig01Feeds02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath      string `cim:"__PATH"`
 	FeedsEnabled int32  `cim:"FeedsEnabled"`
 	InstanceID   string `cim:"InstanceID"`
 	ParentID     string `cim:"ParentID"`
@@ -1740,6 +2316,10 @@ type MDMPolicyConfig01Feeds02 struct {
 
 // MDMPolicyConfig01FileExplorer02 is the MDM_Policy_Config01_FileExplorer02 CIM class.
 type MDMPolicyConfig01FileExplorer02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                   string `cim:"__PATH"`
 	InstanceID                                string `cim:"InstanceID"`
 	ParentID                                  string `cim:"ParentID"`
 	TurnOffDataExecutionPreventionForExplorer string `cim:"TurnOffDataExecutionPreventionForExplorer"`
@@ -1748,6 +2328,10 @@ type MDMPolicyConfig01FileExplorer02 struct {
 
 // MDMPolicyConfig01Games02 is the MDM_Policy_Config01_Games02 CIM class.
 type MDMPolicyConfig01Games02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                     string `cim:"__PATH"`
 	AllowAdvancedGamingServices int32  `cim:"AllowAdvancedGamingServices"`
 	InstanceID                  string `cim:"InstanceID"`
 	ParentID                    string `cim:"ParentID"`
@@ -1755,6 +2339,10 @@ type MDMPolicyConfig01Games02 struct {
 
 // MDMPolicyConfig01Handwriting02 is the MDM_Policy_Config01_Handwriting02 CIM class.
 type MDMPolicyConfig01Handwriting02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                string `cim:"__PATH"`
 	InstanceID             string `cim:"InstanceID"`
 	PanelDefaultModeDocked int32  `cim:"PanelDefaultModeDocked"`
 	ParentID               string `cim:"ParentID"`
@@ -1762,6 +2350,10 @@ type MDMPolicyConfig01Handwriting02 struct {
 
 // MDMPolicyConfig01HumanPresence02 is the MDM_Policy_Config01_HumanPresence02 CIM class.
 type MDMPolicyConfig01HumanPresence02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath          string `cim:"__PATH"`
 	ForceInstantLock int32  `cim:"ForceInstantLock"`
 	ForceInstantWake int32  `cim:"ForceInstantWake"`
 	ForceLockTimeout int32  `cim:"ForceLockTimeout"`
@@ -1771,6 +2363,10 @@ type MDMPolicyConfig01HumanPresence02 struct {
 
 // MDMPolicyConfig01InternetExplorer02 is the MDM_Policy_Config01_InternetExplorer02 CIM class.
 type MDMPolicyConfig01InternetExplorer02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                                                     string `cim:"__PATH"`
 	AddSearchProvider                                                           string `cim:"AddSearchProvider"`
 	AllowActiveXFiltering                                                       string `cim:"AllowActiveXFiltering"`
 	AllowAddOnList                                                              string `cim:"AllowAddOnList"`
@@ -2032,6 +2628,10 @@ type MDMPolicyConfig01InternetExplorer02 struct {
 
 // MDMPolicyConfig01Kerberos02 is the MDM_Policy_Config01_Kerberos02 CIM class.
 type MDMPolicyConfig01Kerberos02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                   string `cim:"__PATH"`
 	AllowForestSearchOrder                    string `cim:"AllowForestSearchOrder"`
 	CloudKerberosTicketRetrievalEnabled       int32  `cim:"CloudKerberosTicketRetrievalEnabled"`
 	InstanceID                                string `cim:"InstanceID"`
@@ -2045,6 +2645,10 @@ type MDMPolicyConfig01Kerberos02 struct {
 
 // MDMPolicyConfig01KioskBrowser02 is the MDM_Policy_Config01_KioskBrowser02 CIM class.
 type MDMPolicyConfig01KioskBrowser02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                 string `cim:"__PATH"`
 	BlockedUrlExceptions    string `cim:"BlockedUrlExceptions"`
 	BlockedUrls             string `cim:"BlockedUrls"`
 	DefaultURL              string `cim:"DefaultURL"`
@@ -2058,6 +2662,10 @@ type MDMPolicyConfig01KioskBrowser02 struct {
 
 // MDMPolicyConfig01LanmanWorkstation02 is the MDM_Policy_Config01_LanmanWorkstation02 CIM class.
 type MDMPolicyConfig01LanmanWorkstation02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                   string `cim:"__PATH"`
 	EnableInsecureGuestLogons int32  `cim:"EnableInsecureGuestLogons"`
 	InstanceID                string `cim:"InstanceID"`
 	ParentID                  string `cim:"ParentID"`
@@ -2065,6 +2673,10 @@ type MDMPolicyConfig01LanmanWorkstation02 struct {
 
 // MDMPolicyConfig01Licensing02 is the MDM_Policy_Config01_Licensing02 CIM class.
 type MDMPolicyConfig01Licensing02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                              string `cim:"__PATH"`
 	AllowWindowsEntitlementReactivation  int32  `cim:"AllowWindowsEntitlementReactivation"`
 	DisallowKMSClientOnlineAVSValidation int32  `cim:"DisallowKMSClientOnlineAVSValidation"`
 	InstanceID                           string `cim:"InstanceID"`
@@ -2073,6 +2685,10 @@ type MDMPolicyConfig01Licensing02 struct {
 
 // MDMPolicyConfig01LocalPoliciesSecurityOptions02 is the MDM_Policy_Config01_LocalPoliciesSecurityOptions02 CIM class.
 type MDMPolicyConfig01LocalPoliciesSecurityOptions02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                                                            string `cim:"__PATH"`
 	AccountsBlockMicrosoftAccounts                                                     int32  `cim:"Accounts_BlockMicrosoftAccounts"`
 	AccountsEnableAdministratorAccountStatus                                           int32  `cim:"Accounts_EnableAdministratorAccountStatus"`
 	AccountsEnableGuestAccountStatus                                                   int32  `cim:"Accounts_EnableGuestAccountStatus"`
@@ -2128,6 +2744,10 @@ type MDMPolicyConfig01LocalPoliciesSecurityOptions02 struct {
 
 // MDMPolicyConfig01LocalUsersAndGroups02 is the MDM_Policy_Config01_LocalUsersAndGroups02 CIM class.
 type MDMPolicyConfig01LocalUsersAndGroups02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath    string `cim:"__PATH"`
 	Configure  string `cim:"Configure"`
 	InstanceID string `cim:"InstanceID"`
 	ParentID   string `cim:"ParentID"`
@@ -2135,6 +2755,10 @@ type MDMPolicyConfig01LocalUsersAndGroups02 struct {
 
 // MDMPolicyConfig01LockDown02 is the MDM_Policy_Config01_LockDown02 CIM class.
 type MDMPolicyConfig01LockDown02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string `cim:"__PATH"`
 	AllowEdgeSwipe int32  `cim:"AllowEdgeSwipe"`
 	InstanceID     string `cim:"InstanceID"`
 	ParentID       string `cim:"ParentID"`
@@ -2142,6 +2766,10 @@ type MDMPolicyConfig01LockDown02 struct {
 
 // MDMPolicyConfig01MSSLegacy02 is the MDM_Policy_Config01_MSSLegacy02 CIM class.
 type MDMPolicyConfig01MSSLegacy02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                                                 string `cim:"__PATH"`
 	AllowICMPRedirectsToOverrideOSPFGeneratedRoutes                         string `cim:"AllowICMPRedirectsToOverrideOSPFGeneratedRoutes"`
 	AllowTheComputerToIgnoreNetBIOSNameReleaseRequestsExceptFromWINSServers string `cim:"AllowTheComputerToIgnoreNetBIOSNameReleaseRequestsExceptFromWINSServers"`
 	IPSourceRoutingProtectionLevel                                          string `cim:"IPSourceRoutingProtectionLevel"`
@@ -2152,6 +2780,10 @@ type MDMPolicyConfig01MSSLegacy02 struct {
 
 // MDMPolicyConfig01MSSecurityGuide02 is the MDM_Policy_Config01_MSSecurityGuide02 CIM class.
 type MDMPolicyConfig01MSSecurityGuide02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                                               string `cim:"__PATH"`
 	ApplyUACRestrictionsToLocalAccountsOnNetworkLogon                     string `cim:"ApplyUACRestrictionsToLocalAccountsOnNetworkLogon"`
 	ConfigureSMBV1ClientDriver                                            string `cim:"ConfigureSMBV1ClientDriver"`
 	ConfigureSMBV1Server                                                  string `cim:"ConfigureSMBV1Server"`
@@ -2165,6 +2797,10 @@ type MDMPolicyConfig01MSSecurityGuide02 struct {
 
 // MDMPolicyConfig01Maps02 is the MDM_Policy_Config01_Maps02 CIM class.
 type MDMPolicyConfig01Maps02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                       string `cim:"__PATH"`
 	AllowOfflineMapsDownloadOverMeteredConnection int32  `cim:"AllowOfflineMapsDownloadOverMeteredConnection"`
 	EnableOfflineMapsAutoUpdate                   int32  `cim:"EnableOfflineMapsAutoUpdate"`
 	InstanceID                                    string `cim:"InstanceID"`
@@ -2173,6 +2809,10 @@ type MDMPolicyConfig01Maps02 struct {
 
 // MDMPolicyConfig01MemoryDump02 is the MDM_Policy_Config01_MemoryDump02 CIM class.
 type MDMPolicyConfig01MemoryDump02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string `cim:"__PATH"`
 	AllowCrashDump int32  `cim:"AllowCrashDump"`
 	AllowLiveDump  int32  `cim:"AllowLiveDump"`
 	InstanceID     string `cim:"InstanceID"`
@@ -2181,6 +2821,10 @@ type MDMPolicyConfig01MemoryDump02 struct {
 
 // MDMPolicyConfig01Messaging02 is the MDM_Policy_Config01_Messaging02 CIM class.
 type MDMPolicyConfig01Messaging02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath          string `cim:"__PATH"`
 	AllowMessageSync int32  `cim:"AllowMessageSync"`
 	InstanceID       string `cim:"InstanceID"`
 	ParentID         string `cim:"ParentID"`
@@ -2188,6 +2832,10 @@ type MDMPolicyConfig01Messaging02 struct {
 
 // MDMPolicyConfig01MixedReality02 is the MDM_Policy_Config01_MixedReality02 CIM class.
 type MDMPolicyConfig01MixedReality02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                               string `cim:"__PATH"`
 	AADGroupMembershipCacheValidityInDays int32  `cim:"AADGroupMembershipCacheValidityInDays"`
 	AllowLaunchUriInSingleAppKiosk        int32  `cim:"AllowLaunchUriInSingleAppKiosk"`
 	AutomaticDisplayAdjustment            int32  `cim:"AutomaticDisplayAdjustment"`
@@ -2206,6 +2854,10 @@ type MDMPolicyConfig01MixedReality02 struct {
 
 // MDMPolicyConfig01NetworkIsolation02 is the MDM_Policy_Config01_NetworkIsolation02 CIM class.
 type MDMPolicyConfig01NetworkIsolation02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                string `cim:"__PATH"`
 	EnterpriseCloudResources               string `cim:"EnterpriseCloudResources"`
 	EnterpriseIPRange                      string `cim:"EnterpriseIPRange"`
 	EnterpriseIPRangesAreAuthoritative     int32  `cim:"EnterpriseIPRangesAreAuthoritative"`
@@ -2220,6 +2872,10 @@ type MDMPolicyConfig01NetworkIsolation02 struct {
 
 // MDMPolicyConfig01NetworkListManager02 is the MDM_Policy_Config01_NetworkListManager02 CIM class.
 type MDMPolicyConfig01NetworkListManager02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                           string `cim:"__PATH"`
 	AllowedTlsAuthenticationEndpoints string `cim:"AllowedTlsAuthenticationEndpoints"`
 	InstanceID                        string `cim:"InstanceID"`
 	ParentID                          string `cim:"ParentID"`
@@ -2227,6 +2883,10 @@ type MDMPolicyConfig01NetworkListManager02 struct {
 
 // MDMPolicyConfig01NewsAndInterests02 is the MDM_Policy_Config01_NewsAndInterests02 CIM class.
 type MDMPolicyConfig01NewsAndInterests02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath               string `cim:"__PATH"`
 	AllowNewsAndInterests int32  `cim:"AllowNewsAndInterests"`
 	InstanceID            string `cim:"InstanceID"`
 	ParentID              string `cim:"ParentID"`
@@ -2234,6 +2894,10 @@ type MDMPolicyConfig01NewsAndInterests02 struct {
 
 // MDMPolicyConfig01Notifications02 is the MDM_Policy_Config01_Notifications02 CIM class.
 type MDMPolicyConfig01Notifications02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                   string `cim:"__PATH"`
 	DisallowCloudNotification int32  `cim:"DisallowCloudNotification"`
 	InstanceID                string `cim:"InstanceID"`
 	ParentID                  string `cim:"ParentID"`
@@ -2242,6 +2906,10 @@ type MDMPolicyConfig01Notifications02 struct {
 
 // MDMPolicyConfig01Power02 is the MDM_Policy_Config01_Power02 CIM class.
 type MDMPolicyConfig01Power02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                   string `cim:"__PATH"`
 	AllowHibernate                            int32  `cim:"AllowHibernate"`
 	AllowStandbyStatesWhenSleepingOnBattery   string `cim:"AllowStandbyStatesWhenSleepingOnBattery"`
 	AllowStandbyWhenSleepingPluggedIn         string `cim:"AllowStandbyWhenSleepingPluggedIn"`
@@ -2271,6 +2939,10 @@ type MDMPolicyConfig01Power02 struct {
 
 // MDMPolicyConfig01Printers02 is the MDM_Policy_Config01_Printers02 CIM class.
 type MDMPolicyConfig01Printers02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                   string `cim:"__PATH"`
 	ApprovedUsbPrintDevices   string `cim:"ApprovedUsbPrintDevices"`
 	EnableDeviceControl       string `cim:"EnableDeviceControl"`
 	InstanceID                string `cim:"InstanceID"`
@@ -2281,6 +2953,10 @@ type MDMPolicyConfig01Printers02 struct {
 
 // MDMPolicyConfig01Privacy02 is the MDM_Policy_Config01_Privacy02 CIM class.
 type MDMPolicyConfig01Privacy02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                                           string `cim:"__PATH"`
 	AllowAutoAcceptPairingAndPrivacyConsentPrompts                    int32  `cim:"AllowAutoAcceptPairingAndPrivacyConsentPrompts"`
 	AllowCrossDeviceClipboard                                         int32  `cim:"AllowCrossDeviceClipboard"`
 	AllowInputPersonalization                                         int32  `cim:"AllowInputPersonalization"`
@@ -2385,6 +3061,10 @@ type MDMPolicyConfig01Privacy02 struct {
 
 // MDMPolicyConfig01RemoteAssistance02 is the MDM_Policy_Config01_RemoteAssistance02 CIM class.
 type MDMPolicyConfig01RemoteAssistance02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                     string `cim:"__PATH"`
 	CustomizeWarningMessages    string `cim:"CustomizeWarningMessages"`
 	InstanceID                  string `cim:"InstanceID"`
 	ParentID                    string `cim:"ParentID"`
@@ -2395,6 +3075,10 @@ type MDMPolicyConfig01RemoteAssistance02 struct {
 
 // MDMPolicyConfig01RemoteDesktop02 is the MDM_Policy_Config01_RemoteDesktop02 CIM class.
 type MDMPolicyConfig01RemoteDesktop02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                   string `cim:"__PATH"`
 	InstanceID                string `cim:"InstanceID"`
 	LoadAadCredKeyFromProfile int32  `cim:"LoadAadCredKeyFromProfile"`
 	ParentID                  string `cim:"ParentID"`
@@ -2402,6 +3086,10 @@ type MDMPolicyConfig01RemoteDesktop02 struct {
 
 // MDMPolicyConfig01RemoteDesktopServices02 is the MDM_Policy_Config01_RemoteDesktopServices02 CIM class.
 type MDMPolicyConfig01RemoteDesktopServices02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                         string `cim:"__PATH"`
 	AllowUsersToConnectRemotely     string `cim:"AllowUsersToConnectRemotely"`
 	ClientConnectionEncryptionLevel string `cim:"ClientConnectionEncryptionLevel"`
 	DoNotAllowDriveRedirection      string `cim:"DoNotAllowDriveRedirection"`
@@ -2414,6 +3102,10 @@ type MDMPolicyConfig01RemoteDesktopServices02 struct {
 
 // MDMPolicyConfig01RemoteManagement02 is the MDM_Policy_Config01_RemoteManagement02 CIM class.
 type MDMPolicyConfig01RemoteManagement02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                  string `cim:"__PATH"`
 	AllowBasicAuthenticationClient           string `cim:"AllowBasicAuthentication_Client"`
 	AllowBasicAuthenticationService          string `cim:"AllowBasicAuthentication_Service"`
 	AllowCredSSPAuthenticationClient         string `cim:"AllowCredSSPAuthenticationClient"`
@@ -2435,6 +3127,10 @@ type MDMPolicyConfig01RemoteManagement02 struct {
 
 // MDMPolicyConfig01RemoteProcedureCall02 is the MDM_Policy_Config01_RemoteProcedureCall02 CIM class.
 type MDMPolicyConfig01RemoteProcedureCall02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                               string `cim:"__PATH"`
 	InstanceID                            string `cim:"InstanceID"`
 	ParentID                              string `cim:"ParentID"`
 	RPCEndpointMapperClientAuthentication string `cim:"RPCEndpointMapperClientAuthentication"`
@@ -2443,6 +3139,10 @@ type MDMPolicyConfig01RemoteProcedureCall02 struct {
 
 // MDMPolicyConfig01RemoteShell02 is the MDM_Policy_Config01_RemoteShell02 CIM class.
 type MDMPolicyConfig01RemoteShell02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                string `cim:"__PATH"`
 	AllowRemoteShellAccess string `cim:"AllowRemoteShellAccess"`
 	InstanceID             string `cim:"InstanceID"`
 	MaxConcurrentUsers     string `cim:"MaxConcurrentUsers"`
@@ -2456,6 +3156,10 @@ type MDMPolicyConfig01RemoteShell02 struct {
 
 // MDMPolicyConfig01RestrictedGroups02 is the MDM_Policy_Config01_RestrictedGroups02 CIM class.
 type MDMPolicyConfig01RestrictedGroups02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                  string `cim:"__PATH"`
 	ConfigureGroupMembership string `cim:"ConfigureGroupMembership"`
 	InstanceID               string `cim:"InstanceID"`
 	ParentID                 string `cim:"ParentID"`
@@ -2463,6 +3167,10 @@ type MDMPolicyConfig01RestrictedGroups02 struct {
 
 // MDMPolicyConfig01Search02 is the MDM_Policy_Config01_Search02 CIM class.
 type MDMPolicyConfig01Search02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                             string `cim:"__PATH"`
 	AllowCloudSearch                    int32  `cim:"AllowCloudSearch"`
 	AllowCortanaInAAD                   int32  `cim:"AllowCortanaInAAD"`
 	AllowFindMyFiles                    int32  `cim:"AllowFindMyFiles"`
@@ -2483,6 +3191,10 @@ type MDMPolicyConfig01Search02 struct {
 
 // MDMPolicyConfig01Security02 is the MDM_Policy_Config01_Security02 CIM class.
 type MDMPolicyConfig01Security02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                                 string `cim:"__PATH"`
 	AllowAddProvisioningPackage                             int32  `cim:"AllowAddProvisioningPackage"`
 	AllowRemoveProvisioningPackage                          int32  `cim:"AllowRemoveProvisioningPackage"`
 	ClearTPMIfNotReady                                      int32  `cim:"ClearTPMIfNotReady"`
@@ -2498,6 +3210,10 @@ type MDMPolicyConfig01Security02 struct {
 
 // MDMPolicyConfig01ServiceControlManager02 is the MDM_Policy_Config01_ServiceControlManager02 CIM class.
 type MDMPolicyConfig01ServiceControlManager02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                  string `cim:"__PATH"`
 	InstanceID               string `cim:"InstanceID"`
 	ParentID                 string `cim:"ParentID"`
 	SvchostProcessMitigation string `cim:"SvchostProcessMitigation"`
@@ -2505,6 +3221,10 @@ type MDMPolicyConfig01ServiceControlManager02 struct {
 
 // MDMPolicyConfig01Settings02 is the MDM_Policy_Config01_Settings02 CIM class.
 type MDMPolicyConfig01Settings02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath               string `cim:"__PATH"`
 	AllowAutoPlay         int32  `cim:"AllowAutoPlay"`
 	AllowDataSense        int32  `cim:"AllowDataSense"`
 	AllowDateTime         int32  `cim:"AllowDateTime"`
@@ -2525,6 +3245,10 @@ type MDMPolicyConfig01Settings02 struct {
 
 // MDMPolicyConfig01SmartScreen02 is the MDM_Policy_Config01_SmartScreen02 CIM class.
 type MDMPolicyConfig01SmartScreen02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                        string `cim:"__PATH"`
 	EnableAppInstallControl        int32  `cim:"EnableAppInstallControl"`
 	EnableSmartScreenInShell       int32  `cim:"EnableSmartScreenInShell"`
 	InstanceID                     string `cim:"InstanceID"`
@@ -2534,6 +3258,10 @@ type MDMPolicyConfig01SmartScreen02 struct {
 
 // MDMPolicyConfig01Speech02 is the MDM_Policy_Config01_Speech02 CIM class.
 type MDMPolicyConfig01Speech02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                string `cim:"__PATH"`
 	AllowSpeechModelUpdate int32  `cim:"AllowSpeechModelUpdate"`
 	InstanceID             string `cim:"InstanceID"`
 	ParentID               string `cim:"ParentID"`
@@ -2541,6 +3269,10 @@ type MDMPolicyConfig01Speech02 struct {
 
 // MDMPolicyConfig01Start02 is the MDM_Policy_Config01_Start02 CIM class.
 type MDMPolicyConfig01Start02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                         string `cim:"__PATH"`
 	AllowPinnedFolderDocuments      int32  `cim:"AllowPinnedFolderDocuments"`
 	AllowPinnedFolderDownloads      int32  `cim:"AllowPinnedFolderDownloads"`
 	AllowPinnedFolderFileExplorer   int32  `cim:"AllowPinnedFolderFileExplorer"`
@@ -2577,6 +3309,10 @@ type MDMPolicyConfig01Start02 struct {
 
 // MDMPolicyConfig01Storage02 is the MDM_Policy_Config01_Storage02 CIM class.
 type MDMPolicyConfig01Storage02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                            string `cim:"__PATH"`
 	AllowDiskHealthModelUpdates                        int32  `cim:"AllowDiskHealthModelUpdates"`
 	AllowStorageSenseGlobal                            int32  `cim:"AllowStorageSenseGlobal"`
 	AllowStorageSenseTemporaryFilesCleanup             int32  `cim:"AllowStorageSenseTemporaryFilesCleanup"`
@@ -2594,6 +3330,10 @@ type MDMPolicyConfig01Storage02 struct {
 
 // MDMPolicyConfig01System02 is the MDM_Policy_Config01_System02 CIM class.
 type MDMPolicyConfig01System02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                     string `cim:"__PATH"`
 	AllowBuildPreview                           int32  `cim:"AllowBuildPreview"`
 	AllowCommercialDataPipeline                 int32  `cim:"AllowCommercialDataPipeline"`
 	AllowDesktopAnalyticsProcessing             int32  `cim:"AllowDesktopAnalyticsProcessing"`
@@ -2632,6 +3372,10 @@ type MDMPolicyConfig01System02 struct {
 
 // MDMPolicyConfig01SystemServices02 is the MDM_Policy_Config01_SystemServices02 CIM class.
 type MDMPolicyConfig01SystemServices02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                                       string `cim:"__PATH"`
 	ConfigureComputerBrowserServiceStartupMode                    int32  `cim:"ConfigureComputerBrowserServiceStartupMode"`
 	ConfigureHomeGroupListenerServiceStartupMode                  int32  `cim:"ConfigureHomeGroupListenerServiceStartupMode"`
 	ConfigureHomeGroupProviderServiceStartupMode                  int32  `cim:"ConfigureHomeGroupProviderServiceStartupMode"`
@@ -2660,6 +3404,10 @@ type MDMPolicyConfig01SystemServices02 struct {
 
 // MDMPolicyConfig01TaskManager02 is the MDM_Policy_Config01_TaskManager02 CIM class.
 type MDMPolicyConfig01TaskManager02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath      string `cim:"__PATH"`
 	AllowEndTask int32  `cim:"AllowEndTask"`
 	InstanceID   string `cim:"InstanceID"`
 	ParentID     string `cim:"ParentID"`
@@ -2667,6 +3415,10 @@ type MDMPolicyConfig01TaskManager02 struct {
 
 // MDMPolicyConfig01TaskScheduler02 is the MDM_Policy_Config01_TaskScheduler02 CIM class.
 type MDMPolicyConfig01TaskScheduler02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                string `cim:"__PATH"`
 	EnableXboxGameSaveTask int32  `cim:"EnableXboxGameSaveTask"`
 	InstanceID             string `cim:"InstanceID"`
 	ParentID               string `cim:"ParentID"`
@@ -2674,6 +3426,10 @@ type MDMPolicyConfig01TaskScheduler02 struct {
 
 // MDMPolicyConfig01TenantRestrictions02 is the MDM_Policy_Config01_TenantRestrictions02 CIM class.
 type MDMPolicyConfig01TenantRestrictions02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                     string `cim:"__PATH"`
 	ConfigureTenantRestrictions string `cim:"ConfigureTenantRestrictions"`
 	InstanceID                  string `cim:"InstanceID"`
 	ParentID                    string `cim:"ParentID"`
@@ -2681,6 +3437,10 @@ type MDMPolicyConfig01TenantRestrictions02 struct {
 
 // MDMPolicyConfig01TextInput02 is the MDM_Policy_Config01_TextInput02 CIM class.
 type MDMPolicyConfig01TextInput02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                    string `cim:"__PATH"`
 	AllowHardwareKeyboardTextSuggestions       int32  `cim:"AllowHardwareKeyboardTextSuggestions"`
 	AllowIMELogging                            int32  `cim:"AllowIMELogging"`
 	AllowIMENetworkAccess                      int32  `cim:"AllowIMENetworkAccess"`
@@ -2715,6 +3475,10 @@ type MDMPolicyConfig01TextInput02 struct {
 
 // MDMPolicyConfig01Theme02 is the MDM_Policy_Config01_Theme02 CIM class.
 type MDMPolicyConfig01Theme02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                string `cim:"__PATH"`
 	DefaultBackgroundImage string `cim:"DefaultBackgroundImage"`
 	InstanceID             string `cim:"InstanceID"`
 	ParentID               string `cim:"ParentID"`
@@ -2723,6 +3487,10 @@ type MDMPolicyConfig01Theme02 struct {
 
 // MDMPolicyConfig01TimeLanguageSettings02 is the MDM_Policy_Config01_TimeLanguageSettings02 CIM class.
 type MDMPolicyConfig01TimeLanguageSettings02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                   string `cim:"__PATH"`
 	BlockCleanupOfUnusedPreinstalledLangPacks int32  `cim:"BlockCleanupOfUnusedPreinstalledLangPacks"`
 	ConfigureTimeZone                         string `cim:"ConfigureTimeZone"`
 	InstanceID                                string `cim:"InstanceID"`
@@ -2733,6 +3501,10 @@ type MDMPolicyConfig01TimeLanguageSettings02 struct {
 
 // MDMPolicyConfig01Troubleshooting02 is the MDM_Policy_Config01_Troubleshooting02 CIM class.
 type MDMPolicyConfig01Troubleshooting02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath              string `cim:"__PATH"`
 	AllowRecommendations int32  `cim:"AllowRecommendations"`
 	InstanceID           string `cim:"InstanceID"`
 	ParentID             string `cim:"ParentID"`
@@ -2740,6 +3512,10 @@ type MDMPolicyConfig01Troubleshooting02 struct {
 
 // MDMPolicyConfig01Update02 is the MDM_Policy_Config01_Update02 CIM class.
 type MDMPolicyConfig01Update02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                                string `cim:"__PATH"`
 	ActiveHoursEnd                                         int32  `cim:"ActiveHoursEnd"`
 	ActiveHoursMaxRange                                    int32  `cim:"ActiveHoursMaxRange"`
 	ActiveHoursStart                                       int32  `cim:"ActiveHoursStart"`
@@ -2836,6 +3612,10 @@ type MDMPolicyConfig01Update02 struct {
 
 // MDMPolicyConfig01UserModel02 is the MDM_Policy_Config01_UserModel02 CIM class.
 type MDMPolicyConfig01UserModel02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath           string `cim:"__PATH"`
 	EnterpriseSupport string `cim:"EnterpriseSupport"`
 	InstanceID        string `cim:"InstanceID"`
 	ParentID          string `cim:"ParentID"`
@@ -2844,6 +3624,10 @@ type MDMPolicyConfig01UserModel02 struct {
 
 // MDMPolicyConfig01UserRights02 is the MDM_Policy_Config01_UserRights02 CIM class.
 type MDMPolicyConfig01UserRights02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                string `cim:"__PATH"`
 	AccessCredentialManagerAsTrustedCaller string `cim:"AccessCredentialManagerAsTrustedCaller"`
 	AccessFromNetwork                      string `cim:"AccessFromNetwork"`
 	ActAsPartOfTheOperatingSystem          string `cim:"ActAsPartOfTheOperatingSystem"`
@@ -2879,6 +3663,10 @@ type MDMPolicyConfig01UserRights02 struct {
 
 // MDMPolicyConfig01VirtualizationBasedTechnology02 is the MDM_Policy_Config01_VirtualizationBasedTechnology02 CIM class.
 type MDMPolicyConfig01VirtualizationBasedTechnology02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                          string `cim:"__PATH"`
 	HypervisorEnforcedCodeIntegrity  int32  `cim:"HypervisorEnforcedCodeIntegrity"`
 	InstanceID                       string `cim:"InstanceID"`
 	ParentID                         string `cim:"ParentID"`
@@ -2887,6 +3675,10 @@ type MDMPolicyConfig01VirtualizationBasedTechnology02 struct {
 
 // MDMPolicyConfig01Wifi02 is the MDM_Policy_Config01_Wifi02 CIM class.
 type MDMPolicyConfig01Wifi02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                             string `cim:"__PATH"`
 	AllowAutoConnectToWiFiSenseHotspots int32  `cim:"AllowAutoConnectToWiFiSenseHotspots"`
 	AllowInternetSharing                int32  `cim:"AllowInternetSharing"`
 	AllowManualWiFiConfiguration        int32  `cim:"AllowManualWiFiConfiguration"`
@@ -2900,6 +3692,10 @@ type MDMPolicyConfig01Wifi02 struct {
 
 // MDMPolicyConfig01WindowsAutopilot02 is the MDM_Policy_Config01_WindowsAutopilot02 CIM class.
 type MDMPolicyConfig01WindowsAutopilot02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                     string `cim:"__PATH"`
 	EnableAgilityPostEnrollment int32  `cim:"EnableAgilityPostEnrollment"`
 	InstanceID                  string `cim:"InstanceID"`
 	ParentID                    string `cim:"ParentID"`
@@ -2907,6 +3703,10 @@ type MDMPolicyConfig01WindowsAutopilot02 struct {
 
 // MDMPolicyConfig01WindowsConnectionManager02 is the MDM_Policy_Config01_WindowsConnectionManager02 CIM class.
 type MDMPolicyConfig01WindowsConnectionManager02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                                                      string `cim:"__PATH"`
 	InstanceID                                                                   string `cim:"InstanceID"`
 	ParentID                                                                     string `cim:"ParentID"`
 	ProhitConnectionToNonDomainNetworksWhenConnectedToDomainAuthenticatedNetwork string `cim:"ProhitConnectionToNonDomainNetworksWhenConnectedToDomainAuthenticatedNetwork"`
@@ -2914,6 +3714,10 @@ type MDMPolicyConfig01WindowsConnectionManager02 struct {
 
 // MDMPolicyConfig01WindowsDefenderSecurityCenter02 is the MDM_Policy_Config01_WindowsDefenderSecurityCenter02 CIM class.
 type MDMPolicyConfig01WindowsDefenderSecurityCenter02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                    string `cim:"__PATH"`
 	CompanyName                                string `cim:"CompanyName"`
 	DisableAccountProtectionUI                 int32  `cim:"DisableAccountProtectionUI"`
 	DisableAppBrowserUI                        int32  `cim:"DisableAppBrowserUI"`
@@ -2942,6 +3746,10 @@ type MDMPolicyConfig01WindowsDefenderSecurityCenter02 struct {
 
 // MDMPolicyConfig01WindowsInkWorkspace02 is the MDM_Policy_Config01_WindowsInkWorkspace02 CIM class.
 type MDMPolicyConfig01WindowsInkWorkspace02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                 string `cim:"__PATH"`
 	AllowSuggestedAppsInWindowsInkWorkspace int32  `cim:"AllowSuggestedAppsInWindowsInkWorkspace"`
 	AllowWindowsInkWorkspace                int32  `cim:"AllowWindowsInkWorkspace"`
 	InstanceID                              string `cim:"InstanceID"`
@@ -2950,6 +3758,10 @@ type MDMPolicyConfig01WindowsInkWorkspace02 struct {
 
 // MDMPolicyConfig01WindowsLogon02 is the MDM_Policy_Config01_WindowsLogon02 CIM class.
 type MDMPolicyConfig01WindowsLogon02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                    string `cim:"__PATH"`
 	AllowAutomaticRestartSignOn                string `cim:"AllowAutomaticRestartSignOn"`
 	ConfigAutomaticRestartSignOn               string `cim:"ConfigAutomaticRestartSignOn"`
 	DisableLockScreenAppNotifications          string `cim:"DisableLockScreenAppNotifications"`
@@ -2963,6 +3775,10 @@ type MDMPolicyConfig01WindowsLogon02 struct {
 
 // MDMPolicyConfig01WindowsPowerShell02 is the MDM_Policy_Config01_WindowsPowerShell02 CIM class.
 type MDMPolicyConfig01WindowsPowerShell02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                            string `cim:"__PATH"`
 	InstanceID                         string `cim:"InstanceID"`
 	ParentID                           string `cim:"ParentID"`
 	TurnOnPowerShellScriptBlockLogging string `cim:"TurnOnPowerShellScriptBlockLogging"`
@@ -2970,6 +3786,10 @@ type MDMPolicyConfig01WindowsPowerShell02 struct {
 
 // MDMPolicyConfig01WindowsSandbox02 is the MDM_Policy_Config01_WindowsSandbox02 CIM class.
 type MDMPolicyConfig01WindowsSandbox02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                   string `cim:"__PATH"`
 	AllowAudioInput           int32  `cim:"AllowAudioInput"`
 	AllowClipboardRedirection int32  `cim:"AllowClipboardRedirection"`
 	AllowNetworking           int32  `cim:"AllowNetworking"`
@@ -2982,6 +3802,10 @@ type MDMPolicyConfig01WindowsSandbox02 struct {
 
 // MDMPolicyConfig01WirelessDisplay02 is the MDM_Policy_Config01_WirelessDisplay02 CIM class.
 type MDMPolicyConfig01WirelessDisplay02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                   string `cim:"__PATH"`
 	AllowMdnsAdvertisement                    int32  `cim:"AllowMdnsAdvertisement"`
 	AllowMdnsDiscovery                        int32  `cim:"AllowMdnsDiscovery"`
 	AllowMovementDetectionOnInfrastructure    int32  `cim:"AllowMovementDetectionOnInfrastructure"`
@@ -2999,6 +3823,10 @@ type MDMPolicyConfig01WirelessDisplay02 struct {
 
 // MDMPolicyResult01AboveLock02 is the MDM_Policy_Result01_AboveLock02 CIM class.
 type MDMPolicyResult01AboveLock02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath               string `cim:"__PATH"`
 	AllowCortanaAboveLock int32  `cim:"AllowCortanaAboveLock"`
 	AllowToasts           int32  `cim:"AllowToasts"`
 	InstanceID            string `cim:"InstanceID"`
@@ -3007,6 +3835,10 @@ type MDMPolicyResult01AboveLock02 struct {
 
 // MDMPolicyResult01Accounts02 is the MDM_Policy_Result01_Accounts02 CIM class.
 type MDMPolicyResult01Accounts02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                 string `cim:"__PATH"`
 	AllowAddingNonMicrosoftAccountsManually int32  `cim:"AllowAddingNonMicrosoftAccountsManually"`
 	AllowMicrosoftAccountConnection         int32  `cim:"AllowMicrosoftAccountConnection"`
 	AllowMicrosoftAccountSignInAssistant    int32  `cim:"AllowMicrosoftAccountSignInAssistant"`
@@ -3017,6 +3849,10 @@ type MDMPolicyResult01Accounts02 struct {
 
 // MDMPolicyResult01ActiveXControls02 is the MDM_Policy_Result01_ActiveXControls02 CIM class.
 type MDMPolicyResult01ActiveXControls02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                   string `cim:"__PATH"`
 	ApprovedInstallationSites string `cim:"ApprovedInstallationSites"`
 	InstanceID                string `cim:"InstanceID"`
 	ParentID                  string `cim:"ParentID"`
@@ -3024,6 +3860,10 @@ type MDMPolicyResult01ActiveXControls02 struct {
 
 // MDMPolicyResult01AppRuntime02 is the MDM_Policy_Result01_AppRuntime02 CIM class.
 type MDMPolicyResult01AppRuntime02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                            string `cim:"__PATH"`
 	AllowMicrosoftAccountsToBeOptional string `cim:"AllowMicrosoftAccountsToBeOptional"`
 	InstanceID                         string `cim:"InstanceID"`
 	ParentID                           string `cim:"ParentID"`
@@ -3031,6 +3871,10 @@ type MDMPolicyResult01AppRuntime02 struct {
 
 // MDMPolicyResult01AppVirtualization02 is the MDM_Policy_Result01_AppVirtualization02 CIM class.
 type MDMPolicyResult01AppVirtualization02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                     string `cim:"__PATH"`
 	AllowAppVClient                             string `cim:"AllowAppVClient"`
 	AllowDynamicVirtualization                  string `cim:"AllowDynamicVirtualization"`
 	AllowPackageCleanup                         string `cim:"AllowPackageCleanup"`
@@ -3065,6 +3909,10 @@ type MDMPolicyResult01AppVirtualization02 struct {
 
 // MDMPolicyResult01ApplicationDefaults02 is the MDM_Policy_Result01_ApplicationDefaults02 CIM class.
 type MDMPolicyResult01ApplicationDefaults02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                          string `cim:"__PATH"`
 	DefaultAssociationsConfiguration string `cim:"DefaultAssociationsConfiguration"`
 	EnableAppUriHandlers             int32  `cim:"EnableAppUriHandlers"`
 	InstanceID                       string `cim:"InstanceID"`
@@ -3073,6 +3921,10 @@ type MDMPolicyResult01ApplicationDefaults02 struct {
 
 // MDMPolicyResult01ApplicationManagement02 is the MDM_Policy_Result01_ApplicationManagement02 CIM class.
 type MDMPolicyResult01ApplicationManagement02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                string `cim:"__PATH"`
 	AllowAllTrustedApps                    int32  `cim:"AllowAllTrustedApps"`
 	AllowAppStoreAutoUpdate                int32  `cim:"AllowAppStoreAutoUpdate"`
 	AllowAutomaticAppArchiving             int32  `cim:"AllowAutomaticAppArchiving"`
@@ -3094,6 +3946,10 @@ type MDMPolicyResult01ApplicationManagement02 struct {
 
 // MDMPolicyResult01Audit02 is the MDM_Policy_Result01_Audit02 CIM class.
 type MDMPolicyResult01Audit02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                            string `cim:"__PATH"`
 	AccountLogonLogoffAuditAccountLockout              int32  `cim:"AccountLogonLogoff_AuditAccountLockout"`
 	AccountLogonLogoffAuditGroupMembership             int32  `cim:"AccountLogonLogoff_AuditGroupMembership"`
 	AccountLogonLogoffAuditIPsecExtendedMode           int32  `cim:"AccountLogonLogoff_AuditIPsecExtendedMode"`
@@ -3159,6 +4015,10 @@ type MDMPolicyResult01Audit02 struct {
 
 // MDMPolicyResult01Authentication02 is the MDM_Policy_Result01_Authentication02 CIM class.
 type MDMPolicyResult01Authentication02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                            string `cim:"__PATH"`
 	AllowAadPasswordReset              int32  `cim:"AllowAadPasswordReset"`
 	AllowFastReconnect                 int32  `cim:"AllowFastReconnect"`
 	AllowSecondaryAuthenticationDevice int32  `cim:"AllowSecondaryAuthenticationDevice"`
@@ -3173,6 +4033,10 @@ type MDMPolicyResult01Authentication02 struct {
 
 // MDMPolicyResult01Autoplay02 is the MDM_Policy_Result01_Autoplay02 CIM class.
 type MDMPolicyResult01Autoplay02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                             string `cim:"__PATH"`
 	DisallowAutoplayForNonVolumeDevices string `cim:"DisallowAutoplayForNonVolumeDevices"`
 	InstanceID                          string `cim:"InstanceID"`
 	ParentID                            string `cim:"ParentID"`
@@ -3182,6 +4046,10 @@ type MDMPolicyResult01Autoplay02 struct {
 
 // MDMPolicyResult01BITS02 is the MDM_Policy_Result01_BITS02 CIM class.
 type MDMPolicyResult01BITS02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                 string `cim:"__PATH"`
 	BandwidthThrottlingEndTime              int32  `cim:"BandwidthThrottlingEndTime"`
 	BandwidthThrottlingStartTime            int32  `cim:"BandwidthThrottlingStartTime"`
 	BandwidthThrottlingTransferRate         int32  `cim:"BandwidthThrottlingTransferRate"`
@@ -3194,6 +4062,10 @@ type MDMPolicyResult01BITS02 struct {
 
 // MDMPolicyResult01Bitlocker02 is the MDM_Policy_Result01_Bitlocker02 CIM class.
 type MDMPolicyResult01Bitlocker02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath          string `cim:"__PATH"`
 	EncryptionMethod int32  `cim:"EncryptionMethod"`
 	InstanceID       string `cim:"InstanceID"`
 	ParentID         string `cim:"ParentID"`
@@ -3201,6 +4073,10 @@ type MDMPolicyResult01Bitlocker02 struct {
 
 // MDMPolicyResult01Bluetooth02 is the MDM_Policy_Result01_Bluetooth02 CIM class.
 type MDMPolicyResult01Bluetooth02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                          string `cim:"__PATH"`
 	AllowAdvertising                 int32  `cim:"AllowAdvertising"`
 	AllowDiscoverableMode            int32  `cim:"AllowDiscoverableMode"`
 	AllowPrepairing                  int32  `cim:"AllowPrepairing"`
@@ -3214,6 +4090,10 @@ type MDMPolicyResult01Bluetooth02 struct {
 
 // MDMPolicyResult01Browser02 is the MDM_Policy_Result01_Browser02 CIM class.
 type MDMPolicyResult01Browser02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                       string `cim:"__PATH"`
 	AllowAddressBarDropdown                       int32  `cim:"AllowAddressBarDropdown"`
 	AllowAutofill                                 int32  `cim:"AllowAutofill"`
 	AllowConfigurationUpdateForBooksLibrary       int32  `cim:"AllowConfigurationUpdateForBooksLibrary"`
@@ -3281,6 +4161,10 @@ type MDMPolicyResult01Browser02 struct {
 
 // MDMPolicyResult01Camera02 is the MDM_Policy_Result01_Camera02 CIM class.
 type MDMPolicyResult01Camera02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath     string `cim:"__PATH"`
 	AllowCamera int32  `cim:"AllowCamera"`
 	InstanceID  string `cim:"InstanceID"`
 	ParentID    string `cim:"ParentID"`
@@ -3288,6 +4172,10 @@ type MDMPolicyResult01Camera02 struct {
 
 // MDMPolicyResult01Cellular02 is the MDM_Policy_Result01_Cellular02 CIM class.
 type MDMPolicyResult01Cellular02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                           string `cim:"__PATH"`
 	InstanceID                                        string `cim:"InstanceID"`
 	LetAppsAccessCellularData                         int32  `cim:"LetAppsAccessCellularData"`
 	LetAppsAccessCellularDataForceAllowTheseApps      string `cim:"LetAppsAccessCellularData_ForceAllowTheseApps"`
@@ -3299,6 +4187,10 @@ type MDMPolicyResult01Cellular02 struct {
 
 // MDMPolicyResult01Connectivity02 is the MDM_Policy_Result01_Connectivity02 CIM class.
 type MDMPolicyResult01Connectivity02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                                         string `cim:"__PATH"`
 	AllowBluetooth                                                  int32  `cim:"AllowBluetooth"`
 	AllowCellularData                                               int32  `cim:"AllowCellularData"`
 	AllowCellularDataRoaming                                        int32  `cim:"AllowCellularDataRoaming"`
@@ -3318,6 +4210,10 @@ type MDMPolicyResult01Connectivity02 struct {
 
 // MDMPolicyResult01ControlPolicyConflict02 is the MDM_Policy_Result01_ControlPolicyConflict02 CIM class.
 type MDMPolicyResult01ControlPolicyConflict02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath       string `cim:"__PATH"`
 	InstanceID    string `cim:"InstanceID"`
 	MDMWinsOverGP int32  `cim:"MDMWinsOverGP"`
 	ParentID      string `cim:"ParentID"`
@@ -3325,6 +4221,10 @@ type MDMPolicyResult01ControlPolicyConflict02 struct {
 
 // MDMPolicyResult01CredentialProviders02 is the MDM_Policy_Result01_CredentialProviders02 CIM class.
 type MDMPolicyResult01CredentialProviders02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                 string `cim:"__PATH"`
 	AllowPINLogon                           string `cim:"AllowPINLogon"`
 	BlockPicturePassword                    string `cim:"BlockPicturePassword"`
 	DisableAutomaticReDeploymentCredentials int32  `cim:"DisableAutomaticReDeploymentCredentials"`
@@ -3334,6 +4234,10 @@ type MDMPolicyResult01CredentialProviders02 struct {
 
 // MDMPolicyResult01CredentialsDelegation02 is the MDM_Policy_Result01_CredentialsDelegation02 CIM class.
 type MDMPolicyResult01CredentialsDelegation02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                              string `cim:"__PATH"`
 	InstanceID                                           string `cim:"InstanceID"`
 	ParentID                                             string `cim:"ParentID"`
 	RemoteHostAllowsDelegationOfNonExportableCredentials string `cim:"RemoteHostAllowsDelegationOfNonExportableCredentials"`
@@ -3341,6 +4245,10 @@ type MDMPolicyResult01CredentialsDelegation02 struct {
 
 // MDMPolicyResult01CredentialsUI02 is the MDM_Policy_Result01_CredentialsUI02 CIM class.
 type MDMPolicyResult01CredentialsUI02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                 string `cim:"__PATH"`
 	DisablePasswordReveal   string `cim:"DisablePasswordReveal"`
 	EnumerateAdministrators string `cim:"EnumerateAdministrators"`
 	InstanceID              string `cim:"InstanceID"`
@@ -3349,6 +4257,10 @@ type MDMPolicyResult01CredentialsUI02 struct {
 
 // MDMPolicyResult01Cryptography02 is the MDM_Policy_Result01_Cryptography02 CIM class.
 type MDMPolicyResult01Cryptography02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                  string `cim:"__PATH"`
 	AllowFipsAlgorithmPolicy int32  `cim:"AllowFipsAlgorithmPolicy"`
 	InstanceID               string `cim:"InstanceID"`
 	ParentID                 string `cim:"ParentID"`
@@ -3357,6 +4269,10 @@ type MDMPolicyResult01Cryptography02 struct {
 
 // MDMPolicyResult01DataProtection02 is the MDM_Policy_Result01_DataProtection02 CIM class.
 type MDMPolicyResult01DataProtection02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                 string `cim:"__PATH"`
 	AllowDirectMemoryAccess int32  `cim:"AllowDirectMemoryAccess"`
 	InstanceID              string `cim:"InstanceID"`
 	LegacySelectiveWipeID   string `cim:"LegacySelectiveWipeID"`
@@ -3365,6 +4281,10 @@ type MDMPolicyResult01DataProtection02 struct {
 
 // MDMPolicyResult01DataUsage02 is the MDM_Policy_Result01_DataUsage02 CIM class.
 type MDMPolicyResult01DataUsage02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath    string `cim:"__PATH"`
 	InstanceID string `cim:"InstanceID"`
 	ParentID   string `cim:"ParentID"`
 	SetCost3G  string `cim:"SetCost3G"`
@@ -3373,6 +4293,10 @@ type MDMPolicyResult01DataUsage02 struct {
 
 // MDMPolicyResult01Defender02 is the MDM_Policy_Result01_Defender02 CIM class.
 type MDMPolicyResult01Defender02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                   string `cim:"__PATH"`
 	AllowArchiveScanning                      int32  `cim:"AllowArchiveScanning"`
 	AllowBehaviorMonitoring                   int32  `cim:"AllowBehaviorMonitoring"`
 	AllowCloudProtection                      int32  `cim:"AllowCloudProtection"`
@@ -3421,6 +4345,10 @@ type MDMPolicyResult01Defender02 struct {
 
 // MDMPolicyResult01DeliveryOptimization02 is the MDM_Policy_Result01_DeliveryOptimization02 CIM class.
 type MDMPolicyResult01DeliveryOptimization02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                      string `cim:"__PATH"`
 	DOAbsoluteMaxCacheSize                       int32  `cim:"DOAbsoluteMaxCacheSize"`
 	DOAllowVPNPeerCaching                        int32  `cim:"DOAllowVPNPeerCaching"`
 	DOCacheHost                                  string `cim:"DOCacheHost"`
@@ -3454,6 +4382,10 @@ type MDMPolicyResult01DeliveryOptimization02 struct {
 
 // MDMPolicyResult01DeviceGuard02 is the MDM_Policy_Result01_DeviceGuard02 CIM class.
 type MDMPolicyResult01DeviceGuard02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                           string `cim:"__PATH"`
 	ConfigureSystemGuardLaunch        int32  `cim:"ConfigureSystemGuardLaunch"`
 	EnableVirtualizationBasedSecurity int32  `cim:"EnableVirtualizationBasedSecurity"`
 	InstanceID                        string `cim:"InstanceID"`
@@ -3464,6 +4396,10 @@ type MDMPolicyResult01DeviceGuard02 struct {
 
 // MDMPolicyResult01DeviceHealthMonitoring02 is the MDM_Policy_Result01_DeviceHealthMonitoring02 CIM class.
 type MDMPolicyResult01DeviceHealthMonitoring02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                       string `cim:"__PATH"`
 	AllowDeviceHealthMonitoring                   int32  `cim:"AllowDeviceHealthMonitoring"`
 	ConfigDeviceHealthMonitoringScope             string `cim:"ConfigDeviceHealthMonitoringScope"`
 	ConfigDeviceHealthMonitoringServiceInstance   string `cim:"ConfigDeviceHealthMonitoringServiceInstance"`
@@ -3474,6 +4410,10 @@ type MDMPolicyResult01DeviceHealthMonitoring02 struct {
 
 // MDMPolicyResult01DeviceInstallation02 is the MDM_Policy_Result01_DeviceInstallation02 CIM class.
 type MDMPolicyResult01DeviceInstallation02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                                       string `cim:"__PATH"`
 	AllowInstallationOfMatchingDeviceIDs                          string `cim:"AllowInstallationOfMatchingDeviceIDs"`
 	AllowInstallationOfMatchingDeviceInstanceIDs                  string `cim:"AllowInstallationOfMatchingDeviceInstanceIDs"`
 	AllowInstallationOfMatchingDeviceSetupClasses                 string `cim:"AllowInstallationOfMatchingDeviceSetupClasses"`
@@ -3489,6 +4429,10 @@ type MDMPolicyResult01DeviceInstallation02 struct {
 
 // MDMPolicyResult01DeviceLock02 is the MDM_Policy_Result01_DeviceLock02 CIM class.
 type MDMPolicyResult01DeviceLock02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                 string `cim:"__PATH"`
 	AllowScreenTimeoutWhileLockedUserConfig int32  `cim:"AllowScreenTimeoutWhileLockedUserConfig"`
 	AllowSimpleDevicePassword               int32  `cim:"AllowSimpleDevicePassword"`
 	AlphanumericDevicePasswordRequired      int32  `cim:"AlphanumericDevicePasswordRequired"`
@@ -3511,6 +4455,10 @@ type MDMPolicyResult01DeviceLock02 struct {
 
 // MDMPolicyResult01Display02 is the MDM_Policy_Result01_Display02 CIM class.
 type MDMPolicyResult01Display02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                     string `cim:"__PATH"`
 	DisablePerProcessDpiForApps string `cim:"DisablePerProcessDpiForApps"`
 	EnablePerProcessDpi         int32  `cim:"EnablePerProcessDpi"`
 	EnablePerProcessDpiForApps  string `cim:"EnablePerProcessDpiForApps"`
@@ -3522,6 +4470,10 @@ type MDMPolicyResult01Display02 struct {
 
 // MDMPolicyResult01DisplayEnhancement02 is the MDM_Policy_Result01_DisplayEnhancement02 CIM class.
 type MDMPolicyResult01DisplayEnhancement02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                  string `cim:"__PATH"`
 	AutobrightnessLuxToNitsCurve             string `cim:"AutobrightnessLuxToNitsCurve"`
 	DefaultAdaptiveColorAdaptationStrength   int32  `cim:"DefaultAdaptiveColorAdaptationStrength"`
 	DefaultBatterySaverBrightnessMultiplier  int32  `cim:"DefaultBatterySaverBrightnessMultiplier"`
@@ -3536,6 +4488,10 @@ type MDMPolicyResult01DisplayEnhancement02 struct {
 
 // MDMPolicyResult01DmaGuard02 is the MDM_Policy_Result01_DmaGuard02 CIM class.
 type MDMPolicyResult01DmaGuard02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                 string `cim:"__PATH"`
 	DeviceEnumerationPolicy int32  `cim:"DeviceEnumerationPolicy"`
 	InstanceID              string `cim:"InstanceID"`
 	ParentID                string `cim:"ParentID"`
@@ -3543,6 +4499,10 @@ type MDMPolicyResult01DmaGuard02 struct {
 
 // MDMPolicyResult01Eap02 is the MDM_Policy_Result01_Eap02 CIM class.
 type MDMPolicyResult01Eap02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath    string `cim:"__PATH"`
 	AllowTLS13 int32  `cim:"AllowTLS1_3"`
 	InstanceID string `cim:"InstanceID"`
 	ParentID   string `cim:"ParentID"`
@@ -3550,6 +4510,10 @@ type MDMPolicyResult01Eap02 struct {
 
 // MDMPolicyResult01ErrorReporting02 is the MDM_Policy_Result01_ErrorReporting02 CIM class.
 type MDMPolicyResult01ErrorReporting02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                      string `cim:"__PATH"`
 	CustomizeConsentSettings     string `cim:"CustomizeConsentSettings"`
 	DisableWindowsErrorReporting string `cim:"DisableWindowsErrorReporting"`
 	DisplayErrorNotification     string `cim:"DisplayErrorNotification"`
@@ -3561,6 +4525,10 @@ type MDMPolicyResult01ErrorReporting02 struct {
 
 // MDMPolicyResult01EventLogService02 is the MDM_Policy_Result01_EventLogService02 CIM class.
 type MDMPolicyResult01EventLogService02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                              string `cim:"__PATH"`
 	ControlEventLogBehavior              string `cim:"ControlEventLogBehavior"`
 	InstanceID                           string `cim:"InstanceID"`
 	ParentID                             string `cim:"ParentID"`
@@ -3571,6 +4539,10 @@ type MDMPolicyResult01EventLogService02 struct {
 
 // MDMPolicyResult01Experience02 is the MDM_Policy_Result01_Experience02 CIM class.
 type MDMPolicyResult01Experience02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                 string `cim:"__PATH"`
 	AllowClipboardHistory                   int32  `cim:"AllowClipboardHistory"`
 	AllowCortana                            int32  `cim:"AllowCortana"`
 	AllowDeviceDiscovery                    int32  `cim:"AllowDeviceDiscovery"`
@@ -3595,6 +4567,10 @@ type MDMPolicyResult01Experience02 struct {
 
 // MDMPolicyResult01ExploitGuard02 is the MDM_Policy_Result01_ExploitGuard02 CIM class.
 type MDMPolicyResult01ExploitGuard02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                   string `cim:"__PATH"`
 	ExploitProtectionSettings string `cim:"ExploitProtectionSettings"`
 	InstanceID                string `cim:"InstanceID"`
 	ParentID                  string `cim:"ParentID"`
@@ -3602,6 +4578,10 @@ type MDMPolicyResult01ExploitGuard02 struct {
 
 // MDMPolicyResult01FactoryComposer02 is the MDM_Policy_Result01_FactoryComposer02 CIM class.
 type MDMPolicyResult01FactoryComposer02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath             string `cim:"__PATH"`
 	BackgroundImagePath string `cim:"BackgroundImagePath"`
 	InstanceID          string `cim:"InstanceID"`
 	OEMVersion          string `cim:"OEMVersion"`
@@ -3612,6 +4592,10 @@ type MDMPolicyResult01FactoryComposer02 struct {
 
 // MDMPolicyResult01Feeds02 is the MDM_Policy_Result01_Feeds02 CIM class.
 type MDMPolicyResult01Feeds02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath      string `cim:"__PATH"`
 	FeedsEnabled int32  `cim:"FeedsEnabled"`
 	InstanceID   string `cim:"InstanceID"`
 	ParentID     string `cim:"ParentID"`
@@ -3619,6 +4603,10 @@ type MDMPolicyResult01Feeds02 struct {
 
 // MDMPolicyResult01FileExplorer02 is the MDM_Policy_Result01_FileExplorer02 CIM class.
 type MDMPolicyResult01FileExplorer02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                   string `cim:"__PATH"`
 	InstanceID                                string `cim:"InstanceID"`
 	ParentID                                  string `cim:"ParentID"`
 	TurnOffDataExecutionPreventionForExplorer string `cim:"TurnOffDataExecutionPreventionForExplorer"`
@@ -3627,6 +4615,10 @@ type MDMPolicyResult01FileExplorer02 struct {
 
 // MDMPolicyResult01Games02 is the MDM_Policy_Result01_Games02 CIM class.
 type MDMPolicyResult01Games02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                     string `cim:"__PATH"`
 	AllowAdvancedGamingServices int32  `cim:"AllowAdvancedGamingServices"`
 	InstanceID                  string `cim:"InstanceID"`
 	ParentID                    string `cim:"ParentID"`
@@ -3634,6 +4626,10 @@ type MDMPolicyResult01Games02 struct {
 
 // MDMPolicyResult01Handwriting02 is the MDM_Policy_Result01_Handwriting02 CIM class.
 type MDMPolicyResult01Handwriting02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                string `cim:"__PATH"`
 	InstanceID             string `cim:"InstanceID"`
 	PanelDefaultModeDocked int32  `cim:"PanelDefaultModeDocked"`
 	ParentID               string `cim:"ParentID"`
@@ -3641,6 +4637,10 @@ type MDMPolicyResult01Handwriting02 struct {
 
 // MDMPolicyResult01HumanPresence02 is the MDM_Policy_Result01_HumanPresence02 CIM class.
 type MDMPolicyResult01HumanPresence02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath          string `cim:"__PATH"`
 	ForceInstantLock int32  `cim:"ForceInstantLock"`
 	ForceInstantWake int32  `cim:"ForceInstantWake"`
 	ForceLockTimeout int32  `cim:"ForceLockTimeout"`
@@ -3650,6 +4650,10 @@ type MDMPolicyResult01HumanPresence02 struct {
 
 // MDMPolicyResult01InternetExplorer02 is the MDM_Policy_Result01_InternetExplorer02 CIM class.
 type MDMPolicyResult01InternetExplorer02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                                                     string `cim:"__PATH"`
 	AddSearchProvider                                                           string `cim:"AddSearchProvider"`
 	AllowActiveXFiltering                                                       string `cim:"AllowActiveXFiltering"`
 	AllowAddOnList                                                              string `cim:"AllowAddOnList"`
@@ -3911,6 +4915,10 @@ type MDMPolicyResult01InternetExplorer02 struct {
 
 // MDMPolicyResult01Kerberos02 is the MDM_Policy_Result01_Kerberos02 CIM class.
 type MDMPolicyResult01Kerberos02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                   string `cim:"__PATH"`
 	AllowForestSearchOrder                    string `cim:"AllowForestSearchOrder"`
 	CloudKerberosTicketRetrievalEnabled       int32  `cim:"CloudKerberosTicketRetrievalEnabled"`
 	InstanceID                                string `cim:"InstanceID"`
@@ -3924,6 +4932,10 @@ type MDMPolicyResult01Kerberos02 struct {
 
 // MDMPolicyResult01KioskBrowser02 is the MDM_Policy_Result01_KioskBrowser02 CIM class.
 type MDMPolicyResult01KioskBrowser02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                 string `cim:"__PATH"`
 	BlockedUrlExceptions    string `cim:"BlockedUrlExceptions"`
 	BlockedUrls             string `cim:"BlockedUrls"`
 	DefaultURL              string `cim:"DefaultURL"`
@@ -3937,6 +4949,10 @@ type MDMPolicyResult01KioskBrowser02 struct {
 
 // MDMPolicyResult01LanmanWorkstation02 is the MDM_Policy_Result01_LanmanWorkstation02 CIM class.
 type MDMPolicyResult01LanmanWorkstation02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                   string `cim:"__PATH"`
 	EnableInsecureGuestLogons int32  `cim:"EnableInsecureGuestLogons"`
 	InstanceID                string `cim:"InstanceID"`
 	ParentID                  string `cim:"ParentID"`
@@ -3944,6 +4960,10 @@ type MDMPolicyResult01LanmanWorkstation02 struct {
 
 // MDMPolicyResult01Licensing02 is the MDM_Policy_Result01_Licensing02 CIM class.
 type MDMPolicyResult01Licensing02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                              string `cim:"__PATH"`
 	AllowWindowsEntitlementReactivation  int32  `cim:"AllowWindowsEntitlementReactivation"`
 	DisallowKMSClientOnlineAVSValidation int32  `cim:"DisallowKMSClientOnlineAVSValidation"`
 	InstanceID                           string `cim:"InstanceID"`
@@ -3952,6 +4972,10 @@ type MDMPolicyResult01Licensing02 struct {
 
 // MDMPolicyResult01LocalPoliciesSecurityOptions02 is the MDM_Policy_Result01_LocalPoliciesSecurityOptions02 CIM class.
 type MDMPolicyResult01LocalPoliciesSecurityOptions02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                                                            string `cim:"__PATH"`
 	AccountsBlockMicrosoftAccounts                                                     int32  `cim:"Accounts_BlockMicrosoftAccounts"`
 	AccountsEnableAdministratorAccountStatus                                           int32  `cim:"Accounts_EnableAdministratorAccountStatus"`
 	AccountsEnableGuestAccountStatus                                                   int32  `cim:"Accounts_EnableGuestAccountStatus"`
@@ -4007,6 +5031,10 @@ type MDMPolicyResult01LocalPoliciesSecurityOptions02 struct {
 
 // MDMPolicyResult01LocalUsersAndGroups02 is the MDM_Policy_Result01_LocalUsersAndGroups02 CIM class.
 type MDMPolicyResult01LocalUsersAndGroups02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath    string `cim:"__PATH"`
 	Configure  string `cim:"Configure"`
 	InstanceID string `cim:"InstanceID"`
 	ParentID   string `cim:"ParentID"`
@@ -4014,6 +5042,10 @@ type MDMPolicyResult01LocalUsersAndGroups02 struct {
 
 // MDMPolicyResult01LockDown02 is the MDM_Policy_Result01_LockDown02 CIM class.
 type MDMPolicyResult01LockDown02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string `cim:"__PATH"`
 	AllowEdgeSwipe int32  `cim:"AllowEdgeSwipe"`
 	InstanceID     string `cim:"InstanceID"`
 	ParentID       string `cim:"ParentID"`
@@ -4021,6 +5053,10 @@ type MDMPolicyResult01LockDown02 struct {
 
 // MDMPolicyResult01MSSLegacy02 is the MDM_Policy_Result01_MSSLegacy02 CIM class.
 type MDMPolicyResult01MSSLegacy02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                                                 string `cim:"__PATH"`
 	AllowICMPRedirectsToOverrideOSPFGeneratedRoutes                         string `cim:"AllowICMPRedirectsToOverrideOSPFGeneratedRoutes"`
 	AllowTheComputerToIgnoreNetBIOSNameReleaseRequestsExceptFromWINSServers string `cim:"AllowTheComputerToIgnoreNetBIOSNameReleaseRequestsExceptFromWINSServers"`
 	IPSourceRoutingProtectionLevel                                          string `cim:"IPSourceRoutingProtectionLevel"`
@@ -4031,6 +5067,10 @@ type MDMPolicyResult01MSSLegacy02 struct {
 
 // MDMPolicyResult01MSSecurityGuide02 is the MDM_Policy_Result01_MSSecurityGuide02 CIM class.
 type MDMPolicyResult01MSSecurityGuide02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                                               string `cim:"__PATH"`
 	ApplyUACRestrictionsToLocalAccountsOnNetworkLogon                     string `cim:"ApplyUACRestrictionsToLocalAccountsOnNetworkLogon"`
 	ConfigureSMBV1ClientDriver                                            string `cim:"ConfigureSMBV1ClientDriver"`
 	ConfigureSMBV1Server                                                  string `cim:"ConfigureSMBV1Server"`
@@ -4044,6 +5084,10 @@ type MDMPolicyResult01MSSecurityGuide02 struct {
 
 // MDMPolicyResult01Maps02 is the MDM_Policy_Result01_Maps02 CIM class.
 type MDMPolicyResult01Maps02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                       string `cim:"__PATH"`
 	AllowOfflineMapsDownloadOverMeteredConnection int32  `cim:"AllowOfflineMapsDownloadOverMeteredConnection"`
 	EnableOfflineMapsAutoUpdate                   int32  `cim:"EnableOfflineMapsAutoUpdate"`
 	InstanceID                                    string `cim:"InstanceID"`
@@ -4052,6 +5096,10 @@ type MDMPolicyResult01Maps02 struct {
 
 // MDMPolicyResult01MemoryDump02 is the MDM_Policy_Result01_MemoryDump02 CIM class.
 type MDMPolicyResult01MemoryDump02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string `cim:"__PATH"`
 	AllowCrashDump int32  `cim:"AllowCrashDump"`
 	AllowLiveDump  int32  `cim:"AllowLiveDump"`
 	InstanceID     string `cim:"InstanceID"`
@@ -4060,6 +5108,10 @@ type MDMPolicyResult01MemoryDump02 struct {
 
 // MDMPolicyResult01Messaging02 is the MDM_Policy_Result01_Messaging02 CIM class.
 type MDMPolicyResult01Messaging02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath          string `cim:"__PATH"`
 	AllowMessageSync int32  `cim:"AllowMessageSync"`
 	InstanceID       string `cim:"InstanceID"`
 	ParentID         string `cim:"ParentID"`
@@ -4067,6 +5119,10 @@ type MDMPolicyResult01Messaging02 struct {
 
 // MDMPolicyResult01MixedReality02 is the MDM_Policy_Result01_MixedReality02 CIM class.
 type MDMPolicyResult01MixedReality02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                               string `cim:"__PATH"`
 	AADGroupMembershipCacheValidityInDays int32  `cim:"AADGroupMembershipCacheValidityInDays"`
 	AutomaticDisplayAdjustment            int32  `cim:"AutomaticDisplayAdjustment"`
 	BrightnessButtonDisabled              int32  `cim:"BrightnessButtonDisabled"`
@@ -4082,6 +5138,10 @@ type MDMPolicyResult01MixedReality02 struct {
 
 // MDMPolicyResult01NetworkIsolation02 is the MDM_Policy_Result01_NetworkIsolation02 CIM class.
 type MDMPolicyResult01NetworkIsolation02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                string `cim:"__PATH"`
 	EnterpriseCloudResources               string `cim:"EnterpriseCloudResources"`
 	EnterpriseIPRange                      string `cim:"EnterpriseIPRange"`
 	EnterpriseIPRangesAreAuthoritative     int32  `cim:"EnterpriseIPRangesAreAuthoritative"`
@@ -4096,6 +5156,10 @@ type MDMPolicyResult01NetworkIsolation02 struct {
 
 // MDMPolicyResult01NetworkListManager02 is the MDM_Policy_Result01_NetworkListManager02 CIM class.
 type MDMPolicyResult01NetworkListManager02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                           string `cim:"__PATH"`
 	AllowedTlsAuthenticationEndpoints string `cim:"AllowedTlsAuthenticationEndpoints"`
 	InstanceID                        string `cim:"InstanceID"`
 	ParentID                          string `cim:"ParentID"`
@@ -4103,6 +5167,10 @@ type MDMPolicyResult01NetworkListManager02 struct {
 
 // MDMPolicyResult01NewsAndInterests02 is the MDM_Policy_Result01_NewsAndInterests02 CIM class.
 type MDMPolicyResult01NewsAndInterests02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath               string `cim:"__PATH"`
 	AllowNewsAndInterests int32  `cim:"AllowNewsAndInterests"`
 	InstanceID            string `cim:"InstanceID"`
 	ParentID              string `cim:"ParentID"`
@@ -4110,6 +5178,10 @@ type MDMPolicyResult01NewsAndInterests02 struct {
 
 // MDMPolicyResult01Notifications02 is the MDM_Policy_Result01_Notifications02 CIM class.
 type MDMPolicyResult01Notifications02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                   string `cim:"__PATH"`
 	DisallowCloudNotification int32  `cim:"DisallowCloudNotification"`
 	InstanceID                string `cim:"InstanceID"`
 	ParentID                  string `cim:"ParentID"`
@@ -4118,6 +5190,10 @@ type MDMPolicyResult01Notifications02 struct {
 
 // MDMPolicyResult01Power02 is the MDM_Policy_Result01_Power02 CIM class.
 type MDMPolicyResult01Power02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                   string `cim:"__PATH"`
 	AllowHibernate                            int32  `cim:"AllowHibernate"`
 	AllowStandbyStatesWhenSleepingOnBattery   string `cim:"AllowStandbyStatesWhenSleepingOnBattery"`
 	AllowStandbyWhenSleepingPluggedIn         string `cim:"AllowStandbyWhenSleepingPluggedIn"`
@@ -4147,6 +5223,10 @@ type MDMPolicyResult01Power02 struct {
 
 // MDMPolicyResult01Printers02 is the MDM_Policy_Result01_Printers02 CIM class.
 type MDMPolicyResult01Printers02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                   string `cim:"__PATH"`
 	ApprovedUsbPrintDevices   string `cim:"ApprovedUsbPrintDevices"`
 	EnableDeviceControl       string `cim:"EnableDeviceControl"`
 	InstanceID                string `cim:"InstanceID"`
@@ -4157,6 +5237,10 @@ type MDMPolicyResult01Printers02 struct {
 
 // MDMPolicyResult01Privacy02 is the MDM_Policy_Result01_Privacy02 CIM class.
 type MDMPolicyResult01Privacy02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                                           string `cim:"__PATH"`
 	AllowAutoAcceptPairingAndPrivacyConsentPrompts                    int32  `cim:"AllowAutoAcceptPairingAndPrivacyConsentPrompts"`
 	AllowCrossDeviceClipboard                                         int32  `cim:"AllowCrossDeviceClipboard"`
 	AllowInputPersonalization                                         int32  `cim:"AllowInputPersonalization"`
@@ -4261,6 +5345,10 @@ type MDMPolicyResult01Privacy02 struct {
 
 // MDMPolicyResult01RemoteAssistance02 is the MDM_Policy_Result01_RemoteAssistance02 CIM class.
 type MDMPolicyResult01RemoteAssistance02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                     string `cim:"__PATH"`
 	CustomizeWarningMessages    string `cim:"CustomizeWarningMessages"`
 	InstanceID                  string `cim:"InstanceID"`
 	ParentID                    string `cim:"ParentID"`
@@ -4271,6 +5359,10 @@ type MDMPolicyResult01RemoteAssistance02 struct {
 
 // MDMPolicyResult01RemoteDesktop02 is the MDM_Policy_Result01_RemoteDesktop02 CIM class.
 type MDMPolicyResult01RemoteDesktop02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                   string `cim:"__PATH"`
 	InstanceID                string `cim:"InstanceID"`
 	LoadAadCredKeyFromProfile int32  `cim:"LoadAadCredKeyFromProfile"`
 	ParentID                  string `cim:"ParentID"`
@@ -4278,6 +5370,10 @@ type MDMPolicyResult01RemoteDesktop02 struct {
 
 // MDMPolicyResult01RemoteDesktopServices02 is the MDM_Policy_Result01_RemoteDesktopServices02 CIM class.
 type MDMPolicyResult01RemoteDesktopServices02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                         string `cim:"__PATH"`
 	AllowUsersToConnectRemotely     string `cim:"AllowUsersToConnectRemotely"`
 	ClientConnectionEncryptionLevel string `cim:"ClientConnectionEncryptionLevel"`
 	DoNotAllowDriveRedirection      string `cim:"DoNotAllowDriveRedirection"`
@@ -4290,6 +5386,10 @@ type MDMPolicyResult01RemoteDesktopServices02 struct {
 
 // MDMPolicyResult01RemoteManagement02 is the MDM_Policy_Result01_RemoteManagement02 CIM class.
 type MDMPolicyResult01RemoteManagement02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                  string `cim:"__PATH"`
 	AllowBasicAuthenticationClient           string `cim:"AllowBasicAuthentication_Client"`
 	AllowBasicAuthenticationService          string `cim:"AllowBasicAuthentication_Service"`
 	AllowCredSSPAuthenticationClient         string `cim:"AllowCredSSPAuthenticationClient"`
@@ -4311,6 +5411,10 @@ type MDMPolicyResult01RemoteManagement02 struct {
 
 // MDMPolicyResult01RemoteProcedureCall02 is the MDM_Policy_Result01_RemoteProcedureCall02 CIM class.
 type MDMPolicyResult01RemoteProcedureCall02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                               string `cim:"__PATH"`
 	InstanceID                            string `cim:"InstanceID"`
 	ParentID                              string `cim:"ParentID"`
 	RPCEndpointMapperClientAuthentication string `cim:"RPCEndpointMapperClientAuthentication"`
@@ -4319,6 +5423,10 @@ type MDMPolicyResult01RemoteProcedureCall02 struct {
 
 // MDMPolicyResult01RemoteShell02 is the MDM_Policy_Result01_RemoteShell02 CIM class.
 type MDMPolicyResult01RemoteShell02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                string `cim:"__PATH"`
 	AllowRemoteShellAccess string `cim:"AllowRemoteShellAccess"`
 	InstanceID             string `cim:"InstanceID"`
 	MaxConcurrentUsers     string `cim:"MaxConcurrentUsers"`
@@ -4332,6 +5440,10 @@ type MDMPolicyResult01RemoteShell02 struct {
 
 // MDMPolicyResult01RestrictedGroups02 is the MDM_Policy_Result01_RestrictedGroups02 CIM class.
 type MDMPolicyResult01RestrictedGroups02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                  string `cim:"__PATH"`
 	ConfigureGroupMembership string `cim:"ConfigureGroupMembership"`
 	InstanceID               string `cim:"InstanceID"`
 	ParentID                 string `cim:"ParentID"`
@@ -4339,6 +5451,10 @@ type MDMPolicyResult01RestrictedGroups02 struct {
 
 // MDMPolicyResult01Search02 is the MDM_Policy_Result01_Search02 CIM class.
 type MDMPolicyResult01Search02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                             string `cim:"__PATH"`
 	AllowCloudSearch                    int32  `cim:"AllowCloudSearch"`
 	AllowCortanaInAAD                   int32  `cim:"AllowCortanaInAAD"`
 	AllowFindMyFiles                    int32  `cim:"AllowFindMyFiles"`
@@ -4359,6 +5475,10 @@ type MDMPolicyResult01Search02 struct {
 
 // MDMPolicyResult01Security02 is the MDM_Policy_Result01_Security02 CIM class.
 type MDMPolicyResult01Security02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                                 string `cim:"__PATH"`
 	AllowAddProvisioningPackage                             int32  `cim:"AllowAddProvisioningPackage"`
 	AllowRemoveProvisioningPackage                          int32  `cim:"AllowRemoveProvisioningPackage"`
 	ClearTPMIfNotReady                                      int32  `cim:"ClearTPMIfNotReady"`
@@ -4374,6 +5494,10 @@ type MDMPolicyResult01Security02 struct {
 
 // MDMPolicyResult01ServiceControlManager02 is the MDM_Policy_Result01_ServiceControlManager02 CIM class.
 type MDMPolicyResult01ServiceControlManager02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                  string `cim:"__PATH"`
 	InstanceID               string `cim:"InstanceID"`
 	ParentID                 string `cim:"ParentID"`
 	SvchostProcessMitigation string `cim:"SvchostProcessMitigation"`
@@ -4381,6 +5505,10 @@ type MDMPolicyResult01ServiceControlManager02 struct {
 
 // MDMPolicyResult01Settings02 is the MDM_Policy_Result01_Settings02 CIM class.
 type MDMPolicyResult01Settings02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath               string `cim:"__PATH"`
 	AllowAutoPlay         int32  `cim:"AllowAutoPlay"`
 	AllowDataSense        int32  `cim:"AllowDataSense"`
 	AllowDateTime         int32  `cim:"AllowDateTime"`
@@ -4401,6 +5529,10 @@ type MDMPolicyResult01Settings02 struct {
 
 // MDMPolicyResult01SmartScreen02 is the MDM_Policy_Result01_SmartScreen02 CIM class.
 type MDMPolicyResult01SmartScreen02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                        string `cim:"__PATH"`
 	EnableAppInstallControl        int32  `cim:"EnableAppInstallControl"`
 	EnableSmartScreenInShell       int32  `cim:"EnableSmartScreenInShell"`
 	InstanceID                     string `cim:"InstanceID"`
@@ -4410,6 +5542,10 @@ type MDMPolicyResult01SmartScreen02 struct {
 
 // MDMPolicyResult01Speech02 is the MDM_Policy_Result01_Speech02 CIM class.
 type MDMPolicyResult01Speech02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                string `cim:"__PATH"`
 	AllowSpeechModelUpdate int32  `cim:"AllowSpeechModelUpdate"`
 	InstanceID             string `cim:"InstanceID"`
 	ParentID               string `cim:"ParentID"`
@@ -4417,6 +5553,10 @@ type MDMPolicyResult01Speech02 struct {
 
 // MDMPolicyResult01Start02 is the MDM_Policy_Result01_Start02 CIM class.
 type MDMPolicyResult01Start02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                         string `cim:"__PATH"`
 	AllowPinnedFolderDocuments      int32  `cim:"AllowPinnedFolderDocuments"`
 	AllowPinnedFolderDownloads      int32  `cim:"AllowPinnedFolderDownloads"`
 	AllowPinnedFolderFileExplorer   int32  `cim:"AllowPinnedFolderFileExplorer"`
@@ -4453,6 +5593,10 @@ type MDMPolicyResult01Start02 struct {
 
 // MDMPolicyResult01Storage02 is the MDM_Policy_Result01_Storage02 CIM class.
 type MDMPolicyResult01Storage02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                            string `cim:"__PATH"`
 	AllowDiskHealthModelUpdates                        int32  `cim:"AllowDiskHealthModelUpdates"`
 	AllowStorageSenseGlobal                            int32  `cim:"AllowStorageSenseGlobal"`
 	AllowStorageSenseTemporaryFilesCleanup             int32  `cim:"AllowStorageSenseTemporaryFilesCleanup"`
@@ -4470,6 +5614,10 @@ type MDMPolicyResult01Storage02 struct {
 
 // MDMPolicyResult01System02 is the MDM_Policy_Result01_System02 CIM class.
 type MDMPolicyResult01System02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                     string `cim:"__PATH"`
 	AllowBuildPreview                           int32  `cim:"AllowBuildPreview"`
 	AllowCommercialDataPipeline                 int32  `cim:"AllowCommercialDataPipeline"`
 	AllowDesktopAnalyticsProcessing             int32  `cim:"AllowDesktopAnalyticsProcessing"`
@@ -4508,6 +5656,10 @@ type MDMPolicyResult01System02 struct {
 
 // MDMPolicyResult01SystemServices02 is the MDM_Policy_Result01_SystemServices02 CIM class.
 type MDMPolicyResult01SystemServices02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                                       string `cim:"__PATH"`
 	ConfigureComputerBrowserServiceStartupMode                    int32  `cim:"ConfigureComputerBrowserServiceStartupMode"`
 	ConfigureHomeGroupListenerServiceStartupMode                  int32  `cim:"ConfigureHomeGroupListenerServiceStartupMode"`
 	ConfigureHomeGroupProviderServiceStartupMode                  int32  `cim:"ConfigureHomeGroupProviderServiceStartupMode"`
@@ -4536,6 +5688,10 @@ type MDMPolicyResult01SystemServices02 struct {
 
 // MDMPolicyResult01TaskManager02 is the MDM_Policy_Result01_TaskManager02 CIM class.
 type MDMPolicyResult01TaskManager02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath      string `cim:"__PATH"`
 	AllowEndTask int32  `cim:"AllowEndTask"`
 	InstanceID   string `cim:"InstanceID"`
 	ParentID     string `cim:"ParentID"`
@@ -4543,6 +5699,10 @@ type MDMPolicyResult01TaskManager02 struct {
 
 // MDMPolicyResult01TaskScheduler02 is the MDM_Policy_Result01_TaskScheduler02 CIM class.
 type MDMPolicyResult01TaskScheduler02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                string `cim:"__PATH"`
 	EnableXboxGameSaveTask int32  `cim:"EnableXboxGameSaveTask"`
 	InstanceID             string `cim:"InstanceID"`
 	ParentID               string `cim:"ParentID"`
@@ -4550,6 +5710,10 @@ type MDMPolicyResult01TaskScheduler02 struct {
 
 // MDMPolicyResult01TenantRestrictions02 is the MDM_Policy_Result01_TenantRestrictions02 CIM class.
 type MDMPolicyResult01TenantRestrictions02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                     string `cim:"__PATH"`
 	ConfigureTenantRestrictions string `cim:"ConfigureTenantRestrictions"`
 	InstanceID                  string `cim:"InstanceID"`
 	ParentID                    string `cim:"ParentID"`
@@ -4557,6 +5721,10 @@ type MDMPolicyResult01TenantRestrictions02 struct {
 
 // MDMPolicyResult01TextInput02 is the MDM_Policy_Result01_TextInput02 CIM class.
 type MDMPolicyResult01TextInput02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                    string `cim:"__PATH"`
 	AllowHardwareKeyboardTextSuggestions       int32  `cim:"AllowHardwareKeyboardTextSuggestions"`
 	AllowIMELogging                            int32  `cim:"AllowIMELogging"`
 	AllowIMENetworkAccess                      int32  `cim:"AllowIMENetworkAccess"`
@@ -4591,6 +5759,10 @@ type MDMPolicyResult01TextInput02 struct {
 
 // MDMPolicyResult01Theme02 is the MDM_Policy_Result01_Theme02 CIM class.
 type MDMPolicyResult01Theme02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                string `cim:"__PATH"`
 	DefaultBackgroundImage string `cim:"DefaultBackgroundImage"`
 	InstanceID             string `cim:"InstanceID"`
 	ParentID               string `cim:"ParentID"`
@@ -4599,6 +5771,10 @@ type MDMPolicyResult01Theme02 struct {
 
 // MDMPolicyResult01TimeLanguageSettings02 is the MDM_Policy_Result01_TimeLanguageSettings02 CIM class.
 type MDMPolicyResult01TimeLanguageSettings02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                   string `cim:"__PATH"`
 	BlockCleanupOfUnusedPreinstalledLangPacks int32  `cim:"BlockCleanupOfUnusedPreinstalledLangPacks"`
 	ConfigureTimeZone                         string `cim:"ConfigureTimeZone"`
 	InstanceID                                string `cim:"InstanceID"`
@@ -4609,6 +5785,10 @@ type MDMPolicyResult01TimeLanguageSettings02 struct {
 
 // MDMPolicyResult01Troubleshooting02 is the MDM_Policy_Result01_Troubleshooting02 CIM class.
 type MDMPolicyResult01Troubleshooting02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath              string `cim:"__PATH"`
 	AllowRecommendations int32  `cim:"AllowRecommendations"`
 	InstanceID           string `cim:"InstanceID"`
 	ParentID             string `cim:"ParentID"`
@@ -4616,6 +5796,10 @@ type MDMPolicyResult01Troubleshooting02 struct {
 
 // MDMPolicyResult01Update02 is the MDM_Policy_Result01_Update02 CIM class.
 type MDMPolicyResult01Update02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                                string `cim:"__PATH"`
 	ActiveHoursEnd                                         int32  `cim:"ActiveHoursEnd"`
 	ActiveHoursMaxRange                                    int32  `cim:"ActiveHoursMaxRange"`
 	ActiveHoursStart                                       int32  `cim:"ActiveHoursStart"`
@@ -4695,6 +5879,10 @@ type MDMPolicyResult01Update02 struct {
 
 // MDMPolicyResult01UserModel02 is the MDM_Policy_Result01_UserModel02 CIM class.
 type MDMPolicyResult01UserModel02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath           string `cim:"__PATH"`
 	EnterpriseSupport string `cim:"EnterpriseSupport"`
 	InstanceID        string `cim:"InstanceID"`
 	ParentID          string `cim:"ParentID"`
@@ -4703,6 +5891,10 @@ type MDMPolicyResult01UserModel02 struct {
 
 // MDMPolicyResult01UserRights02 is the MDM_Policy_Result01_UserRights02 CIM class.
 type MDMPolicyResult01UserRights02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                string `cim:"__PATH"`
 	AccessCredentialManagerAsTrustedCaller string `cim:"AccessCredentialManagerAsTrustedCaller"`
 	AccessFromNetwork                      string `cim:"AccessFromNetwork"`
 	ActAsPartOfTheOperatingSystem          string `cim:"ActAsPartOfTheOperatingSystem"`
@@ -4738,6 +5930,10 @@ type MDMPolicyResult01UserRights02 struct {
 
 // MDMPolicyResult01VirtualizationBasedTechnology02 is the MDM_Policy_Result01_VirtualizationBasedTechnology02 CIM class.
 type MDMPolicyResult01VirtualizationBasedTechnology02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                          string `cim:"__PATH"`
 	HypervisorEnforcedCodeIntegrity  int32  `cim:"HypervisorEnforcedCodeIntegrity"`
 	InstanceID                       string `cim:"InstanceID"`
 	ParentID                         string `cim:"ParentID"`
@@ -4746,6 +5942,10 @@ type MDMPolicyResult01VirtualizationBasedTechnology02 struct {
 
 // MDMPolicyResult01Wifi02 is the MDM_Policy_Result01_Wifi02 CIM class.
 type MDMPolicyResult01Wifi02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                             string `cim:"__PATH"`
 	AllowAutoConnectToWiFiSenseHotspots int32  `cim:"AllowAutoConnectToWiFiSenseHotspots"`
 	AllowInternetSharing                int32  `cim:"AllowInternetSharing"`
 	AllowManualWiFiConfiguration        int32  `cim:"AllowManualWiFiConfiguration"`
@@ -4759,6 +5959,10 @@ type MDMPolicyResult01Wifi02 struct {
 
 // MDMPolicyResult01WindowsAutopilot02 is the MDM_Policy_Result01_WindowsAutopilot02 CIM class.
 type MDMPolicyResult01WindowsAutopilot02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                     string `cim:"__PATH"`
 	EnableAgilityPostEnrollment int32  `cim:"EnableAgilityPostEnrollment"`
 	InstanceID                  string `cim:"InstanceID"`
 	ParentID                    string `cim:"ParentID"`
@@ -4766,6 +5970,10 @@ type MDMPolicyResult01WindowsAutopilot02 struct {
 
 // MDMPolicyResult01WindowsConnectionManager02 is the MDM_Policy_Result01_WindowsConnectionManager02 CIM class.
 type MDMPolicyResult01WindowsConnectionManager02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                                                      string `cim:"__PATH"`
 	InstanceID                                                                   string `cim:"InstanceID"`
 	ParentID                                                                     string `cim:"ParentID"`
 	ProhitConnectionToNonDomainNetworksWhenConnectedToDomainAuthenticatedNetwork string `cim:"ProhitConnectionToNonDomainNetworksWhenConnectedToDomainAuthenticatedNetwork"`
@@ -4773,6 +5981,10 @@ type MDMPolicyResult01WindowsConnectionManager02 struct {
 
 // MDMPolicyResult01WindowsDefenderSecurityCenter02 is the MDM_Policy_Result01_WindowsDefenderSecurityCenter02 CIM class.
 type MDMPolicyResult01WindowsDefenderSecurityCenter02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                    string `cim:"__PATH"`
 	CompanyName                                string `cim:"CompanyName"`
 	DisableAccountProtectionUI                 int32  `cim:"DisableAccountProtectionUI"`
 	DisableAppBrowserUI                        int32  `cim:"DisableAppBrowserUI"`
@@ -4801,6 +6013,10 @@ type MDMPolicyResult01WindowsDefenderSecurityCenter02 struct {
 
 // MDMPolicyResult01WindowsInkWorkspace02 is the MDM_Policy_Result01_WindowsInkWorkspace02 CIM class.
 type MDMPolicyResult01WindowsInkWorkspace02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                 string `cim:"__PATH"`
 	AllowSuggestedAppsInWindowsInkWorkspace int32  `cim:"AllowSuggestedAppsInWindowsInkWorkspace"`
 	AllowWindowsInkWorkspace                int32  `cim:"AllowWindowsInkWorkspace"`
 	InstanceID                              string `cim:"InstanceID"`
@@ -4809,6 +6025,10 @@ type MDMPolicyResult01WindowsInkWorkspace02 struct {
 
 // MDMPolicyResult01WindowsLogon02 is the MDM_Policy_Result01_WindowsLogon02 CIM class.
 type MDMPolicyResult01WindowsLogon02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                    string `cim:"__PATH"`
 	AllowAutomaticRestartSignOn                string `cim:"AllowAutomaticRestartSignOn"`
 	ConfigAutomaticRestartSignOn               string `cim:"ConfigAutomaticRestartSignOn"`
 	DisableLockScreenAppNotifications          string `cim:"DisableLockScreenAppNotifications"`
@@ -4822,6 +6042,10 @@ type MDMPolicyResult01WindowsLogon02 struct {
 
 // MDMPolicyResult01WindowsPowerShell02 is the MDM_Policy_Result01_WindowsPowerShell02 CIM class.
 type MDMPolicyResult01WindowsPowerShell02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                            string `cim:"__PATH"`
 	InstanceID                         string `cim:"InstanceID"`
 	ParentID                           string `cim:"ParentID"`
 	TurnOnPowerShellScriptBlockLogging string `cim:"TurnOnPowerShellScriptBlockLogging"`
@@ -4829,6 +6053,10 @@ type MDMPolicyResult01WindowsPowerShell02 struct {
 
 // MDMPolicyResult01WindowsSandbox02 is the MDM_Policy_Result01_WindowsSandbox02 CIM class.
 type MDMPolicyResult01WindowsSandbox02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                   string `cim:"__PATH"`
 	AllowAudioInput           int32  `cim:"AllowAudioInput"`
 	AllowClipboardRedirection int32  `cim:"AllowClipboardRedirection"`
 	AllowNetworking           int32  `cim:"AllowNetworking"`
@@ -4841,6 +6069,10 @@ type MDMPolicyResult01WindowsSandbox02 struct {
 
 // MDMPolicyResult01WirelessDisplay02 is the MDM_Policy_Result01_WirelessDisplay02 CIM class.
 type MDMPolicyResult01WirelessDisplay02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                   string `cim:"__PATH"`
 	AllowMdnsAdvertisement                    int32  `cim:"AllowMdnsAdvertisement"`
 	AllowMdnsDiscovery                        int32  `cim:"AllowMdnsDiscovery"`
 	AllowMovementDetectionOnInfrastructure    int32  `cim:"AllowMovementDetectionOnInfrastructure"`
@@ -4858,6 +6090,10 @@ type MDMPolicyResult01WirelessDisplay02 struct {
 
 // MDMPolicyUserConfig01ApplicationManagement02 is the MDM_Policy_User_Config01_ApplicationManagement02 CIM class.
 type MDMPolicyUserConfig01ApplicationManagement02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                string `cim:"__PATH"`
 	InstanceID                             string `cim:"InstanceID"`
 	MSIAlwaysInstallWithElevatedPrivileges int32  `cim:"MSIAlwaysInstallWithElevatedPrivileges"`
 	ParentID                               string `cim:"ParentID"`
@@ -4866,6 +6102,10 @@ type MDMPolicyUserConfig01ApplicationManagement02 struct {
 
 // MDMPolicyUserConfig01AttachmentManager02 is the MDM_Policy_User_Config01_AttachmentManager02 CIM class.
 type MDMPolicyUserConfig01AttachmentManager02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                      string `cim:"__PATH"`
 	DoNotPreserveZoneInformation string `cim:"DoNotPreserveZoneInformation"`
 	HideZoneInfoMechanism        string `cim:"HideZoneInfoMechanism"`
 	InstanceID                   string `cim:"InstanceID"`
@@ -4875,6 +6115,10 @@ type MDMPolicyUserConfig01AttachmentManager02 struct {
 
 // MDMPolicyUserConfig01Authentication02 is the MDM_Policy_User_Config01_Authentication02 CIM class.
 type MDMPolicyUserConfig01Authentication02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath         string `cim:"__PATH"`
 	AllowEAPCertSSO int32  `cim:"AllowEAPCertSSO"`
 	InstanceID      string `cim:"InstanceID"`
 	ParentID        string `cim:"ParentID"`
@@ -4882,6 +6126,10 @@ type MDMPolicyUserConfig01Authentication02 struct {
 
 // MDMPolicyUserConfig01Browser02 is the MDM_Policy_User_Config01_Browser02 CIM class.
 type MDMPolicyUserConfig01Browser02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                       string `cim:"__PATH"`
 	AllowAddressBarDropdown                       int32  `cim:"AllowAddressBarDropdown"`
 	AllowAutofill                                 int32  `cim:"AllowAutofill"`
 	AllowConfigurationUpdateForBooksLibrary       int32  `cim:"AllowConfigurationUpdateForBooksLibrary"`
@@ -4943,6 +6191,10 @@ type MDMPolicyUserConfig01Browser02 struct {
 
 // MDMPolicyUserConfig01CredentialsUI02 is the MDM_Policy_User_Config01_CredentialsUI02 CIM class.
 type MDMPolicyUserConfig01CredentialsUI02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath               string `cim:"__PATH"`
 	DisablePasswordReveal string `cim:"DisablePasswordReveal"`
 	InstanceID            string `cim:"InstanceID"`
 	ParentID              string `cim:"ParentID"`
@@ -4950,6 +6202,10 @@ type MDMPolicyUserConfig01CredentialsUI02 struct {
 
 // MDMPolicyUserConfig01Desktop02 is the MDM_Policy_User_Config01_Desktop02 CIM class.
 type MDMPolicyUserConfig01Desktop02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                string `cim:"__PATH"`
 	InstanceID                             string `cim:"InstanceID"`
 	ParentID                               string `cim:"ParentID"`
 	PreventUserRedirectionOfProfileFolders string `cim:"PreventUserRedirectionOfProfileFolders"`
@@ -4957,6 +6213,10 @@ type MDMPolicyUserConfig01Desktop02 struct {
 
 // MDMPolicyUserConfig01Display02 is the MDM_Policy_User_Config01_Display02 CIM class.
 type MDMPolicyUserConfig01Display02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath             string `cim:"__PATH"`
 	EnablePerProcessDpi int32  `cim:"EnablePerProcessDpi"`
 	InstanceID          string `cim:"InstanceID"`
 	ParentID            string `cim:"ParentID"`
@@ -4964,6 +6224,10 @@ type MDMPolicyUserConfig01Display02 struct {
 
 // MDMPolicyUserConfig01Education02 is the MDM_Policy_User_Config01_Education02 CIM class.
 type MDMPolicyUserConfig01Education02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                  string `cim:"__PATH"`
 	AllowGraphingCalculator  int32  `cim:"AllowGraphingCalculator"`
 	DefaultPrinterName       string `cim:"DefaultPrinterName"`
 	InstanceID               string `cim:"InstanceID"`
@@ -4974,6 +6238,10 @@ type MDMPolicyUserConfig01Education02 struct {
 
 // MDMPolicyUserConfig01EnterpriseCloudPrint02 is the MDM_Policy_User_Config01_EnterpriseCloudPrint02 CIM class.
 type MDMPolicyUserConfig01EnterpriseCloudPrint02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                       string `cim:"__PATH"`
 	CloudPrintOAuthAuthority      string `cim:"CloudPrintOAuthAuthority"`
 	CloudPrintOAuthClientId       string `cim:"CloudPrintOAuthClientId"`
 	CloudPrintResourceId          string `cim:"CloudPrintResourceId"`
@@ -4986,6 +6254,10 @@ type MDMPolicyUserConfig01EnterpriseCloudPrint02 struct {
 
 // MDMPolicyUserConfig01Experience02 is the MDM_Policy_User_Config01_Experience02 CIM class.
 type MDMPolicyUserConfig01Experience02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                       string `cim:"__PATH"`
 	AllowSpotlightCollection                      int32  `cim:"AllowSpotlightCollection"`
 	AllowTailoredExperiencesWithDiagnosticData    int32  `cim:"AllowTailoredExperiencesWithDiagnosticData"`
 	AllowThirdPartySuggestionsInWindowsSpotlight  int32  `cim:"AllowThirdPartySuggestionsInWindowsSpotlight"`
@@ -5000,6 +6272,10 @@ type MDMPolicyUserConfig01Experience02 struct {
 
 // MDMPolicyUserConfig01FileExplorer02 is the MDM_Policy_User_Config01_FileExplorer02 CIM class.
 type MDMPolicyUserConfig01FileExplorer02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                    string `cim:"__PATH"`
 	AllowOptionToShowNetwork   int32  `cim:"AllowOptionToShowNetwork"`
 	AllowOptionToShowThisPC    int32  `cim:"AllowOptionToShowThisPC"`
 	InstanceID                 string `cim:"InstanceID"`
@@ -5010,6 +6286,10 @@ type MDMPolicyUserConfig01FileExplorer02 struct {
 
 // MDMPolicyUserConfig01InternetExplorer02 is the MDM_Policy_User_Config01_InternetExplorer02 CIM class.
 type MDMPolicyUserConfig01InternetExplorer02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                                                     string `cim:"__PATH"`
 	AddSearchProvider                                                           string `cim:"AddSearchProvider"`
 	AllowActiveXFiltering                                                       string `cim:"AllowActiveXFiltering"`
 	AllowAddOnList                                                              string `cim:"AllowAddOnList"`
@@ -5269,6 +6549,10 @@ type MDMPolicyUserConfig01InternetExplorer02 struct {
 
 // MDMPolicyUserConfig01Multitasking02 is the MDM_Policy_User_Config01_Multitasking02 CIM class.
 type MDMPolicyUserConfig01Multitasking02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath              string `cim:"__PATH"`
 	BrowserAltTabBlowout int32  `cim:"BrowserAltTabBlowout"`
 	InstanceID           string `cim:"InstanceID"`
 	ParentID             string `cim:"ParentID"`
@@ -5276,6 +6560,10 @@ type MDMPolicyUserConfig01Multitasking02 struct {
 
 // MDMPolicyUserConfig01Notifications02 is the MDM_Policy_User_Config01_Notifications02 CIM class.
 type MDMPolicyUserConfig01Notifications02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                       string `cim:"__PATH"`
 	DisallowNotificationMirroring int32  `cim:"DisallowNotificationMirroring"`
 	DisallowTileNotification      int32  `cim:"DisallowTileNotification"`
 	InstanceID                    string `cim:"InstanceID"`
@@ -5284,6 +6572,10 @@ type MDMPolicyUserConfig01Notifications02 struct {
 
 // MDMPolicyUserConfig01Printers02 is the MDM_Policy_User_Config01_Printers02 CIM class.
 type MDMPolicyUserConfig01Printers02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                       string `cim:"__PATH"`
 	ApprovedUsbPrintDevicesUser   string `cim:"ApprovedUsbPrintDevicesUser"`
 	EnableDeviceControlUser       string `cim:"EnableDeviceControlUser"`
 	InstanceID                    string `cim:"InstanceID"`
@@ -5293,6 +6585,10 @@ type MDMPolicyUserConfig01Printers02 struct {
 
 // MDMPolicyUserConfig01Privacy02 is the MDM_Policy_User_Config01_Privacy02 CIM class.
 type MDMPolicyUserConfig01Privacy02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                  string `cim:"__PATH"`
 	DisablePrivacyExperience int32  `cim:"DisablePrivacyExperience"`
 	InstanceID               string `cim:"InstanceID"`
 	ParentID                 string `cim:"ParentID"`
@@ -5300,6 +6596,10 @@ type MDMPolicyUserConfig01Privacy02 struct {
 
 // MDMPolicyUserConfig01RemoteDesktop02 is the MDM_Policy_User_Config01_RemoteDesktop02 CIM class.
 type MDMPolicyUserConfig01RemoteDesktop02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath          string `cim:"__PATH"`
 	AutoSubscription string `cim:"AutoSubscription"`
 	InstanceID       string `cim:"InstanceID"`
 	ParentID         string `cim:"ParentID"`
@@ -5307,6 +6607,10 @@ type MDMPolicyUserConfig01RemoteDesktop02 struct {
 
 // MDMPolicyUserConfig01Security02 is the MDM_Policy_User_Config01_Security02 CIM class.
 type MDMPolicyUserConfig01Security02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                           string `cim:"__PATH"`
 	InstanceID                        string `cim:"InstanceID"`
 	ParentID                          string `cim:"ParentID"`
 	RecoveryEnvironmentAuthentication int32  `cim:"RecoveryEnvironmentAuthentication"`
@@ -5314,6 +6618,10 @@ type MDMPolicyUserConfig01Security02 struct {
 
 // MDMPolicyUserConfig01Settings02 is the MDM_Policy_User_Config01_Settings02 CIM class.
 type MDMPolicyUserConfig01Settings02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                  string `cim:"__PATH"`
 	ConfigureTaskbarCalendar int32  `cim:"ConfigureTaskbarCalendar"`
 	InstanceID               string `cim:"InstanceID"`
 	PageVisibilityList       string `cim:"PageVisibilityList"`
@@ -5322,6 +6630,10 @@ type MDMPolicyUserConfig01Settings02 struct {
 
 // MDMPolicyUserConfig01Start02 is the MDM_Policy_User_Config01_Start02 CIM class.
 type MDMPolicyUserConfig01Start02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                string `cim:"__PATH"`
 	DisableContextMenus    int32  `cim:"DisableContextMenus"`
 	ForceStartSize         int32  `cim:"ForceStartSize"`
 	HideAppList            int32  `cim:"HideAppList"`
@@ -5337,6 +6649,10 @@ type MDMPolicyUserConfig01Start02 struct {
 
 // MDMPolicyUserConfig01Storage02 is the MDM_Policy_User_Config01_Storage02 CIM class.
 type MDMPolicyUserConfig01Storage02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                          string `cim:"__PATH"`
 	InstanceID                       string `cim:"InstanceID"`
 	ParentID                         string `cim:"ParentID"`
 	WPDDevicesDenyReadAccessPerUser  string `cim:"WPDDevicesDenyReadAccessPerUser"`
@@ -5345,6 +6661,10 @@ type MDMPolicyUserConfig01Storage02 struct {
 
 // MDMPolicyUserConfig01System02 is the MDM_Policy_User_Config01_System02 CIM class.
 type MDMPolicyUserConfig01System02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string `cim:"__PATH"`
 	AllowTelemetry int32  `cim:"AllowTelemetry"`
 	InstanceID     string `cim:"InstanceID"`
 	ParentID       string `cim:"ParentID"`
@@ -5352,6 +6672,10 @@ type MDMPolicyUserConfig01System02 struct {
 
 // MDMPolicyUserConfig01TimeLanguageSettings02 is the MDM_Policy_User_Config01_TimeLanguageSettings02 CIM class.
 type MDMPolicyUserConfig01TimeLanguageSettings02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                 string `cim:"__PATH"`
 	InstanceID                              string `cim:"InstanceID"`
 	ParentID                                string `cim:"ParentID"`
 	RestrictLanguagePacksAndFeaturesInstall int32  `cim:"RestrictLanguagePacksAndFeaturesInstall"`
@@ -5359,6 +6683,10 @@ type MDMPolicyUserConfig01TimeLanguageSettings02 struct {
 
 // MDMPolicyUserResult01ApplicationManagement02 is the MDM_Policy_User_Result01_ApplicationManagement02 CIM class.
 type MDMPolicyUserResult01ApplicationManagement02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                string `cim:"__PATH"`
 	InstanceID                             string `cim:"InstanceID"`
 	MSIAlwaysInstallWithElevatedPrivileges int32  `cim:"MSIAlwaysInstallWithElevatedPrivileges"`
 	ParentID                               string `cim:"ParentID"`
@@ -5367,6 +6695,10 @@ type MDMPolicyUserResult01ApplicationManagement02 struct {
 
 // MDMPolicyUserResult01AttachmentManager02 is the MDM_Policy_User_Result01_AttachmentManager02 CIM class.
 type MDMPolicyUserResult01AttachmentManager02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                      string `cim:"__PATH"`
 	DoNotPreserveZoneInformation string `cim:"DoNotPreserveZoneInformation"`
 	HideZoneInfoMechanism        string `cim:"HideZoneInfoMechanism"`
 	InstanceID                   string `cim:"InstanceID"`
@@ -5376,6 +6708,10 @@ type MDMPolicyUserResult01AttachmentManager02 struct {
 
 // MDMPolicyUserResult01Authentication02 is the MDM_Policy_User_Result01_Authentication02 CIM class.
 type MDMPolicyUserResult01Authentication02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath         string `cim:"__PATH"`
 	AllowEAPCertSSO int32  `cim:"AllowEAPCertSSO"`
 	InstanceID      string `cim:"InstanceID"`
 	ParentID        string `cim:"ParentID"`
@@ -5383,6 +6719,10 @@ type MDMPolicyUserResult01Authentication02 struct {
 
 // MDMPolicyUserResult01Browser02 is the MDM_Policy_User_Result01_Browser02 CIM class.
 type MDMPolicyUserResult01Browser02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                       string `cim:"__PATH"`
 	AllowAddressBarDropdown                       int32  `cim:"AllowAddressBarDropdown"`
 	AllowAutofill                                 int32  `cim:"AllowAutofill"`
 	AllowConfigurationUpdateForBooksLibrary       int32  `cim:"AllowConfigurationUpdateForBooksLibrary"`
@@ -5444,6 +6784,10 @@ type MDMPolicyUserResult01Browser02 struct {
 
 // MDMPolicyUserResult01CredentialsUI02 is the MDM_Policy_User_Result01_CredentialsUI02 CIM class.
 type MDMPolicyUserResult01CredentialsUI02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath               string `cim:"__PATH"`
 	DisablePasswordReveal string `cim:"DisablePasswordReveal"`
 	InstanceID            string `cim:"InstanceID"`
 	ParentID              string `cim:"ParentID"`
@@ -5451,6 +6795,10 @@ type MDMPolicyUserResult01CredentialsUI02 struct {
 
 // MDMPolicyUserResult01Desktop02 is the MDM_Policy_User_Result01_Desktop02 CIM class.
 type MDMPolicyUserResult01Desktop02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                string `cim:"__PATH"`
 	InstanceID                             string `cim:"InstanceID"`
 	ParentID                               string `cim:"ParentID"`
 	PreventUserRedirectionOfProfileFolders string `cim:"PreventUserRedirectionOfProfileFolders"`
@@ -5458,6 +6806,10 @@ type MDMPolicyUserResult01Desktop02 struct {
 
 // MDMPolicyUserResult01Display02 is the MDM_Policy_User_Result01_Display02 CIM class.
 type MDMPolicyUserResult01Display02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath             string `cim:"__PATH"`
 	EnablePerProcessDpi int32  `cim:"EnablePerProcessDpi"`
 	InstanceID          string `cim:"InstanceID"`
 	ParentID            string `cim:"ParentID"`
@@ -5465,6 +6817,10 @@ type MDMPolicyUserResult01Display02 struct {
 
 // MDMPolicyUserResult01Education02 is the MDM_Policy_User_Result01_Education02 CIM class.
 type MDMPolicyUserResult01Education02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                  string `cim:"__PATH"`
 	AllowGraphingCalculator  int32  `cim:"AllowGraphingCalculator"`
 	DefaultPrinterName       string `cim:"DefaultPrinterName"`
 	InstanceID               string `cim:"InstanceID"`
@@ -5475,6 +6831,10 @@ type MDMPolicyUserResult01Education02 struct {
 
 // MDMPolicyUserResult01EnterpriseCloudPrint02 is the MDM_Policy_User_Result01_EnterpriseCloudPrint02 CIM class.
 type MDMPolicyUserResult01EnterpriseCloudPrint02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                       string `cim:"__PATH"`
 	CloudPrintOAuthAuthority      string `cim:"CloudPrintOAuthAuthority"`
 	CloudPrintOAuthClientId       string `cim:"CloudPrintOAuthClientId"`
 	CloudPrintResourceId          string `cim:"CloudPrintResourceId"`
@@ -5487,6 +6847,10 @@ type MDMPolicyUserResult01EnterpriseCloudPrint02 struct {
 
 // MDMPolicyUserResult01Experience02 is the MDM_Policy_User_Result01_Experience02 CIM class.
 type MDMPolicyUserResult01Experience02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                       string `cim:"__PATH"`
 	AllowSpotlightCollection                      int32  `cim:"AllowSpotlightCollection"`
 	AllowTailoredExperiencesWithDiagnosticData    int32  `cim:"AllowTailoredExperiencesWithDiagnosticData"`
 	AllowThirdPartySuggestionsInWindowsSpotlight  int32  `cim:"AllowThirdPartySuggestionsInWindowsSpotlight"`
@@ -5501,6 +6865,10 @@ type MDMPolicyUserResult01Experience02 struct {
 
 // MDMPolicyUserResult01FileExplorer02 is the MDM_Policy_User_Result01_FileExplorer02 CIM class.
 type MDMPolicyUserResult01FileExplorer02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                    string `cim:"__PATH"`
 	AllowOptionToShowNetwork   int32  `cim:"AllowOptionToShowNetwork"`
 	AllowOptionToShowThisPC    int32  `cim:"AllowOptionToShowThisPC"`
 	InstanceID                 string `cim:"InstanceID"`
@@ -5511,6 +6879,10 @@ type MDMPolicyUserResult01FileExplorer02 struct {
 
 // MDMPolicyUserResult01InternetExplorer02 is the MDM_Policy_User_Result01_InternetExplorer02 CIM class.
 type MDMPolicyUserResult01InternetExplorer02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                                                     string `cim:"__PATH"`
 	AddSearchProvider                                                           string `cim:"AddSearchProvider"`
 	AllowActiveXFiltering                                                       string `cim:"AllowActiveXFiltering"`
 	AllowAddOnList                                                              string `cim:"AllowAddOnList"`
@@ -5770,6 +7142,10 @@ type MDMPolicyUserResult01InternetExplorer02 struct {
 
 // MDMPolicyUserResult01Multitasking02 is the MDM_Policy_User_Result01_Multitasking02 CIM class.
 type MDMPolicyUserResult01Multitasking02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath              string `cim:"__PATH"`
 	BrowserAltTabBlowout int32  `cim:"BrowserAltTabBlowout"`
 	InstanceID           string `cim:"InstanceID"`
 	ParentID             string `cim:"ParentID"`
@@ -5777,6 +7153,10 @@ type MDMPolicyUserResult01Multitasking02 struct {
 
 // MDMPolicyUserResult01Notifications02 is the MDM_Policy_User_Result01_Notifications02 CIM class.
 type MDMPolicyUserResult01Notifications02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                       string `cim:"__PATH"`
 	DisallowNotificationMirroring int32  `cim:"DisallowNotificationMirroring"`
 	DisallowTileNotification      int32  `cim:"DisallowTileNotification"`
 	InstanceID                    string `cim:"InstanceID"`
@@ -5785,6 +7165,10 @@ type MDMPolicyUserResult01Notifications02 struct {
 
 // MDMPolicyUserResult01Printers02 is the MDM_Policy_User_Result01_Printers02 CIM class.
 type MDMPolicyUserResult01Printers02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                       string `cim:"__PATH"`
 	ApprovedUsbPrintDevicesUser   string `cim:"ApprovedUsbPrintDevicesUser"`
 	EnableDeviceControlUser       string `cim:"EnableDeviceControlUser"`
 	InstanceID                    string `cim:"InstanceID"`
@@ -5794,6 +7178,10 @@ type MDMPolicyUserResult01Printers02 struct {
 
 // MDMPolicyUserResult01Privacy02 is the MDM_Policy_User_Result01_Privacy02 CIM class.
 type MDMPolicyUserResult01Privacy02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                  string `cim:"__PATH"`
 	DisablePrivacyExperience int32  `cim:"DisablePrivacyExperience"`
 	InstanceID               string `cim:"InstanceID"`
 	ParentID                 string `cim:"ParentID"`
@@ -5801,6 +7189,10 @@ type MDMPolicyUserResult01Privacy02 struct {
 
 // MDMPolicyUserResult01RemoteDesktop02 is the MDM_Policy_User_Result01_RemoteDesktop02 CIM class.
 type MDMPolicyUserResult01RemoteDesktop02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath          string `cim:"__PATH"`
 	AutoSubscription string `cim:"AutoSubscription"`
 	InstanceID       string `cim:"InstanceID"`
 	ParentID         string `cim:"ParentID"`
@@ -5808,6 +7200,10 @@ type MDMPolicyUserResult01RemoteDesktop02 struct {
 
 // MDMPolicyUserResult01Security02 is the MDM_Policy_User_Result01_Security02 CIM class.
 type MDMPolicyUserResult01Security02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                           string `cim:"__PATH"`
 	InstanceID                        string `cim:"InstanceID"`
 	ParentID                          string `cim:"ParentID"`
 	RecoveryEnvironmentAuthentication int32  `cim:"RecoveryEnvironmentAuthentication"`
@@ -5815,6 +7211,10 @@ type MDMPolicyUserResult01Security02 struct {
 
 // MDMPolicyUserResult01Settings02 is the MDM_Policy_User_Result01_Settings02 CIM class.
 type MDMPolicyUserResult01Settings02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                  string `cim:"__PATH"`
 	ConfigureTaskbarCalendar int32  `cim:"ConfigureTaskbarCalendar"`
 	InstanceID               string `cim:"InstanceID"`
 	PageVisibilityList       string `cim:"PageVisibilityList"`
@@ -5823,6 +7223,10 @@ type MDMPolicyUserResult01Settings02 struct {
 
 // MDMPolicyUserResult01Start02 is the MDM_Policy_User_Result01_Start02 CIM class.
 type MDMPolicyUserResult01Start02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                string `cim:"__PATH"`
 	DisableContextMenus    int32  `cim:"DisableContextMenus"`
 	ForceStartSize         int32  `cim:"ForceStartSize"`
 	HideAppList            int32  `cim:"HideAppList"`
@@ -5838,6 +7242,10 @@ type MDMPolicyUserResult01Start02 struct {
 
 // MDMPolicyUserResult01Storage02 is the MDM_Policy_User_Result01_Storage02 CIM class.
 type MDMPolicyUserResult01Storage02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                          string `cim:"__PATH"`
 	InstanceID                       string `cim:"InstanceID"`
 	ParentID                         string `cim:"ParentID"`
 	WPDDevicesDenyReadAccessPerUser  string `cim:"WPDDevicesDenyReadAccessPerUser"`
@@ -5846,6 +7254,10 @@ type MDMPolicyUserResult01Storage02 struct {
 
 // MDMPolicyUserResult01System02 is the MDM_Policy_User_Result01_System02 CIM class.
 type MDMPolicyUserResult01System02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string `cim:"__PATH"`
 	AllowTelemetry int32  `cim:"AllowTelemetry"`
 	InstanceID     string `cim:"InstanceID"`
 	ParentID       string `cim:"ParentID"`
@@ -5853,6 +7265,10 @@ type MDMPolicyUserResult01System02 struct {
 
 // MDMPolicyUserResult01TimeLanguageSettings02 is the MDM_Policy_User_Result01_TimeLanguageSettings02 CIM class.
 type MDMPolicyUserResult01TimeLanguageSettings02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                 string `cim:"__PATH"`
 	InstanceID                              string `cim:"InstanceID"`
 	ParentID                                string `cim:"ParentID"`
 	RestrictLanguagePacksAndFeaturesInstall int32  `cim:"RestrictLanguagePacksAndFeaturesInstall"`
@@ -5860,12 +7276,20 @@ type MDMPolicyUserResult01TimeLanguageSettings02 struct {
 
 // MDMReboot is the MDM_Reboot CIM class.
 type MDMReboot struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath    string `cim:"__PATH"`
 	InstanceID string `cim:"InstanceID"`
 	ParentID   string `cim:"ParentID"`
 }
 
 // MDMRebootSchedule01 is the MDM_Reboot_Schedule01 CIM class.
 type MDMRebootSchedule01 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string `cim:"__PATH"`
 	DailyRecurrent string `cim:"DailyRecurrent"`
 	InstanceID     string `cim:"InstanceID"`
 	ParentID       string `cim:"ParentID"`
@@ -5874,6 +7298,10 @@ type MDMRebootSchedule01 struct {
 
 // MDMRemoteFind is the MDM_RemoteFind CIM class.
 type MDMRemoteFind struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath         string `cim:"__PATH"`
 	DesiredAccuracy int32  `cim:"DesiredAccuracy"`
 	InstanceID      string `cim:"InstanceID"`
 	MaximumAge      int32  `cim:"MaximumAge"`
@@ -5883,6 +7311,10 @@ type MDMRemoteFind struct {
 
 // MDMRemoteFindLocation01 is the MDM_RemoteFind_Location01 CIM class.
 type MDMRemoteFindLocation01 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath          string  `cim:"__PATH"`
 	Accuracy         int32   `cim:"Accuracy"`
 	Age              string  `cim:"Age"`
 	Altitude         float32 `cim:"Altitude"`
@@ -5895,12 +7327,20 @@ type MDMRemoteFindLocation01 struct {
 
 // MDMRemoteWipe is the MDM_RemoteWipe CIM class.
 type MDMRemoteWipe struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath    string `cim:"__PATH"`
 	InstanceID string `cim:"InstanceID"`
 	ParentID   string `cim:"ParentID"`
 }
 
 // MDMReportingEnterpriseDataProtection01RetrieveByCount02 is the MDM_Reporting_EnterpriseDataProtection01_RetrieveByCount02 CIM class.
 type MDMReportingEnterpriseDataProtection01RetrieveByCount02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath    string `cim:"__PATH"`
 	InstanceID string `cim:"InstanceID"`
 	LogCount   int32  `cim:"LogCount"`
 	Logs       string `cim:"Logs"`
@@ -5911,6 +7351,10 @@ type MDMReportingEnterpriseDataProtection01RetrieveByCount02 struct {
 
 // MDMReportingEnterpriseDataProtection01RetrieveByTimeRange02 is the MDM_Reporting_EnterpriseDataProtection01_RetrieveByTimeRange02 CIM class.
 type MDMReportingEnterpriseDataProtection01RetrieveByTimeRange02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath    string `cim:"__PATH"`
 	InstanceID string `cim:"InstanceID"`
 	Logs       string `cim:"Logs"`
 	ParentID   string `cim:"ParentID"`
@@ -5921,6 +7365,10 @@ type MDMReportingEnterpriseDataProtection01RetrieveByTimeRange02 struct {
 
 // MDMReportingSecurityAuditing01RetrieveByCount02 is the MDM_Reporting_SecurityAuditing01_RetrieveByCount02 CIM class.
 type MDMReportingSecurityAuditing01RetrieveByCount02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath    string `cim:"__PATH"`
 	InstanceID string `cim:"InstanceID"`
 	LogCount   int32  `cim:"LogCount"`
 	Logs       string `cim:"Logs"`
@@ -5930,6 +7378,10 @@ type MDMReportingSecurityAuditing01RetrieveByCount02 struct {
 
 // MDMReportingSecurityAuditing01RetrieveByTimeRange02 is the MDM_Reporting_SecurityAuditing01_RetrieveByTimeRange02 CIM class.
 type MDMReportingSecurityAuditing01RetrieveByTimeRange02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath    string `cim:"__PATH"`
 	InstanceID string `cim:"InstanceID"`
 	Logs       string `cim:"Logs"`
 	ParentID   string `cim:"ParentID"`
@@ -5939,6 +7391,10 @@ type MDMReportingSecurityAuditing01RetrieveByTimeRange02 struct {
 
 // MDMSecureAssessment is the MDM_SecureAssessment CIM class.
 type MDMSecureAssessment struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath               string `cim:"__PATH"`
 	AllowScreenMonitoring bool   `cim:"AllowScreenMonitoring"`
 	AllowTextSuggestions  bool   `cim:"AllowTextSuggestions"`
 	InstanceID            string `cim:"InstanceID"`
@@ -5950,6 +7406,10 @@ type MDMSecureAssessment struct {
 
 // MDMSharedPC is the MDM_SharedPC CIM class.
 type MDMSharedPC struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                      string `cim:"__PATH"`
 	AccountModel                 int32  `cim:"AccountModel"`
 	DeletionPolicy               int32  `cim:"DeletionPolicy"`
 	DiskLevelCaching             int32  `cim:"DiskLevelCaching"`
@@ -5972,6 +7432,10 @@ type MDMSharedPC struct {
 
 // MDMUpdate is the MDM_Update CIM class.
 type MDMUpdate struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                string `cim:"__PATH"`
 	DeferUpgrade           int32  `cim:"DeferUpgrade"`
 	InstanceID             string `cim:"InstanceID"`
 	LastSuccessfulScanTime string `cim:"LastSuccessfulScanTime"`
@@ -5980,6 +7444,10 @@ type MDMUpdate struct {
 
 // MDMUpdateApprovedUpdates0101 is the MDM_Update_ApprovedUpdates01_01 CIM class.
 type MDMUpdateApprovedUpdates0101 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath      string `cim:"__PATH"`
 	ApprovedTime string `cim:"ApprovedTime"`
 	InstanceID   string `cim:"InstanceID"`
 	ParentID     string `cim:"ParentID"`
@@ -5987,6 +7455,10 @@ type MDMUpdateApprovedUpdates0101 struct {
 
 // MDMUpdateFailedUpdates0101 is the MDM_Update_FailedUpdates01_01 CIM class.
 type MDMUpdateFailedUpdates0101 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath    string `cim:"__PATH"`
 	HResult    int32  `cim:"HResult"`
 	InstanceID string `cim:"InstanceID"`
 	ParentID   string `cim:"ParentID"`
@@ -5995,6 +7467,10 @@ type MDMUpdateFailedUpdates0101 struct {
 
 // MDMUpdateInstallableUpdates0101 is the MDM_Update_InstallableUpdates01_01 CIM class.
 type MDMUpdateInstallableUpdates0101 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string `cim:"__PATH"`
 	InstanceID     string `cim:"InstanceID"`
 	ParentID       string `cim:"ParentID"`
 	RevisionNumber int32  `cim:"RevisionNumber"`
@@ -6003,6 +7479,10 @@ type MDMUpdateInstallableUpdates0101 struct {
 
 // MDMUpdatePendingRebootUpdates0101 is the MDM_Update_PendingRebootUpdates01_01 CIM class.
 type MDMUpdatePendingRebootUpdates0101 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath       string `cim:"__PATH"`
 	InstalledTime string `cim:"InstalledTime"`
 	InstanceID    string `cim:"InstanceID"`
 	ParentID      string `cim:"ParentID"`
@@ -6010,6 +7490,10 @@ type MDMUpdatePendingRebootUpdates0101 struct {
 
 // MDMUpdateRollback01 is the MDM_Update_Rollback01 CIM class.
 type MDMUpdateRollback01 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath             string `cim:"__PATH"`
 	FeatureUpdateStatus string `cim:"FeatureUpdateStatus"`
 	InstanceID          string `cim:"InstanceID"`
 	ParentID            string `cim:"ParentID"`
@@ -6018,6 +7502,10 @@ type MDMUpdateRollback01 struct {
 
 // MDMVPNv201 is the MDM_VPNv2_01 CIM class.
 type MDMVPNv201 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                          string `cim:"__PATH"`
 	AlwaysOn                         bool   `cim:"AlwaysOn"`
 	AlwaysOnActive                   bool   `cim:"AlwaysOnActive"`
 	ByPassForLocal                   bool   `cim:"ByPassForLocal"`
@@ -6043,6 +7531,10 @@ type MDMVPNv201 struct {
 
 // MDMVPNv2APNBinding02 is the MDM_VPNv2_APNBinding02 CIM class.
 type MDMVPNv2APNBinding02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath              string `cim:"__PATH"`
 	AccessPointName      string `cim:"AccessPointName"`
 	AuthenticationType   string `cim:"AuthenticationType"`
 	InstanceID           string `cim:"InstanceID"`
@@ -6055,6 +7547,10 @@ type MDMVPNv2APNBinding02 struct {
 
 // MDMVPNv2AppTriggerList02App04 is the MDM_VPNv2_AppTriggerList02_App04 CIM class.
 type MDMVPNv2AppTriggerList02App04 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath    string `cim:"__PATH"`
 	Id         string `cim:"Id"`
 	InstanceID string `cim:"InstanceID"`
 	ParentID   string `cim:"ParentID"`
@@ -6063,6 +7559,10 @@ type MDMVPNv2AppTriggerList02App04 struct {
 
 // MDMVPNv2Authentication03 is the MDM_VPNv2_Authentication03 CIM class.
 type MDMVPNv2Authentication03 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath       string `cim:"__PATH"`
 	InstanceID    string `cim:"InstanceID"`
 	MachineMethod string `cim:"MachineMethod"`
 	ParentID      string `cim:"ParentID"`
@@ -6071,6 +7571,10 @@ type MDMVPNv2Authentication03 struct {
 
 // MDMVPNv2Certificate04 is the MDM_VPNv2_Certificate04 CIM class.
 type MDMVPNv2Certificate04 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath    string `cim:"__PATH"`
 	Eku        string `cim:"Eku"`
 	InstanceID string `cim:"InstanceID"`
 	Issuer     string `cim:"Issuer"`
@@ -6079,6 +7583,10 @@ type MDMVPNv2Certificate04 struct {
 
 // MDMVPNv2CryptographySuite03 is the MDM_VPNv2_CryptographySuite03 CIM class.
 type MDMVPNv2CryptographySuite03 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                          string `cim:"__PATH"`
 	AuthenticationTransformConstants string `cim:"AuthenticationTransformConstants"`
 	CipherTransformConstants         string `cim:"CipherTransformConstants"`
 	DHGroup                          string `cim:"DHGroup"`
@@ -6091,6 +7599,10 @@ type MDMVPNv2CryptographySuite03 struct {
 
 // MDMVPNv2DeviceCompliance02 is the MDM_VPNv2_DeviceCompliance02 CIM class.
 type MDMVPNv2DeviceCompliance02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath    string `cim:"__PATH"`
 	Enabled    bool   `cim:"Enabled"`
 	InstanceID string `cim:"InstanceID"`
 	ParentID   string `cim:"ParentID"`
@@ -6098,6 +7610,10 @@ type MDMVPNv2DeviceCompliance02 struct {
 
 // MDMVPNv2DomainNameInformationList0201 is the MDM_VPNv2_DomainNameInformationList02_01 CIM class.
 type MDMVPNv2DomainNameInformationList0201 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath         string `cim:"__PATH"`
 	AutoTrigger     bool   `cim:"AutoTrigger"`
 	DnsServers      string `cim:"DnsServers"`
 	DomainName      string `cim:"DomainName"`
@@ -6110,6 +7626,10 @@ type MDMVPNv2DomainNameInformationList0201 struct {
 
 // MDMVPNv2Eap04 is the MDM_VPNv2_Eap04 CIM class.
 type MDMVPNv2Eap04 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath       string `cim:"__PATH"`
 	Configuration string `cim:"Configuration"`
 	InstanceID    string `cim:"InstanceID"`
 	ParentID      string `cim:"ParentID"`
@@ -6118,6 +7638,10 @@ type MDMVPNv2Eap04 struct {
 
 // MDMVPNv2Manual03 is the MDM_VPNv2_Manual03 CIM class.
 type MDMVPNv2Manual03 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath    string `cim:"__PATH"`
 	InstanceID string `cim:"InstanceID"`
 	ParentID   string `cim:"ParentID"`
 	Server     string `cim:"Server"`
@@ -6125,6 +7649,10 @@ type MDMVPNv2Manual03 struct {
 
 // MDMVPNv2NativeProfile02 is the MDM_VPNv2_NativeProfile02 CIM class.
 type MDMVPNv2NativeProfile02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                       string `cim:"__PATH"`
 	DisableClassBasedDefaultRoute bool   `cim:"DisableClassBasedDefaultRoute"`
 	InstanceID                    string `cim:"InstanceID"`
 	L2tpPsk                       string `cim:"L2tpPsk"`
@@ -6137,6 +7665,10 @@ type MDMVPNv2NativeProfile02 struct {
 
 // MDMVPNv2NativeProtocolList0401 is the MDM_VPNv2_NativeProtocolList04_01 CIM class.
 type MDMVPNv2NativeProtocolList0401 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath    string `cim:"__PATH"`
 	InstanceID string `cim:"InstanceID"`
 	ParentID   string `cim:"ParentID"`
 	Type       string `cim:"Type"`
@@ -6144,6 +7676,10 @@ type MDMVPNv2NativeProtocolList0401 struct {
 
 // MDMVPNv2PluginProfile02 is the MDM_VPNv2_PluginProfile02 CIM class.
 type MDMVPNv2PluginProfile02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                 string `cim:"__PATH"`
 	CustomConfiguration     string `cim:"CustomConfiguration"`
 	InstanceID              string `cim:"InstanceID"`
 	ParentID                string `cim:"ParentID"`
@@ -6153,6 +7689,10 @@ type MDMVPNv2PluginProfile02 struct {
 
 // MDMVPNv2ProtocolList03 is the MDM_VPNv2_ProtocolList03 CIM class.
 type MDMVPNv2ProtocolList03 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath          string `cim:"__PATH"`
 	InstanceID       string `cim:"InstanceID"`
 	ParentID         string `cim:"ParentID"`
 	RetryTimeInHours int32  `cim:"RetryTimeInHours"`
@@ -6160,6 +7700,10 @@ type MDMVPNv2ProtocolList03 struct {
 
 // MDMVPNv2Proxy02 is the MDM_VPNv2_Proxy02 CIM class.
 type MDMVPNv2Proxy02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath       string `cim:"__PATH"`
 	AutoConfigUrl string `cim:"AutoConfigUrl"`
 	InstanceID    string `cim:"InstanceID"`
 	ParentID      string `cim:"ParentID"`
@@ -6167,6 +7711,10 @@ type MDMVPNv2Proxy02 struct {
 
 // MDMVPNv2RouteList0201 is the MDM_VPNv2_RouteList02_01 CIM class.
 type MDMVPNv2RouteList0201 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string `cim:"__PATH"`
 	Address        string `cim:"Address"`
 	ExclusionRoute bool   `cim:"ExclusionRoute"`
 	InstanceID     string `cim:"InstanceID"`
@@ -6177,6 +7725,10 @@ type MDMVPNv2RouteList0201 struct {
 
 // MDMVPNv2Sso03 is the MDM_VPNv2_Sso03 CIM class.
 type MDMVPNv2Sso03 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath    string `cim:"__PATH"`
 	Eku        string `cim:"Eku"`
 	Enabled    bool   `cim:"Enabled"`
 	InstanceID string `cim:"InstanceID"`
@@ -6186,6 +7738,10 @@ type MDMVPNv2Sso03 struct {
 
 // MDMVPNv2TrafficFilterList0201 is the MDM_VPNv2_TrafficFilterList02_01 CIM class.
 type MDMVPNv2TrafficFilterList0201 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath             string `cim:"__PATH"`
 	Claims              string `cim:"Claims"`
 	Direction           string `cim:"Direction"`
 	InstanceID          string `cim:"InstanceID"`
@@ -6200,6 +7756,10 @@ type MDMVPNv2TrafficFilterList0201 struct {
 
 // MDMVPNv2TrafficFilterList02App04 is the MDM_VPNv2_TrafficFilterList02_App04 CIM class.
 type MDMVPNv2TrafficFilterList02App04 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath    string `cim:"__PATH"`
 	Id         string `cim:"Id"`
 	InstanceID string `cim:"InstanceID"`
 	ParentID   string `cim:"ParentID"`
@@ -6208,6 +7768,10 @@ type MDMVPNv2TrafficFilterList02App04 struct {
 
 // MDMVPNv2User01 is the MDM_VPNv2_User_01 CIM class.
 type MDMVPNv2User01 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                          string `cim:"__PATH"`
 	AlwaysOn                         bool   `cim:"AlwaysOn"`
 	AlwaysOnActive                   bool   `cim:"AlwaysOnActive"`
 	ByPassForLocal                   bool   `cim:"ByPassForLocal"`
@@ -6233,6 +7797,10 @@ type MDMVPNv2User01 struct {
 
 // MDMWin32CompatibilityAppraiserAppraiserConfigurationDiagnosis02 is the MDM_Win32CompatibilityAppraiser_AppraiserConfigurationDiagnosis02 CIM class.
 type MDMWin32CompatibilityAppraiserAppraiserConfigurationDiagnosis02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                  string `cim:"__PATH"`
 	AllTargetOsVersionsRequested             bool   `cim:"AllTargetOsVersionsRequested"`
 	AppraiserCodeAndDataVersionsAboveMinimum int32  `cim:"AppraiserCodeAndDataVersionsAboveMinimum"`
 	CommercialId                             string `cim:"CommercialId"`
@@ -6245,6 +7813,10 @@ type MDMWin32CompatibilityAppraiserAppraiserConfigurationDiagnosis02 struct {
 
 // MDMWin32CompatibilityAppraiserCompatibilityAppraiser01 is the MDM_Win32CompatibilityAppraiser_CompatibilityAppraiser01 CIM class.
 type MDMWin32CompatibilityAppraiserCompatibilityAppraiser01 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                  string `cim:"__PATH"`
 	AppraiserRunResultReport string `cim:"AppraiserRunResultReport"`
 	InstanceID               string `cim:"InstanceID"`
 	ParentID                 string `cim:"ParentID"`
@@ -6252,6 +7824,10 @@ type MDMWin32CompatibilityAppraiserCompatibilityAppraiser01 struct {
 
 // MDMWin32CompatibilityAppraiserUniversalTelemetryClient01 is the MDM_Win32CompatibilityAppraiser_UniversalTelemetryClient01 CIM class.
 type MDMWin32CompatibilityAppraiserUniversalTelemetryClient01 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath             string `cim:"__PATH"`
 	InstanceID          string `cim:"InstanceID"`
 	ParentID            string `cim:"ParentID"`
 	UtcConnectionReport string `cim:"UtcConnectionReport"`
@@ -6259,6 +7835,10 @@ type MDMWin32CompatibilityAppraiserUniversalTelemetryClient01 struct {
 
 // MDMWin32CompatibilityAppraiserUtcConfigurationDiagnosis02 is the MDM_Win32CompatibilityAppraiser_UtcConfigurationDiagnosis02 CIM class.
 type MDMWin32CompatibilityAppraiserUtcConfigurationDiagnosis02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                        string `cim:"__PATH"`
 	CommercialDataOptIn            int32  `cim:"CommercialDataOptIn"`
 	DiagTrackServiceRunning        bool   `cim:"DiagTrackServiceRunning"`
 	InstanceID                     string `cim:"InstanceID"`
@@ -6270,6 +7850,10 @@ type MDMWin32CompatibilityAppraiserUtcConfigurationDiagnosis02 struct {
 
 // MDMWin32CompatibilityAppraiserWerConfigurationDiagnosis02 is the MDM_Win32CompatibilityAppraiser_WerConfigurationDiagnosis02 CIM class.
 type MDMWin32CompatibilityAppraiserWerConfigurationDiagnosis02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                string `cim:"__PATH"`
 	InstanceID             string `cim:"InstanceID"`
 	MostRestrictiveSetting int32  `cim:"MostRestrictiveSetting"`
 	ParentID               string `cim:"ParentID"`
@@ -6278,6 +7862,10 @@ type MDMWin32CompatibilityAppraiserWerConfigurationDiagnosis02 struct {
 
 // MDMWin32CompatibilityAppraiserWindowsErrorReporting01 is the MDM_Win32CompatibilityAppraiser_WindowsErrorReporting01 CIM class.
 type MDMWin32CompatibilityAppraiserWindowsErrorReporting01 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath             string `cim:"__PATH"`
 	InstanceID          string `cim:"InstanceID"`
 	ParentID            string `cim:"ParentID"`
 	WerConnectionReport string `cim:"WerConnectionReport"`
@@ -6285,6 +7873,10 @@ type MDMWin32CompatibilityAppraiserWindowsErrorReporting01 struct {
 
 // MDMWindowsAdvancedThreatProtection is the MDM_WindowsAdvancedThreatProtection CIM class.
 type MDMWindowsAdvancedThreatProtection struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath     string `cim:"__PATH"`
 	InstanceID  string `cim:"InstanceID"`
 	Offboarding string `cim:"Offboarding"`
 	Onboarding  string `cim:"Onboarding"`
@@ -6293,6 +7885,10 @@ type MDMWindowsAdvancedThreatProtection struct {
 
 // MDMWindowsAdvancedThreatProtectionConfiguration01 is the MDM_WindowsAdvancedThreatProtection_Configuration01 CIM class.
 type MDMWindowsAdvancedThreatProtectionConfiguration01 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                     string `cim:"__PATH"`
 	AadDeviceId                 string `cim:"AadDeviceId"`
 	GroupIds                    string `cim:"GroupIds"`
 	InstanceID                  string `cim:"InstanceID"`
@@ -6303,6 +7899,10 @@ type MDMWindowsAdvancedThreatProtectionConfiguration01 struct {
 
 // MDMWindowsAdvancedThreatProtectionDeviceTagging01 is the MDM_WindowsAdvancedThreatProtection_DeviceTagging01 CIM class.
 type MDMWindowsAdvancedThreatProtectionDeviceTagging01 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath     string `cim:"__PATH"`
 	Criticality int32  `cim:"Criticality"`
 	Group       string `cim:"Group"`
 	IdMethod    int32  `cim:"IdMethod"`
@@ -6312,6 +7912,10 @@ type MDMWindowsAdvancedThreatProtectionDeviceTagging01 struct {
 
 // MDMWindowsAdvancedThreatProtectionHealthState01 is the MDM_WindowsAdvancedThreatProtection_HealthState01 CIM class.
 type MDMWindowsAdvancedThreatProtectionHealthState01 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath         string `cim:"__PATH"`
 	InstanceID      string `cim:"InstanceID"`
 	LastConnected   string `cim:"LastConnected"`
 	OnboardingState int32  `cim:"OnboardingState"`
@@ -6322,6 +7926,10 @@ type MDMWindowsAdvancedThreatProtectionHealthState01 struct {
 
 // MDMWindowsDefenderApplicationGuard is the MDM_WindowsDefenderApplicationGuard CIM class.
 type MDMWindowsDefenderApplicationGuard struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                string `cim:"__PATH"`
 	InstallWindowsDefenderApplicationGuard string `cim:"InstallWindowsDefenderApplicationGuard"`
 	InstanceID                             string `cim:"InstanceID"`
 	ParentID                               string `cim:"ParentID"`
@@ -6331,6 +7939,10 @@ type MDMWindowsDefenderApplicationGuard struct {
 
 // MDMWindowsDefenderApplicationGuardAudit01 is the MDM_WindowsDefenderApplicationGuard_Audit01 CIM class.
 type MDMWindowsDefenderApplicationGuardAudit01 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath               string `cim:"__PATH"`
 	AuditApplicationGuard int32  `cim:"AuditApplicationGuard"`
 	InstanceID            string `cim:"InstanceID"`
 	ParentID              string `cim:"ParentID"`
@@ -6338,6 +7950,10 @@ type MDMWindowsDefenderApplicationGuardAudit01 struct {
 
 // MDMWindowsDefenderApplicationGuardSettings01 is the MDM_WindowsDefenderApplicationGuard_Settings01 CIM class.
 type MDMWindowsDefenderApplicationGuardSettings01 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                              string `cim:"__PATH"`
 	AllowCameraMicrophoneRedirection     int32  `cim:"AllowCameraMicrophoneRedirection"`
 	AllowPersistence                     int32  `cim:"AllowPersistence"`
 	AllowVirtualGPU                      int32  `cim:"AllowVirtualGPU"`
@@ -6354,6 +7970,10 @@ type MDMWindowsDefenderApplicationGuardSettings01 struct {
 
 // MDMWindowsIoTSoftRealTimeProperties01 is the MDM_WindowsIoT_SoftRealTimeProperties01 CIM class.
 type MDMWindowsIoTSoftRealTimeProperties01 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath    string `cim:"__PATH"`
 	InstanceID string `cim:"InstanceID"`
 	ParentID   string `cim:"ParentID"`
 	SetRTCores int32  `cim:"SetRTCores"`
@@ -6361,6 +7981,10 @@ type MDMWindowsIoTSoftRealTimeProperties01 struct {
 
 // MDMWindowsLicensing is the MDM_WindowsLicensing CIM class.
 type MDMWindowsLicensing struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string `cim:"__PATH"`
 	Edition        int32  `cim:"Edition"`
 	InstanceID     string `cim:"InstanceID"`
 	LicenseKeyType string `cim:"LicenseKeyType"`
@@ -6370,6 +7994,10 @@ type MDMWindowsLicensing struct {
 
 // MDMWindowsLicensingSubscriptions0101 is the MDM_WindowsLicensing_Subscriptions01_01 CIM class.
 type MDMWindowsLicensingSubscriptions0101 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath    string `cim:"__PATH"`
 	InstanceID string `cim:"InstanceID"`
 	Name       string `cim:"Name"`
 	ParentID   string `cim:"ParentID"`
@@ -6378,6 +8006,10 @@ type MDMWindowsLicensingSubscriptions0101 struct {
 
 // MDMEUICCs01 is the MDM_eUICCs_01 CIM class.
 type MDMEUICCs01 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string `cim:"__PATH"`
 	Identifier     string `cim:"Identifier"`
 	InstanceID     string `cim:"InstanceID"`
 	IsActive       bool   `cim:"IsActive"`
@@ -6388,6 +8020,10 @@ type MDMEUICCs01 struct {
 
 // MDMEUICCsActions02 is the MDM_eUICCs_Actions02 CIM class.
 type MDMEUICCsActions02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath    string `cim:"__PATH"`
 	InstanceID string `cim:"InstanceID"`
 	ParentID   string `cim:"ParentID"`
 	Status     int32  `cim:"Status"`
@@ -6395,6 +8031,10 @@ type MDMEUICCsActions02 struct {
 
 // MDMEUICCsDownloadServers0201 is the MDM_eUICCs_DownloadServers02_01 CIM class.
 type MDMEUICCsDownloadServers0201 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath           string `cim:"__PATH"`
 	AutoEnable        bool   `cim:"AutoEnable"`
 	DiscoveryState    int32  `cim:"DiscoveryState"`
 	ErrorDetail       int32  `cim:"ErrorDetail"`
@@ -6407,6 +8047,10 @@ type MDMEUICCsDownloadServers0201 struct {
 
 // MDMEUICCsPolicies02 is the MDM_eUICCs_Policies02 CIM class.
 type MDMEUICCsPolicies02 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string `cim:"__PATH"`
 	InstanceID     string `cim:"InstanceID"`
 	LocalUIEnabled bool   `cim:"LocalUIEnabled"`
 	ParentID       string `cim:"ParentID"`
@@ -6414,6 +8058,10 @@ type MDMEUICCsPolicies02 struct {
 
 // MDMEUICCsProfiles0201 is the MDM_eUICCs_Profiles02_01 CIM class.
 type MDMEUICCsProfiles0201 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath     string `cim:"__PATH"`
 	ErrorDetail int32  `cim:"ErrorDetail"`
 	InstanceID  string `cim:"InstanceID"`
 	IsEnabled   bool   `cim:"IsEnabled"`
@@ -6427,51 +8075,63 @@ type MDMEUICCsProfiles0201 struct {
 
 // MSFTExtendedStatus is the MSFT_ExtendedStatus CIM class.
 type MSFTExtendedStatus struct {
-	CIMStatusCode            uint32   `cim:"CIMStatusCode"`
-	CIMStatusCodeDescription string   `cim:"CIMStatusCodeDescription"`
-	ErrorSource              string   `cim:"ErrorSource"`
-	ErrorSourceFormat        uint16   `cim:"ErrorSourceFormat"`
-	ErrorType                uint16   `cim:"ErrorType"`
-	Message                  string   `cim:"Message"`
-	MessageArguments         []string `cim:"MessageArguments"`
-	MessageID                string   `cim:"MessageID"`
-	OtherErrorSourceFormat   string   `cim:"OtherErrorSourceFormat"`
-	OtherErrorType           string   `cim:"OtherErrorType"`
-	OwningEntity             string   `cim:"OwningEntity"`
-	PerceivedSeverity        uint16   `cim:"PerceivedSeverity"`
-	ProbableCause            uint16   `cim:"ProbableCause"`
-	ProbableCauseDescription string   `cim:"ProbableCauseDescription"`
-	RecommendedActions       []string `cim:"RecommendedActions"`
-	ErrorCategory            uint16   `cim:"error_Category"`
-	ErrorCode                uint32   `cim:"error_Code"`
-	ErrorWindowsErrorMessage string   `cim:"error_WindowsErrorMessage"`
-	OriginalError            wmi.Row  `cim:"original_error"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                  string                              `cim:"__PATH"`
+	CIMStatusCode            MSFTExtendedStatusCIMStatusCode     `cim:"CIMStatusCode"`
+	CIMStatusCodeDescription string                              `cim:"CIMStatusCodeDescription"`
+	ErrorSource              string                              `cim:"ErrorSource"`
+	ErrorSourceFormat        MSFTExtendedStatusErrorSourceFormat `cim:"ErrorSourceFormat"`
+	ErrorType                MSFTExtendedStatusErrorType         `cim:"ErrorType"`
+	Message                  string                              `cim:"Message"`
+	MessageArguments         []string                            `cim:"MessageArguments"`
+	MessageID                string                              `cim:"MessageID"`
+	OtherErrorSourceFormat   string                              `cim:"OtherErrorSourceFormat"`
+	OtherErrorType           string                              `cim:"OtherErrorType"`
+	OwningEntity             string                              `cim:"OwningEntity"`
+	PerceivedSeverity        MSFTExtendedStatusPerceivedSeverity `cim:"PerceivedSeverity"`
+	ProbableCause            MSFTExtendedStatusProbableCause     `cim:"ProbableCause"`
+	ProbableCauseDescription string                              `cim:"ProbableCauseDescription"`
+	RecommendedActions       []string                            `cim:"RecommendedActions"`
+	ErrorCategory            uint16                              `cim:"error_Category"`
+	ErrorCode                uint32                              `cim:"error_Code"`
+	ErrorWindowsErrorMessage string                              `cim:"error_WindowsErrorMessage"`
+	OriginalError            wmi.Row                             `cim:"original_error"`
 }
 
 // MSFTWmiError is the MSFT_WmiError CIM class.
 type MSFTWmiError struct {
-	CIMStatusCode            uint32   `cim:"CIMStatusCode"`
-	CIMStatusCodeDescription string   `cim:"CIMStatusCodeDescription"`
-	ErrorSource              string   `cim:"ErrorSource"`
-	ErrorSourceFormat        uint16   `cim:"ErrorSourceFormat"`
-	ErrorType                uint16   `cim:"ErrorType"`
-	Message                  string   `cim:"Message"`
-	MessageArguments         []string `cim:"MessageArguments"`
-	MessageID                string   `cim:"MessageID"`
-	OtherErrorSourceFormat   string   `cim:"OtherErrorSourceFormat"`
-	OtherErrorType           string   `cim:"OtherErrorType"`
-	OwningEntity             string   `cim:"OwningEntity"`
-	PerceivedSeverity        uint16   `cim:"PerceivedSeverity"`
-	ProbableCause            uint16   `cim:"ProbableCause"`
-	ProbableCauseDescription string   `cim:"ProbableCauseDescription"`
-	RecommendedActions       []string `cim:"RecommendedActions"`
-	ErrorCategory            uint16   `cim:"error_Category"`
-	ErrorCode                uint32   `cim:"error_Code"`
-	ErrorWindowsErrorMessage string   `cim:"error_WindowsErrorMessage"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                  string                        `cim:"__PATH"`
+	CIMStatusCode            MSFTWmiErrorCIMStatusCode     `cim:"CIMStatusCode"`
+	CIMStatusCodeDescription string                        `cim:"CIMStatusCodeDescription"`
+	ErrorSource              string                        `cim:"ErrorSource"`
+	ErrorSourceFormat        MSFTWmiErrorErrorSourceFormat `cim:"ErrorSourceFormat"`
+	ErrorType                MSFTWmiErrorErrorType         `cim:"ErrorType"`
+	Message                  string                        `cim:"Message"`
+	MessageArguments         []string                      `cim:"MessageArguments"`
+	MessageID                string                        `cim:"MessageID"`
+	OtherErrorSourceFormat   string                        `cim:"OtherErrorSourceFormat"`
+	OtherErrorType           string                        `cim:"OtherErrorType"`
+	OwningEntity             string                        `cim:"OwningEntity"`
+	PerceivedSeverity        MSFTWmiErrorPerceivedSeverity `cim:"PerceivedSeverity"`
+	ProbableCause            MSFTWmiErrorProbableCause     `cim:"ProbableCause"`
+	ProbableCauseDescription string                        `cim:"ProbableCauseDescription"`
+	RecommendedActions       []string                      `cim:"RecommendedActions"`
+	ErrorCategory            uint16                        `cim:"error_Category"`
+	ErrorCode                uint32                        `cim:"error_Code"`
+	ErrorWindowsErrorMessage string                        `cim:"error_WindowsErrorMessage"`
 }
 
 // ACE is the __ACE CIM class.
 type ACE struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                 string  `cim:"__PATH"`
 	AccessMask              uint32  `cim:"AccessMask"`
 	AceFlags                uint32  `cim:"AceFlags"`
 	AceType                 uint32  `cim:"AceType"`
@@ -6483,6 +8143,10 @@ type ACE struct {
 
 // AbsoluteTimerInstruction is the __AbsoluteTimerInstruction CIM class.
 type AbsoluteTimerInstruction struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath       string `cim:"__PATH"`
 	EventDateTime string `cim:"EventDateTime"`
 	SkipIfPassed  bool   `cim:"SkipIfPassed"`
 	TimerId       string `cim:"TimerId"`
@@ -6490,12 +8154,20 @@ type AbsoluteTimerInstruction struct {
 
 // AggregateEvent is the __AggregateEvent CIM class.
 type AggregateEvent struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string  `cim:"__PATH"`
 	NumberOfEvents uint32  `cim:"NumberOfEvents"`
 	Representative wmi.Row `cim:"Representative"`
 }
 
 // ClassCreationEvent is the __ClassCreationEvent CIM class.
 type ClassCreationEvent struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath            string  `cim:"__PATH"`
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 	TIMECREATED        uint64  `cim:"TIME_CREATED"`
 	TargetClass        wmi.Row `cim:"TargetClass"`
@@ -6503,6 +8175,10 @@ type ClassCreationEvent struct {
 
 // ClassDeletionEvent is the __ClassDeletionEvent CIM class.
 type ClassDeletionEvent struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath            string  `cim:"__PATH"`
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 	TIMECREATED        uint64  `cim:"TIME_CREATED"`
 	TargetClass        wmi.Row `cim:"TargetClass"`
@@ -6510,6 +8186,10 @@ type ClassDeletionEvent struct {
 
 // ClassModificationEvent is the __ClassModificationEvent CIM class.
 type ClassModificationEvent struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath            string  `cim:"__PATH"`
 	PreviousClass      wmi.Row `cim:"PreviousClass"`
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 	TIMECREATED        uint64  `cim:"TIME_CREATED"`
@@ -6518,6 +8198,10 @@ type ClassModificationEvent struct {
 
 // ClassOperationEvent is the __ClassOperationEvent CIM class.
 type ClassOperationEvent struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath            string  `cim:"__PATH"`
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 	TIMECREATED        uint64  `cim:"TIME_CREATED"`
 	TargetClass        wmi.Row `cim:"TargetClass"`
@@ -6525,26 +8209,34 @@ type ClassOperationEvent struct {
 
 // ClassProviderRegistration is the __ClassProviderRegistration CIM class.
 type ClassProviderRegistration struct {
-	CacheRefreshInterval         string   `cim:"CacheRefreshInterval"`
-	InteractionType              int32    `cim:"InteractionType"`
-	PerUserSchema                bool     `cim:"PerUserSchema"`
-	QuerySupportLevels           []string `cim:"QuerySupportLevels"`
-	ReSynchroniseOnNamespaceOpen bool     `cim:"ReSynchroniseOnNamespaceOpen"`
-	ReferencedSetQueries         []string `cim:"ReferencedSetQueries"`
-	ResultSetQueries             []string `cim:"ResultSetQueries"`
-	SupportsBatching             bool     `cim:"SupportsBatching"`
-	SupportsDelete               bool     `cim:"SupportsDelete"`
-	SupportsEnumeration          bool     `cim:"SupportsEnumeration"`
-	SupportsGet                  bool     `cim:"SupportsGet"`
-	SupportsPut                  bool     `cim:"SupportsPut"`
-	SupportsTransactions         bool     `cim:"SupportsTransactions"`
-	UnsupportedQueries           []string `cim:"UnsupportedQueries"`
-	Version                      uint32   `cim:"Version"`
-	Provider                     string   `cim:"provider"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                      string                                   `cim:"__PATH"`
+	CacheRefreshInterval         string                                   `cim:"CacheRefreshInterval"`
+	InteractionType              ClassProviderRegistrationInteractionType `cim:"InteractionType"`
+	PerUserSchema                bool                                     `cim:"PerUserSchema"`
+	QuerySupportLevels           []string                                 `cim:"QuerySupportLevels"`
+	ReSynchroniseOnNamespaceOpen bool                                     `cim:"ReSynchroniseOnNamespaceOpen"`
+	ReferencedSetQueries         []string                                 `cim:"ReferencedSetQueries"`
+	ResultSetQueries             []string                                 `cim:"ResultSetQueries"`
+	SupportsBatching             bool                                     `cim:"SupportsBatching"`
+	SupportsDelete               bool                                     `cim:"SupportsDelete"`
+	SupportsEnumeration          bool                                     `cim:"SupportsEnumeration"`
+	SupportsGet                  bool                                     `cim:"SupportsGet"`
+	SupportsPut                  bool                                     `cim:"SupportsPut"`
+	SupportsTransactions         bool                                     `cim:"SupportsTransactions"`
+	UnsupportedQueries           []string                                 `cim:"UnsupportedQueries"`
+	Version                      uint32                                   `cim:"Version"`
+	Provider                     string                                   `cim:"provider"`
 }
 
 // ConsumerFailureEvent is the __ConsumerFailureEvent CIM class.
 type ConsumerFailureEvent struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath            string  `cim:"__PATH"`
 	ErrorCode          uint32  `cim:"ErrorCode"`
 	ErrorDescription   string  `cim:"ErrorDescription"`
 	ErrorObject        wmi.Row `cim:"ErrorObject"`
@@ -6556,12 +8248,20 @@ type ConsumerFailureEvent struct {
 
 // Event is the __Event CIM class.
 type Event struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath            string  `cim:"__PATH"`
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 	TIMECREATED        uint64  `cim:"TIME_CREATED"`
 }
 
 // EventConsumer is the __EventConsumer CIM class.
 type EventConsumer struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath          string  `cim:"__PATH"`
 	CreatorSID       []uint8 `cim:"CreatorSID"`
 	MachineName      string  `cim:"MachineName"`
 	MaximumQueueSize uint32  `cim:"MaximumQueueSize"`
@@ -6569,12 +8269,20 @@ type EventConsumer struct {
 
 // EventConsumerProviderRegistration is the __EventConsumerProviderRegistration CIM class.
 type EventConsumerProviderRegistration struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath            string   `cim:"__PATH"`
 	ConsumerClassNames []string `cim:"ConsumerClassNames"`
 	Provider           string   `cim:"provider"`
 }
 
 // EventDroppedEvent is the __EventDroppedEvent CIM class.
 type EventDroppedEvent struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath            string  `cim:"__PATH"`
 	Event              wmi.Row `cim:"Event"`
 	IntendedConsumer   string  `cim:"IntendedConsumer"`
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
@@ -6583,6 +8291,10 @@ type EventDroppedEvent struct {
 
 // EventFilter is the __EventFilter CIM class.
 type EventFilter struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string  `cim:"__PATH"`
 	CreatorSID     []uint8 `cim:"CreatorSID"`
 	EventAccess    string  `cim:"EventAccess"`
 	EventNamespace string  `cim:"EventNamespace"`
@@ -6593,16 +8305,28 @@ type EventFilter struct {
 
 // EventGenerator is the __EventGenerator CIM class.
 type EventGenerator struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath string `cim:"__PATH"`
 }
 
 // EventProviderRegistration is the __EventProviderRegistration CIM class.
 type EventProviderRegistration struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string   `cim:"__PATH"`
 	EventQueryList []string `cim:"EventQueryList"`
 	Provider       string   `cim:"provider"`
 }
 
 // EventQueueOverflowEvent is the __EventQueueOverflowEvent CIM class.
 type EventQueueOverflowEvent struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath            string  `cim:"__PATH"`
 	CurrentQueueSize   uint32  `cim:"CurrentQueueSize"`
 	Event              wmi.Row `cim:"Event"`
 	IntendedConsumer   string  `cim:"IntendedConsumer"`
@@ -6612,6 +8336,10 @@ type EventQueueOverflowEvent struct {
 
 // ExtendedStatus is the __ExtendedStatus CIM class.
 type ExtendedStatus struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath       string `cim:"__PATH"`
 	Description   string `cim:"Description"`
 	Operation     string `cim:"Operation"`
 	ParameterInfo string `cim:"ParameterInfo"`
@@ -6621,12 +8349,20 @@ type ExtendedStatus struct {
 
 // ExtrinsicEvent is the __ExtrinsicEvent CIM class.
 type ExtrinsicEvent struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath            string  `cim:"__PATH"`
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 	TIMECREATED        uint64  `cim:"TIME_CREATED"`
 }
 
 // FilterToConsumerBinding is the __FilterToConsumerBinding CIM class.
 type FilterToConsumerBinding struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                 string  `cim:"__PATH"`
 	Consumer                string  `cim:"Consumer"`
 	CreatorSID              []uint8 `cim:"CreatorSID"`
 	DeliverSynchronously    bool    `cim:"DeliverSynchronously"`
@@ -6638,10 +8374,18 @@ type FilterToConsumerBinding struct {
 
 // IndicationRelated is the __IndicationRelated CIM class.
 type IndicationRelated struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath string `cim:"__PATH"`
 }
 
 // InstanceCreationEvent is the __InstanceCreationEvent CIM class.
 type InstanceCreationEvent struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath            string  `cim:"__PATH"`
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 	TIMECREATED        uint64  `cim:"TIME_CREATED"`
 	TargetInstance     wmi.Row `cim:"TargetInstance"`
@@ -6649,6 +8393,10 @@ type InstanceCreationEvent struct {
 
 // InstanceDeletionEvent is the __InstanceDeletionEvent CIM class.
 type InstanceDeletionEvent struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath            string  `cim:"__PATH"`
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 	TIMECREATED        uint64  `cim:"TIME_CREATED"`
 	TargetInstance     wmi.Row `cim:"TargetInstance"`
@@ -6656,6 +8404,10 @@ type InstanceDeletionEvent struct {
 
 // InstanceModificationEvent is the __InstanceModificationEvent CIM class.
 type InstanceModificationEvent struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath            string  `cim:"__PATH"`
 	PreviousInstance   wmi.Row `cim:"PreviousInstance"`
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 	TIMECREATED        uint64  `cim:"TIME_CREATED"`
@@ -6664,6 +8416,10 @@ type InstanceModificationEvent struct {
 
 // InstanceOperationEvent is the __InstanceOperationEvent CIM class.
 type InstanceOperationEvent struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath            string  `cim:"__PATH"`
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 	TIMECREATED        uint64  `cim:"TIME_CREATED"`
 	TargetInstance     wmi.Row `cim:"TargetInstance"`
@@ -6671,19 +8427,27 @@ type InstanceOperationEvent struct {
 
 // InstanceProviderRegistration is the __InstanceProviderRegistration CIM class.
 type InstanceProviderRegistration struct {
-	InteractionType      int32    `cim:"InteractionType"`
-	QuerySupportLevels   []string `cim:"QuerySupportLevels"`
-	SupportsBatching     bool     `cim:"SupportsBatching"`
-	SupportsDelete       bool     `cim:"SupportsDelete"`
-	SupportsEnumeration  bool     `cim:"SupportsEnumeration"`
-	SupportsGet          bool     `cim:"SupportsGet"`
-	SupportsPut          bool     `cim:"SupportsPut"`
-	SupportsTransactions bool     `cim:"SupportsTransactions"`
-	Provider             string   `cim:"provider"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath              string                                      `cim:"__PATH"`
+	InteractionType      InstanceProviderRegistrationInteractionType `cim:"InteractionType"`
+	QuerySupportLevels   []string                                    `cim:"QuerySupportLevels"`
+	SupportsBatching     bool                                        `cim:"SupportsBatching"`
+	SupportsDelete       bool                                        `cim:"SupportsDelete"`
+	SupportsEnumeration  bool                                        `cim:"SupportsEnumeration"`
+	SupportsGet          bool                                        `cim:"SupportsGet"`
+	SupportsPut          bool                                        `cim:"SupportsPut"`
+	SupportsTransactions bool                                        `cim:"SupportsTransactions"`
+	Provider             string                                      `cim:"provider"`
 }
 
 // IntervalTimerInstruction is the __IntervalTimerInstruction CIM class.
 type IntervalTimerInstruction struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath               string `cim:"__PATH"`
 	IntervalBetweenEvents uint32 `cim:"IntervalBetweenEvents"`
 	SkipIfPassed          bool   `cim:"SkipIfPassed"`
 	TimerId               string `cim:"TimerId"`
@@ -6691,6 +8455,10 @@ type IntervalTimerInstruction struct {
 
 // MethodInvocationEvent is the __MethodInvocationEvent CIM class.
 type MethodInvocationEvent struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath            string  `cim:"__PATH"`
 	Method             string  `cim:"Method"`
 	Parameters         wmi.Row `cim:"Parameters"`
 	PreCall            bool    `cim:"PreCall"`
@@ -6701,16 +8469,28 @@ type MethodInvocationEvent struct {
 
 // MethodProviderRegistration is the __MethodProviderRegistration CIM class.
 type MethodProviderRegistration struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath  string `cim:"__PATH"`
 	Provider string `cim:"provider"`
 }
 
 // NAMESPACE is the __NAMESPACE CIM class.
 type NAMESPACE struct {
-	Name string `cim:"Name"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath string `cim:"__PATH"`
+	Name    string `cim:"Name"`
 }
 
 // NTLMUser9X is the __NTLMUser9X CIM class.
 type NTLMUser9X struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath   string `cim:"__PATH"`
 	Authority string `cim:"Authority"`
 	Flags     int32  `cim:"Flags"`
 	Mask      int32  `cim:"Mask"`
@@ -6720,6 +8500,10 @@ type NTLMUser9X struct {
 
 // NamespaceCreationEvent is the __NamespaceCreationEvent CIM class.
 type NamespaceCreationEvent struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath            string  `cim:"__PATH"`
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 	TIMECREATED        uint64  `cim:"TIME_CREATED"`
 	TargetNamespace    wmi.Row `cim:"TargetNamespace"`
@@ -6727,6 +8511,10 @@ type NamespaceCreationEvent struct {
 
 // NamespaceDeletionEvent is the __NamespaceDeletionEvent CIM class.
 type NamespaceDeletionEvent struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath            string  `cim:"__PATH"`
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 	TIMECREATED        uint64  `cim:"TIME_CREATED"`
 	TargetNamespace    wmi.Row `cim:"TargetNamespace"`
@@ -6734,6 +8522,10 @@ type NamespaceDeletionEvent struct {
 
 // NamespaceModificationEvent is the __NamespaceModificationEvent CIM class.
 type NamespaceModificationEvent struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath            string  `cim:"__PATH"`
 	PreviousNamespace  wmi.Row `cim:"PreviousNamespace"`
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 	TIMECREATED        uint64  `cim:"TIME_CREATED"`
@@ -6742,6 +8534,10 @@ type NamespaceModificationEvent struct {
 
 // NamespaceOperationEvent is the __NamespaceOperationEvent CIM class.
 type NamespaceOperationEvent struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath            string  `cim:"__PATH"`
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 	TIMECREATED        uint64  `cim:"TIME_CREATED"`
 	TargetNamespace    wmi.Row `cim:"TargetNamespace"`
@@ -6749,28 +8545,44 @@ type NamespaceOperationEvent struct {
 
 // NotifyStatus is the __NotifyStatus CIM class.
 type NotifyStatus struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath    string `cim:"__PATH"`
 	StatusCode uint32 `cim:"StatusCode"`
 }
 
 // ObjectProviderRegistration is the __ObjectProviderRegistration CIM class.
 type ObjectProviderRegistration struct {
-	InteractionType      int32    `cim:"InteractionType"`
-	QuerySupportLevels   []string `cim:"QuerySupportLevels"`
-	SupportsBatching     bool     `cim:"SupportsBatching"`
-	SupportsDelete       bool     `cim:"SupportsDelete"`
-	SupportsEnumeration  bool     `cim:"SupportsEnumeration"`
-	SupportsGet          bool     `cim:"SupportsGet"`
-	SupportsPut          bool     `cim:"SupportsPut"`
-	SupportsTransactions bool     `cim:"SupportsTransactions"`
-	Provider             string   `cim:"provider"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath              string                                    `cim:"__PATH"`
+	InteractionType      ObjectProviderRegistrationInteractionType `cim:"InteractionType"`
+	QuerySupportLevels   []string                                  `cim:"QuerySupportLevels"`
+	SupportsBatching     bool                                      `cim:"SupportsBatching"`
+	SupportsDelete       bool                                      `cim:"SupportsDelete"`
+	SupportsEnumeration  bool                                      `cim:"SupportsEnumeration"`
+	SupportsGet          bool                                      `cim:"SupportsGet"`
+	SupportsPut          bool                                      `cim:"SupportsPut"`
+	SupportsTransactions bool                                      `cim:"SupportsTransactions"`
+	Provider             string                                    `cim:"provider"`
 }
 
 // PARAMETERS is the __PARAMETERS CIM class.
 type PARAMETERS struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath string `cim:"__PATH"`
 }
 
 // PropertyProviderRegistration is the __PropertyProviderRegistration CIM class.
 type PropertyProviderRegistration struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath     string `cim:"__PATH"`
 	SupportsGet bool   `cim:"SupportsGet"`
 	SupportsPut bool   `cim:"SupportsPut"`
 	Provider    string `cim:"provider"`
@@ -6778,16 +8590,28 @@ type PropertyProviderRegistration struct {
 
 // Provider is the __Provider CIM class.
 type Provider struct {
-	Name string `cim:"Name"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath string `cim:"__PATH"`
+	Name    string `cim:"Name"`
 }
 
 // ProviderRegistration is the __ProviderRegistration CIM class.
 type ProviderRegistration struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath  string `cim:"__PATH"`
 	Provider string `cim:"provider"`
 }
 
 // QOSFailureEvent is the __QOSFailureEvent CIM class.
 type QOSFailureEvent struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath            string  `cim:"__PATH"`
 	ErrorCode          uint32  `cim:"ErrorCode"`
 	ErrorDescription   string  `cim:"ErrorDescription"`
 	Event              wmi.Row `cim:"Event"`
@@ -6798,6 +8622,10 @@ type QOSFailureEvent struct {
 
 // SecurityDescriptor is the __SecurityDescriptor CIM class.
 type SecurityDescriptor struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath      string    `cim:"__PATH"`
 	ControlFlags uint32    `cim:"ControlFlags"`
 	DACL         []wmi.Row `cim:"DACL"`
 	Group        wmi.Row   `cim:"Group"`
@@ -6808,24 +8636,44 @@ type SecurityDescriptor struct {
 
 // SecurityRelatedClass is the __SecurityRelatedClass CIM class.
 type SecurityRelatedClass struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath string `cim:"__PATH"`
 }
 
 // SystemClass is the __SystemClass CIM class.
 type SystemClass struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath string `cim:"__PATH"`
 }
 
 // SystemEvent is the __SystemEvent CIM class.
 type SystemEvent struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath            string  `cim:"__PATH"`
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 	TIMECREATED        uint64  `cim:"TIME_CREATED"`
 }
 
 // SystemSecurity is the __SystemSecurity CIM class.
 type SystemSecurity struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath string `cim:"__PATH"`
 }
 
 // TimerEvent is the __TimerEvent CIM class.
 type TimerEvent struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath            string  `cim:"__PATH"`
 	NumFirings         uint32  `cim:"NumFirings"`
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 	TIMECREATED        uint64  `cim:"TIME_CREATED"`
@@ -6834,18 +8682,30 @@ type TimerEvent struct {
 
 // TimerInstruction is the __TimerInstruction CIM class.
 type TimerInstruction struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath      string `cim:"__PATH"`
 	SkipIfPassed bool   `cim:"SkipIfPassed"`
 	TimerId      string `cim:"TimerId"`
 }
 
 // TimerNextFiring is the __TimerNextFiring CIM class.
 type TimerNextFiring struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath            string `cim:"__PATH"`
 	NextEvent64BitTime int64  `cim:"NextEvent64BitTime"`
 	TimerId            string `cim:"TimerId"`
 }
 
 // Trustee is the __Trustee CIM class.
 type Trustee struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath     string  `cim:"__PATH"`
 	Domain      string  `cim:"Domain"`
 	Name        string  `cim:"Name"`
 	SID         []uint8 `cim:"SID"`
@@ -6856,33 +8716,41 @@ type Trustee struct {
 
 // Win32Provider is the __Win32Provider CIM class.
 type Win32Provider struct {
-	CLSID                         string `cim:"CLSID"`
-	ClientLoadableCLSID           string `cim:"ClientLoadableCLSID"`
-	Concurrency                   int32  `cim:"Concurrency"`
-	DefaultMachineName            string `cim:"DefaultMachineName"`
-	Enabled                       bool   `cim:"Enabled"`
-	HostingModel                  string `cim:"HostingModel"`
-	ImpersonationLevel            int32  `cim:"ImpersonationLevel"`
-	InitializationReentrancy      int32  `cim:"InitializationReentrancy"`
-	InitializationTimeoutInterval string `cim:"InitializationTimeoutInterval"`
-	InitializeAsAdminFirst        bool   `cim:"InitializeAsAdminFirst"`
-	Name                          string `cim:"Name"`
-	OperationTimeoutInterval      string `cim:"OperationTimeoutInterval"`
-	PerLocaleInitialization       bool   `cim:"PerLocaleInitialization"`
-	PerUserInitialization         bool   `cim:"PerUserInitialization"`
-	Pure                          bool   `cim:"Pure"`
-	SecurityDescriptor            string `cim:"SecurityDescriptor"`
-	SupportsExplicitShutdown      bool   `cim:"SupportsExplicitShutdown"`
-	SupportsExtendedStatus        bool   `cim:"SupportsExtendedStatus"`
-	SupportsQuotas                bool   `cim:"SupportsQuotas"`
-	SupportsSendStatus            bool   `cim:"SupportsSendStatus"`
-	SupportsShutdown              bool   `cim:"SupportsShutdown"`
-	SupportsThrottling            bool   `cim:"SupportsThrottling"`
-	UnloadTimeout                 string `cim:"UnloadTimeout"`
-	Version                       uint32 `cim:"Version"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                       string                                `cim:"__PATH"`
+	CLSID                         string                                `cim:"CLSID"`
+	ClientLoadableCLSID           string                                `cim:"ClientLoadableCLSID"`
+	Concurrency                   int32                                 `cim:"Concurrency"`
+	DefaultMachineName            string                                `cim:"DefaultMachineName"`
+	Enabled                       bool                                  `cim:"Enabled"`
+	HostingModel                  string                                `cim:"HostingModel"`
+	ImpersonationLevel            Win32ProviderImpersonationLevel       `cim:"ImpersonationLevel"`
+	InitializationReentrancy      Win32ProviderInitializationReentrancy `cim:"InitializationReentrancy"`
+	InitializationTimeoutInterval string                                `cim:"InitializationTimeoutInterval"`
+	InitializeAsAdminFirst        bool                                  `cim:"InitializeAsAdminFirst"`
+	Name                          string                                `cim:"Name"`
+	OperationTimeoutInterval      string                                `cim:"OperationTimeoutInterval"`
+	PerLocaleInitialization       bool                                  `cim:"PerLocaleInitialization"`
+	PerUserInitialization         bool                                  `cim:"PerUserInitialization"`
+	Pure                          bool                                  `cim:"Pure"`
+	SecurityDescriptor            string                                `cim:"SecurityDescriptor"`
+	SupportsExplicitShutdown      bool                                  `cim:"SupportsExplicitShutdown"`
+	SupportsExtendedStatus        bool                                  `cim:"SupportsExtendedStatus"`
+	SupportsQuotas                bool                                  `cim:"SupportsQuotas"`
+	SupportsSendStatus            bool                                  `cim:"SupportsSendStatus"`
+	SupportsShutdown              bool                                  `cim:"SupportsShutdown"`
+	SupportsThrottling            bool                                  `cim:"SupportsThrottling"`
+	UnloadTimeout                 string                                `cim:"UnloadTimeout"`
+	Version                       uint32                                `cim:"Version"`
 }
 
 // ThisNAMESPACE is the __thisNAMESPACE CIM class.
 type ThisNAMESPACE struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath            string  `cim:"__PATH"`
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 }

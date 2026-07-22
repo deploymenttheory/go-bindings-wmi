@@ -8,6 +8,10 @@ import wmi "github.com/deploymenttheory/go-bindings-wmi/runtime/wmi"
 
 // AntiSpywareProduct is the AntiSpywareProduct CIM class.
 type AntiSpywareProduct struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                  string `cim:"__PATH"`
 	DisplayName              string `cim:"displayName"`
 	InstanceGuid             string `cim:"instanceGuid"`
 	PathToSignedProductExe   string `cim:"pathToSignedProductExe"`
@@ -18,6 +22,10 @@ type AntiSpywareProduct struct {
 
 // AntiVirusProduct is the AntiVirusProduct CIM class.
 type AntiVirusProduct struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                  string `cim:"__PATH"`
 	DisplayName              string `cim:"displayName"`
 	InstanceGuid             string `cim:"instanceGuid"`
 	PathToSignedProductExe   string `cim:"pathToSignedProductExe"`
@@ -28,151 +36,195 @@ type AntiVirusProduct struct {
 
 // CIMClassCreation is the CIM_ClassCreation CIM class.
 type CIMClassCreation struct {
-	ClassDefinition       wmi.Row  `cim:"ClassDefinition"`
-	CorrelatedIndications []string `cim:"CorrelatedIndications"`
-	IndicationFilterName  string   `cim:"IndicationFilterName"`
-	IndicationIdentifier  string   `cim:"IndicationIdentifier"`
-	IndicationTime        string   `cim:"IndicationTime"`
-	OtherSeverity         string   `cim:"OtherSeverity"`
-	PerceivedSeverity     uint16   `cim:"PerceivedSeverity"`
-	SequenceContext       string   `cim:"SequenceContext"`
-	SequenceNumber        int64    `cim:"SequenceNumber"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath               string                            `cim:"__PATH"`
+	ClassDefinition       wmi.Row                           `cim:"ClassDefinition"`
+	CorrelatedIndications []string                          `cim:"CorrelatedIndications"`
+	IndicationFilterName  string                            `cim:"IndicationFilterName"`
+	IndicationIdentifier  string                            `cim:"IndicationIdentifier"`
+	IndicationTime        string                            `cim:"IndicationTime"`
+	OtherSeverity         string                            `cim:"OtherSeverity"`
+	PerceivedSeverity     CIMClassCreationPerceivedSeverity `cim:"PerceivedSeverity"`
+	SequenceContext       string                            `cim:"SequenceContext"`
+	SequenceNumber        int64                             `cim:"SequenceNumber"`
 }
 
 // CIMClassDeletion is the CIM_ClassDeletion CIM class.
 type CIMClassDeletion struct {
-	ClassDefinition       wmi.Row  `cim:"ClassDefinition"`
-	CorrelatedIndications []string `cim:"CorrelatedIndications"`
-	IndicationFilterName  string   `cim:"IndicationFilterName"`
-	IndicationIdentifier  string   `cim:"IndicationIdentifier"`
-	IndicationTime        string   `cim:"IndicationTime"`
-	OtherSeverity         string   `cim:"OtherSeverity"`
-	PerceivedSeverity     uint16   `cim:"PerceivedSeverity"`
-	SequenceContext       string   `cim:"SequenceContext"`
-	SequenceNumber        int64    `cim:"SequenceNumber"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath               string                            `cim:"__PATH"`
+	ClassDefinition       wmi.Row                           `cim:"ClassDefinition"`
+	CorrelatedIndications []string                          `cim:"CorrelatedIndications"`
+	IndicationFilterName  string                            `cim:"IndicationFilterName"`
+	IndicationIdentifier  string                            `cim:"IndicationIdentifier"`
+	IndicationTime        string                            `cim:"IndicationTime"`
+	OtherSeverity         string                            `cim:"OtherSeverity"`
+	PerceivedSeverity     CIMClassDeletionPerceivedSeverity `cim:"PerceivedSeverity"`
+	SequenceContext       string                            `cim:"SequenceContext"`
+	SequenceNumber        int64                             `cim:"SequenceNumber"`
 }
 
 // CIMClassIndication is the CIM_ClassIndication CIM class.
 type CIMClassIndication struct {
-	ClassDefinition       wmi.Row  `cim:"ClassDefinition"`
-	CorrelatedIndications []string `cim:"CorrelatedIndications"`
-	IndicationFilterName  string   `cim:"IndicationFilterName"`
-	IndicationIdentifier  string   `cim:"IndicationIdentifier"`
-	IndicationTime        string   `cim:"IndicationTime"`
-	OtherSeverity         string   `cim:"OtherSeverity"`
-	PerceivedSeverity     uint16   `cim:"PerceivedSeverity"`
-	SequenceContext       string   `cim:"SequenceContext"`
-	SequenceNumber        int64    `cim:"SequenceNumber"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath               string                              `cim:"__PATH"`
+	ClassDefinition       wmi.Row                             `cim:"ClassDefinition"`
+	CorrelatedIndications []string                            `cim:"CorrelatedIndications"`
+	IndicationFilterName  string                              `cim:"IndicationFilterName"`
+	IndicationIdentifier  string                              `cim:"IndicationIdentifier"`
+	IndicationTime        string                              `cim:"IndicationTime"`
+	OtherSeverity         string                              `cim:"OtherSeverity"`
+	PerceivedSeverity     CIMClassIndicationPerceivedSeverity `cim:"PerceivedSeverity"`
+	SequenceContext       string                              `cim:"SequenceContext"`
+	SequenceNumber        int64                               `cim:"SequenceNumber"`
 }
 
 // CIMClassModification is the CIM_ClassModification CIM class.
 type CIMClassModification struct {
-	ClassDefinition         wmi.Row  `cim:"ClassDefinition"`
-	CorrelatedIndications   []string `cim:"CorrelatedIndications"`
-	IndicationFilterName    string   `cim:"IndicationFilterName"`
-	IndicationIdentifier    string   `cim:"IndicationIdentifier"`
-	IndicationTime          string   `cim:"IndicationTime"`
-	OtherSeverity           string   `cim:"OtherSeverity"`
-	PerceivedSeverity       uint16   `cim:"PerceivedSeverity"`
-	PreviousClassDefinition wmi.Row  `cim:"PreviousClassDefinition"`
-	SequenceContext         string   `cim:"SequenceContext"`
-	SequenceNumber          int64    `cim:"SequenceNumber"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                 string                                `cim:"__PATH"`
+	ClassDefinition         wmi.Row                               `cim:"ClassDefinition"`
+	CorrelatedIndications   []string                              `cim:"CorrelatedIndications"`
+	IndicationFilterName    string                                `cim:"IndicationFilterName"`
+	IndicationIdentifier    string                                `cim:"IndicationIdentifier"`
+	IndicationTime          string                                `cim:"IndicationTime"`
+	OtherSeverity           string                                `cim:"OtherSeverity"`
+	PerceivedSeverity       CIMClassModificationPerceivedSeverity `cim:"PerceivedSeverity"`
+	PreviousClassDefinition wmi.Row                               `cim:"PreviousClassDefinition"`
+	SequenceContext         string                                `cim:"SequenceContext"`
+	SequenceNumber          int64                                 `cim:"SequenceNumber"`
 }
 
 // CIMError is the CIM_Error CIM class.
 type CIMError struct {
-	CIMStatusCode            uint32   `cim:"CIMStatusCode"`
-	CIMStatusCodeDescription string   `cim:"CIMStatusCodeDescription"`
-	ErrorSource              string   `cim:"ErrorSource"`
-	ErrorSourceFormat        uint16   `cim:"ErrorSourceFormat"`
-	ErrorType                uint16   `cim:"ErrorType"`
-	Message                  string   `cim:"Message"`
-	MessageArguments         []string `cim:"MessageArguments"`
-	MessageID                string   `cim:"MessageID"`
-	OtherErrorSourceFormat   string   `cim:"OtherErrorSourceFormat"`
-	OtherErrorType           string   `cim:"OtherErrorType"`
-	OwningEntity             string   `cim:"OwningEntity"`
-	PerceivedSeverity        uint16   `cim:"PerceivedSeverity"`
-	ProbableCause            uint16   `cim:"ProbableCause"`
-	ProbableCauseDescription string   `cim:"ProbableCauseDescription"`
-	RecommendedActions       []string `cim:"RecommendedActions"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                  string                    `cim:"__PATH"`
+	CIMStatusCode            CIMErrorCIMStatusCode     `cim:"CIMStatusCode"`
+	CIMStatusCodeDescription string                    `cim:"CIMStatusCodeDescription"`
+	ErrorSource              string                    `cim:"ErrorSource"`
+	ErrorSourceFormat        CIMErrorErrorSourceFormat `cim:"ErrorSourceFormat"`
+	ErrorType                CIMErrorErrorType         `cim:"ErrorType"`
+	Message                  string                    `cim:"Message"`
+	MessageArguments         []string                  `cim:"MessageArguments"`
+	MessageID                string                    `cim:"MessageID"`
+	OtherErrorSourceFormat   string                    `cim:"OtherErrorSourceFormat"`
+	OtherErrorType           string                    `cim:"OtherErrorType"`
+	OwningEntity             string                    `cim:"OwningEntity"`
+	PerceivedSeverity        CIMErrorPerceivedSeverity `cim:"PerceivedSeverity"`
+	ProbableCause            CIMErrorProbableCause     `cim:"ProbableCause"`
+	ProbableCauseDescription string                    `cim:"ProbableCauseDescription"`
+	RecommendedActions       []string                  `cim:"RecommendedActions"`
 }
 
 // CIMIndication is the CIM_Indication CIM class.
 type CIMIndication struct {
-	CorrelatedIndications []string `cim:"CorrelatedIndications"`
-	IndicationFilterName  string   `cim:"IndicationFilterName"`
-	IndicationIdentifier  string   `cim:"IndicationIdentifier"`
-	IndicationTime        string   `cim:"IndicationTime"`
-	OtherSeverity         string   `cim:"OtherSeverity"`
-	PerceivedSeverity     uint16   `cim:"PerceivedSeverity"`
-	SequenceContext       string   `cim:"SequenceContext"`
-	SequenceNumber        int64    `cim:"SequenceNumber"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath               string                         `cim:"__PATH"`
+	CorrelatedIndications []string                       `cim:"CorrelatedIndications"`
+	IndicationFilterName  string                         `cim:"IndicationFilterName"`
+	IndicationIdentifier  string                         `cim:"IndicationIdentifier"`
+	IndicationTime        string                         `cim:"IndicationTime"`
+	OtherSeverity         string                         `cim:"OtherSeverity"`
+	PerceivedSeverity     CIMIndicationPerceivedSeverity `cim:"PerceivedSeverity"`
+	SequenceContext       string                         `cim:"SequenceContext"`
+	SequenceNumber        int64                          `cim:"SequenceNumber"`
 }
 
 // CIMInstCreation is the CIM_InstCreation CIM class.
 type CIMInstCreation struct {
-	CorrelatedIndications   []string `cim:"CorrelatedIndications"`
-	IndicationFilterName    string   `cim:"IndicationFilterName"`
-	IndicationIdentifier    string   `cim:"IndicationIdentifier"`
-	IndicationTime          string   `cim:"IndicationTime"`
-	OtherSeverity           string   `cim:"OtherSeverity"`
-	PerceivedSeverity       uint16   `cim:"PerceivedSeverity"`
-	SequenceContext         string   `cim:"SequenceContext"`
-	SequenceNumber          int64    `cim:"SequenceNumber"`
-	SourceInstance          wmi.Row  `cim:"SourceInstance"`
-	SourceInstanceHost      string   `cim:"SourceInstanceHost"`
-	SourceInstanceModelPath string   `cim:"SourceInstanceModelPath"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                 string                           `cim:"__PATH"`
+	CorrelatedIndications   []string                         `cim:"CorrelatedIndications"`
+	IndicationFilterName    string                           `cim:"IndicationFilterName"`
+	IndicationIdentifier    string                           `cim:"IndicationIdentifier"`
+	IndicationTime          string                           `cim:"IndicationTime"`
+	OtherSeverity           string                           `cim:"OtherSeverity"`
+	PerceivedSeverity       CIMInstCreationPerceivedSeverity `cim:"PerceivedSeverity"`
+	SequenceContext         string                           `cim:"SequenceContext"`
+	SequenceNumber          int64                            `cim:"SequenceNumber"`
+	SourceInstance          wmi.Row                          `cim:"SourceInstance"`
+	SourceInstanceHost      string                           `cim:"SourceInstanceHost"`
+	SourceInstanceModelPath string                           `cim:"SourceInstanceModelPath"`
 }
 
 // CIMInstDeletion is the CIM_InstDeletion CIM class.
 type CIMInstDeletion struct {
-	CorrelatedIndications   []string `cim:"CorrelatedIndications"`
-	IndicationFilterName    string   `cim:"IndicationFilterName"`
-	IndicationIdentifier    string   `cim:"IndicationIdentifier"`
-	IndicationTime          string   `cim:"IndicationTime"`
-	OtherSeverity           string   `cim:"OtherSeverity"`
-	PerceivedSeverity       uint16   `cim:"PerceivedSeverity"`
-	SequenceContext         string   `cim:"SequenceContext"`
-	SequenceNumber          int64    `cim:"SequenceNumber"`
-	SourceInstance          wmi.Row  `cim:"SourceInstance"`
-	SourceInstanceHost      string   `cim:"SourceInstanceHost"`
-	SourceInstanceModelPath string   `cim:"SourceInstanceModelPath"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                 string                           `cim:"__PATH"`
+	CorrelatedIndications   []string                         `cim:"CorrelatedIndications"`
+	IndicationFilterName    string                           `cim:"IndicationFilterName"`
+	IndicationIdentifier    string                           `cim:"IndicationIdentifier"`
+	IndicationTime          string                           `cim:"IndicationTime"`
+	OtherSeverity           string                           `cim:"OtherSeverity"`
+	PerceivedSeverity       CIMInstDeletionPerceivedSeverity `cim:"PerceivedSeverity"`
+	SequenceContext         string                           `cim:"SequenceContext"`
+	SequenceNumber          int64                            `cim:"SequenceNumber"`
+	SourceInstance          wmi.Row                          `cim:"SourceInstance"`
+	SourceInstanceHost      string                           `cim:"SourceInstanceHost"`
+	SourceInstanceModelPath string                           `cim:"SourceInstanceModelPath"`
 }
 
 // CIMInstIndication is the CIM_InstIndication CIM class.
 type CIMInstIndication struct {
-	CorrelatedIndications   []string `cim:"CorrelatedIndications"`
-	IndicationFilterName    string   `cim:"IndicationFilterName"`
-	IndicationIdentifier    string   `cim:"IndicationIdentifier"`
-	IndicationTime          string   `cim:"IndicationTime"`
-	OtherSeverity           string   `cim:"OtherSeverity"`
-	PerceivedSeverity       uint16   `cim:"PerceivedSeverity"`
-	SequenceContext         string   `cim:"SequenceContext"`
-	SequenceNumber          int64    `cim:"SequenceNumber"`
-	SourceInstance          wmi.Row  `cim:"SourceInstance"`
-	SourceInstanceHost      string   `cim:"SourceInstanceHost"`
-	SourceInstanceModelPath string   `cim:"SourceInstanceModelPath"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                 string                             `cim:"__PATH"`
+	CorrelatedIndications   []string                           `cim:"CorrelatedIndications"`
+	IndicationFilterName    string                             `cim:"IndicationFilterName"`
+	IndicationIdentifier    string                             `cim:"IndicationIdentifier"`
+	IndicationTime          string                             `cim:"IndicationTime"`
+	OtherSeverity           string                             `cim:"OtherSeverity"`
+	PerceivedSeverity       CIMInstIndicationPerceivedSeverity `cim:"PerceivedSeverity"`
+	SequenceContext         string                             `cim:"SequenceContext"`
+	SequenceNumber          int64                              `cim:"SequenceNumber"`
+	SourceInstance          wmi.Row                            `cim:"SourceInstance"`
+	SourceInstanceHost      string                             `cim:"SourceInstanceHost"`
+	SourceInstanceModelPath string                             `cim:"SourceInstanceModelPath"`
 }
 
 // CIMInstModification is the CIM_InstModification CIM class.
 type CIMInstModification struct {
-	CorrelatedIndications   []string `cim:"CorrelatedIndications"`
-	IndicationFilterName    string   `cim:"IndicationFilterName"`
-	IndicationIdentifier    string   `cim:"IndicationIdentifier"`
-	IndicationTime          string   `cim:"IndicationTime"`
-	OtherSeverity           string   `cim:"OtherSeverity"`
-	PerceivedSeverity       uint16   `cim:"PerceivedSeverity"`
-	PreviousInstance        wmi.Row  `cim:"PreviousInstance"`
-	SequenceContext         string   `cim:"SequenceContext"`
-	SequenceNumber          int64    `cim:"SequenceNumber"`
-	SourceInstance          wmi.Row  `cim:"SourceInstance"`
-	SourceInstanceHost      string   `cim:"SourceInstanceHost"`
-	SourceInstanceModelPath string   `cim:"SourceInstanceModelPath"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                 string                               `cim:"__PATH"`
+	CorrelatedIndications   []string                             `cim:"CorrelatedIndications"`
+	IndicationFilterName    string                               `cim:"IndicationFilterName"`
+	IndicationIdentifier    string                               `cim:"IndicationIdentifier"`
+	IndicationTime          string                               `cim:"IndicationTime"`
+	OtherSeverity           string                               `cim:"OtherSeverity"`
+	PerceivedSeverity       CIMInstModificationPerceivedSeverity `cim:"PerceivedSeverity"`
+	PreviousInstance        wmi.Row                              `cim:"PreviousInstance"`
+	SequenceContext         string                               `cim:"SequenceContext"`
+	SequenceNumber          int64                                `cim:"SequenceNumber"`
+	SourceInstance          wmi.Row                              `cim:"SourceInstance"`
+	SourceInstanceHost      string                               `cim:"SourceInstanceHost"`
+	SourceInstanceModelPath string                               `cim:"SourceInstanceModelPath"`
 }
 
 // FirewallProduct is the FirewallProduct CIM class.
 type FirewallProduct struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                  string `cim:"__PATH"`
 	DisplayName              string `cim:"displayName"`
 	InstanceGuid             string `cim:"instanceGuid"`
 	PathToSignedProductExe   string `cim:"pathToSignedProductExe"`
@@ -183,51 +235,63 @@ type FirewallProduct struct {
 
 // MSFTExtendedStatus is the MSFT_ExtendedStatus CIM class.
 type MSFTExtendedStatus struct {
-	CIMStatusCode            uint32   `cim:"CIMStatusCode"`
-	CIMStatusCodeDescription string   `cim:"CIMStatusCodeDescription"`
-	ErrorSource              string   `cim:"ErrorSource"`
-	ErrorSourceFormat        uint16   `cim:"ErrorSourceFormat"`
-	ErrorType                uint16   `cim:"ErrorType"`
-	Message                  string   `cim:"Message"`
-	MessageArguments         []string `cim:"MessageArguments"`
-	MessageID                string   `cim:"MessageID"`
-	OtherErrorSourceFormat   string   `cim:"OtherErrorSourceFormat"`
-	OtherErrorType           string   `cim:"OtherErrorType"`
-	OwningEntity             string   `cim:"OwningEntity"`
-	PerceivedSeverity        uint16   `cim:"PerceivedSeverity"`
-	ProbableCause            uint16   `cim:"ProbableCause"`
-	ProbableCauseDescription string   `cim:"ProbableCauseDescription"`
-	RecommendedActions       []string `cim:"RecommendedActions"`
-	ErrorCategory            uint16   `cim:"error_Category"`
-	ErrorCode                uint32   `cim:"error_Code"`
-	ErrorWindowsErrorMessage string   `cim:"error_WindowsErrorMessage"`
-	OriginalError            wmi.Row  `cim:"original_error"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                  string                              `cim:"__PATH"`
+	CIMStatusCode            MSFTExtendedStatusCIMStatusCode     `cim:"CIMStatusCode"`
+	CIMStatusCodeDescription string                              `cim:"CIMStatusCodeDescription"`
+	ErrorSource              string                              `cim:"ErrorSource"`
+	ErrorSourceFormat        MSFTExtendedStatusErrorSourceFormat `cim:"ErrorSourceFormat"`
+	ErrorType                MSFTExtendedStatusErrorType         `cim:"ErrorType"`
+	Message                  string                              `cim:"Message"`
+	MessageArguments         []string                            `cim:"MessageArguments"`
+	MessageID                string                              `cim:"MessageID"`
+	OtherErrorSourceFormat   string                              `cim:"OtherErrorSourceFormat"`
+	OtherErrorType           string                              `cim:"OtherErrorType"`
+	OwningEntity             string                              `cim:"OwningEntity"`
+	PerceivedSeverity        MSFTExtendedStatusPerceivedSeverity `cim:"PerceivedSeverity"`
+	ProbableCause            MSFTExtendedStatusProbableCause     `cim:"ProbableCause"`
+	ProbableCauseDescription string                              `cim:"ProbableCauseDescription"`
+	RecommendedActions       []string                            `cim:"RecommendedActions"`
+	ErrorCategory            uint16                              `cim:"error_Category"`
+	ErrorCode                uint32                              `cim:"error_Code"`
+	ErrorWindowsErrorMessage string                              `cim:"error_WindowsErrorMessage"`
+	OriginalError            wmi.Row                             `cim:"original_error"`
 }
 
 // MSFTWmiError is the MSFT_WmiError CIM class.
 type MSFTWmiError struct {
-	CIMStatusCode            uint32   `cim:"CIMStatusCode"`
-	CIMStatusCodeDescription string   `cim:"CIMStatusCodeDescription"`
-	ErrorSource              string   `cim:"ErrorSource"`
-	ErrorSourceFormat        uint16   `cim:"ErrorSourceFormat"`
-	ErrorType                uint16   `cim:"ErrorType"`
-	Message                  string   `cim:"Message"`
-	MessageArguments         []string `cim:"MessageArguments"`
-	MessageID                string   `cim:"MessageID"`
-	OtherErrorSourceFormat   string   `cim:"OtherErrorSourceFormat"`
-	OtherErrorType           string   `cim:"OtherErrorType"`
-	OwningEntity             string   `cim:"OwningEntity"`
-	PerceivedSeverity        uint16   `cim:"PerceivedSeverity"`
-	ProbableCause            uint16   `cim:"ProbableCause"`
-	ProbableCauseDescription string   `cim:"ProbableCauseDescription"`
-	RecommendedActions       []string `cim:"RecommendedActions"`
-	ErrorCategory            uint16   `cim:"error_Category"`
-	ErrorCode                uint32   `cim:"error_Code"`
-	ErrorWindowsErrorMessage string   `cim:"error_WindowsErrorMessage"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                  string                        `cim:"__PATH"`
+	CIMStatusCode            MSFTWmiErrorCIMStatusCode     `cim:"CIMStatusCode"`
+	CIMStatusCodeDescription string                        `cim:"CIMStatusCodeDescription"`
+	ErrorSource              string                        `cim:"ErrorSource"`
+	ErrorSourceFormat        MSFTWmiErrorErrorSourceFormat `cim:"ErrorSourceFormat"`
+	ErrorType                MSFTWmiErrorErrorType         `cim:"ErrorType"`
+	Message                  string                        `cim:"Message"`
+	MessageArguments         []string                      `cim:"MessageArguments"`
+	MessageID                string                        `cim:"MessageID"`
+	OtherErrorSourceFormat   string                        `cim:"OtherErrorSourceFormat"`
+	OtherErrorType           string                        `cim:"OtherErrorType"`
+	OwningEntity             string                        `cim:"OwningEntity"`
+	PerceivedSeverity        MSFTWmiErrorPerceivedSeverity `cim:"PerceivedSeverity"`
+	ProbableCause            MSFTWmiErrorProbableCause     `cim:"ProbableCause"`
+	ProbableCauseDescription string                        `cim:"ProbableCauseDescription"`
+	RecommendedActions       []string                      `cim:"RecommendedActions"`
+	ErrorCategory            uint16                        `cim:"error_Category"`
+	ErrorCode                uint32                        `cim:"error_Code"`
+	ErrorWindowsErrorMessage string                        `cim:"error_WindowsErrorMessage"`
 }
 
 // WSCCallerAMPPLData is the WSC_CallerAMPPLData CIM class.
 type WSCCallerAMPPLData struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                string `cim:"__PATH"`
 	DisplayName            string `cim:"displayName"`
 	HresultCode            int32  `cim:"hresultCode"`
 	IniString              string `cim:"iniString"`
@@ -239,6 +303,10 @@ type WSCCallerAMPPLData struct {
 
 // ACE is the __ACE CIM class.
 type ACE struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                 string  `cim:"__PATH"`
 	AccessMask              uint32  `cim:"AccessMask"`
 	AceFlags                uint32  `cim:"AceFlags"`
 	AceType                 uint32  `cim:"AceType"`
@@ -250,6 +318,10 @@ type ACE struct {
 
 // AbsoluteTimerInstruction is the __AbsoluteTimerInstruction CIM class.
 type AbsoluteTimerInstruction struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath       string `cim:"__PATH"`
 	EventDateTime string `cim:"EventDateTime"`
 	SkipIfPassed  bool   `cim:"SkipIfPassed"`
 	TimerId       string `cim:"TimerId"`
@@ -257,12 +329,20 @@ type AbsoluteTimerInstruction struct {
 
 // AggregateEvent is the __AggregateEvent CIM class.
 type AggregateEvent struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string  `cim:"__PATH"`
 	NumberOfEvents uint32  `cim:"NumberOfEvents"`
 	Representative wmi.Row `cim:"Representative"`
 }
 
 // ClassCreationEvent is the __ClassCreationEvent CIM class.
 type ClassCreationEvent struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath            string  `cim:"__PATH"`
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 	TIMECREATED        uint64  `cim:"TIME_CREATED"`
 	TargetClass        wmi.Row `cim:"TargetClass"`
@@ -270,6 +350,10 @@ type ClassCreationEvent struct {
 
 // ClassDeletionEvent is the __ClassDeletionEvent CIM class.
 type ClassDeletionEvent struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath            string  `cim:"__PATH"`
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 	TIMECREATED        uint64  `cim:"TIME_CREATED"`
 	TargetClass        wmi.Row `cim:"TargetClass"`
@@ -277,6 +361,10 @@ type ClassDeletionEvent struct {
 
 // ClassModificationEvent is the __ClassModificationEvent CIM class.
 type ClassModificationEvent struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath            string  `cim:"__PATH"`
 	PreviousClass      wmi.Row `cim:"PreviousClass"`
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 	TIMECREATED        uint64  `cim:"TIME_CREATED"`
@@ -285,6 +373,10 @@ type ClassModificationEvent struct {
 
 // ClassOperationEvent is the __ClassOperationEvent CIM class.
 type ClassOperationEvent struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath            string  `cim:"__PATH"`
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 	TIMECREATED        uint64  `cim:"TIME_CREATED"`
 	TargetClass        wmi.Row `cim:"TargetClass"`
@@ -292,26 +384,34 @@ type ClassOperationEvent struct {
 
 // ClassProviderRegistration is the __ClassProviderRegistration CIM class.
 type ClassProviderRegistration struct {
-	CacheRefreshInterval         string   `cim:"CacheRefreshInterval"`
-	InteractionType              int32    `cim:"InteractionType"`
-	PerUserSchema                bool     `cim:"PerUserSchema"`
-	QuerySupportLevels           []string `cim:"QuerySupportLevels"`
-	ReSynchroniseOnNamespaceOpen bool     `cim:"ReSynchroniseOnNamespaceOpen"`
-	ReferencedSetQueries         []string `cim:"ReferencedSetQueries"`
-	ResultSetQueries             []string `cim:"ResultSetQueries"`
-	SupportsBatching             bool     `cim:"SupportsBatching"`
-	SupportsDelete               bool     `cim:"SupportsDelete"`
-	SupportsEnumeration          bool     `cim:"SupportsEnumeration"`
-	SupportsGet                  bool     `cim:"SupportsGet"`
-	SupportsPut                  bool     `cim:"SupportsPut"`
-	SupportsTransactions         bool     `cim:"SupportsTransactions"`
-	UnsupportedQueries           []string `cim:"UnsupportedQueries"`
-	Version                      uint32   `cim:"Version"`
-	Provider                     string   `cim:"provider"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                      string                                   `cim:"__PATH"`
+	CacheRefreshInterval         string                                   `cim:"CacheRefreshInterval"`
+	InteractionType              ClassProviderRegistrationInteractionType `cim:"InteractionType"`
+	PerUserSchema                bool                                     `cim:"PerUserSchema"`
+	QuerySupportLevels           []string                                 `cim:"QuerySupportLevels"`
+	ReSynchroniseOnNamespaceOpen bool                                     `cim:"ReSynchroniseOnNamespaceOpen"`
+	ReferencedSetQueries         []string                                 `cim:"ReferencedSetQueries"`
+	ResultSetQueries             []string                                 `cim:"ResultSetQueries"`
+	SupportsBatching             bool                                     `cim:"SupportsBatching"`
+	SupportsDelete               bool                                     `cim:"SupportsDelete"`
+	SupportsEnumeration          bool                                     `cim:"SupportsEnumeration"`
+	SupportsGet                  bool                                     `cim:"SupportsGet"`
+	SupportsPut                  bool                                     `cim:"SupportsPut"`
+	SupportsTransactions         bool                                     `cim:"SupportsTransactions"`
+	UnsupportedQueries           []string                                 `cim:"UnsupportedQueries"`
+	Version                      uint32                                   `cim:"Version"`
+	Provider                     string                                   `cim:"provider"`
 }
 
 // ConsumerFailureEvent is the __ConsumerFailureEvent CIM class.
 type ConsumerFailureEvent struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath            string  `cim:"__PATH"`
 	ErrorCode          uint32  `cim:"ErrorCode"`
 	ErrorDescription   string  `cim:"ErrorDescription"`
 	ErrorObject        wmi.Row `cim:"ErrorObject"`
@@ -323,12 +423,20 @@ type ConsumerFailureEvent struct {
 
 // Event is the __Event CIM class.
 type Event struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath            string  `cim:"__PATH"`
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 	TIMECREATED        uint64  `cim:"TIME_CREATED"`
 }
 
 // EventConsumer is the __EventConsumer CIM class.
 type EventConsumer struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath          string  `cim:"__PATH"`
 	CreatorSID       []uint8 `cim:"CreatorSID"`
 	MachineName      string  `cim:"MachineName"`
 	MaximumQueueSize uint32  `cim:"MaximumQueueSize"`
@@ -336,12 +444,20 @@ type EventConsumer struct {
 
 // EventConsumerProviderRegistration is the __EventConsumerProviderRegistration CIM class.
 type EventConsumerProviderRegistration struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath            string   `cim:"__PATH"`
 	ConsumerClassNames []string `cim:"ConsumerClassNames"`
 	Provider           string   `cim:"provider"`
 }
 
 // EventDroppedEvent is the __EventDroppedEvent CIM class.
 type EventDroppedEvent struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath            string  `cim:"__PATH"`
 	Event              wmi.Row `cim:"Event"`
 	IntendedConsumer   string  `cim:"IntendedConsumer"`
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
@@ -350,6 +466,10 @@ type EventDroppedEvent struct {
 
 // EventFilter is the __EventFilter CIM class.
 type EventFilter struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string  `cim:"__PATH"`
 	CreatorSID     []uint8 `cim:"CreatorSID"`
 	EventAccess    string  `cim:"EventAccess"`
 	EventNamespace string  `cim:"EventNamespace"`
@@ -360,16 +480,28 @@ type EventFilter struct {
 
 // EventGenerator is the __EventGenerator CIM class.
 type EventGenerator struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath string `cim:"__PATH"`
 }
 
 // EventProviderRegistration is the __EventProviderRegistration CIM class.
 type EventProviderRegistration struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string   `cim:"__PATH"`
 	EventQueryList []string `cim:"EventQueryList"`
 	Provider       string   `cim:"provider"`
 }
 
 // EventQueueOverflowEvent is the __EventQueueOverflowEvent CIM class.
 type EventQueueOverflowEvent struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath            string  `cim:"__PATH"`
 	CurrentQueueSize   uint32  `cim:"CurrentQueueSize"`
 	Event              wmi.Row `cim:"Event"`
 	IntendedConsumer   string  `cim:"IntendedConsumer"`
@@ -379,6 +511,10 @@ type EventQueueOverflowEvent struct {
 
 // ExtendedStatus is the __ExtendedStatus CIM class.
 type ExtendedStatus struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath       string `cim:"__PATH"`
 	Description   string `cim:"Description"`
 	Operation     string `cim:"Operation"`
 	ParameterInfo string `cim:"ParameterInfo"`
@@ -388,12 +524,20 @@ type ExtendedStatus struct {
 
 // ExtrinsicEvent is the __ExtrinsicEvent CIM class.
 type ExtrinsicEvent struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath            string  `cim:"__PATH"`
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 	TIMECREATED        uint64  `cim:"TIME_CREATED"`
 }
 
 // FilterToConsumerBinding is the __FilterToConsumerBinding CIM class.
 type FilterToConsumerBinding struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                 string  `cim:"__PATH"`
 	Consumer                string  `cim:"Consumer"`
 	CreatorSID              []uint8 `cim:"CreatorSID"`
 	DeliverSynchronously    bool    `cim:"DeliverSynchronously"`
@@ -405,10 +549,18 @@ type FilterToConsumerBinding struct {
 
 // IndicationRelated is the __IndicationRelated CIM class.
 type IndicationRelated struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath string `cim:"__PATH"`
 }
 
 // InstanceCreationEvent is the __InstanceCreationEvent CIM class.
 type InstanceCreationEvent struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath            string  `cim:"__PATH"`
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 	TIMECREATED        uint64  `cim:"TIME_CREATED"`
 	TargetInstance     wmi.Row `cim:"TargetInstance"`
@@ -416,6 +568,10 @@ type InstanceCreationEvent struct {
 
 // InstanceDeletionEvent is the __InstanceDeletionEvent CIM class.
 type InstanceDeletionEvent struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath            string  `cim:"__PATH"`
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 	TIMECREATED        uint64  `cim:"TIME_CREATED"`
 	TargetInstance     wmi.Row `cim:"TargetInstance"`
@@ -423,6 +579,10 @@ type InstanceDeletionEvent struct {
 
 // InstanceModificationEvent is the __InstanceModificationEvent CIM class.
 type InstanceModificationEvent struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath            string  `cim:"__PATH"`
 	PreviousInstance   wmi.Row `cim:"PreviousInstance"`
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 	TIMECREATED        uint64  `cim:"TIME_CREATED"`
@@ -431,6 +591,10 @@ type InstanceModificationEvent struct {
 
 // InstanceOperationEvent is the __InstanceOperationEvent CIM class.
 type InstanceOperationEvent struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath            string  `cim:"__PATH"`
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 	TIMECREATED        uint64  `cim:"TIME_CREATED"`
 	TargetInstance     wmi.Row `cim:"TargetInstance"`
@@ -438,19 +602,27 @@ type InstanceOperationEvent struct {
 
 // InstanceProviderRegistration is the __InstanceProviderRegistration CIM class.
 type InstanceProviderRegistration struct {
-	InteractionType      int32    `cim:"InteractionType"`
-	QuerySupportLevels   []string `cim:"QuerySupportLevels"`
-	SupportsBatching     bool     `cim:"SupportsBatching"`
-	SupportsDelete       bool     `cim:"SupportsDelete"`
-	SupportsEnumeration  bool     `cim:"SupportsEnumeration"`
-	SupportsGet          bool     `cim:"SupportsGet"`
-	SupportsPut          bool     `cim:"SupportsPut"`
-	SupportsTransactions bool     `cim:"SupportsTransactions"`
-	Provider             string   `cim:"provider"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath              string                                      `cim:"__PATH"`
+	InteractionType      InstanceProviderRegistrationInteractionType `cim:"InteractionType"`
+	QuerySupportLevels   []string                                    `cim:"QuerySupportLevels"`
+	SupportsBatching     bool                                        `cim:"SupportsBatching"`
+	SupportsDelete       bool                                        `cim:"SupportsDelete"`
+	SupportsEnumeration  bool                                        `cim:"SupportsEnumeration"`
+	SupportsGet          bool                                        `cim:"SupportsGet"`
+	SupportsPut          bool                                        `cim:"SupportsPut"`
+	SupportsTransactions bool                                        `cim:"SupportsTransactions"`
+	Provider             string                                      `cim:"provider"`
 }
 
 // IntervalTimerInstruction is the __IntervalTimerInstruction CIM class.
 type IntervalTimerInstruction struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath               string `cim:"__PATH"`
 	IntervalBetweenEvents uint32 `cim:"IntervalBetweenEvents"`
 	SkipIfPassed          bool   `cim:"SkipIfPassed"`
 	TimerId               string `cim:"TimerId"`
@@ -458,6 +630,10 @@ type IntervalTimerInstruction struct {
 
 // MethodInvocationEvent is the __MethodInvocationEvent CIM class.
 type MethodInvocationEvent struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath            string  `cim:"__PATH"`
 	Method             string  `cim:"Method"`
 	Parameters         wmi.Row `cim:"Parameters"`
 	PreCall            bool    `cim:"PreCall"`
@@ -468,16 +644,28 @@ type MethodInvocationEvent struct {
 
 // MethodProviderRegistration is the __MethodProviderRegistration CIM class.
 type MethodProviderRegistration struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath  string `cim:"__PATH"`
 	Provider string `cim:"provider"`
 }
 
 // NAMESPACE is the __NAMESPACE CIM class.
 type NAMESPACE struct {
-	Name string `cim:"Name"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath string `cim:"__PATH"`
+	Name    string `cim:"Name"`
 }
 
 // NTLMUser9X is the __NTLMUser9X CIM class.
 type NTLMUser9X struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath   string `cim:"__PATH"`
 	Authority string `cim:"Authority"`
 	Flags     int32  `cim:"Flags"`
 	Mask      int32  `cim:"Mask"`
@@ -487,6 +675,10 @@ type NTLMUser9X struct {
 
 // NamespaceCreationEvent is the __NamespaceCreationEvent CIM class.
 type NamespaceCreationEvent struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath            string  `cim:"__PATH"`
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 	TIMECREATED        uint64  `cim:"TIME_CREATED"`
 	TargetNamespace    wmi.Row `cim:"TargetNamespace"`
@@ -494,6 +686,10 @@ type NamespaceCreationEvent struct {
 
 // NamespaceDeletionEvent is the __NamespaceDeletionEvent CIM class.
 type NamespaceDeletionEvent struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath            string  `cim:"__PATH"`
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 	TIMECREATED        uint64  `cim:"TIME_CREATED"`
 	TargetNamespace    wmi.Row `cim:"TargetNamespace"`
@@ -501,6 +697,10 @@ type NamespaceDeletionEvent struct {
 
 // NamespaceModificationEvent is the __NamespaceModificationEvent CIM class.
 type NamespaceModificationEvent struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath            string  `cim:"__PATH"`
 	PreviousNamespace  wmi.Row `cim:"PreviousNamespace"`
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 	TIMECREATED        uint64  `cim:"TIME_CREATED"`
@@ -509,6 +709,10 @@ type NamespaceModificationEvent struct {
 
 // NamespaceOperationEvent is the __NamespaceOperationEvent CIM class.
 type NamespaceOperationEvent struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath            string  `cim:"__PATH"`
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 	TIMECREATED        uint64  `cim:"TIME_CREATED"`
 	TargetNamespace    wmi.Row `cim:"TargetNamespace"`
@@ -516,28 +720,44 @@ type NamespaceOperationEvent struct {
 
 // NotifyStatus is the __NotifyStatus CIM class.
 type NotifyStatus struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath    string `cim:"__PATH"`
 	StatusCode uint32 `cim:"StatusCode"`
 }
 
 // ObjectProviderRegistration is the __ObjectProviderRegistration CIM class.
 type ObjectProviderRegistration struct {
-	InteractionType      int32    `cim:"InteractionType"`
-	QuerySupportLevels   []string `cim:"QuerySupportLevels"`
-	SupportsBatching     bool     `cim:"SupportsBatching"`
-	SupportsDelete       bool     `cim:"SupportsDelete"`
-	SupportsEnumeration  bool     `cim:"SupportsEnumeration"`
-	SupportsGet          bool     `cim:"SupportsGet"`
-	SupportsPut          bool     `cim:"SupportsPut"`
-	SupportsTransactions bool     `cim:"SupportsTransactions"`
-	Provider             string   `cim:"provider"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath              string                                    `cim:"__PATH"`
+	InteractionType      ObjectProviderRegistrationInteractionType `cim:"InteractionType"`
+	QuerySupportLevels   []string                                  `cim:"QuerySupportLevels"`
+	SupportsBatching     bool                                      `cim:"SupportsBatching"`
+	SupportsDelete       bool                                      `cim:"SupportsDelete"`
+	SupportsEnumeration  bool                                      `cim:"SupportsEnumeration"`
+	SupportsGet          bool                                      `cim:"SupportsGet"`
+	SupportsPut          bool                                      `cim:"SupportsPut"`
+	SupportsTransactions bool                                      `cim:"SupportsTransactions"`
+	Provider             string                                    `cim:"provider"`
 }
 
 // PARAMETERS is the __PARAMETERS CIM class.
 type PARAMETERS struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath string `cim:"__PATH"`
 }
 
 // PropertyProviderRegistration is the __PropertyProviderRegistration CIM class.
 type PropertyProviderRegistration struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath     string `cim:"__PATH"`
 	SupportsGet bool   `cim:"SupportsGet"`
 	SupportsPut bool   `cim:"SupportsPut"`
 	Provider    string `cim:"provider"`
@@ -545,16 +765,28 @@ type PropertyProviderRegistration struct {
 
 // Provider is the __Provider CIM class.
 type Provider struct {
-	Name string `cim:"Name"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath string `cim:"__PATH"`
+	Name    string `cim:"Name"`
 }
 
 // ProviderRegistration is the __ProviderRegistration CIM class.
 type ProviderRegistration struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath  string `cim:"__PATH"`
 	Provider string `cim:"provider"`
 }
 
 // QOSFailureEvent is the __QOSFailureEvent CIM class.
 type QOSFailureEvent struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath            string  `cim:"__PATH"`
 	ErrorCode          uint32  `cim:"ErrorCode"`
 	ErrorDescription   string  `cim:"ErrorDescription"`
 	Event              wmi.Row `cim:"Event"`
@@ -565,6 +797,10 @@ type QOSFailureEvent struct {
 
 // SecurityDescriptor is the __SecurityDescriptor CIM class.
 type SecurityDescriptor struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath      string    `cim:"__PATH"`
 	ControlFlags uint32    `cim:"ControlFlags"`
 	DACL         []wmi.Row `cim:"DACL"`
 	Group        wmi.Row   `cim:"Group"`
@@ -575,24 +811,44 @@ type SecurityDescriptor struct {
 
 // SecurityRelatedClass is the __SecurityRelatedClass CIM class.
 type SecurityRelatedClass struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath string `cim:"__PATH"`
 }
 
 // SystemClass is the __SystemClass CIM class.
 type SystemClass struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath string `cim:"__PATH"`
 }
 
 // SystemEvent is the __SystemEvent CIM class.
 type SystemEvent struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath            string  `cim:"__PATH"`
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 	TIMECREATED        uint64  `cim:"TIME_CREATED"`
 }
 
 // SystemSecurity is the __SystemSecurity CIM class.
 type SystemSecurity struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath string `cim:"__PATH"`
 }
 
 // TimerEvent is the __TimerEvent CIM class.
 type TimerEvent struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath            string  `cim:"__PATH"`
 	NumFirings         uint32  `cim:"NumFirings"`
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 	TIMECREATED        uint64  `cim:"TIME_CREATED"`
@@ -601,18 +857,30 @@ type TimerEvent struct {
 
 // TimerInstruction is the __TimerInstruction CIM class.
 type TimerInstruction struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath      string `cim:"__PATH"`
 	SkipIfPassed bool   `cim:"SkipIfPassed"`
 	TimerId      string `cim:"TimerId"`
 }
 
 // TimerNextFiring is the __TimerNextFiring CIM class.
 type TimerNextFiring struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath            string `cim:"__PATH"`
 	NextEvent64BitTime int64  `cim:"NextEvent64BitTime"`
 	TimerId            string `cim:"TimerId"`
 }
 
 // Trustee is the __Trustee CIM class.
 type Trustee struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath     string  `cim:"__PATH"`
 	Domain      string  `cim:"Domain"`
 	Name        string  `cim:"Name"`
 	SID         []uint8 `cim:"SID"`
@@ -623,33 +891,41 @@ type Trustee struct {
 
 // Win32Provider is the __Win32Provider CIM class.
 type Win32Provider struct {
-	CLSID                         string `cim:"CLSID"`
-	ClientLoadableCLSID           string `cim:"ClientLoadableCLSID"`
-	Concurrency                   int32  `cim:"Concurrency"`
-	DefaultMachineName            string `cim:"DefaultMachineName"`
-	Enabled                       bool   `cim:"Enabled"`
-	HostingModel                  string `cim:"HostingModel"`
-	ImpersonationLevel            int32  `cim:"ImpersonationLevel"`
-	InitializationReentrancy      int32  `cim:"InitializationReentrancy"`
-	InitializationTimeoutInterval string `cim:"InitializationTimeoutInterval"`
-	InitializeAsAdminFirst        bool   `cim:"InitializeAsAdminFirst"`
-	Name                          string `cim:"Name"`
-	OperationTimeoutInterval      string `cim:"OperationTimeoutInterval"`
-	PerLocaleInitialization       bool   `cim:"PerLocaleInitialization"`
-	PerUserInitialization         bool   `cim:"PerUserInitialization"`
-	Pure                          bool   `cim:"Pure"`
-	SecurityDescriptor            string `cim:"SecurityDescriptor"`
-	SupportsExplicitShutdown      bool   `cim:"SupportsExplicitShutdown"`
-	SupportsExtendedStatus        bool   `cim:"SupportsExtendedStatus"`
-	SupportsQuotas                bool   `cim:"SupportsQuotas"`
-	SupportsSendStatus            bool   `cim:"SupportsSendStatus"`
-	SupportsShutdown              bool   `cim:"SupportsShutdown"`
-	SupportsThrottling            bool   `cim:"SupportsThrottling"`
-	UnloadTimeout                 string `cim:"UnloadTimeout"`
-	Version                       uint32 `cim:"Version"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                       string                                `cim:"__PATH"`
+	CLSID                         string                                `cim:"CLSID"`
+	ClientLoadableCLSID           string                                `cim:"ClientLoadableCLSID"`
+	Concurrency                   int32                                 `cim:"Concurrency"`
+	DefaultMachineName            string                                `cim:"DefaultMachineName"`
+	Enabled                       bool                                  `cim:"Enabled"`
+	HostingModel                  string                                `cim:"HostingModel"`
+	ImpersonationLevel            Win32ProviderImpersonationLevel       `cim:"ImpersonationLevel"`
+	InitializationReentrancy      Win32ProviderInitializationReentrancy `cim:"InitializationReentrancy"`
+	InitializationTimeoutInterval string                                `cim:"InitializationTimeoutInterval"`
+	InitializeAsAdminFirst        bool                                  `cim:"InitializeAsAdminFirst"`
+	Name                          string                                `cim:"Name"`
+	OperationTimeoutInterval      string                                `cim:"OperationTimeoutInterval"`
+	PerLocaleInitialization       bool                                  `cim:"PerLocaleInitialization"`
+	PerUserInitialization         bool                                  `cim:"PerUserInitialization"`
+	Pure                          bool                                  `cim:"Pure"`
+	SecurityDescriptor            string                                `cim:"SecurityDescriptor"`
+	SupportsExplicitShutdown      bool                                  `cim:"SupportsExplicitShutdown"`
+	SupportsExtendedStatus        bool                                  `cim:"SupportsExtendedStatus"`
+	SupportsQuotas                bool                                  `cim:"SupportsQuotas"`
+	SupportsSendStatus            bool                                  `cim:"SupportsSendStatus"`
+	SupportsShutdown              bool                                  `cim:"SupportsShutdown"`
+	SupportsThrottling            bool                                  `cim:"SupportsThrottling"`
+	UnloadTimeout                 string                                `cim:"UnloadTimeout"`
+	Version                       uint32                                `cim:"Version"`
 }
 
 // ThisNAMESPACE is the __thisNAMESPACE CIM class.
 type ThisNAMESPACE struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath            string  `cim:"__PATH"`
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 }

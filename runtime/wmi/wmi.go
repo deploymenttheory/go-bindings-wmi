@@ -64,6 +64,10 @@ type variantPtr struct {
 type Service struct {
 	locator  *wmi.IWbemLocator
 	services *wmi.IWbemServices
+	// enumQualCache memoizes ancestor-class enumeration qualifiers during a
+	// schema capture (ClassProperties walks __DERIVATION; CIM base classes
+	// repeat across a namespace). Lazily initialized; keyed by class name.
+	enumQualCache map[string]map[string]enumQuals
 }
 
 // ConnectOptions controls ConnectWith. The zero value connects locally as

@@ -7,7 +7,8 @@ package hgs
 import wmi "github.com/deploymenttheory/go-bindings-wmi/runtime/wmi"
 
 // QueryCIMClassCreation runs the WQL query against the class and decodes each
-// instance into a CIMClassCreation. Pass the WHERE clause (or "" for all).
+// instance into a CIMClassCreation. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryCIMClassCreation(svc *wmi.Service, where string) ([]CIMClassCreation, error) {
 	q := "SELECT * FROM CIM_ClassCreation"
 	if where != "" {
@@ -19,23 +20,27 @@ func QueryCIMClassCreation(svc *wmi.Service, where string) ([]CIMClassCreation, 
 	}
 	out := make([]CIMClassCreation, len(rows))
 	for i, row := range rows {
-		if v, ok := row["ClassDefinition"].(wmi.Row); ok {
-			out[i].ClassDefinition = v
-		}
-		out[i].CorrelatedIndications = wmi.AsStringSlice(row["CorrelatedIndications"])
-		out[i].IndicationFilterName = wmi.AsString(row["IndicationFilterName"])
-		out[i].IndicationIdentifier = wmi.AsString(row["IndicationIdentifier"])
-		out[i].IndicationTime = wmi.AsString(row["IndicationTime"])
-		out[i].OtherSeverity = wmi.AsString(row["OtherSeverity"])
-		out[i].PerceivedSeverity = wmi.AsUint16(row["PerceivedSeverity"])
-		out[i].SequenceContext = wmi.AsString(row["SequenceContext"])
-		out[i].SequenceNumber = wmi.AsInt64(row["SequenceNumber"])
+		out[i] = CIMClassCreationFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneCIMClassCreation returns the single CIM_ClassCreation matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneCIMClassCreation(svc *wmi.Service, where string) (*CIMClassCreation, error) {
+	out, err := QueryCIMClassCreation(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryCIMClassDeletion runs the WQL query against the class and decodes each
-// instance into a CIMClassDeletion. Pass the WHERE clause (or "" for all).
+// instance into a CIMClassDeletion. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryCIMClassDeletion(svc *wmi.Service, where string) ([]CIMClassDeletion, error) {
 	q := "SELECT * FROM CIM_ClassDeletion"
 	if where != "" {
@@ -47,23 +52,27 @@ func QueryCIMClassDeletion(svc *wmi.Service, where string) ([]CIMClassDeletion, 
 	}
 	out := make([]CIMClassDeletion, len(rows))
 	for i, row := range rows {
-		if v, ok := row["ClassDefinition"].(wmi.Row); ok {
-			out[i].ClassDefinition = v
-		}
-		out[i].CorrelatedIndications = wmi.AsStringSlice(row["CorrelatedIndications"])
-		out[i].IndicationFilterName = wmi.AsString(row["IndicationFilterName"])
-		out[i].IndicationIdentifier = wmi.AsString(row["IndicationIdentifier"])
-		out[i].IndicationTime = wmi.AsString(row["IndicationTime"])
-		out[i].OtherSeverity = wmi.AsString(row["OtherSeverity"])
-		out[i].PerceivedSeverity = wmi.AsUint16(row["PerceivedSeverity"])
-		out[i].SequenceContext = wmi.AsString(row["SequenceContext"])
-		out[i].SequenceNumber = wmi.AsInt64(row["SequenceNumber"])
+		out[i] = CIMClassDeletionFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneCIMClassDeletion returns the single CIM_ClassDeletion matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneCIMClassDeletion(svc *wmi.Service, where string) (*CIMClassDeletion, error) {
+	out, err := QueryCIMClassDeletion(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryCIMClassIndication runs the WQL query against the class and decodes each
-// instance into a CIMClassIndication. Pass the WHERE clause (or "" for all).
+// instance into a CIMClassIndication. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryCIMClassIndication(svc *wmi.Service, where string) ([]CIMClassIndication, error) {
 	q := "SELECT * FROM CIM_ClassIndication"
 	if where != "" {
@@ -75,23 +84,27 @@ func QueryCIMClassIndication(svc *wmi.Service, where string) ([]CIMClassIndicati
 	}
 	out := make([]CIMClassIndication, len(rows))
 	for i, row := range rows {
-		if v, ok := row["ClassDefinition"].(wmi.Row); ok {
-			out[i].ClassDefinition = v
-		}
-		out[i].CorrelatedIndications = wmi.AsStringSlice(row["CorrelatedIndications"])
-		out[i].IndicationFilterName = wmi.AsString(row["IndicationFilterName"])
-		out[i].IndicationIdentifier = wmi.AsString(row["IndicationIdentifier"])
-		out[i].IndicationTime = wmi.AsString(row["IndicationTime"])
-		out[i].OtherSeverity = wmi.AsString(row["OtherSeverity"])
-		out[i].PerceivedSeverity = wmi.AsUint16(row["PerceivedSeverity"])
-		out[i].SequenceContext = wmi.AsString(row["SequenceContext"])
-		out[i].SequenceNumber = wmi.AsInt64(row["SequenceNumber"])
+		out[i] = CIMClassIndicationFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneCIMClassIndication returns the single CIM_ClassIndication matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneCIMClassIndication(svc *wmi.Service, where string) (*CIMClassIndication, error) {
+	out, err := QueryCIMClassIndication(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryCIMClassModification runs the WQL query against the class and decodes each
-// instance into a CIMClassModification. Pass the WHERE clause (or "" for all).
+// instance into a CIMClassModification. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryCIMClassModification(svc *wmi.Service, where string) ([]CIMClassModification, error) {
 	q := "SELECT * FROM CIM_ClassModification"
 	if where != "" {
@@ -103,26 +116,27 @@ func QueryCIMClassModification(svc *wmi.Service, where string) ([]CIMClassModifi
 	}
 	out := make([]CIMClassModification, len(rows))
 	for i, row := range rows {
-		if v, ok := row["ClassDefinition"].(wmi.Row); ok {
-			out[i].ClassDefinition = v
-		}
-		out[i].CorrelatedIndications = wmi.AsStringSlice(row["CorrelatedIndications"])
-		out[i].IndicationFilterName = wmi.AsString(row["IndicationFilterName"])
-		out[i].IndicationIdentifier = wmi.AsString(row["IndicationIdentifier"])
-		out[i].IndicationTime = wmi.AsString(row["IndicationTime"])
-		out[i].OtherSeverity = wmi.AsString(row["OtherSeverity"])
-		out[i].PerceivedSeverity = wmi.AsUint16(row["PerceivedSeverity"])
-		if v, ok := row["PreviousClassDefinition"].(wmi.Row); ok {
-			out[i].PreviousClassDefinition = v
-		}
-		out[i].SequenceContext = wmi.AsString(row["SequenceContext"])
-		out[i].SequenceNumber = wmi.AsInt64(row["SequenceNumber"])
+		out[i] = CIMClassModificationFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneCIMClassModification returns the single CIM_ClassModification matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneCIMClassModification(svc *wmi.Service, where string) (*CIMClassModification, error) {
+	out, err := QueryCIMClassModification(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryCIMError runs the WQL query against the class and decodes each
-// instance into a CIMError. Pass the WHERE clause (or "" for all).
+// instance into a CIMError. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryCIMError(svc *wmi.Service, where string) ([]CIMError, error) {
 	q := "SELECT * FROM CIM_Error"
 	if where != "" {
@@ -134,27 +148,27 @@ func QueryCIMError(svc *wmi.Service, where string) ([]CIMError, error) {
 	}
 	out := make([]CIMError, len(rows))
 	for i, row := range rows {
-		out[i].CIMStatusCode = wmi.AsUint32(row["CIMStatusCode"])
-		out[i].CIMStatusCodeDescription = wmi.AsString(row["CIMStatusCodeDescription"])
-		out[i].ErrorSource = wmi.AsString(row["ErrorSource"])
-		out[i].ErrorSourceFormat = wmi.AsUint16(row["ErrorSourceFormat"])
-		out[i].ErrorType = wmi.AsUint16(row["ErrorType"])
-		out[i].Message = wmi.AsString(row["Message"])
-		out[i].MessageArguments = wmi.AsStringSlice(row["MessageArguments"])
-		out[i].MessageID = wmi.AsString(row["MessageID"])
-		out[i].OtherErrorSourceFormat = wmi.AsString(row["OtherErrorSourceFormat"])
-		out[i].OtherErrorType = wmi.AsString(row["OtherErrorType"])
-		out[i].OwningEntity = wmi.AsString(row["OwningEntity"])
-		out[i].PerceivedSeverity = wmi.AsUint16(row["PerceivedSeverity"])
-		out[i].ProbableCause = wmi.AsUint16(row["ProbableCause"])
-		out[i].ProbableCauseDescription = wmi.AsString(row["ProbableCauseDescription"])
-		out[i].RecommendedActions = wmi.AsStringSlice(row["RecommendedActions"])
+		out[i] = CIMErrorFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneCIMError returns the single CIM_Error matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneCIMError(svc *wmi.Service, where string) (*CIMError, error) {
+	out, err := QueryCIMError(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryCIMIndication runs the WQL query against the class and decodes each
-// instance into a CIMIndication. Pass the WHERE clause (or "" for all).
+// instance into a CIMIndication. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryCIMIndication(svc *wmi.Service, where string) ([]CIMIndication, error) {
 	q := "SELECT * FROM CIM_Indication"
 	if where != "" {
@@ -166,20 +180,27 @@ func QueryCIMIndication(svc *wmi.Service, where string) ([]CIMIndication, error)
 	}
 	out := make([]CIMIndication, len(rows))
 	for i, row := range rows {
-		out[i].CorrelatedIndications = wmi.AsStringSlice(row["CorrelatedIndications"])
-		out[i].IndicationFilterName = wmi.AsString(row["IndicationFilterName"])
-		out[i].IndicationIdentifier = wmi.AsString(row["IndicationIdentifier"])
-		out[i].IndicationTime = wmi.AsString(row["IndicationTime"])
-		out[i].OtherSeverity = wmi.AsString(row["OtherSeverity"])
-		out[i].PerceivedSeverity = wmi.AsUint16(row["PerceivedSeverity"])
-		out[i].SequenceContext = wmi.AsString(row["SequenceContext"])
-		out[i].SequenceNumber = wmi.AsInt64(row["SequenceNumber"])
+		out[i] = CIMIndicationFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneCIMIndication returns the single CIM_Indication matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneCIMIndication(svc *wmi.Service, where string) (*CIMIndication, error) {
+	out, err := QueryCIMIndication(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryCIMInstCreation runs the WQL query against the class and decodes each
-// instance into a CIMInstCreation. Pass the WHERE clause (or "" for all).
+// instance into a CIMInstCreation. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryCIMInstCreation(svc *wmi.Service, where string) ([]CIMInstCreation, error) {
 	q := "SELECT * FROM CIM_InstCreation"
 	if where != "" {
@@ -191,25 +212,27 @@ func QueryCIMInstCreation(svc *wmi.Service, where string) ([]CIMInstCreation, er
 	}
 	out := make([]CIMInstCreation, len(rows))
 	for i, row := range rows {
-		out[i].CorrelatedIndications = wmi.AsStringSlice(row["CorrelatedIndications"])
-		out[i].IndicationFilterName = wmi.AsString(row["IndicationFilterName"])
-		out[i].IndicationIdentifier = wmi.AsString(row["IndicationIdentifier"])
-		out[i].IndicationTime = wmi.AsString(row["IndicationTime"])
-		out[i].OtherSeverity = wmi.AsString(row["OtherSeverity"])
-		out[i].PerceivedSeverity = wmi.AsUint16(row["PerceivedSeverity"])
-		out[i].SequenceContext = wmi.AsString(row["SequenceContext"])
-		out[i].SequenceNumber = wmi.AsInt64(row["SequenceNumber"])
-		if v, ok := row["SourceInstance"].(wmi.Row); ok {
-			out[i].SourceInstance = v
-		}
-		out[i].SourceInstanceHost = wmi.AsString(row["SourceInstanceHost"])
-		out[i].SourceInstanceModelPath = wmi.AsString(row["SourceInstanceModelPath"])
+		out[i] = CIMInstCreationFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneCIMInstCreation returns the single CIM_InstCreation matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneCIMInstCreation(svc *wmi.Service, where string) (*CIMInstCreation, error) {
+	out, err := QueryCIMInstCreation(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryCIMInstDeletion runs the WQL query against the class and decodes each
-// instance into a CIMInstDeletion. Pass the WHERE clause (or "" for all).
+// instance into a CIMInstDeletion. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryCIMInstDeletion(svc *wmi.Service, where string) ([]CIMInstDeletion, error) {
 	q := "SELECT * FROM CIM_InstDeletion"
 	if where != "" {
@@ -221,25 +244,27 @@ func QueryCIMInstDeletion(svc *wmi.Service, where string) ([]CIMInstDeletion, er
 	}
 	out := make([]CIMInstDeletion, len(rows))
 	for i, row := range rows {
-		out[i].CorrelatedIndications = wmi.AsStringSlice(row["CorrelatedIndications"])
-		out[i].IndicationFilterName = wmi.AsString(row["IndicationFilterName"])
-		out[i].IndicationIdentifier = wmi.AsString(row["IndicationIdentifier"])
-		out[i].IndicationTime = wmi.AsString(row["IndicationTime"])
-		out[i].OtherSeverity = wmi.AsString(row["OtherSeverity"])
-		out[i].PerceivedSeverity = wmi.AsUint16(row["PerceivedSeverity"])
-		out[i].SequenceContext = wmi.AsString(row["SequenceContext"])
-		out[i].SequenceNumber = wmi.AsInt64(row["SequenceNumber"])
-		if v, ok := row["SourceInstance"].(wmi.Row); ok {
-			out[i].SourceInstance = v
-		}
-		out[i].SourceInstanceHost = wmi.AsString(row["SourceInstanceHost"])
-		out[i].SourceInstanceModelPath = wmi.AsString(row["SourceInstanceModelPath"])
+		out[i] = CIMInstDeletionFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneCIMInstDeletion returns the single CIM_InstDeletion matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneCIMInstDeletion(svc *wmi.Service, where string) (*CIMInstDeletion, error) {
+	out, err := QueryCIMInstDeletion(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryCIMInstIndication runs the WQL query against the class and decodes each
-// instance into a CIMInstIndication. Pass the WHERE clause (or "" for all).
+// instance into a CIMInstIndication. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryCIMInstIndication(svc *wmi.Service, where string) ([]CIMInstIndication, error) {
 	q := "SELECT * FROM CIM_InstIndication"
 	if where != "" {
@@ -251,25 +276,27 @@ func QueryCIMInstIndication(svc *wmi.Service, where string) ([]CIMInstIndication
 	}
 	out := make([]CIMInstIndication, len(rows))
 	for i, row := range rows {
-		out[i].CorrelatedIndications = wmi.AsStringSlice(row["CorrelatedIndications"])
-		out[i].IndicationFilterName = wmi.AsString(row["IndicationFilterName"])
-		out[i].IndicationIdentifier = wmi.AsString(row["IndicationIdentifier"])
-		out[i].IndicationTime = wmi.AsString(row["IndicationTime"])
-		out[i].OtherSeverity = wmi.AsString(row["OtherSeverity"])
-		out[i].PerceivedSeverity = wmi.AsUint16(row["PerceivedSeverity"])
-		out[i].SequenceContext = wmi.AsString(row["SequenceContext"])
-		out[i].SequenceNumber = wmi.AsInt64(row["SequenceNumber"])
-		if v, ok := row["SourceInstance"].(wmi.Row); ok {
-			out[i].SourceInstance = v
-		}
-		out[i].SourceInstanceHost = wmi.AsString(row["SourceInstanceHost"])
-		out[i].SourceInstanceModelPath = wmi.AsString(row["SourceInstanceModelPath"])
+		out[i] = CIMInstIndicationFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneCIMInstIndication returns the single CIM_InstIndication matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneCIMInstIndication(svc *wmi.Service, where string) (*CIMInstIndication, error) {
+	out, err := QueryCIMInstIndication(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryCIMInstModification runs the WQL query against the class and decodes each
-// instance into a CIMInstModification. Pass the WHERE clause (or "" for all).
+// instance into a CIMInstModification. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryCIMInstModification(svc *wmi.Service, where string) ([]CIMInstModification, error) {
 	q := "SELECT * FROM CIM_InstModification"
 	if where != "" {
@@ -281,28 +308,27 @@ func QueryCIMInstModification(svc *wmi.Service, where string) ([]CIMInstModifica
 	}
 	out := make([]CIMInstModification, len(rows))
 	for i, row := range rows {
-		out[i].CorrelatedIndications = wmi.AsStringSlice(row["CorrelatedIndications"])
-		out[i].IndicationFilterName = wmi.AsString(row["IndicationFilterName"])
-		out[i].IndicationIdentifier = wmi.AsString(row["IndicationIdentifier"])
-		out[i].IndicationTime = wmi.AsString(row["IndicationTime"])
-		out[i].OtherSeverity = wmi.AsString(row["OtherSeverity"])
-		out[i].PerceivedSeverity = wmi.AsUint16(row["PerceivedSeverity"])
-		if v, ok := row["PreviousInstance"].(wmi.Row); ok {
-			out[i].PreviousInstance = v
-		}
-		out[i].SequenceContext = wmi.AsString(row["SequenceContext"])
-		out[i].SequenceNumber = wmi.AsInt64(row["SequenceNumber"])
-		if v, ok := row["SourceInstance"].(wmi.Row); ok {
-			out[i].SourceInstance = v
-		}
-		out[i].SourceInstanceHost = wmi.AsString(row["SourceInstanceHost"])
-		out[i].SourceInstanceModelPath = wmi.AsString(row["SourceInstanceModelPath"])
+		out[i] = CIMInstModificationFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneCIMInstModification returns the single CIM_InstModification matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneCIMInstModification(svc *wmi.Service, where string) (*CIMInstModification, error) {
+	out, err := QueryCIMInstModification(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryMSFTExtendedStatus runs the WQL query against the class and decodes each
-// instance into a MSFTExtendedStatus. Pass the WHERE clause (or "" for all).
+// instance into a MSFTExtendedStatus. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTExtendedStatus(svc *wmi.Service, where string) ([]MSFTExtendedStatus, error) {
 	q := "SELECT * FROM MSFT_ExtendedStatus"
 	if where != "" {
@@ -314,33 +340,27 @@ func QueryMSFTExtendedStatus(svc *wmi.Service, where string) ([]MSFTExtendedStat
 	}
 	out := make([]MSFTExtendedStatus, len(rows))
 	for i, row := range rows {
-		out[i].CIMStatusCode = wmi.AsUint32(row["CIMStatusCode"])
-		out[i].CIMStatusCodeDescription = wmi.AsString(row["CIMStatusCodeDescription"])
-		out[i].ErrorSource = wmi.AsString(row["ErrorSource"])
-		out[i].ErrorSourceFormat = wmi.AsUint16(row["ErrorSourceFormat"])
-		out[i].ErrorType = wmi.AsUint16(row["ErrorType"])
-		out[i].Message = wmi.AsString(row["Message"])
-		out[i].MessageArguments = wmi.AsStringSlice(row["MessageArguments"])
-		out[i].MessageID = wmi.AsString(row["MessageID"])
-		out[i].OtherErrorSourceFormat = wmi.AsString(row["OtherErrorSourceFormat"])
-		out[i].OtherErrorType = wmi.AsString(row["OtherErrorType"])
-		out[i].OwningEntity = wmi.AsString(row["OwningEntity"])
-		out[i].PerceivedSeverity = wmi.AsUint16(row["PerceivedSeverity"])
-		out[i].ProbableCause = wmi.AsUint16(row["ProbableCause"])
-		out[i].ProbableCauseDescription = wmi.AsString(row["ProbableCauseDescription"])
-		out[i].RecommendedActions = wmi.AsStringSlice(row["RecommendedActions"])
-		out[i].ErrorCategory = wmi.AsUint16(row["error_Category"])
-		out[i].ErrorCode = wmi.AsUint32(row["error_Code"])
-		out[i].ErrorWindowsErrorMessage = wmi.AsString(row["error_WindowsErrorMessage"])
-		if v, ok := row["original_error"].(wmi.Row); ok {
-			out[i].OriginalError = v
-		}
+		out[i] = MSFTExtendedStatusFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneMSFTExtendedStatus returns the single MSFT_ExtendedStatus matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTExtendedStatus(svc *wmi.Service, where string) (*MSFTExtendedStatus, error) {
+	out, err := QueryMSFTExtendedStatus(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryMSFTHgsClientConfiguration runs the WQL query against the class and decodes each
-// instance into a MSFTHgsClientConfiguration. Pass the WHERE clause (or "" for all).
+// instance into a MSFTHgsClientConfiguration. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTHgsClientConfiguration(svc *wmi.Service, where string) ([]MSFTHgsClientConfiguration, error) {
 	q := "SELECT * FROM MSFT_HgsClientConfiguration"
 	if where != "" {
@@ -352,23 +372,27 @@ func QueryMSFTHgsClientConfiguration(svc *wmi.Service, where string) ([]MSFTHgsC
 	}
 	out := make([]MSFTHgsClientConfiguration, len(rows))
 	for i, row := range rows {
-		out[i].AttestationOperationMode = wmi.AsUint16(row["AttestationOperationMode"])
-		out[i].AttestationServerUrl = wmi.AsString(row["AttestationServerUrl"])
-		out[i].AttestationStatus = wmi.AsUint16(row["AttestationStatus"])
-		out[i].AttestationSubstatus = wmi.AsUint64(row["AttestationSubstatus"])
-		out[i].FallbackAttestationServerUrl = wmi.AsStringSlice(row["FallbackAttestationServerUrl"])
-		out[i].FallbackKeyProtectionServerUrl = wmi.AsStringSlice(row["FallbackKeyProtectionServerUrl"])
-		out[i].IsHostGuarded = wmi.AsBool(row["IsHostGuarded"])
-		out[i].KeyProtectionServerUrl = wmi.AsString(row["KeyProtectionServerUrl"])
-		out[i].LastAttestationServerUrl = wmi.AsString(row["LastAttestationServerUrl"])
-		out[i].LastKeyProtectionServerUrl = wmi.AsString(row["LastKeyProtectionServerUrl"])
-		out[i].Mode = wmi.AsUint16(row["Mode"])
+		out[i] = MSFTHgsClientConfigurationFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneMSFTHgsClientConfiguration returns the single MSFT_HgsClientConfiguration matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTHgsClientConfiguration(svc *wmi.Service, where string) (*MSFTHgsClientConfiguration, error) {
+	out, err := QueryMSFTHgsClientConfiguration(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryMSFTHgsGuardian runs the WQL query against the class and decodes each
-// instance into a MSFTHgsGuardian. Pass the WHERE clause (or "" for all).
+// instance into a MSFTHgsGuardian. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTHgsGuardian(svc *wmi.Service, where string) ([]MSFTHgsGuardian, error) {
 	q := "SELECT * FROM MSFT_HgsGuardian"
 	if where != "" {
@@ -380,21 +404,14 @@ func QueryMSFTHgsGuardian(svc *wmi.Service, where string) ([]MSFTHgsGuardian, er
 	}
 	out := make([]MSFTHgsGuardian, len(rows))
 	for i, row := range rows {
-		out[i].EncryptionCertificate = wmi.AsUint8Slice(row["EncryptionCertificate"])
-		out[i].EncryptionCertificateSignature = wmi.AsString(row["EncryptionCertificateSignature"])
-		out[i].EncryptionCertificateSignatureAlgorithm = wmi.AsString(row["EncryptionCertificateSignatureAlgorithm"])
-		out[i].GuardianMetadataVersion = wmi.AsUint32(row["GuardianMetadataVersion"])
-		out[i].HasPrivateSigningKey = wmi.AsBool(row["HasPrivateSigningKey"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].SigningCertificate = wmi.AsUint8Slice(row["SigningCertificate"])
+		out[i] = MSFTHgsGuardianFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTHgsGuardian returns the MSFT_HgsGuardian instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTHgsGuardian(svc *wmi.Service, name string) (*MSFTHgsGuardian, error) {
-	where := "Name = " + wmi.WQLValue(name)
+// QueryOneMSFTHgsGuardian returns the single MSFT_HgsGuardian matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTHgsGuardian(svc *wmi.Service, where string) (*MSFTHgsGuardian, error) {
 	out, err := QueryMSFTHgsGuardian(svc, where)
 	if err != nil {
 		return nil, err
@@ -405,8 +422,16 @@ func GetMSFTHgsGuardian(svc *wmi.Service, name string) (*MSFTHgsGuardian, error)
 	return &out[0], nil
 }
 
+// GetMSFTHgsGuardian returns the MSFT_HgsGuardian instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTHgsGuardian(svc *wmi.Service, name string) (*MSFTHgsGuardian, error) {
+	where := "Name = " + wmi.WQLValue(name)
+	return QueryOneMSFTHgsGuardian(svc, where)
+}
+
 // QueryMSFTHgsKeyProtector runs the WQL query against the class and decodes each
-// instance into a MSFTHgsKeyProtector. Pass the WHERE clause (or "" for all).
+// instance into a MSFTHgsKeyProtector. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTHgsKeyProtector(svc *wmi.Service, where string) ([]MSFTHgsKeyProtector, error) {
 	q := "SELECT * FROM MSFT_HgsKeyProtector"
 	if where != "" {
@@ -418,17 +443,27 @@ func QueryMSFTHgsKeyProtector(svc *wmi.Service, where string) ([]MSFTHgsKeyProte
 	}
 	out := make([]MSFTHgsKeyProtector, len(rows))
 	for i, row := range rows {
-		out[i].Guardians = wmi.AsRowSlice(row["Guardians"])
-		if v, ok := row["Owner"].(wmi.Row); ok {
-			out[i].Owner = v
-		}
-		out[i].RawData = wmi.AsUint8Slice(row["RawData"])
+		out[i] = MSFTHgsKeyProtectorFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneMSFTHgsKeyProtector returns the single MSFT_HgsKeyProtector matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTHgsKeyProtector(svc *wmi.Service, where string) (*MSFTHgsKeyProtector, error) {
+	out, err := QueryMSFTHgsKeyProtector(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryMSFTHgsKeyProtectorOperations runs the WQL query against the class and decodes each
-// instance into a MSFTHgsKeyProtectorOperations. Pass the WHERE clause (or "" for all).
+// instance into a MSFTHgsKeyProtectorOperations. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTHgsKeyProtectorOperations(svc *wmi.Service, where string) ([]MSFTHgsKeyProtectorOperations, error) {
 	q := "SELECT * FROM MSFT_HgsKeyProtectorOperations"
 	if where != "" {
@@ -439,11 +474,28 @@ func QueryMSFTHgsKeyProtectorOperations(svc *wmi.Service, where string) ([]MSFTH
 		return nil, err
 	}
 	out := make([]MSFTHgsKeyProtectorOperations, len(rows))
+	for i, row := range rows {
+		out[i] = MSFTHgsKeyProtectorOperationsFromRow(row)
+	}
 	return out, nil
 }
 
+// QueryOneMSFTHgsKeyProtectorOperations returns the single MSFT_HgsKeyProtectorOperations matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTHgsKeyProtectorOperations(svc *wmi.Service, where string) (*MSFTHgsKeyProtectorOperations, error) {
+	out, err := QueryMSFTHgsKeyProtectorOperations(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryMSFTWmiError runs the WQL query against the class and decodes each
-// instance into a MSFTWmiError. Pass the WHERE clause (or "" for all).
+// instance into a MSFTWmiError. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTWmiError(svc *wmi.Service, where string) ([]MSFTWmiError, error) {
 	q := "SELECT * FROM MSFT_WmiError"
 	if where != "" {
@@ -455,30 +507,27 @@ func QueryMSFTWmiError(svc *wmi.Service, where string) ([]MSFTWmiError, error) {
 	}
 	out := make([]MSFTWmiError, len(rows))
 	for i, row := range rows {
-		out[i].CIMStatusCode = wmi.AsUint32(row["CIMStatusCode"])
-		out[i].CIMStatusCodeDescription = wmi.AsString(row["CIMStatusCodeDescription"])
-		out[i].ErrorSource = wmi.AsString(row["ErrorSource"])
-		out[i].ErrorSourceFormat = wmi.AsUint16(row["ErrorSourceFormat"])
-		out[i].ErrorType = wmi.AsUint16(row["ErrorType"])
-		out[i].Message = wmi.AsString(row["Message"])
-		out[i].MessageArguments = wmi.AsStringSlice(row["MessageArguments"])
-		out[i].MessageID = wmi.AsString(row["MessageID"])
-		out[i].OtherErrorSourceFormat = wmi.AsString(row["OtherErrorSourceFormat"])
-		out[i].OtherErrorType = wmi.AsString(row["OtherErrorType"])
-		out[i].OwningEntity = wmi.AsString(row["OwningEntity"])
-		out[i].PerceivedSeverity = wmi.AsUint16(row["PerceivedSeverity"])
-		out[i].ProbableCause = wmi.AsUint16(row["ProbableCause"])
-		out[i].ProbableCauseDescription = wmi.AsString(row["ProbableCauseDescription"])
-		out[i].RecommendedActions = wmi.AsStringSlice(row["RecommendedActions"])
-		out[i].ErrorCategory = wmi.AsUint16(row["error_Category"])
-		out[i].ErrorCode = wmi.AsUint32(row["error_Code"])
-		out[i].ErrorWindowsErrorMessage = wmi.AsString(row["error_WindowsErrorMessage"])
+		out[i] = MSFTWmiErrorFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneMSFTWmiError returns the single MSFT_WmiError matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTWmiError(svc *wmi.Service, where string) (*MSFTWmiError, error) {
+	out, err := QueryMSFTWmiError(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryACE runs the WQL query against the class and decodes each
-// instance into a ACE. Pass the WHERE clause (or "" for all).
+// instance into a ACE. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryACE(svc *wmi.Service, where string) ([]ACE, error) {
 	q := "SELECT * FROM __ACE"
 	if where != "" {
@@ -490,21 +539,27 @@ func QueryACE(svc *wmi.Service, where string) ([]ACE, error) {
 	}
 	out := make([]ACE, len(rows))
 	for i, row := range rows {
-		out[i].AccessMask = wmi.AsUint32(row["AccessMask"])
-		out[i].AceFlags = wmi.AsUint32(row["AceFlags"])
-		out[i].AceType = wmi.AsUint32(row["AceType"])
-		out[i].GuidInheritedObjectType = wmi.AsString(row["GuidInheritedObjectType"])
-		out[i].GuidObjectType = wmi.AsString(row["GuidObjectType"])
-		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
-		if v, ok := row["Trustee"].(wmi.Row); ok {
-			out[i].Trustee = v
-		}
+		out[i] = ACEFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneACE returns the single __ACE matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneACE(svc *wmi.Service, where string) (*ACE, error) {
+	out, err := QueryACE(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryAbsoluteTimerInstruction runs the WQL query against the class and decodes each
-// instance into a AbsoluteTimerInstruction. Pass the WHERE clause (or "" for all).
+// instance into a AbsoluteTimerInstruction. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryAbsoluteTimerInstruction(svc *wmi.Service, where string) ([]AbsoluteTimerInstruction, error) {
 	q := "SELECT * FROM __AbsoluteTimerInstruction"
 	if where != "" {
@@ -516,17 +571,14 @@ func QueryAbsoluteTimerInstruction(svc *wmi.Service, where string) ([]AbsoluteTi
 	}
 	out := make([]AbsoluteTimerInstruction, len(rows))
 	for i, row := range rows {
-		out[i].EventDateTime = wmi.AsString(row["EventDateTime"])
-		out[i].SkipIfPassed = wmi.AsBool(row["SkipIfPassed"])
-		out[i].TimerId = wmi.AsString(row["TimerId"])
+		out[i] = AbsoluteTimerInstructionFromRow(row)
 	}
 	return out, nil
 }
 
-// GetAbsoluteTimerInstruction returns the __AbsoluteTimerInstruction instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetAbsoluteTimerInstruction(svc *wmi.Service, timerId string) (*AbsoluteTimerInstruction, error) {
-	where := "TimerId = " + wmi.WQLValue(timerId)
+// QueryOneAbsoluteTimerInstruction returns the single __AbsoluteTimerInstruction matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneAbsoluteTimerInstruction(svc *wmi.Service, where string) (*AbsoluteTimerInstruction, error) {
 	out, err := QueryAbsoluteTimerInstruction(svc, where)
 	if err != nil {
 		return nil, err
@@ -537,8 +589,16 @@ func GetAbsoluteTimerInstruction(svc *wmi.Service, timerId string) (*AbsoluteTim
 	return &out[0], nil
 }
 
+// GetAbsoluteTimerInstruction returns the __AbsoluteTimerInstruction instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetAbsoluteTimerInstruction(svc *wmi.Service, timerId string) (*AbsoluteTimerInstruction, error) {
+	where := "TimerId = " + wmi.WQLValue(timerId)
+	return QueryOneAbsoluteTimerInstruction(svc, where)
+}
+
 // QueryAggregateEvent runs the WQL query against the class and decodes each
-// instance into a AggregateEvent. Pass the WHERE clause (or "" for all).
+// instance into a AggregateEvent. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryAggregateEvent(svc *wmi.Service, where string) ([]AggregateEvent, error) {
 	q := "SELECT * FROM __AggregateEvent"
 	if where != "" {
@@ -550,16 +610,27 @@ func QueryAggregateEvent(svc *wmi.Service, where string) ([]AggregateEvent, erro
 	}
 	out := make([]AggregateEvent, len(rows))
 	for i, row := range rows {
-		out[i].NumberOfEvents = wmi.AsUint32(row["NumberOfEvents"])
-		if v, ok := row["Representative"].(wmi.Row); ok {
-			out[i].Representative = v
-		}
+		out[i] = AggregateEventFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneAggregateEvent returns the single __AggregateEvent matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneAggregateEvent(svc *wmi.Service, where string) (*AggregateEvent, error) {
+	out, err := QueryAggregateEvent(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryClassCreationEvent runs the WQL query against the class and decodes each
-// instance into a ClassCreationEvent. Pass the WHERE clause (or "" for all).
+// instance into a ClassCreationEvent. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryClassCreationEvent(svc *wmi.Service, where string) ([]ClassCreationEvent, error) {
 	q := "SELECT * FROM __ClassCreationEvent"
 	if where != "" {
@@ -571,17 +642,27 @@ func QueryClassCreationEvent(svc *wmi.Service, where string) ([]ClassCreationEve
 	}
 	out := make([]ClassCreationEvent, len(rows))
 	for i, row := range rows {
-		out[i].SECURITYDESCRIPTOR = wmi.AsUint8Slice(row["SECURITY_DESCRIPTOR"])
-		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
-		if v, ok := row["TargetClass"].(wmi.Row); ok {
-			out[i].TargetClass = v
-		}
+		out[i] = ClassCreationEventFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneClassCreationEvent returns the single __ClassCreationEvent matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneClassCreationEvent(svc *wmi.Service, where string) (*ClassCreationEvent, error) {
+	out, err := QueryClassCreationEvent(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryClassDeletionEvent runs the WQL query against the class and decodes each
-// instance into a ClassDeletionEvent. Pass the WHERE clause (or "" for all).
+// instance into a ClassDeletionEvent. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryClassDeletionEvent(svc *wmi.Service, where string) ([]ClassDeletionEvent, error) {
 	q := "SELECT * FROM __ClassDeletionEvent"
 	if where != "" {
@@ -593,17 +674,27 @@ func QueryClassDeletionEvent(svc *wmi.Service, where string) ([]ClassDeletionEve
 	}
 	out := make([]ClassDeletionEvent, len(rows))
 	for i, row := range rows {
-		out[i].SECURITYDESCRIPTOR = wmi.AsUint8Slice(row["SECURITY_DESCRIPTOR"])
-		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
-		if v, ok := row["TargetClass"].(wmi.Row); ok {
-			out[i].TargetClass = v
-		}
+		out[i] = ClassDeletionEventFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneClassDeletionEvent returns the single __ClassDeletionEvent matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneClassDeletionEvent(svc *wmi.Service, where string) (*ClassDeletionEvent, error) {
+	out, err := QueryClassDeletionEvent(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryClassModificationEvent runs the WQL query against the class and decodes each
-// instance into a ClassModificationEvent. Pass the WHERE clause (or "" for all).
+// instance into a ClassModificationEvent. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryClassModificationEvent(svc *wmi.Service, where string) ([]ClassModificationEvent, error) {
 	q := "SELECT * FROM __ClassModificationEvent"
 	if where != "" {
@@ -615,20 +706,27 @@ func QueryClassModificationEvent(svc *wmi.Service, where string) ([]ClassModific
 	}
 	out := make([]ClassModificationEvent, len(rows))
 	for i, row := range rows {
-		if v, ok := row["PreviousClass"].(wmi.Row); ok {
-			out[i].PreviousClass = v
-		}
-		out[i].SECURITYDESCRIPTOR = wmi.AsUint8Slice(row["SECURITY_DESCRIPTOR"])
-		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
-		if v, ok := row["TargetClass"].(wmi.Row); ok {
-			out[i].TargetClass = v
-		}
+		out[i] = ClassModificationEventFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneClassModificationEvent returns the single __ClassModificationEvent matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneClassModificationEvent(svc *wmi.Service, where string) (*ClassModificationEvent, error) {
+	out, err := QueryClassModificationEvent(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryClassOperationEvent runs the WQL query against the class and decodes each
-// instance into a ClassOperationEvent. Pass the WHERE clause (or "" for all).
+// instance into a ClassOperationEvent. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryClassOperationEvent(svc *wmi.Service, where string) ([]ClassOperationEvent, error) {
 	q := "SELECT * FROM __ClassOperationEvent"
 	if where != "" {
@@ -640,17 +738,27 @@ func QueryClassOperationEvent(svc *wmi.Service, where string) ([]ClassOperationE
 	}
 	out := make([]ClassOperationEvent, len(rows))
 	for i, row := range rows {
-		out[i].SECURITYDESCRIPTOR = wmi.AsUint8Slice(row["SECURITY_DESCRIPTOR"])
-		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
-		if v, ok := row["TargetClass"].(wmi.Row); ok {
-			out[i].TargetClass = v
-		}
+		out[i] = ClassOperationEventFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneClassOperationEvent returns the single __ClassOperationEvent matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneClassOperationEvent(svc *wmi.Service, where string) (*ClassOperationEvent, error) {
+	out, err := QueryClassOperationEvent(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryClassProviderRegistration runs the WQL query against the class and decodes each
-// instance into a ClassProviderRegistration. Pass the WHERE clause (or "" for all).
+// instance into a ClassProviderRegistration. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryClassProviderRegistration(svc *wmi.Service, where string) ([]ClassProviderRegistration, error) {
 	q := "SELECT * FROM __ClassProviderRegistration"
 	if where != "" {
@@ -662,30 +770,14 @@ func QueryClassProviderRegistration(svc *wmi.Service, where string) ([]ClassProv
 	}
 	out := make([]ClassProviderRegistration, len(rows))
 	for i, row := range rows {
-		out[i].CacheRefreshInterval = wmi.AsString(row["CacheRefreshInterval"])
-		out[i].InteractionType = wmi.AsInt32(row["InteractionType"])
-		out[i].PerUserSchema = wmi.AsBool(row["PerUserSchema"])
-		out[i].QuerySupportLevels = wmi.AsStringSlice(row["QuerySupportLevels"])
-		out[i].ReSynchroniseOnNamespaceOpen = wmi.AsBool(row["ReSynchroniseOnNamespaceOpen"])
-		out[i].ReferencedSetQueries = wmi.AsStringSlice(row["ReferencedSetQueries"])
-		out[i].ResultSetQueries = wmi.AsStringSlice(row["ResultSetQueries"])
-		out[i].SupportsBatching = wmi.AsBool(row["SupportsBatching"])
-		out[i].SupportsDelete = wmi.AsBool(row["SupportsDelete"])
-		out[i].SupportsEnumeration = wmi.AsBool(row["SupportsEnumeration"])
-		out[i].SupportsGet = wmi.AsBool(row["SupportsGet"])
-		out[i].SupportsPut = wmi.AsBool(row["SupportsPut"])
-		out[i].SupportsTransactions = wmi.AsBool(row["SupportsTransactions"])
-		out[i].UnsupportedQueries = wmi.AsStringSlice(row["UnsupportedQueries"])
-		out[i].Version = wmi.AsUint32(row["Version"])
-		out[i].Provider = wmi.AsString(row["provider"])
+		out[i] = ClassProviderRegistrationFromRow(row)
 	}
 	return out, nil
 }
 
-// GetClassProviderRegistration returns the __ClassProviderRegistration instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetClassProviderRegistration(svc *wmi.Service, provider string) (*ClassProviderRegistration, error) {
-	where := "provider = " + wmi.WQLValue(provider)
+// QueryOneClassProviderRegistration returns the single __ClassProviderRegistration matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneClassProviderRegistration(svc *wmi.Service, where string) (*ClassProviderRegistration, error) {
 	out, err := QueryClassProviderRegistration(svc, where)
 	if err != nil {
 		return nil, err
@@ -696,8 +788,16 @@ func GetClassProviderRegistration(svc *wmi.Service, provider string) (*ClassProv
 	return &out[0], nil
 }
 
+// GetClassProviderRegistration returns the __ClassProviderRegistration instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetClassProviderRegistration(svc *wmi.Service, provider string) (*ClassProviderRegistration, error) {
+	where := "provider = " + wmi.WQLValue(provider)
+	return QueryOneClassProviderRegistration(svc, where)
+}
+
 // QueryConsumerFailureEvent runs the WQL query against the class and decodes each
-// instance into a ConsumerFailureEvent. Pass the WHERE clause (or "" for all).
+// instance into a ConsumerFailureEvent. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryConsumerFailureEvent(svc *wmi.Service, where string) ([]ConsumerFailureEvent, error) {
 	q := "SELECT * FROM __ConsumerFailureEvent"
 	if where != "" {
@@ -709,23 +809,27 @@ func QueryConsumerFailureEvent(svc *wmi.Service, where string) ([]ConsumerFailur
 	}
 	out := make([]ConsumerFailureEvent, len(rows))
 	for i, row := range rows {
-		out[i].ErrorCode = wmi.AsUint32(row["ErrorCode"])
-		out[i].ErrorDescription = wmi.AsString(row["ErrorDescription"])
-		if v, ok := row["ErrorObject"].(wmi.Row); ok {
-			out[i].ErrorObject = v
-		}
-		if v, ok := row["Event"].(wmi.Row); ok {
-			out[i].Event = v
-		}
-		out[i].IntendedConsumer = wmi.AsString(row["IntendedConsumer"])
-		out[i].SECURITYDESCRIPTOR = wmi.AsUint8Slice(row["SECURITY_DESCRIPTOR"])
-		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
+		out[i] = ConsumerFailureEventFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneConsumerFailureEvent returns the single __ConsumerFailureEvent matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneConsumerFailureEvent(svc *wmi.Service, where string) (*ConsumerFailureEvent, error) {
+	out, err := QueryConsumerFailureEvent(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryEvent runs the WQL query against the class and decodes each
-// instance into a Event. Pass the WHERE clause (or "" for all).
+// instance into a Event. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryEvent(svc *wmi.Service, where string) ([]Event, error) {
 	q := "SELECT * FROM __Event"
 	if where != "" {
@@ -737,14 +841,27 @@ func QueryEvent(svc *wmi.Service, where string) ([]Event, error) {
 	}
 	out := make([]Event, len(rows))
 	for i, row := range rows {
-		out[i].SECURITYDESCRIPTOR = wmi.AsUint8Slice(row["SECURITY_DESCRIPTOR"])
-		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
+		out[i] = EventFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneEvent returns the single __Event matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneEvent(svc *wmi.Service, where string) (*Event, error) {
+	out, err := QueryEvent(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryEventConsumer runs the WQL query against the class and decodes each
-// instance into a EventConsumer. Pass the WHERE clause (or "" for all).
+// instance into a EventConsumer. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryEventConsumer(svc *wmi.Service, where string) ([]EventConsumer, error) {
 	q := "SELECT * FROM __EventConsumer"
 	if where != "" {
@@ -756,15 +873,27 @@ func QueryEventConsumer(svc *wmi.Service, where string) ([]EventConsumer, error)
 	}
 	out := make([]EventConsumer, len(rows))
 	for i, row := range rows {
-		out[i].CreatorSID = wmi.AsUint8Slice(row["CreatorSID"])
-		out[i].MachineName = wmi.AsString(row["MachineName"])
-		out[i].MaximumQueueSize = wmi.AsUint32(row["MaximumQueueSize"])
+		out[i] = EventConsumerFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneEventConsumer returns the single __EventConsumer matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneEventConsumer(svc *wmi.Service, where string) (*EventConsumer, error) {
+	out, err := QueryEventConsumer(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryEventConsumerProviderRegistration runs the WQL query against the class and decodes each
-// instance into a EventConsumerProviderRegistration. Pass the WHERE clause (or "" for all).
+// instance into a EventConsumerProviderRegistration. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryEventConsumerProviderRegistration(svc *wmi.Service, where string) ([]EventConsumerProviderRegistration, error) {
 	q := "SELECT * FROM __EventConsumerProviderRegistration"
 	if where != "" {
@@ -776,16 +905,14 @@ func QueryEventConsumerProviderRegistration(svc *wmi.Service, where string) ([]E
 	}
 	out := make([]EventConsumerProviderRegistration, len(rows))
 	for i, row := range rows {
-		out[i].ConsumerClassNames = wmi.AsStringSlice(row["ConsumerClassNames"])
-		out[i].Provider = wmi.AsString(row["provider"])
+		out[i] = EventConsumerProviderRegistrationFromRow(row)
 	}
 	return out, nil
 }
 
-// GetEventConsumerProviderRegistration returns the __EventConsumerProviderRegistration instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetEventConsumerProviderRegistration(svc *wmi.Service, provider string) (*EventConsumerProviderRegistration, error) {
-	where := "provider = " + wmi.WQLValue(provider)
+// QueryOneEventConsumerProviderRegistration returns the single __EventConsumerProviderRegistration matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneEventConsumerProviderRegistration(svc *wmi.Service, where string) (*EventConsumerProviderRegistration, error) {
 	out, err := QueryEventConsumerProviderRegistration(svc, where)
 	if err != nil {
 		return nil, err
@@ -796,8 +923,16 @@ func GetEventConsumerProviderRegistration(svc *wmi.Service, provider string) (*E
 	return &out[0], nil
 }
 
+// GetEventConsumerProviderRegistration returns the __EventConsumerProviderRegistration instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetEventConsumerProviderRegistration(svc *wmi.Service, provider string) (*EventConsumerProviderRegistration, error) {
+	where := "provider = " + wmi.WQLValue(provider)
+	return QueryOneEventConsumerProviderRegistration(svc, where)
+}
+
 // QueryEventDroppedEvent runs the WQL query against the class and decodes each
-// instance into a EventDroppedEvent. Pass the WHERE clause (or "" for all).
+// instance into a EventDroppedEvent. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryEventDroppedEvent(svc *wmi.Service, where string) ([]EventDroppedEvent, error) {
 	q := "SELECT * FROM __EventDroppedEvent"
 	if where != "" {
@@ -809,18 +944,27 @@ func QueryEventDroppedEvent(svc *wmi.Service, where string) ([]EventDroppedEvent
 	}
 	out := make([]EventDroppedEvent, len(rows))
 	for i, row := range rows {
-		if v, ok := row["Event"].(wmi.Row); ok {
-			out[i].Event = v
-		}
-		out[i].IntendedConsumer = wmi.AsString(row["IntendedConsumer"])
-		out[i].SECURITYDESCRIPTOR = wmi.AsUint8Slice(row["SECURITY_DESCRIPTOR"])
-		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
+		out[i] = EventDroppedEventFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneEventDroppedEvent returns the single __EventDroppedEvent matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneEventDroppedEvent(svc *wmi.Service, where string) (*EventDroppedEvent, error) {
+	out, err := QueryEventDroppedEvent(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryEventFilter runs the WQL query against the class and decodes each
-// instance into a EventFilter. Pass the WHERE clause (or "" for all).
+// instance into a EventFilter. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryEventFilter(svc *wmi.Service, where string) ([]EventFilter, error) {
 	q := "SELECT * FROM __EventFilter"
 	if where != "" {
@@ -832,20 +976,14 @@ func QueryEventFilter(svc *wmi.Service, where string) ([]EventFilter, error) {
 	}
 	out := make([]EventFilter, len(rows))
 	for i, row := range rows {
-		out[i].CreatorSID = wmi.AsUint8Slice(row["CreatorSID"])
-		out[i].EventAccess = wmi.AsString(row["EventAccess"])
-		out[i].EventNamespace = wmi.AsString(row["EventNamespace"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].Query = wmi.AsString(row["Query"])
-		out[i].QueryLanguage = wmi.AsString(row["QueryLanguage"])
+		out[i] = EventFilterFromRow(row)
 	}
 	return out, nil
 }
 
-// GetEventFilter returns the __EventFilter instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetEventFilter(svc *wmi.Service, name string) (*EventFilter, error) {
-	where := "Name = " + wmi.WQLValue(name)
+// QueryOneEventFilter returns the single __EventFilter matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneEventFilter(svc *wmi.Service, where string) (*EventFilter, error) {
 	out, err := QueryEventFilter(svc, where)
 	if err != nil {
 		return nil, err
@@ -856,8 +994,16 @@ func GetEventFilter(svc *wmi.Service, name string) (*EventFilter, error) {
 	return &out[0], nil
 }
 
+// GetEventFilter returns the __EventFilter instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetEventFilter(svc *wmi.Service, name string) (*EventFilter, error) {
+	where := "Name = " + wmi.WQLValue(name)
+	return QueryOneEventFilter(svc, where)
+}
+
 // QueryEventGenerator runs the WQL query against the class and decodes each
-// instance into a EventGenerator. Pass the WHERE clause (or "" for all).
+// instance into a EventGenerator. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryEventGenerator(svc *wmi.Service, where string) ([]EventGenerator, error) {
 	q := "SELECT * FROM __EventGenerator"
 	if where != "" {
@@ -868,11 +1014,28 @@ func QueryEventGenerator(svc *wmi.Service, where string) ([]EventGenerator, erro
 		return nil, err
 	}
 	out := make([]EventGenerator, len(rows))
+	for i, row := range rows {
+		out[i] = EventGeneratorFromRow(row)
+	}
 	return out, nil
 }
 
+// QueryOneEventGenerator returns the single __EventGenerator matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneEventGenerator(svc *wmi.Service, where string) (*EventGenerator, error) {
+	out, err := QueryEventGenerator(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryEventProviderRegistration runs the WQL query against the class and decodes each
-// instance into a EventProviderRegistration. Pass the WHERE clause (or "" for all).
+// instance into a EventProviderRegistration. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryEventProviderRegistration(svc *wmi.Service, where string) ([]EventProviderRegistration, error) {
 	q := "SELECT * FROM __EventProviderRegistration"
 	if where != "" {
@@ -884,16 +1047,14 @@ func QueryEventProviderRegistration(svc *wmi.Service, where string) ([]EventProv
 	}
 	out := make([]EventProviderRegistration, len(rows))
 	for i, row := range rows {
-		out[i].EventQueryList = wmi.AsStringSlice(row["EventQueryList"])
-		out[i].Provider = wmi.AsString(row["provider"])
+		out[i] = EventProviderRegistrationFromRow(row)
 	}
 	return out, nil
 }
 
-// GetEventProviderRegistration returns the __EventProviderRegistration instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetEventProviderRegistration(svc *wmi.Service, provider string) (*EventProviderRegistration, error) {
-	where := "provider = " + wmi.WQLValue(provider)
+// QueryOneEventProviderRegistration returns the single __EventProviderRegistration matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneEventProviderRegistration(svc *wmi.Service, where string) (*EventProviderRegistration, error) {
 	out, err := QueryEventProviderRegistration(svc, where)
 	if err != nil {
 		return nil, err
@@ -904,8 +1065,16 @@ func GetEventProviderRegistration(svc *wmi.Service, provider string) (*EventProv
 	return &out[0], nil
 }
 
+// GetEventProviderRegistration returns the __EventProviderRegistration instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetEventProviderRegistration(svc *wmi.Service, provider string) (*EventProviderRegistration, error) {
+	where := "provider = " + wmi.WQLValue(provider)
+	return QueryOneEventProviderRegistration(svc, where)
+}
+
 // QueryEventQueueOverflowEvent runs the WQL query against the class and decodes each
-// instance into a EventQueueOverflowEvent. Pass the WHERE clause (or "" for all).
+// instance into a EventQueueOverflowEvent. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryEventQueueOverflowEvent(svc *wmi.Service, where string) ([]EventQueueOverflowEvent, error) {
 	q := "SELECT * FROM __EventQueueOverflowEvent"
 	if where != "" {
@@ -917,19 +1086,27 @@ func QueryEventQueueOverflowEvent(svc *wmi.Service, where string) ([]EventQueueO
 	}
 	out := make([]EventQueueOverflowEvent, len(rows))
 	for i, row := range rows {
-		out[i].CurrentQueueSize = wmi.AsUint32(row["CurrentQueueSize"])
-		if v, ok := row["Event"].(wmi.Row); ok {
-			out[i].Event = v
-		}
-		out[i].IntendedConsumer = wmi.AsString(row["IntendedConsumer"])
-		out[i].SECURITYDESCRIPTOR = wmi.AsUint8Slice(row["SECURITY_DESCRIPTOR"])
-		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
+		out[i] = EventQueueOverflowEventFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneEventQueueOverflowEvent returns the single __EventQueueOverflowEvent matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneEventQueueOverflowEvent(svc *wmi.Service, where string) (*EventQueueOverflowEvent, error) {
+	out, err := QueryEventQueueOverflowEvent(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryExtendedStatus runs the WQL query against the class and decodes each
-// instance into a ExtendedStatus. Pass the WHERE clause (or "" for all).
+// instance into a ExtendedStatus. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryExtendedStatus(svc *wmi.Service, where string) ([]ExtendedStatus, error) {
 	q := "SELECT * FROM __ExtendedStatus"
 	if where != "" {
@@ -941,17 +1118,27 @@ func QueryExtendedStatus(svc *wmi.Service, where string) ([]ExtendedStatus, erro
 	}
 	out := make([]ExtendedStatus, len(rows))
 	for i, row := range rows {
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].Operation = wmi.AsString(row["Operation"])
-		out[i].ParameterInfo = wmi.AsString(row["ParameterInfo"])
-		out[i].ProviderName = wmi.AsString(row["ProviderName"])
-		out[i].StatusCode = wmi.AsUint32(row["StatusCode"])
+		out[i] = ExtendedStatusFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneExtendedStatus returns the single __ExtendedStatus matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneExtendedStatus(svc *wmi.Service, where string) (*ExtendedStatus, error) {
+	out, err := QueryExtendedStatus(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryExtrinsicEvent runs the WQL query against the class and decodes each
-// instance into a ExtrinsicEvent. Pass the WHERE clause (or "" for all).
+// instance into a ExtrinsicEvent. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryExtrinsicEvent(svc *wmi.Service, where string) ([]ExtrinsicEvent, error) {
 	q := "SELECT * FROM __ExtrinsicEvent"
 	if where != "" {
@@ -963,14 +1150,27 @@ func QueryExtrinsicEvent(svc *wmi.Service, where string) ([]ExtrinsicEvent, erro
 	}
 	out := make([]ExtrinsicEvent, len(rows))
 	for i, row := range rows {
-		out[i].SECURITYDESCRIPTOR = wmi.AsUint8Slice(row["SECURITY_DESCRIPTOR"])
-		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
+		out[i] = ExtrinsicEventFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneExtrinsicEvent returns the single __ExtrinsicEvent matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneExtrinsicEvent(svc *wmi.Service, where string) (*ExtrinsicEvent, error) {
+	out, err := QueryExtrinsicEvent(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryFilterToConsumerBinding runs the WQL query against the class and decodes each
-// instance into a FilterToConsumerBinding. Pass the WHERE clause (or "" for all).
+// instance into a FilterToConsumerBinding. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryFilterToConsumerBinding(svc *wmi.Service, where string) ([]FilterToConsumerBinding, error) {
 	q := "SELECT * FROM __FilterToConsumerBinding"
 	if where != "" {
@@ -982,22 +1182,14 @@ func QueryFilterToConsumerBinding(svc *wmi.Service, where string) ([]FilterToCon
 	}
 	out := make([]FilterToConsumerBinding, len(rows))
 	for i, row := range rows {
-		out[i].Consumer = wmi.AsString(row["Consumer"])
-		out[i].CreatorSID = wmi.AsUint8Slice(row["CreatorSID"])
-		out[i].DeliverSynchronously = wmi.AsBool(row["DeliverSynchronously"])
-		out[i].DeliveryQoS = wmi.AsUint32(row["DeliveryQoS"])
-		out[i].Filter = wmi.AsString(row["Filter"])
-		out[i].MaintainSecurityContext = wmi.AsBool(row["MaintainSecurityContext"])
-		out[i].SlowDownProviders = wmi.AsBool(row["SlowDownProviders"])
+		out[i] = FilterToConsumerBindingFromRow(row)
 	}
 	return out, nil
 }
 
-// GetFilterToConsumerBinding returns the __FilterToConsumerBinding instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetFilterToConsumerBinding(svc *wmi.Service, consumer string, filter string) (*FilterToConsumerBinding, error) {
-	where := "Consumer = " + wmi.WQLValue(consumer) +
-		" AND " + "Filter = " + wmi.WQLValue(filter)
+// QueryOneFilterToConsumerBinding returns the single __FilterToConsumerBinding matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneFilterToConsumerBinding(svc *wmi.Service, where string) (*FilterToConsumerBinding, error) {
 	out, err := QueryFilterToConsumerBinding(svc, where)
 	if err != nil {
 		return nil, err
@@ -1008,8 +1200,17 @@ func GetFilterToConsumerBinding(svc *wmi.Service, consumer string, filter string
 	return &out[0], nil
 }
 
+// GetFilterToConsumerBinding returns the __FilterToConsumerBinding instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetFilterToConsumerBinding(svc *wmi.Service, consumer string, filter string) (*FilterToConsumerBinding, error) {
+	where := "Consumer = " + wmi.WQLValue(consumer) +
+		" AND " + "Filter = " + wmi.WQLValue(filter)
+	return QueryOneFilterToConsumerBinding(svc, where)
+}
+
 // QueryIndicationRelated runs the WQL query against the class and decodes each
-// instance into a IndicationRelated. Pass the WHERE clause (or "" for all).
+// instance into a IndicationRelated. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryIndicationRelated(svc *wmi.Service, where string) ([]IndicationRelated, error) {
 	q := "SELECT * FROM __IndicationRelated"
 	if where != "" {
@@ -1020,11 +1221,28 @@ func QueryIndicationRelated(svc *wmi.Service, where string) ([]IndicationRelated
 		return nil, err
 	}
 	out := make([]IndicationRelated, len(rows))
+	for i, row := range rows {
+		out[i] = IndicationRelatedFromRow(row)
+	}
 	return out, nil
 }
 
+// QueryOneIndicationRelated returns the single __IndicationRelated matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneIndicationRelated(svc *wmi.Service, where string) (*IndicationRelated, error) {
+	out, err := QueryIndicationRelated(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryInstanceCreationEvent runs the WQL query against the class and decodes each
-// instance into a InstanceCreationEvent. Pass the WHERE clause (or "" for all).
+// instance into a InstanceCreationEvent. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryInstanceCreationEvent(svc *wmi.Service, where string) ([]InstanceCreationEvent, error) {
 	q := "SELECT * FROM __InstanceCreationEvent"
 	if where != "" {
@@ -1036,17 +1254,27 @@ func QueryInstanceCreationEvent(svc *wmi.Service, where string) ([]InstanceCreat
 	}
 	out := make([]InstanceCreationEvent, len(rows))
 	for i, row := range rows {
-		out[i].SECURITYDESCRIPTOR = wmi.AsUint8Slice(row["SECURITY_DESCRIPTOR"])
-		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
-		if v, ok := row["TargetInstance"].(wmi.Row); ok {
-			out[i].TargetInstance = v
-		}
+		out[i] = InstanceCreationEventFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneInstanceCreationEvent returns the single __InstanceCreationEvent matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneInstanceCreationEvent(svc *wmi.Service, where string) (*InstanceCreationEvent, error) {
+	out, err := QueryInstanceCreationEvent(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryInstanceDeletionEvent runs the WQL query against the class and decodes each
-// instance into a InstanceDeletionEvent. Pass the WHERE clause (or "" for all).
+// instance into a InstanceDeletionEvent. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryInstanceDeletionEvent(svc *wmi.Service, where string) ([]InstanceDeletionEvent, error) {
 	q := "SELECT * FROM __InstanceDeletionEvent"
 	if where != "" {
@@ -1058,17 +1286,27 @@ func QueryInstanceDeletionEvent(svc *wmi.Service, where string) ([]InstanceDelet
 	}
 	out := make([]InstanceDeletionEvent, len(rows))
 	for i, row := range rows {
-		out[i].SECURITYDESCRIPTOR = wmi.AsUint8Slice(row["SECURITY_DESCRIPTOR"])
-		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
-		if v, ok := row["TargetInstance"].(wmi.Row); ok {
-			out[i].TargetInstance = v
-		}
+		out[i] = InstanceDeletionEventFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneInstanceDeletionEvent returns the single __InstanceDeletionEvent matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneInstanceDeletionEvent(svc *wmi.Service, where string) (*InstanceDeletionEvent, error) {
+	out, err := QueryInstanceDeletionEvent(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryInstanceModificationEvent runs the WQL query against the class and decodes each
-// instance into a InstanceModificationEvent. Pass the WHERE clause (or "" for all).
+// instance into a InstanceModificationEvent. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryInstanceModificationEvent(svc *wmi.Service, where string) ([]InstanceModificationEvent, error) {
 	q := "SELECT * FROM __InstanceModificationEvent"
 	if where != "" {
@@ -1080,20 +1318,27 @@ func QueryInstanceModificationEvent(svc *wmi.Service, where string) ([]InstanceM
 	}
 	out := make([]InstanceModificationEvent, len(rows))
 	for i, row := range rows {
-		if v, ok := row["PreviousInstance"].(wmi.Row); ok {
-			out[i].PreviousInstance = v
-		}
-		out[i].SECURITYDESCRIPTOR = wmi.AsUint8Slice(row["SECURITY_DESCRIPTOR"])
-		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
-		if v, ok := row["TargetInstance"].(wmi.Row); ok {
-			out[i].TargetInstance = v
-		}
+		out[i] = InstanceModificationEventFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneInstanceModificationEvent returns the single __InstanceModificationEvent matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneInstanceModificationEvent(svc *wmi.Service, where string) (*InstanceModificationEvent, error) {
+	out, err := QueryInstanceModificationEvent(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryInstanceOperationEvent runs the WQL query against the class and decodes each
-// instance into a InstanceOperationEvent. Pass the WHERE clause (or "" for all).
+// instance into a InstanceOperationEvent. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryInstanceOperationEvent(svc *wmi.Service, where string) ([]InstanceOperationEvent, error) {
 	q := "SELECT * FROM __InstanceOperationEvent"
 	if where != "" {
@@ -1105,17 +1350,27 @@ func QueryInstanceOperationEvent(svc *wmi.Service, where string) ([]InstanceOper
 	}
 	out := make([]InstanceOperationEvent, len(rows))
 	for i, row := range rows {
-		out[i].SECURITYDESCRIPTOR = wmi.AsUint8Slice(row["SECURITY_DESCRIPTOR"])
-		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
-		if v, ok := row["TargetInstance"].(wmi.Row); ok {
-			out[i].TargetInstance = v
-		}
+		out[i] = InstanceOperationEventFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneInstanceOperationEvent returns the single __InstanceOperationEvent matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneInstanceOperationEvent(svc *wmi.Service, where string) (*InstanceOperationEvent, error) {
+	out, err := QueryInstanceOperationEvent(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryInstanceProviderRegistration runs the WQL query against the class and decodes each
-// instance into a InstanceProviderRegistration. Pass the WHERE clause (or "" for all).
+// instance into a InstanceProviderRegistration. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryInstanceProviderRegistration(svc *wmi.Service, where string) ([]InstanceProviderRegistration, error) {
 	q := "SELECT * FROM __InstanceProviderRegistration"
 	if where != "" {
@@ -1127,23 +1382,14 @@ func QueryInstanceProviderRegistration(svc *wmi.Service, where string) ([]Instan
 	}
 	out := make([]InstanceProviderRegistration, len(rows))
 	for i, row := range rows {
-		out[i].InteractionType = wmi.AsInt32(row["InteractionType"])
-		out[i].QuerySupportLevels = wmi.AsStringSlice(row["QuerySupportLevels"])
-		out[i].SupportsBatching = wmi.AsBool(row["SupportsBatching"])
-		out[i].SupportsDelete = wmi.AsBool(row["SupportsDelete"])
-		out[i].SupportsEnumeration = wmi.AsBool(row["SupportsEnumeration"])
-		out[i].SupportsGet = wmi.AsBool(row["SupportsGet"])
-		out[i].SupportsPut = wmi.AsBool(row["SupportsPut"])
-		out[i].SupportsTransactions = wmi.AsBool(row["SupportsTransactions"])
-		out[i].Provider = wmi.AsString(row["provider"])
+		out[i] = InstanceProviderRegistrationFromRow(row)
 	}
 	return out, nil
 }
 
-// GetInstanceProviderRegistration returns the __InstanceProviderRegistration instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetInstanceProviderRegistration(svc *wmi.Service, provider string) (*InstanceProviderRegistration, error) {
-	where := "provider = " + wmi.WQLValue(provider)
+// QueryOneInstanceProviderRegistration returns the single __InstanceProviderRegistration matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneInstanceProviderRegistration(svc *wmi.Service, where string) (*InstanceProviderRegistration, error) {
 	out, err := QueryInstanceProviderRegistration(svc, where)
 	if err != nil {
 		return nil, err
@@ -1154,8 +1400,16 @@ func GetInstanceProviderRegistration(svc *wmi.Service, provider string) (*Instan
 	return &out[0], nil
 }
 
+// GetInstanceProviderRegistration returns the __InstanceProviderRegistration instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetInstanceProviderRegistration(svc *wmi.Service, provider string) (*InstanceProviderRegistration, error) {
+	where := "provider = " + wmi.WQLValue(provider)
+	return QueryOneInstanceProviderRegistration(svc, where)
+}
+
 // QueryIntervalTimerInstruction runs the WQL query against the class and decodes each
-// instance into a IntervalTimerInstruction. Pass the WHERE clause (or "" for all).
+// instance into a IntervalTimerInstruction. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryIntervalTimerInstruction(svc *wmi.Service, where string) ([]IntervalTimerInstruction, error) {
 	q := "SELECT * FROM __IntervalTimerInstruction"
 	if where != "" {
@@ -1167,17 +1421,14 @@ func QueryIntervalTimerInstruction(svc *wmi.Service, where string) ([]IntervalTi
 	}
 	out := make([]IntervalTimerInstruction, len(rows))
 	for i, row := range rows {
-		out[i].IntervalBetweenEvents = wmi.AsUint32(row["IntervalBetweenEvents"])
-		out[i].SkipIfPassed = wmi.AsBool(row["SkipIfPassed"])
-		out[i].TimerId = wmi.AsString(row["TimerId"])
+		out[i] = IntervalTimerInstructionFromRow(row)
 	}
 	return out, nil
 }
 
-// GetIntervalTimerInstruction returns the __IntervalTimerInstruction instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetIntervalTimerInstruction(svc *wmi.Service, timerId string) (*IntervalTimerInstruction, error) {
-	where := "TimerId = " + wmi.WQLValue(timerId)
+// QueryOneIntervalTimerInstruction returns the single __IntervalTimerInstruction matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneIntervalTimerInstruction(svc *wmi.Service, where string) (*IntervalTimerInstruction, error) {
 	out, err := QueryIntervalTimerInstruction(svc, where)
 	if err != nil {
 		return nil, err
@@ -1188,8 +1439,16 @@ func GetIntervalTimerInstruction(svc *wmi.Service, timerId string) (*IntervalTim
 	return &out[0], nil
 }
 
+// GetIntervalTimerInstruction returns the __IntervalTimerInstruction instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetIntervalTimerInstruction(svc *wmi.Service, timerId string) (*IntervalTimerInstruction, error) {
+	where := "TimerId = " + wmi.WQLValue(timerId)
+	return QueryOneIntervalTimerInstruction(svc, where)
+}
+
 // QueryMethodInvocationEvent runs the WQL query against the class and decodes each
-// instance into a MethodInvocationEvent. Pass the WHERE clause (or "" for all).
+// instance into a MethodInvocationEvent. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMethodInvocationEvent(svc *wmi.Service, where string) ([]MethodInvocationEvent, error) {
 	q := "SELECT * FROM __MethodInvocationEvent"
 	if where != "" {
@@ -1201,22 +1460,27 @@ func QueryMethodInvocationEvent(svc *wmi.Service, where string) ([]MethodInvocat
 	}
 	out := make([]MethodInvocationEvent, len(rows))
 	for i, row := range rows {
-		out[i].Method = wmi.AsString(row["Method"])
-		if v, ok := row["Parameters"].(wmi.Row); ok {
-			out[i].Parameters = v
-		}
-		out[i].PreCall = wmi.AsBool(row["PreCall"])
-		out[i].SECURITYDESCRIPTOR = wmi.AsUint8Slice(row["SECURITY_DESCRIPTOR"])
-		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
-		if v, ok := row["TargetInstance"].(wmi.Row); ok {
-			out[i].TargetInstance = v
-		}
+		out[i] = MethodInvocationEventFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneMethodInvocationEvent returns the single __MethodInvocationEvent matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMethodInvocationEvent(svc *wmi.Service, where string) (*MethodInvocationEvent, error) {
+	out, err := QueryMethodInvocationEvent(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryMethodProviderRegistration runs the WQL query against the class and decodes each
-// instance into a MethodProviderRegistration. Pass the WHERE clause (or "" for all).
+// instance into a MethodProviderRegistration. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMethodProviderRegistration(svc *wmi.Service, where string) ([]MethodProviderRegistration, error) {
 	q := "SELECT * FROM __MethodProviderRegistration"
 	if where != "" {
@@ -1228,15 +1492,14 @@ func QueryMethodProviderRegistration(svc *wmi.Service, where string) ([]MethodPr
 	}
 	out := make([]MethodProviderRegistration, len(rows))
 	for i, row := range rows {
-		out[i].Provider = wmi.AsString(row["provider"])
+		out[i] = MethodProviderRegistrationFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMethodProviderRegistration returns the __MethodProviderRegistration instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMethodProviderRegistration(svc *wmi.Service, provider string) (*MethodProviderRegistration, error) {
-	where := "provider = " + wmi.WQLValue(provider)
+// QueryOneMethodProviderRegistration returns the single __MethodProviderRegistration matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMethodProviderRegistration(svc *wmi.Service, where string) (*MethodProviderRegistration, error) {
 	out, err := QueryMethodProviderRegistration(svc, where)
 	if err != nil {
 		return nil, err
@@ -1247,8 +1510,16 @@ func GetMethodProviderRegistration(svc *wmi.Service, provider string) (*MethodPr
 	return &out[0], nil
 }
 
+// GetMethodProviderRegistration returns the __MethodProviderRegistration instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMethodProviderRegistration(svc *wmi.Service, provider string) (*MethodProviderRegistration, error) {
+	where := "provider = " + wmi.WQLValue(provider)
+	return QueryOneMethodProviderRegistration(svc, where)
+}
+
 // QueryNAMESPACE runs the WQL query against the class and decodes each
-// instance into a NAMESPACE. Pass the WHERE clause (or "" for all).
+// instance into a NAMESPACE. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryNAMESPACE(svc *wmi.Service, where string) ([]NAMESPACE, error) {
 	q := "SELECT * FROM __NAMESPACE"
 	if where != "" {
@@ -1260,15 +1531,14 @@ func QueryNAMESPACE(svc *wmi.Service, where string) ([]NAMESPACE, error) {
 	}
 	out := make([]NAMESPACE, len(rows))
 	for i, row := range rows {
-		out[i].Name = wmi.AsString(row["Name"])
+		out[i] = NAMESPACEFromRow(row)
 	}
 	return out, nil
 }
 
-// GetNAMESPACE returns the __NAMESPACE instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetNAMESPACE(svc *wmi.Service, name string) (*NAMESPACE, error) {
-	where := "Name = " + wmi.WQLValue(name)
+// QueryOneNAMESPACE returns the single __NAMESPACE matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneNAMESPACE(svc *wmi.Service, where string) (*NAMESPACE, error) {
 	out, err := QueryNAMESPACE(svc, where)
 	if err != nil {
 		return nil, err
@@ -1279,8 +1549,16 @@ func GetNAMESPACE(svc *wmi.Service, name string) (*NAMESPACE, error) {
 	return &out[0], nil
 }
 
+// GetNAMESPACE returns the __NAMESPACE instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetNAMESPACE(svc *wmi.Service, name string) (*NAMESPACE, error) {
+	where := "Name = " + wmi.WQLValue(name)
+	return QueryOneNAMESPACE(svc, where)
+}
+
 // QueryNTLMUser9X runs the WQL query against the class and decodes each
-// instance into a NTLMUser9X. Pass the WHERE clause (or "" for all).
+// instance into a NTLMUser9X. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryNTLMUser9X(svc *wmi.Service, where string) ([]NTLMUser9X, error) {
 	q := "SELECT * FROM __NTLMUser9X"
 	if where != "" {
@@ -1292,17 +1570,27 @@ func QueryNTLMUser9X(svc *wmi.Service, where string) ([]NTLMUser9X, error) {
 	}
 	out := make([]NTLMUser9X, len(rows))
 	for i, row := range rows {
-		out[i].Authority = wmi.AsString(row["Authority"])
-		out[i].Flags = wmi.AsInt32(row["Flags"])
-		out[i].Mask = wmi.AsInt32(row["Mask"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].Type = wmi.AsInt32(row["Type"])
+		out[i] = NTLMUser9XFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneNTLMUser9X returns the single __NTLMUser9X matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneNTLMUser9X(svc *wmi.Service, where string) (*NTLMUser9X, error) {
+	out, err := QueryNTLMUser9X(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryNamespaceCreationEvent runs the WQL query against the class and decodes each
-// instance into a NamespaceCreationEvent. Pass the WHERE clause (or "" for all).
+// instance into a NamespaceCreationEvent. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryNamespaceCreationEvent(svc *wmi.Service, where string) ([]NamespaceCreationEvent, error) {
 	q := "SELECT * FROM __NamespaceCreationEvent"
 	if where != "" {
@@ -1314,17 +1602,27 @@ func QueryNamespaceCreationEvent(svc *wmi.Service, where string) ([]NamespaceCre
 	}
 	out := make([]NamespaceCreationEvent, len(rows))
 	for i, row := range rows {
-		out[i].SECURITYDESCRIPTOR = wmi.AsUint8Slice(row["SECURITY_DESCRIPTOR"])
-		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
-		if v, ok := row["TargetNamespace"].(wmi.Row); ok {
-			out[i].TargetNamespace = v
-		}
+		out[i] = NamespaceCreationEventFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneNamespaceCreationEvent returns the single __NamespaceCreationEvent matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneNamespaceCreationEvent(svc *wmi.Service, where string) (*NamespaceCreationEvent, error) {
+	out, err := QueryNamespaceCreationEvent(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryNamespaceDeletionEvent runs the WQL query against the class and decodes each
-// instance into a NamespaceDeletionEvent. Pass the WHERE clause (or "" for all).
+// instance into a NamespaceDeletionEvent. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryNamespaceDeletionEvent(svc *wmi.Service, where string) ([]NamespaceDeletionEvent, error) {
 	q := "SELECT * FROM __NamespaceDeletionEvent"
 	if where != "" {
@@ -1336,17 +1634,27 @@ func QueryNamespaceDeletionEvent(svc *wmi.Service, where string) ([]NamespaceDel
 	}
 	out := make([]NamespaceDeletionEvent, len(rows))
 	for i, row := range rows {
-		out[i].SECURITYDESCRIPTOR = wmi.AsUint8Slice(row["SECURITY_DESCRIPTOR"])
-		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
-		if v, ok := row["TargetNamespace"].(wmi.Row); ok {
-			out[i].TargetNamespace = v
-		}
+		out[i] = NamespaceDeletionEventFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneNamespaceDeletionEvent returns the single __NamespaceDeletionEvent matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneNamespaceDeletionEvent(svc *wmi.Service, where string) (*NamespaceDeletionEvent, error) {
+	out, err := QueryNamespaceDeletionEvent(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryNamespaceModificationEvent runs the WQL query against the class and decodes each
-// instance into a NamespaceModificationEvent. Pass the WHERE clause (or "" for all).
+// instance into a NamespaceModificationEvent. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryNamespaceModificationEvent(svc *wmi.Service, where string) ([]NamespaceModificationEvent, error) {
 	q := "SELECT * FROM __NamespaceModificationEvent"
 	if where != "" {
@@ -1358,20 +1666,27 @@ func QueryNamespaceModificationEvent(svc *wmi.Service, where string) ([]Namespac
 	}
 	out := make([]NamespaceModificationEvent, len(rows))
 	for i, row := range rows {
-		if v, ok := row["PreviousNamespace"].(wmi.Row); ok {
-			out[i].PreviousNamespace = v
-		}
-		out[i].SECURITYDESCRIPTOR = wmi.AsUint8Slice(row["SECURITY_DESCRIPTOR"])
-		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
-		if v, ok := row["TargetNamespace"].(wmi.Row); ok {
-			out[i].TargetNamespace = v
-		}
+		out[i] = NamespaceModificationEventFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneNamespaceModificationEvent returns the single __NamespaceModificationEvent matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneNamespaceModificationEvent(svc *wmi.Service, where string) (*NamespaceModificationEvent, error) {
+	out, err := QueryNamespaceModificationEvent(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryNamespaceOperationEvent runs the WQL query against the class and decodes each
-// instance into a NamespaceOperationEvent. Pass the WHERE clause (or "" for all).
+// instance into a NamespaceOperationEvent. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryNamespaceOperationEvent(svc *wmi.Service, where string) ([]NamespaceOperationEvent, error) {
 	q := "SELECT * FROM __NamespaceOperationEvent"
 	if where != "" {
@@ -1383,17 +1698,27 @@ func QueryNamespaceOperationEvent(svc *wmi.Service, where string) ([]NamespaceOp
 	}
 	out := make([]NamespaceOperationEvent, len(rows))
 	for i, row := range rows {
-		out[i].SECURITYDESCRIPTOR = wmi.AsUint8Slice(row["SECURITY_DESCRIPTOR"])
-		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
-		if v, ok := row["TargetNamespace"].(wmi.Row); ok {
-			out[i].TargetNamespace = v
-		}
+		out[i] = NamespaceOperationEventFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneNamespaceOperationEvent returns the single __NamespaceOperationEvent matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneNamespaceOperationEvent(svc *wmi.Service, where string) (*NamespaceOperationEvent, error) {
+	out, err := QueryNamespaceOperationEvent(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryNotifyStatus runs the WQL query against the class and decodes each
-// instance into a NotifyStatus. Pass the WHERE clause (or "" for all).
+// instance into a NotifyStatus. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryNotifyStatus(svc *wmi.Service, where string) ([]NotifyStatus, error) {
 	q := "SELECT * FROM __NotifyStatus"
 	if where != "" {
@@ -1405,13 +1730,27 @@ func QueryNotifyStatus(svc *wmi.Service, where string) ([]NotifyStatus, error) {
 	}
 	out := make([]NotifyStatus, len(rows))
 	for i, row := range rows {
-		out[i].StatusCode = wmi.AsUint32(row["StatusCode"])
+		out[i] = NotifyStatusFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneNotifyStatus returns the single __NotifyStatus matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneNotifyStatus(svc *wmi.Service, where string) (*NotifyStatus, error) {
+	out, err := QueryNotifyStatus(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryObjectProviderRegistration runs the WQL query against the class and decodes each
-// instance into a ObjectProviderRegistration. Pass the WHERE clause (or "" for all).
+// instance into a ObjectProviderRegistration. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryObjectProviderRegistration(svc *wmi.Service, where string) ([]ObjectProviderRegistration, error) {
 	q := "SELECT * FROM __ObjectProviderRegistration"
 	if where != "" {
@@ -1423,21 +1762,27 @@ func QueryObjectProviderRegistration(svc *wmi.Service, where string) ([]ObjectPr
 	}
 	out := make([]ObjectProviderRegistration, len(rows))
 	for i, row := range rows {
-		out[i].InteractionType = wmi.AsInt32(row["InteractionType"])
-		out[i].QuerySupportLevels = wmi.AsStringSlice(row["QuerySupportLevels"])
-		out[i].SupportsBatching = wmi.AsBool(row["SupportsBatching"])
-		out[i].SupportsDelete = wmi.AsBool(row["SupportsDelete"])
-		out[i].SupportsEnumeration = wmi.AsBool(row["SupportsEnumeration"])
-		out[i].SupportsGet = wmi.AsBool(row["SupportsGet"])
-		out[i].SupportsPut = wmi.AsBool(row["SupportsPut"])
-		out[i].SupportsTransactions = wmi.AsBool(row["SupportsTransactions"])
-		out[i].Provider = wmi.AsString(row["provider"])
+		out[i] = ObjectProviderRegistrationFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneObjectProviderRegistration returns the single __ObjectProviderRegistration matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneObjectProviderRegistration(svc *wmi.Service, where string) (*ObjectProviderRegistration, error) {
+	out, err := QueryObjectProviderRegistration(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryPARAMETERS runs the WQL query against the class and decodes each
-// instance into a PARAMETERS. Pass the WHERE clause (or "" for all).
+// instance into a PARAMETERS. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryPARAMETERS(svc *wmi.Service, where string) ([]PARAMETERS, error) {
 	q := "SELECT * FROM __PARAMETERS"
 	if where != "" {
@@ -1448,11 +1793,28 @@ func QueryPARAMETERS(svc *wmi.Service, where string) ([]PARAMETERS, error) {
 		return nil, err
 	}
 	out := make([]PARAMETERS, len(rows))
+	for i, row := range rows {
+		out[i] = PARAMETERSFromRow(row)
+	}
 	return out, nil
 }
 
+// QueryOnePARAMETERS returns the single __PARAMETERS matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOnePARAMETERS(svc *wmi.Service, where string) (*PARAMETERS, error) {
+	out, err := QueryPARAMETERS(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryPropertyProviderRegistration runs the WQL query against the class and decodes each
-// instance into a PropertyProviderRegistration. Pass the WHERE clause (or "" for all).
+// instance into a PropertyProviderRegistration. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryPropertyProviderRegistration(svc *wmi.Service, where string) ([]PropertyProviderRegistration, error) {
 	q := "SELECT * FROM __PropertyProviderRegistration"
 	if where != "" {
@@ -1464,17 +1826,14 @@ func QueryPropertyProviderRegistration(svc *wmi.Service, where string) ([]Proper
 	}
 	out := make([]PropertyProviderRegistration, len(rows))
 	for i, row := range rows {
-		out[i].SupportsGet = wmi.AsBool(row["SupportsGet"])
-		out[i].SupportsPut = wmi.AsBool(row["SupportsPut"])
-		out[i].Provider = wmi.AsString(row["provider"])
+		out[i] = PropertyProviderRegistrationFromRow(row)
 	}
 	return out, nil
 }
 
-// GetPropertyProviderRegistration returns the __PropertyProviderRegistration instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetPropertyProviderRegistration(svc *wmi.Service, provider string) (*PropertyProviderRegistration, error) {
-	where := "provider = " + wmi.WQLValue(provider)
+// QueryOnePropertyProviderRegistration returns the single __PropertyProviderRegistration matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOnePropertyProviderRegistration(svc *wmi.Service, where string) (*PropertyProviderRegistration, error) {
 	out, err := QueryPropertyProviderRegistration(svc, where)
 	if err != nil {
 		return nil, err
@@ -1485,8 +1844,16 @@ func GetPropertyProviderRegistration(svc *wmi.Service, provider string) (*Proper
 	return &out[0], nil
 }
 
+// GetPropertyProviderRegistration returns the __PropertyProviderRegistration instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetPropertyProviderRegistration(svc *wmi.Service, provider string) (*PropertyProviderRegistration, error) {
+	where := "provider = " + wmi.WQLValue(provider)
+	return QueryOnePropertyProviderRegistration(svc, where)
+}
+
 // QueryProvider runs the WQL query against the class and decodes each
-// instance into a Provider. Pass the WHERE clause (or "" for all).
+// instance into a Provider. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryProvider(svc *wmi.Service, where string) ([]Provider, error) {
 	q := "SELECT * FROM __Provider"
 	if where != "" {
@@ -1498,15 +1865,14 @@ func QueryProvider(svc *wmi.Service, where string) ([]Provider, error) {
 	}
 	out := make([]Provider, len(rows))
 	for i, row := range rows {
-		out[i].Name = wmi.AsString(row["Name"])
+		out[i] = ProviderFromRow(row)
 	}
 	return out, nil
 }
 
-// GetProvider returns the __Provider instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetProvider(svc *wmi.Service, name string) (*Provider, error) {
-	where := "Name = " + wmi.WQLValue(name)
+// QueryOneProvider returns the single __Provider matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneProvider(svc *wmi.Service, where string) (*Provider, error) {
 	out, err := QueryProvider(svc, where)
 	if err != nil {
 		return nil, err
@@ -1517,8 +1883,16 @@ func GetProvider(svc *wmi.Service, name string) (*Provider, error) {
 	return &out[0], nil
 }
 
+// GetProvider returns the __Provider instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetProvider(svc *wmi.Service, name string) (*Provider, error) {
+	where := "Name = " + wmi.WQLValue(name)
+	return QueryOneProvider(svc, where)
+}
+
 // QueryProviderRegistration runs the WQL query against the class and decodes each
-// instance into a ProviderRegistration. Pass the WHERE clause (or "" for all).
+// instance into a ProviderRegistration. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryProviderRegistration(svc *wmi.Service, where string) ([]ProviderRegistration, error) {
 	q := "SELECT * FROM __ProviderRegistration"
 	if where != "" {
@@ -1530,13 +1904,27 @@ func QueryProviderRegistration(svc *wmi.Service, where string) ([]ProviderRegist
 	}
 	out := make([]ProviderRegistration, len(rows))
 	for i, row := range rows {
-		out[i].Provider = wmi.AsString(row["provider"])
+		out[i] = ProviderRegistrationFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneProviderRegistration returns the single __ProviderRegistration matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneProviderRegistration(svc *wmi.Service, where string) (*ProviderRegistration, error) {
+	out, err := QueryProviderRegistration(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryQOSFailureEvent runs the WQL query against the class and decodes each
-// instance into a QOSFailureEvent. Pass the WHERE clause (or "" for all).
+// instance into a QOSFailureEvent. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryQOSFailureEvent(svc *wmi.Service, where string) ([]QOSFailureEvent, error) {
 	q := "SELECT * FROM __QOSFailureEvent"
 	if where != "" {
@@ -1548,20 +1936,27 @@ func QueryQOSFailureEvent(svc *wmi.Service, where string) ([]QOSFailureEvent, er
 	}
 	out := make([]QOSFailureEvent, len(rows))
 	for i, row := range rows {
-		out[i].ErrorCode = wmi.AsUint32(row["ErrorCode"])
-		out[i].ErrorDescription = wmi.AsString(row["ErrorDescription"])
-		if v, ok := row["Event"].(wmi.Row); ok {
-			out[i].Event = v
-		}
-		out[i].IntendedConsumer = wmi.AsString(row["IntendedConsumer"])
-		out[i].SECURITYDESCRIPTOR = wmi.AsUint8Slice(row["SECURITY_DESCRIPTOR"])
-		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
+		out[i] = QOSFailureEventFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneQOSFailureEvent returns the single __QOSFailureEvent matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneQOSFailureEvent(svc *wmi.Service, where string) (*QOSFailureEvent, error) {
+	out, err := QueryQOSFailureEvent(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QuerySecurityDescriptor runs the WQL query against the class and decodes each
-// instance into a SecurityDescriptor. Pass the WHERE clause (or "" for all).
+// instance into a SecurityDescriptor. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QuerySecurityDescriptor(svc *wmi.Service, where string) ([]SecurityDescriptor, error) {
 	q := "SELECT * FROM __SecurityDescriptor"
 	if where != "" {
@@ -1573,22 +1968,27 @@ func QuerySecurityDescriptor(svc *wmi.Service, where string) ([]SecurityDescript
 	}
 	out := make([]SecurityDescriptor, len(rows))
 	for i, row := range rows {
-		out[i].ControlFlags = wmi.AsUint32(row["ControlFlags"])
-		out[i].DACL = wmi.AsRowSlice(row["DACL"])
-		if v, ok := row["Group"].(wmi.Row); ok {
-			out[i].Group = v
-		}
-		if v, ok := row["Owner"].(wmi.Row); ok {
-			out[i].Owner = v
-		}
-		out[i].SACL = wmi.AsRowSlice(row["SACL"])
-		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
+		out[i] = SecurityDescriptorFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneSecurityDescriptor returns the single __SecurityDescriptor matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneSecurityDescriptor(svc *wmi.Service, where string) (*SecurityDescriptor, error) {
+	out, err := QuerySecurityDescriptor(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QuerySecurityRelatedClass runs the WQL query against the class and decodes each
-// instance into a SecurityRelatedClass. Pass the WHERE clause (or "" for all).
+// instance into a SecurityRelatedClass. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QuerySecurityRelatedClass(svc *wmi.Service, where string) ([]SecurityRelatedClass, error) {
 	q := "SELECT * FROM __SecurityRelatedClass"
 	if where != "" {
@@ -1599,11 +1999,28 @@ func QuerySecurityRelatedClass(svc *wmi.Service, where string) ([]SecurityRelate
 		return nil, err
 	}
 	out := make([]SecurityRelatedClass, len(rows))
+	for i, row := range rows {
+		out[i] = SecurityRelatedClassFromRow(row)
+	}
 	return out, nil
 }
 
+// QueryOneSecurityRelatedClass returns the single __SecurityRelatedClass matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneSecurityRelatedClass(svc *wmi.Service, where string) (*SecurityRelatedClass, error) {
+	out, err := QuerySecurityRelatedClass(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QuerySystemClass runs the WQL query against the class and decodes each
-// instance into a SystemClass. Pass the WHERE clause (or "" for all).
+// instance into a SystemClass. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QuerySystemClass(svc *wmi.Service, where string) ([]SystemClass, error) {
 	q := "SELECT * FROM __SystemClass"
 	if where != "" {
@@ -1614,11 +2031,28 @@ func QuerySystemClass(svc *wmi.Service, where string) ([]SystemClass, error) {
 		return nil, err
 	}
 	out := make([]SystemClass, len(rows))
+	for i, row := range rows {
+		out[i] = SystemClassFromRow(row)
+	}
 	return out, nil
 }
 
+// QueryOneSystemClass returns the single __SystemClass matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneSystemClass(svc *wmi.Service, where string) (*SystemClass, error) {
+	out, err := QuerySystemClass(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QuerySystemEvent runs the WQL query against the class and decodes each
-// instance into a SystemEvent. Pass the WHERE clause (or "" for all).
+// instance into a SystemEvent. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QuerySystemEvent(svc *wmi.Service, where string) ([]SystemEvent, error) {
 	q := "SELECT * FROM __SystemEvent"
 	if where != "" {
@@ -1630,14 +2064,27 @@ func QuerySystemEvent(svc *wmi.Service, where string) ([]SystemEvent, error) {
 	}
 	out := make([]SystemEvent, len(rows))
 	for i, row := range rows {
-		out[i].SECURITYDESCRIPTOR = wmi.AsUint8Slice(row["SECURITY_DESCRIPTOR"])
-		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
+		out[i] = SystemEventFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneSystemEvent returns the single __SystemEvent matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneSystemEvent(svc *wmi.Service, where string) (*SystemEvent, error) {
+	out, err := QuerySystemEvent(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QuerySystemSecurity runs the WQL query against the class and decodes each
-// instance into a SystemSecurity. Pass the WHERE clause (or "" for all).
+// instance into a SystemSecurity. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QuerySystemSecurity(svc *wmi.Service, where string) ([]SystemSecurity, error) {
 	q := "SELECT * FROM __SystemSecurity"
 	if where != "" {
@@ -1648,11 +2095,28 @@ func QuerySystemSecurity(svc *wmi.Service, where string) ([]SystemSecurity, erro
 		return nil, err
 	}
 	out := make([]SystemSecurity, len(rows))
+	for i, row := range rows {
+		out[i] = SystemSecurityFromRow(row)
+	}
 	return out, nil
 }
 
+// QueryOneSystemSecurity returns the single __SystemSecurity matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneSystemSecurity(svc *wmi.Service, where string) (*SystemSecurity, error) {
+	out, err := QuerySystemSecurity(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryTimerEvent runs the WQL query against the class and decodes each
-// instance into a TimerEvent. Pass the WHERE clause (or "" for all).
+// instance into a TimerEvent. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryTimerEvent(svc *wmi.Service, where string) ([]TimerEvent, error) {
 	q := "SELECT * FROM __TimerEvent"
 	if where != "" {
@@ -1664,16 +2128,27 @@ func QueryTimerEvent(svc *wmi.Service, where string) ([]TimerEvent, error) {
 	}
 	out := make([]TimerEvent, len(rows))
 	for i, row := range rows {
-		out[i].NumFirings = wmi.AsUint32(row["NumFirings"])
-		out[i].SECURITYDESCRIPTOR = wmi.AsUint8Slice(row["SECURITY_DESCRIPTOR"])
-		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
-		out[i].TimerId = wmi.AsString(row["TimerId"])
+		out[i] = TimerEventFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneTimerEvent returns the single __TimerEvent matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneTimerEvent(svc *wmi.Service, where string) (*TimerEvent, error) {
+	out, err := QueryTimerEvent(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryTimerInstruction runs the WQL query against the class and decodes each
-// instance into a TimerInstruction. Pass the WHERE clause (or "" for all).
+// instance into a TimerInstruction. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryTimerInstruction(svc *wmi.Service, where string) ([]TimerInstruction, error) {
 	q := "SELECT * FROM __TimerInstruction"
 	if where != "" {
@@ -1685,16 +2160,14 @@ func QueryTimerInstruction(svc *wmi.Service, where string) ([]TimerInstruction, 
 	}
 	out := make([]TimerInstruction, len(rows))
 	for i, row := range rows {
-		out[i].SkipIfPassed = wmi.AsBool(row["SkipIfPassed"])
-		out[i].TimerId = wmi.AsString(row["TimerId"])
+		out[i] = TimerInstructionFromRow(row)
 	}
 	return out, nil
 }
 
-// GetTimerInstruction returns the __TimerInstruction instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetTimerInstruction(svc *wmi.Service, timerId string) (*TimerInstruction, error) {
-	where := "TimerId = " + wmi.WQLValue(timerId)
+// QueryOneTimerInstruction returns the single __TimerInstruction matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneTimerInstruction(svc *wmi.Service, where string) (*TimerInstruction, error) {
 	out, err := QueryTimerInstruction(svc, where)
 	if err != nil {
 		return nil, err
@@ -1705,8 +2178,16 @@ func GetTimerInstruction(svc *wmi.Service, timerId string) (*TimerInstruction, e
 	return &out[0], nil
 }
 
+// GetTimerInstruction returns the __TimerInstruction instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetTimerInstruction(svc *wmi.Service, timerId string) (*TimerInstruction, error) {
+	where := "TimerId = " + wmi.WQLValue(timerId)
+	return QueryOneTimerInstruction(svc, where)
+}
+
 // QueryTimerNextFiring runs the WQL query against the class and decodes each
-// instance into a TimerNextFiring. Pass the WHERE clause (or "" for all).
+// instance into a TimerNextFiring. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryTimerNextFiring(svc *wmi.Service, where string) ([]TimerNextFiring, error) {
 	q := "SELECT * FROM __TimerNextFiring"
 	if where != "" {
@@ -1718,16 +2199,14 @@ func QueryTimerNextFiring(svc *wmi.Service, where string) ([]TimerNextFiring, er
 	}
 	out := make([]TimerNextFiring, len(rows))
 	for i, row := range rows {
-		out[i].NextEvent64BitTime = wmi.AsInt64(row["NextEvent64BitTime"])
-		out[i].TimerId = wmi.AsString(row["TimerId"])
+		out[i] = TimerNextFiringFromRow(row)
 	}
 	return out, nil
 }
 
-// GetTimerNextFiring returns the __TimerNextFiring instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetTimerNextFiring(svc *wmi.Service, timerId string) (*TimerNextFiring, error) {
-	where := "TimerId = " + wmi.WQLValue(timerId)
+// QueryOneTimerNextFiring returns the single __TimerNextFiring matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneTimerNextFiring(svc *wmi.Service, where string) (*TimerNextFiring, error) {
 	out, err := QueryTimerNextFiring(svc, where)
 	if err != nil {
 		return nil, err
@@ -1738,8 +2217,16 @@ func GetTimerNextFiring(svc *wmi.Service, timerId string) (*TimerNextFiring, err
 	return &out[0], nil
 }
 
+// GetTimerNextFiring returns the __TimerNextFiring instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetTimerNextFiring(svc *wmi.Service, timerId string) (*TimerNextFiring, error) {
+	where := "TimerId = " + wmi.WQLValue(timerId)
+	return QueryOneTimerNextFiring(svc, where)
+}
+
 // QueryTrustee runs the WQL query against the class and decodes each
-// instance into a Trustee. Pass the WHERE clause (or "" for all).
+// instance into a Trustee. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryTrustee(svc *wmi.Service, where string) ([]Trustee, error) {
 	q := "SELECT * FROM __Trustee"
 	if where != "" {
@@ -1751,18 +2238,27 @@ func QueryTrustee(svc *wmi.Service, where string) ([]Trustee, error) {
 	}
 	out := make([]Trustee, len(rows))
 	for i, row := range rows {
-		out[i].Domain = wmi.AsString(row["Domain"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].SID = wmi.AsUint8Slice(row["SID"])
-		out[i].SIDString = wmi.AsString(row["SIDString"])
-		out[i].SidLength = wmi.AsUint32(row["SidLength"])
-		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
+		out[i] = TrusteeFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneTrustee returns the single __Trustee matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneTrustee(svc *wmi.Service, where string) (*Trustee, error) {
+	out, err := QueryTrustee(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryWin32Provider runs the WQL query against the class and decodes each
-// instance into a Win32Provider. Pass the WHERE clause (or "" for all).
+// instance into a Win32Provider. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryWin32Provider(svc *wmi.Service, where string) ([]Win32Provider, error) {
 	q := "SELECT * FROM __Win32Provider"
 	if where != "" {
@@ -1774,38 +2270,14 @@ func QueryWin32Provider(svc *wmi.Service, where string) ([]Win32Provider, error)
 	}
 	out := make([]Win32Provider, len(rows))
 	for i, row := range rows {
-		out[i].CLSID = wmi.AsString(row["CLSID"])
-		out[i].ClientLoadableCLSID = wmi.AsString(row["ClientLoadableCLSID"])
-		out[i].Concurrency = wmi.AsInt32(row["Concurrency"])
-		out[i].DefaultMachineName = wmi.AsString(row["DefaultMachineName"])
-		out[i].Enabled = wmi.AsBool(row["Enabled"])
-		out[i].HostingModel = wmi.AsString(row["HostingModel"])
-		out[i].ImpersonationLevel = wmi.AsInt32(row["ImpersonationLevel"])
-		out[i].InitializationReentrancy = wmi.AsInt32(row["InitializationReentrancy"])
-		out[i].InitializationTimeoutInterval = wmi.AsString(row["InitializationTimeoutInterval"])
-		out[i].InitializeAsAdminFirst = wmi.AsBool(row["InitializeAsAdminFirst"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].OperationTimeoutInterval = wmi.AsString(row["OperationTimeoutInterval"])
-		out[i].PerLocaleInitialization = wmi.AsBool(row["PerLocaleInitialization"])
-		out[i].PerUserInitialization = wmi.AsBool(row["PerUserInitialization"])
-		out[i].Pure = wmi.AsBool(row["Pure"])
-		out[i].SecurityDescriptor = wmi.AsString(row["SecurityDescriptor"])
-		out[i].SupportsExplicitShutdown = wmi.AsBool(row["SupportsExplicitShutdown"])
-		out[i].SupportsExtendedStatus = wmi.AsBool(row["SupportsExtendedStatus"])
-		out[i].SupportsQuotas = wmi.AsBool(row["SupportsQuotas"])
-		out[i].SupportsSendStatus = wmi.AsBool(row["SupportsSendStatus"])
-		out[i].SupportsShutdown = wmi.AsBool(row["SupportsShutdown"])
-		out[i].SupportsThrottling = wmi.AsBool(row["SupportsThrottling"])
-		out[i].UnloadTimeout = wmi.AsString(row["UnloadTimeout"])
-		out[i].Version = wmi.AsUint32(row["Version"])
+		out[i] = Win32ProviderFromRow(row)
 	}
 	return out, nil
 }
 
-// GetWin32Provider returns the __Win32Provider instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetWin32Provider(svc *wmi.Service, name string) (*Win32Provider, error) {
-	where := "Name = " + wmi.WQLValue(name)
+// QueryOneWin32Provider returns the single __Win32Provider matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneWin32Provider(svc *wmi.Service, where string) (*Win32Provider, error) {
 	out, err := QueryWin32Provider(svc, where)
 	if err != nil {
 		return nil, err
@@ -1816,8 +2288,16 @@ func GetWin32Provider(svc *wmi.Service, name string) (*Win32Provider, error) {
 	return &out[0], nil
 }
 
+// GetWin32Provider returns the __Win32Provider instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetWin32Provider(svc *wmi.Service, name string) (*Win32Provider, error) {
+	where := "Name = " + wmi.WQLValue(name)
+	return QueryOneWin32Provider(svc, where)
+}
+
 // QueryThisNAMESPACE runs the WQL query against the class and decodes each
-// instance into a ThisNAMESPACE. Pass the WHERE clause (or "" for all).
+// instance into a ThisNAMESPACE. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryThisNAMESPACE(svc *wmi.Service, where string) ([]ThisNAMESPACE, error) {
 	q := "SELECT * FROM __thisNAMESPACE"
 	if where != "" {
@@ -1829,7 +2309,20 @@ func QueryThisNAMESPACE(svc *wmi.Service, where string) ([]ThisNAMESPACE, error)
 	}
 	out := make([]ThisNAMESPACE, len(rows))
 	for i, row := range rows {
-		out[i].SECURITYDESCRIPTOR = wmi.AsUint8Slice(row["SECURITY_DESCRIPTOR"])
+		out[i] = ThisNAMESPACEFromRow(row)
 	}
 	return out, nil
+}
+
+// QueryOneThisNAMESPACE returns the single __thisNAMESPACE matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneThisNAMESPACE(svc *wmi.Service, where string) (*ThisNAMESPACE, error) {
+	out, err := QueryThisNAMESPACE(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }

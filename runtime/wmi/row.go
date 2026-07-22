@@ -20,3 +20,8 @@ func Instance(class string, props map[string]any) Row {
 	maps.Copy(row, props)
 	return row
 }
+
+// Ptr returns a pointer to v — shorthand for the generated method wrappers'
+// optional scalar in-parameters, e.g. wmi.Ptr(uint16(3)). A nil parameter is
+// omitted from the call; a non-nil one is always sent, including zero values.
+func Ptr[T any](v T) *T { return &v }

@@ -11,13 +11,23 @@ type MDMBitLockerRotateRecoveryPasswordsMethodResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MDMBitLockerRotateRecoveryPasswordsMethodResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MDM_BitLocker.RotateRecoveryPasswordsMethod", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MDMBitLockerRotateRecoveryPasswordsMethod invokes MDM_BitLocker.RotateRecoveryPasswordsMethod on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MDMBitLockerRotateRecoveryPasswordsMethod(svc *wmi.Service, objectPath string, param string) (*MDMBitLockerRotateRecoveryPasswordsMethodResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MDMBitLockerRotateRecoveryPasswordsMethod(svc *wmi.Service, objectPath string, param *string) (*MDMBitLockerRotateRecoveryPasswordsMethodResult, error) {
 	in := map[string]any{}
-	if param != "" {
-		in["param"] = param
+	if param != nil {
+		in["param"] = *param
 	}
 	row, err := svc.ExecMethod(objectPath, "RotateRecoveryPasswordsMethod", in)
 	if err != nil {
@@ -33,12 +43,22 @@ type MDMBridgeMgmtTransactionTransactionBeginResult struct {
 	ReturnValue uint32
 }
 
-// MDMBridgeMgmtTransactionTransactionBegin invokes the static MDM_BridgeMgmt_Transaction.TransactionBegin method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MDMBridgeMgmtTransactionTransactionBegin(svc *wmi.Service, requestId string) (*MDMBridgeMgmtTransactionTransactionBeginResult, error) {
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MDMBridgeMgmtTransactionTransactionBeginResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MDM_BridgeMgmt_Transaction.TransactionBegin", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MDMBridgeMgmtTransactionTransactionBegin invokes the static MDM_BridgeMgmt_Transaction.TransactionBegin method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MDMBridgeMgmtTransactionTransactionBegin(svc *wmi.Service, requestId *string) (*MDMBridgeMgmtTransactionTransactionBeginResult, error) {
 	in := map[string]any{}
-	if requestId != "" {
-		in["requestId"] = requestId
+	if requestId != nil {
+		in["requestId"] = *requestId
 	}
 	row, err := svc.ExecMethod("MDM_BridgeMgmt_Transaction", "TransactionBegin", in)
 	if err != nil {
@@ -56,12 +76,22 @@ type MDMBridgeMgmtTransactionTransactionEndResult struct {
 	ReturnValue          uint32
 }
 
-// MDMBridgeMgmtTransactionTransactionEnd invokes the static MDM_BridgeMgmt_Transaction.TransactionEnd method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MDMBridgeMgmtTransactionTransactionEnd(svc *wmi.Service, requestId string) (*MDMBridgeMgmtTransactionTransactionEndResult, error) {
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MDMBridgeMgmtTransactionTransactionEndResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MDM_BridgeMgmt_Transaction.TransactionEnd", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MDMBridgeMgmtTransactionTransactionEnd invokes the static MDM_BridgeMgmt_Transaction.TransactionEnd method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MDMBridgeMgmtTransactionTransactionEnd(svc *wmi.Service, requestId *string) (*MDMBridgeMgmtTransactionTransactionEndResult, error) {
 	in := map[string]any{}
-	if requestId != "" {
-		in["requestId"] = requestId
+	if requestId != nil {
+		in["requestId"] = *requestId
 	}
 	row, err := svc.ExecMethod("MDM_BridgeMgmt_Transaction", "TransactionEnd", in)
 	if err != nil {
@@ -79,9 +109,19 @@ type MDMClientCertificateInstallInstall03EnrollMethodResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MDMClientCertificateInstallInstall03EnrollMethodResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MDM_ClientCertificateInstall_Install03.EnrollMethod", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MDMClientCertificateInstallInstall03EnrollMethod invokes MDM_ClientCertificateInstall_Install03.EnrollMethod on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MDMClientCertificateInstallInstall03EnrollMethod(svc *wmi.Service, objectPath string) (*MDMClientCertificateInstallInstall03EnrollMethodResult, error) {
 	row, err := svc.ExecMethod(objectPath, "EnrollMethod", nil)
 	if err != nil {
@@ -97,13 +137,23 @@ type MDMEnterpriseModernAppManagementAppInstallation0101HostedInstallMethodResul
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MDMEnterpriseModernAppManagementAppInstallation0101HostedInstallMethodResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MDM_EnterpriseModernAppManagement_AppInstallation01_01.HostedInstallMethod", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MDMEnterpriseModernAppManagementAppInstallation0101HostedInstallMethod invokes MDM_EnterpriseModernAppManagement_AppInstallation01_01.HostedInstallMethod on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MDMEnterpriseModernAppManagementAppInstallation0101HostedInstallMethod(svc *wmi.Service, objectPath string, param string) (*MDMEnterpriseModernAppManagementAppInstallation0101HostedInstallMethodResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MDMEnterpriseModernAppManagementAppInstallation0101HostedInstallMethod(svc *wmi.Service, objectPath string, param *string) (*MDMEnterpriseModernAppManagementAppInstallation0101HostedInstallMethodResult, error) {
 	in := map[string]any{}
-	if param != "" {
-		in["param"] = param
+	if param != nil {
+		in["param"] = *param
 	}
 	row, err := svc.ExecMethod(objectPath, "HostedInstallMethod", in)
 	if err != nil {
@@ -119,13 +169,23 @@ type MDMEnterpriseModernAppManagementAppInstallation0101StoreInstallMethodResult
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MDMEnterpriseModernAppManagementAppInstallation0101StoreInstallMethodResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MDM_EnterpriseModernAppManagement_AppInstallation01_01.StoreInstallMethod", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MDMEnterpriseModernAppManagementAppInstallation0101StoreInstallMethod invokes MDM_EnterpriseModernAppManagement_AppInstallation01_01.StoreInstallMethod on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MDMEnterpriseModernAppManagementAppInstallation0101StoreInstallMethod(svc *wmi.Service, objectPath string, param string) (*MDMEnterpriseModernAppManagementAppInstallation0101StoreInstallMethodResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MDMEnterpriseModernAppManagementAppInstallation0101StoreInstallMethod(svc *wmi.Service, objectPath string, param *string) (*MDMEnterpriseModernAppManagementAppInstallation0101StoreInstallMethodResult, error) {
 	in := map[string]any{}
-	if param != "" {
-		in["param"] = param
+	if param != nil {
+		in["param"] = *param
 	}
 	row, err := svc.ExecMethod(objectPath, "StoreInstallMethod", in)
 	if err != nil {
@@ -141,13 +201,23 @@ type MDMEnterpriseModernAppManagementAppManagement01RemovePackageMethodResult st
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MDMEnterpriseModernAppManagementAppManagement01RemovePackageMethodResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MDM_EnterpriseModernAppManagement_AppManagement01.RemovePackageMethod", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MDMEnterpriseModernAppManagementAppManagement01RemovePackageMethod invokes MDM_EnterpriseModernAppManagement_AppManagement01.RemovePackageMethod on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MDMEnterpriseModernAppManagementAppManagement01RemovePackageMethod(svc *wmi.Service, objectPath string, param string) (*MDMEnterpriseModernAppManagementAppManagement01RemovePackageMethodResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MDMEnterpriseModernAppManagementAppManagement01RemovePackageMethod(svc *wmi.Service, objectPath string, param *string) (*MDMEnterpriseModernAppManagementAppManagement01RemovePackageMethodResult, error) {
 	in := map[string]any{}
-	if param != "" {
-		in["param"] = param
+	if param != nil {
+		in["param"] = *param
 	}
 	row, err := svc.ExecMethod(objectPath, "RemovePackageMethod", in)
 	if err != nil {
@@ -163,9 +233,19 @@ type MDMEnterpriseModernAppManagementAppManagement01UpdateScanMethodResult struc
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MDMEnterpriseModernAppManagementAppManagement01UpdateScanMethodResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MDM_EnterpriseModernAppManagement_AppManagement01.UpdateScanMethod", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MDMEnterpriseModernAppManagementAppManagement01UpdateScanMethod invokes MDM_EnterpriseModernAppManagement_AppManagement01.UpdateScanMethod on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MDMEnterpriseModernAppManagementAppManagement01UpdateScanMethod(svc *wmi.Service, objectPath string) (*MDMEnterpriseModernAppManagementAppManagement01UpdateScanMethodResult, error) {
 	row, err := svc.ExecMethod(objectPath, "UpdateScanMethod", nil)
 	if err != nil {
@@ -181,13 +261,23 @@ type MDMEnterpriseModernAppManagementStoreLicenses0201AddLicenseMethodResult str
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MDMEnterpriseModernAppManagementStoreLicenses0201AddLicenseMethodResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MDM_EnterpriseModernAppManagement_StoreLicenses02_01.AddLicenseMethod", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MDMEnterpriseModernAppManagementStoreLicenses0201AddLicenseMethod invokes MDM_EnterpriseModernAppManagement_StoreLicenses02_01.AddLicenseMethod on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MDMEnterpriseModernAppManagementStoreLicenses0201AddLicenseMethod(svc *wmi.Service, objectPath string, param string) (*MDMEnterpriseModernAppManagementStoreLicenses0201AddLicenseMethodResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MDMEnterpriseModernAppManagementStoreLicenses0201AddLicenseMethod(svc *wmi.Service, objectPath string, param *string) (*MDMEnterpriseModernAppManagementStoreLicenses0201AddLicenseMethodResult, error) {
 	in := map[string]any{}
-	if param != "" {
-		in["param"] = param
+	if param != nil {
+		in["param"] = *param
 	}
 	row, err := svc.ExecMethod(objectPath, "AddLicenseMethod", in)
 	if err != nil {
@@ -203,13 +293,23 @@ type MDMEnterpriseModernAppManagementStoreLicenses0201GetLicenseFromStoreMethodR
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MDMEnterpriseModernAppManagementStoreLicenses0201GetLicenseFromStoreMethodResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MDM_EnterpriseModernAppManagement_StoreLicenses02_01.GetLicenseFromStoreMethod", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MDMEnterpriseModernAppManagementStoreLicenses0201GetLicenseFromStoreMethod invokes MDM_EnterpriseModernAppManagement_StoreLicenses02_01.GetLicenseFromStoreMethod on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MDMEnterpriseModernAppManagementStoreLicenses0201GetLicenseFromStoreMethod(svc *wmi.Service, objectPath string, param string) (*MDMEnterpriseModernAppManagementStoreLicenses0201GetLicenseFromStoreMethodResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MDMEnterpriseModernAppManagementStoreLicenses0201GetLicenseFromStoreMethod(svc *wmi.Service, objectPath string, param *string) (*MDMEnterpriseModernAppManagementStoreLicenses0201GetLicenseFromStoreMethodResult, error) {
 	in := map[string]any{}
-	if param != "" {
-		in["param"] = param
+	if param != nil {
+		in["param"] = *param
 	}
 	row, err := svc.ExecMethod(objectPath, "GetLicenseFromStoreMethod", in)
 	if err != nil {
@@ -225,9 +325,19 @@ type MDMHealthAttestationVerifyHealthMethodResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MDMHealthAttestationVerifyHealthMethodResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MDM_HealthAttestation.VerifyHealthMethod", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MDMHealthAttestationVerifyHealthMethod invokes MDM_HealthAttestation.VerifyHealthMethod on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MDMHealthAttestationVerifyHealthMethod(svc *wmi.Service, objectPath string) (*MDMHealthAttestationVerifyHealthMethodResult, error) {
 	row, err := svc.ExecMethod(objectPath, "VerifyHealthMethod", nil)
 	if err != nil {
@@ -243,13 +353,23 @@ type MDMLanguagePackManagementInstall0101StartInstallationMethodResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MDMLanguagePackManagementInstall0101StartInstallationMethodResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MDM_LanguagePackManagement_Install01_01.StartInstallationMethod", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MDMLanguagePackManagementInstall0101StartInstallationMethod invokes MDM_LanguagePackManagement_Install01_01.StartInstallationMethod on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MDMLanguagePackManagementInstall0101StartInstallationMethod(svc *wmi.Service, objectPath string, param string) (*MDMLanguagePackManagementInstall0101StartInstallationMethodResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MDMLanguagePackManagementInstall0101StartInstallationMethod(svc *wmi.Service, objectPath string, param *string) (*MDMLanguagePackManagementInstall0101StartInstallationMethodResult, error) {
 	in := map[string]any{}
-	if param != "" {
-		in["param"] = param
+	if param != nil {
+		in["param"] = *param
 	}
 	row, err := svc.ExecMethod(objectPath, "StartInstallationMethod", in)
 	if err != nil {
@@ -265,9 +385,19 @@ type MDMRebootRebootNowMethodResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MDMRebootRebootNowMethodResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MDM_Reboot.RebootNowMethod", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MDMRebootRebootNowMethod invokes MDM_Reboot.RebootNowMethod on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MDMRebootRebootNowMethod(svc *wmi.Service, objectPath string) (*MDMRebootRebootNowMethodResult, error) {
 	row, err := svc.ExecMethod(objectPath, "RebootNowMethod", nil)
 	if err != nil {
@@ -283,13 +413,23 @@ type MDMRemoteWipeDoWipeCloudMethodResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MDMRemoteWipeDoWipeCloudMethodResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MDM_RemoteWipe.doWipeCloudMethod", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MDMRemoteWipeDoWipeCloudMethod invokes MDM_RemoteWipe.doWipeCloudMethod on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MDMRemoteWipeDoWipeCloudMethod(svc *wmi.Service, objectPath string, param string) (*MDMRemoteWipeDoWipeCloudMethodResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MDMRemoteWipeDoWipeCloudMethod(svc *wmi.Service, objectPath string, param *string) (*MDMRemoteWipeDoWipeCloudMethodResult, error) {
 	in := map[string]any{}
-	if param != "" {
-		in["param"] = param
+	if param != nil {
+		in["param"] = *param
 	}
 	row, err := svc.ExecMethod(objectPath, "doWipeCloudMethod", in)
 	if err != nil {
@@ -305,13 +445,23 @@ type MDMRemoteWipeDoWipeCloudPersistProvisionedDataMethodResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MDMRemoteWipeDoWipeCloudPersistProvisionedDataMethodResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MDM_RemoteWipe.doWipeCloudPersistProvisionedDataMethod", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MDMRemoteWipeDoWipeCloudPersistProvisionedDataMethod invokes MDM_RemoteWipe.doWipeCloudPersistProvisionedDataMethod on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MDMRemoteWipeDoWipeCloudPersistProvisionedDataMethod(svc *wmi.Service, objectPath string, param string) (*MDMRemoteWipeDoWipeCloudPersistProvisionedDataMethodResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MDMRemoteWipeDoWipeCloudPersistProvisionedDataMethod(svc *wmi.Service, objectPath string, param *string) (*MDMRemoteWipeDoWipeCloudPersistProvisionedDataMethodResult, error) {
 	in := map[string]any{}
-	if param != "" {
-		in["param"] = param
+	if param != nil {
+		in["param"] = *param
 	}
 	row, err := svc.ExecMethod(objectPath, "doWipeCloudPersistProvisionedDataMethod", in)
 	if err != nil {
@@ -327,13 +477,23 @@ type MDMRemoteWipeDoWipeCloudPersistUserDataMethodResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MDMRemoteWipeDoWipeCloudPersistUserDataMethodResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MDM_RemoteWipe.doWipeCloudPersistUserDataMethod", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MDMRemoteWipeDoWipeCloudPersistUserDataMethod invokes MDM_RemoteWipe.doWipeCloudPersistUserDataMethod on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MDMRemoteWipeDoWipeCloudPersistUserDataMethod(svc *wmi.Service, objectPath string, param string) (*MDMRemoteWipeDoWipeCloudPersistUserDataMethodResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MDMRemoteWipeDoWipeCloudPersistUserDataMethod(svc *wmi.Service, objectPath string, param *string) (*MDMRemoteWipeDoWipeCloudPersistUserDataMethodResult, error) {
 	in := map[string]any{}
-	if param != "" {
-		in["param"] = param
+	if param != nil {
+		in["param"] = *param
 	}
 	row, err := svc.ExecMethod(objectPath, "doWipeCloudPersistUserDataMethod", in)
 	if err != nil {
@@ -349,13 +509,23 @@ type MDMRemoteWipeDoWipeMethodResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MDMRemoteWipeDoWipeMethodResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MDM_RemoteWipe.doWipeMethod", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MDMRemoteWipeDoWipeMethod invokes MDM_RemoteWipe.doWipeMethod on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MDMRemoteWipeDoWipeMethod(svc *wmi.Service, objectPath string, param string) (*MDMRemoteWipeDoWipeMethodResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MDMRemoteWipeDoWipeMethod(svc *wmi.Service, objectPath string, param *string) (*MDMRemoteWipeDoWipeMethodResult, error) {
 	in := map[string]any{}
-	if param != "" {
-		in["param"] = param
+	if param != nil {
+		in["param"] = *param
 	}
 	row, err := svc.ExecMethod(objectPath, "doWipeMethod", in)
 	if err != nil {
@@ -371,13 +541,23 @@ type MDMRemoteWipeDoWipePersistProvisionedDataMethodResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MDMRemoteWipeDoWipePersistProvisionedDataMethodResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MDM_RemoteWipe.doWipePersistProvisionedDataMethod", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MDMRemoteWipeDoWipePersistProvisionedDataMethod invokes MDM_RemoteWipe.doWipePersistProvisionedDataMethod on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MDMRemoteWipeDoWipePersistProvisionedDataMethod(svc *wmi.Service, objectPath string, param string) (*MDMRemoteWipeDoWipePersistProvisionedDataMethodResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MDMRemoteWipeDoWipePersistProvisionedDataMethod(svc *wmi.Service, objectPath string, param *string) (*MDMRemoteWipeDoWipePersistProvisionedDataMethodResult, error) {
 	in := map[string]any{}
-	if param != "" {
-		in["param"] = param
+	if param != nil {
+		in["param"] = *param
 	}
 	row, err := svc.ExecMethod(objectPath, "doWipePersistProvisionedDataMethod", in)
 	if err != nil {
@@ -393,13 +573,23 @@ type MDMRemoteWipeDoWipePersistUserDataMethodResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MDMRemoteWipeDoWipePersistUserDataMethodResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MDM_RemoteWipe.doWipePersistUserDataMethod", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MDMRemoteWipeDoWipePersistUserDataMethod invokes MDM_RemoteWipe.doWipePersistUserDataMethod on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MDMRemoteWipeDoWipePersistUserDataMethod(svc *wmi.Service, objectPath string, param string) (*MDMRemoteWipeDoWipePersistUserDataMethodResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MDMRemoteWipeDoWipePersistUserDataMethod(svc *wmi.Service, objectPath string, param *string) (*MDMRemoteWipeDoWipePersistUserDataMethodResult, error) {
 	in := map[string]any{}
-	if param != "" {
-		in["param"] = param
+	if param != nil {
+		in["param"] = *param
 	}
 	row, err := svc.ExecMethod(objectPath, "doWipePersistUserDataMethod", in)
 	if err != nil {
@@ -415,13 +605,23 @@ type MDMRemoteWipeDoWipeProtectedMethodResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MDMRemoteWipeDoWipeProtectedMethodResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MDM_RemoteWipe.doWipeProtectedMethod", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MDMRemoteWipeDoWipeProtectedMethod invokes MDM_RemoteWipe.doWipeProtectedMethod on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MDMRemoteWipeDoWipeProtectedMethod(svc *wmi.Service, objectPath string, param string) (*MDMRemoteWipeDoWipeProtectedMethodResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MDMRemoteWipeDoWipeProtectedMethod(svc *wmi.Service, objectPath string, param *string) (*MDMRemoteWipeDoWipeProtectedMethodResult, error) {
 	in := map[string]any{}
-	if param != "" {
-		in["param"] = param
+	if param != nil {
+		in["param"] = *param
 	}
 	row, err := svc.ExecMethod(objectPath, "doWipeProtectedMethod", in)
 	if err != nil {
@@ -437,9 +637,19 @@ type MDMUpdateRollback01FeatureUpdateMethodResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MDMUpdateRollback01FeatureUpdateMethodResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MDM_Update_Rollback01.FeatureUpdateMethod", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MDMUpdateRollback01FeatureUpdateMethod invokes MDM_Update_Rollback01.FeatureUpdateMethod on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MDMUpdateRollback01FeatureUpdateMethod(svc *wmi.Service, objectPath string) (*MDMUpdateRollback01FeatureUpdateMethodResult, error) {
 	row, err := svc.ExecMethod(objectPath, "FeatureUpdateMethod", nil)
 	if err != nil {
@@ -455,9 +665,19 @@ type MDMUpdateRollback01QualityUpdateMethodResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MDMUpdateRollback01QualityUpdateMethodResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MDM_Update_Rollback01.QualityUpdateMethod", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MDMUpdateRollback01QualityUpdateMethod invokes MDM_Update_Rollback01.QualityUpdateMethod on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MDMUpdateRollback01QualityUpdateMethod(svc *wmi.Service, objectPath string) (*MDMUpdateRollback01QualityUpdateMethodResult, error) {
 	row, err := svc.ExecMethod(objectPath, "QualityUpdateMethod", nil)
 	if err != nil {
@@ -473,13 +693,23 @@ type MDMWindowsDefenderApplicationGuardInstallWindowsDefenderApplicationGuardMet
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MDMWindowsDefenderApplicationGuardInstallWindowsDefenderApplicationGuardMethodResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MDM_WindowsDefenderApplicationGuard.InstallWindowsDefenderApplicationGuardMethod", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MDMWindowsDefenderApplicationGuardInstallWindowsDefenderApplicationGuardMethod invokes MDM_WindowsDefenderApplicationGuard.InstallWindowsDefenderApplicationGuardMethod on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MDMWindowsDefenderApplicationGuardInstallWindowsDefenderApplicationGuardMethod(svc *wmi.Service, objectPath string, param string) (*MDMWindowsDefenderApplicationGuardInstallWindowsDefenderApplicationGuardMethodResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MDMWindowsDefenderApplicationGuardInstallWindowsDefenderApplicationGuardMethod(svc *wmi.Service, objectPath string, param *string) (*MDMWindowsDefenderApplicationGuardInstallWindowsDefenderApplicationGuardMethodResult, error) {
 	in := map[string]any{}
-	if param != "" {
-		in["param"] = param
+	if param != nil {
+		in["param"] = *param
 	}
 	row, err := svc.ExecMethod(objectPath, "InstallWindowsDefenderApplicationGuardMethod", in)
 	if err != nil {
@@ -495,13 +725,23 @@ type MDMWindowsLicensingChangeProductKeyMethodResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MDMWindowsLicensingChangeProductKeyMethodResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MDM_WindowsLicensing.ChangeProductKeyMethod", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MDMWindowsLicensingChangeProductKeyMethod invokes MDM_WindowsLicensing.ChangeProductKeyMethod on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MDMWindowsLicensingChangeProductKeyMethod(svc *wmi.Service, objectPath string, param string) (*MDMWindowsLicensingChangeProductKeyMethodResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MDMWindowsLicensingChangeProductKeyMethod(svc *wmi.Service, objectPath string, param *string) (*MDMWindowsLicensingChangeProductKeyMethodResult, error) {
 	in := map[string]any{}
-	if param != "" {
-		in["param"] = param
+	if param != nil {
+		in["param"] = *param
 	}
 	row, err := svc.ExecMethod(objectPath, "ChangeProductKeyMethod", in)
 	if err != nil {
@@ -517,13 +757,23 @@ type MDMWindowsLicensingCheckApplicabilityMethodResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MDMWindowsLicensingCheckApplicabilityMethodResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MDM_WindowsLicensing.CheckApplicabilityMethod", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MDMWindowsLicensingCheckApplicabilityMethod invokes MDM_WindowsLicensing.CheckApplicabilityMethod on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MDMWindowsLicensingCheckApplicabilityMethod(svc *wmi.Service, objectPath string, param string) (*MDMWindowsLicensingCheckApplicabilityMethodResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MDMWindowsLicensingCheckApplicabilityMethod(svc *wmi.Service, objectPath string, param *string) (*MDMWindowsLicensingCheckApplicabilityMethodResult, error) {
 	in := map[string]any{}
-	if param != "" {
-		in["param"] = param
+	if param != nil {
+		in["param"] = *param
 	}
 	row, err := svc.ExecMethod(objectPath, "CheckApplicabilityMethod", in)
 	if err != nil {
@@ -539,13 +789,23 @@ type MDMWindowsLicensingUpgradeEditionWithLicenseMethodResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MDMWindowsLicensingUpgradeEditionWithLicenseMethodResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MDM_WindowsLicensing.UpgradeEditionWithLicenseMethod", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MDMWindowsLicensingUpgradeEditionWithLicenseMethod invokes MDM_WindowsLicensing.UpgradeEditionWithLicenseMethod on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MDMWindowsLicensingUpgradeEditionWithLicenseMethod(svc *wmi.Service, objectPath string, param string) (*MDMWindowsLicensingUpgradeEditionWithLicenseMethodResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MDMWindowsLicensingUpgradeEditionWithLicenseMethod(svc *wmi.Service, objectPath string, param *string) (*MDMWindowsLicensingUpgradeEditionWithLicenseMethodResult, error) {
 	in := map[string]any{}
-	if param != "" {
-		in["param"] = param
+	if param != nil {
+		in["param"] = *param
 	}
 	row, err := svc.ExecMethod(objectPath, "UpgradeEditionWithLicenseMethod", in)
 	if err != nil {
@@ -561,13 +821,23 @@ type MDMWindowsLicensingUpgradeEditionWithProductKeyMethodResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MDMWindowsLicensingUpgradeEditionWithProductKeyMethodResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MDM_WindowsLicensing.UpgradeEditionWithProductKeyMethod", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MDMWindowsLicensingUpgradeEditionWithProductKeyMethod invokes MDM_WindowsLicensing.UpgradeEditionWithProductKeyMethod on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MDMWindowsLicensingUpgradeEditionWithProductKeyMethod(svc *wmi.Service, objectPath string, param string) (*MDMWindowsLicensingUpgradeEditionWithProductKeyMethodResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MDMWindowsLicensingUpgradeEditionWithProductKeyMethod(svc *wmi.Service, objectPath string, param *string) (*MDMWindowsLicensingUpgradeEditionWithProductKeyMethodResult, error) {
 	in := map[string]any{}
-	if param != "" {
-		in["param"] = param
+	if param != nil {
+		in["param"] = *param
 	}
 	row, err := svc.ExecMethod(objectPath, "UpgradeEditionWithProductKeyMethod", in)
 	if err != nil {
@@ -583,13 +853,23 @@ type MDMEUICCsActions02ResetToFactoryStateMethodResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MDMEUICCsActions02ResetToFactoryStateMethodResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MDM_eUICCs_Actions02.ResetToFactoryStateMethod", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MDMEUICCsActions02ResetToFactoryStateMethod invokes MDM_eUICCs_Actions02.ResetToFactoryStateMethod on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MDMEUICCsActions02ResetToFactoryStateMethod(svc *wmi.Service, objectPath string, param string) (*MDMEUICCsActions02ResetToFactoryStateMethodResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MDMEUICCsActions02ResetToFactoryStateMethod(svc *wmi.Service, objectPath string, param *string) (*MDMEUICCsActions02ResetToFactoryStateMethodResult, error) {
 	in := map[string]any{}
-	if param != "" {
-		in["param"] = param
+	if param != nil {
+		in["param"] = *param
 	}
 	row, err := svc.ExecMethod(objectPath, "ResetToFactoryStateMethod", in)
 	if err != nil {
@@ -606,8 +886,18 @@ type SystemSecurityGet9XUserListResult struct {
 	ReturnValue uint32
 }
 
-// SystemSecurityGet9XUserList invokes the static __SystemSecurity.Get9XUserList method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *SystemSecurityGet9XUserListResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "__SystemSecurity.Get9XUserList", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// SystemSecurityGet9XUserList invokes the static __SystemSecurity.Get9XUserList method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
 func SystemSecurityGet9XUserList(svc *wmi.Service) (*SystemSecurityGet9XUserListResult, error) {
 	row, err := svc.ExecMethod("__SystemSecurity", "Get9XUserList", nil)
 	if err != nil {
@@ -625,8 +915,18 @@ type SystemSecurityGetCallerAccessRightsResult struct {
 	ReturnValue uint32
 }
 
-// SystemSecurityGetCallerAccessRights invokes the static __SystemSecurity.GetCallerAccessRights method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *SystemSecurityGetCallerAccessRightsResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "__SystemSecurity.GetCallerAccessRights", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// SystemSecurityGetCallerAccessRights invokes the static __SystemSecurity.GetCallerAccessRights method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
 func SystemSecurityGetCallerAccessRights(svc *wmi.Service) (*SystemSecurityGetCallerAccessRightsResult, error) {
 	row, err := svc.ExecMethod("__SystemSecurity", "GetCallerAccessRights", nil)
 	if err != nil {
@@ -644,8 +944,18 @@ type SystemSecurityGetSDResult struct {
 	ReturnValue uint32
 }
 
-// SystemSecurityGetSD invokes the static __SystemSecurity.GetSD method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *SystemSecurityGetSDResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "__SystemSecurity.GetSD", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// SystemSecurityGetSD invokes the static __SystemSecurity.GetSD method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
 func SystemSecurityGetSD(svc *wmi.Service) (*SystemSecurityGetSDResult, error) {
 	row, err := svc.ExecMethod("__SystemSecurity", "GetSD", nil)
 	if err != nil {
@@ -663,8 +973,18 @@ type SystemSecurityGetSecurityDescriptorResult struct {
 	ReturnValue uint32
 }
 
-// SystemSecurityGetSecurityDescriptor invokes the static __SystemSecurity.GetSecurityDescriptor method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *SystemSecurityGetSecurityDescriptorResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "__SystemSecurity.GetSecurityDescriptor", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// SystemSecurityGetSecurityDescriptor invokes the static __SystemSecurity.GetSecurityDescriptor method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
 func SystemSecurityGetSecurityDescriptor(svc *wmi.Service) (*SystemSecurityGetSecurityDescriptorResult, error) {
 	row, err := svc.ExecMethod("__SystemSecurity", "GetSecurityDescriptor", nil)
 	if err != nil {
@@ -683,8 +1003,18 @@ type SystemSecuritySet9XUserListResult struct {
 	ReturnValue uint32
 }
 
-// SystemSecuritySet9XUserList invokes the static __SystemSecurity.Set9XUserList method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *SystemSecuritySet9XUserListResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "__SystemSecurity.Set9XUserList", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// SystemSecuritySet9XUserList invokes the static __SystemSecurity.Set9XUserList method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
 func SystemSecuritySet9XUserList(svc *wmi.Service, ul []wmi.Row) (*SystemSecuritySet9XUserListResult, error) {
 	in := map[string]any{}
 	if ul != nil {
@@ -704,8 +1034,18 @@ type SystemSecuritySetSDResult struct {
 	ReturnValue uint32
 }
 
-// SystemSecuritySetSD invokes the static __SystemSecurity.SetSD method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *SystemSecuritySetSDResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "__SystemSecurity.SetSD", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// SystemSecuritySetSD invokes the static __SystemSecurity.SetSD method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
 func SystemSecuritySetSD(svc *wmi.Service, sD []uint8) (*SystemSecuritySetSDResult, error) {
 	in := map[string]any{}
 	if sD != nil {
@@ -725,8 +1065,18 @@ type SystemSecuritySetSecurityDescriptorResult struct {
 	ReturnValue uint32
 }
 
-// SystemSecuritySetSecurityDescriptor invokes the static __SystemSecurity.SetSecurityDescriptor method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *SystemSecuritySetSecurityDescriptorResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "__SystemSecurity.SetSecurityDescriptor", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// SystemSecuritySetSecurityDescriptor invokes the static __SystemSecurity.SetSecurityDescriptor method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
 func SystemSecuritySetSecurityDescriptor(svc *wmi.Service, descriptor wmi.Row) (*SystemSecuritySetSecurityDescriptorResult, error) {
 	in := map[string]any{}
 	if descriptor != nil {

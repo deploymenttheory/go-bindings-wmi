@@ -66,12 +66,12 @@ func TestExecMethodStatic(t *testing.T) {
 	}
 	defer svc.Close()
 
-	res, err := cimv2.Win32ProcessCreate(svc, "cmd.exe /c exit 0", "", nil)
+	res, err := cimv2.Win32ProcessCreate(svc, wmi.Ptr("cmd.exe /c exit 0"), nil, nil)
 	if err != nil {
 		t.Fatalf("Win32ProcessCreate: %v", err)
 	}
-	if res.ReturnValue != 0 {
-		t.Fatalf("Create ReturnValue = %d", res.ReturnValue)
+	if err := res.Err(); err != nil {
+		t.Fatalf("Create: %v", err)
 	}
 	if res.ProcessId == 0 {
 		t.Error("Create returned zero ProcessId")
@@ -138,7 +138,7 @@ func TestEmbeddedObjectInParameter(t *testing.T) {
 	startup := wmi.Instance("Win32_ProcessStartup", map[string]any{
 		"ShowWindow": uint16(0), // SW_HIDE
 	})
-	res, err := cimv2.Win32ProcessCreate(svc, "cmd.exe /c exit 0", "", startup)
+	res, err := cimv2.Win32ProcessCreate(svc, wmi.Ptr("cmd.exe /c exit 0"), nil, startup)
 	if err != nil {
 		t.Fatalf("Win32ProcessCreate(with startup): %v", err)
 	}

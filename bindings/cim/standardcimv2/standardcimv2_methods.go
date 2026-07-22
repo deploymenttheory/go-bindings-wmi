@@ -4,7 +4,11 @@
 
 package standardcimv2
 
-import wmi "github.com/deploymenttheory/go-bindings-wmi/runtime/wmi"
+import (
+	"context"
+
+	wmi "github.com/deploymenttheory/go-bindings-wmi/runtime/wmi"
+)
 
 // CIMConcreteJobGetErrorResult holds the out-parameters of CIM_ConcreteJob.GetError.
 type CIMConcreteJobGetErrorResult struct {
@@ -12,9 +16,19 @@ type CIMConcreteJobGetErrorResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *CIMConcreteJobGetErrorResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "CIM_ConcreteJob.GetError", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // CIMConcreteJobGetError invokes CIM_ConcreteJob.GetError on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func CIMConcreteJobGetError(svc *wmi.Service, objectPath string) (*CIMConcreteJobGetErrorResult, error) {
 	row, err := svc.ExecMethod(objectPath, "GetError", nil)
 	if err != nil {
@@ -33,13 +47,23 @@ type CIMConcreteJobKillJobResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *CIMConcreteJobKillJobResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "CIM_ConcreteJob.KillJob", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // CIMConcreteJobKillJob invokes CIM_ConcreteJob.KillJob on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func CIMConcreteJobKillJob(svc *wmi.Service, objectPath string, deleteOnKill bool) (*CIMConcreteJobKillJobResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func CIMConcreteJobKillJob(svc *wmi.Service, objectPath string, deleteOnKill *bool) (*CIMConcreteJobKillJobResult, error) {
 	in := map[string]any{}
-	if deleteOnKill {
-		in["DeleteOnKill"] = deleteOnKill
+	if deleteOnKill != nil {
+		in["DeleteOnKill"] = *deleteOnKill
 	}
 	row, err := svc.ExecMethod(objectPath, "KillJob", in)
 	if err != nil {
@@ -55,16 +79,26 @@ type CIMConcreteJobRequestStateChangeResult struct {
 	ReturnValue uint32
 }
 
-// CIMConcreteJobRequestStateChange invokes CIM_ConcreteJob.RequestStateChange on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func CIMConcreteJobRequestStateChange(svc *wmi.Service, objectPath string, requestedState uint16, timeoutPeriod string) (*CIMConcreteJobRequestStateChangeResult, error) {
-	in := map[string]any{}
-	if requestedState != 0 {
-		in["RequestedState"] = requestedState
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *CIMConcreteJobRequestStateChangeResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
 	}
-	if timeoutPeriod != "" {
-		in["TimeoutPeriod"] = timeoutPeriod
+	return &wmi.JobError{What: "CIM_ConcreteJob.RequestStateChange", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// CIMConcreteJobRequestStateChange invokes CIM_ConcreteJob.RequestStateChange on the instance at objectPath
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func CIMConcreteJobRequestStateChange(svc *wmi.Service, objectPath string, requestedState *CIMConcreteJobRequestStateChangeRequestedState, timeoutPeriod *string) (*CIMConcreteJobRequestStateChangeResult, error) {
+	in := map[string]any{}
+	if requestedState != nil {
+		in["RequestedState"] = uint16(*requestedState)
+	}
+	if timeoutPeriod != nil {
+		in["TimeoutPeriod"] = *timeoutPeriod
 	}
 	row, err := svc.ExecMethod(objectPath, "RequestStateChange", in)
 	if err != nil {
@@ -81,16 +115,24 @@ type CIMDNSProtocolEndpointRequestStateChangeResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *CIMDNSProtocolEndpointRequestStateChangeResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "CIM_DNSProtocolEndpoint.RequestStateChange", uint32(r.ReturnValue), r.Job)
+}
+
 // CIMDNSProtocolEndpointRequestStateChange invokes CIM_DNSProtocolEndpoint.RequestStateChange on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func CIMDNSProtocolEndpointRequestStateChange(svc *wmi.Service, objectPath string, requestedState uint16, timeoutPeriod string) (*CIMDNSProtocolEndpointRequestStateChangeResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func CIMDNSProtocolEndpointRequestStateChange(svc *wmi.Service, objectPath string, requestedState *uint16, timeoutPeriod *string) (*CIMDNSProtocolEndpointRequestStateChangeResult, error) {
 	in := map[string]any{}
-	if requestedState != 0 {
-		in["RequestedState"] = requestedState
+	if requestedState != nil {
+		in["RequestedState"] = *requestedState
 	}
-	if timeoutPeriod != "" {
-		in["TimeoutPeriod"] = timeoutPeriod
+	if timeoutPeriod != nil {
+		in["TimeoutPeriod"] = *timeoutPeriod
 	}
 	row, err := svc.ExecMethod(objectPath, "RequestStateChange", in)
 	if err != nil {
@@ -108,16 +150,24 @@ type CIMEnabledLogicalElementRequestStateChangeResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *CIMEnabledLogicalElementRequestStateChangeResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "CIM_EnabledLogicalElement.RequestStateChange", uint32(r.ReturnValue), r.Job)
+}
+
 // CIMEnabledLogicalElementRequestStateChange invokes CIM_EnabledLogicalElement.RequestStateChange on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func CIMEnabledLogicalElementRequestStateChange(svc *wmi.Service, objectPath string, requestedState uint16, timeoutPeriod string) (*CIMEnabledLogicalElementRequestStateChangeResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func CIMEnabledLogicalElementRequestStateChange(svc *wmi.Service, objectPath string, requestedState *CIMEnabledLogicalElementRequestStateChangeRequestedState, timeoutPeriod *string) (*CIMEnabledLogicalElementRequestStateChangeResult, error) {
 	in := map[string]any{}
-	if requestedState != 0 {
-		in["RequestedState"] = requestedState
+	if requestedState != nil {
+		in["RequestedState"] = uint16(*requestedState)
 	}
-	if timeoutPeriod != "" {
-		in["TimeoutPeriod"] = timeoutPeriod
+	if timeoutPeriod != nil {
+		in["TimeoutPeriod"] = *timeoutPeriod
 	}
 	row, err := svc.ExecMethod(objectPath, "RequestStateChange", in)
 	if err != nil {
@@ -135,16 +185,24 @@ type CIMIKESAEndpointRequestStateChangeResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *CIMIKESAEndpointRequestStateChangeResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "CIM_IKESAEndpoint.RequestStateChange", uint32(r.ReturnValue), r.Job)
+}
+
 // CIMIKESAEndpointRequestStateChange invokes CIM_IKESAEndpoint.RequestStateChange on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func CIMIKESAEndpointRequestStateChange(svc *wmi.Service, objectPath string, requestedState uint16, timeoutPeriod string) (*CIMIKESAEndpointRequestStateChangeResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func CIMIKESAEndpointRequestStateChange(svc *wmi.Service, objectPath string, requestedState *uint16, timeoutPeriod *string) (*CIMIKESAEndpointRequestStateChangeResult, error) {
 	in := map[string]any{}
-	if requestedState != 0 {
-		in["RequestedState"] = requestedState
+	if requestedState != nil {
+		in["RequestedState"] = *requestedState
 	}
-	if timeoutPeriod != "" {
-		in["TimeoutPeriod"] = timeoutPeriod
+	if timeoutPeriod != nil {
+		in["TimeoutPeriod"] = *timeoutPeriod
 	}
 	row, err := svc.ExecMethod(objectPath, "RequestStateChange", in)
 	if err != nil {
@@ -162,16 +220,24 @@ type CIMIPProtocolEndpointRequestStateChangeResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *CIMIPProtocolEndpointRequestStateChangeResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "CIM_IPProtocolEndpoint.RequestStateChange", uint32(r.ReturnValue), r.Job)
+}
+
 // CIMIPProtocolEndpointRequestStateChange invokes CIM_IPProtocolEndpoint.RequestStateChange on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func CIMIPProtocolEndpointRequestStateChange(svc *wmi.Service, objectPath string, requestedState uint16, timeoutPeriod string) (*CIMIPProtocolEndpointRequestStateChangeResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func CIMIPProtocolEndpointRequestStateChange(svc *wmi.Service, objectPath string, requestedState *uint16, timeoutPeriod *string) (*CIMIPProtocolEndpointRequestStateChangeResult, error) {
 	in := map[string]any{}
-	if requestedState != 0 {
-		in["RequestedState"] = requestedState
+	if requestedState != nil {
+		in["RequestedState"] = *requestedState
 	}
-	if timeoutPeriod != "" {
-		in["TimeoutPeriod"] = timeoutPeriod
+	if timeoutPeriod != nil {
+		in["TimeoutPeriod"] = *timeoutPeriod
 	}
 	row, err := svc.ExecMethod(objectPath, "RequestStateChange", in)
 	if err != nil {
@@ -189,16 +255,24 @@ type CIMIPsecSAEndpointRequestStateChangeResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *CIMIPsecSAEndpointRequestStateChangeResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "CIM_IPsecSAEndpoint.RequestStateChange", uint32(r.ReturnValue), r.Job)
+}
+
 // CIMIPsecSAEndpointRequestStateChange invokes CIM_IPsecSAEndpoint.RequestStateChange on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func CIMIPsecSAEndpointRequestStateChange(svc *wmi.Service, objectPath string, requestedState uint16, timeoutPeriod string) (*CIMIPsecSAEndpointRequestStateChangeResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func CIMIPsecSAEndpointRequestStateChange(svc *wmi.Service, objectPath string, requestedState *uint16, timeoutPeriod *string) (*CIMIPsecSAEndpointRequestStateChangeResult, error) {
 	in := map[string]any{}
-	if requestedState != 0 {
-		in["RequestedState"] = requestedState
+	if requestedState != nil {
+		in["RequestedState"] = *requestedState
 	}
-	if timeoutPeriod != "" {
-		in["TimeoutPeriod"] = timeoutPeriod
+	if timeoutPeriod != nil {
+		in["TimeoutPeriod"] = *timeoutPeriod
 	}
 	row, err := svc.ExecMethod(objectPath, "RequestStateChange", in)
 	if err != nil {
@@ -215,13 +289,23 @@ type CIMJobKillJobResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *CIMJobKillJobResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "CIM_Job.KillJob", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // CIMJobKillJob invokes CIM_Job.KillJob on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func CIMJobKillJob(svc *wmi.Service, objectPath string, deleteOnKill bool) (*CIMJobKillJobResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func CIMJobKillJob(svc *wmi.Service, objectPath string, deleteOnKill *bool) (*CIMJobKillJobResult, error) {
 	in := map[string]any{}
-	if deleteOnKill {
-		in["DeleteOnKill"] = deleteOnKill
+	if deleteOnKill != nil {
+		in["DeleteOnKill"] = *deleteOnKill
 	}
 	row, err := svc.ExecMethod(objectPath, "KillJob", in)
 	if err != nil {
@@ -238,16 +322,24 @@ type CIMLANEndpointRequestStateChangeResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *CIMLANEndpointRequestStateChangeResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "CIM_LANEndpoint.RequestStateChange", uint32(r.ReturnValue), r.Job)
+}
+
 // CIMLANEndpointRequestStateChange invokes CIM_LANEndpoint.RequestStateChange on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func CIMLANEndpointRequestStateChange(svc *wmi.Service, objectPath string, requestedState uint16, timeoutPeriod string) (*CIMLANEndpointRequestStateChangeResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func CIMLANEndpointRequestStateChange(svc *wmi.Service, objectPath string, requestedState *uint16, timeoutPeriod *string) (*CIMLANEndpointRequestStateChangeResult, error) {
 	in := map[string]any{}
-	if requestedState != 0 {
-		in["RequestedState"] = requestedState
+	if requestedState != nil {
+		in["RequestedState"] = *requestedState
 	}
-	if timeoutPeriod != "" {
-		in["TimeoutPeriod"] = timeoutPeriod
+	if timeoutPeriod != nil {
+		in["TimeoutPeriod"] = *timeoutPeriod
 	}
 	row, err := svc.ExecMethod(objectPath, "RequestStateChange", in)
 	if err != nil {
@@ -264,13 +356,23 @@ type CIMLogicalDeviceEnableDeviceResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *CIMLogicalDeviceEnableDeviceResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "CIM_LogicalDevice.EnableDevice", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // CIMLogicalDeviceEnableDevice invokes CIM_LogicalDevice.EnableDevice on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func CIMLogicalDeviceEnableDevice(svc *wmi.Service, objectPath string, enabled bool) (*CIMLogicalDeviceEnableDeviceResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func CIMLogicalDeviceEnableDevice(svc *wmi.Service, objectPath string, enabled *bool) (*CIMLogicalDeviceEnableDeviceResult, error) {
 	in := map[string]any{}
-	if enabled {
-		in["Enabled"] = enabled
+	if enabled != nil {
+		in["Enabled"] = *enabled
 	}
 	row, err := svc.ExecMethod(objectPath, "EnableDevice", in)
 	if err != nil {
@@ -286,13 +388,23 @@ type CIMLogicalDeviceOnlineDeviceResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *CIMLogicalDeviceOnlineDeviceResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "CIM_LogicalDevice.OnlineDevice", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // CIMLogicalDeviceOnlineDevice invokes CIM_LogicalDevice.OnlineDevice on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func CIMLogicalDeviceOnlineDevice(svc *wmi.Service, objectPath string, online bool) (*CIMLogicalDeviceOnlineDeviceResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func CIMLogicalDeviceOnlineDevice(svc *wmi.Service, objectPath string, online *bool) (*CIMLogicalDeviceOnlineDeviceResult, error) {
 	in := map[string]any{}
-	if online {
-		in["Online"] = online
+	if online != nil {
+		in["Online"] = *online
 	}
 	row, err := svc.ExecMethod(objectPath, "OnlineDevice", in)
 	if err != nil {
@@ -308,13 +420,23 @@ type CIMLogicalDeviceQuiesceDeviceResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *CIMLogicalDeviceQuiesceDeviceResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "CIM_LogicalDevice.QuiesceDevice", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // CIMLogicalDeviceQuiesceDevice invokes CIM_LogicalDevice.QuiesceDevice on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func CIMLogicalDeviceQuiesceDevice(svc *wmi.Service, objectPath string, quiesce bool) (*CIMLogicalDeviceQuiesceDeviceResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func CIMLogicalDeviceQuiesceDevice(svc *wmi.Service, objectPath string, quiesce *bool) (*CIMLogicalDeviceQuiesceDeviceResult, error) {
 	in := map[string]any{}
-	if quiesce {
-		in["Quiesce"] = quiesce
+	if quiesce != nil {
+		in["Quiesce"] = *quiesce
 	}
 	row, err := svc.ExecMethod(objectPath, "QuiesceDevice", in)
 	if err != nil {
@@ -331,16 +453,24 @@ type CIMLogicalDeviceRequestStateChangeResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *CIMLogicalDeviceRequestStateChangeResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "CIM_LogicalDevice.RequestStateChange", uint32(r.ReturnValue), r.Job)
+}
+
 // CIMLogicalDeviceRequestStateChange invokes CIM_LogicalDevice.RequestStateChange on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func CIMLogicalDeviceRequestStateChange(svc *wmi.Service, objectPath string, requestedState uint16, timeoutPeriod string) (*CIMLogicalDeviceRequestStateChangeResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func CIMLogicalDeviceRequestStateChange(svc *wmi.Service, objectPath string, requestedState *uint16, timeoutPeriod *string) (*CIMLogicalDeviceRequestStateChangeResult, error) {
 	in := map[string]any{}
-	if requestedState != 0 {
-		in["RequestedState"] = requestedState
+	if requestedState != nil {
+		in["RequestedState"] = *requestedState
 	}
-	if timeoutPeriod != "" {
-		in["TimeoutPeriod"] = timeoutPeriod
+	if timeoutPeriod != nil {
+		in["TimeoutPeriod"] = *timeoutPeriod
 	}
 	row, err := svc.ExecMethod(objectPath, "RequestStateChange", in)
 	if err != nil {
@@ -357,9 +487,19 @@ type CIMLogicalDeviceResetResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *CIMLogicalDeviceResetResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "CIM_LogicalDevice.Reset", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // CIMLogicalDeviceReset invokes CIM_LogicalDevice.Reset on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func CIMLogicalDeviceReset(svc *wmi.Service, objectPath string) (*CIMLogicalDeviceResetResult, error) {
 	row, err := svc.ExecMethod(objectPath, "Reset", nil)
 	if err != nil {
@@ -375,9 +515,19 @@ type CIMLogicalDeviceRestorePropertiesResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *CIMLogicalDeviceRestorePropertiesResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "CIM_LogicalDevice.RestoreProperties", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // CIMLogicalDeviceRestoreProperties invokes CIM_LogicalDevice.RestoreProperties on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func CIMLogicalDeviceRestoreProperties(svc *wmi.Service, objectPath string) (*CIMLogicalDeviceRestorePropertiesResult, error) {
 	row, err := svc.ExecMethod(objectPath, "RestoreProperties", nil)
 	if err != nil {
@@ -393,9 +543,19 @@ type CIMLogicalDeviceSavePropertiesResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *CIMLogicalDeviceSavePropertiesResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "CIM_LogicalDevice.SaveProperties", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // CIMLogicalDeviceSaveProperties invokes CIM_LogicalDevice.SaveProperties on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func CIMLogicalDeviceSaveProperties(svc *wmi.Service, objectPath string) (*CIMLogicalDeviceSavePropertiesResult, error) {
 	row, err := svc.ExecMethod(objectPath, "SaveProperties", nil)
 	if err != nil {
@@ -411,16 +571,26 @@ type CIMLogicalDeviceSetPowerStateResult struct {
 	ReturnValue uint32
 }
 
-// CIMLogicalDeviceSetPowerState invokes CIM_LogicalDevice.SetPowerState on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func CIMLogicalDeviceSetPowerState(svc *wmi.Service, objectPath string, powerState uint16, time string) (*CIMLogicalDeviceSetPowerStateResult, error) {
-	in := map[string]any{}
-	if powerState != 0 {
-		in["PowerState"] = powerState
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *CIMLogicalDeviceSetPowerStateResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
 	}
-	if time != "" {
-		in["Time"] = time
+	return &wmi.JobError{What: "CIM_LogicalDevice.SetPowerState", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// CIMLogicalDeviceSetPowerState invokes CIM_LogicalDevice.SetPowerState on the instance at objectPath
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func CIMLogicalDeviceSetPowerState(svc *wmi.Service, objectPath string, powerState *CIMLogicalDeviceSetPowerStatePowerState, time *string) (*CIMLogicalDeviceSetPowerStateResult, error) {
+	in := map[string]any{}
+	if powerState != nil {
+		in["PowerState"] = uint16(*powerState)
+	}
+	if time != nil {
+		in["Time"] = *time
 	}
 	row, err := svc.ExecMethod(objectPath, "SetPowerState", in)
 	if err != nil {
@@ -436,13 +606,23 @@ type CIMLogicalPortEnableDeviceResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *CIMLogicalPortEnableDeviceResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "CIM_LogicalPort.EnableDevice", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // CIMLogicalPortEnableDevice invokes CIM_LogicalPort.EnableDevice on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func CIMLogicalPortEnableDevice(svc *wmi.Service, objectPath string, enabled bool) (*CIMLogicalPortEnableDeviceResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func CIMLogicalPortEnableDevice(svc *wmi.Service, objectPath string, enabled *bool) (*CIMLogicalPortEnableDeviceResult, error) {
 	in := map[string]any{}
-	if enabled {
-		in["Enabled"] = enabled
+	if enabled != nil {
+		in["Enabled"] = *enabled
 	}
 	row, err := svc.ExecMethod(objectPath, "EnableDevice", in)
 	if err != nil {
@@ -458,13 +638,23 @@ type CIMLogicalPortOnlineDeviceResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *CIMLogicalPortOnlineDeviceResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "CIM_LogicalPort.OnlineDevice", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // CIMLogicalPortOnlineDevice invokes CIM_LogicalPort.OnlineDevice on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func CIMLogicalPortOnlineDevice(svc *wmi.Service, objectPath string, online bool) (*CIMLogicalPortOnlineDeviceResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func CIMLogicalPortOnlineDevice(svc *wmi.Service, objectPath string, online *bool) (*CIMLogicalPortOnlineDeviceResult, error) {
 	in := map[string]any{}
-	if online {
-		in["Online"] = online
+	if online != nil {
+		in["Online"] = *online
 	}
 	row, err := svc.ExecMethod(objectPath, "OnlineDevice", in)
 	if err != nil {
@@ -480,13 +670,23 @@ type CIMLogicalPortQuiesceDeviceResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *CIMLogicalPortQuiesceDeviceResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "CIM_LogicalPort.QuiesceDevice", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // CIMLogicalPortQuiesceDevice invokes CIM_LogicalPort.QuiesceDevice on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func CIMLogicalPortQuiesceDevice(svc *wmi.Service, objectPath string, quiesce bool) (*CIMLogicalPortQuiesceDeviceResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func CIMLogicalPortQuiesceDevice(svc *wmi.Service, objectPath string, quiesce *bool) (*CIMLogicalPortQuiesceDeviceResult, error) {
 	in := map[string]any{}
-	if quiesce {
-		in["Quiesce"] = quiesce
+	if quiesce != nil {
+		in["Quiesce"] = *quiesce
 	}
 	row, err := svc.ExecMethod(objectPath, "QuiesceDevice", in)
 	if err != nil {
@@ -503,16 +703,24 @@ type CIMLogicalPortRequestStateChangeResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *CIMLogicalPortRequestStateChangeResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "CIM_LogicalPort.RequestStateChange", uint32(r.ReturnValue), r.Job)
+}
+
 // CIMLogicalPortRequestStateChange invokes CIM_LogicalPort.RequestStateChange on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func CIMLogicalPortRequestStateChange(svc *wmi.Service, objectPath string, requestedState uint16, timeoutPeriod string) (*CIMLogicalPortRequestStateChangeResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func CIMLogicalPortRequestStateChange(svc *wmi.Service, objectPath string, requestedState *uint16, timeoutPeriod *string) (*CIMLogicalPortRequestStateChangeResult, error) {
 	in := map[string]any{}
-	if requestedState != 0 {
-		in["RequestedState"] = requestedState
+	if requestedState != nil {
+		in["RequestedState"] = *requestedState
 	}
-	if timeoutPeriod != "" {
-		in["TimeoutPeriod"] = timeoutPeriod
+	if timeoutPeriod != nil {
+		in["TimeoutPeriod"] = *timeoutPeriod
 	}
 	row, err := svc.ExecMethod(objectPath, "RequestStateChange", in)
 	if err != nil {
@@ -529,9 +737,19 @@ type CIMLogicalPortResetResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *CIMLogicalPortResetResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "CIM_LogicalPort.Reset", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // CIMLogicalPortReset invokes CIM_LogicalPort.Reset on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func CIMLogicalPortReset(svc *wmi.Service, objectPath string) (*CIMLogicalPortResetResult, error) {
 	row, err := svc.ExecMethod(objectPath, "Reset", nil)
 	if err != nil {
@@ -547,9 +765,19 @@ type CIMLogicalPortRestorePropertiesResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *CIMLogicalPortRestorePropertiesResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "CIM_LogicalPort.RestoreProperties", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // CIMLogicalPortRestoreProperties invokes CIM_LogicalPort.RestoreProperties on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func CIMLogicalPortRestoreProperties(svc *wmi.Service, objectPath string) (*CIMLogicalPortRestorePropertiesResult, error) {
 	row, err := svc.ExecMethod(objectPath, "RestoreProperties", nil)
 	if err != nil {
@@ -565,9 +793,19 @@ type CIMLogicalPortSavePropertiesResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *CIMLogicalPortSavePropertiesResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "CIM_LogicalPort.SaveProperties", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // CIMLogicalPortSaveProperties invokes CIM_LogicalPort.SaveProperties on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func CIMLogicalPortSaveProperties(svc *wmi.Service, objectPath string) (*CIMLogicalPortSavePropertiesResult, error) {
 	row, err := svc.ExecMethod(objectPath, "SaveProperties", nil)
 	if err != nil {
@@ -583,16 +821,26 @@ type CIMLogicalPortSetPowerStateResult struct {
 	ReturnValue uint32
 }
 
-// CIMLogicalPortSetPowerState invokes CIM_LogicalPort.SetPowerState on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func CIMLogicalPortSetPowerState(svc *wmi.Service, objectPath string, powerState uint16, time string) (*CIMLogicalPortSetPowerStateResult, error) {
-	in := map[string]any{}
-	if powerState != 0 {
-		in["PowerState"] = powerState
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *CIMLogicalPortSetPowerStateResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
 	}
-	if time != "" {
-		in["Time"] = time
+	return &wmi.JobError{What: "CIM_LogicalPort.SetPowerState", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// CIMLogicalPortSetPowerState invokes CIM_LogicalPort.SetPowerState on the instance at objectPath
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func CIMLogicalPortSetPowerState(svc *wmi.Service, objectPath string, powerState *uint16, time *string) (*CIMLogicalPortSetPowerStateResult, error) {
+	in := map[string]any{}
+	if powerState != nil {
+		in["PowerState"] = *powerState
+	}
+	if time != nil {
+		in["Time"] = *time
 	}
 	row, err := svc.ExecMethod(objectPath, "SetPowerState", in)
 	if err != nil {
@@ -609,16 +857,24 @@ type CIMNetworkPipeRequestStateChangeResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *CIMNetworkPipeRequestStateChangeResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "CIM_NetworkPipe.RequestStateChange", uint32(r.ReturnValue), r.Job)
+}
+
 // CIMNetworkPipeRequestStateChange invokes CIM_NetworkPipe.RequestStateChange on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func CIMNetworkPipeRequestStateChange(svc *wmi.Service, objectPath string, requestedState uint16, timeoutPeriod string) (*CIMNetworkPipeRequestStateChangeResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func CIMNetworkPipeRequestStateChange(svc *wmi.Service, objectPath string, requestedState *uint16, timeoutPeriod *string) (*CIMNetworkPipeRequestStateChangeResult, error) {
 	in := map[string]any{}
-	if requestedState != 0 {
-		in["RequestedState"] = requestedState
+	if requestedState != nil {
+		in["RequestedState"] = *requestedState
 	}
-	if timeoutPeriod != "" {
-		in["TimeoutPeriod"] = timeoutPeriod
+	if timeoutPeriod != nil {
+		in["TimeoutPeriod"] = *timeoutPeriod
 	}
 	row, err := svc.ExecMethod(objectPath, "RequestStateChange", in)
 	if err != nil {
@@ -635,13 +891,23 @@ type CIMNetworkPortEnableDeviceResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *CIMNetworkPortEnableDeviceResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "CIM_NetworkPort.EnableDevice", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // CIMNetworkPortEnableDevice invokes CIM_NetworkPort.EnableDevice on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func CIMNetworkPortEnableDevice(svc *wmi.Service, objectPath string, enabled bool) (*CIMNetworkPortEnableDeviceResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func CIMNetworkPortEnableDevice(svc *wmi.Service, objectPath string, enabled *bool) (*CIMNetworkPortEnableDeviceResult, error) {
 	in := map[string]any{}
-	if enabled {
-		in["Enabled"] = enabled
+	if enabled != nil {
+		in["Enabled"] = *enabled
 	}
 	row, err := svc.ExecMethod(objectPath, "EnableDevice", in)
 	if err != nil {
@@ -657,13 +923,23 @@ type CIMNetworkPortOnlineDeviceResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *CIMNetworkPortOnlineDeviceResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "CIM_NetworkPort.OnlineDevice", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // CIMNetworkPortOnlineDevice invokes CIM_NetworkPort.OnlineDevice on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func CIMNetworkPortOnlineDevice(svc *wmi.Service, objectPath string, online bool) (*CIMNetworkPortOnlineDeviceResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func CIMNetworkPortOnlineDevice(svc *wmi.Service, objectPath string, online *bool) (*CIMNetworkPortOnlineDeviceResult, error) {
 	in := map[string]any{}
-	if online {
-		in["Online"] = online
+	if online != nil {
+		in["Online"] = *online
 	}
 	row, err := svc.ExecMethod(objectPath, "OnlineDevice", in)
 	if err != nil {
@@ -679,13 +955,23 @@ type CIMNetworkPortQuiesceDeviceResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *CIMNetworkPortQuiesceDeviceResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "CIM_NetworkPort.QuiesceDevice", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // CIMNetworkPortQuiesceDevice invokes CIM_NetworkPort.QuiesceDevice on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func CIMNetworkPortQuiesceDevice(svc *wmi.Service, objectPath string, quiesce bool) (*CIMNetworkPortQuiesceDeviceResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func CIMNetworkPortQuiesceDevice(svc *wmi.Service, objectPath string, quiesce *bool) (*CIMNetworkPortQuiesceDeviceResult, error) {
 	in := map[string]any{}
-	if quiesce {
-		in["Quiesce"] = quiesce
+	if quiesce != nil {
+		in["Quiesce"] = *quiesce
 	}
 	row, err := svc.ExecMethod(objectPath, "QuiesceDevice", in)
 	if err != nil {
@@ -702,16 +988,24 @@ type CIMNetworkPortRequestStateChangeResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *CIMNetworkPortRequestStateChangeResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "CIM_NetworkPort.RequestStateChange", uint32(r.ReturnValue), r.Job)
+}
+
 // CIMNetworkPortRequestStateChange invokes CIM_NetworkPort.RequestStateChange on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func CIMNetworkPortRequestStateChange(svc *wmi.Service, objectPath string, requestedState uint16, timeoutPeriod string) (*CIMNetworkPortRequestStateChangeResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func CIMNetworkPortRequestStateChange(svc *wmi.Service, objectPath string, requestedState *uint16, timeoutPeriod *string) (*CIMNetworkPortRequestStateChangeResult, error) {
 	in := map[string]any{}
-	if requestedState != 0 {
-		in["RequestedState"] = requestedState
+	if requestedState != nil {
+		in["RequestedState"] = *requestedState
 	}
-	if timeoutPeriod != "" {
-		in["TimeoutPeriod"] = timeoutPeriod
+	if timeoutPeriod != nil {
+		in["TimeoutPeriod"] = *timeoutPeriod
 	}
 	row, err := svc.ExecMethod(objectPath, "RequestStateChange", in)
 	if err != nil {
@@ -728,9 +1022,19 @@ type CIMNetworkPortResetResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *CIMNetworkPortResetResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "CIM_NetworkPort.Reset", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // CIMNetworkPortReset invokes CIM_NetworkPort.Reset on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func CIMNetworkPortReset(svc *wmi.Service, objectPath string) (*CIMNetworkPortResetResult, error) {
 	row, err := svc.ExecMethod(objectPath, "Reset", nil)
 	if err != nil {
@@ -746,9 +1050,19 @@ type CIMNetworkPortRestorePropertiesResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *CIMNetworkPortRestorePropertiesResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "CIM_NetworkPort.RestoreProperties", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // CIMNetworkPortRestoreProperties invokes CIM_NetworkPort.RestoreProperties on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func CIMNetworkPortRestoreProperties(svc *wmi.Service, objectPath string) (*CIMNetworkPortRestorePropertiesResult, error) {
 	row, err := svc.ExecMethod(objectPath, "RestoreProperties", nil)
 	if err != nil {
@@ -764,9 +1078,19 @@ type CIMNetworkPortSavePropertiesResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *CIMNetworkPortSavePropertiesResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "CIM_NetworkPort.SaveProperties", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // CIMNetworkPortSaveProperties invokes CIM_NetworkPort.SaveProperties on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func CIMNetworkPortSaveProperties(svc *wmi.Service, objectPath string) (*CIMNetworkPortSavePropertiesResult, error) {
 	row, err := svc.ExecMethod(objectPath, "SaveProperties", nil)
 	if err != nil {
@@ -782,16 +1106,26 @@ type CIMNetworkPortSetPowerStateResult struct {
 	ReturnValue uint32
 }
 
-// CIMNetworkPortSetPowerState invokes CIM_NetworkPort.SetPowerState on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func CIMNetworkPortSetPowerState(svc *wmi.Service, objectPath string, powerState uint16, time string) (*CIMNetworkPortSetPowerStateResult, error) {
-	in := map[string]any{}
-	if powerState != 0 {
-		in["PowerState"] = powerState
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *CIMNetworkPortSetPowerStateResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
 	}
-	if time != "" {
-		in["Time"] = time
+	return &wmi.JobError{What: "CIM_NetworkPort.SetPowerState", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// CIMNetworkPortSetPowerState invokes CIM_NetworkPort.SetPowerState on the instance at objectPath
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func CIMNetworkPortSetPowerState(svc *wmi.Service, objectPath string, powerState *uint16, time *string) (*CIMNetworkPortSetPowerStateResult, error) {
+	in := map[string]any{}
+	if powerState != nil {
+		in["PowerState"] = *powerState
+	}
+	if time != nil {
+		in["Time"] = *time
 	}
 	row, err := svc.ExecMethod(objectPath, "SetPowerState", in)
 	if err != nil {
@@ -808,16 +1142,24 @@ type CIMProtocolEndpointRequestStateChangeResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *CIMProtocolEndpointRequestStateChangeResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "CIM_ProtocolEndpoint.RequestStateChange", uint32(r.ReturnValue), r.Job)
+}
+
 // CIMProtocolEndpointRequestStateChange invokes CIM_ProtocolEndpoint.RequestStateChange on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func CIMProtocolEndpointRequestStateChange(svc *wmi.Service, objectPath string, requestedState uint16, timeoutPeriod string) (*CIMProtocolEndpointRequestStateChangeResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func CIMProtocolEndpointRequestStateChange(svc *wmi.Service, objectPath string, requestedState *uint16, timeoutPeriod *string) (*CIMProtocolEndpointRequestStateChangeResult, error) {
 	in := map[string]any{}
-	if requestedState != 0 {
-		in["RequestedState"] = requestedState
+	if requestedState != nil {
+		in["RequestedState"] = *requestedState
 	}
-	if timeoutPeriod != "" {
-		in["TimeoutPeriod"] = timeoutPeriod
+	if timeoutPeriod != nil {
+		in["TimeoutPeriod"] = *timeoutPeriod
 	}
 	row, err := svc.ExecMethod(objectPath, "RequestStateChange", in)
 	if err != nil {
@@ -835,16 +1177,24 @@ type CIMRemoteServiceAccessPointRequestStateChangeResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *CIMRemoteServiceAccessPointRequestStateChangeResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "CIM_RemoteServiceAccessPoint.RequestStateChange", uint32(r.ReturnValue), r.Job)
+}
+
 // CIMRemoteServiceAccessPointRequestStateChange invokes CIM_RemoteServiceAccessPoint.RequestStateChange on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func CIMRemoteServiceAccessPointRequestStateChange(svc *wmi.Service, objectPath string, requestedState uint16, timeoutPeriod string) (*CIMRemoteServiceAccessPointRequestStateChangeResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func CIMRemoteServiceAccessPointRequestStateChange(svc *wmi.Service, objectPath string, requestedState *uint16, timeoutPeriod *string) (*CIMRemoteServiceAccessPointRequestStateChangeResult, error) {
 	in := map[string]any{}
-	if requestedState != 0 {
-		in["RequestedState"] = requestedState
+	if requestedState != nil {
+		in["RequestedState"] = *requestedState
 	}
-	if timeoutPeriod != "" {
-		in["TimeoutPeriod"] = timeoutPeriod
+	if timeoutPeriod != nil {
+		in["TimeoutPeriod"] = *timeoutPeriod
 	}
 	row, err := svc.ExecMethod(objectPath, "RequestStateChange", in)
 	if err != nil {
@@ -862,16 +1212,24 @@ type CIMSecurityAssociationEndpointRequestStateChangeResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *CIMSecurityAssociationEndpointRequestStateChangeResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "CIM_SecurityAssociationEndpoint.RequestStateChange", uint32(r.ReturnValue), r.Job)
+}
+
 // CIMSecurityAssociationEndpointRequestStateChange invokes CIM_SecurityAssociationEndpoint.RequestStateChange on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func CIMSecurityAssociationEndpointRequestStateChange(svc *wmi.Service, objectPath string, requestedState uint16, timeoutPeriod string) (*CIMSecurityAssociationEndpointRequestStateChangeResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func CIMSecurityAssociationEndpointRequestStateChange(svc *wmi.Service, objectPath string, requestedState *uint16, timeoutPeriod *string) (*CIMSecurityAssociationEndpointRequestStateChangeResult, error) {
 	in := map[string]any{}
-	if requestedState != 0 {
-		in["RequestedState"] = requestedState
+	if requestedState != nil {
+		in["RequestedState"] = *requestedState
 	}
-	if timeoutPeriod != "" {
-		in["TimeoutPeriod"] = timeoutPeriod
+	if timeoutPeriod != nil {
+		in["TimeoutPeriod"] = *timeoutPeriod
 	}
 	row, err := svc.ExecMethod(objectPath, "RequestStateChange", in)
 	if err != nil {
@@ -889,16 +1247,24 @@ type CIMServiceAccessPointRequestStateChangeResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *CIMServiceAccessPointRequestStateChangeResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "CIM_ServiceAccessPoint.RequestStateChange", uint32(r.ReturnValue), r.Job)
+}
+
 // CIMServiceAccessPointRequestStateChange invokes CIM_ServiceAccessPoint.RequestStateChange on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func CIMServiceAccessPointRequestStateChange(svc *wmi.Service, objectPath string, requestedState uint16, timeoutPeriod string) (*CIMServiceAccessPointRequestStateChangeResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func CIMServiceAccessPointRequestStateChange(svc *wmi.Service, objectPath string, requestedState *uint16, timeoutPeriod *string) (*CIMServiceAccessPointRequestStateChangeResult, error) {
 	in := map[string]any{}
-	if requestedState != 0 {
-		in["RequestedState"] = requestedState
+	if requestedState != nil {
+		in["RequestedState"] = *requestedState
 	}
-	if timeoutPeriod != "" {
-		in["TimeoutPeriod"] = timeoutPeriod
+	if timeoutPeriod != nil {
+		in["TimeoutPeriod"] = *timeoutPeriod
 	}
 	row, err := svc.ExecMethod(objectPath, "RequestStateChange", in)
 	if err != nil {
@@ -915,75 +1281,85 @@ type MSFT3DPrinterAddByAdaptivePortResult struct {
 	ReturnValue uint32
 }
 
-// MSFT3DPrinterAddByAdaptivePort invokes the static MSFT_3DPrinter.AddByAdaptivePort method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFT3DPrinterAddByAdaptivePort(svc *wmi.Service, comment string, datatype string, deviceURL string, untilTime uint32, deviceUUID string, ippUrl string, keepPrintedJobs bool, location string, name string, permissionSDDL string, printProcessor string, priority uint32, published bool, renderingMode uint32, separatorPageFile string, computerName string, shareName string, shared bool, startTime uint32, disableBranchOfficeLogging bool, branchOfficeOfflineLogSizeMB uint32, workflowPolicy uint32) (*MSFT3DPrinterAddByAdaptivePortResult, error) {
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFT3DPrinterAddByAdaptivePortResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_3DPrinter.AddByAdaptivePort", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFT3DPrinterAddByAdaptivePort invokes the static MSFT_3DPrinter.AddByAdaptivePort method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFT3DPrinterAddByAdaptivePort(svc *wmi.Service, comment *string, datatype *string, deviceURL *string, untilTime *uint32, deviceUUID *string, ippUrl *string, keepPrintedJobs *bool, location *string, name *string, permissionSDDL *string, printProcessor *string, priority *uint32, published *bool, renderingMode *uint32, separatorPageFile *string, computerName *string, shareName *string, shared *bool, startTime *uint32, disableBranchOfficeLogging *bool, branchOfficeOfflineLogSizeMB *uint32, workflowPolicy *uint32) (*MSFT3DPrinterAddByAdaptivePortResult, error) {
 	in := map[string]any{}
-	if comment != "" {
-		in["Comment"] = comment
+	if comment != nil {
+		in["Comment"] = *comment
 	}
-	if datatype != "" {
-		in["Datatype"] = datatype
+	if datatype != nil {
+		in["Datatype"] = *datatype
 	}
-	if deviceURL != "" {
-		in["DeviceURL"] = deviceURL
+	if deviceURL != nil {
+		in["DeviceURL"] = *deviceURL
 	}
-	if untilTime != 0 {
-		in["UntilTime"] = untilTime
+	if untilTime != nil {
+		in["UntilTime"] = *untilTime
 	}
-	if deviceUUID != "" {
-		in["DeviceUUID"] = deviceUUID
+	if deviceUUID != nil {
+		in["DeviceUUID"] = *deviceUUID
 	}
-	if ippUrl != "" {
-		in["IppUrl"] = ippUrl
+	if ippUrl != nil {
+		in["IppUrl"] = *ippUrl
 	}
-	if keepPrintedJobs {
-		in["KeepPrintedJobs"] = keepPrintedJobs
+	if keepPrintedJobs != nil {
+		in["KeepPrintedJobs"] = *keepPrintedJobs
 	}
-	if location != "" {
-		in["Location"] = location
+	if location != nil {
+		in["Location"] = *location
 	}
-	if name != "" {
-		in["Name"] = name
+	if name != nil {
+		in["Name"] = *name
 	}
-	if permissionSDDL != "" {
-		in["PermissionSDDL"] = permissionSDDL
+	if permissionSDDL != nil {
+		in["PermissionSDDL"] = *permissionSDDL
 	}
-	if printProcessor != "" {
-		in["PrintProcessor"] = printProcessor
+	if printProcessor != nil {
+		in["PrintProcessor"] = *printProcessor
 	}
-	if priority != 0 {
-		in["Priority"] = priority
+	if priority != nil {
+		in["Priority"] = *priority
 	}
-	if published {
-		in["Published"] = published
+	if published != nil {
+		in["Published"] = *published
 	}
-	if renderingMode != 0 {
-		in["RenderingMode"] = renderingMode
+	if renderingMode != nil {
+		in["RenderingMode"] = *renderingMode
 	}
-	if separatorPageFile != "" {
-		in["SeparatorPageFile"] = separatorPageFile
+	if separatorPageFile != nil {
+		in["SeparatorPageFile"] = *separatorPageFile
 	}
-	if computerName != "" {
-		in["ComputerName"] = computerName
+	if computerName != nil {
+		in["ComputerName"] = *computerName
 	}
-	if shareName != "" {
-		in["ShareName"] = shareName
+	if shareName != nil {
+		in["ShareName"] = *shareName
 	}
-	if shared {
-		in["Shared"] = shared
+	if shared != nil {
+		in["Shared"] = *shared
 	}
-	if startTime != 0 {
-		in["StartTime"] = startTime
+	if startTime != nil {
+		in["StartTime"] = *startTime
 	}
-	if disableBranchOfficeLogging {
-		in["DisableBranchOfficeLogging"] = disableBranchOfficeLogging
+	if disableBranchOfficeLogging != nil {
+		in["DisableBranchOfficeLogging"] = *disableBranchOfficeLogging
 	}
-	if branchOfficeOfflineLogSizeMB != 0 {
-		in["BranchOfficeOfflineLogSizeMB"] = branchOfficeOfflineLogSizeMB
+	if branchOfficeOfflineLogSizeMB != nil {
+		in["BranchOfficeOfflineLogSizeMB"] = *branchOfficeOfflineLogSizeMB
 	}
-	if workflowPolicy != 0 {
-		in["WorkflowPolicy"] = workflowPolicy
+	if workflowPolicy != nil {
+		in["WorkflowPolicy"] = *workflowPolicy
 	}
 	row, err := svc.ExecMethod("MSFT_3DPrinter", "AddByAdaptivePort", in)
 	if err != nil {
@@ -999,72 +1375,82 @@ type MSFT3DPrinterAddByExistingPortResult struct {
 	ReturnValue uint32
 }
 
-// MSFT3DPrinterAddByExistingPort invokes the static MSFT_3DPrinter.AddByExistingPort method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFT3DPrinterAddByExistingPort(svc *wmi.Service, comment string, datatype string, driverName string, untilTime uint32, keepPrintedJobs bool, location string, name string, permissionSDDL string, portName string, printProcessor string, priority uint32, published bool, renderingMode uint32, separatorPageFile string, computerName string, shareName string, shared bool, startTime uint32, disableBranchOfficeLogging bool, branchOfficeOfflineLogSizeMB uint32, workflowPolicy uint32) (*MSFT3DPrinterAddByExistingPortResult, error) {
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFT3DPrinterAddByExistingPortResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_3DPrinter.AddByExistingPort", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFT3DPrinterAddByExistingPort invokes the static MSFT_3DPrinter.AddByExistingPort method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFT3DPrinterAddByExistingPort(svc *wmi.Service, comment *string, datatype *string, driverName *string, untilTime *uint32, keepPrintedJobs *bool, location *string, name *string, permissionSDDL *string, portName *string, printProcessor *string, priority *uint32, published *bool, renderingMode *uint32, separatorPageFile *string, computerName *string, shareName *string, shared *bool, startTime *uint32, disableBranchOfficeLogging *bool, branchOfficeOfflineLogSizeMB *uint32, workflowPolicy *uint32) (*MSFT3DPrinterAddByExistingPortResult, error) {
 	in := map[string]any{}
-	if comment != "" {
-		in["Comment"] = comment
+	if comment != nil {
+		in["Comment"] = *comment
 	}
-	if datatype != "" {
-		in["Datatype"] = datatype
+	if datatype != nil {
+		in["Datatype"] = *datatype
 	}
-	if driverName != "" {
-		in["DriverName"] = driverName
+	if driverName != nil {
+		in["DriverName"] = *driverName
 	}
-	if untilTime != 0 {
-		in["UntilTime"] = untilTime
+	if untilTime != nil {
+		in["UntilTime"] = *untilTime
 	}
-	if keepPrintedJobs {
-		in["KeepPrintedJobs"] = keepPrintedJobs
+	if keepPrintedJobs != nil {
+		in["KeepPrintedJobs"] = *keepPrintedJobs
 	}
-	if location != "" {
-		in["Location"] = location
+	if location != nil {
+		in["Location"] = *location
 	}
-	if name != "" {
-		in["Name"] = name
+	if name != nil {
+		in["Name"] = *name
 	}
-	if permissionSDDL != "" {
-		in["PermissionSDDL"] = permissionSDDL
+	if permissionSDDL != nil {
+		in["PermissionSDDL"] = *permissionSDDL
 	}
-	if portName != "" {
-		in["PortName"] = portName
+	if portName != nil {
+		in["PortName"] = *portName
 	}
-	if printProcessor != "" {
-		in["PrintProcessor"] = printProcessor
+	if printProcessor != nil {
+		in["PrintProcessor"] = *printProcessor
 	}
-	if priority != 0 {
-		in["Priority"] = priority
+	if priority != nil {
+		in["Priority"] = *priority
 	}
-	if published {
-		in["Published"] = published
+	if published != nil {
+		in["Published"] = *published
 	}
-	if renderingMode != 0 {
-		in["RenderingMode"] = renderingMode
+	if renderingMode != nil {
+		in["RenderingMode"] = *renderingMode
 	}
-	if separatorPageFile != "" {
-		in["SeparatorPageFile"] = separatorPageFile
+	if separatorPageFile != nil {
+		in["SeparatorPageFile"] = *separatorPageFile
 	}
-	if computerName != "" {
-		in["ComputerName"] = computerName
+	if computerName != nil {
+		in["ComputerName"] = *computerName
 	}
-	if shareName != "" {
-		in["ShareName"] = shareName
+	if shareName != nil {
+		in["ShareName"] = *shareName
 	}
-	if shared {
-		in["Shared"] = shared
+	if shared != nil {
+		in["Shared"] = *shared
 	}
-	if startTime != 0 {
-		in["StartTime"] = startTime
+	if startTime != nil {
+		in["StartTime"] = *startTime
 	}
-	if disableBranchOfficeLogging {
-		in["DisableBranchOfficeLogging"] = disableBranchOfficeLogging
+	if disableBranchOfficeLogging != nil {
+		in["DisableBranchOfficeLogging"] = *disableBranchOfficeLogging
 	}
-	if branchOfficeOfflineLogSizeMB != 0 {
-		in["BranchOfficeOfflineLogSizeMB"] = branchOfficeOfflineLogSizeMB
+	if branchOfficeOfflineLogSizeMB != nil {
+		in["BranchOfficeOfflineLogSizeMB"] = *branchOfficeOfflineLogSizeMB
 	}
-	if workflowPolicy != 0 {
-		in["WorkflowPolicy"] = workflowPolicy
+	if workflowPolicy != nil {
+		in["WorkflowPolicy"] = *workflowPolicy
 	}
 	row, err := svc.ExecMethod("MSFT_3DPrinter", "AddByExistingPort", in)
 	if err != nil {
@@ -1080,12 +1466,22 @@ type MSFT3DPrinterAddConnectionResult struct {
 	ReturnValue uint32
 }
 
-// MSFT3DPrinterAddConnection invokes the static MSFT_3DPrinter.AddConnection method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFT3DPrinterAddConnection(svc *wmi.Service, connectionName string) (*MSFT3DPrinterAddConnectionResult, error) {
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFT3DPrinterAddConnectionResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_3DPrinter.AddConnection", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFT3DPrinterAddConnection invokes the static MSFT_3DPrinter.AddConnection method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFT3DPrinterAddConnection(svc *wmi.Service, connectionName *string) (*MSFT3DPrinterAddConnectionResult, error) {
 	in := map[string]any{}
-	if connectionName != "" {
-		in["ConnectionName"] = connectionName
+	if connectionName != nil {
+		in["ConnectionName"] = *connectionName
 	}
 	row, err := svc.ExecMethod("MSFT_3DPrinter", "AddConnection", in)
 	if err != nil {
@@ -1101,18 +1497,28 @@ type MSFT3DPrinterRenameByNameResult struct {
 	ReturnValue uint32
 }
 
-// MSFT3DPrinterRenameByName invokes the static MSFT_3DPrinter.RenameByName method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFT3DPrinterRenameByName(svc *wmi.Service, name string, newName string, computerName string) (*MSFT3DPrinterRenameByNameResult, error) {
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFT3DPrinterRenameByNameResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_3DPrinter.RenameByName", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFT3DPrinterRenameByName invokes the static MSFT_3DPrinter.RenameByName method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFT3DPrinterRenameByName(svc *wmi.Service, name *string, newName *string, computerName *string) (*MSFT3DPrinterRenameByNameResult, error) {
 	in := map[string]any{}
-	if name != "" {
-		in["Name"] = name
+	if name != nil {
+		in["Name"] = *name
 	}
-	if newName != "" {
-		in["NewName"] = newName
+	if newName != nil {
+		in["NewName"] = *newName
 	}
-	if computerName != "" {
-		in["ComputerName"] = computerName
+	if computerName != nil {
+		in["ComputerName"] = *computerName
 	}
 	row, err := svc.ExecMethod("MSFT_3DPrinter", "RenameByName", in)
 	if err != nil {
@@ -1128,15 +1534,25 @@ type MSFT3DPrinterRenameByObjectResult struct {
 	ReturnValue uint32
 }
 
-// MSFT3DPrinterRenameByObject invokes the static MSFT_3DPrinter.RenameByObject method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFT3DPrinterRenameByObject(svc *wmi.Service, inputObject wmi.Row, newName string) (*MSFT3DPrinterRenameByObjectResult, error) {
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFT3DPrinterRenameByObjectResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_3DPrinter.RenameByObject", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFT3DPrinterRenameByObject invokes the static MSFT_3DPrinter.RenameByObject method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFT3DPrinterRenameByObject(svc *wmi.Service, inputObject wmi.Row, newName *string) (*MSFT3DPrinterRenameByObjectResult, error) {
 	in := map[string]any{}
 	if inputObject != nil {
 		in["InputObject"] = inputObject
 	}
-	if newName != "" {
-		in["NewName"] = newName
+	if newName != nil {
+		in["NewName"] = *newName
 	}
 	row, err := svc.ExecMethod("MSFT_3DPrinter", "RenameByObject", in)
 	if err != nil {
@@ -1153,46 +1569,56 @@ type MSFTDAClientExperienceConfigurationResetResult struct {
 	ReturnValue  uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTDAClientExperienceConfigurationResetResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_DAClientExperienceConfiguration.Reset", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MSFTDAClientExperienceConfigurationReset invokes MSFT_DAClientExperienceConfiguration.Reset on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MSFTDAClientExperienceConfigurationReset(svc *wmi.Service, objectPath string, corporateResources bool, iPsecTunnelEndpoints bool, preferLocalNamesAllowed bool, userInterface bool, supportEmail bool, friendlyName bool, passiveMode bool, customCommands bool, manualEntryPointSelectionAllowed bool, gslbFqdn bool, forceTunneling bool, passThru bool) (*MSFTDAClientExperienceConfigurationResetResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MSFTDAClientExperienceConfigurationReset(svc *wmi.Service, objectPath string, corporateResources *bool, iPsecTunnelEndpoints *bool, preferLocalNamesAllowed *bool, userInterface *bool, supportEmail *bool, friendlyName *bool, passiveMode *bool, customCommands *bool, manualEntryPointSelectionAllowed *bool, gslbFqdn *bool, forceTunneling *bool, passThru *bool) (*MSFTDAClientExperienceConfigurationResetResult, error) {
 	in := map[string]any{}
-	if corporateResources {
-		in["CorporateResources"] = corporateResources
+	if corporateResources != nil {
+		in["CorporateResources"] = *corporateResources
 	}
-	if iPsecTunnelEndpoints {
-		in["IPsecTunnelEndpoints"] = iPsecTunnelEndpoints
+	if iPsecTunnelEndpoints != nil {
+		in["IPsecTunnelEndpoints"] = *iPsecTunnelEndpoints
 	}
-	if preferLocalNamesAllowed {
-		in["PreferLocalNamesAllowed"] = preferLocalNamesAllowed
+	if preferLocalNamesAllowed != nil {
+		in["PreferLocalNamesAllowed"] = *preferLocalNamesAllowed
 	}
-	if userInterface {
-		in["UserInterface"] = userInterface
+	if userInterface != nil {
+		in["UserInterface"] = *userInterface
 	}
-	if supportEmail {
-		in["SupportEmail"] = supportEmail
+	if supportEmail != nil {
+		in["SupportEmail"] = *supportEmail
 	}
-	if friendlyName {
-		in["FriendlyName"] = friendlyName
+	if friendlyName != nil {
+		in["FriendlyName"] = *friendlyName
 	}
-	if passiveMode {
-		in["PassiveMode"] = passiveMode
+	if passiveMode != nil {
+		in["PassiveMode"] = *passiveMode
 	}
-	if customCommands {
-		in["CustomCommands"] = customCommands
+	if customCommands != nil {
+		in["CustomCommands"] = *customCommands
 	}
-	if manualEntryPointSelectionAllowed {
-		in["ManualEntryPointSelectionAllowed"] = manualEntryPointSelectionAllowed
+	if manualEntryPointSelectionAllowed != nil {
+		in["ManualEntryPointSelectionAllowed"] = *manualEntryPointSelectionAllowed
 	}
-	if gslbFqdn {
-		in["GslbFqdn"] = gslbFqdn
+	if gslbFqdn != nil {
+		in["GslbFqdn"] = *gslbFqdn
 	}
-	if forceTunneling {
-		in["ForceTunneling"] = forceTunneling
+	if forceTunneling != nil {
+		in["ForceTunneling"] = *forceTunneling
 	}
-	if passThru {
-		in["PassThru"] = passThru
+	if passThru != nil {
+		in["PassThru"] = *passThru
 	}
 	row, err := svc.ExecMethod(objectPath, "Reset", in)
 	if err != nil {
@@ -1211,8 +1637,18 @@ type MSFTDASiteTableEntryDisableResult struct {
 	ReturnValue uint32
 }
 
-// MSFTDASiteTableEntryDisable invokes the static MSFT_DASiteTableEntry.Disable method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTDASiteTableEntryDisableResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_DASiteTableEntry.Disable", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTDASiteTableEntryDisable invokes the static MSFT_DASiteTableEntry.Disable method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
 func MSFTDASiteTableEntryDisable(svc *wmi.Service) (*MSFTDASiteTableEntryDisableResult, error) {
 	row, err := svc.ExecMethod("MSFT_DASiteTableEntry", "Disable", nil)
 	if err != nil {
@@ -1228,12 +1664,22 @@ type MSFTDASiteTableEntryEnableResult struct {
 	ReturnValue uint32
 }
 
-// MSFTDASiteTableEntryEnable invokes the static MSFT_DASiteTableEntry.Enable method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTDASiteTableEntryEnable(svc *wmi.Service, entryPointName string) (*MSFTDASiteTableEntryEnableResult, error) {
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTDASiteTableEntryEnableResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_DASiteTableEntry.Enable", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTDASiteTableEntryEnable invokes the static MSFT_DASiteTableEntry.Enable method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTDASiteTableEntryEnable(svc *wmi.Service, entryPointName *string) (*MSFTDASiteTableEntryEnableResult, error) {
 	in := map[string]any{}
-	if entryPointName != "" {
-		in["EntryPointName"] = entryPointName
+	if entryPointName != nil {
+		in["EntryPointName"] = *entryPointName
 	}
 	row, err := svc.ExecMethod("MSFT_DASiteTableEntry", "Enable", in)
 	if err != nil {
@@ -1250,16 +1696,26 @@ type MSFTDASiteTableEntryRenameResult struct {
 	ReturnValue  uint32
 }
 
-// MSFTDASiteTableEntryRename invokes MSFT_DASiteTableEntry.Rename on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MSFTDASiteTableEntryRename(svc *wmi.Service, objectPath string, newName string, passThru bool) (*MSFTDASiteTableEntryRenameResult, error) {
-	in := map[string]any{}
-	if newName != "" {
-		in["NewName"] = newName
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTDASiteTableEntryRenameResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
 	}
-	if passThru {
-		in["PassThru"] = passThru
+	return &wmi.JobError{What: "MSFT_DASiteTableEntry.Rename", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTDASiteTableEntryRename invokes MSFT_DASiteTableEntry.Rename on the instance at objectPath
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MSFTDASiteTableEntryRename(svc *wmi.Service, objectPath string, newName *string, passThru *bool) (*MSFTDASiteTableEntryRenameResult, error) {
+	in := map[string]any{}
+	if newName != nil {
+		in["NewName"] = *newName
+	}
+	if passThru != nil {
+		in["PassThru"] = *passThru
 	}
 	row, err := svc.ExecMethod(objectPath, "Rename", in)
 	if err != nil {
@@ -1279,22 +1735,32 @@ type MSFTDASiteTableEntryResetResult struct {
 	ReturnValue  uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTDASiteTableEntryResetResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_DASiteTableEntry.Reset", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MSFTDASiteTableEntryReset invokes MSFT_DASiteTableEntry.Reset on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MSFTDASiteTableEntryReset(svc *wmi.Service, objectPath string, teredoServerIP bool, iPHttpsProfile bool, gslbIP bool, passThru bool) (*MSFTDASiteTableEntryResetResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MSFTDASiteTableEntryReset(svc *wmi.Service, objectPath string, teredoServerIP *bool, iPHttpsProfile *bool, gslbIP *bool, passThru *bool) (*MSFTDASiteTableEntryResetResult, error) {
 	in := map[string]any{}
-	if teredoServerIP {
-		in["TeredoServerIP"] = teredoServerIP
+	if teredoServerIP != nil {
+		in["TeredoServerIP"] = *teredoServerIP
 	}
-	if iPHttpsProfile {
-		in["IPHttpsProfile"] = iPHttpsProfile
+	if iPHttpsProfile != nil {
+		in["IPHttpsProfile"] = *iPHttpsProfile
 	}
-	if gslbIP {
-		in["GslbIP"] = gslbIP
+	if gslbIP != nil {
+		in["GslbIP"] = *gslbIP
 	}
-	if passThru {
-		in["PassThru"] = passThru
+	if passThru != nil {
+		in["PassThru"] = *passThru
 	}
 	row, err := svc.ExecMethod(objectPath, "Reset", in)
 	if err != nil {
@@ -1313,8 +1779,18 @@ type MSFTDNSClientRegisterResult struct {
 	ReturnValue uint32
 }
 
-// MSFTDNSClientRegister invokes the static MSFT_DNSClient.Register method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTDNSClientRegisterResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_DNSClient.Register", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTDNSClientRegister invokes the static MSFT_DNSClient.Register method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
 func MSFTDNSClientRegister(svc *wmi.Service) (*MSFTDNSClientRegisterResult, error) {
 	row, err := svc.ExecMethod("MSFT_DNSClient", "Register", nil)
 	if err != nil {
@@ -1331,16 +1807,24 @@ type MSFTDNSClientRequestStateChangeResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MSFTDNSClientRequestStateChangeResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "MSFT_DNSClient.RequestStateChange", uint32(r.ReturnValue), r.Job)
+}
+
 // MSFTDNSClientRequestStateChange invokes MSFT_DNSClient.RequestStateChange on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MSFTDNSClientRequestStateChange(svc *wmi.Service, objectPath string, requestedState uint16, timeoutPeriod string) (*MSFTDNSClientRequestStateChangeResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MSFTDNSClientRequestStateChange(svc *wmi.Service, objectPath string, requestedState *uint16, timeoutPeriod *string) (*MSFTDNSClientRequestStateChangeResult, error) {
 	in := map[string]any{}
-	if requestedState != 0 {
-		in["RequestedState"] = requestedState
+	if requestedState != nil {
+		in["RequestedState"] = *requestedState
 	}
-	if timeoutPeriod != "" {
-		in["TimeoutPeriod"] = timeoutPeriod
+	if timeoutPeriod != nil {
+		in["TimeoutPeriod"] = *timeoutPeriod
 	}
 	row, err := svc.ExecMethod(objectPath, "RequestStateChange", in)
 	if err != nil {
@@ -1357,8 +1841,18 @@ type MSFTDNSClientCacheClearResult struct {
 	ReturnValue uint32
 }
 
-// MSFTDNSClientCacheClear invokes the static MSFT_DNSClientCache.Clear method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTDNSClientCacheClearResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_DNSClientCache.Clear", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTDNSClientCacheClear invokes the static MSFT_DNSClientCache.Clear method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
 func MSFTDNSClientCacheClear(svc *wmi.Service) (*MSFTDNSClientCacheClearResult, error) {
 	row, err := svc.ExecMethod("MSFT_DNSClientCache", "Clear", nil)
 	if err != nil {
@@ -1375,16 +1869,24 @@ type MSFTDNSClientDohServerAddressRequestStateChangeResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MSFTDNSClientDohServerAddressRequestStateChangeResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "MSFT_DNSClientDohServerAddress.RequestStateChange", uint32(r.ReturnValue), r.Job)
+}
+
 // MSFTDNSClientDohServerAddressRequestStateChange invokes MSFT_DNSClientDohServerAddress.RequestStateChange on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MSFTDNSClientDohServerAddressRequestStateChange(svc *wmi.Service, objectPath string, requestedState uint16, timeoutPeriod string) (*MSFTDNSClientDohServerAddressRequestStateChangeResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MSFTDNSClientDohServerAddressRequestStateChange(svc *wmi.Service, objectPath string, requestedState *uint16, timeoutPeriod *string) (*MSFTDNSClientDohServerAddressRequestStateChangeResult, error) {
 	in := map[string]any{}
-	if requestedState != 0 {
-		in["RequestedState"] = requestedState
+	if requestedState != nil {
+		in["RequestedState"] = *requestedState
 	}
-	if timeoutPeriod != "" {
-		in["TimeoutPeriod"] = timeoutPeriod
+	if timeoutPeriod != nil {
+		in["TimeoutPeriod"] = *timeoutPeriod
 	}
 	row, err := svc.ExecMethod(objectPath, "RequestStateChange", in)
 	if err != nil {
@@ -1402,16 +1904,24 @@ type MSFTDNSClientServerAddressRequestStateChangeResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MSFTDNSClientServerAddressRequestStateChangeResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "MSFT_DNSClientServerAddress.RequestStateChange", uint32(r.ReturnValue), r.Job)
+}
+
 // MSFTDNSClientServerAddressRequestStateChange invokes MSFT_DNSClientServerAddress.RequestStateChange on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MSFTDNSClientServerAddressRequestStateChange(svc *wmi.Service, objectPath string, requestedState uint16, timeoutPeriod string) (*MSFTDNSClientServerAddressRequestStateChangeResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MSFTDNSClientServerAddressRequestStateChange(svc *wmi.Service, objectPath string, requestedState *uint16, timeoutPeriod *string) (*MSFTDNSClientServerAddressRequestStateChangeResult, error) {
 	in := map[string]any{}
-	if requestedState != 0 {
-		in["RequestedState"] = requestedState
+	if requestedState != nil {
+		in["RequestedState"] = *requestedState
 	}
-	if timeoutPeriod != "" {
-		in["TimeoutPeriod"] = timeoutPeriod
+	if timeoutPeriod != nil {
+		in["TimeoutPeriod"] = *timeoutPeriod
 	}
 	row, err := svc.ExecMethod(objectPath, "RequestStateChange", in)
 	if err != nil {
@@ -1429,28 +1939,38 @@ type MSFTNCSIPolicyConfigurationResetResult struct {
 	ReturnValue  uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNCSIPolicyConfigurationResetResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NCSIPolicyConfiguration.Reset", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MSFTNCSIPolicyConfigurationReset invokes MSFT_NCSIPolicyConfiguration.Reset on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MSFTNCSIPolicyConfigurationReset(svc *wmi.Service, objectPath string, corporateDNSProbeHostAddress bool, corporateDNSProbeHostName bool, corporateSitePrefixList bool, corporateWebsiteProbeURL bool, domainLocationDeterminationURL bool, passThru bool) (*MSFTNCSIPolicyConfigurationResetResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MSFTNCSIPolicyConfigurationReset(svc *wmi.Service, objectPath string, corporateDNSProbeHostAddress *bool, corporateDNSProbeHostName *bool, corporateSitePrefixList *bool, corporateWebsiteProbeURL *bool, domainLocationDeterminationURL *bool, passThru *bool) (*MSFTNCSIPolicyConfigurationResetResult, error) {
 	in := map[string]any{}
-	if corporateDNSProbeHostAddress {
-		in["CorporateDNSProbeHostAddress"] = corporateDNSProbeHostAddress
+	if corporateDNSProbeHostAddress != nil {
+		in["CorporateDNSProbeHostAddress"] = *corporateDNSProbeHostAddress
 	}
-	if corporateDNSProbeHostName {
-		in["CorporateDNSProbeHostName"] = corporateDNSProbeHostName
+	if corporateDNSProbeHostName != nil {
+		in["CorporateDNSProbeHostName"] = *corporateDNSProbeHostName
 	}
-	if corporateSitePrefixList {
-		in["CorporateSitePrefixList"] = corporateSitePrefixList
+	if corporateSitePrefixList != nil {
+		in["CorporateSitePrefixList"] = *corporateSitePrefixList
 	}
-	if corporateWebsiteProbeURL {
-		in["CorporateWebsiteProbeURL"] = corporateWebsiteProbeURL
+	if corporateWebsiteProbeURL != nil {
+		in["CorporateWebsiteProbeURL"] = *corporateWebsiteProbeURL
 	}
-	if domainLocationDeterminationURL {
-		in["DomainLocationDeterminationURL"] = domainLocationDeterminationURL
+	if domainLocationDeterminationURL != nil {
+		in["DomainLocationDeterminationURL"] = *domainLocationDeterminationURL
 	}
-	if passThru {
-		in["PassThru"] = passThru
+	if passThru != nil {
+		in["PassThru"] = *passThru
 	}
 	row, err := svc.ExecMethod(objectPath, "Reset", in)
 	if err != nil {
@@ -1470,28 +1990,38 @@ type MSFTNet6to4ConfigurationResetResult struct {
 	ReturnValue  uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNet6to4ConfigurationResetResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_Net6to4Configuration.Reset", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MSFTNet6to4ConfigurationReset invokes MSFT_Net6to4Configuration.Reset on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MSFTNet6to4ConfigurationReset(svc *wmi.Service, objectPath string, state bool, autoSharing bool, relayName bool, relayState bool, resolutionInterval bool, passThru bool) (*MSFTNet6to4ConfigurationResetResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MSFTNet6to4ConfigurationReset(svc *wmi.Service, objectPath string, state *bool, autoSharing *bool, relayName *bool, relayState *bool, resolutionInterval *bool, passThru *bool) (*MSFTNet6to4ConfigurationResetResult, error) {
 	in := map[string]any{}
-	if state {
-		in["State"] = state
+	if state != nil {
+		in["State"] = *state
 	}
-	if autoSharing {
-		in["AutoSharing"] = autoSharing
+	if autoSharing != nil {
+		in["AutoSharing"] = *autoSharing
 	}
-	if relayName {
-		in["RelayName"] = relayName
+	if relayName != nil {
+		in["RelayName"] = *relayName
 	}
-	if relayState {
-		in["RelayState"] = relayState
+	if relayState != nil {
+		in["RelayState"] = *relayState
 	}
-	if resolutionInterval {
-		in["ResolutionInterval"] = resolutionInterval
+	if resolutionInterval != nil {
+		in["ResolutionInterval"] = *resolutionInterval
 	}
-	if passThru {
-		in["PassThru"] = passThru
+	if passThru != nil {
+		in["PassThru"] = *passThru
 	}
 	row, err := svc.ExecMethod(objectPath, "Reset", in)
 	if err != nil {
@@ -1511,9 +2041,19 @@ type MSFTNetAdapterDisableResult struct {
 	ReturnValue  uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetAdapterDisableResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetAdapter.Disable", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MSFTNetAdapterDisable invokes MSFT_NetAdapter.Disable on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MSFTNetAdapterDisable(svc *wmi.Service, objectPath string) (*MSFTNetAdapterDisableResult, error) {
 	row, err := svc.ExecMethod(objectPath, "Disable", nil)
 	if err != nil {
@@ -1533,9 +2073,19 @@ type MSFTNetAdapterEnableResult struct {
 	ReturnValue  uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetAdapterEnableResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetAdapter.Enable", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MSFTNetAdapterEnable invokes MSFT_NetAdapter.Enable on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MSFTNetAdapterEnable(svc *wmi.Service, objectPath string) (*MSFTNetAdapterEnableResult, error) {
 	row, err := svc.ExecMethod(objectPath, "Enable", nil)
 	if err != nil {
@@ -1554,13 +2104,23 @@ type MSFTNetAdapterEnableDeviceResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetAdapterEnableDeviceResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetAdapter.EnableDevice", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MSFTNetAdapterEnableDevice invokes MSFT_NetAdapter.EnableDevice on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MSFTNetAdapterEnableDevice(svc *wmi.Service, objectPath string, enabled bool) (*MSFTNetAdapterEnableDeviceResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MSFTNetAdapterEnableDevice(svc *wmi.Service, objectPath string, enabled *bool) (*MSFTNetAdapterEnableDeviceResult, error) {
 	in := map[string]any{}
-	if enabled {
-		in["Enabled"] = enabled
+	if enabled != nil {
+		in["Enabled"] = *enabled
 	}
 	row, err := svc.ExecMethod(objectPath, "EnableDevice", in)
 	if err != nil {
@@ -1577,9 +2137,19 @@ type MSFTNetAdapterLockResult struct {
 	ReturnValue  uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetAdapterLockResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetAdapter.Lock", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MSFTNetAdapterLock invokes MSFT_NetAdapter.Lock on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MSFTNetAdapterLock(svc *wmi.Service, objectPath string) (*MSFTNetAdapterLockResult, error) {
 	row, err := svc.ExecMethod(objectPath, "Lock", nil)
 	if err != nil {
@@ -1598,13 +2168,23 @@ type MSFTNetAdapterOnlineDeviceResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetAdapterOnlineDeviceResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetAdapter.OnlineDevice", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MSFTNetAdapterOnlineDevice invokes MSFT_NetAdapter.OnlineDevice on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MSFTNetAdapterOnlineDevice(svc *wmi.Service, objectPath string, online bool) (*MSFTNetAdapterOnlineDeviceResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MSFTNetAdapterOnlineDevice(svc *wmi.Service, objectPath string, online *bool) (*MSFTNetAdapterOnlineDeviceResult, error) {
 	in := map[string]any{}
-	if online {
-		in["Online"] = online
+	if online != nil {
+		in["Online"] = *online
 	}
 	row, err := svc.ExecMethod(objectPath, "OnlineDevice", in)
 	if err != nil {
@@ -1620,13 +2200,23 @@ type MSFTNetAdapterQuiesceDeviceResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetAdapterQuiesceDeviceResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetAdapter.QuiesceDevice", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MSFTNetAdapterQuiesceDevice invokes MSFT_NetAdapter.QuiesceDevice on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MSFTNetAdapterQuiesceDevice(svc *wmi.Service, objectPath string, quiesce bool) (*MSFTNetAdapterQuiesceDeviceResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MSFTNetAdapterQuiesceDevice(svc *wmi.Service, objectPath string, quiesce *bool) (*MSFTNetAdapterQuiesceDeviceResult, error) {
 	in := map[string]any{}
-	if quiesce {
-		in["Quiesce"] = quiesce
+	if quiesce != nil {
+		in["Quiesce"] = *quiesce
 	}
 	row, err := svc.ExecMethod(objectPath, "QuiesceDevice", in)
 	if err != nil {
@@ -1643,13 +2233,23 @@ type MSFTNetAdapterRenameResult struct {
 	ReturnValue  uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetAdapterRenameResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetAdapter.Rename", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MSFTNetAdapterRename invokes MSFT_NetAdapter.Rename on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MSFTNetAdapterRename(svc *wmi.Service, objectPath string, newName string) (*MSFTNetAdapterRenameResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MSFTNetAdapterRename(svc *wmi.Service, objectPath string, newName *string) (*MSFTNetAdapterRenameResult, error) {
 	in := map[string]any{}
-	if newName != "" {
-		in["NewName"] = newName
+	if newName != nil {
+		in["NewName"] = *newName
 	}
 	row, err := svc.ExecMethod(objectPath, "Rename", in)
 	if err != nil {
@@ -1669,16 +2269,24 @@ type MSFTNetAdapterRequestStateChangeResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MSFTNetAdapterRequestStateChangeResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "MSFT_NetAdapter.RequestStateChange", uint32(r.ReturnValue), r.Job)
+}
+
 // MSFTNetAdapterRequestStateChange invokes MSFT_NetAdapter.RequestStateChange on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MSFTNetAdapterRequestStateChange(svc *wmi.Service, objectPath string, requestedState uint16, timeoutPeriod string) (*MSFTNetAdapterRequestStateChangeResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MSFTNetAdapterRequestStateChange(svc *wmi.Service, objectPath string, requestedState *uint16, timeoutPeriod *string) (*MSFTNetAdapterRequestStateChangeResult, error) {
 	in := map[string]any{}
-	if requestedState != 0 {
-		in["RequestedState"] = requestedState
+	if requestedState != nil {
+		in["RequestedState"] = *requestedState
 	}
-	if timeoutPeriod != "" {
-		in["TimeoutPeriod"] = timeoutPeriod
+	if timeoutPeriod != nil {
+		in["TimeoutPeriod"] = *timeoutPeriod
 	}
 	row, err := svc.ExecMethod(objectPath, "RequestStateChange", in)
 	if err != nil {
@@ -1695,9 +2303,19 @@ type MSFTNetAdapterResetResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetAdapterResetResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetAdapter.Reset", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MSFTNetAdapterReset invokes MSFT_NetAdapter.Reset on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MSFTNetAdapterReset(svc *wmi.Service, objectPath string) (*MSFTNetAdapterResetResult, error) {
 	row, err := svc.ExecMethod(objectPath, "Reset", nil)
 	if err != nil {
@@ -1714,9 +2332,19 @@ type MSFTNetAdapterRestartResult struct {
 	ReturnValue  uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetAdapterRestartResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetAdapter.Restart", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MSFTNetAdapterRestart invokes MSFT_NetAdapter.Restart on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MSFTNetAdapterRestart(svc *wmi.Service, objectPath string) (*MSFTNetAdapterRestartResult, error) {
 	row, err := svc.ExecMethod(objectPath, "Restart", nil)
 	if err != nil {
@@ -1735,9 +2363,19 @@ type MSFTNetAdapterRestorePropertiesResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetAdapterRestorePropertiesResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetAdapter.RestoreProperties", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MSFTNetAdapterRestoreProperties invokes MSFT_NetAdapter.RestoreProperties on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MSFTNetAdapterRestoreProperties(svc *wmi.Service, objectPath string) (*MSFTNetAdapterRestorePropertiesResult, error) {
 	row, err := svc.ExecMethod(objectPath, "RestoreProperties", nil)
 	if err != nil {
@@ -1753,9 +2391,19 @@ type MSFTNetAdapterSavePropertiesResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetAdapterSavePropertiesResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetAdapter.SaveProperties", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MSFTNetAdapterSaveProperties invokes MSFT_NetAdapter.SaveProperties on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MSFTNetAdapterSaveProperties(svc *wmi.Service, objectPath string) (*MSFTNetAdapterSavePropertiesResult, error) {
 	row, err := svc.ExecMethod(objectPath, "SaveProperties", nil)
 	if err != nil {
@@ -1771,16 +2419,26 @@ type MSFTNetAdapterSetPowerStateResult struct {
 	ReturnValue uint32
 }
 
-// MSFTNetAdapterSetPowerState invokes MSFT_NetAdapter.SetPowerState on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MSFTNetAdapterSetPowerState(svc *wmi.Service, objectPath string, powerState uint16, time string) (*MSFTNetAdapterSetPowerStateResult, error) {
-	in := map[string]any{}
-	if powerState != 0 {
-		in["PowerState"] = powerState
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetAdapterSetPowerStateResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
 	}
-	if time != "" {
-		in["Time"] = time
+	return &wmi.JobError{What: "MSFT_NetAdapter.SetPowerState", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTNetAdapterSetPowerState invokes MSFT_NetAdapter.SetPowerState on the instance at objectPath
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MSFTNetAdapterSetPowerState(svc *wmi.Service, objectPath string, powerState *uint16, time *string) (*MSFTNetAdapterSetPowerStateResult, error) {
+	in := map[string]any{}
+	if powerState != nil {
+		in["PowerState"] = *powerState
+	}
+	if time != nil {
+		in["Time"] = *time
 	}
 	row, err := svc.ExecMethod(objectPath, "SetPowerState", in)
 	if err != nil {
@@ -1797,9 +2455,19 @@ type MSFTNetAdapterUnlockResult struct {
 	ReturnValue  uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetAdapterUnlockResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetAdapter.Unlock", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MSFTNetAdapterUnlock invokes MSFT_NetAdapter.Unlock on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MSFTNetAdapterUnlock(svc *wmi.Service, objectPath string) (*MSFTNetAdapterUnlockResult, error) {
 	row, err := svc.ExecMethod(objectPath, "Unlock", nil)
 	if err != nil {
@@ -1819,9 +2487,19 @@ type MSFTNetAdapterAdvancedPropertySettingDataResetResult struct {
 	ReturnValue  uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetAdapterAdvancedPropertySettingDataResetResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetAdapterAdvancedPropertySettingData.Reset", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MSFTNetAdapterAdvancedPropertySettingDataReset invokes MSFT_NetAdapterAdvancedPropertySettingData.Reset on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MSFTNetAdapterAdvancedPropertySettingDataReset(svc *wmi.Service, objectPath string) (*MSFTNetAdapterAdvancedPropertySettingDataResetResult, error) {
 	row, err := svc.ExecMethod(objectPath, "Reset", nil)
 	if err != nil {
@@ -1841,9 +2519,19 @@ type MSFTNetAdapterBindingSettingDataDisableResult struct {
 	ReturnValue  uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetAdapterBindingSettingDataDisableResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetAdapterBindingSettingData.Disable", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MSFTNetAdapterBindingSettingDataDisable invokes MSFT_NetAdapterBindingSettingData.Disable on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MSFTNetAdapterBindingSettingDataDisable(svc *wmi.Service, objectPath string) (*MSFTNetAdapterBindingSettingDataDisableResult, error) {
 	row, err := svc.ExecMethod(objectPath, "Disable", nil)
 	if err != nil {
@@ -1863,9 +2551,19 @@ type MSFTNetAdapterBindingSettingDataEnableResult struct {
 	ReturnValue  uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetAdapterBindingSettingDataEnableResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetAdapterBindingSettingData.Enable", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MSFTNetAdapterBindingSettingDataEnable invokes MSFT_NetAdapterBindingSettingData.Enable on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MSFTNetAdapterBindingSettingDataEnable(svc *wmi.Service, objectPath string) (*MSFTNetAdapterBindingSettingDataEnableResult, error) {
 	row, err := svc.ExecMethod(objectPath, "Enable", nil)
 	if err != nil {
@@ -1885,28 +2583,38 @@ type MSFTNetAdapterChecksumOffloadSettingDataDisableResult struct {
 	ReturnValue  uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetAdapterChecksumOffloadSettingDataDisableResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetAdapterChecksumOffloadSettingData.Disable", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MSFTNetAdapterChecksumOffloadSettingDataDisable invokes MSFT_NetAdapterChecksumOffloadSettingData.Disable on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MSFTNetAdapterChecksumOffloadSettingDataDisable(svc *wmi.Service, objectPath string, ipIPv4 bool, tcpIPv4 bool, tcpIPv6 bool, udpIPv4 bool, udpIPv6 bool, rxTxControl uint32) (*MSFTNetAdapterChecksumOffloadSettingDataDisableResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MSFTNetAdapterChecksumOffloadSettingDataDisable(svc *wmi.Service, objectPath string, ipIPv4 *bool, tcpIPv4 *bool, tcpIPv6 *bool, udpIPv4 *bool, udpIPv6 *bool, rxTxControl *uint32) (*MSFTNetAdapterChecksumOffloadSettingDataDisableResult, error) {
 	in := map[string]any{}
-	if ipIPv4 {
-		in["IpIPv4"] = ipIPv4
+	if ipIPv4 != nil {
+		in["IpIPv4"] = *ipIPv4
 	}
-	if tcpIPv4 {
-		in["TcpIPv4"] = tcpIPv4
+	if tcpIPv4 != nil {
+		in["TcpIPv4"] = *tcpIPv4
 	}
-	if tcpIPv6 {
-		in["TcpIPv6"] = tcpIPv6
+	if tcpIPv6 != nil {
+		in["TcpIPv6"] = *tcpIPv6
 	}
-	if udpIPv4 {
-		in["UdpIPv4"] = udpIPv4
+	if udpIPv4 != nil {
+		in["UdpIPv4"] = *udpIPv4
 	}
-	if udpIPv6 {
-		in["UdpIPv6"] = udpIPv6
+	if udpIPv6 != nil {
+		in["UdpIPv6"] = *udpIPv6
 	}
-	if rxTxControl != 0 {
-		in["RxTxControl"] = rxTxControl
+	if rxTxControl != nil {
+		in["RxTxControl"] = *rxTxControl
 	}
 	row, err := svc.ExecMethod(objectPath, "Disable", in)
 	if err != nil {
@@ -1926,28 +2634,38 @@ type MSFTNetAdapterChecksumOffloadSettingDataEnableResult struct {
 	ReturnValue  uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetAdapterChecksumOffloadSettingDataEnableResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetAdapterChecksumOffloadSettingData.Enable", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MSFTNetAdapterChecksumOffloadSettingDataEnable invokes MSFT_NetAdapterChecksumOffloadSettingData.Enable on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MSFTNetAdapterChecksumOffloadSettingDataEnable(svc *wmi.Service, objectPath string, ipIPv4 bool, tcpIPv4 bool, tcpIPv6 bool, udpIPv4 bool, udpIPv6 bool, rxTxControl uint32) (*MSFTNetAdapterChecksumOffloadSettingDataEnableResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MSFTNetAdapterChecksumOffloadSettingDataEnable(svc *wmi.Service, objectPath string, ipIPv4 *bool, tcpIPv4 *bool, tcpIPv6 *bool, udpIPv4 *bool, udpIPv6 *bool, rxTxControl *uint32) (*MSFTNetAdapterChecksumOffloadSettingDataEnableResult, error) {
 	in := map[string]any{}
-	if ipIPv4 {
-		in["IpIPv4"] = ipIPv4
+	if ipIPv4 != nil {
+		in["IpIPv4"] = *ipIPv4
 	}
-	if tcpIPv4 {
-		in["TcpIPv4"] = tcpIPv4
+	if tcpIPv4 != nil {
+		in["TcpIPv4"] = *tcpIPv4
 	}
-	if tcpIPv6 {
-		in["TcpIPv6"] = tcpIPv6
+	if tcpIPv6 != nil {
+		in["TcpIPv6"] = *tcpIPv6
 	}
-	if udpIPv4 {
-		in["UdpIPv4"] = udpIPv4
+	if udpIPv4 != nil {
+		in["UdpIPv4"] = *udpIPv4
 	}
-	if udpIPv6 {
-		in["UdpIPv6"] = udpIPv6
+	if udpIPv6 != nil {
+		in["UdpIPv6"] = *udpIPv6
 	}
-	if rxTxControl != 0 {
-		in["RxTxControl"] = rxTxControl
+	if rxTxControl != nil {
+		in["RxTxControl"] = *rxTxControl
 	}
 	row, err := svc.ExecMethod(objectPath, "Enable", in)
 	if err != nil {
@@ -1967,13 +2685,23 @@ type MSFTNetAdapterEncapsulatedPacketTaskOffloadSettingDataDisableResult struct 
 	ReturnValue  uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetAdapterEncapsulatedPacketTaskOffloadSettingDataDisableResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetAdapterEncapsulatedPacketTaskOffloadSettingData.Disable", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MSFTNetAdapterEncapsulatedPacketTaskOffloadSettingDataDisable invokes MSFT_NetAdapterEncapsulatedPacketTaskOffloadSettingData.Disable on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MSFTNetAdapterEncapsulatedPacketTaskOffloadSettingDataDisable(svc *wmi.Service, objectPath string, encapsulationType uint16) (*MSFTNetAdapterEncapsulatedPacketTaskOffloadSettingDataDisableResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MSFTNetAdapterEncapsulatedPacketTaskOffloadSettingDataDisable(svc *wmi.Service, objectPath string, encapsulationType *uint16) (*MSFTNetAdapterEncapsulatedPacketTaskOffloadSettingDataDisableResult, error) {
 	in := map[string]any{}
-	if encapsulationType != 0 {
-		in["EncapsulationType"] = encapsulationType
+	if encapsulationType != nil {
+		in["EncapsulationType"] = *encapsulationType
 	}
 	row, err := svc.ExecMethod(objectPath, "Disable", in)
 	if err != nil {
@@ -1993,13 +2721,23 @@ type MSFTNetAdapterEncapsulatedPacketTaskOffloadSettingDataEnableResult struct {
 	ReturnValue  uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetAdapterEncapsulatedPacketTaskOffloadSettingDataEnableResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetAdapterEncapsulatedPacketTaskOffloadSettingData.Enable", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MSFTNetAdapterEncapsulatedPacketTaskOffloadSettingDataEnable invokes MSFT_NetAdapterEncapsulatedPacketTaskOffloadSettingData.Enable on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MSFTNetAdapterEncapsulatedPacketTaskOffloadSettingDataEnable(svc *wmi.Service, objectPath string, encapsulationType uint16) (*MSFTNetAdapterEncapsulatedPacketTaskOffloadSettingDataEnableResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MSFTNetAdapterEncapsulatedPacketTaskOffloadSettingDataEnable(svc *wmi.Service, objectPath string, encapsulationType *uint16) (*MSFTNetAdapterEncapsulatedPacketTaskOffloadSettingDataEnableResult, error) {
 	in := map[string]any{}
-	if encapsulationType != 0 {
-		in["EncapsulationType"] = encapsulationType
+	if encapsulationType != nil {
+		in["EncapsulationType"] = *encapsulationType
 	}
 	row, err := svc.ExecMethod(objectPath, "Enable", in)
 	if err != nil {
@@ -2019,16 +2757,26 @@ type MSFTNetAdapterIPsecOffloadV2SettingDataDisableResult struct {
 	ReturnValue  uint32
 }
 
-// MSFTNetAdapterIPsecOffloadV2SettingDataDisable invokes MSFT_NetAdapterIPsecOffloadV2SettingData.Disable on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MSFTNetAdapterIPsecOffloadV2SettingDataDisable(svc *wmi.Service, objectPath string, noRestart bool, passThru bool) (*MSFTNetAdapterIPsecOffloadV2SettingDataDisableResult, error) {
-	in := map[string]any{}
-	if noRestart {
-		in["NoRestart"] = noRestart
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetAdapterIPsecOffloadV2SettingDataDisableResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
 	}
-	if passThru {
-		in["PassThru"] = passThru
+	return &wmi.JobError{What: "MSFT_NetAdapterIPsecOffloadV2SettingData.Disable", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTNetAdapterIPsecOffloadV2SettingDataDisable invokes MSFT_NetAdapterIPsecOffloadV2SettingData.Disable on the instance at objectPath
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MSFTNetAdapterIPsecOffloadV2SettingDataDisable(svc *wmi.Service, objectPath string, noRestart *bool, passThru *bool) (*MSFTNetAdapterIPsecOffloadV2SettingDataDisableResult, error) {
+	in := map[string]any{}
+	if noRestart != nil {
+		in["NoRestart"] = *noRestart
+	}
+	if passThru != nil {
+		in["PassThru"] = *passThru
 	}
 	row, err := svc.ExecMethod(objectPath, "Disable", in)
 	if err != nil {
@@ -2048,16 +2796,26 @@ type MSFTNetAdapterIPsecOffloadV2SettingDataEnableResult struct {
 	ReturnValue  uint32
 }
 
-// MSFTNetAdapterIPsecOffloadV2SettingDataEnable invokes MSFT_NetAdapterIPsecOffloadV2SettingData.Enable on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MSFTNetAdapterIPsecOffloadV2SettingDataEnable(svc *wmi.Service, objectPath string, noRestart bool, passThru bool) (*MSFTNetAdapterIPsecOffloadV2SettingDataEnableResult, error) {
-	in := map[string]any{}
-	if noRestart {
-		in["NoRestart"] = noRestart
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetAdapterIPsecOffloadV2SettingDataEnableResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
 	}
-	if passThru {
-		in["PassThru"] = passThru
+	return &wmi.JobError{What: "MSFT_NetAdapterIPsecOffloadV2SettingData.Enable", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTNetAdapterIPsecOffloadV2SettingDataEnable invokes MSFT_NetAdapterIPsecOffloadV2SettingData.Enable on the instance at objectPath
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MSFTNetAdapterIPsecOffloadV2SettingDataEnable(svc *wmi.Service, objectPath string, noRestart *bool, passThru *bool) (*MSFTNetAdapterIPsecOffloadV2SettingDataEnableResult, error) {
+	in := map[string]any{}
+	if noRestart != nil {
+		in["NoRestart"] = *noRestart
+	}
+	if passThru != nil {
+		in["PassThru"] = *passThru
 	}
 	row, err := svc.ExecMethod(objectPath, "Enable", in)
 	if err != nil {
@@ -2077,19 +2835,29 @@ type MSFTNetAdapterIPsecOffloadV2SettingDataSetResult struct {
 	ReturnValue  uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetAdapterIPsecOffloadV2SettingDataSetResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetAdapterIPsecOffloadV2SettingData.Set", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MSFTNetAdapterIPsecOffloadV2SettingDataSet invokes MSFT_NetAdapterIPsecOffloadV2SettingData.Set on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MSFTNetAdapterIPsecOffloadV2SettingDataSet(svc *wmi.Service, objectPath string, enabled bool, noRestart bool, passThru bool) (*MSFTNetAdapterIPsecOffloadV2SettingDataSetResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MSFTNetAdapterIPsecOffloadV2SettingDataSet(svc *wmi.Service, objectPath string, enabled *bool, noRestart *bool, passThru *bool) (*MSFTNetAdapterIPsecOffloadV2SettingDataSetResult, error) {
 	in := map[string]any{}
-	if enabled {
-		in["Enabled"] = enabled
+	if enabled != nil {
+		in["Enabled"] = *enabled
 	}
-	if noRestart {
-		in["NoRestart"] = noRestart
+	if noRestart != nil {
+		in["NoRestart"] = *noRestart
 	}
-	if passThru {
-		in["PassThru"] = passThru
+	if passThru != nil {
+		in["PassThru"] = *passThru
 	}
 	row, err := svc.ExecMethod(objectPath, "Set", in)
 	if err != nil {
@@ -2109,16 +2877,26 @@ type MSFTNetAdapterLsoSettingDataDisableResult struct {
 	ReturnValue  uint32
 }
 
-// MSFTNetAdapterLsoSettingDataDisable invokes MSFT_NetAdapterLsoSettingData.Disable on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MSFTNetAdapterLsoSettingDataDisable(svc *wmi.Service, objectPath string, iPv4 bool, iPv6 bool) (*MSFTNetAdapterLsoSettingDataDisableResult, error) {
-	in := map[string]any{}
-	if iPv4 {
-		in["IPv4"] = iPv4
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetAdapterLsoSettingDataDisableResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
 	}
-	if iPv6 {
-		in["IPv6"] = iPv6
+	return &wmi.JobError{What: "MSFT_NetAdapterLsoSettingData.Disable", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTNetAdapterLsoSettingDataDisable invokes MSFT_NetAdapterLsoSettingData.Disable on the instance at objectPath
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MSFTNetAdapterLsoSettingDataDisable(svc *wmi.Service, objectPath string, iPv4 *bool, iPv6 *bool) (*MSFTNetAdapterLsoSettingDataDisableResult, error) {
+	in := map[string]any{}
+	if iPv4 != nil {
+		in["IPv4"] = *iPv4
+	}
+	if iPv6 != nil {
+		in["IPv6"] = *iPv6
 	}
 	row, err := svc.ExecMethod(objectPath, "Disable", in)
 	if err != nil {
@@ -2138,16 +2916,26 @@ type MSFTNetAdapterLsoSettingDataEnableResult struct {
 	ReturnValue  uint32
 }
 
-// MSFTNetAdapterLsoSettingDataEnable invokes MSFT_NetAdapterLsoSettingData.Enable on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MSFTNetAdapterLsoSettingDataEnable(svc *wmi.Service, objectPath string, iPv4 bool, iPv6 bool) (*MSFTNetAdapterLsoSettingDataEnableResult, error) {
-	in := map[string]any{}
-	if iPv4 {
-		in["IPv4"] = iPv4
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetAdapterLsoSettingDataEnableResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
 	}
-	if iPv6 {
-		in["IPv6"] = iPv6
+	return &wmi.JobError{What: "MSFT_NetAdapterLsoSettingData.Enable", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTNetAdapterLsoSettingDataEnable invokes MSFT_NetAdapterLsoSettingData.Enable on the instance at objectPath
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MSFTNetAdapterLsoSettingDataEnable(svc *wmi.Service, objectPath string, iPv4 *bool, iPv6 *bool) (*MSFTNetAdapterLsoSettingDataEnableResult, error) {
+	in := map[string]any{}
+	if iPv4 != nil {
+		in["IPv4"] = *iPv4
+	}
+	if iPv6 != nil {
+		in["IPv6"] = *iPv6
 	}
 	row, err := svc.ExecMethod(objectPath, "Enable", in)
 	if err != nil {
@@ -2167,9 +2955,19 @@ type MSFTNetAdapterPacketDirectSettingDataDisableResult struct {
 	ReturnValue  uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetAdapterPacketDirectSettingDataDisableResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetAdapterPacketDirectSettingData.Disable", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MSFTNetAdapterPacketDirectSettingDataDisable invokes MSFT_NetAdapterPacketDirectSettingData.Disable on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MSFTNetAdapterPacketDirectSettingDataDisable(svc *wmi.Service, objectPath string) (*MSFTNetAdapterPacketDirectSettingDataDisableResult, error) {
 	row, err := svc.ExecMethod(objectPath, "Disable", nil)
 	if err != nil {
@@ -2189,9 +2987,19 @@ type MSFTNetAdapterPacketDirectSettingDataEnableResult struct {
 	ReturnValue  uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetAdapterPacketDirectSettingDataEnableResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetAdapterPacketDirectSettingData.Enable", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MSFTNetAdapterPacketDirectSettingDataEnable invokes MSFT_NetAdapterPacketDirectSettingData.Enable on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MSFTNetAdapterPacketDirectSettingDataEnable(svc *wmi.Service, objectPath string) (*MSFTNetAdapterPacketDirectSettingDataEnableResult, error) {
 	row, err := svc.ExecMethod(objectPath, "Enable", nil)
 	if err != nil {
@@ -2211,34 +3019,44 @@ type MSFTNetAdapterPowerManagementSettingDataDisableResult struct {
 	ReturnValue  uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetAdapterPowerManagementSettingDataDisableResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetAdapterPowerManagementSettingData.Disable", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MSFTNetAdapterPowerManagementSettingDataDisable invokes MSFT_NetAdapterPowerManagementSettingData.Disable on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MSFTNetAdapterPowerManagementSettingDataDisable(svc *wmi.Service, objectPath string, arpOffload bool, d0PacketCoalescing bool, deviceSleepOnDisconnect bool, nSOffload bool, rsnRekeyOffload bool, selectiveSuspend bool, wakeOnMagicPacket bool, wakeOnPattern bool) (*MSFTNetAdapterPowerManagementSettingDataDisableResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MSFTNetAdapterPowerManagementSettingDataDisable(svc *wmi.Service, objectPath string, arpOffload *bool, d0PacketCoalescing *bool, deviceSleepOnDisconnect *bool, nSOffload *bool, rsnRekeyOffload *bool, selectiveSuspend *bool, wakeOnMagicPacket *bool, wakeOnPattern *bool) (*MSFTNetAdapterPowerManagementSettingDataDisableResult, error) {
 	in := map[string]any{}
-	if arpOffload {
-		in["ArpOffload"] = arpOffload
+	if arpOffload != nil {
+		in["ArpOffload"] = *arpOffload
 	}
-	if d0PacketCoalescing {
-		in["D0PacketCoalescing"] = d0PacketCoalescing
+	if d0PacketCoalescing != nil {
+		in["D0PacketCoalescing"] = *d0PacketCoalescing
 	}
-	if deviceSleepOnDisconnect {
-		in["DeviceSleepOnDisconnect"] = deviceSleepOnDisconnect
+	if deviceSleepOnDisconnect != nil {
+		in["DeviceSleepOnDisconnect"] = *deviceSleepOnDisconnect
 	}
-	if nSOffload {
-		in["NSOffload"] = nSOffload
+	if nSOffload != nil {
+		in["NSOffload"] = *nSOffload
 	}
-	if rsnRekeyOffload {
-		in["RsnRekeyOffload"] = rsnRekeyOffload
+	if rsnRekeyOffload != nil {
+		in["RsnRekeyOffload"] = *rsnRekeyOffload
 	}
-	if selectiveSuspend {
-		in["SelectiveSuspend"] = selectiveSuspend
+	if selectiveSuspend != nil {
+		in["SelectiveSuspend"] = *selectiveSuspend
 	}
-	if wakeOnMagicPacket {
-		in["WakeOnMagicPacket"] = wakeOnMagicPacket
+	if wakeOnMagicPacket != nil {
+		in["WakeOnMagicPacket"] = *wakeOnMagicPacket
 	}
-	if wakeOnPattern {
-		in["WakeOnPattern"] = wakeOnPattern
+	if wakeOnPattern != nil {
+		in["WakeOnPattern"] = *wakeOnPattern
 	}
 	row, err := svc.ExecMethod(objectPath, "Disable", in)
 	if err != nil {
@@ -2258,34 +3076,44 @@ type MSFTNetAdapterPowerManagementSettingDataEnableResult struct {
 	ReturnValue  uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetAdapterPowerManagementSettingDataEnableResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetAdapterPowerManagementSettingData.Enable", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MSFTNetAdapterPowerManagementSettingDataEnable invokes MSFT_NetAdapterPowerManagementSettingData.Enable on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MSFTNetAdapterPowerManagementSettingDataEnable(svc *wmi.Service, objectPath string, arpOffload bool, d0PacketCoalescing bool, deviceSleepOnDisconnect bool, nSOffload bool, rsnRekeyOffload bool, selectiveSuspend bool, wakeOnMagicPacket bool, wakeOnPattern bool) (*MSFTNetAdapterPowerManagementSettingDataEnableResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MSFTNetAdapterPowerManagementSettingDataEnable(svc *wmi.Service, objectPath string, arpOffload *bool, d0PacketCoalescing *bool, deviceSleepOnDisconnect *bool, nSOffload *bool, rsnRekeyOffload *bool, selectiveSuspend *bool, wakeOnMagicPacket *bool, wakeOnPattern *bool) (*MSFTNetAdapterPowerManagementSettingDataEnableResult, error) {
 	in := map[string]any{}
-	if arpOffload {
-		in["ArpOffload"] = arpOffload
+	if arpOffload != nil {
+		in["ArpOffload"] = *arpOffload
 	}
-	if d0PacketCoalescing {
-		in["D0PacketCoalescing"] = d0PacketCoalescing
+	if d0PacketCoalescing != nil {
+		in["D0PacketCoalescing"] = *d0PacketCoalescing
 	}
-	if deviceSleepOnDisconnect {
-		in["DeviceSleepOnDisconnect"] = deviceSleepOnDisconnect
+	if deviceSleepOnDisconnect != nil {
+		in["DeviceSleepOnDisconnect"] = *deviceSleepOnDisconnect
 	}
-	if nSOffload {
-		in["NSOffload"] = nSOffload
+	if nSOffload != nil {
+		in["NSOffload"] = *nSOffload
 	}
-	if rsnRekeyOffload {
-		in["RsnRekeyOffload"] = rsnRekeyOffload
+	if rsnRekeyOffload != nil {
+		in["RsnRekeyOffload"] = *rsnRekeyOffload
 	}
-	if selectiveSuspend {
-		in["SelectiveSuspend"] = selectiveSuspend
+	if selectiveSuspend != nil {
+		in["SelectiveSuspend"] = *selectiveSuspend
 	}
-	if wakeOnMagicPacket {
-		in["WakeOnMagicPacket"] = wakeOnMagicPacket
+	if wakeOnMagicPacket != nil {
+		in["WakeOnMagicPacket"] = *wakeOnMagicPacket
 	}
-	if wakeOnPattern {
-		in["WakeOnPattern"] = wakeOnPattern
+	if wakeOnPattern != nil {
+		in["WakeOnPattern"] = *wakeOnPattern
 	}
 	row, err := svc.ExecMethod(objectPath, "Enable", in)
 	if err != nil {
@@ -2305,9 +3133,19 @@ type MSFTNetAdapterQosSettingDataDisableResult struct {
 	ReturnValue  uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetAdapterQosSettingDataDisableResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetAdapterQosSettingData.Disable", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MSFTNetAdapterQosSettingDataDisable invokes MSFT_NetAdapterQosSettingData.Disable on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MSFTNetAdapterQosSettingDataDisable(svc *wmi.Service, objectPath string) (*MSFTNetAdapterQosSettingDataDisableResult, error) {
 	row, err := svc.ExecMethod(objectPath, "Disable", nil)
 	if err != nil {
@@ -2327,9 +3165,19 @@ type MSFTNetAdapterQosSettingDataEnableResult struct {
 	ReturnValue  uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetAdapterQosSettingDataEnableResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetAdapterQosSettingData.Enable", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MSFTNetAdapterQosSettingDataEnable invokes MSFT_NetAdapterQosSettingData.Enable on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MSFTNetAdapterQosSettingDataEnable(svc *wmi.Service, objectPath string) (*MSFTNetAdapterQosSettingDataEnableResult, error) {
 	row, err := svc.ExecMethod(objectPath, "Enable", nil)
 	if err != nil {
@@ -2349,9 +3197,19 @@ type MSFTNetAdapterRdmaSettingDataDisableResult struct {
 	ReturnValue  uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetAdapterRdmaSettingDataDisableResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetAdapterRdmaSettingData.Disable", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MSFTNetAdapterRdmaSettingDataDisable invokes MSFT_NetAdapterRdmaSettingData.Disable on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MSFTNetAdapterRdmaSettingDataDisable(svc *wmi.Service, objectPath string) (*MSFTNetAdapterRdmaSettingDataDisableResult, error) {
 	row, err := svc.ExecMethod(objectPath, "Disable", nil)
 	if err != nil {
@@ -2371,9 +3229,19 @@ type MSFTNetAdapterRdmaSettingDataEnableResult struct {
 	ReturnValue  uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetAdapterRdmaSettingDataEnableResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetAdapterRdmaSettingData.Enable", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MSFTNetAdapterRdmaSettingDataEnable invokes MSFT_NetAdapterRdmaSettingData.Enable on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MSFTNetAdapterRdmaSettingDataEnable(svc *wmi.Service, objectPath string) (*MSFTNetAdapterRdmaSettingDataEnableResult, error) {
 	row, err := svc.ExecMethod(objectPath, "Enable", nil)
 	if err != nil {
@@ -2393,16 +3261,26 @@ type MSFTNetAdapterRscSettingDataDisableResult struct {
 	ReturnValue  uint32
 }
 
-// MSFTNetAdapterRscSettingDataDisable invokes MSFT_NetAdapterRscSettingData.Disable on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MSFTNetAdapterRscSettingDataDisable(svc *wmi.Service, objectPath string, iPv4 bool, iPv6 bool) (*MSFTNetAdapterRscSettingDataDisableResult, error) {
-	in := map[string]any{}
-	if iPv4 {
-		in["IPv4"] = iPv4
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetAdapterRscSettingDataDisableResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
 	}
-	if iPv6 {
-		in["IPv6"] = iPv6
+	return &wmi.JobError{What: "MSFT_NetAdapterRscSettingData.Disable", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTNetAdapterRscSettingDataDisable invokes MSFT_NetAdapterRscSettingData.Disable on the instance at objectPath
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MSFTNetAdapterRscSettingDataDisable(svc *wmi.Service, objectPath string, iPv4 *bool, iPv6 *bool) (*MSFTNetAdapterRscSettingDataDisableResult, error) {
+	in := map[string]any{}
+	if iPv4 != nil {
+		in["IPv4"] = *iPv4
+	}
+	if iPv6 != nil {
+		in["IPv6"] = *iPv6
 	}
 	row, err := svc.ExecMethod(objectPath, "Disable", in)
 	if err != nil {
@@ -2422,16 +3300,26 @@ type MSFTNetAdapterRscSettingDataEnableResult struct {
 	ReturnValue  uint32
 }
 
-// MSFTNetAdapterRscSettingDataEnable invokes MSFT_NetAdapterRscSettingData.Enable on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MSFTNetAdapterRscSettingDataEnable(svc *wmi.Service, objectPath string, iPv4 bool, iPv6 bool) (*MSFTNetAdapterRscSettingDataEnableResult, error) {
-	in := map[string]any{}
-	if iPv4 {
-		in["IPv4"] = iPv4
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetAdapterRscSettingDataEnableResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
 	}
-	if iPv6 {
-		in["IPv6"] = iPv6
+	return &wmi.JobError{What: "MSFT_NetAdapterRscSettingData.Enable", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTNetAdapterRscSettingDataEnable invokes MSFT_NetAdapterRscSettingData.Enable on the instance at objectPath
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MSFTNetAdapterRscSettingDataEnable(svc *wmi.Service, objectPath string, iPv4 *bool, iPv6 *bool) (*MSFTNetAdapterRscSettingDataEnableResult, error) {
+	in := map[string]any{}
+	if iPv4 != nil {
+		in["IPv4"] = *iPv4
+	}
+	if iPv6 != nil {
+		in["IPv6"] = *iPv6
 	}
 	row, err := svc.ExecMethod(objectPath, "Enable", in)
 	if err != nil {
@@ -2451,9 +3339,19 @@ type MSFTNetAdapterRssSettingDataDisableResult struct {
 	ReturnValue  uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetAdapterRssSettingDataDisableResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetAdapterRssSettingData.Disable", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MSFTNetAdapterRssSettingDataDisable invokes MSFT_NetAdapterRssSettingData.Disable on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MSFTNetAdapterRssSettingDataDisable(svc *wmi.Service, objectPath string) (*MSFTNetAdapterRssSettingDataDisableResult, error) {
 	row, err := svc.ExecMethod(objectPath, "Disable", nil)
 	if err != nil {
@@ -2473,9 +3371,19 @@ type MSFTNetAdapterRssSettingDataEnableResult struct {
 	ReturnValue  uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetAdapterRssSettingDataEnableResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetAdapterRssSettingData.Enable", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MSFTNetAdapterRssSettingDataEnable invokes MSFT_NetAdapterRssSettingData.Enable on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MSFTNetAdapterRssSettingDataEnable(svc *wmi.Service, objectPath string) (*MSFTNetAdapterRssSettingDataEnableResult, error) {
 	row, err := svc.ExecMethod(objectPath, "Enable", nil)
 	if err != nil {
@@ -2495,9 +3403,19 @@ type MSFTNetAdapterSriovSettingDataDisableResult struct {
 	ReturnValue  uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetAdapterSriovSettingDataDisableResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetAdapterSriovSettingData.Disable", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MSFTNetAdapterSriovSettingDataDisable invokes MSFT_NetAdapterSriovSettingData.Disable on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MSFTNetAdapterSriovSettingDataDisable(svc *wmi.Service, objectPath string) (*MSFTNetAdapterSriovSettingDataDisableResult, error) {
 	row, err := svc.ExecMethod(objectPath, "Disable", nil)
 	if err != nil {
@@ -2517,9 +3435,19 @@ type MSFTNetAdapterSriovSettingDataEnableResult struct {
 	ReturnValue  uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetAdapterSriovSettingDataEnableResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetAdapterSriovSettingData.Enable", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MSFTNetAdapterSriovSettingDataEnable invokes MSFT_NetAdapterSriovSettingData.Enable on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MSFTNetAdapterSriovSettingDataEnable(svc *wmi.Service, objectPath string) (*MSFTNetAdapterSriovSettingDataEnableResult, error) {
 	row, err := svc.ExecMethod(objectPath, "Enable", nil)
 	if err != nil {
@@ -2539,13 +3467,23 @@ type MSFTNetAdapterUroSettingDataDisableResult struct {
 	ReturnValue  uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetAdapterUroSettingDataDisableResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetAdapterUroSettingData.Disable", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MSFTNetAdapterUroSettingDataDisable invokes MSFT_NetAdapterUroSettingData.Disable on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MSFTNetAdapterUroSettingDataDisable(svc *wmi.Service, objectPath string, disable bool) (*MSFTNetAdapterUroSettingDataDisableResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MSFTNetAdapterUroSettingDataDisable(svc *wmi.Service, objectPath string, disable *bool) (*MSFTNetAdapterUroSettingDataDisableResult, error) {
 	in := map[string]any{}
-	if disable {
-		in["Disable"] = disable
+	if disable != nil {
+		in["Disable"] = *disable
 	}
 	row, err := svc.ExecMethod(objectPath, "Disable", in)
 	if err != nil {
@@ -2565,13 +3503,23 @@ type MSFTNetAdapterUroSettingDataEnableResult struct {
 	ReturnValue  uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetAdapterUroSettingDataEnableResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetAdapterUroSettingData.Enable", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MSFTNetAdapterUroSettingDataEnable invokes MSFT_NetAdapterUroSettingData.Enable on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MSFTNetAdapterUroSettingDataEnable(svc *wmi.Service, objectPath string, enable bool) (*MSFTNetAdapterUroSettingDataEnableResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MSFTNetAdapterUroSettingDataEnable(svc *wmi.Service, objectPath string, enable *bool) (*MSFTNetAdapterUroSettingDataEnableResult, error) {
 	in := map[string]any{}
-	if enable {
-		in["Enable"] = enable
+	if enable != nil {
+		in["Enable"] = *enable
 	}
 	row, err := svc.ExecMethod(objectPath, "Enable", in)
 	if err != nil {
@@ -2591,16 +3539,26 @@ type MSFTNetAdapterUsoSettingDataDisableResult struct {
 	ReturnValue  uint32
 }
 
-// MSFTNetAdapterUsoSettingDataDisable invokes MSFT_NetAdapterUsoSettingData.Disable on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MSFTNetAdapterUsoSettingDataDisable(svc *wmi.Service, objectPath string, iPv4 bool, iPv6 bool) (*MSFTNetAdapterUsoSettingDataDisableResult, error) {
-	in := map[string]any{}
-	if iPv4 {
-		in["IPv4"] = iPv4
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetAdapterUsoSettingDataDisableResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
 	}
-	if iPv6 {
-		in["IPv6"] = iPv6
+	return &wmi.JobError{What: "MSFT_NetAdapterUsoSettingData.Disable", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTNetAdapterUsoSettingDataDisable invokes MSFT_NetAdapterUsoSettingData.Disable on the instance at objectPath
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MSFTNetAdapterUsoSettingDataDisable(svc *wmi.Service, objectPath string, iPv4 *bool, iPv6 *bool) (*MSFTNetAdapterUsoSettingDataDisableResult, error) {
+	in := map[string]any{}
+	if iPv4 != nil {
+		in["IPv4"] = *iPv4
+	}
+	if iPv6 != nil {
+		in["IPv6"] = *iPv6
 	}
 	row, err := svc.ExecMethod(objectPath, "Disable", in)
 	if err != nil {
@@ -2620,16 +3578,26 @@ type MSFTNetAdapterUsoSettingDataEnableResult struct {
 	ReturnValue  uint32
 }
 
-// MSFTNetAdapterUsoSettingDataEnable invokes MSFT_NetAdapterUsoSettingData.Enable on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MSFTNetAdapterUsoSettingDataEnable(svc *wmi.Service, objectPath string, iPv4 bool, iPv6 bool) (*MSFTNetAdapterUsoSettingDataEnableResult, error) {
-	in := map[string]any{}
-	if iPv4 {
-		in["IPv4"] = iPv4
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetAdapterUsoSettingDataEnableResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
 	}
-	if iPv6 {
-		in["IPv6"] = iPv6
+	return &wmi.JobError{What: "MSFT_NetAdapterUsoSettingData.Enable", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTNetAdapterUsoSettingDataEnable invokes MSFT_NetAdapterUsoSettingData.Enable on the instance at objectPath
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MSFTNetAdapterUsoSettingDataEnable(svc *wmi.Service, objectPath string, iPv4 *bool, iPv6 *bool) (*MSFTNetAdapterUsoSettingDataEnableResult, error) {
+	in := map[string]any{}
+	if iPv4 != nil {
+		in["IPv4"] = *iPv4
+	}
+	if iPv6 != nil {
+		in["IPv6"] = *iPv6
 	}
 	row, err := svc.ExecMethod(objectPath, "Enable", in)
 	if err != nil {
@@ -2649,9 +3617,19 @@ type MSFTNetAdapterVmqSettingDataDisableResult struct {
 	ReturnValue  uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetAdapterVmqSettingDataDisableResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetAdapterVmqSettingData.Disable", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MSFTNetAdapterVmqSettingDataDisable invokes MSFT_NetAdapterVmqSettingData.Disable on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MSFTNetAdapterVmqSettingDataDisable(svc *wmi.Service, objectPath string) (*MSFTNetAdapterVmqSettingDataDisableResult, error) {
 	row, err := svc.ExecMethod(objectPath, "Disable", nil)
 	if err != nil {
@@ -2671,9 +3649,19 @@ type MSFTNetAdapterVmqSettingDataEnableResult struct {
 	ReturnValue  uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetAdapterVmqSettingDataEnableResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetAdapterVmqSettingData.Enable", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MSFTNetAdapterVmqSettingDataEnable invokes MSFT_NetAdapterVmqSettingData.Enable on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MSFTNetAdapterVmqSettingDataEnable(svc *wmi.Service, objectPath string) (*MSFTNetAdapterVmqSettingDataEnableResult, error) {
 	row, err := svc.ExecMethod(objectPath, "Enable", nil)
 	if err != nil {
@@ -2693,15 +3681,25 @@ type MSFTNetAddressFilterQueryIsolationTypeResult struct {
 	ReturnValue   uint32
 }
 
-// MSFTNetAddressFilterQueryIsolationType invokes the static MSFT_NetAddressFilter.QueryIsolationType method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTNetAddressFilterQueryIsolationType(svc *wmi.Service, interfaceIndex uint32, remoteAddress string) (*MSFTNetAddressFilterQueryIsolationTypeResult, error) {
-	in := map[string]any{}
-	if interfaceIndex != 0 {
-		in["InterfaceIndex"] = interfaceIndex
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetAddressFilterQueryIsolationTypeResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
 	}
-	if remoteAddress != "" {
-		in["RemoteAddress"] = remoteAddress
+	return &wmi.JobError{What: "MSFT_NetAddressFilter.QueryIsolationType", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTNetAddressFilterQueryIsolationType invokes the static MSFT_NetAddressFilter.QueryIsolationType method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTNetAddressFilterQueryIsolationType(svc *wmi.Service, interfaceIndex *uint32, remoteAddress *string) (*MSFTNetAddressFilterQueryIsolationTypeResult, error) {
+	in := map[string]any{}
+	if interfaceIndex != nil {
+		in["InterfaceIndex"] = *interfaceIndex
+	}
+	if remoteAddress != nil {
+		in["RemoteAddress"] = *remoteAddress
 	}
 	row, err := svc.ExecMethod("MSFT_NetAddressFilter", "QueryIsolationType", in)
 	if err != nil {
@@ -2719,16 +3717,24 @@ type MSFTNetBaseIPProtocolRequestStateChangeResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MSFTNetBaseIPProtocolRequestStateChangeResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "MSFT_NetBaseIPProtocol.RequestStateChange", uint32(r.ReturnValue), r.Job)
+}
+
 // MSFTNetBaseIPProtocolRequestStateChange invokes MSFT_NetBaseIPProtocol.RequestStateChange on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MSFTNetBaseIPProtocolRequestStateChange(svc *wmi.Service, objectPath string, requestedState uint16, timeoutPeriod string) (*MSFTNetBaseIPProtocolRequestStateChangeResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MSFTNetBaseIPProtocolRequestStateChange(svc *wmi.Service, objectPath string, requestedState *uint16, timeoutPeriod *string) (*MSFTNetBaseIPProtocolRequestStateChangeResult, error) {
 	in := map[string]any{}
-	if requestedState != 0 {
-		in["RequestedState"] = requestedState
+	if requestedState != nil {
+		in["RequestedState"] = *requestedState
 	}
-	if timeoutPeriod != "" {
-		in["TimeoutPeriod"] = timeoutPeriod
+	if timeoutPeriod != nil {
+		in["TimeoutPeriod"] = *timeoutPeriod
 	}
 	row, err := svc.ExecMethod(objectPath, "RequestStateChange", in)
 	if err != nil {
@@ -2746,21 +3752,31 @@ type MSFTNetBranchCacheOrchestratorAddBCDataCacheExtensionByPercentageResult str
 	ReturnValue  uint32
 }
 
-// MSFTNetBranchCacheOrchestratorAddBCDataCacheExtensionByPercentage invokes the static MSFT_NetBranchCacheOrchestrator.Add_BCDataCacheExtensionByPercentage method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTNetBranchCacheOrchestratorAddBCDataCacheExtensionByPercentage(svc *wmi.Service, percentage uint32, path string, passThru bool, force bool) (*MSFTNetBranchCacheOrchestratorAddBCDataCacheExtensionByPercentageResult, error) {
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetBranchCacheOrchestratorAddBCDataCacheExtensionByPercentageResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetBranchCacheOrchestrator.Add_BCDataCacheExtensionByPercentage", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTNetBranchCacheOrchestratorAddBCDataCacheExtensionByPercentage invokes the static MSFT_NetBranchCacheOrchestrator.Add_BCDataCacheExtensionByPercentage method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTNetBranchCacheOrchestratorAddBCDataCacheExtensionByPercentage(svc *wmi.Service, percentage *uint32, path *string, passThru *bool, force *bool) (*MSFTNetBranchCacheOrchestratorAddBCDataCacheExtensionByPercentageResult, error) {
 	in := map[string]any{}
-	if percentage != 0 {
-		in["Percentage"] = percentage
+	if percentage != nil {
+		in["Percentage"] = *percentage
 	}
-	if path != "" {
-		in["Path"] = path
+	if path != nil {
+		in["Path"] = *path
 	}
-	if passThru {
-		in["PassThru"] = passThru
+	if passThru != nil {
+		in["PassThru"] = *passThru
 	}
-	if force {
-		in["Force"] = force
+	if force != nil {
+		in["Force"] = *force
 	}
 	row, err := svc.ExecMethod("MSFT_NetBranchCacheOrchestrator", "Add_BCDataCacheExtensionByPercentage", in)
 	if err != nil {
@@ -2780,21 +3796,31 @@ type MSFTNetBranchCacheOrchestratorAddBCDataCacheExtensionBySizeBytesResult stru
 	ReturnValue  uint32
 }
 
-// MSFTNetBranchCacheOrchestratorAddBCDataCacheExtensionBySizeBytes invokes the static MSFT_NetBranchCacheOrchestrator.Add_BCDataCacheExtensionBySizeBytes method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTNetBranchCacheOrchestratorAddBCDataCacheExtensionBySizeBytes(svc *wmi.Service, sizeBytes uint64, path string, passThru bool, force bool) (*MSFTNetBranchCacheOrchestratorAddBCDataCacheExtensionBySizeBytesResult, error) {
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetBranchCacheOrchestratorAddBCDataCacheExtensionBySizeBytesResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetBranchCacheOrchestrator.Add_BCDataCacheExtensionBySizeBytes", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTNetBranchCacheOrchestratorAddBCDataCacheExtensionBySizeBytes invokes the static MSFT_NetBranchCacheOrchestrator.Add_BCDataCacheExtensionBySizeBytes method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTNetBranchCacheOrchestratorAddBCDataCacheExtensionBySizeBytes(svc *wmi.Service, sizeBytes *uint64, path *string, passThru *bool, force *bool) (*MSFTNetBranchCacheOrchestratorAddBCDataCacheExtensionBySizeBytesResult, error) {
 	in := map[string]any{}
-	if sizeBytes != 0 {
-		in["SizeBytes"] = sizeBytes
+	if sizeBytes != nil {
+		in["SizeBytes"] = *sizeBytes
 	}
-	if path != "" {
-		in["Path"] = path
+	if path != nil {
+		in["Path"] = *path
 	}
-	if passThru {
-		in["PassThru"] = passThru
+	if passThru != nil {
+		in["PassThru"] = *passThru
 	}
-	if force {
-		in["Force"] = force
+	if force != nil {
+		in["Force"] = *force
 	}
 	row, err := svc.ExecMethod("MSFT_NetBranchCacheOrchestrator", "Add_BCDataCacheExtensionBySizeBytes", in)
 	if err != nil {
@@ -2813,12 +3839,22 @@ type MSFTNetBranchCacheOrchestratorClearBCCacheResult struct {
 	ReturnValue uint32
 }
 
-// MSFTNetBranchCacheOrchestratorClearBCCache invokes the static MSFT_NetBranchCacheOrchestrator.Clear_BCCache method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTNetBranchCacheOrchestratorClearBCCache(svc *wmi.Service, force bool) (*MSFTNetBranchCacheOrchestratorClearBCCacheResult, error) {
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetBranchCacheOrchestratorClearBCCacheResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetBranchCacheOrchestrator.Clear_BCCache", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTNetBranchCacheOrchestratorClearBCCache invokes the static MSFT_NetBranchCacheOrchestrator.Clear_BCCache method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTNetBranchCacheOrchestratorClearBCCache(svc *wmi.Service, force *bool) (*MSFTNetBranchCacheOrchestratorClearBCCacheResult, error) {
 	in := map[string]any{}
-	if force {
-		in["Force"] = force
+	if force != nil {
+		in["Force"] = *force
 	}
 	row, err := svc.ExecMethod("MSFT_NetBranchCacheOrchestrator", "Clear_BCCache", in)
 	if err != nil {
@@ -2834,12 +3870,22 @@ type MSFTNetBranchCacheOrchestratorDisableBCResult struct {
 	ReturnValue uint32
 }
 
-// MSFTNetBranchCacheOrchestratorDisableBC invokes the static MSFT_NetBranchCacheOrchestrator.Disable_BC method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTNetBranchCacheOrchestratorDisableBC(svc *wmi.Service, force bool) (*MSFTNetBranchCacheOrchestratorDisableBCResult, error) {
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetBranchCacheOrchestratorDisableBCResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetBranchCacheOrchestrator.Disable_BC", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTNetBranchCacheOrchestratorDisableBC invokes the static MSFT_NetBranchCacheOrchestrator.Disable_BC method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTNetBranchCacheOrchestratorDisableBC(svc *wmi.Service, force *bool) (*MSFTNetBranchCacheOrchestratorDisableBCResult, error) {
 	in := map[string]any{}
-	if force {
-		in["Force"] = force
+	if force != nil {
+		in["Force"] = *force
 	}
 	row, err := svc.ExecMethod("MSFT_NetBranchCacheOrchestrator", "Disable_BC", in)
 	if err != nil {
@@ -2855,12 +3901,22 @@ type MSFTNetBranchCacheOrchestratorDisableBCDowngradingResult struct {
 	ReturnValue uint32
 }
 
-// MSFTNetBranchCacheOrchestratorDisableBCDowngrading invokes the static MSFT_NetBranchCacheOrchestrator.Disable_BCDowngrading method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTNetBranchCacheOrchestratorDisableBCDowngrading(svc *wmi.Service, force bool) (*MSFTNetBranchCacheOrchestratorDisableBCDowngradingResult, error) {
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetBranchCacheOrchestratorDisableBCDowngradingResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetBranchCacheOrchestrator.Disable_BCDowngrading", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTNetBranchCacheOrchestratorDisableBCDowngrading invokes the static MSFT_NetBranchCacheOrchestrator.Disable_BCDowngrading method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTNetBranchCacheOrchestratorDisableBCDowngrading(svc *wmi.Service, force *bool) (*MSFTNetBranchCacheOrchestratorDisableBCDowngradingResult, error) {
 	in := map[string]any{}
-	if force {
-		in["Force"] = force
+	if force != nil {
+		in["Force"] = *force
 	}
 	row, err := svc.ExecMethod("MSFT_NetBranchCacheOrchestrator", "Disable_BCDowngrading", in)
 	if err != nil {
@@ -2876,12 +3932,22 @@ type MSFTNetBranchCacheOrchestratorDisableBCServeOnBatteryResult struct {
 	ReturnValue uint32
 }
 
-// MSFTNetBranchCacheOrchestratorDisableBCServeOnBattery invokes the static MSFT_NetBranchCacheOrchestrator.Disable_BCServeOnBattery method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTNetBranchCacheOrchestratorDisableBCServeOnBattery(svc *wmi.Service, force bool) (*MSFTNetBranchCacheOrchestratorDisableBCServeOnBatteryResult, error) {
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetBranchCacheOrchestratorDisableBCServeOnBatteryResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetBranchCacheOrchestrator.Disable_BCServeOnBattery", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTNetBranchCacheOrchestratorDisableBCServeOnBattery invokes the static MSFT_NetBranchCacheOrchestrator.Disable_BCServeOnBattery method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTNetBranchCacheOrchestratorDisableBCServeOnBattery(svc *wmi.Service, force *bool) (*MSFTNetBranchCacheOrchestratorDisableBCServeOnBatteryResult, error) {
 	in := map[string]any{}
-	if force {
-		in["Force"] = force
+	if force != nil {
+		in["Force"] = *force
 	}
 	row, err := svc.ExecMethod("MSFT_NetBranchCacheOrchestrator", "Disable_BCServeOnBattery", in)
 	if err != nil {
@@ -2897,12 +3963,22 @@ type MSFTNetBranchCacheOrchestratorEnableBCDistributedResult struct {
 	ReturnValue uint32
 }
 
-// MSFTNetBranchCacheOrchestratorEnableBCDistributed invokes the static MSFT_NetBranchCacheOrchestrator.Enable_BCDistributed method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTNetBranchCacheOrchestratorEnableBCDistributed(svc *wmi.Service, force bool) (*MSFTNetBranchCacheOrchestratorEnableBCDistributedResult, error) {
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetBranchCacheOrchestratorEnableBCDistributedResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetBranchCacheOrchestrator.Enable_BCDistributed", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTNetBranchCacheOrchestratorEnableBCDistributed invokes the static MSFT_NetBranchCacheOrchestrator.Enable_BCDistributed method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTNetBranchCacheOrchestratorEnableBCDistributed(svc *wmi.Service, force *bool) (*MSFTNetBranchCacheOrchestratorEnableBCDistributedResult, error) {
 	in := map[string]any{}
-	if force {
-		in["Force"] = force
+	if force != nil {
+		in["Force"] = *force
 	}
 	row, err := svc.ExecMethod("MSFT_NetBranchCacheOrchestrator", "Enable_BCDistributed", in)
 	if err != nil {
@@ -2918,15 +3994,25 @@ type MSFTNetBranchCacheOrchestratorEnableBCDowngradingResult struct {
 	ReturnValue uint32
 }
 
-// MSFTNetBranchCacheOrchestratorEnableBCDowngrading invokes the static MSFT_NetBranchCacheOrchestrator.Enable_BCDowngrading method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTNetBranchCacheOrchestratorEnableBCDowngrading(svc *wmi.Service, version uint32, force bool) (*MSFTNetBranchCacheOrchestratorEnableBCDowngradingResult, error) {
-	in := map[string]any{}
-	if version != 0 {
-		in["Version"] = version
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetBranchCacheOrchestratorEnableBCDowngradingResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
 	}
-	if force {
-		in["Force"] = force
+	return &wmi.JobError{What: "MSFT_NetBranchCacheOrchestrator.Enable_BCDowngrading", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTNetBranchCacheOrchestratorEnableBCDowngrading invokes the static MSFT_NetBranchCacheOrchestrator.Enable_BCDowngrading method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTNetBranchCacheOrchestratorEnableBCDowngrading(svc *wmi.Service, version *uint32, force *bool) (*MSFTNetBranchCacheOrchestratorEnableBCDowngradingResult, error) {
+	in := map[string]any{}
+	if version != nil {
+		in["Version"] = *version
+	}
+	if force != nil {
+		in["Force"] = *force
 	}
 	row, err := svc.ExecMethod("MSFT_NetBranchCacheOrchestrator", "Enable_BCDowngrading", in)
 	if err != nil {
@@ -2942,18 +4028,28 @@ type MSFTNetBranchCacheOrchestratorEnableBCHostedClientByServerNamesResult struc
 	ReturnValue uint32
 }
 
-// MSFTNetBranchCacheOrchestratorEnableBCHostedClientByServerNames invokes the static MSFT_NetBranchCacheOrchestrator.Enable_BCHostedClientByServerNames method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTNetBranchCacheOrchestratorEnableBCHostedClientByServerNames(svc *wmi.Service, serverNames []string, useVersion uint32, force bool) (*MSFTNetBranchCacheOrchestratorEnableBCHostedClientByServerNamesResult, error) {
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetBranchCacheOrchestratorEnableBCHostedClientByServerNamesResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetBranchCacheOrchestrator.Enable_BCHostedClientByServerNames", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTNetBranchCacheOrchestratorEnableBCHostedClientByServerNames invokes the static MSFT_NetBranchCacheOrchestrator.Enable_BCHostedClientByServerNames method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTNetBranchCacheOrchestratorEnableBCHostedClientByServerNames(svc *wmi.Service, serverNames []string, useVersion *uint32, force *bool) (*MSFTNetBranchCacheOrchestratorEnableBCHostedClientByServerNamesResult, error) {
 	in := map[string]any{}
 	if serverNames != nil {
 		in["ServerNames"] = serverNames
 	}
-	if useVersion != 0 {
-		in["UseVersion"] = useVersion
+	if useVersion != nil {
+		in["UseVersion"] = *useVersion
 	}
-	if force {
-		in["Force"] = force
+	if force != nil {
+		in["Force"] = *force
 	}
 	row, err := svc.ExecMethod("MSFT_NetBranchCacheOrchestrator", "Enable_BCHostedClientByServerNames", in)
 	if err != nil {
@@ -2969,15 +4065,25 @@ type MSFTNetBranchCacheOrchestratorEnableBCHostedClientByUseSCPResult struct {
 	ReturnValue uint32
 }
 
-// MSFTNetBranchCacheOrchestratorEnableBCHostedClientByUseSCP invokes the static MSFT_NetBranchCacheOrchestrator.Enable_BCHostedClientByUseSCP method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTNetBranchCacheOrchestratorEnableBCHostedClientByUseSCP(svc *wmi.Service, useSCP bool, force bool) (*MSFTNetBranchCacheOrchestratorEnableBCHostedClientByUseSCPResult, error) {
-	in := map[string]any{}
-	if useSCP {
-		in["UseSCP"] = useSCP
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetBranchCacheOrchestratorEnableBCHostedClientByUseSCPResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
 	}
-	if force {
-		in["Force"] = force
+	return &wmi.JobError{What: "MSFT_NetBranchCacheOrchestrator.Enable_BCHostedClientByUseSCP", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTNetBranchCacheOrchestratorEnableBCHostedClientByUseSCP invokes the static MSFT_NetBranchCacheOrchestrator.Enable_BCHostedClientByUseSCP method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTNetBranchCacheOrchestratorEnableBCHostedClientByUseSCP(svc *wmi.Service, useSCP *bool, force *bool) (*MSFTNetBranchCacheOrchestratorEnableBCHostedClientByUseSCPResult, error) {
+	in := map[string]any{}
+	if useSCP != nil {
+		in["UseSCP"] = *useSCP
+	}
+	if force != nil {
+		in["Force"] = *force
 	}
 	row, err := svc.ExecMethod("MSFT_NetBranchCacheOrchestrator", "Enable_BCHostedClientByUseSCP", in)
 	if err != nil {
@@ -2993,15 +4099,25 @@ type MSFTNetBranchCacheOrchestratorEnableBCHostedServerResult struct {
 	ReturnValue uint32
 }
 
-// MSFTNetBranchCacheOrchestratorEnableBCHostedServer invokes the static MSFT_NetBranchCacheOrchestrator.Enable_BCHostedServer method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTNetBranchCacheOrchestratorEnableBCHostedServer(svc *wmi.Service, registerSCP bool, force bool) (*MSFTNetBranchCacheOrchestratorEnableBCHostedServerResult, error) {
-	in := map[string]any{}
-	if registerSCP {
-		in["RegisterSCP"] = registerSCP
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetBranchCacheOrchestratorEnableBCHostedServerResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
 	}
-	if force {
-		in["Force"] = force
+	return &wmi.JobError{What: "MSFT_NetBranchCacheOrchestrator.Enable_BCHostedServer", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTNetBranchCacheOrchestratorEnableBCHostedServer invokes the static MSFT_NetBranchCacheOrchestrator.Enable_BCHostedServer method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTNetBranchCacheOrchestratorEnableBCHostedServer(svc *wmi.Service, registerSCP *bool, force *bool) (*MSFTNetBranchCacheOrchestratorEnableBCHostedServerResult, error) {
+	in := map[string]any{}
+	if registerSCP != nil {
+		in["RegisterSCP"] = *registerSCP
+	}
+	if force != nil {
+		in["Force"] = *force
 	}
 	row, err := svc.ExecMethod("MSFT_NetBranchCacheOrchestrator", "Enable_BCHostedServer", in)
 	if err != nil {
@@ -3017,12 +4133,22 @@ type MSFTNetBranchCacheOrchestratorEnableBCLocalResult struct {
 	ReturnValue uint32
 }
 
-// MSFTNetBranchCacheOrchestratorEnableBCLocal invokes the static MSFT_NetBranchCacheOrchestrator.Enable_BCLocal method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTNetBranchCacheOrchestratorEnableBCLocal(svc *wmi.Service, force bool) (*MSFTNetBranchCacheOrchestratorEnableBCLocalResult, error) {
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetBranchCacheOrchestratorEnableBCLocalResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetBranchCacheOrchestrator.Enable_BCLocal", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTNetBranchCacheOrchestratorEnableBCLocal invokes the static MSFT_NetBranchCacheOrchestrator.Enable_BCLocal method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTNetBranchCacheOrchestratorEnableBCLocal(svc *wmi.Service, force *bool) (*MSFTNetBranchCacheOrchestratorEnableBCLocalResult, error) {
 	in := map[string]any{}
-	if force {
-		in["Force"] = force
+	if force != nil {
+		in["Force"] = *force
 	}
 	row, err := svc.ExecMethod("MSFT_NetBranchCacheOrchestrator", "Enable_BCLocal", in)
 	if err != nil {
@@ -3038,12 +4164,22 @@ type MSFTNetBranchCacheOrchestratorEnableBCServeOnBatteryResult struct {
 	ReturnValue uint32
 }
 
-// MSFTNetBranchCacheOrchestratorEnableBCServeOnBattery invokes the static MSFT_NetBranchCacheOrchestrator.Enable_BCServeOnBattery method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTNetBranchCacheOrchestratorEnableBCServeOnBattery(svc *wmi.Service, force bool) (*MSFTNetBranchCacheOrchestratorEnableBCServeOnBatteryResult, error) {
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetBranchCacheOrchestratorEnableBCServeOnBatteryResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetBranchCacheOrchestrator.Enable_BCServeOnBattery", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTNetBranchCacheOrchestratorEnableBCServeOnBattery invokes the static MSFT_NetBranchCacheOrchestrator.Enable_BCServeOnBattery method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTNetBranchCacheOrchestratorEnableBCServeOnBattery(svc *wmi.Service, force *bool) (*MSFTNetBranchCacheOrchestratorEnableBCServeOnBatteryResult, error) {
 	in := map[string]any{}
-	if force {
-		in["Force"] = force
+	if force != nil {
+		in["Force"] = *force
 	}
 	row, err := svc.ExecMethod("MSFT_NetBranchCacheOrchestrator", "Enable_BCServeOnBattery", in)
 	if err != nil {
@@ -3059,18 +4195,28 @@ type MSFTNetBranchCacheOrchestratorExportBCCachePackageByExportDataCacheResult s
 	ReturnValue uint32
 }
 
-// MSFTNetBranchCacheOrchestratorExportBCCachePackageByExportDataCache invokes the static MSFT_NetBranchCacheOrchestrator.Export_BCCachePackageByExportDataCache method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTNetBranchCacheOrchestratorExportBCCachePackageByExportDataCache(svc *wmi.Service, exportDataCache bool, destination string, force bool) (*MSFTNetBranchCacheOrchestratorExportBCCachePackageByExportDataCacheResult, error) {
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetBranchCacheOrchestratorExportBCCachePackageByExportDataCacheResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetBranchCacheOrchestrator.Export_BCCachePackageByExportDataCache", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTNetBranchCacheOrchestratorExportBCCachePackageByExportDataCache invokes the static MSFT_NetBranchCacheOrchestrator.Export_BCCachePackageByExportDataCache method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTNetBranchCacheOrchestratorExportBCCachePackageByExportDataCache(svc *wmi.Service, exportDataCache *bool, destination *string, force *bool) (*MSFTNetBranchCacheOrchestratorExportBCCachePackageByExportDataCacheResult, error) {
 	in := map[string]any{}
-	if exportDataCache {
-		in["ExportDataCache"] = exportDataCache
+	if exportDataCache != nil {
+		in["ExportDataCache"] = *exportDataCache
 	}
-	if destination != "" {
-		in["Destination"] = destination
+	if destination != nil {
+		in["Destination"] = *destination
 	}
-	if force {
-		in["Force"] = force
+	if force != nil {
+		in["Force"] = *force
 	}
 	row, err := svc.ExecMethod("MSFT_NetBranchCacheOrchestrator", "Export_BCCachePackageByExportDataCache", in)
 	if err != nil {
@@ -3086,21 +4232,31 @@ type MSFTNetBranchCacheOrchestratorExportBCCachePackageByStagingPathResult struc
 	ReturnValue uint32
 }
 
-// MSFTNetBranchCacheOrchestratorExportBCCachePackageByStagingPath invokes the static MSFT_NetBranchCacheOrchestrator.Export_BCCachePackageByStagingPath method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTNetBranchCacheOrchestratorExportBCCachePackageByStagingPath(svc *wmi.Service, stagingPath string, destination string, outputReferenceFile string, force bool) (*MSFTNetBranchCacheOrchestratorExportBCCachePackageByStagingPathResult, error) {
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetBranchCacheOrchestratorExportBCCachePackageByStagingPathResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetBranchCacheOrchestrator.Export_BCCachePackageByStagingPath", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTNetBranchCacheOrchestratorExportBCCachePackageByStagingPath invokes the static MSFT_NetBranchCacheOrchestrator.Export_BCCachePackageByStagingPath method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTNetBranchCacheOrchestratorExportBCCachePackageByStagingPath(svc *wmi.Service, stagingPath *string, destination *string, outputReferenceFile *string, force *bool) (*MSFTNetBranchCacheOrchestratorExportBCCachePackageByStagingPathResult, error) {
 	in := map[string]any{}
-	if stagingPath != "" {
-		in["StagingPath"] = stagingPath
+	if stagingPath != nil {
+		in["StagingPath"] = *stagingPath
 	}
-	if destination != "" {
-		in["Destination"] = destination
+	if destination != nil {
+		in["Destination"] = *destination
 	}
-	if outputReferenceFile != "" {
-		in["OutputReferenceFile"] = outputReferenceFile
+	if outputReferenceFile != nil {
+		in["OutputReferenceFile"] = *outputReferenceFile
 	}
-	if force {
-		in["Force"] = force
+	if force != nil {
+		in["Force"] = *force
 	}
 	row, err := svc.ExecMethod("MSFT_NetBranchCacheOrchestrator", "Export_BCCachePackageByStagingPath", in)
 	if err != nil {
@@ -3116,18 +4272,28 @@ type MSFTNetBranchCacheOrchestratorExportBCSecretKeyResult struct {
 	ReturnValue uint32
 }
 
-// MSFTNetBranchCacheOrchestratorExportBCSecretKey invokes the static MSFT_NetBranchCacheOrchestrator.Export_BCSecretKey method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTNetBranchCacheOrchestratorExportBCSecretKey(svc *wmi.Service, filename string, filePassphrase string, force bool) (*MSFTNetBranchCacheOrchestratorExportBCSecretKeyResult, error) {
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetBranchCacheOrchestratorExportBCSecretKeyResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetBranchCacheOrchestrator.Export_BCSecretKey", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTNetBranchCacheOrchestratorExportBCSecretKey invokes the static MSFT_NetBranchCacheOrchestrator.Export_BCSecretKey method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTNetBranchCacheOrchestratorExportBCSecretKey(svc *wmi.Service, filename *string, filePassphrase *string, force *bool) (*MSFTNetBranchCacheOrchestratorExportBCSecretKeyResult, error) {
 	in := map[string]any{}
-	if filename != "" {
-		in["Filename"] = filename
+	if filename != nil {
+		in["Filename"] = *filename
 	}
-	if filePassphrase != "" {
-		in["FilePassphrase"] = filePassphrase
+	if filePassphrase != nil {
+		in["FilePassphrase"] = *filePassphrase
 	}
-	if force {
-		in["Force"] = force
+	if force != nil {
+		in["Force"] = *force
 	}
 	row, err := svc.ExecMethod("MSFT_NetBranchCacheOrchestrator", "Export_BCSecretKey", in)
 	if err != nil {
@@ -3143,15 +4309,25 @@ type MSFTNetBranchCacheOrchestratorImportBCCachePackageResult struct {
 	ReturnValue uint32
 }
 
-// MSFTNetBranchCacheOrchestratorImportBCCachePackage invokes the static MSFT_NetBranchCacheOrchestrator.Import_BCCachePackage method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTNetBranchCacheOrchestratorImportBCCachePackage(svc *wmi.Service, path string, force bool) (*MSFTNetBranchCacheOrchestratorImportBCCachePackageResult, error) {
-	in := map[string]any{}
-	if path != "" {
-		in["Path"] = path
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetBranchCacheOrchestratorImportBCCachePackageResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
 	}
-	if force {
-		in["Force"] = force
+	return &wmi.JobError{What: "MSFT_NetBranchCacheOrchestrator.Import_BCCachePackage", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTNetBranchCacheOrchestratorImportBCCachePackage invokes the static MSFT_NetBranchCacheOrchestrator.Import_BCCachePackage method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTNetBranchCacheOrchestratorImportBCCachePackage(svc *wmi.Service, path *string, force *bool) (*MSFTNetBranchCacheOrchestratorImportBCCachePackageResult, error) {
+	in := map[string]any{}
+	if path != nil {
+		in["Path"] = *path
+	}
+	if force != nil {
+		in["Force"] = *force
 	}
 	row, err := svc.ExecMethod("MSFT_NetBranchCacheOrchestrator", "Import_BCCachePackage", in)
 	if err != nil {
@@ -3167,18 +4343,28 @@ type MSFTNetBranchCacheOrchestratorImportBCSecretKeyResult struct {
 	ReturnValue uint32
 }
 
-// MSFTNetBranchCacheOrchestratorImportBCSecretKey invokes the static MSFT_NetBranchCacheOrchestrator.Import_BCSecretKey method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTNetBranchCacheOrchestratorImportBCSecretKey(svc *wmi.Service, filename string, filePassphrase string, force bool) (*MSFTNetBranchCacheOrchestratorImportBCSecretKeyResult, error) {
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetBranchCacheOrchestratorImportBCSecretKeyResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetBranchCacheOrchestrator.Import_BCSecretKey", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTNetBranchCacheOrchestratorImportBCSecretKey invokes the static MSFT_NetBranchCacheOrchestrator.Import_BCSecretKey method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTNetBranchCacheOrchestratorImportBCSecretKey(svc *wmi.Service, filename *string, filePassphrase *string, force *bool) (*MSFTNetBranchCacheOrchestratorImportBCSecretKeyResult, error) {
 	in := map[string]any{}
-	if filename != "" {
-		in["Filename"] = filename
+	if filename != nil {
+		in["Filename"] = *filename
 	}
-	if filePassphrase != "" {
-		in["FilePassphrase"] = filePassphrase
+	if filePassphrase != nil {
+		in["FilePassphrase"] = *filePassphrase
 	}
-	if force {
-		in["Force"] = force
+	if force != nil {
+		in["Force"] = *force
 	}
 	row, err := svc.ExecMethod("MSFT_NetBranchCacheOrchestrator", "Import_BCSecretKey", in)
 	if err != nil {
@@ -3194,30 +4380,40 @@ type MSFTNetBranchCacheOrchestratorPublishBCFileHashesResult struct {
 	ReturnValue uint32
 }
 
-// MSFTNetBranchCacheOrchestratorPublishBCFileHashes invokes the static MSFT_NetBranchCacheOrchestrator.Publish_BCFileHashes method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTNetBranchCacheOrchestratorPublishBCFileHashes(svc *wmi.Service, path []string, useVersion uint32, stageData bool, stagingPath string, referenceFile string, recurse bool, force bool) (*MSFTNetBranchCacheOrchestratorPublishBCFileHashesResult, error) {
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetBranchCacheOrchestratorPublishBCFileHashesResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetBranchCacheOrchestrator.Publish_BCFileHashes", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTNetBranchCacheOrchestratorPublishBCFileHashes invokes the static MSFT_NetBranchCacheOrchestrator.Publish_BCFileHashes method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTNetBranchCacheOrchestratorPublishBCFileHashes(svc *wmi.Service, path []string, useVersion *uint32, stageData *bool, stagingPath *string, referenceFile *string, recurse *bool, force *bool) (*MSFTNetBranchCacheOrchestratorPublishBCFileHashesResult, error) {
 	in := map[string]any{}
 	if path != nil {
 		in["Path"] = path
 	}
-	if useVersion != 0 {
-		in["UseVersion"] = useVersion
+	if useVersion != nil {
+		in["UseVersion"] = *useVersion
 	}
-	if stageData {
-		in["StageData"] = stageData
+	if stageData != nil {
+		in["StageData"] = *stageData
 	}
-	if stagingPath != "" {
-		in["StagingPath"] = stagingPath
+	if stagingPath != nil {
+		in["StagingPath"] = *stagingPath
 	}
-	if referenceFile != "" {
-		in["ReferenceFile"] = referenceFile
+	if referenceFile != nil {
+		in["ReferenceFile"] = *referenceFile
 	}
-	if recurse {
-		in["Recurse"] = recurse
+	if recurse != nil {
+		in["Recurse"] = *recurse
 	}
-	if force {
-		in["Force"] = force
+	if force != nil {
+		in["Force"] = *force
 	}
 	row, err := svc.ExecMethod("MSFT_NetBranchCacheOrchestrator", "Publish_BCFileHashes", in)
 	if err != nil {
@@ -3233,30 +4429,40 @@ type MSFTNetBranchCacheOrchestratorPublishBCWebHashesResult struct {
 	ReturnValue uint32
 }
 
-// MSFTNetBranchCacheOrchestratorPublishBCWebHashes invokes the static MSFT_NetBranchCacheOrchestrator.Publish_BCWebHashes method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTNetBranchCacheOrchestratorPublishBCWebHashes(svc *wmi.Service, path []string, useVersion uint32, stageData bool, stagingPath string, referenceFile string, recurse bool, force bool) (*MSFTNetBranchCacheOrchestratorPublishBCWebHashesResult, error) {
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetBranchCacheOrchestratorPublishBCWebHashesResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetBranchCacheOrchestrator.Publish_BCWebHashes", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTNetBranchCacheOrchestratorPublishBCWebHashes invokes the static MSFT_NetBranchCacheOrchestrator.Publish_BCWebHashes method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTNetBranchCacheOrchestratorPublishBCWebHashes(svc *wmi.Service, path []string, useVersion *uint32, stageData *bool, stagingPath *string, referenceFile *string, recurse *bool, force *bool) (*MSFTNetBranchCacheOrchestratorPublishBCWebHashesResult, error) {
 	in := map[string]any{}
 	if path != nil {
 		in["Path"] = path
 	}
-	if useVersion != 0 {
-		in["UseVersion"] = useVersion
+	if useVersion != nil {
+		in["UseVersion"] = *useVersion
 	}
-	if stageData {
-		in["StageData"] = stageData
+	if stageData != nil {
+		in["StageData"] = *stageData
 	}
-	if stagingPath != "" {
-		in["StagingPath"] = stagingPath
+	if stagingPath != nil {
+		in["StagingPath"] = *stagingPath
 	}
-	if referenceFile != "" {
-		in["ReferenceFile"] = referenceFile
+	if referenceFile != nil {
+		in["ReferenceFile"] = *referenceFile
 	}
-	if recurse {
-		in["Recurse"] = recurse
+	if recurse != nil {
+		in["Recurse"] = *recurse
 	}
-	if force {
-		in["Force"] = force
+	if force != nil {
+		in["Force"] = *force
 	}
 	row, err := svc.ExecMethod("MSFT_NetBranchCacheOrchestrator", "Publish_BCWebHashes", in)
 	if err != nil {
@@ -3272,15 +4478,25 @@ type MSFTNetBranchCacheOrchestratorRemoveBCDataCacheExtensionByDataCacheExtensio
 	ReturnValue uint32
 }
 
-// MSFTNetBranchCacheOrchestratorRemoveBCDataCacheExtensionByDataCacheExtension invokes the static MSFT_NetBranchCacheOrchestrator.Remove_BCDataCacheExtensionByDataCacheExtension method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTNetBranchCacheOrchestratorRemoveBCDataCacheExtensionByDataCacheExtension(svc *wmi.Service, dataCacheExtension []wmi.Row, force bool) (*MSFTNetBranchCacheOrchestratorRemoveBCDataCacheExtensionByDataCacheExtensionResult, error) {
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetBranchCacheOrchestratorRemoveBCDataCacheExtensionByDataCacheExtensionResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetBranchCacheOrchestrator.Remove_BCDataCacheExtensionByDataCacheExtension", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTNetBranchCacheOrchestratorRemoveBCDataCacheExtensionByDataCacheExtension invokes the static MSFT_NetBranchCacheOrchestrator.Remove_BCDataCacheExtensionByDataCacheExtension method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTNetBranchCacheOrchestratorRemoveBCDataCacheExtensionByDataCacheExtension(svc *wmi.Service, dataCacheExtension []wmi.Row, force *bool) (*MSFTNetBranchCacheOrchestratorRemoveBCDataCacheExtensionByDataCacheExtensionResult, error) {
 	in := map[string]any{}
 	if dataCacheExtension != nil {
 		in["DataCacheExtension"] = dataCacheExtension
 	}
-	if force {
-		in["Force"] = force
+	if force != nil {
+		in["Force"] = *force
 	}
 	row, err := svc.ExecMethod("MSFT_NetBranchCacheOrchestrator", "Remove_BCDataCacheExtensionByDataCacheExtension", in)
 	if err != nil {
@@ -3296,15 +4512,25 @@ type MSFTNetBranchCacheOrchestratorRemoveBCDataCacheExtensionByPathResult struct
 	ReturnValue uint32
 }
 
-// MSFTNetBranchCacheOrchestratorRemoveBCDataCacheExtensionByPath invokes the static MSFT_NetBranchCacheOrchestrator.Remove_BCDataCacheExtensionByPath method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTNetBranchCacheOrchestratorRemoveBCDataCacheExtensionByPath(svc *wmi.Service, path string, force bool) (*MSFTNetBranchCacheOrchestratorRemoveBCDataCacheExtensionByPathResult, error) {
-	in := map[string]any{}
-	if path != "" {
-		in["Path"] = path
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetBranchCacheOrchestratorRemoveBCDataCacheExtensionByPathResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
 	}
-	if force {
-		in["Force"] = force
+	return &wmi.JobError{What: "MSFT_NetBranchCacheOrchestrator.Remove_BCDataCacheExtensionByPath", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTNetBranchCacheOrchestratorRemoveBCDataCacheExtensionByPath invokes the static MSFT_NetBranchCacheOrchestrator.Remove_BCDataCacheExtensionByPath method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTNetBranchCacheOrchestratorRemoveBCDataCacheExtensionByPath(svc *wmi.Service, path *string, force *bool) (*MSFTNetBranchCacheOrchestratorRemoveBCDataCacheExtensionByPathResult, error) {
+	in := map[string]any{}
+	if path != nil {
+		in["Path"] = *path
+	}
+	if force != nil {
+		in["Force"] = *force
 	}
 	row, err := svc.ExecMethod("MSFT_NetBranchCacheOrchestrator", "Remove_BCDataCacheExtensionByPath", in)
 	if err != nil {
@@ -3320,18 +4546,28 @@ type MSFTNetBranchCacheOrchestratorResetBCResult struct {
 	ReturnValue uint32
 }
 
-// MSFTNetBranchCacheOrchestratorResetBC invokes the static MSFT_NetBranchCacheOrchestrator.Reset_BC method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTNetBranchCacheOrchestratorResetBC(svc *wmi.Service, resetFWRulesOnly bool, resetPerfCountersOnly bool, force bool) (*MSFTNetBranchCacheOrchestratorResetBCResult, error) {
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetBranchCacheOrchestratorResetBCResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetBranchCacheOrchestrator.Reset_BC", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTNetBranchCacheOrchestratorResetBC invokes the static MSFT_NetBranchCacheOrchestrator.Reset_BC method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTNetBranchCacheOrchestratorResetBC(svc *wmi.Service, resetFWRulesOnly *bool, resetPerfCountersOnly *bool, force *bool) (*MSFTNetBranchCacheOrchestratorResetBCResult, error) {
 	in := map[string]any{}
-	if resetFWRulesOnly {
-		in["ResetFWRulesOnly"] = resetFWRulesOnly
+	if resetFWRulesOnly != nil {
+		in["ResetFWRulesOnly"] = *resetFWRulesOnly
 	}
-	if resetPerfCountersOnly {
-		in["ResetPerfCountersOnly"] = resetPerfCountersOnly
+	if resetPerfCountersOnly != nil {
+		in["ResetPerfCountersOnly"] = *resetPerfCountersOnly
 	}
-	if force {
-		in["Force"] = force
+	if force != nil {
+		in["Force"] = *force
 	}
 	row, err := svc.ExecMethod("MSFT_NetBranchCacheOrchestrator", "Reset_BC", in)
 	if err != nil {
@@ -3347,15 +4583,25 @@ type MSFTNetBranchCacheOrchestratorSetBCAuthenticationResult struct {
 	ReturnValue uint32
 }
 
-// MSFTNetBranchCacheOrchestratorSetBCAuthentication invokes the static MSFT_NetBranchCacheOrchestrator.Set_BCAuthentication method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTNetBranchCacheOrchestratorSetBCAuthentication(svc *wmi.Service, mode uint32, force bool) (*MSFTNetBranchCacheOrchestratorSetBCAuthenticationResult, error) {
-	in := map[string]any{}
-	if mode != 0 {
-		in["Mode"] = mode
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetBranchCacheOrchestratorSetBCAuthenticationResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
 	}
-	if force {
-		in["Force"] = force
+	return &wmi.JobError{What: "MSFT_NetBranchCacheOrchestrator.Set_BCAuthentication", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTNetBranchCacheOrchestratorSetBCAuthentication invokes the static MSFT_NetBranchCacheOrchestrator.Set_BCAuthentication method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTNetBranchCacheOrchestratorSetBCAuthentication(svc *wmi.Service, mode *uint32, force *bool) (*MSFTNetBranchCacheOrchestratorSetBCAuthenticationResult, error) {
+	in := map[string]any{}
+	if mode != nil {
+		in["Mode"] = *mode
+	}
+	if force != nil {
+		in["Force"] = *force
 	}
 	row, err := svc.ExecMethod("MSFT_NetBranchCacheOrchestrator", "Set_BCAuthentication", in)
 	if err != nil {
@@ -3372,30 +4618,40 @@ type MSFTNetBranchCacheOrchestratorSetBCCacheByCacheResult struct {
 	ReturnValue  uint32
 }
 
-// MSFTNetBranchCacheOrchestratorSetBCCacheByCache invokes the static MSFT_NetBranchCacheOrchestrator.Set_BCCacheByCache method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTNetBranchCacheOrchestratorSetBCCacheByCache(svc *wmi.Service, cache []wmi.Row, moveTo string, percentage uint32, sizeBytes uint64, defragment bool, passThru bool, force bool) (*MSFTNetBranchCacheOrchestratorSetBCCacheByCacheResult, error) {
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetBranchCacheOrchestratorSetBCCacheByCacheResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetBranchCacheOrchestrator.Set_BCCacheByCache", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTNetBranchCacheOrchestratorSetBCCacheByCache invokes the static MSFT_NetBranchCacheOrchestrator.Set_BCCacheByCache method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTNetBranchCacheOrchestratorSetBCCacheByCache(svc *wmi.Service, cache []wmi.Row, moveTo *string, percentage *uint32, sizeBytes *uint64, defragment *bool, passThru *bool, force *bool) (*MSFTNetBranchCacheOrchestratorSetBCCacheByCacheResult, error) {
 	in := map[string]any{}
 	if cache != nil {
 		in["Cache"] = cache
 	}
-	if moveTo != "" {
-		in["MoveTo"] = moveTo
+	if moveTo != nil {
+		in["MoveTo"] = *moveTo
 	}
-	if percentage != 0 {
-		in["Percentage"] = percentage
+	if percentage != nil {
+		in["Percentage"] = *percentage
 	}
-	if sizeBytes != 0 {
-		in["SizeBytes"] = sizeBytes
+	if sizeBytes != nil {
+		in["SizeBytes"] = *sizeBytes
 	}
-	if defragment {
-		in["Defragment"] = defragment
+	if defragment != nil {
+		in["Defragment"] = *defragment
 	}
-	if passThru {
-		in["PassThru"] = passThru
+	if passThru != nil {
+		in["PassThru"] = *passThru
 	}
-	if force {
-		in["Force"] = force
+	if force != nil {
+		in["Force"] = *force
 	}
 	row, err := svc.ExecMethod("MSFT_NetBranchCacheOrchestrator", "Set_BCCacheByCache", in)
 	if err != nil {
@@ -3413,30 +4669,40 @@ type MSFTNetBranchCacheOrchestratorSetBCCacheByPathResult struct {
 	ReturnValue  uint32
 }
 
-// MSFTNetBranchCacheOrchestratorSetBCCacheByPath invokes the static MSFT_NetBranchCacheOrchestrator.Set_BCCacheByPath method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTNetBranchCacheOrchestratorSetBCCacheByPath(svc *wmi.Service, path string, moveTo string, percentage uint32, sizeBytes uint64, defragment bool, passThru bool, force bool) (*MSFTNetBranchCacheOrchestratorSetBCCacheByPathResult, error) {
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetBranchCacheOrchestratorSetBCCacheByPathResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetBranchCacheOrchestrator.Set_BCCacheByPath", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTNetBranchCacheOrchestratorSetBCCacheByPath invokes the static MSFT_NetBranchCacheOrchestrator.Set_BCCacheByPath method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTNetBranchCacheOrchestratorSetBCCacheByPath(svc *wmi.Service, path *string, moveTo *string, percentage *uint32, sizeBytes *uint64, defragment *bool, passThru *bool, force *bool) (*MSFTNetBranchCacheOrchestratorSetBCCacheByPathResult, error) {
 	in := map[string]any{}
-	if path != "" {
-		in["Path"] = path
+	if path != nil {
+		in["Path"] = *path
 	}
-	if moveTo != "" {
-		in["MoveTo"] = moveTo
+	if moveTo != nil {
+		in["MoveTo"] = *moveTo
 	}
-	if percentage != 0 {
-		in["Percentage"] = percentage
+	if percentage != nil {
+		in["Percentage"] = *percentage
 	}
-	if sizeBytes != 0 {
-		in["SizeBytes"] = sizeBytes
+	if sizeBytes != nil {
+		in["SizeBytes"] = *sizeBytes
 	}
-	if defragment {
-		in["Defragment"] = defragment
+	if defragment != nil {
+		in["Defragment"] = *defragment
 	}
-	if passThru {
-		in["PassThru"] = passThru
+	if passThru != nil {
+		in["PassThru"] = *passThru
 	}
-	if force {
-		in["Force"] = force
+	if force != nil {
+		in["Force"] = *force
 	}
 	row, err := svc.ExecMethod("MSFT_NetBranchCacheOrchestrator", "Set_BCCacheByPath", in)
 	if err != nil {
@@ -3455,15 +4721,25 @@ type MSFTNetBranchCacheOrchestratorSetBCDataCacheEntryMaxAgeResult struct {
 	ReturnValue uint32
 }
 
-// MSFTNetBranchCacheOrchestratorSetBCDataCacheEntryMaxAge invokes the static MSFT_NetBranchCacheOrchestrator.Set_BCDataCacheEntryMaxAge method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTNetBranchCacheOrchestratorSetBCDataCacheEntryMaxAge(svc *wmi.Service, timeDays uint32, force bool) (*MSFTNetBranchCacheOrchestratorSetBCDataCacheEntryMaxAgeResult, error) {
-	in := map[string]any{}
-	if timeDays != 0 {
-		in["TimeDays"] = timeDays
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetBranchCacheOrchestratorSetBCDataCacheEntryMaxAgeResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
 	}
-	if force {
-		in["Force"] = force
+	return &wmi.JobError{What: "MSFT_NetBranchCacheOrchestrator.Set_BCDataCacheEntryMaxAge", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTNetBranchCacheOrchestratorSetBCDataCacheEntryMaxAge invokes the static MSFT_NetBranchCacheOrchestrator.Set_BCDataCacheEntryMaxAge method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTNetBranchCacheOrchestratorSetBCDataCacheEntryMaxAge(svc *wmi.Service, timeDays *uint32, force *bool) (*MSFTNetBranchCacheOrchestratorSetBCDataCacheEntryMaxAgeResult, error) {
+	in := map[string]any{}
+	if timeDays != nil {
+		in["TimeDays"] = *timeDays
+	}
+	if force != nil {
+		in["Force"] = *force
 	}
 	row, err := svc.ExecMethod("MSFT_NetBranchCacheOrchestrator", "Set_BCDataCacheEntryMaxAge", in)
 	if err != nil {
@@ -3479,15 +4755,25 @@ type MSFTNetBranchCacheOrchestratorSetBCMinSMBLatencyResult struct {
 	ReturnValue uint32
 }
 
-// MSFTNetBranchCacheOrchestratorSetBCMinSMBLatency invokes the static MSFT_NetBranchCacheOrchestrator.Set_BCMinSMBLatency method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTNetBranchCacheOrchestratorSetBCMinSMBLatency(svc *wmi.Service, latencyMilliseconds uint32, force bool) (*MSFTNetBranchCacheOrchestratorSetBCMinSMBLatencyResult, error) {
-	in := map[string]any{}
-	if latencyMilliseconds != 0 {
-		in["LatencyMilliseconds"] = latencyMilliseconds
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetBranchCacheOrchestratorSetBCMinSMBLatencyResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
 	}
-	if force {
-		in["Force"] = force
+	return &wmi.JobError{What: "MSFT_NetBranchCacheOrchestrator.Set_BCMinSMBLatency", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTNetBranchCacheOrchestratorSetBCMinSMBLatency invokes the static MSFT_NetBranchCacheOrchestrator.Set_BCMinSMBLatency method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTNetBranchCacheOrchestratorSetBCMinSMBLatency(svc *wmi.Service, latencyMilliseconds *uint32, force *bool) (*MSFTNetBranchCacheOrchestratorSetBCMinSMBLatencyResult, error) {
+	in := map[string]any{}
+	if latencyMilliseconds != nil {
+		in["LatencyMilliseconds"] = *latencyMilliseconds
+	}
+	if force != nil {
+		in["Force"] = *force
 	}
 	row, err := svc.ExecMethod("MSFT_NetBranchCacheOrchestrator", "Set_BCMinSMBLatency", in)
 	if err != nil {
@@ -3503,15 +4789,25 @@ type MSFTNetBranchCacheOrchestratorSetBCSecretKeyResult struct {
 	ReturnValue uint32
 }
 
-// MSFTNetBranchCacheOrchestratorSetBCSecretKey invokes the static MSFT_NetBranchCacheOrchestrator.Set_BCSecretKey method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTNetBranchCacheOrchestratorSetBCSecretKey(svc *wmi.Service, passphrase string, force bool) (*MSFTNetBranchCacheOrchestratorSetBCSecretKeyResult, error) {
-	in := map[string]any{}
-	if passphrase != "" {
-		in["Passphrase"] = passphrase
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetBranchCacheOrchestratorSetBCSecretKeyResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
 	}
-	if force {
-		in["Force"] = force
+	return &wmi.JobError{What: "MSFT_NetBranchCacheOrchestrator.Set_BCSecretKey", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTNetBranchCacheOrchestratorSetBCSecretKey invokes the static MSFT_NetBranchCacheOrchestrator.Set_BCSecretKey method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTNetBranchCacheOrchestratorSetBCSecretKey(svc *wmi.Service, passphrase *string, force *bool) (*MSFTNetBranchCacheOrchestratorSetBCSecretKeyResult, error) {
+	in := map[string]any{}
+	if passphrase != nil {
+		in["Passphrase"] = *passphrase
+	}
+	if force != nil {
+		in["Force"] = *force
 	}
 	row, err := svc.ExecMethod("MSFT_NetBranchCacheOrchestrator", "Set_BCSecretKey", in)
 	if err != nil {
@@ -3527,19 +4823,29 @@ type MSFTNetConSecRuleCloneObjectResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetConSecRuleCloneObjectResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetConSecRule.CloneObject", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MSFTNetConSecRuleCloneObject invokes MSFT_NetConSecRule.CloneObject on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MSFTNetConSecRuleCloneObject(svc *wmi.Service, objectPath string, newName string, newPolicyStore string, newGPOSession string) (*MSFTNetConSecRuleCloneObjectResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MSFTNetConSecRuleCloneObject(svc *wmi.Service, objectPath string, newName *string, newPolicyStore *string, newGPOSession *string) (*MSFTNetConSecRuleCloneObjectResult, error) {
 	in := map[string]any{}
-	if newName != "" {
-		in["NewName"] = newName
+	if newName != nil {
+		in["NewName"] = *newName
 	}
-	if newPolicyStore != "" {
-		in["NewPolicyStore"] = newPolicyStore
+	if newPolicyStore != nil {
+		in["NewPolicyStore"] = *newPolicyStore
 	}
-	if newGPOSession != "" {
-		in["NewGPOSession"] = newGPOSession
+	if newGPOSession != nil {
+		in["NewGPOSession"] = *newGPOSession
 	}
 	row, err := svc.ExecMethod(objectPath, "CloneObject", in)
 	if err != nil {
@@ -3555,9 +4861,19 @@ type MSFTNetConSecRuleDisableResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetConSecRuleDisableResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetConSecRule.Disable", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MSFTNetConSecRuleDisable invokes MSFT_NetConSecRule.Disable on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MSFTNetConSecRuleDisable(svc *wmi.Service, objectPath string) (*MSFTNetConSecRuleDisableResult, error) {
 	row, err := svc.ExecMethod(objectPath, "Disable", nil)
 	if err != nil {
@@ -3573,9 +4889,19 @@ type MSFTNetConSecRuleEnableResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetConSecRuleEnableResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetConSecRule.Enable", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MSFTNetConSecRuleEnable invokes MSFT_NetConSecRule.Enable on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MSFTNetConSecRuleEnable(svc *wmi.Service, objectPath string) (*MSFTNetConSecRuleEnableResult, error) {
 	row, err := svc.ExecMethod(objectPath, "Enable", nil)
 	if err != nil {
@@ -3592,8 +4918,18 @@ type MSFTNetConSecRuleEnumerateFullResult struct {
 	ReturnValue uint32
 }
 
-// MSFTNetConSecRuleEnumerateFull invokes the static MSFT_NetConSecRule.EnumerateFull method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetConSecRuleEnumerateFullResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetConSecRule.EnumerateFull", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTNetConSecRuleEnumerateFull invokes the static MSFT_NetConSecRule.EnumerateFull method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
 func MSFTNetConSecRuleEnumerateFull(svc *wmi.Service) (*MSFTNetConSecRuleEnumerateFullResult, error) {
 	row, err := svc.ExecMethod("MSFT_NetConSecRule", "EnumerateFull", nil)
 	if err != nil {
@@ -3611,24 +4947,34 @@ type MSFTNetConSecRuleFindResult struct {
 	ReturnValue  uint32
 }
 
-// MSFTNetConSecRuleFind invokes the static MSFT_NetConSecRule.Find method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTNetConSecRuleFind(svc *wmi.Service, localAddress string, remoteAddress string, protocol string, localPort uint16, remotePort uint16) (*MSFTNetConSecRuleFindResult, error) {
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetConSecRuleFindResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetConSecRule.Find", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTNetConSecRuleFind invokes the static MSFT_NetConSecRule.Find method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTNetConSecRuleFind(svc *wmi.Service, localAddress *string, remoteAddress *string, protocol *string, localPort *uint16, remotePort *uint16) (*MSFTNetConSecRuleFindResult, error) {
 	in := map[string]any{}
-	if localAddress != "" {
-		in["LocalAddress"] = localAddress
+	if localAddress != nil {
+		in["LocalAddress"] = *localAddress
 	}
-	if remoteAddress != "" {
-		in["RemoteAddress"] = remoteAddress
+	if remoteAddress != nil {
+		in["RemoteAddress"] = *remoteAddress
 	}
-	if protocol != "" {
-		in["Protocol"] = protocol
+	if protocol != nil {
+		in["Protocol"] = *protocol
 	}
-	if localPort != 0 {
-		in["LocalPort"] = localPort
+	if localPort != nil {
+		in["LocalPort"] = *localPort
 	}
-	if remotePort != 0 {
-		in["RemotePort"] = remotePort
+	if remotePort != nil {
+		in["RemotePort"] = *remotePort
 	}
 	row, err := svc.ExecMethod("MSFT_NetConSecRule", "Find", in)
 	if err != nil {
@@ -3645,13 +4991,23 @@ type MSFTNetConSecRuleRenameResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetConSecRuleRenameResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetConSecRule.Rename", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MSFTNetConSecRuleRename invokes MSFT_NetConSecRule.Rename on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MSFTNetConSecRuleRename(svc *wmi.Service, objectPath string, newName string) (*MSFTNetConSecRuleRenameResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MSFTNetConSecRuleRename(svc *wmi.Service, objectPath string, newName *string) (*MSFTNetConSecRuleRenameResult, error) {
 	in := map[string]any{}
-	if newName != "" {
-		in["NewName"] = newName
+	if newName != nil {
+		in["NewName"] = *newName
 	}
 	row, err := svc.ExecMethod(objectPath, "Rename", in)
 	if err != nil {
@@ -3668,13 +5024,23 @@ type MSFTNetConSecRuleSetPolicyDeltaResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetConSecRuleSetPolicyDeltaResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetConSecRule.SetPolicyDelta", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MSFTNetConSecRuleSetPolicyDelta invokes MSFT_NetConSecRule.SetPolicyDelta on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MSFTNetConSecRuleSetPolicyDelta(svc *wmi.Service, objectPath string, action uint16, iPv6Addresses []string, iPv4Addresses []string, endpointType uint16, passThru bool) (*MSFTNetConSecRuleSetPolicyDeltaResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MSFTNetConSecRuleSetPolicyDelta(svc *wmi.Service, objectPath string, action *MSFTNetConSecRuleSetPolicyDeltaAction, iPv6Addresses []string, iPv4Addresses []string, endpointType *MSFTNetConSecRuleSetPolicyDeltaEndpointType, passThru *bool) (*MSFTNetConSecRuleSetPolicyDeltaResult, error) {
 	in := map[string]any{}
-	if action != 0 {
-		in["Action"] = action
+	if action != nil {
+		in["Action"] = uint16(*action)
 	}
 	if iPv6Addresses != nil {
 		in["IPv6Addresses"] = iPv6Addresses
@@ -3682,11 +5048,11 @@ func MSFTNetConSecRuleSetPolicyDelta(svc *wmi.Service, objectPath string, action
 	if iPv4Addresses != nil {
 		in["IPv4Addresses"] = iPv4Addresses
 	}
-	if endpointType != 0 {
-		in["EndpointType"] = endpointType
+	if endpointType != nil {
+		in["EndpointType"] = uint16(*endpointType)
 	}
-	if passThru {
-		in["PassThru"] = passThru
+	if passThru != nil {
+		in["PassThru"] = *passThru
 	}
 	row, err := svc.ExecMethod(objectPath, "SetPolicyDelta", in)
 	if err != nil {
@@ -3704,10 +5070,20 @@ type MSFTNetConSecRuleSyncPolicyDeltaResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetConSecRuleSyncPolicyDeltaResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetConSecRule.SyncPolicyDelta", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MSFTNetConSecRuleSyncPolicyDelta invokes MSFT_NetConSecRule.SyncPolicyDelta on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MSFTNetConSecRuleSyncPolicyDelta(svc *wmi.Service, objectPath string, servers []string, domains []string, endpointType uint16, addressType uint16, dnsServers []string) (*MSFTNetConSecRuleSyncPolicyDeltaResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MSFTNetConSecRuleSyncPolicyDelta(svc *wmi.Service, objectPath string, servers []string, domains []string, endpointType *MSFTNetConSecRuleSyncPolicyDeltaEndpointType, addressType *MSFTNetConSecRuleSyncPolicyDeltaAddressType, dnsServers []string) (*MSFTNetConSecRuleSyncPolicyDeltaResult, error) {
 	in := map[string]any{}
 	if servers != nil {
 		in["Servers"] = servers
@@ -3715,11 +5091,11 @@ func MSFTNetConSecRuleSyncPolicyDelta(svc *wmi.Service, objectPath string, serve
 	if domains != nil {
 		in["Domains"] = domains
 	}
-	if endpointType != 0 {
-		in["EndpointType"] = endpointType
+	if endpointType != nil {
+		in["EndpointType"] = uint16(*endpointType)
 	}
-	if addressType != 0 {
-		in["AddressType"] = addressType
+	if addressType != nil {
+		in["AddressType"] = uint16(*addressType)
 	}
 	if dnsServers != nil {
 		in["DnsServers"] = dnsServers
@@ -3740,13 +5116,23 @@ type MSFTNetDnsTransitionConfigurationDisableResult struct {
 	ReturnValue  uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetDnsTransitionConfigurationDisableResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetDnsTransitionConfiguration.Disable", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MSFTNetDnsTransitionConfigurationDisable invokes MSFT_NetDnsTransitionConfiguration.Disable on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MSFTNetDnsTransitionConfigurationDisable(svc *wmi.Service, objectPath string, passThru bool) (*MSFTNetDnsTransitionConfigurationDisableResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MSFTNetDnsTransitionConfigurationDisable(svc *wmi.Service, objectPath string, passThru *bool) (*MSFTNetDnsTransitionConfigurationDisableResult, error) {
 	in := map[string]any{}
-	if passThru {
-		in["PassThru"] = passThru
+	if passThru != nil {
+		in["PassThru"] = *passThru
 	}
 	row, err := svc.ExecMethod(objectPath, "Disable", in)
 	if err != nil {
@@ -3766,13 +5152,23 @@ type MSFTNetDnsTransitionConfigurationEnableResult struct {
 	ReturnValue  uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetDnsTransitionConfigurationEnableResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetDnsTransitionConfiguration.Enable", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MSFTNetDnsTransitionConfigurationEnable invokes MSFT_NetDnsTransitionConfiguration.Enable on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MSFTNetDnsTransitionConfigurationEnable(svc *wmi.Service, objectPath string, passThru bool) (*MSFTNetDnsTransitionConfigurationEnableResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MSFTNetDnsTransitionConfigurationEnable(svc *wmi.Service, objectPath string, passThru *bool) (*MSFTNetDnsTransitionConfigurationEnableResult, error) {
 	in := map[string]any{}
-	if passThru {
-		in["PassThru"] = passThru
+	if passThru != nil {
+		in["PassThru"] = *passThru
 	}
 	row, err := svc.ExecMethod(objectPath, "Enable", in)
 	if err != nil {
@@ -3792,37 +5188,47 @@ type MSFTNetDnsTransitionConfigurationResetResult struct {
 	ReturnValue  uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetDnsTransitionConfigurationResetResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetDnsTransitionConfiguration.Reset", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MSFTNetDnsTransitionConfigurationReset invokes MSFT_NetDnsTransitionConfiguration.Reset on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MSFTNetDnsTransitionConfigurationReset(svc *wmi.Service, objectPath string, state bool, onlySendAQuery bool, latency bool, alwaysSynthesize bool, prefixMapping bool, exclusionList bool, sendInterface bool, acceptInterface bool, passThru bool) (*MSFTNetDnsTransitionConfigurationResetResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MSFTNetDnsTransitionConfigurationReset(svc *wmi.Service, objectPath string, state *bool, onlySendAQuery *bool, latency *bool, alwaysSynthesize *bool, prefixMapping *bool, exclusionList *bool, sendInterface *bool, acceptInterface *bool, passThru *bool) (*MSFTNetDnsTransitionConfigurationResetResult, error) {
 	in := map[string]any{}
-	if state {
-		in["State"] = state
+	if state != nil {
+		in["State"] = *state
 	}
-	if onlySendAQuery {
-		in["OnlySendAQuery"] = onlySendAQuery
+	if onlySendAQuery != nil {
+		in["OnlySendAQuery"] = *onlySendAQuery
 	}
-	if latency {
-		in["Latency"] = latency
+	if latency != nil {
+		in["Latency"] = *latency
 	}
-	if alwaysSynthesize {
-		in["AlwaysSynthesize"] = alwaysSynthesize
+	if alwaysSynthesize != nil {
+		in["AlwaysSynthesize"] = *alwaysSynthesize
 	}
-	if prefixMapping {
-		in["PrefixMapping"] = prefixMapping
+	if prefixMapping != nil {
+		in["PrefixMapping"] = *prefixMapping
 	}
-	if exclusionList {
-		in["ExclusionList"] = exclusionList
+	if exclusionList != nil {
+		in["ExclusionList"] = *exclusionList
 	}
-	if sendInterface {
-		in["SendInterface"] = sendInterface
+	if sendInterface != nil {
+		in["SendInterface"] = *sendInterface
 	}
-	if acceptInterface {
-		in["AcceptInterface"] = acceptInterface
+	if acceptInterface != nil {
+		in["AcceptInterface"] = *acceptInterface
 	}
-	if passThru {
-		in["PassThru"] = passThru
+	if passThru != nil {
+		in["PassThru"] = *passThru
 	}
 	row, err := svc.ExecMethod(objectPath, "Reset", in)
 	if err != nil {
@@ -3841,9 +5247,19 @@ type MSFTNetEventSessionStartResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetEventSessionStartResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetEventSession.Start", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MSFTNetEventSessionStart invokes MSFT_NetEventSession.Start on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MSFTNetEventSessionStart(svc *wmi.Service, objectPath string) (*MSFTNetEventSessionStartResult, error) {
 	row, err := svc.ExecMethod(objectPath, "Start", nil)
 	if err != nil {
@@ -3859,9 +5275,19 @@ type MSFTNetEventSessionStopResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetEventSessionStopResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetEventSession.Stop", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MSFTNetEventSessionStop invokes MSFT_NetEventSession.Stop on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MSFTNetEventSessionStop(svc *wmi.Service, objectPath string) (*MSFTNetEventSessionStopResult, error) {
 	row, err := svc.ExecMethod(objectPath, "Stop", nil)
 	if err != nil {
@@ -3877,18 +5303,28 @@ type MSFTNetFirewallDynamicKeywordAddressUpdateDynamicKeywordAddressResult struc
 	ReturnValue uint32
 }
 
-// MSFTNetFirewallDynamicKeywordAddressUpdateDynamicKeywordAddress invokes the static MSFT_NetFirewallDynamicKeywordAddress.UpdateDynamicKeywordAddress method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTNetFirewallDynamicKeywordAddressUpdateDynamicKeywordAddress(svc *wmi.Service, id string, addresses string, appendArg bool) (*MSFTNetFirewallDynamicKeywordAddressUpdateDynamicKeywordAddressResult, error) {
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetFirewallDynamicKeywordAddressUpdateDynamicKeywordAddressResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetFirewallDynamicKeywordAddress.UpdateDynamicKeywordAddress", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTNetFirewallDynamicKeywordAddressUpdateDynamicKeywordAddress invokes the static MSFT_NetFirewallDynamicKeywordAddress.UpdateDynamicKeywordAddress method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTNetFirewallDynamicKeywordAddressUpdateDynamicKeywordAddress(svc *wmi.Service, id *string, addresses *string, appendArg *bool) (*MSFTNetFirewallDynamicKeywordAddressUpdateDynamicKeywordAddressResult, error) {
 	in := map[string]any{}
-	if id != "" {
-		in["Id"] = id
+	if id != nil {
+		in["Id"] = *id
 	}
-	if addresses != "" {
-		in["Addresses"] = addresses
+	if addresses != nil {
+		in["Addresses"] = *addresses
 	}
-	if appendArg {
-		in["Append"] = appendArg
+	if appendArg != nil {
+		in["Append"] = *appendArg
 	}
 	row, err := svc.ExecMethod("MSFT_NetFirewallDynamicKeywordAddress", "UpdateDynamicKeywordAddress", in)
 	if err != nil {
@@ -3904,9 +5340,19 @@ type MSFTNetFirewallHyperVRuleDisableResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetFirewallHyperVRuleDisableResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetFirewallHyperVRule.Disable", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MSFTNetFirewallHyperVRuleDisable invokes MSFT_NetFirewallHyperVRule.Disable on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MSFTNetFirewallHyperVRuleDisable(svc *wmi.Service, objectPath string) (*MSFTNetFirewallHyperVRuleDisableResult, error) {
 	row, err := svc.ExecMethod(objectPath, "Disable", nil)
 	if err != nil {
@@ -3922,9 +5368,19 @@ type MSFTNetFirewallHyperVRuleEnableResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetFirewallHyperVRuleEnableResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetFirewallHyperVRule.Enable", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MSFTNetFirewallHyperVRuleEnable invokes MSFT_NetFirewallHyperVRule.Enable on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MSFTNetFirewallHyperVRuleEnable(svc *wmi.Service, objectPath string) (*MSFTNetFirewallHyperVRuleEnableResult, error) {
 	row, err := svc.ExecMethod(objectPath, "Enable", nil)
 	if err != nil {
@@ -3941,8 +5397,18 @@ type MSFTNetFirewallHyperVRuleEnumerateFullResult struct {
 	ReturnValue uint32
 }
 
-// MSFTNetFirewallHyperVRuleEnumerateFull invokes the static MSFT_NetFirewallHyperVRule.EnumerateFull method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetFirewallHyperVRuleEnumerateFullResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetFirewallHyperVRule.EnumerateFull", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTNetFirewallHyperVRuleEnumerateFull invokes the static MSFT_NetFirewallHyperVRule.EnumerateFull method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
 func MSFTNetFirewallHyperVRuleEnumerateFull(svc *wmi.Service) (*MSFTNetFirewallHyperVRuleEnumerateFullResult, error) {
 	row, err := svc.ExecMethod("MSFT_NetFirewallHyperVRule", "EnumerateFull", nil)
 	if err != nil {
@@ -3959,13 +5425,23 @@ type MSFTNetFirewallHyperVRuleRenameResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetFirewallHyperVRuleRenameResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetFirewallHyperVRule.Rename", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MSFTNetFirewallHyperVRuleRename invokes MSFT_NetFirewallHyperVRule.Rename on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MSFTNetFirewallHyperVRuleRename(svc *wmi.Service, objectPath string, newName string) (*MSFTNetFirewallHyperVRuleRenameResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MSFTNetFirewallHyperVRuleRename(svc *wmi.Service, objectPath string, newName *string) (*MSFTNetFirewallHyperVRuleRenameResult, error) {
 	in := map[string]any{}
-	if newName != "" {
-		in["NewName"] = newName
+	if newName != nil {
+		in["NewName"] = *newName
 	}
 	row, err := svc.ExecMethod(objectPath, "Rename", in)
 	if err != nil {
@@ -3981,15 +5457,25 @@ type MSFTNetFirewallHyperVVMCreatorRegisterHyperVVMCreatorResult struct {
 	ReturnValue uint32
 }
 
-// MSFTNetFirewallHyperVVMCreatorRegisterHyperVVMCreator invokes the static MSFT_NetFirewallHyperVVMCreator.RegisterHyperVVMCreator method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTNetFirewallHyperVVMCreatorRegisterHyperVVMCreator(svc *wmi.Service, vMCreatorId string, friendlyName string) (*MSFTNetFirewallHyperVVMCreatorRegisterHyperVVMCreatorResult, error) {
-	in := map[string]any{}
-	if vMCreatorId != "" {
-		in["VMCreatorId"] = vMCreatorId
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetFirewallHyperVVMCreatorRegisterHyperVVMCreatorResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
 	}
-	if friendlyName != "" {
-		in["FriendlyName"] = friendlyName
+	return &wmi.JobError{What: "MSFT_NetFirewallHyperVVMCreator.RegisterHyperVVMCreator", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTNetFirewallHyperVVMCreatorRegisterHyperVVMCreator invokes the static MSFT_NetFirewallHyperVVMCreator.RegisterHyperVVMCreator method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTNetFirewallHyperVVMCreatorRegisterHyperVVMCreator(svc *wmi.Service, vMCreatorId *string, friendlyName *string) (*MSFTNetFirewallHyperVVMCreatorRegisterHyperVVMCreatorResult, error) {
+	in := map[string]any{}
+	if vMCreatorId != nil {
+		in["VMCreatorId"] = *vMCreatorId
+	}
+	if friendlyName != nil {
+		in["FriendlyName"] = *friendlyName
 	}
 	row, err := svc.ExecMethod("MSFT_NetFirewallHyperVVMCreator", "RegisterHyperVVMCreator", in)
 	if err != nil {
@@ -4005,12 +5491,22 @@ type MSFTNetFirewallHyperVVMCreatorUnregisterHyperVVMCreatorResult struct {
 	ReturnValue uint32
 }
 
-// MSFTNetFirewallHyperVVMCreatorUnregisterHyperVVMCreator invokes the static MSFT_NetFirewallHyperVVMCreator.UnregisterHyperVVMCreator method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTNetFirewallHyperVVMCreatorUnregisterHyperVVMCreator(svc *wmi.Service, vMCreatorId string) (*MSFTNetFirewallHyperVVMCreatorUnregisterHyperVVMCreatorResult, error) {
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetFirewallHyperVVMCreatorUnregisterHyperVVMCreatorResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetFirewallHyperVVMCreator.UnregisterHyperVVMCreator", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTNetFirewallHyperVVMCreatorUnregisterHyperVVMCreator invokes the static MSFT_NetFirewallHyperVVMCreator.UnregisterHyperVVMCreator method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTNetFirewallHyperVVMCreatorUnregisterHyperVVMCreator(svc *wmi.Service, vMCreatorId *string) (*MSFTNetFirewallHyperVVMCreatorUnregisterHyperVVMCreatorResult, error) {
 	in := map[string]any{}
-	if vMCreatorId != "" {
-		in["VMCreatorId"] = vMCreatorId
+	if vMCreatorId != nil {
+		in["VMCreatorId"] = *vMCreatorId
 	}
 	row, err := svc.ExecMethod("MSFT_NetFirewallHyperVVMCreator", "UnregisterHyperVVMCreator", in)
 	if err != nil {
@@ -4026,19 +5522,29 @@ type MSFTNetFirewallRuleCloneObjectResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetFirewallRuleCloneObjectResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetFirewallRule.CloneObject", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MSFTNetFirewallRuleCloneObject invokes MSFT_NetFirewallRule.CloneObject on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MSFTNetFirewallRuleCloneObject(svc *wmi.Service, objectPath string, newName string, newPolicyStore string, newGPOSession string) (*MSFTNetFirewallRuleCloneObjectResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MSFTNetFirewallRuleCloneObject(svc *wmi.Service, objectPath string, newName *string, newPolicyStore *string, newGPOSession *string) (*MSFTNetFirewallRuleCloneObjectResult, error) {
 	in := map[string]any{}
-	if newName != "" {
-		in["NewName"] = newName
+	if newName != nil {
+		in["NewName"] = *newName
 	}
-	if newPolicyStore != "" {
-		in["NewPolicyStore"] = newPolicyStore
+	if newPolicyStore != nil {
+		in["NewPolicyStore"] = *newPolicyStore
 	}
-	if newGPOSession != "" {
-		in["NewGPOSession"] = newGPOSession
+	if newGPOSession != nil {
+		in["NewGPOSession"] = *newGPOSession
 	}
 	row, err := svc.ExecMethod(objectPath, "CloneObject", in)
 	if err != nil {
@@ -4054,9 +5560,19 @@ type MSFTNetFirewallRuleDisableResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetFirewallRuleDisableResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetFirewallRule.Disable", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MSFTNetFirewallRuleDisable invokes MSFT_NetFirewallRule.Disable on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MSFTNetFirewallRuleDisable(svc *wmi.Service, objectPath string) (*MSFTNetFirewallRuleDisableResult, error) {
 	row, err := svc.ExecMethod(objectPath, "Disable", nil)
 	if err != nil {
@@ -4072,9 +5588,19 @@ type MSFTNetFirewallRuleEnableResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetFirewallRuleEnableResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetFirewallRule.Enable", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MSFTNetFirewallRuleEnable invokes MSFT_NetFirewallRule.Enable on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MSFTNetFirewallRuleEnable(svc *wmi.Service, objectPath string) (*MSFTNetFirewallRuleEnableResult, error) {
 	row, err := svc.ExecMethod(objectPath, "Enable", nil)
 	if err != nil {
@@ -4091,8 +5617,18 @@ type MSFTNetFirewallRuleEnumerateFullResult struct {
 	ReturnValue uint32
 }
 
-// MSFTNetFirewallRuleEnumerateFull invokes the static MSFT_NetFirewallRule.EnumerateFull method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetFirewallRuleEnumerateFullResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetFirewallRule.EnumerateFull", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTNetFirewallRuleEnumerateFull invokes the static MSFT_NetFirewallRule.EnumerateFull method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
 func MSFTNetFirewallRuleEnumerateFull(svc *wmi.Service) (*MSFTNetFirewallRuleEnumerateFullResult, error) {
 	row, err := svc.ExecMethod("MSFT_NetFirewallRule", "EnumerateFull", nil)
 	if err != nil {
@@ -4109,13 +5645,23 @@ type MSFTNetFirewallRuleRenameResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetFirewallRuleRenameResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetFirewallRule.Rename", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MSFTNetFirewallRuleRename invokes MSFT_NetFirewallRule.Rename on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MSFTNetFirewallRuleRename(svc *wmi.Service, objectPath string, newName string) (*MSFTNetFirewallRuleRenameResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MSFTNetFirewallRuleRename(svc *wmi.Service, objectPath string, newName *string) (*MSFTNetFirewallRuleRenameResult, error) {
 	in := map[string]any{}
-	if newName != "" {
-		in["NewName"] = newName
+	if newName != nil {
+		in["NewName"] = *newName
 	}
 	row, err := svc.ExecMethod(objectPath, "Rename", in)
 	if err != nil {
@@ -4132,15 +5678,25 @@ type MSFTNetGPOOpenResult struct {
 	ReturnValue uint32
 }
 
-// MSFTNetGPOOpen invokes the static MSFT_NetGPO.Open method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTNetGPOOpen(svc *wmi.Service, policyStore string, domainController string) (*MSFTNetGPOOpenResult, error) {
-	in := map[string]any{}
-	if policyStore != "" {
-		in["PolicyStore"] = policyStore
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetGPOOpenResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
 	}
-	if domainController != "" {
-		in["DomainController"] = domainController
+	return &wmi.JobError{What: "MSFT_NetGPO.Open", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTNetGPOOpen invokes the static MSFT_NetGPO.Open method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTNetGPOOpen(svc *wmi.Service, policyStore *string, domainController *string) (*MSFTNetGPOOpenResult, error) {
+	in := map[string]any{}
+	if policyStore != nil {
+		in["PolicyStore"] = *policyStore
+	}
+	if domainController != nil {
+		in["DomainController"] = *domainController
 	}
 	row, err := svc.ExecMethod("MSFT_NetGPO", "Open", in)
 	if err != nil {
@@ -4157,12 +5713,22 @@ type MSFTNetGPOSaveResult struct {
 	ReturnValue uint32
 }
 
-// MSFTNetGPOSave invokes the static MSFT_NetGPO.Save method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTNetGPOSave(svc *wmi.Service, gPOSession string) (*MSFTNetGPOSaveResult, error) {
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetGPOSaveResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetGPO.Save", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTNetGPOSave invokes the static MSFT_NetGPO.Save method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTNetGPOSave(svc *wmi.Service, gPOSession *string) (*MSFTNetGPOSaveResult, error) {
 	in := map[string]any{}
-	if gPOSession != "" {
-		in["GPOSession"] = gPOSession
+	if gPOSession != nil {
+		in["GPOSession"] = *gPOSession
 	}
 	row, err := svc.ExecMethod("MSFT_NetGPO", "Save", in)
 	if err != nil {
@@ -4178,22 +5744,32 @@ type MSFTNetIKEMMCryptoSetCloneObjectResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetIKEMMCryptoSetCloneObjectResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetIKEMMCryptoSet.CloneObject", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MSFTNetIKEMMCryptoSetCloneObject invokes MSFT_NetIKEMMCryptoSet.CloneObject on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MSFTNetIKEMMCryptoSetCloneObject(svc *wmi.Service, objectPath string, newName string, newID string, newPolicyStore string, newGPOSession string) (*MSFTNetIKEMMCryptoSetCloneObjectResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MSFTNetIKEMMCryptoSetCloneObject(svc *wmi.Service, objectPath string, newName *string, newID *string, newPolicyStore *string, newGPOSession *string) (*MSFTNetIKEMMCryptoSetCloneObjectResult, error) {
 	in := map[string]any{}
-	if newName != "" {
-		in["NewName"] = newName
+	if newName != nil {
+		in["NewName"] = *newName
 	}
-	if newID != "" {
-		in["NewID"] = newID
+	if newID != nil {
+		in["NewID"] = *newID
 	}
-	if newPolicyStore != "" {
-		in["NewPolicyStore"] = newPolicyStore
+	if newPolicyStore != nil {
+		in["NewPolicyStore"] = *newPolicyStore
 	}
-	if newGPOSession != "" {
-		in["NewGPOSession"] = newGPOSession
+	if newGPOSession != nil {
+		in["NewGPOSession"] = *newGPOSession
 	}
 	row, err := svc.ExecMethod(objectPath, "CloneObject", in)
 	if err != nil {
@@ -4209,13 +5785,23 @@ type MSFTNetIKEMMCryptoSetRenameResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetIKEMMCryptoSetRenameResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetIKEMMCryptoSet.Rename", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MSFTNetIKEMMCryptoSetRename invokes MSFT_NetIKEMMCryptoSet.Rename on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MSFTNetIKEMMCryptoSetRename(svc *wmi.Service, objectPath string, newName string) (*MSFTNetIKEMMCryptoSetRenameResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MSFTNetIKEMMCryptoSetRename(svc *wmi.Service, objectPath string, newName *string) (*MSFTNetIKEMMCryptoSetRenameResult, error) {
 	in := map[string]any{}
-	if newName != "" {
-		in["NewName"] = newName
+	if newName != nil {
+		in["NewName"] = *newName
 	}
 	row, err := svc.ExecMethod(objectPath, "Rename", in)
 	if err != nil {
@@ -4231,22 +5817,32 @@ type MSFTNetIKEP1AuthSetCloneObjectResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetIKEP1AuthSetCloneObjectResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetIKEP1AuthSet.CloneObject", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MSFTNetIKEP1AuthSetCloneObject invokes MSFT_NetIKEP1AuthSet.CloneObject on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MSFTNetIKEP1AuthSetCloneObject(svc *wmi.Service, objectPath string, newName string, newID string, newPolicyStore string, newGPOSession string) (*MSFTNetIKEP1AuthSetCloneObjectResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MSFTNetIKEP1AuthSetCloneObject(svc *wmi.Service, objectPath string, newName *string, newID *string, newPolicyStore *string, newGPOSession *string) (*MSFTNetIKEP1AuthSetCloneObjectResult, error) {
 	in := map[string]any{}
-	if newName != "" {
-		in["NewName"] = newName
+	if newName != nil {
+		in["NewName"] = *newName
 	}
-	if newID != "" {
-		in["NewID"] = newID
+	if newID != nil {
+		in["NewID"] = *newID
 	}
-	if newPolicyStore != "" {
-		in["NewPolicyStore"] = newPolicyStore
+	if newPolicyStore != nil {
+		in["NewPolicyStore"] = *newPolicyStore
 	}
-	if newGPOSession != "" {
-		in["NewGPOSession"] = newGPOSession
+	if newGPOSession != nil {
+		in["NewGPOSession"] = *newGPOSession
 	}
 	row, err := svc.ExecMethod(objectPath, "CloneObject", in)
 	if err != nil {
@@ -4262,13 +5858,23 @@ type MSFTNetIKEP1AuthSetRenameResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetIKEP1AuthSetRenameResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetIKEP1AuthSet.Rename", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MSFTNetIKEP1AuthSetRename invokes MSFT_NetIKEP1AuthSet.Rename on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MSFTNetIKEP1AuthSetRename(svc *wmi.Service, objectPath string, newName string) (*MSFTNetIKEP1AuthSetRenameResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MSFTNetIKEP1AuthSetRename(svc *wmi.Service, objectPath string, newName *string) (*MSFTNetIKEP1AuthSetRenameResult, error) {
 	in := map[string]any{}
-	if newName != "" {
-		in["NewName"] = newName
+	if newName != nil {
+		in["NewName"] = *newName
 	}
 	row, err := svc.ExecMethod(objectPath, "Rename", in)
 	if err != nil {
@@ -4284,22 +5890,32 @@ type MSFTNetIKEP2AuthSetCloneObjectResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetIKEP2AuthSetCloneObjectResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetIKEP2AuthSet.CloneObject", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MSFTNetIKEP2AuthSetCloneObject invokes MSFT_NetIKEP2AuthSet.CloneObject on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MSFTNetIKEP2AuthSetCloneObject(svc *wmi.Service, objectPath string, newName string, newID string, newPolicyStore string, newGPOSession string) (*MSFTNetIKEP2AuthSetCloneObjectResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MSFTNetIKEP2AuthSetCloneObject(svc *wmi.Service, objectPath string, newName *string, newID *string, newPolicyStore *string, newGPOSession *string) (*MSFTNetIKEP2AuthSetCloneObjectResult, error) {
 	in := map[string]any{}
-	if newName != "" {
-		in["NewName"] = newName
+	if newName != nil {
+		in["NewName"] = *newName
 	}
-	if newID != "" {
-		in["NewID"] = newID
+	if newID != nil {
+		in["NewID"] = *newID
 	}
-	if newPolicyStore != "" {
-		in["NewPolicyStore"] = newPolicyStore
+	if newPolicyStore != nil {
+		in["NewPolicyStore"] = *newPolicyStore
 	}
-	if newGPOSession != "" {
-		in["NewGPOSession"] = newGPOSession
+	if newGPOSession != nil {
+		in["NewGPOSession"] = *newGPOSession
 	}
 	row, err := svc.ExecMethod(objectPath, "CloneObject", in)
 	if err != nil {
@@ -4315,13 +5931,23 @@ type MSFTNetIKEP2AuthSetRenameResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetIKEP2AuthSetRenameResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetIKEP2AuthSet.Rename", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MSFTNetIKEP2AuthSetRename invokes MSFT_NetIKEP2AuthSet.Rename on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MSFTNetIKEP2AuthSetRename(svc *wmi.Service, objectPath string, newName string) (*MSFTNetIKEP2AuthSetRenameResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MSFTNetIKEP2AuthSetRename(svc *wmi.Service, objectPath string, newName *string) (*MSFTNetIKEP2AuthSetRenameResult, error) {
 	in := map[string]any{}
-	if newName != "" {
-		in["NewName"] = newName
+	if newName != nil {
+		in["NewName"] = *newName
 	}
 	row, err := svc.ExecMethod(objectPath, "Rename", in)
 	if err != nil {
@@ -4337,22 +5963,32 @@ type MSFTNetIKEQMCryptoSetCloneObjectResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetIKEQMCryptoSetCloneObjectResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetIKEQMCryptoSet.CloneObject", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MSFTNetIKEQMCryptoSetCloneObject invokes MSFT_NetIKEQMCryptoSet.CloneObject on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MSFTNetIKEQMCryptoSetCloneObject(svc *wmi.Service, objectPath string, newName string, newID string, newPolicyStore string, newGPOSession string) (*MSFTNetIKEQMCryptoSetCloneObjectResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MSFTNetIKEQMCryptoSetCloneObject(svc *wmi.Service, objectPath string, newName *string, newID *string, newPolicyStore *string, newGPOSession *string) (*MSFTNetIKEQMCryptoSetCloneObjectResult, error) {
 	in := map[string]any{}
-	if newName != "" {
-		in["NewName"] = newName
+	if newName != nil {
+		in["NewName"] = *newName
 	}
-	if newID != "" {
-		in["NewID"] = newID
+	if newID != nil {
+		in["NewID"] = *newID
 	}
-	if newPolicyStore != "" {
-		in["NewPolicyStore"] = newPolicyStore
+	if newPolicyStore != nil {
+		in["NewPolicyStore"] = *newPolicyStore
 	}
-	if newGPOSession != "" {
-		in["NewGPOSession"] = newGPOSession
+	if newGPOSession != nil {
+		in["NewGPOSession"] = *newGPOSession
 	}
 	row, err := svc.ExecMethod(objectPath, "CloneObject", in)
 	if err != nil {
@@ -4368,13 +6004,23 @@ type MSFTNetIKEQMCryptoSetRenameResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetIKEQMCryptoSetRenameResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetIKEQMCryptoSet.Rename", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MSFTNetIKEQMCryptoSetRename invokes MSFT_NetIKEQMCryptoSet.Rename on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MSFTNetIKEQMCryptoSetRename(svc *wmi.Service, objectPath string, newName string) (*MSFTNetIKEQMCryptoSetRenameResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MSFTNetIKEQMCryptoSetRename(svc *wmi.Service, objectPath string, newName *string) (*MSFTNetIKEQMCryptoSetRenameResult, error) {
 	in := map[string]any{}
-	if newName != "" {
-		in["NewName"] = newName
+	if newName != nil {
+		in["NewName"] = *newName
 	}
 	row, err := svc.ExecMethod(objectPath, "Rename", in)
 	if err != nil {
@@ -4391,54 +6037,64 @@ type MSFTNetIPAddressCreateResult struct {
 	ReturnValue  uint32
 }
 
-// MSFTNetIPAddressCreate invokes the static MSFT_NetIPAddress.Create method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTNetIPAddressCreate(svc *wmi.Service, interfaceIndex uint32, interfaceAlias string, iPAddress string, addressFamily uint16, prefixLength uint8, typeArg uint8, prefixOrigin uint16, suffixOrigin uint16, addressState uint16, validLifetime string, preferredLifetime string, skipAsSource bool, defaultGateway string, policyStore string, passThru bool) (*MSFTNetIPAddressCreateResult, error) {
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetIPAddressCreateResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetIPAddress.Create", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTNetIPAddressCreate invokes the static MSFT_NetIPAddress.Create method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTNetIPAddressCreate(svc *wmi.Service, interfaceIndex *uint32, interfaceAlias *string, iPAddress *string, addressFamily *uint16, prefixLength *uint8, typeArg *uint8, prefixOrigin *uint16, suffixOrigin *uint16, addressState *uint16, validLifetime *string, preferredLifetime *string, skipAsSource *bool, defaultGateway *string, policyStore *string, passThru *bool) (*MSFTNetIPAddressCreateResult, error) {
 	in := map[string]any{}
-	if interfaceIndex != 0 {
-		in["InterfaceIndex"] = interfaceIndex
+	if interfaceIndex != nil {
+		in["InterfaceIndex"] = *interfaceIndex
 	}
-	if interfaceAlias != "" {
-		in["InterfaceAlias"] = interfaceAlias
+	if interfaceAlias != nil {
+		in["InterfaceAlias"] = *interfaceAlias
 	}
-	if iPAddress != "" {
-		in["IPAddress"] = iPAddress
+	if iPAddress != nil {
+		in["IPAddress"] = *iPAddress
 	}
-	if addressFamily != 0 {
-		in["AddressFamily"] = addressFamily
+	if addressFamily != nil {
+		in["AddressFamily"] = *addressFamily
 	}
-	if prefixLength != 0 {
-		in["PrefixLength"] = prefixLength
+	if prefixLength != nil {
+		in["PrefixLength"] = *prefixLength
 	}
-	if typeArg != 0 {
-		in["Type"] = typeArg
+	if typeArg != nil {
+		in["Type"] = *typeArg
 	}
-	if prefixOrigin != 0 {
-		in["PrefixOrigin"] = prefixOrigin
+	if prefixOrigin != nil {
+		in["PrefixOrigin"] = *prefixOrigin
 	}
-	if suffixOrigin != 0 {
-		in["SuffixOrigin"] = suffixOrigin
+	if suffixOrigin != nil {
+		in["SuffixOrigin"] = *suffixOrigin
 	}
-	if addressState != 0 {
-		in["AddressState"] = addressState
+	if addressState != nil {
+		in["AddressState"] = *addressState
 	}
-	if validLifetime != "" {
-		in["ValidLifetime"] = validLifetime
+	if validLifetime != nil {
+		in["ValidLifetime"] = *validLifetime
 	}
-	if preferredLifetime != "" {
-		in["PreferredLifetime"] = preferredLifetime
+	if preferredLifetime != nil {
+		in["PreferredLifetime"] = *preferredLifetime
 	}
-	if skipAsSource {
-		in["SkipAsSource"] = skipAsSource
+	if skipAsSource != nil {
+		in["SkipAsSource"] = *skipAsSource
 	}
-	if defaultGateway != "" {
-		in["DefaultGateway"] = defaultGateway
+	if defaultGateway != nil {
+		in["DefaultGateway"] = *defaultGateway
 	}
-	if policyStore != "" {
-		in["PolicyStore"] = policyStore
+	if policyStore != nil {
+		in["PolicyStore"] = *policyStore
 	}
-	if passThru {
-		in["PassThru"] = passThru
+	if passThru != nil {
+		in["PassThru"] = *passThru
 	}
 	row, err := svc.ExecMethod("MSFT_NetIPAddress", "Create", in)
 	if err != nil {
@@ -4456,16 +6112,24 @@ type MSFTNetIPAddressRequestStateChangeResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MSFTNetIPAddressRequestStateChangeResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "MSFT_NetIPAddress.RequestStateChange", uint32(r.ReturnValue), r.Job)
+}
+
 // MSFTNetIPAddressRequestStateChange invokes MSFT_NetIPAddress.RequestStateChange on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MSFTNetIPAddressRequestStateChange(svc *wmi.Service, objectPath string, requestedState uint16, timeoutPeriod string) (*MSFTNetIPAddressRequestStateChangeResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MSFTNetIPAddressRequestStateChange(svc *wmi.Service, objectPath string, requestedState *uint16, timeoutPeriod *string) (*MSFTNetIPAddressRequestStateChangeResult, error) {
 	in := map[string]any{}
-	if requestedState != 0 {
-		in["RequestedState"] = requestedState
+	if requestedState != nil {
+		in["RequestedState"] = *requestedState
 	}
-	if timeoutPeriod != "" {
-		in["TimeoutPeriod"] = timeoutPeriod
+	if timeoutPeriod != nil {
+		in["TimeoutPeriod"] = *timeoutPeriod
 	}
 	row, err := svc.ExecMethod(objectPath, "RequestStateChange", in)
 	if err != nil {
@@ -4482,24 +6146,34 @@ type MSFTNetIPHttpsConfigurationAddCertBindingResult struct {
 	ReturnValue uint32
 }
 
-// MSFTNetIPHttpsConfigurationAddCertBinding invokes the static MSFT_NetIPHttpsConfiguration.AddCertBinding method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTNetIPHttpsConfigurationAddCertBinding(svc *wmi.Service, certificateHash string, applicationId string, ipPort string, certificateStoreName string, nullEncryption bool) (*MSFTNetIPHttpsConfigurationAddCertBindingResult, error) {
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetIPHttpsConfigurationAddCertBindingResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetIPHttpsConfiguration.AddCertBinding", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTNetIPHttpsConfigurationAddCertBinding invokes the static MSFT_NetIPHttpsConfiguration.AddCertBinding method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTNetIPHttpsConfigurationAddCertBinding(svc *wmi.Service, certificateHash *string, applicationId *string, ipPort *string, certificateStoreName *string, nullEncryption *bool) (*MSFTNetIPHttpsConfigurationAddCertBindingResult, error) {
 	in := map[string]any{}
-	if certificateHash != "" {
-		in["CertificateHash"] = certificateHash
+	if certificateHash != nil {
+		in["CertificateHash"] = *certificateHash
 	}
-	if applicationId != "" {
-		in["ApplicationId"] = applicationId
+	if applicationId != nil {
+		in["ApplicationId"] = *applicationId
 	}
-	if ipPort != "" {
-		in["IpPort"] = ipPort
+	if ipPort != nil {
+		in["IpPort"] = *ipPort
 	}
-	if certificateStoreName != "" {
-		in["CertificateStoreName"] = certificateStoreName
+	if certificateStoreName != nil {
+		in["CertificateStoreName"] = *certificateStoreName
 	}
-	if nullEncryption {
-		in["NullEncryption"] = nullEncryption
+	if nullEncryption != nil {
+		in["NullEncryption"] = *nullEncryption
 	}
 	row, err := svc.ExecMethod("MSFT_NetIPHttpsConfiguration", "AddCertBinding", in)
 	if err != nil {
@@ -4515,8 +6189,18 @@ type MSFTNetIPHttpsConfigurationDisableProfileResult struct {
 	ReturnValue uint32
 }
 
-// MSFTNetIPHttpsConfigurationDisableProfile invokes the static MSFT_NetIPHttpsConfiguration.DisableProfile method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetIPHttpsConfigurationDisableProfileResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetIPHttpsConfiguration.DisableProfile", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTNetIPHttpsConfigurationDisableProfile invokes the static MSFT_NetIPHttpsConfiguration.DisableProfile method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
 func MSFTNetIPHttpsConfigurationDisableProfile(svc *wmi.Service) (*MSFTNetIPHttpsConfigurationDisableProfileResult, error) {
 	row, err := svc.ExecMethod("MSFT_NetIPHttpsConfiguration", "DisableProfile", nil)
 	if err != nil {
@@ -4532,12 +6216,22 @@ type MSFTNetIPHttpsConfigurationEnableProfileResult struct {
 	ReturnValue uint32
 }
 
-// MSFTNetIPHttpsConfigurationEnableProfile invokes the static MSFT_NetIPHttpsConfiguration.EnableProfile method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTNetIPHttpsConfigurationEnableProfile(svc *wmi.Service, profile string) (*MSFTNetIPHttpsConfigurationEnableProfileResult, error) {
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetIPHttpsConfigurationEnableProfileResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetIPHttpsConfiguration.EnableProfile", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTNetIPHttpsConfigurationEnableProfile invokes the static MSFT_NetIPHttpsConfiguration.EnableProfile method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTNetIPHttpsConfigurationEnableProfile(svc *wmi.Service, profile *string) (*MSFTNetIPHttpsConfigurationEnableProfileResult, error) {
 	in := map[string]any{}
-	if profile != "" {
-		in["Profile"] = profile
+	if profile != nil {
+		in["Profile"] = *profile
 	}
 	row, err := svc.ExecMethod("MSFT_NetIPHttpsConfiguration", "EnableProfile", in)
 	if err != nil {
@@ -4553,8 +6247,18 @@ type MSFTNetIPHttpsConfigurationRemoveCertBindingResult struct {
 	ReturnValue uint32
 }
 
-// MSFTNetIPHttpsConfigurationRemoveCertBinding invokes the static MSFT_NetIPHttpsConfiguration.RemoveCertBinding method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetIPHttpsConfigurationRemoveCertBindingResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetIPHttpsConfiguration.RemoveCertBinding", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTNetIPHttpsConfigurationRemoveCertBinding invokes the static MSFT_NetIPHttpsConfiguration.RemoveCertBinding method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
 func MSFTNetIPHttpsConfigurationRemoveCertBinding(svc *wmi.Service) (*MSFTNetIPHttpsConfigurationRemoveCertBindingResult, error) {
 	row, err := svc.ExecMethod("MSFT_NetIPHttpsConfiguration", "RemoveCertBinding", nil)
 	if err != nil {
@@ -4571,16 +6275,26 @@ type MSFTNetIPHttpsConfigurationRenameResult struct {
 	ReturnValue  uint32
 }
 
-// MSFTNetIPHttpsConfigurationRename invokes MSFT_NetIPHttpsConfiguration.Rename on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MSFTNetIPHttpsConfigurationRename(svc *wmi.Service, objectPath string, newName string, passThru bool) (*MSFTNetIPHttpsConfigurationRenameResult, error) {
-	in := map[string]any{}
-	if newName != "" {
-		in["NewName"] = newName
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetIPHttpsConfigurationRenameResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
 	}
-	if passThru {
-		in["PassThru"] = passThru
+	return &wmi.JobError{What: "MSFT_NetIPHttpsConfiguration.Rename", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTNetIPHttpsConfigurationRename invokes MSFT_NetIPHttpsConfiguration.Rename on the instance at objectPath
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MSFTNetIPHttpsConfigurationRename(svc *wmi.Service, objectPath string, newName *string, passThru *bool) (*MSFTNetIPHttpsConfigurationRenameResult, error) {
+	in := map[string]any{}
+	if newName != nil {
+		in["NewName"] = *newName
+	}
+	if passThru != nil {
+		in["PassThru"] = *passThru
 	}
 	row, err := svc.ExecMethod(objectPath, "Rename", in)
 	if err != nil {
@@ -4600,22 +6314,32 @@ type MSFTNetIPHttpsConfigurationResetResult struct {
 	ReturnValue  uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetIPHttpsConfigurationResetResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetIPHttpsConfiguration.Reset", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MSFTNetIPHttpsConfigurationReset invokes MSFT_NetIPHttpsConfiguration.Reset on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MSFTNetIPHttpsConfigurationReset(svc *wmi.Service, objectPath string, state bool, authMode bool, strongCRLRequired bool, passThru bool) (*MSFTNetIPHttpsConfigurationResetResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MSFTNetIPHttpsConfigurationReset(svc *wmi.Service, objectPath string, state *bool, authMode *bool, strongCRLRequired *bool, passThru *bool) (*MSFTNetIPHttpsConfigurationResetResult, error) {
 	in := map[string]any{}
-	if state {
-		in["State"] = state
+	if state != nil {
+		in["State"] = *state
 	}
-	if authMode {
-		in["AuthMode"] = authMode
+	if authMode != nil {
+		in["AuthMode"] = *authMode
 	}
-	if strongCRLRequired {
-		in["StrongCRLRequired"] = strongCRLRequired
+	if strongCRLRequired != nil {
+		in["StrongCRLRequired"] = *strongCRLRequired
 	}
-	if passThru {
-		in["PassThru"] = passThru
+	if passThru != nil {
+		in["PassThru"] = *passThru
 	}
 	row, err := svc.ExecMethod(objectPath, "Reset", in)
 	if err != nil {
@@ -4635,16 +6359,24 @@ type MSFTNetIPInterfaceRequestStateChangeResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MSFTNetIPInterfaceRequestStateChangeResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "MSFT_NetIPInterface.RequestStateChange", uint32(r.ReturnValue), r.Job)
+}
+
 // MSFTNetIPInterfaceRequestStateChange invokes MSFT_NetIPInterface.RequestStateChange on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MSFTNetIPInterfaceRequestStateChange(svc *wmi.Service, objectPath string, requestedState uint16, timeoutPeriod string) (*MSFTNetIPInterfaceRequestStateChangeResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MSFTNetIPInterfaceRequestStateChange(svc *wmi.Service, objectPath string, requestedState *uint16, timeoutPeriod *string) (*MSFTNetIPInterfaceRequestStateChangeResult, error) {
 	in := map[string]any{}
-	if requestedState != 0 {
-		in["RequestedState"] = requestedState
+	if requestedState != nil {
+		in["RequestedState"] = *requestedState
 	}
-	if timeoutPeriod != "" {
-		in["TimeoutPeriod"] = timeoutPeriod
+	if timeoutPeriod != nil {
+		in["TimeoutPeriod"] = *timeoutPeriod
 	}
 	row, err := svc.ExecMethod(objectPath, "RequestStateChange", in)
 	if err != nil {
@@ -4662,16 +6394,24 @@ type MSFTNetIPv4ProtocolRequestStateChangeResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MSFTNetIPv4ProtocolRequestStateChangeResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "MSFT_NetIPv4Protocol.RequestStateChange", uint32(r.ReturnValue), r.Job)
+}
+
 // MSFTNetIPv4ProtocolRequestStateChange invokes MSFT_NetIPv4Protocol.RequestStateChange on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MSFTNetIPv4ProtocolRequestStateChange(svc *wmi.Service, objectPath string, requestedState uint16, timeoutPeriod string) (*MSFTNetIPv4ProtocolRequestStateChangeResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MSFTNetIPv4ProtocolRequestStateChange(svc *wmi.Service, objectPath string, requestedState *uint16, timeoutPeriod *string) (*MSFTNetIPv4ProtocolRequestStateChangeResult, error) {
 	in := map[string]any{}
-	if requestedState != 0 {
-		in["RequestedState"] = requestedState
+	if requestedState != nil {
+		in["RequestedState"] = *requestedState
 	}
-	if timeoutPeriod != "" {
-		in["TimeoutPeriod"] = timeoutPeriod
+	if timeoutPeriod != nil {
+		in["TimeoutPeriod"] = *timeoutPeriod
 	}
 	row, err := svc.ExecMethod(objectPath, "RequestStateChange", in)
 	if err != nil {
@@ -4689,16 +6429,24 @@ type MSFTNetIPv6ProtocolRequestStateChangeResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MSFTNetIPv6ProtocolRequestStateChangeResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "MSFT_NetIPv6Protocol.RequestStateChange", uint32(r.ReturnValue), r.Job)
+}
+
 // MSFTNetIPv6ProtocolRequestStateChange invokes MSFT_NetIPv6Protocol.RequestStateChange on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MSFTNetIPv6ProtocolRequestStateChange(svc *wmi.Service, objectPath string, requestedState uint16, timeoutPeriod string) (*MSFTNetIPv6ProtocolRequestStateChangeResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MSFTNetIPv6ProtocolRequestStateChange(svc *wmi.Service, objectPath string, requestedState *uint16, timeoutPeriod *string) (*MSFTNetIPv6ProtocolRequestStateChangeResult, error) {
 	in := map[string]any{}
-	if requestedState != 0 {
-		in["RequestedState"] = requestedState
+	if requestedState != nil {
+		in["RequestedState"] = *requestedState
 	}
-	if timeoutPeriod != "" {
-		in["TimeoutPeriod"] = timeoutPeriod
+	if timeoutPeriod != nil {
+		in["TimeoutPeriod"] = *timeoutPeriod
 	}
 	row, err := svc.ExecMethod(objectPath, "RequestStateChange", in)
 	if err != nil {
@@ -4716,25 +6464,35 @@ type MSFTNetISATAPConfigurationResetResult struct {
 	ReturnValue  uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetISATAPConfigurationResetResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetISATAPConfiguration.Reset", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MSFTNetISATAPConfigurationReset invokes MSFT_NetISATAPConfiguration.Reset on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MSFTNetISATAPConfigurationReset(svc *wmi.Service, objectPath string, state bool, router bool, resolutionState bool, resolutionInterval bool, passThru bool) (*MSFTNetISATAPConfigurationResetResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MSFTNetISATAPConfigurationReset(svc *wmi.Service, objectPath string, state *bool, router *bool, resolutionState *bool, resolutionInterval *bool, passThru *bool) (*MSFTNetISATAPConfigurationResetResult, error) {
 	in := map[string]any{}
-	if state {
-		in["State"] = state
+	if state != nil {
+		in["State"] = *state
 	}
-	if router {
-		in["Router"] = router
+	if router != nil {
+		in["Router"] = *router
 	}
-	if resolutionState {
-		in["ResolutionState"] = resolutionState
+	if resolutionState != nil {
+		in["ResolutionState"] = *resolutionState
 	}
-	if resolutionInterval {
-		in["ResolutionInterval"] = resolutionInterval
+	if resolutionInterval != nil {
+		in["ResolutionInterval"] = *resolutionInterval
 	}
-	if passThru {
-		in["PassThru"] = passThru
+	if passThru != nil {
+		in["PassThru"] = *passThru
 	}
 	row, err := svc.ExecMethod(objectPath, "Reset", in)
 	if err != nil {
@@ -4754,16 +6512,24 @@ type MSFTNetImPlatAdapterRequestStateChangeResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MSFTNetImPlatAdapterRequestStateChangeResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "MSFT_NetImPlatAdapter.RequestStateChange", uint32(r.ReturnValue), r.Job)
+}
+
 // MSFTNetImPlatAdapterRequestStateChange invokes MSFT_NetImPlatAdapter.RequestStateChange on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MSFTNetImPlatAdapterRequestStateChange(svc *wmi.Service, objectPath string, requestedState uint16, timeoutPeriod string) (*MSFTNetImPlatAdapterRequestStateChangeResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MSFTNetImPlatAdapterRequestStateChange(svc *wmi.Service, objectPath string, requestedState *uint16, timeoutPeriod *string) (*MSFTNetImPlatAdapterRequestStateChangeResult, error) {
 	in := map[string]any{}
-	if requestedState != 0 {
-		in["RequestedState"] = requestedState
+	if requestedState != nil {
+		in["RequestedState"] = *requestedState
 	}
-	if timeoutPeriod != "" {
-		in["TimeoutPeriod"] = timeoutPeriod
+	if timeoutPeriod != nil {
+		in["TimeoutPeriod"] = *timeoutPeriod
 	}
 	row, err := svc.ExecMethod(objectPath, "RequestStateChange", in)
 	if err != nil {
@@ -4781,15 +6547,25 @@ type MSFTNetLbfoTeamRenameResult struct {
 	ReturnValue  uint32
 }
 
-// MSFTNetLbfoTeamRename invokes the static MSFT_NetLbfoTeam.Rename method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTNetLbfoTeamRename(svc *wmi.Service, name string, newName string) (*MSFTNetLbfoTeamRenameResult, error) {
-	in := map[string]any{}
-	if name != "" {
-		in["Name"] = name
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetLbfoTeamRenameResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
 	}
-	if newName != "" {
-		in["NewName"] = newName
+	return &wmi.JobError{What: "MSFT_NetLbfoTeam.Rename", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTNetLbfoTeamRename invokes the static MSFT_NetLbfoTeam.Rename method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTNetLbfoTeamRename(svc *wmi.Service, name *string, newName *string) (*MSFTNetLbfoTeamRenameResult, error) {
+	in := map[string]any{}
+	if name != nil {
+		in["Name"] = *name
+	}
+	if newName != nil {
+		in["NewName"] = *newName
 	}
 	row, err := svc.ExecMethod("MSFT_NetLbfoTeam", "Rename", in)
 	if err != nil {
@@ -4809,16 +6585,24 @@ type MSFTNetLbfoTeamMemberRequestStateChangeResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MSFTNetLbfoTeamMemberRequestStateChangeResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "MSFT_NetLbfoTeamMember.RequestStateChange", uint32(r.ReturnValue), r.Job)
+}
+
 // MSFTNetLbfoTeamMemberRequestStateChange invokes MSFT_NetLbfoTeamMember.RequestStateChange on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MSFTNetLbfoTeamMemberRequestStateChange(svc *wmi.Service, objectPath string, requestedState uint16, timeoutPeriod string) (*MSFTNetLbfoTeamMemberRequestStateChangeResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MSFTNetLbfoTeamMemberRequestStateChange(svc *wmi.Service, objectPath string, requestedState *uint16, timeoutPeriod *string) (*MSFTNetLbfoTeamMemberRequestStateChangeResult, error) {
 	in := map[string]any{}
-	if requestedState != 0 {
-		in["RequestedState"] = requestedState
+	if requestedState != nil {
+		in["RequestedState"] = *requestedState
 	}
-	if timeoutPeriod != "" {
-		in["TimeoutPeriod"] = timeoutPeriod
+	if timeoutPeriod != nil {
+		in["TimeoutPeriod"] = *timeoutPeriod
 	}
 	row, err := svc.ExecMethod(objectPath, "RequestStateChange", in)
 	if err != nil {
@@ -4836,16 +6620,24 @@ type MSFTNetLbfoTeamNicRequestStateChangeResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MSFTNetLbfoTeamNicRequestStateChangeResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "MSFT_NetLbfoTeamNic.RequestStateChange", uint32(r.ReturnValue), r.Job)
+}
+
 // MSFTNetLbfoTeamNicRequestStateChange invokes MSFT_NetLbfoTeamNic.RequestStateChange on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MSFTNetLbfoTeamNicRequestStateChange(svc *wmi.Service, objectPath string, requestedState uint16, timeoutPeriod string) (*MSFTNetLbfoTeamNicRequestStateChangeResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MSFTNetLbfoTeamNicRequestStateChange(svc *wmi.Service, objectPath string, requestedState *uint16, timeoutPeriod *string) (*MSFTNetLbfoTeamNicRequestStateChangeResult, error) {
 	in := map[string]any{}
-	if requestedState != 0 {
-		in["RequestedState"] = requestedState
+	if requestedState != nil {
+		in["RequestedState"] = *requestedState
 	}
-	if timeoutPeriod != "" {
-		in["TimeoutPeriod"] = timeoutPeriod
+	if timeoutPeriod != nil {
+		in["TimeoutPeriod"] = *timeoutPeriod
 	}
 	row, err := svc.ExecMethod(objectPath, "RequestStateChange", in)
 	if err != nil {
@@ -4862,19 +6654,29 @@ type MSFTNetMainModeRuleCloneObjectResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetMainModeRuleCloneObjectResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetMainModeRule.CloneObject", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MSFTNetMainModeRuleCloneObject invokes MSFT_NetMainModeRule.CloneObject on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MSFTNetMainModeRuleCloneObject(svc *wmi.Service, objectPath string, newName string, newPolicyStore string, newGPOSession string) (*MSFTNetMainModeRuleCloneObjectResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MSFTNetMainModeRuleCloneObject(svc *wmi.Service, objectPath string, newName *string, newPolicyStore *string, newGPOSession *string) (*MSFTNetMainModeRuleCloneObjectResult, error) {
 	in := map[string]any{}
-	if newName != "" {
-		in["NewName"] = newName
+	if newName != nil {
+		in["NewName"] = *newName
 	}
-	if newPolicyStore != "" {
-		in["NewPolicyStore"] = newPolicyStore
+	if newPolicyStore != nil {
+		in["NewPolicyStore"] = *newPolicyStore
 	}
-	if newGPOSession != "" {
-		in["NewGPOSession"] = newGPOSession
+	if newGPOSession != nil {
+		in["NewGPOSession"] = *newGPOSession
 	}
 	row, err := svc.ExecMethod(objectPath, "CloneObject", in)
 	if err != nil {
@@ -4890,9 +6692,19 @@ type MSFTNetMainModeRuleDisableResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetMainModeRuleDisableResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetMainModeRule.Disable", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MSFTNetMainModeRuleDisable invokes MSFT_NetMainModeRule.Disable on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MSFTNetMainModeRuleDisable(svc *wmi.Service, objectPath string) (*MSFTNetMainModeRuleDisableResult, error) {
 	row, err := svc.ExecMethod(objectPath, "Disable", nil)
 	if err != nil {
@@ -4908,9 +6720,19 @@ type MSFTNetMainModeRuleEnableResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetMainModeRuleEnableResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetMainModeRule.Enable", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MSFTNetMainModeRuleEnable invokes MSFT_NetMainModeRule.Enable on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MSFTNetMainModeRuleEnable(svc *wmi.Service, objectPath string) (*MSFTNetMainModeRuleEnableResult, error) {
 	row, err := svc.ExecMethod(objectPath, "Enable", nil)
 	if err != nil {
@@ -4926,13 +6748,23 @@ type MSFTNetMainModeRuleRenameResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetMainModeRuleRenameResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetMainModeRule.Rename", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MSFTNetMainModeRuleRename invokes MSFT_NetMainModeRule.Rename on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MSFTNetMainModeRuleRename(svc *wmi.Service, objectPath string, newName string) (*MSFTNetMainModeRuleRenameResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MSFTNetMainModeRuleRename(svc *wmi.Service, objectPath string, newName *string) (*MSFTNetMainModeRuleRenameResult, error) {
 	in := map[string]any{}
-	if newName != "" {
-		in["NewName"] = newName
+	if newName != nil {
+		in["NewName"] = *newName
 	}
 	row, err := svc.ExecMethod(objectPath, "Rename", in)
 	if err != nil {
@@ -4949,16 +6781,24 @@ type MSFTNetMainModeSARequestStateChangeResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MSFTNetMainModeSARequestStateChangeResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "MSFT_NetMainModeSA.RequestStateChange", uint32(r.ReturnValue), r.Job)
+}
+
 // MSFTNetMainModeSARequestStateChange invokes MSFT_NetMainModeSA.RequestStateChange on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MSFTNetMainModeSARequestStateChange(svc *wmi.Service, objectPath string, requestedState uint16, timeoutPeriod string) (*MSFTNetMainModeSARequestStateChangeResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MSFTNetMainModeSARequestStateChange(svc *wmi.Service, objectPath string, requestedState *uint16, timeoutPeriod *string) (*MSFTNetMainModeSARequestStateChangeResult, error) {
 	in := map[string]any{}
-	if requestedState != 0 {
-		in["RequestedState"] = requestedState
+	if requestedState != nil {
+		in["RequestedState"] = *requestedState
 	}
-	if timeoutPeriod != "" {
-		in["TimeoutPeriod"] = timeoutPeriod
+	if timeoutPeriod != nil {
+		in["TimeoutPeriod"] = *timeoutPeriod
 	}
 	row, err := svc.ExecMethod(objectPath, "RequestStateChange", in)
 	if err != nil {
@@ -4976,13 +6816,23 @@ type MSFTNetNatTransitionConfigurationDisableResult struct {
 	ReturnValue  uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetNatTransitionConfigurationDisableResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetNatTransitionConfiguration.Disable", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MSFTNetNatTransitionConfigurationDisable invokes MSFT_NetNatTransitionConfiguration.Disable on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MSFTNetNatTransitionConfigurationDisable(svc *wmi.Service, objectPath string, passThru bool) (*MSFTNetNatTransitionConfigurationDisableResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MSFTNetNatTransitionConfigurationDisable(svc *wmi.Service, objectPath string, passThru *bool) (*MSFTNetNatTransitionConfigurationDisableResult, error) {
 	in := map[string]any{}
-	if passThru {
-		in["PassThru"] = passThru
+	if passThru != nil {
+		in["PassThru"] = *passThru
 	}
 	row, err := svc.ExecMethod(objectPath, "Disable", in)
 	if err != nil {
@@ -5002,13 +6852,23 @@ type MSFTNetNatTransitionConfigurationEnableResult struct {
 	ReturnValue  uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetNatTransitionConfigurationEnableResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetNatTransitionConfiguration.Enable", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MSFTNetNatTransitionConfigurationEnable invokes MSFT_NetNatTransitionConfiguration.Enable on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MSFTNetNatTransitionConfigurationEnable(svc *wmi.Service, objectPath string, passThru bool) (*MSFTNetNatTransitionConfigurationEnableResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MSFTNetNatTransitionConfigurationEnable(svc *wmi.Service, objectPath string, passThru *bool) (*MSFTNetNatTransitionConfigurationEnableResult, error) {
 	in := map[string]any{}
-	if passThru {
-		in["PassThru"] = passThru
+	if passThru != nil {
+		in["PassThru"] = *passThru
 	}
 	row, err := svc.ExecMethod(objectPath, "Enable", in)
 	if err != nil {
@@ -5028,33 +6888,43 @@ type MSFTNetNeighborCreateResult struct {
 	ReturnValue  uint32
 }
 
-// MSFTNetNeighborCreate invokes the static MSFT_NetNeighbor.Create method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTNetNeighborCreate(svc *wmi.Service, interfaceIndex uint32, interfaceAlias string, iPAddress string, policyStore string, linkLayerAddress string, state uint8, addressFamily uint16, passThru bool) (*MSFTNetNeighborCreateResult, error) {
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetNeighborCreateResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetNeighbor.Create", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTNetNeighborCreate invokes the static MSFT_NetNeighbor.Create method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTNetNeighborCreate(svc *wmi.Service, interfaceIndex *uint32, interfaceAlias *string, iPAddress *string, policyStore *string, linkLayerAddress *string, state *uint8, addressFamily *uint16, passThru *bool) (*MSFTNetNeighborCreateResult, error) {
 	in := map[string]any{}
-	if interfaceIndex != 0 {
-		in["InterfaceIndex"] = interfaceIndex
+	if interfaceIndex != nil {
+		in["InterfaceIndex"] = *interfaceIndex
 	}
-	if interfaceAlias != "" {
-		in["InterfaceAlias"] = interfaceAlias
+	if interfaceAlias != nil {
+		in["InterfaceAlias"] = *interfaceAlias
 	}
-	if iPAddress != "" {
-		in["IPAddress"] = iPAddress
+	if iPAddress != nil {
+		in["IPAddress"] = *iPAddress
 	}
-	if policyStore != "" {
-		in["PolicyStore"] = policyStore
+	if policyStore != nil {
+		in["PolicyStore"] = *policyStore
 	}
-	if linkLayerAddress != "" {
-		in["LinkLayerAddress"] = linkLayerAddress
+	if linkLayerAddress != nil {
+		in["LinkLayerAddress"] = *linkLayerAddress
 	}
-	if state != 0 {
-		in["State"] = state
+	if state != nil {
+		in["State"] = *state
 	}
-	if addressFamily != 0 {
-		in["AddressFamily"] = addressFamily
+	if addressFamily != nil {
+		in["AddressFamily"] = *addressFamily
 	}
-	if passThru {
-		in["PassThru"] = passThru
+	if passThru != nil {
+		in["PassThru"] = *passThru
 	}
 	row, err := svc.ExecMethod("MSFT_NetNeighbor", "Create", in)
 	if err != nil {
@@ -5072,16 +6942,24 @@ type MSFTNetNeighborRequestStateChangeResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MSFTNetNeighborRequestStateChangeResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "MSFT_NetNeighbor.RequestStateChange", uint32(r.ReturnValue), r.Job)
+}
+
 // MSFTNetNeighborRequestStateChange invokes MSFT_NetNeighbor.RequestStateChange on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MSFTNetNeighborRequestStateChange(svc *wmi.Service, objectPath string, requestedState uint16, timeoutPeriod string) (*MSFTNetNeighborRequestStateChangeResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MSFTNetNeighborRequestStateChange(svc *wmi.Service, objectPath string, requestedState *uint16, timeoutPeriod *string) (*MSFTNetNeighborRequestStateChangeResult, error) {
 	in := map[string]any{}
-	if requestedState != 0 {
-		in["RequestedState"] = requestedState
+	if requestedState != nil {
+		in["RequestedState"] = *requestedState
 	}
-	if timeoutPeriod != "" {
-		in["TimeoutPeriod"] = timeoutPeriod
+	if timeoutPeriod != nil {
+		in["TimeoutPeriod"] = *timeoutPeriod
 	}
 	row, err := svc.ExecMethod(objectPath, "RequestStateChange", in)
 	if err != nil {
@@ -5099,24 +6977,34 @@ type MSFTNetPrefixPolicyCreateResult struct {
 	ReturnValue  uint32
 }
 
-// MSFTNetPrefixPolicyCreate invokes the static MSFT_NetPrefixPolicy.Create method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTNetPrefixPolicyCreate(svc *wmi.Service, prefix string, precedence uint32, label uint32, policyStore string, passThru bool) (*MSFTNetPrefixPolicyCreateResult, error) {
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetPrefixPolicyCreateResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetPrefixPolicy.Create", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTNetPrefixPolicyCreate invokes the static MSFT_NetPrefixPolicy.Create method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTNetPrefixPolicyCreate(svc *wmi.Service, prefix *string, precedence *uint32, label *uint32, policyStore *string, passThru *bool) (*MSFTNetPrefixPolicyCreateResult, error) {
 	in := map[string]any{}
-	if prefix != "" {
-		in["Prefix"] = prefix
+	if prefix != nil {
+		in["Prefix"] = *prefix
 	}
-	if precedence != 0 {
-		in["Precedence"] = precedence
+	if precedence != nil {
+		in["Precedence"] = *precedence
 	}
-	if label != 0 {
-		in["Label"] = label
+	if label != nil {
+		in["Label"] = *label
 	}
-	if policyStore != "" {
-		in["PolicyStore"] = policyStore
+	if policyStore != nil {
+		in["PolicyStore"] = *policyStore
 	}
-	if passThru {
-		in["PassThru"] = passThru
+	if passThru != nil {
+		in["PassThru"] = *passThru
 	}
 	row, err := svc.ExecMethod("MSFT_NetPrefixPolicy", "Create", in)
 	if err != nil {
@@ -5134,16 +7022,24 @@ type MSFTNetQuickModeSARequestStateChangeResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MSFTNetQuickModeSARequestStateChangeResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "MSFT_NetQuickModeSA.RequestStateChange", uint32(r.ReturnValue), r.Job)
+}
+
 // MSFTNetQuickModeSARequestStateChange invokes MSFT_NetQuickModeSA.RequestStateChange on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MSFTNetQuickModeSARequestStateChange(svc *wmi.Service, objectPath string, requestedState uint16, timeoutPeriod string) (*MSFTNetQuickModeSARequestStateChangeResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MSFTNetQuickModeSARequestStateChange(svc *wmi.Service, objectPath string, requestedState *uint16, timeoutPeriod *string) (*MSFTNetQuickModeSARequestStateChangeResult, error) {
 	in := map[string]any{}
-	if requestedState != 0 {
-		in["RequestedState"] = requestedState
+	if requestedState != nil {
+		in["RequestedState"] = *requestedState
 	}
-	if timeoutPeriod != "" {
-		in["TimeoutPeriod"] = timeoutPeriod
+	if timeoutPeriod != nil {
+		in["TimeoutPeriod"] = *timeoutPeriod
 	}
 	row, err := svc.ExecMethod(objectPath, "RequestStateChange", in)
 	if err != nil {
@@ -5161,48 +7057,58 @@ type MSFTNetRouteCreateResult struct {
 	ReturnValue  uint32
 }
 
-// MSFTNetRouteCreate invokes the static MSFT_NetRoute.Create method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTNetRouteCreate(svc *wmi.Service, interfaceIndex uint32, interfaceAlias string, destinationPrefix string, nextHop string, publish uint8, routeMetric uint16, protocol uint16, compartmentId uint32, validLifetime string, preferredLifetime string, policyStore string, addressFamily uint16, passThru bool) (*MSFTNetRouteCreateResult, error) {
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetRouteCreateResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetRoute.Create", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTNetRouteCreate invokes the static MSFT_NetRoute.Create method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTNetRouteCreate(svc *wmi.Service, interfaceIndex *uint32, interfaceAlias *string, destinationPrefix *string, nextHop *string, publish *uint8, routeMetric *uint16, protocol *uint16, compartmentId *uint32, validLifetime *string, preferredLifetime *string, policyStore *string, addressFamily *uint16, passThru *bool) (*MSFTNetRouteCreateResult, error) {
 	in := map[string]any{}
-	if interfaceIndex != 0 {
-		in["InterfaceIndex"] = interfaceIndex
+	if interfaceIndex != nil {
+		in["InterfaceIndex"] = *interfaceIndex
 	}
-	if interfaceAlias != "" {
-		in["InterfaceAlias"] = interfaceAlias
+	if interfaceAlias != nil {
+		in["InterfaceAlias"] = *interfaceAlias
 	}
-	if destinationPrefix != "" {
-		in["DestinationPrefix"] = destinationPrefix
+	if destinationPrefix != nil {
+		in["DestinationPrefix"] = *destinationPrefix
 	}
-	if nextHop != "" {
-		in["NextHop"] = nextHop
+	if nextHop != nil {
+		in["NextHop"] = *nextHop
 	}
-	if publish != 0 {
-		in["Publish"] = publish
+	if publish != nil {
+		in["Publish"] = *publish
 	}
-	if routeMetric != 0 {
-		in["RouteMetric"] = routeMetric
+	if routeMetric != nil {
+		in["RouteMetric"] = *routeMetric
 	}
-	if protocol != 0 {
-		in["Protocol"] = protocol
+	if protocol != nil {
+		in["Protocol"] = *protocol
 	}
-	if compartmentId != 0 {
-		in["CompartmentId"] = compartmentId
+	if compartmentId != nil {
+		in["CompartmentId"] = *compartmentId
 	}
-	if validLifetime != "" {
-		in["ValidLifetime"] = validLifetime
+	if validLifetime != nil {
+		in["ValidLifetime"] = *validLifetime
 	}
-	if preferredLifetime != "" {
-		in["PreferredLifetime"] = preferredLifetime
+	if preferredLifetime != nil {
+		in["PreferredLifetime"] = *preferredLifetime
 	}
-	if policyStore != "" {
-		in["PolicyStore"] = policyStore
+	if policyStore != nil {
+		in["PolicyStore"] = *policyStore
 	}
-	if addressFamily != 0 {
-		in["AddressFamily"] = addressFamily
+	if addressFamily != nil {
+		in["AddressFamily"] = *addressFamily
 	}
-	if passThru {
-		in["PassThru"] = passThru
+	if passThru != nil {
+		in["PassThru"] = *passThru
 	}
 	row, err := svc.ExecMethod("MSFT_NetRoute", "Create", in)
 	if err != nil {
@@ -5220,18 +7126,28 @@ type MSFTNetRouteFindResult struct {
 	ReturnValue  uint32
 }
 
-// MSFTNetRouteFind invokes the static MSFT_NetRoute.Find method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTNetRouteFind(svc *wmi.Service, interfaceIndex uint32, localIPAddress string, remoteIPAddress string) (*MSFTNetRouteFindResult, error) {
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetRouteFindResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetRoute.Find", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTNetRouteFind invokes the static MSFT_NetRoute.Find method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTNetRouteFind(svc *wmi.Service, interfaceIndex *uint32, localIPAddress *string, remoteIPAddress *string) (*MSFTNetRouteFindResult, error) {
 	in := map[string]any{}
-	if interfaceIndex != 0 {
-		in["InterfaceIndex"] = interfaceIndex
+	if interfaceIndex != nil {
+		in["InterfaceIndex"] = *interfaceIndex
 	}
-	if localIPAddress != "" {
-		in["LocalIPAddress"] = localIPAddress
+	if localIPAddress != nil {
+		in["LocalIPAddress"] = *localIPAddress
 	}
-	if remoteIPAddress != "" {
-		in["RemoteIPAddress"] = remoteIPAddress
+	if remoteIPAddress != nil {
+		in["RemoteIPAddress"] = *remoteIPAddress
 	}
 	row, err := svc.ExecMethod("MSFT_NetRoute", "Find", in)
 	if err != nil {
@@ -5248,15 +7164,25 @@ type MSFTNetSwitchTeamAddMemberResult struct {
 	ReturnValue uint32
 }
 
-// MSFTNetSwitchTeamAddMember invokes the static MSFT_NetSwitchTeam.AddMember method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTNetSwitchTeamAddMember(svc *wmi.Service, name string, team string) (*MSFTNetSwitchTeamAddMemberResult, error) {
-	in := map[string]any{}
-	if name != "" {
-		in["Name"] = name
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetSwitchTeamAddMemberResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
 	}
-	if team != "" {
-		in["Team"] = team
+	return &wmi.JobError{What: "MSFT_NetSwitchTeam.AddMember", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTNetSwitchTeamAddMember invokes the static MSFT_NetSwitchTeam.AddMember method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTNetSwitchTeamAddMember(svc *wmi.Service, name *string, team *string) (*MSFTNetSwitchTeamAddMemberResult, error) {
+	in := map[string]any{}
+	if name != nil {
+		in["Name"] = *name
+	}
+	if team != nil {
+		in["Team"] = *team
 	}
 	row, err := svc.ExecMethod("MSFT_NetSwitchTeam", "AddMember", in)
 	if err != nil {
@@ -5272,12 +7198,22 @@ type MSFTNetSwitchTeamCreateResult struct {
 	ReturnValue uint32
 }
 
-// MSFTNetSwitchTeamCreate invokes the static MSFT_NetSwitchTeam.Create method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTNetSwitchTeamCreate(svc *wmi.Service, name string, teamMembers []string) (*MSFTNetSwitchTeamCreateResult, error) {
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetSwitchTeamCreateResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetSwitchTeam.Create", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTNetSwitchTeamCreate invokes the static MSFT_NetSwitchTeam.Create method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTNetSwitchTeamCreate(svc *wmi.Service, name *string, teamMembers []string) (*MSFTNetSwitchTeamCreateResult, error) {
 	in := map[string]any{}
-	if name != "" {
-		in["Name"] = name
+	if name != nil {
+		in["Name"] = *name
 	}
 	if teamMembers != nil {
 		in["TeamMembers"] = teamMembers
@@ -5296,15 +7232,25 @@ type MSFTNetSwitchTeamRemoveMemberResult struct {
 	ReturnValue uint32
 }
 
-// MSFTNetSwitchTeamRemoveMember invokes the static MSFT_NetSwitchTeam.RemoveMember method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTNetSwitchTeamRemoveMember(svc *wmi.Service, name string, team string) (*MSFTNetSwitchTeamRemoveMemberResult, error) {
-	in := map[string]any{}
-	if name != "" {
-		in["Name"] = name
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetSwitchTeamRemoveMemberResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
 	}
-	if team != "" {
-		in["Team"] = team
+	return &wmi.JobError{What: "MSFT_NetSwitchTeam.RemoveMember", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTNetSwitchTeamRemoveMember invokes the static MSFT_NetSwitchTeam.RemoveMember method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTNetSwitchTeamRemoveMember(svc *wmi.Service, name *string, team *string) (*MSFTNetSwitchTeamRemoveMemberResult, error) {
+	in := map[string]any{}
+	if name != nil {
+		in["Name"] = *name
+	}
+	if team != nil {
+		in["Team"] = *team
 	}
 	row, err := svc.ExecMethod("MSFT_NetSwitchTeam", "RemoveMember", in)
 	if err != nil {
@@ -5320,15 +7266,25 @@ type MSFTNetSwitchTeamRenameResult struct {
 	ReturnValue uint32
 }
 
-// MSFTNetSwitchTeamRename invokes the static MSFT_NetSwitchTeam.Rename method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTNetSwitchTeamRename(svc *wmi.Service, name string, newName string) (*MSFTNetSwitchTeamRenameResult, error) {
-	in := map[string]any{}
-	if name != "" {
-		in["Name"] = name
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetSwitchTeamRenameResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
 	}
-	if newName != "" {
-		in["NewName"] = newName
+	return &wmi.JobError{What: "MSFT_NetSwitchTeam.Rename", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTNetSwitchTeamRename invokes the static MSFT_NetSwitchTeam.Rename method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTNetSwitchTeamRename(svc *wmi.Service, name *string, newName *string) (*MSFTNetSwitchTeamRenameResult, error) {
+	in := map[string]any{}
+	if name != nil {
+		in["Name"] = *name
+	}
+	if newName != nil {
+		in["NewName"] = *newName
 	}
 	row, err := svc.ExecMethod("MSFT_NetSwitchTeam", "Rename", in)
 	if err != nil {
@@ -5345,16 +7301,24 @@ type MSFTNetSwitchTeamMemberRequestStateChangeResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MSFTNetSwitchTeamMemberRequestStateChangeResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "MSFT_NetSwitchTeamMember.RequestStateChange", uint32(r.ReturnValue), r.Job)
+}
+
 // MSFTNetSwitchTeamMemberRequestStateChange invokes MSFT_NetSwitchTeamMember.RequestStateChange on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MSFTNetSwitchTeamMemberRequestStateChange(svc *wmi.Service, objectPath string, requestedState uint16, timeoutPeriod string) (*MSFTNetSwitchTeamMemberRequestStateChangeResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MSFTNetSwitchTeamMemberRequestStateChange(svc *wmi.Service, objectPath string, requestedState *uint16, timeoutPeriod *string) (*MSFTNetSwitchTeamMemberRequestStateChangeResult, error) {
 	in := map[string]any{}
-	if requestedState != 0 {
-		in["RequestedState"] = requestedState
+	if requestedState != nil {
+		in["RequestedState"] = *requestedState
 	}
-	if timeoutPeriod != "" {
-		in["TimeoutPeriod"] = timeoutPeriod
+	if timeoutPeriod != nil {
+		in["TimeoutPeriod"] = *timeoutPeriod
 	}
 	row, err := svc.ExecMethod(objectPath, "RequestStateChange", in)
 	if err != nil {
@@ -5372,16 +7336,24 @@ type MSFTNetTCPConnectionRequestStateChangeResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MSFTNetTCPConnectionRequestStateChangeResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "MSFT_NetTCPConnection.RequestStateChange", uint32(r.ReturnValue), r.Job)
+}
+
 // MSFTNetTCPConnectionRequestStateChange invokes MSFT_NetTCPConnection.RequestStateChange on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MSFTNetTCPConnectionRequestStateChange(svc *wmi.Service, objectPath string, requestedState uint16, timeoutPeriod string) (*MSFTNetTCPConnectionRequestStateChangeResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MSFTNetTCPConnectionRequestStateChange(svc *wmi.Service, objectPath string, requestedState *uint16, timeoutPeriod *string) (*MSFTNetTCPConnectionRequestStateChangeResult, error) {
 	in := map[string]any{}
-	if requestedState != 0 {
-		in["RequestedState"] = requestedState
+	if requestedState != nil {
+		in["RequestedState"] = *requestedState
 	}
-	if timeoutPeriod != "" {
-		in["TimeoutPeriod"] = timeoutPeriod
+	if timeoutPeriod != nil {
+		in["TimeoutPeriod"] = *timeoutPeriod
 	}
 	row, err := svc.ExecMethod(objectPath, "RequestStateChange", in)
 	if err != nil {
@@ -5399,34 +7371,44 @@ type MSFTNetTeredoConfigurationResetResult struct {
 	ReturnValue  uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTNetTeredoConfigurationResetResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_NetTeredoConfiguration.Reset", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MSFTNetTeredoConfigurationReset invokes MSFT_NetTeredoConfiguration.Reset on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MSFTNetTeredoConfigurationReset(svc *wmi.Service, objectPath string, typeArg bool, serverName bool, refreshInterval bool, clientPort bool, serverVirtualIP bool, defaultQualified bool, serverShunt bool, passThru bool) (*MSFTNetTeredoConfigurationResetResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MSFTNetTeredoConfigurationReset(svc *wmi.Service, objectPath string, typeArg *bool, serverName *bool, refreshInterval *bool, clientPort *bool, serverVirtualIP *bool, defaultQualified *bool, serverShunt *bool, passThru *bool) (*MSFTNetTeredoConfigurationResetResult, error) {
 	in := map[string]any{}
-	if typeArg {
-		in["Type"] = typeArg
+	if typeArg != nil {
+		in["Type"] = *typeArg
 	}
-	if serverName {
-		in["ServerName"] = serverName
+	if serverName != nil {
+		in["ServerName"] = *serverName
 	}
-	if refreshInterval {
-		in["RefreshInterval"] = refreshInterval
+	if refreshInterval != nil {
+		in["RefreshInterval"] = *refreshInterval
 	}
-	if clientPort {
-		in["ClientPort"] = clientPort
+	if clientPort != nil {
+		in["ClientPort"] = *clientPort
 	}
-	if serverVirtualIP {
-		in["ServerVirtualIP"] = serverVirtualIP
+	if serverVirtualIP != nil {
+		in["ServerVirtualIP"] = *serverVirtualIP
 	}
-	if defaultQualified {
-		in["DefaultQualified"] = defaultQualified
+	if defaultQualified != nil {
+		in["DefaultQualified"] = *defaultQualified
 	}
-	if serverShunt {
-		in["ServerShunt"] = serverShunt
+	if serverShunt != nil {
+		in["ServerShunt"] = *serverShunt
 	}
-	if passThru {
-		in["PassThru"] = passThru
+	if passThru != nil {
+		in["PassThru"] = *passThru
 	}
 	row, err := svc.ExecMethod(objectPath, "Reset", in)
 	if err != nil {
@@ -5446,16 +7428,24 @@ type MSFTNetTransportConnectionRequestStateChangeResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MSFTNetTransportConnectionRequestStateChangeResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "MSFT_NetTransportConnection.RequestStateChange", uint32(r.ReturnValue), r.Job)
+}
+
 // MSFTNetTransportConnectionRequestStateChange invokes MSFT_NetTransportConnection.RequestStateChange on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MSFTNetTransportConnectionRequestStateChange(svc *wmi.Service, objectPath string, requestedState uint16, timeoutPeriod string) (*MSFTNetTransportConnectionRequestStateChangeResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MSFTNetTransportConnectionRequestStateChange(svc *wmi.Service, objectPath string, requestedState *uint16, timeoutPeriod *string) (*MSFTNetTransportConnectionRequestStateChangeResult, error) {
 	in := map[string]any{}
-	if requestedState != 0 {
-		in["RequestedState"] = requestedState
+	if requestedState != nil {
+		in["RequestedState"] = *requestedState
 	}
-	if timeoutPeriod != "" {
-		in["TimeoutPeriod"] = timeoutPeriod
+	if timeoutPeriod != nil {
+		in["TimeoutPeriod"] = *timeoutPeriod
 	}
 	row, err := svc.ExecMethod(objectPath, "RequestStateChange", in)
 	if err != nil {
@@ -5473,16 +7463,24 @@ type MSFTNetUDPEndpointRequestStateChangeResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MSFTNetUDPEndpointRequestStateChangeResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "MSFT_NetUDPEndpoint.RequestStateChange", uint32(r.ReturnValue), r.Job)
+}
+
 // MSFTNetUDPEndpointRequestStateChange invokes MSFT_NetUDPEndpoint.RequestStateChange on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MSFTNetUDPEndpointRequestStateChange(svc *wmi.Service, objectPath string, requestedState uint16, timeoutPeriod string) (*MSFTNetUDPEndpointRequestStateChangeResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MSFTNetUDPEndpointRequestStateChange(svc *wmi.Service, objectPath string, requestedState *uint16, timeoutPeriod *string) (*MSFTNetUDPEndpointRequestStateChangeResult, error) {
 	in := map[string]any{}
-	if requestedState != 0 {
-		in["RequestedState"] = requestedState
+	if requestedState != nil {
+		in["RequestedState"] = *requestedState
 	}
-	if timeoutPeriod != "" {
-		in["TimeoutPeriod"] = timeoutPeriod
+	if timeoutPeriod != nil {
+		in["TimeoutPeriod"] = *timeoutPeriod
 	}
 	row, err := svc.ExecMethod(objectPath, "RequestStateChange", in)
 	if err != nil {
@@ -5499,18 +7497,28 @@ type MSFTPrintJobDeleteJobByIdResult struct {
 	ReturnValue uint32
 }
 
-// MSFTPrintJobDeleteJobById invokes the static MSFT_PrintJob.DeleteJobById method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTPrintJobDeleteJobById(svc *wmi.Service, computerName string, iD uint32, printerName string) (*MSFTPrintJobDeleteJobByIdResult, error) {
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTPrintJobDeleteJobByIdResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_PrintJob.DeleteJobById", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTPrintJobDeleteJobById invokes the static MSFT_PrintJob.DeleteJobById method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTPrintJobDeleteJobById(svc *wmi.Service, computerName *string, iD *uint32, printerName *string) (*MSFTPrintJobDeleteJobByIdResult, error) {
 	in := map[string]any{}
-	if computerName != "" {
-		in["ComputerName"] = computerName
+	if computerName != nil {
+		in["ComputerName"] = *computerName
 	}
-	if iD != 0 {
-		in["ID"] = iD
+	if iD != nil {
+		in["ID"] = *iD
 	}
-	if printerName != "" {
-		in["PrinterName"] = printerName
+	if printerName != nil {
+		in["PrinterName"] = *printerName
 	}
 	row, err := svc.ExecMethod("MSFT_PrintJob", "DeleteJobById", in)
 	if err != nil {
@@ -5526,8 +7534,18 @@ type MSFTPrintJobDeleteJobByObjectResult struct {
 	ReturnValue uint32
 }
 
-// MSFTPrintJobDeleteJobByObject invokes the static MSFT_PrintJob.DeleteJobByObject method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTPrintJobDeleteJobByObjectResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_PrintJob.DeleteJobByObject", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTPrintJobDeleteJobByObject invokes the static MSFT_PrintJob.DeleteJobByObject method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
 func MSFTPrintJobDeleteJobByObject(svc *wmi.Service, inputObject wmi.Row) (*MSFTPrintJobDeleteJobByObjectResult, error) {
 	in := map[string]any{}
 	if inputObject != nil {
@@ -5547,12 +7565,22 @@ type MSFTPrintJobDeleteJobByPrinterObjectResult struct {
 	ReturnValue uint32
 }
 
-// MSFTPrintJobDeleteJobByPrinterObject invokes the static MSFT_PrintJob.DeleteJobByPrinterObject method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTPrintJobDeleteJobByPrinterObject(svc *wmi.Service, iD uint32, printerObject wmi.Row) (*MSFTPrintJobDeleteJobByPrinterObjectResult, error) {
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTPrintJobDeleteJobByPrinterObjectResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_PrintJob.DeleteJobByPrinterObject", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTPrintJobDeleteJobByPrinterObject invokes the static MSFT_PrintJob.DeleteJobByPrinterObject method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTPrintJobDeleteJobByPrinterObject(svc *wmi.Service, iD *uint32, printerObject wmi.Row) (*MSFTPrintJobDeleteJobByPrinterObjectResult, error) {
 	in := map[string]any{}
-	if iD != 0 {
-		in["ID"] = iD
+	if iD != nil {
+		in["ID"] = *iD
 	}
 	if printerObject != nil {
 		in["PrinterObject"] = printerObject
@@ -5572,18 +7600,28 @@ type MSFTPrintJobGetByNameResult struct {
 	ReturnValue  uint32
 }
 
-// MSFTPrintJobGetByName invokes the static MSFT_PrintJob.GetByName method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTPrintJobGetByName(svc *wmi.Service, computerName string, iD uint32, printerName string) (*MSFTPrintJobGetByNameResult, error) {
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTPrintJobGetByNameResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_PrintJob.GetByName", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTPrintJobGetByName invokes the static MSFT_PrintJob.GetByName method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTPrintJobGetByName(svc *wmi.Service, computerName *string, iD *uint32, printerName *string) (*MSFTPrintJobGetByNameResult, error) {
 	in := map[string]any{}
-	if computerName != "" {
-		in["ComputerName"] = computerName
+	if computerName != nil {
+		in["ComputerName"] = *computerName
 	}
-	if iD != 0 {
-		in["ID"] = iD
+	if iD != nil {
+		in["ID"] = *iD
 	}
-	if printerName != "" {
-		in["PrinterName"] = printerName
+	if printerName != nil {
+		in["PrinterName"] = *printerName
 	}
 	row, err := svc.ExecMethod("MSFT_PrintJob", "GetByName", in)
 	if err != nil {
@@ -5601,12 +7639,22 @@ type MSFTPrintJobGetByObjectResult struct {
 	ReturnValue  uint32
 }
 
-// MSFTPrintJobGetByObject invokes the static MSFT_PrintJob.GetByObject method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTPrintJobGetByObject(svc *wmi.Service, iD uint32, printerObject wmi.Row) (*MSFTPrintJobGetByObjectResult, error) {
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTPrintJobGetByObjectResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_PrintJob.GetByObject", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTPrintJobGetByObject invokes the static MSFT_PrintJob.GetByObject method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTPrintJobGetByObject(svc *wmi.Service, iD *uint32, printerObject wmi.Row) (*MSFTPrintJobGetByObjectResult, error) {
 	in := map[string]any{}
-	if iD != 0 {
-		in["ID"] = iD
+	if iD != nil {
+		in["ID"] = *iD
 	}
 	if printerObject != nil {
 		in["PrinterObject"] = printerObject
@@ -5626,18 +7674,28 @@ type MSFTPrintJobRestartJobByIdResult struct {
 	ReturnValue uint32
 }
 
-// MSFTPrintJobRestartJobById invokes the static MSFT_PrintJob.RestartJobById method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTPrintJobRestartJobById(svc *wmi.Service, computerName string, iD uint32, printerName string) (*MSFTPrintJobRestartJobByIdResult, error) {
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTPrintJobRestartJobByIdResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_PrintJob.RestartJobById", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTPrintJobRestartJobById invokes the static MSFT_PrintJob.RestartJobById method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTPrintJobRestartJobById(svc *wmi.Service, computerName *string, iD *uint32, printerName *string) (*MSFTPrintJobRestartJobByIdResult, error) {
 	in := map[string]any{}
-	if computerName != "" {
-		in["ComputerName"] = computerName
+	if computerName != nil {
+		in["ComputerName"] = *computerName
 	}
-	if iD != 0 {
-		in["ID"] = iD
+	if iD != nil {
+		in["ID"] = *iD
 	}
-	if printerName != "" {
-		in["PrinterName"] = printerName
+	if printerName != nil {
+		in["PrinterName"] = *printerName
 	}
 	row, err := svc.ExecMethod("MSFT_PrintJob", "RestartJobById", in)
 	if err != nil {
@@ -5653,8 +7711,18 @@ type MSFTPrintJobRestartJobByObjectResult struct {
 	ReturnValue uint32
 }
 
-// MSFTPrintJobRestartJobByObject invokes the static MSFT_PrintJob.RestartJobByObject method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTPrintJobRestartJobByObjectResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_PrintJob.RestartJobByObject", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTPrintJobRestartJobByObject invokes the static MSFT_PrintJob.RestartJobByObject method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
 func MSFTPrintJobRestartJobByObject(svc *wmi.Service, inputObject wmi.Row) (*MSFTPrintJobRestartJobByObjectResult, error) {
 	in := map[string]any{}
 	if inputObject != nil {
@@ -5674,12 +7742,22 @@ type MSFTPrintJobRestartJobByPrinterObjectResult struct {
 	ReturnValue uint32
 }
 
-// MSFTPrintJobRestartJobByPrinterObject invokes the static MSFT_PrintJob.RestartJobByPrinterObject method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTPrintJobRestartJobByPrinterObject(svc *wmi.Service, iD uint32, printerObject wmi.Row) (*MSFTPrintJobRestartJobByPrinterObjectResult, error) {
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTPrintJobRestartJobByPrinterObjectResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_PrintJob.RestartJobByPrinterObject", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTPrintJobRestartJobByPrinterObject invokes the static MSFT_PrintJob.RestartJobByPrinterObject method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTPrintJobRestartJobByPrinterObject(svc *wmi.Service, iD *uint32, printerObject wmi.Row) (*MSFTPrintJobRestartJobByPrinterObjectResult, error) {
 	in := map[string]any{}
-	if iD != 0 {
-		in["ID"] = iD
+	if iD != nil {
+		in["ID"] = *iD
 	}
 	if printerObject != nil {
 		in["PrinterObject"] = printerObject
@@ -5698,18 +7776,28 @@ type MSFTPrintJobResumeJobByIdResult struct {
 	ReturnValue uint32
 }
 
-// MSFTPrintJobResumeJobById invokes the static MSFT_PrintJob.ResumeJobById method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTPrintJobResumeJobById(svc *wmi.Service, computerName string, iD uint32, printerName string) (*MSFTPrintJobResumeJobByIdResult, error) {
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTPrintJobResumeJobByIdResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_PrintJob.ResumeJobById", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTPrintJobResumeJobById invokes the static MSFT_PrintJob.ResumeJobById method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTPrintJobResumeJobById(svc *wmi.Service, computerName *string, iD *uint32, printerName *string) (*MSFTPrintJobResumeJobByIdResult, error) {
 	in := map[string]any{}
-	if computerName != "" {
-		in["ComputerName"] = computerName
+	if computerName != nil {
+		in["ComputerName"] = *computerName
 	}
-	if iD != 0 {
-		in["ID"] = iD
+	if iD != nil {
+		in["ID"] = *iD
 	}
-	if printerName != "" {
-		in["PrinterName"] = printerName
+	if printerName != nil {
+		in["PrinterName"] = *printerName
 	}
 	row, err := svc.ExecMethod("MSFT_PrintJob", "ResumeJobById", in)
 	if err != nil {
@@ -5725,8 +7813,18 @@ type MSFTPrintJobResumeJobByObjectResult struct {
 	ReturnValue uint32
 }
 
-// MSFTPrintJobResumeJobByObject invokes the static MSFT_PrintJob.ResumeJobByObject method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTPrintJobResumeJobByObjectResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_PrintJob.ResumeJobByObject", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTPrintJobResumeJobByObject invokes the static MSFT_PrintJob.ResumeJobByObject method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
 func MSFTPrintJobResumeJobByObject(svc *wmi.Service, inputObject wmi.Row) (*MSFTPrintJobResumeJobByObjectResult, error) {
 	in := map[string]any{}
 	if inputObject != nil {
@@ -5746,12 +7844,22 @@ type MSFTPrintJobResumeJobByPrinterObjectResult struct {
 	ReturnValue uint32
 }
 
-// MSFTPrintJobResumeJobByPrinterObject invokes the static MSFT_PrintJob.ResumeJobByPrinterObject method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTPrintJobResumeJobByPrinterObject(svc *wmi.Service, iD uint32, printerObject wmi.Row) (*MSFTPrintJobResumeJobByPrinterObjectResult, error) {
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTPrintJobResumeJobByPrinterObjectResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_PrintJob.ResumeJobByPrinterObject", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTPrintJobResumeJobByPrinterObject invokes the static MSFT_PrintJob.ResumeJobByPrinterObject method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTPrintJobResumeJobByPrinterObject(svc *wmi.Service, iD *uint32, printerObject wmi.Row) (*MSFTPrintJobResumeJobByPrinterObjectResult, error) {
 	in := map[string]any{}
-	if iD != 0 {
-		in["ID"] = iD
+	if iD != nil {
+		in["ID"] = *iD
 	}
 	if printerObject != nil {
 		in["PrinterObject"] = printerObject
@@ -5770,18 +7878,28 @@ type MSFTPrintJobSuspendJobByIdResult struct {
 	ReturnValue uint32
 }
 
-// MSFTPrintJobSuspendJobById invokes the static MSFT_PrintJob.SuspendJobById method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTPrintJobSuspendJobById(svc *wmi.Service, computerName string, iD uint32, printerName string) (*MSFTPrintJobSuspendJobByIdResult, error) {
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTPrintJobSuspendJobByIdResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_PrintJob.SuspendJobById", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTPrintJobSuspendJobById invokes the static MSFT_PrintJob.SuspendJobById method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTPrintJobSuspendJobById(svc *wmi.Service, computerName *string, iD *uint32, printerName *string) (*MSFTPrintJobSuspendJobByIdResult, error) {
 	in := map[string]any{}
-	if computerName != "" {
-		in["ComputerName"] = computerName
+	if computerName != nil {
+		in["ComputerName"] = *computerName
 	}
-	if iD != 0 {
-		in["ID"] = iD
+	if iD != nil {
+		in["ID"] = *iD
 	}
-	if printerName != "" {
-		in["PrinterName"] = printerName
+	if printerName != nil {
+		in["PrinterName"] = *printerName
 	}
 	row, err := svc.ExecMethod("MSFT_PrintJob", "SuspendJobById", in)
 	if err != nil {
@@ -5797,8 +7915,18 @@ type MSFTPrintJobSuspendJobByObjectResult struct {
 	ReturnValue uint32
 }
 
-// MSFTPrintJobSuspendJobByObject invokes the static MSFT_PrintJob.SuspendJobByObject method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTPrintJobSuspendJobByObjectResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_PrintJob.SuspendJobByObject", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTPrintJobSuspendJobByObject invokes the static MSFT_PrintJob.SuspendJobByObject method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
 func MSFTPrintJobSuspendJobByObject(svc *wmi.Service, inputObject wmi.Row) (*MSFTPrintJobSuspendJobByObjectResult, error) {
 	in := map[string]any{}
 	if inputObject != nil {
@@ -5818,12 +7946,22 @@ type MSFTPrintJobSuspendJobByPrinterObjectResult struct {
 	ReturnValue uint32
 }
 
-// MSFTPrintJobSuspendJobByPrinterObject invokes the static MSFT_PrintJob.SuspendJobByPrinterObject method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTPrintJobSuspendJobByPrinterObject(svc *wmi.Service, iD uint32, printerObject wmi.Row) (*MSFTPrintJobSuspendJobByPrinterObjectResult, error) {
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTPrintJobSuspendJobByPrinterObjectResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_PrintJob.SuspendJobByPrinterObject", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTPrintJobSuspendJobByPrinterObject invokes the static MSFT_PrintJob.SuspendJobByPrinterObject method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTPrintJobSuspendJobByPrinterObject(svc *wmi.Service, iD *uint32, printerObject wmi.Row) (*MSFTPrintJobSuspendJobByPrinterObjectResult, error) {
 	in := map[string]any{}
-	if iD != 0 {
-		in["ID"] = iD
+	if iD != nil {
+		in["ID"] = *iD
 	}
 	if printerObject != nil {
 		in["PrinterObject"] = printerObject
@@ -5842,75 +7980,85 @@ type MSFTPrinterAddByAdaptivePortResult struct {
 	ReturnValue uint32
 }
 
-// MSFTPrinterAddByAdaptivePort invokes the static MSFT_Printer.AddByAdaptivePort method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTPrinterAddByAdaptivePort(svc *wmi.Service, comment string, datatype string, deviceURL string, untilTime uint32, deviceUUID string, ippUrl string, keepPrintedJobs bool, location string, name string, permissionSDDL string, printProcessor string, priority uint32, published bool, renderingMode uint32, separatorPageFile string, computerName string, shareName string, shared bool, startTime uint32, disableBranchOfficeLogging bool, branchOfficeOfflineLogSizeMB uint32, workflowPolicy uint32) (*MSFTPrinterAddByAdaptivePortResult, error) {
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTPrinterAddByAdaptivePortResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_Printer.AddByAdaptivePort", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTPrinterAddByAdaptivePort invokes the static MSFT_Printer.AddByAdaptivePort method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTPrinterAddByAdaptivePort(svc *wmi.Service, comment *string, datatype *string, deviceURL *string, untilTime *uint32, deviceUUID *string, ippUrl *string, keepPrintedJobs *bool, location *string, name *string, permissionSDDL *string, printProcessor *string, priority *uint32, published *bool, renderingMode *uint32, separatorPageFile *string, computerName *string, shareName *string, shared *bool, startTime *uint32, disableBranchOfficeLogging *bool, branchOfficeOfflineLogSizeMB *uint32, workflowPolicy *uint32) (*MSFTPrinterAddByAdaptivePortResult, error) {
 	in := map[string]any{}
-	if comment != "" {
-		in["Comment"] = comment
+	if comment != nil {
+		in["Comment"] = *comment
 	}
-	if datatype != "" {
-		in["Datatype"] = datatype
+	if datatype != nil {
+		in["Datatype"] = *datatype
 	}
-	if deviceURL != "" {
-		in["DeviceURL"] = deviceURL
+	if deviceURL != nil {
+		in["DeviceURL"] = *deviceURL
 	}
-	if untilTime != 0 {
-		in["UntilTime"] = untilTime
+	if untilTime != nil {
+		in["UntilTime"] = *untilTime
 	}
-	if deviceUUID != "" {
-		in["DeviceUUID"] = deviceUUID
+	if deviceUUID != nil {
+		in["DeviceUUID"] = *deviceUUID
 	}
-	if ippUrl != "" {
-		in["IppUrl"] = ippUrl
+	if ippUrl != nil {
+		in["IppUrl"] = *ippUrl
 	}
-	if keepPrintedJobs {
-		in["KeepPrintedJobs"] = keepPrintedJobs
+	if keepPrintedJobs != nil {
+		in["KeepPrintedJobs"] = *keepPrintedJobs
 	}
-	if location != "" {
-		in["Location"] = location
+	if location != nil {
+		in["Location"] = *location
 	}
-	if name != "" {
-		in["Name"] = name
+	if name != nil {
+		in["Name"] = *name
 	}
-	if permissionSDDL != "" {
-		in["PermissionSDDL"] = permissionSDDL
+	if permissionSDDL != nil {
+		in["PermissionSDDL"] = *permissionSDDL
 	}
-	if printProcessor != "" {
-		in["PrintProcessor"] = printProcessor
+	if printProcessor != nil {
+		in["PrintProcessor"] = *printProcessor
 	}
-	if priority != 0 {
-		in["Priority"] = priority
+	if priority != nil {
+		in["Priority"] = *priority
 	}
-	if published {
-		in["Published"] = published
+	if published != nil {
+		in["Published"] = *published
 	}
-	if renderingMode != 0 {
-		in["RenderingMode"] = renderingMode
+	if renderingMode != nil {
+		in["RenderingMode"] = *renderingMode
 	}
-	if separatorPageFile != "" {
-		in["SeparatorPageFile"] = separatorPageFile
+	if separatorPageFile != nil {
+		in["SeparatorPageFile"] = *separatorPageFile
 	}
-	if computerName != "" {
-		in["ComputerName"] = computerName
+	if computerName != nil {
+		in["ComputerName"] = *computerName
 	}
-	if shareName != "" {
-		in["ShareName"] = shareName
+	if shareName != nil {
+		in["ShareName"] = *shareName
 	}
-	if shared {
-		in["Shared"] = shared
+	if shared != nil {
+		in["Shared"] = *shared
 	}
-	if startTime != 0 {
-		in["StartTime"] = startTime
+	if startTime != nil {
+		in["StartTime"] = *startTime
 	}
-	if disableBranchOfficeLogging {
-		in["DisableBranchOfficeLogging"] = disableBranchOfficeLogging
+	if disableBranchOfficeLogging != nil {
+		in["DisableBranchOfficeLogging"] = *disableBranchOfficeLogging
 	}
-	if branchOfficeOfflineLogSizeMB != 0 {
-		in["BranchOfficeOfflineLogSizeMB"] = branchOfficeOfflineLogSizeMB
+	if branchOfficeOfflineLogSizeMB != nil {
+		in["BranchOfficeOfflineLogSizeMB"] = *branchOfficeOfflineLogSizeMB
 	}
-	if workflowPolicy != 0 {
-		in["WorkflowPolicy"] = workflowPolicy
+	if workflowPolicy != nil {
+		in["WorkflowPolicy"] = *workflowPolicy
 	}
 	row, err := svc.ExecMethod("MSFT_Printer", "AddByAdaptivePort", in)
 	if err != nil {
@@ -5926,72 +8074,82 @@ type MSFTPrinterAddByExistingPortResult struct {
 	ReturnValue uint32
 }
 
-// MSFTPrinterAddByExistingPort invokes the static MSFT_Printer.AddByExistingPort method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTPrinterAddByExistingPort(svc *wmi.Service, comment string, datatype string, driverName string, untilTime uint32, keepPrintedJobs bool, location string, name string, permissionSDDL string, portName string, printProcessor string, priority uint32, published bool, renderingMode uint32, separatorPageFile string, computerName string, shareName string, shared bool, startTime uint32, disableBranchOfficeLogging bool, branchOfficeOfflineLogSizeMB uint32, workflowPolicy uint32) (*MSFTPrinterAddByExistingPortResult, error) {
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTPrinterAddByExistingPortResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_Printer.AddByExistingPort", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTPrinterAddByExistingPort invokes the static MSFT_Printer.AddByExistingPort method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTPrinterAddByExistingPort(svc *wmi.Service, comment *string, datatype *string, driverName *string, untilTime *uint32, keepPrintedJobs *bool, location *string, name *string, permissionSDDL *string, portName *string, printProcessor *string, priority *uint32, published *bool, renderingMode *uint32, separatorPageFile *string, computerName *string, shareName *string, shared *bool, startTime *uint32, disableBranchOfficeLogging *bool, branchOfficeOfflineLogSizeMB *uint32, workflowPolicy *uint32) (*MSFTPrinterAddByExistingPortResult, error) {
 	in := map[string]any{}
-	if comment != "" {
-		in["Comment"] = comment
+	if comment != nil {
+		in["Comment"] = *comment
 	}
-	if datatype != "" {
-		in["Datatype"] = datatype
+	if datatype != nil {
+		in["Datatype"] = *datatype
 	}
-	if driverName != "" {
-		in["DriverName"] = driverName
+	if driverName != nil {
+		in["DriverName"] = *driverName
 	}
-	if untilTime != 0 {
-		in["UntilTime"] = untilTime
+	if untilTime != nil {
+		in["UntilTime"] = *untilTime
 	}
-	if keepPrintedJobs {
-		in["KeepPrintedJobs"] = keepPrintedJobs
+	if keepPrintedJobs != nil {
+		in["KeepPrintedJobs"] = *keepPrintedJobs
 	}
-	if location != "" {
-		in["Location"] = location
+	if location != nil {
+		in["Location"] = *location
 	}
-	if name != "" {
-		in["Name"] = name
+	if name != nil {
+		in["Name"] = *name
 	}
-	if permissionSDDL != "" {
-		in["PermissionSDDL"] = permissionSDDL
+	if permissionSDDL != nil {
+		in["PermissionSDDL"] = *permissionSDDL
 	}
-	if portName != "" {
-		in["PortName"] = portName
+	if portName != nil {
+		in["PortName"] = *portName
 	}
-	if printProcessor != "" {
-		in["PrintProcessor"] = printProcessor
+	if printProcessor != nil {
+		in["PrintProcessor"] = *printProcessor
 	}
-	if priority != 0 {
-		in["Priority"] = priority
+	if priority != nil {
+		in["Priority"] = *priority
 	}
-	if published {
-		in["Published"] = published
+	if published != nil {
+		in["Published"] = *published
 	}
-	if renderingMode != 0 {
-		in["RenderingMode"] = renderingMode
+	if renderingMode != nil {
+		in["RenderingMode"] = *renderingMode
 	}
-	if separatorPageFile != "" {
-		in["SeparatorPageFile"] = separatorPageFile
+	if separatorPageFile != nil {
+		in["SeparatorPageFile"] = *separatorPageFile
 	}
-	if computerName != "" {
-		in["ComputerName"] = computerName
+	if computerName != nil {
+		in["ComputerName"] = *computerName
 	}
-	if shareName != "" {
-		in["ShareName"] = shareName
+	if shareName != nil {
+		in["ShareName"] = *shareName
 	}
-	if shared {
-		in["Shared"] = shared
+	if shared != nil {
+		in["Shared"] = *shared
 	}
-	if startTime != 0 {
-		in["StartTime"] = startTime
+	if startTime != nil {
+		in["StartTime"] = *startTime
 	}
-	if disableBranchOfficeLogging {
-		in["DisableBranchOfficeLogging"] = disableBranchOfficeLogging
+	if disableBranchOfficeLogging != nil {
+		in["DisableBranchOfficeLogging"] = *disableBranchOfficeLogging
 	}
-	if branchOfficeOfflineLogSizeMB != 0 {
-		in["BranchOfficeOfflineLogSizeMB"] = branchOfficeOfflineLogSizeMB
+	if branchOfficeOfflineLogSizeMB != nil {
+		in["BranchOfficeOfflineLogSizeMB"] = *branchOfficeOfflineLogSizeMB
 	}
-	if workflowPolicy != 0 {
-		in["WorkflowPolicy"] = workflowPolicy
+	if workflowPolicy != nil {
+		in["WorkflowPolicy"] = *workflowPolicy
 	}
 	row, err := svc.ExecMethod("MSFT_Printer", "AddByExistingPort", in)
 	if err != nil {
@@ -6007,12 +8165,22 @@ type MSFTPrinterAddConnectionResult struct {
 	ReturnValue uint32
 }
 
-// MSFTPrinterAddConnection invokes the static MSFT_Printer.AddConnection method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTPrinterAddConnection(svc *wmi.Service, connectionName string) (*MSFTPrinterAddConnectionResult, error) {
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTPrinterAddConnectionResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_Printer.AddConnection", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTPrinterAddConnection invokes the static MSFT_Printer.AddConnection method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTPrinterAddConnection(svc *wmi.Service, connectionName *string) (*MSFTPrinterAddConnectionResult, error) {
 	in := map[string]any{}
-	if connectionName != "" {
-		in["ConnectionName"] = connectionName
+	if connectionName != nil {
+		in["ConnectionName"] = *connectionName
 	}
 	row, err := svc.ExecMethod("MSFT_Printer", "AddConnection", in)
 	if err != nil {
@@ -6028,18 +8196,28 @@ type MSFTPrinterRenameByNameResult struct {
 	ReturnValue uint32
 }
 
-// MSFTPrinterRenameByName invokes the static MSFT_Printer.RenameByName method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTPrinterRenameByName(svc *wmi.Service, name string, newName string, computerName string) (*MSFTPrinterRenameByNameResult, error) {
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTPrinterRenameByNameResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_Printer.RenameByName", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTPrinterRenameByName invokes the static MSFT_Printer.RenameByName method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTPrinterRenameByName(svc *wmi.Service, name *string, newName *string, computerName *string) (*MSFTPrinterRenameByNameResult, error) {
 	in := map[string]any{}
-	if name != "" {
-		in["Name"] = name
+	if name != nil {
+		in["Name"] = *name
 	}
-	if newName != "" {
-		in["NewName"] = newName
+	if newName != nil {
+		in["NewName"] = *newName
 	}
-	if computerName != "" {
-		in["ComputerName"] = computerName
+	if computerName != nil {
+		in["ComputerName"] = *computerName
 	}
 	row, err := svc.ExecMethod("MSFT_Printer", "RenameByName", in)
 	if err != nil {
@@ -6055,15 +8233,25 @@ type MSFTPrinterRenameByObjectResult struct {
 	ReturnValue uint32
 }
 
-// MSFTPrinterRenameByObject invokes the static MSFT_Printer.RenameByObject method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTPrinterRenameByObject(svc *wmi.Service, inputObject wmi.Row, newName string) (*MSFTPrinterRenameByObjectResult, error) {
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTPrinterRenameByObjectResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_Printer.RenameByObject", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTPrinterRenameByObject invokes the static MSFT_Printer.RenameByObject method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTPrinterRenameByObject(svc *wmi.Service, inputObject wmi.Row, newName *string) (*MSFTPrinterRenameByObjectResult, error) {
 	in := map[string]any{}
 	if inputObject != nil {
 		in["InputObject"] = inputObject
 	}
-	if newName != "" {
-		in["NewName"] = newName
+	if newName != nil {
+		in["NewName"] = *newName
 	}
 	row, err := svc.ExecMethod("MSFT_Printer", "RenameByObject", in)
 	if err != nil {
@@ -6080,15 +8268,25 @@ type MSFTPrinterConfigurationGetByPrinterNameResult struct {
 	ReturnValue  uint32
 }
 
-// MSFTPrinterConfigurationGetByPrinterName invokes the static MSFT_PrinterConfiguration.GetByPrinterName method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTPrinterConfigurationGetByPrinterName(svc *wmi.Service, computerName string, printerName string) (*MSFTPrinterConfigurationGetByPrinterNameResult, error) {
-	in := map[string]any{}
-	if computerName != "" {
-		in["ComputerName"] = computerName
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTPrinterConfigurationGetByPrinterNameResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
 	}
-	if printerName != "" {
-		in["PrinterName"] = printerName
+	return &wmi.JobError{What: "MSFT_PrinterConfiguration.GetByPrinterName", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTPrinterConfigurationGetByPrinterName invokes the static MSFT_PrinterConfiguration.GetByPrinterName method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTPrinterConfigurationGetByPrinterName(svc *wmi.Service, computerName *string, printerName *string) (*MSFTPrinterConfigurationGetByPrinterNameResult, error) {
+	in := map[string]any{}
+	if computerName != nil {
+		in["ComputerName"] = *computerName
+	}
+	if printerName != nil {
+		in["PrinterName"] = *printerName
 	}
 	row, err := svc.ExecMethod("MSFT_PrinterConfiguration", "GetByPrinterName", in)
 	if err != nil {
@@ -6108,8 +8306,18 @@ type MSFTPrinterConfigurationGetByPrinterObjectResult struct {
 	ReturnValue  uint32
 }
 
-// MSFTPrinterConfigurationGetByPrinterObject invokes the static MSFT_PrinterConfiguration.GetByPrinterObject method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTPrinterConfigurationGetByPrinterObjectResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_PrinterConfiguration.GetByPrinterObject", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTPrinterConfigurationGetByPrinterObject invokes the static MSFT_PrinterConfiguration.GetByPrinterObject method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
 func MSFTPrinterConfigurationGetByPrinterObject(svc *wmi.Service, printerObject wmi.Row) (*MSFTPrinterConfigurationGetByPrinterObjectResult, error) {
 	in := map[string]any{}
 	if printerObject != nil {
@@ -6132,8 +8340,18 @@ type MSFTPrinterConfigurationSetByPrintConfigObjectResult struct {
 	ReturnValue uint32
 }
 
-// MSFTPrinterConfigurationSetByPrintConfigObject invokes the static MSFT_PrinterConfiguration.SetByPrintConfigObject method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTPrinterConfigurationSetByPrintConfigObjectResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_PrinterConfiguration.SetByPrintConfigObject", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTPrinterConfigurationSetByPrintConfigObject invokes the static MSFT_PrinterConfiguration.SetByPrintConfigObject method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
 func MSFTPrinterConfigurationSetByPrintConfigObject(svc *wmi.Service, inputObject wmi.Row) (*MSFTPrinterConfigurationSetByPrintConfigObjectResult, error) {
 	in := map[string]any{}
 	if inputObject != nil {
@@ -6153,30 +8371,40 @@ type MSFTPrinterConfigurationSetByPrinterNameResult struct {
 	ReturnValue uint32
 }
 
-// MSFTPrinterConfigurationSetByPrinterName invokes the static MSFT_PrinterConfiguration.SetByPrinterName method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTPrinterConfigurationSetByPrinterName(svc *wmi.Service, collate bool, color bool, duplexingMode uint32, paperSize uint32, printTicketXML string, computerName string, printerName string) (*MSFTPrinterConfigurationSetByPrinterNameResult, error) {
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTPrinterConfigurationSetByPrinterNameResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_PrinterConfiguration.SetByPrinterName", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTPrinterConfigurationSetByPrinterName invokes the static MSFT_PrinterConfiguration.SetByPrinterName method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTPrinterConfigurationSetByPrinterName(svc *wmi.Service, collate *bool, color *bool, duplexingMode *uint32, paperSize *uint32, printTicketXML *string, computerName *string, printerName *string) (*MSFTPrinterConfigurationSetByPrinterNameResult, error) {
 	in := map[string]any{}
-	if collate {
-		in["Collate"] = collate
+	if collate != nil {
+		in["Collate"] = *collate
 	}
-	if color {
-		in["Color"] = color
+	if color != nil {
+		in["Color"] = *color
 	}
-	if duplexingMode != 0 {
-		in["DuplexingMode"] = duplexingMode
+	if duplexingMode != nil {
+		in["DuplexingMode"] = *duplexingMode
 	}
-	if paperSize != 0 {
-		in["PaperSize"] = paperSize
+	if paperSize != nil {
+		in["PaperSize"] = *paperSize
 	}
-	if printTicketXML != "" {
-		in["PrintTicketXML"] = printTicketXML
+	if printTicketXML != nil {
+		in["PrintTicketXML"] = *printTicketXML
 	}
-	if computerName != "" {
-		in["ComputerName"] = computerName
+	if computerName != nil {
+		in["ComputerName"] = *computerName
 	}
-	if printerName != "" {
-		in["PrinterName"] = printerName
+	if printerName != nil {
+		in["PrinterName"] = *printerName
 	}
 	row, err := svc.ExecMethod("MSFT_PrinterConfiguration", "SetByPrinterName", in)
 	if err != nil {
@@ -6192,24 +8420,34 @@ type MSFTPrinterConfigurationSetByPrinterObjectResult struct {
 	ReturnValue uint32
 }
 
-// MSFTPrinterConfigurationSetByPrinterObject invokes the static MSFT_PrinterConfiguration.SetByPrinterObject method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTPrinterConfigurationSetByPrinterObject(svc *wmi.Service, collate bool, color bool, duplexingMode uint32, paperSize uint32, printTicketXML string, printerObject wmi.Row) (*MSFTPrinterConfigurationSetByPrinterObjectResult, error) {
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTPrinterConfigurationSetByPrinterObjectResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_PrinterConfiguration.SetByPrinterObject", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTPrinterConfigurationSetByPrinterObject invokes the static MSFT_PrinterConfiguration.SetByPrinterObject method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTPrinterConfigurationSetByPrinterObject(svc *wmi.Service, collate *bool, color *bool, duplexingMode *uint32, paperSize *uint32, printTicketXML *string, printerObject wmi.Row) (*MSFTPrinterConfigurationSetByPrinterObjectResult, error) {
 	in := map[string]any{}
-	if collate {
-		in["Collate"] = collate
+	if collate != nil {
+		in["Collate"] = *collate
 	}
-	if color {
-		in["Color"] = color
+	if color != nil {
+		in["Color"] = *color
 	}
-	if duplexingMode != 0 {
-		in["DuplexingMode"] = duplexingMode
+	if duplexingMode != nil {
+		in["DuplexingMode"] = *duplexingMode
 	}
-	if paperSize != 0 {
-		in["PaperSize"] = paperSize
+	if paperSize != nil {
+		in["PaperSize"] = *paperSize
 	}
-	if printTicketXML != "" {
-		in["PrintTicketXML"] = printTicketXML
+	if printTicketXML != nil {
+		in["PrintTicketXML"] = *printTicketXML
 	}
 	if printerObject != nil {
 		in["PrinterObject"] = printerObject
@@ -6228,21 +8466,31 @@ type MSFTPrinterDriverAddResult struct {
 	ReturnValue uint32
 }
 
-// MSFTPrinterDriverAdd invokes the static MSFT_PrinterDriver.Add method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTPrinterDriverAdd(svc *wmi.Service, name string, infPath string, printerEnvironment string, computerName string) (*MSFTPrinterDriverAddResult, error) {
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTPrinterDriverAddResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_PrinterDriver.Add", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTPrinterDriverAdd invokes the static MSFT_PrinterDriver.Add method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTPrinterDriverAdd(svc *wmi.Service, name *string, infPath *string, printerEnvironment *string, computerName *string) (*MSFTPrinterDriverAddResult, error) {
 	in := map[string]any{}
-	if name != "" {
-		in["Name"] = name
+	if name != nil {
+		in["Name"] = *name
 	}
-	if infPath != "" {
-		in["InfPath"] = infPath
+	if infPath != nil {
+		in["InfPath"] = *infPath
 	}
-	if printerEnvironment != "" {
-		in["PrinterEnvironment"] = printerEnvironment
+	if printerEnvironment != nil {
+		in["PrinterEnvironment"] = *printerEnvironment
 	}
-	if computerName != "" {
-		in["ComputerName"] = computerName
+	if computerName != nil {
+		in["ComputerName"] = *computerName
 	}
 	row, err := svc.ExecMethod("MSFT_PrinterDriver", "Add", in)
 	if err != nil {
@@ -6259,8 +8507,18 @@ type MSFTPrinterNfcTagTasksReadResult struct {
 	ReturnValue  uint32
 }
 
-// MSFTPrinterNfcTagTasksRead invokes the static MSFT_PrinterNfcTagTasks.Read method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTPrinterNfcTagTasksReadResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_PrinterNfcTagTasks.Read", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTPrinterNfcTagTasksRead invokes the static MSFT_PrinterNfcTagTasks.Read method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
 func MSFTPrinterNfcTagTasksRead(svc *wmi.Service) (*MSFTPrinterNfcTagTasksReadResult, error) {
 	row, err := svc.ExecMethod("MSFT_PrinterNfcTagTasks", "Read", nil)
 	if err != nil {
@@ -6279,9 +8537,19 @@ type MSFTPrinterNfcTagTasksWriteByManualSpecificationResult struct {
 	ReturnValue uint32
 }
 
-// MSFTPrinterNfcTagTasksWriteByManualSpecification invokes the static MSFT_PrinterNfcTagTasks.WriteByManualSpecification method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTPrinterNfcTagTasksWriteByManualSpecification(svc *wmi.Service, sharePath []string, wsdAddress []string, lock bool) (*MSFTPrinterNfcTagTasksWriteByManualSpecificationResult, error) {
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTPrinterNfcTagTasksWriteByManualSpecificationResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_PrinterNfcTagTasks.WriteByManualSpecification", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTPrinterNfcTagTasksWriteByManualSpecification invokes the static MSFT_PrinterNfcTagTasks.WriteByManualSpecification method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTPrinterNfcTagTasksWriteByManualSpecification(svc *wmi.Service, sharePath []string, wsdAddress []string, lock *bool) (*MSFTPrinterNfcTagTasksWriteByManualSpecificationResult, error) {
 	in := map[string]any{}
 	if sharePath != nil {
 		in["SharePath"] = sharePath
@@ -6289,8 +8557,8 @@ func MSFTPrinterNfcTagTasksWriteByManualSpecification(svc *wmi.Service, sharePat
 	if wsdAddress != nil {
 		in["WsdAddress"] = wsdAddress
 	}
-	if lock {
-		in["Lock"] = lock
+	if lock != nil {
+		in["Lock"] = *lock
 	}
 	row, err := svc.ExecMethod("MSFT_PrinterNfcTagTasks", "WriteByManualSpecification", in)
 	if err != nil {
@@ -6306,8 +8574,18 @@ type MSFTPrinterNfcTagTasksWriteByPrinterNfcTagResult struct {
 	ReturnValue uint32
 }
 
-// MSFTPrinterNfcTagTasksWriteByPrinterNfcTag invokes the static MSFT_PrinterNfcTagTasks.WriteByPrinterNfcTag method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTPrinterNfcTagTasksWriteByPrinterNfcTagResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_PrinterNfcTagTasks.WriteByPrinterNfcTag", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTPrinterNfcTagTasksWriteByPrinterNfcTag invokes the static MSFT_PrinterNfcTagTasks.WriteByPrinterNfcTag method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
 func MSFTPrinterNfcTagTasksWriteByPrinterNfcTag(svc *wmi.Service, inputObject wmi.Row) (*MSFTPrinterNfcTagTasksWriteByPrinterNfcTagResult, error) {
 	in := map[string]any{}
 	if inputObject != nil {
@@ -6327,15 +8605,25 @@ type MSFTPrinterPortTasksAddByLocalPortResult struct {
 	ReturnValue uint32
 }
 
-// MSFTPrinterPortTasksAddByLocalPort invokes the static MSFT_PrinterPortTasks.AddByLocalPort method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTPrinterPortTasksAddByLocalPort(svc *wmi.Service, computerName string, name string) (*MSFTPrinterPortTasksAddByLocalPortResult, error) {
-	in := map[string]any{}
-	if computerName != "" {
-		in["ComputerName"] = computerName
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTPrinterPortTasksAddByLocalPortResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
 	}
-	if name != "" {
-		in["Name"] = name
+	return &wmi.JobError{What: "MSFT_PrinterPortTasks.AddByLocalPort", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTPrinterPortTasksAddByLocalPort invokes the static MSFT_PrinterPortTasks.AddByLocalPort method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTPrinterPortTasksAddByLocalPort(svc *wmi.Service, computerName *string, name *string) (*MSFTPrinterPortTasksAddByLocalPortResult, error) {
+	in := map[string]any{}
+	if computerName != nil {
+		in["ComputerName"] = *computerName
+	}
+	if name != nil {
+		in["Name"] = *name
 	}
 	row, err := svc.ExecMethod("MSFT_PrinterPortTasks", "AddByLocalPort", in)
 	if err != nil {
@@ -6351,18 +8639,28 @@ type MSFTPrinterPortTasksAddByLprPortResult struct {
 	ReturnValue uint32
 }
 
-// MSFTPrinterPortTasksAddByLprPort invokes the static MSFT_PrinterPortTasks.AddByLprPort method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTPrinterPortTasksAddByLprPort(svc *wmi.Service, computerName string, hostName string, printerName string) (*MSFTPrinterPortTasksAddByLprPortResult, error) {
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTPrinterPortTasksAddByLprPortResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_PrinterPortTasks.AddByLprPort", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTPrinterPortTasksAddByLprPort invokes the static MSFT_PrinterPortTasks.AddByLprPort method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTPrinterPortTasksAddByLprPort(svc *wmi.Service, computerName *string, hostName *string, printerName *string) (*MSFTPrinterPortTasksAddByLprPortResult, error) {
 	in := map[string]any{}
-	if computerName != "" {
-		in["ComputerName"] = computerName
+	if computerName != nil {
+		in["ComputerName"] = *computerName
 	}
-	if hostName != "" {
-		in["HostName"] = hostName
+	if hostName != nil {
+		in["HostName"] = *hostName
 	}
-	if printerName != "" {
-		in["PrinterName"] = printerName
+	if printerName != nil {
+		in["PrinterName"] = *printerName
 	}
 	row, err := svc.ExecMethod("MSFT_PrinterPortTasks", "AddByLprPort", in)
 	if err != nil {
@@ -6378,27 +8676,37 @@ type MSFTPrinterPortTasksAddByTcpPortResult struct {
 	ReturnValue uint32
 }
 
-// MSFTPrinterPortTasksAddByTcpPort invokes the static MSFT_PrinterPortTasks.AddByTcpPort method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTPrinterPortTasksAddByTcpPort(svc *wmi.Service, computerName string, name string, portNumber uint32, printerHostAddress string, sNMP uint32, sNMPCommunity string) (*MSFTPrinterPortTasksAddByTcpPortResult, error) {
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTPrinterPortTasksAddByTcpPortResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_PrinterPortTasks.AddByTcpPort", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTPrinterPortTasksAddByTcpPort invokes the static MSFT_PrinterPortTasks.AddByTcpPort method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTPrinterPortTasksAddByTcpPort(svc *wmi.Service, computerName *string, name *string, portNumber *uint32, printerHostAddress *string, sNMP *uint32, sNMPCommunity *string) (*MSFTPrinterPortTasksAddByTcpPortResult, error) {
 	in := map[string]any{}
-	if computerName != "" {
-		in["ComputerName"] = computerName
+	if computerName != nil {
+		in["ComputerName"] = *computerName
 	}
-	if name != "" {
-		in["Name"] = name
+	if name != nil {
+		in["Name"] = *name
 	}
-	if portNumber != 0 {
-		in["PortNumber"] = portNumber
+	if portNumber != nil {
+		in["PortNumber"] = *portNumber
 	}
-	if printerHostAddress != "" {
-		in["PrinterHostAddress"] = printerHostAddress
+	if printerHostAddress != nil {
+		in["PrinterHostAddress"] = *printerHostAddress
 	}
-	if sNMP != 0 {
-		in["SNMP"] = sNMP
+	if sNMP != nil {
+		in["SNMP"] = *sNMP
 	}
-	if sNMPCommunity != "" {
-		in["SNMPCommunity"] = sNMPCommunity
+	if sNMPCommunity != nil {
+		in["SNMPCommunity"] = *sNMPCommunity
 	}
 	row, err := svc.ExecMethod("MSFT_PrinterPortTasks", "AddByTcpPort", in)
 	if err != nil {
@@ -6414,33 +8722,43 @@ type MSFTPrinterPortTasksAddByTcpPortLprModeResult struct {
 	ReturnValue uint32
 }
 
-// MSFTPrinterPortTasksAddByTcpPortLprMode invokes the static MSFT_PrinterPortTasks.AddByTcpPortLprMode method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTPrinterPortTasksAddByTcpPortLprMode(svc *wmi.Service, computerName string, lprByteCounting bool, lprHostAddress string, lprQueueName string, name string, portNumber uint32, sNMP uint32, sNMPCommunity string) (*MSFTPrinterPortTasksAddByTcpPortLprModeResult, error) {
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTPrinterPortTasksAddByTcpPortLprModeResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_PrinterPortTasks.AddByTcpPortLprMode", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTPrinterPortTasksAddByTcpPortLprMode invokes the static MSFT_PrinterPortTasks.AddByTcpPortLprMode method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTPrinterPortTasksAddByTcpPortLprMode(svc *wmi.Service, computerName *string, lprByteCounting *bool, lprHostAddress *string, lprQueueName *string, name *string, portNumber *uint32, sNMP *uint32, sNMPCommunity *string) (*MSFTPrinterPortTasksAddByTcpPortLprModeResult, error) {
 	in := map[string]any{}
-	if computerName != "" {
-		in["ComputerName"] = computerName
+	if computerName != nil {
+		in["ComputerName"] = *computerName
 	}
-	if lprByteCounting {
-		in["LprByteCounting"] = lprByteCounting
+	if lprByteCounting != nil {
+		in["LprByteCounting"] = *lprByteCounting
 	}
-	if lprHostAddress != "" {
-		in["LprHostAddress"] = lprHostAddress
+	if lprHostAddress != nil {
+		in["LprHostAddress"] = *lprHostAddress
 	}
-	if lprQueueName != "" {
-		in["LprQueueName"] = lprQueueName
+	if lprQueueName != nil {
+		in["LprQueueName"] = *lprQueueName
 	}
-	if name != "" {
-		in["Name"] = name
+	if name != nil {
+		in["Name"] = *name
 	}
-	if portNumber != 0 {
-		in["PortNumber"] = portNumber
+	if portNumber != nil {
+		in["PortNumber"] = *portNumber
 	}
-	if sNMP != 0 {
-		in["SNMP"] = sNMP
+	if sNMP != nil {
+		in["SNMP"] = *sNMP
 	}
-	if sNMPCommunity != "" {
-		in["SNMPCommunity"] = sNMPCommunity
+	if sNMPCommunity != nil {
+		in["SNMPCommunity"] = *sNMPCommunity
 	}
 	row, err := svc.ExecMethod("MSFT_PrinterPortTasks", "AddByTcpPortLprMode", in)
 	if err != nil {
@@ -6456,21 +8774,31 @@ type MSFTPrinterPropertySetByPrinterNameResult struct {
 	ReturnValue uint32
 }
 
-// MSFTPrinterPropertySetByPrinterName invokes the static MSFT_PrinterProperty.SetByPrinterName method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTPrinterPropertySetByPrinterName(svc *wmi.Service, computerName string, printerName string, propertyName string, value string) (*MSFTPrinterPropertySetByPrinterNameResult, error) {
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTPrinterPropertySetByPrinterNameResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_PrinterProperty.SetByPrinterName", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTPrinterPropertySetByPrinterName invokes the static MSFT_PrinterProperty.SetByPrinterName method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTPrinterPropertySetByPrinterName(svc *wmi.Service, computerName *string, printerName *string, propertyName *string, value *string) (*MSFTPrinterPropertySetByPrinterNameResult, error) {
 	in := map[string]any{}
-	if computerName != "" {
-		in["ComputerName"] = computerName
+	if computerName != nil {
+		in["ComputerName"] = *computerName
 	}
-	if printerName != "" {
-		in["PrinterName"] = printerName
+	if printerName != nil {
+		in["PrinterName"] = *printerName
 	}
-	if propertyName != "" {
-		in["PropertyName"] = propertyName
+	if propertyName != nil {
+		in["PropertyName"] = *propertyName
 	}
-	if value != "" {
-		in["Value"] = value
+	if value != nil {
+		in["Value"] = *value
 	}
 	row, err := svc.ExecMethod("MSFT_PrinterProperty", "SetByPrinterName", in)
 	if err != nil {
@@ -6486,18 +8814,28 @@ type MSFTPrinterPropertySetByPrinterObjectResult struct {
 	ReturnValue uint32
 }
 
-// MSFTPrinterPropertySetByPrinterObject invokes the static MSFT_PrinterProperty.SetByPrinterObject method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTPrinterPropertySetByPrinterObject(svc *wmi.Service, printerObject wmi.Row, propertyName string, value string) (*MSFTPrinterPropertySetByPrinterObjectResult, error) {
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTPrinterPropertySetByPrinterObjectResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_PrinterProperty.SetByPrinterObject", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTPrinterPropertySetByPrinterObject invokes the static MSFT_PrinterProperty.SetByPrinterObject method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTPrinterPropertySetByPrinterObject(svc *wmi.Service, printerObject wmi.Row, propertyName *string, value *string) (*MSFTPrinterPropertySetByPrinterObjectResult, error) {
 	in := map[string]any{}
 	if printerObject != nil {
 		in["PrinterObject"] = printerObject
 	}
-	if propertyName != "" {
-		in["PropertyName"] = propertyName
+	if propertyName != nil {
+		in["PropertyName"] = *propertyName
 	}
-	if value != "" {
-		in["Value"] = value
+	if value != nil {
+		in["Value"] = *value
 	}
 	row, err := svc.ExecMethod("MSFT_PrinterProperty", "SetByPrinterObject", in)
 	if err != nil {
@@ -6513,8 +8851,18 @@ type MSFTPrinterPropertySetByPrinterPropertyObjectResult struct {
 	ReturnValue uint32
 }
 
-// MSFTPrinterPropertySetByPrinterPropertyObject invokes the static MSFT_PrinterProperty.SetByPrinterPropertyObject method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTPrinterPropertySetByPrinterPropertyObjectResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_PrinterProperty.SetByPrinterPropertyObject", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTPrinterPropertySetByPrinterPropertyObject invokes the static MSFT_PrinterProperty.SetByPrinterPropertyObject method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
 func MSFTPrinterPropertySetByPrinterPropertyObject(svc *wmi.Service, inputObject wmi.Row) (*MSFTPrinterPropertySetByPrinterPropertyObjectResult, error) {
 	in := map[string]any{}
 	if inputObject != nil {
@@ -6535,8 +8883,18 @@ type SystemSecurityGet9XUserListResult struct {
 	ReturnValue uint32
 }
 
-// SystemSecurityGet9XUserList invokes the static __SystemSecurity.Get9XUserList method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *SystemSecurityGet9XUserListResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "__SystemSecurity.Get9XUserList", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// SystemSecurityGet9XUserList invokes the static __SystemSecurity.Get9XUserList method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
 func SystemSecurityGet9XUserList(svc *wmi.Service) (*SystemSecurityGet9XUserListResult, error) {
 	row, err := svc.ExecMethod("__SystemSecurity", "Get9XUserList", nil)
 	if err != nil {
@@ -6554,8 +8912,18 @@ type SystemSecurityGetCallerAccessRightsResult struct {
 	ReturnValue uint32
 }
 
-// SystemSecurityGetCallerAccessRights invokes the static __SystemSecurity.GetCallerAccessRights method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *SystemSecurityGetCallerAccessRightsResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "__SystemSecurity.GetCallerAccessRights", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// SystemSecurityGetCallerAccessRights invokes the static __SystemSecurity.GetCallerAccessRights method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
 func SystemSecurityGetCallerAccessRights(svc *wmi.Service) (*SystemSecurityGetCallerAccessRightsResult, error) {
 	row, err := svc.ExecMethod("__SystemSecurity", "GetCallerAccessRights", nil)
 	if err != nil {
@@ -6573,8 +8941,18 @@ type SystemSecurityGetSDResult struct {
 	ReturnValue uint32
 }
 
-// SystemSecurityGetSD invokes the static __SystemSecurity.GetSD method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *SystemSecurityGetSDResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "__SystemSecurity.GetSD", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// SystemSecurityGetSD invokes the static __SystemSecurity.GetSD method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
 func SystemSecurityGetSD(svc *wmi.Service) (*SystemSecurityGetSDResult, error) {
 	row, err := svc.ExecMethod("__SystemSecurity", "GetSD", nil)
 	if err != nil {
@@ -6592,8 +8970,18 @@ type SystemSecurityGetSecurityDescriptorResult struct {
 	ReturnValue uint32
 }
 
-// SystemSecurityGetSecurityDescriptor invokes the static __SystemSecurity.GetSecurityDescriptor method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *SystemSecurityGetSecurityDescriptorResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "__SystemSecurity.GetSecurityDescriptor", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// SystemSecurityGetSecurityDescriptor invokes the static __SystemSecurity.GetSecurityDescriptor method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
 func SystemSecurityGetSecurityDescriptor(svc *wmi.Service) (*SystemSecurityGetSecurityDescriptorResult, error) {
 	row, err := svc.ExecMethod("__SystemSecurity", "GetSecurityDescriptor", nil)
 	if err != nil {
@@ -6612,8 +9000,18 @@ type SystemSecuritySet9XUserListResult struct {
 	ReturnValue uint32
 }
 
-// SystemSecuritySet9XUserList invokes the static __SystemSecurity.Set9XUserList method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *SystemSecuritySet9XUserListResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "__SystemSecurity.Set9XUserList", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// SystemSecuritySet9XUserList invokes the static __SystemSecurity.Set9XUserList method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
 func SystemSecuritySet9XUserList(svc *wmi.Service, ul []wmi.Row) (*SystemSecuritySet9XUserListResult, error) {
 	in := map[string]any{}
 	if ul != nil {
@@ -6633,8 +9031,18 @@ type SystemSecuritySetSDResult struct {
 	ReturnValue uint32
 }
 
-// SystemSecuritySetSD invokes the static __SystemSecurity.SetSD method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *SystemSecuritySetSDResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "__SystemSecurity.SetSD", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// SystemSecuritySetSD invokes the static __SystemSecurity.SetSD method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
 func SystemSecuritySetSD(svc *wmi.Service, sD []uint8) (*SystemSecuritySetSDResult, error) {
 	in := map[string]any{}
 	if sD != nil {
@@ -6654,8 +9062,18 @@ type SystemSecuritySetSecurityDescriptorResult struct {
 	ReturnValue uint32
 }
 
-// SystemSecuritySetSecurityDescriptor invokes the static __SystemSecurity.SetSecurityDescriptor method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *SystemSecuritySetSecurityDescriptorResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "__SystemSecurity.SetSecurityDescriptor", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// SystemSecuritySetSecurityDescriptor invokes the static __SystemSecurity.SetSecurityDescriptor method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
 func SystemSecuritySetSecurityDescriptor(svc *wmi.Service, descriptor wmi.Row) (*SystemSecuritySetSecurityDescriptorResult, error) {
 	in := map[string]any{}
 	if descriptor != nil {
