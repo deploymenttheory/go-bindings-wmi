@@ -2,7 +2,7 @@
   "namespace": "root\\virtualization\\v2",
   "provenance": {
     "osBuild": "26200",
-    "captured": "2026-07-21"
+    "captured": "2026-07-22"
   },
   "classes": [
     {
@@ -31,7 +31,23 @@
         },
         {
           "name": "RequestTypesSupported",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Specific",
+            "General",
+            "Both",
+            "DMTF reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "2",
+            "3",
+            "4",
+            "..",
+            "0x8000..0xFFFF"
+          ]
         },
         {
           "name": "ResourceSubType",
@@ -39,21 +55,173 @@
         },
         {
           "name": "ResourceType",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Other",
+            "Computer System",
+            "Processor",
+            "Memory",
+            "IDE Controller",
+            "Parallel SCSI HBA",
+            "FC HBA",
+            "iSCSI HBA",
+            "IB HCA",
+            "Ethernet Adapter",
+            "Other Network Adapter",
+            "I/O Slot",
+            "I/O Device",
+            "Floppy Drive",
+            "CD Drive",
+            "DVD drive",
+            "Disk Drive",
+            "Tape Drive",
+            "Storage Extent",
+            "Other Storage Device",
+            "Serial port",
+            "Parallel port",
+            "USB Controller",
+            "Graphics controller",
+            "IEEE 1394 Controller",
+            "Partitionable Unit",
+            "Base Partitionable Unit",
+            "Power",
+            "Cooling Capacity",
+            "Ethernet Switch Port",
+            "Logical Disk",
+            "Storage Volume",
+            "Ethernet Connection",
+            "DMTF reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31",
+            "32",
+            "33",
+            "..",
+            "0x8000..0xFFFF"
+          ]
         },
         {
           "name": "SharingMode",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Dedicated",
+            "Shared",
+            "DMTF reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "2",
+            "3",
+            "..",
+            "0x8000..0xFFFF"
+          ]
         },
         {
           "name": "SupportedAddStates",
           "cimType": 18,
-          "array": true
+          "array": true,
+          "values": [
+            "Unknown",
+            "Enabled",
+            "Disabled",
+            "Shutting Down",
+            "Not Applicable",
+            "Enabled but Offline",
+            "In Test",
+            "Deferred",
+            "Quiesce",
+            "Starting",
+            "Paused",
+            "Suspended",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "..",
+            "0x8000..0xFFFF"
+          ]
         },
         {
           "name": "SupportedRemoveStates",
           "cimType": 18,
-          "array": true
+          "array": true,
+          "values": [
+            "Unknown",
+            "Enabled",
+            "Disabled",
+            "Shutting Down",
+            "Not Applicable",
+            "Enabled but Offline",
+            "In Test",
+            "Deferred",
+            "Quiesce",
+            "Starting",
+            "Paused",
+            "Suspended",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "..",
+            "0x8000..0xFFFF"
+          ]
         }
       ]
     },
@@ -118,7 +286,31 @@
         {
           "name": "AvailableRequestedStates",
           "cimType": 18,
-          "array": true
+          "array": true,
+          "values": [
+            "Enabled",
+            "Disabled",
+            "Shut Down",
+            "Offline",
+            "Test",
+            "Defer",
+            "Quiesce",
+            "Reboot",
+            "Reset",
+            "DMTF Reserved"
+          ],
+          "valueMap": [
+            "2",
+            "3",
+            "4",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            ".."
+          ]
         },
         {
           "name": "Caption",
@@ -126,7 +318,25 @@
         },
         {
           "name": "CommunicationStatus",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Not Available",
+            "Communication OK",
+            "Lost Communication",
+            "No Contact",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "..",
+            "0x8000.."
+          ]
         },
         {
           "name": "CreationClassName",
@@ -136,7 +346,93 @@
         {
           "name": "Dedicated",
           "cimType": 18,
-          "array": true
+          "array": true,
+          "values": [
+            "Not Dedicated",
+            "Unknown",
+            "Other",
+            "Storage",
+            "Router",
+            "Switch",
+            "Layer 3 Switch",
+            "Central Office Switch",
+            "Hub",
+            "Access Server",
+            "Firewall",
+            "Print",
+            "I/O",
+            "Web Caching",
+            "Management",
+            "Block Server",
+            "File Server",
+            "Mobile User Device",
+            "Repeater",
+            "Bridge/Extender",
+            "Gateway",
+            "Storage Virtualizer",
+            "Media Library",
+            "ExtenderNode",
+            "NAS Head",
+            "Self-contained NAS",
+            "UPS",
+            "IP Phone",
+            "Management Controller",
+            "Chassis Manager",
+            "Host-based RAID controller",
+            "Storage Device Enclosure",
+            "Desktop",
+            "Laptop",
+            "Virtual Tape Library",
+            "Virtual Library System",
+            "Network PC/Thin Client",
+            "FC Switch",
+            "Ethernet Switch",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31",
+            "32",
+            "33",
+            "34",
+            "35",
+            "36",
+            "37",
+            "38",
+            "..",
+            "32568..65535"
+          ]
         },
         {
           "name": "Description",
@@ -144,7 +440,27 @@
         },
         {
           "name": "DetailedStatus",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Not Available",
+            "No Additional Information",
+            "Stressed",
+            "Predictive Failure",
+            "Non-Recoverable Error",
+            "Supporting Entity in Error",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "..",
+            "0x8000.."
+          ]
         },
         {
           "name": "ElementName",
@@ -152,11 +468,61 @@
         },
         {
           "name": "EnabledDefault",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Enabled",
+            "Disabled",
+            "Not Applicable",
+            "Enabled but Offline",
+            "No Default",
+            "Quiesce",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "2",
+            "3",
+            "5",
+            "6",
+            "7",
+            "9",
+            "..",
+            "32768..65535"
+          ]
         },
         {
           "name": "EnabledState",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Other",
+            "Enabled",
+            "Disabled",
+            "Shutting Down",
+            "Not Applicable",
+            "Enabled but Offline",
+            "In Test",
+            "Deferred",
+            "Quiesce",
+            "Starting",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11..32767",
+            "32768..65535"
+          ]
         },
         {
           "name": "EnhancedSessionModeState",
@@ -190,7 +556,27 @@
         },
         {
           "name": "HealthState",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "OK",
+            "Degraded/Warning",
+            "Minor failure",
+            "Major failure",
+            "Critical failure",
+            "Non-recoverable error",
+            "DMTF Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "5",
+            "10",
+            "15",
+            "20",
+            "25",
+            "30",
+            ".."
+          ]
         },
         {
           "name": "HwThreadsPerCoreRealized",
@@ -252,7 +638,25 @@
         },
         {
           "name": "NameFormat",
-          "cimType": 8
+          "cimType": 8,
+          "valueMap": [
+            "Other",
+            "IP",
+            "Dial",
+            "HID",
+            "NWA",
+            "HWA",
+            "X25",
+            "ISDN",
+            "IPX",
+            "DCC",
+            "ICD",
+            "E.164",
+            "SNA",
+            "OID/OSI",
+            "WWN",
+            "NAA"
+          ]
         },
         {
           "name": "NumberOfNumaNodes",
@@ -264,12 +668,100 @@
         },
         {
           "name": "OperatingStatus",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Not Available",
+            "Servicing",
+            "Starting",
+            "Stopping",
+            "Stopped",
+            "Aborted",
+            "Dormant",
+            "Completed",
+            "Migrating",
+            "Emigrating",
+            "Immigrating",
+            "Snapshotting",
+            "Shutting Down",
+            "In Test",
+            "Transitioning",
+            "In Service",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "..",
+            "0x8000.."
+          ]
         },
         {
           "name": "OperationalStatus",
           "cimType": 18,
-          "array": true
+          "array": true,
+          "values": [
+            "Unknown",
+            "Other",
+            "OK",
+            "Degraded",
+            "Stressed",
+            "Predictive Failure",
+            "Error",
+            "Non-Recoverable Error",
+            "Starting",
+            "Stopping",
+            "Stopped",
+            "In Service",
+            "No Contact",
+            "Lost Communication",
+            "Aborted",
+            "Dormant",
+            "Supporting Entity in Error",
+            "Completed",
+            "Power Mode",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "..",
+            "0x8000.."
+          ]
         },
         {
           "name": "OtherDedicatedDescriptions",
@@ -288,7 +780,27 @@
         {
           "name": "PowerManagementCapabilities",
           "cimType": 18,
-          "array": true
+          "array": true,
+          "values": [
+            "Unknown",
+            "Not Supported",
+            "Disabled",
+            "Enabled",
+            "Power Saving Modes Entered Automatically",
+            "Power State Settable",
+            "Power Cycling Supported",
+            "Timed Power On Supported"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7"
+          ]
         },
         {
           "name": "PrimaryOwnerContact",
@@ -300,7 +812,23 @@
         },
         {
           "name": "PrimaryStatus",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "OK",
+            "Degraded",
+            "Error",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "..",
+            "0x8000.."
+          ]
         },
         {
           "name": "ProcessID",
@@ -380,11 +908,57 @@
         },
         {
           "name": "RequestedState",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Enabled",
+            "Disabled",
+            "Shut Down",
+            "No Change",
+            "Offline",
+            "Test",
+            "Deferred",
+            "Quiesce",
+            "Reboot",
+            "Reset",
+            "Not Applicable",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "..",
+            "32768..65535"
+          ]
         },
         {
           "name": "ResetCapability",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Other",
+            "Unknown",
+            "Disabled",
+            "Enabled",
+            "Not Implemented"
+          ],
+          "valueMap": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ]
         },
         {
           "name": "Roles",
@@ -393,7 +967,22 @@
         },
         {
           "name": "Status",
-          "cimType": 8
+          "cimType": 8,
+          "valueMap": [
+            "OK",
+            "Error",
+            "Degraded",
+            "Unknown",
+            "Pred Fail",
+            "Starting",
+            "Stopping",
+            "Service",
+            "Stressed",
+            "NonRecover",
+            "No Contact",
+            "Lost Comm",
+            "Stopped"
+          ]
         },
         {
           "name": "StatusDescriptions",
@@ -410,7 +999,37 @@
         },
         {
           "name": "TransitioningToState",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Enabled",
+            "Disabled",
+            "Shut Down",
+            "No Change",
+            "Offline",
+            "Test",
+            "Defer",
+            "Quiesce",
+            "Reboot",
+            "Reset",
+            "Not Applicable",
+            "DMTF Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            ".."
+          ]
         }
       ],
       "methods": [
@@ -432,7 +1051,15 @@
           "in": [
             {
               "name": "Vtl",
-              "cimType": 17
+              "cimType": 17,
+              "values": [
+                "Vtl 0",
+                "Vtl 2"
+              ],
+              "valueMap": [
+                "0",
+                "2"
+              ]
             }
           ],
           "out": [
@@ -470,7 +1097,23 @@
           "in": [
             {
               "name": "RequestedState",
-              "cimType": 18
+              "cimType": 18,
+              "values": [
+                "Ready to start initial replication",
+                "Waiting to complete initial replication",
+                "Replicating",
+                "Synced replication complete",
+                "Suspend",
+                "Cancel Resynchronize"
+              ],
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "7",
+                "9"
+              ]
             },
             {
               "name": "TimeoutPeriod",
@@ -497,7 +1140,23 @@
             },
             {
               "name": "RequestedState",
-              "cimType": 18
+              "cimType": 18,
+              "values": [
+                "Ready to start initial replication",
+                "Waiting to complete initial replication",
+                "Replicating",
+                "Synced replication complete",
+                "Suspend",
+                "Cancel Resynchronize"
+              ],
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "7",
+                "9"
+              ]
             },
             {
               "name": "TimeoutPeriod",
@@ -520,7 +1179,33 @@
           "in": [
             {
               "name": "RequestedState",
-              "cimType": 18
+              "cimType": 18,
+              "values": [
+                "Enabled",
+                "Disabled",
+                "Shut Down",
+                "Offline",
+                "Test",
+                "Defer",
+                "Quiesce",
+                "Reboot",
+                "Reset",
+                "DMTF Reserved",
+                "Vendor Reserved"
+              ],
+              "valueMap": [
+                "2",
+                "3",
+                "4",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "..",
+                "32768..65535"
+              ]
             },
             {
               "name": "TimeoutPeriod",
@@ -543,7 +1228,27 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 19
+              "cimType": 19,
+              "values": [
+                "Full Power",
+                "Power Save - Low Power Mode",
+                "Power Save - Standby",
+                "Power Save - Other",
+                "Power Cycle",
+                "Power Off",
+                "Hibernate",
+                "Soft Off"
+              ],
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8"
+              ]
             },
             {
               "name": "Time",
@@ -572,7 +1277,25 @@
         },
         {
           "name": "CommunicationStatus",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Not Available",
+            "Communication OK",
+            "Lost Communication",
+            "No Contact",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "..",
+            "0x8000.."
+          ]
         },
         {
           "name": "DeleteOnCompletion",
@@ -584,7 +1307,27 @@
         },
         {
           "name": "DetailedStatus",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Not Available",
+            "No Additional Information",
+            "Stressed",
+            "Predictive Failure",
+            "Non-Recoverable Error",
+            "Supporting Entity in Error",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "..",
+            "0x8000.."
+          ]
         },
         {
           "name": "ElapsedTime",
@@ -608,7 +1351,27 @@
         },
         {
           "name": "HealthState",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "OK",
+            "Degraded/Warning",
+            "Minor failure",
+            "Major failure",
+            "Critical failure",
+            "Non-recoverable error",
+            "DMTF Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "5",
+            "10",
+            "15",
+            "20",
+            "25",
+            "30",
+            ".."
+          ]
         },
         {
           "name": "InstallDate",
@@ -625,7 +1388,37 @@
         },
         {
           "name": "JobState",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "New",
+            "Starting",
+            "Running",
+            "Suspended",
+            "Shutting Down",
+            "Completed",
+            "Terminated",
+            "Killed",
+            "Exception",
+            "Service",
+            "Query Pending",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13..32767",
+            "32768..65535"
+          ]
         },
         {
           "name": "JobStatus",
@@ -859,7 +1652,15 @@
         },
         {
           "name": "LocalOrUtcTime",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Local Time",
+            "UTC Time"
+          ],
+          "valueMap": [
+            "1",
+            "2"
+          ]
         },
         {
           "name": "Name",
@@ -871,12 +1672,100 @@
         },
         {
           "name": "OperatingStatus",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Not Available",
+            "Servicing",
+            "Starting",
+            "Stopping",
+            "Stopped",
+            "Aborted",
+            "Dormant",
+            "Completed",
+            "Migrating",
+            "Emigrating",
+            "Immigrating",
+            "Snapshotting",
+            "Shutting Down",
+            "In Test",
+            "Transitioning",
+            "In Service",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "..",
+            "0x8000.."
+          ]
         },
         {
           "name": "OperationalStatus",
           "cimType": 18,
-          "array": true
+          "array": true,
+          "values": [
+            "Unknown",
+            "Other",
+            "OK",
+            "Degraded",
+            "Stressed",
+            "Predictive Failure",
+            "Error",
+            "Non-Recoverable Error",
+            "Starting",
+            "Stopping",
+            "Stopped",
+            "In Service",
+            "No Contact",
+            "Lost Communication",
+            "Aborted",
+            "Dormant",
+            "Supporting Entity in Error",
+            "Completed",
+            "Power Mode",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "..",
+            "0x8000.."
+          ]
         },
         {
           "name": "OtherRecoveryAction",
@@ -892,7 +1781,23 @@
         },
         {
           "name": "PrimaryStatus",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "OK",
+            "Degraded",
+            "Error",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "..",
+            "0x8000.."
+          ]
         },
         {
           "name": "Priority",
@@ -900,7 +1805,23 @@
         },
         {
           "name": "RecoveryAction",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Other",
+            "Do Not Continue",
+            "Continue With Next Job",
+            "Re-run Job",
+            "Run Recovery Job"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ]
         },
         {
           "name": "RunDay",
@@ -908,11 +1829,73 @@
         },
         {
           "name": "RunDayOfWeek",
-          "cimType": 16
+          "cimType": 16,
+          "values": [
+            "-Saturday",
+            "-Friday",
+            "-Thursday",
+            "-Wednesday",
+            "-Tuesday",
+            "-Monday",
+            "-Sunday",
+            "ExactDayOfMonth",
+            "Sunday",
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "valueMap": [
+            "-7",
+            "-6",
+            "-5",
+            "-4",
+            "-3",
+            "-2",
+            "-1",
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7"
+          ]
         },
         {
           "name": "RunMonth",
-          "cimType": 17
+          "cimType": 17,
+          "values": [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11"
+          ]
         },
         {
           "name": "RunStartInterval",
@@ -928,7 +1911,22 @@
         },
         {
           "name": "Status",
-          "cimType": 8
+          "cimType": 8,
+          "valueMap": [
+            "OK",
+            "Error",
+            "Degraded",
+            "Unknown",
+            "Pred Fail",
+            "Starting",
+            "Stopping",
+            "Service",
+            "Stressed",
+            "NonRecover",
+            "No Contact",
+            "Lost Comm",
+            "Stopped"
+          ]
         },
         {
           "name": "StatusDescriptions",
@@ -1000,7 +1998,25 @@
           "in": [
             {
               "name": "RequestedState",
-              "cimType": 18
+              "cimType": 18,
+              "values": [
+                "Start",
+                "Suspend",
+                "Terminate",
+                "Kill",
+                "Service",
+                "DMTF Reserved",
+                "Vendor Reserved"
+              ],
+              "valueMap": [
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7..32767",
+                "32768..65535"
+              ]
             },
             {
               "name": "TimeoutPeriod",
@@ -1054,7 +2070,23 @@
         },
         {
           "name": "ConsumerVisibility",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Passed-Through",
+            "Virtualized",
+            "Not represented",
+            "DMTF reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "2",
+            "3",
+            "4",
+            "..",
+            "32767..65535"
+          ]
         },
         {
           "name": "Description",
@@ -1062,7 +2094,29 @@
         },
         {
           "name": "DesiredVLANEndpointMode",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "DMTF Reserved",
+            "Other",
+            "Access",
+            "Dynamic Auto",
+            "Dynamic Desirable",
+            "Trunk",
+            "Dot1Q Tunnel",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "..",
+            "0x8000..0xFFFF"
+          ]
         },
         {
           "name": "ElementName",
@@ -1100,7 +2154,25 @@
         },
         {
           "name": "MappingBehavior",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Not Supported",
+            "Dedicated",
+            "Soft Affinity",
+            "Hard Affinity",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "2",
+            "3",
+            "4",
+            "5",
+            "..",
+            "32767..65535"
+          ]
         },
         {
           "name": "OtherEndpointMode",
@@ -1142,7 +2214,81 @@
         },
         {
           "name": "ResourceType",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Other",
+            "Computer System",
+            "Processor",
+            "Memory",
+            "IDE Controller",
+            "Parallel SCSI HBA",
+            "FC HBA",
+            "iSCSI HBA",
+            "IB HCA",
+            "Ethernet Adapter",
+            "Other Network Adapter",
+            "I/O Slot",
+            "I/O Device",
+            "Floppy Drive",
+            "CD Drive",
+            "DVD drive",
+            "Disk Drive",
+            "Tape Drive",
+            "Storage Extent",
+            "Other storage device",
+            "Serial port",
+            "Parallel port",
+            "USB Controller",
+            "Graphics controller",
+            "IEEE 1394 Controller",
+            "Partitionable Unit",
+            "Base Partitionable Unit",
+            "Power",
+            "Cooling Capacity",
+            "Ethernet Switch Port",
+            "Logical Disk",
+            "Storage Volume",
+            "Ethernet Connection",
+            "DMTF reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31",
+            "32",
+            "33",
+            "..",
+            "0x8000..0xFFFF"
+          ]
         },
         {
           "name": "TestReplicaPoolID",
@@ -1172,16 +2318,132 @@
         {
           "name": "AdditionalAvailability",
           "cimType": 18,
-          "array": true
+          "array": true,
+          "values": [
+            "Other",
+            "Unknown",
+            "Running/Full Power",
+            "Warning",
+            "In Test",
+            "Not Applicable",
+            "Power Off",
+            "Off Line",
+            "Off Duty",
+            "Degraded",
+            "Not Installed",
+            "Install Error",
+            "Power Save - Unknown",
+            "Power Save - Low Power Mode",
+            "Power Save - Standby",
+            "Power Cycle",
+            "Power Save - Warning",
+            "Paused",
+            "Not Ready",
+            "Not Configured",
+            "Quiesced"
+          ],
+          "valueMap": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21"
+          ]
         },
         {
           "name": "Availability",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Other",
+            "Unknown",
+            "Running/Full Power",
+            "Warning",
+            "In Test",
+            "Not Applicable",
+            "Power Off",
+            "Off Line",
+            "Off Duty",
+            "Degraded",
+            "Not Installed",
+            "Install Error",
+            "Power Save - Unknown",
+            "Power Save - Low Power Mode",
+            "Power Save - Standby",
+            "Power Cycle",
+            "Power Save - Warning",
+            "Paused",
+            "Not Ready",
+            "Not Configured",
+            "Quiesced"
+          ],
+          "valueMap": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21"
+          ]
         },
         {
           "name": "AvailableRequestedStates",
           "cimType": 18,
-          "array": true
+          "array": true,
+          "values": [
+            "Enabled",
+            "Disabled",
+            "Shut Down",
+            "Offline",
+            "Test",
+            "Defer",
+            "Quiesce",
+            "Reboot",
+            "Reset",
+            "DMTF Reserved"
+          ],
+          "valueMap": [
+            "2",
+            "3",
+            "4",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            ".."
+          ]
         },
         {
           "name": "Caption",
@@ -1189,7 +2451,25 @@
         },
         {
           "name": "CommunicationStatus",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Not Available",
+            "Communication OK",
+            "Lost Communication",
+            "No Contact",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "..",
+            "0x8000.."
+          ]
         },
         {
           "name": "CreationClassName",
@@ -1202,7 +2482,27 @@
         },
         {
           "name": "DetailedStatus",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Not Available",
+            "No Additional Information",
+            "Stressed",
+            "Predictive Failure",
+            "Non-Recoverable Error",
+            "Supporting Entity in Error",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "..",
+            "0x8000.."
+          ]
         },
         {
           "name": "DeviceID",
@@ -1215,11 +2515,61 @@
         },
         {
           "name": "EnabledDefault",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Enabled",
+            "Disabled",
+            "Not Applicable",
+            "Enabled but Offline",
+            "No Default",
+            "Quiesce",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "2",
+            "3",
+            "5",
+            "6",
+            "7",
+            "9",
+            "..",
+            "32768..65535"
+          ]
         },
         {
           "name": "EnabledState",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Other",
+            "Enabled",
+            "Disabled",
+            "Shutting Down",
+            "Not Applicable",
+            "Enabled but Offline",
+            "In Test",
+            "Deferred",
+            "Quiesce",
+            "Starting",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11..32767",
+            "32768..65535"
+          ]
         },
         {
           "name": "ErrorCleared",
@@ -1231,7 +2581,27 @@
         },
         {
           "name": "HealthState",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "OK",
+            "Degraded/Warning",
+            "Minor failure",
+            "Major failure",
+            "Critical failure",
+            "Non-recoverable error",
+            "DMTF Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "5",
+            "10",
+            "15",
+            "20",
+            "25",
+            "30",
+            ".."
+          ]
         },
         {
           "name": "IdentifyingDescriptions",
@@ -1260,7 +2630,49 @@
         },
         {
           "name": "OperatingStatus",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Not Available",
+            "Servicing",
+            "Starting",
+            "Stopping",
+            "Stopped",
+            "Aborted",
+            "Dormant",
+            "Completed",
+            "Migrating",
+            "Emigrating",
+            "Immigrating",
+            "Snapshotting",
+            "Shutting Down",
+            "In Test",
+            "Transitioning",
+            "In Service",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "..",
+            "0x8000.."
+          ]
         },
         {
           "name": "OperationalStatus",
@@ -1301,7 +2713,27 @@
         {
           "name": "PowerManagementCapabilities",
           "cimType": 18,
-          "array": true
+          "array": true,
+          "values": [
+            "Unknown",
+            "Not Supported",
+            "Disabled",
+            "Enabled",
+            "Power Saving Modes Entered Automatically",
+            "Power State Settable",
+            "Power Cycling Supported",
+            "Timed Power On Supported"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7"
+          ]
         },
         {
           "name": "PowerManagementSupported",
@@ -1313,15 +2745,78 @@
         },
         {
           "name": "PrimaryStatus",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "OK",
+            "Degraded",
+            "Error",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "..",
+            "0x8000.."
+          ]
         },
         {
           "name": "RequestedState",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Enabled",
+            "Disabled",
+            "Shut Down",
+            "No Change",
+            "Offline",
+            "Test",
+            "Deferred",
+            "Quiesce",
+            "Reboot",
+            "Reset",
+            "Not Applicable",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "..",
+            "32768..65535"
+          ]
         },
         {
           "name": "Status",
-          "cimType": 8
+          "cimType": 8,
+          "valueMap": [
+            "OK",
+            "Error",
+            "Degraded",
+            "Unknown",
+            "Pred Fail",
+            "Starting",
+            "Stopping",
+            "Service",
+            "Stressed",
+            "NonRecover",
+            "No Contact",
+            "Lost Comm",
+            "Stopped"
+          ]
         },
         {
           "name": "StatusDescriptions",
@@ -1330,7 +2825,21 @@
         },
         {
           "name": "StatusInfo",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Other",
+            "Unknown",
+            "Enabled",
+            "Disabled",
+            "Not Applicable"
+          ],
+          "valueMap": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ]
         },
         {
           "name": "SystemCreationClassName",
@@ -1352,7 +2861,37 @@
         },
         {
           "name": "TransitioningToState",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Enabled",
+            "Disabled",
+            "Shut Down",
+            "No Change",
+            "Offline",
+            "Test",
+            "Defer",
+            "Quiesce",
+            "Reboot",
+            "Reset",
+            "Not Applicable",
+            "DMTF Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            ".."
+          ]
         }
       ],
       "methods": [
@@ -1406,7 +2945,33 @@
           "in": [
             {
               "name": "RequestedState",
-              "cimType": 18
+              "cimType": 18,
+              "values": [
+                "Enabled",
+                "Disabled",
+                "Shut Down",
+                "Offline",
+                "Test",
+                "Defer",
+                "Quiesce",
+                "Reboot",
+                "Reset",
+                "DMTF Reserved",
+                "Vendor Reserved"
+              ],
+              "valueMap": [
+                "2",
+                "3",
+                "4",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "..",
+                "32768..65535"
+              ]
             },
             {
               "name": "TimeoutPeriod",
@@ -1456,7 +3021,23 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "values": [
+                "Full Power",
+                "Power Save - Low Power Mode",
+                "Power Save - Standby",
+                "Power Save - Other",
+                "Power Cycle",
+                "Power Off"
+              ],
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -1478,7 +3059,31 @@
         {
           "name": "AvailableRequestedStates",
           "cimType": 18,
-          "array": true
+          "array": true,
+          "values": [
+            "Enabled",
+            "Disabled",
+            "Shut Down",
+            "Offline",
+            "Test",
+            "Defer",
+            "Quiesce",
+            "Reboot",
+            "Reset",
+            "DMTF Reserved"
+          ],
+          "valueMap": [
+            "2",
+            "3",
+            "4",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            ".."
+          ]
         },
         {
           "name": "Caption",
@@ -1486,7 +3091,25 @@
         },
         {
           "name": "CommunicationStatus",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Not Available",
+            "Communication OK",
+            "Lost Communication",
+            "No Contact",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "..",
+            "0x8000.."
+          ]
         },
         {
           "name": "CreationClassName",
@@ -1499,7 +3122,27 @@
         },
         {
           "name": "DetailedStatus",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Not Available",
+            "No Additional Information",
+            "Stressed",
+            "Predictive Failure",
+            "Non-Recoverable Error",
+            "Supporting Entity in Error",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "..",
+            "0x8000.."
+          ]
         },
         {
           "name": "ElementName",
@@ -1507,15 +3150,85 @@
         },
         {
           "name": "EnabledDefault",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Enabled",
+            "Disabled",
+            "Not Applicable",
+            "Enabled but Offline",
+            "No Default",
+            "Quiesce",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "2",
+            "3",
+            "5",
+            "6",
+            "7",
+            "9",
+            "..",
+            "32768..65535"
+          ]
         },
         {
           "name": "EnabledState",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Other",
+            "Enabled",
+            "Disabled",
+            "Shutting Down",
+            "Not Applicable",
+            "Enabled but Offline",
+            "In Test",
+            "Deferred",
+            "Quiesce",
+            "Starting",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11..32767",
+            "32768..65535"
+          ]
         },
         {
           "name": "HealthState",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "OK",
+            "Degraded/Warning",
+            "Minor failure",
+            "Major failure",
+            "Critical failure",
+            "Non-recoverable error",
+            "DMTF Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "5",
+            "10",
+            "15",
+            "20",
+            "25",
+            "30",
+            ".."
+          ]
         },
         {
           "name": "InstallDate",
@@ -1532,12 +3245,100 @@
         },
         {
           "name": "OperatingStatus",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Not Available",
+            "Servicing",
+            "Starting",
+            "Stopping",
+            "Stopped",
+            "Aborted",
+            "Dormant",
+            "Completed",
+            "Migrating",
+            "Emigrating",
+            "Immigrating",
+            "Snapshotting",
+            "Shutting Down",
+            "In Test",
+            "Transitioning",
+            "In Service",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "..",
+            "0x8000.."
+          ]
         },
         {
           "name": "OperationalStatus",
           "cimType": 18,
-          "array": true
+          "array": true,
+          "values": [
+            "Unknown",
+            "Other",
+            "OK",
+            "Degraded",
+            "Stressed",
+            "Predictive Failure",
+            "Error",
+            "Non-Recoverable Error",
+            "Starting",
+            "Stopping",
+            "Stopped",
+            "In Service",
+            "No Contact",
+            "Lost Communication",
+            "Aborted",
+            "Dormant",
+            "Supporting Entity in Error",
+            "Completed",
+            "Power Mode",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "..",
+            "0x8000.."
+          ]
         },
         {
           "name": "OtherEnabledState",
@@ -1553,15 +3354,67 @@
         },
         {
           "name": "PrimaryStatus",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "OK",
+            "Degraded",
+            "Error",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "..",
+            "0x8000.."
+          ]
         },
         {
           "name": "RequestedState",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Enabled",
+            "Disabled",
+            "Shut Down",
+            "No Change",
+            "Offline",
+            "Test",
+            "Deferred",
+            "Quiesce",
+            "Reboot",
+            "Reset",
+            "Not Applicable",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "..",
+            "32768..65535"
+          ]
         },
         {
           "name": "StartMode",
-          "cimType": 8
+          "cimType": 8,
+          "valueMap": [
+            "Automatic",
+            "Manual"
+          ]
         },
         {
           "name": "Started",
@@ -1569,7 +3422,22 @@
         },
         {
           "name": "Status",
-          "cimType": 8
+          "cimType": 8,
+          "valueMap": [
+            "OK",
+            "Error",
+            "Degraded",
+            "Unknown",
+            "Pred Fail",
+            "Starting",
+            "Stopping",
+            "Service",
+            "Stressed",
+            "NonRecover",
+            "No Contact",
+            "Lost Comm",
+            "Stopped"
+          ]
         },
         {
           "name": "StatusDescriptions",
@@ -1592,7 +3460,37 @@
         },
         {
           "name": "TransitioningToState",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Enabled",
+            "Disabled",
+            "Shut Down",
+            "No Change",
+            "Offline",
+            "Test",
+            "Defer",
+            "Quiesce",
+            "Reboot",
+            "Reset",
+            "Not Applicable",
+            "DMTF Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            ".."
+          ]
         }
       ],
       "methods": [
@@ -1632,7 +3530,21 @@
             },
             {
               "name": "Mode",
-              "cimType": 18
+              "cimType": 18,
+              "values": [
+                "Full",
+                "Quick",
+                "Retrim",
+                "Pretrimmed",
+                "Prezeroed"
+              ],
+              "valueMap": [
+                "0",
+                "1",
+                "2",
+                "3",
+                "4"
+              ]
             }
           ],
           "out": [
@@ -1762,7 +3674,15 @@
             },
             {
               "name": "CriterionType",
-              "cimType": 18
+              "cimType": 18,
+              "values": [
+                "unknown",
+                "Path"
+              ],
+              "valueMap": [
+                "0",
+                "2"
+              ]
             }
           ],
           "out": [
@@ -1786,7 +3706,17 @@
             {
               "name": "AdditionalInformation",
               "cimType": 19,
-              "array": true
+              "array": true,
+              "values": [
+                "Unknown",
+                "Other",
+                "Paths"
+              ],
+              "valueMap": [
+                "0",
+                "1",
+                "2"
+              ]
             }
           ],
           "out": [
@@ -1819,7 +3749,17 @@
             {
               "name": "AdditionalInformation",
               "cimType": 19,
-              "array": true
+              "array": true,
+              "values": [
+                "Unknown",
+                "Other",
+                "Parent Paths"
+              ],
+              "valueMap": [
+                "0",
+                "1",
+                "2"
+              ]
             }
           ],
           "out": [
@@ -1980,7 +3920,33 @@
           "in": [
             {
               "name": "RequestedState",
-              "cimType": 18
+              "cimType": 18,
+              "values": [
+                "Enabled",
+                "Disabled",
+                "Shut Down",
+                "Offline",
+                "Test",
+                "Defer",
+                "Quiesce",
+                "Reboot",
+                "Reset",
+                "DMTF Reserved",
+                "Vendor Reserved"
+              ],
+              "valueMap": [
+                "2",
+                "3",
+                "4",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "..",
+                "32768..65535"
+              ]
             },
             {
               "name": "TimeoutPeriod",
@@ -2154,16 +4120,132 @@
         {
           "name": "AdditionalAvailability",
           "cimType": 18,
-          "array": true
+          "array": true,
+          "values": [
+            "Other",
+            "Unknown",
+            "Running/Full Power",
+            "Warning",
+            "In Test",
+            "Not Applicable",
+            "Power Off",
+            "Off Line",
+            "Off Duty",
+            "Degraded",
+            "Not Installed",
+            "Install Error",
+            "Power Save - Unknown",
+            "Power Save - Low Power Mode",
+            "Power Save - Standby",
+            "Power Cycle",
+            "Power Save - Warning",
+            "Paused",
+            "Not Ready",
+            "Not Configured",
+            "Quiesced"
+          ],
+          "valueMap": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21"
+          ]
         },
         {
           "name": "Availability",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Other",
+            "Unknown",
+            "Running/Full Power",
+            "Warning",
+            "In Test",
+            "Not Applicable",
+            "Power Off",
+            "Off Line",
+            "Off Duty",
+            "Degraded",
+            "Not Installed",
+            "Install Error",
+            "Power Save - Unknown",
+            "Power Save - Low Power Mode",
+            "Power Save - Standby",
+            "Power Cycle",
+            "Power Save - Warning",
+            "Paused",
+            "Not Ready",
+            "Not Configured",
+            "Quiesced"
+          ],
+          "valueMap": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21"
+          ]
         },
         {
           "name": "AvailableRequestedStates",
           "cimType": 18,
-          "array": true
+          "array": true,
+          "values": [
+            "Enabled",
+            "Disabled",
+            "Shut Down",
+            "Offline",
+            "Test",
+            "Defer",
+            "Quiesce",
+            "Reboot",
+            "Reset",
+            "DMTF Reserved"
+          ],
+          "valueMap": [
+            "2",
+            "3",
+            "4",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            ".."
+          ]
         },
         {
           "name": "Caption",
@@ -2171,7 +4253,25 @@
         },
         {
           "name": "CommunicationStatus",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Not Available",
+            "Communication OK",
+            "Lost Communication",
+            "No Contact",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "..",
+            "0x8000.."
+          ]
         },
         {
           "name": "CreationClassName",
@@ -2184,7 +4284,27 @@
         },
         {
           "name": "DetailedStatus",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Not Available",
+            "No Additional Information",
+            "Stressed",
+            "Predictive Failure",
+            "Non-Recoverable Error",
+            "Supporting Entity in Error",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "..",
+            "0x8000.."
+          ]
         },
         {
           "name": "DeviceID",
@@ -2197,11 +4317,61 @@
         },
         {
           "name": "EnabledDefault",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Enabled",
+            "Disabled",
+            "Not Applicable",
+            "Enabled but Offline",
+            "No Default",
+            "Quiesce",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "2",
+            "3",
+            "5",
+            "6",
+            "7",
+            "9",
+            "..",
+            "32768..65535"
+          ]
         },
         {
           "name": "EnabledState",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Other",
+            "Enabled",
+            "Disabled",
+            "Shutting Down",
+            "Not Applicable",
+            "Enabled but Offline",
+            "In Test",
+            "Deferred",
+            "Quiesce",
+            "Starting",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11..32767",
+            "32768..65535"
+          ]
         },
         {
           "name": "ErrorCleared",
@@ -2213,7 +4383,27 @@
         },
         {
           "name": "HealthState",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "OK",
+            "Degraded/Warning",
+            "Minor failure",
+            "Major failure",
+            "Critical failure",
+            "Non-recoverable error",
+            "DMTF Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "5",
+            "10",
+            "15",
+            "20",
+            "25",
+            "30",
+            ".."
+          ]
         },
         {
           "name": "IdentifyingDescriptions",
@@ -2254,12 +4444,100 @@
         },
         {
           "name": "OperatingStatus",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Not Available",
+            "Servicing",
+            "Starting",
+            "Stopping",
+            "Stopped",
+            "Aborted",
+            "Dormant",
+            "Completed",
+            "Migrating",
+            "Emigrating",
+            "Immigrating",
+            "Snapshotting",
+            "Shutting Down",
+            "In Test",
+            "Transitioning",
+            "In Service",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "..",
+            "0x8000.."
+          ]
         },
         {
           "name": "OperationalStatus",
           "cimType": 18,
-          "array": true
+          "array": true,
+          "values": [
+            "Unknown",
+            "Other",
+            "OK",
+            "Degraded",
+            "Stressed",
+            "Predictive Failure",
+            "Error",
+            "Non-Recoverable Error",
+            "Starting",
+            "Stopping",
+            "Stopped",
+            "In Service",
+            "No Contact",
+            "Lost Communication",
+            "Aborted",
+            "Dormant",
+            "Supporting Entity in Error",
+            "Completed",
+            "Power Mode",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "..",
+            "0x8000.."
+          ]
         },
         {
           "name": "OtherEnabledState",
@@ -2277,7 +4555,27 @@
         {
           "name": "PowerManagementCapabilities",
           "cimType": 18,
-          "array": true
+          "array": true,
+          "values": [
+            "Unknown",
+            "Not Supported",
+            "Disabled",
+            "Enabled",
+            "Power Saving Modes Entered Automatically",
+            "Power State Settable",
+            "Power Cycling Supported",
+            "Timed Power On Supported"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7"
+          ]
         },
         {
           "name": "PowerManagementSupported",
@@ -2289,15 +4587,78 @@
         },
         {
           "name": "PrimaryStatus",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "OK",
+            "Degraded",
+            "Error",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "..",
+            "0x8000.."
+          ]
         },
         {
           "name": "RequestedState",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Enabled",
+            "Disabled",
+            "Shut Down",
+            "No Change",
+            "Offline",
+            "Test",
+            "Deferred",
+            "Quiesce",
+            "Reboot",
+            "Reset",
+            "Not Applicable",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "..",
+            "32768..65535"
+          ]
         },
         {
           "name": "Status",
-          "cimType": 8
+          "cimType": 8,
+          "valueMap": [
+            "OK",
+            "Error",
+            "Degraded",
+            "Unknown",
+            "Pred Fail",
+            "Starting",
+            "Stopping",
+            "Service",
+            "Stressed",
+            "NonRecover",
+            "No Contact",
+            "Lost Comm",
+            "Stopped"
+          ]
         },
         {
           "name": "StatusDescriptions",
@@ -2306,7 +4667,21 @@
         },
         {
           "name": "StatusInfo",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Other",
+            "Unknown",
+            "Enabled",
+            "Disabled",
+            "Not Applicable"
+          ],
+          "valueMap": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ]
         },
         {
           "name": "SystemCreationClassName",
@@ -2328,7 +4703,37 @@
         },
         {
           "name": "TransitioningToState",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Enabled",
+            "Disabled",
+            "Shut Down",
+            "No Change",
+            "Offline",
+            "Test",
+            "Defer",
+            "Quiesce",
+            "Reboot",
+            "Reset",
+            "Not Applicable",
+            "DMTF Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            ".."
+          ]
         },
         {
           "name": "UnicodeSupported",
@@ -2435,7 +4840,33 @@
           "in": [
             {
               "name": "RequestedState",
-              "cimType": 18
+              "cimType": 18,
+              "values": [
+                "Enabled",
+                "Disabled",
+                "Shut Down",
+                "Offline",
+                "Test",
+                "Defer",
+                "Quiesce",
+                "Reboot",
+                "Reset",
+                "DMTF Reserved",
+                "Vendor Reserved"
+              ],
+              "valueMap": [
+                "2",
+                "3",
+                "4",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "..",
+                "32768..65535"
+              ]
             },
             {
               "name": "TimeoutPeriod",
@@ -2485,7 +4916,23 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "values": [
+                "Full Power",
+                "Power Save - Low Power Mode",
+                "Power Save - Standby",
+                "Power Save - Other",
+                "Power Cycle",
+                "Power Off"
+              ],
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -2562,16 +5009,132 @@
         {
           "name": "AdditionalAvailability",
           "cimType": 18,
-          "array": true
+          "array": true,
+          "values": [
+            "Other",
+            "Unknown",
+            "Running/Full Power",
+            "Warning",
+            "In Test",
+            "Not Applicable",
+            "Power Off",
+            "Off Line",
+            "Off Duty",
+            "Degraded",
+            "Not Installed",
+            "Install Error",
+            "Power Save - Unknown",
+            "Power Save - Low Power Mode",
+            "Power Save - Standby",
+            "Power Cycle",
+            "Power Save - Warning",
+            "Paused",
+            "Not Ready",
+            "Not Configured",
+            "Quiesced"
+          ],
+          "valueMap": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21"
+          ]
         },
         {
           "name": "Availability",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Other",
+            "Unknown",
+            "Running/Full Power",
+            "Warning",
+            "In Test",
+            "Not Applicable",
+            "Power Off",
+            "Off Line",
+            "Off Duty",
+            "Degraded",
+            "Not Installed",
+            "Install Error",
+            "Power Save - Unknown",
+            "Power Save - Low Power Mode",
+            "Power Save - Standby",
+            "Power Cycle",
+            "Power Save - Warning",
+            "Paused",
+            "Not Ready",
+            "Not Configured",
+            "Quiesced"
+          ],
+          "valueMap": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21"
+          ]
         },
         {
           "name": "AvailableRequestedStates",
           "cimType": 18,
-          "array": true
+          "array": true,
+          "values": [
+            "Enabled",
+            "Disabled",
+            "Shut Down",
+            "Offline",
+            "Test",
+            "Defer",
+            "Quiesce",
+            "Reboot",
+            "Reset",
+            "DMTF Reserved"
+          ],
+          "valueMap": [
+            "2",
+            "3",
+            "4",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            ".."
+          ]
         },
         {
           "name": "Caption",
@@ -2579,7 +5142,25 @@
         },
         {
           "name": "CommunicationStatus",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Not Available",
+            "Communication OK",
+            "Lost Communication",
+            "No Contact",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "..",
+            "0x8000.."
+          ]
         },
         {
           "name": "CreationClassName",
@@ -2592,7 +5173,27 @@
         },
         {
           "name": "DetailedStatus",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Not Available",
+            "No Additional Information",
+            "Stressed",
+            "Predictive Failure",
+            "Non-Recoverable Error",
+            "Supporting Entity in Error",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "..",
+            "0x8000.."
+          ]
         },
         {
           "name": "DeviceID",
@@ -2605,11 +5206,61 @@
         },
         {
           "name": "EnabledDefault",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Enabled",
+            "Disabled",
+            "Not Applicable",
+            "Enabled but Offline",
+            "No Default",
+            "Quiesce",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "2",
+            "3",
+            "5",
+            "6",
+            "7",
+            "9",
+            "..",
+            "32768..65535"
+          ]
         },
         {
           "name": "EnabledState",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Other",
+            "Enabled",
+            "Disabled",
+            "Shutting Down",
+            "Not Applicable",
+            "Enabled but Offline",
+            "In Test",
+            "Deferred",
+            "Quiesce",
+            "Starting",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11..32767",
+            "32768..65535"
+          ]
         },
         {
           "name": "ErrorCleared",
@@ -2636,7 +5287,27 @@
         },
         {
           "name": "HealthState",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "OK",
+            "Degraded/Warning",
+            "Minor failure",
+            "Major failure",
+            "Critical failure",
+            "Non-recoverable error",
+            "DMTF Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "5",
+            "10",
+            "15",
+            "20",
+            "25",
+            "30",
+            ".."
+          ]
         },
         {
           "name": "IdentifyingDescriptions",
@@ -2665,12 +5336,100 @@
         },
         {
           "name": "OperatingStatus",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Not Available",
+            "Servicing",
+            "Starting",
+            "Stopping",
+            "Stopped",
+            "Aborted",
+            "Dormant",
+            "Completed",
+            "Migrating",
+            "Emigrating",
+            "Immigrating",
+            "Snapshotting",
+            "Shutting Down",
+            "In Test",
+            "Transitioning",
+            "In Service",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "..",
+            "0x8000.."
+          ]
         },
         {
           "name": "OperationalStatus",
           "cimType": 18,
-          "array": true
+          "array": true,
+          "values": [
+            "Unknown",
+            "Other",
+            "OK",
+            "Degraded",
+            "Stressed",
+            "Predictive Failure",
+            "Error",
+            "Non-Recoverable Error",
+            "Starting",
+            "Stopping",
+            "Stopped",
+            "In Service",
+            "No Contact",
+            "Lost Communication",
+            "Aborted",
+            "Dormant",
+            "Supporting Entity in Error",
+            "Completed",
+            "Power Mode",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "..",
+            "0x8000.."
+          ]
         },
         {
           "name": "OtherEnabledState",
@@ -2684,7 +5443,27 @@
         {
           "name": "PowerManagementCapabilities",
           "cimType": 18,
-          "array": true
+          "array": true,
+          "values": [
+            "Unknown",
+            "Not Supported",
+            "Disabled",
+            "Enabled",
+            "Power Saving Modes Entered Automatically",
+            "Power State Settable",
+            "Power Cycling Supported",
+            "Timed Power On Supported"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7"
+          ]
         },
         {
           "name": "PowerManagementSupported",
@@ -2696,15 +5475,78 @@
         },
         {
           "name": "PrimaryStatus",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "OK",
+            "Degraded",
+            "Error",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "..",
+            "0x8000.."
+          ]
         },
         {
           "name": "RequestedState",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Enabled",
+            "Disabled",
+            "Shut Down",
+            "No Change",
+            "Offline",
+            "Test",
+            "Deferred",
+            "Quiesce",
+            "Reboot",
+            "Reset",
+            "Not Applicable",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "..",
+            "32768..65535"
+          ]
         },
         {
           "name": "Status",
-          "cimType": 8
+          "cimType": 8,
+          "valueMap": [
+            "OK",
+            "Error",
+            "Degraded",
+            "Unknown",
+            "Pred Fail",
+            "Starting",
+            "Stopping",
+            "Service",
+            "Stressed",
+            "NonRecover",
+            "No Contact",
+            "Lost Comm",
+            "Stopped"
+          ]
         },
         {
           "name": "StatusDescriptions",
@@ -2713,7 +5555,21 @@
         },
         {
           "name": "StatusInfo",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Other",
+            "Unknown",
+            "Enabled",
+            "Disabled",
+            "Not Applicable"
+          ],
+          "valueMap": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ]
         },
         {
           "name": "SystemCreationClassName",
@@ -2735,7 +5591,37 @@
         },
         {
           "name": "TransitioningToState",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Enabled",
+            "Disabled",
+            "Shut Down",
+            "No Change",
+            "Offline",
+            "Test",
+            "Defer",
+            "Quiesce",
+            "Reboot",
+            "Reset",
+            "Not Applicable",
+            "DMTF Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            ".."
+          ]
         }
       ],
       "methods": [
@@ -2789,7 +5675,33 @@
           "in": [
             {
               "name": "RequestedState",
-              "cimType": 18
+              "cimType": 18,
+              "values": [
+                "Enabled",
+                "Disabled",
+                "Shut Down",
+                "Offline",
+                "Test",
+                "Defer",
+                "Quiesce",
+                "Reboot",
+                "Reset",
+                "DMTF Reserved",
+                "Vendor Reserved"
+              ],
+              "valueMap": [
+                "2",
+                "3",
+                "4",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "..",
+                "32768..65535"
+              ]
             },
             {
               "name": "TimeoutPeriod",
@@ -2839,7 +5751,23 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "values": [
+                "Full Power",
+                "Power Save - Low Power Mode",
+                "Power Save - Standby",
+                "Power Save - Other",
+                "Power Cycle",
+                "Power Off"
+              ],
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -2889,7 +5817,23 @@
         },
         {
           "name": "ConsumerVisibility",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Passed-Through",
+            "Virtualized",
+            "Not represented",
+            "DMTF reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "2",
+            "3",
+            "4",
+            "..",
+            "32767..65535"
+          ]
         },
         {
           "name": "Description",
@@ -2933,7 +5877,25 @@
         },
         {
           "name": "MappingBehavior",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Not Supported",
+            "Dedicated",
+            "Soft Affinity",
+            "Hard Affinity",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "2",
+            "3",
+            "4",
+            "5",
+            "..",
+            "32767..65535"
+          ]
         },
         {
           "name": "OtherResourceType",
@@ -2957,7 +5919,81 @@
         },
         {
           "name": "ResourceType",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Other",
+            "Computer System",
+            "Processor",
+            "Memory",
+            "IDE Controller",
+            "Parallel SCSI HBA",
+            "FC HBA",
+            "iSCSI HBA",
+            "IB HCA",
+            "Ethernet Adapter",
+            "Other Network Adapter",
+            "I/O Slot",
+            "I/O Device",
+            "Floppy Drive",
+            "CD Drive",
+            "DVD drive",
+            "Disk Drive",
+            "Tape Drive",
+            "Storage Extent",
+            "Other storage device",
+            "Serial port",
+            "Parallel port",
+            "USB Controller",
+            "Graphics controller",
+            "IEEE 1394 Controller",
+            "Partitionable Unit",
+            "Base Partitionable Unit",
+            "Power",
+            "Cooling Capacity",
+            "Ethernet Switch Port",
+            "Logical Disk",
+            "Storage Volume",
+            "Ethernet Connection",
+            "DMTF reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31",
+            "32",
+            "33",
+            "..",
+            "0x8000..0xFFFF"
+          ]
         },
         {
           "name": "VirtualQuantity",
@@ -3068,7 +6104,23 @@
         },
         {
           "name": "ConsumerVisibility",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Passed-Through",
+            "Virtualized",
+            "Not represented",
+            "DMTF reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "2",
+            "3",
+            "4",
+            "..",
+            "32767..65535"
+          ]
         },
         {
           "name": "Description",
@@ -3122,7 +6174,25 @@
         },
         {
           "name": "MappingBehavior",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Not Supported",
+            "Dedicated",
+            "Soft Affinity",
+            "Hard Affinity",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "2",
+            "3",
+            "4",
+            "5",
+            "..",
+            "32767..65535"
+          ]
         },
         {
           "name": "MaxMemoryBlocksPerNumaNode",
@@ -3194,7 +6264,81 @@
         },
         {
           "name": "ResourceType",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Other",
+            "Computer System",
+            "Processor",
+            "Memory",
+            "IDE Controller",
+            "Parallel SCSI HBA",
+            "FC HBA",
+            "iSCSI HBA",
+            "IB HCA",
+            "Ethernet Adapter",
+            "Other Network Adapter",
+            "I/O Slot",
+            "I/O Device",
+            "Floppy Drive",
+            "CD Drive",
+            "DVD drive",
+            "Disk Drive",
+            "Tape Drive",
+            "Storage Extent",
+            "Other storage device",
+            "Serial port",
+            "Parallel port",
+            "USB Controller",
+            "Graphics controller",
+            "IEEE 1394 Controller",
+            "Partitionable Unit",
+            "Base Partitionable Unit",
+            "Power",
+            "Cooling Capacity",
+            "Ethernet Switch Port",
+            "Logical Disk",
+            "Storage Volume",
+            "Ethernet Connection",
+            "DMTF reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31",
+            "32",
+            "33",
+            "..",
+            "0x8000..0xFFFF"
+          ]
         },
         {
           "name": "SgxEnabled",
@@ -3313,7 +6457,23 @@
         },
         {
           "name": "ConsumerVisibility",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Passed-Through",
+            "Virtualized",
+            "Not represented",
+            "DMTF reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "2",
+            "3",
+            "4",
+            "..",
+            "32767..65535"
+          ]
         },
         {
           "name": "CpuBrandString",
@@ -3467,7 +6627,25 @@
         },
         {
           "name": "MappingBehavior",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Not Supported",
+            "Dedicated",
+            "Soft Affinity",
+            "Hard Affinity",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "2",
+            "3",
+            "4",
+            "5",
+            "..",
+            "32767..65535"
+          ]
         },
         {
           "name": "MaxClusterCountPerSocket",
@@ -3539,7 +6717,81 @@
         },
         {
           "name": "ResourceType",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Other",
+            "Computer System",
+            "Processor",
+            "Memory",
+            "IDE Controller",
+            "Parallel SCSI HBA",
+            "FC HBA",
+            "iSCSI HBA",
+            "IB HCA",
+            "Ethernet Adapter",
+            "Other Network Adapter",
+            "I/O Slot",
+            "I/O Device",
+            "Floppy Drive",
+            "CD Drive",
+            "DVD drive",
+            "Disk Drive",
+            "Tape Drive",
+            "Storage Extent",
+            "Other storage device",
+            "Serial port",
+            "Parallel port",
+            "USB Controller",
+            "Graphics controller",
+            "IEEE 1394 Controller",
+            "Partitionable Unit",
+            "Base Partitionable Unit",
+            "Power",
+            "Cooling Capacity",
+            "Ethernet Switch Port",
+            "Logical Disk",
+            "Storage Volume",
+            "Ethernet Connection",
+            "DMTF reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31",
+            "32",
+            "33",
+            "..",
+            "0x8000..0xFFFF"
+          ]
         },
         {
           "name": "VirtualQuantity",
@@ -3589,7 +6841,23 @@
         },
         {
           "name": "ConsumerVisibility",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Passed-Through",
+            "Virtualized",
+            "Not represented",
+            "DMTF reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "2",
+            "3",
+            "4",
+            "..",
+            "32767..65535"
+          ]
         },
         {
           "name": "Description",
@@ -3615,7 +6883,25 @@
         },
         {
           "name": "MappingBehavior",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Not Supported",
+            "Dedicated",
+            "Soft Affinity",
+            "Hard Affinity",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "2",
+            "3",
+            "4",
+            "5",
+            "..",
+            "32767..65535"
+          ]
         },
         {
           "name": "OtherResourceType",
@@ -3639,7 +6925,81 @@
         },
         {
           "name": "ResourceType",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Other",
+            "Computer System",
+            "Processor",
+            "Memory",
+            "IDE Controller",
+            "Parallel SCSI HBA",
+            "FC HBA",
+            "iSCSI HBA",
+            "IB HCA",
+            "Ethernet Adapter",
+            "Other Network Adapter",
+            "I/O Slot",
+            "I/O Device",
+            "Floppy Drive",
+            "CD Drive",
+            "DVD drive",
+            "Disk Drive",
+            "Tape Drive",
+            "Storage Extent",
+            "Other storage device",
+            "Serial port",
+            "Parallel port",
+            "USB Controller",
+            "Graphics controller",
+            "IEEE 1394 Controller",
+            "Partitionable Unit",
+            "Base Partitionable Unit",
+            "Power",
+            "Cooling Capacity",
+            "Ethernet Switch Port",
+            "Logical Disk",
+            "Storage Volume",
+            "Ethernet Connection",
+            "DMTF reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31",
+            "32",
+            "33",
+            "..",
+            "0x8000..0xFFFF"
+          ]
         },
         {
           "name": "TargetVtl",
@@ -3670,7 +7030,31 @@
         {
           "name": "AvailableRequestedStates",
           "cimType": 18,
-          "array": true
+          "array": true,
+          "values": [
+            "Enabled",
+            "Disabled",
+            "Shut Down",
+            "Offline",
+            "Test",
+            "Defer",
+            "Quiesce",
+            "Reboot",
+            "Reset",
+            "DMTF Reserved"
+          ],
+          "valueMap": [
+            "2",
+            "3",
+            "4",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            ".."
+          ]
         },
         {
           "name": "Caption",
@@ -3678,7 +7062,25 @@
         },
         {
           "name": "CommunicationStatus",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Not Available",
+            "Communication OK",
+            "Lost Communication",
+            "No Contact",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "..",
+            "0x8000.."
+          ]
         },
         {
           "name": "CreationClassName",
@@ -3691,7 +7093,27 @@
         },
         {
           "name": "DetailedStatus",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Not Available",
+            "No Additional Information",
+            "Stressed",
+            "Predictive Failure",
+            "Non-Recoverable Error",
+            "Supporting Entity in Error",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "..",
+            "0x8000.."
+          ]
         },
         {
           "name": "ElementName",
@@ -3699,15 +7121,85 @@
         },
         {
           "name": "EnabledDefault",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Enabled",
+            "Disabled",
+            "Not Applicable",
+            "Enabled but Offline",
+            "No Default",
+            "Quiesce",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "2",
+            "3",
+            "5",
+            "6",
+            "7",
+            "9",
+            "..",
+            "32768..65535"
+          ]
         },
         {
           "name": "EnabledState",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Other",
+            "Enabled",
+            "Disabled",
+            "Shutting Down",
+            "Not Applicable",
+            "Enabled but Offline",
+            "In Test",
+            "Deferred",
+            "Quiesce",
+            "Starting",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11..32767",
+            "32768..65535"
+          ]
         },
         {
           "name": "HealthState",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "OK",
+            "Degraded/Warning",
+            "Minor failure",
+            "Major failure",
+            "Critical failure",
+            "Non-recoverable error",
+            "DMTF Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "5",
+            "10",
+            "15",
+            "20",
+            "25",
+            "30",
+            ".."
+          ]
         },
         {
           "name": "InstallDate",
@@ -3724,12 +7216,100 @@
         },
         {
           "name": "OperatingStatus",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Not Available",
+            "Servicing",
+            "Starting",
+            "Stopping",
+            "Stopped",
+            "Aborted",
+            "Dormant",
+            "Completed",
+            "Migrating",
+            "Emigrating",
+            "Immigrating",
+            "Snapshotting",
+            "Shutting Down",
+            "In Test",
+            "Transitioning",
+            "In Service",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "..",
+            "0x8000.."
+          ]
         },
         {
           "name": "OperationalStatus",
           "cimType": 18,
-          "array": true
+          "array": true,
+          "values": [
+            "Unknown",
+            "Other",
+            "OK",
+            "Degraded",
+            "Stressed",
+            "Predictive Failure",
+            "Error",
+            "Non-Recoverable Error",
+            "Starting",
+            "Stopping",
+            "Stopped",
+            "In Service",
+            "No Contact",
+            "Lost Communication",
+            "Aborted",
+            "Dormant",
+            "Supporting Entity in Error",
+            "Completed",
+            "Power Mode",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "..",
+            "0x8000.."
+          ]
         },
         {
           "name": "OtherEnabledState",
@@ -3745,15 +7325,67 @@
         },
         {
           "name": "PrimaryStatus",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "OK",
+            "Degraded",
+            "Error",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "..",
+            "0x8000.."
+          ]
         },
         {
           "name": "RequestedState",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Enabled",
+            "Disabled",
+            "Shut Down",
+            "No Change",
+            "Offline",
+            "Test",
+            "Deferred",
+            "Quiesce",
+            "Reboot",
+            "Reset",
+            "Not Applicable",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "..",
+            "32768..65535"
+          ]
         },
         {
           "name": "StartMode",
-          "cimType": 8
+          "cimType": 8,
+          "valueMap": [
+            "Automatic",
+            "Manual"
+          ]
         },
         {
           "name": "Started",
@@ -3761,7 +7393,22 @@
         },
         {
           "name": "Status",
-          "cimType": 8
+          "cimType": 8,
+          "valueMap": [
+            "OK",
+            "Error",
+            "Degraded",
+            "Unknown",
+            "Pred Fail",
+            "Starting",
+            "Stopping",
+            "Service",
+            "Stressed",
+            "NonRecover",
+            "No Contact",
+            "Lost Comm",
+            "Stopped"
+          ]
         },
         {
           "name": "StatusDescriptions",
@@ -3784,7 +7431,37 @@
         },
         {
           "name": "TransitioningToState",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Enabled",
+            "Disabled",
+            "Shut Down",
+            "No Change",
+            "Offline",
+            "Test",
+            "Defer",
+            "Quiesce",
+            "Reboot",
+            "Reset",
+            "Not Applicable",
+            "DMTF Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            ".."
+          ]
         }
       ],
       "methods": [
@@ -3832,7 +7509,33 @@
           "in": [
             {
               "name": "RequestedState",
-              "cimType": 18
+              "cimType": 18,
+              "values": [
+                "Enabled",
+                "Disabled",
+                "Shut Down",
+                "Offline",
+                "Test",
+                "Defer",
+                "Quiesce",
+                "Reboot",
+                "Reset",
+                "DMTF Reserved",
+                "Vendor Reserved"
+              ],
+              "valueMap": [
+                "2",
+                "3",
+                "4",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "..",
+                "32768..65535"
+              ]
             },
             {
               "name": "TimeoutPeriod",
@@ -4025,7 +7728,23 @@
         },
         {
           "name": "ConsumerVisibility",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Passed-Through",
+            "Virtualized",
+            "Not represented",
+            "DMTF reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "2",
+            "3",
+            "4",
+            "..",
+            "32767..65535"
+          ]
         },
         {
           "name": "DebuggerMode",
@@ -4055,7 +7774,25 @@
         },
         {
           "name": "MappingBehavior",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Not Supported",
+            "Dedicated",
+            "Soft Affinity",
+            "Hard Affinity",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "2",
+            "3",
+            "4",
+            "5",
+            "..",
+            "32767..65535"
+          ]
         },
         {
           "name": "OtherResourceType",
@@ -4079,7 +7816,81 @@
         },
         {
           "name": "ResourceType",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Other",
+            "Computer System",
+            "Processor",
+            "Memory",
+            "IDE Controller",
+            "Parallel SCSI HBA",
+            "FC HBA",
+            "iSCSI HBA",
+            "IB HCA",
+            "Ethernet Adapter",
+            "Other Network Adapter",
+            "I/O Slot",
+            "I/O Device",
+            "Floppy Drive",
+            "CD Drive",
+            "DVD drive",
+            "Disk Drive",
+            "Tape Drive",
+            "Storage Extent",
+            "Other storage device",
+            "Serial port",
+            "Parallel port",
+            "USB Controller",
+            "Graphics controller",
+            "IEEE 1394 Controller",
+            "Partitionable Unit",
+            "Base Partitionable Unit",
+            "Power",
+            "Cooling Capacity",
+            "Ethernet Switch Port",
+            "Logical Disk",
+            "Storage Volume",
+            "Ethernet Connection",
+            "DMTF reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31",
+            "32",
+            "33",
+            "..",
+            "0x8000..0xFFFF"
+          ]
         },
         {
           "name": "VirtualQuantity",
@@ -4110,7 +7921,17 @@
         },
         {
           "name": "PropertyPolicy",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Independent",
+            "Correlated",
+            "DMTF Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            ".."
+          ]
         },
         {
           "name": "SupportStatement",
@@ -4128,11 +7949,39 @@
         },
         {
           "name": "ValueRange",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Point",
+            "Minimums",
+            "Maximums",
+            "Increments",
+            "DMTF Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            ".."
+          ]
         },
         {
           "name": "ValueRole",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Default",
+            "Optimal",
+            "Mean",
+            "Supported",
+            "DMTF Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            ".."
+          ]
         }
       ]
     },
@@ -4142,16 +7991,132 @@
         {
           "name": "AdditionalAvailability",
           "cimType": 18,
-          "array": true
+          "array": true,
+          "values": [
+            "Other",
+            "Unknown",
+            "Running/Full Power",
+            "Warning",
+            "In Test",
+            "Not Applicable",
+            "Power Off",
+            "Off Line",
+            "Off Duty",
+            "Degraded",
+            "Not Installed",
+            "Install Error",
+            "Power Save - Unknown",
+            "Power Save - Low Power Mode",
+            "Power Save - Standby",
+            "Power Cycle",
+            "Power Save - Warning",
+            "Paused",
+            "Not Ready",
+            "Not Configured",
+            "Quiesced"
+          ],
+          "valueMap": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21"
+          ]
         },
         {
           "name": "Availability",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Other",
+            "Unknown",
+            "Running/Full Power",
+            "Warning",
+            "In Test",
+            "Not Applicable",
+            "Power Off",
+            "Off Line",
+            "Off Duty",
+            "Degraded",
+            "Not Installed",
+            "Install Error",
+            "Power Save - Unknown",
+            "Power Save - Low Power Mode",
+            "Power Save - Standby",
+            "Power Cycle",
+            "Power Save - Warning",
+            "Paused",
+            "Not Ready",
+            "Not Configured",
+            "Quiesced"
+          ],
+          "valueMap": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21"
+          ]
         },
         {
           "name": "AvailableRequestedStates",
           "cimType": 18,
-          "array": true
+          "array": true,
+          "values": [
+            "Enabled",
+            "Disabled",
+            "Shut Down",
+            "Offline",
+            "Test",
+            "Defer",
+            "Quiesce",
+            "Reboot",
+            "Reset",
+            "DMTF Reserved"
+          ],
+          "valueMap": [
+            "2",
+            "3",
+            "4",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            ".."
+          ]
         },
         {
           "name": "Caption",
@@ -4159,7 +8124,25 @@
         },
         {
           "name": "CommunicationStatus",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Not Available",
+            "Communication OK",
+            "Lost Communication",
+            "No Contact",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "..",
+            "0x8000.."
+          ]
         },
         {
           "name": "CreationClassName",
@@ -4172,7 +8155,27 @@
         },
         {
           "name": "DetailedStatus",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Not Available",
+            "No Additional Information",
+            "Stressed",
+            "Predictive Failure",
+            "Non-Recoverable Error",
+            "Supporting Entity in Error",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "..",
+            "0x8000.."
+          ]
         },
         {
           "name": "DeviceID",
@@ -4185,11 +8188,61 @@
         },
         {
           "name": "EnabledDefault",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Enabled",
+            "Disabled",
+            "Not Applicable",
+            "Enabled but Offline",
+            "No Default",
+            "Quiesce",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "2",
+            "3",
+            "5",
+            "6",
+            "7",
+            "9",
+            "..",
+            "32768..65535"
+          ]
         },
         {
           "name": "EnabledState",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Other",
+            "Enabled",
+            "Disabled",
+            "Shutting Down",
+            "Not Applicable",
+            "Enabled but Offline",
+            "In Test",
+            "Deferred",
+            "Quiesce",
+            "Starting",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11..32767",
+            "32768..65535"
+          ]
         },
         {
           "name": "ErrorCleared",
@@ -4201,7 +8254,27 @@
         },
         {
           "name": "HealthState",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "OK",
+            "Degraded/Warning",
+            "Minor failure",
+            "Major failure",
+            "Critical failure",
+            "Non-recoverable error",
+            "DMTF Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "5",
+            "10",
+            "15",
+            "20",
+            "25",
+            "30",
+            ".."
+          ]
         },
         {
           "name": "IdentifyingDescriptions",
@@ -4230,12 +8303,100 @@
         },
         {
           "name": "OperatingStatus",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Not Available",
+            "Servicing",
+            "Starting",
+            "Stopping",
+            "Stopped",
+            "Aborted",
+            "Dormant",
+            "Completed",
+            "Migrating",
+            "Emigrating",
+            "Immigrating",
+            "Snapshotting",
+            "Shutting Down",
+            "In Test",
+            "Transitioning",
+            "In Service",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "..",
+            "0x8000.."
+          ]
         },
         {
           "name": "OperationalStatus",
           "cimType": 18,
-          "array": true
+          "array": true,
+          "values": [
+            "Unknown",
+            "Other",
+            "OK",
+            "Degraded",
+            "Stressed",
+            "Predictive Failure",
+            "Error",
+            "Non-Recoverable Error",
+            "Starting",
+            "Stopping",
+            "Stopped",
+            "In Service",
+            "No Contact",
+            "Lost Communication",
+            "Aborted",
+            "Dormant",
+            "Supporting Entity in Error",
+            "Completed",
+            "Power Mode",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "..",
+            "0x8000.."
+          ]
         },
         {
           "name": "OtherEnabledState",
@@ -4249,7 +8410,27 @@
         {
           "name": "PowerManagementCapabilities",
           "cimType": 18,
-          "array": true
+          "array": true,
+          "values": [
+            "Unknown",
+            "Not Supported",
+            "Disabled",
+            "Enabled",
+            "Power Saving Modes Entered Automatically",
+            "Power State Settable",
+            "Power Cycling Supported",
+            "Timed Power On Supported"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7"
+          ]
         },
         {
           "name": "PowerManagementSupported",
@@ -4261,15 +8442,78 @@
         },
         {
           "name": "PrimaryStatus",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "OK",
+            "Degraded",
+            "Error",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "..",
+            "0x8000.."
+          ]
         },
         {
           "name": "RequestedState",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Enabled",
+            "Disabled",
+            "Shut Down",
+            "No Change",
+            "Offline",
+            "Test",
+            "Deferred",
+            "Quiesce",
+            "Reboot",
+            "Reset",
+            "Not Applicable",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "..",
+            "32768..65535"
+          ]
         },
         {
           "name": "Status",
-          "cimType": 8
+          "cimType": 8,
+          "valueMap": [
+            "OK",
+            "Error",
+            "Degraded",
+            "Unknown",
+            "Pred Fail",
+            "Starting",
+            "Stopping",
+            "Service",
+            "Stressed",
+            "NonRecover",
+            "No Contact",
+            "Lost Comm",
+            "Stopped"
+          ]
         },
         {
           "name": "StatusDescriptions",
@@ -4278,7 +8522,21 @@
         },
         {
           "name": "StatusInfo",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Other",
+            "Unknown",
+            "Enabled",
+            "Disabled",
+            "Not Applicable"
+          ],
+          "valueMap": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ]
         },
         {
           "name": "SystemCreationClassName",
@@ -4300,7 +8558,37 @@
         },
         {
           "name": "TransitioningToState",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Enabled",
+            "Disabled",
+            "Shut Down",
+            "No Change",
+            "Offline",
+            "Test",
+            "Defer",
+            "Quiesce",
+            "Reboot",
+            "Reset",
+            "Not Applicable",
+            "DMTF Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            ".."
+          ]
         }
       ],
       "methods": [
@@ -4401,7 +8689,33 @@
           "in": [
             {
               "name": "RequestedState",
-              "cimType": 18
+              "cimType": 18,
+              "values": [
+                "Enabled",
+                "Disabled",
+                "Shut Down",
+                "Offline",
+                "Test",
+                "Defer",
+                "Quiesce",
+                "Reboot",
+                "Reset",
+                "DMTF Reserved",
+                "Vendor Reserved"
+              ],
+              "valueMap": [
+                "2",
+                "3",
+                "4",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "..",
+                "32768..65535"
+              ]
             },
             {
               "name": "TimeoutPeriod",
@@ -4451,7 +8765,23 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 18
+              "cimType": 18,
+              "values": [
+                "Full Power",
+                "Power Save - Low Power Mode",
+                "Power Save - Standby",
+                "Power Save - Other",
+                "Power Cycle",
+                "Power Off"
+              ],
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+              ]
             },
             {
               "name": "Time",
@@ -4487,7 +8817,21 @@
       "properties": [
         {
           "name": "Access",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Readable",
+            "Writeable",
+            "Read/Write Supported",
+            "DMTF Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            ".."
+          ]
         },
         {
           "name": "Address",
@@ -4536,7 +8880,23 @@
         },
         {
           "name": "ConsumerVisibility",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Passed-Through",
+            "Virtualized",
+            "Not represented",
+            "DMTF reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "2",
+            "3",
+            "4",
+            "..",
+            "32767..65535"
+          ]
         },
         {
           "name": "Description",
@@ -4552,11 +8912,55 @@
         },
         {
           "name": "HostExtentNameFormat",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Other",
+            "SNVM",
+            "NAA",
+            "EUI64",
+            "T10VID",
+            "OS Device Name",
+            "DMTF Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "7",
+            "9",
+            "10",
+            "11",
+            "12",
+            ".."
+          ]
         },
         {
           "name": "HostExtentNameNamespace",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Other",
+            "VPD83Type3",
+            "VPD83Type2",
+            "VPD83Type1",
+            "VPD80",
+            "NodeWWN",
+            "SNVM",
+            "OS Device Namespace",
+            "DMTF Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            ".."
+          ]
         },
         {
           "name": "HostExtentStartingAddress",
@@ -4598,7 +9002,25 @@
         },
         {
           "name": "MappingBehavior",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Not Supported",
+            "Dedicated",
+            "Soft Affinity",
+            "Hard Affinity",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "2",
+            "3",
+            "4",
+            "5",
+            "..",
+            "32767..65535"
+          ]
         },
         {
           "name": "OtherHostExtentNameFormat",
@@ -4634,7 +9056,81 @@
         },
         {
           "name": "ResourceType",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Other",
+            "Computer System",
+            "Processor",
+            "Memory",
+            "IDE Controller",
+            "Parallel SCSI HBA",
+            "FC HBA",
+            "iSCSI HBA",
+            "IB HCA",
+            "Ethernet Adapter",
+            "Other Network Adapter",
+            "I/O Slot",
+            "I/O Device",
+            "Floppy Drive",
+            "CD Drive",
+            "DVD drive",
+            "Disk Drive",
+            "Tape Drive",
+            "Storage Extent",
+            "Other storage device",
+            "Serial port",
+            "Parallel port",
+            "USB Controller",
+            "Graphics controller",
+            "IEEE 1394 Controller",
+            "Partitionable Unit",
+            "Base Partitionable Unit",
+            "Power",
+            "Cooling Capacity",
+            "Ethernet Switch Port",
+            "Logical Disk",
+            "Storage Volume",
+            "Ethernet Connection",
+            "DMTF reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31",
+            "32",
+            "33",
+            "..",
+            "0x8000..0xFFFF"
+          ]
         },
         {
           "name": "SnapshotId",
@@ -4730,7 +9226,17 @@
         },
         {
           "name": "EnhancedSessionModeState",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Allowed and available",
+            "Not allowed",
+            "Allowed but not available"
+          ],
+          "valueMap": [
+            "2",
+            "3",
+            "6"
+          ]
         },
         {
           "name": "GuestOperatingSystem",
@@ -5006,7 +9512,11 @@
         },
         {
           "name": "VirtualSystemSubType",
-          "cimType": 8
+          "cimType": 8,
+          "values": [
+            "Microsoft:Hyper-V:SubType:1",
+            "Microsoft:Hyper-V:SubType:2"
+          ]
         }
       ]
     },
@@ -5056,7 +9566,23 @@
         },
         {
           "name": "ConsumerVisibility",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Passed-Through",
+            "Virtualized",
+            "Not represented",
+            "DMTF reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "2",
+            "3",
+            "4",
+            "..",
+            "32767..65535"
+          ]
         },
         {
           "name": "Description",
@@ -5064,7 +9590,29 @@
         },
         {
           "name": "DesiredVLANEndpointMode",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "DMTF Reserved",
+            "Other",
+            "Access",
+            "Dynamic Auto",
+            "Dynamic Desirable",
+            "Trunk",
+            "Dot1Q Tunnel",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "..",
+            "0x8000..0xFFFF"
+          ]
         },
         {
           "name": "DeviceNamingEnabled",
@@ -5094,7 +9642,25 @@
         },
         {
           "name": "MappingBehavior",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Not Supported",
+            "Dedicated",
+            "Soft Affinity",
+            "Hard Affinity",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "2",
+            "3",
+            "4",
+            "5",
+            "..",
+            "32767..65535"
+          ]
         },
         {
           "name": "MediaType",
@@ -5130,7 +9696,81 @@
         },
         {
           "name": "ResourceType",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Other",
+            "Computer System",
+            "Processor",
+            "Memory",
+            "IDE Controller",
+            "Parallel SCSI HBA",
+            "FC HBA",
+            "iSCSI HBA",
+            "IB HCA",
+            "Ethernet Adapter",
+            "Other Network Adapter",
+            "I/O Slot",
+            "I/O Device",
+            "Floppy Drive",
+            "CD Drive",
+            "DVD drive",
+            "Disk Drive",
+            "Tape Drive",
+            "Storage Extent",
+            "Other storage device",
+            "Serial port",
+            "Parallel port",
+            "USB Controller",
+            "Graphics controller",
+            "IEEE 1394 Controller",
+            "Partitionable Unit",
+            "Base Partitionable Unit",
+            "Power",
+            "Cooling Capacity",
+            "Ethernet Switch Port",
+            "Logical Disk",
+            "Storage Volume",
+            "Ethernet Connection",
+            "DMTF reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31",
+            "32",
+            "33",
+            "..",
+            "0x8000..0xFFFF"
+          ]
         },
         {
           "name": "StaticMacAddress",
@@ -5161,7 +9801,31 @@
         {
           "name": "AvailableRequestedStates",
           "cimType": 18,
-          "array": true
+          "array": true,
+          "values": [
+            "Enabled",
+            "Disabled",
+            "Shut Down",
+            "Offline",
+            "Test",
+            "Defer",
+            "Quiesce",
+            "Reboot",
+            "Reset",
+            "DMTF Reserved"
+          ],
+          "valueMap": [
+            "2",
+            "3",
+            "4",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            ".."
+          ]
         },
         {
           "name": "Caption",
@@ -5169,7 +9833,25 @@
         },
         {
           "name": "CommunicationStatus",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Not Available",
+            "Communication OK",
+            "Lost Communication",
+            "No Contact",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "..",
+            "0x8000.."
+          ]
         },
         {
           "name": "CreationClassName",
@@ -5179,7 +9861,93 @@
         {
           "name": "Dedicated",
           "cimType": 18,
-          "array": true
+          "array": true,
+          "values": [
+            "Not Dedicated",
+            "Unknown",
+            "Other",
+            "Storage",
+            "Router",
+            "Switch",
+            "Layer 3 Switch",
+            "Central Office Switch",
+            "Hub",
+            "Access Server",
+            "Firewall",
+            "Print",
+            "I/O",
+            "Web Caching",
+            "Management",
+            "Block Server",
+            "File Server",
+            "Mobile User Device",
+            "Repeater",
+            "Bridge/Extender",
+            "Gateway",
+            "Storage Virtualizer",
+            "Media Library",
+            "ExtenderNode",
+            "NAS Head",
+            "Self-contained NAS",
+            "UPS",
+            "IP Phone",
+            "Management Controller",
+            "Chassis Manager",
+            "Host-based RAID controller",
+            "Storage Device Enclosure",
+            "Desktop",
+            "Laptop",
+            "Virtual Tape Library",
+            "Virtual Library System",
+            "Network PC/Thin Client",
+            "FC Switch",
+            "Ethernet Switch",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31",
+            "32",
+            "33",
+            "34",
+            "35",
+            "36",
+            "37",
+            "38",
+            "..",
+            "32568..65535"
+          ]
         },
         {
           "name": "Description",
@@ -5187,7 +9955,27 @@
         },
         {
           "name": "DetailedStatus",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Not Available",
+            "No Additional Information",
+            "Stressed",
+            "Predictive Failure",
+            "Non-Recoverable Error",
+            "Supporting Entity in Error",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "..",
+            "0x8000.."
+          ]
         },
         {
           "name": "ElementName",
@@ -5195,15 +9983,85 @@
         },
         {
           "name": "EnabledDefault",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Enabled",
+            "Disabled",
+            "Not Applicable",
+            "Enabled but Offline",
+            "No Default",
+            "Quiesce",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "2",
+            "3",
+            "5",
+            "6",
+            "7",
+            "9",
+            "..",
+            "32768..65535"
+          ]
         },
         {
           "name": "EnabledState",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Other",
+            "Enabled",
+            "Disabled",
+            "Shutting Down",
+            "Not Applicable",
+            "Enabled but Offline",
+            "In Test",
+            "Deferred",
+            "Quiesce",
+            "Starting",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11..32767",
+            "32768..65535"
+          ]
         },
         {
           "name": "HealthState",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "OK",
+            "Degraded/Warning",
+            "Minor failure",
+            "Major failure",
+            "Critical failure",
+            "Non-recoverable error",
+            "DMTF Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "5",
+            "10",
+            "15",
+            "20",
+            "25",
+            "30",
+            ".."
+          ]
         },
         {
           "name": "IdentifyingDescriptions",
@@ -5233,16 +10091,122 @@
         },
         {
           "name": "NameFormat",
-          "cimType": 8
+          "cimType": 8,
+          "valueMap": [
+            "Other",
+            "IP",
+            "Dial",
+            "HID",
+            "NWA",
+            "HWA",
+            "X25",
+            "ISDN",
+            "IPX",
+            "DCC",
+            "ICD",
+            "E.164",
+            "SNA",
+            "OID/OSI",
+            "WWN",
+            "NAA"
+          ]
         },
         {
           "name": "OperatingStatus",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Not Available",
+            "Servicing",
+            "Starting",
+            "Stopping",
+            "Stopped",
+            "Aborted",
+            "Dormant",
+            "Completed",
+            "Migrating",
+            "Emigrating",
+            "Immigrating",
+            "Snapshotting",
+            "Shutting Down",
+            "In Test",
+            "Transitioning",
+            "In Service",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "..",
+            "0x8000.."
+          ]
         },
         {
           "name": "OperationalStatus",
           "cimType": 18,
-          "array": true
+          "array": true,
+          "values": [
+            "Unknown",
+            "Other",
+            "OK",
+            "Degraded",
+            "Stressed",
+            "Predictive Failure",
+            "Error",
+            "Non-Recoverable Error",
+            "Starting",
+            "Stopping",
+            "Stopped",
+            "In Service",
+            "No Contact",
+            "Lost Communication",
+            "Aborted",
+            "Dormant",
+            "Supporting Entity in Error",
+            "Completed",
+            "Power Mode",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "..",
+            "0x8000.."
+          ]
         },
         {
           "name": "OtherDedicatedDescriptions",
@@ -5261,7 +10225,27 @@
         {
           "name": "PowerManagementCapabilities",
           "cimType": 18,
-          "array": true
+          "array": true,
+          "values": [
+            "Unknown",
+            "Not Supported",
+            "Disabled",
+            "Enabled",
+            "Power Saving Modes Entered Automatically",
+            "Power State Settable",
+            "Power Cycling Supported",
+            "Timed Power On Supported"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7"
+          ]
         },
         {
           "name": "PrimaryOwnerContact",
@@ -5273,15 +10257,77 @@
         },
         {
           "name": "PrimaryStatus",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "OK",
+            "Degraded",
+            "Error",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "..",
+            "0x8000.."
+          ]
         },
         {
           "name": "RequestedState",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Enabled",
+            "Disabled",
+            "Shut Down",
+            "No Change",
+            "Offline",
+            "Test",
+            "Deferred",
+            "Quiesce",
+            "Reboot",
+            "Reset",
+            "Not Applicable",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "..",
+            "32768..65535"
+          ]
         },
         {
           "name": "ResetCapability",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Other",
+            "Unknown",
+            "Disabled",
+            "Enabled",
+            "Not Implemented"
+          ],
+          "valueMap": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ]
         },
         {
           "name": "Roles",
@@ -5290,7 +10336,22 @@
         },
         {
           "name": "Status",
-          "cimType": 8
+          "cimType": 8,
+          "valueMap": [
+            "OK",
+            "Error",
+            "Degraded",
+            "Unknown",
+            "Pred Fail",
+            "Starting",
+            "Stopping",
+            "Service",
+            "Stressed",
+            "NonRecover",
+            "No Contact",
+            "Lost Comm",
+            "Stopped"
+          ]
         },
         {
           "name": "StatusDescriptions",
@@ -5303,7 +10364,37 @@
         },
         {
           "name": "TransitioningToState",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Enabled",
+            "Disabled",
+            "Shut Down",
+            "No Change",
+            "Offline",
+            "Test",
+            "Defer",
+            "Quiesce",
+            "Reboot",
+            "Reset",
+            "Not Applicable",
+            "DMTF Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            ".."
+          ]
         }
       ],
       "methods": [
@@ -5312,7 +10403,33 @@
           "in": [
             {
               "name": "RequestedState",
-              "cimType": 18
+              "cimType": 18,
+              "values": [
+                "Enabled",
+                "Disabled",
+                "Shut Down",
+                "Offline",
+                "Test",
+                "Defer",
+                "Quiesce",
+                "Reboot",
+                "Reset",
+                "DMTF Reserved",
+                "Vendor Reserved"
+              ],
+              "valueMap": [
+                "2",
+                "3",
+                "4",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "..",
+                "32768..65535"
+              ]
             },
             {
               "name": "TimeoutPeriod",
@@ -5335,7 +10452,27 @@
           "in": [
             {
               "name": "PowerState",
-              "cimType": 19
+              "cimType": 19,
+              "values": [
+                "Full Power",
+                "Power Save - Low Power Mode",
+                "Power Save - Standby",
+                "Power Save - Other",
+                "Power Cycle",
+                "Power Off",
+                "Hibernate",
+                "Soft Off"
+              ],
+              "valueMap": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8"
+              ]
             },
             {
               "name": "Time",
@@ -5357,7 +10494,31 @@
         {
           "name": "AvailableRequestedStates",
           "cimType": 18,
-          "array": true
+          "array": true,
+          "values": [
+            "Enabled",
+            "Disabled",
+            "Shut Down",
+            "Offline",
+            "Test",
+            "Defer",
+            "Quiesce",
+            "Reboot",
+            "Reset",
+            "DMTF Reserved"
+          ],
+          "valueMap": [
+            "2",
+            "3",
+            "4",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            ".."
+          ]
         },
         {
           "name": "Caption",
@@ -5365,7 +10526,25 @@
         },
         {
           "name": "CommunicationStatus",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Not Available",
+            "Communication OK",
+            "Lost Communication",
+            "No Contact",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "..",
+            "0x8000.."
+          ]
         },
         {
           "name": "CreationClassName",
@@ -5378,7 +10557,27 @@
         },
         {
           "name": "DetailedStatus",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Not Available",
+            "No Additional Information",
+            "Stressed",
+            "Predictive Failure",
+            "Non-Recoverable Error",
+            "Supporting Entity in Error",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "..",
+            "0x8000.."
+          ]
         },
         {
           "name": "ElementName",
@@ -5386,15 +10585,85 @@
         },
         {
           "name": "EnabledDefault",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Enabled",
+            "Disabled",
+            "Not Applicable",
+            "Enabled but Offline",
+            "No Default",
+            "Quiesce",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "2",
+            "3",
+            "5",
+            "6",
+            "7",
+            "9",
+            "..",
+            "32768..65535"
+          ]
         },
         {
           "name": "EnabledState",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Other",
+            "Enabled",
+            "Disabled",
+            "Shutting Down",
+            "Not Applicable",
+            "Enabled but Offline",
+            "In Test",
+            "Deferred",
+            "Quiesce",
+            "Starting",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11..32767",
+            "32768..65535"
+          ]
         },
         {
           "name": "HealthState",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "OK",
+            "Degraded/Warning",
+            "Minor failure",
+            "Major failure",
+            "Critical failure",
+            "Non-recoverable error",
+            "DMTF Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "5",
+            "10",
+            "15",
+            "20",
+            "25",
+            "30",
+            ".."
+          ]
         },
         {
           "name": "InstallDate",
@@ -5411,12 +10680,100 @@
         },
         {
           "name": "OperatingStatus",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Not Available",
+            "Servicing",
+            "Starting",
+            "Stopping",
+            "Stopped",
+            "Aborted",
+            "Dormant",
+            "Completed",
+            "Migrating",
+            "Emigrating",
+            "Immigrating",
+            "Snapshotting",
+            "Shutting Down",
+            "In Test",
+            "Transitioning",
+            "In Service",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "..",
+            "0x8000.."
+          ]
         },
         {
           "name": "OperationalStatus",
           "cimType": 18,
-          "array": true
+          "array": true,
+          "values": [
+            "Unknown",
+            "Other",
+            "OK",
+            "Degraded",
+            "Stressed",
+            "Predictive Failure",
+            "Error",
+            "Non-Recoverable Error",
+            "Starting",
+            "Stopping",
+            "Stopped",
+            "In Service",
+            "No Contact",
+            "Lost Communication",
+            "Aborted",
+            "Dormant",
+            "Supporting Entity in Error",
+            "Completed",
+            "Power Mode",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "..",
+            "0x8000.."
+          ]
         },
         {
           "name": "OtherEnabledState",
@@ -5432,15 +10789,67 @@
         },
         {
           "name": "PrimaryStatus",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "OK",
+            "Degraded",
+            "Error",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "..",
+            "0x8000.."
+          ]
         },
         {
           "name": "RequestedState",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Enabled",
+            "Disabled",
+            "Shut Down",
+            "No Change",
+            "Offline",
+            "Test",
+            "Deferred",
+            "Quiesce",
+            "Reboot",
+            "Reset",
+            "Not Applicable",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "..",
+            "32768..65535"
+          ]
         },
         {
           "name": "StartMode",
-          "cimType": 8
+          "cimType": 8,
+          "valueMap": [
+            "Automatic",
+            "Manual"
+          ]
         },
         {
           "name": "Started",
@@ -5448,7 +10857,22 @@
         },
         {
           "name": "Status",
-          "cimType": 8
+          "cimType": 8,
+          "valueMap": [
+            "OK",
+            "Error",
+            "Degraded",
+            "Unknown",
+            "Pred Fail",
+            "Starting",
+            "Stopping",
+            "Service",
+            "Stressed",
+            "NonRecover",
+            "No Contact",
+            "Lost Comm",
+            "Stopped"
+          ]
         },
         {
           "name": "StatusDescriptions",
@@ -5471,7 +10895,37 @@
         },
         {
           "name": "TransitioningToState",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Enabled",
+            "Disabled",
+            "Shut Down",
+            "No Change",
+            "Offline",
+            "Test",
+            "Defer",
+            "Quiesce",
+            "Reboot",
+            "Reset",
+            "Not Applicable",
+            "DMTF Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            ".."
+          ]
         }
       ],
       "methods": [
@@ -5698,7 +11152,33 @@
           "in": [
             {
               "name": "RequestedState",
-              "cimType": 18
+              "cimType": 18,
+              "values": [
+                "Enabled",
+                "Disabled",
+                "Shut Down",
+                "Offline",
+                "Test",
+                "Defer",
+                "Quiesce",
+                "Reboot",
+                "Reset",
+                "DMTF Reserved",
+                "Vendor Reserved"
+              ],
+              "valueMap": [
+                "2",
+                "3",
+                "4",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "..",
+                "32768..65535"
+              ]
             },
             {
               "name": "TimeoutPeriod",
@@ -5750,15 +11230,51 @@
         },
         {
           "name": "AutomaticRecoveryAction",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "None",
+            "Restart",
+            "Revert to snapshot",
+            "DMTF Reserved"
+          ],
+          "valueMap": [
+            "2",
+            "3",
+            "4",
+            ".."
+          ]
         },
         {
           "name": "AutomaticShutdownAction",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Turn Off",
+            "Save state",
+            "Shutdown",
+            "DMTF Reserved"
+          ],
+          "valueMap": [
+            "2",
+            "3",
+            "4",
+            ".."
+          ]
         },
         {
           "name": "AutomaticStartupAction",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "None",
+            "Restart if previously active",
+            "Always startup",
+            "DMTF Reserved"
+          ],
+          "valueMap": [
+            "2",
+            "3",
+            "4",
+            ".."
+          ]
         },
         {
           "name": "AutomaticStartupActionDelay",
@@ -5893,7 +11409,31 @@
         {
           "name": "AvailableRequestedStates",
           "cimType": 18,
-          "array": true
+          "array": true,
+          "values": [
+            "Enabled",
+            "Disabled",
+            "Shut Down",
+            "Offline",
+            "Test",
+            "Defer",
+            "Quiesce",
+            "Reboot",
+            "Reset",
+            "DMTF Reserved"
+          ],
+          "valueMap": [
+            "2",
+            "3",
+            "4",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            ".."
+          ]
         },
         {
           "name": "Caption",
@@ -5901,7 +11441,25 @@
         },
         {
           "name": "CommunicationStatus",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Not Available",
+            "Communication OK",
+            "Lost Communication",
+            "No Contact",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "..",
+            "0x8000.."
+          ]
         },
         {
           "name": "CreationClassName",
@@ -5914,7 +11472,27 @@
         },
         {
           "name": "DetailedStatus",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Not Available",
+            "No Additional Information",
+            "Stressed",
+            "Predictive Failure",
+            "Non-Recoverable Error",
+            "Supporting Entity in Error",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "..",
+            "0x8000.."
+          ]
         },
         {
           "name": "ElementName",
@@ -5922,15 +11500,85 @@
         },
         {
           "name": "EnabledDefault",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Enabled",
+            "Disabled",
+            "Not Applicable",
+            "Enabled but Offline",
+            "No Default",
+            "Quiesce",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "2",
+            "3",
+            "5",
+            "6",
+            "7",
+            "9",
+            "..",
+            "32768..65535"
+          ]
         },
         {
           "name": "EnabledState",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Other",
+            "Enabled",
+            "Disabled",
+            "Shutting Down",
+            "Not Applicable",
+            "Enabled but Offline",
+            "In Test",
+            "Deferred",
+            "Quiesce",
+            "Starting",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11..32767",
+            "32768..65535"
+          ]
         },
         {
           "name": "HealthState",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "OK",
+            "Degraded/Warning",
+            "Minor failure",
+            "Major failure",
+            "Critical failure",
+            "Non-recoverable error",
+            "DMTF Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "5",
+            "10",
+            "15",
+            "20",
+            "25",
+            "30",
+            ".."
+          ]
         },
         {
           "name": "InstallDate",
@@ -5947,12 +11595,100 @@
         },
         {
           "name": "OperatingStatus",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Not Available",
+            "Servicing",
+            "Starting",
+            "Stopping",
+            "Stopped",
+            "Aborted",
+            "Dormant",
+            "Completed",
+            "Migrating",
+            "Emigrating",
+            "Immigrating",
+            "Snapshotting",
+            "Shutting Down",
+            "In Test",
+            "Transitioning",
+            "In Service",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "..",
+            "0x8000.."
+          ]
         },
         {
           "name": "OperationalStatus",
           "cimType": 18,
-          "array": true
+          "array": true,
+          "values": [
+            "Unknown",
+            "Other",
+            "OK",
+            "Degraded",
+            "Stressed",
+            "Predictive Failure",
+            "Error",
+            "Non-Recoverable Error",
+            "Starting",
+            "Stopping",
+            "Stopped",
+            "In Service",
+            "No Contact",
+            "Lost Communication",
+            "Aborted",
+            "Dormant",
+            "Supporting Entity in Error",
+            "Completed",
+            "Power Mode",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "..",
+            "0x8000.."
+          ]
         },
         {
           "name": "OtherEnabledState",
@@ -5968,15 +11704,67 @@
         },
         {
           "name": "PrimaryStatus",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "OK",
+            "Degraded",
+            "Error",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "..",
+            "0x8000.."
+          ]
         },
         {
           "name": "RequestedState",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Enabled",
+            "Disabled",
+            "Shut Down",
+            "No Change",
+            "Offline",
+            "Test",
+            "Deferred",
+            "Quiesce",
+            "Reboot",
+            "Reset",
+            "Not Applicable",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "..",
+            "32768..65535"
+          ]
         },
         {
           "name": "StartMode",
-          "cimType": 8
+          "cimType": 8,
+          "valueMap": [
+            "Automatic",
+            "Manual"
+          ]
         },
         {
           "name": "Started",
@@ -5984,7 +11772,22 @@
         },
         {
           "name": "Status",
-          "cimType": 8
+          "cimType": 8,
+          "valueMap": [
+            "OK",
+            "Error",
+            "Degraded",
+            "Unknown",
+            "Pred Fail",
+            "Starting",
+            "Stopping",
+            "Service",
+            "Stressed",
+            "NonRecover",
+            "No Contact",
+            "Lost Comm",
+            "Stopped"
+          ]
         },
         {
           "name": "StatusDescriptions",
@@ -6007,7 +11810,37 @@
         },
         {
           "name": "TransitioningToState",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Enabled",
+            "Disabled",
+            "Shut Down",
+            "No Change",
+            "Offline",
+            "Test",
+            "Defer",
+            "Quiesce",
+            "Reboot",
+            "Reset",
+            "Not Applicable",
+            "DMTF Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            ".."
+          ]
         }
       ],
       "methods": [
@@ -6079,7 +11912,15 @@
             },
             {
               "name": "SecretEncoding",
-              "cimType": 17
+              "cimType": 17,
+              "values": [
+                "Printable ASCII",
+                "Binary"
+              ],
+              "valueMap": [
+                "1",
+                "2"
+              ]
             },
             {
               "name": "SharedSecret",
@@ -6446,7 +12287,80 @@
             {
               "name": "RequestedInformation",
               "cimType": 19,
-              "array": true
+              "array": true,
+              "values": [
+                "Name",
+                "Element Name",
+                "Creation Time",
+                "Notes",
+                "Number of Processors",
+                "Small Thumbnail Image (80x60)",
+                "Medium Thumbnail Image (160x120)",
+                "Large Thumbnail Image (320x240)",
+                "AllocatedGPU",
+                "VirtualSwitchNames",
+                "Version",
+                "Shielded",
+                "EnabledState",
+                "ProcessorLoad",
+                "ProcessorLoadHistory",
+                "MemoryUsage",
+                "Heartbeat",
+                "Uptime",
+                "GuestOperatingSystem",
+                "Snapshots",
+                "AsynchronousTasks",
+                "HealthState",
+                "OperationalStatus",
+                "StatusDescriptions",
+                "MemoryAvailable",
+                "AvailableMemoryBuffer",
+                "Replication Mode",
+                "Replication State",
+                "Replication HealthTest Replica System",
+                "Application Health",
+                "SwapFilesInUse",
+                "IntegrationServicesVersionState",
+                "MemorySpansPhysicalNumaNodes",
+                "OtherEnabledState"
+              ],
+              "valueMap": [
+                "0",
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "100",
+                "101",
+                "102",
+                "103",
+                "104",
+                "105",
+                "106",
+                "107",
+                "108",
+                "109",
+                "110",
+                "111",
+                "112",
+                "113",
+                "114",
+                "115",
+                "116",
+                "117",
+                "120",
+                "121",
+                "123",
+                "132",
+                "133"
+              ]
             }
           ],
           "out": [
@@ -6897,7 +12811,33 @@
           "in": [
             {
               "name": "RequestedState",
-              "cimType": 18
+              "cimType": 18,
+              "values": [
+                "Enabled",
+                "Disabled",
+                "Shut Down",
+                "Offline",
+                "Test",
+                "Defer",
+                "Quiesce",
+                "Reboot",
+                "Reset",
+                "DMTF Reserved",
+                "Vendor Reserved"
+              ],
+              "valueMap": [
+                "2",
+                "3",
+                "4",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "..",
+                "32768..65535"
+              ]
             },
             {
               "name": "TimeoutPeriod",
@@ -7113,11 +13053,35 @@
         },
         {
           "name": "AutomaticRecoveryAction",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "None",
+            "Restart",
+            "Revert to snapshot",
+            "DMTF Reserved"
+          ],
+          "valueMap": [
+            "2",
+            "3",
+            "4",
+            ".."
+          ]
         },
         {
           "name": "AutomaticShutdownAction",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Turn Off",
+            "Save state",
+            "Shutdown",
+            "DMTF Reserved"
+          ],
+          "valueMap": [
+            "2",
+            "3",
+            "4",
+            ".."
+          ]
         },
         {
           "name": "AutomaticSnapshotsEnabled",
@@ -7125,7 +13089,19 @@
         },
         {
           "name": "AutomaticStartupAction",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "None",
+            "Restart if previously active",
+            "Always startup",
+            "DMTF Reserved"
+          ],
+          "valueMap": [
+            "2",
+            "3",
+            "4",
+            ".."
+          ]
         },
         {
           "name": "AutomaticStartupActionDelay",
@@ -7579,7 +13555,31 @@
         {
           "name": "AvailableRequestedStates",
           "cimType": 18,
-          "array": true
+          "array": true,
+          "values": [
+            "Enabled",
+            "Disabled",
+            "Shut Down",
+            "Offline",
+            "Test",
+            "Defer",
+            "Quiesce",
+            "Reboot",
+            "Reset",
+            "DMTF Reserved"
+          ],
+          "valueMap": [
+            "2",
+            "3",
+            "4",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            ".."
+          ]
         },
         {
           "name": "Caption",
@@ -7587,7 +13587,25 @@
         },
         {
           "name": "CommunicationStatus",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Not Available",
+            "Communication OK",
+            "Lost Communication",
+            "No Contact",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "..",
+            "0x8000.."
+          ]
         },
         {
           "name": "CreationClassName",
@@ -7600,7 +13618,27 @@
         },
         {
           "name": "DetailedStatus",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Not Available",
+            "No Additional Information",
+            "Stressed",
+            "Predictive Failure",
+            "Non-Recoverable Error",
+            "Supporting Entity in Error",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "..",
+            "0x8000.."
+          ]
         },
         {
           "name": "ElementName",
@@ -7608,15 +13646,85 @@
         },
         {
           "name": "EnabledDefault",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Enabled",
+            "Disabled",
+            "Not Applicable",
+            "Enabled but Offline",
+            "No Default",
+            "Quiesce",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "2",
+            "3",
+            "5",
+            "6",
+            "7",
+            "9",
+            "..",
+            "32768..65535"
+          ]
         },
         {
           "name": "EnabledState",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Other",
+            "Enabled",
+            "Disabled",
+            "Shutting Down",
+            "Not Applicable",
+            "Enabled but Offline",
+            "In Test",
+            "Deferred",
+            "Quiesce",
+            "Starting",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11..32767",
+            "32768..65535"
+          ]
         },
         {
           "name": "HealthState",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "OK",
+            "Degraded/Warning",
+            "Minor failure",
+            "Major failure",
+            "Critical failure",
+            "Non-recoverable error",
+            "DMTF Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "5",
+            "10",
+            "15",
+            "20",
+            "25",
+            "30",
+            ".."
+          ]
         },
         {
           "name": "InstallDate",
@@ -7633,12 +13741,100 @@
         },
         {
           "name": "OperatingStatus",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Not Available",
+            "Servicing",
+            "Starting",
+            "Stopping",
+            "Stopped",
+            "Aborted",
+            "Dormant",
+            "Completed",
+            "Migrating",
+            "Emigrating",
+            "Immigrating",
+            "Snapshotting",
+            "Shutting Down",
+            "In Test",
+            "Transitioning",
+            "In Service",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "..",
+            "0x8000.."
+          ]
         },
         {
           "name": "OperationalStatus",
           "cimType": 18,
-          "array": true
+          "array": true,
+          "values": [
+            "Unknown",
+            "Other",
+            "OK",
+            "Degraded",
+            "Stressed",
+            "Predictive Failure",
+            "Error",
+            "Non-Recoverable Error",
+            "Starting",
+            "Stopping",
+            "Stopped",
+            "In Service",
+            "No Contact",
+            "Lost Communication",
+            "Aborted",
+            "Dormant",
+            "Supporting Entity in Error",
+            "Completed",
+            "Power Mode",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "..",
+            "0x8000.."
+          ]
         },
         {
           "name": "OtherEnabledState",
@@ -7654,15 +13850,67 @@
         },
         {
           "name": "PrimaryStatus",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "OK",
+            "Degraded",
+            "Error",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "..",
+            "0x8000.."
+          ]
         },
         {
           "name": "RequestedState",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Enabled",
+            "Disabled",
+            "Shut Down",
+            "No Change",
+            "Offline",
+            "Test",
+            "Deferred",
+            "Quiesce",
+            "Reboot",
+            "Reset",
+            "Not Applicable",
+            "DMTF Reserved",
+            "Vendor Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "..",
+            "32768..65535"
+          ]
         },
         {
           "name": "StartMode",
-          "cimType": 8
+          "cimType": 8,
+          "valueMap": [
+            "Automatic",
+            "Manual"
+          ]
         },
         {
           "name": "Started",
@@ -7670,7 +13918,22 @@
         },
         {
           "name": "Status",
-          "cimType": 8
+          "cimType": 8,
+          "valueMap": [
+            "OK",
+            "Error",
+            "Degraded",
+            "Unknown",
+            "Pred Fail",
+            "Starting",
+            "Stopping",
+            "Service",
+            "Stressed",
+            "NonRecover",
+            "No Contact",
+            "Lost Comm",
+            "Stopped"
+          ]
         },
         {
           "name": "StatusDescriptions",
@@ -7693,7 +13956,37 @@
         },
         {
           "name": "TransitioningToState",
-          "cimType": 18
+          "cimType": 18,
+          "values": [
+            "Unknown",
+            "Enabled",
+            "Disabled",
+            "Shut Down",
+            "No Change",
+            "Offline",
+            "Test",
+            "Defer",
+            "Quiesce",
+            "Reboot",
+            "Reset",
+            "Not Applicable",
+            "DMTF Reserved"
+          ],
+          "valueMap": [
+            "0",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            ".."
+          ]
         }
       ],
       "methods": [
@@ -7779,7 +14072,19 @@
             },
             {
               "name": "SnapshotType",
-              "cimType": 18
+              "cimType": 18,
+              "values": [
+                "Full Snapshot",
+                "Disk Snapshot",
+                "DMTF Reserved",
+                "Vendor Specific"
+              ],
+              "valueMap": [
+                "2",
+                "3",
+                "..",
+                "32768..65535"
+              ]
             },
             {
               "name": "ResultingSnapshot",
@@ -7844,7 +14149,33 @@
           "in": [
             {
               "name": "RequestedState",
-              "cimType": 18
+              "cimType": 18,
+              "values": [
+                "Enabled",
+                "Disabled",
+                "Shut Down",
+                "Offline",
+                "Test",
+                "Defer",
+                "Quiesce",
+                "Reboot",
+                "Reset",
+                "DMTF Reserved",
+                "Vendor Reserved"
+              ],
+              "valueMap": [
+                "2",
+                "3",
+                "4",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "..",
+                "32768..65535"
+              ]
             },
             {
               "name": "TimeoutPeriod",

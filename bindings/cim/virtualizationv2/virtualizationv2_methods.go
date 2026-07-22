@@ -4,7 +4,11 @@
 
 package virtualizationv2
 
-import wmi "github.com/deploymenttheory/go-bindings-wmi/runtime/wmi"
+import (
+	"context"
+
+	wmi "github.com/deploymenttheory/go-bindings-wmi/runtime/wmi"
+)
 
 // MsvmComputerSystemInjectNonMaskableInterruptResult holds the out-parameters of Msvm_ComputerSystem.InjectNonMaskableInterrupt.
 type MsvmComputerSystemInjectNonMaskableInterruptResult struct {
@@ -12,9 +16,17 @@ type MsvmComputerSystemInjectNonMaskableInterruptResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmComputerSystemInjectNonMaskableInterruptResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_ComputerSystem.InjectNonMaskableInterrupt", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmComputerSystemInjectNonMaskableInterrupt invokes Msvm_ComputerSystem.InjectNonMaskableInterrupt on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MsvmComputerSystemInjectNonMaskableInterrupt(svc *wmi.Service, objectPath string) (*MsvmComputerSystemInjectNonMaskableInterruptResult, error) {
 	row, err := svc.ExecMethod(objectPath, "InjectNonMaskableInterrupt", nil)
 	if err != nil {
@@ -32,13 +44,21 @@ type MsvmComputerSystemInjectNonMaskableInterruptExResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmComputerSystemInjectNonMaskableInterruptExResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_ComputerSystem.InjectNonMaskableInterruptEx", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmComputerSystemInjectNonMaskableInterruptEx invokes Msvm_ComputerSystem.InjectNonMaskableInterruptEx on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmComputerSystemInjectNonMaskableInterruptEx(svc *wmi.Service, objectPath string, vtl uint8) (*MsvmComputerSystemInjectNonMaskableInterruptExResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmComputerSystemInjectNonMaskableInterruptEx(svc *wmi.Service, objectPath string, vtl *MsvmComputerSystemInjectNonMaskableInterruptExVtl) (*MsvmComputerSystemInjectNonMaskableInterruptExResult, error) {
 	in := map[string]any{}
-	if vtl != 0 {
-		in["Vtl"] = vtl
+	if vtl != nil {
+		in["Vtl"] = uint8(*vtl)
 	}
 	row, err := svc.ExecMethod(objectPath, "InjectNonMaskableInterruptEx", in)
 	if err != nil {
@@ -56,13 +76,21 @@ type MsvmComputerSystemRequestCustomRestoreResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmComputerSystemRequestCustomRestoreResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_ComputerSystem.RequestCustomRestore", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmComputerSystemRequestCustomRestore invokes Msvm_ComputerSystem.RequestCustomRestore on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmComputerSystemRequestCustomRestore(svc *wmi.Service, objectPath string, restoreSettings string) (*MsvmComputerSystemRequestCustomRestoreResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmComputerSystemRequestCustomRestore(svc *wmi.Service, objectPath string, restoreSettings *string) (*MsvmComputerSystemRequestCustomRestoreResult, error) {
 	in := map[string]any{}
-	if restoreSettings != "" {
-		in["RestoreSettings"] = restoreSettings
+	if restoreSettings != nil {
+		in["RestoreSettings"] = *restoreSettings
 	}
 	row, err := svc.ExecMethod(objectPath, "RequestCustomRestore", in)
 	if err != nil {
@@ -80,16 +108,24 @@ type MsvmComputerSystemRequestReplicationStateChangeResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmComputerSystemRequestReplicationStateChangeResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_ComputerSystem.RequestReplicationStateChange", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmComputerSystemRequestReplicationStateChange invokes Msvm_ComputerSystem.RequestReplicationStateChange on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmComputerSystemRequestReplicationStateChange(svc *wmi.Service, objectPath string, requestedState uint16, timeoutPeriod string) (*MsvmComputerSystemRequestReplicationStateChangeResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmComputerSystemRequestReplicationStateChange(svc *wmi.Service, objectPath string, requestedState *MsvmComputerSystemRequestReplicationStateChangeRequestedState, timeoutPeriod *string) (*MsvmComputerSystemRequestReplicationStateChangeResult, error) {
 	in := map[string]any{}
-	if requestedState != 0 {
-		in["RequestedState"] = requestedState
+	if requestedState != nil {
+		in["RequestedState"] = uint16(*requestedState)
 	}
-	if timeoutPeriod != "" {
-		in["TimeoutPeriod"] = timeoutPeriod
+	if timeoutPeriod != nil {
+		in["TimeoutPeriod"] = *timeoutPeriod
 	}
 	row, err := svc.ExecMethod(objectPath, "RequestReplicationStateChange", in)
 	if err != nil {
@@ -107,19 +143,27 @@ type MsvmComputerSystemRequestReplicationStateChangeExResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmComputerSystemRequestReplicationStateChangeExResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_ComputerSystem.RequestReplicationStateChangeEx", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmComputerSystemRequestReplicationStateChangeEx invokes Msvm_ComputerSystem.RequestReplicationStateChangeEx on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmComputerSystemRequestReplicationStateChangeEx(svc *wmi.Service, objectPath string, replicationRelationship string, requestedState uint16, timeoutPeriod string) (*MsvmComputerSystemRequestReplicationStateChangeExResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmComputerSystemRequestReplicationStateChangeEx(svc *wmi.Service, objectPath string, replicationRelationship *string, requestedState *MsvmComputerSystemRequestReplicationStateChangeExRequestedState, timeoutPeriod *string) (*MsvmComputerSystemRequestReplicationStateChangeExResult, error) {
 	in := map[string]any{}
-	if replicationRelationship != "" {
-		in["ReplicationRelationship"] = replicationRelationship
+	if replicationRelationship != nil {
+		in["ReplicationRelationship"] = *replicationRelationship
 	}
-	if requestedState != 0 {
-		in["RequestedState"] = requestedState
+	if requestedState != nil {
+		in["RequestedState"] = uint16(*requestedState)
 	}
-	if timeoutPeriod != "" {
-		in["TimeoutPeriod"] = timeoutPeriod
+	if timeoutPeriod != nil {
+		in["TimeoutPeriod"] = *timeoutPeriod
 	}
 	row, err := svc.ExecMethod(objectPath, "RequestReplicationStateChangeEx", in)
 	if err != nil {
@@ -137,16 +181,24 @@ type MsvmComputerSystemRequestStateChangeResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmComputerSystemRequestStateChangeResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_ComputerSystem.RequestStateChange", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmComputerSystemRequestStateChange invokes Msvm_ComputerSystem.RequestStateChange on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmComputerSystemRequestStateChange(svc *wmi.Service, objectPath string, requestedState uint16, timeoutPeriod string) (*MsvmComputerSystemRequestStateChangeResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmComputerSystemRequestStateChange(svc *wmi.Service, objectPath string, requestedState *MsvmComputerSystemRequestStateChangeRequestedState, timeoutPeriod *string) (*MsvmComputerSystemRequestStateChangeResult, error) {
 	in := map[string]any{}
-	if requestedState != 0 {
-		in["RequestedState"] = requestedState
+	if requestedState != nil {
+		in["RequestedState"] = uint16(*requestedState)
 	}
-	if timeoutPeriod != "" {
-		in["TimeoutPeriod"] = timeoutPeriod
+	if timeoutPeriod != nil {
+		in["TimeoutPeriod"] = *timeoutPeriod
 	}
 	row, err := svc.ExecMethod(objectPath, "RequestStateChange", in)
 	if err != nil {
@@ -163,16 +215,26 @@ type MsvmComputerSystemSetPowerStateResult struct {
 	ReturnValue uint32
 }
 
-// MsvmComputerSystemSetPowerState invokes Msvm_ComputerSystem.SetPowerState on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmComputerSystemSetPowerState(svc *wmi.Service, objectPath string, powerState uint32, time string) (*MsvmComputerSystemSetPowerStateResult, error) {
-	in := map[string]any{}
-	if powerState != 0 {
-		in["PowerState"] = powerState
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MsvmComputerSystemSetPowerStateResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
 	}
-	if time != "" {
-		in["Time"] = time
+	return &wmi.JobError{What: "Msvm_ComputerSystem.SetPowerState", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MsvmComputerSystemSetPowerState invokes Msvm_ComputerSystem.SetPowerState on the instance at objectPath
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmComputerSystemSetPowerState(svc *wmi.Service, objectPath string, powerState *MsvmComputerSystemSetPowerStatePowerState, time *string) (*MsvmComputerSystemSetPowerStateResult, error) {
+	in := map[string]any{}
+	if powerState != nil {
+		in["PowerState"] = uint32(*powerState)
+	}
+	if time != nil {
+		in["Time"] = *time
 	}
 	row, err := svc.ExecMethod(objectPath, "SetPowerState", in)
 	if err != nil {
@@ -189,9 +251,19 @@ type MsvmConcreteJobGetErrorResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MsvmConcreteJobGetErrorResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "Msvm_ConcreteJob.GetError", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MsvmConcreteJobGetError invokes Msvm_ConcreteJob.GetError on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MsvmConcreteJobGetError(svc *wmi.Service, objectPath string) (*MsvmConcreteJobGetErrorResult, error) {
 	row, err := svc.ExecMethod(objectPath, "GetError", nil)
 	if err != nil {
@@ -209,9 +281,19 @@ type MsvmConcreteJobGetErrorExResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MsvmConcreteJobGetErrorExResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "Msvm_ConcreteJob.GetErrorEx", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MsvmConcreteJobGetErrorEx invokes Msvm_ConcreteJob.GetErrorEx on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MsvmConcreteJobGetErrorEx(svc *wmi.Service, objectPath string) (*MsvmConcreteJobGetErrorExResult, error) {
 	row, err := svc.ExecMethod(objectPath, "GetErrorEx", nil)
 	if err != nil {
@@ -228,13 +310,23 @@ type MsvmConcreteJobKillJobResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MsvmConcreteJobKillJobResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "Msvm_ConcreteJob.KillJob", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MsvmConcreteJobKillJob invokes Msvm_ConcreteJob.KillJob on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmConcreteJobKillJob(svc *wmi.Service, objectPath string, deleteOnKill bool) (*MsvmConcreteJobKillJobResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmConcreteJobKillJob(svc *wmi.Service, objectPath string, deleteOnKill *bool) (*MsvmConcreteJobKillJobResult, error) {
 	in := map[string]any{}
-	if deleteOnKill {
-		in["DeleteOnKill"] = deleteOnKill
+	if deleteOnKill != nil {
+		in["DeleteOnKill"] = *deleteOnKill
 	}
 	row, err := svc.ExecMethod(objectPath, "KillJob", in)
 	if err != nil {
@@ -250,16 +342,26 @@ type MsvmConcreteJobRequestStateChangeResult struct {
 	ReturnValue uint32
 }
 
-// MsvmConcreteJobRequestStateChange invokes Msvm_ConcreteJob.RequestStateChange on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmConcreteJobRequestStateChange(svc *wmi.Service, objectPath string, requestedState uint16, timeoutPeriod string) (*MsvmConcreteJobRequestStateChangeResult, error) {
-	in := map[string]any{}
-	if requestedState != 0 {
-		in["RequestedState"] = requestedState
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MsvmConcreteJobRequestStateChangeResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
 	}
-	if timeoutPeriod != "" {
-		in["TimeoutPeriod"] = timeoutPeriod
+	return &wmi.JobError{What: "Msvm_ConcreteJob.RequestStateChange", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MsvmConcreteJobRequestStateChange invokes Msvm_ConcreteJob.RequestStateChange on the instance at objectPath
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmConcreteJobRequestStateChange(svc *wmi.Service, objectPath string, requestedState *MsvmConcreteJobRequestStateChangeRequestedState, timeoutPeriod *string) (*MsvmConcreteJobRequestStateChangeResult, error) {
+	in := map[string]any{}
+	if requestedState != nil {
+		in["RequestedState"] = uint16(*requestedState)
+	}
+	if timeoutPeriod != nil {
+		in["TimeoutPeriod"] = *timeoutPeriod
 	}
 	row, err := svc.ExecMethod(objectPath, "RequestStateChange", in)
 	if err != nil {
@@ -275,13 +377,23 @@ type MsvmHeartbeatComponentEnableDeviceResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MsvmHeartbeatComponentEnableDeviceResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "Msvm_HeartbeatComponent.EnableDevice", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MsvmHeartbeatComponentEnableDevice invokes Msvm_HeartbeatComponent.EnableDevice on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmHeartbeatComponentEnableDevice(svc *wmi.Service, objectPath string, enabled bool) (*MsvmHeartbeatComponentEnableDeviceResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmHeartbeatComponentEnableDevice(svc *wmi.Service, objectPath string, enabled *bool) (*MsvmHeartbeatComponentEnableDeviceResult, error) {
 	in := map[string]any{}
-	if enabled {
-		in["Enabled"] = enabled
+	if enabled != nil {
+		in["Enabled"] = *enabled
 	}
 	row, err := svc.ExecMethod(objectPath, "EnableDevice", in)
 	if err != nil {
@@ -297,13 +409,23 @@ type MsvmHeartbeatComponentOnlineDeviceResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MsvmHeartbeatComponentOnlineDeviceResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "Msvm_HeartbeatComponent.OnlineDevice", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MsvmHeartbeatComponentOnlineDevice invokes Msvm_HeartbeatComponent.OnlineDevice on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmHeartbeatComponentOnlineDevice(svc *wmi.Service, objectPath string, online bool) (*MsvmHeartbeatComponentOnlineDeviceResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmHeartbeatComponentOnlineDevice(svc *wmi.Service, objectPath string, online *bool) (*MsvmHeartbeatComponentOnlineDeviceResult, error) {
 	in := map[string]any{}
-	if online {
-		in["Online"] = online
+	if online != nil {
+		in["Online"] = *online
 	}
 	row, err := svc.ExecMethod(objectPath, "OnlineDevice", in)
 	if err != nil {
@@ -319,13 +441,23 @@ type MsvmHeartbeatComponentQuiesceDeviceResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MsvmHeartbeatComponentQuiesceDeviceResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "Msvm_HeartbeatComponent.QuiesceDevice", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MsvmHeartbeatComponentQuiesceDevice invokes Msvm_HeartbeatComponent.QuiesceDevice on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmHeartbeatComponentQuiesceDevice(svc *wmi.Service, objectPath string, quiesce bool) (*MsvmHeartbeatComponentQuiesceDeviceResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmHeartbeatComponentQuiesceDevice(svc *wmi.Service, objectPath string, quiesce *bool) (*MsvmHeartbeatComponentQuiesceDeviceResult, error) {
 	in := map[string]any{}
-	if quiesce {
-		in["Quiesce"] = quiesce
+	if quiesce != nil {
+		in["Quiesce"] = *quiesce
 	}
 	row, err := svc.ExecMethod(objectPath, "QuiesceDevice", in)
 	if err != nil {
@@ -342,16 +474,24 @@ type MsvmHeartbeatComponentRequestStateChangeResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmHeartbeatComponentRequestStateChangeResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_HeartbeatComponent.RequestStateChange", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmHeartbeatComponentRequestStateChange invokes Msvm_HeartbeatComponent.RequestStateChange on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmHeartbeatComponentRequestStateChange(svc *wmi.Service, objectPath string, requestedState uint16, timeoutPeriod string) (*MsvmHeartbeatComponentRequestStateChangeResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmHeartbeatComponentRequestStateChange(svc *wmi.Service, objectPath string, requestedState *MsvmHeartbeatComponentRequestStateChangeRequestedState, timeoutPeriod *string) (*MsvmHeartbeatComponentRequestStateChangeResult, error) {
 	in := map[string]any{}
-	if requestedState != 0 {
-		in["RequestedState"] = requestedState
+	if requestedState != nil {
+		in["RequestedState"] = uint16(*requestedState)
 	}
-	if timeoutPeriod != "" {
-		in["TimeoutPeriod"] = timeoutPeriod
+	if timeoutPeriod != nil {
+		in["TimeoutPeriod"] = *timeoutPeriod
 	}
 	row, err := svc.ExecMethod(objectPath, "RequestStateChange", in)
 	if err != nil {
@@ -368,9 +508,19 @@ type MsvmHeartbeatComponentResetResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MsvmHeartbeatComponentResetResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "Msvm_HeartbeatComponent.Reset", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MsvmHeartbeatComponentReset invokes Msvm_HeartbeatComponent.Reset on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MsvmHeartbeatComponentReset(svc *wmi.Service, objectPath string) (*MsvmHeartbeatComponentResetResult, error) {
 	row, err := svc.ExecMethod(objectPath, "Reset", nil)
 	if err != nil {
@@ -386,9 +536,19 @@ type MsvmHeartbeatComponentRestorePropertiesResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MsvmHeartbeatComponentRestorePropertiesResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "Msvm_HeartbeatComponent.RestoreProperties", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MsvmHeartbeatComponentRestoreProperties invokes Msvm_HeartbeatComponent.RestoreProperties on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MsvmHeartbeatComponentRestoreProperties(svc *wmi.Service, objectPath string) (*MsvmHeartbeatComponentRestorePropertiesResult, error) {
 	row, err := svc.ExecMethod(objectPath, "RestoreProperties", nil)
 	if err != nil {
@@ -404,9 +564,19 @@ type MsvmHeartbeatComponentSavePropertiesResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MsvmHeartbeatComponentSavePropertiesResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "Msvm_HeartbeatComponent.SaveProperties", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MsvmHeartbeatComponentSaveProperties invokes Msvm_HeartbeatComponent.SaveProperties on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MsvmHeartbeatComponentSaveProperties(svc *wmi.Service, objectPath string) (*MsvmHeartbeatComponentSavePropertiesResult, error) {
 	row, err := svc.ExecMethod(objectPath, "SaveProperties", nil)
 	if err != nil {
@@ -422,16 +592,26 @@ type MsvmHeartbeatComponentSetPowerStateResult struct {
 	ReturnValue uint32
 }
 
-// MsvmHeartbeatComponentSetPowerState invokes Msvm_HeartbeatComponent.SetPowerState on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmHeartbeatComponentSetPowerState(svc *wmi.Service, objectPath string, powerState uint16, time string) (*MsvmHeartbeatComponentSetPowerStateResult, error) {
-	in := map[string]any{}
-	if powerState != 0 {
-		in["PowerState"] = powerState
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MsvmHeartbeatComponentSetPowerStateResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
 	}
-	if time != "" {
-		in["Time"] = time
+	return &wmi.JobError{What: "Msvm_HeartbeatComponent.SetPowerState", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MsvmHeartbeatComponentSetPowerState invokes Msvm_HeartbeatComponent.SetPowerState on the instance at objectPath
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmHeartbeatComponentSetPowerState(svc *wmi.Service, objectPath string, powerState *MsvmHeartbeatComponentSetPowerStatePowerState, time *string) (*MsvmHeartbeatComponentSetPowerStateResult, error) {
+	in := map[string]any{}
+	if powerState != nil {
+		in["PowerState"] = uint16(*powerState)
+	}
+	if time != nil {
+		in["Time"] = *time
 	}
 	row, err := svc.ExecMethod(objectPath, "SetPowerState", in)
 	if err != nil {
@@ -448,19 +628,27 @@ type MsvmImageManagementServiceAttachVirtualHardDiskResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmImageManagementServiceAttachVirtualHardDiskResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_ImageManagementService.AttachVirtualHardDisk", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmImageManagementServiceAttachVirtualHardDisk invokes Msvm_ImageManagementService.AttachVirtualHardDisk on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmImageManagementServiceAttachVirtualHardDisk(svc *wmi.Service, objectPath string, path string, assignDriveLetter bool, readOnly bool) (*MsvmImageManagementServiceAttachVirtualHardDiskResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmImageManagementServiceAttachVirtualHardDisk(svc *wmi.Service, objectPath string, path *string, assignDriveLetter *bool, readOnly *bool) (*MsvmImageManagementServiceAttachVirtualHardDiskResult, error) {
 	in := map[string]any{}
-	if path != "" {
-		in["Path"] = path
+	if path != nil {
+		in["Path"] = *path
 	}
-	if assignDriveLetter {
-		in["AssignDriveLetter"] = assignDriveLetter
+	if assignDriveLetter != nil {
+		in["AssignDriveLetter"] = *assignDriveLetter
 	}
-	if readOnly {
-		in["ReadOnly"] = readOnly
+	if readOnly != nil {
+		in["ReadOnly"] = *readOnly
 	}
 	row, err := svc.ExecMethod(objectPath, "AttachVirtualHardDisk", in)
 	if err != nil {
@@ -478,16 +666,24 @@ type MsvmImageManagementServiceCompactVirtualHardDiskResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmImageManagementServiceCompactVirtualHardDiskResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_ImageManagementService.CompactVirtualHardDisk", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmImageManagementServiceCompactVirtualHardDisk invokes Msvm_ImageManagementService.CompactVirtualHardDisk on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmImageManagementServiceCompactVirtualHardDisk(svc *wmi.Service, objectPath string, path string, mode uint16) (*MsvmImageManagementServiceCompactVirtualHardDiskResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmImageManagementServiceCompactVirtualHardDisk(svc *wmi.Service, objectPath string, path *string, mode *MsvmImageManagementServiceCompactVirtualHardDiskMode) (*MsvmImageManagementServiceCompactVirtualHardDiskResult, error) {
 	in := map[string]any{}
-	if path != "" {
-		in["Path"] = path
+	if path != nil {
+		in["Path"] = *path
 	}
-	if mode != 0 {
-		in["Mode"] = mode
+	if mode != nil {
+		in["Mode"] = uint16(*mode)
 	}
 	row, err := svc.ExecMethod(objectPath, "CompactVirtualHardDisk", in)
 	if err != nil {
@@ -505,16 +701,24 @@ type MsvmImageManagementServiceConvertVirtualHardDiskResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmImageManagementServiceConvertVirtualHardDiskResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_ImageManagementService.ConvertVirtualHardDisk", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmImageManagementServiceConvertVirtualHardDisk invokes Msvm_ImageManagementService.ConvertVirtualHardDisk on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmImageManagementServiceConvertVirtualHardDisk(svc *wmi.Service, objectPath string, sourcePath string, virtualDiskSettingData string) (*MsvmImageManagementServiceConvertVirtualHardDiskResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmImageManagementServiceConvertVirtualHardDisk(svc *wmi.Service, objectPath string, sourcePath *string, virtualDiskSettingData *string) (*MsvmImageManagementServiceConvertVirtualHardDiskResult, error) {
 	in := map[string]any{}
-	if sourcePath != "" {
-		in["SourcePath"] = sourcePath
+	if sourcePath != nil {
+		in["SourcePath"] = *sourcePath
 	}
-	if virtualDiskSettingData != "" {
-		in["VirtualDiskSettingData"] = virtualDiskSettingData
+	if virtualDiskSettingData != nil {
+		in["VirtualDiskSettingData"] = *virtualDiskSettingData
 	}
 	row, err := svc.ExecMethod(objectPath, "ConvertVirtualHardDisk", in)
 	if err != nil {
@@ -532,13 +736,21 @@ type MsvmImageManagementServiceConvertVirtualHardDiskToVHDSetResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmImageManagementServiceConvertVirtualHardDiskToVHDSetResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_ImageManagementService.ConvertVirtualHardDiskToVHDSet", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmImageManagementServiceConvertVirtualHardDiskToVHDSet invokes Msvm_ImageManagementService.ConvertVirtualHardDiskToVHDSet on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmImageManagementServiceConvertVirtualHardDiskToVHDSet(svc *wmi.Service, objectPath string, virtualHardDiskPath string) (*MsvmImageManagementServiceConvertVirtualHardDiskToVHDSetResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmImageManagementServiceConvertVirtualHardDiskToVHDSet(svc *wmi.Service, objectPath string, virtualHardDiskPath *string) (*MsvmImageManagementServiceConvertVirtualHardDiskToVHDSetResult, error) {
 	in := map[string]any{}
-	if virtualHardDiskPath != "" {
-		in["VirtualHardDiskPath"] = virtualHardDiskPath
+	if virtualHardDiskPath != nil {
+		in["VirtualHardDiskPath"] = *virtualHardDiskPath
 	}
 	row, err := svc.ExecMethod(objectPath, "ConvertVirtualHardDiskToVHDSet", in)
 	if err != nil {
@@ -556,13 +768,21 @@ type MsvmImageManagementServiceCreateVirtualFloppyDiskResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmImageManagementServiceCreateVirtualFloppyDiskResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_ImageManagementService.CreateVirtualFloppyDisk", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmImageManagementServiceCreateVirtualFloppyDisk invokes Msvm_ImageManagementService.CreateVirtualFloppyDisk on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmImageManagementServiceCreateVirtualFloppyDisk(svc *wmi.Service, objectPath string, path string) (*MsvmImageManagementServiceCreateVirtualFloppyDiskResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmImageManagementServiceCreateVirtualFloppyDisk(svc *wmi.Service, objectPath string, path *string) (*MsvmImageManagementServiceCreateVirtualFloppyDiskResult, error) {
 	in := map[string]any{}
-	if path != "" {
-		in["Path"] = path
+	if path != nil {
+		in["Path"] = *path
 	}
 	row, err := svc.ExecMethod(objectPath, "CreateVirtualFloppyDisk", in)
 	if err != nil {
@@ -580,13 +800,21 @@ type MsvmImageManagementServiceCreateVirtualHardDiskResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmImageManagementServiceCreateVirtualHardDiskResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_ImageManagementService.CreateVirtualHardDisk", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmImageManagementServiceCreateVirtualHardDisk invokes Msvm_ImageManagementService.CreateVirtualHardDisk on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmImageManagementServiceCreateVirtualHardDisk(svc *wmi.Service, objectPath string, virtualDiskSettingData string) (*MsvmImageManagementServiceCreateVirtualHardDiskResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmImageManagementServiceCreateVirtualHardDisk(svc *wmi.Service, objectPath string, virtualDiskSettingData *string) (*MsvmImageManagementServiceCreateVirtualHardDiskResult, error) {
 	in := map[string]any{}
-	if virtualDiskSettingData != "" {
-		in["VirtualDiskSettingData"] = virtualDiskSettingData
+	if virtualDiskSettingData != nil {
+		in["VirtualDiskSettingData"] = *virtualDiskSettingData
 	}
 	row, err := svc.ExecMethod(objectPath, "CreateVirtualHardDisk", in)
 	if err != nil {
@@ -604,19 +832,27 @@ type MsvmImageManagementServiceDeleteVHDSnapshotResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmImageManagementServiceDeleteVHDSnapshotResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_ImageManagementService.DeleteVHDSnapshot", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmImageManagementServiceDeleteVHDSnapshot invokes Msvm_ImageManagementService.DeleteVHDSnapshot on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmImageManagementServiceDeleteVHDSnapshot(svc *wmi.Service, objectPath string, vHDSetPath string, snapshotId string, persistReferenceSnapshot bool) (*MsvmImageManagementServiceDeleteVHDSnapshotResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmImageManagementServiceDeleteVHDSnapshot(svc *wmi.Service, objectPath string, vHDSetPath *string, snapshotId *string, persistReferenceSnapshot *bool) (*MsvmImageManagementServiceDeleteVHDSnapshotResult, error) {
 	in := map[string]any{}
-	if vHDSetPath != "" {
-		in["VHDSetPath"] = vHDSetPath
+	if vHDSetPath != nil {
+		in["VHDSetPath"] = *vHDSetPath
 	}
-	if snapshotId != "" {
-		in["SnapshotId"] = snapshotId
+	if snapshotId != nil {
+		in["SnapshotId"] = *snapshotId
 	}
-	if persistReferenceSnapshot {
-		in["PersistReferenceSnapshot"] = persistReferenceSnapshot
+	if persistReferenceSnapshot != nil {
+		in["PersistReferenceSnapshot"] = *persistReferenceSnapshot
 	}
 	row, err := svc.ExecMethod(objectPath, "DeleteVHDSnapshot", in)
 	if err != nil {
@@ -634,16 +870,26 @@ type MsvmImageManagementServiceFindMountedStorageImageInstanceResult struct {
 	ReturnValue uint32
 }
 
-// MsvmImageManagementServiceFindMountedStorageImageInstance invokes Msvm_ImageManagementService.FindMountedStorageImageInstance on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmImageManagementServiceFindMountedStorageImageInstance(svc *wmi.Service, objectPath string, selectionCriterion string, criterionType uint16) (*MsvmImageManagementServiceFindMountedStorageImageInstanceResult, error) {
-	in := map[string]any{}
-	if selectionCriterion != "" {
-		in["SelectionCriterion"] = selectionCriterion
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MsvmImageManagementServiceFindMountedStorageImageInstanceResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
 	}
-	if criterionType != 0 {
-		in["CriterionType"] = criterionType
+	return &wmi.JobError{What: "Msvm_ImageManagementService.FindMountedStorageImageInstance", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MsvmImageManagementServiceFindMountedStorageImageInstance invokes Msvm_ImageManagementService.FindMountedStorageImageInstance on the instance at objectPath
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmImageManagementServiceFindMountedStorageImageInstance(svc *wmi.Service, objectPath string, selectionCriterion *string, criterionType *MsvmImageManagementServiceFindMountedStorageImageInstanceCriterionType) (*MsvmImageManagementServiceFindMountedStorageImageInstanceResult, error) {
+	in := map[string]any{}
+	if selectionCriterion != nil {
+		in["SelectionCriterion"] = *selectionCriterion
+	}
+	if criterionType != nil {
+		in["CriterionType"] = uint16(*criterionType)
 	}
 	row, err := svc.ExecMethod(objectPath, "FindMountedStorageImageInstance", in)
 	if err != nil {
@@ -662,13 +908,21 @@ type MsvmImageManagementServiceGetVHDSetInformationResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmImageManagementServiceGetVHDSetInformationResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_ImageManagementService.GetVHDSetInformation", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmImageManagementServiceGetVHDSetInformation invokes Msvm_ImageManagementService.GetVHDSetInformation on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmImageManagementServiceGetVHDSetInformation(svc *wmi.Service, objectPath string, vHDSetPath string, additionalInformation []uint32) (*MsvmImageManagementServiceGetVHDSetInformationResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmImageManagementServiceGetVHDSetInformation(svc *wmi.Service, objectPath string, vHDSetPath *string, additionalInformation []uint32) (*MsvmImageManagementServiceGetVHDSetInformationResult, error) {
 	in := map[string]any{}
-	if vHDSetPath != "" {
-		in["VHDSetPath"] = vHDSetPath
+	if vHDSetPath != nil {
+		in["VHDSetPath"] = *vHDSetPath
 	}
 	if additionalInformation != nil {
 		in["AdditionalInformation"] = additionalInformation
@@ -691,13 +945,21 @@ type MsvmImageManagementServiceGetVHDSnapshotInformationResult struct {
 	ReturnValue         uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmImageManagementServiceGetVHDSnapshotInformationResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_ImageManagementService.GetVHDSnapshotInformation", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmImageManagementServiceGetVHDSnapshotInformation invokes Msvm_ImageManagementService.GetVHDSnapshotInformation on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmImageManagementServiceGetVHDSnapshotInformation(svc *wmi.Service, objectPath string, vHDSetPath string, snapshotIds []string, additionalInformation []uint32) (*MsvmImageManagementServiceGetVHDSnapshotInformationResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmImageManagementServiceGetVHDSnapshotInformation(svc *wmi.Service, objectPath string, vHDSetPath *string, snapshotIds []string, additionalInformation []uint32) (*MsvmImageManagementServiceGetVHDSnapshotInformationResult, error) {
 	in := map[string]any{}
-	if vHDSetPath != "" {
-		in["VHDSetPath"] = vHDSetPath
+	if vHDSetPath != nil {
+		in["VHDSetPath"] = *vHDSetPath
 	}
 	if snapshotIds != nil {
 		in["SnapshotIds"] = snapshotIds
@@ -725,25 +987,33 @@ type MsvmImageManagementServiceGetVirtualDiskChangesResult struct {
 	ReturnValue         uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmImageManagementServiceGetVirtualDiskChangesResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_ImageManagementService.GetVirtualDiskChanges", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmImageManagementServiceGetVirtualDiskChanges invokes Msvm_ImageManagementService.GetVirtualDiskChanges on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmImageManagementServiceGetVirtualDiskChanges(svc *wmi.Service, objectPath string, path string, limitId string, targetSnapshotId string, byteOffset uint64, byteLength uint64) (*MsvmImageManagementServiceGetVirtualDiskChangesResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmImageManagementServiceGetVirtualDiskChanges(svc *wmi.Service, objectPath string, path *string, limitId *string, targetSnapshotId *string, byteOffset *uint64, byteLength *uint64) (*MsvmImageManagementServiceGetVirtualDiskChangesResult, error) {
 	in := map[string]any{}
-	if path != "" {
-		in["Path"] = path
+	if path != nil {
+		in["Path"] = *path
 	}
-	if limitId != "" {
-		in["LimitId"] = limitId
+	if limitId != nil {
+		in["LimitId"] = *limitId
 	}
-	if targetSnapshotId != "" {
-		in["TargetSnapshotId"] = targetSnapshotId
+	if targetSnapshotId != nil {
+		in["TargetSnapshotId"] = *targetSnapshotId
 	}
-	if byteOffset != 0 {
-		in["ByteOffset"] = byteOffset
+	if byteOffset != nil {
+		in["ByteOffset"] = *byteOffset
 	}
-	if byteLength != 0 {
-		in["ByteLength"] = byteLength
+	if byteLength != nil {
+		in["ByteLength"] = *byteLength
 	}
 	row, err := svc.ExecMethod(objectPath, "GetVirtualDiskChanges", in)
 	if err != nil {
@@ -765,13 +1035,21 @@ type MsvmImageManagementServiceGetVirtualHardDiskSettingDataResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmImageManagementServiceGetVirtualHardDiskSettingDataResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_ImageManagementService.GetVirtualHardDiskSettingData", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmImageManagementServiceGetVirtualHardDiskSettingData invokes Msvm_ImageManagementService.GetVirtualHardDiskSettingData on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmImageManagementServiceGetVirtualHardDiskSettingData(svc *wmi.Service, objectPath string, path string) (*MsvmImageManagementServiceGetVirtualHardDiskSettingDataResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmImageManagementServiceGetVirtualHardDiskSettingData(svc *wmi.Service, objectPath string, path *string) (*MsvmImageManagementServiceGetVirtualHardDiskSettingDataResult, error) {
 	in := map[string]any{}
-	if path != "" {
-		in["Path"] = path
+	if path != nil {
+		in["Path"] = *path
 	}
 	row, err := svc.ExecMethod(objectPath, "GetVirtualHardDiskSettingData", in)
 	if err != nil {
@@ -791,13 +1069,21 @@ type MsvmImageManagementServiceGetVirtualHardDiskStateResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmImageManagementServiceGetVirtualHardDiskStateResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_ImageManagementService.GetVirtualHardDiskState", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmImageManagementServiceGetVirtualHardDiskState invokes Msvm_ImageManagementService.GetVirtualHardDiskState on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmImageManagementServiceGetVirtualHardDiskState(svc *wmi.Service, objectPath string, path string) (*MsvmImageManagementServiceGetVirtualHardDiskStateResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmImageManagementServiceGetVirtualHardDiskState(svc *wmi.Service, objectPath string, path *string) (*MsvmImageManagementServiceGetVirtualHardDiskStateResult, error) {
 	in := map[string]any{}
-	if path != "" {
-		in["Path"] = path
+	if path != nil {
+		in["Path"] = *path
 	}
 	row, err := svc.ExecMethod(objectPath, "GetVirtualHardDiskState", in)
 	if err != nil {
@@ -816,16 +1102,24 @@ type MsvmImageManagementServiceMergeVirtualHardDiskResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmImageManagementServiceMergeVirtualHardDiskResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_ImageManagementService.MergeVirtualHardDisk", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmImageManagementServiceMergeVirtualHardDisk invokes Msvm_ImageManagementService.MergeVirtualHardDisk on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmImageManagementServiceMergeVirtualHardDisk(svc *wmi.Service, objectPath string, sourcePath string, destinationPath string) (*MsvmImageManagementServiceMergeVirtualHardDiskResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmImageManagementServiceMergeVirtualHardDisk(svc *wmi.Service, objectPath string, sourcePath *string, destinationPath *string) (*MsvmImageManagementServiceMergeVirtualHardDiskResult, error) {
 	in := map[string]any{}
-	if sourcePath != "" {
-		in["SourcePath"] = sourcePath
+	if sourcePath != nil {
+		in["SourcePath"] = *sourcePath
 	}
-	if destinationPath != "" {
-		in["DestinationPath"] = destinationPath
+	if destinationPath != nil {
+		in["DestinationPath"] = *destinationPath
 	}
 	row, err := svc.ExecMethod(objectPath, "MergeVirtualHardDisk", in)
 	if err != nil {
@@ -843,13 +1137,21 @@ type MsvmImageManagementServiceOptimizeVHDSetResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmImageManagementServiceOptimizeVHDSetResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_ImageManagementService.OptimizeVHDSet", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmImageManagementServiceOptimizeVHDSet invokes Msvm_ImageManagementService.OptimizeVHDSet on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmImageManagementServiceOptimizeVHDSet(svc *wmi.Service, objectPath string, vHDSetPath string) (*MsvmImageManagementServiceOptimizeVHDSetResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmImageManagementServiceOptimizeVHDSet(svc *wmi.Service, objectPath string, vHDSetPath *string) (*MsvmImageManagementServiceOptimizeVHDSetResult, error) {
 	in := map[string]any{}
-	if vHDSetPath != "" {
-		in["VHDSetPath"] = vHDSetPath
+	if vHDSetPath != nil {
+		in["VHDSetPath"] = *vHDSetPath
 	}
 	row, err := svc.ExecMethod(objectPath, "OptimizeVHDSet", in)
 	if err != nil {
@@ -867,16 +1169,24 @@ type MsvmImageManagementServiceRequestStateChangeResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmImageManagementServiceRequestStateChangeResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_ImageManagementService.RequestStateChange", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmImageManagementServiceRequestStateChange invokes Msvm_ImageManagementService.RequestStateChange on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmImageManagementServiceRequestStateChange(svc *wmi.Service, objectPath string, requestedState uint16, timeoutPeriod string) (*MsvmImageManagementServiceRequestStateChangeResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmImageManagementServiceRequestStateChange(svc *wmi.Service, objectPath string, requestedState *MsvmImageManagementServiceRequestStateChangeRequestedState, timeoutPeriod *string) (*MsvmImageManagementServiceRequestStateChangeResult, error) {
 	in := map[string]any{}
-	if requestedState != 0 {
-		in["RequestedState"] = requestedState
+	if requestedState != nil {
+		in["RequestedState"] = uint16(*requestedState)
 	}
-	if timeoutPeriod != "" {
-		in["TimeoutPeriod"] = timeoutPeriod
+	if timeoutPeriod != nil {
+		in["TimeoutPeriod"] = *timeoutPeriod
 	}
 	row, err := svc.ExecMethod(objectPath, "RequestStateChange", in)
 	if err != nil {
@@ -894,16 +1204,24 @@ type MsvmImageManagementServiceResizeVirtualHardDiskResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmImageManagementServiceResizeVirtualHardDiskResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_ImageManagementService.ResizeVirtualHardDisk", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmImageManagementServiceResizeVirtualHardDisk invokes Msvm_ImageManagementService.ResizeVirtualHardDisk on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmImageManagementServiceResizeVirtualHardDisk(svc *wmi.Service, objectPath string, path string, maxInternalSize uint64) (*MsvmImageManagementServiceResizeVirtualHardDiskResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmImageManagementServiceResizeVirtualHardDisk(svc *wmi.Service, objectPath string, path *string, maxInternalSize *uint64) (*MsvmImageManagementServiceResizeVirtualHardDiskResult, error) {
 	in := map[string]any{}
-	if path != "" {
-		in["Path"] = path
+	if path != nil {
+		in["Path"] = *path
 	}
-	if maxInternalSize != 0 {
-		in["MaxInternalSize"] = maxInternalSize
+	if maxInternalSize != nil {
+		in["MaxInternalSize"] = *maxInternalSize
 	}
 	row, err := svc.ExecMethod(objectPath, "ResizeVirtualHardDisk", in)
 	if err != nil {
@@ -921,22 +1239,30 @@ type MsvmImageManagementServiceSetParentVirtualHardDiskResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmImageManagementServiceSetParentVirtualHardDiskResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_ImageManagementService.SetParentVirtualHardDisk", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmImageManagementServiceSetParentVirtualHardDisk invokes Msvm_ImageManagementService.SetParentVirtualHardDisk on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmImageManagementServiceSetParentVirtualHardDisk(svc *wmi.Service, objectPath string, childPath string, parentPath string, leafPath string, ignoreIDMismatch bool) (*MsvmImageManagementServiceSetParentVirtualHardDiskResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmImageManagementServiceSetParentVirtualHardDisk(svc *wmi.Service, objectPath string, childPath *string, parentPath *string, leafPath *string, ignoreIDMismatch *bool) (*MsvmImageManagementServiceSetParentVirtualHardDiskResult, error) {
 	in := map[string]any{}
-	if childPath != "" {
-		in["ChildPath"] = childPath
+	if childPath != nil {
+		in["ChildPath"] = *childPath
 	}
-	if parentPath != "" {
-		in["ParentPath"] = parentPath
+	if parentPath != nil {
+		in["ParentPath"] = *parentPath
 	}
-	if leafPath != "" {
-		in["LeafPath"] = leafPath
+	if leafPath != nil {
+		in["LeafPath"] = *leafPath
 	}
-	if ignoreIDMismatch {
-		in["IgnoreIDMismatch"] = ignoreIDMismatch
+	if ignoreIDMismatch != nil {
+		in["IgnoreIDMismatch"] = *ignoreIDMismatch
 	}
 	row, err := svc.ExecMethod(objectPath, "SetParentVirtualHardDisk", in)
 	if err != nil {
@@ -954,13 +1280,21 @@ type MsvmImageManagementServiceSetVHDSnapshotInformationResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmImageManagementServiceSetVHDSnapshotInformationResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_ImageManagementService.SetVHDSnapshotInformation", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmImageManagementServiceSetVHDSnapshotInformation invokes Msvm_ImageManagementService.SetVHDSnapshotInformation on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmImageManagementServiceSetVHDSnapshotInformation(svc *wmi.Service, objectPath string, information string) (*MsvmImageManagementServiceSetVHDSnapshotInformationResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmImageManagementServiceSetVHDSnapshotInformation(svc *wmi.Service, objectPath string, information *string) (*MsvmImageManagementServiceSetVHDSnapshotInformationResult, error) {
 	in := map[string]any{}
-	if information != "" {
-		in["Information"] = information
+	if information != nil {
+		in["Information"] = *information
 	}
 	row, err := svc.ExecMethod(objectPath, "SetVHDSnapshotInformation", in)
 	if err != nil {
@@ -978,13 +1312,21 @@ type MsvmImageManagementServiceSetVirtualHardDiskSettingDataResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmImageManagementServiceSetVirtualHardDiskSettingDataResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_ImageManagementService.SetVirtualHardDiskSettingData", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmImageManagementServiceSetVirtualHardDiskSettingData invokes Msvm_ImageManagementService.SetVirtualHardDiskSettingData on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmImageManagementServiceSetVirtualHardDiskSettingData(svc *wmi.Service, objectPath string, virtualDiskSettingData string) (*MsvmImageManagementServiceSetVirtualHardDiskSettingDataResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmImageManagementServiceSetVirtualHardDiskSettingData(svc *wmi.Service, objectPath string, virtualDiskSettingData *string) (*MsvmImageManagementServiceSetVirtualHardDiskSettingDataResult, error) {
 	in := map[string]any{}
-	if virtualDiskSettingData != "" {
-		in["VirtualDiskSettingData"] = virtualDiskSettingData
+	if virtualDiskSettingData != nil {
+		in["VirtualDiskSettingData"] = *virtualDiskSettingData
 	}
 	row, err := svc.ExecMethod(objectPath, "SetVirtualHardDiskSettingData", in)
 	if err != nil {
@@ -1001,9 +1343,19 @@ type MsvmImageManagementServiceStartServiceResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MsvmImageManagementServiceStartServiceResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "Msvm_ImageManagementService.StartService", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MsvmImageManagementServiceStartService invokes Msvm_ImageManagementService.StartService on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MsvmImageManagementServiceStartService(svc *wmi.Service, objectPath string) (*MsvmImageManagementServiceStartServiceResult, error) {
 	row, err := svc.ExecMethod(objectPath, "StartService", nil)
 	if err != nil {
@@ -1019,9 +1371,19 @@ type MsvmImageManagementServiceStopServiceResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MsvmImageManagementServiceStopServiceResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "Msvm_ImageManagementService.StopService", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MsvmImageManagementServiceStopService invokes Msvm_ImageManagementService.StopService on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MsvmImageManagementServiceStopService(svc *wmi.Service, objectPath string) (*MsvmImageManagementServiceStopServiceResult, error) {
 	row, err := svc.ExecMethod(objectPath, "StopService", nil)
 	if err != nil {
@@ -1038,13 +1400,21 @@ type MsvmImageManagementServiceValidatePersistentReservationSupportResult struct
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmImageManagementServiceValidatePersistentReservationSupportResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_ImageManagementService.ValidatePersistentReservationSupport", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmImageManagementServiceValidatePersistentReservationSupport invokes Msvm_ImageManagementService.ValidatePersistentReservationSupport on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmImageManagementServiceValidatePersistentReservationSupport(svc *wmi.Service, objectPath string, path string) (*MsvmImageManagementServiceValidatePersistentReservationSupportResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmImageManagementServiceValidatePersistentReservationSupport(svc *wmi.Service, objectPath string, path *string) (*MsvmImageManagementServiceValidatePersistentReservationSupportResult, error) {
 	in := map[string]any{}
-	if path != "" {
-		in["Path"] = path
+	if path != nil {
+		in["Path"] = *path
 	}
 	row, err := svc.ExecMethod(objectPath, "ValidatePersistentReservationSupport", in)
 	if err != nil {
@@ -1062,13 +1432,21 @@ type MsvmImageManagementServiceValidateVirtualHardDiskResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmImageManagementServiceValidateVirtualHardDiskResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_ImageManagementService.ValidateVirtualHardDisk", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmImageManagementServiceValidateVirtualHardDisk invokes Msvm_ImageManagementService.ValidateVirtualHardDisk on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmImageManagementServiceValidateVirtualHardDisk(svc *wmi.Service, objectPath string, path string) (*MsvmImageManagementServiceValidateVirtualHardDiskResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmImageManagementServiceValidateVirtualHardDisk(svc *wmi.Service, objectPath string, path *string) (*MsvmImageManagementServiceValidateVirtualHardDiskResult, error) {
 	in := map[string]any{}
-	if path != "" {
-		in["Path"] = path
+	if path != nil {
+		in["Path"] = *path
 	}
 	row, err := svc.ExecMethod(objectPath, "ValidateVirtualHardDisk", in)
 	if err != nil {
@@ -1085,13 +1463,23 @@ type MsvmKeyboardEnableDeviceResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MsvmKeyboardEnableDeviceResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "Msvm_Keyboard.EnableDevice", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MsvmKeyboardEnableDevice invokes Msvm_Keyboard.EnableDevice on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmKeyboardEnableDevice(svc *wmi.Service, objectPath string, enabled bool) (*MsvmKeyboardEnableDeviceResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmKeyboardEnableDevice(svc *wmi.Service, objectPath string, enabled *bool) (*MsvmKeyboardEnableDeviceResult, error) {
 	in := map[string]any{}
-	if enabled {
-		in["Enabled"] = enabled
+	if enabled != nil {
+		in["Enabled"] = *enabled
 	}
 	row, err := svc.ExecMethod(objectPath, "EnableDevice", in)
 	if err != nil {
@@ -1108,13 +1496,23 @@ type MsvmKeyboardIsKeyPressedResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MsvmKeyboardIsKeyPressedResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "Msvm_Keyboard.IsKeyPressed", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MsvmKeyboardIsKeyPressed invokes Msvm_Keyboard.IsKeyPressed on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmKeyboardIsKeyPressed(svc *wmi.Service, objectPath string, keyCode uint32) (*MsvmKeyboardIsKeyPressedResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmKeyboardIsKeyPressed(svc *wmi.Service, objectPath string, keyCode *uint32) (*MsvmKeyboardIsKeyPressedResult, error) {
 	in := map[string]any{}
-	if keyCode != 0 {
-		in["KeyCode"] = keyCode
+	if keyCode != nil {
+		in["KeyCode"] = *keyCode
 	}
 	row, err := svc.ExecMethod(objectPath, "IsKeyPressed", in)
 	if err != nil {
@@ -1131,13 +1529,23 @@ type MsvmKeyboardOnlineDeviceResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MsvmKeyboardOnlineDeviceResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "Msvm_Keyboard.OnlineDevice", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MsvmKeyboardOnlineDevice invokes Msvm_Keyboard.OnlineDevice on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmKeyboardOnlineDevice(svc *wmi.Service, objectPath string, online bool) (*MsvmKeyboardOnlineDeviceResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmKeyboardOnlineDevice(svc *wmi.Service, objectPath string, online *bool) (*MsvmKeyboardOnlineDeviceResult, error) {
 	in := map[string]any{}
-	if online {
-		in["Online"] = online
+	if online != nil {
+		in["Online"] = *online
 	}
 	row, err := svc.ExecMethod(objectPath, "OnlineDevice", in)
 	if err != nil {
@@ -1153,13 +1561,23 @@ type MsvmKeyboardPressKeyResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MsvmKeyboardPressKeyResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "Msvm_Keyboard.PressKey", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MsvmKeyboardPressKey invokes Msvm_Keyboard.PressKey on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmKeyboardPressKey(svc *wmi.Service, objectPath string, keyCode uint32) (*MsvmKeyboardPressKeyResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmKeyboardPressKey(svc *wmi.Service, objectPath string, keyCode *uint32) (*MsvmKeyboardPressKeyResult, error) {
 	in := map[string]any{}
-	if keyCode != 0 {
-		in["KeyCode"] = keyCode
+	if keyCode != nil {
+		in["KeyCode"] = *keyCode
 	}
 	row, err := svc.ExecMethod(objectPath, "PressKey", in)
 	if err != nil {
@@ -1175,13 +1593,23 @@ type MsvmKeyboardQuiesceDeviceResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MsvmKeyboardQuiesceDeviceResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "Msvm_Keyboard.QuiesceDevice", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MsvmKeyboardQuiesceDevice invokes Msvm_Keyboard.QuiesceDevice on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmKeyboardQuiesceDevice(svc *wmi.Service, objectPath string, quiesce bool) (*MsvmKeyboardQuiesceDeviceResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmKeyboardQuiesceDevice(svc *wmi.Service, objectPath string, quiesce *bool) (*MsvmKeyboardQuiesceDeviceResult, error) {
 	in := map[string]any{}
-	if quiesce {
-		in["Quiesce"] = quiesce
+	if quiesce != nil {
+		in["Quiesce"] = *quiesce
 	}
 	row, err := svc.ExecMethod(objectPath, "QuiesceDevice", in)
 	if err != nil {
@@ -1197,13 +1625,23 @@ type MsvmKeyboardReleaseKeyResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MsvmKeyboardReleaseKeyResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "Msvm_Keyboard.ReleaseKey", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MsvmKeyboardReleaseKey invokes Msvm_Keyboard.ReleaseKey on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmKeyboardReleaseKey(svc *wmi.Service, objectPath string, keyCode uint32) (*MsvmKeyboardReleaseKeyResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmKeyboardReleaseKey(svc *wmi.Service, objectPath string, keyCode *uint32) (*MsvmKeyboardReleaseKeyResult, error) {
 	in := map[string]any{}
-	if keyCode != 0 {
-		in["KeyCode"] = keyCode
+	if keyCode != nil {
+		in["KeyCode"] = *keyCode
 	}
 	row, err := svc.ExecMethod(objectPath, "ReleaseKey", in)
 	if err != nil {
@@ -1220,16 +1658,24 @@ type MsvmKeyboardRequestStateChangeResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmKeyboardRequestStateChangeResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_Keyboard.RequestStateChange", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmKeyboardRequestStateChange invokes Msvm_Keyboard.RequestStateChange on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmKeyboardRequestStateChange(svc *wmi.Service, objectPath string, requestedState uint16, timeoutPeriod string) (*MsvmKeyboardRequestStateChangeResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmKeyboardRequestStateChange(svc *wmi.Service, objectPath string, requestedState *MsvmKeyboardRequestStateChangeRequestedState, timeoutPeriod *string) (*MsvmKeyboardRequestStateChangeResult, error) {
 	in := map[string]any{}
-	if requestedState != 0 {
-		in["RequestedState"] = requestedState
+	if requestedState != nil {
+		in["RequestedState"] = uint16(*requestedState)
 	}
-	if timeoutPeriod != "" {
-		in["TimeoutPeriod"] = timeoutPeriod
+	if timeoutPeriod != nil {
+		in["TimeoutPeriod"] = *timeoutPeriod
 	}
 	row, err := svc.ExecMethod(objectPath, "RequestStateChange", in)
 	if err != nil {
@@ -1246,9 +1692,19 @@ type MsvmKeyboardResetResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MsvmKeyboardResetResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "Msvm_Keyboard.Reset", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MsvmKeyboardReset invokes Msvm_Keyboard.Reset on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MsvmKeyboardReset(svc *wmi.Service, objectPath string) (*MsvmKeyboardResetResult, error) {
 	row, err := svc.ExecMethod(objectPath, "Reset", nil)
 	if err != nil {
@@ -1264,9 +1720,19 @@ type MsvmKeyboardRestorePropertiesResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MsvmKeyboardRestorePropertiesResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "Msvm_Keyboard.RestoreProperties", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MsvmKeyboardRestoreProperties invokes Msvm_Keyboard.RestoreProperties on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MsvmKeyboardRestoreProperties(svc *wmi.Service, objectPath string) (*MsvmKeyboardRestorePropertiesResult, error) {
 	row, err := svc.ExecMethod(objectPath, "RestoreProperties", nil)
 	if err != nil {
@@ -1282,9 +1748,19 @@ type MsvmKeyboardSavePropertiesResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MsvmKeyboardSavePropertiesResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "Msvm_Keyboard.SaveProperties", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MsvmKeyboardSaveProperties invokes Msvm_Keyboard.SaveProperties on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MsvmKeyboardSaveProperties(svc *wmi.Service, objectPath string) (*MsvmKeyboardSavePropertiesResult, error) {
 	row, err := svc.ExecMethod(objectPath, "SaveProperties", nil)
 	if err != nil {
@@ -1300,16 +1776,26 @@ type MsvmKeyboardSetPowerStateResult struct {
 	ReturnValue uint32
 }
 
-// MsvmKeyboardSetPowerState invokes Msvm_Keyboard.SetPowerState on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmKeyboardSetPowerState(svc *wmi.Service, objectPath string, powerState uint16, time string) (*MsvmKeyboardSetPowerStateResult, error) {
-	in := map[string]any{}
-	if powerState != 0 {
-		in["PowerState"] = powerState
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MsvmKeyboardSetPowerStateResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
 	}
-	if time != "" {
-		in["Time"] = time
+	return &wmi.JobError{What: "Msvm_Keyboard.SetPowerState", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MsvmKeyboardSetPowerState invokes Msvm_Keyboard.SetPowerState on the instance at objectPath
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmKeyboardSetPowerState(svc *wmi.Service, objectPath string, powerState *MsvmKeyboardSetPowerStatePowerState, time *string) (*MsvmKeyboardSetPowerStateResult, error) {
+	in := map[string]any{}
+	if powerState != nil {
+		in["PowerState"] = uint16(*powerState)
+	}
+	if time != nil {
+		in["Time"] = *time
 	}
 	row, err := svc.ExecMethod(objectPath, "SetPowerState", in)
 	if err != nil {
@@ -1325,9 +1811,19 @@ type MsvmKeyboardTypeCtrlAltDelResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MsvmKeyboardTypeCtrlAltDelResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "Msvm_Keyboard.TypeCtrlAltDel", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MsvmKeyboardTypeCtrlAltDel invokes Msvm_Keyboard.TypeCtrlAltDel on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MsvmKeyboardTypeCtrlAltDel(svc *wmi.Service, objectPath string) (*MsvmKeyboardTypeCtrlAltDelResult, error) {
 	row, err := svc.ExecMethod(objectPath, "TypeCtrlAltDel", nil)
 	if err != nil {
@@ -1343,13 +1839,23 @@ type MsvmKeyboardTypeKeyResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MsvmKeyboardTypeKeyResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "Msvm_Keyboard.TypeKey", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MsvmKeyboardTypeKey invokes Msvm_Keyboard.TypeKey on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmKeyboardTypeKey(svc *wmi.Service, objectPath string, keyCode uint32) (*MsvmKeyboardTypeKeyResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmKeyboardTypeKey(svc *wmi.Service, objectPath string, keyCode *uint32) (*MsvmKeyboardTypeKeyResult, error) {
 	in := map[string]any{}
-	if keyCode != 0 {
-		in["KeyCode"] = keyCode
+	if keyCode != nil {
+		in["KeyCode"] = *keyCode
 	}
 	row, err := svc.ExecMethod(objectPath, "TypeKey", in)
 	if err != nil {
@@ -1365,9 +1871,19 @@ type MsvmKeyboardTypeScancodesResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MsvmKeyboardTypeScancodesResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "Msvm_Keyboard.TypeScancodes", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MsvmKeyboardTypeScancodes invokes Msvm_Keyboard.TypeScancodes on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MsvmKeyboardTypeScancodes(svc *wmi.Service, objectPath string, scancodes []uint8) (*MsvmKeyboardTypeScancodesResult, error) {
 	in := map[string]any{}
 	if scancodes != nil {
@@ -1387,13 +1903,23 @@ type MsvmKeyboardTypeTextResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MsvmKeyboardTypeTextResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "Msvm_Keyboard.TypeText", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MsvmKeyboardTypeText invokes Msvm_Keyboard.TypeText on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmKeyboardTypeText(svc *wmi.Service, objectPath string, asciiText string) (*MsvmKeyboardTypeTextResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmKeyboardTypeText(svc *wmi.Service, objectPath string, asciiText *string) (*MsvmKeyboardTypeTextResult, error) {
 	in := map[string]any{}
-	if asciiText != "" {
-		in["AsciiText"] = asciiText
+	if asciiText != nil {
+		in["AsciiText"] = *asciiText
 	}
 	row, err := svc.ExecMethod(objectPath, "TypeText", in)
 	if err != nil {
@@ -1409,13 +1935,23 @@ type MsvmKvpExchangeComponentEnableDeviceResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MsvmKvpExchangeComponentEnableDeviceResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "Msvm_KvpExchangeComponent.EnableDevice", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MsvmKvpExchangeComponentEnableDevice invokes Msvm_KvpExchangeComponent.EnableDevice on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmKvpExchangeComponentEnableDevice(svc *wmi.Service, objectPath string, enabled bool) (*MsvmKvpExchangeComponentEnableDeviceResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmKvpExchangeComponentEnableDevice(svc *wmi.Service, objectPath string, enabled *bool) (*MsvmKvpExchangeComponentEnableDeviceResult, error) {
 	in := map[string]any{}
-	if enabled {
-		in["Enabled"] = enabled
+	if enabled != nil {
+		in["Enabled"] = *enabled
 	}
 	row, err := svc.ExecMethod(objectPath, "EnableDevice", in)
 	if err != nil {
@@ -1431,13 +1967,23 @@ type MsvmKvpExchangeComponentOnlineDeviceResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MsvmKvpExchangeComponentOnlineDeviceResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "Msvm_KvpExchangeComponent.OnlineDevice", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MsvmKvpExchangeComponentOnlineDevice invokes Msvm_KvpExchangeComponent.OnlineDevice on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmKvpExchangeComponentOnlineDevice(svc *wmi.Service, objectPath string, online bool) (*MsvmKvpExchangeComponentOnlineDeviceResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmKvpExchangeComponentOnlineDevice(svc *wmi.Service, objectPath string, online *bool) (*MsvmKvpExchangeComponentOnlineDeviceResult, error) {
 	in := map[string]any{}
-	if online {
-		in["Online"] = online
+	if online != nil {
+		in["Online"] = *online
 	}
 	row, err := svc.ExecMethod(objectPath, "OnlineDevice", in)
 	if err != nil {
@@ -1453,13 +1999,23 @@ type MsvmKvpExchangeComponentQuiesceDeviceResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MsvmKvpExchangeComponentQuiesceDeviceResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "Msvm_KvpExchangeComponent.QuiesceDevice", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MsvmKvpExchangeComponentQuiesceDevice invokes Msvm_KvpExchangeComponent.QuiesceDevice on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmKvpExchangeComponentQuiesceDevice(svc *wmi.Service, objectPath string, quiesce bool) (*MsvmKvpExchangeComponentQuiesceDeviceResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmKvpExchangeComponentQuiesceDevice(svc *wmi.Service, objectPath string, quiesce *bool) (*MsvmKvpExchangeComponentQuiesceDeviceResult, error) {
 	in := map[string]any{}
-	if quiesce {
-		in["Quiesce"] = quiesce
+	if quiesce != nil {
+		in["Quiesce"] = *quiesce
 	}
 	row, err := svc.ExecMethod(objectPath, "QuiesceDevice", in)
 	if err != nil {
@@ -1476,16 +2032,24 @@ type MsvmKvpExchangeComponentRequestStateChangeResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmKvpExchangeComponentRequestStateChangeResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_KvpExchangeComponent.RequestStateChange", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmKvpExchangeComponentRequestStateChange invokes Msvm_KvpExchangeComponent.RequestStateChange on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmKvpExchangeComponentRequestStateChange(svc *wmi.Service, objectPath string, requestedState uint16, timeoutPeriod string) (*MsvmKvpExchangeComponentRequestStateChangeResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmKvpExchangeComponentRequestStateChange(svc *wmi.Service, objectPath string, requestedState *MsvmKvpExchangeComponentRequestStateChangeRequestedState, timeoutPeriod *string) (*MsvmKvpExchangeComponentRequestStateChangeResult, error) {
 	in := map[string]any{}
-	if requestedState != 0 {
-		in["RequestedState"] = requestedState
+	if requestedState != nil {
+		in["RequestedState"] = uint16(*requestedState)
 	}
-	if timeoutPeriod != "" {
-		in["TimeoutPeriod"] = timeoutPeriod
+	if timeoutPeriod != nil {
+		in["TimeoutPeriod"] = *timeoutPeriod
 	}
 	row, err := svc.ExecMethod(objectPath, "RequestStateChange", in)
 	if err != nil {
@@ -1502,9 +2066,19 @@ type MsvmKvpExchangeComponentResetResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MsvmKvpExchangeComponentResetResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "Msvm_KvpExchangeComponent.Reset", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MsvmKvpExchangeComponentReset invokes Msvm_KvpExchangeComponent.Reset on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MsvmKvpExchangeComponentReset(svc *wmi.Service, objectPath string) (*MsvmKvpExchangeComponentResetResult, error) {
 	row, err := svc.ExecMethod(objectPath, "Reset", nil)
 	if err != nil {
@@ -1520,9 +2094,19 @@ type MsvmKvpExchangeComponentRestorePropertiesResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MsvmKvpExchangeComponentRestorePropertiesResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "Msvm_KvpExchangeComponent.RestoreProperties", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MsvmKvpExchangeComponentRestoreProperties invokes Msvm_KvpExchangeComponent.RestoreProperties on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MsvmKvpExchangeComponentRestoreProperties(svc *wmi.Service, objectPath string) (*MsvmKvpExchangeComponentRestorePropertiesResult, error) {
 	row, err := svc.ExecMethod(objectPath, "RestoreProperties", nil)
 	if err != nil {
@@ -1538,9 +2122,19 @@ type MsvmKvpExchangeComponentSavePropertiesResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MsvmKvpExchangeComponentSavePropertiesResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "Msvm_KvpExchangeComponent.SaveProperties", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MsvmKvpExchangeComponentSaveProperties invokes Msvm_KvpExchangeComponent.SaveProperties on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MsvmKvpExchangeComponentSaveProperties(svc *wmi.Service, objectPath string) (*MsvmKvpExchangeComponentSavePropertiesResult, error) {
 	row, err := svc.ExecMethod(objectPath, "SaveProperties", nil)
 	if err != nil {
@@ -1556,16 +2150,26 @@ type MsvmKvpExchangeComponentSetPowerStateResult struct {
 	ReturnValue uint32
 }
 
-// MsvmKvpExchangeComponentSetPowerState invokes Msvm_KvpExchangeComponent.SetPowerState on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmKvpExchangeComponentSetPowerState(svc *wmi.Service, objectPath string, powerState uint16, time string) (*MsvmKvpExchangeComponentSetPowerStateResult, error) {
-	in := map[string]any{}
-	if powerState != 0 {
-		in["PowerState"] = powerState
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MsvmKvpExchangeComponentSetPowerStateResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
 	}
-	if time != "" {
-		in["Time"] = time
+	return &wmi.JobError{What: "Msvm_KvpExchangeComponent.SetPowerState", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MsvmKvpExchangeComponentSetPowerState invokes Msvm_KvpExchangeComponent.SetPowerState on the instance at objectPath
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmKvpExchangeComponentSetPowerState(svc *wmi.Service, objectPath string, powerState *MsvmKvpExchangeComponentSetPowerStatePowerState, time *string) (*MsvmKvpExchangeComponentSetPowerStateResult, error) {
+	in := map[string]any{}
+	if powerState != nil {
+		in["PowerState"] = uint16(*powerState)
+	}
+	if time != nil {
+		in["Time"] = *time
 	}
 	row, err := svc.ExecMethod(objectPath, "SetPowerState", in)
 	if err != nil {
@@ -1582,13 +2186,23 @@ type MsvmSecurityServiceGetKeyProtectorResult struct {
 	ReturnValue  uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MsvmSecurityServiceGetKeyProtectorResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "Msvm_SecurityService.GetKeyProtector", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MsvmSecurityServiceGetKeyProtector invokes Msvm_SecurityService.GetKeyProtector on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmSecurityServiceGetKeyProtector(svc *wmi.Service, objectPath string, securitySettingData string) (*MsvmSecurityServiceGetKeyProtectorResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmSecurityServiceGetKeyProtector(svc *wmi.Service, objectPath string, securitySettingData *string) (*MsvmSecurityServiceGetKeyProtectorResult, error) {
 	in := map[string]any{}
-	if securitySettingData != "" {
-		in["SecuritySettingData"] = securitySettingData
+	if securitySettingData != nil {
+		in["SecuritySettingData"] = *securitySettingData
 	}
 	row, err := svc.ExecMethod(objectPath, "GetKeyProtector", in)
 	if err != nil {
@@ -1606,13 +2220,21 @@ type MsvmSecurityServiceModifySecuritySettingsResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmSecurityServiceModifySecuritySettingsResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_SecurityService.ModifySecuritySettings", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmSecurityServiceModifySecuritySettings invokes Msvm_SecurityService.ModifySecuritySettings on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmSecurityServiceModifySecuritySettings(svc *wmi.Service, objectPath string, securitySettingData string) (*MsvmSecurityServiceModifySecuritySettingsResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmSecurityServiceModifySecuritySettings(svc *wmi.Service, objectPath string, securitySettingData *string) (*MsvmSecurityServiceModifySecuritySettingsResult, error) {
 	in := map[string]any{}
-	if securitySettingData != "" {
-		in["SecuritySettingData"] = securitySettingData
+	if securitySettingData != nil {
+		in["SecuritySettingData"] = *securitySettingData
 	}
 	row, err := svc.ExecMethod(objectPath, "ModifySecuritySettings", in)
 	if err != nil {
@@ -1630,16 +2252,24 @@ type MsvmSecurityServiceRequestStateChangeResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmSecurityServiceRequestStateChangeResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_SecurityService.RequestStateChange", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmSecurityServiceRequestStateChange invokes Msvm_SecurityService.RequestStateChange on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmSecurityServiceRequestStateChange(svc *wmi.Service, objectPath string, requestedState uint16, timeoutPeriod string) (*MsvmSecurityServiceRequestStateChangeResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmSecurityServiceRequestStateChange(svc *wmi.Service, objectPath string, requestedState *MsvmSecurityServiceRequestStateChangeRequestedState, timeoutPeriod *string) (*MsvmSecurityServiceRequestStateChangeResult, error) {
 	in := map[string]any{}
-	if requestedState != 0 {
-		in["RequestedState"] = requestedState
+	if requestedState != nil {
+		in["RequestedState"] = uint16(*requestedState)
 	}
-	if timeoutPeriod != "" {
-		in["TimeoutPeriod"] = timeoutPeriod
+	if timeoutPeriod != nil {
+		in["TimeoutPeriod"] = *timeoutPeriod
 	}
 	row, err := svc.ExecMethod(objectPath, "RequestStateChange", in)
 	if err != nil {
@@ -1657,13 +2287,21 @@ type MsvmSecurityServiceRestoreLastKnownGoodKeyProtectorResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmSecurityServiceRestoreLastKnownGoodKeyProtectorResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_SecurityService.RestoreLastKnownGoodKeyProtector", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmSecurityServiceRestoreLastKnownGoodKeyProtector invokes Msvm_SecurityService.RestoreLastKnownGoodKeyProtector on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmSecurityServiceRestoreLastKnownGoodKeyProtector(svc *wmi.Service, objectPath string, securitySettingData string) (*MsvmSecurityServiceRestoreLastKnownGoodKeyProtectorResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmSecurityServiceRestoreLastKnownGoodKeyProtector(svc *wmi.Service, objectPath string, securitySettingData *string) (*MsvmSecurityServiceRestoreLastKnownGoodKeyProtectorResult, error) {
 	in := map[string]any{}
-	if securitySettingData != "" {
-		in["SecuritySettingData"] = securitySettingData
+	if securitySettingData != nil {
+		in["SecuritySettingData"] = *securitySettingData
 	}
 	row, err := svc.ExecMethod(objectPath, "RestoreLastKnownGoodKeyProtector", in)
 	if err != nil {
@@ -1681,13 +2319,21 @@ type MsvmSecurityServiceSetKeyProtectorResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmSecurityServiceSetKeyProtectorResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_SecurityService.SetKeyProtector", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmSecurityServiceSetKeyProtector invokes Msvm_SecurityService.SetKeyProtector on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmSecurityServiceSetKeyProtector(svc *wmi.Service, objectPath string, securitySettingData string, keyProtector []uint8) (*MsvmSecurityServiceSetKeyProtectorResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmSecurityServiceSetKeyProtector(svc *wmi.Service, objectPath string, securitySettingData *string, keyProtector []uint8) (*MsvmSecurityServiceSetKeyProtectorResult, error) {
 	in := map[string]any{}
-	if securitySettingData != "" {
-		in["SecuritySettingData"] = securitySettingData
+	if securitySettingData != nil {
+		in["SecuritySettingData"] = *securitySettingData
 	}
 	if keyProtector != nil {
 		in["KeyProtector"] = keyProtector
@@ -1708,13 +2354,21 @@ type MsvmSecurityServiceSetSecurityPolicyResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmSecurityServiceSetSecurityPolicyResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_SecurityService.SetSecurityPolicy", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmSecurityServiceSetSecurityPolicy invokes Msvm_SecurityService.SetSecurityPolicy on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmSecurityServiceSetSecurityPolicy(svc *wmi.Service, objectPath string, securitySettingData string, securityPolicy []uint8) (*MsvmSecurityServiceSetSecurityPolicyResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmSecurityServiceSetSecurityPolicy(svc *wmi.Service, objectPath string, securitySettingData *string, securityPolicy []uint8) (*MsvmSecurityServiceSetSecurityPolicyResult, error) {
 	in := map[string]any{}
-	if securitySettingData != "" {
-		in["SecuritySettingData"] = securitySettingData
+	if securitySettingData != nil {
+		in["SecuritySettingData"] = *securitySettingData
 	}
 	if securityPolicy != nil {
 		in["SecurityPolicy"] = securityPolicy
@@ -1734,9 +2388,19 @@ type MsvmSecurityServiceStartServiceResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MsvmSecurityServiceStartServiceResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "Msvm_SecurityService.StartService", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MsvmSecurityServiceStartService invokes Msvm_SecurityService.StartService on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MsvmSecurityServiceStartService(svc *wmi.Service, objectPath string) (*MsvmSecurityServiceStartServiceResult, error) {
 	row, err := svc.ExecMethod(objectPath, "StartService", nil)
 	if err != nil {
@@ -1752,9 +2416,19 @@ type MsvmSecurityServiceStopServiceResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MsvmSecurityServiceStopServiceResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "Msvm_SecurityService.StopService", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MsvmSecurityServiceStopService invokes Msvm_SecurityService.StopService on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MsvmSecurityServiceStopService(svc *wmi.Service, objectPath string) (*MsvmSecurityServiceStopServiceResult, error) {
 	row, err := svc.ExecMethod(objectPath, "StopService", nil)
 	if err != nil {
@@ -1770,13 +2444,23 @@ type MsvmShutdownComponentEnableDeviceResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MsvmShutdownComponentEnableDeviceResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "Msvm_ShutdownComponent.EnableDevice", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MsvmShutdownComponentEnableDevice invokes Msvm_ShutdownComponent.EnableDevice on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmShutdownComponentEnableDevice(svc *wmi.Service, objectPath string, enabled bool) (*MsvmShutdownComponentEnableDeviceResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmShutdownComponentEnableDevice(svc *wmi.Service, objectPath string, enabled *bool) (*MsvmShutdownComponentEnableDeviceResult, error) {
 	in := map[string]any{}
-	if enabled {
-		in["Enabled"] = enabled
+	if enabled != nil {
+		in["Enabled"] = *enabled
 	}
 	row, err := svc.ExecMethod(objectPath, "EnableDevice", in)
 	if err != nil {
@@ -1792,9 +2476,19 @@ type MsvmShutdownComponentInitiateHibernateResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MsvmShutdownComponentInitiateHibernateResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "Msvm_ShutdownComponent.InitiateHibernate", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MsvmShutdownComponentInitiateHibernate invokes Msvm_ShutdownComponent.InitiateHibernate on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MsvmShutdownComponentInitiateHibernate(svc *wmi.Service, objectPath string) (*MsvmShutdownComponentInitiateHibernateResult, error) {
 	row, err := svc.ExecMethod(objectPath, "InitiateHibernate", nil)
 	if err != nil {
@@ -1810,16 +2504,26 @@ type MsvmShutdownComponentInitiateRebootResult struct {
 	ReturnValue uint32
 }
 
-// MsvmShutdownComponentInitiateReboot invokes Msvm_ShutdownComponent.InitiateReboot on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmShutdownComponentInitiateReboot(svc *wmi.Service, objectPath string, force bool, reason string) (*MsvmShutdownComponentInitiateRebootResult, error) {
-	in := map[string]any{}
-	if force {
-		in["Force"] = force
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MsvmShutdownComponentInitiateRebootResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
 	}
-	if reason != "" {
-		in["Reason"] = reason
+	return &wmi.JobError{What: "Msvm_ShutdownComponent.InitiateReboot", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MsvmShutdownComponentInitiateReboot invokes Msvm_ShutdownComponent.InitiateReboot on the instance at objectPath
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmShutdownComponentInitiateReboot(svc *wmi.Service, objectPath string, force *bool, reason *string) (*MsvmShutdownComponentInitiateRebootResult, error) {
+	in := map[string]any{}
+	if force != nil {
+		in["Force"] = *force
+	}
+	if reason != nil {
+		in["Reason"] = *reason
 	}
 	row, err := svc.ExecMethod(objectPath, "InitiateReboot", in)
 	if err != nil {
@@ -1835,16 +2539,26 @@ type MsvmShutdownComponentInitiateShutdownResult struct {
 	ReturnValue uint32
 }
 
-// MsvmShutdownComponentInitiateShutdown invokes Msvm_ShutdownComponent.InitiateShutdown on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmShutdownComponentInitiateShutdown(svc *wmi.Service, objectPath string, force bool, reason string) (*MsvmShutdownComponentInitiateShutdownResult, error) {
-	in := map[string]any{}
-	if force {
-		in["Force"] = force
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MsvmShutdownComponentInitiateShutdownResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
 	}
-	if reason != "" {
-		in["Reason"] = reason
+	return &wmi.JobError{What: "Msvm_ShutdownComponent.InitiateShutdown", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MsvmShutdownComponentInitiateShutdown invokes Msvm_ShutdownComponent.InitiateShutdown on the instance at objectPath
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmShutdownComponentInitiateShutdown(svc *wmi.Service, objectPath string, force *bool, reason *string) (*MsvmShutdownComponentInitiateShutdownResult, error) {
+	in := map[string]any{}
+	if force != nil {
+		in["Force"] = *force
+	}
+	if reason != nil {
+		in["Reason"] = *reason
 	}
 	row, err := svc.ExecMethod(objectPath, "InitiateShutdown", in)
 	if err != nil {
@@ -1860,13 +2574,23 @@ type MsvmShutdownComponentOnlineDeviceResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MsvmShutdownComponentOnlineDeviceResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "Msvm_ShutdownComponent.OnlineDevice", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MsvmShutdownComponentOnlineDevice invokes Msvm_ShutdownComponent.OnlineDevice on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmShutdownComponentOnlineDevice(svc *wmi.Service, objectPath string, online bool) (*MsvmShutdownComponentOnlineDeviceResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmShutdownComponentOnlineDevice(svc *wmi.Service, objectPath string, online *bool) (*MsvmShutdownComponentOnlineDeviceResult, error) {
 	in := map[string]any{}
-	if online {
-		in["Online"] = online
+	if online != nil {
+		in["Online"] = *online
 	}
 	row, err := svc.ExecMethod(objectPath, "OnlineDevice", in)
 	if err != nil {
@@ -1882,13 +2606,23 @@ type MsvmShutdownComponentQuiesceDeviceResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MsvmShutdownComponentQuiesceDeviceResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "Msvm_ShutdownComponent.QuiesceDevice", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MsvmShutdownComponentQuiesceDevice invokes Msvm_ShutdownComponent.QuiesceDevice on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmShutdownComponentQuiesceDevice(svc *wmi.Service, objectPath string, quiesce bool) (*MsvmShutdownComponentQuiesceDeviceResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmShutdownComponentQuiesceDevice(svc *wmi.Service, objectPath string, quiesce *bool) (*MsvmShutdownComponentQuiesceDeviceResult, error) {
 	in := map[string]any{}
-	if quiesce {
-		in["Quiesce"] = quiesce
+	if quiesce != nil {
+		in["Quiesce"] = *quiesce
 	}
 	row, err := svc.ExecMethod(objectPath, "QuiesceDevice", in)
 	if err != nil {
@@ -1905,16 +2639,24 @@ type MsvmShutdownComponentRequestStateChangeResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmShutdownComponentRequestStateChangeResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_ShutdownComponent.RequestStateChange", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmShutdownComponentRequestStateChange invokes Msvm_ShutdownComponent.RequestStateChange on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmShutdownComponentRequestStateChange(svc *wmi.Service, objectPath string, requestedState uint16, timeoutPeriod string) (*MsvmShutdownComponentRequestStateChangeResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmShutdownComponentRequestStateChange(svc *wmi.Service, objectPath string, requestedState *MsvmShutdownComponentRequestStateChangeRequestedState, timeoutPeriod *string) (*MsvmShutdownComponentRequestStateChangeResult, error) {
 	in := map[string]any{}
-	if requestedState != 0 {
-		in["RequestedState"] = requestedState
+	if requestedState != nil {
+		in["RequestedState"] = uint16(*requestedState)
 	}
-	if timeoutPeriod != "" {
-		in["TimeoutPeriod"] = timeoutPeriod
+	if timeoutPeriod != nil {
+		in["TimeoutPeriod"] = *timeoutPeriod
 	}
 	row, err := svc.ExecMethod(objectPath, "RequestStateChange", in)
 	if err != nil {
@@ -1931,9 +2673,19 @@ type MsvmShutdownComponentResetResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MsvmShutdownComponentResetResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "Msvm_ShutdownComponent.Reset", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MsvmShutdownComponentReset invokes Msvm_ShutdownComponent.Reset on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MsvmShutdownComponentReset(svc *wmi.Service, objectPath string) (*MsvmShutdownComponentResetResult, error) {
 	row, err := svc.ExecMethod(objectPath, "Reset", nil)
 	if err != nil {
@@ -1949,9 +2701,19 @@ type MsvmShutdownComponentRestorePropertiesResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MsvmShutdownComponentRestorePropertiesResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "Msvm_ShutdownComponent.RestoreProperties", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MsvmShutdownComponentRestoreProperties invokes Msvm_ShutdownComponent.RestoreProperties on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MsvmShutdownComponentRestoreProperties(svc *wmi.Service, objectPath string) (*MsvmShutdownComponentRestorePropertiesResult, error) {
 	row, err := svc.ExecMethod(objectPath, "RestoreProperties", nil)
 	if err != nil {
@@ -1967,9 +2729,19 @@ type MsvmShutdownComponentSavePropertiesResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MsvmShutdownComponentSavePropertiesResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "Msvm_ShutdownComponent.SaveProperties", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MsvmShutdownComponentSaveProperties invokes Msvm_ShutdownComponent.SaveProperties on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MsvmShutdownComponentSaveProperties(svc *wmi.Service, objectPath string) (*MsvmShutdownComponentSavePropertiesResult, error) {
 	row, err := svc.ExecMethod(objectPath, "SaveProperties", nil)
 	if err != nil {
@@ -1985,16 +2757,26 @@ type MsvmShutdownComponentSetPowerStateResult struct {
 	ReturnValue uint32
 }
 
-// MsvmShutdownComponentSetPowerState invokes Msvm_ShutdownComponent.SetPowerState on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmShutdownComponentSetPowerState(svc *wmi.Service, objectPath string, powerState uint16, time string) (*MsvmShutdownComponentSetPowerStateResult, error) {
-	in := map[string]any{}
-	if powerState != 0 {
-		in["PowerState"] = powerState
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MsvmShutdownComponentSetPowerStateResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
 	}
-	if time != "" {
-		in["Time"] = time
+	return &wmi.JobError{What: "Msvm_ShutdownComponent.SetPowerState", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MsvmShutdownComponentSetPowerState invokes Msvm_ShutdownComponent.SetPowerState on the instance at objectPath
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmShutdownComponentSetPowerState(svc *wmi.Service, objectPath string, powerState *MsvmShutdownComponentSetPowerStatePowerState, time *string) (*MsvmShutdownComponentSetPowerStateResult, error) {
+	in := map[string]any{}
+	if powerState != nil {
+		in["PowerState"] = uint16(*powerState)
+	}
+	if time != nil {
+		in["Time"] = *time
 	}
 	row, err := svc.ExecMethod(objectPath, "SetPowerState", in)
 	if err != nil {
@@ -2011,16 +2793,24 @@ type MsvmVirtualEthernetSwitchRequestStateChangeResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmVirtualEthernetSwitchRequestStateChangeResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_VirtualEthernetSwitch.RequestStateChange", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmVirtualEthernetSwitchRequestStateChange invokes Msvm_VirtualEthernetSwitch.RequestStateChange on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmVirtualEthernetSwitchRequestStateChange(svc *wmi.Service, objectPath string, requestedState uint16, timeoutPeriod string) (*MsvmVirtualEthernetSwitchRequestStateChangeResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmVirtualEthernetSwitchRequestStateChange(svc *wmi.Service, objectPath string, requestedState *MsvmVirtualEthernetSwitchRequestStateChangeRequestedState, timeoutPeriod *string) (*MsvmVirtualEthernetSwitchRequestStateChangeResult, error) {
 	in := map[string]any{}
-	if requestedState != 0 {
-		in["RequestedState"] = requestedState
+	if requestedState != nil {
+		in["RequestedState"] = uint16(*requestedState)
 	}
-	if timeoutPeriod != "" {
-		in["TimeoutPeriod"] = timeoutPeriod
+	if timeoutPeriod != nil {
+		in["TimeoutPeriod"] = *timeoutPeriod
 	}
 	row, err := svc.ExecMethod(objectPath, "RequestStateChange", in)
 	if err != nil {
@@ -2037,16 +2827,26 @@ type MsvmVirtualEthernetSwitchSetPowerStateResult struct {
 	ReturnValue uint32
 }
 
-// MsvmVirtualEthernetSwitchSetPowerState invokes Msvm_VirtualEthernetSwitch.SetPowerState on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmVirtualEthernetSwitchSetPowerState(svc *wmi.Service, objectPath string, powerState uint32, time string) (*MsvmVirtualEthernetSwitchSetPowerStateResult, error) {
-	in := map[string]any{}
-	if powerState != 0 {
-		in["PowerState"] = powerState
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MsvmVirtualEthernetSwitchSetPowerStateResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
 	}
-	if time != "" {
-		in["Time"] = time
+	return &wmi.JobError{What: "Msvm_VirtualEthernetSwitch.SetPowerState", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MsvmVirtualEthernetSwitchSetPowerState invokes Msvm_VirtualEthernetSwitch.SetPowerState on the instance at objectPath
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmVirtualEthernetSwitchSetPowerState(svc *wmi.Service, objectPath string, powerState *MsvmVirtualEthernetSwitchSetPowerStatePowerState, time *string) (*MsvmVirtualEthernetSwitchSetPowerStateResult, error) {
+	in := map[string]any{}
+	if powerState != nil {
+		in["PowerState"] = uint32(*powerState)
+	}
+	if time != nil {
+		in["Time"] = *time
 	}
 	row, err := svc.ExecMethod(objectPath, "SetPowerState", in)
 	if err != nil {
@@ -2064,13 +2864,21 @@ type MsvmVirtualEthernetSwitchManagementServiceAddFeatureSettingsResult struct {
 	ReturnValue              uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmVirtualEthernetSwitchManagementServiceAddFeatureSettingsResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_VirtualEthernetSwitchManagementService.AddFeatureSettings", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmVirtualEthernetSwitchManagementServiceAddFeatureSettings invokes Msvm_VirtualEthernetSwitchManagementService.AddFeatureSettings on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmVirtualEthernetSwitchManagementServiceAddFeatureSettings(svc *wmi.Service, objectPath string, affectedConfiguration string, featureSettings []string) (*MsvmVirtualEthernetSwitchManagementServiceAddFeatureSettingsResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmVirtualEthernetSwitchManagementServiceAddFeatureSettings(svc *wmi.Service, objectPath string, affectedConfiguration *string, featureSettings []string) (*MsvmVirtualEthernetSwitchManagementServiceAddFeatureSettingsResult, error) {
 	in := map[string]any{}
-	if affectedConfiguration != "" {
-		in["AffectedConfiguration"] = affectedConfiguration
+	if affectedConfiguration != nil {
+		in["AffectedConfiguration"] = *affectedConfiguration
 	}
 	if featureSettings != nil {
 		in["FeatureSettings"] = featureSettings
@@ -2093,13 +2901,21 @@ type MsvmVirtualEthernetSwitchManagementServiceAddResourceSettingsResult struct 
 	ReturnValue               uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmVirtualEthernetSwitchManagementServiceAddResourceSettingsResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_VirtualEthernetSwitchManagementService.AddResourceSettings", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmVirtualEthernetSwitchManagementServiceAddResourceSettings invokes Msvm_VirtualEthernetSwitchManagementService.AddResourceSettings on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmVirtualEthernetSwitchManagementServiceAddResourceSettings(svc *wmi.Service, objectPath string, affectedConfiguration string, resourceSettings []string) (*MsvmVirtualEthernetSwitchManagementServiceAddResourceSettingsResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmVirtualEthernetSwitchManagementServiceAddResourceSettings(svc *wmi.Service, objectPath string, affectedConfiguration *string, resourceSettings []string) (*MsvmVirtualEthernetSwitchManagementServiceAddResourceSettingsResult, error) {
 	in := map[string]any{}
-	if affectedConfiguration != "" {
-		in["AffectedConfiguration"] = affectedConfiguration
+	if affectedConfiguration != nil {
+		in["AffectedConfiguration"] = *affectedConfiguration
 	}
 	if resourceSettings != nil {
 		in["ResourceSettings"] = resourceSettings
@@ -2122,19 +2938,27 @@ type MsvmVirtualEthernetSwitchManagementServiceDefineSystemResult struct {
 	ReturnValue     uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmVirtualEthernetSwitchManagementServiceDefineSystemResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_VirtualEthernetSwitchManagementService.DefineSystem", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmVirtualEthernetSwitchManagementServiceDefineSystem invokes Msvm_VirtualEthernetSwitchManagementService.DefineSystem on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmVirtualEthernetSwitchManagementServiceDefineSystem(svc *wmi.Service, objectPath string, systemSettings string, resourceSettings []string, referenceConfiguration string) (*MsvmVirtualEthernetSwitchManagementServiceDefineSystemResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmVirtualEthernetSwitchManagementServiceDefineSystem(svc *wmi.Service, objectPath string, systemSettings *string, resourceSettings []string, referenceConfiguration *string) (*MsvmVirtualEthernetSwitchManagementServiceDefineSystemResult, error) {
 	in := map[string]any{}
-	if systemSettings != "" {
-		in["SystemSettings"] = systemSettings
+	if systemSettings != nil {
+		in["SystemSettings"] = *systemSettings
 	}
 	if resourceSettings != nil {
 		in["ResourceSettings"] = resourceSettings
 	}
-	if referenceConfiguration != "" {
-		in["ReferenceConfiguration"] = referenceConfiguration
+	if referenceConfiguration != nil {
+		in["ReferenceConfiguration"] = *referenceConfiguration
 	}
 	row, err := svc.ExecMethod(objectPath, "DefineSystem", in)
 	if err != nil {
@@ -2153,13 +2977,21 @@ type MsvmVirtualEthernetSwitchManagementServiceDestroySystemResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmVirtualEthernetSwitchManagementServiceDestroySystemResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_VirtualEthernetSwitchManagementService.DestroySystem", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmVirtualEthernetSwitchManagementServiceDestroySystem invokes Msvm_VirtualEthernetSwitchManagementService.DestroySystem on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmVirtualEthernetSwitchManagementServiceDestroySystem(svc *wmi.Service, objectPath string, affectedSystem string) (*MsvmVirtualEthernetSwitchManagementServiceDestroySystemResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmVirtualEthernetSwitchManagementServiceDestroySystem(svc *wmi.Service, objectPath string, affectedSystem *string) (*MsvmVirtualEthernetSwitchManagementServiceDestroySystemResult, error) {
 	in := map[string]any{}
-	if affectedSystem != "" {
-		in["AffectedSystem"] = affectedSystem
+	if affectedSystem != nil {
+		in["AffectedSystem"] = *affectedSystem
 	}
 	row, err := svc.ExecMethod(objectPath, "DestroySystem", in)
 	if err != nil {
@@ -2178,9 +3010,17 @@ type MsvmVirtualEthernetSwitchManagementServiceModifyFeatureSettingsResult struc
 	ReturnValue              uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmVirtualEthernetSwitchManagementServiceModifyFeatureSettingsResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_VirtualEthernetSwitchManagementService.ModifyFeatureSettings", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmVirtualEthernetSwitchManagementServiceModifyFeatureSettings invokes Msvm_VirtualEthernetSwitchManagementService.ModifyFeatureSettings on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MsvmVirtualEthernetSwitchManagementServiceModifyFeatureSettings(svc *wmi.Service, objectPath string, featureSettings []string) (*MsvmVirtualEthernetSwitchManagementServiceModifyFeatureSettingsResult, error) {
 	in := map[string]any{}
 	if featureSettings != nil {
@@ -2204,9 +3044,17 @@ type MsvmVirtualEthernetSwitchManagementServiceModifyResourceSettingsResult stru
 	ReturnValue               uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmVirtualEthernetSwitchManagementServiceModifyResourceSettingsResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_VirtualEthernetSwitchManagementService.ModifyResourceSettings", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmVirtualEthernetSwitchManagementServiceModifyResourceSettings invokes Msvm_VirtualEthernetSwitchManagementService.ModifyResourceSettings on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MsvmVirtualEthernetSwitchManagementServiceModifyResourceSettings(svc *wmi.Service, objectPath string, resourceSettings []string) (*MsvmVirtualEthernetSwitchManagementServiceModifyResourceSettingsResult, error) {
 	in := map[string]any{}
 	if resourceSettings != nil {
@@ -2229,13 +3077,21 @@ type MsvmVirtualEthernetSwitchManagementServiceModifySystemSettingsResult struct
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmVirtualEthernetSwitchManagementServiceModifySystemSettingsResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_VirtualEthernetSwitchManagementService.ModifySystemSettings", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmVirtualEthernetSwitchManagementServiceModifySystemSettings invokes Msvm_VirtualEthernetSwitchManagementService.ModifySystemSettings on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmVirtualEthernetSwitchManagementServiceModifySystemSettings(svc *wmi.Service, objectPath string, systemSettings string) (*MsvmVirtualEthernetSwitchManagementServiceModifySystemSettingsResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmVirtualEthernetSwitchManagementServiceModifySystemSettings(svc *wmi.Service, objectPath string, systemSettings *string) (*MsvmVirtualEthernetSwitchManagementServiceModifySystemSettingsResult, error) {
 	in := map[string]any{}
-	if systemSettings != "" {
-		in["SystemSettings"] = systemSettings
+	if systemSettings != nil {
+		in["SystemSettings"] = *systemSettings
 	}
 	row, err := svc.ExecMethod(objectPath, "ModifySystemSettings", in)
 	if err != nil {
@@ -2253,9 +3109,17 @@ type MsvmVirtualEthernetSwitchManagementServiceRemoveFeatureSettingsResult struc
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmVirtualEthernetSwitchManagementServiceRemoveFeatureSettingsResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_VirtualEthernetSwitchManagementService.RemoveFeatureSettings", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmVirtualEthernetSwitchManagementServiceRemoveFeatureSettings invokes Msvm_VirtualEthernetSwitchManagementService.RemoveFeatureSettings on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MsvmVirtualEthernetSwitchManagementServiceRemoveFeatureSettings(svc *wmi.Service, objectPath string, featureSettings []string) (*MsvmVirtualEthernetSwitchManagementServiceRemoveFeatureSettingsResult, error) {
 	in := map[string]any{}
 	if featureSettings != nil {
@@ -2277,9 +3141,17 @@ type MsvmVirtualEthernetSwitchManagementServiceRemoveResourceSettingsResult stru
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmVirtualEthernetSwitchManagementServiceRemoveResourceSettingsResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_VirtualEthernetSwitchManagementService.RemoveResourceSettings", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmVirtualEthernetSwitchManagementServiceRemoveResourceSettings invokes Msvm_VirtualEthernetSwitchManagementService.RemoveResourceSettings on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MsvmVirtualEthernetSwitchManagementServiceRemoveResourceSettings(svc *wmi.Service, objectPath string, resourceSettings []string) (*MsvmVirtualEthernetSwitchManagementServiceRemoveResourceSettingsResult, error) {
 	in := map[string]any{}
 	if resourceSettings != nil {
@@ -2301,16 +3173,24 @@ type MsvmVirtualEthernetSwitchManagementServiceRequestStateChangeResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmVirtualEthernetSwitchManagementServiceRequestStateChangeResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_VirtualEthernetSwitchManagementService.RequestStateChange", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmVirtualEthernetSwitchManagementServiceRequestStateChange invokes Msvm_VirtualEthernetSwitchManagementService.RequestStateChange on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmVirtualEthernetSwitchManagementServiceRequestStateChange(svc *wmi.Service, objectPath string, requestedState uint16, timeoutPeriod string) (*MsvmVirtualEthernetSwitchManagementServiceRequestStateChangeResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmVirtualEthernetSwitchManagementServiceRequestStateChange(svc *wmi.Service, objectPath string, requestedState *MsvmVirtualEthernetSwitchManagementServiceRequestStateChangeRequestedState, timeoutPeriod *string) (*MsvmVirtualEthernetSwitchManagementServiceRequestStateChangeResult, error) {
 	in := map[string]any{}
-	if requestedState != 0 {
-		in["RequestedState"] = requestedState
+	if requestedState != nil {
+		in["RequestedState"] = uint16(*requestedState)
 	}
-	if timeoutPeriod != "" {
-		in["TimeoutPeriod"] = timeoutPeriod
+	if timeoutPeriod != nil {
+		in["TimeoutPeriod"] = *timeoutPeriod
 	}
 	row, err := svc.ExecMethod(objectPath, "RequestStateChange", in)
 	if err != nil {
@@ -2327,9 +3207,19 @@ type MsvmVirtualEthernetSwitchManagementServiceStartServiceResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MsvmVirtualEthernetSwitchManagementServiceStartServiceResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "Msvm_VirtualEthernetSwitchManagementService.StartService", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MsvmVirtualEthernetSwitchManagementServiceStartService invokes Msvm_VirtualEthernetSwitchManagementService.StartService on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MsvmVirtualEthernetSwitchManagementServiceStartService(svc *wmi.Service, objectPath string) (*MsvmVirtualEthernetSwitchManagementServiceStartServiceResult, error) {
 	row, err := svc.ExecMethod(objectPath, "StartService", nil)
 	if err != nil {
@@ -2345,9 +3235,19 @@ type MsvmVirtualEthernetSwitchManagementServiceStopServiceResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MsvmVirtualEthernetSwitchManagementServiceStopServiceResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "Msvm_VirtualEthernetSwitchManagementService.StopService", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MsvmVirtualEthernetSwitchManagementServiceStopService invokes Msvm_VirtualEthernetSwitchManagementService.StopService on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MsvmVirtualEthernetSwitchManagementServiceStopService(svc *wmi.Service, objectPath string) (*MsvmVirtualEthernetSwitchManagementServiceStopServiceResult, error) {
 	row, err := svc.ExecMethod(objectPath, "StopService", nil)
 	if err != nil {
@@ -2365,13 +3265,21 @@ type MsvmVirtualSystemManagementServiceAddBootSourceSettingsResult struct {
 	ReturnValue                 uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmVirtualSystemManagementServiceAddBootSourceSettingsResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_VirtualSystemManagementService.AddBootSourceSettings", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmVirtualSystemManagementServiceAddBootSourceSettings invokes Msvm_VirtualSystemManagementService.AddBootSourceSettings on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmVirtualSystemManagementServiceAddBootSourceSettings(svc *wmi.Service, objectPath string, affectedConfiguration string, bootSourceSettings []string) (*MsvmVirtualSystemManagementServiceAddBootSourceSettingsResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmVirtualSystemManagementServiceAddBootSourceSettings(svc *wmi.Service, objectPath string, affectedConfiguration *string, bootSourceSettings []string) (*MsvmVirtualSystemManagementServiceAddBootSourceSettingsResult, error) {
 	in := map[string]any{}
-	if affectedConfiguration != "" {
-		in["AffectedConfiguration"] = affectedConfiguration
+	if affectedConfiguration != nil {
+		in["AffectedConfiguration"] = *affectedConfiguration
 	}
 	if bootSourceSettings != nil {
 		in["BootSourceSettings"] = bootSourceSettings
@@ -2394,13 +3302,21 @@ type MsvmVirtualSystemManagementServiceAddFeatureSettingsResult struct {
 	ReturnValue              uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmVirtualSystemManagementServiceAddFeatureSettingsResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_VirtualSystemManagementService.AddFeatureSettings", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmVirtualSystemManagementServiceAddFeatureSettings invokes Msvm_VirtualSystemManagementService.AddFeatureSettings on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmVirtualSystemManagementServiceAddFeatureSettings(svc *wmi.Service, objectPath string, affectedConfiguration string, featureSettings []string) (*MsvmVirtualSystemManagementServiceAddFeatureSettingsResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmVirtualSystemManagementServiceAddFeatureSettings(svc *wmi.Service, objectPath string, affectedConfiguration *string, featureSettings []string) (*MsvmVirtualSystemManagementServiceAddFeatureSettingsResult, error) {
 	in := map[string]any{}
-	if affectedConfiguration != "" {
-		in["AffectedConfiguration"] = affectedConfiguration
+	if affectedConfiguration != nil {
+		in["AffectedConfiguration"] = *affectedConfiguration
 	}
 	if featureSettings != nil {
 		in["FeatureSettings"] = featureSettings
@@ -2421,16 +3337,26 @@ type MsvmVirtualSystemManagementServiceAddFibreChannelChapResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MsvmVirtualSystemManagementServiceAddFibreChannelChapResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "Msvm_VirtualSystemManagementService.AddFibreChannelChap", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MsvmVirtualSystemManagementServiceAddFibreChannelChap invokes Msvm_VirtualSystemManagementService.AddFibreChannelChap on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmVirtualSystemManagementServiceAddFibreChannelChap(svc *wmi.Service, objectPath string, fcPortSettings []string, secretEncoding uint8, sharedSecret []uint8) (*MsvmVirtualSystemManagementServiceAddFibreChannelChapResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmVirtualSystemManagementServiceAddFibreChannelChap(svc *wmi.Service, objectPath string, fcPortSettings []string, secretEncoding *MsvmVirtualSystemManagementServiceAddFibreChannelChapSecretEncoding, sharedSecret []uint8) (*MsvmVirtualSystemManagementServiceAddFibreChannelChapResult, error) {
 	in := map[string]any{}
 	if fcPortSettings != nil {
 		in["FcPortSettings"] = fcPortSettings
 	}
-	if secretEncoding != 0 {
-		in["SecretEncoding"] = secretEncoding
+	if secretEncoding != nil {
+		in["SecretEncoding"] = uint8(*secretEncoding)
 	}
 	if sharedSecret != nil {
 		in["SharedSecret"] = sharedSecret
@@ -2451,13 +3377,21 @@ type MsvmVirtualSystemManagementServiceAddGuestServiceSettingsResult struct {
 	ReturnValue                   uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmVirtualSystemManagementServiceAddGuestServiceSettingsResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_VirtualSystemManagementService.AddGuestServiceSettings", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmVirtualSystemManagementServiceAddGuestServiceSettings invokes Msvm_VirtualSystemManagementService.AddGuestServiceSettings on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmVirtualSystemManagementServiceAddGuestServiceSettings(svc *wmi.Service, objectPath string, affectedConfiguration string, guestServiceSettings []string) (*MsvmVirtualSystemManagementServiceAddGuestServiceSettingsResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmVirtualSystemManagementServiceAddGuestServiceSettings(svc *wmi.Service, objectPath string, affectedConfiguration *string, guestServiceSettings []string) (*MsvmVirtualSystemManagementServiceAddGuestServiceSettingsResult, error) {
 	in := map[string]any{}
-	if affectedConfiguration != "" {
-		in["AffectedConfiguration"] = affectedConfiguration
+	if affectedConfiguration != nil {
+		in["AffectedConfiguration"] = *affectedConfiguration
 	}
 	if guestServiceSettings != nil {
 		in["GuestServiceSettings"] = guestServiceSettings
@@ -2479,13 +3413,21 @@ type MsvmVirtualSystemManagementServiceAddKvpItemsResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmVirtualSystemManagementServiceAddKvpItemsResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_VirtualSystemManagementService.AddKvpItems", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmVirtualSystemManagementServiceAddKvpItems invokes Msvm_VirtualSystemManagementService.AddKvpItems on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmVirtualSystemManagementServiceAddKvpItems(svc *wmi.Service, objectPath string, targetSystem string, dataItems []string) (*MsvmVirtualSystemManagementServiceAddKvpItemsResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmVirtualSystemManagementServiceAddKvpItems(svc *wmi.Service, objectPath string, targetSystem *string, dataItems []string) (*MsvmVirtualSystemManagementServiceAddKvpItemsResult, error) {
 	in := map[string]any{}
-	if targetSystem != "" {
-		in["TargetSystem"] = targetSystem
+	if targetSystem != nil {
+		in["TargetSystem"] = *targetSystem
 	}
 	if dataItems != nil {
 		in["DataItems"] = dataItems
@@ -2507,13 +3449,21 @@ type MsvmVirtualSystemManagementServiceAddResourceSettingsResult struct {
 	ReturnValue               uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmVirtualSystemManagementServiceAddResourceSettingsResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_VirtualSystemManagementService.AddResourceSettings", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmVirtualSystemManagementServiceAddResourceSettings invokes Msvm_VirtualSystemManagementService.AddResourceSettings on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmVirtualSystemManagementServiceAddResourceSettings(svc *wmi.Service, objectPath string, affectedConfiguration string, resourceSettings []string) (*MsvmVirtualSystemManagementServiceAddResourceSettingsResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmVirtualSystemManagementServiceAddResourceSettings(svc *wmi.Service, objectPath string, affectedConfiguration *string, resourceSettings []string) (*MsvmVirtualSystemManagementServiceAddResourceSettingsResult, error) {
 	in := map[string]any{}
-	if affectedConfiguration != "" {
-		in["AffectedConfiguration"] = affectedConfiguration
+	if affectedConfiguration != nil {
+		in["AffectedConfiguration"] = *affectedConfiguration
 	}
 	if resourceSettings != nil {
 		in["ResourceSettings"] = resourceSettings
@@ -2536,13 +3486,21 @@ type MsvmVirtualSystemManagementServiceAddSystemComponentSettingsResult struct {
 	ReturnValue                uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmVirtualSystemManagementServiceAddSystemComponentSettingsResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_VirtualSystemManagementService.AddSystemComponentSettings", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmVirtualSystemManagementServiceAddSystemComponentSettings invokes Msvm_VirtualSystemManagementService.AddSystemComponentSettings on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmVirtualSystemManagementServiceAddSystemComponentSettings(svc *wmi.Service, objectPath string, affectedConfiguration string, componentSettings []string) (*MsvmVirtualSystemManagementServiceAddSystemComponentSettingsResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmVirtualSystemManagementServiceAddSystemComponentSettings(svc *wmi.Service, objectPath string, affectedConfiguration *string, componentSettings []string) (*MsvmVirtualSystemManagementServiceAddSystemComponentSettingsResult, error) {
 	in := map[string]any{}
-	if affectedConfiguration != "" {
-		in["AffectedConfiguration"] = affectedConfiguration
+	if affectedConfiguration != nil {
+		in["AffectedConfiguration"] = *affectedConfiguration
 	}
 	if componentSettings != nil {
 		in["ComponentSettings"] = componentSettings
@@ -2565,19 +3523,27 @@ type MsvmVirtualSystemManagementServiceDefinePlannedSystemResult struct {
 	ReturnValue     uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmVirtualSystemManagementServiceDefinePlannedSystemResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_VirtualSystemManagementService.DefinePlannedSystem", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmVirtualSystemManagementServiceDefinePlannedSystem invokes Msvm_VirtualSystemManagementService.DefinePlannedSystem on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmVirtualSystemManagementServiceDefinePlannedSystem(svc *wmi.Service, objectPath string, systemSettings string, resourceSettings []string, referenceConfiguration string) (*MsvmVirtualSystemManagementServiceDefinePlannedSystemResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmVirtualSystemManagementServiceDefinePlannedSystem(svc *wmi.Service, objectPath string, systemSettings *string, resourceSettings []string, referenceConfiguration *string) (*MsvmVirtualSystemManagementServiceDefinePlannedSystemResult, error) {
 	in := map[string]any{}
-	if systemSettings != "" {
-		in["SystemSettings"] = systemSettings
+	if systemSettings != nil {
+		in["SystemSettings"] = *systemSettings
 	}
 	if resourceSettings != nil {
 		in["ResourceSettings"] = resourceSettings
 	}
-	if referenceConfiguration != "" {
-		in["ReferenceConfiguration"] = referenceConfiguration
+	if referenceConfiguration != nil {
+		in["ReferenceConfiguration"] = *referenceConfiguration
 	}
 	row, err := svc.ExecMethod(objectPath, "DefinePlannedSystem", in)
 	if err != nil {
@@ -2597,19 +3563,27 @@ type MsvmVirtualSystemManagementServiceDefineSystemResult struct {
 	ReturnValue     uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmVirtualSystemManagementServiceDefineSystemResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_VirtualSystemManagementService.DefineSystem", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmVirtualSystemManagementServiceDefineSystem invokes Msvm_VirtualSystemManagementService.DefineSystem on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmVirtualSystemManagementServiceDefineSystem(svc *wmi.Service, objectPath string, systemSettings string, resourceSettings []string, referenceConfiguration string) (*MsvmVirtualSystemManagementServiceDefineSystemResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmVirtualSystemManagementServiceDefineSystem(svc *wmi.Service, objectPath string, systemSettings *string, resourceSettings []string, referenceConfiguration *string) (*MsvmVirtualSystemManagementServiceDefineSystemResult, error) {
 	in := map[string]any{}
-	if systemSettings != "" {
-		in["SystemSettings"] = systemSettings
+	if systemSettings != nil {
+		in["SystemSettings"] = *systemSettings
 	}
 	if resourceSettings != nil {
 		in["ResourceSettings"] = resourceSettings
 	}
-	if referenceConfiguration != "" {
-		in["ReferenceConfiguration"] = referenceConfiguration
+	if referenceConfiguration != nil {
+		in["ReferenceConfiguration"] = *referenceConfiguration
 	}
 	row, err := svc.ExecMethod(objectPath, "DefineSystem", in)
 	if err != nil {
@@ -2628,13 +3602,21 @@ type MsvmVirtualSystemManagementServiceDestroySystemResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmVirtualSystemManagementServiceDestroySystemResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_VirtualSystemManagementService.DestroySystem", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmVirtualSystemManagementServiceDestroySystem invokes Msvm_VirtualSystemManagementService.DestroySystem on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmVirtualSystemManagementServiceDestroySystem(svc *wmi.Service, objectPath string, affectedSystem string) (*MsvmVirtualSystemManagementServiceDestroySystemResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmVirtualSystemManagementServiceDestroySystem(svc *wmi.Service, objectPath string, affectedSystem *string) (*MsvmVirtualSystemManagementServiceDestroySystemResult, error) {
 	in := map[string]any{}
-	if affectedSystem != "" {
-		in["AffectedSystem"] = affectedSystem
+	if affectedSystem != nil {
+		in["AffectedSystem"] = *affectedSystem
 	}
 	row, err := svc.ExecMethod(objectPath, "DestroySystem", in)
 	if err != nil {
@@ -2653,16 +3635,24 @@ type MsvmVirtualSystemManagementServiceDiagnoseNetworkConnectionResult struct {
 	ReturnValue           uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmVirtualSystemManagementServiceDiagnoseNetworkConnectionResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_VirtualSystemManagementService.DiagnoseNetworkConnection", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmVirtualSystemManagementServiceDiagnoseNetworkConnection invokes Msvm_VirtualSystemManagementService.DiagnoseNetworkConnection on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmVirtualSystemManagementServiceDiagnoseNetworkConnection(svc *wmi.Service, objectPath string, targetNetworkAdapter string, diagnosticSettings string) (*MsvmVirtualSystemManagementServiceDiagnoseNetworkConnectionResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmVirtualSystemManagementServiceDiagnoseNetworkConnection(svc *wmi.Service, objectPath string, targetNetworkAdapter *string, diagnosticSettings *string) (*MsvmVirtualSystemManagementServiceDiagnoseNetworkConnectionResult, error) {
 	in := map[string]any{}
-	if targetNetworkAdapter != "" {
-		in["TargetNetworkAdapter"] = targetNetworkAdapter
+	if targetNetworkAdapter != nil {
+		in["TargetNetworkAdapter"] = *targetNetworkAdapter
 	}
-	if diagnosticSettings != "" {
-		in["DiagnosticSettings"] = diagnosticSettings
+	if diagnosticSettings != nil {
+		in["DiagnosticSettings"] = *diagnosticSettings
 	}
 	row, err := svc.ExecMethod(objectPath, "DiagnoseNetworkConnection", in)
 	if err != nil {
@@ -2681,19 +3671,27 @@ type MsvmVirtualSystemManagementServiceExportSystemDefinitionResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmVirtualSystemManagementServiceExportSystemDefinitionResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_VirtualSystemManagementService.ExportSystemDefinition", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmVirtualSystemManagementServiceExportSystemDefinition invokes Msvm_VirtualSystemManagementService.ExportSystemDefinition on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmVirtualSystemManagementServiceExportSystemDefinition(svc *wmi.Service, objectPath string, computerSystem string, exportDirectory string, exportSettingData string) (*MsvmVirtualSystemManagementServiceExportSystemDefinitionResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmVirtualSystemManagementServiceExportSystemDefinition(svc *wmi.Service, objectPath string, computerSystem *string, exportDirectory *string, exportSettingData *string) (*MsvmVirtualSystemManagementServiceExportSystemDefinitionResult, error) {
 	in := map[string]any{}
-	if computerSystem != "" {
-		in["ComputerSystem"] = computerSystem
+	if computerSystem != nil {
+		in["ComputerSystem"] = *computerSystem
 	}
-	if exportDirectory != "" {
-		in["ExportDirectory"] = exportDirectory
+	if exportDirectory != nil {
+		in["ExportDirectory"] = *exportDirectory
 	}
-	if exportSettingData != "" {
-		in["ExportSettingData"] = exportSettingData
+	if exportSettingData != nil {
+		in["ExportSettingData"] = *exportSettingData
 	}
 	row, err := svc.ExecMethod(objectPath, "ExportSystemDefinition", in)
 	if err != nil {
@@ -2711,9 +3709,19 @@ type MsvmVirtualSystemManagementServiceFormatErrorResult struct {
 	ReturnValue  uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MsvmVirtualSystemManagementServiceFormatErrorResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "Msvm_VirtualSystemManagementService.FormatError", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MsvmVirtualSystemManagementServiceFormatError invokes Msvm_VirtualSystemManagementService.FormatError on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MsvmVirtualSystemManagementServiceFormatError(svc *wmi.Service, objectPath string, errors []string) (*MsvmVirtualSystemManagementServiceFormatErrorResult, error) {
 	in := map[string]any{}
 	if errors != nil {
@@ -2735,13 +3743,23 @@ type MsvmVirtualSystemManagementServiceGenerateWwpnResult struct {
 	ReturnValue   uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MsvmVirtualSystemManagementServiceGenerateWwpnResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "Msvm_VirtualSystemManagementService.GenerateWwpn", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MsvmVirtualSystemManagementServiceGenerateWwpn invokes Msvm_VirtualSystemManagementService.GenerateWwpn on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmVirtualSystemManagementServiceGenerateWwpn(svc *wmi.Service, objectPath string, numberOfWwpns uint32) (*MsvmVirtualSystemManagementServiceGenerateWwpnResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmVirtualSystemManagementServiceGenerateWwpn(svc *wmi.Service, objectPath string, numberOfWwpns *uint32) (*MsvmVirtualSystemManagementServiceGenerateWwpnResult, error) {
 	in := map[string]any{}
-	if numberOfWwpns != 0 {
-		in["NumberOfWwpns"] = numberOfWwpns
+	if numberOfWwpns != nil {
+		in["NumberOfWwpns"] = *numberOfWwpns
 	}
 	row, err := svc.ExecMethod(objectPath, "GenerateWwpn", in)
 	if err != nil {
@@ -2759,9 +3777,19 @@ type MsvmVirtualSystemManagementServiceGetCurrentWwpnFromGeneratorResult struct 
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MsvmVirtualSystemManagementServiceGetCurrentWwpnFromGeneratorResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "Msvm_VirtualSystemManagementService.GetCurrentWwpnFromGenerator", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MsvmVirtualSystemManagementServiceGetCurrentWwpnFromGenerator invokes Msvm_VirtualSystemManagementService.GetCurrentWwpnFromGenerator on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MsvmVirtualSystemManagementServiceGetCurrentWwpnFromGenerator(svc *wmi.Service, objectPath string) (*MsvmVirtualSystemManagementServiceGetCurrentWwpnFromGeneratorResult, error) {
 	row, err := svc.ExecMethod(objectPath, "GetCurrentWwpnFromGenerator", nil)
 	if err != nil {
@@ -2779,9 +3807,19 @@ type MsvmVirtualSystemManagementServiceGetDefinitionFileSummaryInformationResult
 	ReturnValue        uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MsvmVirtualSystemManagementServiceGetDefinitionFileSummaryInformationResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "Msvm_VirtualSystemManagementService.GetDefinitionFileSummaryInformation", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MsvmVirtualSystemManagementServiceGetDefinitionFileSummaryInformation invokes Msvm_VirtualSystemManagementService.GetDefinitionFileSummaryInformation on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MsvmVirtualSystemManagementServiceGetDefinitionFileSummaryInformation(svc *wmi.Service, objectPath string, definitionFiles []string) (*MsvmVirtualSystemManagementServiceGetDefinitionFileSummaryInformationResult, error) {
 	in := map[string]any{}
 	if definitionFiles != nil {
@@ -2803,13 +3841,23 @@ type MsvmVirtualSystemManagementServiceGetSizeOfSystemFilesResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MsvmVirtualSystemManagementServiceGetSizeOfSystemFilesResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "Msvm_VirtualSystemManagementService.GetSizeOfSystemFiles", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MsvmVirtualSystemManagementServiceGetSizeOfSystemFiles invokes Msvm_VirtualSystemManagementService.GetSizeOfSystemFiles on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmVirtualSystemManagementServiceGetSizeOfSystemFiles(svc *wmi.Service, objectPath string, vssd string) (*MsvmVirtualSystemManagementServiceGetSizeOfSystemFilesResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmVirtualSystemManagementServiceGetSizeOfSystemFiles(svc *wmi.Service, objectPath string, vssd *string) (*MsvmVirtualSystemManagementServiceGetSizeOfSystemFilesResult, error) {
 	in := map[string]any{}
-	if vssd != "" {
-		in["Vssd"] = vssd
+	if vssd != nil {
+		in["Vssd"] = *vssd
 	}
 	row, err := svc.ExecMethod(objectPath, "GetSizeOfSystemFiles", in)
 	if err != nil {
@@ -2827,9 +3875,19 @@ type MsvmVirtualSystemManagementServiceGetSummaryInformationResult struct {
 	ReturnValue        uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MsvmVirtualSystemManagementServiceGetSummaryInformationResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "Msvm_VirtualSystemManagementService.GetSummaryInformation", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MsvmVirtualSystemManagementServiceGetSummaryInformation invokes Msvm_VirtualSystemManagementService.GetSummaryInformation on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MsvmVirtualSystemManagementServiceGetSummaryInformation(svc *wmi.Service, objectPath string, settingData []string, requestedInformation []uint32) (*MsvmVirtualSystemManagementServiceGetSummaryInformationResult, error) {
 	in := map[string]any{}
 	if settingData != nil {
@@ -2854,19 +3912,29 @@ type MsvmVirtualSystemManagementServiceGetVirtualSystemThumbnailImageResult stru
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MsvmVirtualSystemManagementServiceGetVirtualSystemThumbnailImageResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "Msvm_VirtualSystemManagementService.GetVirtualSystemThumbnailImage", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MsvmVirtualSystemManagementServiceGetVirtualSystemThumbnailImage invokes Msvm_VirtualSystemManagementService.GetVirtualSystemThumbnailImage on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmVirtualSystemManagementServiceGetVirtualSystemThumbnailImage(svc *wmi.Service, objectPath string, targetSystem string, widthPixels uint16, heightPixels uint16) (*MsvmVirtualSystemManagementServiceGetVirtualSystemThumbnailImageResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmVirtualSystemManagementServiceGetVirtualSystemThumbnailImage(svc *wmi.Service, objectPath string, targetSystem *string, widthPixels *uint16, heightPixels *uint16) (*MsvmVirtualSystemManagementServiceGetVirtualSystemThumbnailImageResult, error) {
 	in := map[string]any{}
-	if targetSystem != "" {
-		in["TargetSystem"] = targetSystem
+	if targetSystem != nil {
+		in["TargetSystem"] = *targetSystem
 	}
-	if widthPixels != 0 {
-		in["WidthPixels"] = widthPixels
+	if widthPixels != nil {
+		in["WidthPixels"] = *widthPixels
 	}
-	if heightPixels != 0 {
-		in["HeightPixels"] = heightPixels
+	if heightPixels != nil {
+		in["HeightPixels"] = *heightPixels
 	}
 	row, err := svc.ExecMethod(objectPath, "GetVirtualSystemThumbnailImage", in)
 	if err != nil {
@@ -2885,16 +3953,24 @@ type MsvmVirtualSystemManagementServiceImportSnapshotDefinitionsResult struct {
 	ReturnValue       uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmVirtualSystemManagementServiceImportSnapshotDefinitionsResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_VirtualSystemManagementService.ImportSnapshotDefinitions", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmVirtualSystemManagementServiceImportSnapshotDefinitions invokes Msvm_VirtualSystemManagementService.ImportSnapshotDefinitions on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmVirtualSystemManagementServiceImportSnapshotDefinitions(svc *wmi.Service, objectPath string, plannedSystem string, snapshotFolder string) (*MsvmVirtualSystemManagementServiceImportSnapshotDefinitionsResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmVirtualSystemManagementServiceImportSnapshotDefinitions(svc *wmi.Service, objectPath string, plannedSystem *string, snapshotFolder *string) (*MsvmVirtualSystemManagementServiceImportSnapshotDefinitionsResult, error) {
 	in := map[string]any{}
-	if plannedSystem != "" {
-		in["PlannedSystem"] = plannedSystem
+	if plannedSystem != nil {
+		in["PlannedSystem"] = *plannedSystem
 	}
-	if snapshotFolder != "" {
-		in["SnapshotFolder"] = snapshotFolder
+	if snapshotFolder != nil {
+		in["SnapshotFolder"] = *snapshotFolder
 	}
 	row, err := svc.ExecMethod(objectPath, "ImportSnapshotDefinitions", in)
 	if err != nil {
@@ -2914,19 +3990,27 @@ type MsvmVirtualSystemManagementServiceImportSystemDefinitionResult struct {
 	ReturnValue    uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmVirtualSystemManagementServiceImportSystemDefinitionResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_VirtualSystemManagementService.ImportSystemDefinition", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmVirtualSystemManagementServiceImportSystemDefinition invokes Msvm_VirtualSystemManagementService.ImportSystemDefinition on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmVirtualSystemManagementServiceImportSystemDefinition(svc *wmi.Service, objectPath string, systemDefinitionFile string, snapshotFolder string, generateNewSystemIdentifier bool) (*MsvmVirtualSystemManagementServiceImportSystemDefinitionResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmVirtualSystemManagementServiceImportSystemDefinition(svc *wmi.Service, objectPath string, systemDefinitionFile *string, snapshotFolder *string, generateNewSystemIdentifier *bool) (*MsvmVirtualSystemManagementServiceImportSystemDefinitionResult, error) {
 	in := map[string]any{}
-	if systemDefinitionFile != "" {
-		in["SystemDefinitionFile"] = systemDefinitionFile
+	if systemDefinitionFile != nil {
+		in["SystemDefinitionFile"] = *systemDefinitionFile
 	}
-	if snapshotFolder != "" {
-		in["SnapshotFolder"] = snapshotFolder
+	if snapshotFolder != nil {
+		in["SnapshotFolder"] = *snapshotFolder
 	}
-	if generateNewSystemIdentifier {
-		in["GenerateNewSystemIdentifier"] = generateNewSystemIdentifier
+	if generateNewSystemIdentifier != nil {
+		in["GenerateNewSystemIdentifier"] = *generateNewSystemIdentifier
 	}
 	row, err := svc.ExecMethod(objectPath, "ImportSystemDefinition", in)
 	if err != nil {
@@ -2945,13 +4029,21 @@ type MsvmVirtualSystemManagementServiceModifyDiskMergeSettingsResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmVirtualSystemManagementServiceModifyDiskMergeSettingsResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_VirtualSystemManagementService.ModifyDiskMergeSettings", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmVirtualSystemManagementServiceModifyDiskMergeSettings invokes Msvm_VirtualSystemManagementService.ModifyDiskMergeSettings on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmVirtualSystemManagementServiceModifyDiskMergeSettings(svc *wmi.Service, objectPath string, settingData string) (*MsvmVirtualSystemManagementServiceModifyDiskMergeSettingsResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmVirtualSystemManagementServiceModifyDiskMergeSettings(svc *wmi.Service, objectPath string, settingData *string) (*MsvmVirtualSystemManagementServiceModifyDiskMergeSettingsResult, error) {
 	in := map[string]any{}
-	if settingData != "" {
-		in["SettingData"] = settingData
+	if settingData != nil {
+		in["SettingData"] = *settingData
 	}
 	row, err := svc.ExecMethod(objectPath, "ModifyDiskMergeSettings", in)
 	if err != nil {
@@ -2970,9 +4062,17 @@ type MsvmVirtualSystemManagementServiceModifyFeatureSettingsResult struct {
 	ReturnValue              uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmVirtualSystemManagementServiceModifyFeatureSettingsResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_VirtualSystemManagementService.ModifyFeatureSettings", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmVirtualSystemManagementServiceModifyFeatureSettings invokes Msvm_VirtualSystemManagementService.ModifyFeatureSettings on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MsvmVirtualSystemManagementServiceModifyFeatureSettings(svc *wmi.Service, objectPath string, featureSettings []string) (*MsvmVirtualSystemManagementServiceModifyFeatureSettingsResult, error) {
 	in := map[string]any{}
 	if featureSettings != nil {
@@ -2996,9 +4096,17 @@ type MsvmVirtualSystemManagementServiceModifyGuestServiceSettingsResult struct {
 	ReturnValue                   uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmVirtualSystemManagementServiceModifyGuestServiceSettingsResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_VirtualSystemManagementService.ModifyGuestServiceSettings", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmVirtualSystemManagementServiceModifyGuestServiceSettings invokes Msvm_VirtualSystemManagementService.ModifyGuestServiceSettings on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MsvmVirtualSystemManagementServiceModifyGuestServiceSettings(svc *wmi.Service, objectPath string, guestServiceSettings []string) (*MsvmVirtualSystemManagementServiceModifyGuestServiceSettingsResult, error) {
 	in := map[string]any{}
 	if guestServiceSettings != nil {
@@ -3021,13 +4129,21 @@ type MsvmVirtualSystemManagementServiceModifyKvpItemsResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmVirtualSystemManagementServiceModifyKvpItemsResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_VirtualSystemManagementService.ModifyKvpItems", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmVirtualSystemManagementServiceModifyKvpItems invokes Msvm_VirtualSystemManagementService.ModifyKvpItems on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmVirtualSystemManagementServiceModifyKvpItems(svc *wmi.Service, objectPath string, targetSystem string, dataItems []string) (*MsvmVirtualSystemManagementServiceModifyKvpItemsResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmVirtualSystemManagementServiceModifyKvpItems(svc *wmi.Service, objectPath string, targetSystem *string, dataItems []string) (*MsvmVirtualSystemManagementServiceModifyKvpItemsResult, error) {
 	in := map[string]any{}
-	if targetSystem != "" {
-		in["TargetSystem"] = targetSystem
+	if targetSystem != nil {
+		in["TargetSystem"] = *targetSystem
 	}
 	if dataItems != nil {
 		in["DataItems"] = dataItems
@@ -3049,9 +4165,17 @@ type MsvmVirtualSystemManagementServiceModifyResourceSettingsResult struct {
 	ReturnValue               uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmVirtualSystemManagementServiceModifyResourceSettingsResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_VirtualSystemManagementService.ModifyResourceSettings", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmVirtualSystemManagementServiceModifyResourceSettings invokes Msvm_VirtualSystemManagementService.ModifyResourceSettings on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MsvmVirtualSystemManagementServiceModifyResourceSettings(svc *wmi.Service, objectPath string, resourceSettings []string) (*MsvmVirtualSystemManagementServiceModifyResourceSettingsResult, error) {
 	in := map[string]any{}
 	if resourceSettings != nil {
@@ -3074,13 +4198,21 @@ type MsvmVirtualSystemManagementServiceModifyServiceSettingsResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmVirtualSystemManagementServiceModifyServiceSettingsResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_VirtualSystemManagementService.ModifyServiceSettings", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmVirtualSystemManagementServiceModifyServiceSettings invokes Msvm_VirtualSystemManagementService.ModifyServiceSettings on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmVirtualSystemManagementServiceModifyServiceSettings(svc *wmi.Service, objectPath string, settingData string) (*MsvmVirtualSystemManagementServiceModifyServiceSettingsResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmVirtualSystemManagementServiceModifyServiceSettings(svc *wmi.Service, objectPath string, settingData *string) (*MsvmVirtualSystemManagementServiceModifyServiceSettingsResult, error) {
 	in := map[string]any{}
-	if settingData != "" {
-		in["SettingData"] = settingData
+	if settingData != nil {
+		in["SettingData"] = *settingData
 	}
 	row, err := svc.ExecMethod(objectPath, "ModifyServiceSettings", in)
 	if err != nil {
@@ -3099,9 +4231,17 @@ type MsvmVirtualSystemManagementServiceModifySystemComponentSettingsResult struc
 	ReturnValue                uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmVirtualSystemManagementServiceModifySystemComponentSettingsResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_VirtualSystemManagementService.ModifySystemComponentSettings", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmVirtualSystemManagementServiceModifySystemComponentSettings invokes Msvm_VirtualSystemManagementService.ModifySystemComponentSettings on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MsvmVirtualSystemManagementServiceModifySystemComponentSettings(svc *wmi.Service, objectPath string, componentSettings []string) (*MsvmVirtualSystemManagementServiceModifySystemComponentSettingsResult, error) {
 	in := map[string]any{}
 	if componentSettings != nil {
@@ -3124,13 +4264,21 @@ type MsvmVirtualSystemManagementServiceModifySystemSettingsResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmVirtualSystemManagementServiceModifySystemSettingsResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_VirtualSystemManagementService.ModifySystemSettings", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmVirtualSystemManagementServiceModifySystemSettings invokes Msvm_VirtualSystemManagementService.ModifySystemSettings on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmVirtualSystemManagementServiceModifySystemSettings(svc *wmi.Service, objectPath string, systemSettings string) (*MsvmVirtualSystemManagementServiceModifySystemSettingsResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmVirtualSystemManagementServiceModifySystemSettings(svc *wmi.Service, objectPath string, systemSettings *string) (*MsvmVirtualSystemManagementServiceModifySystemSettingsResult, error) {
 	in := map[string]any{}
-	if systemSettings != "" {
-		in["SystemSettings"] = systemSettings
+	if systemSettings != nil {
+		in["SystemSettings"] = *systemSettings
 	}
 	row, err := svc.ExecMethod(objectPath, "ModifySystemSettings", in)
 	if err != nil {
@@ -3149,13 +4297,21 @@ type MsvmVirtualSystemManagementServiceRealizePlannedSystemResult struct {
 	ReturnValue     uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmVirtualSystemManagementServiceRealizePlannedSystemResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_VirtualSystemManagementService.RealizePlannedSystem", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmVirtualSystemManagementServiceRealizePlannedSystem invokes Msvm_VirtualSystemManagementService.RealizePlannedSystem on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmVirtualSystemManagementServiceRealizePlannedSystem(svc *wmi.Service, objectPath string, plannedSystem string) (*MsvmVirtualSystemManagementServiceRealizePlannedSystemResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmVirtualSystemManagementServiceRealizePlannedSystem(svc *wmi.Service, objectPath string, plannedSystem *string) (*MsvmVirtualSystemManagementServiceRealizePlannedSystemResult, error) {
 	in := map[string]any{}
-	if plannedSystem != "" {
-		in["PlannedSystem"] = plannedSystem
+	if plannedSystem != nil {
+		in["PlannedSystem"] = *plannedSystem
 	}
 	row, err := svc.ExecMethod(objectPath, "RealizePlannedSystem", in)
 	if err != nil {
@@ -3174,9 +4330,17 @@ type MsvmVirtualSystemManagementServiceRemoveBootSourceSettingsResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmVirtualSystemManagementServiceRemoveBootSourceSettingsResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_VirtualSystemManagementService.RemoveBootSourceSettings", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmVirtualSystemManagementServiceRemoveBootSourceSettings invokes Msvm_VirtualSystemManagementService.RemoveBootSourceSettings on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MsvmVirtualSystemManagementServiceRemoveBootSourceSettings(svc *wmi.Service, objectPath string, bootSourceSettings []string) (*MsvmVirtualSystemManagementServiceRemoveBootSourceSettingsResult, error) {
 	in := map[string]any{}
 	if bootSourceSettings != nil {
@@ -3198,9 +4362,17 @@ type MsvmVirtualSystemManagementServiceRemoveFeatureSettingsResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmVirtualSystemManagementServiceRemoveFeatureSettingsResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_VirtualSystemManagementService.RemoveFeatureSettings", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmVirtualSystemManagementServiceRemoveFeatureSettings invokes Msvm_VirtualSystemManagementService.RemoveFeatureSettings on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MsvmVirtualSystemManagementServiceRemoveFeatureSettings(svc *wmi.Service, objectPath string, featureSettings []string) (*MsvmVirtualSystemManagementServiceRemoveFeatureSettingsResult, error) {
 	in := map[string]any{}
 	if featureSettings != nil {
@@ -3221,9 +4393,19 @@ type MsvmVirtualSystemManagementServiceRemoveFibreChannelChapResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MsvmVirtualSystemManagementServiceRemoveFibreChannelChapResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "Msvm_VirtualSystemManagementService.RemoveFibreChannelChap", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MsvmVirtualSystemManagementServiceRemoveFibreChannelChap invokes Msvm_VirtualSystemManagementService.RemoveFibreChannelChap on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MsvmVirtualSystemManagementServiceRemoveFibreChannelChap(svc *wmi.Service, objectPath string, fcPortSettings []string) (*MsvmVirtualSystemManagementServiceRemoveFibreChannelChapResult, error) {
 	in := map[string]any{}
 	if fcPortSettings != nil {
@@ -3244,9 +4426,17 @@ type MsvmVirtualSystemManagementServiceRemoveGuestServiceSettingsResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmVirtualSystemManagementServiceRemoveGuestServiceSettingsResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_VirtualSystemManagementService.RemoveGuestServiceSettings", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmVirtualSystemManagementServiceRemoveGuestServiceSettings invokes Msvm_VirtualSystemManagementService.RemoveGuestServiceSettings on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MsvmVirtualSystemManagementServiceRemoveGuestServiceSettings(svc *wmi.Service, objectPath string, guestServiceSettings []string) (*MsvmVirtualSystemManagementServiceRemoveGuestServiceSettingsResult, error) {
 	in := map[string]any{}
 	if guestServiceSettings != nil {
@@ -3268,13 +4458,21 @@ type MsvmVirtualSystemManagementServiceRemoveKvpItemsResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmVirtualSystemManagementServiceRemoveKvpItemsResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_VirtualSystemManagementService.RemoveKvpItems", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmVirtualSystemManagementServiceRemoveKvpItems invokes Msvm_VirtualSystemManagementService.RemoveKvpItems on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmVirtualSystemManagementServiceRemoveKvpItems(svc *wmi.Service, objectPath string, targetSystem string, dataItems []string) (*MsvmVirtualSystemManagementServiceRemoveKvpItemsResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmVirtualSystemManagementServiceRemoveKvpItems(svc *wmi.Service, objectPath string, targetSystem *string, dataItems []string) (*MsvmVirtualSystemManagementServiceRemoveKvpItemsResult, error) {
 	in := map[string]any{}
-	if targetSystem != "" {
-		in["TargetSystem"] = targetSystem
+	if targetSystem != nil {
+		in["TargetSystem"] = *targetSystem
 	}
 	if dataItems != nil {
 		in["DataItems"] = dataItems
@@ -3295,9 +4493,17 @@ type MsvmVirtualSystemManagementServiceRemoveResourceSettingsResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmVirtualSystemManagementServiceRemoveResourceSettingsResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_VirtualSystemManagementService.RemoveResourceSettings", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmVirtualSystemManagementServiceRemoveResourceSettings invokes Msvm_VirtualSystemManagementService.RemoveResourceSettings on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MsvmVirtualSystemManagementServiceRemoveResourceSettings(svc *wmi.Service, objectPath string, resourceSettings []string) (*MsvmVirtualSystemManagementServiceRemoveResourceSettingsResult, error) {
 	in := map[string]any{}
 	if resourceSettings != nil {
@@ -3319,9 +4525,17 @@ type MsvmVirtualSystemManagementServiceRemoveSystemComponentSettingsResult struc
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmVirtualSystemManagementServiceRemoveSystemComponentSettingsResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_VirtualSystemManagementService.RemoveSystemComponentSettings", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmVirtualSystemManagementServiceRemoveSystemComponentSettings invokes Msvm_VirtualSystemManagementService.RemoveSystemComponentSettings on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MsvmVirtualSystemManagementServiceRemoveSystemComponentSettings(svc *wmi.Service, objectPath string, componentSettings []string) (*MsvmVirtualSystemManagementServiceRemoveSystemComponentSettingsResult, error) {
 	in := map[string]any{}
 	if componentSettings != nil {
@@ -3343,16 +4557,24 @@ type MsvmVirtualSystemManagementServiceRequestStateChangeResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmVirtualSystemManagementServiceRequestStateChangeResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_VirtualSystemManagementService.RequestStateChange", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmVirtualSystemManagementServiceRequestStateChange invokes Msvm_VirtualSystemManagementService.RequestStateChange on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmVirtualSystemManagementServiceRequestStateChange(svc *wmi.Service, objectPath string, requestedState uint16, timeoutPeriod string) (*MsvmVirtualSystemManagementServiceRequestStateChangeResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmVirtualSystemManagementServiceRequestStateChange(svc *wmi.Service, objectPath string, requestedState *MsvmVirtualSystemManagementServiceRequestStateChangeRequestedState, timeoutPeriod *string) (*MsvmVirtualSystemManagementServiceRequestStateChangeResult, error) {
 	in := map[string]any{}
-	if requestedState != 0 {
-		in["RequestedState"] = requestedState
+	if requestedState != nil {
+		in["RequestedState"] = uint16(*requestedState)
 	}
-	if timeoutPeriod != "" {
-		in["TimeoutPeriod"] = timeoutPeriod
+	if timeoutPeriod != nil {
+		in["TimeoutPeriod"] = *timeoutPeriod
 	}
 	row, err := svc.ExecMethod(objectPath, "RequestStateChange", in)
 	if err != nil {
@@ -3370,13 +4592,21 @@ type MsvmVirtualSystemManagementServiceSetGuestNetworkAdapterConfigurationResult
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmVirtualSystemManagementServiceSetGuestNetworkAdapterConfigurationResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_VirtualSystemManagementService.SetGuestNetworkAdapterConfiguration", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmVirtualSystemManagementServiceSetGuestNetworkAdapterConfiguration invokes Msvm_VirtualSystemManagementService.SetGuestNetworkAdapterConfiguration on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmVirtualSystemManagementServiceSetGuestNetworkAdapterConfiguration(svc *wmi.Service, objectPath string, computerSystem string, networkConfiguration []string) (*MsvmVirtualSystemManagementServiceSetGuestNetworkAdapterConfigurationResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmVirtualSystemManagementServiceSetGuestNetworkAdapterConfiguration(svc *wmi.Service, objectPath string, computerSystem *string, networkConfiguration []string) (*MsvmVirtualSystemManagementServiceSetGuestNetworkAdapterConfigurationResult, error) {
 	in := map[string]any{}
-	if computerSystem != "" {
-		in["ComputerSystem"] = computerSystem
+	if computerSystem != nil {
+		in["ComputerSystem"] = *computerSystem
 	}
 	if networkConfiguration != nil {
 		in["NetworkConfiguration"] = networkConfiguration
@@ -3397,13 +4627,21 @@ type MsvmVirtualSystemManagementServiceSetInitialMachineConfigurationDataResult 
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmVirtualSystemManagementServiceSetInitialMachineConfigurationDataResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_VirtualSystemManagementService.SetInitialMachineConfigurationData", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmVirtualSystemManagementServiceSetInitialMachineConfigurationData invokes Msvm_VirtualSystemManagementService.SetInitialMachineConfigurationData on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmVirtualSystemManagementServiceSetInitialMachineConfigurationData(svc *wmi.Service, objectPath string, targetSystem string, imcData []uint8) (*MsvmVirtualSystemManagementServiceSetInitialMachineConfigurationDataResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmVirtualSystemManagementServiceSetInitialMachineConfigurationData(svc *wmi.Service, objectPath string, targetSystem *string, imcData []uint8) (*MsvmVirtualSystemManagementServiceSetInitialMachineConfigurationDataResult, error) {
 	in := map[string]any{}
-	if targetSystem != "" {
-		in["TargetSystem"] = targetSystem
+	if targetSystem != nil {
+		in["TargetSystem"] = *targetSystem
 	}
 	if imcData != nil {
 		in["ImcData"] = imcData
@@ -3423,9 +4661,19 @@ type MsvmVirtualSystemManagementServiceStartServiceResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MsvmVirtualSystemManagementServiceStartServiceResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "Msvm_VirtualSystemManagementService.StartService", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MsvmVirtualSystemManagementServiceStartService invokes Msvm_VirtualSystemManagementService.StartService on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MsvmVirtualSystemManagementServiceStartService(svc *wmi.Service, objectPath string) (*MsvmVirtualSystemManagementServiceStartServiceResult, error) {
 	row, err := svc.ExecMethod(objectPath, "StartService", nil)
 	if err != nil {
@@ -3441,9 +4689,19 @@ type MsvmVirtualSystemManagementServiceStopServiceResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MsvmVirtualSystemManagementServiceStopServiceResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "Msvm_VirtualSystemManagementService.StopService", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MsvmVirtualSystemManagementServiceStopService invokes Msvm_VirtualSystemManagementService.StopService on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MsvmVirtualSystemManagementServiceStopService(svc *wmi.Service, objectPath string) (*MsvmVirtualSystemManagementServiceStopServiceResult, error) {
 	row, err := svc.ExecMethod(objectPath, "StopService", nil)
 	if err != nil {
@@ -3461,31 +4719,39 @@ type MsvmVirtualSystemManagementServiceTestNetworkConnectionResult struct {
 	ReturnValue   uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmVirtualSystemManagementServiceTestNetworkConnectionResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_VirtualSystemManagementService.TestNetworkConnection", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmVirtualSystemManagementServiceTestNetworkConnection invokes Msvm_VirtualSystemManagementService.TestNetworkConnection on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmVirtualSystemManagementServiceTestNetworkConnection(svc *wmi.Service, objectPath string, targetNetworkAdapter string, isSender bool, senderIP string, receiverIP string, receiverMac string, isolationId uint32, sequenceNumber uint32) (*MsvmVirtualSystemManagementServiceTestNetworkConnectionResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmVirtualSystemManagementServiceTestNetworkConnection(svc *wmi.Service, objectPath string, targetNetworkAdapter *string, isSender *bool, senderIP *string, receiverIP *string, receiverMac *string, isolationId *uint32, sequenceNumber *uint32) (*MsvmVirtualSystemManagementServiceTestNetworkConnectionResult, error) {
 	in := map[string]any{}
-	if targetNetworkAdapter != "" {
-		in["TargetNetworkAdapter"] = targetNetworkAdapter
+	if targetNetworkAdapter != nil {
+		in["TargetNetworkAdapter"] = *targetNetworkAdapter
 	}
-	if isSender {
-		in["IsSender"] = isSender
+	if isSender != nil {
+		in["IsSender"] = *isSender
 	}
-	if senderIP != "" {
-		in["SenderIP"] = senderIP
+	if senderIP != nil {
+		in["SenderIP"] = *senderIP
 	}
-	if receiverIP != "" {
-		in["ReceiverIP"] = receiverIP
+	if receiverIP != nil {
+		in["ReceiverIP"] = *receiverIP
 	}
-	if receiverMac != "" {
-		in["ReceiverMac"] = receiverMac
+	if receiverMac != nil {
+		in["ReceiverMac"] = *receiverMac
 	}
-	if isolationId != 0 {
-		in["IsolationId"] = isolationId
+	if isolationId != nil {
+		in["IsolationId"] = *isolationId
 	}
-	if sequenceNumber != 0 {
-		in["SequenceNumber"] = sequenceNumber
+	if sequenceNumber != nil {
+		in["SequenceNumber"] = *sequenceNumber
 	}
 	row, err := svc.ExecMethod(objectPath, "TestNetworkConnection", in)
 	if err != nil {
@@ -3504,16 +4770,24 @@ type MsvmVirtualSystemManagementServiceUpgradeSystemVersionResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmVirtualSystemManagementServiceUpgradeSystemVersionResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_VirtualSystemManagementService.UpgradeSystemVersion", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmVirtualSystemManagementServiceUpgradeSystemVersion invokes Msvm_VirtualSystemManagementService.UpgradeSystemVersion on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmVirtualSystemManagementServiceUpgradeSystemVersion(svc *wmi.Service, objectPath string, computerSystem string, upgradeSettingData string) (*MsvmVirtualSystemManagementServiceUpgradeSystemVersionResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmVirtualSystemManagementServiceUpgradeSystemVersion(svc *wmi.Service, objectPath string, computerSystem *string, upgradeSettingData *string) (*MsvmVirtualSystemManagementServiceUpgradeSystemVersionResult, error) {
 	in := map[string]any{}
-	if computerSystem != "" {
-		in["ComputerSystem"] = computerSystem
+	if computerSystem != nil {
+		in["ComputerSystem"] = *computerSystem
 	}
-	if upgradeSettingData != "" {
-		in["UpgradeSettingData"] = upgradeSettingData
+	if upgradeSettingData != nil {
+		in["UpgradeSettingData"] = *upgradeSettingData
 	}
 	row, err := svc.ExecMethod(objectPath, "UpgradeSystemVersion", in)
 	if err != nil {
@@ -3531,13 +4805,21 @@ type MsvmVirtualSystemManagementServiceValidatePlannedSystemResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmVirtualSystemManagementServiceValidatePlannedSystemResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_VirtualSystemManagementService.ValidatePlannedSystem", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmVirtualSystemManagementServiceValidatePlannedSystem invokes Msvm_VirtualSystemManagementService.ValidatePlannedSystem on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmVirtualSystemManagementServiceValidatePlannedSystem(svc *wmi.Service, objectPath string, plannedSystem string) (*MsvmVirtualSystemManagementServiceValidatePlannedSystemResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmVirtualSystemManagementServiceValidatePlannedSystem(svc *wmi.Service, objectPath string, plannedSystem *string) (*MsvmVirtualSystemManagementServiceValidatePlannedSystemResult, error) {
 	in := map[string]any{}
-	if plannedSystem != "" {
-		in["PlannedSystem"] = plannedSystem
+	if plannedSystem != nil {
+		in["PlannedSystem"] = *plannedSystem
 	}
 	row, err := svc.ExecMethod(objectPath, "ValidatePlannedSystem", in)
 	if err != nil {
@@ -3555,13 +4837,21 @@ type MsvmVirtualSystemSnapshotServiceApplySnapshotResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmVirtualSystemSnapshotServiceApplySnapshotResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_VirtualSystemSnapshotService.ApplySnapshot", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmVirtualSystemSnapshotServiceApplySnapshot invokes Msvm_VirtualSystemSnapshotService.ApplySnapshot on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmVirtualSystemSnapshotServiceApplySnapshot(svc *wmi.Service, objectPath string, snapshot string) (*MsvmVirtualSystemSnapshotServiceApplySnapshotResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmVirtualSystemSnapshotServiceApplySnapshot(svc *wmi.Service, objectPath string, snapshot *string) (*MsvmVirtualSystemSnapshotServiceApplySnapshotResult, error) {
 	in := map[string]any{}
-	if snapshot != "" {
-		in["Snapshot"] = snapshot
+	if snapshot != nil {
+		in["Snapshot"] = *snapshot
 	}
 	row, err := svc.ExecMethod(objectPath, "ApplySnapshot", in)
 	if err != nil {
@@ -3579,13 +4869,21 @@ type MsvmVirtualSystemSnapshotServiceClearSnapshotStateResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmVirtualSystemSnapshotServiceClearSnapshotStateResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_VirtualSystemSnapshotService.ClearSnapshotState", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmVirtualSystemSnapshotServiceClearSnapshotState invokes Msvm_VirtualSystemSnapshotService.ClearSnapshotState on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmVirtualSystemSnapshotServiceClearSnapshotState(svc *wmi.Service, objectPath string, snapshotSettingData string) (*MsvmVirtualSystemSnapshotServiceClearSnapshotStateResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmVirtualSystemSnapshotServiceClearSnapshotState(svc *wmi.Service, objectPath string, snapshotSettingData *string) (*MsvmVirtualSystemSnapshotServiceClearSnapshotStateResult, error) {
 	in := map[string]any{}
-	if snapshotSettingData != "" {
-		in["SnapshotSettingData"] = snapshotSettingData
+	if snapshotSettingData != nil {
+		in["SnapshotSettingData"] = *snapshotSettingData
 	}
 	row, err := svc.ExecMethod(objectPath, "ClearSnapshotState", in)
 	if err != nil {
@@ -3604,19 +4902,27 @@ type MsvmVirtualSystemSnapshotServiceConvertToReferencePointResult struct {
 	ReturnValue             uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmVirtualSystemSnapshotServiceConvertToReferencePointResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_VirtualSystemSnapshotService.ConvertToReferencePoint", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmVirtualSystemSnapshotServiceConvertToReferencePoint invokes Msvm_VirtualSystemSnapshotService.ConvertToReferencePoint on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmVirtualSystemSnapshotServiceConvertToReferencePoint(svc *wmi.Service, objectPath string, affectedSnapshot string, referencePointSettings string, resultingReferencePoint string) (*MsvmVirtualSystemSnapshotServiceConvertToReferencePointResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmVirtualSystemSnapshotServiceConvertToReferencePoint(svc *wmi.Service, objectPath string, affectedSnapshot *string, referencePointSettings *string, resultingReferencePoint *string) (*MsvmVirtualSystemSnapshotServiceConvertToReferencePointResult, error) {
 	in := map[string]any{}
-	if affectedSnapshot != "" {
-		in["AffectedSnapshot"] = affectedSnapshot
+	if affectedSnapshot != nil {
+		in["AffectedSnapshot"] = *affectedSnapshot
 	}
-	if referencePointSettings != "" {
-		in["ReferencePointSettings"] = referencePointSettings
+	if referencePointSettings != nil {
+		in["ReferencePointSettings"] = *referencePointSettings
 	}
-	if resultingReferencePoint != "" {
-		in["ResultingReferencePoint"] = resultingReferencePoint
+	if resultingReferencePoint != nil {
+		in["ResultingReferencePoint"] = *resultingReferencePoint
 	}
 	row, err := svc.ExecMethod(objectPath, "ConvertToReferencePoint", in)
 	if err != nil {
@@ -3636,22 +4942,30 @@ type MsvmVirtualSystemSnapshotServiceCreateSnapshotResult struct {
 	ReturnValue       uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmVirtualSystemSnapshotServiceCreateSnapshotResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_VirtualSystemSnapshotService.CreateSnapshot", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmVirtualSystemSnapshotServiceCreateSnapshot invokes Msvm_VirtualSystemSnapshotService.CreateSnapshot on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmVirtualSystemSnapshotServiceCreateSnapshot(svc *wmi.Service, objectPath string, affectedSystem string, snapshotSettings string, snapshotType uint16, resultingSnapshot string) (*MsvmVirtualSystemSnapshotServiceCreateSnapshotResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmVirtualSystemSnapshotServiceCreateSnapshot(svc *wmi.Service, objectPath string, affectedSystem *string, snapshotSettings *string, snapshotType *MsvmVirtualSystemSnapshotServiceCreateSnapshotSnapshotType, resultingSnapshot *string) (*MsvmVirtualSystemSnapshotServiceCreateSnapshotResult, error) {
 	in := map[string]any{}
-	if affectedSystem != "" {
-		in["AffectedSystem"] = affectedSystem
+	if affectedSystem != nil {
+		in["AffectedSystem"] = *affectedSystem
 	}
-	if snapshotSettings != "" {
-		in["SnapshotSettings"] = snapshotSettings
+	if snapshotSettings != nil {
+		in["SnapshotSettings"] = *snapshotSettings
 	}
-	if snapshotType != 0 {
-		in["SnapshotType"] = snapshotType
+	if snapshotType != nil {
+		in["SnapshotType"] = uint16(*snapshotType)
 	}
-	if resultingSnapshot != "" {
-		in["ResultingSnapshot"] = resultingSnapshot
+	if resultingSnapshot != nil {
+		in["ResultingSnapshot"] = *resultingSnapshot
 	}
 	row, err := svc.ExecMethod(objectPath, "CreateSnapshot", in)
 	if err != nil {
@@ -3670,13 +4984,21 @@ type MsvmVirtualSystemSnapshotServiceDestroySnapshotResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmVirtualSystemSnapshotServiceDestroySnapshotResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_VirtualSystemSnapshotService.DestroySnapshot", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmVirtualSystemSnapshotServiceDestroySnapshot invokes Msvm_VirtualSystemSnapshotService.DestroySnapshot on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmVirtualSystemSnapshotServiceDestroySnapshot(svc *wmi.Service, objectPath string, affectedSnapshot string) (*MsvmVirtualSystemSnapshotServiceDestroySnapshotResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmVirtualSystemSnapshotServiceDestroySnapshot(svc *wmi.Service, objectPath string, affectedSnapshot *string) (*MsvmVirtualSystemSnapshotServiceDestroySnapshotResult, error) {
 	in := map[string]any{}
-	if affectedSnapshot != "" {
-		in["AffectedSnapshot"] = affectedSnapshot
+	if affectedSnapshot != nil {
+		in["AffectedSnapshot"] = *affectedSnapshot
 	}
 	row, err := svc.ExecMethod(objectPath, "DestroySnapshot", in)
 	if err != nil {
@@ -3694,13 +5016,21 @@ type MsvmVirtualSystemSnapshotServiceDestroySnapshotTreeResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmVirtualSystemSnapshotServiceDestroySnapshotTreeResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_VirtualSystemSnapshotService.DestroySnapshotTree", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmVirtualSystemSnapshotServiceDestroySnapshotTree invokes Msvm_VirtualSystemSnapshotService.DestroySnapshotTree on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmVirtualSystemSnapshotServiceDestroySnapshotTree(svc *wmi.Service, objectPath string, snapshotSettingData string) (*MsvmVirtualSystemSnapshotServiceDestroySnapshotTreeResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmVirtualSystemSnapshotServiceDestroySnapshotTree(svc *wmi.Service, objectPath string, snapshotSettingData *string) (*MsvmVirtualSystemSnapshotServiceDestroySnapshotTreeResult, error) {
 	in := map[string]any{}
-	if snapshotSettingData != "" {
-		in["SnapshotSettingData"] = snapshotSettingData
+	if snapshotSettingData != nil {
+		in["SnapshotSettingData"] = *snapshotSettingData
 	}
 	row, err := svc.ExecMethod(objectPath, "DestroySnapshotTree", in)
 	if err != nil {
@@ -3718,16 +5048,24 @@ type MsvmVirtualSystemSnapshotServiceRequestStateChangeResult struct {
 	ReturnValue uint32
 }
 
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *MsvmVirtualSystemSnapshotServiceRequestStateChangeResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Msvm_VirtualSystemSnapshotService.RequestStateChange", uint32(r.ReturnValue), r.Job)
+}
+
 // MsvmVirtualSystemSnapshotServiceRequestStateChange invokes Msvm_VirtualSystemSnapshotService.RequestStateChange on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func MsvmVirtualSystemSnapshotServiceRequestStateChange(svc *wmi.Service, objectPath string, requestedState uint16, timeoutPeriod string) (*MsvmVirtualSystemSnapshotServiceRequestStateChangeResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func MsvmVirtualSystemSnapshotServiceRequestStateChange(svc *wmi.Service, objectPath string, requestedState *MsvmVirtualSystemSnapshotServiceRequestStateChangeRequestedState, timeoutPeriod *string) (*MsvmVirtualSystemSnapshotServiceRequestStateChangeResult, error) {
 	in := map[string]any{}
-	if requestedState != 0 {
-		in["RequestedState"] = requestedState
+	if requestedState != nil {
+		in["RequestedState"] = uint16(*requestedState)
 	}
-	if timeoutPeriod != "" {
-		in["TimeoutPeriod"] = timeoutPeriod
+	if timeoutPeriod != nil {
+		in["TimeoutPeriod"] = *timeoutPeriod
 	}
 	row, err := svc.ExecMethod(objectPath, "RequestStateChange", in)
 	if err != nil {
@@ -3744,9 +5082,19 @@ type MsvmVirtualSystemSnapshotServiceStartServiceResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MsvmVirtualSystemSnapshotServiceStartServiceResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "Msvm_VirtualSystemSnapshotService.StartService", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MsvmVirtualSystemSnapshotServiceStartService invokes Msvm_VirtualSystemSnapshotService.StartService on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MsvmVirtualSystemSnapshotServiceStartService(svc *wmi.Service, objectPath string) (*MsvmVirtualSystemSnapshotServiceStartServiceResult, error) {
 	row, err := svc.ExecMethod(objectPath, "StartService", nil)
 	if err != nil {
@@ -3762,9 +5110,19 @@ type MsvmVirtualSystemSnapshotServiceStopServiceResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MsvmVirtualSystemSnapshotServiceStopServiceResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "Msvm_VirtualSystemSnapshotService.StopService", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // MsvmVirtualSystemSnapshotServiceStopService invokes Msvm_VirtualSystemSnapshotService.StopService on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
 func MsvmVirtualSystemSnapshotServiceStopService(svc *wmi.Service, objectPath string) (*MsvmVirtualSystemSnapshotServiceStopServiceResult, error) {
 	row, err := svc.ExecMethod(objectPath, "StopService", nil)
 	if err != nil {

@@ -12,8 +12,18 @@ type SystemSecurityGet9XUserListResult struct {
 	ReturnValue uint32
 }
 
-// SystemSecurityGet9XUserList invokes the static __SystemSecurity.Get9XUserList method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *SystemSecurityGet9XUserListResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "__SystemSecurity.Get9XUserList", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// SystemSecurityGet9XUserList invokes the static __SystemSecurity.Get9XUserList method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
 func SystemSecurityGet9XUserList(svc *wmi.Service) (*SystemSecurityGet9XUserListResult, error) {
 	row, err := svc.ExecMethod("__SystemSecurity", "Get9XUserList", nil)
 	if err != nil {
@@ -31,8 +41,18 @@ type SystemSecurityGetCallerAccessRightsResult struct {
 	ReturnValue uint32
 }
 
-// SystemSecurityGetCallerAccessRights invokes the static __SystemSecurity.GetCallerAccessRights method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *SystemSecurityGetCallerAccessRightsResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "__SystemSecurity.GetCallerAccessRights", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// SystemSecurityGetCallerAccessRights invokes the static __SystemSecurity.GetCallerAccessRights method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
 func SystemSecurityGetCallerAccessRights(svc *wmi.Service) (*SystemSecurityGetCallerAccessRightsResult, error) {
 	row, err := svc.ExecMethod("__SystemSecurity", "GetCallerAccessRights", nil)
 	if err != nil {
@@ -50,8 +70,18 @@ type SystemSecurityGetSDResult struct {
 	ReturnValue uint32
 }
 
-// SystemSecurityGetSD invokes the static __SystemSecurity.GetSD method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *SystemSecurityGetSDResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "__SystemSecurity.GetSD", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// SystemSecurityGetSD invokes the static __SystemSecurity.GetSD method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
 func SystemSecurityGetSD(svc *wmi.Service) (*SystemSecurityGetSDResult, error) {
 	row, err := svc.ExecMethod("__SystemSecurity", "GetSD", nil)
 	if err != nil {
@@ -69,8 +99,18 @@ type SystemSecurityGetSecurityDescriptorResult struct {
 	ReturnValue uint32
 }
 
-// SystemSecurityGetSecurityDescriptor invokes the static __SystemSecurity.GetSecurityDescriptor method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *SystemSecurityGetSecurityDescriptorResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "__SystemSecurity.GetSecurityDescriptor", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// SystemSecurityGetSecurityDescriptor invokes the static __SystemSecurity.GetSecurityDescriptor method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
 func SystemSecurityGetSecurityDescriptor(svc *wmi.Service) (*SystemSecurityGetSecurityDescriptorResult, error) {
 	row, err := svc.ExecMethod("__SystemSecurity", "GetSecurityDescriptor", nil)
 	if err != nil {
@@ -89,8 +129,18 @@ type SystemSecuritySet9XUserListResult struct {
 	ReturnValue uint32
 }
 
-// SystemSecuritySet9XUserList invokes the static __SystemSecurity.Set9XUserList method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *SystemSecuritySet9XUserListResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "__SystemSecurity.Set9XUserList", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// SystemSecuritySet9XUserList invokes the static __SystemSecurity.Set9XUserList method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
 func SystemSecuritySet9XUserList(svc *wmi.Service, ul []wmi.Row) (*SystemSecuritySet9XUserListResult, error) {
 	in := map[string]any{}
 	if ul != nil {
@@ -110,8 +160,18 @@ type SystemSecuritySetSDResult struct {
 	ReturnValue uint32
 }
 
-// SystemSecuritySetSD invokes the static __SystemSecurity.SetSD method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *SystemSecuritySetSDResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "__SystemSecurity.SetSD", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// SystemSecuritySetSD invokes the static __SystemSecurity.SetSD method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
 func SystemSecuritySetSD(svc *wmi.Service, sD []uint8) (*SystemSecuritySetSDResult, error) {
 	in := map[string]any{}
 	if sD != nil {
@@ -131,8 +191,18 @@ type SystemSecuritySetSecurityDescriptorResult struct {
 	ReturnValue uint32
 }
 
-// SystemSecuritySetSecurityDescriptor invokes the static __SystemSecurity.SetSecurityDescriptor method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *SystemSecuritySetSecurityDescriptorResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "__SystemSecurity.SetSecurityDescriptor", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// SystemSecuritySetSecurityDescriptor invokes the static __SystemSecurity.SetSecurityDescriptor method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
 func SystemSecuritySetSecurityDescriptor(svc *wmi.Service, descriptor wmi.Row) (*SystemSecuritySetSecurityDescriptorResult, error) {
 	in := map[string]any{}
 	if descriptor != nil {

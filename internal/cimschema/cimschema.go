@@ -45,6 +45,22 @@ type Param struct {
 	Name    string `json:"name"`
 	CIMType int32  `json:"cimType"`
 	Array   bool   `json:"array,omitempty"`
+	// Values/ValueMap and BitValues/BitMap mirror Property's enumeration and
+	// bitmask qualifiers. Older snapshots (captured before parameter
+	// qualifiers were recorded) carry none; the generator then emits the
+	// parameter untyped.
+	Values    []string `json:"values,omitempty"`
+	ValueMap  []string `json:"valueMap,omitempty"`
+	BitValues []string `json:"bitValues,omitempty"`
+	BitMap    []string `json:"bitMap,omitempty"`
+}
+
+// Equal reports semantic parameter equality (used by the snapshot diff;
+// Param is not comparable once it carries qualifier slices).
+func (p Param) Equal(other Param) bool {
+	return p.Name == other.Name && p.CIMType == other.CIMType && p.Array == other.Array &&
+		slices.Equal(p.Values, other.Values) && slices.Equal(p.ValueMap, other.ValueMap) &&
+		slices.Equal(p.BitValues, other.BitValues) && slices.Equal(p.BitMap, other.BitMap)
 }
 
 // Property is one CIM property with its type and key CIM qualifiers.
@@ -63,6 +79,11 @@ type Property struct {
 	// or are the stored strings themselves (string properties).
 	Values   []string `json:"values,omitempty"`
 	ValueMap []string `json:"valueMap,omitempty"`
+	// BitValues and BitMap are the CIM bitmask qualifiers: BitMap holds bit
+	// positions (decimal strings), BitValues the flag display names. Without
+	// a BitMap the BitValues entries map to consecutive positions 0..n-1.
+	BitValues []string `json:"bitValues,omitempty"`
+	BitMap    []string `json:"bitMap,omitempty"`
 }
 
 // Equal reports semantic property equality (used by the snapshot diff;
@@ -70,7 +91,8 @@ type Property struct {
 func (p Property) Equal(other Property) bool {
 	return p.Name == other.Name && p.CIMType == other.CIMType &&
 		p.Array == other.Array && p.Key == other.Key &&
-		slices.Equal(p.Values, other.Values) && slices.Equal(p.ValueMap, other.ValueMap)
+		slices.Equal(p.Values, other.Values) && slices.Equal(p.ValueMap, other.ValueMap) &&
+		slices.Equal(p.BitValues, other.BitValues) && slices.Equal(p.BitMap, other.BitMap)
 }
 
 // CIM types (CIMTYPE_ENUMERATION from wbemcli.h).

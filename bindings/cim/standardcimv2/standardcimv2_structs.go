@@ -8,697 +8,829 @@ import wmi "github.com/deploymenttheory/go-bindings-wmi/runtime/wmi"
 
 // CIMBindsTo is the CIM_BindsTo CIM class.
 type CIMBindsTo struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath    string `cim:"__PATH"`
 	Antecedent string `cim:"Antecedent"`
 	Dependent  string `cim:"Dependent"`
 }
 
 // CIMBindsToLANEndpoint is the CIM_BindsToLANEndpoint CIM class.
 type CIMBindsToLANEndpoint struct {
-	Antecedent string `cim:"Antecedent"`
-	Dependent  string `cim:"Dependent"`
-	FrameType  uint16 `cim:"FrameType"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath    string                         `cim:"__PATH"`
+	Antecedent string                         `cim:"Antecedent"`
+	Dependent  string                         `cim:"Dependent"`
+	FrameType  CIMBindsToLANEndpointFrameType `cim:"FrameType"`
 }
 
 // CIMClassCreation is the CIM_ClassCreation CIM class.
 type CIMClassCreation struct {
-	ClassDefinition       wmi.Row  `cim:"ClassDefinition"`
-	CorrelatedIndications []string `cim:"CorrelatedIndications"`
-	IndicationFilterName  string   `cim:"IndicationFilterName"`
-	IndicationIdentifier  string   `cim:"IndicationIdentifier"`
-	IndicationTime        string   `cim:"IndicationTime"`
-	OtherSeverity         string   `cim:"OtherSeverity"`
-	PerceivedSeverity     uint16   `cim:"PerceivedSeverity"`
-	SequenceContext       string   `cim:"SequenceContext"`
-	SequenceNumber        int64    `cim:"SequenceNumber"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath               string                            `cim:"__PATH"`
+	ClassDefinition       wmi.Row                           `cim:"ClassDefinition"`
+	CorrelatedIndications []string                          `cim:"CorrelatedIndications"`
+	IndicationFilterName  string                            `cim:"IndicationFilterName"`
+	IndicationIdentifier  string                            `cim:"IndicationIdentifier"`
+	IndicationTime        string                            `cim:"IndicationTime"`
+	OtherSeverity         string                            `cim:"OtherSeverity"`
+	PerceivedSeverity     CIMClassCreationPerceivedSeverity `cim:"PerceivedSeverity"`
+	SequenceContext       string                            `cim:"SequenceContext"`
+	SequenceNumber        int64                             `cim:"SequenceNumber"`
 }
 
 // CIMClassDeletion is the CIM_ClassDeletion CIM class.
 type CIMClassDeletion struct {
-	ClassDefinition       wmi.Row  `cim:"ClassDefinition"`
-	CorrelatedIndications []string `cim:"CorrelatedIndications"`
-	IndicationFilterName  string   `cim:"IndicationFilterName"`
-	IndicationIdentifier  string   `cim:"IndicationIdentifier"`
-	IndicationTime        string   `cim:"IndicationTime"`
-	OtherSeverity         string   `cim:"OtherSeverity"`
-	PerceivedSeverity     uint16   `cim:"PerceivedSeverity"`
-	SequenceContext       string   `cim:"SequenceContext"`
-	SequenceNumber        int64    `cim:"SequenceNumber"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath               string                            `cim:"__PATH"`
+	ClassDefinition       wmi.Row                           `cim:"ClassDefinition"`
+	CorrelatedIndications []string                          `cim:"CorrelatedIndications"`
+	IndicationFilterName  string                            `cim:"IndicationFilterName"`
+	IndicationIdentifier  string                            `cim:"IndicationIdentifier"`
+	IndicationTime        string                            `cim:"IndicationTime"`
+	OtherSeverity         string                            `cim:"OtherSeverity"`
+	PerceivedSeverity     CIMClassDeletionPerceivedSeverity `cim:"PerceivedSeverity"`
+	SequenceContext       string                            `cim:"SequenceContext"`
+	SequenceNumber        int64                             `cim:"SequenceNumber"`
 }
 
 // CIMClassIndication is the CIM_ClassIndication CIM class.
 type CIMClassIndication struct {
-	ClassDefinition       wmi.Row  `cim:"ClassDefinition"`
-	CorrelatedIndications []string `cim:"CorrelatedIndications"`
-	IndicationFilterName  string   `cim:"IndicationFilterName"`
-	IndicationIdentifier  string   `cim:"IndicationIdentifier"`
-	IndicationTime        string   `cim:"IndicationTime"`
-	OtherSeverity         string   `cim:"OtherSeverity"`
-	PerceivedSeverity     uint16   `cim:"PerceivedSeverity"`
-	SequenceContext       string   `cim:"SequenceContext"`
-	SequenceNumber        int64    `cim:"SequenceNumber"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath               string                              `cim:"__PATH"`
+	ClassDefinition       wmi.Row                             `cim:"ClassDefinition"`
+	CorrelatedIndications []string                            `cim:"CorrelatedIndications"`
+	IndicationFilterName  string                              `cim:"IndicationFilterName"`
+	IndicationIdentifier  string                              `cim:"IndicationIdentifier"`
+	IndicationTime        string                              `cim:"IndicationTime"`
+	OtherSeverity         string                              `cim:"OtherSeverity"`
+	PerceivedSeverity     CIMClassIndicationPerceivedSeverity `cim:"PerceivedSeverity"`
+	SequenceContext       string                              `cim:"SequenceContext"`
+	SequenceNumber        int64                               `cim:"SequenceNumber"`
 }
 
 // CIMClassModification is the CIM_ClassModification CIM class.
 type CIMClassModification struct {
-	ClassDefinition         wmi.Row  `cim:"ClassDefinition"`
-	CorrelatedIndications   []string `cim:"CorrelatedIndications"`
-	IndicationFilterName    string   `cim:"IndicationFilterName"`
-	IndicationIdentifier    string   `cim:"IndicationIdentifier"`
-	IndicationTime          string   `cim:"IndicationTime"`
-	OtherSeverity           string   `cim:"OtherSeverity"`
-	PerceivedSeverity       uint16   `cim:"PerceivedSeverity"`
-	PreviousClassDefinition wmi.Row  `cim:"PreviousClassDefinition"`
-	SequenceContext         string   `cim:"SequenceContext"`
-	SequenceNumber          int64    `cim:"SequenceNumber"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                 string                                `cim:"__PATH"`
+	ClassDefinition         wmi.Row                               `cim:"ClassDefinition"`
+	CorrelatedIndications   []string                              `cim:"CorrelatedIndications"`
+	IndicationFilterName    string                                `cim:"IndicationFilterName"`
+	IndicationIdentifier    string                                `cim:"IndicationIdentifier"`
+	IndicationTime          string                                `cim:"IndicationTime"`
+	OtherSeverity           string                                `cim:"OtherSeverity"`
+	PerceivedSeverity       CIMClassModificationPerceivedSeverity `cim:"PerceivedSeverity"`
+	PreviousClassDefinition wmi.Row                               `cim:"PreviousClassDefinition"`
+	SequenceContext         string                                `cim:"SequenceContext"`
+	SequenceNumber          int64                                 `cim:"SequenceNumber"`
 }
 
 // CIMComponent is the CIM_Component CIM class.
 type CIMComponent struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string `cim:"__PATH"`
 	GroupComponent string `cim:"GroupComponent"`
 	PartComponent  string `cim:"PartComponent"`
 }
 
 // CIMConcreteJob is the CIM_ConcreteJob CIM class.
 type CIMConcreteJob struct {
-	Caption               string   `cim:"Caption"`
-	CommunicationStatus   uint16   `cim:"CommunicationStatus"`
-	DeleteOnCompletion    bool     `cim:"DeleteOnCompletion"`
-	Description           string   `cim:"Description"`
-	DetailedStatus        uint16   `cim:"DetailedStatus"`
-	ElapsedTime           string   `cim:"ElapsedTime"`
-	ElementName           string   `cim:"ElementName"`
-	ErrorCode             uint16   `cim:"ErrorCode"`
-	ErrorDescription      string   `cim:"ErrorDescription"`
-	HealthState           uint16   `cim:"HealthState"`
-	InstallDate           string   `cim:"InstallDate"`
-	InstanceID            string   `cim:"InstanceID"`
-	JobRunTimes           uint32   `cim:"JobRunTimes"`
-	JobState              uint16   `cim:"JobState"`
-	JobStatus             string   `cim:"JobStatus"`
-	LocalOrUtcTime        uint16   `cim:"LocalOrUtcTime"`
-	Name                  string   `cim:"Name"`
-	Notify                string   `cim:"Notify"`
-	OperatingStatus       uint16   `cim:"OperatingStatus"`
-	OperationalStatus     []uint16 `cim:"OperationalStatus"`
-	OtherRecoveryAction   string   `cim:"OtherRecoveryAction"`
-	Owner                 string   `cim:"Owner"`
-	PercentComplete       uint16   `cim:"PercentComplete"`
-	PrimaryStatus         uint16   `cim:"PrimaryStatus"`
-	Priority              uint32   `cim:"Priority"`
-	RecoveryAction        uint16   `cim:"RecoveryAction"`
-	RunDay                int8     `cim:"RunDay"`
-	RunDayOfWeek          int8     `cim:"RunDayOfWeek"`
-	RunMonth              uint8    `cim:"RunMonth"`
-	RunStartInterval      string   `cim:"RunStartInterval"`
-	ScheduledStartTime    string   `cim:"ScheduledStartTime"`
-	StartTime             string   `cim:"StartTime"`
-	Status                string   `cim:"Status"`
-	StatusDescriptions    []string `cim:"StatusDescriptions"`
-	TimeBeforeRemoval     string   `cim:"TimeBeforeRemoval"`
-	TimeOfLastStateChange string   `cim:"TimeOfLastStateChange"`
-	TimeSubmitted         string   `cim:"TimeSubmitted"`
-	UntilTime             string   `cim:"UntilTime"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath               string                            `cim:"__PATH"`
+	Caption               string                            `cim:"Caption"`
+	CommunicationStatus   CIMConcreteJobCommunicationStatus `cim:"CommunicationStatus"`
+	DeleteOnCompletion    bool                              `cim:"DeleteOnCompletion"`
+	Description           string                            `cim:"Description"`
+	DetailedStatus        CIMConcreteJobDetailedStatus      `cim:"DetailedStatus"`
+	ElapsedTime           string                            `cim:"ElapsedTime"`
+	ElementName           string                            `cim:"ElementName"`
+	ErrorCode             uint16                            `cim:"ErrorCode"`
+	ErrorDescription      string                            `cim:"ErrorDescription"`
+	HealthState           CIMConcreteJobHealthState         `cim:"HealthState"`
+	InstallDate           string                            `cim:"InstallDate"`
+	InstanceID            string                            `cim:"InstanceID"`
+	JobRunTimes           uint32                            `cim:"JobRunTimes"`
+	JobState              CIMConcreteJobJobState            `cim:"JobState"`
+	JobStatus             string                            `cim:"JobStatus"`
+	LocalOrUtcTime        CIMConcreteJobLocalOrUtcTime      `cim:"LocalOrUtcTime"`
+	Name                  string                            `cim:"Name"`
+	Notify                string                            `cim:"Notify"`
+	OperatingStatus       CIMConcreteJobOperatingStatus     `cim:"OperatingStatus"`
+	OperationalStatus     []uint16                          `cim:"OperationalStatus"`
+	OtherRecoveryAction   string                            `cim:"OtherRecoveryAction"`
+	Owner                 string                            `cim:"Owner"`
+	PercentComplete       uint16                            `cim:"PercentComplete"`
+	PrimaryStatus         CIMConcreteJobPrimaryStatus       `cim:"PrimaryStatus"`
+	Priority              uint32                            `cim:"Priority"`
+	RecoveryAction        CIMConcreteJobRecoveryAction      `cim:"RecoveryAction"`
+	RunDay                int8                              `cim:"RunDay"`
+	RunDayOfWeek          CIMConcreteJobRunDayOfWeek        `cim:"RunDayOfWeek"`
+	RunMonth              CIMConcreteJobRunMonth            `cim:"RunMonth"`
+	RunStartInterval      string                            `cim:"RunStartInterval"`
+	ScheduledStartTime    string                            `cim:"ScheduledStartTime"`
+	StartTime             string                            `cim:"StartTime"`
+	Status                CIMConcreteJobStatus              `cim:"Status"`
+	StatusDescriptions    []string                          `cim:"StatusDescriptions"`
+	TimeBeforeRemoval     string                            `cim:"TimeBeforeRemoval"`
+	TimeOfLastStateChange string                            `cim:"TimeOfLastStateChange"`
+	TimeSubmitted         string                            `cim:"TimeSubmitted"`
+	UntilTime             string                            `cim:"UntilTime"`
 }
 
 // CIMDNSGeneralSettingData is the CIM_DNSGeneralSettingData CIM class.
 type CIMDNSGeneralSettingData struct {
-	AddressOrigin         uint16   `cim:"AddressOrigin"`
-	AppendParentSuffixes  bool     `cim:"AppendParentSuffixes"`
-	AppendPrimarySuffixes bool     `cim:"AppendPrimarySuffixes"`
-	Caption               string   `cim:"Caption"`
-	DNSSuffixesToAppend   []string `cim:"DNSSuffixesToAppend"`
-	Description           string   `cim:"Description"`
-	ElementName           string   `cim:"ElementName"`
-	InstanceID            string   `cim:"InstanceID"`
-	ProtocolIFType        uint16   `cim:"ProtocolIFType"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath               string                                 `cim:"__PATH"`
+	AddressOrigin         CIMDNSGeneralSettingDataAddressOrigin  `cim:"AddressOrigin"`
+	AppendParentSuffixes  bool                                   `cim:"AppendParentSuffixes"`
+	AppendPrimarySuffixes bool                                   `cim:"AppendPrimarySuffixes"`
+	Caption               string                                 `cim:"Caption"`
+	DNSSuffixesToAppend   []string                               `cim:"DNSSuffixesToAppend"`
+	Description           string                                 `cim:"Description"`
+	ElementName           string                                 `cim:"ElementName"`
+	InstanceID            string                                 `cim:"InstanceID"`
+	ProtocolIFType        CIMDNSGeneralSettingDataProtocolIFType `cim:"ProtocolIFType"`
 }
 
 // CIMDNSProtocolEndpoint is the CIM_DNSProtocolEndpoint CIM class.
 type CIMDNSProtocolEndpoint struct {
-	AvailableRequestedStates []uint16 `cim:"AvailableRequestedStates"`
-	Caption                  string   `cim:"Caption"`
-	CommunicationStatus      uint16   `cim:"CommunicationStatus"`
-	CreationClassName        string   `cim:"CreationClassName"`
-	DHCPOptionsToUse         []uint16 `cim:"DHCPOptionsToUse"`
-	Description              string   `cim:"Description"`
-	DetailedStatus           uint16   `cim:"DetailedStatus"`
-	ElementName              string   `cim:"ElementName"`
-	EnabledDefault           uint16   `cim:"EnabledDefault"`
-	EnabledState             uint16   `cim:"EnabledState"`
-	HealthState              uint16   `cim:"HealthState"`
-	Hostname                 string   `cim:"Hostname"`
-	InstallDate              string   `cim:"InstallDate"`
-	InstanceID               string   `cim:"InstanceID"`
-	Name                     string   `cim:"Name"`
-	NameFormat               string   `cim:"NameFormat"`
-	OperatingStatus          uint16   `cim:"OperatingStatus"`
-	OperationalStatus        []uint16 `cim:"OperationalStatus"`
-	OtherEnabledState        string   `cim:"OtherEnabledState"`
-	OtherTypeDescription     string   `cim:"OtherTypeDescription"`
-	PrimaryStatus            uint16   `cim:"PrimaryStatus"`
-	ProtocolIFType           uint16   `cim:"ProtocolIFType"`
-	ProtocolType             uint16   `cim:"ProtocolType"`
-	RequestedState           uint16   `cim:"RequestedState"`
-	Status                   string   `cim:"Status"`
-	StatusDescriptions       []string `cim:"StatusDescriptions"`
-	SystemCreationClassName  string   `cim:"SystemCreationClassName"`
-	SystemName               string   `cim:"SystemName"`
-	TimeOfLastStateChange    string   `cim:"TimeOfLastStateChange"`
-	TransitioningToState     uint16   `cim:"TransitioningToState"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                  string                                     `cim:"__PATH"`
+	AvailableRequestedStates []uint16                                   `cim:"AvailableRequestedStates"`
+	Caption                  string                                     `cim:"Caption"`
+	CommunicationStatus      CIMDNSProtocolEndpointCommunicationStatus  `cim:"CommunicationStatus"`
+	CreationClassName        string                                     `cim:"CreationClassName"`
+	DHCPOptionsToUse         []uint16                                   `cim:"DHCPOptionsToUse"`
+	Description              string                                     `cim:"Description"`
+	DetailedStatus           CIMDNSProtocolEndpointDetailedStatus       `cim:"DetailedStatus"`
+	ElementName              string                                     `cim:"ElementName"`
+	EnabledDefault           CIMDNSProtocolEndpointEnabledDefault       `cim:"EnabledDefault"`
+	EnabledState             CIMDNSProtocolEndpointEnabledState         `cim:"EnabledState"`
+	HealthState              CIMDNSProtocolEndpointHealthState          `cim:"HealthState"`
+	Hostname                 string                                     `cim:"Hostname"`
+	InstallDate              string                                     `cim:"InstallDate"`
+	InstanceID               string                                     `cim:"InstanceID"`
+	Name                     string                                     `cim:"Name"`
+	NameFormat               string                                     `cim:"NameFormat"`
+	OperatingStatus          CIMDNSProtocolEndpointOperatingStatus      `cim:"OperatingStatus"`
+	OperationalStatus        []uint16                                   `cim:"OperationalStatus"`
+	OtherEnabledState        string                                     `cim:"OtherEnabledState"`
+	OtherTypeDescription     string                                     `cim:"OtherTypeDescription"`
+	PrimaryStatus            CIMDNSProtocolEndpointPrimaryStatus        `cim:"PrimaryStatus"`
+	ProtocolIFType           CIMDNSProtocolEndpointProtocolIFType       `cim:"ProtocolIFType"`
+	ProtocolType             CIMDNSProtocolEndpointProtocolType         `cim:"ProtocolType"`
+	RequestedState           CIMDNSProtocolEndpointRequestedState       `cim:"RequestedState"`
+	Status                   CIMDNSProtocolEndpointStatus               `cim:"Status"`
+	StatusDescriptions       []string                                   `cim:"StatusDescriptions"`
+	SystemCreationClassName  string                                     `cim:"SystemCreationClassName"`
+	SystemName               string                                     `cim:"SystemName"`
+	TimeOfLastStateChange    string                                     `cim:"TimeOfLastStateChange"`
+	TransitioningToState     CIMDNSProtocolEndpointTransitioningToState `cim:"TransitioningToState"`
 }
 
 // CIMDependency is the CIM_Dependency CIM class.
 type CIMDependency struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath    string `cim:"__PATH"`
 	Antecedent string `cim:"Antecedent"`
 	Dependent  string `cim:"Dependent"`
 }
 
 // CIMDeviceSAPImplementation is the CIM_DeviceSAPImplementation CIM class.
 type CIMDeviceSAPImplementation struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath    string `cim:"__PATH"`
 	Antecedent string `cim:"Antecedent"`
 	Dependent  string `cim:"Dependent"`
 }
 
 // CIMElementSettingData is the CIM_ElementSettingData CIM class.
 type CIMElementSettingData struct {
-	IsCurrent      uint16 `cim:"IsCurrent"`
-	IsDefault      uint16 `cim:"IsDefault"`
-	IsNext         uint16 `cim:"IsNext"`
-	ManagedElement string `cim:"ManagedElement"`
-	SettingData    string `cim:"SettingData"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string                         `cim:"__PATH"`
+	IsCurrent      CIMElementSettingDataIsCurrent `cim:"IsCurrent"`
+	IsDefault      CIMElementSettingDataIsDefault `cim:"IsDefault"`
+	IsNext         CIMElementSettingDataIsNext    `cim:"IsNext"`
+	ManagedElement string                         `cim:"ManagedElement"`
+	SettingData    string                         `cim:"SettingData"`
 }
 
 // CIMEnabledLogicalElement is the CIM_EnabledLogicalElement CIM class.
 type CIMEnabledLogicalElement struct {
-	AvailableRequestedStates []uint16 `cim:"AvailableRequestedStates"`
-	Caption                  string   `cim:"Caption"`
-	CommunicationStatus      uint16   `cim:"CommunicationStatus"`
-	Description              string   `cim:"Description"`
-	DetailedStatus           uint16   `cim:"DetailedStatus"`
-	ElementName              string   `cim:"ElementName"`
-	EnabledDefault           uint16   `cim:"EnabledDefault"`
-	EnabledState             uint16   `cim:"EnabledState"`
-	HealthState              uint16   `cim:"HealthState"`
-	InstallDate              string   `cim:"InstallDate"`
-	InstanceID               string   `cim:"InstanceID"`
-	Name                     string   `cim:"Name"`
-	OperatingStatus          uint16   `cim:"OperatingStatus"`
-	OperationalStatus        []uint16 `cim:"OperationalStatus"`
-	OtherEnabledState        string   `cim:"OtherEnabledState"`
-	PrimaryStatus            uint16   `cim:"PrimaryStatus"`
-	RequestedState           uint16   `cim:"RequestedState"`
-	Status                   string   `cim:"Status"`
-	StatusDescriptions       []string `cim:"StatusDescriptions"`
-	TimeOfLastStateChange    string   `cim:"TimeOfLastStateChange"`
-	TransitioningToState     uint16   `cim:"TransitioningToState"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                  string                                       `cim:"__PATH"`
+	AvailableRequestedStates []uint16                                     `cim:"AvailableRequestedStates"`
+	Caption                  string                                       `cim:"Caption"`
+	CommunicationStatus      CIMEnabledLogicalElementCommunicationStatus  `cim:"CommunicationStatus"`
+	Description              string                                       `cim:"Description"`
+	DetailedStatus           CIMEnabledLogicalElementDetailedStatus       `cim:"DetailedStatus"`
+	ElementName              string                                       `cim:"ElementName"`
+	EnabledDefault           CIMEnabledLogicalElementEnabledDefault       `cim:"EnabledDefault"`
+	EnabledState             CIMEnabledLogicalElementEnabledState         `cim:"EnabledState"`
+	HealthState              CIMEnabledLogicalElementHealthState          `cim:"HealthState"`
+	InstallDate              string                                       `cim:"InstallDate"`
+	InstanceID               string                                       `cim:"InstanceID"`
+	Name                     string                                       `cim:"Name"`
+	OperatingStatus          CIMEnabledLogicalElementOperatingStatus      `cim:"OperatingStatus"`
+	OperationalStatus        []uint16                                     `cim:"OperationalStatus"`
+	OtherEnabledState        string                                       `cim:"OtherEnabledState"`
+	PrimaryStatus            CIMEnabledLogicalElementPrimaryStatus        `cim:"PrimaryStatus"`
+	RequestedState           CIMEnabledLogicalElementRequestedState       `cim:"RequestedState"`
+	Status                   CIMEnabledLogicalElementStatus               `cim:"Status"`
+	StatusDescriptions       []string                                     `cim:"StatusDescriptions"`
+	TimeOfLastStateChange    string                                       `cim:"TimeOfLastStateChange"`
+	TransitioningToState     CIMEnabledLogicalElementTransitioningToState `cim:"TransitioningToState"`
 }
 
 // CIMError is the CIM_Error CIM class.
 type CIMError struct {
-	CIMStatusCode            uint32   `cim:"CIMStatusCode"`
-	CIMStatusCodeDescription string   `cim:"CIMStatusCodeDescription"`
-	ErrorSource              string   `cim:"ErrorSource"`
-	ErrorSourceFormat        uint16   `cim:"ErrorSourceFormat"`
-	ErrorType                uint16   `cim:"ErrorType"`
-	Message                  string   `cim:"Message"`
-	MessageArguments         []string `cim:"MessageArguments"`
-	MessageID                string   `cim:"MessageID"`
-	OtherErrorSourceFormat   string   `cim:"OtherErrorSourceFormat"`
-	OtherErrorType           string   `cim:"OtherErrorType"`
-	OwningEntity             string   `cim:"OwningEntity"`
-	PerceivedSeverity        uint16   `cim:"PerceivedSeverity"`
-	ProbableCause            uint16   `cim:"ProbableCause"`
-	ProbableCauseDescription string   `cim:"ProbableCauseDescription"`
-	RecommendedActions       []string `cim:"RecommendedActions"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                  string                    `cim:"__PATH"`
+	CIMStatusCode            CIMErrorCIMStatusCode     `cim:"CIMStatusCode"`
+	CIMStatusCodeDescription string                    `cim:"CIMStatusCodeDescription"`
+	ErrorSource              string                    `cim:"ErrorSource"`
+	ErrorSourceFormat        CIMErrorErrorSourceFormat `cim:"ErrorSourceFormat"`
+	ErrorType                CIMErrorErrorType         `cim:"ErrorType"`
+	Message                  string                    `cim:"Message"`
+	MessageArguments         []string                  `cim:"MessageArguments"`
+	MessageID                string                    `cim:"MessageID"`
+	OtherErrorSourceFormat   string                    `cim:"OtherErrorSourceFormat"`
+	OtherErrorType           string                    `cim:"OtherErrorType"`
+	OwningEntity             string                    `cim:"OwningEntity"`
+	PerceivedSeverity        CIMErrorPerceivedSeverity `cim:"PerceivedSeverity"`
+	ProbableCause            CIMErrorProbableCause     `cim:"ProbableCause"`
+	ProbableCauseDescription string                    `cim:"ProbableCauseDescription"`
+	RecommendedActions       []string                  `cim:"RecommendedActions"`
 }
 
 // CIMFilterEntryBase is the CIM_FilterEntryBase CIM class.
 type CIMFilterEntryBase struct {
-	Caption                 string   `cim:"Caption"`
-	CommunicationStatus     uint16   `cim:"CommunicationStatus"`
-	CreationClassName       string   `cim:"CreationClassName"`
-	Description             string   `cim:"Description"`
-	DetailedStatus          uint16   `cim:"DetailedStatus"`
-	ElementName             string   `cim:"ElementName"`
-	HealthState             uint16   `cim:"HealthState"`
-	InstallDate             string   `cim:"InstallDate"`
-	InstanceID              string   `cim:"InstanceID"`
-	IsNegated               bool     `cim:"IsNegated"`
-	Name                    string   `cim:"Name"`
-	OperatingStatus         uint16   `cim:"OperatingStatus"`
-	OperationalStatus       []uint16 `cim:"OperationalStatus"`
-	PrimaryStatus           uint16   `cim:"PrimaryStatus"`
-	Status                  string   `cim:"Status"`
-	StatusDescriptions      []string `cim:"StatusDescriptions"`
-	SystemCreationClassName string   `cim:"SystemCreationClassName"`
-	SystemName              string   `cim:"SystemName"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                 string                                `cim:"__PATH"`
+	Caption                 string                                `cim:"Caption"`
+	CommunicationStatus     CIMFilterEntryBaseCommunicationStatus `cim:"CommunicationStatus"`
+	CreationClassName       string                                `cim:"CreationClassName"`
+	Description             string                                `cim:"Description"`
+	DetailedStatus          CIMFilterEntryBaseDetailedStatus      `cim:"DetailedStatus"`
+	ElementName             string                                `cim:"ElementName"`
+	HealthState             CIMFilterEntryBaseHealthState         `cim:"HealthState"`
+	InstallDate             string                                `cim:"InstallDate"`
+	InstanceID              string                                `cim:"InstanceID"`
+	IsNegated               bool                                  `cim:"IsNegated"`
+	Name                    string                                `cim:"Name"`
+	OperatingStatus         CIMFilterEntryBaseOperatingStatus     `cim:"OperatingStatus"`
+	OperationalStatus       []uint16                              `cim:"OperationalStatus"`
+	PrimaryStatus           CIMFilterEntryBasePrimaryStatus       `cim:"PrimaryStatus"`
+	Status                  CIMFilterEntryBaseStatus              `cim:"Status"`
+	StatusDescriptions      []string                              `cim:"StatusDescriptions"`
+	SystemCreationClassName string                                `cim:"SystemCreationClassName"`
+	SystemName              string                                `cim:"SystemName"`
 }
 
 // CIMIKEAction is the CIM_IKEAction CIM class.
 type CIMIKEAction struct {
-	AggressiveModeGroupID       uint16   `cim:"AggressiveModeGroupID"`
-	Caption                     string   `cim:"Caption"`
-	CommonName                  string   `cim:"CommonName"`
-	CreationClassName           string   `cim:"CreationClassName"`
-	Description                 string   `cim:"Description"`
-	DoActionLogging             bool     `cim:"DoActionLogging"`
-	DoPacketLogging             bool     `cim:"DoPacketLogging"`
-	ElementName                 string   `cim:"ElementName"`
-	ExchangeMode                uint16   `cim:"ExchangeMode"`
-	IdleDurationSeconds         uint64   `cim:"IdleDurationSeconds"`
-	InstanceID                  string   `cim:"InstanceID"`
-	MinLifetimeKilobytes        uint64   `cim:"MinLifetimeKilobytes"`
-	MinLifetimeSeconds          uint64   `cim:"MinLifetimeSeconds"`
-	PolicyActionName            string   `cim:"PolicyActionName"`
-	PolicyKeywords              []string `cim:"PolicyKeywords"`
-	PolicyRuleCreationClassName string   `cim:"PolicyRuleCreationClassName"`
-	PolicyRuleName              string   `cim:"PolicyRuleName"`
-	SystemCreationClassName     string   `cim:"SystemCreationClassName"`
-	SystemName                  string   `cim:"SystemName"`
-	UseIKEIdentityType          uint16   `cim:"UseIKEIdentityType"`
-	VendorID                    string   `cim:"VendorID"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                     string                            `cim:"__PATH"`
+	AggressiveModeGroupID       CIMIKEActionAggressiveModeGroupID `cim:"AggressiveModeGroupID"`
+	Caption                     string                            `cim:"Caption"`
+	CommonName                  string                            `cim:"CommonName"`
+	CreationClassName           string                            `cim:"CreationClassName"`
+	Description                 string                            `cim:"Description"`
+	DoActionLogging             bool                              `cim:"DoActionLogging"`
+	DoPacketLogging             bool                              `cim:"DoPacketLogging"`
+	ElementName                 string                            `cim:"ElementName"`
+	ExchangeMode                CIMIKEActionExchangeMode          `cim:"ExchangeMode"`
+	IdleDurationSeconds         uint64                            `cim:"IdleDurationSeconds"`
+	InstanceID                  string                            `cim:"InstanceID"`
+	MinLifetimeKilobytes        uint64                            `cim:"MinLifetimeKilobytes"`
+	MinLifetimeSeconds          uint64                            `cim:"MinLifetimeSeconds"`
+	PolicyActionName            string                            `cim:"PolicyActionName"`
+	PolicyKeywords              []string                          `cim:"PolicyKeywords"`
+	PolicyRuleCreationClassName string                            `cim:"PolicyRuleCreationClassName"`
+	PolicyRuleName              string                            `cim:"PolicyRuleName"`
+	SystemCreationClassName     string                            `cim:"SystemCreationClassName"`
+	SystemName                  string                            `cim:"SystemName"`
+	UseIKEIdentityType          CIMIKEActionUseIKEIdentityType    `cim:"UseIKEIdentityType"`
+	VendorID                    string                            `cim:"VendorID"`
 }
 
 // CIMIKEProposal is the CIM_IKEProposal CIM class.
 type CIMIKEProposal struct {
-	AuthenticationMethod      uint16 `cim:"AuthenticationMethod"`
-	Caption                   string `cim:"Caption"`
-	CipherAlgorithm           uint16 `cim:"CipherAlgorithm"`
-	Description               string `cim:"Description"`
-	ElementName               string `cim:"ElementName"`
-	GroupId                   uint16 `cim:"GroupId"`
-	HashAlgorithm             uint16 `cim:"HashAlgorithm"`
-	InstanceID                string `cim:"InstanceID"`
-	MaxLifetimeKilobytes      uint64 `cim:"MaxLifetimeKilobytes"`
-	MaxLifetimeSeconds        uint64 `cim:"MaxLifetimeSeconds"`
-	OtherAuthenticationMethod string `cim:"OtherAuthenticationMethod"`
-	OtherCipherAlgorithm      string `cim:"OtherCipherAlgorithm"`
-	OtherHashAlgorithm        string `cim:"OtherHashAlgorithm"`
-	VendorID                  string `cim:"VendorID"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                   string                             `cim:"__PATH"`
+	AuthenticationMethod      CIMIKEProposalAuthenticationMethod `cim:"AuthenticationMethod"`
+	Caption                   string                             `cim:"Caption"`
+	CipherAlgorithm           CIMIKEProposalCipherAlgorithm      `cim:"CipherAlgorithm"`
+	Description               string                             `cim:"Description"`
+	ElementName               string                             `cim:"ElementName"`
+	GroupId                   CIMIKEProposalGroupId              `cim:"GroupId"`
+	HashAlgorithm             CIMIKEProposalHashAlgorithm        `cim:"HashAlgorithm"`
+	InstanceID                string                             `cim:"InstanceID"`
+	MaxLifetimeKilobytes      uint64                             `cim:"MaxLifetimeKilobytes"`
+	MaxLifetimeSeconds        uint64                             `cim:"MaxLifetimeSeconds"`
+	OtherAuthenticationMethod string                             `cim:"OtherAuthenticationMethod"`
+	OtherCipherAlgorithm      string                             `cim:"OtherCipherAlgorithm"`
+	OtherHashAlgorithm        string                             `cim:"OtherHashAlgorithm"`
+	VendorID                  string                             `cim:"VendorID"`
 }
 
 // CIMIKESAEndpoint is the CIM_IKESAEndpoint CIM class.
 type CIMIKESAEndpoint struct {
-	AuthenticationMethod              uint16   `cim:"AuthenticationMethod"`
-	AvailableRequestedStates          []uint16 `cim:"AvailableRequestedStates"`
-	Caption                           string   `cim:"Caption"`
-	CipherAlgorithm                   uint16   `cim:"CipherAlgorithm"`
-	CommunicationStatus               uint16   `cim:"CommunicationStatus"`
-	CreationClassName                 string   `cim:"CreationClassName"`
-	Description                       string   `cim:"Description"`
-	DetailedStatus                    uint16   `cim:"DetailedStatus"`
-	ElementName                       string   `cim:"ElementName"`
-	EnabledDefault                    uint16   `cim:"EnabledDefault"`
-	EnabledState                      uint16   `cim:"EnabledState"`
-	GroupId                           uint16   `cim:"GroupId"`
-	HashAlgorithm                     uint16   `cim:"HashAlgorithm"`
-	HealthState                       uint16   `cim:"HealthState"`
-	IdleDurationSeconds               uint64   `cim:"IdleDurationSeconds"`
-	InitiatorCookie                   uint64   `cim:"InitiatorCookie"`
-	InstallDate                       string   `cim:"InstallDate"`
-	InstanceID                        string   `cim:"InstanceID"`
-	LifetimeKilobytes                 uint64   `cim:"LifetimeKilobytes"`
-	LifetimeSeconds                   uint64   `cim:"LifetimeSeconds"`
-	Name                              string   `cim:"Name"`
-	NameFormat                        string   `cim:"NameFormat"`
-	OperatingStatus                   uint16   `cim:"OperatingStatus"`
-	OperationalStatus                 []uint16 `cim:"OperationalStatus"`
-	OtherAuthenticationMethod         string   `cim:"OtherAuthenticationMethod"`
-	OtherCipherAlgorithm              string   `cim:"OtherCipherAlgorithm"`
-	OtherEnabledState                 string   `cim:"OtherEnabledState"`
-	OtherHashAlgorithm                string   `cim:"OtherHashAlgorithm"`
-	OtherTypeDescription              string   `cim:"OtherTypeDescription"`
-	PacketLoggingActive               bool     `cim:"PacketLoggingActive"`
-	PrimaryStatus                     uint16   `cim:"PrimaryStatus"`
-	ProtocolIFType                    uint16   `cim:"ProtocolIFType"`
-	ProtocolType                      uint16   `cim:"ProtocolType"`
-	RefreshThresholdKbytesPercentage  uint8    `cim:"RefreshThresholdKbytesPercentage"`
-	RefreshThresholdSecondsPercentage uint8    `cim:"RefreshThresholdSecondsPercentage"`
-	RequestedState                    uint16   `cim:"RequestedState"`
-	ResponderCookie                   uint64   `cim:"ResponderCookie"`
-	Status                            string   `cim:"Status"`
-	StatusDescriptions                []string `cim:"StatusDescriptions"`
-	SystemCreationClassName           string   `cim:"SystemCreationClassName"`
-	SystemName                        string   `cim:"SystemName"`
-	TimeOfLastStateChange             string   `cim:"TimeOfLastStateChange"`
-	TransitioningToState              uint16   `cim:"TransitioningToState"`
-	VendorID                          string   `cim:"VendorID"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                           string                               `cim:"__PATH"`
+	AuthenticationMethod              CIMIKESAEndpointAuthenticationMethod `cim:"AuthenticationMethod"`
+	AvailableRequestedStates          []uint16                             `cim:"AvailableRequestedStates"`
+	Caption                           string                               `cim:"Caption"`
+	CipherAlgorithm                   CIMIKESAEndpointCipherAlgorithm      `cim:"CipherAlgorithm"`
+	CommunicationStatus               CIMIKESAEndpointCommunicationStatus  `cim:"CommunicationStatus"`
+	CreationClassName                 string                               `cim:"CreationClassName"`
+	Description                       string                               `cim:"Description"`
+	DetailedStatus                    CIMIKESAEndpointDetailedStatus       `cim:"DetailedStatus"`
+	ElementName                       string                               `cim:"ElementName"`
+	EnabledDefault                    CIMIKESAEndpointEnabledDefault       `cim:"EnabledDefault"`
+	EnabledState                      CIMIKESAEndpointEnabledState         `cim:"EnabledState"`
+	GroupId                           CIMIKESAEndpointGroupId              `cim:"GroupId"`
+	HashAlgorithm                     CIMIKESAEndpointHashAlgorithm        `cim:"HashAlgorithm"`
+	HealthState                       CIMIKESAEndpointHealthState          `cim:"HealthState"`
+	IdleDurationSeconds               uint64                               `cim:"IdleDurationSeconds"`
+	InitiatorCookie                   uint64                               `cim:"InitiatorCookie"`
+	InstallDate                       string                               `cim:"InstallDate"`
+	InstanceID                        string                               `cim:"InstanceID"`
+	LifetimeKilobytes                 uint64                               `cim:"LifetimeKilobytes"`
+	LifetimeSeconds                   uint64                               `cim:"LifetimeSeconds"`
+	Name                              string                               `cim:"Name"`
+	NameFormat                        string                               `cim:"NameFormat"`
+	OperatingStatus                   CIMIKESAEndpointOperatingStatus      `cim:"OperatingStatus"`
+	OperationalStatus                 []uint16                             `cim:"OperationalStatus"`
+	OtherAuthenticationMethod         string                               `cim:"OtherAuthenticationMethod"`
+	OtherCipherAlgorithm              string                               `cim:"OtherCipherAlgorithm"`
+	OtherEnabledState                 string                               `cim:"OtherEnabledState"`
+	OtherHashAlgorithm                string                               `cim:"OtherHashAlgorithm"`
+	OtherTypeDescription              string                               `cim:"OtherTypeDescription"`
+	PacketLoggingActive               bool                                 `cim:"PacketLoggingActive"`
+	PrimaryStatus                     CIMIKESAEndpointPrimaryStatus        `cim:"PrimaryStatus"`
+	ProtocolIFType                    CIMIKESAEndpointProtocolIFType       `cim:"ProtocolIFType"`
+	ProtocolType                      CIMIKESAEndpointProtocolType         `cim:"ProtocolType"`
+	RefreshThresholdKbytesPercentage  uint8                                `cim:"RefreshThresholdKbytesPercentage"`
+	RefreshThresholdSecondsPercentage uint8                                `cim:"RefreshThresholdSecondsPercentage"`
+	RequestedState                    CIMIKESAEndpointRequestedState       `cim:"RequestedState"`
+	ResponderCookie                   uint64                               `cim:"ResponderCookie"`
+	Status                            CIMIKESAEndpointStatus               `cim:"Status"`
+	StatusDescriptions                []string                             `cim:"StatusDescriptions"`
+	SystemCreationClassName           string                               `cim:"SystemCreationClassName"`
+	SystemName                        string                               `cim:"SystemName"`
+	TimeOfLastStateChange             string                               `cim:"TimeOfLastStateChange"`
+	TransitioningToState              CIMIKESAEndpointTransitioningToState `cim:"TransitioningToState"`
+	VendorID                          string                               `cim:"VendorID"`
 }
 
 // CIMIPAssignmentSettingData is the CIM_IPAssignmentSettingData CIM class.
 type CIMIPAssignmentSettingData struct {
-	AddressOrigin  uint16 `cim:"AddressOrigin"`
-	Caption        string `cim:"Caption"`
-	Description    string `cim:"Description"`
-	ElementName    string `cim:"ElementName"`
-	InstanceID     string `cim:"InstanceID"`
-	ProtocolIFType uint16 `cim:"ProtocolIFType"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string                                   `cim:"__PATH"`
+	AddressOrigin  CIMIPAssignmentSettingDataAddressOrigin  `cim:"AddressOrigin"`
+	Caption        string                                   `cim:"Caption"`
+	Description    string                                   `cim:"Description"`
+	ElementName    string                                   `cim:"ElementName"`
+	InstanceID     string                                   `cim:"InstanceID"`
+	ProtocolIFType CIMIPAssignmentSettingDataProtocolIFType `cim:"ProtocolIFType"`
 }
 
 // CIMIPProtocolEndpoint is the CIM_IPProtocolEndpoint CIM class.
 type CIMIPProtocolEndpoint struct {
-	Address                  string   `cim:"Address"`
-	AddressOrigin            uint16   `cim:"AddressOrigin"`
-	AddressType              uint16   `cim:"AddressType"`
-	AvailableRequestedStates []uint16 `cim:"AvailableRequestedStates"`
-	Caption                  string   `cim:"Caption"`
-	CommunicationStatus      uint16   `cim:"CommunicationStatus"`
-	CreationClassName        string   `cim:"CreationClassName"`
-	Description              string   `cim:"Description"`
-	DetailedStatus           uint16   `cim:"DetailedStatus"`
-	ElementName              string   `cim:"ElementName"`
-	EnabledDefault           uint16   `cim:"EnabledDefault"`
-	EnabledState             uint16   `cim:"EnabledState"`
-	HealthState              uint16   `cim:"HealthState"`
-	IPVersionSupport         uint16   `cim:"IPVersionSupport"`
-	IPv4Address              string   `cim:"IPv4Address"`
-	IPv6Address              string   `cim:"IPv6Address"`
-	InstallDate              string   `cim:"InstallDate"`
-	InstanceID               string   `cim:"InstanceID"`
-	Name                     string   `cim:"Name"`
-	NameFormat               string   `cim:"NameFormat"`
-	OperatingStatus          uint16   `cim:"OperatingStatus"`
-	OperationalStatus        []uint16 `cim:"OperationalStatus"`
-	OtherEnabledState        string   `cim:"OtherEnabledState"`
-	OtherTypeDescription     string   `cim:"OtherTypeDescription"`
-	PrefixLength             uint8    `cim:"PrefixLength"`
-	PrimaryStatus            uint16   `cim:"PrimaryStatus"`
-	ProtocolIFType           uint16   `cim:"ProtocolIFType"`
-	ProtocolType             uint16   `cim:"ProtocolType"`
-	RequestedState           uint16   `cim:"RequestedState"`
-	Status                   string   `cim:"Status"`
-	StatusDescriptions       []string `cim:"StatusDescriptions"`
-	SubnetMask               string   `cim:"SubnetMask"`
-	SystemCreationClassName  string   `cim:"SystemCreationClassName"`
-	SystemName               string   `cim:"SystemName"`
-	TimeOfLastStateChange    string   `cim:"TimeOfLastStateChange"`
-	TransitioningToState     uint16   `cim:"TransitioningToState"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                  string                                    `cim:"__PATH"`
+	Address                  string                                    `cim:"Address"`
+	AddressOrigin            CIMIPProtocolEndpointAddressOrigin        `cim:"AddressOrigin"`
+	AddressType              CIMIPProtocolEndpointAddressType          `cim:"AddressType"`
+	AvailableRequestedStates []uint16                                  `cim:"AvailableRequestedStates"`
+	Caption                  string                                    `cim:"Caption"`
+	CommunicationStatus      CIMIPProtocolEndpointCommunicationStatus  `cim:"CommunicationStatus"`
+	CreationClassName        string                                    `cim:"CreationClassName"`
+	Description              string                                    `cim:"Description"`
+	DetailedStatus           CIMIPProtocolEndpointDetailedStatus       `cim:"DetailedStatus"`
+	ElementName              string                                    `cim:"ElementName"`
+	EnabledDefault           CIMIPProtocolEndpointEnabledDefault       `cim:"EnabledDefault"`
+	EnabledState             CIMIPProtocolEndpointEnabledState         `cim:"EnabledState"`
+	HealthState              CIMIPProtocolEndpointHealthState          `cim:"HealthState"`
+	IPVersionSupport         CIMIPProtocolEndpointIPVersionSupport     `cim:"IPVersionSupport"`
+	IPv4Address              string                                    `cim:"IPv4Address"`
+	IPv6Address              string                                    `cim:"IPv6Address"`
+	InstallDate              string                                    `cim:"InstallDate"`
+	InstanceID               string                                    `cim:"InstanceID"`
+	Name                     string                                    `cim:"Name"`
+	NameFormat               string                                    `cim:"NameFormat"`
+	OperatingStatus          CIMIPProtocolEndpointOperatingStatus      `cim:"OperatingStatus"`
+	OperationalStatus        []uint16                                  `cim:"OperationalStatus"`
+	OtherEnabledState        string                                    `cim:"OtherEnabledState"`
+	OtherTypeDescription     string                                    `cim:"OtherTypeDescription"`
+	PrefixLength             uint8                                     `cim:"PrefixLength"`
+	PrimaryStatus            CIMIPProtocolEndpointPrimaryStatus        `cim:"PrimaryStatus"`
+	ProtocolIFType           CIMIPProtocolEndpointProtocolIFType       `cim:"ProtocolIFType"`
+	ProtocolType             CIMIPProtocolEndpointProtocolType         `cim:"ProtocolType"`
+	RequestedState           CIMIPProtocolEndpointRequestedState       `cim:"RequestedState"`
+	Status                   CIMIPProtocolEndpointStatus               `cim:"Status"`
+	StatusDescriptions       []string                                  `cim:"StatusDescriptions"`
+	SubnetMask               string                                    `cim:"SubnetMask"`
+	SystemCreationClassName  string                                    `cim:"SystemCreationClassName"`
+	SystemName               string                                    `cim:"SystemName"`
+	TimeOfLastStateChange    string                                    `cim:"TimeOfLastStateChange"`
+	TransitioningToState     CIMIPProtocolEndpointTransitioningToState `cim:"TransitioningToState"`
 }
 
 // CIMIPsecSAEndpoint is the CIM_IPsecSAEndpoint CIM class.
 type CIMIPsecSAEndpoint struct {
-	AvailableRequestedStates          []uint16 `cim:"AvailableRequestedStates"`
-	Caption                           string   `cim:"Caption"`
-	CommunicationStatus               uint16   `cim:"CommunicationStatus"`
-	CreationClassName                 string   `cim:"CreationClassName"`
-	DFHandling                        uint16   `cim:"DFHandling"`
-	Description                       string   `cim:"Description"`
-	DetailedStatus                    uint16   `cim:"DetailedStatus"`
-	ElementName                       string   `cim:"ElementName"`
-	EnabledDefault                    uint16   `cim:"EnabledDefault"`
-	EnabledState                      uint16   `cim:"EnabledState"`
-	EncapsulationMode                 uint16   `cim:"EncapsulationMode"`
-	HealthState                       uint16   `cim:"HealthState"`
-	IdleDurationSeconds               uint64   `cim:"IdleDurationSeconds"`
-	InboundDirection                  bool     `cim:"InboundDirection"`
-	InstallDate                       string   `cim:"InstallDate"`
-	InstanceID                        string   `cim:"InstanceID"`
-	LifetimeKilobytes                 uint64   `cim:"LifetimeKilobytes"`
-	LifetimeSeconds                   uint64   `cim:"LifetimeSeconds"`
-	Name                              string   `cim:"Name"`
-	NameFormat                        string   `cim:"NameFormat"`
-	OperatingStatus                   uint16   `cim:"OperatingStatus"`
-	OperationalStatus                 []uint16 `cim:"OperationalStatus"`
-	OtherEnabledState                 string   `cim:"OtherEnabledState"`
-	OtherTypeDescription              string   `cim:"OtherTypeDescription"`
-	PFSInUse                          bool     `cim:"PFSInUse"`
-	PacketLoggingActive               bool     `cim:"PacketLoggingActive"`
-	PrimaryStatus                     uint16   `cim:"PrimaryStatus"`
-	ProtocolIFType                    uint16   `cim:"ProtocolIFType"`
-	ProtocolType                      uint16   `cim:"ProtocolType"`
-	RefreshThresholdKbytesPercentage  uint8    `cim:"RefreshThresholdKbytesPercentage"`
-	RefreshThresholdSecondsPercentage uint8    `cim:"RefreshThresholdSecondsPercentage"`
-	RequestedState                    uint16   `cim:"RequestedState"`
-	SPI                               uint32   `cim:"SPI"`
-	Status                            string   `cim:"Status"`
-	StatusDescriptions                []string `cim:"StatusDescriptions"`
-	SystemCreationClassName           string   `cim:"SystemCreationClassName"`
-	SystemName                        string   `cim:"SystemName"`
-	TimeOfLastStateChange             string   `cim:"TimeOfLastStateChange"`
-	TransitioningToState              uint16   `cim:"TransitioningToState"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                           string                                 `cim:"__PATH"`
+	AvailableRequestedStates          []uint16                               `cim:"AvailableRequestedStates"`
+	Caption                           string                                 `cim:"Caption"`
+	CommunicationStatus               CIMIPsecSAEndpointCommunicationStatus  `cim:"CommunicationStatus"`
+	CreationClassName                 string                                 `cim:"CreationClassName"`
+	DFHandling                        CIMIPsecSAEndpointDFHandling           `cim:"DFHandling"`
+	Description                       string                                 `cim:"Description"`
+	DetailedStatus                    CIMIPsecSAEndpointDetailedStatus       `cim:"DetailedStatus"`
+	ElementName                       string                                 `cim:"ElementName"`
+	EnabledDefault                    CIMIPsecSAEndpointEnabledDefault       `cim:"EnabledDefault"`
+	EnabledState                      CIMIPsecSAEndpointEnabledState         `cim:"EnabledState"`
+	EncapsulationMode                 CIMIPsecSAEndpointEncapsulationMode    `cim:"EncapsulationMode"`
+	HealthState                       CIMIPsecSAEndpointHealthState          `cim:"HealthState"`
+	IdleDurationSeconds               uint64                                 `cim:"IdleDurationSeconds"`
+	InboundDirection                  bool                                   `cim:"InboundDirection"`
+	InstallDate                       string                                 `cim:"InstallDate"`
+	InstanceID                        string                                 `cim:"InstanceID"`
+	LifetimeKilobytes                 uint64                                 `cim:"LifetimeKilobytes"`
+	LifetimeSeconds                   uint64                                 `cim:"LifetimeSeconds"`
+	Name                              string                                 `cim:"Name"`
+	NameFormat                        string                                 `cim:"NameFormat"`
+	OperatingStatus                   CIMIPsecSAEndpointOperatingStatus      `cim:"OperatingStatus"`
+	OperationalStatus                 []uint16                               `cim:"OperationalStatus"`
+	OtherEnabledState                 string                                 `cim:"OtherEnabledState"`
+	OtherTypeDescription              string                                 `cim:"OtherTypeDescription"`
+	PFSInUse                          bool                                   `cim:"PFSInUse"`
+	PacketLoggingActive               bool                                   `cim:"PacketLoggingActive"`
+	PrimaryStatus                     CIMIPsecSAEndpointPrimaryStatus        `cim:"PrimaryStatus"`
+	ProtocolIFType                    CIMIPsecSAEndpointProtocolIFType       `cim:"ProtocolIFType"`
+	ProtocolType                      CIMIPsecSAEndpointProtocolType         `cim:"ProtocolType"`
+	RefreshThresholdKbytesPercentage  uint8                                  `cim:"RefreshThresholdKbytesPercentage"`
+	RefreshThresholdSecondsPercentage uint8                                  `cim:"RefreshThresholdSecondsPercentage"`
+	RequestedState                    CIMIPsecSAEndpointRequestedState       `cim:"RequestedState"`
+	SPI                               uint32                                 `cim:"SPI"`
+	Status                            CIMIPsecSAEndpointStatus               `cim:"Status"`
+	StatusDescriptions                []string                               `cim:"StatusDescriptions"`
+	SystemCreationClassName           string                                 `cim:"SystemCreationClassName"`
+	SystemName                        string                                 `cim:"SystemName"`
+	TimeOfLastStateChange             string                                 `cim:"TimeOfLastStateChange"`
+	TransitioningToState              CIMIPsecSAEndpointTransitioningToState `cim:"TransitioningToState"`
 }
 
 // CIMIndication is the CIM_Indication CIM class.
 type CIMIndication struct {
-	CorrelatedIndications []string `cim:"CorrelatedIndications"`
-	IndicationFilterName  string   `cim:"IndicationFilterName"`
-	IndicationIdentifier  string   `cim:"IndicationIdentifier"`
-	IndicationTime        string   `cim:"IndicationTime"`
-	OtherSeverity         string   `cim:"OtherSeverity"`
-	PerceivedSeverity     uint16   `cim:"PerceivedSeverity"`
-	SequenceContext       string   `cim:"SequenceContext"`
-	SequenceNumber        int64    `cim:"SequenceNumber"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath               string                         `cim:"__PATH"`
+	CorrelatedIndications []string                       `cim:"CorrelatedIndications"`
+	IndicationFilterName  string                         `cim:"IndicationFilterName"`
+	IndicationIdentifier  string                         `cim:"IndicationIdentifier"`
+	IndicationTime        string                         `cim:"IndicationTime"`
+	OtherSeverity         string                         `cim:"OtherSeverity"`
+	PerceivedSeverity     CIMIndicationPerceivedSeverity `cim:"PerceivedSeverity"`
+	SequenceContext       string                         `cim:"SequenceContext"`
+	SequenceNumber        int64                          `cim:"SequenceNumber"`
 }
 
 // CIMInstCreation is the CIM_InstCreation CIM class.
 type CIMInstCreation struct {
-	CorrelatedIndications   []string `cim:"CorrelatedIndications"`
-	IndicationFilterName    string   `cim:"IndicationFilterName"`
-	IndicationIdentifier    string   `cim:"IndicationIdentifier"`
-	IndicationTime          string   `cim:"IndicationTime"`
-	OtherSeverity           string   `cim:"OtherSeverity"`
-	PerceivedSeverity       uint16   `cim:"PerceivedSeverity"`
-	SequenceContext         string   `cim:"SequenceContext"`
-	SequenceNumber          int64    `cim:"SequenceNumber"`
-	SourceInstance          wmi.Row  `cim:"SourceInstance"`
-	SourceInstanceHost      string   `cim:"SourceInstanceHost"`
-	SourceInstanceModelPath string   `cim:"SourceInstanceModelPath"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                 string                           `cim:"__PATH"`
+	CorrelatedIndications   []string                         `cim:"CorrelatedIndications"`
+	IndicationFilterName    string                           `cim:"IndicationFilterName"`
+	IndicationIdentifier    string                           `cim:"IndicationIdentifier"`
+	IndicationTime          string                           `cim:"IndicationTime"`
+	OtherSeverity           string                           `cim:"OtherSeverity"`
+	PerceivedSeverity       CIMInstCreationPerceivedSeverity `cim:"PerceivedSeverity"`
+	SequenceContext         string                           `cim:"SequenceContext"`
+	SequenceNumber          int64                            `cim:"SequenceNumber"`
+	SourceInstance          wmi.Row                          `cim:"SourceInstance"`
+	SourceInstanceHost      string                           `cim:"SourceInstanceHost"`
+	SourceInstanceModelPath string                           `cim:"SourceInstanceModelPath"`
 }
 
 // CIMInstDeletion is the CIM_InstDeletion CIM class.
 type CIMInstDeletion struct {
-	CorrelatedIndications   []string `cim:"CorrelatedIndications"`
-	IndicationFilterName    string   `cim:"IndicationFilterName"`
-	IndicationIdentifier    string   `cim:"IndicationIdentifier"`
-	IndicationTime          string   `cim:"IndicationTime"`
-	OtherSeverity           string   `cim:"OtherSeverity"`
-	PerceivedSeverity       uint16   `cim:"PerceivedSeverity"`
-	SequenceContext         string   `cim:"SequenceContext"`
-	SequenceNumber          int64    `cim:"SequenceNumber"`
-	SourceInstance          wmi.Row  `cim:"SourceInstance"`
-	SourceInstanceHost      string   `cim:"SourceInstanceHost"`
-	SourceInstanceModelPath string   `cim:"SourceInstanceModelPath"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                 string                           `cim:"__PATH"`
+	CorrelatedIndications   []string                         `cim:"CorrelatedIndications"`
+	IndicationFilterName    string                           `cim:"IndicationFilterName"`
+	IndicationIdentifier    string                           `cim:"IndicationIdentifier"`
+	IndicationTime          string                           `cim:"IndicationTime"`
+	OtherSeverity           string                           `cim:"OtherSeverity"`
+	PerceivedSeverity       CIMInstDeletionPerceivedSeverity `cim:"PerceivedSeverity"`
+	SequenceContext         string                           `cim:"SequenceContext"`
+	SequenceNumber          int64                            `cim:"SequenceNumber"`
+	SourceInstance          wmi.Row                          `cim:"SourceInstance"`
+	SourceInstanceHost      string                           `cim:"SourceInstanceHost"`
+	SourceInstanceModelPath string                           `cim:"SourceInstanceModelPath"`
 }
 
 // CIMInstIndication is the CIM_InstIndication CIM class.
 type CIMInstIndication struct {
-	CorrelatedIndications   []string `cim:"CorrelatedIndications"`
-	IndicationFilterName    string   `cim:"IndicationFilterName"`
-	IndicationIdentifier    string   `cim:"IndicationIdentifier"`
-	IndicationTime          string   `cim:"IndicationTime"`
-	OtherSeverity           string   `cim:"OtherSeverity"`
-	PerceivedSeverity       uint16   `cim:"PerceivedSeverity"`
-	SequenceContext         string   `cim:"SequenceContext"`
-	SequenceNumber          int64    `cim:"SequenceNumber"`
-	SourceInstance          wmi.Row  `cim:"SourceInstance"`
-	SourceInstanceHost      string   `cim:"SourceInstanceHost"`
-	SourceInstanceModelPath string   `cim:"SourceInstanceModelPath"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                 string                             `cim:"__PATH"`
+	CorrelatedIndications   []string                           `cim:"CorrelatedIndications"`
+	IndicationFilterName    string                             `cim:"IndicationFilterName"`
+	IndicationIdentifier    string                             `cim:"IndicationIdentifier"`
+	IndicationTime          string                             `cim:"IndicationTime"`
+	OtherSeverity           string                             `cim:"OtherSeverity"`
+	PerceivedSeverity       CIMInstIndicationPerceivedSeverity `cim:"PerceivedSeverity"`
+	SequenceContext         string                             `cim:"SequenceContext"`
+	SequenceNumber          int64                              `cim:"SequenceNumber"`
+	SourceInstance          wmi.Row                            `cim:"SourceInstance"`
+	SourceInstanceHost      string                             `cim:"SourceInstanceHost"`
+	SourceInstanceModelPath string                             `cim:"SourceInstanceModelPath"`
 }
 
 // CIMInstModification is the CIM_InstModification CIM class.
 type CIMInstModification struct {
-	CorrelatedIndications   []string `cim:"CorrelatedIndications"`
-	IndicationFilterName    string   `cim:"IndicationFilterName"`
-	IndicationIdentifier    string   `cim:"IndicationIdentifier"`
-	IndicationTime          string   `cim:"IndicationTime"`
-	OtherSeverity           string   `cim:"OtherSeverity"`
-	PerceivedSeverity       uint16   `cim:"PerceivedSeverity"`
-	PreviousInstance        wmi.Row  `cim:"PreviousInstance"`
-	SequenceContext         string   `cim:"SequenceContext"`
-	SequenceNumber          int64    `cim:"SequenceNumber"`
-	SourceInstance          wmi.Row  `cim:"SourceInstance"`
-	SourceInstanceHost      string   `cim:"SourceInstanceHost"`
-	SourceInstanceModelPath string   `cim:"SourceInstanceModelPath"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                 string                               `cim:"__PATH"`
+	CorrelatedIndications   []string                             `cim:"CorrelatedIndications"`
+	IndicationFilterName    string                               `cim:"IndicationFilterName"`
+	IndicationIdentifier    string                               `cim:"IndicationIdentifier"`
+	IndicationTime          string                               `cim:"IndicationTime"`
+	OtherSeverity           string                               `cim:"OtherSeverity"`
+	PerceivedSeverity       CIMInstModificationPerceivedSeverity `cim:"PerceivedSeverity"`
+	PreviousInstance        wmi.Row                              `cim:"PreviousInstance"`
+	SequenceContext         string                               `cim:"SequenceContext"`
+	SequenceNumber          int64                                `cim:"SequenceNumber"`
+	SourceInstance          wmi.Row                              `cim:"SourceInstance"`
+	SourceInstanceHost      string                               `cim:"SourceInstanceHost"`
+	SourceInstanceModelPath string                               `cim:"SourceInstanceModelPath"`
 }
 
 // CIMJob is the CIM_Job CIM class.
 type CIMJob struct {
-	Caption             string   `cim:"Caption"`
-	CommunicationStatus uint16   `cim:"CommunicationStatus"`
-	DeleteOnCompletion  bool     `cim:"DeleteOnCompletion"`
-	Description         string   `cim:"Description"`
-	DetailedStatus      uint16   `cim:"DetailedStatus"`
-	ElapsedTime         string   `cim:"ElapsedTime"`
-	ElementName         string   `cim:"ElementName"`
-	ErrorCode           uint16   `cim:"ErrorCode"`
-	ErrorDescription    string   `cim:"ErrorDescription"`
-	HealthState         uint16   `cim:"HealthState"`
-	InstallDate         string   `cim:"InstallDate"`
-	InstanceID          string   `cim:"InstanceID"`
-	JobRunTimes         uint32   `cim:"JobRunTimes"`
-	JobStatus           string   `cim:"JobStatus"`
-	LocalOrUtcTime      uint16   `cim:"LocalOrUtcTime"`
-	Name                string   `cim:"Name"`
-	Notify              string   `cim:"Notify"`
-	OperatingStatus     uint16   `cim:"OperatingStatus"`
-	OperationalStatus   []uint16 `cim:"OperationalStatus"`
-	OtherRecoveryAction string   `cim:"OtherRecoveryAction"`
-	Owner               string   `cim:"Owner"`
-	PercentComplete     uint16   `cim:"PercentComplete"`
-	PrimaryStatus       uint16   `cim:"PrimaryStatus"`
-	Priority            uint32   `cim:"Priority"`
-	RecoveryAction      uint16   `cim:"RecoveryAction"`
-	RunDay              int8     `cim:"RunDay"`
-	RunDayOfWeek        int8     `cim:"RunDayOfWeek"`
-	RunMonth            uint8    `cim:"RunMonth"`
-	RunStartInterval    string   `cim:"RunStartInterval"`
-	ScheduledStartTime  string   `cim:"ScheduledStartTime"`
-	StartTime           string   `cim:"StartTime"`
-	Status              string   `cim:"Status"`
-	StatusDescriptions  []string `cim:"StatusDescriptions"`
-	TimeSubmitted       string   `cim:"TimeSubmitted"`
-	UntilTime           string   `cim:"UntilTime"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath             string                    `cim:"__PATH"`
+	Caption             string                    `cim:"Caption"`
+	CommunicationStatus CIMJobCommunicationStatus `cim:"CommunicationStatus"`
+	DeleteOnCompletion  bool                      `cim:"DeleteOnCompletion"`
+	Description         string                    `cim:"Description"`
+	DetailedStatus      CIMJobDetailedStatus      `cim:"DetailedStatus"`
+	ElapsedTime         string                    `cim:"ElapsedTime"`
+	ElementName         string                    `cim:"ElementName"`
+	ErrorCode           uint16                    `cim:"ErrorCode"`
+	ErrorDescription    string                    `cim:"ErrorDescription"`
+	HealthState         CIMJobHealthState         `cim:"HealthState"`
+	InstallDate         string                    `cim:"InstallDate"`
+	InstanceID          string                    `cim:"InstanceID"`
+	JobRunTimes         uint32                    `cim:"JobRunTimes"`
+	JobStatus           string                    `cim:"JobStatus"`
+	LocalOrUtcTime      CIMJobLocalOrUtcTime      `cim:"LocalOrUtcTime"`
+	Name                string                    `cim:"Name"`
+	Notify              string                    `cim:"Notify"`
+	OperatingStatus     CIMJobOperatingStatus     `cim:"OperatingStatus"`
+	OperationalStatus   []uint16                  `cim:"OperationalStatus"`
+	OtherRecoveryAction string                    `cim:"OtherRecoveryAction"`
+	Owner               string                    `cim:"Owner"`
+	PercentComplete     uint16                    `cim:"PercentComplete"`
+	PrimaryStatus       CIMJobPrimaryStatus       `cim:"PrimaryStatus"`
+	Priority            uint32                    `cim:"Priority"`
+	RecoveryAction      CIMJobRecoveryAction      `cim:"RecoveryAction"`
+	RunDay              int8                      `cim:"RunDay"`
+	RunDayOfWeek        CIMJobRunDayOfWeek        `cim:"RunDayOfWeek"`
+	RunMonth            CIMJobRunMonth            `cim:"RunMonth"`
+	RunStartInterval    string                    `cim:"RunStartInterval"`
+	ScheduledStartTime  string                    `cim:"ScheduledStartTime"`
+	StartTime           string                    `cim:"StartTime"`
+	Status              CIMJobStatus              `cim:"Status"`
+	StatusDescriptions  []string                  `cim:"StatusDescriptions"`
+	TimeSubmitted       string                    `cim:"TimeSubmitted"`
+	UntilTime           string                    `cim:"UntilTime"`
 }
 
 // CIMLANEndpoint is the CIM_LANEndpoint CIM class.
 type CIMLANEndpoint struct {
-	AliasAddresses           []string `cim:"AliasAddresses"`
-	AvailableRequestedStates []uint16 `cim:"AvailableRequestedStates"`
-	Caption                  string   `cim:"Caption"`
-	CommunicationStatus      uint16   `cim:"CommunicationStatus"`
-	CreationClassName        string   `cim:"CreationClassName"`
-	Description              string   `cim:"Description"`
-	DetailedStatus           uint16   `cim:"DetailedStatus"`
-	ElementName              string   `cim:"ElementName"`
-	EnabledDefault           uint16   `cim:"EnabledDefault"`
-	EnabledState             uint16   `cim:"EnabledState"`
-	GroupAddresses           []string `cim:"GroupAddresses"`
-	HealthState              uint16   `cim:"HealthState"`
-	InstallDate              string   `cim:"InstallDate"`
-	InstanceID               string   `cim:"InstanceID"`
-	LANID                    string   `cim:"LANID"`
-	LANType                  uint16   `cim:"LANType"`
-	MACAddress               string   `cim:"MACAddress"`
-	MaxDataSize              uint32   `cim:"MaxDataSize"`
-	Name                     string   `cim:"Name"`
-	NameFormat               string   `cim:"NameFormat"`
-	OperatingStatus          uint16   `cim:"OperatingStatus"`
-	OperationalStatus        []uint16 `cim:"OperationalStatus"`
-	OtherEnabledState        string   `cim:"OtherEnabledState"`
-	OtherLANType             string   `cim:"OtherLANType"`
-	OtherTypeDescription     string   `cim:"OtherTypeDescription"`
-	PrimaryStatus            uint16   `cim:"PrimaryStatus"`
-	ProtocolIFType           uint16   `cim:"ProtocolIFType"`
-	ProtocolType             uint16   `cim:"ProtocolType"`
-	RequestedState           uint16   `cim:"RequestedState"`
-	Status                   string   `cim:"Status"`
-	StatusDescriptions       []string `cim:"StatusDescriptions"`
-	SystemCreationClassName  string   `cim:"SystemCreationClassName"`
-	SystemName               string   `cim:"SystemName"`
-	TimeOfLastStateChange    string   `cim:"TimeOfLastStateChange"`
-	TransitioningToState     uint16   `cim:"TransitioningToState"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                  string                             `cim:"__PATH"`
+	AliasAddresses           []string                           `cim:"AliasAddresses"`
+	AvailableRequestedStates []uint16                           `cim:"AvailableRequestedStates"`
+	Caption                  string                             `cim:"Caption"`
+	CommunicationStatus      CIMLANEndpointCommunicationStatus  `cim:"CommunicationStatus"`
+	CreationClassName        string                             `cim:"CreationClassName"`
+	Description              string                             `cim:"Description"`
+	DetailedStatus           CIMLANEndpointDetailedStatus       `cim:"DetailedStatus"`
+	ElementName              string                             `cim:"ElementName"`
+	EnabledDefault           CIMLANEndpointEnabledDefault       `cim:"EnabledDefault"`
+	EnabledState             CIMLANEndpointEnabledState         `cim:"EnabledState"`
+	GroupAddresses           []string                           `cim:"GroupAddresses"`
+	HealthState              CIMLANEndpointHealthState          `cim:"HealthState"`
+	InstallDate              string                             `cim:"InstallDate"`
+	InstanceID               string                             `cim:"InstanceID"`
+	LANID                    string                             `cim:"LANID"`
+	LANType                  CIMLANEndpointLANType              `cim:"LANType"`
+	MACAddress               string                             `cim:"MACAddress"`
+	MaxDataSize              uint32                             `cim:"MaxDataSize"`
+	Name                     string                             `cim:"Name"`
+	NameFormat               string                             `cim:"NameFormat"`
+	OperatingStatus          CIMLANEndpointOperatingStatus      `cim:"OperatingStatus"`
+	OperationalStatus        []uint16                           `cim:"OperationalStatus"`
+	OtherEnabledState        string                             `cim:"OtherEnabledState"`
+	OtherLANType             string                             `cim:"OtherLANType"`
+	OtherTypeDescription     string                             `cim:"OtherTypeDescription"`
+	PrimaryStatus            CIMLANEndpointPrimaryStatus        `cim:"PrimaryStatus"`
+	ProtocolIFType           CIMLANEndpointProtocolIFType       `cim:"ProtocolIFType"`
+	ProtocolType             CIMLANEndpointProtocolType         `cim:"ProtocolType"`
+	RequestedState           CIMLANEndpointRequestedState       `cim:"RequestedState"`
+	Status                   CIMLANEndpointStatus               `cim:"Status"`
+	StatusDescriptions       []string                           `cim:"StatusDescriptions"`
+	SystemCreationClassName  string                             `cim:"SystemCreationClassName"`
+	SystemName               string                             `cim:"SystemName"`
+	TimeOfLastStateChange    string                             `cim:"TimeOfLastStateChange"`
+	TransitioningToState     CIMLANEndpointTransitioningToState `cim:"TransitioningToState"`
 }
 
 // CIMLogicalDevice is the CIM_LogicalDevice CIM class.
 type CIMLogicalDevice struct {
-	AdditionalAvailability      []uint16 `cim:"AdditionalAvailability"`
-	Availability                uint16   `cim:"Availability"`
-	AvailableRequestedStates    []uint16 `cim:"AvailableRequestedStates"`
-	Caption                     string   `cim:"Caption"`
-	CommunicationStatus         uint16   `cim:"CommunicationStatus"`
-	CreationClassName           string   `cim:"CreationClassName"`
-	Description                 string   `cim:"Description"`
-	DetailedStatus              uint16   `cim:"DetailedStatus"`
-	DeviceID                    string   `cim:"DeviceID"`
-	ElementName                 string   `cim:"ElementName"`
-	EnabledDefault              uint16   `cim:"EnabledDefault"`
-	EnabledState                uint16   `cim:"EnabledState"`
-	ErrorCleared                bool     `cim:"ErrorCleared"`
-	ErrorDescription            string   `cim:"ErrorDescription"`
-	HealthState                 uint16   `cim:"HealthState"`
-	IdentifyingDescriptions     []string `cim:"IdentifyingDescriptions"`
-	InstallDate                 string   `cim:"InstallDate"`
-	InstanceID                  string   `cim:"InstanceID"`
-	LastErrorCode               uint32   `cim:"LastErrorCode"`
-	MaxQuiesceTime              uint64   `cim:"MaxQuiesceTime"`
-	Name                        string   `cim:"Name"`
-	OperatingStatus             uint16   `cim:"OperatingStatus"`
-	OperationalStatus           []uint16 `cim:"OperationalStatus"`
-	OtherEnabledState           string   `cim:"OtherEnabledState"`
-	OtherIdentifyingInfo        []string `cim:"OtherIdentifyingInfo"`
-	PowerManagementCapabilities []uint16 `cim:"PowerManagementCapabilities"`
-	PowerManagementSupported    bool     `cim:"PowerManagementSupported"`
-	PowerOnHours                uint64   `cim:"PowerOnHours"`
-	PrimaryStatus               uint16   `cim:"PrimaryStatus"`
-	RequestedState              uint16   `cim:"RequestedState"`
-	Status                      string   `cim:"Status"`
-	StatusDescriptions          []string `cim:"StatusDescriptions"`
-	StatusInfo                  uint16   `cim:"StatusInfo"`
-	SystemCreationClassName     string   `cim:"SystemCreationClassName"`
-	SystemName                  string   `cim:"SystemName"`
-	TimeOfLastStateChange       string   `cim:"TimeOfLastStateChange"`
-	TotalPowerOnHours           uint64   `cim:"TotalPowerOnHours"`
-	TransitioningToState        uint16   `cim:"TransitioningToState"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                     string                               `cim:"__PATH"`
+	AdditionalAvailability      []uint16                             `cim:"AdditionalAvailability"`
+	Availability                CIMLogicalDeviceAvailability         `cim:"Availability"`
+	AvailableRequestedStates    []uint16                             `cim:"AvailableRequestedStates"`
+	Caption                     string                               `cim:"Caption"`
+	CommunicationStatus         CIMLogicalDeviceCommunicationStatus  `cim:"CommunicationStatus"`
+	CreationClassName           string                               `cim:"CreationClassName"`
+	Description                 string                               `cim:"Description"`
+	DetailedStatus              CIMLogicalDeviceDetailedStatus       `cim:"DetailedStatus"`
+	DeviceID                    string                               `cim:"DeviceID"`
+	ElementName                 string                               `cim:"ElementName"`
+	EnabledDefault              CIMLogicalDeviceEnabledDefault       `cim:"EnabledDefault"`
+	EnabledState                CIMLogicalDeviceEnabledState         `cim:"EnabledState"`
+	ErrorCleared                bool                                 `cim:"ErrorCleared"`
+	ErrorDescription            string                               `cim:"ErrorDescription"`
+	HealthState                 CIMLogicalDeviceHealthState          `cim:"HealthState"`
+	IdentifyingDescriptions     []string                             `cim:"IdentifyingDescriptions"`
+	InstallDate                 string                               `cim:"InstallDate"`
+	InstanceID                  string                               `cim:"InstanceID"`
+	LastErrorCode               uint32                               `cim:"LastErrorCode"`
+	MaxQuiesceTime              uint64                               `cim:"MaxQuiesceTime"`
+	Name                        string                               `cim:"Name"`
+	OperatingStatus             CIMLogicalDeviceOperatingStatus      `cim:"OperatingStatus"`
+	OperationalStatus           []uint16                             `cim:"OperationalStatus"`
+	OtherEnabledState           string                               `cim:"OtherEnabledState"`
+	OtherIdentifyingInfo        []string                             `cim:"OtherIdentifyingInfo"`
+	PowerManagementCapabilities []uint16                             `cim:"PowerManagementCapabilities"`
+	PowerManagementSupported    bool                                 `cim:"PowerManagementSupported"`
+	PowerOnHours                uint64                               `cim:"PowerOnHours"`
+	PrimaryStatus               CIMLogicalDevicePrimaryStatus        `cim:"PrimaryStatus"`
+	RequestedState              CIMLogicalDeviceRequestedState       `cim:"RequestedState"`
+	Status                      CIMLogicalDeviceStatus               `cim:"Status"`
+	StatusDescriptions          []string                             `cim:"StatusDescriptions"`
+	StatusInfo                  CIMLogicalDeviceStatusInfo           `cim:"StatusInfo"`
+	SystemCreationClassName     string                               `cim:"SystemCreationClassName"`
+	SystemName                  string                               `cim:"SystemName"`
+	TimeOfLastStateChange       string                               `cim:"TimeOfLastStateChange"`
+	TotalPowerOnHours           uint64                               `cim:"TotalPowerOnHours"`
+	TransitioningToState        CIMLogicalDeviceTransitioningToState `cim:"TransitioningToState"`
 }
 
 // CIMLogicalElement is the CIM_LogicalElement CIM class.
 type CIMLogicalElement struct {
-	Caption             string   `cim:"Caption"`
-	CommunicationStatus uint16   `cim:"CommunicationStatus"`
-	Description         string   `cim:"Description"`
-	DetailedStatus      uint16   `cim:"DetailedStatus"`
-	ElementName         string   `cim:"ElementName"`
-	HealthState         uint16   `cim:"HealthState"`
-	InstallDate         string   `cim:"InstallDate"`
-	InstanceID          string   `cim:"InstanceID"`
-	Name                string   `cim:"Name"`
-	OperatingStatus     uint16   `cim:"OperatingStatus"`
-	OperationalStatus   []uint16 `cim:"OperationalStatus"`
-	PrimaryStatus       uint16   `cim:"PrimaryStatus"`
-	Status              string   `cim:"Status"`
-	StatusDescriptions  []string `cim:"StatusDescriptions"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath             string                               `cim:"__PATH"`
+	Caption             string                               `cim:"Caption"`
+	CommunicationStatus CIMLogicalElementCommunicationStatus `cim:"CommunicationStatus"`
+	Description         string                               `cim:"Description"`
+	DetailedStatus      CIMLogicalElementDetailedStatus      `cim:"DetailedStatus"`
+	ElementName         string                               `cim:"ElementName"`
+	HealthState         CIMLogicalElementHealthState         `cim:"HealthState"`
+	InstallDate         string                               `cim:"InstallDate"`
+	InstanceID          string                               `cim:"InstanceID"`
+	Name                string                               `cim:"Name"`
+	OperatingStatus     CIMLogicalElementOperatingStatus     `cim:"OperatingStatus"`
+	OperationalStatus   []uint16                             `cim:"OperationalStatus"`
+	PrimaryStatus       CIMLogicalElementPrimaryStatus       `cim:"PrimaryStatus"`
+	Status              CIMLogicalElementStatus              `cim:"Status"`
+	StatusDescriptions  []string                             `cim:"StatusDescriptions"`
 }
 
 // CIMLogicalPort is the CIM_LogicalPort CIM class.
 type CIMLogicalPort struct {
-	AdditionalAvailability      []uint16 `cim:"AdditionalAvailability"`
-	Availability                uint16   `cim:"Availability"`
-	AvailableRequestedStates    []uint16 `cim:"AvailableRequestedStates"`
-	Caption                     string   `cim:"Caption"`
-	CommunicationStatus         uint16   `cim:"CommunicationStatus"`
-	CreationClassName           string   `cim:"CreationClassName"`
-	Description                 string   `cim:"Description"`
-	DetailedStatus              uint16   `cim:"DetailedStatus"`
-	DeviceID                    string   `cim:"DeviceID"`
-	ElementName                 string   `cim:"ElementName"`
-	EnabledDefault              uint16   `cim:"EnabledDefault"`
-	EnabledState                uint16   `cim:"EnabledState"`
-	ErrorCleared                bool     `cim:"ErrorCleared"`
-	ErrorDescription            string   `cim:"ErrorDescription"`
-	HealthState                 uint16   `cim:"HealthState"`
-	IdentifyingDescriptions     []string `cim:"IdentifyingDescriptions"`
-	InstallDate                 string   `cim:"InstallDate"`
-	InstanceID                  string   `cim:"InstanceID"`
-	LastErrorCode               uint32   `cim:"LastErrorCode"`
-	MaxQuiesceTime              uint64   `cim:"MaxQuiesceTime"`
-	MaxSpeed                    uint64   `cim:"MaxSpeed"`
-	Name                        string   `cim:"Name"`
-	OperatingStatus             uint16   `cim:"OperatingStatus"`
-	OperationalStatus           []uint16 `cim:"OperationalStatus"`
-	OtherEnabledState           string   `cim:"OtherEnabledState"`
-	OtherIdentifyingInfo        []string `cim:"OtherIdentifyingInfo"`
-	OtherPortType               string   `cim:"OtherPortType"`
-	PortType                    uint16   `cim:"PortType"`
-	PowerManagementCapabilities []uint16 `cim:"PowerManagementCapabilities"`
-	PowerManagementSupported    bool     `cim:"PowerManagementSupported"`
-	PowerOnHours                uint64   `cim:"PowerOnHours"`
-	PrimaryStatus               uint16   `cim:"PrimaryStatus"`
-	RequestedSpeed              uint64   `cim:"RequestedSpeed"`
-	RequestedState              uint16   `cim:"RequestedState"`
-	Speed                       uint64   `cim:"Speed"`
-	Status                      string   `cim:"Status"`
-	StatusDescriptions          []string `cim:"StatusDescriptions"`
-	StatusInfo                  uint16   `cim:"StatusInfo"`
-	SystemCreationClassName     string   `cim:"SystemCreationClassName"`
-	SystemName                  string   `cim:"SystemName"`
-	TimeOfLastStateChange       string   `cim:"TimeOfLastStateChange"`
-	TotalPowerOnHours           uint64   `cim:"TotalPowerOnHours"`
-	TransitioningToState        uint16   `cim:"TransitioningToState"`
-	UsageRestriction            uint16   `cim:"UsageRestriction"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                     string                             `cim:"__PATH"`
+	AdditionalAvailability      []uint16                           `cim:"AdditionalAvailability"`
+	Availability                CIMLogicalPortAvailability         `cim:"Availability"`
+	AvailableRequestedStates    []uint16                           `cim:"AvailableRequestedStates"`
+	Caption                     string                             `cim:"Caption"`
+	CommunicationStatus         CIMLogicalPortCommunicationStatus  `cim:"CommunicationStatus"`
+	CreationClassName           string                             `cim:"CreationClassName"`
+	Description                 string                             `cim:"Description"`
+	DetailedStatus              CIMLogicalPortDetailedStatus       `cim:"DetailedStatus"`
+	DeviceID                    string                             `cim:"DeviceID"`
+	ElementName                 string                             `cim:"ElementName"`
+	EnabledDefault              CIMLogicalPortEnabledDefault       `cim:"EnabledDefault"`
+	EnabledState                CIMLogicalPortEnabledState         `cim:"EnabledState"`
+	ErrorCleared                bool                               `cim:"ErrorCleared"`
+	ErrorDescription            string                             `cim:"ErrorDescription"`
+	HealthState                 CIMLogicalPortHealthState          `cim:"HealthState"`
+	IdentifyingDescriptions     []string                           `cim:"IdentifyingDescriptions"`
+	InstallDate                 string                             `cim:"InstallDate"`
+	InstanceID                  string                             `cim:"InstanceID"`
+	LastErrorCode               uint32                             `cim:"LastErrorCode"`
+	MaxQuiesceTime              uint64                             `cim:"MaxQuiesceTime"`
+	MaxSpeed                    uint64                             `cim:"MaxSpeed"`
+	Name                        string                             `cim:"Name"`
+	OperatingStatus             CIMLogicalPortOperatingStatus      `cim:"OperatingStatus"`
+	OperationalStatus           []uint16                           `cim:"OperationalStatus"`
+	OtherEnabledState           string                             `cim:"OtherEnabledState"`
+	OtherIdentifyingInfo        []string                           `cim:"OtherIdentifyingInfo"`
+	OtherPortType               string                             `cim:"OtherPortType"`
+	PortType                    CIMLogicalPortPortType             `cim:"PortType"`
+	PowerManagementCapabilities []uint16                           `cim:"PowerManagementCapabilities"`
+	PowerManagementSupported    bool                               `cim:"PowerManagementSupported"`
+	PowerOnHours                uint64                             `cim:"PowerOnHours"`
+	PrimaryStatus               CIMLogicalPortPrimaryStatus        `cim:"PrimaryStatus"`
+	RequestedSpeed              uint64                             `cim:"RequestedSpeed"`
+	RequestedState              CIMLogicalPortRequestedState       `cim:"RequestedState"`
+	Speed                       uint64                             `cim:"Speed"`
+	Status                      CIMLogicalPortStatus               `cim:"Status"`
+	StatusDescriptions          []string                           `cim:"StatusDescriptions"`
+	StatusInfo                  CIMLogicalPortStatusInfo           `cim:"StatusInfo"`
+	SystemCreationClassName     string                             `cim:"SystemCreationClassName"`
+	SystemName                  string                             `cim:"SystemName"`
+	TimeOfLastStateChange       string                             `cim:"TimeOfLastStateChange"`
+	TotalPowerOnHours           uint64                             `cim:"TotalPowerOnHours"`
+	TransitioningToState        CIMLogicalPortTransitioningToState `cim:"TransitioningToState"`
+	UsageRestriction            CIMLogicalPortUsageRestriction     `cim:"UsageRestriction"`
 }
 
 // CIMManagedElement is the CIM_ManagedElement CIM class.
 type CIMManagedElement struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath     string `cim:"__PATH"`
 	Caption     string `cim:"Caption"`
 	Description string `cim:"Description"`
 	ElementName string `cim:"ElementName"`
@@ -707,128 +839,152 @@ type CIMManagedElement struct {
 
 // CIMManagedSystemElement is the CIM_ManagedSystemElement CIM class.
 type CIMManagedSystemElement struct {
-	Caption             string   `cim:"Caption"`
-	CommunicationStatus uint16   `cim:"CommunicationStatus"`
-	Description         string   `cim:"Description"`
-	DetailedStatus      uint16   `cim:"DetailedStatus"`
-	ElementName         string   `cim:"ElementName"`
-	HealthState         uint16   `cim:"HealthState"`
-	InstallDate         string   `cim:"InstallDate"`
-	InstanceID          string   `cim:"InstanceID"`
-	Name                string   `cim:"Name"`
-	OperatingStatus     uint16   `cim:"OperatingStatus"`
-	OperationalStatus   []uint16 `cim:"OperationalStatus"`
-	PrimaryStatus       uint16   `cim:"PrimaryStatus"`
-	Status              string   `cim:"Status"`
-	StatusDescriptions  []string `cim:"StatusDescriptions"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath             string                                     `cim:"__PATH"`
+	Caption             string                                     `cim:"Caption"`
+	CommunicationStatus CIMManagedSystemElementCommunicationStatus `cim:"CommunicationStatus"`
+	Description         string                                     `cim:"Description"`
+	DetailedStatus      CIMManagedSystemElementDetailedStatus      `cim:"DetailedStatus"`
+	ElementName         string                                     `cim:"ElementName"`
+	HealthState         CIMManagedSystemElementHealthState         `cim:"HealthState"`
+	InstallDate         string                                     `cim:"InstallDate"`
+	InstanceID          string                                     `cim:"InstanceID"`
+	Name                string                                     `cim:"Name"`
+	OperatingStatus     CIMManagedSystemElementOperatingStatus     `cim:"OperatingStatus"`
+	OperationalStatus   []uint16                                   `cim:"OperationalStatus"`
+	PrimaryStatus       CIMManagedSystemElementPrimaryStatus       `cim:"PrimaryStatus"`
+	Status              CIMManagedSystemElementStatus              `cim:"Status"`
+	StatusDescriptions  []string                                   `cim:"StatusDescriptions"`
 }
 
 // CIMNetworkPipe is the CIM_NetworkPipe CIM class.
 type CIMNetworkPipe struct {
-	AggregationBehavior      uint16   `cim:"AggregationBehavior"`
-	AvailableRequestedStates []uint16 `cim:"AvailableRequestedStates"`
-	Caption                  string   `cim:"Caption"`
-	CommunicationStatus      uint16   `cim:"CommunicationStatus"`
-	Description              string   `cim:"Description"`
-	DetailedStatus           uint16   `cim:"DetailedStatus"`
-	Directionality           uint16   `cim:"Directionality"`
-	ElementName              string   `cim:"ElementName"`
-	EnabledDefault           uint16   `cim:"EnabledDefault"`
-	EnabledState             uint16   `cim:"EnabledState"`
-	HealthState              uint16   `cim:"HealthState"`
-	InstallDate              string   `cim:"InstallDate"`
-	InstanceID               string   `cim:"InstanceID"`
-	Name                     string   `cim:"Name"`
-	OperatingStatus          uint16   `cim:"OperatingStatus"`
-	OperationalStatus        []uint16 `cim:"OperationalStatus"`
-	OtherEnabledState        string   `cim:"OtherEnabledState"`
-	PrimaryStatus            uint16   `cim:"PrimaryStatus"`
-	RequestedState           uint16   `cim:"RequestedState"`
-	Status                   string   `cim:"Status"`
-	StatusDescriptions       []string `cim:"StatusDescriptions"`
-	TimeOfLastStateChange    string   `cim:"TimeOfLastStateChange"`
-	TransitioningToState     uint16   `cim:"TransitioningToState"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                  string                             `cim:"__PATH"`
+	AggregationBehavior      CIMNetworkPipeAggregationBehavior  `cim:"AggregationBehavior"`
+	AvailableRequestedStates []uint16                           `cim:"AvailableRequestedStates"`
+	Caption                  string                             `cim:"Caption"`
+	CommunicationStatus      CIMNetworkPipeCommunicationStatus  `cim:"CommunicationStatus"`
+	Description              string                             `cim:"Description"`
+	DetailedStatus           CIMNetworkPipeDetailedStatus       `cim:"DetailedStatus"`
+	Directionality           CIMNetworkPipeDirectionality       `cim:"Directionality"`
+	ElementName              string                             `cim:"ElementName"`
+	EnabledDefault           CIMNetworkPipeEnabledDefault       `cim:"EnabledDefault"`
+	EnabledState             CIMNetworkPipeEnabledState         `cim:"EnabledState"`
+	HealthState              CIMNetworkPipeHealthState          `cim:"HealthState"`
+	InstallDate              string                             `cim:"InstallDate"`
+	InstanceID               string                             `cim:"InstanceID"`
+	Name                     string                             `cim:"Name"`
+	OperatingStatus          CIMNetworkPipeOperatingStatus      `cim:"OperatingStatus"`
+	OperationalStatus        []uint16                           `cim:"OperationalStatus"`
+	OtherEnabledState        string                             `cim:"OtherEnabledState"`
+	PrimaryStatus            CIMNetworkPipePrimaryStatus        `cim:"PrimaryStatus"`
+	RequestedState           CIMNetworkPipeRequestedState       `cim:"RequestedState"`
+	Status                   CIMNetworkPipeStatus               `cim:"Status"`
+	StatusDescriptions       []string                           `cim:"StatusDescriptions"`
+	TimeOfLastStateChange    string                             `cim:"TimeOfLastStateChange"`
+	TransitioningToState     CIMNetworkPipeTransitioningToState `cim:"TransitioningToState"`
 }
 
 // CIMNetworkPort is the CIM_NetworkPort CIM class.
 type CIMNetworkPort struct {
-	ActiveMaximumTransmissionUnit    uint64   `cim:"ActiveMaximumTransmissionUnit"`
-	AdditionalAvailability           []uint16 `cim:"AdditionalAvailability"`
-	AutoSense                        bool     `cim:"AutoSense"`
-	Availability                     uint16   `cim:"Availability"`
-	AvailableRequestedStates         []uint16 `cim:"AvailableRequestedStates"`
-	Caption                          string   `cim:"Caption"`
-	CommunicationStatus              uint16   `cim:"CommunicationStatus"`
-	CreationClassName                string   `cim:"CreationClassName"`
-	Description                      string   `cim:"Description"`
-	DetailedStatus                   uint16   `cim:"DetailedStatus"`
-	DeviceID                         string   `cim:"DeviceID"`
-	ElementName                      string   `cim:"ElementName"`
-	EnabledDefault                   uint16   `cim:"EnabledDefault"`
-	EnabledState                     uint16   `cim:"EnabledState"`
-	ErrorCleared                     bool     `cim:"ErrorCleared"`
-	ErrorDescription                 string   `cim:"ErrorDescription"`
-	FullDuplex                       bool     `cim:"FullDuplex"`
-	HealthState                      uint16   `cim:"HealthState"`
-	IdentifyingDescriptions          []string `cim:"IdentifyingDescriptions"`
-	InstallDate                      string   `cim:"InstallDate"`
-	InstanceID                       string   `cim:"InstanceID"`
-	LastErrorCode                    uint32   `cim:"LastErrorCode"`
-	LinkTechnology                   uint16   `cim:"LinkTechnology"`
-	MaxQuiesceTime                   uint64   `cim:"MaxQuiesceTime"`
-	MaxSpeed                         uint64   `cim:"MaxSpeed"`
-	Name                             string   `cim:"Name"`
-	NetworkAddresses                 []string `cim:"NetworkAddresses"`
-	OperatingStatus                  uint16   `cim:"OperatingStatus"`
-	OperationalStatus                []uint16 `cim:"OperationalStatus"`
-	OtherEnabledState                string   `cim:"OtherEnabledState"`
-	OtherIdentifyingInfo             []string `cim:"OtherIdentifyingInfo"`
-	OtherLinkTechnology              string   `cim:"OtherLinkTechnology"`
-	OtherNetworkPortType             string   `cim:"OtherNetworkPortType"`
-	OtherPortType                    string   `cim:"OtherPortType"`
-	PermanentAddress                 string   `cim:"PermanentAddress"`
-	PortNumber                       uint16   `cim:"PortNumber"`
-	PortType                         uint16   `cim:"PortType"`
-	PowerManagementCapabilities      []uint16 `cim:"PowerManagementCapabilities"`
-	PowerManagementSupported         bool     `cim:"PowerManagementSupported"`
-	PowerOnHours                     uint64   `cim:"PowerOnHours"`
-	PrimaryStatus                    uint16   `cim:"PrimaryStatus"`
-	RequestedSpeed                   uint64   `cim:"RequestedSpeed"`
-	RequestedState                   uint16   `cim:"RequestedState"`
-	Speed                            uint64   `cim:"Speed"`
-	Status                           string   `cim:"Status"`
-	StatusDescriptions               []string `cim:"StatusDescriptions"`
-	StatusInfo                       uint16   `cim:"StatusInfo"`
-	SupportedMaximumTransmissionUnit uint64   `cim:"SupportedMaximumTransmissionUnit"`
-	SystemCreationClassName          string   `cim:"SystemCreationClassName"`
-	SystemName                       string   `cim:"SystemName"`
-	TimeOfLastStateChange            string   `cim:"TimeOfLastStateChange"`
-	TotalPowerOnHours                uint64   `cim:"TotalPowerOnHours"`
-	TransitioningToState             uint16   `cim:"TransitioningToState"`
-	UsageRestriction                 uint16   `cim:"UsageRestriction"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                          string                             `cim:"__PATH"`
+	ActiveMaximumTransmissionUnit    uint64                             `cim:"ActiveMaximumTransmissionUnit"`
+	AdditionalAvailability           []uint16                           `cim:"AdditionalAvailability"`
+	AutoSense                        bool                               `cim:"AutoSense"`
+	Availability                     CIMNetworkPortAvailability         `cim:"Availability"`
+	AvailableRequestedStates         []uint16                           `cim:"AvailableRequestedStates"`
+	Caption                          string                             `cim:"Caption"`
+	CommunicationStatus              CIMNetworkPortCommunicationStatus  `cim:"CommunicationStatus"`
+	CreationClassName                string                             `cim:"CreationClassName"`
+	Description                      string                             `cim:"Description"`
+	DetailedStatus                   CIMNetworkPortDetailedStatus       `cim:"DetailedStatus"`
+	DeviceID                         string                             `cim:"DeviceID"`
+	ElementName                      string                             `cim:"ElementName"`
+	EnabledDefault                   CIMNetworkPortEnabledDefault       `cim:"EnabledDefault"`
+	EnabledState                     CIMNetworkPortEnabledState         `cim:"EnabledState"`
+	ErrorCleared                     bool                               `cim:"ErrorCleared"`
+	ErrorDescription                 string                             `cim:"ErrorDescription"`
+	FullDuplex                       bool                               `cim:"FullDuplex"`
+	HealthState                      CIMNetworkPortHealthState          `cim:"HealthState"`
+	IdentifyingDescriptions          []string                           `cim:"IdentifyingDescriptions"`
+	InstallDate                      string                             `cim:"InstallDate"`
+	InstanceID                       string                             `cim:"InstanceID"`
+	LastErrorCode                    uint32                             `cim:"LastErrorCode"`
+	LinkTechnology                   CIMNetworkPortLinkTechnology       `cim:"LinkTechnology"`
+	MaxQuiesceTime                   uint64                             `cim:"MaxQuiesceTime"`
+	MaxSpeed                         uint64                             `cim:"MaxSpeed"`
+	Name                             string                             `cim:"Name"`
+	NetworkAddresses                 []string                           `cim:"NetworkAddresses"`
+	OperatingStatus                  CIMNetworkPortOperatingStatus      `cim:"OperatingStatus"`
+	OperationalStatus                []uint16                           `cim:"OperationalStatus"`
+	OtherEnabledState                string                             `cim:"OtherEnabledState"`
+	OtherIdentifyingInfo             []string                           `cim:"OtherIdentifyingInfo"`
+	OtherLinkTechnology              string                             `cim:"OtherLinkTechnology"`
+	OtherNetworkPortType             string                             `cim:"OtherNetworkPortType"`
+	OtherPortType                    string                             `cim:"OtherPortType"`
+	PermanentAddress                 string                             `cim:"PermanentAddress"`
+	PortNumber                       uint16                             `cim:"PortNumber"`
+	PortType                         CIMNetworkPortPortType             `cim:"PortType"`
+	PowerManagementCapabilities      []uint16                           `cim:"PowerManagementCapabilities"`
+	PowerManagementSupported         bool                               `cim:"PowerManagementSupported"`
+	PowerOnHours                     uint64                             `cim:"PowerOnHours"`
+	PrimaryStatus                    CIMNetworkPortPrimaryStatus        `cim:"PrimaryStatus"`
+	RequestedSpeed                   uint64                             `cim:"RequestedSpeed"`
+	RequestedState                   CIMNetworkPortRequestedState       `cim:"RequestedState"`
+	Speed                            uint64                             `cim:"Speed"`
+	Status                           CIMNetworkPortStatus               `cim:"Status"`
+	StatusDescriptions               []string                           `cim:"StatusDescriptions"`
+	StatusInfo                       CIMNetworkPortStatusInfo           `cim:"StatusInfo"`
+	SupportedMaximumTransmissionUnit uint64                             `cim:"SupportedMaximumTransmissionUnit"`
+	SystemCreationClassName          string                             `cim:"SystemCreationClassName"`
+	SystemName                       string                             `cim:"SystemName"`
+	TimeOfLastStateChange            string                             `cim:"TimeOfLastStateChange"`
+	TotalPowerOnHours                uint64                             `cim:"TotalPowerOnHours"`
+	TransitioningToState             CIMNetworkPortTransitioningToState `cim:"TransitioningToState"`
+	UsageRestriction                 CIMNetworkPortUsageRestriction     `cim:"UsageRestriction"`
 }
 
 // CIMNextHopRoute is the CIM_NextHopRoute CIM class.
 type CIMNextHopRoute struct {
-	AdminDistance      uint16 `cim:"AdminDistance"`
-	Caption            string `cim:"Caption"`
-	Description        string `cim:"Description"`
-	DestinationAddress string `cim:"DestinationAddress"`
-	ElementName        string `cim:"ElementName"`
-	InstanceID         string `cim:"InstanceID"`
-	IsStatic           bool   `cim:"IsStatic"`
-	RouteMetric        uint16 `cim:"RouteMetric"`
-	TypeOfRoute        uint16 `cim:"TypeOfRoute"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath            string                     `cim:"__PATH"`
+	AdminDistance      uint16                     `cim:"AdminDistance"`
+	Caption            string                     `cim:"Caption"`
+	Description        string                     `cim:"Description"`
+	DestinationAddress string                     `cim:"DestinationAddress"`
+	ElementName        string                     `cim:"ElementName"`
+	InstanceID         string                     `cim:"InstanceID"`
+	IsStatic           bool                       `cim:"IsStatic"`
+	RouteMetric        uint16                     `cim:"RouteMetric"`
+	TypeOfRoute        CIMNextHopRouteTypeOfRoute `cim:"TypeOfRoute"`
 }
 
 // CIMPhase1SAUsedForPhase2 is the CIM_Phase1SAUsedForPhase2 CIM class.
 type CIMPhase1SAUsedForPhase2 struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath    string `cim:"__PATH"`
 	Antecedent string `cim:"Antecedent"`
 	Dependent  string `cim:"Dependent"`
 }
 
 // CIMPolicy is the CIM_Policy CIM class.
 type CIMPolicy struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string   `cim:"__PATH"`
 	Caption        string   `cim:"Caption"`
 	CommonName     string   `cim:"CommonName"`
 	Description    string   `cim:"Description"`
@@ -839,6 +995,10 @@ type CIMPolicy struct {
 
 // CIMPolicyAction is the CIM_PolicyAction CIM class.
 type CIMPolicyAction struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                     string   `cim:"__PATH"`
 	Caption                     string   `cim:"Caption"`
 	CommonName                  string   `cim:"CommonName"`
 	CreationClassName           string   `cim:"CreationClassName"`
@@ -856,6 +1016,10 @@ type CIMPolicyAction struct {
 
 // CIMPolicyActionInPolicyRule is the CIM_PolicyActionInPolicyRule CIM class.
 type CIMPolicyActionInPolicyRule struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string `cim:"__PATH"`
 	ActionOrder    uint16 `cim:"ActionOrder"`
 	GroupComponent string `cim:"GroupComponent"`
 	PartComponent  string `cim:"PartComponent"`
@@ -863,6 +1027,10 @@ type CIMPolicyActionInPolicyRule struct {
 
 // CIMPolicyActionStructure is the CIM_PolicyActionStructure CIM class.
 type CIMPolicyActionStructure struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string `cim:"__PATH"`
 	ActionOrder    uint16 `cim:"ActionOrder"`
 	GroupComponent string `cim:"GroupComponent"`
 	PartComponent  string `cim:"PartComponent"`
@@ -870,48 +1038,64 @@ type CIMPolicyActionStructure struct {
 
 // CIMPolicyComponent is the CIM_PolicyComponent CIM class.
 type CIMPolicyComponent struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string `cim:"__PATH"`
 	GroupComponent string `cim:"GroupComponent"`
 	PartComponent  string `cim:"PartComponent"`
 }
 
 // CIMPolicyRule is the CIM_PolicyRule CIM class.
 type CIMPolicyRule struct {
-	Caption                 string   `cim:"Caption"`
-	CommonName              string   `cim:"CommonName"`
-	ConditionListType       uint16   `cim:"ConditionListType"`
-	CreationClassName       string   `cim:"CreationClassName"`
-	Description             string   `cim:"Description"`
-	ElementName             string   `cim:"ElementName"`
-	Enabled                 uint16   `cim:"Enabled"`
-	ExecutionStrategy       uint16   `cim:"ExecutionStrategy"`
-	InstanceID              string   `cim:"InstanceID"`
-	Mandatory               bool     `cim:"Mandatory"`
-	PolicyDecisionStrategy  uint16   `cim:"PolicyDecisionStrategy"`
-	PolicyKeywords          []string `cim:"PolicyKeywords"`
-	PolicyRoles             []string `cim:"PolicyRoles"`
-	PolicyRuleName          string   `cim:"PolicyRuleName"`
-	Priority                uint16   `cim:"Priority"`
-	RuleUsage               string   `cim:"RuleUsage"`
-	SequencedActions        uint16   `cim:"SequencedActions"`
-	SystemCreationClassName string   `cim:"SystemCreationClassName"`
-	SystemName              string   `cim:"SystemName"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                 string                              `cim:"__PATH"`
+	Caption                 string                              `cim:"Caption"`
+	CommonName              string                              `cim:"CommonName"`
+	ConditionListType       CIMPolicyRuleConditionListType      `cim:"ConditionListType"`
+	CreationClassName       string                              `cim:"CreationClassName"`
+	Description             string                              `cim:"Description"`
+	ElementName             string                              `cim:"ElementName"`
+	Enabled                 CIMPolicyRuleEnabled                `cim:"Enabled"`
+	ExecutionStrategy       CIMPolicyRuleExecutionStrategy      `cim:"ExecutionStrategy"`
+	InstanceID              string                              `cim:"InstanceID"`
+	Mandatory               bool                                `cim:"Mandatory"`
+	PolicyDecisionStrategy  CIMPolicyRulePolicyDecisionStrategy `cim:"PolicyDecisionStrategy"`
+	PolicyKeywords          []string                            `cim:"PolicyKeywords"`
+	PolicyRoles             []string                            `cim:"PolicyRoles"`
+	PolicyRuleName          string                              `cim:"PolicyRuleName"`
+	Priority                uint16                              `cim:"Priority"`
+	RuleUsage               string                              `cim:"RuleUsage"`
+	SequencedActions        CIMPolicyRuleSequencedActions       `cim:"SequencedActions"`
+	SystemCreationClassName string                              `cim:"SystemCreationClassName"`
+	SystemName              string                              `cim:"SystemName"`
 }
 
 // CIMPolicySet is the CIM_PolicySet CIM class.
 type CIMPolicySet struct {
-	Caption                string   `cim:"Caption"`
-	CommonName             string   `cim:"CommonName"`
-	Description            string   `cim:"Description"`
-	ElementName            string   `cim:"ElementName"`
-	Enabled                uint16   `cim:"Enabled"`
-	InstanceID             string   `cim:"InstanceID"`
-	PolicyDecisionStrategy uint16   `cim:"PolicyDecisionStrategy"`
-	PolicyKeywords         []string `cim:"PolicyKeywords"`
-	PolicyRoles            []string `cim:"PolicyRoles"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                string                             `cim:"__PATH"`
+	Caption                string                             `cim:"Caption"`
+	CommonName             string                             `cim:"CommonName"`
+	Description            string                             `cim:"Description"`
+	ElementName            string                             `cim:"ElementName"`
+	Enabled                CIMPolicySetEnabled                `cim:"Enabled"`
+	InstanceID             string                             `cim:"InstanceID"`
+	PolicyDecisionStrategy CIMPolicySetPolicyDecisionStrategy `cim:"PolicyDecisionStrategy"`
+	PolicyKeywords         []string                           `cim:"PolicyKeywords"`
+	PolicyRoles            []string                           `cim:"PolicyRoles"`
 }
 
 // CIMPolicySetComponent is the CIM_PolicySetComponent CIM class.
 type CIMPolicySetComponent struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string `cim:"__PATH"`
 	GroupComponent string `cim:"GroupComponent"`
 	PartComponent  string `cim:"PartComponent"`
 	Priority       uint16 `cim:"Priority"`
@@ -919,83 +1103,103 @@ type CIMPolicySetComponent struct {
 
 // CIMPortImplementsEndpoint is the CIM_PortImplementsEndpoint CIM class.
 type CIMPortImplementsEndpoint struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath    string `cim:"__PATH"`
 	Antecedent string `cim:"Antecedent"`
 	Dependent  string `cim:"Dependent"`
 }
 
 // CIMProtocolEndpoint is the CIM_ProtocolEndpoint CIM class.
 type CIMProtocolEndpoint struct {
-	AvailableRequestedStates []uint16 `cim:"AvailableRequestedStates"`
-	Caption                  string   `cim:"Caption"`
-	CommunicationStatus      uint16   `cim:"CommunicationStatus"`
-	CreationClassName        string   `cim:"CreationClassName"`
-	Description              string   `cim:"Description"`
-	DetailedStatus           uint16   `cim:"DetailedStatus"`
-	ElementName              string   `cim:"ElementName"`
-	EnabledDefault           uint16   `cim:"EnabledDefault"`
-	EnabledState             uint16   `cim:"EnabledState"`
-	HealthState              uint16   `cim:"HealthState"`
-	InstallDate              string   `cim:"InstallDate"`
-	InstanceID               string   `cim:"InstanceID"`
-	Name                     string   `cim:"Name"`
-	NameFormat               string   `cim:"NameFormat"`
-	OperatingStatus          uint16   `cim:"OperatingStatus"`
-	OperationalStatus        []uint16 `cim:"OperationalStatus"`
-	OtherEnabledState        string   `cim:"OtherEnabledState"`
-	OtherTypeDescription     string   `cim:"OtherTypeDescription"`
-	PrimaryStatus            uint16   `cim:"PrimaryStatus"`
-	ProtocolIFType           uint16   `cim:"ProtocolIFType"`
-	ProtocolType             uint16   `cim:"ProtocolType"`
-	RequestedState           uint16   `cim:"RequestedState"`
-	Status                   string   `cim:"Status"`
-	StatusDescriptions       []string `cim:"StatusDescriptions"`
-	SystemCreationClassName  string   `cim:"SystemCreationClassName"`
-	SystemName               string   `cim:"SystemName"`
-	TimeOfLastStateChange    string   `cim:"TimeOfLastStateChange"`
-	TransitioningToState     uint16   `cim:"TransitioningToState"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                  string                                  `cim:"__PATH"`
+	AvailableRequestedStates []uint16                                `cim:"AvailableRequestedStates"`
+	Caption                  string                                  `cim:"Caption"`
+	CommunicationStatus      CIMProtocolEndpointCommunicationStatus  `cim:"CommunicationStatus"`
+	CreationClassName        string                                  `cim:"CreationClassName"`
+	Description              string                                  `cim:"Description"`
+	DetailedStatus           CIMProtocolEndpointDetailedStatus       `cim:"DetailedStatus"`
+	ElementName              string                                  `cim:"ElementName"`
+	EnabledDefault           CIMProtocolEndpointEnabledDefault       `cim:"EnabledDefault"`
+	EnabledState             CIMProtocolEndpointEnabledState         `cim:"EnabledState"`
+	HealthState              CIMProtocolEndpointHealthState          `cim:"HealthState"`
+	InstallDate              string                                  `cim:"InstallDate"`
+	InstanceID               string                                  `cim:"InstanceID"`
+	Name                     string                                  `cim:"Name"`
+	NameFormat               string                                  `cim:"NameFormat"`
+	OperatingStatus          CIMProtocolEndpointOperatingStatus      `cim:"OperatingStatus"`
+	OperationalStatus        []uint16                                `cim:"OperationalStatus"`
+	OtherEnabledState        string                                  `cim:"OtherEnabledState"`
+	OtherTypeDescription     string                                  `cim:"OtherTypeDescription"`
+	PrimaryStatus            CIMProtocolEndpointPrimaryStatus        `cim:"PrimaryStatus"`
+	ProtocolIFType           CIMProtocolEndpointProtocolIFType       `cim:"ProtocolIFType"`
+	ProtocolType             CIMProtocolEndpointProtocolType         `cim:"ProtocolType"`
+	RequestedState           CIMProtocolEndpointRequestedState       `cim:"RequestedState"`
+	Status                   CIMProtocolEndpointStatus               `cim:"Status"`
+	StatusDescriptions       []string                                `cim:"StatusDescriptions"`
+	SystemCreationClassName  string                                  `cim:"SystemCreationClassName"`
+	SystemName               string                                  `cim:"SystemName"`
+	TimeOfLastStateChange    string                                  `cim:"TimeOfLastStateChange"`
+	TransitioningToState     CIMProtocolEndpointTransitioningToState `cim:"TransitioningToState"`
 }
 
 // CIMRemoteServiceAccessPoint is the CIM_RemoteServiceAccessPoint CIM class.
 type CIMRemoteServiceAccessPoint struct {
-	AccessContext              uint16   `cim:"AccessContext"`
-	AccessInfo                 string   `cim:"AccessInfo"`
-	AvailableRequestedStates   []uint16 `cim:"AvailableRequestedStates"`
-	Caption                    string   `cim:"Caption"`
-	CommunicationStatus        uint16   `cim:"CommunicationStatus"`
-	CreationClassName          string   `cim:"CreationClassName"`
-	Description                string   `cim:"Description"`
-	DetailedStatus             uint16   `cim:"DetailedStatus"`
-	ElementName                string   `cim:"ElementName"`
-	EnabledDefault             uint16   `cim:"EnabledDefault"`
-	EnabledState               uint16   `cim:"EnabledState"`
-	HealthState                uint16   `cim:"HealthState"`
-	InfoFormat                 uint16   `cim:"InfoFormat"`
-	InstallDate                string   `cim:"InstallDate"`
-	InstanceID                 string   `cim:"InstanceID"`
-	Name                       string   `cim:"Name"`
-	OperatingStatus            uint16   `cim:"OperatingStatus"`
-	OperationalStatus          []uint16 `cim:"OperationalStatus"`
-	OtherAccessContext         string   `cim:"OtherAccessContext"`
-	OtherEnabledState          string   `cim:"OtherEnabledState"`
-	OtherInfoFormatDescription string   `cim:"OtherInfoFormatDescription"`
-	PrimaryStatus              uint16   `cim:"PrimaryStatus"`
-	RequestedState             uint16   `cim:"RequestedState"`
-	Status                     string   `cim:"Status"`
-	StatusDescriptions         []string `cim:"StatusDescriptions"`
-	SystemCreationClassName    string   `cim:"SystemCreationClassName"`
-	SystemName                 string   `cim:"SystemName"`
-	TimeOfLastStateChange      string   `cim:"TimeOfLastStateChange"`
-	TransitioningToState       uint16   `cim:"TransitioningToState"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                    string                                          `cim:"__PATH"`
+	AccessContext              CIMRemoteServiceAccessPointAccessContext        `cim:"AccessContext"`
+	AccessInfo                 string                                          `cim:"AccessInfo"`
+	AvailableRequestedStates   []uint16                                        `cim:"AvailableRequestedStates"`
+	Caption                    string                                          `cim:"Caption"`
+	CommunicationStatus        CIMRemoteServiceAccessPointCommunicationStatus  `cim:"CommunicationStatus"`
+	CreationClassName          string                                          `cim:"CreationClassName"`
+	Description                string                                          `cim:"Description"`
+	DetailedStatus             CIMRemoteServiceAccessPointDetailedStatus       `cim:"DetailedStatus"`
+	ElementName                string                                          `cim:"ElementName"`
+	EnabledDefault             CIMRemoteServiceAccessPointEnabledDefault       `cim:"EnabledDefault"`
+	EnabledState               CIMRemoteServiceAccessPointEnabledState         `cim:"EnabledState"`
+	HealthState                CIMRemoteServiceAccessPointHealthState          `cim:"HealthState"`
+	InfoFormat                 CIMRemoteServiceAccessPointInfoFormat           `cim:"InfoFormat"`
+	InstallDate                string                                          `cim:"InstallDate"`
+	InstanceID                 string                                          `cim:"InstanceID"`
+	Name                       string                                          `cim:"Name"`
+	OperatingStatus            CIMRemoteServiceAccessPointOperatingStatus      `cim:"OperatingStatus"`
+	OperationalStatus          []uint16                                        `cim:"OperationalStatus"`
+	OtherAccessContext         string                                          `cim:"OtherAccessContext"`
+	OtherEnabledState          string                                          `cim:"OtherEnabledState"`
+	OtherInfoFormatDescription string                                          `cim:"OtherInfoFormatDescription"`
+	PrimaryStatus              CIMRemoteServiceAccessPointPrimaryStatus        `cim:"PrimaryStatus"`
+	RequestedState             CIMRemoteServiceAccessPointRequestedState       `cim:"RequestedState"`
+	Status                     CIMRemoteServiceAccessPointStatus               `cim:"Status"`
+	StatusDescriptions         []string                                        `cim:"StatusDescriptions"`
+	SystemCreationClassName    string                                          `cim:"SystemCreationClassName"`
+	SystemName                 string                                          `cim:"SystemName"`
+	TimeOfLastStateChange      string                                          `cim:"TimeOfLastStateChange"`
+	TransitioningToState       CIMRemoteServiceAccessPointTransitioningToState `cim:"TransitioningToState"`
 }
 
 // CIMRouteUsesEndpoint is the CIM_RouteUsesEndpoint CIM class.
 type CIMRouteUsesEndpoint struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath    string `cim:"__PATH"`
 	Antecedent string `cim:"Antecedent"`
 	Dependent  string `cim:"Dependent"`
 }
 
 // CIMSAAction is the CIM_SAAction CIM class.
 type CIMSAAction struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                     string   `cim:"__PATH"`
 	Caption                     string   `cim:"Caption"`
 	CommonName                  string   `cim:"CommonName"`
 	CreationClassName           string   `cim:"CreationClassName"`
@@ -1014,6 +1218,10 @@ type CIMSAAction struct {
 
 // CIMSANegotiationAction is the CIM_SANegotiationAction CIM class.
 type CIMSANegotiationAction struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                     string   `cim:"__PATH"`
 	Caption                     string   `cim:"Caption"`
 	CommonName                  string   `cim:"CommonName"`
 	CreationClassName           string   `cim:"CreationClassName"`
@@ -1035,12 +1243,20 @@ type CIMSANegotiationAction struct {
 
 // CIMSAPSAPDependency is the CIM_SAPSAPDependency CIM class.
 type CIMSAPSAPDependency struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath    string `cim:"__PATH"`
 	Antecedent string `cim:"Antecedent"`
 	Dependent  string `cim:"Dependent"`
 }
 
 // CIMSAProposal is the CIM_SAProposal CIM class.
 type CIMSAProposal struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath     string `cim:"__PATH"`
 	Caption     string `cim:"Caption"`
 	Description string `cim:"Description"`
 	ElementName string `cim:"ElementName"`
@@ -1049,30 +1265,38 @@ type CIMSAProposal struct {
 
 // CIMSARule is the CIM_SARule CIM class.
 type CIMSARule struct {
-	Caption                 string   `cim:"Caption"`
-	CommonName              string   `cim:"CommonName"`
-	ConditionListType       uint16   `cim:"ConditionListType"`
-	CreationClassName       string   `cim:"CreationClassName"`
-	Description             string   `cim:"Description"`
-	ElementName             string   `cim:"ElementName"`
-	Enabled                 uint16   `cim:"Enabled"`
-	ExecutionStrategy       uint16   `cim:"ExecutionStrategy"`
-	InstanceID              string   `cim:"InstanceID"`
-	LimitNegotiation        uint16   `cim:"LimitNegotiation"`
-	Mandatory               bool     `cim:"Mandatory"`
-	PolicyDecisionStrategy  uint16   `cim:"PolicyDecisionStrategy"`
-	PolicyKeywords          []string `cim:"PolicyKeywords"`
-	PolicyRoles             []string `cim:"PolicyRoles"`
-	PolicyRuleName          string   `cim:"PolicyRuleName"`
-	Priority                uint16   `cim:"Priority"`
-	RuleUsage               string   `cim:"RuleUsage"`
-	SequencedActions        uint16   `cim:"SequencedActions"`
-	SystemCreationClassName string   `cim:"SystemCreationClassName"`
-	SystemName              string   `cim:"SystemName"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                 string                          `cim:"__PATH"`
+	Caption                 string                          `cim:"Caption"`
+	CommonName              string                          `cim:"CommonName"`
+	ConditionListType       CIMSARuleConditionListType      `cim:"ConditionListType"`
+	CreationClassName       string                          `cim:"CreationClassName"`
+	Description             string                          `cim:"Description"`
+	ElementName             string                          `cim:"ElementName"`
+	Enabled                 CIMSARuleEnabled                `cim:"Enabled"`
+	ExecutionStrategy       CIMSARuleExecutionStrategy      `cim:"ExecutionStrategy"`
+	InstanceID              string                          `cim:"InstanceID"`
+	LimitNegotiation        CIMSARuleLimitNegotiation       `cim:"LimitNegotiation"`
+	Mandatory               bool                            `cim:"Mandatory"`
+	PolicyDecisionStrategy  CIMSARulePolicyDecisionStrategy `cim:"PolicyDecisionStrategy"`
+	PolicyKeywords          []string                        `cim:"PolicyKeywords"`
+	PolicyRoles             []string                        `cim:"PolicyRoles"`
+	PolicyRuleName          string                          `cim:"PolicyRuleName"`
+	Priority                uint16                          `cim:"Priority"`
+	RuleUsage               string                          `cim:"RuleUsage"`
+	SequencedActions        CIMSARuleSequencedActions       `cim:"SequencedActions"`
+	SystemCreationClassName string                          `cim:"SystemCreationClassName"`
+	SystemName              string                          `cim:"SystemName"`
 }
 
 // CIMScopedSettingData is the CIM_ScopedSettingData CIM class.
 type CIMScopedSettingData struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath     string `cim:"__PATH"`
 	Caption     string `cim:"Caption"`
 	Description string `cim:"Description"`
 	ElementName string `cim:"ElementName"`
@@ -1081,72 +1305,84 @@ type CIMScopedSettingData struct {
 
 // CIMSecurityAssociationEndpoint is the CIM_SecurityAssociationEndpoint CIM class.
 type CIMSecurityAssociationEndpoint struct {
-	AvailableRequestedStates          []uint16 `cim:"AvailableRequestedStates"`
-	Caption                           string   `cim:"Caption"`
-	CommunicationStatus               uint16   `cim:"CommunicationStatus"`
-	CreationClassName                 string   `cim:"CreationClassName"`
-	Description                       string   `cim:"Description"`
-	DetailedStatus                    uint16   `cim:"DetailedStatus"`
-	ElementName                       string   `cim:"ElementName"`
-	EnabledDefault                    uint16   `cim:"EnabledDefault"`
-	EnabledState                      uint16   `cim:"EnabledState"`
-	HealthState                       uint16   `cim:"HealthState"`
-	IdleDurationSeconds               uint64   `cim:"IdleDurationSeconds"`
-	InstallDate                       string   `cim:"InstallDate"`
-	InstanceID                        string   `cim:"InstanceID"`
-	LifetimeKilobytes                 uint64   `cim:"LifetimeKilobytes"`
-	LifetimeSeconds                   uint64   `cim:"LifetimeSeconds"`
-	Name                              string   `cim:"Name"`
-	NameFormat                        string   `cim:"NameFormat"`
-	OperatingStatus                   uint16   `cim:"OperatingStatus"`
-	OperationalStatus                 []uint16 `cim:"OperationalStatus"`
-	OtherEnabledState                 string   `cim:"OtherEnabledState"`
-	OtherTypeDescription              string   `cim:"OtherTypeDescription"`
-	PacketLoggingActive               bool     `cim:"PacketLoggingActive"`
-	PrimaryStatus                     uint16   `cim:"PrimaryStatus"`
-	ProtocolIFType                    uint16   `cim:"ProtocolIFType"`
-	ProtocolType                      uint16   `cim:"ProtocolType"`
-	RefreshThresholdKbytesPercentage  uint8    `cim:"RefreshThresholdKbytesPercentage"`
-	RefreshThresholdSecondsPercentage uint8    `cim:"RefreshThresholdSecondsPercentage"`
-	RequestedState                    uint16   `cim:"RequestedState"`
-	Status                            string   `cim:"Status"`
-	StatusDescriptions                []string `cim:"StatusDescriptions"`
-	SystemCreationClassName           string   `cim:"SystemCreationClassName"`
-	SystemName                        string   `cim:"SystemName"`
-	TimeOfLastStateChange             string   `cim:"TimeOfLastStateChange"`
-	TransitioningToState              uint16   `cim:"TransitioningToState"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                           string                                             `cim:"__PATH"`
+	AvailableRequestedStates          []uint16                                           `cim:"AvailableRequestedStates"`
+	Caption                           string                                             `cim:"Caption"`
+	CommunicationStatus               CIMSecurityAssociationEndpointCommunicationStatus  `cim:"CommunicationStatus"`
+	CreationClassName                 string                                             `cim:"CreationClassName"`
+	Description                       string                                             `cim:"Description"`
+	DetailedStatus                    CIMSecurityAssociationEndpointDetailedStatus       `cim:"DetailedStatus"`
+	ElementName                       string                                             `cim:"ElementName"`
+	EnabledDefault                    CIMSecurityAssociationEndpointEnabledDefault       `cim:"EnabledDefault"`
+	EnabledState                      CIMSecurityAssociationEndpointEnabledState         `cim:"EnabledState"`
+	HealthState                       CIMSecurityAssociationEndpointHealthState          `cim:"HealthState"`
+	IdleDurationSeconds               uint64                                             `cim:"IdleDurationSeconds"`
+	InstallDate                       string                                             `cim:"InstallDate"`
+	InstanceID                        string                                             `cim:"InstanceID"`
+	LifetimeKilobytes                 uint64                                             `cim:"LifetimeKilobytes"`
+	LifetimeSeconds                   uint64                                             `cim:"LifetimeSeconds"`
+	Name                              string                                             `cim:"Name"`
+	NameFormat                        string                                             `cim:"NameFormat"`
+	OperatingStatus                   CIMSecurityAssociationEndpointOperatingStatus      `cim:"OperatingStatus"`
+	OperationalStatus                 []uint16                                           `cim:"OperationalStatus"`
+	OtherEnabledState                 string                                             `cim:"OtherEnabledState"`
+	OtherTypeDescription              string                                             `cim:"OtherTypeDescription"`
+	PacketLoggingActive               bool                                               `cim:"PacketLoggingActive"`
+	PrimaryStatus                     CIMSecurityAssociationEndpointPrimaryStatus        `cim:"PrimaryStatus"`
+	ProtocolIFType                    CIMSecurityAssociationEndpointProtocolIFType       `cim:"ProtocolIFType"`
+	ProtocolType                      CIMSecurityAssociationEndpointProtocolType         `cim:"ProtocolType"`
+	RefreshThresholdKbytesPercentage  uint8                                              `cim:"RefreshThresholdKbytesPercentage"`
+	RefreshThresholdSecondsPercentage uint8                                              `cim:"RefreshThresholdSecondsPercentage"`
+	RequestedState                    CIMSecurityAssociationEndpointRequestedState       `cim:"RequestedState"`
+	Status                            CIMSecurityAssociationEndpointStatus               `cim:"Status"`
+	StatusDescriptions                []string                                           `cim:"StatusDescriptions"`
+	SystemCreationClassName           string                                             `cim:"SystemCreationClassName"`
+	SystemName                        string                                             `cim:"SystemName"`
+	TimeOfLastStateChange             string                                             `cim:"TimeOfLastStateChange"`
+	TransitioningToState              CIMSecurityAssociationEndpointTransitioningToState `cim:"TransitioningToState"`
 }
 
 // CIMServiceAccessPoint is the CIM_ServiceAccessPoint CIM class.
 type CIMServiceAccessPoint struct {
-	AvailableRequestedStates []uint16 `cim:"AvailableRequestedStates"`
-	Caption                  string   `cim:"Caption"`
-	CommunicationStatus      uint16   `cim:"CommunicationStatus"`
-	CreationClassName        string   `cim:"CreationClassName"`
-	Description              string   `cim:"Description"`
-	DetailedStatus           uint16   `cim:"DetailedStatus"`
-	ElementName              string   `cim:"ElementName"`
-	EnabledDefault           uint16   `cim:"EnabledDefault"`
-	EnabledState             uint16   `cim:"EnabledState"`
-	HealthState              uint16   `cim:"HealthState"`
-	InstallDate              string   `cim:"InstallDate"`
-	InstanceID               string   `cim:"InstanceID"`
-	Name                     string   `cim:"Name"`
-	OperatingStatus          uint16   `cim:"OperatingStatus"`
-	OperationalStatus        []uint16 `cim:"OperationalStatus"`
-	OtherEnabledState        string   `cim:"OtherEnabledState"`
-	PrimaryStatus            uint16   `cim:"PrimaryStatus"`
-	RequestedState           uint16   `cim:"RequestedState"`
-	Status                   string   `cim:"Status"`
-	StatusDescriptions       []string `cim:"StatusDescriptions"`
-	SystemCreationClassName  string   `cim:"SystemCreationClassName"`
-	SystemName               string   `cim:"SystemName"`
-	TimeOfLastStateChange    string   `cim:"TimeOfLastStateChange"`
-	TransitioningToState     uint16   `cim:"TransitioningToState"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                  string                                    `cim:"__PATH"`
+	AvailableRequestedStates []uint16                                  `cim:"AvailableRequestedStates"`
+	Caption                  string                                    `cim:"Caption"`
+	CommunicationStatus      CIMServiceAccessPointCommunicationStatus  `cim:"CommunicationStatus"`
+	CreationClassName        string                                    `cim:"CreationClassName"`
+	Description              string                                    `cim:"Description"`
+	DetailedStatus           CIMServiceAccessPointDetailedStatus       `cim:"DetailedStatus"`
+	ElementName              string                                    `cim:"ElementName"`
+	EnabledDefault           CIMServiceAccessPointEnabledDefault       `cim:"EnabledDefault"`
+	EnabledState             CIMServiceAccessPointEnabledState         `cim:"EnabledState"`
+	HealthState              CIMServiceAccessPointHealthState          `cim:"HealthState"`
+	InstallDate              string                                    `cim:"InstallDate"`
+	InstanceID               string                                    `cim:"InstanceID"`
+	Name                     string                                    `cim:"Name"`
+	OperatingStatus          CIMServiceAccessPointOperatingStatus      `cim:"OperatingStatus"`
+	OperationalStatus        []uint16                                  `cim:"OperationalStatus"`
+	OtherEnabledState        string                                    `cim:"OtherEnabledState"`
+	PrimaryStatus            CIMServiceAccessPointPrimaryStatus        `cim:"PrimaryStatus"`
+	RequestedState           CIMServiceAccessPointRequestedState       `cim:"RequestedState"`
+	Status                   CIMServiceAccessPointStatus               `cim:"Status"`
+	StatusDescriptions       []string                                  `cim:"StatusDescriptions"`
+	SystemCreationClassName  string                                    `cim:"SystemCreationClassName"`
+	SystemName               string                                    `cim:"SystemName"`
+	TimeOfLastStateChange    string                                    `cim:"TimeOfLastStateChange"`
+	TransitioningToState     CIMServiceAccessPointTransitioningToState `cim:"TransitioningToState"`
 }
 
 // CIMSettingData is the CIM_SettingData CIM class.
 type CIMSettingData struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath     string `cim:"__PATH"`
 	Caption     string `cim:"Caption"`
 	Description string `cim:"Description"`
 	ElementName string `cim:"ElementName"`
@@ -1155,93 +1391,109 @@ type CIMSettingData struct {
 
 // MSFT3DPrinter is the MSFT_3DPrinter CIM class.
 type MSFT3DPrinter struct {
-	BranchOfficeOfflineLogSizeMB uint32   `cim:"BranchOfficeOfflineLogSizeMB"`
-	Caption                      string   `cim:"Caption"`
-	Comment                      string   `cim:"Comment"`
-	CommunicationStatus          uint16   `cim:"CommunicationStatus"`
-	ComputerName                 string   `cim:"ComputerName"`
-	Datatype                     string   `cim:"Datatype"`
-	DefaultJobPriority           uint32   `cim:"DefaultJobPriority"`
-	Description                  string   `cim:"Description"`
-	DetailedStatus               uint16   `cim:"DetailedStatus"`
-	DeviceType                   uint32   `cim:"DeviceType"`
-	DisableBranchOfficeLogging   bool     `cim:"DisableBranchOfficeLogging"`
-	DriverName                   string   `cim:"DriverName"`
-	ElementName                  string   `cim:"ElementName"`
-	HealthState                  uint16   `cim:"HealthState"`
-	InstallDate                  string   `cim:"InstallDate"`
-	InstanceID                   string   `cim:"InstanceID"`
-	JobCount                     uint32   `cim:"JobCount"`
-	KeepPrintedJobs              bool     `cim:"KeepPrintedJobs"`
-	Location                     string   `cim:"Location"`
-	Name                         string   `cim:"Name"`
-	OperatingStatus              uint16   `cim:"OperatingStatus"`
-	OperationalStatus            []uint16 `cim:"OperationalStatus"`
-	PermissionSDDL               string   `cim:"PermissionSDDL"`
-	PortName                     string   `cim:"PortName"`
-	PrimaryStatus                uint16   `cim:"PrimaryStatus"`
-	PrintProcessor               string   `cim:"PrintProcessor"`
-	PrinterStatus                uint32   `cim:"PrinterStatus"`
-	Priority                     uint32   `cim:"Priority"`
-	Published                    bool     `cim:"Published"`
-	RenderingMode                uint32   `cim:"RenderingMode"`
-	SeparatorPageFile            string   `cim:"SeparatorPageFile"`
-	ShareName                    string   `cim:"ShareName"`
-	Shared                       bool     `cim:"Shared"`
-	StartTime                    uint32   `cim:"StartTime"`
-	Status                       string   `cim:"Status"`
-	StatusDescriptions           []string `cim:"StatusDescriptions"`
-	Type                         uint32   `cim:"Type"`
-	UntilTime                    uint32   `cim:"UntilTime"`
-	WorkflowPolicy               uint32   `cim:"WorkflowPolicy"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                      string                           `cim:"__PATH"`
+	BranchOfficeOfflineLogSizeMB uint32                           `cim:"BranchOfficeOfflineLogSizeMB"`
+	Caption                      string                           `cim:"Caption"`
+	Comment                      string                           `cim:"Comment"`
+	CommunicationStatus          MSFT3DPrinterCommunicationStatus `cim:"CommunicationStatus"`
+	ComputerName                 string                           `cim:"ComputerName"`
+	Datatype                     string                           `cim:"Datatype"`
+	DefaultJobPriority           uint32                           `cim:"DefaultJobPriority"`
+	Description                  string                           `cim:"Description"`
+	DetailedStatus               MSFT3DPrinterDetailedStatus      `cim:"DetailedStatus"`
+	DeviceType                   uint32                           `cim:"DeviceType"`
+	DisableBranchOfficeLogging   bool                             `cim:"DisableBranchOfficeLogging"`
+	DriverName                   string                           `cim:"DriverName"`
+	ElementName                  string                           `cim:"ElementName"`
+	HealthState                  MSFT3DPrinterHealthState         `cim:"HealthState"`
+	InstallDate                  string                           `cim:"InstallDate"`
+	InstanceID                   string                           `cim:"InstanceID"`
+	JobCount                     uint32                           `cim:"JobCount"`
+	KeepPrintedJobs              bool                             `cim:"KeepPrintedJobs"`
+	Location                     string                           `cim:"Location"`
+	Name                         string                           `cim:"Name"`
+	OperatingStatus              MSFT3DPrinterOperatingStatus     `cim:"OperatingStatus"`
+	OperationalStatus            []uint16                         `cim:"OperationalStatus"`
+	PermissionSDDL               string                           `cim:"PermissionSDDL"`
+	PortName                     string                           `cim:"PortName"`
+	PrimaryStatus                MSFT3DPrinterPrimaryStatus       `cim:"PrimaryStatus"`
+	PrintProcessor               string                           `cim:"PrintProcessor"`
+	PrinterStatus                MSFT3DPrinterPrinterStatus       `cim:"PrinterStatus"`
+	Priority                     uint32                           `cim:"Priority"`
+	Published                    bool                             `cim:"Published"`
+	RenderingMode                uint32                           `cim:"RenderingMode"`
+	SeparatorPageFile            string                           `cim:"SeparatorPageFile"`
+	ShareName                    string                           `cim:"ShareName"`
+	Shared                       bool                             `cim:"Shared"`
+	StartTime                    uint32                           `cim:"StartTime"`
+	Status                       MSFT3DPrinterStatus              `cim:"Status"`
+	StatusDescriptions           []string                         `cim:"StatusDescriptions"`
+	Type                         uint32                           `cim:"Type"`
+	UntilTime                    uint32                           `cim:"UntilTime"`
+	WorkflowPolicy               uint32                           `cim:"WorkflowPolicy"`
 }
 
 // MSFTAdaptivePrinterPort is the MSFT_AdaptivePrinterPort CIM class.
 type MSFTAdaptivePrinterPort struct {
-	Caption             string   `cim:"Caption"`
-	CommunicationStatus uint16   `cim:"CommunicationStatus"`
-	ComputerName        string   `cim:"ComputerName"`
-	Description         string   `cim:"Description"`
-	DetailedStatus      uint16   `cim:"DetailedStatus"`
-	DeviceURL           string   `cim:"DeviceURL"`
-	DeviceUUID          string   `cim:"DeviceUUID"`
-	DiscoveryMethod     uint32   `cim:"DiscoveryMethod"`
-	ElementName         string   `cim:"ElementName"`
-	HealthState         uint16   `cim:"HealthState"`
-	InstallDate         string   `cim:"InstallDate"`
-	InstanceID          string   `cim:"InstanceID"`
-	IppUrl              string   `cim:"IppUrl"`
-	Name                string   `cim:"Name"`
-	OperatingStatus     uint16   `cim:"OperatingStatus"`
-	OperationalStatus   []uint16 `cim:"OperationalStatus"`
-	PortMonitor         string   `cim:"PortMonitor"`
-	PrimaryStatus       uint16   `cim:"PrimaryStatus"`
-	Status              string   `cim:"Status"`
-	StatusDescriptions  []string `cim:"StatusDescriptions"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath             string                                     `cim:"__PATH"`
+	Caption             string                                     `cim:"Caption"`
+	CommunicationStatus MSFTAdaptivePrinterPortCommunicationStatus `cim:"CommunicationStatus"`
+	ComputerName        string                                     `cim:"ComputerName"`
+	Description         string                                     `cim:"Description"`
+	DetailedStatus      MSFTAdaptivePrinterPortDetailedStatus      `cim:"DetailedStatus"`
+	DeviceURL           string                                     `cim:"DeviceURL"`
+	DeviceUUID          string                                     `cim:"DeviceUUID"`
+	DiscoveryMethod     uint32                                     `cim:"DiscoveryMethod"`
+	ElementName         string                                     `cim:"ElementName"`
+	HealthState         MSFTAdaptivePrinterPortHealthState         `cim:"HealthState"`
+	InstallDate         string                                     `cim:"InstallDate"`
+	InstanceID          string                                     `cim:"InstanceID"`
+	IppUrl              string                                     `cim:"IppUrl"`
+	Name                string                                     `cim:"Name"`
+	OperatingStatus     MSFTAdaptivePrinterPortOperatingStatus     `cim:"OperatingStatus"`
+	OperationalStatus   []uint16                                   `cim:"OperationalStatus"`
+	PortMonitor         string                                     `cim:"PortMonitor"`
+	PrimaryStatus       MSFTAdaptivePrinterPortPrimaryStatus       `cim:"PrimaryStatus"`
+	Status              MSFTAdaptivePrinterPortStatus              `cim:"Status"`
+	StatusDescriptions  []string                                   `cim:"StatusDescriptions"`
 }
 
 // MSFTDAClientExperienceConfiguration is the MSFT_DAClientExperienceConfiguration CIM class.
 type MSFTDAClientExperienceConfiguration struct {
-	Caption                          string   `cim:"Caption"`
-	CorporateResources               []string `cim:"CorporateResources"`
-	CustomCommands                   []string `cim:"CustomCommands"`
-	Description                      string   `cim:"Description"`
-	ElementName                      string   `cim:"ElementName"`
-	ForceTunneling                   uint32   `cim:"ForceTunneling"`
-	FriendlyName                     string   `cim:"FriendlyName"`
-	GslbFqdn                         string   `cim:"GslbFqdn"`
-	IPsecTunnelEndpoints             []string `cim:"IPsecTunnelEndpoints"`
-	InstanceID                       string   `cim:"InstanceID"`
-	ManualEntryPointSelectionAllowed bool     `cim:"ManualEntryPointSelectionAllowed"`
-	PassiveMode                      bool     `cim:"PassiveMode"`
-	PolicyStore                      string   `cim:"PolicyStore"`
-	PreferLocalNamesAllowed          bool     `cim:"PreferLocalNamesAllowed"`
-	SupportEmail                     string   `cim:"SupportEmail"`
-	UserInterface                    bool     `cim:"UserInterface"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                          string                                            `cim:"__PATH"`
+	Caption                          string                                            `cim:"Caption"`
+	CorporateResources               []string                                          `cim:"CorporateResources"`
+	CustomCommands                   []string                                          `cim:"CustomCommands"`
+	Description                      string                                            `cim:"Description"`
+	ElementName                      string                                            `cim:"ElementName"`
+	ForceTunneling                   MSFTDAClientExperienceConfigurationForceTunneling `cim:"ForceTunneling"`
+	FriendlyName                     string                                            `cim:"FriendlyName"`
+	GslbFqdn                         string                                            `cim:"GslbFqdn"`
+	IPsecTunnelEndpoints             []string                                          `cim:"IPsecTunnelEndpoints"`
+	InstanceID                       string                                            `cim:"InstanceID"`
+	ManualEntryPointSelectionAllowed bool                                              `cim:"ManualEntryPointSelectionAllowed"`
+	PassiveMode                      bool                                              `cim:"PassiveMode"`
+	PolicyStore                      string                                            `cim:"PolicyStore"`
+	PreferLocalNamesAllowed          bool                                              `cim:"PreferLocalNamesAllowed"`
+	SupportEmail                     string                                            `cim:"SupportEmail"`
+	UserInterface                    bool                                              `cim:"UserInterface"`
 }
 
 // MSFTDAConnectionStatus is the MSFT_DAConnectionStatus CIM class.
 type MSFTDAConnectionStatus struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath     string `cim:"__PATH"`
 	Caption     string `cim:"Caption"`
 	Description string `cim:"Description"`
 	ElementName string `cim:"ElementName"`
@@ -1252,239 +1504,283 @@ type MSFTDAConnectionStatus struct {
 
 // MSFTDASettingsIndication is the MSFT_DASettingsIndication CIM class.
 type MSFTDASettingsIndication struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath string `cim:"__PATH"`
 }
 
 // MSFTDASiteTableEntry is the MSFT_DASiteTableEntry CIM class.
 type MSFTDASiteTableEntry struct {
-	ADSite              string   `cim:"ADSite"`
-	Caption             string   `cim:"Caption"`
-	Description         string   `cim:"Description"`
-	ElementName         string   `cim:"ElementName"`
-	EntryPointIPAddress string   `cim:"EntryPointIPAddress"`
-	EntryPointName      string   `cim:"EntryPointName"`
-	EntryPointRange     []string `cim:"EntryPointRange"`
-	GslbIP              string   `cim:"GslbIP"`
-	IPHttpsProfile      string   `cim:"IPHttpsProfile"`
-	InstanceID          string   `cim:"InstanceID"`
-	PolicyStore         string   `cim:"PolicyStore"`
-	State               uint32   `cim:"State"`
-	TeredoServerIP      string   `cim:"TeredoServerIP"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath             string                    `cim:"__PATH"`
+	ADSite              string                    `cim:"ADSite"`
+	Caption             string                    `cim:"Caption"`
+	Description         string                    `cim:"Description"`
+	ElementName         string                    `cim:"ElementName"`
+	EntryPointIPAddress string                    `cim:"EntryPointIPAddress"`
+	EntryPointName      string                    `cim:"EntryPointName"`
+	EntryPointRange     []string                  `cim:"EntryPointRange"`
+	GslbIP              string                    `cim:"GslbIP"`
+	IPHttpsProfile      string                    `cim:"IPHttpsProfile"`
+	InstanceID          string                    `cim:"InstanceID"`
+	PolicyStore         string                    `cim:"PolicyStore"`
+	State               MSFTDASiteTableEntryState `cim:"State"`
+	TeredoServerIP      string                    `cim:"TeredoServerIP"`
 }
 
 // MSFTDNSClient is the MSFT_DNSClient CIM class.
 type MSFTDNSClient struct {
-	AvailableRequestedStates           []uint16 `cim:"AvailableRequestedStates"`
-	Caption                            string   `cim:"Caption"`
-	CommunicationStatus                uint16   `cim:"CommunicationStatus"`
-	ConnectionSpecificSuffix           string   `cim:"ConnectionSpecificSuffix"`
-	ConnectionSpecificSuffixSearchList []string `cim:"ConnectionSpecificSuffixSearchList"`
-	CreationClassName                  string   `cim:"CreationClassName"`
-	DHCPOptionsToUse                   []uint16 `cim:"DHCPOptionsToUse"`
-	Description                        string   `cim:"Description"`
-	DetailedStatus                     uint16   `cim:"DetailedStatus"`
-	ElementName                        string   `cim:"ElementName"`
-	EnabledDefault                     uint16   `cim:"EnabledDefault"`
-	EnabledState                       uint16   `cim:"EnabledState"`
-	HealthState                        uint16   `cim:"HealthState"`
-	Hostname                           string   `cim:"Hostname"`
-	InstallDate                        string   `cim:"InstallDate"`
-	InstanceID                         string   `cim:"InstanceID"`
-	InterfaceAlias                     string   `cim:"InterfaceAlias"`
-	InterfaceIndex                     uint32   `cim:"InterfaceIndex"`
-	Name                               string   `cim:"Name"`
-	NameFormat                         string   `cim:"NameFormat"`
-	OperatingStatus                    uint16   `cim:"OperatingStatus"`
-	OperationalStatus                  []uint16 `cim:"OperationalStatus"`
-	OtherEnabledState                  string   `cim:"OtherEnabledState"`
-	OtherTypeDescription               string   `cim:"OtherTypeDescription"`
-	PrimaryStatus                      uint16   `cim:"PrimaryStatus"`
-	ProtocolIFType                     uint16   `cim:"ProtocolIFType"`
-	ProtocolType                       uint16   `cim:"ProtocolType"`
-	RegisterThisConnectionsAddress     bool     `cim:"RegisterThisConnectionsAddress"`
-	RequestedState                     uint16   `cim:"RequestedState"`
-	Status                             string   `cim:"Status"`
-	StatusDescriptions                 []string `cim:"StatusDescriptions"`
-	SystemCreationClassName            string   `cim:"SystemCreationClassName"`
-	SystemName                         string   `cim:"SystemName"`
-	TimeOfLastStateChange              string   `cim:"TimeOfLastStateChange"`
-	TransitioningToState               uint16   `cim:"TransitioningToState"`
-	UseSuffixWhenRegistering           bool     `cim:"UseSuffixWhenRegistering"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                            string                            `cim:"__PATH"`
+	AvailableRequestedStates           []uint16                          `cim:"AvailableRequestedStates"`
+	Caption                            string                            `cim:"Caption"`
+	CommunicationStatus                MSFTDNSClientCommunicationStatus  `cim:"CommunicationStatus"`
+	ConnectionSpecificSuffix           string                            `cim:"ConnectionSpecificSuffix"`
+	ConnectionSpecificSuffixSearchList []string                          `cim:"ConnectionSpecificSuffixSearchList"`
+	CreationClassName                  string                            `cim:"CreationClassName"`
+	DHCPOptionsToUse                   []uint16                          `cim:"DHCPOptionsToUse"`
+	Description                        string                            `cim:"Description"`
+	DetailedStatus                     MSFTDNSClientDetailedStatus       `cim:"DetailedStatus"`
+	ElementName                        string                            `cim:"ElementName"`
+	EnabledDefault                     MSFTDNSClientEnabledDefault       `cim:"EnabledDefault"`
+	EnabledState                       MSFTDNSClientEnabledState         `cim:"EnabledState"`
+	HealthState                        MSFTDNSClientHealthState          `cim:"HealthState"`
+	Hostname                           string                            `cim:"Hostname"`
+	InstallDate                        string                            `cim:"InstallDate"`
+	InstanceID                         string                            `cim:"InstanceID"`
+	InterfaceAlias                     string                            `cim:"InterfaceAlias"`
+	InterfaceIndex                     uint32                            `cim:"InterfaceIndex"`
+	Name                               string                            `cim:"Name"`
+	NameFormat                         string                            `cim:"NameFormat"`
+	OperatingStatus                    MSFTDNSClientOperatingStatus      `cim:"OperatingStatus"`
+	OperationalStatus                  []uint16                          `cim:"OperationalStatus"`
+	OtherEnabledState                  string                            `cim:"OtherEnabledState"`
+	OtherTypeDescription               string                            `cim:"OtherTypeDescription"`
+	PrimaryStatus                      MSFTDNSClientPrimaryStatus        `cim:"PrimaryStatus"`
+	ProtocolIFType                     MSFTDNSClientProtocolIFType       `cim:"ProtocolIFType"`
+	ProtocolType                       MSFTDNSClientProtocolType         `cim:"ProtocolType"`
+	RegisterThisConnectionsAddress     bool                              `cim:"RegisterThisConnectionsAddress"`
+	RequestedState                     MSFTDNSClientRequestedState       `cim:"RequestedState"`
+	Status                             MSFTDNSClientStatus               `cim:"Status"`
+	StatusDescriptions                 []string                          `cim:"StatusDescriptions"`
+	SystemCreationClassName            string                            `cim:"SystemCreationClassName"`
+	SystemName                         string                            `cim:"SystemName"`
+	TimeOfLastStateChange              string                            `cim:"TimeOfLastStateChange"`
+	TransitioningToState               MSFTDNSClientTransitioningToState `cim:"TransitioningToState"`
+	UseSuffixWhenRegistering           bool                              `cim:"UseSuffixWhenRegistering"`
 }
 
 // MSFTDNSClientCache is the MSFT_DNSClientCache CIM class.
 type MSFTDNSClientCache struct {
-	Caption     string `cim:"Caption"`
-	Data        string `cim:"Data"`
-	DataLength  uint16 `cim:"DataLength"`
-	Description string `cim:"Description"`
-	ElementName string `cim:"ElementName"`
-	Entry       string `cim:"Entry"`
-	InstanceID  string `cim:"InstanceID"`
-	Name        string `cim:"Name"`
-	Section     uint8  `cim:"Section"`
-	Status      uint32 `cim:"Status"`
-	TimeToLive  uint32 `cim:"TimeToLive"`
-	Type        uint16 `cim:"Type"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath     string                    `cim:"__PATH"`
+	Caption     string                    `cim:"Caption"`
+	Data        string                    `cim:"Data"`
+	DataLength  uint16                    `cim:"DataLength"`
+	Description string                    `cim:"Description"`
+	ElementName string                    `cim:"ElementName"`
+	Entry       string                    `cim:"Entry"`
+	InstanceID  string                    `cim:"InstanceID"`
+	Name        string                    `cim:"Name"`
+	Section     MSFTDNSClientCacheSection `cim:"Section"`
+	Status      MSFTDNSClientCacheStatus  `cim:"Status"`
+	TimeToLive  uint32                    `cim:"TimeToLive"`
+	Type        MSFTDNSClientCacheType    `cim:"Type"`
 }
 
 // MSFTDNSClientDohServerAddress is the MSFT_DNSClientDohServerAddress CIM class.
 type MSFTDNSClientDohServerAddress struct {
-	AccessContext              uint16   `cim:"AccessContext"`
-	AccessInfo                 string   `cim:"AccessInfo"`
-	AllowFallbackToUdp         bool     `cim:"AllowFallbackToUdp"`
-	AutoUpgrade                bool     `cim:"AutoUpgrade"`
-	AvailableRequestedStates   []uint16 `cim:"AvailableRequestedStates"`
-	Caption                    string   `cim:"Caption"`
-	CommunicationStatus        uint16   `cim:"CommunicationStatus"`
-	CreationClassName          string   `cim:"CreationClassName"`
-	Description                string   `cim:"Description"`
-	DetailedStatus             uint16   `cim:"DetailedStatus"`
-	DohTemplate                string   `cim:"DohTemplate"`
-	ElementName                string   `cim:"ElementName"`
-	EnabledDefault             uint16   `cim:"EnabledDefault"`
-	EnabledState               uint16   `cim:"EnabledState"`
-	HealthState                uint16   `cim:"HealthState"`
-	InfoFormat                 uint16   `cim:"InfoFormat"`
-	InstallDate                string   `cim:"InstallDate"`
-	InstanceID                 string   `cim:"InstanceID"`
-	Name                       string   `cim:"Name"`
-	OperatingStatus            uint16   `cim:"OperatingStatus"`
-	OperationalStatus          []uint16 `cim:"OperationalStatus"`
-	OtherAccessContext         string   `cim:"OtherAccessContext"`
-	OtherEnabledState          string   `cim:"OtherEnabledState"`
-	OtherInfoFormatDescription string   `cim:"OtherInfoFormatDescription"`
-	PrimaryStatus              uint16   `cim:"PrimaryStatus"`
-	RequestedState             uint16   `cim:"RequestedState"`
-	ServerAddress              string   `cim:"ServerAddress"`
-	Status                     string   `cim:"Status"`
-	StatusDescriptions         []string `cim:"StatusDescriptions"`
-	SystemCreationClassName    string   `cim:"SystemCreationClassName"`
-	SystemName                 string   `cim:"SystemName"`
-	TimeOfLastStateChange      string   `cim:"TimeOfLastStateChange"`
-	TransitioningToState       uint16   `cim:"TransitioningToState"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                    string                                            `cim:"__PATH"`
+	AccessContext              MSFTDNSClientDohServerAddressAccessContext        `cim:"AccessContext"`
+	AccessInfo                 string                                            `cim:"AccessInfo"`
+	AllowFallbackToUdp         bool                                              `cim:"AllowFallbackToUdp"`
+	AutoUpgrade                bool                                              `cim:"AutoUpgrade"`
+	AvailableRequestedStates   []uint16                                          `cim:"AvailableRequestedStates"`
+	Caption                    string                                            `cim:"Caption"`
+	CommunicationStatus        MSFTDNSClientDohServerAddressCommunicationStatus  `cim:"CommunicationStatus"`
+	CreationClassName          string                                            `cim:"CreationClassName"`
+	Description                string                                            `cim:"Description"`
+	DetailedStatus             MSFTDNSClientDohServerAddressDetailedStatus       `cim:"DetailedStatus"`
+	DohTemplate                string                                            `cim:"DohTemplate"`
+	ElementName                string                                            `cim:"ElementName"`
+	EnabledDefault             MSFTDNSClientDohServerAddressEnabledDefault       `cim:"EnabledDefault"`
+	EnabledState               MSFTDNSClientDohServerAddressEnabledState         `cim:"EnabledState"`
+	HealthState                MSFTDNSClientDohServerAddressHealthState          `cim:"HealthState"`
+	InfoFormat                 MSFTDNSClientDohServerAddressInfoFormat           `cim:"InfoFormat"`
+	InstallDate                string                                            `cim:"InstallDate"`
+	InstanceID                 string                                            `cim:"InstanceID"`
+	Name                       string                                            `cim:"Name"`
+	OperatingStatus            MSFTDNSClientDohServerAddressOperatingStatus      `cim:"OperatingStatus"`
+	OperationalStatus          []uint16                                          `cim:"OperationalStatus"`
+	OtherAccessContext         string                                            `cim:"OtherAccessContext"`
+	OtherEnabledState          string                                            `cim:"OtherEnabledState"`
+	OtherInfoFormatDescription string                                            `cim:"OtherInfoFormatDescription"`
+	PrimaryStatus              MSFTDNSClientDohServerAddressPrimaryStatus        `cim:"PrimaryStatus"`
+	RequestedState             MSFTDNSClientDohServerAddressRequestedState       `cim:"RequestedState"`
+	ServerAddress              string                                            `cim:"ServerAddress"`
+	Status                     MSFTDNSClientDohServerAddressStatus               `cim:"Status"`
+	StatusDescriptions         []string                                          `cim:"StatusDescriptions"`
+	SystemCreationClassName    string                                            `cim:"SystemCreationClassName"`
+	SystemName                 string                                            `cim:"SystemName"`
+	TimeOfLastStateChange      string                                            `cim:"TimeOfLastStateChange"`
+	TransitioningToState       MSFTDNSClientDohServerAddressTransitioningToState `cim:"TransitioningToState"`
 }
 
 // MSFTDNSClientGlobalSetting is the MSFT_DNSClientGlobalSetting CIM class.
 type MSFTDNSClientGlobalSetting struct {
-	AddressOrigin         uint16   `cim:"AddressOrigin"`
-	AppendParentSuffixes  bool     `cim:"AppendParentSuffixes"`
-	AppendPrimarySuffixes bool     `cim:"AppendPrimarySuffixes"`
-	Caption               string   `cim:"Caption"`
-	DNSSuffixesToAppend   []string `cim:"DNSSuffixesToAppend"`
-	Description           string   `cim:"Description"`
-	DevolutionLevel       uint32   `cim:"DevolutionLevel"`
-	ElementName           string   `cim:"ElementName"`
-	InstanceID            string   `cim:"InstanceID"`
-	ProtocolIFType        uint16   `cim:"ProtocolIFType"`
-	SuffixSearchList      []string `cim:"SuffixSearchList"`
-	UseDevolution         bool     `cim:"UseDevolution"`
-	UseSuffixSearchList   bool     `cim:"UseSuffixSearchList"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath               string                                   `cim:"__PATH"`
+	AddressOrigin         MSFTDNSClientGlobalSettingAddressOrigin  `cim:"AddressOrigin"`
+	AppendParentSuffixes  bool                                     `cim:"AppendParentSuffixes"`
+	AppendPrimarySuffixes bool                                     `cim:"AppendPrimarySuffixes"`
+	Caption               string                                   `cim:"Caption"`
+	DNSSuffixesToAppend   []string                                 `cim:"DNSSuffixesToAppend"`
+	Description           string                                   `cim:"Description"`
+	DevolutionLevel       uint32                                   `cim:"DevolutionLevel"`
+	ElementName           string                                   `cim:"ElementName"`
+	InstanceID            string                                   `cim:"InstanceID"`
+	ProtocolIFType        MSFTDNSClientGlobalSettingProtocolIFType `cim:"ProtocolIFType"`
+	SuffixSearchList      []string                                 `cim:"SuffixSearchList"`
+	UseDevolution         bool                                     `cim:"UseDevolution"`
+	UseSuffixSearchList   bool                                     `cim:"UseSuffixSearchList"`
 }
 
 // MSFTDNSClientServerAddress is the MSFT_DNSClientServerAddress CIM class.
 type MSFTDNSClientServerAddress struct {
-	AccessContext              uint16   `cim:"AccessContext"`
-	AccessInfo                 string   `cim:"AccessInfo"`
-	AddressFamily              uint16   `cim:"AddressFamily"`
-	AvailableRequestedStates   []uint16 `cim:"AvailableRequestedStates"`
-	Caption                    string   `cim:"Caption"`
-	CommunicationStatus        uint16   `cim:"CommunicationStatus"`
-	CreationClassName          string   `cim:"CreationClassName"`
-	Description                string   `cim:"Description"`
-	DetailedStatus             uint16   `cim:"DetailedStatus"`
-	ElementName                string   `cim:"ElementName"`
-	EnabledDefault             uint16   `cim:"EnabledDefault"`
-	EnabledState               uint16   `cim:"EnabledState"`
-	HealthState                uint16   `cim:"HealthState"`
-	InfoFormat                 uint16   `cim:"InfoFormat"`
-	InstallDate                string   `cim:"InstallDate"`
-	InstanceID                 string   `cim:"InstanceID"`
-	InterfaceAlias             string   `cim:"InterfaceAlias"`
-	InterfaceIndex             uint32   `cim:"InterfaceIndex"`
-	Name                       string   `cim:"Name"`
-	OperatingStatus            uint16   `cim:"OperatingStatus"`
-	OperationalStatus          []uint16 `cim:"OperationalStatus"`
-	OtherAccessContext         string   `cim:"OtherAccessContext"`
-	OtherEnabledState          string   `cim:"OtherEnabledState"`
-	OtherInfoFormatDescription string   `cim:"OtherInfoFormatDescription"`
-	PrimaryStatus              uint16   `cim:"PrimaryStatus"`
-	RequestedState             uint16   `cim:"RequestedState"`
-	ServerAddresses            []string `cim:"ServerAddresses"`
-	Status                     string   `cim:"Status"`
-	StatusDescriptions         []string `cim:"StatusDescriptions"`
-	SystemCreationClassName    string   `cim:"SystemCreationClassName"`
-	SystemName                 string   `cim:"SystemName"`
-	TimeOfLastStateChange      string   `cim:"TimeOfLastStateChange"`
-	TransitioningToState       uint16   `cim:"TransitioningToState"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                    string                                         `cim:"__PATH"`
+	AccessContext              MSFTDNSClientServerAddressAccessContext        `cim:"AccessContext"`
+	AccessInfo                 string                                         `cim:"AccessInfo"`
+	AddressFamily              uint16                                         `cim:"AddressFamily"`
+	AvailableRequestedStates   []uint16                                       `cim:"AvailableRequestedStates"`
+	Caption                    string                                         `cim:"Caption"`
+	CommunicationStatus        MSFTDNSClientServerAddressCommunicationStatus  `cim:"CommunicationStatus"`
+	CreationClassName          string                                         `cim:"CreationClassName"`
+	Description                string                                         `cim:"Description"`
+	DetailedStatus             MSFTDNSClientServerAddressDetailedStatus       `cim:"DetailedStatus"`
+	ElementName                string                                         `cim:"ElementName"`
+	EnabledDefault             MSFTDNSClientServerAddressEnabledDefault       `cim:"EnabledDefault"`
+	EnabledState               MSFTDNSClientServerAddressEnabledState         `cim:"EnabledState"`
+	HealthState                MSFTDNSClientServerAddressHealthState          `cim:"HealthState"`
+	InfoFormat                 MSFTDNSClientServerAddressInfoFormat           `cim:"InfoFormat"`
+	InstallDate                string                                         `cim:"InstallDate"`
+	InstanceID                 string                                         `cim:"InstanceID"`
+	InterfaceAlias             string                                         `cim:"InterfaceAlias"`
+	InterfaceIndex             uint32                                         `cim:"InterfaceIndex"`
+	Name                       string                                         `cim:"Name"`
+	OperatingStatus            MSFTDNSClientServerAddressOperatingStatus      `cim:"OperatingStatus"`
+	OperationalStatus          []uint16                                       `cim:"OperationalStatus"`
+	OtherAccessContext         string                                         `cim:"OtherAccessContext"`
+	OtherEnabledState          string                                         `cim:"OtherEnabledState"`
+	OtherInfoFormatDescription string                                         `cim:"OtherInfoFormatDescription"`
+	PrimaryStatus              MSFTDNSClientServerAddressPrimaryStatus        `cim:"PrimaryStatus"`
+	RequestedState             MSFTDNSClientServerAddressRequestedState       `cim:"RequestedState"`
+	ServerAddresses            []string                                       `cim:"ServerAddresses"`
+	Status                     MSFTDNSClientServerAddressStatus               `cim:"Status"`
+	StatusDescriptions         []string                                       `cim:"StatusDescriptions"`
+	SystemCreationClassName    string                                         `cim:"SystemCreationClassName"`
+	SystemName                 string                                         `cim:"SystemName"`
+	TimeOfLastStateChange      string                                         `cim:"TimeOfLastStateChange"`
+	TransitioningToState       MSFTDNSClientServerAddressTransitioningToState `cim:"TransitioningToState"`
 }
 
 // MSFTExtendedStatus is the MSFT_ExtendedStatus CIM class.
 type MSFTExtendedStatus struct {
-	CIMStatusCode            uint32   `cim:"CIMStatusCode"`
-	CIMStatusCodeDescription string   `cim:"CIMStatusCodeDescription"`
-	ErrorSource              string   `cim:"ErrorSource"`
-	ErrorSourceFormat        uint16   `cim:"ErrorSourceFormat"`
-	ErrorType                uint16   `cim:"ErrorType"`
-	Message                  string   `cim:"Message"`
-	MessageArguments         []string `cim:"MessageArguments"`
-	MessageID                string   `cim:"MessageID"`
-	OtherErrorSourceFormat   string   `cim:"OtherErrorSourceFormat"`
-	OtherErrorType           string   `cim:"OtherErrorType"`
-	OwningEntity             string   `cim:"OwningEntity"`
-	PerceivedSeverity        uint16   `cim:"PerceivedSeverity"`
-	ProbableCause            uint16   `cim:"ProbableCause"`
-	ProbableCauseDescription string   `cim:"ProbableCauseDescription"`
-	RecommendedActions       []string `cim:"RecommendedActions"`
-	ErrorCategory            uint16   `cim:"error_Category"`
-	ErrorCode                uint32   `cim:"error_Code"`
-	ErrorWindowsErrorMessage string   `cim:"error_WindowsErrorMessage"`
-	OriginalError            wmi.Row  `cim:"original_error"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                  string                              `cim:"__PATH"`
+	CIMStatusCode            MSFTExtendedStatusCIMStatusCode     `cim:"CIMStatusCode"`
+	CIMStatusCodeDescription string                              `cim:"CIMStatusCodeDescription"`
+	ErrorSource              string                              `cim:"ErrorSource"`
+	ErrorSourceFormat        MSFTExtendedStatusErrorSourceFormat `cim:"ErrorSourceFormat"`
+	ErrorType                MSFTExtendedStatusErrorType         `cim:"ErrorType"`
+	Message                  string                              `cim:"Message"`
+	MessageArguments         []string                            `cim:"MessageArguments"`
+	MessageID                string                              `cim:"MessageID"`
+	OtherErrorSourceFormat   string                              `cim:"OtherErrorSourceFormat"`
+	OtherErrorType           string                              `cim:"OtherErrorType"`
+	OwningEntity             string                              `cim:"OwningEntity"`
+	PerceivedSeverity        MSFTExtendedStatusPerceivedSeverity `cim:"PerceivedSeverity"`
+	ProbableCause            MSFTExtendedStatusProbableCause     `cim:"ProbableCause"`
+	ProbableCauseDescription string                              `cim:"ProbableCauseDescription"`
+	RecommendedActions       []string                            `cim:"RecommendedActions"`
+	ErrorCategory            uint16                              `cim:"error_Category"`
+	ErrorCode                uint32                              `cim:"error_Code"`
+	ErrorWindowsErrorMessage string                              `cim:"error_WindowsErrorMessage"`
+	OriginalError            wmi.Row                             `cim:"original_error"`
 }
 
 // MSFTLocalPrinterPort is the MSFT_LocalPrinterPort CIM class.
 type MSFTLocalPrinterPort struct {
-	Caption             string   `cim:"Caption"`
-	CommunicationStatus uint16   `cim:"CommunicationStatus"`
-	ComputerName        string   `cim:"ComputerName"`
-	Description         string   `cim:"Description"`
-	DetailedStatus      uint16   `cim:"DetailedStatus"`
-	ElementName         string   `cim:"ElementName"`
-	HealthState         uint16   `cim:"HealthState"`
-	InstallDate         string   `cim:"InstallDate"`
-	InstanceID          string   `cim:"InstanceID"`
-	Name                string   `cim:"Name"`
-	OperatingStatus     uint16   `cim:"OperatingStatus"`
-	OperationalStatus   []uint16 `cim:"OperationalStatus"`
-	PortMonitor         string   `cim:"PortMonitor"`
-	PrimaryStatus       uint16   `cim:"PrimaryStatus"`
-	Status              string   `cim:"Status"`
-	StatusDescriptions  []string `cim:"StatusDescriptions"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath             string                                  `cim:"__PATH"`
+	Caption             string                                  `cim:"Caption"`
+	CommunicationStatus MSFTLocalPrinterPortCommunicationStatus `cim:"CommunicationStatus"`
+	ComputerName        string                                  `cim:"ComputerName"`
+	Description         string                                  `cim:"Description"`
+	DetailedStatus      MSFTLocalPrinterPortDetailedStatus      `cim:"DetailedStatus"`
+	ElementName         string                                  `cim:"ElementName"`
+	HealthState         MSFTLocalPrinterPortHealthState         `cim:"HealthState"`
+	InstallDate         string                                  `cim:"InstallDate"`
+	InstanceID          string                                  `cim:"InstanceID"`
+	Name                string                                  `cim:"Name"`
+	OperatingStatus     MSFTLocalPrinterPortOperatingStatus     `cim:"OperatingStatus"`
+	OperationalStatus   []uint16                                `cim:"OperationalStatus"`
+	PortMonitor         string                                  `cim:"PortMonitor"`
+	PrimaryStatus       MSFTLocalPrinterPortPrimaryStatus       `cim:"PrimaryStatus"`
+	Status              MSFTLocalPrinterPortStatus              `cim:"Status"`
+	StatusDescriptions  []string                                `cim:"StatusDescriptions"`
 }
 
 // MSFTLprPrinterPort is the MSFT_LprPrinterPort CIM class.
 type MSFTLprPrinterPort struct {
-	Caption             string   `cim:"Caption"`
-	CommunicationStatus uint16   `cim:"CommunicationStatus"`
-	ComputerName        string   `cim:"ComputerName"`
-	Description         string   `cim:"Description"`
-	DetailedStatus      uint16   `cim:"DetailedStatus"`
-	ElementName         string   `cim:"ElementName"`
-	HealthState         uint16   `cim:"HealthState"`
-	HostName            string   `cim:"HostName"`
-	InstallDate         string   `cim:"InstallDate"`
-	InstanceID          string   `cim:"InstanceID"`
-	Name                string   `cim:"Name"`
-	OperatingStatus     uint16   `cim:"OperatingStatus"`
-	OperationalStatus   []uint16 `cim:"OperationalStatus"`
-	PortMonitor         string   `cim:"PortMonitor"`
-	PrimaryStatus       uint16   `cim:"PrimaryStatus"`
-	PrinterName         string   `cim:"PrinterName"`
-	Status              string   `cim:"Status"`
-	StatusDescriptions  []string `cim:"StatusDescriptions"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath             string                                `cim:"__PATH"`
+	Caption             string                                `cim:"Caption"`
+	CommunicationStatus MSFTLprPrinterPortCommunicationStatus `cim:"CommunicationStatus"`
+	ComputerName        string                                `cim:"ComputerName"`
+	Description         string                                `cim:"Description"`
+	DetailedStatus      MSFTLprPrinterPortDetailedStatus      `cim:"DetailedStatus"`
+	ElementName         string                                `cim:"ElementName"`
+	HealthState         MSFTLprPrinterPortHealthState         `cim:"HealthState"`
+	HostName            string                                `cim:"HostName"`
+	InstallDate         string                                `cim:"InstallDate"`
+	InstanceID          string                                `cim:"InstanceID"`
+	Name                string                                `cim:"Name"`
+	OperatingStatus     MSFTLprPrinterPortOperatingStatus     `cim:"OperatingStatus"`
+	OperationalStatus   []uint16                              `cim:"OperationalStatus"`
+	PortMonitor         string                                `cim:"PortMonitor"`
+	PrimaryStatus       MSFTLprPrinterPortPrimaryStatus       `cim:"PrimaryStatus"`
+	PrinterName         string                                `cim:"PrinterName"`
+	Status              MSFTLprPrinterPortStatus              `cim:"Status"`
+	StatusDescriptions  []string                              `cim:"StatusDescriptions"`
 }
 
 // MSFTNCSIPolicyConfiguration is the MSFT_NCSIPolicyConfiguration CIM class.
 type MSFTNCSIPolicyConfiguration struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                        string   `cim:"__PATH"`
 	Caption                        string   `cim:"Caption"`
 	CorporateDNSProbeHostAddress   string   `cim:"CorporateDNSProbeHostAddress"`
 	CorporateDNSProbeHostName      string   `cim:"CorporateDNSProbeHostName"`
@@ -1499,200 +1795,232 @@ type MSFTNCSIPolicyConfiguration struct {
 
 // MSFTNet6to4Configuration is the MSFT_Net6to4Configuration CIM class.
 type MSFTNet6to4Configuration struct {
-	AutoSharing        uint32 `cim:"AutoSharing"`
-	Caption            string `cim:"Caption"`
-	Description        string `cim:"Description"`
-	ElementName        string `cim:"ElementName"`
-	InstanceID         string `cim:"InstanceID"`
-	PolicyStore        string `cim:"PolicyStore"`
-	RelayName          string `cim:"RelayName"`
-	RelayState         uint32 `cim:"RelayState"`
-	ResolutionInterval uint32 `cim:"ResolutionInterval"`
-	State              uint32 `cim:"State"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath            string                              `cim:"__PATH"`
+	AutoSharing        MSFTNet6to4ConfigurationAutoSharing `cim:"AutoSharing"`
+	Caption            string                              `cim:"Caption"`
+	Description        string                              `cim:"Description"`
+	ElementName        string                              `cim:"ElementName"`
+	InstanceID         string                              `cim:"InstanceID"`
+	PolicyStore        string                              `cim:"PolicyStore"`
+	RelayName          string                              `cim:"RelayName"`
+	RelayState         MSFTNet6to4ConfigurationRelayState  `cim:"RelayState"`
+	ResolutionInterval uint32                              `cim:"ResolutionInterval"`
+	State              MSFTNet6to4ConfigurationState       `cim:"State"`
 }
 
 // MSFTNet6to4State is the MSFT_Net6to4State CIM class.
 type MSFTNet6to4State struct {
-	IsCurrent      uint16 `cim:"IsCurrent"`
-	IsDefault      uint16 `cim:"IsDefault"`
-	IsNext         uint16 `cim:"IsNext"`
-	ManagedElement string `cim:"ManagedElement"`
-	SettingData    string `cim:"SettingData"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string                    `cim:"__PATH"`
+	IsCurrent      MSFTNet6to4StateIsCurrent `cim:"IsCurrent"`
+	IsDefault      MSFTNet6to4StateIsDefault `cim:"IsDefault"`
+	IsNext         MSFTNet6to4StateIsNext    `cim:"IsNext"`
+	ManagedElement string                    `cim:"ManagedElement"`
+	SettingData    string                    `cim:"SettingData"`
 }
 
 // MSFTNetAdapter is the MSFT_NetAdapter CIM class.
 type MSFTNetAdapter struct {
-	ActiveMaximumTransmissionUnit                    uint64   `cim:"ActiveMaximumTransmissionUnit"`
-	AdditionalAvailability                           []uint16 `cim:"AdditionalAvailability"`
-	AdminLocked                                      bool     `cim:"AdminLocked"`
-	AutoSense                                        bool     `cim:"AutoSense"`
-	Availability                                     uint16   `cim:"Availability"`
-	AvailableRequestedStates                         []uint16 `cim:"AvailableRequestedStates"`
-	Caption                                          string   `cim:"Caption"`
-	CommunicationStatus                              uint16   `cim:"CommunicationStatus"`
-	ComponentID                                      string   `cim:"ComponentID"`
-	ConnectorPresent                                 bool     `cim:"ConnectorPresent"`
-	CreationClassName                                string   `cim:"CreationClassName"`
-	Description                                      string   `cim:"Description"`
-	DetailedStatus                                   uint16   `cim:"DetailedStatus"`
-	DeviceID                                         string   `cim:"DeviceID"`
-	DeviceName                                       string   `cim:"DeviceName"`
-	DeviceWakeUpEnable                               bool     `cim:"DeviceWakeUpEnable"`
-	DriverDate                                       string   `cim:"DriverDate"`
-	DriverDateData                                   uint64   `cim:"DriverDateData"`
-	DriverDescription                                string   `cim:"DriverDescription"`
-	DriverMajorNdisVersion                           uint8    `cim:"DriverMajorNdisVersion"`
-	DriverMinorNdisVersion                           uint8    `cim:"DriverMinorNdisVersion"`
-	DriverName                                       string   `cim:"DriverName"`
-	DriverProvider                                   string   `cim:"DriverProvider"`
-	DriverVersionString                              string   `cim:"DriverVersionString"`
-	ElementName                                      string   `cim:"ElementName"`
-	EnabledDefault                                   uint16   `cim:"EnabledDefault"`
-	EnabledState                                     uint16   `cim:"EnabledState"`
-	EndPointInterface                                bool     `cim:"EndPointInterface"`
-	ErrorCleared                                     bool     `cim:"ErrorCleared"`
-	ErrorDescription                                 string   `cim:"ErrorDescription"`
-	FullDuplex                                       bool     `cim:"FullDuplex"`
-	HardwareInterface                                bool     `cim:"HardwareInterface"`
-	HealthState                                      uint16   `cim:"HealthState"`
-	Hidden                                           bool     `cim:"Hidden"`
-	HigherLayerInterfaceIndices                      []uint32 `cim:"HigherLayerInterfaceIndices"`
-	IMFilter                                         bool     `cim:"IMFilter"`
-	IdentifyingDescriptions                          []string `cim:"IdentifyingDescriptions"`
-	InstallDate                                      string   `cim:"InstallDate"`
-	InstanceID                                       string   `cim:"InstanceID"`
-	InterfaceAdminStatus                             uint32   `cim:"InterfaceAdminStatus"`
-	InterfaceDescription                             string   `cim:"InterfaceDescription"`
-	InterfaceGuid                                    string   `cim:"InterfaceGuid"`
-	InterfaceIndex                                   uint32   `cim:"InterfaceIndex"`
-	InterfaceName                                    string   `cim:"InterfaceName"`
-	InterfaceOperationalStatus                       uint32   `cim:"InterfaceOperationalStatus"`
-	InterfaceType                                    uint32   `cim:"InterfaceType"`
-	LastErrorCode                                    uint32   `cim:"LastErrorCode"`
-	LinkTechnology                                   uint16   `cim:"LinkTechnology"`
-	LowerLayerInterfaceIndices                       []uint32 `cim:"LowerLayerInterfaceIndices"`
-	MajorDriverVersion                               uint16   `cim:"MajorDriverVersion"`
-	MaxQuiesceTime                                   uint64   `cim:"MaxQuiesceTime"`
-	MaxSpeed                                         uint64   `cim:"MaxSpeed"`
-	MediaConnectState                                uint32   `cim:"MediaConnectState"`
-	MediaDuplexState                                 uint32   `cim:"MediaDuplexState"`
-	MinorDriverVersion                               uint16   `cim:"MinorDriverVersion"`
-	MtuSize                                          uint32   `cim:"MtuSize"`
-	Name                                             string   `cim:"Name"`
-	NdisMedium                                       uint32   `cim:"NdisMedium"`
-	NdisPhysicalMedium                               uint32   `cim:"NdisPhysicalMedium"`
-	NetLuid                                          uint64   `cim:"NetLuid"`
-	NetLuidIndex                                     uint32   `cim:"NetLuidIndex"`
-	NetworkAddresses                                 []string `cim:"NetworkAddresses"`
-	NotUserRemovable                                 bool     `cim:"NotUserRemovable"`
-	OperatingStatus                                  uint16   `cim:"OperatingStatus"`
-	OperationalStatus                                []uint16 `cim:"OperationalStatus"`
-	OperationalStatusDownDefaultPortNotAuthenticated bool     `cim:"OperationalStatusDownDefaultPortNotAuthenticated"`
-	OperationalStatusDownInterfacePaused             bool     `cim:"OperationalStatusDownInterfacePaused"`
-	OperationalStatusDownLowPowerState               bool     `cim:"OperationalStatusDownLowPowerState"`
-	OperationalStatusDownMediaDisconnected           bool     `cim:"OperationalStatusDownMediaDisconnected"`
-	OtherEnabledState                                string   `cim:"OtherEnabledState"`
-	OtherIdentifyingInfo                             []string `cim:"OtherIdentifyingInfo"`
-	OtherLinkTechnology                              string   `cim:"OtherLinkTechnology"`
-	OtherNetworkPortType                             string   `cim:"OtherNetworkPortType"`
-	OtherPortType                                    string   `cim:"OtherPortType"`
-	PermanentAddress                                 string   `cim:"PermanentAddress"`
-	PnPDeviceID                                      string   `cim:"PnPDeviceID"`
-	PortNumber                                       uint16   `cim:"PortNumber"`
-	PortType                                         uint16   `cim:"PortType"`
-	PowerManagementCapabilities                      []uint16 `cim:"PowerManagementCapabilities"`
-	PowerManagementSupported                         bool     `cim:"PowerManagementSupported"`
-	PowerOnHours                                     uint64   `cim:"PowerOnHours"`
-	PrimaryStatus                                    uint16   `cim:"PrimaryStatus"`
-	PromiscuousMode                                  bool     `cim:"PromiscuousMode"`
-	ReceiveLinkSpeed                                 uint64   `cim:"ReceiveLinkSpeed"`
-	RequestedSpeed                                   uint64   `cim:"RequestedSpeed"`
-	RequestedState                                   uint16   `cim:"RequestedState"`
-	Speed                                            uint64   `cim:"Speed"`
-	State                                            uint32   `cim:"State"`
-	Status                                           string   `cim:"Status"`
-	StatusDescriptions                               []string `cim:"StatusDescriptions"`
-	StatusInfo                                       uint16   `cim:"StatusInfo"`
-	SupportedMaximumTransmissionUnit                 uint64   `cim:"SupportedMaximumTransmissionUnit"`
-	SystemCreationClassName                          string   `cim:"SystemCreationClassName"`
-	SystemName                                       string   `cim:"SystemName"`
-	TimeOfLastStateChange                            string   `cim:"TimeOfLastStateChange"`
-	TotalPowerOnHours                                uint64   `cim:"TotalPowerOnHours"`
-	TransitioningToState                             uint16   `cim:"TransitioningToState"`
-	TransmitLinkSpeed                                uint64   `cim:"TransmitLinkSpeed"`
-	UsageRestriction                                 uint16   `cim:"UsageRestriction"`
-	Virtual                                          bool     `cim:"Virtual"`
-	VlanID                                           uint16   `cim:"VlanID"`
-	WdmInterface                                     bool     `cim:"WdmInterface"`
-	ISCSIInterface                                   bool     `cim:"iSCSIInterface"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                          string                                   `cim:"__PATH"`
+	ActiveMaximumTransmissionUnit                    uint64                                   `cim:"ActiveMaximumTransmissionUnit"`
+	AdditionalAvailability                           []uint16                                 `cim:"AdditionalAvailability"`
+	AdminLocked                                      bool                                     `cim:"AdminLocked"`
+	AutoSense                                        bool                                     `cim:"AutoSense"`
+	Availability                                     MSFTNetAdapterAvailability               `cim:"Availability"`
+	AvailableRequestedStates                         []uint16                                 `cim:"AvailableRequestedStates"`
+	Caption                                          string                                   `cim:"Caption"`
+	CommunicationStatus                              MSFTNetAdapterCommunicationStatus        `cim:"CommunicationStatus"`
+	ComponentID                                      string                                   `cim:"ComponentID"`
+	ConnectorPresent                                 bool                                     `cim:"ConnectorPresent"`
+	CreationClassName                                string                                   `cim:"CreationClassName"`
+	Description                                      string                                   `cim:"Description"`
+	DetailedStatus                                   MSFTNetAdapterDetailedStatus             `cim:"DetailedStatus"`
+	DeviceID                                         string                                   `cim:"DeviceID"`
+	DeviceName                                       string                                   `cim:"DeviceName"`
+	DeviceWakeUpEnable                               bool                                     `cim:"DeviceWakeUpEnable"`
+	DriverDate                                       string                                   `cim:"DriverDate"`
+	DriverDateData                                   uint64                                   `cim:"DriverDateData"`
+	DriverDescription                                string                                   `cim:"DriverDescription"`
+	DriverMajorNdisVersion                           uint8                                    `cim:"DriverMajorNdisVersion"`
+	DriverMinorNdisVersion                           uint8                                    `cim:"DriverMinorNdisVersion"`
+	DriverName                                       string                                   `cim:"DriverName"`
+	DriverProvider                                   string                                   `cim:"DriverProvider"`
+	DriverVersionString                              string                                   `cim:"DriverVersionString"`
+	ElementName                                      string                                   `cim:"ElementName"`
+	EnabledDefault                                   MSFTNetAdapterEnabledDefault             `cim:"EnabledDefault"`
+	EnabledState                                     MSFTNetAdapterEnabledState               `cim:"EnabledState"`
+	EndPointInterface                                bool                                     `cim:"EndPointInterface"`
+	ErrorCleared                                     bool                                     `cim:"ErrorCleared"`
+	ErrorDescription                                 string                                   `cim:"ErrorDescription"`
+	FullDuplex                                       bool                                     `cim:"FullDuplex"`
+	HardwareInterface                                bool                                     `cim:"HardwareInterface"`
+	HealthState                                      MSFTNetAdapterHealthState                `cim:"HealthState"`
+	Hidden                                           bool                                     `cim:"Hidden"`
+	HigherLayerInterfaceIndices                      []uint32                                 `cim:"HigherLayerInterfaceIndices"`
+	IMFilter                                         bool                                     `cim:"IMFilter"`
+	IdentifyingDescriptions                          []string                                 `cim:"IdentifyingDescriptions"`
+	InstallDate                                      string                                   `cim:"InstallDate"`
+	InstanceID                                       string                                   `cim:"InstanceID"`
+	InterfaceAdminStatus                             MSFTNetAdapterInterfaceAdminStatus       `cim:"InterfaceAdminStatus"`
+	InterfaceDescription                             string                                   `cim:"InterfaceDescription"`
+	InterfaceGuid                                    string                                   `cim:"InterfaceGuid"`
+	InterfaceIndex                                   uint32                                   `cim:"InterfaceIndex"`
+	InterfaceName                                    string                                   `cim:"InterfaceName"`
+	InterfaceOperationalStatus                       MSFTNetAdapterInterfaceOperationalStatus `cim:"InterfaceOperationalStatus"`
+	InterfaceType                                    uint32                                   `cim:"InterfaceType"`
+	LastErrorCode                                    uint32                                   `cim:"LastErrorCode"`
+	LinkTechnology                                   MSFTNetAdapterLinkTechnology             `cim:"LinkTechnology"`
+	LowerLayerInterfaceIndices                       []uint32                                 `cim:"LowerLayerInterfaceIndices"`
+	MajorDriverVersion                               uint16                                   `cim:"MajorDriverVersion"`
+	MaxQuiesceTime                                   uint64                                   `cim:"MaxQuiesceTime"`
+	MaxSpeed                                         uint64                                   `cim:"MaxSpeed"`
+	MediaConnectState                                MSFTNetAdapterMediaConnectState          `cim:"MediaConnectState"`
+	MediaDuplexState                                 MSFTNetAdapterMediaDuplexState           `cim:"MediaDuplexState"`
+	MinorDriverVersion                               uint16                                   `cim:"MinorDriverVersion"`
+	MtuSize                                          uint32                                   `cim:"MtuSize"`
+	Name                                             string                                   `cim:"Name"`
+	NdisMedium                                       MSFTNetAdapterNdisMedium                 `cim:"NdisMedium"`
+	NdisPhysicalMedium                               MSFTNetAdapterNdisPhysicalMedium         `cim:"NdisPhysicalMedium"`
+	NetLuid                                          uint64                                   `cim:"NetLuid"`
+	NetLuidIndex                                     uint32                                   `cim:"NetLuidIndex"`
+	NetworkAddresses                                 []string                                 `cim:"NetworkAddresses"`
+	NotUserRemovable                                 bool                                     `cim:"NotUserRemovable"`
+	OperatingStatus                                  MSFTNetAdapterOperatingStatus            `cim:"OperatingStatus"`
+	OperationalStatus                                []uint16                                 `cim:"OperationalStatus"`
+	OperationalStatusDownDefaultPortNotAuthenticated bool                                     `cim:"OperationalStatusDownDefaultPortNotAuthenticated"`
+	OperationalStatusDownInterfacePaused             bool                                     `cim:"OperationalStatusDownInterfacePaused"`
+	OperationalStatusDownLowPowerState               bool                                     `cim:"OperationalStatusDownLowPowerState"`
+	OperationalStatusDownMediaDisconnected           bool                                     `cim:"OperationalStatusDownMediaDisconnected"`
+	OtherEnabledState                                string                                   `cim:"OtherEnabledState"`
+	OtherIdentifyingInfo                             []string                                 `cim:"OtherIdentifyingInfo"`
+	OtherLinkTechnology                              string                                   `cim:"OtherLinkTechnology"`
+	OtherNetworkPortType                             string                                   `cim:"OtherNetworkPortType"`
+	OtherPortType                                    string                                   `cim:"OtherPortType"`
+	PermanentAddress                                 string                                   `cim:"PermanentAddress"`
+	PnPDeviceID                                      string                                   `cim:"PnPDeviceID"`
+	PortNumber                                       uint16                                   `cim:"PortNumber"`
+	PortType                                         MSFTNetAdapterPortType                   `cim:"PortType"`
+	PowerManagementCapabilities                      []uint16                                 `cim:"PowerManagementCapabilities"`
+	PowerManagementSupported                         bool                                     `cim:"PowerManagementSupported"`
+	PowerOnHours                                     uint64                                   `cim:"PowerOnHours"`
+	PrimaryStatus                                    MSFTNetAdapterPrimaryStatus              `cim:"PrimaryStatus"`
+	PromiscuousMode                                  bool                                     `cim:"PromiscuousMode"`
+	ReceiveLinkSpeed                                 uint64                                   `cim:"ReceiveLinkSpeed"`
+	RequestedSpeed                                   uint64                                   `cim:"RequestedSpeed"`
+	RequestedState                                   MSFTNetAdapterRequestedState             `cim:"RequestedState"`
+	Speed                                            uint64                                   `cim:"Speed"`
+	State                                            MSFTNetAdapterState                      `cim:"State"`
+	Status                                           MSFTNetAdapterStatus                     `cim:"Status"`
+	StatusDescriptions                               []string                                 `cim:"StatusDescriptions"`
+	StatusInfo                                       MSFTNetAdapterStatusInfo                 `cim:"StatusInfo"`
+	SupportedMaximumTransmissionUnit                 uint64                                   `cim:"SupportedMaximumTransmissionUnit"`
+	SystemCreationClassName                          string                                   `cim:"SystemCreationClassName"`
+	SystemName                                       string                                   `cim:"SystemName"`
+	TimeOfLastStateChange                            string                                   `cim:"TimeOfLastStateChange"`
+	TotalPowerOnHours                                uint64                                   `cim:"TotalPowerOnHours"`
+	TransitioningToState                             MSFTNetAdapterTransitioningToState       `cim:"TransitioningToState"`
+	TransmitLinkSpeed                                uint64                                   `cim:"TransmitLinkSpeed"`
+	UsageRestriction                                 MSFTNetAdapterUsageRestriction           `cim:"UsageRestriction"`
+	Virtual                                          bool                                     `cim:"Virtual"`
+	VlanID                                           uint16                                   `cim:"VlanID"`
+	WdmInterface                                     bool                                     `cim:"WdmInterface"`
+	ISCSIInterface                                   bool                                     `cim:"iSCSIInterface"`
 }
 
 // MSFTNetAdapterAdvancedPropertyElementSetting is the MSFT_NetAdapterAdvancedPropertyElementSetting CIM class.
 type MSFTNetAdapterAdvancedPropertyElementSetting struct {
-	IsCurrent      uint16 `cim:"IsCurrent"`
-	IsDefault      uint16 `cim:"IsDefault"`
-	IsNext         uint16 `cim:"IsNext"`
-	ManagedElement string `cim:"ManagedElement"`
-	SettingData    string `cim:"SettingData"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string                                                `cim:"__PATH"`
+	IsCurrent      MSFTNetAdapterAdvancedPropertyElementSettingIsCurrent `cim:"IsCurrent"`
+	IsDefault      MSFTNetAdapterAdvancedPropertyElementSettingIsDefault `cim:"IsDefault"`
+	IsNext         MSFTNetAdapterAdvancedPropertyElementSettingIsNext    `cim:"IsNext"`
+	ManagedElement string                                                `cim:"ManagedElement"`
+	SettingData    string                                                `cim:"SettingData"`
 }
 
 // MSFTNetAdapterAdvancedPropertySettingData is the MSFT_NetAdapterAdvancedPropertySettingData CIM class.
 type MSFTNetAdapterAdvancedPropertySettingData struct {
-	Caption                   string   `cim:"Caption"`
-	DefaultDisplayValue       string   `cim:"DefaultDisplayValue"`
-	DefaultRegistryValue      string   `cim:"DefaultRegistryValue"`
-	Description               string   `cim:"Description"`
-	DisplayName               string   `cim:"DisplayName"`
-	DisplayParameterType      uint32   `cim:"DisplayParameterType"`
-	DisplayValue              string   `cim:"DisplayValue"`
-	ElementName               string   `cim:"ElementName"`
-	InstanceID                string   `cim:"InstanceID"`
-	InterfaceDescription      string   `cim:"InterfaceDescription"`
-	Name                      string   `cim:"Name"`
-	NumericParameterBaseValue string   `cim:"NumericParameterBaseValue"`
-	NumericParameterMaxValue  string   `cim:"NumericParameterMaxValue"`
-	NumericParameterMinValue  string   `cim:"NumericParameterMinValue"`
-	NumericParameterStepValue string   `cim:"NumericParameterStepValue"`
-	Optional                  bool     `cim:"Optional"`
-	RegistryDataType          uint32   `cim:"RegistryDataType"`
-	RegistryKeyword           string   `cim:"RegistryKeyword"`
-	RegistryValue             []string `cim:"RegistryValue"`
-	Source                    uint32   `cim:"Source"`
-	SystemName                string   `cim:"SystemName"`
-	ValidDisplayValues        []string `cim:"ValidDisplayValues"`
-	ValidRegistryValues       []string `cim:"ValidRegistryValues"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                   string                                                        `cim:"__PATH"`
+	Caption                   string                                                        `cim:"Caption"`
+	DefaultDisplayValue       string                                                        `cim:"DefaultDisplayValue"`
+	DefaultRegistryValue      string                                                        `cim:"DefaultRegistryValue"`
+	Description               string                                                        `cim:"Description"`
+	DisplayName               string                                                        `cim:"DisplayName"`
+	DisplayParameterType      MSFTNetAdapterAdvancedPropertySettingDataDisplayParameterType `cim:"DisplayParameterType"`
+	DisplayValue              string                                                        `cim:"DisplayValue"`
+	ElementName               string                                                        `cim:"ElementName"`
+	InstanceID                string                                                        `cim:"InstanceID"`
+	InterfaceDescription      string                                                        `cim:"InterfaceDescription"`
+	Name                      string                                                        `cim:"Name"`
+	NumericParameterBaseValue string                                                        `cim:"NumericParameterBaseValue"`
+	NumericParameterMaxValue  string                                                        `cim:"NumericParameterMaxValue"`
+	NumericParameterMinValue  string                                                        `cim:"NumericParameterMinValue"`
+	NumericParameterStepValue string                                                        `cim:"NumericParameterStepValue"`
+	Optional                  bool                                                          `cim:"Optional"`
+	RegistryDataType          MSFTNetAdapterAdvancedPropertySettingDataRegistryDataType     `cim:"RegistryDataType"`
+	RegistryKeyword           string                                                        `cim:"RegistryKeyword"`
+	RegistryValue             []string                                                      `cim:"RegistryValue"`
+	Source                    MSFTNetAdapterAdvancedPropertySettingDataSource               `cim:"Source"`
+	SystemName                string                                                        `cim:"SystemName"`
+	ValidDisplayValues        []string                                                      `cim:"ValidDisplayValues"`
+	ValidRegistryValues       []string                                                      `cim:"ValidRegistryValues"`
 }
 
 // MSFTNetAdapterBindingElementSetting is the MSFT_NetAdapterBindingElementSetting CIM class.
 type MSFTNetAdapterBindingElementSetting struct {
-	IsCurrent      uint16 `cim:"IsCurrent"`
-	IsDefault      uint16 `cim:"IsDefault"`
-	IsNext         uint16 `cim:"IsNext"`
-	ManagedElement string `cim:"ManagedElement"`
-	SettingData    string `cim:"SettingData"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string                                       `cim:"__PATH"`
+	IsCurrent      MSFTNetAdapterBindingElementSettingIsCurrent `cim:"IsCurrent"`
+	IsDefault      MSFTNetAdapterBindingElementSettingIsDefault `cim:"IsDefault"`
+	IsNext         MSFTNetAdapterBindingElementSettingIsNext    `cim:"IsNext"`
+	ManagedElement string                                       `cim:"ManagedElement"`
+	SettingData    string                                       `cim:"SettingData"`
 }
 
 // MSFTNetAdapterBindingSettingData is the MSFT_NetAdapterBindingSettingData CIM class.
 type MSFTNetAdapterBindingSettingData struct {
-	BindName             string `cim:"BindName"`
-	Caption              string `cim:"Caption"`
-	Characteristics      uint32 `cim:"Characteristics"`
-	ComponentClassGuid   string `cim:"ComponentClassGuid"`
-	ComponentClassName   string `cim:"ComponentClassName"`
-	ComponentID          string `cim:"ComponentID"`
-	Description          string `cim:"Description"`
-	DisplayName          string `cim:"DisplayName"`
-	ElementName          string `cim:"ElementName"`
-	Enabled              bool   `cim:"Enabled"`
-	InstanceID           string `cim:"InstanceID"`
-	InterfaceDescription string `cim:"InterfaceDescription"`
-	Name                 string `cim:"Name"`
-	Source               uint32 `cim:"Source"`
-	SystemName           string `cim:"SystemName"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath              string                                 `cim:"__PATH"`
+	BindName             string                                 `cim:"BindName"`
+	Caption              string                                 `cim:"Caption"`
+	Characteristics      uint32                                 `cim:"Characteristics"`
+	ComponentClassGuid   string                                 `cim:"ComponentClassGuid"`
+	ComponentClassName   string                                 `cim:"ComponentClassName"`
+	ComponentID          string                                 `cim:"ComponentID"`
+	Description          string                                 `cim:"Description"`
+	DisplayName          string                                 `cim:"DisplayName"`
+	ElementName          string                                 `cim:"ElementName"`
+	Enabled              bool                                   `cim:"Enabled"`
+	InstanceID           string                                 `cim:"InstanceID"`
+	InterfaceDescription string                                 `cim:"InterfaceDescription"`
+	Name                 string                                 `cim:"Name"`
+	Source               MSFTNetAdapterBindingSettingDataSource `cim:"Source"`
+	SystemName           string                                 `cim:"SystemName"`
 }
 
 // MSFTNetAdapterChecksumOffloadCapabilities is the MSFT_NetAdapterChecksumOffloadCapabilities CIM class.
 type MSFTNetAdapterChecksumOffloadCapabilities struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                 string  `cim:"__PATH"`
 	IPv4ReceiveEncapsulation                wmi.Row `cim:"IPv4ReceiveEncapsulation"`
 	IPv4ReceiveIpChecksumSupported          bool    `cim:"IPv4ReceiveIpChecksumSupported"`
 	IPv4ReceiveIpOptionsSupported           bool    `cim:"IPv4ReceiveIpOptionsSupported"`
@@ -1719,75 +2047,103 @@ type MSFTNetAdapterChecksumOffloadCapabilities struct {
 
 // MSFTNetAdapterChecksumOffloadElementSetting is the MSFT_NetAdapterChecksumOffloadElementSetting CIM class.
 type MSFTNetAdapterChecksumOffloadElementSetting struct {
-	IsCurrent      uint16 `cim:"IsCurrent"`
-	IsDefault      uint16 `cim:"IsDefault"`
-	IsNext         uint16 `cim:"IsNext"`
-	ManagedElement string `cim:"ManagedElement"`
-	SettingData    string `cim:"SettingData"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string                                               `cim:"__PATH"`
+	IsCurrent      MSFTNetAdapterChecksumOffloadElementSettingIsCurrent `cim:"IsCurrent"`
+	IsDefault      MSFTNetAdapterChecksumOffloadElementSettingIsDefault `cim:"IsDefault"`
+	IsNext         MSFTNetAdapterChecksumOffloadElementSettingIsNext    `cim:"IsNext"`
+	ManagedElement string                                               `cim:"ManagedElement"`
+	SettingData    string                                               `cim:"SettingData"`
 }
 
 // MSFTNetAdapterChecksumOffloadEncapsulationTypes is the MSFT_NetAdapterChecksumOffloadEncapsulationTypes CIM class.
 type MSFTNetAdapterChecksumOffloadEncapsulationTypes struct {
-	NdisEncapsulationIeeLlcSnapRouted   bool `cim:"NdisEncapsulationIeeLlcSnapRouted"`
-	NdisEncapsulationIeee8023           bool `cim:"NdisEncapsulationIeee802_3"`
-	NdisEncapsulationIeee8023PAndQInOob bool `cim:"NdisEncapsulationIeee802_3PAndQInOob"`
-	NdisEncapsulationIeee8023pAndq      bool `cim:"NdisEncapsulationIeee802_3pAndq"`
-	NdisEncapsulationNotNull            bool `cim:"NdisEncapsulationNotNull"`
-	NdisEncapsulationNotSupported       bool `cim:"NdisEncapsulationNotSupported"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                             string `cim:"__PATH"`
+	NdisEncapsulationIeeLlcSnapRouted   bool   `cim:"NdisEncapsulationIeeLlcSnapRouted"`
+	NdisEncapsulationIeee8023           bool   `cim:"NdisEncapsulationIeee802_3"`
+	NdisEncapsulationIeee8023PAndQInOob bool   `cim:"NdisEncapsulationIeee802_3PAndQInOob"`
+	NdisEncapsulationIeee8023pAndq      bool   `cim:"NdisEncapsulationIeee802_3pAndq"`
+	NdisEncapsulationNotNull            bool   `cim:"NdisEncapsulationNotNull"`
+	NdisEncapsulationNotSupported       bool   `cim:"NdisEncapsulationNotSupported"`
 }
 
 // MSFTNetAdapterChecksumOffloadSettingData is the MSFT_NetAdapterChecksumOffloadSettingData CIM class.
 type MSFTNetAdapterChecksumOffloadSettingData struct {
-	Caption                             string  `cim:"Caption"`
-	ChecksumOffloadHardwareCapabilities wmi.Row `cim:"ChecksumOffloadHardwareCapabilities"`
-	Description                         string  `cim:"Description"`
-	ElementName                         string  `cim:"ElementName"`
-	InstanceID                          string  `cim:"InstanceID"`
-	InterfaceDescription                string  `cim:"InterfaceDescription"`
-	IpIPv4Enabled                       uint32  `cim:"IpIPv4Enabled"`
-	Name                                string  `cim:"Name"`
-	Source                              uint32  `cim:"Source"`
-	SystemName                          string  `cim:"SystemName"`
-	TcpIPv4Enabled                      uint32  `cim:"TcpIPv4Enabled"`
-	TcpIPv6Enabled                      uint32  `cim:"TcpIPv6Enabled"`
-	UdpIPv4Enabled                      uint32  `cim:"UdpIPv4Enabled"`
-	UdpIPv6Enabled                      uint32  `cim:"UdpIPv6Enabled"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                             string                                                 `cim:"__PATH"`
+	Caption                             string                                                 `cim:"Caption"`
+	ChecksumOffloadHardwareCapabilities wmi.Row                                                `cim:"ChecksumOffloadHardwareCapabilities"`
+	Description                         string                                                 `cim:"Description"`
+	ElementName                         string                                                 `cim:"ElementName"`
+	InstanceID                          string                                                 `cim:"InstanceID"`
+	InterfaceDescription                string                                                 `cim:"InterfaceDescription"`
+	IpIPv4Enabled                       MSFTNetAdapterChecksumOffloadSettingDataIpIPv4Enabled  `cim:"IpIPv4Enabled"`
+	Name                                string                                                 `cim:"Name"`
+	Source                              MSFTNetAdapterChecksumOffloadSettingDataSource         `cim:"Source"`
+	SystemName                          string                                                 `cim:"SystemName"`
+	TcpIPv4Enabled                      MSFTNetAdapterChecksumOffloadSettingDataTcpIPv4Enabled `cim:"TcpIPv4Enabled"`
+	TcpIPv6Enabled                      MSFTNetAdapterChecksumOffloadSettingDataTcpIPv6Enabled `cim:"TcpIPv6Enabled"`
+	UdpIPv4Enabled                      MSFTNetAdapterChecksumOffloadSettingDataUdpIPv4Enabled `cim:"UdpIPv4Enabled"`
+	UdpIPv6Enabled                      MSFTNetAdapterChecksumOffloadSettingDataUdpIPv6Enabled `cim:"UdpIPv6Enabled"`
 }
 
 // MSFTNetAdapterDataPathConfigurationElementSetting is the MSFT_NetAdapterDataPathConfigurationElementSetting CIM class.
 type MSFTNetAdapterDataPathConfigurationElementSetting struct {
-	IsCurrent      uint16 `cim:"IsCurrent"`
-	IsDefault      uint16 `cim:"IsDefault"`
-	IsNext         uint16 `cim:"IsNext"`
-	ManagedElement string `cim:"ManagedElement"`
-	SettingData    string `cim:"SettingData"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string                                                     `cim:"__PATH"`
+	IsCurrent      MSFTNetAdapterDataPathConfigurationElementSettingIsCurrent `cim:"IsCurrent"`
+	IsDefault      MSFTNetAdapterDataPathConfigurationElementSettingIsDefault `cim:"IsDefault"`
+	IsNext         MSFTNetAdapterDataPathConfigurationElementSettingIsNext    `cim:"IsNext"`
+	ManagedElement string                                                     `cim:"ManagedElement"`
+	SettingData    string                                                     `cim:"SettingData"`
 }
 
 // MSFTNetAdapterDataPathConfigurationSettingData is the MSFT_NetAdapterDataPathConfigurationSettingData CIM class.
 type MSFTNetAdapterDataPathConfigurationSettingData struct {
-	Caption              string `cim:"Caption"`
-	Description          string `cim:"Description"`
-	ElementName          string `cim:"ElementName"`
-	InstanceID           string `cim:"InstanceID"`
-	InterfaceDescription string `cim:"InterfaceDescription"`
-	Name                 string `cim:"Name"`
-	Profile              string `cim:"Profile"`
-	ProfileSource        uint32 `cim:"ProfileSource"`
-	Source               uint32 `cim:"Source"`
-	SystemName           string `cim:"SystemName"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath              string                                                      `cim:"__PATH"`
+	Caption              string                                                      `cim:"Caption"`
+	Description          string                                                      `cim:"Description"`
+	ElementName          string                                                      `cim:"ElementName"`
+	InstanceID           string                                                      `cim:"InstanceID"`
+	InterfaceDescription string                                                      `cim:"InterfaceDescription"`
+	Name                 string                                                      `cim:"Name"`
+	Profile              string                                                      `cim:"Profile"`
+	ProfileSource        MSFTNetAdapterDataPathConfigurationSettingDataProfileSource `cim:"ProfileSource"`
+	Source               MSFTNetAdapterDataPathConfigurationSettingDataSource        `cim:"Source"`
+	SystemName           string                                                      `cim:"SystemName"`
 }
 
 // MSFTNetAdapterElementSettingData is the MSFT_NetAdapterElementSettingData CIM class.
 type MSFTNetAdapterElementSettingData struct {
-	IsCurrent      uint16 `cim:"IsCurrent"`
-	IsDefault      uint16 `cim:"IsDefault"`
-	IsNext         uint16 `cim:"IsNext"`
-	ManagedElement string `cim:"ManagedElement"`
-	SettingData    string `cim:"SettingData"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string                                    `cim:"__PATH"`
+	IsCurrent      MSFTNetAdapterElementSettingDataIsCurrent `cim:"IsCurrent"`
+	IsDefault      MSFTNetAdapterElementSettingDataIsDefault `cim:"IsDefault"`
+	IsNext         MSFTNetAdapterElementSettingDataIsNext    `cim:"IsNext"`
+	ManagedElement string                                    `cim:"ManagedElement"`
+	SettingData    string                                    `cim:"SettingData"`
 }
 
 // MSFTNetAdapterEncapsulatedPacketTaskOffloadCapabilities is the MSFT_NetAdapterEncapsulatedPacketTaskOffloadCapabilities CIM class.
 type MSFTNetAdapterEncapsulatedPacketTaskOffloadCapabilities struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                          string `cim:"__PATH"`
 	LsoV2Supported                   uint32 `cim:"LsoV2Supported"`
 	ReceiveChecksumOffloadSupported  uint32 `cim:"ReceiveChecksumOffloadSupported"`
 	RssSupported                     uint32 `cim:"RssSupported"`
@@ -1797,6 +2153,10 @@ type MSFTNetAdapterEncapsulatedPacketTaskOffloadCapabilities struct {
 
 // MSFTNetAdapterEncapsulatedPacketTaskOffloadCapabilitiesEx is the MSFT_NetAdapterEncapsulatedPacketTaskOffloadCapabilitiesEx CIM class.
 type MSFTNetAdapterEncapsulatedPacketTaskOffloadCapabilitiesEx struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                          string `cim:"__PATH"`
 	IsVxlanUDPPortConfigurable       bool   `cim:"IsVxlanUDPPortConfigurable"`
 	LsoV2Supported                   uint32 `cim:"LsoV2Supported"`
 	ReceiveChecksumOffloadSupported  uint32 `cim:"ReceiveChecksumOffloadSupported"`
@@ -1808,139 +2168,167 @@ type MSFTNetAdapterEncapsulatedPacketTaskOffloadCapabilitiesEx struct {
 
 // MSFTNetAdapterEncapsulatedPacketTaskOffloadElementSetting is the MSFT_NetAdapterEncapsulatedPacketTaskOffloadElementSetting CIM class.
 type MSFTNetAdapterEncapsulatedPacketTaskOffloadElementSetting struct {
-	IsCurrent      uint16 `cim:"IsCurrent"`
-	IsDefault      uint16 `cim:"IsDefault"`
-	IsNext         uint16 `cim:"IsNext"`
-	ManagedElement string `cim:"ManagedElement"`
-	SettingData    string `cim:"SettingData"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string                                                             `cim:"__PATH"`
+	IsCurrent      MSFTNetAdapterEncapsulatedPacketTaskOffloadElementSettingIsCurrent `cim:"IsCurrent"`
+	IsDefault      MSFTNetAdapterEncapsulatedPacketTaskOffloadElementSettingIsDefault `cim:"IsDefault"`
+	IsNext         MSFTNetAdapterEncapsulatedPacketTaskOffloadElementSettingIsNext    `cim:"IsNext"`
+	ManagedElement string                                                             `cim:"ManagedElement"`
+	SettingData    string                                                             `cim:"SettingData"`
 }
 
 // MSFTNetAdapterEncapsulatedPacketTaskOffloadSettingData is the MSFT_NetAdapterEncapsulatedPacketTaskOffloadSettingData CIM class.
 type MSFTNetAdapterEncapsulatedPacketTaskOffloadSettingData struct {
-	Caption                                                string  `cim:"Caption"`
-	Description                                            string  `cim:"Description"`
-	ElementName                                            string  `cim:"ElementName"`
-	EncapsulatedPacketTaskOffloadHardwareCapabilitiesNvgre wmi.Row `cim:"EncapsulatedPacketTaskOffloadHardwareCapabilitiesNvgre"`
-	EncapsulatedPacketTaskOffloadHardwareCapabilitiesVxlan wmi.Row `cim:"EncapsulatedPacketTaskOffloadHardwareCapabilitiesVxlan"`
-	EncapsulationType                                      uint16  `cim:"EncapsulationType"`
-	InstanceID                                             string  `cim:"InstanceID"`
-	InterfaceDescription                                   string  `cim:"InterfaceDescription"`
-	IsVxlanUDPPortConfigurable                             bool    `cim:"IsVxlanUDPPortConfigurable"`
-	Name                                                   string  `cim:"Name"`
-	NvgreEncapsulatedPacketTaskOffloadEnabled              bool    `cim:"NvgreEncapsulatedPacketTaskOffloadEnabled"`
-	Source                                                 uint32  `cim:"Source"`
-	SystemName                                             string  `cim:"SystemName"`
-	VxlanEncapsulatedPacketTaskOffloadEnabled              bool    `cim:"VxlanEncapsulatedPacketTaskOffloadEnabled"`
-	VxlanUDPPortNumber                                     uint16  `cim:"VxlanUDPPortNumber"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                                string                                                                  `cim:"__PATH"`
+	Caption                                                string                                                                  `cim:"Caption"`
+	Description                                            string                                                                  `cim:"Description"`
+	ElementName                                            string                                                                  `cim:"ElementName"`
+	EncapsulatedPacketTaskOffloadHardwareCapabilitiesNvgre wmi.Row                                                                 `cim:"EncapsulatedPacketTaskOffloadHardwareCapabilitiesNvgre"`
+	EncapsulatedPacketTaskOffloadHardwareCapabilitiesVxlan wmi.Row                                                                 `cim:"EncapsulatedPacketTaskOffloadHardwareCapabilitiesVxlan"`
+	EncapsulationType                                      MSFTNetAdapterEncapsulatedPacketTaskOffloadSettingDataEncapsulationType `cim:"EncapsulationType"`
+	InstanceID                                             string                                                                  `cim:"InstanceID"`
+	InterfaceDescription                                   string                                                                  `cim:"InterfaceDescription"`
+	IsVxlanUDPPortConfigurable                             bool                                                                    `cim:"IsVxlanUDPPortConfigurable"`
+	Name                                                   string                                                                  `cim:"Name"`
+	NvgreEncapsulatedPacketTaskOffloadEnabled              bool                                                                    `cim:"NvgreEncapsulatedPacketTaskOffloadEnabled"`
+	Source                                                 MSFTNetAdapterEncapsulatedPacketTaskOffloadSettingDataSource            `cim:"Source"`
+	SystemName                                             string                                                                  `cim:"SystemName"`
+	VxlanEncapsulatedPacketTaskOffloadEnabled              bool                                                                    `cim:"VxlanEncapsulatedPacketTaskOffloadEnabled"`
+	VxlanUDPPortNumber                                     uint16                                                                  `cim:"VxlanUDPPortNumber"`
 }
 
 // MSFTNetAdapterHardwareInfoElementSetting is the MSFT_NetAdapterHardwareInfoElementSetting CIM class.
 type MSFTNetAdapterHardwareInfoElementSetting struct {
-	IsCurrent      uint16 `cim:"IsCurrent"`
-	IsDefault      uint16 `cim:"IsDefault"`
-	IsNext         uint16 `cim:"IsNext"`
-	ManagedElement string `cim:"ManagedElement"`
-	SettingData    string `cim:"SettingData"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string                                            `cim:"__PATH"`
+	IsCurrent      MSFTNetAdapterHardwareInfoElementSettingIsCurrent `cim:"IsCurrent"`
+	IsDefault      MSFTNetAdapterHardwareInfoElementSettingIsDefault `cim:"IsDefault"`
+	IsNext         MSFTNetAdapterHardwareInfoElementSettingIsNext    `cim:"IsNext"`
+	ManagedElement string                                            `cim:"ManagedElement"`
+	SettingData    string                                            `cim:"SettingData"`
 }
 
 // MSFTNetAdapterHardwareInfoSettingData is the MSFT_NetAdapterHardwareInfoSettingData CIM class.
 type MSFTNetAdapterHardwareInfoSettingData struct {
-	BusNumber                         uint32    `cim:"BusNumber"`
-	Caption                           string    `cim:"Caption"`
-	Description                       string    `cim:"Description"`
-	DeviceNumber                      uint32    `cim:"DeviceNumber"`
-	Dma64BitSupported                 bool      `cim:"Dma64BitSupported"`
-	ElementName                       string    `cim:"ElementName"`
-	FunctionNumber                    uint32    `cim:"FunctionNumber"`
-	InstanceID                        string    `cim:"InstanceID"`
-	InterfaceDescription              string    `cim:"InterfaceDescription"`
-	LineBasedInterruptSupported       bool      `cim:"LineBasedInterruptSupported"`
-	LineBasedInterrupts               bool      `cim:"LineBasedInterrupts"`
-	LocationInformationString         string    `cim:"LocationInformationString"`
-	MaxInterruptMessages              uint32    `cim:"MaxInterruptMessages"`
-	MsiEnabled                        bool      `cim:"MsiEnabled"`
-	MsiInterruptSupported             bool      `cim:"MsiInterruptSupported"`
-	MsiSupported                      bool      `cim:"MsiSupported"`
-	MsiXEnabled                       bool      `cim:"MsiXEnabled"`
-	MsiXInterruptSupported            bool      `cim:"MsiXInterruptSupported"`
-	MsiXSupported                     bool      `cim:"MsiXSupported"`
-	MsixMessageAffinityArray          []wmi.Row `cim:"MsixMessageAffinityArray"`
-	Name                              string    `cim:"Name"`
-	NoInterrupt                       bool      `cim:"NoInterrupt"`
-	NumMsiMessages                    uint32    `cim:"NumMsiMessages"`
-	NumMsixTableEntries               uint32    `cim:"NumMsixTableEntries"`
-	NumaNode                          uint16    `cim:"NumaNode"`
-	PciCurrentSpeedAndMode            uint32    `cim:"PciCurrentSpeedAndMode"`
-	PciDeviceLabelID                  uint32    `cim:"PciDeviceLabelID"`
-	PciDeviceLabelString              string    `cim:"PciDeviceLabelString"`
-	PciDeviceType                     uint32    `cim:"PciDeviceType"`
-	PciExpressCurrentLinkSpeedEncoded uint32    `cim:"PciExpressCurrentLinkSpeedEncoded"`
-	PciExpressCurrentLinkWidth        uint32    `cim:"PciExpressCurrentLinkWidth"`
-	PciExpressCurrentPayloadSize      uint32    `cim:"PciExpressCurrentPayloadSize"`
-	PciExpressMaxLinkSpeedEncoded     uint32    `cim:"PciExpressMaxLinkSpeedEncoded"`
-	PciExpressMaxLinkWidth            uint32    `cim:"PciExpressMaxLinkWidth"`
-	PciExpressMaxPayloadSize          uint32    `cim:"PciExpressMaxPayloadSize"`
-	PciExpressMaxReadRequestSize      uint32    `cim:"PciExpressMaxReadRequestSize"`
-	PciExpressVersion                 uint32    `cim:"PciExpressVersion"`
-	PciXCurrentSpeedAndMode           uint32    `cim:"PciXCurrentSpeedAndMode"`
-	S0WakeupSupported                 bool      `cim:"S0WakeupSupported"`
-	SegmentNumber                     uint32    `cim:"SegmentNumber"`
-	SlotNumber                        uint32    `cim:"SlotNumber"`
-	Source                            uint32    `cim:"Source"`
-	SriovSupport                      uint32    `cim:"SriovSupport"`
-	SystemName                        string    `cim:"SystemName"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                           string                                                                 `cim:"__PATH"`
+	BusNumber                         uint32                                                                 `cim:"BusNumber"`
+	Caption                           string                                                                 `cim:"Caption"`
+	Description                       string                                                                 `cim:"Description"`
+	DeviceNumber                      uint32                                                                 `cim:"DeviceNumber"`
+	Dma64BitSupported                 bool                                                                   `cim:"Dma64BitSupported"`
+	ElementName                       string                                                                 `cim:"ElementName"`
+	FunctionNumber                    uint32                                                                 `cim:"FunctionNumber"`
+	InstanceID                        string                                                                 `cim:"InstanceID"`
+	InterfaceDescription              string                                                                 `cim:"InterfaceDescription"`
+	LineBasedInterruptSupported       bool                                                                   `cim:"LineBasedInterruptSupported"`
+	LineBasedInterrupts               bool                                                                   `cim:"LineBasedInterrupts"`
+	LocationInformationString         string                                                                 `cim:"LocationInformationString"`
+	MaxInterruptMessages              uint32                                                                 `cim:"MaxInterruptMessages"`
+	MsiEnabled                        bool                                                                   `cim:"MsiEnabled"`
+	MsiInterruptSupported             bool                                                                   `cim:"MsiInterruptSupported"`
+	MsiSupported                      bool                                                                   `cim:"MsiSupported"`
+	MsiXEnabled                       bool                                                                   `cim:"MsiXEnabled"`
+	MsiXInterruptSupported            bool                                                                   `cim:"MsiXInterruptSupported"`
+	MsiXSupported                     bool                                                                   `cim:"MsiXSupported"`
+	MsixMessageAffinityArray          []wmi.Row                                                              `cim:"MsixMessageAffinityArray"`
+	Name                              string                                                                 `cim:"Name"`
+	NoInterrupt                       bool                                                                   `cim:"NoInterrupt"`
+	NumMsiMessages                    uint32                                                                 `cim:"NumMsiMessages"`
+	NumMsixTableEntries               uint32                                                                 `cim:"NumMsixTableEntries"`
+	NumaNode                          uint16                                                                 `cim:"NumaNode"`
+	PciCurrentSpeedAndMode            MSFTNetAdapterHardwareInfoSettingDataPciCurrentSpeedAndMode            `cim:"PciCurrentSpeedAndMode"`
+	PciDeviceLabelID                  uint32                                                                 `cim:"PciDeviceLabelID"`
+	PciDeviceLabelString              string                                                                 `cim:"PciDeviceLabelString"`
+	PciDeviceType                     MSFTNetAdapterHardwareInfoSettingDataPciDeviceType                     `cim:"PciDeviceType"`
+	PciExpressCurrentLinkSpeedEncoded MSFTNetAdapterHardwareInfoSettingDataPciExpressCurrentLinkSpeedEncoded `cim:"PciExpressCurrentLinkSpeedEncoded"`
+	PciExpressCurrentLinkWidth        uint32                                                                 `cim:"PciExpressCurrentLinkWidth"`
+	PciExpressCurrentPayloadSize      uint32                                                                 `cim:"PciExpressCurrentPayloadSize"`
+	PciExpressMaxLinkSpeedEncoded     MSFTNetAdapterHardwareInfoSettingDataPciExpressMaxLinkSpeedEncoded     `cim:"PciExpressMaxLinkSpeedEncoded"`
+	PciExpressMaxLinkWidth            uint32                                                                 `cim:"PciExpressMaxLinkWidth"`
+	PciExpressMaxPayloadSize          uint32                                                                 `cim:"PciExpressMaxPayloadSize"`
+	PciExpressMaxReadRequestSize      uint32                                                                 `cim:"PciExpressMaxReadRequestSize"`
+	PciExpressVersion                 MSFTNetAdapterHardwareInfoSettingDataPciExpressVersion                 `cim:"PciExpressVersion"`
+	PciXCurrentSpeedAndMode           MSFTNetAdapterHardwareInfoSettingDataPciXCurrentSpeedAndMode           `cim:"PciXCurrentSpeedAndMode"`
+	S0WakeupSupported                 bool                                                                   `cim:"S0WakeupSupported"`
+	SegmentNumber                     uint32                                                                 `cim:"SegmentNumber"`
+	SlotNumber                        uint32                                                                 `cim:"SlotNumber"`
+	Source                            MSFTNetAdapterHardwareInfoSettingDataSource                            `cim:"Source"`
+	SriovSupport                      MSFTNetAdapterHardwareInfoSettingDataSriovSupport                      `cim:"SriovSupport"`
+	SystemName                        string                                                                 `cim:"SystemName"`
 }
 
 // MSFTNetAdapterIPsecOffloadV2ElementSetting is the MSFT_NetAdapterIPsecOffloadV2ElementSetting CIM class.
 type MSFTNetAdapterIPsecOffloadV2ElementSetting struct {
-	IsCurrent      uint16 `cim:"IsCurrent"`
-	IsDefault      uint16 `cim:"IsDefault"`
-	IsNext         uint16 `cim:"IsNext"`
-	ManagedElement string `cim:"ManagedElement"`
-	SettingData    string `cim:"SettingData"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string                                              `cim:"__PATH"`
+	IsCurrent      MSFTNetAdapterIPsecOffloadV2ElementSettingIsCurrent `cim:"IsCurrent"`
+	IsDefault      MSFTNetAdapterIPsecOffloadV2ElementSettingIsDefault `cim:"IsDefault"`
+	IsNext         MSFTNetAdapterIPsecOffloadV2ElementSettingIsNext    `cim:"IsNext"`
+	ManagedElement string                                              `cim:"ManagedElement"`
+	SettingData    string                                              `cim:"SettingData"`
 }
 
 // MSFTNetAdapterIPsecOffloadV2SettingData is the MSFT_NetAdapterIPsecOffloadV2SettingData CIM class.
 type MSFTNetAdapterIPsecOffloadV2SettingData struct {
-	AhEnabled                             bool   `cim:"AhEnabled"`
-	AhEspCombinedEnabled                  bool   `cim:"AhEspCombinedEnabled"`
-	AhEspCombinedSupported                bool   `cim:"AhEspCombinedSupported"`
-	AhSupported                           bool   `cim:"AhSupported"`
-	AuthenticationAlgorithmsEnabled       uint32 `cim:"AuthenticationAlgorithmsEnabled"`
-	AuthenticationAlgorithmsSupported     uint32 `cim:"AuthenticationAlgorithmsSupported"`
-	Caption                               string `cim:"Caption"`
-	Description                           string `cim:"Description"`
-	ElementName                           string `cim:"ElementName"`
-	Enabled                               bool   `cim:"Enabled"`
-	EncryptionAlgorithmsEnabled           uint32 `cim:"EncryptionAlgorithmsEnabled"`
-	EncryptionAlgorithmsSupported         uint32 `cim:"EncryptionAlgorithmsSupported"`
-	EspEnabled                            bool   `cim:"EspEnabled"`
-	EspSupported                          bool   `cim:"EspSupported"`
-	IPv4OptionsEnabled                    bool   `cim:"IPv4OptionsEnabled"`
-	IPv4OptionsSupported                  bool   `cim:"IPv4OptionsSupported"`
-	IPv6Enabled                           bool   `cim:"IPv6Enabled"`
-	IPv6NonIPsecExtensionHeadersEnabled   bool   `cim:"IPv6NonIPsecExtensionHeadersEnabled"`
-	IPv6NonIPsecExtensionHeadersSupported bool   `cim:"IPv6NonIPsecExtensionHeadersSupported"`
-	IPv6Supported                         bool   `cim:"IPv6Supported"`
-	InstanceID                            string `cim:"InstanceID"`
-	InterfaceDescription                  string `cim:"InterfaceDescription"`
-	LsoEnabled                            bool   `cim:"LsoEnabled"`
-	LsoSupported                          bool   `cim:"LsoSupported"`
-	Name                                  string `cim:"Name"`
-	SaOffloadCapacityEnabled              uint32 `cim:"SaOffloadCapacityEnabled"`
-	SaOffloadCapacitySupported            uint32 `cim:"SaOffloadCapacitySupported"`
-	Source                                uint32 `cim:"Source"`
-	SystemName                            string `cim:"SystemName"`
-	TransportEnabled                      bool   `cim:"TransportEnabled"`
-	TransportSupported                    bool   `cim:"TransportSupported"`
-	TunnelEnabled                         bool   `cim:"TunnelEnabled"`
-	TunnelSupported                       bool   `cim:"TunnelSupported"`
-	UdpEspEnabled                         uint32 `cim:"UdpEspEnabled"`
-	UdpEspSupported                       uint32 `cim:"UdpEspSupported"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                               string                                        `cim:"__PATH"`
+	AhEnabled                             bool                                          `cim:"AhEnabled"`
+	AhEspCombinedEnabled                  bool                                          `cim:"AhEspCombinedEnabled"`
+	AhEspCombinedSupported                bool                                          `cim:"AhEspCombinedSupported"`
+	AhSupported                           bool                                          `cim:"AhSupported"`
+	AuthenticationAlgorithmsEnabled       uint32                                        `cim:"AuthenticationAlgorithmsEnabled"`
+	AuthenticationAlgorithmsSupported     uint32                                        `cim:"AuthenticationAlgorithmsSupported"`
+	Caption                               string                                        `cim:"Caption"`
+	Description                           string                                        `cim:"Description"`
+	ElementName                           string                                        `cim:"ElementName"`
+	Enabled                               bool                                          `cim:"Enabled"`
+	EncryptionAlgorithmsEnabled           uint32                                        `cim:"EncryptionAlgorithmsEnabled"`
+	EncryptionAlgorithmsSupported         uint32                                        `cim:"EncryptionAlgorithmsSupported"`
+	EspEnabled                            bool                                          `cim:"EspEnabled"`
+	EspSupported                          bool                                          `cim:"EspSupported"`
+	IPv4OptionsEnabled                    bool                                          `cim:"IPv4OptionsEnabled"`
+	IPv4OptionsSupported                  bool                                          `cim:"IPv4OptionsSupported"`
+	IPv6Enabled                           bool                                          `cim:"IPv6Enabled"`
+	IPv6NonIPsecExtensionHeadersEnabled   bool                                          `cim:"IPv6NonIPsecExtensionHeadersEnabled"`
+	IPv6NonIPsecExtensionHeadersSupported bool                                          `cim:"IPv6NonIPsecExtensionHeadersSupported"`
+	IPv6Supported                         bool                                          `cim:"IPv6Supported"`
+	InstanceID                            string                                        `cim:"InstanceID"`
+	InterfaceDescription                  string                                        `cim:"InterfaceDescription"`
+	LsoEnabled                            bool                                          `cim:"LsoEnabled"`
+	LsoSupported                          bool                                          `cim:"LsoSupported"`
+	Name                                  string                                        `cim:"Name"`
+	SaOffloadCapacityEnabled              uint32                                        `cim:"SaOffloadCapacityEnabled"`
+	SaOffloadCapacitySupported            uint32                                        `cim:"SaOffloadCapacitySupported"`
+	Source                                MSFTNetAdapterIPsecOffloadV2SettingDataSource `cim:"Source"`
+	SystemName                            string                                        `cim:"SystemName"`
+	TransportEnabled                      bool                                          `cim:"TransportEnabled"`
+	TransportSupported                    bool                                          `cim:"TransportSupported"`
+	TunnelEnabled                         bool                                          `cim:"TunnelEnabled"`
+	TunnelSupported                       bool                                          `cim:"TunnelSupported"`
+	UdpEspEnabled                         uint32                                        `cim:"UdpEspEnabled"`
+	UdpEspSupported                       uint32                                        `cim:"UdpEspSupported"`
 }
 
 // MSFTNetAdapterLargeSendOffloadV1Capabilities is the MSFT_NetAdapterLargeSendOffloadV1Capabilities CIM class.
 type MSFTNetAdapterLargeSendOffloadV1Capabilities struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                      string  `cim:"__PATH"`
 	IPv4Encapsulation            wmi.Row `cim:"IPv4Encapsulation"`
 	IPv4IpOptionsSupported       bool    `cim:"IPv4IpOptionsSupported"`
 	IPv4MaxOffloadSizeSupported  uint32  `cim:"IPv4MaxOffloadSizeSupported"`
@@ -1950,6 +2338,10 @@ type MSFTNetAdapterLargeSendOffloadV1Capabilities struct {
 
 // MSFTNetAdapterLargeSendOffloadV2Capabilities is the MSFT_NetAdapterLargeSendOffloadV2Capabilities CIM class.
 type MSFTNetAdapterLargeSendOffloadV2Capabilities struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                         string  `cim:"__PATH"`
 	IPv4Encapsulation               wmi.Row `cim:"IPv4Encapsulation"`
 	IPv4MaxOffloadSizeSupported     uint32  `cim:"IPv4MaxOffloadSizeSupported"`
 	IPv4MinSegmentCountSupported    uint32  `cim:"IPv4MinSegmentCountSupported"`
@@ -1962,364 +2354,476 @@ type MSFTNetAdapterLargeSendOffloadV2Capabilities struct {
 
 // MSFTNetAdapterLsoElementSetting is the MSFT_NetAdapterLsoElementSetting CIM class.
 type MSFTNetAdapterLsoElementSetting struct {
-	IsCurrent      uint16 `cim:"IsCurrent"`
-	IsDefault      uint16 `cim:"IsDefault"`
-	IsNext         uint16 `cim:"IsNext"`
-	ManagedElement string `cim:"ManagedElement"`
-	SettingData    string `cim:"SettingData"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string                                   `cim:"__PATH"`
+	IsCurrent      MSFTNetAdapterLsoElementSettingIsCurrent `cim:"IsCurrent"`
+	IsDefault      MSFTNetAdapterLsoElementSettingIsDefault `cim:"IsDefault"`
+	IsNext         MSFTNetAdapterLsoElementSettingIsNext    `cim:"IsNext"`
+	ManagedElement string                                   `cim:"ManagedElement"`
+	SettingData    string                                   `cim:"SettingData"`
 }
 
 // MSFTNetAdapterLsoEncapsulationTypes is the MSFT_NetAdapterLsoEncapsulationTypes CIM class.
 type MSFTNetAdapterLsoEncapsulationTypes struct {
-	NdisEncapsulationIeeLlcSnapRouted   bool `cim:"NdisEncapsulationIeeLlcSnapRouted"`
-	NdisEncapsulationIeee8023           bool `cim:"NdisEncapsulationIeee802_3"`
-	NdisEncapsulationIeee8023PAndQInOob bool `cim:"NdisEncapsulationIeee802_3PAndQInOob"`
-	NdisEncapsulationIeee8023pAndq      bool `cim:"NdisEncapsulationIeee802_3pAndq"`
-	NdisEncapsulationNotNull            bool `cim:"NdisEncapsulationNotNull"`
-	NdisEncapsulationNotSupported       bool `cim:"NdisEncapsulationNotSupported"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                             string `cim:"__PATH"`
+	NdisEncapsulationIeeLlcSnapRouted   bool   `cim:"NdisEncapsulationIeeLlcSnapRouted"`
+	NdisEncapsulationIeee8023           bool   `cim:"NdisEncapsulationIeee802_3"`
+	NdisEncapsulationIeee8023PAndQInOob bool   `cim:"NdisEncapsulationIeee802_3PAndQInOob"`
+	NdisEncapsulationIeee8023pAndq      bool   `cim:"NdisEncapsulationIeee802_3pAndq"`
+	NdisEncapsulationNotNull            bool   `cim:"NdisEncapsulationNotNull"`
+	NdisEncapsulationNotSupported       bool   `cim:"NdisEncapsulationNotSupported"`
 }
 
 // MSFTNetAdapterLsoSettingData is the MSFT_NetAdapterLsoSettingData CIM class.
 type MSFTNetAdapterLsoSettingData struct {
-	Caption                                string  `cim:"Caption"`
-	Description                            string  `cim:"Description"`
-	ElementName                            string  `cim:"ElementName"`
-	IPv4Enabled                            bool    `cim:"IPv4Enabled"`
-	IPv6Enabled                            bool    `cim:"IPv6Enabled"`
-	InstanceID                             string  `cim:"InstanceID"`
-	InterfaceDescription                   string  `cim:"InterfaceDescription"`
-	LargeSendOffloadV1HardwareCapabilities wmi.Row `cim:"LargeSendOffloadV1HardwareCapabilities"`
-	LargeSendOffloadV2HardwareCapabilities wmi.Row `cim:"LargeSendOffloadV2HardwareCapabilities"`
-	MaximumLsoVersionSupported             uint32  `cim:"MaximumLsoVersionSupported"`
-	Name                                   string  `cim:"Name"`
-	Source                                 uint32  `cim:"Source"`
-	SystemName                             string  `cim:"SystemName"`
-	V1IPv4Enabled                          bool    `cim:"V1IPv4Enabled"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                string                                                 `cim:"__PATH"`
+	Caption                                string                                                 `cim:"Caption"`
+	Description                            string                                                 `cim:"Description"`
+	ElementName                            string                                                 `cim:"ElementName"`
+	IPv4Enabled                            bool                                                   `cim:"IPv4Enabled"`
+	IPv6Enabled                            bool                                                   `cim:"IPv6Enabled"`
+	InstanceID                             string                                                 `cim:"InstanceID"`
+	InterfaceDescription                   string                                                 `cim:"InterfaceDescription"`
+	LargeSendOffloadV1HardwareCapabilities wmi.Row                                                `cim:"LargeSendOffloadV1HardwareCapabilities"`
+	LargeSendOffloadV2HardwareCapabilities wmi.Row                                                `cim:"LargeSendOffloadV2HardwareCapabilities"`
+	MaximumLsoVersionSupported             MSFTNetAdapterLsoSettingDataMaximumLsoVersionSupported `cim:"MaximumLsoVersionSupported"`
+	Name                                   string                                                 `cim:"Name"`
+	Source                                 MSFTNetAdapterLsoSettingDataSource                     `cim:"Source"`
+	SystemName                             string                                                 `cim:"SystemName"`
+	V1IPv4Enabled                          bool                                                   `cim:"V1IPv4Enabled"`
 }
 
 // MSFTNetAdapterPacketDirectElementSetting is the MSFT_NetAdapterPacketDirectElementSetting CIM class.
 type MSFTNetAdapterPacketDirectElementSetting struct {
-	IsCurrent      uint16 `cim:"IsCurrent"`
-	IsDefault      uint16 `cim:"IsDefault"`
-	IsNext         uint16 `cim:"IsNext"`
-	ManagedElement string `cim:"ManagedElement"`
-	SettingData    string `cim:"SettingData"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string                                            `cim:"__PATH"`
+	IsCurrent      MSFTNetAdapterPacketDirectElementSettingIsCurrent `cim:"IsCurrent"`
+	IsDefault      MSFTNetAdapterPacketDirectElementSettingIsDefault `cim:"IsDefault"`
+	IsNext         MSFTNetAdapterPacketDirectElementSettingIsNext    `cim:"IsNext"`
+	ManagedElement string                                            `cim:"ManagedElement"`
+	SettingData    string                                            `cim:"SettingData"`
 }
 
 // MSFTNetAdapterPacketDirectSettingData is the MSFT_NetAdapterPacketDirectSettingData CIM class.
 type MSFTNetAdapterPacketDirectSettingData struct {
-	Capabilities         wmi.Row `cim:"Capabilities"`
-	Caption              string  `cim:"Caption"`
-	Description          string  `cim:"Description"`
-	DiagnosticCode       uint32  `cim:"DiagnosticCode"`
-	DmaAddressWidth      uint8   `cim:"DmaAddressWidth"`
-	DomainId             uint32  `cim:"DomainId"`
-	ElementName          string  `cim:"ElementName"`
-	Enabled              bool    `cim:"Enabled"`
-	InstanceID           string  `cim:"InstanceID"`
-	InterfaceDescription string  `cim:"InterfaceDescription"`
-	Name                 string  `cim:"Name"`
-	Operational          bool    `cim:"Operational"`
-	Source               uint32  `cim:"Source"`
-	SystemName           string  `cim:"SystemName"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath              string                                      `cim:"__PATH"`
+	Capabilities         wmi.Row                                     `cim:"Capabilities"`
+	Caption              string                                      `cim:"Caption"`
+	Description          string                                      `cim:"Description"`
+	DiagnosticCode       uint32                                      `cim:"DiagnosticCode"`
+	DmaAddressWidth      uint8                                       `cim:"DmaAddressWidth"`
+	DomainId             uint32                                      `cim:"DomainId"`
+	ElementName          string                                      `cim:"ElementName"`
+	Enabled              bool                                        `cim:"Enabled"`
+	InstanceID           string                                      `cim:"InstanceID"`
+	InterfaceDescription string                                      `cim:"InterfaceDescription"`
+	Name                 string                                      `cim:"Name"`
+	Operational          bool                                        `cim:"Operational"`
+	Source               MSFTNetAdapterPacketDirectSettingDataSource `cim:"Source"`
+	SystemName           string                                      `cim:"SystemName"`
 }
 
 // MSFTNetAdapterPowerManagementElementSetting is the MSFT_NetAdapterPowerManagementElementSetting CIM class.
 type MSFTNetAdapterPowerManagementElementSetting struct {
-	IsCurrent      uint16 `cim:"IsCurrent"`
-	IsDefault      uint16 `cim:"IsDefault"`
-	IsNext         uint16 `cim:"IsNext"`
-	ManagedElement string `cim:"ManagedElement"`
-	SettingData    string `cim:"SettingData"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string                                               `cim:"__PATH"`
+	IsCurrent      MSFTNetAdapterPowerManagementElementSettingIsCurrent `cim:"IsCurrent"`
+	IsDefault      MSFTNetAdapterPowerManagementElementSettingIsDefault `cim:"IsDefault"`
+	IsNext         MSFTNetAdapterPowerManagementElementSettingIsNext    `cim:"IsNext"`
+	ManagedElement string                                               `cim:"ManagedElement"`
+	SettingData    string                                               `cim:"SettingData"`
 }
 
 // MSFTNetAdapterPowerManagementSettingData is the MSFT_NetAdapterPowerManagementSettingData CIM class.
 type MSFTNetAdapterPowerManagementSettingData struct {
-	AllowComputerToTurnOffDevice uint32    `cim:"AllowComputerToTurnOffDevice"`
-	ArpOffload                   uint32    `cim:"ArpOffload"`
-	Caption                      string    `cim:"Caption"`
-	D0PacketCoalescing           uint32    `cim:"D0PacketCoalescing"`
-	Description                  string    `cim:"Description"`
-	DeviceSleepOnDisconnect      uint32    `cim:"DeviceSleepOnDisconnect"`
-	ElementName                  string    `cim:"ElementName"`
-	InstanceID                   string    `cim:"InstanceID"`
-	InterfaceDescription         string    `cim:"InterfaceDescription"`
-	NSOffload                    uint32    `cim:"NSOffload"`
-	Name                         string    `cim:"Name"`
-	OffloadParameters            []wmi.Row `cim:"OffloadParameters"`
-	RsnRekeyOffload              uint32    `cim:"RsnRekeyOffload"`
-	SelectiveSuspend             uint32    `cim:"SelectiveSuspend"`
-	Source                       uint32    `cim:"Source"`
-	SystemName                   string    `cim:"SystemName"`
-	WakeOnMagicPacket            uint32    `cim:"WakeOnMagicPacket"`
-	WakeOnPattern                uint32    `cim:"WakeOnPattern"`
-	WakePatterns                 []wmi.Row `cim:"WakePatterns"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                      string                                                               `cim:"__PATH"`
+	AllowComputerToTurnOffDevice MSFTNetAdapterPowerManagementSettingDataAllowComputerToTurnOffDevice `cim:"AllowComputerToTurnOffDevice"`
+	ArpOffload                   MSFTNetAdapterPowerManagementSettingDataArpOffload                   `cim:"ArpOffload"`
+	Caption                      string                                                               `cim:"Caption"`
+	D0PacketCoalescing           MSFTNetAdapterPowerManagementSettingDataD0PacketCoalescing           `cim:"D0PacketCoalescing"`
+	Description                  string                                                               `cim:"Description"`
+	DeviceSleepOnDisconnect      MSFTNetAdapterPowerManagementSettingDataDeviceSleepOnDisconnect      `cim:"DeviceSleepOnDisconnect"`
+	ElementName                  string                                                               `cim:"ElementName"`
+	InstanceID                   string                                                               `cim:"InstanceID"`
+	InterfaceDescription         string                                                               `cim:"InterfaceDescription"`
+	NSOffload                    MSFTNetAdapterPowerManagementSettingDataNSOffload                    `cim:"NSOffload"`
+	Name                         string                                                               `cim:"Name"`
+	OffloadParameters            []wmi.Row                                                            `cim:"OffloadParameters"`
+	RsnRekeyOffload              MSFTNetAdapterPowerManagementSettingDataRsnRekeyOffload              `cim:"RsnRekeyOffload"`
+	SelectiveSuspend             MSFTNetAdapterPowerManagementSettingDataSelectiveSuspend             `cim:"SelectiveSuspend"`
+	Source                       MSFTNetAdapterPowerManagementSettingDataSource                       `cim:"Source"`
+	SystemName                   string                                                               `cim:"SystemName"`
+	WakeOnMagicPacket            MSFTNetAdapterPowerManagementSettingDataWakeOnMagicPacket            `cim:"WakeOnMagicPacket"`
+	WakeOnPattern                MSFTNetAdapterPowerManagementSettingDataWakeOnPattern                `cim:"WakeOnPattern"`
+	WakePatterns                 []wmi.Row                                                            `cim:"WakePatterns"`
 }
 
 // MSFTNetAdapterPowerManagementOffload is the MSFT_NetAdapterPowerManagement_Offload CIM class.
 type MSFTNetAdapterPowerManagementOffload struct {
-	FriendlyName string `cim:"FriendlyName"`
-	ID           uint32 `cim:"ID"`
-	OffloadType  uint32 `cim:"OffloadType"`
-	Priority     uint32 `cim:"Priority"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath      string                                          `cim:"__PATH"`
+	FriendlyName string                                          `cim:"FriendlyName"`
+	ID           uint32                                          `cim:"ID"`
+	OffloadType  MSFTNetAdapterPowerManagementOffloadOffloadType `cim:"OffloadType"`
+	Priority     uint32                                          `cim:"Priority"`
 }
 
 // MSFTNetAdapterPowerManagementOffloadArp is the MSFT_NetAdapterPowerManagement_Offload_Arp CIM class.
 type MSFTNetAdapterPowerManagementOffloadArp struct {
-	FriendlyName      string `cim:"FriendlyName"`
-	HostIPv4Address   string `cim:"HostIPv4Address"`
-	ID                uint32 `cim:"ID"`
-	MACAddress        string `cim:"MACAddress"`
-	OffloadType       uint32 `cim:"OffloadType"`
-	Priority          uint32 `cim:"Priority"`
-	RemoteIPv4Address string `cim:"RemoteIPv4Address"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath           string                                             `cim:"__PATH"`
+	FriendlyName      string                                             `cim:"FriendlyName"`
+	HostIPv4Address   string                                             `cim:"HostIPv4Address"`
+	ID                uint32                                             `cim:"ID"`
+	MACAddress        string                                             `cim:"MACAddress"`
+	OffloadType       MSFTNetAdapterPowerManagementOffloadArpOffloadType `cim:"OffloadType"`
+	Priority          uint32                                             `cim:"Priority"`
+	RemoteIPv4Address string                                             `cim:"RemoteIPv4Address"`
 }
 
 // MSFTNetAdapterPowerManagementOffloadNS is the MSFT_NetAdapterPowerManagement_Offload_NS CIM class.
 type MSFTNetAdapterPowerManagementOffloadNS struct {
-	FriendlyName             string   `cim:"FriendlyName"`
-	ID                       uint32   `cim:"ID"`
-	MacAddress               string   `cim:"MacAddress"`
-	OffloadType              uint32   `cim:"OffloadType"`
-	Priority                 uint32   `cim:"Priority"`
-	RemoteIPv6Address        string   `cim:"RemoteIPv6Address"`
-	SolicitedNodeIPv6Address string   `cim:"SolicitedNodeIPv6Address"`
-	TargetIPv6Addresses      []string `cim:"TargetIPv6Addresses"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                  string                                            `cim:"__PATH"`
+	FriendlyName             string                                            `cim:"FriendlyName"`
+	ID                       uint32                                            `cim:"ID"`
+	MacAddress               string                                            `cim:"MacAddress"`
+	OffloadType              MSFTNetAdapterPowerManagementOffloadNSOffloadType `cim:"OffloadType"`
+	Priority                 uint32                                            `cim:"Priority"`
+	RemoteIPv6Address        string                                            `cim:"RemoteIPv6Address"`
+	SolicitedNodeIPv6Address string                                            `cim:"SolicitedNodeIPv6Address"`
+	TargetIPv6Addresses      []string                                          `cim:"TargetIPv6Addresses"`
 }
 
 // MSFTNetAdapterPowerManagementOffloadRsnRekey is the MSFT_NetAdapterPowerManagement_Offload_RsnRekey CIM class.
 type MSFTNetAdapterPowerManagementOffloadRsnRekey struct {
-	FriendlyName  string  `cim:"FriendlyName"`
-	ID            uint32  `cim:"ID"`
-	KCK           []uint8 `cim:"KCK"`
-	KEK           []uint8 `cim:"KEK"`
-	OffloadType   uint32  `cim:"OffloadType"`
-	Priority      uint32  `cim:"Priority"`
-	ReplayCounter uint64  `cim:"ReplayCounter"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath       string                                                  `cim:"__PATH"`
+	FriendlyName  string                                                  `cim:"FriendlyName"`
+	ID            uint32                                                  `cim:"ID"`
+	KCK           []uint8                                                 `cim:"KCK"`
+	KEK           []uint8                                                 `cim:"KEK"`
+	OffloadType   MSFTNetAdapterPowerManagementOffloadRsnRekeyOffloadType `cim:"OffloadType"`
+	Priority      uint32                                                  `cim:"Priority"`
+	ReplayCounter uint64                                                  `cim:"ReplayCounter"`
 }
 
 // MSFTNetAdapterPowerManagementWakePattern is the MSFT_NetAdapterPowerManagement_WakePattern CIM class.
 type MSFTNetAdapterPowerManagementWakePattern struct {
-	FriendlyName   string `cim:"FriendlyName"`
-	ID             uint32 `cim:"ID"`
-	Priority       uint32 `cim:"Priority"`
-	WakePacketType uint32 `cim:"WakePacketType"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string                                                 `cim:"__PATH"`
+	FriendlyName   string                                                 `cim:"FriendlyName"`
+	ID             uint32                                                 `cim:"ID"`
+	Priority       uint32                                                 `cim:"Priority"`
+	WakePacketType MSFTNetAdapterPowerManagementWakePatternWakePacketType `cim:"WakePacketType"`
 }
 
 // MSFTNetAdapterPowerManagementWakePatternBitmap is the MSFT_NetAdapterPowerManagement_WakePattern_Bitmap CIM class.
 type MSFTNetAdapterPowerManagementWakePatternBitmap struct {
-	FriendlyName   string  `cim:"FriendlyName"`
-	ID             uint32  `cim:"ID"`
-	Mask           []uint8 `cim:"Mask"`
-	Pattern        []uint8 `cim:"Pattern"`
-	Priority       uint32  `cim:"Priority"`
-	WakePacketType uint32  `cim:"WakePacketType"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string                                                       `cim:"__PATH"`
+	FriendlyName   string                                                       `cim:"FriendlyName"`
+	ID             uint32                                                       `cim:"ID"`
+	Mask           []uint8                                                      `cim:"Mask"`
+	Pattern        []uint8                                                      `cim:"Pattern"`
+	Priority       uint32                                                       `cim:"Priority"`
+	WakePacketType MSFTNetAdapterPowerManagementWakePatternBitmapWakePacketType `cim:"WakePacketType"`
 }
 
 // MSFTNetAdapterPowerManagementWakePatternEapolRequestId is the MSFT_NetAdapterPowerManagement_WakePattern_EapolRequestId CIM class.
 type MSFTNetAdapterPowerManagementWakePatternEapolRequestId struct {
-	FriendlyName   string `cim:"FriendlyName"`
-	ID             uint32 `cim:"ID"`
-	Priority       uint32 `cim:"Priority"`
-	WakePacketType uint32 `cim:"WakePacketType"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string                                                               `cim:"__PATH"`
+	FriendlyName   string                                                               `cim:"FriendlyName"`
+	ID             uint32                                                               `cim:"ID"`
+	Priority       uint32                                                               `cim:"Priority"`
+	WakePacketType MSFTNetAdapterPowerManagementWakePatternEapolRequestIdWakePacketType `cim:"WakePacketType"`
 }
 
 // MSFTNetAdapterPowerManagementWakePatternMagicPacket is the MSFT_NetAdapterPowerManagement_WakePattern_MagicPacket CIM class.
 type MSFTNetAdapterPowerManagementWakePatternMagicPacket struct {
-	FriendlyName   string `cim:"FriendlyName"`
-	ID             uint32 `cim:"ID"`
-	Priority       uint32 `cim:"Priority"`
-	WakePacketType uint32 `cim:"WakePacketType"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string                                                            `cim:"__PATH"`
+	FriendlyName   string                                                            `cim:"FriendlyName"`
+	ID             uint32                                                            `cim:"ID"`
+	Priority       uint32                                                            `cim:"Priority"`
+	WakePacketType MSFTNetAdapterPowerManagementWakePatternMagicPacketWakePacketType `cim:"WakePacketType"`
 }
 
 // MSFTNetAdapterPowerManagementWakePatternTcpSyn is the MSFT_NetAdapterPowerManagement_WakePattern_TcpSyn CIM class.
 type MSFTNetAdapterPowerManagementWakePatternTcpSyn struct {
-	DestinationAddress string `cim:"DestinationAddress"`
-	DestinationPort    uint16 `cim:"DestinationPort"`
-	FriendlyName       string `cim:"FriendlyName"`
-	ID                 uint32 `cim:"ID"`
-	Priority           uint32 `cim:"Priority"`
-	SourceAddress      string `cim:"SourceAddress"`
-	SourcePort         uint16 `cim:"SourcePort"`
-	WakePacketType     uint32 `cim:"WakePacketType"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath            string                                                       `cim:"__PATH"`
+	DestinationAddress string                                                       `cim:"DestinationAddress"`
+	DestinationPort    uint16                                                       `cim:"DestinationPort"`
+	FriendlyName       string                                                       `cim:"FriendlyName"`
+	ID                 uint32                                                       `cim:"ID"`
+	Priority           uint32                                                       `cim:"Priority"`
+	SourceAddress      string                                                       `cim:"SourceAddress"`
+	SourcePort         uint16                                                       `cim:"SourcePort"`
+	WakePacketType     MSFTNetAdapterPowerManagementWakePatternTcpSynWakePacketType `cim:"WakePacketType"`
 }
 
 // MSFTNetAdapterPowerManagementWakePatternWildCard is the MSFT_NetAdapterPowerManagement_WakePattern_WildCard CIM class.
 type MSFTNetAdapterPowerManagementWakePatternWildCard struct {
-	FriendlyName   string `cim:"FriendlyName"`
-	ID             uint32 `cim:"ID"`
-	Priority       uint32 `cim:"Priority"`
-	WakePacketType uint32 `cim:"WakePacketType"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string                                                         `cim:"__PATH"`
+	FriendlyName   string                                                         `cim:"FriendlyName"`
+	ID             uint32                                                         `cim:"ID"`
+	Priority       uint32                                                         `cim:"Priority"`
+	WakePacketType MSFTNetAdapterPowerManagementWakePatternWildCardWakePacketType `cim:"WakePacketType"`
 }
 
 // MSFTNetAdapterQosElementSetting is the MSFT_NetAdapterQosElementSetting CIM class.
 type MSFTNetAdapterQosElementSetting struct {
-	IsCurrent      uint16 `cim:"IsCurrent"`
-	IsDefault      uint16 `cim:"IsDefault"`
-	IsNext         uint16 `cim:"IsNext"`
-	ManagedElement string `cim:"ManagedElement"`
-	SettingData    string `cim:"SettingData"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string                                   `cim:"__PATH"`
+	IsCurrent      MSFTNetAdapterQosElementSettingIsCurrent `cim:"IsCurrent"`
+	IsDefault      MSFTNetAdapterQosElementSettingIsDefault `cim:"IsDefault"`
+	IsNext         MSFTNetAdapterQosElementSettingIsNext    `cim:"IsNext"`
+	ManagedElement string                                   `cim:"ManagedElement"`
+	SettingData    string                                   `cim:"SettingData"`
 }
 
 // MSFTNetAdapterQosSettingData is the MSFT_NetAdapterQosSettingData CIM class.
 type MSFTNetAdapterQosSettingData struct {
-	Caption              string  `cim:"Caption"`
-	CurrentCapabilities  wmi.Row `cim:"CurrentCapabilities"`
-	Description          string  `cim:"Description"`
-	ElementName          string  `cim:"ElementName"`
-	Enabled              bool    `cim:"Enabled"`
-	HardwareCapabilities wmi.Row `cim:"HardwareCapabilities"`
-	InstanceID           string  `cim:"InstanceID"`
-	InterfaceDescription string  `cim:"InterfaceDescription"`
-	Name                 string  `cim:"Name"`
-	OperationalSettings  wmi.Row `cim:"OperationalSettings"`
-	RemoteSettings       wmi.Row `cim:"RemoteSettings"`
-	Source               uint32  `cim:"Source"`
-	SystemName           string  `cim:"SystemName"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath              string                             `cim:"__PATH"`
+	Caption              string                             `cim:"Caption"`
+	CurrentCapabilities  wmi.Row                            `cim:"CurrentCapabilities"`
+	Description          string                             `cim:"Description"`
+	ElementName          string                             `cim:"ElementName"`
+	Enabled              bool                               `cim:"Enabled"`
+	HardwareCapabilities wmi.Row                            `cim:"HardwareCapabilities"`
+	InstanceID           string                             `cim:"InstanceID"`
+	InterfaceDescription string                             `cim:"InterfaceDescription"`
+	Name                 string                             `cim:"Name"`
+	OperationalSettings  wmi.Row                            `cim:"OperationalSettings"`
+	RemoteSettings       wmi.Row                            `cim:"RemoteSettings"`
+	Source               MSFTNetAdapterQosSettingDataSource `cim:"Source"`
+	SystemName           string                             `cim:"SystemName"`
 }
 
 // MSFTNetAdapterRdmaElementSetting is the MSFT_NetAdapterRdmaElementSetting CIM class.
 type MSFTNetAdapterRdmaElementSetting struct {
-	IsCurrent      uint16 `cim:"IsCurrent"`
-	IsDefault      uint16 `cim:"IsDefault"`
-	IsNext         uint16 `cim:"IsNext"`
-	ManagedElement string `cim:"ManagedElement"`
-	SettingData    string `cim:"SettingData"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string                                    `cim:"__PATH"`
+	IsCurrent      MSFTNetAdapterRdmaElementSettingIsCurrent `cim:"IsCurrent"`
+	IsDefault      MSFTNetAdapterRdmaElementSettingIsDefault `cim:"IsDefault"`
+	IsNext         MSFTNetAdapterRdmaElementSettingIsNext    `cim:"IsNext"`
+	ManagedElement string                                    `cim:"ManagedElement"`
+	SettingData    string                                    `cim:"SettingData"`
 }
 
 // MSFTNetAdapterRdmaSettingData is the MSFT_NetAdapterRdmaSettingData CIM class.
 type MSFTNetAdapterRdmaSettingData struct {
-	Caption                    string  `cim:"Caption"`
-	Description                string  `cim:"Description"`
-	ETS                        uint32  `cim:"ETS"`
-	ElementName                string  `cim:"ElementName"`
-	Enabled                    bool    `cim:"Enabled"`
-	InstanceID                 string  `cim:"InstanceID"`
-	InterfaceDescription       string  `cim:"InterfaceDescription"`
-	MaxCompletionQueueCount    uint32  `cim:"MaxCompletionQueueCount"`
-	MaxInboundReadLimit        uint32  `cim:"MaxInboundReadLimit"`
-	MaxMemoryRegionCount       uint32  `cim:"MaxMemoryRegionCount"`
-	MaxMemoryWindowCount       uint32  `cim:"MaxMemoryWindowCount"`
-	MaxOutboundReadLimit       uint32  `cim:"MaxOutboundReadLimit"`
-	MaxProtectionDomainCount   uint32  `cim:"MaxProtectionDomainCount"`
-	MaxQueuePairCount          uint32  `cim:"MaxQueuePairCount"`
-	MaxSharedReceiveQueueCount uint32  `cim:"MaxSharedReceiveQueueCount"`
-	Name                       string  `cim:"Name"`
-	OperationalState           bool    `cim:"OperationalState"`
-	PFC                        uint32  `cim:"PFC"`
-	RdmaAdapterInfo            wmi.Row `cim:"RdmaAdapterInfo"`
-	RdmaMissingCounterInfo     wmi.Row `cim:"RdmaMissingCounterInfo"`
-	Source                     uint32  `cim:"Source"`
-	SystemName                 string  `cim:"SystemName"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                    string                              `cim:"__PATH"`
+	Caption                    string                              `cim:"Caption"`
+	Description                string                              `cim:"Description"`
+	ETS                        MSFTNetAdapterRdmaSettingDataETS    `cim:"ETS"`
+	ElementName                string                              `cim:"ElementName"`
+	Enabled                    bool                                `cim:"Enabled"`
+	InstanceID                 string                              `cim:"InstanceID"`
+	InterfaceDescription       string                              `cim:"InterfaceDescription"`
+	MaxCompletionQueueCount    uint32                              `cim:"MaxCompletionQueueCount"`
+	MaxInboundReadLimit        uint32                              `cim:"MaxInboundReadLimit"`
+	MaxMemoryRegionCount       uint32                              `cim:"MaxMemoryRegionCount"`
+	MaxMemoryWindowCount       uint32                              `cim:"MaxMemoryWindowCount"`
+	MaxOutboundReadLimit       uint32                              `cim:"MaxOutboundReadLimit"`
+	MaxProtectionDomainCount   uint32                              `cim:"MaxProtectionDomainCount"`
+	MaxQueuePairCount          uint32                              `cim:"MaxQueuePairCount"`
+	MaxSharedReceiveQueueCount uint32                              `cim:"MaxSharedReceiveQueueCount"`
+	Name                       string                              `cim:"Name"`
+	OperationalState           bool                                `cim:"OperationalState"`
+	PFC                        MSFTNetAdapterRdmaSettingDataPFC    `cim:"PFC"`
+	RdmaAdapterInfo            wmi.Row                             `cim:"RdmaAdapterInfo"`
+	RdmaMissingCounterInfo     wmi.Row                             `cim:"RdmaMissingCounterInfo"`
+	Source                     MSFTNetAdapterRdmaSettingDataSource `cim:"Source"`
+	SystemName                 string                              `cim:"SystemName"`
 }
 
 // MSFTNetAdapterRscCapabilities is the MSFT_NetAdapterRscCapabilities CIM class.
 type MSFTNetAdapterRscCapabilities struct {
-	IPv4Supported bool `cim:"IPv4Supported"`
-	IPv6Supported bool `cim:"IPv6Supported"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath       string `cim:"__PATH"`
+	IPv4Supported bool   `cim:"IPv4Supported"`
+	IPv6Supported bool   `cim:"IPv6Supported"`
 }
 
 // MSFTNetAdapterRscElementSetting is the MSFT_NetAdapterRscElementSetting CIM class.
 type MSFTNetAdapterRscElementSetting struct {
-	IsCurrent      uint16 `cim:"IsCurrent"`
-	IsDefault      uint16 `cim:"IsDefault"`
-	IsNext         uint16 `cim:"IsNext"`
-	ManagedElement string `cim:"ManagedElement"`
-	SettingData    string `cim:"SettingData"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string                                   `cim:"__PATH"`
+	IsCurrent      MSFTNetAdapterRscElementSettingIsCurrent `cim:"IsCurrent"`
+	IsDefault      MSFTNetAdapterRscElementSettingIsDefault `cim:"IsDefault"`
+	IsNext         MSFTNetAdapterRscElementSettingIsNext    `cim:"IsNext"`
+	ManagedElement string                                   `cim:"ManagedElement"`
+	SettingData    string                                   `cim:"SettingData"`
 }
 
 // MSFTNetAdapterRscSettingData is the MSFT_NetAdapterRscSettingData CIM class.
 type MSFTNetAdapterRscSettingData struct {
-	Caption                 string  `cim:"Caption"`
-	Description             string  `cim:"Description"`
-	ElementName             string  `cim:"ElementName"`
-	IPv4Enabled             bool    `cim:"IPv4Enabled"`
-	IPv4FailureReason       uint32  `cim:"IPv4FailureReason"`
-	IPv4OperationalState    bool    `cim:"IPv4OperationalState"`
-	IPv6Enabled             bool    `cim:"IPv6Enabled"`
-	IPv6FailureReason       uint32  `cim:"IPv6FailureReason"`
-	IPv6OperationalState    bool    `cim:"IPv6OperationalState"`
-	InstanceID              string  `cim:"InstanceID"`
-	InterfaceDescription    string  `cim:"InterfaceDescription"`
-	Name                    string  `cim:"Name"`
-	RscHardwareCapabilities wmi.Row `cim:"RscHardwareCapabilities"`
-	Source                  uint32  `cim:"Source"`
-	SystemName              string  `cim:"SystemName"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                 string                                        `cim:"__PATH"`
+	Caption                 string                                        `cim:"Caption"`
+	Description             string                                        `cim:"Description"`
+	ElementName             string                                        `cim:"ElementName"`
+	IPv4Enabled             bool                                          `cim:"IPv4Enabled"`
+	IPv4FailureReason       MSFTNetAdapterRscSettingDataIPv4FailureReason `cim:"IPv4FailureReason"`
+	IPv4OperationalState    bool                                          `cim:"IPv4OperationalState"`
+	IPv6Enabled             bool                                          `cim:"IPv6Enabled"`
+	IPv6FailureReason       MSFTNetAdapterRscSettingDataIPv6FailureReason `cim:"IPv6FailureReason"`
+	IPv6OperationalState    bool                                          `cim:"IPv6OperationalState"`
+	InstanceID              string                                        `cim:"InstanceID"`
+	InterfaceDescription    string                                        `cim:"InterfaceDescription"`
+	Name                    string                                        `cim:"Name"`
+	RscHardwareCapabilities wmi.Row                                       `cim:"RscHardwareCapabilities"`
+	Source                  MSFTNetAdapterRscSettingDataSource            `cim:"Source"`
+	SystemName              string                                        `cim:"SystemName"`
 }
 
 // MSFTNetAdapterRssElementSetting is the MSFT_NetAdapterRssElementSetting CIM class.
 type MSFTNetAdapterRssElementSetting struct {
-	IsCurrent      uint16 `cim:"IsCurrent"`
-	IsDefault      uint16 `cim:"IsDefault"`
-	IsNext         uint16 `cim:"IsNext"`
-	ManagedElement string `cim:"ManagedElement"`
-	SettingData    string `cim:"SettingData"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string                                   `cim:"__PATH"`
+	IsCurrent      MSFTNetAdapterRssElementSettingIsCurrent `cim:"IsCurrent"`
+	IsDefault      MSFTNetAdapterRssElementSettingIsDefault `cim:"IsDefault"`
+	IsNext         MSFTNetAdapterRssElementSettingIsNext    `cim:"IsNext"`
+	ManagedElement string                                   `cim:"ManagedElement"`
+	SettingData    string                                   `cim:"SettingData"`
 }
 
 // MSFTNetAdapterRssSettingData is the MSFT_NetAdapterRssSettingData CIM class.
 type MSFTNetAdapterRssSettingData struct {
-	BaseProcessorGroup            uint16    `cim:"BaseProcessorGroup"`
-	BaseProcessorNumber           uint8     `cim:"BaseProcessorNumber"`
-	Caption                       string    `cim:"Caption"`
-	ClassificationAtDpcSupported  bool      `cim:"ClassificationAtDpcSupported"`
-	ClassificationAtIsrSupported  bool      `cim:"ClassificationAtIsrSupported"`
-	Description                   string    `cim:"Description"`
-	ElementName                   string    `cim:"ElementName"`
-	Enabled                       bool      `cim:"Enabled"`
-	HashKeySize                   uint16    `cim:"HashKeySize"`
-	IPv4HashEnabled               bool      `cim:"IPv4HashEnabled"`
-	IPv6ExtensionHashEnabled      bool      `cim:"IPv6ExtensionHashEnabled"`
-	IPv6HashEnabled               bool      `cim:"IPv6HashEnabled"`
-	IndirectionTable              []wmi.Row `cim:"IndirectionTable"`
-	IndirectionTableEntryCount    uint16    `cim:"IndirectionTableEntryCount"`
-	InstanceID                    string    `cim:"InstanceID"`
-	InterfaceDescription          string    `cim:"InterfaceDescription"`
-	MaxProcessorGroup             uint16    `cim:"MaxProcessorGroup"`
-	MaxProcessorNumber            uint8     `cim:"MaxProcessorNumber"`
-	MaxProcessors                 uint32    `cim:"MaxProcessors"`
-	MsiSupported                  bool      `cim:"MsiSupported"`
-	MsiXEnabled                   bool      `cim:"MsiXEnabled"`
-	MsiXSupported                 bool      `cim:"MsiXSupported"`
-	Name                          string    `cim:"Name"`
-	NumaNode                      uint16    `cim:"NumaNode"`
-	NumberOfInterruptMessages     uint32    `cim:"NumberOfInterruptMessages"`
-	NumberOfReceiveQueues         uint32    `cim:"NumberOfReceiveQueues"`
-	Profile                       uint32    `cim:"Profile"`
-	RssOnPortsSupported           bool      `cim:"RssOnPortsSupported"`
-	RssProcessorArray             []wmi.Row `cim:"RssProcessorArray"`
-	RssProcessorArraySize         uint32    `cim:"RssProcessorArraySize"`
-	Source                        uint32    `cim:"Source"`
-	SystemName                    string    `cim:"SystemName"`
-	TcpIPv4HashEnabled            bool      `cim:"TcpIPv4HashEnabled"`
-	TcpIPv4HashSupported          bool      `cim:"TcpIPv4HashSupported"`
-	TcpIPv6ExtensionHashEnabled   bool      `cim:"TcpIPv6ExtensionHashEnabled"`
-	TcpIPv6ExtensionHashSupported bool      `cim:"TcpIPv6ExtensionHashSupported"`
-	TcpIPv6HashEnabled            bool      `cim:"TcpIPv6HashEnabled"`
-	TcpIPv6HashSupported          bool      `cim:"TcpIPv6HashSupported"`
-	ToeplitzHashFunctionEnabled   bool      `cim:"ToeplitzHashFunctionEnabled"`
-	ToeplitzHashFunctionSupported bool      `cim:"ToeplitzHashFunctionSupported"`
-	UdpIPv4HashEnabled            bool      `cim:"UdpIPv4HashEnabled"`
-	UdpIPv4HashSupported          bool      `cim:"UdpIPv4HashSupported"`
-	UdpIPv6ExtensionHashEnabled   bool      `cim:"UdpIPv6ExtensionHashEnabled"`
-	UdpIPv6ExtensionHashSupported bool      `cim:"UdpIPv6ExtensionHashSupported"`
-	UdpIPv6HashEnabled            bool      `cim:"UdpIPv6HashEnabled"`
-	UdpIPv6HashSupported          bool      `cim:"UdpIPv6HashSupported"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                       string                              `cim:"__PATH"`
+	BaseProcessorGroup            uint16                              `cim:"BaseProcessorGroup"`
+	BaseProcessorNumber           uint8                               `cim:"BaseProcessorNumber"`
+	Caption                       string                              `cim:"Caption"`
+	ClassificationAtDpcSupported  bool                                `cim:"ClassificationAtDpcSupported"`
+	ClassificationAtIsrSupported  bool                                `cim:"ClassificationAtIsrSupported"`
+	Description                   string                              `cim:"Description"`
+	ElementName                   string                              `cim:"ElementName"`
+	Enabled                       bool                                `cim:"Enabled"`
+	HashKeySize                   uint16                              `cim:"HashKeySize"`
+	IPv4HashEnabled               bool                                `cim:"IPv4HashEnabled"`
+	IPv6ExtensionHashEnabled      bool                                `cim:"IPv6ExtensionHashEnabled"`
+	IPv6HashEnabled               bool                                `cim:"IPv6HashEnabled"`
+	IndirectionTable              []wmi.Row                           `cim:"IndirectionTable"`
+	IndirectionTableEntryCount    uint16                              `cim:"IndirectionTableEntryCount"`
+	InstanceID                    string                              `cim:"InstanceID"`
+	InterfaceDescription          string                              `cim:"InterfaceDescription"`
+	MaxProcessorGroup             uint16                              `cim:"MaxProcessorGroup"`
+	MaxProcessorNumber            uint8                               `cim:"MaxProcessorNumber"`
+	MaxProcessors                 uint32                              `cim:"MaxProcessors"`
+	MsiSupported                  bool                                `cim:"MsiSupported"`
+	MsiXEnabled                   bool                                `cim:"MsiXEnabled"`
+	MsiXSupported                 bool                                `cim:"MsiXSupported"`
+	Name                          string                              `cim:"Name"`
+	NumaNode                      uint16                              `cim:"NumaNode"`
+	NumberOfInterruptMessages     uint32                              `cim:"NumberOfInterruptMessages"`
+	NumberOfReceiveQueues         uint32                              `cim:"NumberOfReceiveQueues"`
+	Profile                       MSFTNetAdapterRssSettingDataProfile `cim:"Profile"`
+	RssOnPortsSupported           bool                                `cim:"RssOnPortsSupported"`
+	RssProcessorArray             []wmi.Row                           `cim:"RssProcessorArray"`
+	RssProcessorArraySize         uint32                              `cim:"RssProcessorArraySize"`
+	Source                        MSFTNetAdapterRssSettingDataSource  `cim:"Source"`
+	SystemName                    string                              `cim:"SystemName"`
+	TcpIPv4HashEnabled            bool                                `cim:"TcpIPv4HashEnabled"`
+	TcpIPv4HashSupported          bool                                `cim:"TcpIPv4HashSupported"`
+	TcpIPv6ExtensionHashEnabled   bool                                `cim:"TcpIPv6ExtensionHashEnabled"`
+	TcpIPv6ExtensionHashSupported bool                                `cim:"TcpIPv6ExtensionHashSupported"`
+	TcpIPv6HashEnabled            bool                                `cim:"TcpIPv6HashEnabled"`
+	TcpIPv6HashSupported          bool                                `cim:"TcpIPv6HashSupported"`
+	ToeplitzHashFunctionEnabled   bool                                `cim:"ToeplitzHashFunctionEnabled"`
+	ToeplitzHashFunctionSupported bool                                `cim:"ToeplitzHashFunctionSupported"`
+	UdpIPv4HashEnabled            bool                                `cim:"UdpIPv4HashEnabled"`
+	UdpIPv4HashSupported          bool                                `cim:"UdpIPv4HashSupported"`
+	UdpIPv6ExtensionHashEnabled   bool                                `cim:"UdpIPv6ExtensionHashEnabled"`
+	UdpIPv6ExtensionHashSupported bool                                `cim:"UdpIPv6ExtensionHashSupported"`
+	UdpIPv6HashEnabled            bool                                `cim:"UdpIPv6HashEnabled"`
+	UdpIPv6HashSupported          bool                                `cim:"UdpIPv6HashSupported"`
 }
 
 // MSFTNetAdapterSettingData is the MSFT_NetAdapterSettingData CIM class.
 type MSFTNetAdapterSettingData struct {
-	Caption              string `cim:"Caption"`
-	Description          string `cim:"Description"`
-	ElementName          string `cim:"ElementName"`
-	InstanceID           string `cim:"InstanceID"`
-	InterfaceDescription string `cim:"InterfaceDescription"`
-	Name                 string `cim:"Name"`
-	Source               uint32 `cim:"Source"`
-	SystemName           string `cim:"SystemName"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath              string                          `cim:"__PATH"`
+	Caption              string                          `cim:"Caption"`
+	Description          string                          `cim:"Description"`
+	ElementName          string                          `cim:"ElementName"`
+	InstanceID           string                          `cim:"InstanceID"`
+	InterfaceDescription string                          `cim:"InterfaceDescription"`
+	Name                 string                          `cim:"Name"`
+	Source               MSFTNetAdapterSettingDataSource `cim:"Source"`
+	SystemName           string                          `cim:"SystemName"`
 }
 
 // MSFTNetAdapterSriovCapabilities is the MSFT_NetAdapterSriovCapabilities CIM class.
 type MSFTNetAdapterSriovCapabilities struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                          string `cim:"__PATH"`
 	AsymmetricQueuePairsForNonDefaultVPortsSupported bool   `cim:"AsymmetricQueuePairsForNonDefaultVPortsSupported"`
 	MaxNumMacAddresses                               uint32 `cim:"MaxNumMacAddresses"`
 	MaxNumQueuePairs                                 uint32 `cim:"MaxNumQueuePairs"`
@@ -2335,114 +2839,142 @@ type MSFTNetAdapterSriovCapabilities struct {
 
 // MSFTNetAdapterSriovElementSetting is the MSFT_NetAdapterSriovElementSetting CIM class.
 type MSFTNetAdapterSriovElementSetting struct {
-	IsCurrent      uint16 `cim:"IsCurrent"`
-	IsDefault      uint16 `cim:"IsDefault"`
-	IsNext         uint16 `cim:"IsNext"`
-	ManagedElement string `cim:"ManagedElement"`
-	SettingData    string `cim:"SettingData"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string                                     `cim:"__PATH"`
+	IsCurrent      MSFTNetAdapterSriovElementSettingIsCurrent `cim:"IsCurrent"`
+	IsDefault      MSFTNetAdapterSriovElementSettingIsDefault `cim:"IsDefault"`
+	IsNext         MSFTNetAdapterSriovElementSettingIsNext    `cim:"IsNext"`
+	ManagedElement string                                     `cim:"ManagedElement"`
+	SettingData    string                                     `cim:"SettingData"`
 }
 
 // MSFTNetAdapterSriovSettingData is the MSFT_NetAdapterSriovSettingData CIM class.
 type MSFTNetAdapterSriovSettingData struct {
-	Caption                              string  `cim:"Caption"`
-	CurrentCapabilities                  wmi.Row `cim:"CurrentCapabilities"`
-	Description                          string  `cim:"Description"`
-	ElementName                          string  `cim:"ElementName"`
-	Enabled                              bool    `cim:"Enabled"`
-	HardwareCapabilities                 wmi.Row `cim:"HardwareCapabilities"`
-	InstanceID                           string  `cim:"InstanceID"`
-	InterfaceDescription                 string  `cim:"InterfaceDescription"`
-	Name                                 string  `cim:"Name"`
-	NumActiveDefaultVPortMacAddresses    uint32  `cim:"NumActiveDefaultVPortMacAddresses"`
-	NumActiveDefaultVPortVlanIds         uint32  `cim:"NumActiveDefaultVPortVlanIds"`
-	NumActiveNonDefaultVPortMacAddresses uint32  `cim:"NumActiveNonDefaultVPortMacAddresses"`
-	NumActiveNonDefaultVPortVlanIds      uint32  `cim:"NumActiveNonDefaultVPortVlanIds"`
-	NumActiveVPorts                      uint32  `cim:"NumActiveVPorts"`
-	NumAllocatedVFs                      uint32  `cim:"NumAllocatedVFs"`
-	NumQueuePairsForDefaultVPort         uint32  `cim:"NumQueuePairsForDefaultVPort"`
-	NumQueuePairsForNonDefaultVPorts     uint32  `cim:"NumQueuePairsForNonDefaultVPorts"`
-	NumVFs                               uint32  `cim:"NumVFs"`
-	NumVPorts                            uint32  `cim:"NumVPorts"`
-	Source                               uint32  `cim:"Source"`
-	SriovSupport                         uint32  `cim:"SriovSupport"`
-	SwitchName                           string  `cim:"SwitchName"`
-	SwitchType                           uint16  `cim:"SwitchType"`
-	SystemName                           string  `cim:"SystemName"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                              string                                     `cim:"__PATH"`
+	Caption                              string                                     `cim:"Caption"`
+	CurrentCapabilities                  wmi.Row                                    `cim:"CurrentCapabilities"`
+	Description                          string                                     `cim:"Description"`
+	ElementName                          string                                     `cim:"ElementName"`
+	Enabled                              bool                                       `cim:"Enabled"`
+	HardwareCapabilities                 wmi.Row                                    `cim:"HardwareCapabilities"`
+	InstanceID                           string                                     `cim:"InstanceID"`
+	InterfaceDescription                 string                                     `cim:"InterfaceDescription"`
+	Name                                 string                                     `cim:"Name"`
+	NumActiveDefaultVPortMacAddresses    uint32                                     `cim:"NumActiveDefaultVPortMacAddresses"`
+	NumActiveDefaultVPortVlanIds         uint32                                     `cim:"NumActiveDefaultVPortVlanIds"`
+	NumActiveNonDefaultVPortMacAddresses uint32                                     `cim:"NumActiveNonDefaultVPortMacAddresses"`
+	NumActiveNonDefaultVPortVlanIds      uint32                                     `cim:"NumActiveNonDefaultVPortVlanIds"`
+	NumActiveVPorts                      uint32                                     `cim:"NumActiveVPorts"`
+	NumAllocatedVFs                      uint32                                     `cim:"NumAllocatedVFs"`
+	NumQueuePairsForDefaultVPort         uint32                                     `cim:"NumQueuePairsForDefaultVPort"`
+	NumQueuePairsForNonDefaultVPorts     uint32                                     `cim:"NumQueuePairsForNonDefaultVPorts"`
+	NumVFs                               uint32                                     `cim:"NumVFs"`
+	NumVPorts                            uint32                                     `cim:"NumVPorts"`
+	Source                               MSFTNetAdapterSriovSettingDataSource       `cim:"Source"`
+	SriovSupport                         MSFTNetAdapterSriovSettingDataSriovSupport `cim:"SriovSupport"`
+	SwitchName                           string                                     `cim:"SwitchName"`
+	SwitchType                           MSFTNetAdapterSriovSettingDataSwitchType   `cim:"SwitchType"`
+	SystemName                           string                                     `cim:"SystemName"`
 }
 
 // MSFTNetAdapterSriovVfElementSetting is the MSFT_NetAdapterSriovVfElementSetting CIM class.
 type MSFTNetAdapterSriovVfElementSetting struct {
-	IsCurrent      uint16 `cim:"IsCurrent"`
-	IsDefault      uint16 `cim:"IsDefault"`
-	IsNext         uint16 `cim:"IsNext"`
-	ManagedElement string `cim:"ManagedElement"`
-	SettingData    string `cim:"SettingData"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string                                       `cim:"__PATH"`
+	IsCurrent      MSFTNetAdapterSriovVfElementSettingIsCurrent `cim:"IsCurrent"`
+	IsDefault      MSFTNetAdapterSriovVfElementSettingIsDefault `cim:"IsDefault"`
+	IsNext         MSFTNetAdapterSriovVfElementSettingIsNext    `cim:"IsNext"`
+	ManagedElement string                                       `cim:"ManagedElement"`
+	SettingData    string                                       `cim:"SettingData"`
 }
 
 // MSFTNetAdapterSriovVfSettingData is the MSFT_NetAdapterSriovVfSettingData CIM class.
 type MSFTNetAdapterSriovVfSettingData struct {
-	Caption              string   `cim:"Caption"`
-	CurrentMacAddress    string   `cim:"CurrentMacAddress"`
-	Description          string   `cim:"Description"`
-	ElementName          string   `cim:"ElementName"`
-	FunctionID           uint16   `cim:"FunctionID"`
-	InstanceID           string   `cim:"InstanceID"`
-	InterfaceDescription string   `cim:"InterfaceDescription"`
-	Name                 string   `cim:"Name"`
-	PermanentMacAddress  string   `cim:"PermanentMacAddress"`
-	Source               uint32   `cim:"Source"`
-	SwitchID             uint32   `cim:"SwitchID"`
-	SystemName           string   `cim:"SystemName"`
-	VPortID              []uint32 `cim:"VPortID"`
-	VmFriendlyName       string   `cim:"VmFriendlyName"`
-	VmID                 string   `cim:"VmID"`
-	VmNicID              string   `cim:"VmNicID"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath              string                                 `cim:"__PATH"`
+	Caption              string                                 `cim:"Caption"`
+	CurrentMacAddress    string                                 `cim:"CurrentMacAddress"`
+	Description          string                                 `cim:"Description"`
+	ElementName          string                                 `cim:"ElementName"`
+	FunctionID           uint16                                 `cim:"FunctionID"`
+	InstanceID           string                                 `cim:"InstanceID"`
+	InterfaceDescription string                                 `cim:"InterfaceDescription"`
+	Name                 string                                 `cim:"Name"`
+	PermanentMacAddress  string                                 `cim:"PermanentMacAddress"`
+	Source               MSFTNetAdapterSriovVfSettingDataSource `cim:"Source"`
+	SwitchID             uint32                                 `cim:"SwitchID"`
+	SystemName           string                                 `cim:"SystemName"`
+	VPortID              []uint32                               `cim:"VPortID"`
+	VmFriendlyName       string                                 `cim:"VmFriendlyName"`
+	VmID                 string                                 `cim:"VmID"`
+	VmNicID              string                                 `cim:"VmNicID"`
 }
 
 // MSFTNetAdapterStatisticsElementSetting is the MSFT_NetAdapterStatisticsElementSetting CIM class.
 type MSFTNetAdapterStatisticsElementSetting struct {
-	IsCurrent      uint16 `cim:"IsCurrent"`
-	IsDefault      uint16 `cim:"IsDefault"`
-	IsNext         uint16 `cim:"IsNext"`
-	ManagedElement string `cim:"ManagedElement"`
-	SettingData    string `cim:"SettingData"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string                                          `cim:"__PATH"`
+	IsCurrent      MSFTNetAdapterStatisticsElementSettingIsCurrent `cim:"IsCurrent"`
+	IsDefault      MSFTNetAdapterStatisticsElementSettingIsDefault `cim:"IsDefault"`
+	IsNext         MSFTNetAdapterStatisticsElementSettingIsNext    `cim:"IsNext"`
+	ManagedElement string                                          `cim:"ManagedElement"`
+	SettingData    string                                          `cim:"SettingData"`
 }
 
 // MSFTNetAdapterStatisticsSettingData is the MSFT_NetAdapterStatisticsSettingData CIM class.
 type MSFTNetAdapterStatisticsSettingData struct {
-	Caption                  string  `cim:"Caption"`
-	Description              string  `cim:"Description"`
-	ElementName              string  `cim:"ElementName"`
-	InstanceID               string  `cim:"InstanceID"`
-	InterfaceDescription     string  `cim:"InterfaceDescription"`
-	Name                     string  `cim:"Name"`
-	OutboundDiscardedPackets uint64  `cim:"OutboundDiscardedPackets"`
-	OutboundPacketErrors     uint64  `cim:"OutboundPacketErrors"`
-	RdmaStatistics           wmi.Row `cim:"RdmaStatistics"`
-	ReceivedBroadcastBytes   uint64  `cim:"ReceivedBroadcastBytes"`
-	ReceivedBroadcastPackets uint64  `cim:"ReceivedBroadcastPackets"`
-	ReceivedBytes            uint64  `cim:"ReceivedBytes"`
-	ReceivedDiscardedPackets uint64  `cim:"ReceivedDiscardedPackets"`
-	ReceivedMulticastBytes   uint64  `cim:"ReceivedMulticastBytes"`
-	ReceivedMulticastPackets uint64  `cim:"ReceivedMulticastPackets"`
-	ReceivedPacketErrors     uint64  `cim:"ReceivedPacketErrors"`
-	ReceivedUnicastBytes     uint64  `cim:"ReceivedUnicastBytes"`
-	ReceivedUnicastPackets   uint64  `cim:"ReceivedUnicastPackets"`
-	RscStatistics            wmi.Row `cim:"RscStatistics"`
-	SentBroadcastBytes       uint64  `cim:"SentBroadcastBytes"`
-	SentBroadcastPackets     uint64  `cim:"SentBroadcastPackets"`
-	SentBytes                uint64  `cim:"SentBytes"`
-	SentMulticastBytes       uint64  `cim:"SentMulticastBytes"`
-	SentMulticastPackets     uint64  `cim:"SentMulticastPackets"`
-	SentUnicastBytes         uint64  `cim:"SentUnicastBytes"`
-	SentUnicastPackets       uint64  `cim:"SentUnicastPackets"`
-	Source                   uint32  `cim:"Source"`
-	SupportedStatistics      uint32  `cim:"SupportedStatistics"`
-	SystemName               string  `cim:"SystemName"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                  string                                    `cim:"__PATH"`
+	Caption                  string                                    `cim:"Caption"`
+	Description              string                                    `cim:"Description"`
+	ElementName              string                                    `cim:"ElementName"`
+	InstanceID               string                                    `cim:"InstanceID"`
+	InterfaceDescription     string                                    `cim:"InterfaceDescription"`
+	Name                     string                                    `cim:"Name"`
+	OutboundDiscardedPackets uint64                                    `cim:"OutboundDiscardedPackets"`
+	OutboundPacketErrors     uint64                                    `cim:"OutboundPacketErrors"`
+	RdmaStatistics           wmi.Row                                   `cim:"RdmaStatistics"`
+	ReceivedBroadcastBytes   uint64                                    `cim:"ReceivedBroadcastBytes"`
+	ReceivedBroadcastPackets uint64                                    `cim:"ReceivedBroadcastPackets"`
+	ReceivedBytes            uint64                                    `cim:"ReceivedBytes"`
+	ReceivedDiscardedPackets uint64                                    `cim:"ReceivedDiscardedPackets"`
+	ReceivedMulticastBytes   uint64                                    `cim:"ReceivedMulticastBytes"`
+	ReceivedMulticastPackets uint64                                    `cim:"ReceivedMulticastPackets"`
+	ReceivedPacketErrors     uint64                                    `cim:"ReceivedPacketErrors"`
+	ReceivedUnicastBytes     uint64                                    `cim:"ReceivedUnicastBytes"`
+	ReceivedUnicastPackets   uint64                                    `cim:"ReceivedUnicastPackets"`
+	RscStatistics            wmi.Row                                   `cim:"RscStatistics"`
+	SentBroadcastBytes       uint64                                    `cim:"SentBroadcastBytes"`
+	SentBroadcastPackets     uint64                                    `cim:"SentBroadcastPackets"`
+	SentBytes                uint64                                    `cim:"SentBytes"`
+	SentMulticastBytes       uint64                                    `cim:"SentMulticastBytes"`
+	SentMulticastPackets     uint64                                    `cim:"SentMulticastPackets"`
+	SentUnicastBytes         uint64                                    `cim:"SentUnicastBytes"`
+	SentUnicastPackets       uint64                                    `cim:"SentUnicastPackets"`
+	Source                   MSFTNetAdapterStatisticsSettingDataSource `cim:"Source"`
+	SupportedStatistics      uint32                                    `cim:"SupportedStatistics"`
+	SystemName               string                                    `cim:"SystemName"`
 }
 
 // MSFTNetAdapterUdpSegmentationOffloadCapabilities is the MSFT_NetAdapterUdpSegmentationOffloadCapabilities CIM class.
 type MSFTNetAdapterUdpSegmentationOffloadCapabilities struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                         string  `cim:"__PATH"`
 	IPv4Encapsulation               wmi.Row `cim:"IPv4Encapsulation"`
 	IPv4MaxOffloadSizeSupported     uint32  `cim:"IPv4MaxOffloadSizeSupported"`
 	IPv4MinSegmentCountSupported    uint32  `cim:"IPv4MinSegmentCountSupported"`
@@ -2454,176 +2986,232 @@ type MSFTNetAdapterUdpSegmentationOffloadCapabilities struct {
 
 // MSFTNetAdapterUroCapabilities is the MSFT_NetAdapterUroCapabilities CIM class.
 type MSFTNetAdapterUroCapabilities struct {
-	Supported bool `cim:"Supported"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath   string `cim:"__PATH"`
+	Supported bool   `cim:"Supported"`
 }
 
 // MSFTNetAdapterUroElementSetting is the MSFT_NetAdapterUroElementSetting CIM class.
 type MSFTNetAdapterUroElementSetting struct {
-	IsCurrent      uint16 `cim:"IsCurrent"`
-	IsDefault      uint16 `cim:"IsDefault"`
-	IsNext         uint16 `cim:"IsNext"`
-	ManagedElement string `cim:"ManagedElement"`
-	SettingData    string `cim:"SettingData"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string                                   `cim:"__PATH"`
+	IsCurrent      MSFTNetAdapterUroElementSettingIsCurrent `cim:"IsCurrent"`
+	IsDefault      MSFTNetAdapterUroElementSettingIsDefault `cim:"IsDefault"`
+	IsNext         MSFTNetAdapterUroElementSettingIsNext    `cim:"IsNext"`
+	ManagedElement string                                   `cim:"ManagedElement"`
+	SettingData    string                                   `cim:"SettingData"`
 }
 
 // MSFTNetAdapterUroSettingData is the MSFT_NetAdapterUroSettingData CIM class.
 type MSFTNetAdapterUroSettingData struct {
-	Caption                 string  `cim:"Caption"`
-	Description             string  `cim:"Description"`
-	ElementName             string  `cim:"ElementName"`
-	Enabled                 bool    `cim:"Enabled"`
-	FailureReason           uint32  `cim:"FailureReason"`
-	InstanceID              string  `cim:"InstanceID"`
-	InterfaceDescription    string  `cim:"InterfaceDescription"`
-	Name                    string  `cim:"Name"`
-	Operational             bool    `cim:"Operational"`
-	Source                  uint32  `cim:"Source"`
-	SystemName              string  `cim:"SystemName"`
-	UroHardwareCapabilities wmi.Row `cim:"UroHardwareCapabilities"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                 string                                    `cim:"__PATH"`
+	Caption                 string                                    `cim:"Caption"`
+	Description             string                                    `cim:"Description"`
+	ElementName             string                                    `cim:"ElementName"`
+	Enabled                 bool                                      `cim:"Enabled"`
+	FailureReason           MSFTNetAdapterUroSettingDataFailureReason `cim:"FailureReason"`
+	InstanceID              string                                    `cim:"InstanceID"`
+	InterfaceDescription    string                                    `cim:"InterfaceDescription"`
+	Name                    string                                    `cim:"Name"`
+	Operational             bool                                      `cim:"Operational"`
+	Source                  MSFTNetAdapterUroSettingDataSource        `cim:"Source"`
+	SystemName              string                                    `cim:"SystemName"`
+	UroHardwareCapabilities wmi.Row                                   `cim:"UroHardwareCapabilities"`
 }
 
 // MSFTNetAdapterUsoElementSetting is the MSFT_NetAdapterUsoElementSetting CIM class.
 type MSFTNetAdapterUsoElementSetting struct {
-	IsCurrent      uint16 `cim:"IsCurrent"`
-	IsDefault      uint16 `cim:"IsDefault"`
-	IsNext         uint16 `cim:"IsNext"`
-	ManagedElement string `cim:"ManagedElement"`
-	SettingData    string `cim:"SettingData"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string                                   `cim:"__PATH"`
+	IsCurrent      MSFTNetAdapterUsoElementSettingIsCurrent `cim:"IsCurrent"`
+	IsDefault      MSFTNetAdapterUsoElementSettingIsDefault `cim:"IsDefault"`
+	IsNext         MSFTNetAdapterUsoElementSettingIsNext    `cim:"IsNext"`
+	ManagedElement string                                   `cim:"ManagedElement"`
+	SettingData    string                                   `cim:"SettingData"`
 }
 
 // MSFTNetAdapterUsoEncapsulationTypes is the MSFT_NetAdapterUsoEncapsulationTypes CIM class.
 type MSFTNetAdapterUsoEncapsulationTypes struct {
-	NdisEncapsulationIeeLlcSnapRouted   bool `cim:"NdisEncapsulationIeeLlcSnapRouted"`
-	NdisEncapsulationIeee8023           bool `cim:"NdisEncapsulationIeee802_3"`
-	NdisEncapsulationIeee8023PAndQInOob bool `cim:"NdisEncapsulationIeee802_3PAndQInOob"`
-	NdisEncapsulationIeee8023pAndq      bool `cim:"NdisEncapsulationIeee802_3pAndq"`
-	NdisEncapsulationNotNull            bool `cim:"NdisEncapsulationNotNull"`
-	NdisEncapsulationNotSupported       bool `cim:"NdisEncapsulationNotSupported"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                             string `cim:"__PATH"`
+	NdisEncapsulationIeeLlcSnapRouted   bool   `cim:"NdisEncapsulationIeeLlcSnapRouted"`
+	NdisEncapsulationIeee8023           bool   `cim:"NdisEncapsulationIeee802_3"`
+	NdisEncapsulationIeee8023PAndQInOob bool   `cim:"NdisEncapsulationIeee802_3PAndQInOob"`
+	NdisEncapsulationIeee8023pAndq      bool   `cim:"NdisEncapsulationIeee802_3pAndq"`
+	NdisEncapsulationNotNull            bool   `cim:"NdisEncapsulationNotNull"`
+	NdisEncapsulationNotSupported       bool   `cim:"NdisEncapsulationNotSupported"`
 }
 
 // MSFTNetAdapterUsoSettingData is the MSFT_NetAdapterUsoSettingData CIM class.
 type MSFTNetAdapterUsoSettingData struct {
-	Caption                                    string  `cim:"Caption"`
-	Description                                string  `cim:"Description"`
-	ElementName                                string  `cim:"ElementName"`
-	IPv4Enabled                                bool    `cim:"IPv4Enabled"`
-	IPv6Enabled                                bool    `cim:"IPv6Enabled"`
-	InstanceID                                 string  `cim:"InstanceID"`
-	InterfaceDescription                       string  `cim:"InterfaceDescription"`
-	Name                                       string  `cim:"Name"`
-	Source                                     uint32  `cim:"Source"`
-	SystemName                                 string  `cim:"SystemName"`
-	UdpSegmentationOffloadHardwareCapabilities wmi.Row `cim:"UdpSegmentationOffloadHardwareCapabilities"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                    string                             `cim:"__PATH"`
+	Caption                                    string                             `cim:"Caption"`
+	Description                                string                             `cim:"Description"`
+	ElementName                                string                             `cim:"ElementName"`
+	IPv4Enabled                                bool                               `cim:"IPv4Enabled"`
+	IPv6Enabled                                bool                               `cim:"IPv6Enabled"`
+	InstanceID                                 string                             `cim:"InstanceID"`
+	InterfaceDescription                       string                             `cim:"InterfaceDescription"`
+	Name                                       string                             `cim:"Name"`
+	Source                                     MSFTNetAdapterUsoSettingDataSource `cim:"Source"`
+	SystemName                                 string                             `cim:"SystemName"`
+	UdpSegmentationOffloadHardwareCapabilities wmi.Row                            `cim:"UdpSegmentationOffloadHardwareCapabilities"`
 }
 
 // MSFTNetAdapterVPortElementSetting is the MSFT_NetAdapterVPortElementSetting CIM class.
 type MSFTNetAdapterVPortElementSetting struct {
-	IsCurrent      uint16 `cim:"IsCurrent"`
-	IsDefault      uint16 `cim:"IsDefault"`
-	IsNext         uint16 `cim:"IsNext"`
-	ManagedElement string `cim:"ManagedElement"`
-	SettingData    string `cim:"SettingData"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string                                     `cim:"__PATH"`
+	IsCurrent      MSFTNetAdapterVPortElementSettingIsCurrent `cim:"IsCurrent"`
+	IsDefault      MSFTNetAdapterVPortElementSettingIsDefault `cim:"IsDefault"`
+	IsNext         MSFTNetAdapterVPortElementSettingIsNext    `cim:"IsNext"`
+	ManagedElement string                                     `cim:"ManagedElement"`
+	SettingData    string                                     `cim:"SettingData"`
 }
 
 // MSFTNetAdapterVPortSettingData is the MSFT_NetAdapterVPortSettingData CIM class.
 type MSFTNetAdapterVPortSettingData struct {
-	Caption               string    `cim:"Caption"`
-	Description           string    `cim:"Description"`
-	ElementName           string    `cim:"ElementName"`
-	FilterList            []wmi.Row `cim:"FilterList"`
-	FunctionID            uint16    `cim:"FunctionID"`
-	InstanceID            string    `cim:"InstanceID"`
-	InterfaceDescription  string    `cim:"InterfaceDescription"`
-	InterruptModeration   uint32    `cim:"InterruptModeration"`
-	Name                  string    `cim:"Name"`
-	NumFilters            uint32    `cim:"NumFilters"`
-	NumQueuePairs         uint32    `cim:"NumQueuePairs"`
-	ProcessorAffinityMask uint64    `cim:"ProcessorAffinityMask"`
-	ProcessorGroup        uint16    `cim:"ProcessorGroup"`
-	Source                uint32    `cim:"Source"`
-	SwitchID              uint32    `cim:"SwitchID"`
-	SystemName            string    `cim:"SystemName"`
-	VPortID               uint32    `cim:"VPortID"`
-	VPortName             string    `cim:"VPortName"`
-	VPortState            uint32    `cim:"VPortState"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath               string                                            `cim:"__PATH"`
+	Caption               string                                            `cim:"Caption"`
+	Description           string                                            `cim:"Description"`
+	ElementName           string                                            `cim:"ElementName"`
+	FilterList            []wmi.Row                                         `cim:"FilterList"`
+	FunctionID            uint16                                            `cim:"FunctionID"`
+	InstanceID            string                                            `cim:"InstanceID"`
+	InterfaceDescription  string                                            `cim:"InterfaceDescription"`
+	InterruptModeration   MSFTNetAdapterVPortSettingDataInterruptModeration `cim:"InterruptModeration"`
+	Name                  string                                            `cim:"Name"`
+	NumFilters            uint32                                            `cim:"NumFilters"`
+	NumQueuePairs         uint32                                            `cim:"NumQueuePairs"`
+	ProcessorAffinityMask uint64                                            `cim:"ProcessorAffinityMask"`
+	ProcessorGroup        uint16                                            `cim:"ProcessorGroup"`
+	Source                MSFTNetAdapterVPortSettingDataSource              `cim:"Source"`
+	SwitchID              uint32                                            `cim:"SwitchID"`
+	SystemName            string                                            `cim:"SystemName"`
+	VPortID               uint32                                            `cim:"VPortID"`
+	VPortName             string                                            `cim:"VPortName"`
+	VPortState            MSFTNetAdapterVPortSettingDataVPortState          `cim:"VPortState"`
 }
 
 // MSFTNetAdapterVmqElementSetting is the MSFT_NetAdapterVmqElementSetting CIM class.
 type MSFTNetAdapterVmqElementSetting struct {
-	IsCurrent      uint16 `cim:"IsCurrent"`
-	IsDefault      uint16 `cim:"IsDefault"`
-	IsNext         uint16 `cim:"IsNext"`
-	ManagedElement string `cim:"ManagedElement"`
-	SettingData    string `cim:"SettingData"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string                                   `cim:"__PATH"`
+	IsCurrent      MSFTNetAdapterVmqElementSettingIsCurrent `cim:"IsCurrent"`
+	IsDefault      MSFTNetAdapterVmqElementSettingIsDefault `cim:"IsDefault"`
+	IsNext         MSFTNetAdapterVmqElementSettingIsNext    `cim:"IsNext"`
+	ManagedElement string                                   `cim:"ManagedElement"`
+	SettingData    string                                   `cim:"SettingData"`
 }
 
 // MSFTNetAdapterVmqQueueElementSetting is the MSFT_NetAdapterVmqQueueElementSetting CIM class.
 type MSFTNetAdapterVmqQueueElementSetting struct {
-	IsCurrent      uint16 `cim:"IsCurrent"`
-	IsDefault      uint16 `cim:"IsDefault"`
-	IsNext         uint16 `cim:"IsNext"`
-	ManagedElement string `cim:"ManagedElement"`
-	SettingData    string `cim:"SettingData"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string                                        `cim:"__PATH"`
+	IsCurrent      MSFTNetAdapterVmqQueueElementSettingIsCurrent `cim:"IsCurrent"`
+	IsDefault      MSFTNetAdapterVmqQueueElementSettingIsDefault `cim:"IsDefault"`
+	IsNext         MSFTNetAdapterVmqQueueElementSettingIsNext    `cim:"IsNext"`
+	ManagedElement string                                        `cim:"ManagedElement"`
+	SettingData    string                                        `cim:"SettingData"`
 }
 
 // MSFTNetAdapterVmqQueueSettingData is the MSFT_NetAdapterVmqQueueSettingData CIM class.
 type MSFTNetAdapterVmqQueueSettingData struct {
-	Caption               string    `cim:"Caption"`
-	Description           string    `cim:"Description"`
-	ElementName           string    `cim:"ElementName"`
-	FilterList            []wmi.Row `cim:"FilterList"`
-	InstanceID            string    `cim:"InstanceID"`
-	InterfaceDescription  string    `cim:"InterfaceDescription"`
-	Name                  string    `cim:"Name"`
-	NumFilters            uint32    `cim:"NumFilters"`
-	ProcessorAffinityMask uint64    `cim:"ProcessorAffinityMask"`
-	ProcessorGroup        uint16    `cim:"ProcessorGroup"`
-	QueueID               uint32    `cim:"QueueID"`
-	QueueName             string    `cim:"QueueName"`
-	Source                uint32    `cim:"Source"`
-	State                 uint32    `cim:"State"`
-	SystemName            string    `cim:"SystemName"`
-	VmFriendlyName        string    `cim:"VmFriendlyName"`
-	VmID                  string    `cim:"VmID"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath               string                                  `cim:"__PATH"`
+	Caption               string                                  `cim:"Caption"`
+	Description           string                                  `cim:"Description"`
+	ElementName           string                                  `cim:"ElementName"`
+	FilterList            []wmi.Row                               `cim:"FilterList"`
+	InstanceID            string                                  `cim:"InstanceID"`
+	InterfaceDescription  string                                  `cim:"InterfaceDescription"`
+	Name                  string                                  `cim:"Name"`
+	NumFilters            uint32                                  `cim:"NumFilters"`
+	ProcessorAffinityMask uint64                                  `cim:"ProcessorAffinityMask"`
+	ProcessorGroup        uint16                                  `cim:"ProcessorGroup"`
+	QueueID               uint32                                  `cim:"QueueID"`
+	QueueName             string                                  `cim:"QueueName"`
+	Source                MSFTNetAdapterVmqQueueSettingDataSource `cim:"Source"`
+	State                 MSFTNetAdapterVmqQueueSettingDataState  `cim:"State"`
+	SystemName            string                                  `cim:"SystemName"`
+	VmFriendlyName        string                                  `cim:"VmFriendlyName"`
+	VmID                  string                                  `cim:"VmID"`
 }
 
 // MSFTNetAdapterVmqSettingData is the MSFT_NetAdapterVmqSettingData CIM class.
 type MSFTNetAdapterVmqSettingData struct {
-	AnyVlanSupported                        bool   `cim:"AnyVlanSupported"`
-	BaseProcessorGroup                      uint16 `cim:"BaseProcessorGroup"`
-	BaseProcessorNumber                     uint8  `cim:"BaseProcessorNumber"`
-	Caption                                 string `cim:"Caption"`
-	Description                             string `cim:"Description"`
-	DynamicProcessorAffinityChangeSupported bool   `cim:"DynamicProcessorAffinityChangeSupported"`
-	ElementName                             string `cim:"ElementName"`
-	Enabled                                 bool   `cim:"Enabled"`
-	InstanceID                              string `cim:"InstanceID"`
-	InterfaceDescription                    string `cim:"InterfaceDescription"`
-	InterruptVectorCoalescingSupported      bool   `cim:"InterruptVectorCoalescingSupported"`
-	LookaheadSplitSupported                 bool   `cim:"LookaheadSplitSupported"`
-	MaxLookaheadSplitSize                   uint32 `cim:"MaxLookaheadSplitSize"`
-	MaxProcessorNumber                      uint8  `cim:"MaxProcessorNumber"`
-	MaxProcessors                           uint32 `cim:"MaxProcessors"`
-	MinLookaheadSplitSize                   uint32 `cim:"MinLookaheadSplitSize"`
-	Name                                    string `cim:"Name"`
-	NumMacAddressesPerPort                  uint32 `cim:"NumMacAddressesPerPort"`
-	NumVlansPerPort                         uint32 `cim:"NumVlansPerPort"`
-	NumaNode                                uint16 `cim:"NumaNode"`
-	NumberOfReceiveQueues                   uint32 `cim:"NumberOfReceiveQueues"`
-	Source                                  uint32 `cim:"Source"`
-	SystemName                              string `cim:"SystemName"`
-	TotalNumberOfMacAddresses               uint32 `cim:"TotalNumberOfMacAddresses"`
-	VlanFilteringSupported                  bool   `cim:"VlanFilteringSupported"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                 string                             `cim:"__PATH"`
+	AnyVlanSupported                        bool                               `cim:"AnyVlanSupported"`
+	BaseProcessorGroup                      uint16                             `cim:"BaseProcessorGroup"`
+	BaseProcessorNumber                     uint8                              `cim:"BaseProcessorNumber"`
+	Caption                                 string                             `cim:"Caption"`
+	Description                             string                             `cim:"Description"`
+	DynamicProcessorAffinityChangeSupported bool                               `cim:"DynamicProcessorAffinityChangeSupported"`
+	ElementName                             string                             `cim:"ElementName"`
+	Enabled                                 bool                               `cim:"Enabled"`
+	InstanceID                              string                             `cim:"InstanceID"`
+	InterfaceDescription                    string                             `cim:"InterfaceDescription"`
+	InterruptVectorCoalescingSupported      bool                               `cim:"InterruptVectorCoalescingSupported"`
+	LookaheadSplitSupported                 bool                               `cim:"LookaheadSplitSupported"`
+	MaxLookaheadSplitSize                   uint32                             `cim:"MaxLookaheadSplitSize"`
+	MaxProcessorNumber                      uint8                              `cim:"MaxProcessorNumber"`
+	MaxProcessors                           uint32                             `cim:"MaxProcessors"`
+	MinLookaheadSplitSize                   uint32                             `cim:"MinLookaheadSplitSize"`
+	Name                                    string                             `cim:"Name"`
+	NumMacAddressesPerPort                  uint32                             `cim:"NumMacAddressesPerPort"`
+	NumVlansPerPort                         uint32                             `cim:"NumVlansPerPort"`
+	NumaNode                                uint16                             `cim:"NumaNode"`
+	NumberOfReceiveQueues                   uint32                             `cim:"NumberOfReceiveQueues"`
+	Source                                  MSFTNetAdapterVmqSettingDataSource `cim:"Source"`
+	SystemName                              string                             `cim:"SystemName"`
+	TotalNumberOfMacAddresses               uint32                             `cim:"TotalNumberOfMacAddresses"`
+	VlanFilteringSupported                  bool                               `cim:"VlanFilteringSupported"`
 }
 
 // MSFTNetAdapterGroupAffinity is the MSFT_NetAdapter_Group_Affinity CIM class.
 type MSFTNetAdapterGroupAffinity struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath               string `cim:"__PATH"`
 	ProcessorAffinityMask uint64 `cim:"ProcessorAffinityMask"`
 	ProcessorGroup        uint16 `cim:"ProcessorGroup"`
 }
 
 // MSFTNetAdapterPacketDirectCapabilities is the MSFT_NetAdapter_PacketDirectCapabilities CIM class.
 type MSFTNetAdapterPacketDirectCapabilities struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                   string `cim:"__PATH"`
 	DrainNotificationSupported                bool   `cim:"DrainNotificationSupported"`
 	MaximumModerationInterval                 uint32 `cim:"MaximumModerationInterval"`
 	MaximumNumberOfRxQueues                   uint32 `cim:"MaximumNumberOfRxQueues"`
@@ -2644,29 +3232,45 @@ type MSFTNetAdapterPacketDirectCapabilities struct {
 
 // MSFTNetAdapterProcessorNumber is the MSFT_NetAdapter_ProcessorNumber CIM class.
 type MSFTNetAdapterProcessorNumber struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath         string `cim:"__PATH"`
 	ProcessorGroup  uint16 `cim:"ProcessorGroup"`
 	ProcessorNumber uint8  `cim:"ProcessorNumber"`
 }
 
 // MSFTNetAdapterQosCapabilities is the MSFT_NetAdapter_QosCapabilities CIM class.
 type MSFTNetAdapterQosCapabilities struct {
-	CeeDcbxSupported                 bool  `cim:"CeeDcbxSupported"`
-	IeeeDcbxSupported                bool  `cim:"IeeeDcbxSupported"`
-	MacSecBypassSupported            bool  `cim:"MacSecBypassSupported"`
-	NumberOfEtsCapableTrafficClasses uint8 `cim:"NumberOfEtsCapableTrafficClasses"`
-	NumberOfPfcEnabledTrafficClasses uint8 `cim:"NumberOfPfcEnabledTrafficClasses"`
-	NumberOfTrafficClasses           uint8 `cim:"NumberOfTrafficClasses"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                          string `cim:"__PATH"`
+	CeeDcbxSupported                 bool   `cim:"CeeDcbxSupported"`
+	IeeeDcbxSupported                bool   `cim:"IeeeDcbxSupported"`
+	MacSecBypassSupported            bool   `cim:"MacSecBypassSupported"`
+	NumberOfEtsCapableTrafficClasses uint8  `cim:"NumberOfEtsCapableTrafficClasses"`
+	NumberOfPfcEnabledTrafficClasses uint8  `cim:"NumberOfPfcEnabledTrafficClasses"`
+	NumberOfTrafficClasses           uint8  `cim:"NumberOfTrafficClasses"`
 }
 
 // MSFTNetAdapterQosClassificationElement is the MSFT_NetAdapter_QosClassificationElement CIM class.
 type MSFTNetAdapterQosClassificationElement struct {
-	Priority              uint8  `cim:"Priority"`
-	ProtocolSelector      uint16 `cim:"ProtocolSelector"`
-	ProtocolSpecificValue uint16 `cim:"ProtocolSpecificValue"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath               string                                                 `cim:"__PATH"`
+	Priority              uint8                                                  `cim:"Priority"`
+	ProtocolSelector      MSFTNetAdapterQosClassificationElementProtocolSelector `cim:"ProtocolSelector"`
+	ProtocolSpecificValue uint16                                                 `cim:"ProtocolSpecificValue"`
 }
 
 // MSFTNetAdapterQosSettings is the MSFT_NetAdapter_QosSettings CIM class.
 type MSFTNetAdapterQosSettings struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                        string    `cim:"__PATH"`
 	BandwidthAssignmentTable       []uint8   `cim:"BandwidthAssignmentTable"`
 	ClassificationEnabled          bool      `cim:"ClassificationEnabled"`
 	ClassificationTable            []wmi.Row `cim:"ClassificationTable"`
@@ -2680,52 +3284,64 @@ type MSFTNetAdapterQosSettings struct {
 
 // MSFTNetAdapterRdmaAdapterInfo is the MSFT_NetAdapter_RdmaAdapterInfo CIM class.
 type MSFTNetAdapterRdmaAdapterInfo struct {
-	DeviceId                                   uint32 `cim:"DeviceId"`
-	FRMRPageCount                              uint32 `cim:"FRMRPageCount"`
-	InOrderDMA                                 bool   `cim:"InOrderDMA"`
-	LargeRequestThreshold                      uint32 `cim:"LargeRequestThreshold"`
-	MajorVersionNumber                         uint16 `cim:"MajorVersionNumber"`
-	MaxCalleeData                              uint32 `cim:"MaxCalleeData"`
-	MaxCallerData                              uint32 `cim:"MaxCallerData"`
-	MaxCompletionQueueDepth                    uint32 `cim:"MaxCompletionQueueDepth"`
-	MaxInboundReadLimit                        uint32 `cim:"MaxInboundReadLimit"`
-	MaxInitiatorQueueDepth                     uint32 `cim:"MaxInitiatorQueueDepth"`
-	MaxInitiatorRequestSge                     uint32 `cim:"MaxInitiatorRequestSge"`
-	MaxInlineDataSize                          uint32 `cim:"MaxInlineDataSize"`
-	MaxOutboundReadLimit                       uint32 `cim:"MaxOutboundReadLimit"`
-	MaxReadRequestSge                          uint32 `cim:"MaxReadRequestSge"`
-	MaxReceiveQueueDepth                       uint32 `cim:"MaxReceiveQueueDepth"`
-	MaxReceiveRequestSge                       uint32 `cim:"MaxReceiveRequestSge"`
-	MaxRegistrationSize                        uint64 `cim:"MaxRegistrationSize"`
-	MaxSharedReceiveQueueDepth                 uint32 `cim:"MaxSharedReceiveQueueDepth"`
-	MaxTransferLength                          uint32 `cim:"MaxTransferLength"`
-	MaxWindowSize                              uint64 `cim:"MaxWindowSize"`
-	MinorVersionNumber                         uint16 `cim:"MinorVersionNumber"`
-	RdmaReadSinkFlagNotRequired                bool   `cim:"RdmaReadSinkFlagNotRequired"`
-	RdmaTechnology                             uint32 `cim:"RdmaTechnology"`
-	SupportsCompletionQueueInterruptModeration bool   `cim:"SupportsCompletionQueueInterruptModeration"`
-	SupportsCompletionQueueResize              bool   `cim:"SupportsCompletionQueueResize"`
-	SupportsLoopbackConnections                bool   `cim:"SupportsLoopbackConnections"`
-	SupportsMultiEngine                        bool   `cim:"SupportsMultiEngine"`
-	VendorId                                   uint32 `cim:"VendorId"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                    string                                      `cim:"__PATH"`
+	DeviceId                                   uint32                                      `cim:"DeviceId"`
+	FRMRPageCount                              uint32                                      `cim:"FRMRPageCount"`
+	InOrderDMA                                 bool                                        `cim:"InOrderDMA"`
+	LargeRequestThreshold                      uint32                                      `cim:"LargeRequestThreshold"`
+	MajorVersionNumber                         uint16                                      `cim:"MajorVersionNumber"`
+	MaxCalleeData                              uint32                                      `cim:"MaxCalleeData"`
+	MaxCallerData                              uint32                                      `cim:"MaxCallerData"`
+	MaxCompletionQueueDepth                    uint32                                      `cim:"MaxCompletionQueueDepth"`
+	MaxInboundReadLimit                        uint32                                      `cim:"MaxInboundReadLimit"`
+	MaxInitiatorQueueDepth                     uint32                                      `cim:"MaxInitiatorQueueDepth"`
+	MaxInitiatorRequestSge                     uint32                                      `cim:"MaxInitiatorRequestSge"`
+	MaxInlineDataSize                          uint32                                      `cim:"MaxInlineDataSize"`
+	MaxOutboundReadLimit                       uint32                                      `cim:"MaxOutboundReadLimit"`
+	MaxReadRequestSge                          uint32                                      `cim:"MaxReadRequestSge"`
+	MaxReceiveQueueDepth                       uint32                                      `cim:"MaxReceiveQueueDepth"`
+	MaxReceiveRequestSge                       uint32                                      `cim:"MaxReceiveRequestSge"`
+	MaxRegistrationSize                        uint64                                      `cim:"MaxRegistrationSize"`
+	MaxSharedReceiveQueueDepth                 uint32                                      `cim:"MaxSharedReceiveQueueDepth"`
+	MaxTransferLength                          uint32                                      `cim:"MaxTransferLength"`
+	MaxWindowSize                              uint64                                      `cim:"MaxWindowSize"`
+	MinorVersionNumber                         uint16                                      `cim:"MinorVersionNumber"`
+	RdmaReadSinkFlagNotRequired                bool                                        `cim:"RdmaReadSinkFlagNotRequired"`
+	RdmaTechnology                             MSFTNetAdapterRdmaAdapterInfoRdmaTechnology `cim:"RdmaTechnology"`
+	SupportsCompletionQueueInterruptModeration bool                                        `cim:"SupportsCompletionQueueInterruptModeration"`
+	SupportsCompletionQueueResize              bool                                        `cim:"SupportsCompletionQueueResize"`
+	SupportsLoopbackConnections                bool                                        `cim:"SupportsLoopbackConnections"`
+	SupportsMultiEngine                        bool                                        `cim:"SupportsMultiEngine"`
+	VendorId                                   uint32                                      `cim:"VendorId"`
 }
 
 // MSFTNetAdapterRdmaMissingCounterInfo is the MSFT_NetAdapter_RdmaMissingCounterInfo CIM class.
 type MSFTNetAdapterRdmaMissingCounterInfo struct {
-	AcceptPerformanceCounterMissing               bool `cim:"AcceptPerformanceCounterMissing"`
-	ActiveConnectionPerformanceCounterMissing     bool `cim:"ActiveConnectionPerformanceCounterMissing"`
-	CompletionQueueErrorPerformanceCounterMissing bool `cim:"CompletionQueueErrorPerformanceCounterMissing"`
-	ConnectFailurePerformanceCounterMissing       bool `cim:"ConnectFailurePerformanceCounterMissing"`
-	ConnectPerformanceCounterMissing              bool `cim:"ConnectPerformanceCounterMissing"`
-	ConnectionErrorPerformanceCounterMissing      bool `cim:"ConnectionErrorPerformanceCounterMissing"`
-	RDMAInFramesPerformanceCounterMissing         bool `cim:"RDMAInFramesPerformanceCounterMissing"`
-	RDMAInOctetsPerformanceCounterMissing         bool `cim:"RDMAInOctetsPerformanceCounterMissing"`
-	RDMAOutFramesPerformanceCounterMissing        bool `cim:"RDMAOutFramesPerformanceCounterMissing"`
-	RDMAOutOctetsPerformanceCounterMissing        bool `cim:"RDMAOutOctetsPerformanceCounterMissing"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                       string `cim:"__PATH"`
+	AcceptPerformanceCounterMissing               bool   `cim:"AcceptPerformanceCounterMissing"`
+	ActiveConnectionPerformanceCounterMissing     bool   `cim:"ActiveConnectionPerformanceCounterMissing"`
+	CompletionQueueErrorPerformanceCounterMissing bool   `cim:"CompletionQueueErrorPerformanceCounterMissing"`
+	ConnectFailurePerformanceCounterMissing       bool   `cim:"ConnectFailurePerformanceCounterMissing"`
+	ConnectPerformanceCounterMissing              bool   `cim:"ConnectPerformanceCounterMissing"`
+	ConnectionErrorPerformanceCounterMissing      bool   `cim:"ConnectionErrorPerformanceCounterMissing"`
+	RDMAInFramesPerformanceCounterMissing         bool   `cim:"RDMAInFramesPerformanceCounterMissing"`
+	RDMAInOctetsPerformanceCounterMissing         bool   `cim:"RDMAInOctetsPerformanceCounterMissing"`
+	RDMAOutFramesPerformanceCounterMissing        bool   `cim:"RDMAOutFramesPerformanceCounterMissing"`
+	RDMAOutOctetsPerformanceCounterMissing        bool   `cim:"RDMAOutOctetsPerformanceCounterMissing"`
 }
 
 // MSFTNetAdapterRdmaStatistics is the MSFT_NetAdapter_RdmaStatistics CIM class.
 type MSFTNetAdapterRdmaStatistics struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                  string `cim:"__PATH"`
 	AcceptedConnections      uint64 `cim:"AcceptedConnections"`
 	ActiveConnections        uint64 `cim:"ActiveConnections"`
 	CompletionQueueErrors    uint64 `cim:"CompletionQueueErrors"`
@@ -2740,6 +3356,10 @@ type MSFTNetAdapterRdmaStatistics struct {
 
 // MSFTNetAdapterRscStatistics is the MSFT_NetAdapter_RscStatistics CIM class.
 type MSFTNetAdapterRscStatistics struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath              string `cim:"__PATH"`
 	CoalescedBytes       uint64 `cim:"CoalescedBytes"`
 	CoalescedPackets     uint64 `cim:"CoalescedPackets"`
 	CoalescingEvents     uint64 `cim:"CoalescingEvents"`
@@ -2748,6 +3368,10 @@ type MSFTNetAdapterRscStatistics struct {
 
 // MSFTNetAdapterRssProcessor is the MSFT_NetAdapter_RssProcessor CIM class.
 type MSFTNetAdapterRssProcessor struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath         string `cim:"__PATH"`
 	PreferenceIndex uint16 `cim:"PreferenceIndex"`
 	ProcessorGroup  uint16 `cim:"ProcessorGroup"`
 	ProcessorNumber uint8  `cim:"ProcessorNumber"`
@@ -2755,6 +3379,10 @@ type MSFTNetAdapterRssProcessor struct {
 
 // MSFTNetAdapterVmqFilter is the MSFT_NetAdapter_VmqFilter CIM class.
 type MSFTNetAdapterVmqFilter struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath    string `cim:"__PATH"`
 	FilterID   uint32 `cim:"FilterID"`
 	MacAddress string `cim:"MacAddress"`
 	VlanID     uint16 `cim:"VlanID"`
@@ -2762,139 +3390,163 @@ type MSFTNetAdapterVmqFilter struct {
 
 // MSFTNetAddressFilter is the MSFT_NetAddressFilter CIM class.
 type MSFTNetAddressFilter struct {
-	Caption                 string   `cim:"Caption"`
-	CommunicationStatus     uint16   `cim:"CommunicationStatus"`
-	CreationClassName       string   `cim:"CreationClassName"`
-	Description             string   `cim:"Description"`
-	DetailedStatus          uint16   `cim:"DetailedStatus"`
-	ElementName             string   `cim:"ElementName"`
-	HealthState             uint16   `cim:"HealthState"`
-	InstallDate             string   `cim:"InstallDate"`
-	InstanceID              string   `cim:"InstanceID"`
-	IsNegated               bool     `cim:"IsNegated"`
-	LocalAddress            []string `cim:"LocalAddress"`
-	Name                    string   `cim:"Name"`
-	OperatingStatus         uint16   `cim:"OperatingStatus"`
-	OperationalStatus       []uint16 `cim:"OperationalStatus"`
-	PrimaryStatus           uint16   `cim:"PrimaryStatus"`
-	RemoteAddress           []string `cim:"RemoteAddress"`
-	Status                  string   `cim:"Status"`
-	StatusDescriptions      []string `cim:"StatusDescriptions"`
-	SystemCreationClassName string   `cim:"SystemCreationClassName"`
-	SystemName              string   `cim:"SystemName"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                 string                                  `cim:"__PATH"`
+	Caption                 string                                  `cim:"Caption"`
+	CommunicationStatus     MSFTNetAddressFilterCommunicationStatus `cim:"CommunicationStatus"`
+	CreationClassName       string                                  `cim:"CreationClassName"`
+	Description             string                                  `cim:"Description"`
+	DetailedStatus          MSFTNetAddressFilterDetailedStatus      `cim:"DetailedStatus"`
+	ElementName             string                                  `cim:"ElementName"`
+	HealthState             MSFTNetAddressFilterHealthState         `cim:"HealthState"`
+	InstallDate             string                                  `cim:"InstallDate"`
+	InstanceID              string                                  `cim:"InstanceID"`
+	IsNegated               bool                                    `cim:"IsNegated"`
+	LocalAddress            []string                                `cim:"LocalAddress"`
+	Name                    string                                  `cim:"Name"`
+	OperatingStatus         MSFTNetAddressFilterOperatingStatus     `cim:"OperatingStatus"`
+	OperationalStatus       []uint16                                `cim:"OperationalStatus"`
+	PrimaryStatus           MSFTNetAddressFilterPrimaryStatus       `cim:"PrimaryStatus"`
+	RemoteAddress           []string                                `cim:"RemoteAddress"`
+	Status                  MSFTNetAddressFilterStatus              `cim:"Status"`
+	StatusDescriptions      []string                                `cim:"StatusDescriptions"`
+	SystemCreationClassName string                                  `cim:"SystemCreationClassName"`
+	SystemName              string                                  `cim:"SystemName"`
 }
 
 // MSFTNetApplicationFilter is the MSFT_NetApplicationFilter CIM class.
 type MSFTNetApplicationFilter struct {
-	AppPath                 string   `cim:"AppPath"`
-	Caption                 string   `cim:"Caption"`
-	CommunicationStatus     uint16   `cim:"CommunicationStatus"`
-	CreationClassName       string   `cim:"CreationClassName"`
-	Description             string   `cim:"Description"`
-	DetailedStatus          uint16   `cim:"DetailedStatus"`
-	ElementName             string   `cim:"ElementName"`
-	HealthState             uint16   `cim:"HealthState"`
-	InstallDate             string   `cim:"InstallDate"`
-	InstanceID              string   `cim:"InstanceID"`
-	IsNegated               bool     `cim:"IsNegated"`
-	Name                    string   `cim:"Name"`
-	OperatingStatus         uint16   `cim:"OperatingStatus"`
-	OperationalStatus       []uint16 `cim:"OperationalStatus"`
-	Package                 string   `cim:"Package"`
-	PrimaryStatus           uint16   `cim:"PrimaryStatus"`
-	Status                  string   `cim:"Status"`
-	StatusDescriptions      []string `cim:"StatusDescriptions"`
-	SystemCreationClassName string   `cim:"SystemCreationClassName"`
-	SystemName              string   `cim:"SystemName"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                 string                                      `cim:"__PATH"`
+	AppPath                 string                                      `cim:"AppPath"`
+	Caption                 string                                      `cim:"Caption"`
+	CommunicationStatus     MSFTNetApplicationFilterCommunicationStatus `cim:"CommunicationStatus"`
+	CreationClassName       string                                      `cim:"CreationClassName"`
+	Description             string                                      `cim:"Description"`
+	DetailedStatus          MSFTNetApplicationFilterDetailedStatus      `cim:"DetailedStatus"`
+	ElementName             string                                      `cim:"ElementName"`
+	HealthState             MSFTNetApplicationFilterHealthState         `cim:"HealthState"`
+	InstallDate             string                                      `cim:"InstallDate"`
+	InstanceID              string                                      `cim:"InstanceID"`
+	IsNegated               bool                                        `cim:"IsNegated"`
+	Name                    string                                      `cim:"Name"`
+	OperatingStatus         MSFTNetApplicationFilterOperatingStatus     `cim:"OperatingStatus"`
+	OperationalStatus       []uint16                                    `cim:"OperationalStatus"`
+	Package                 string                                      `cim:"Package"`
+	PrimaryStatus           MSFTNetApplicationFilterPrimaryStatus       `cim:"PrimaryStatus"`
+	Status                  MSFTNetApplicationFilterStatus              `cim:"Status"`
+	StatusDescriptions      []string                                    `cim:"StatusDescriptions"`
+	SystemCreationClassName string                                      `cim:"SystemCreationClassName"`
+	SystemName              string                                      `cim:"SystemName"`
 }
 
 // MSFTNetBaseIPProtocol is the MSFT_NetBaseIPProtocol CIM class.
 type MSFTNetBaseIPProtocol struct {
-	AddressMaskReply         uint8    `cim:"AddressMaskReply"`
-	AvailableRequestedStates []uint16 `cim:"AvailableRequestedStates"`
-	Caption                  string   `cim:"Caption"`
-	CommunicationStatus      uint16   `cim:"CommunicationStatus"`
-	CreationClassName        string   `cim:"CreationClassName"`
-	DeadGatewayDetection     uint8    `cim:"DeadGatewayDetection"`
-	DefaultHopLimit          uint32   `cim:"DefaultHopLimit"`
-	Description              string   `cim:"Description"`
-	DetailedStatus           uint16   `cim:"DetailedStatus"`
-	DhcpMediaSense           uint8    `cim:"DhcpMediaSense"`
-	ElementName              string   `cim:"ElementName"`
-	EnabledDefault           uint16   `cim:"EnabledDefault"`
-	EnabledState             uint16   `cim:"EnabledState"`
-	GroupForwardedFragments  uint8    `cim:"GroupForwardedFragments"`
-	HealthState              uint16   `cim:"HealthState"`
-	IcmpRedirects            uint8    `cim:"IcmpRedirects"`
-	InstallDate              string   `cim:"InstallDate"`
-	InstanceID               string   `cim:"InstanceID"`
-	MediaSenseEventLog       uint8    `cim:"MediaSenseEventLog"`
-	MldLevel                 uint32   `cim:"MldLevel"`
-	MldVersion               uint32   `cim:"MldVersion"`
-	MulticastForwarding      uint8    `cim:"MulticastForwarding"`
-	Name                     string   `cim:"Name"`
-	NameFormat               string   `cim:"NameFormat"`
-	NeighborCacheLimit       uint32   `cim:"NeighborCacheLimit"`
-	OperatingStatus          uint16   `cim:"OperatingStatus"`
-	OperationalStatus        []uint16 `cim:"OperationalStatus"`
-	OtherEnabledState        string   `cim:"OtherEnabledState"`
-	OtherTypeDescription     string   `cim:"OtherTypeDescription"`
-	PrimaryStatus            uint16   `cim:"PrimaryStatus"`
-	ProtocolIFType           uint16   `cim:"ProtocolIFType"`
-	ProtocolType             uint16   `cim:"ProtocolType"`
-	RandomizeIdentifiers     uint8    `cim:"RandomizeIdentifiers"`
-	ReassemblyLimit          uint32   `cim:"ReassemblyLimit"`
-	RequestedState           uint16   `cim:"RequestedState"`
-	RouteCacheLimit          uint32   `cim:"RouteCacheLimit"`
-	SourceRoutingBehavior    uint32   `cim:"SourceRoutingBehavior"`
-	Status                   string   `cim:"Status"`
-	StatusDescriptions       []string `cim:"StatusDescriptions"`
-	SystemCreationClassName  string   `cim:"SystemCreationClassName"`
-	SystemName               string   `cim:"SystemName"`
-	TimeOfLastStateChange    string   `cim:"TimeOfLastStateChange"`
-	TransitioningToState     uint16   `cim:"TransitioningToState"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                  string                                       `cim:"__PATH"`
+	AddressMaskReply         MSFTNetBaseIPProtocolAddressMaskReply        `cim:"AddressMaskReply"`
+	AvailableRequestedStates []uint16                                     `cim:"AvailableRequestedStates"`
+	Caption                  string                                       `cim:"Caption"`
+	CommunicationStatus      MSFTNetBaseIPProtocolCommunicationStatus     `cim:"CommunicationStatus"`
+	CreationClassName        string                                       `cim:"CreationClassName"`
+	DeadGatewayDetection     MSFTNetBaseIPProtocolDeadGatewayDetection    `cim:"DeadGatewayDetection"`
+	DefaultHopLimit          uint32                                       `cim:"DefaultHopLimit"`
+	Description              string                                       `cim:"Description"`
+	DetailedStatus           MSFTNetBaseIPProtocolDetailedStatus          `cim:"DetailedStatus"`
+	DhcpMediaSense           MSFTNetBaseIPProtocolDhcpMediaSense          `cim:"DhcpMediaSense"`
+	ElementName              string                                       `cim:"ElementName"`
+	EnabledDefault           MSFTNetBaseIPProtocolEnabledDefault          `cim:"EnabledDefault"`
+	EnabledState             MSFTNetBaseIPProtocolEnabledState            `cim:"EnabledState"`
+	GroupForwardedFragments  MSFTNetBaseIPProtocolGroupForwardedFragments `cim:"GroupForwardedFragments"`
+	HealthState              MSFTNetBaseIPProtocolHealthState             `cim:"HealthState"`
+	IcmpRedirects            MSFTNetBaseIPProtocolIcmpRedirects           `cim:"IcmpRedirects"`
+	InstallDate              string                                       `cim:"InstallDate"`
+	InstanceID               string                                       `cim:"InstanceID"`
+	MediaSenseEventLog       MSFTNetBaseIPProtocolMediaSenseEventLog      `cim:"MediaSenseEventLog"`
+	MldLevel                 MSFTNetBaseIPProtocolMldLevel                `cim:"MldLevel"`
+	MldVersion               MSFTNetBaseIPProtocolMldVersion              `cim:"MldVersion"`
+	MulticastForwarding      MSFTNetBaseIPProtocolMulticastForwarding     `cim:"MulticastForwarding"`
+	Name                     string                                       `cim:"Name"`
+	NameFormat               string                                       `cim:"NameFormat"`
+	NeighborCacheLimit       uint32                                       `cim:"NeighborCacheLimit"`
+	OperatingStatus          MSFTNetBaseIPProtocolOperatingStatus         `cim:"OperatingStatus"`
+	OperationalStatus        []uint16                                     `cim:"OperationalStatus"`
+	OtherEnabledState        string                                       `cim:"OtherEnabledState"`
+	OtherTypeDescription     string                                       `cim:"OtherTypeDescription"`
+	PrimaryStatus            MSFTNetBaseIPProtocolPrimaryStatus           `cim:"PrimaryStatus"`
+	ProtocolIFType           MSFTNetBaseIPProtocolProtocolIFType          `cim:"ProtocolIFType"`
+	ProtocolType             MSFTNetBaseIPProtocolProtocolType            `cim:"ProtocolType"`
+	RandomizeIdentifiers     MSFTNetBaseIPProtocolRandomizeIdentifiers    `cim:"RandomizeIdentifiers"`
+	ReassemblyLimit          uint32                                       `cim:"ReassemblyLimit"`
+	RequestedState           MSFTNetBaseIPProtocolRequestedState          `cim:"RequestedState"`
+	RouteCacheLimit          uint32                                       `cim:"RouteCacheLimit"`
+	SourceRoutingBehavior    MSFTNetBaseIPProtocolSourceRoutingBehavior   `cim:"SourceRoutingBehavior"`
+	Status                   MSFTNetBaseIPProtocolStatus                  `cim:"Status"`
+	StatusDescriptions       []string                                     `cim:"StatusDescriptions"`
+	SystemCreationClassName  string                                       `cim:"SystemCreationClassName"`
+	SystemName               string                                       `cim:"SystemName"`
+	TimeOfLastStateChange    string                                       `cim:"TimeOfLastStateChange"`
+	TransitioningToState     MSFTNetBaseIPProtocolTransitioningToState    `cim:"TransitioningToState"`
 }
 
 // MSFTNetBranchCacheCache is the MSFT_NetBranchCacheCache CIM class.
 type MSFTNetBranchCacheCache struct {
-	CacheFileDirectoryPath               string   `cim:"CacheFileDirectoryPath"`
-	Caption                              string   `cim:"Caption"`
-	CommunicationStatus                  uint16   `cim:"CommunicationStatus"`
-	CurrentSizeOnDiskAsNumberOfBytes     uint64   `cim:"CurrentSizeOnDiskAsNumberOfBytes"`
-	Description                          string   `cim:"Description"`
-	DetailedStatus                       uint16   `cim:"DetailedStatus"`
-	ElementName                          string   `cim:"ElementName"`
-	HealthState                          uint16   `cim:"HealthState"`
-	InstallDate                          string   `cim:"InstallDate"`
-	InstanceID                           string   `cim:"InstanceID"`
-	MaxCacheSizeAsNumberOfBytes          uint64   `cim:"MaxCacheSizeAsNumberOfBytes"`
-	MaxCacheSizeAsPercentageOfDiskVolume uint32   `cim:"MaxCacheSizeAsPercentageOfDiskVolume"`
-	Name                                 string   `cim:"Name"`
-	OperatingStatus                      uint16   `cim:"OperatingStatus"`
-	OperationalStatus                    []uint16 `cim:"OperationalStatus"`
-	PrimaryStatus                        uint16   `cim:"PrimaryStatus"`
-	Status                               string   `cim:"Status"`
-	StatusDescriptions                   []string `cim:"StatusDescriptions"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                              string                                     `cim:"__PATH"`
+	CacheFileDirectoryPath               string                                     `cim:"CacheFileDirectoryPath"`
+	Caption                              string                                     `cim:"Caption"`
+	CommunicationStatus                  MSFTNetBranchCacheCacheCommunicationStatus `cim:"CommunicationStatus"`
+	CurrentSizeOnDiskAsNumberOfBytes     uint64                                     `cim:"CurrentSizeOnDiskAsNumberOfBytes"`
+	Description                          string                                     `cim:"Description"`
+	DetailedStatus                       MSFTNetBranchCacheCacheDetailedStatus      `cim:"DetailedStatus"`
+	ElementName                          string                                     `cim:"ElementName"`
+	HealthState                          MSFTNetBranchCacheCacheHealthState         `cim:"HealthState"`
+	InstallDate                          string                                     `cim:"InstallDate"`
+	InstanceID                           string                                     `cim:"InstanceID"`
+	MaxCacheSizeAsNumberOfBytes          uint64                                     `cim:"MaxCacheSizeAsNumberOfBytes"`
+	MaxCacheSizeAsPercentageOfDiskVolume uint32                                     `cim:"MaxCacheSizeAsPercentageOfDiskVolume"`
+	Name                                 string                                     `cim:"Name"`
+	OperatingStatus                      MSFTNetBranchCacheCacheOperatingStatus     `cim:"OperatingStatus"`
+	OperationalStatus                    []uint16                                   `cim:"OperationalStatus"`
+	PrimaryStatus                        MSFTNetBranchCacheCachePrimaryStatus       `cim:"PrimaryStatus"`
+	Status                               MSFTNetBranchCacheCacheStatus              `cim:"Status"`
+	StatusDescriptions                   []string                                   `cim:"StatusDescriptions"`
 }
 
 // MSFTNetBranchCacheClientSettingData is the MSFT_NetBranchCacheClientSettingData CIM class.
 type MSFTNetBranchCacheClientSettingData struct {
-	Caption                                    string   `cim:"Caption"`
-	CurrentClientMode                          uint32   `cim:"CurrentClientMode"`
-	Description                                string   `cim:"Description"`
-	DistributedCachingIsEnabled                bool     `cim:"DistributedCachingIsEnabled"`
-	ElementName                                string   `cim:"ElementName"`
-	HostedCacheDiscoveryEnabled                bool     `cim:"HostedCacheDiscoveryEnabled"`
-	HostedCacheServerList                      []string `cim:"HostedCacheServerList"`
-	HostedCacheVersion                         uint32   `cim:"HostedCacheVersion"`
-	InstanceID                                 string   `cim:"InstanceID"`
-	MinimumSmbLatencyInMilliseconds            uint32   `cim:"MinimumSmbLatencyInMilliseconds"`
-	PreferredContentInformationVersion         uint32   `cim:"PreferredContentInformationVersion"`
-	ServeDistributedCachingPeersOnBatteryPower bool     `cim:"ServeDistributedCachingPeersOnBatteryPower"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                    string                                                                `cim:"__PATH"`
+	Caption                                    string                                                                `cim:"Caption"`
+	CurrentClientMode                          MSFTNetBranchCacheClientSettingDataCurrentClientMode                  `cim:"CurrentClientMode"`
+	Description                                string                                                                `cim:"Description"`
+	DistributedCachingIsEnabled                bool                                                                  `cim:"DistributedCachingIsEnabled"`
+	ElementName                                string                                                                `cim:"ElementName"`
+	HostedCacheDiscoveryEnabled                bool                                                                  `cim:"HostedCacheDiscoveryEnabled"`
+	HostedCacheServerList                      []string                                                              `cim:"HostedCacheServerList"`
+	HostedCacheVersion                         uint32                                                                `cim:"HostedCacheVersion"`
+	InstanceID                                 string                                                                `cim:"InstanceID"`
+	MinimumSmbLatencyInMilliseconds            uint32                                                                `cim:"MinimumSmbLatencyInMilliseconds"`
+	PreferredContentInformationVersion         MSFTNetBranchCacheClientSettingDataPreferredContentInformationVersion `cim:"PreferredContentInformationVersion"`
+	ServeDistributedCachingPeersOnBatteryPower bool                                                                  `cim:"ServeDistributedCachingPeersOnBatteryPower"`
 }
 
 // MSFTNetBranchCacheContentServerSettingData is the MSFT_NetBranchCacheContentServerSettingData CIM class.
 type MSFTNetBranchCacheContentServerSettingData struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                string `cim:"__PATH"`
 	Caption                string `cim:"Caption"`
 	ContentServerIsEnabled bool   `cim:"ContentServerIsEnabled"`
 	Description            string `cim:"Description"`
@@ -2904,86 +3556,106 @@ type MSFTNetBranchCacheContentServerSettingData struct {
 
 // MSFTNetBranchCacheDataCache is the MSFT_NetBranchCacheDataCache CIM class.
 type MSFTNetBranchCacheDataCache struct {
-	CacheFileDirectoryPath               string    `cim:"CacheFileDirectoryPath"`
-	Caption                              string    `cim:"Caption"`
-	CommunicationStatus                  uint16    `cim:"CommunicationStatus"`
-	CurrentActiveCacheSize               uint64    `cim:"CurrentActiveCacheSize"`
-	CurrentSizeOnDiskAsNumberOfBytes     uint64    `cim:"CurrentSizeOnDiskAsNumberOfBytes"`
-	DataCacheExtensions                  []wmi.Row `cim:"DataCacheExtensions"`
-	Description                          string    `cim:"Description"`
-	DetailedStatus                       uint16    `cim:"DetailedStatus"`
-	ElementName                          string    `cim:"ElementName"`
-	HealthState                          uint16    `cim:"HealthState"`
-	InstallDate                          string    `cim:"InstallDate"`
-	InstanceID                           string    `cim:"InstanceID"`
-	MaxCacheSizeAsNumberOfBytes          uint64    `cim:"MaxCacheSizeAsNumberOfBytes"`
-	MaxCacheSizeAsPercentageOfDiskVolume uint32    `cim:"MaxCacheSizeAsPercentageOfDiskVolume"`
-	Name                                 string    `cim:"Name"`
-	OperatingStatus                      uint16    `cim:"OperatingStatus"`
-	OperationalStatus                    []uint16  `cim:"OperationalStatus"`
-	PrimaryStatus                        uint16    `cim:"PrimaryStatus"`
-	Status                               string    `cim:"Status"`
-	StatusDescriptions                   []string  `cim:"StatusDescriptions"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                              string                                         `cim:"__PATH"`
+	CacheFileDirectoryPath               string                                         `cim:"CacheFileDirectoryPath"`
+	Caption                              string                                         `cim:"Caption"`
+	CommunicationStatus                  MSFTNetBranchCacheDataCacheCommunicationStatus `cim:"CommunicationStatus"`
+	CurrentActiveCacheSize               uint64                                         `cim:"CurrentActiveCacheSize"`
+	CurrentSizeOnDiskAsNumberOfBytes     uint64                                         `cim:"CurrentSizeOnDiskAsNumberOfBytes"`
+	DataCacheExtensions                  []wmi.Row                                      `cim:"DataCacheExtensions"`
+	Description                          string                                         `cim:"Description"`
+	DetailedStatus                       MSFTNetBranchCacheDataCacheDetailedStatus      `cim:"DetailedStatus"`
+	ElementName                          string                                         `cim:"ElementName"`
+	HealthState                          MSFTNetBranchCacheDataCacheHealthState         `cim:"HealthState"`
+	InstallDate                          string                                         `cim:"InstallDate"`
+	InstanceID                           string                                         `cim:"InstanceID"`
+	MaxCacheSizeAsNumberOfBytes          uint64                                         `cim:"MaxCacheSizeAsNumberOfBytes"`
+	MaxCacheSizeAsPercentageOfDiskVolume uint32                                         `cim:"MaxCacheSizeAsPercentageOfDiskVolume"`
+	Name                                 string                                         `cim:"Name"`
+	OperatingStatus                      MSFTNetBranchCacheDataCacheOperatingStatus     `cim:"OperatingStatus"`
+	OperationalStatus                    []uint16                                       `cim:"OperationalStatus"`
+	PrimaryStatus                        MSFTNetBranchCacheDataCachePrimaryStatus       `cim:"PrimaryStatus"`
+	Status                               MSFTNetBranchCacheDataCacheStatus              `cim:"Status"`
+	StatusDescriptions                   []string                                       `cim:"StatusDescriptions"`
 }
 
 // MSFTNetBranchCacheDataCacheExtension is the MSFT_NetBranchCacheDataCacheExtension CIM class.
 type MSFTNetBranchCacheDataCacheExtension struct {
-	CacheFileDirectoryPath               string   `cim:"CacheFileDirectoryPath"`
-	Caption                              string   `cim:"Caption"`
-	CommunicationStatus                  uint16   `cim:"CommunicationStatus"`
-	CurrentSizeOnDiskAsNumberOfBytes     uint64   `cim:"CurrentSizeOnDiskAsNumberOfBytes"`
-	Description                          string   `cim:"Description"`
-	DetailedStatus                       uint16   `cim:"DetailedStatus"`
-	ElementName                          string   `cim:"ElementName"`
-	HealthState                          uint16   `cim:"HealthState"`
-	InstallDate                          string   `cim:"InstallDate"`
-	InstanceID                           string   `cim:"InstanceID"`
-	MaxCacheSizeAsNumberOfBytes          uint64   `cim:"MaxCacheSizeAsNumberOfBytes"`
-	MaxCacheSizeAsPercentageOfDiskVolume uint32   `cim:"MaxCacheSizeAsPercentageOfDiskVolume"`
-	Name                                 string   `cim:"Name"`
-	OperatingStatus                      uint16   `cim:"OperatingStatus"`
-	OperationalStatus                    []uint16 `cim:"OperationalStatus"`
-	PrimaryStatus                        uint16   `cim:"PrimaryStatus"`
-	Status                               string   `cim:"Status"`
-	StatusDescriptions                   []string `cim:"StatusDescriptions"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                              string                                                  `cim:"__PATH"`
+	CacheFileDirectoryPath               string                                                  `cim:"CacheFileDirectoryPath"`
+	Caption                              string                                                  `cim:"Caption"`
+	CommunicationStatus                  MSFTNetBranchCacheDataCacheExtensionCommunicationStatus `cim:"CommunicationStatus"`
+	CurrentSizeOnDiskAsNumberOfBytes     uint64                                                  `cim:"CurrentSizeOnDiskAsNumberOfBytes"`
+	Description                          string                                                  `cim:"Description"`
+	DetailedStatus                       MSFTNetBranchCacheDataCacheExtensionDetailedStatus      `cim:"DetailedStatus"`
+	ElementName                          string                                                  `cim:"ElementName"`
+	HealthState                          MSFTNetBranchCacheDataCacheExtensionHealthState         `cim:"HealthState"`
+	InstallDate                          string                                                  `cim:"InstallDate"`
+	InstanceID                           string                                                  `cim:"InstanceID"`
+	MaxCacheSizeAsNumberOfBytes          uint64                                                  `cim:"MaxCacheSizeAsNumberOfBytes"`
+	MaxCacheSizeAsPercentageOfDiskVolume uint32                                                  `cim:"MaxCacheSizeAsPercentageOfDiskVolume"`
+	Name                                 string                                                  `cim:"Name"`
+	OperatingStatus                      MSFTNetBranchCacheDataCacheExtensionOperatingStatus     `cim:"OperatingStatus"`
+	OperationalStatus                    []uint16                                                `cim:"OperationalStatus"`
+	PrimaryStatus                        MSFTNetBranchCacheDataCacheExtensionPrimaryStatus       `cim:"PrimaryStatus"`
+	Status                               MSFTNetBranchCacheDataCacheExtensionStatus              `cim:"Status"`
+	StatusDescriptions                   []string                                                `cim:"StatusDescriptions"`
 }
 
 // MSFTNetBranchCacheHashCache is the MSFT_NetBranchCacheHashCache CIM class.
 type MSFTNetBranchCacheHashCache struct {
-	CacheFileDirectoryPath               string   `cim:"CacheFileDirectoryPath"`
-	Caption                              string   `cim:"Caption"`
-	CommunicationStatus                  uint16   `cim:"CommunicationStatus"`
-	CurrentActiveCacheSize               uint64   `cim:"CurrentActiveCacheSize"`
-	CurrentSizeOnDiskAsNumberOfBytes     uint64   `cim:"CurrentSizeOnDiskAsNumberOfBytes"`
-	Description                          string   `cim:"Description"`
-	DetailedStatus                       uint16   `cim:"DetailedStatus"`
-	ElementName                          string   `cim:"ElementName"`
-	HealthState                          uint16   `cim:"HealthState"`
-	InstallDate                          string   `cim:"InstallDate"`
-	InstanceID                           string   `cim:"InstanceID"`
-	MaxCacheSizeAsNumberOfBytes          uint64   `cim:"MaxCacheSizeAsNumberOfBytes"`
-	MaxCacheSizeAsPercentageOfDiskVolume uint32   `cim:"MaxCacheSizeAsPercentageOfDiskVolume"`
-	Name                                 string   `cim:"Name"`
-	OperatingStatus                      uint16   `cim:"OperatingStatus"`
-	OperationalStatus                    []uint16 `cim:"OperationalStatus"`
-	PrimaryStatus                        uint16   `cim:"PrimaryStatus"`
-	Status                               string   `cim:"Status"`
-	StatusDescriptions                   []string `cim:"StatusDescriptions"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                              string                                         `cim:"__PATH"`
+	CacheFileDirectoryPath               string                                         `cim:"CacheFileDirectoryPath"`
+	Caption                              string                                         `cim:"Caption"`
+	CommunicationStatus                  MSFTNetBranchCacheHashCacheCommunicationStatus `cim:"CommunicationStatus"`
+	CurrentActiveCacheSize               uint64                                         `cim:"CurrentActiveCacheSize"`
+	CurrentSizeOnDiskAsNumberOfBytes     uint64                                         `cim:"CurrentSizeOnDiskAsNumberOfBytes"`
+	Description                          string                                         `cim:"Description"`
+	DetailedStatus                       MSFTNetBranchCacheHashCacheDetailedStatus      `cim:"DetailedStatus"`
+	ElementName                          string                                         `cim:"ElementName"`
+	HealthState                          MSFTNetBranchCacheHashCacheHealthState         `cim:"HealthState"`
+	InstallDate                          string                                         `cim:"InstallDate"`
+	InstanceID                           string                                         `cim:"InstanceID"`
+	MaxCacheSizeAsNumberOfBytes          uint64                                         `cim:"MaxCacheSizeAsNumberOfBytes"`
+	MaxCacheSizeAsPercentageOfDiskVolume uint32                                         `cim:"MaxCacheSizeAsPercentageOfDiskVolume"`
+	Name                                 string                                         `cim:"Name"`
+	OperatingStatus                      MSFTNetBranchCacheHashCacheOperatingStatus     `cim:"OperatingStatus"`
+	OperationalStatus                    []uint16                                       `cim:"OperationalStatus"`
+	PrimaryStatus                        MSFTNetBranchCacheHashCachePrimaryStatus       `cim:"PrimaryStatus"`
+	Status                               MSFTNetBranchCacheHashCacheStatus              `cim:"Status"`
+	StatusDescriptions                   []string                                       `cim:"StatusDescriptions"`
 }
 
 // MSFTNetBranchCacheHostedCacheServerSettingData is the MSFT_NetBranchCacheHostedCacheServerSettingData CIM class.
 type MSFTNetBranchCacheHostedCacheServerSettingData struct {
-	Caption                           string `cim:"Caption"`
-	ClientAuthenticationMode          uint32 `cim:"ClientAuthenticationMode"`
-	Description                       string `cim:"Description"`
-	ElementName                       string `cim:"ElementName"`
-	HostedCacheScpRegistrationEnabled bool   `cim:"HostedCacheScpRegistrationEnabled"`
-	HostedCacheServerIsEnabled        bool   `cim:"HostedCacheServerIsEnabled"`
-	InstanceID                        string `cim:"InstanceID"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                           string                                                                 `cim:"__PATH"`
+	Caption                           string                                                                 `cim:"Caption"`
+	ClientAuthenticationMode          MSFTNetBranchCacheHostedCacheServerSettingDataClientAuthenticationMode `cim:"ClientAuthenticationMode"`
+	Description                       string                                                                 `cim:"Description"`
+	ElementName                       string                                                                 `cim:"ElementName"`
+	HostedCacheScpRegistrationEnabled bool                                                                   `cim:"HostedCacheScpRegistrationEnabled"`
+	HostedCacheServerIsEnabled        bool                                                                   `cim:"HostedCacheServerIsEnabled"`
+	InstanceID                        string                                                                 `cim:"InstanceID"`
 }
 
 // MSFTNetBranchCacheNetworkSettingData is the MSFT_NetBranchCacheNetworkSettingData CIM class.
 type MSFTNetBranchCacheNetworkSettingData struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                               string `cim:"__PATH"`
 	Caption                               string `cim:"Caption"`
 	ContentDownloadConnectPort            uint16 `cim:"ContentDownloadConnectPort"`
 	ContentDownloadListenPort             uint16 `cim:"ContentDownloadListenPort"`
@@ -3005,6 +3677,10 @@ type MSFTNetBranchCacheNetworkSettingData struct {
 
 // MSFTNetBranchCacheOrchestrator is the MSFT_NetBranchCacheOrchestrator CIM class.
 type MSFTNetBranchCacheOrchestrator struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath     string `cim:"__PATH"`
 	Caption     string `cim:"Caption"`
 	Description string `cim:"Description"`
 	ElementName string `cim:"ElementName"`
@@ -3013,51 +3689,63 @@ type MSFTNetBranchCacheOrchestrator struct {
 
 // MSFTNetBranchCachePrimaryCache is the MSFT_NetBranchCachePrimaryCache CIM class.
 type MSFTNetBranchCachePrimaryCache struct {
-	CacheFileDirectoryPath               string   `cim:"CacheFileDirectoryPath"`
-	Caption                              string   `cim:"Caption"`
-	CommunicationStatus                  uint16   `cim:"CommunicationStatus"`
-	CurrentActiveCacheSize               uint64   `cim:"CurrentActiveCacheSize"`
-	CurrentSizeOnDiskAsNumberOfBytes     uint64   `cim:"CurrentSizeOnDiskAsNumberOfBytes"`
-	Description                          string   `cim:"Description"`
-	DetailedStatus                       uint16   `cim:"DetailedStatus"`
-	ElementName                          string   `cim:"ElementName"`
-	HealthState                          uint16   `cim:"HealthState"`
-	InstallDate                          string   `cim:"InstallDate"`
-	InstanceID                           string   `cim:"InstanceID"`
-	MaxCacheSizeAsNumberOfBytes          uint64   `cim:"MaxCacheSizeAsNumberOfBytes"`
-	MaxCacheSizeAsPercentageOfDiskVolume uint32   `cim:"MaxCacheSizeAsPercentageOfDiskVolume"`
-	Name                                 string   `cim:"Name"`
-	OperatingStatus                      uint16   `cim:"OperatingStatus"`
-	OperationalStatus                    []uint16 `cim:"OperationalStatus"`
-	PrimaryStatus                        uint16   `cim:"PrimaryStatus"`
-	Status                               string   `cim:"Status"`
-	StatusDescriptions                   []string `cim:"StatusDescriptions"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                              string                                            `cim:"__PATH"`
+	CacheFileDirectoryPath               string                                            `cim:"CacheFileDirectoryPath"`
+	Caption                              string                                            `cim:"Caption"`
+	CommunicationStatus                  MSFTNetBranchCachePrimaryCacheCommunicationStatus `cim:"CommunicationStatus"`
+	CurrentActiveCacheSize               uint64                                            `cim:"CurrentActiveCacheSize"`
+	CurrentSizeOnDiskAsNumberOfBytes     uint64                                            `cim:"CurrentSizeOnDiskAsNumberOfBytes"`
+	Description                          string                                            `cim:"Description"`
+	DetailedStatus                       MSFTNetBranchCachePrimaryCacheDetailedStatus      `cim:"DetailedStatus"`
+	ElementName                          string                                            `cim:"ElementName"`
+	HealthState                          MSFTNetBranchCachePrimaryCacheHealthState         `cim:"HealthState"`
+	InstallDate                          string                                            `cim:"InstallDate"`
+	InstanceID                           string                                            `cim:"InstanceID"`
+	MaxCacheSizeAsNumberOfBytes          uint64                                            `cim:"MaxCacheSizeAsNumberOfBytes"`
+	MaxCacheSizeAsPercentageOfDiskVolume uint32                                            `cim:"MaxCacheSizeAsPercentageOfDiskVolume"`
+	Name                                 string                                            `cim:"Name"`
+	OperatingStatus                      MSFTNetBranchCachePrimaryCacheOperatingStatus     `cim:"OperatingStatus"`
+	OperationalStatus                    []uint16                                          `cim:"OperationalStatus"`
+	PrimaryStatus                        MSFTNetBranchCachePrimaryCachePrimaryStatus       `cim:"PrimaryStatus"`
+	Status                               MSFTNetBranchCachePrimaryCacheStatus              `cim:"Status"`
+	StatusDescriptions                   []string                                          `cim:"StatusDescriptions"`
 }
 
 // MSFTNetBranchCacheSecondaryCache is the MSFT_NetBranchCacheSecondaryCache CIM class.
 type MSFTNetBranchCacheSecondaryCache struct {
-	CacheFileDirectoryPath               string   `cim:"CacheFileDirectoryPath"`
-	Caption                              string   `cim:"Caption"`
-	CommunicationStatus                  uint16   `cim:"CommunicationStatus"`
-	CurrentSizeOnDiskAsNumberOfBytes     uint64   `cim:"CurrentSizeOnDiskAsNumberOfBytes"`
-	Description                          string   `cim:"Description"`
-	DetailedStatus                       uint16   `cim:"DetailedStatus"`
-	ElementName                          string   `cim:"ElementName"`
-	HealthState                          uint16   `cim:"HealthState"`
-	InstallDate                          string   `cim:"InstallDate"`
-	InstanceID                           string   `cim:"InstanceID"`
-	MaxCacheSizeAsNumberOfBytes          uint64   `cim:"MaxCacheSizeAsNumberOfBytes"`
-	MaxCacheSizeAsPercentageOfDiskVolume uint32   `cim:"MaxCacheSizeAsPercentageOfDiskVolume"`
-	Name                                 string   `cim:"Name"`
-	OperatingStatus                      uint16   `cim:"OperatingStatus"`
-	OperationalStatus                    []uint16 `cim:"OperationalStatus"`
-	PrimaryStatus                        uint16   `cim:"PrimaryStatus"`
-	Status                               string   `cim:"Status"`
-	StatusDescriptions                   []string `cim:"StatusDescriptions"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                              string                                              `cim:"__PATH"`
+	CacheFileDirectoryPath               string                                              `cim:"CacheFileDirectoryPath"`
+	Caption                              string                                              `cim:"Caption"`
+	CommunicationStatus                  MSFTNetBranchCacheSecondaryCacheCommunicationStatus `cim:"CommunicationStatus"`
+	CurrentSizeOnDiskAsNumberOfBytes     uint64                                              `cim:"CurrentSizeOnDiskAsNumberOfBytes"`
+	Description                          string                                              `cim:"Description"`
+	DetailedStatus                       MSFTNetBranchCacheSecondaryCacheDetailedStatus      `cim:"DetailedStatus"`
+	ElementName                          string                                              `cim:"ElementName"`
+	HealthState                          MSFTNetBranchCacheSecondaryCacheHealthState         `cim:"HealthState"`
+	InstallDate                          string                                              `cim:"InstallDate"`
+	InstanceID                           string                                              `cim:"InstanceID"`
+	MaxCacheSizeAsNumberOfBytes          uint64                                              `cim:"MaxCacheSizeAsNumberOfBytes"`
+	MaxCacheSizeAsPercentageOfDiskVolume uint32                                              `cim:"MaxCacheSizeAsPercentageOfDiskVolume"`
+	Name                                 string                                              `cim:"Name"`
+	OperatingStatus                      MSFTNetBranchCacheSecondaryCacheOperatingStatus     `cim:"OperatingStatus"`
+	OperationalStatus                    []uint16                                            `cim:"OperationalStatus"`
+	PrimaryStatus                        MSFTNetBranchCacheSecondaryCachePrimaryStatus       `cim:"PrimaryStatus"`
+	Status                               MSFTNetBranchCacheSecondaryCacheStatus              `cim:"Status"`
+	StatusDescriptions                   []string                                            `cim:"StatusDescriptions"`
 }
 
 // MSFTNetBranchCacheSettingData is the MSFT_NetBranchCacheSettingData CIM class.
 type MSFTNetBranchCacheSettingData struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath     string `cim:"__PATH"`
 	Caption     string `cim:"Caption"`
 	Description string `cim:"Description"`
 	ElementName string `cim:"ElementName"`
@@ -3066,101 +3754,117 @@ type MSFTNetBranchCacheSettingData struct {
 
 // MSFTNetBranchCacheStatus is the MSFT_NetBranchCacheStatus CIM class.
 type MSFTNetBranchCacheStatus struct {
-	BranchCacheIsEnabled           bool     `cim:"BranchCacheIsEnabled"`
-	BranchCacheServiceStartType    uint32   `cim:"BranchCacheServiceStartType"`
-	BranchCacheServiceStatus       uint32   `cim:"BranchCacheServiceStatus"`
-	Caption                        string   `cim:"Caption"`
-	ClientConfiguration            wmi.Row  `cim:"ClientConfiguration"`
-	CommunicationStatus            uint16   `cim:"CommunicationStatus"`
-	ContentServerConfiguration     wmi.Row  `cim:"ContentServerConfiguration"`
-	DataCache                      wmi.Row  `cim:"DataCache"`
-	Description                    string   `cim:"Description"`
-	DetailedStatus                 uint16   `cim:"DetailedStatus"`
-	ElementName                    string   `cim:"ElementName"`
-	HashCache                      wmi.Row  `cim:"HashCache"`
-	HealthState                    uint16   `cim:"HealthState"`
-	HostedCacheServerConfiguration wmi.Row  `cim:"HostedCacheServerConfiguration"`
-	InstallDate                    string   `cim:"InstallDate"`
-	InstanceID                     string   `cim:"InstanceID"`
-	Name                           string   `cim:"Name"`
-	NetworkConfiguration           wmi.Row  `cim:"NetworkConfiguration"`
-	OperatingStatus                uint16   `cim:"OperatingStatus"`
-	OperationalStatus              []uint16 `cim:"OperationalStatus"`
-	PrimaryStatus                  uint16   `cim:"PrimaryStatus"`
-	Status                         string   `cim:"Status"`
-	StatusDescriptions             []string `cim:"StatusDescriptions"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                        string                                              `cim:"__PATH"`
+	BranchCacheIsEnabled           bool                                                `cim:"BranchCacheIsEnabled"`
+	BranchCacheServiceStartType    MSFTNetBranchCacheStatusBranchCacheServiceStartType `cim:"BranchCacheServiceStartType"`
+	BranchCacheServiceStatus       MSFTNetBranchCacheStatusBranchCacheServiceStatus    `cim:"BranchCacheServiceStatus"`
+	Caption                        string                                              `cim:"Caption"`
+	ClientConfiguration            wmi.Row                                             `cim:"ClientConfiguration"`
+	CommunicationStatus            MSFTNetBranchCacheStatusCommunicationStatus         `cim:"CommunicationStatus"`
+	ContentServerConfiguration     wmi.Row                                             `cim:"ContentServerConfiguration"`
+	DataCache                      wmi.Row                                             `cim:"DataCache"`
+	Description                    string                                              `cim:"Description"`
+	DetailedStatus                 MSFTNetBranchCacheStatusDetailedStatus              `cim:"DetailedStatus"`
+	ElementName                    string                                              `cim:"ElementName"`
+	HashCache                      wmi.Row                                             `cim:"HashCache"`
+	HealthState                    MSFTNetBranchCacheStatusHealthState                 `cim:"HealthState"`
+	HostedCacheServerConfiguration wmi.Row                                             `cim:"HostedCacheServerConfiguration"`
+	InstallDate                    string                                              `cim:"InstallDate"`
+	InstanceID                     string                                              `cim:"InstanceID"`
+	Name                           string                                              `cim:"Name"`
+	NetworkConfiguration           wmi.Row                                             `cim:"NetworkConfiguration"`
+	OperatingStatus                MSFTNetBranchCacheStatusOperatingStatus             `cim:"OperatingStatus"`
+	OperationalStatus              []uint16                                            `cim:"OperationalStatus"`
+	PrimaryStatus                  MSFTNetBranchCacheStatusPrimaryStatus               `cim:"PrimaryStatus"`
+	Status                         MSFTNetBranchCacheStatusStatus                      `cim:"Status"`
+	StatusDescriptions             []string                                            `cim:"StatusDescriptions"`
 }
 
 // MSFTNetCompartment is the MSFT_NetCompartment CIM class.
 type MSFTNetCompartment struct {
-	Caption                string `cim:"Caption"`
-	CompartmentDescription string `cim:"CompartmentDescription"`
-	CompartmentGuid        string `cim:"CompartmentGuid"`
-	CompartmentId          uint32 `cim:"CompartmentId"`
-	CompartmentType        uint32 `cim:"CompartmentType"`
-	Description            string `cim:"Description"`
-	ElementName            string `cim:"ElementName"`
-	InstanceID             string `cim:"InstanceID"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                string                            `cim:"__PATH"`
+	Caption                string                            `cim:"Caption"`
+	CompartmentDescription string                            `cim:"CompartmentDescription"`
+	CompartmentGuid        string                            `cim:"CompartmentGuid"`
+	CompartmentId          uint32                            `cim:"CompartmentId"`
+	CompartmentType        MSFTNetCompartmentCompartmentType `cim:"CompartmentType"`
+	Description            string                            `cim:"Description"`
+	ElementName            string                            `cim:"ElementName"`
+	InstanceID             string                            `cim:"InstanceID"`
 }
 
 // MSFTNetConSecRule is the MSFT_NetConSecRule CIM class.
 type MSFTNetConSecRule struct {
-	AllowSetKey                  bool     `cim:"AllowSetKey"`
-	AllowWatchKey                bool     `cim:"AllowWatchKey"`
-	BypassTunnelIfEncrypted      bool     `cim:"BypassTunnelIfEncrypted"`
-	Caption                      string   `cim:"Caption"`
-	CommonName                   string   `cim:"CommonName"`
-	ConditionListType            uint16   `cim:"ConditionListType"`
-	CreationClassName            string   `cim:"CreationClassName"`
-	Description                  string   `cim:"Description"`
-	DisplayGroup                 string   `cim:"DisplayGroup"`
-	DisplayLocalAddress          []string `cim:"DisplayLocalAddress"`
-	DisplayName                  string   `cim:"DisplayName"`
-	DisplayRemoteAddress         []string `cim:"DisplayRemoteAddress"`
-	ElementName                  string   `cim:"ElementName"`
-	Enabled                      uint16   `cim:"Enabled"`
-	EnforcementStatus            []uint16 `cim:"EnforcementStatus"`
-	ExecutionStrategy            uint16   `cim:"ExecutionStrategy"`
-	InboundSecurity              uint16   `cim:"InboundSecurity"`
-	InstanceID                   string   `cim:"InstanceID"`
-	KeyModule                    uint16   `cim:"KeyModule"`
-	LimitNegotiation             uint16   `cim:"LimitNegotiation"`
-	LocalTunnelEndpoint          []string `cim:"LocalTunnelEndpoint"`
-	Machines                     string   `cim:"Machines"`
-	MainModeCryptoSet            string   `cim:"MainModeCryptoSet"`
-	Mandatory                    bool     `cim:"Mandatory"`
-	MaxReturnPathLifetimeSeconds uint32   `cim:"MaxReturnPathLifetimeSeconds"`
-	Mode                         uint16   `cim:"Mode"`
-	OutboundSecurity             uint16   `cim:"OutboundSecurity"`
-	Phase1AuthSet                string   `cim:"Phase1AuthSet"`
-	Phase2AuthSet                string   `cim:"Phase2AuthSet"`
-	Platforms                    []string `cim:"Platforms"`
-	PolicyDecisionStrategy       uint16   `cim:"PolicyDecisionStrategy"`
-	PolicyKeywords               []string `cim:"PolicyKeywords"`
-	PolicyRoles                  []string `cim:"PolicyRoles"`
-	PolicyRuleName               string   `cim:"PolicyRuleName"`
-	PolicyStoreSource            string   `cim:"PolicyStoreSource"`
-	PolicyStoreSourceType        uint16   `cim:"PolicyStoreSourceType"`
-	PrimaryStatus                uint16   `cim:"PrimaryStatus"`
-	Priority                     uint16   `cim:"Priority"`
-	Profiles                     uint16   `cim:"Profiles"`
-	QuickModeCryptoSet           string   `cim:"QuickModeCryptoSet"`
-	RemoteTunnelEndpoint         []string `cim:"RemoteTunnelEndpoint"`
-	RemoteTunnelEndpointDNSName  string   `cim:"RemoteTunnelEndpointDNSName"`
-	RequireAuthorization         bool     `cim:"RequireAuthorization"`
-	RuleGroup                    string   `cim:"RuleGroup"`
-	RuleUsage                    string   `cim:"RuleUsage"`
-	SequencedActions             uint16   `cim:"SequencedActions"`
-	Status                       string   `cim:"Status"`
-	StatusCode                   uint32   `cim:"StatusCode"`
-	SystemCreationClassName      string   `cim:"SystemCreationClassName"`
-	SystemName                   string   `cim:"SystemName"`
-	TunnelType                   uint16   `cim:"TunnelType"`
-	Users                        string   `cim:"Users"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                      string                                  `cim:"__PATH"`
+	AllowSetKey                  bool                                    `cim:"AllowSetKey"`
+	AllowWatchKey                bool                                    `cim:"AllowWatchKey"`
+	BypassTunnelIfEncrypted      bool                                    `cim:"BypassTunnelIfEncrypted"`
+	Caption                      string                                  `cim:"Caption"`
+	CommonName                   string                                  `cim:"CommonName"`
+	ConditionListType            MSFTNetConSecRuleConditionListType      `cim:"ConditionListType"`
+	CreationClassName            string                                  `cim:"CreationClassName"`
+	Description                  string                                  `cim:"Description"`
+	DisplayGroup                 string                                  `cim:"DisplayGroup"`
+	DisplayLocalAddress          []string                                `cim:"DisplayLocalAddress"`
+	DisplayName                  string                                  `cim:"DisplayName"`
+	DisplayRemoteAddress         []string                                `cim:"DisplayRemoteAddress"`
+	ElementName                  string                                  `cim:"ElementName"`
+	Enabled                      MSFTNetConSecRuleEnabled                `cim:"Enabled"`
+	EnforcementStatus            []uint16                                `cim:"EnforcementStatus"`
+	ExecutionStrategy            MSFTNetConSecRuleExecutionStrategy      `cim:"ExecutionStrategy"`
+	InboundSecurity              MSFTNetConSecRuleInboundSecurity        `cim:"InboundSecurity"`
+	InstanceID                   string                                  `cim:"InstanceID"`
+	KeyModule                    MSFTNetConSecRuleKeyModule              `cim:"KeyModule"`
+	LimitNegotiation             MSFTNetConSecRuleLimitNegotiation       `cim:"LimitNegotiation"`
+	LocalTunnelEndpoint          []string                                `cim:"LocalTunnelEndpoint"`
+	Machines                     string                                  `cim:"Machines"`
+	MainModeCryptoSet            string                                  `cim:"MainModeCryptoSet"`
+	Mandatory                    bool                                    `cim:"Mandatory"`
+	MaxReturnPathLifetimeSeconds uint32                                  `cim:"MaxReturnPathLifetimeSeconds"`
+	Mode                         MSFTNetConSecRuleMode                   `cim:"Mode"`
+	OutboundSecurity             MSFTNetConSecRuleOutboundSecurity       `cim:"OutboundSecurity"`
+	Phase1AuthSet                string                                  `cim:"Phase1AuthSet"`
+	Phase2AuthSet                string                                  `cim:"Phase2AuthSet"`
+	Platforms                    []string                                `cim:"Platforms"`
+	PolicyDecisionStrategy       MSFTNetConSecRulePolicyDecisionStrategy `cim:"PolicyDecisionStrategy"`
+	PolicyKeywords               []string                                `cim:"PolicyKeywords"`
+	PolicyRoles                  []string                                `cim:"PolicyRoles"`
+	PolicyRuleName               string                                  `cim:"PolicyRuleName"`
+	PolicyStoreSource            string                                  `cim:"PolicyStoreSource"`
+	PolicyStoreSourceType        uint16                                  `cim:"PolicyStoreSourceType"`
+	PrimaryStatus                MSFTNetConSecRulePrimaryStatus          `cim:"PrimaryStatus"`
+	Priority                     uint16                                  `cim:"Priority"`
+	Profiles                     MSFTNetConSecRuleProfiles               `cim:"Profiles"`
+	QuickModeCryptoSet           string                                  `cim:"QuickModeCryptoSet"`
+	RemoteTunnelEndpoint         []string                                `cim:"RemoteTunnelEndpoint"`
+	RemoteTunnelEndpointDNSName  string                                  `cim:"RemoteTunnelEndpointDNSName"`
+	RequireAuthorization         bool                                    `cim:"RequireAuthorization"`
+	RuleGroup                    string                                  `cim:"RuleGroup"`
+	RuleUsage                    string                                  `cim:"RuleUsage"`
+	SequencedActions             MSFTNetConSecRuleSequencedActions       `cim:"SequencedActions"`
+	Status                       string                                  `cim:"Status"`
+	StatusCode                   uint32                                  `cim:"StatusCode"`
+	SystemCreationClassName      string                                  `cim:"SystemCreationClassName"`
+	SystemName                   string                                  `cim:"SystemName"`
+	TunnelType                   MSFTNetConSecRuleTunnelType             `cim:"TunnelType"`
+	Users                        string                                  `cim:"Users"`
 }
 
 // MSFTNetConSecRuleEMAuthSet is the MSFT_NetConSecRuleEMAuthSet CIM class.
 type MSFTNetConSecRuleEMAuthSet struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string `cim:"__PATH"`
 	ActionOrder    uint16 `cim:"ActionOrder"`
 	GroupComponent string `cim:"GroupComponent"`
 	PartComponent  string `cim:"PartComponent"`
@@ -3168,36 +3872,60 @@ type MSFTNetConSecRuleEMAuthSet struct {
 
 // MSFTNetConSecRuleFilterByAddress is the MSFT_NetConSecRuleFilterByAddress CIM class.
 type MSFTNetConSecRuleFilterByAddress struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string `cim:"__PATH"`
 	GroupComponent string `cim:"GroupComponent"`
 	PartComponent  string `cim:"PartComponent"`
 }
 
 // MSFTNetConSecRuleFilterByInterface is the MSFT_NetConSecRuleFilterByInterface CIM class.
 type MSFTNetConSecRuleFilterByInterface struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string `cim:"__PATH"`
 	GroupComponent string `cim:"GroupComponent"`
 	PartComponent  string `cim:"PartComponent"`
 }
 
 // MSFTNetConSecRuleFilterByInterfaceType is the MSFT_NetConSecRuleFilterByInterfaceType CIM class.
 type MSFTNetConSecRuleFilterByInterfaceType struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string `cim:"__PATH"`
 	GroupComponent string `cim:"GroupComponent"`
 	PartComponent  string `cim:"PartComponent"`
 }
 
 // MSFTNetConSecRuleFilterByProtocolPort is the MSFT_NetConSecRuleFilterByProtocolPort CIM class.
 type MSFTNetConSecRuleFilterByProtocolPort struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string `cim:"__PATH"`
 	GroupComponent string `cim:"GroupComponent"`
 	PartComponent  string `cim:"PartComponent"`
 }
 
 // MSFTNetConSecRuleFilters is the MSFT_NetConSecRuleFilters CIM class.
 type MSFTNetConSecRuleFilters struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string `cim:"__PATH"`
 	GroupComponent string `cim:"GroupComponent"`
 	PartComponent  string `cim:"PartComponent"`
 }
 
 // MSFTNetConSecRuleInProfile is the MSFT_NetConSecRuleInProfile CIM class.
 type MSFTNetConSecRuleInProfile struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string `cim:"__PATH"`
 	GroupComponent string `cim:"GroupComponent"`
 	PartComponent  string `cim:"PartComponent"`
 	Priority       uint16 `cim:"Priority"`
@@ -3205,6 +3933,10 @@ type MSFTNetConSecRuleInProfile struct {
 
 // MSFTNetConSecRuleMMAuthSet is the MSFT_NetConSecRuleMMAuthSet CIM class.
 type MSFTNetConSecRuleMMAuthSet struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string `cim:"__PATH"`
 	ActionOrder    uint16 `cim:"ActionOrder"`
 	GroupComponent string `cim:"GroupComponent"`
 	PartComponent  string `cim:"PartComponent"`
@@ -3212,6 +3944,10 @@ type MSFTNetConSecRuleMMAuthSet struct {
 
 // MSFTNetConSecRuleQMCryptoSet is the MSFT_NetConSecRuleQMCryptoSet CIM class.
 type MSFTNetConSecRuleQMCryptoSet struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string `cim:"__PATH"`
 	ActionOrder    uint16 `cim:"ActionOrder"`
 	GroupComponent string `cim:"GroupComponent"`
 	PartComponent  string `cim:"PartComponent"`
@@ -3219,46 +3955,62 @@ type MSFTNetConSecRuleQMCryptoSet struct {
 
 // MSFTNetConnectionProfile is the MSFT_NetConnectionProfile CIM class.
 type MSFTNetConnectionProfile struct {
-	Caption                  string `cim:"Caption"`
-	Description              string `cim:"Description"`
-	DomainAuthenticationKind uint32 `cim:"DomainAuthenticationKind"`
-	ElementName              string `cim:"ElementName"`
-	IPv4Connectivity         uint32 `cim:"IPv4Connectivity"`
-	IPv6Connectivity         uint32 `cim:"IPv6Connectivity"`
-	InstanceID               string `cim:"InstanceID"`
-	InterfaceAlias           string `cim:"InterfaceAlias"`
-	InterfaceIndex           uint32 `cim:"InterfaceIndex"`
-	Name                     string `cim:"Name"`
-	NetworkCategory          uint32 `cim:"NetworkCategory"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                  string                                           `cim:"__PATH"`
+	Caption                  string                                           `cim:"Caption"`
+	Description              string                                           `cim:"Description"`
+	DomainAuthenticationKind MSFTNetConnectionProfileDomainAuthenticationKind `cim:"DomainAuthenticationKind"`
+	ElementName              string                                           `cim:"ElementName"`
+	IPv4Connectivity         MSFTNetConnectionProfileIPv4Connectivity         `cim:"IPv4Connectivity"`
+	IPv6Connectivity         MSFTNetConnectionProfileIPv6Connectivity         `cim:"IPv6Connectivity"`
+	InstanceID               string                                           `cim:"InstanceID"`
+	InterfaceAlias           string                                           `cim:"InterfaceAlias"`
+	InterfaceIndex           uint32                                           `cim:"InterfaceIndex"`
+	Name                     string                                           `cim:"Name"`
+	NetworkCategory          MSFTNetConnectionProfileNetworkCategory          `cim:"NetworkCategory"`
 }
 
 // MSFTNetDnsTransitionConfiguration is the MSFT_NetDnsTransitionConfiguration CIM class.
 type MSFTNetDnsTransitionConfiguration struct {
-	AcceptInterface  []string `cim:"AcceptInterface"`
-	AlwaysSynthesize bool     `cim:"AlwaysSynthesize"`
-	Caption          string   `cim:"Caption"`
-	Description      string   `cim:"Description"`
-	ElementName      string   `cim:"ElementName"`
-	ExclusionList    []string `cim:"ExclusionList"`
-	InstanceID       string   `cim:"InstanceID"`
-	Latency          uint32   `cim:"Latency"`
-	OnlySendAQuery   bool     `cim:"OnlySendAQuery"`
-	PrefixMapping    []string `cim:"PrefixMapping"`
-	SendInterface    []string `cim:"SendInterface"`
-	State            uint32   `cim:"State"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath          string                                 `cim:"__PATH"`
+	AcceptInterface  []string                               `cim:"AcceptInterface"`
+	AlwaysSynthesize bool                                   `cim:"AlwaysSynthesize"`
+	Caption          string                                 `cim:"Caption"`
+	Description      string                                 `cim:"Description"`
+	ElementName      string                                 `cim:"ElementName"`
+	ExclusionList    []string                               `cim:"ExclusionList"`
+	InstanceID       string                                 `cim:"InstanceID"`
+	Latency          uint32                                 `cim:"Latency"`
+	OnlySendAQuery   bool                                   `cim:"OnlySendAQuery"`
+	PrefixMapping    []string                               `cim:"PrefixMapping"`
+	SendInterface    []string                               `cim:"SendInterface"`
+	State            MSFTNetDnsTransitionConfigurationState `cim:"State"`
 }
 
 // MSFTNetDnsTransitionInterfaceAssociation is the MSFT_NetDnsTransitionInterfaceAssociation CIM class.
 type MSFTNetDnsTransitionInterfaceAssociation struct {
-	IsCurrent      uint16 `cim:"IsCurrent"`
-	IsDefault      uint16 `cim:"IsDefault"`
-	IsNext         uint16 `cim:"IsNext"`
-	ManagedElement string `cim:"ManagedElement"`
-	SettingData    string `cim:"SettingData"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string                                            `cim:"__PATH"`
+	IsCurrent      MSFTNetDnsTransitionInterfaceAssociationIsCurrent `cim:"IsCurrent"`
+	IsDefault      MSFTNetDnsTransitionInterfaceAssociationIsDefault `cim:"IsDefault"`
+	IsNext         MSFTNetDnsTransitionInterfaceAssociationIsNext    `cim:"IsNext"`
+	ManagedElement string                                            `cim:"ManagedElement"`
+	SettingData    string                                            `cim:"SettingData"`
 }
 
 // MSFTNetDnsTransitionMonitoring is the MSFT_NetDnsTransitionMonitoring CIM class.
 type MSFTNetDnsTransitionMonitoring struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                   string `cim:"__PATH"`
 	Caption                   string `cim:"Caption"`
 	Description               string `cim:"Description"`
 	ElementName               string `cim:"ElementName"`
@@ -3273,306 +4025,362 @@ type MSFTNetDnsTransitionMonitoring struct {
 
 // MSFTNetEventCaptureTargetCaptureProvider is the MSFT_NetEventCaptureTarget_CaptureProvider CIM class.
 type MSFTNetEventCaptureTargetCaptureProvider struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string `cim:"__PATH"`
 	GroupComponent string `cim:"GroupComponent"`
 	PartComponent  string `cim:"PartComponent"`
 }
 
 // MSFTNetEventNetworkAdapter is the MSFT_NetEventNetworkAdapter CIM class.
 type MSFTNetEventNetworkAdapter struct {
-	Caption              string   `cim:"Caption"`
-	CaptureStatus        uint32   `cim:"CaptureStatus"`
-	CommunicationStatus  uint16   `cim:"CommunicationStatus"`
-	Description          string   `cim:"Description"`
-	DetailedStatus       uint16   `cim:"DetailedStatus"`
-	ElementName          string   `cim:"ElementName"`
-	HealthState          uint16   `cim:"HealthState"`
-	Id                   string   `cim:"Id"`
-	InstallDate          string   `cim:"InstallDate"`
-	InstanceID           string   `cim:"InstanceID"`
-	InterfaceDescription string   `cim:"InterfaceDescription"`
-	Name                 string   `cim:"Name"`
-	OperatingStatus      uint16   `cim:"OperatingStatus"`
-	OperationalStatus    []uint16 `cim:"OperationalStatus"`
-	PrimaryStatus        uint16   `cim:"PrimaryStatus"`
-	PromiscuousMode      bool     `cim:"PromiscuousMode"`
-	ProviderName         string   `cim:"ProviderName"`
-	Status               string   `cim:"Status"`
-	StatusDescriptions   []string `cim:"StatusDescriptions"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath              string                                        `cim:"__PATH"`
+	Caption              string                                        `cim:"Caption"`
+	CaptureStatus        uint32                                        `cim:"CaptureStatus"`
+	CommunicationStatus  MSFTNetEventNetworkAdapterCommunicationStatus `cim:"CommunicationStatus"`
+	Description          string                                        `cim:"Description"`
+	DetailedStatus       MSFTNetEventNetworkAdapterDetailedStatus      `cim:"DetailedStatus"`
+	ElementName          string                                        `cim:"ElementName"`
+	HealthState          MSFTNetEventNetworkAdapterHealthState         `cim:"HealthState"`
+	Id                   string                                        `cim:"Id"`
+	InstallDate          string                                        `cim:"InstallDate"`
+	InstanceID           string                                        `cim:"InstanceID"`
+	InterfaceDescription string                                        `cim:"InterfaceDescription"`
+	Name                 string                                        `cim:"Name"`
+	OperatingStatus      MSFTNetEventNetworkAdapterOperatingStatus     `cim:"OperatingStatus"`
+	OperationalStatus    []uint16                                      `cim:"OperationalStatus"`
+	PrimaryStatus        MSFTNetEventNetworkAdapterPrimaryStatus       `cim:"PrimaryStatus"`
+	PromiscuousMode      bool                                          `cim:"PromiscuousMode"`
+	ProviderName         string                                        `cim:"ProviderName"`
+	Status               MSFTNetEventNetworkAdapterStatus              `cim:"Status"`
+	StatusDescriptions   []string                                      `cim:"StatusDescriptions"`
 }
 
 // MSFTNetEventPacketCaptureProvider is the MSFT_NetEventPacketCaptureProvider CIM class.
 type MSFTNetEventPacketCaptureProvider struct {
-	Caption             string   `cim:"Caption"`
-	CaptureType         uint8    `cim:"CaptureType"`
-	CommunicationStatus uint16   `cim:"CommunicationStatus"`
-	Description         string   `cim:"Description"`
-	DetailedStatus      uint16   `cim:"DetailedStatus"`
-	ElementName         string   `cim:"ElementName"`
-	EtherType           []uint16 `cim:"EtherType"`
-	Guid                string   `cim:"Guid"`
-	HealthState         uint16   `cim:"HealthState"`
-	IPAddresses         []string `cim:"IPAddresses"`
-	IPProtocols         []uint8  `cim:"IPProtocols"`
-	InstallDate         string   `cim:"InstallDate"`
-	InstanceID          string   `cim:"InstanceID"`
-	Level               uint8    `cim:"Level"`
-	LinkLayerAddress    []string `cim:"LinkLayerAddress"`
-	MatchAllKeyword     uint64   `cim:"MatchAllKeyword"`
-	MatchAnyKeyword     uint64   `cim:"MatchAnyKeyword"`
-	MultiLayer          bool     `cim:"MultiLayer"`
-	Name                string   `cim:"Name"`
-	OperatingStatus     uint16   `cim:"OperatingStatus"`
-	OperationalStatus   []uint16 `cim:"OperationalStatus"`
-	PrimaryStatus       uint16   `cim:"PrimaryStatus"`
-	SessionGuid         string   `cim:"SessionGuid"`
-	SessionName         string   `cim:"SessionName"`
-	Status              string   `cim:"Status"`
-	StatusDescriptions  []string `cim:"StatusDescriptions"`
-	TruncationLength    uint16   `cim:"TruncationLength"`
-	VmCaptureDirection  uint8    `cim:"VmCaptureDirection"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath             string                                               `cim:"__PATH"`
+	Caption             string                                               `cim:"Caption"`
+	CaptureType         uint8                                                `cim:"CaptureType"`
+	CommunicationStatus MSFTNetEventPacketCaptureProviderCommunicationStatus `cim:"CommunicationStatus"`
+	Description         string                                               `cim:"Description"`
+	DetailedStatus      MSFTNetEventPacketCaptureProviderDetailedStatus      `cim:"DetailedStatus"`
+	ElementName         string                                               `cim:"ElementName"`
+	EtherType           []uint16                                             `cim:"EtherType"`
+	Guid                string                                               `cim:"Guid"`
+	HealthState         MSFTNetEventPacketCaptureProviderHealthState         `cim:"HealthState"`
+	IPAddresses         []string                                             `cim:"IPAddresses"`
+	IPProtocols         []uint8                                              `cim:"IPProtocols"`
+	InstallDate         string                                               `cim:"InstallDate"`
+	InstanceID          string                                               `cim:"InstanceID"`
+	Level               uint8                                                `cim:"Level"`
+	LinkLayerAddress    []string                                             `cim:"LinkLayerAddress"`
+	MatchAllKeyword     uint64                                               `cim:"MatchAllKeyword"`
+	MatchAnyKeyword     uint64                                               `cim:"MatchAnyKeyword"`
+	MultiLayer          bool                                                 `cim:"MultiLayer"`
+	Name                string                                               `cim:"Name"`
+	OperatingStatus     MSFTNetEventPacketCaptureProviderOperatingStatus     `cim:"OperatingStatus"`
+	OperationalStatus   []uint16                                             `cim:"OperationalStatus"`
+	PrimaryStatus       MSFTNetEventPacketCaptureProviderPrimaryStatus       `cim:"PrimaryStatus"`
+	SessionGuid         string                                               `cim:"SessionGuid"`
+	SessionName         string                                               `cim:"SessionName"`
+	Status              MSFTNetEventPacketCaptureProviderStatus              `cim:"Status"`
+	StatusDescriptions  []string                                             `cim:"StatusDescriptions"`
+	TruncationLength    uint16                                               `cim:"TruncationLength"`
+	VmCaptureDirection  uint8                                                `cim:"VmCaptureDirection"`
 }
 
 // MSFTNetEventPacketCaptureTarget is the MSFT_NetEventPacketCaptureTarget CIM class.
 type MSFTNetEventPacketCaptureTarget struct {
-	Caption             string   `cim:"Caption"`
-	CaptureStatus       uint32   `cim:"CaptureStatus"`
-	CommunicationStatus uint16   `cim:"CommunicationStatus"`
-	Description         string   `cim:"Description"`
-	DetailedStatus      uint16   `cim:"DetailedStatus"`
-	ElementName         string   `cim:"ElementName"`
-	HealthState         uint16   `cim:"HealthState"`
-	Id                  string   `cim:"Id"`
-	InstallDate         string   `cim:"InstallDate"`
-	InstanceID          string   `cim:"InstanceID"`
-	Name                string   `cim:"Name"`
-	OperatingStatus     uint16   `cim:"OperatingStatus"`
-	OperationalStatus   []uint16 `cim:"OperationalStatus"`
-	PrimaryStatus       uint16   `cim:"PrimaryStatus"`
-	ProviderName        string   `cim:"ProviderName"`
-	Status              string   `cim:"Status"`
-	StatusDescriptions  []string `cim:"StatusDescriptions"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath             string                                             `cim:"__PATH"`
+	Caption             string                                             `cim:"Caption"`
+	CaptureStatus       uint32                                             `cim:"CaptureStatus"`
+	CommunicationStatus MSFTNetEventPacketCaptureTargetCommunicationStatus `cim:"CommunicationStatus"`
+	Description         string                                             `cim:"Description"`
+	DetailedStatus      MSFTNetEventPacketCaptureTargetDetailedStatus      `cim:"DetailedStatus"`
+	ElementName         string                                             `cim:"ElementName"`
+	HealthState         MSFTNetEventPacketCaptureTargetHealthState         `cim:"HealthState"`
+	Id                  string                                             `cim:"Id"`
+	InstallDate         string                                             `cim:"InstallDate"`
+	InstanceID          string                                             `cim:"InstanceID"`
+	Name                string                                             `cim:"Name"`
+	OperatingStatus     MSFTNetEventPacketCaptureTargetOperatingStatus     `cim:"OperatingStatus"`
+	OperationalStatus   []uint16                                           `cim:"OperationalStatus"`
+	PrimaryStatus       MSFTNetEventPacketCaptureTargetPrimaryStatus       `cim:"PrimaryStatus"`
+	ProviderName        string                                             `cim:"ProviderName"`
+	Status              MSFTNetEventPacketCaptureTargetStatus              `cim:"Status"`
+	StatusDescriptions  []string                                           `cim:"StatusDescriptions"`
 }
 
 // MSFTNetEventProvider is the MSFT_NetEventProvider CIM class.
 type MSFTNetEventProvider struct {
-	Caption             string   `cim:"Caption"`
-	CommunicationStatus uint16   `cim:"CommunicationStatus"`
-	Description         string   `cim:"Description"`
-	DetailedStatus      uint16   `cim:"DetailedStatus"`
-	ElementName         string   `cim:"ElementName"`
-	Guid                string   `cim:"Guid"`
-	HealthState         uint16   `cim:"HealthState"`
-	InstallDate         string   `cim:"InstallDate"`
-	InstanceID          string   `cim:"InstanceID"`
-	Level               uint8    `cim:"Level"`
-	MatchAllKeyword     uint64   `cim:"MatchAllKeyword"`
-	MatchAnyKeyword     uint64   `cim:"MatchAnyKeyword"`
-	Name                string   `cim:"Name"`
-	OperatingStatus     uint16   `cim:"OperatingStatus"`
-	OperationalStatus   []uint16 `cim:"OperationalStatus"`
-	PrimaryStatus       uint16   `cim:"PrimaryStatus"`
-	SessionGuid         string   `cim:"SessionGuid"`
-	SessionName         string   `cim:"SessionName"`
-	Status              string   `cim:"Status"`
-	StatusDescriptions  []string `cim:"StatusDescriptions"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath             string                                  `cim:"__PATH"`
+	Caption             string                                  `cim:"Caption"`
+	CommunicationStatus MSFTNetEventProviderCommunicationStatus `cim:"CommunicationStatus"`
+	Description         string                                  `cim:"Description"`
+	DetailedStatus      MSFTNetEventProviderDetailedStatus      `cim:"DetailedStatus"`
+	ElementName         string                                  `cim:"ElementName"`
+	Guid                string                                  `cim:"Guid"`
+	HealthState         MSFTNetEventProviderHealthState         `cim:"HealthState"`
+	InstallDate         string                                  `cim:"InstallDate"`
+	InstanceID          string                                  `cim:"InstanceID"`
+	Level               uint8                                   `cim:"Level"`
+	MatchAllKeyword     uint64                                  `cim:"MatchAllKeyword"`
+	MatchAnyKeyword     uint64                                  `cim:"MatchAnyKeyword"`
+	Name                string                                  `cim:"Name"`
+	OperatingStatus     MSFTNetEventProviderOperatingStatus     `cim:"OperatingStatus"`
+	OperationalStatus   []uint16                                `cim:"OperationalStatus"`
+	PrimaryStatus       MSFTNetEventProviderPrimaryStatus       `cim:"PrimaryStatus"`
+	SessionGuid         string                                  `cim:"SessionGuid"`
+	SessionName         string                                  `cim:"SessionName"`
+	Status              MSFTNetEventProviderStatus              `cim:"Status"`
+	StatusDescriptions  []string                                `cim:"StatusDescriptions"`
 }
 
 // MSFTNetEventProviderBase is the MSFT_NetEventProviderBase CIM class.
 type MSFTNetEventProviderBase struct {
-	Caption             string   `cim:"Caption"`
-	CommunicationStatus uint16   `cim:"CommunicationStatus"`
-	Description         string   `cim:"Description"`
-	DetailedStatus      uint16   `cim:"DetailedStatus"`
-	ElementName         string   `cim:"ElementName"`
-	Guid                string   `cim:"Guid"`
-	HealthState         uint16   `cim:"HealthState"`
-	InstallDate         string   `cim:"InstallDate"`
-	InstanceID          string   `cim:"InstanceID"`
-	Level               uint8    `cim:"Level"`
-	MatchAllKeyword     uint64   `cim:"MatchAllKeyword"`
-	MatchAnyKeyword     uint64   `cim:"MatchAnyKeyword"`
-	Name                string   `cim:"Name"`
-	OperatingStatus     uint16   `cim:"OperatingStatus"`
-	OperationalStatus   []uint16 `cim:"OperationalStatus"`
-	PrimaryStatus       uint16   `cim:"PrimaryStatus"`
-	SessionGuid         string   `cim:"SessionGuid"`
-	SessionName         string   `cim:"SessionName"`
-	Status              string   `cim:"Status"`
-	StatusDescriptions  []string `cim:"StatusDescriptions"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath             string                                      `cim:"__PATH"`
+	Caption             string                                      `cim:"Caption"`
+	CommunicationStatus MSFTNetEventProviderBaseCommunicationStatus `cim:"CommunicationStatus"`
+	Description         string                                      `cim:"Description"`
+	DetailedStatus      MSFTNetEventProviderBaseDetailedStatus      `cim:"DetailedStatus"`
+	ElementName         string                                      `cim:"ElementName"`
+	Guid                string                                      `cim:"Guid"`
+	HealthState         MSFTNetEventProviderBaseHealthState         `cim:"HealthState"`
+	InstallDate         string                                      `cim:"InstallDate"`
+	InstanceID          string                                      `cim:"InstanceID"`
+	Level               uint8                                       `cim:"Level"`
+	MatchAllKeyword     uint64                                      `cim:"MatchAllKeyword"`
+	MatchAnyKeyword     uint64                                      `cim:"MatchAnyKeyword"`
+	Name                string                                      `cim:"Name"`
+	OperatingStatus     MSFTNetEventProviderBaseOperatingStatus     `cim:"OperatingStatus"`
+	OperationalStatus   []uint16                                    `cim:"OperationalStatus"`
+	PrimaryStatus       MSFTNetEventProviderBasePrimaryStatus       `cim:"PrimaryStatus"`
+	SessionGuid         string                                      `cim:"SessionGuid"`
+	SessionName         string                                      `cim:"SessionName"`
+	Status              MSFTNetEventProviderBaseStatus              `cim:"Status"`
+	StatusDescriptions  []string                                    `cim:"StatusDescriptions"`
 }
 
 // MSFTNetEventSession is the MSFT_NetEventSession CIM class.
 type MSFTNetEventSession struct {
-	Caption             string   `cim:"Caption"`
-	CaptureMode         uint8    `cim:"CaptureMode"`
-	CommunicationStatus uint16   `cim:"CommunicationStatus"`
-	Description         string   `cim:"Description"`
-	DetailedStatus      uint16   `cim:"DetailedStatus"`
-	ElementName         string   `cim:"ElementName"`
-	Guid                string   `cim:"Guid"`
-	HealthState         uint16   `cim:"HealthState"`
-	InstallDate         string   `cim:"InstallDate"`
-	InstanceID          string   `cim:"InstanceID"`
-	LocalFilePath       string   `cim:"LocalFilePath"`
-	MaxFileSize         uint32   `cim:"MaxFileSize"`
-	MaxNumberOfBuffers  uint8    `cim:"MaxNumberOfBuffers"`
-	Name                string   `cim:"Name"`
-	OperatingStatus     uint16   `cim:"OperatingStatus"`
-	OperationalStatus   []uint16 `cim:"OperationalStatus"`
-	PrimaryStatus       uint16   `cim:"PrimaryStatus"`
-	SessionStatus       uint8    `cim:"SessionStatus"`
-	Status              string   `cim:"Status"`
-	StatusDescriptions  []string `cim:"StatusDescriptions"`
-	TraceBufferSize     uint32   `cim:"TraceBufferSize"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath             string                                 `cim:"__PATH"`
+	Caption             string                                 `cim:"Caption"`
+	CaptureMode         uint8                                  `cim:"CaptureMode"`
+	CommunicationStatus MSFTNetEventSessionCommunicationStatus `cim:"CommunicationStatus"`
+	Description         string                                 `cim:"Description"`
+	DetailedStatus      MSFTNetEventSessionDetailedStatus      `cim:"DetailedStatus"`
+	ElementName         string                                 `cim:"ElementName"`
+	Guid                string                                 `cim:"Guid"`
+	HealthState         MSFTNetEventSessionHealthState         `cim:"HealthState"`
+	InstallDate         string                                 `cim:"InstallDate"`
+	InstanceID          string                                 `cim:"InstanceID"`
+	LocalFilePath       string                                 `cim:"LocalFilePath"`
+	MaxFileSize         uint32                                 `cim:"MaxFileSize"`
+	MaxNumberOfBuffers  uint8                                  `cim:"MaxNumberOfBuffers"`
+	Name                string                                 `cim:"Name"`
+	OperatingStatus     MSFTNetEventSessionOperatingStatus     `cim:"OperatingStatus"`
+	OperationalStatus   []uint16                               `cim:"OperationalStatus"`
+	PrimaryStatus       MSFTNetEventSessionPrimaryStatus       `cim:"PrimaryStatus"`
+	SessionStatus       uint8                                  `cim:"SessionStatus"`
+	Status              MSFTNetEventSessionStatus              `cim:"Status"`
+	StatusDescriptions  []string                               `cim:"StatusDescriptions"`
+	TraceBufferSize     uint32                                 `cim:"TraceBufferSize"`
 }
 
 // MSFTNetEventSessionProvider is the MSFT_NetEventSession_Provider CIM class.
 type MSFTNetEventSessionProvider struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string `cim:"__PATH"`
 	GroupComponent string `cim:"GroupComponent"`
 	PartComponent  string `cim:"PartComponent"`
 }
 
 // MSFTNetEventVFPProvider is the MSFT_NetEventVFPProvider CIM class.
 type MSFTNetEventVFPProvider struct {
-	Caption                 string   `cim:"Caption"`
-	CommunicationStatus     uint16   `cim:"CommunicationStatus"`
-	Description             string   `cim:"Description"`
-	DestinationIPAddresses  []string `cim:"DestinationIPAddresses"`
-	DestinationMACAddresses []string `cim:"DestinationMACAddresses"`
-	DetailedStatus          uint16   `cim:"DetailedStatus"`
-	ElementName             string   `cim:"ElementName"`
-	GREKeys                 []uint32 `cim:"GREKeys"`
-	Guid                    string   `cim:"Guid"`
-	HealthState             uint16   `cim:"HealthState"`
-	IPProtocols             []uint8  `cim:"IPProtocols"`
-	InstallDate             string   `cim:"InstallDate"`
-	InstanceID              string   `cim:"InstanceID"`
-	Level                   uint8    `cim:"Level"`
-	MatchAllKeyword         uint64   `cim:"MatchAllKeyword"`
-	MatchAnyKeyword         uint64   `cim:"MatchAnyKeyword"`
-	Name                    string   `cim:"Name"`
-	OperatingStatus         uint16   `cim:"OperatingStatus"`
-	OperationalStatus       []uint16 `cim:"OperationalStatus"`
-	PortIds                 []uint32 `cim:"PortIds"`
-	PrimaryStatus           uint16   `cim:"PrimaryStatus"`
-	SessionGuid             string   `cim:"SessionGuid"`
-	SessionName             string   `cim:"SessionName"`
-	SourceIPAddresses       []string `cim:"SourceIPAddresses"`
-	SourceMACAddresses      []string `cim:"SourceMACAddresses"`
-	Status                  string   `cim:"Status"`
-	StatusDescriptions      []string `cim:"StatusDescriptions"`
-	SwitchName              string   `cim:"SwitchName"`
-	TCPPorts                []uint16 `cim:"TCPPorts"`
-	TenantIds               []uint32 `cim:"TenantIds"`
-	UDPPorts                []uint16 `cim:"UDPPorts"`
-	VFPFlowDirection        uint32   `cim:"VFPFlowDirection"`
-	VLANIds                 []uint16 `cim:"VLANIds"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                 string                                     `cim:"__PATH"`
+	Caption                 string                                     `cim:"Caption"`
+	CommunicationStatus     MSFTNetEventVFPProviderCommunicationStatus `cim:"CommunicationStatus"`
+	Description             string                                     `cim:"Description"`
+	DestinationIPAddresses  []string                                   `cim:"DestinationIPAddresses"`
+	DestinationMACAddresses []string                                   `cim:"DestinationMACAddresses"`
+	DetailedStatus          MSFTNetEventVFPProviderDetailedStatus      `cim:"DetailedStatus"`
+	ElementName             string                                     `cim:"ElementName"`
+	GREKeys                 []uint32                                   `cim:"GREKeys"`
+	Guid                    string                                     `cim:"Guid"`
+	HealthState             MSFTNetEventVFPProviderHealthState         `cim:"HealthState"`
+	IPProtocols             []uint8                                    `cim:"IPProtocols"`
+	InstallDate             string                                     `cim:"InstallDate"`
+	InstanceID              string                                     `cim:"InstanceID"`
+	Level                   uint8                                      `cim:"Level"`
+	MatchAllKeyword         uint64                                     `cim:"MatchAllKeyword"`
+	MatchAnyKeyword         uint64                                     `cim:"MatchAnyKeyword"`
+	Name                    string                                     `cim:"Name"`
+	OperatingStatus         MSFTNetEventVFPProviderOperatingStatus     `cim:"OperatingStatus"`
+	OperationalStatus       []uint16                                   `cim:"OperationalStatus"`
+	PortIds                 []uint32                                   `cim:"PortIds"`
+	PrimaryStatus           MSFTNetEventVFPProviderPrimaryStatus       `cim:"PrimaryStatus"`
+	SessionGuid             string                                     `cim:"SessionGuid"`
+	SessionName             string                                     `cim:"SessionName"`
+	SourceIPAddresses       []string                                   `cim:"SourceIPAddresses"`
+	SourceMACAddresses      []string                                   `cim:"SourceMACAddresses"`
+	Status                  MSFTNetEventVFPProviderStatus              `cim:"Status"`
+	StatusDescriptions      []string                                   `cim:"StatusDescriptions"`
+	SwitchName              string                                     `cim:"SwitchName"`
+	TCPPorts                []uint16                                   `cim:"TCPPorts"`
+	TenantIds               []uint32                                   `cim:"TenantIds"`
+	UDPPorts                []uint16                                   `cim:"UDPPorts"`
+	VFPFlowDirection        uint32                                     `cim:"VFPFlowDirection"`
+	VLANIds                 []uint16                                   `cim:"VLANIds"`
 }
 
 // MSFTNetEventVmNetworkAdapter is the MSFT_NetEventVmNetworkAdapter CIM class.
 type MSFTNetEventVmNetworkAdapter struct {
-	Caption             string   `cim:"Caption"`
-	CaptureStatus       uint32   `cim:"CaptureStatus"`
-	CommunicationStatus uint16   `cim:"CommunicationStatus"`
-	Description         string   `cim:"Description"`
-	DetailedStatus      uint16   `cim:"DetailedStatus"`
-	ElementName         string   `cim:"ElementName"`
-	HealthState         uint16   `cim:"HealthState"`
-	Id                  string   `cim:"Id"`
-	InstallDate         string   `cim:"InstallDate"`
-	InstanceID          string   `cim:"InstanceID"`
-	MacAddress          string   `cim:"MacAddress"`
-	Name                string   `cim:"Name"`
-	OperatingStatus     uint16   `cim:"OperatingStatus"`
-	OperationalStatus   []uint16 `cim:"OperationalStatus"`
-	PortName            string   `cim:"PortName"`
-	PrimaryStatus       uint16   `cim:"PrimaryStatus"`
-	ProviderName        string   `cim:"ProviderName"`
-	Status              string   `cim:"Status"`
-	StatusDescriptions  []string `cim:"StatusDescriptions"`
-	SwitchName          string   `cim:"SwitchName"`
-	VMId                string   `cim:"VMId"`
-	VMName              string   `cim:"VMName"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath             string                                          `cim:"__PATH"`
+	Caption             string                                          `cim:"Caption"`
+	CaptureStatus       uint32                                          `cim:"CaptureStatus"`
+	CommunicationStatus MSFTNetEventVmNetworkAdapterCommunicationStatus `cim:"CommunicationStatus"`
+	Description         string                                          `cim:"Description"`
+	DetailedStatus      MSFTNetEventVmNetworkAdapterDetailedStatus      `cim:"DetailedStatus"`
+	ElementName         string                                          `cim:"ElementName"`
+	HealthState         MSFTNetEventVmNetworkAdapterHealthState         `cim:"HealthState"`
+	Id                  string                                          `cim:"Id"`
+	InstallDate         string                                          `cim:"InstallDate"`
+	InstanceID          string                                          `cim:"InstanceID"`
+	MacAddress          string                                          `cim:"MacAddress"`
+	Name                string                                          `cim:"Name"`
+	OperatingStatus     MSFTNetEventVmNetworkAdapterOperatingStatus     `cim:"OperatingStatus"`
+	OperationalStatus   []uint16                                        `cim:"OperationalStatus"`
+	PortName            string                                          `cim:"PortName"`
+	PrimaryStatus       MSFTNetEventVmNetworkAdapterPrimaryStatus       `cim:"PrimaryStatus"`
+	ProviderName        string                                          `cim:"ProviderName"`
+	Status              MSFTNetEventVmNetworkAdapterStatus              `cim:"Status"`
+	StatusDescriptions  []string                                        `cim:"StatusDescriptions"`
+	SwitchName          string                                          `cim:"SwitchName"`
+	VMId                string                                          `cim:"VMId"`
+	VMName              string                                          `cim:"VMName"`
 }
 
 // MSFTNetEventVmSwitch is the MSFT_NetEventVmSwitch CIM class.
 type MSFTNetEventVmSwitch struct {
-	Caption             string   `cim:"Caption"`
-	CaptureStatus       uint32   `cim:"CaptureStatus"`
-	CommunicationStatus uint16   `cim:"CommunicationStatus"`
-	Description         string   `cim:"Description"`
-	DetailedStatus      uint16   `cim:"DetailedStatus"`
-	ElementName         string   `cim:"ElementName"`
-	HealthState         uint16   `cim:"HealthState"`
-	Id                  string   `cim:"Id"`
-	InstallDate         string   `cim:"InstallDate"`
-	InstanceID          string   `cim:"InstanceID"`
-	Name                string   `cim:"Name"`
-	OperatingStatus     uint16   `cim:"OperatingStatus"`
-	OperationalStatus   []uint16 `cim:"OperationalStatus"`
-	PrimaryStatus       uint16   `cim:"PrimaryStatus"`
-	ProviderName        string   `cim:"ProviderName"`
-	Status              string   `cim:"Status"`
-	StatusDescriptions  []string `cim:"StatusDescriptions"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath             string                                  `cim:"__PATH"`
+	Caption             string                                  `cim:"Caption"`
+	CaptureStatus       uint32                                  `cim:"CaptureStatus"`
+	CommunicationStatus MSFTNetEventVmSwitchCommunicationStatus `cim:"CommunicationStatus"`
+	Description         string                                  `cim:"Description"`
+	DetailedStatus      MSFTNetEventVmSwitchDetailedStatus      `cim:"DetailedStatus"`
+	ElementName         string                                  `cim:"ElementName"`
+	HealthState         MSFTNetEventVmSwitchHealthState         `cim:"HealthState"`
+	Id                  string                                  `cim:"Id"`
+	InstallDate         string                                  `cim:"InstallDate"`
+	InstanceID          string                                  `cim:"InstanceID"`
+	Name                string                                  `cim:"Name"`
+	OperatingStatus     MSFTNetEventVmSwitchOperatingStatus     `cim:"OperatingStatus"`
+	OperationalStatus   []uint16                                `cim:"OperationalStatus"`
+	PrimaryStatus       MSFTNetEventVmSwitchPrimaryStatus       `cim:"PrimaryStatus"`
+	ProviderName        string                                  `cim:"ProviderName"`
+	Status              MSFTNetEventVmSwitchStatus              `cim:"Status"`
+	StatusDescriptions  []string                                `cim:"StatusDescriptions"`
 }
 
 // MSFTNetEventVmSwitchProvider is the MSFT_NetEventVmSwitchProvider CIM class.
 type MSFTNetEventVmSwitchProvider struct {
-	Caption             string   `cim:"Caption"`
-	CommunicationStatus uint16   `cim:"CommunicationStatus"`
-	Description         string   `cim:"Description"`
-	DetailedStatus      uint16   `cim:"DetailedStatus"`
-	ElementName         string   `cim:"ElementName"`
-	Guid                string   `cim:"Guid"`
-	HealthState         uint16   `cim:"HealthState"`
-	InstallDate         string   `cim:"InstallDate"`
-	InstanceID          string   `cim:"InstanceID"`
-	Level               uint8    `cim:"Level"`
-	MatchAllKeyword     uint64   `cim:"MatchAllKeyword"`
-	MatchAnyKeyword     uint64   `cim:"MatchAnyKeyword"`
-	Name                string   `cim:"Name"`
-	OperatingStatus     uint16   `cim:"OperatingStatus"`
-	OperationalStatus   []uint16 `cim:"OperationalStatus"`
-	PortIds             []uint32 `cim:"PortIds"`
-	PrimaryStatus       uint16   `cim:"PrimaryStatus"`
-	SessionGuid         string   `cim:"SessionGuid"`
-	SessionName         string   `cim:"SessionName"`
-	Status              string   `cim:"Status"`
-	StatusDescriptions  []string `cim:"StatusDescriptions"`
-	SwitchName          string   `cim:"SwitchName"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath             string                                          `cim:"__PATH"`
+	Caption             string                                          `cim:"Caption"`
+	CommunicationStatus MSFTNetEventVmSwitchProviderCommunicationStatus `cim:"CommunicationStatus"`
+	Description         string                                          `cim:"Description"`
+	DetailedStatus      MSFTNetEventVmSwitchProviderDetailedStatus      `cim:"DetailedStatus"`
+	ElementName         string                                          `cim:"ElementName"`
+	Guid                string                                          `cim:"Guid"`
+	HealthState         MSFTNetEventVmSwitchProviderHealthState         `cim:"HealthState"`
+	InstallDate         string                                          `cim:"InstallDate"`
+	InstanceID          string                                          `cim:"InstanceID"`
+	Level               uint8                                           `cim:"Level"`
+	MatchAllKeyword     uint64                                          `cim:"MatchAllKeyword"`
+	MatchAnyKeyword     uint64                                          `cim:"MatchAnyKeyword"`
+	Name                string                                          `cim:"Name"`
+	OperatingStatus     MSFTNetEventVmSwitchProviderOperatingStatus     `cim:"OperatingStatus"`
+	OperationalStatus   []uint16                                        `cim:"OperationalStatus"`
+	PortIds             []uint32                                        `cim:"PortIds"`
+	PrimaryStatus       MSFTNetEventVmSwitchProviderPrimaryStatus       `cim:"PrimaryStatus"`
+	SessionGuid         string                                          `cim:"SessionGuid"`
+	SessionName         string                                          `cim:"SessionName"`
+	Status              MSFTNetEventVmSwitchProviderStatus              `cim:"Status"`
+	StatusDescriptions  []string                                        `cim:"StatusDescriptions"`
+	SwitchName          string                                          `cim:"SwitchName"`
 }
 
 // MSFTNetEventWFPCaptureProvider is the MSFT_NetEventWFPCaptureProvider CIM class.
 type MSFTNetEventWFPCaptureProvider struct {
-	Caption             string   `cim:"Caption"`
-	CaptureLayerSet     uint64   `cim:"CaptureLayerSet"`
-	CommunicationStatus uint16   `cim:"CommunicationStatus"`
-	Description         string   `cim:"Description"`
-	DetailedStatus      uint16   `cim:"DetailedStatus"`
-	DiscardedEvents     bool     `cim:"DiscardedEvents"`
-	ElementName         string   `cim:"ElementName"`
-	Guid                string   `cim:"Guid"`
-	HealthState         uint16   `cim:"HealthState"`
-	IPAddresses         []string `cim:"IPAddresses"`
-	InstallDate         string   `cim:"InstallDate"`
-	InstanceID          string   `cim:"InstanceID"`
-	Level               uint8    `cim:"Level"`
-	MatchAllKeyword     uint64   `cim:"MatchAllKeyword"`
-	MatchAnyKeyword     uint64   `cim:"MatchAnyKeyword"`
-	Name                string   `cim:"Name"`
-	OperatingStatus     uint16   `cim:"OperatingStatus"`
-	OperationalStatus   []uint16 `cim:"OperationalStatus"`
-	PrimaryStatus       uint16   `cim:"PrimaryStatus"`
-	SessionGuid         string   `cim:"SessionGuid"`
-	SessionName         string   `cim:"SessionName"`
-	Status              string   `cim:"Status"`
-	StatusDescriptions  []string `cim:"StatusDescriptions"`
-	TCPPorts            []uint16 `cim:"TCPPorts"`
-	UDPPorts            []uint16 `cim:"UDPPorts"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath             string                                            `cim:"__PATH"`
+	Caption             string                                            `cim:"Caption"`
+	CaptureLayerSet     uint64                                            `cim:"CaptureLayerSet"`
+	CommunicationStatus MSFTNetEventWFPCaptureProviderCommunicationStatus `cim:"CommunicationStatus"`
+	Description         string                                            `cim:"Description"`
+	DetailedStatus      MSFTNetEventWFPCaptureProviderDetailedStatus      `cim:"DetailedStatus"`
+	DiscardedEvents     bool                                              `cim:"DiscardedEvents"`
+	ElementName         string                                            `cim:"ElementName"`
+	Guid                string                                            `cim:"Guid"`
+	HealthState         MSFTNetEventWFPCaptureProviderHealthState         `cim:"HealthState"`
+	IPAddresses         []string                                          `cim:"IPAddresses"`
+	InstallDate         string                                            `cim:"InstallDate"`
+	InstanceID          string                                            `cim:"InstanceID"`
+	Level               uint8                                             `cim:"Level"`
+	MatchAllKeyword     uint64                                            `cim:"MatchAllKeyword"`
+	MatchAnyKeyword     uint64                                            `cim:"MatchAnyKeyword"`
+	Name                string                                            `cim:"Name"`
+	OperatingStatus     MSFTNetEventWFPCaptureProviderOperatingStatus     `cim:"OperatingStatus"`
+	OperationalStatus   []uint16                                          `cim:"OperationalStatus"`
+	PrimaryStatus       MSFTNetEventWFPCaptureProviderPrimaryStatus       `cim:"PrimaryStatus"`
+	SessionGuid         string                                            `cim:"SessionGuid"`
+	SessionName         string                                            `cim:"SessionName"`
+	Status              MSFTNetEventWFPCaptureProviderStatus              `cim:"Status"`
+	StatusDescriptions  []string                                          `cim:"StatusDescriptions"`
+	TCPPorts            []uint16                                          `cim:"TCPPorts"`
+	UDPPorts            []uint16                                          `cim:"UDPPorts"`
 }
 
 // MSFTNetFirewallDynamicKeywordAddress is the MSFT_NetFirewallDynamicKeywordAddress CIM class.
 type MSFTNetFirewallDynamicKeywordAddress struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath               string `cim:"__PATH"`
 	Addresses             string `cim:"Addresses"`
 	AutoResolve           bool   `cim:"AutoResolve"`
 	Caption               string `cim:"Caption"`
@@ -3587,79 +4395,99 @@ type MSFTNetFirewallDynamicKeywordAddress struct {
 
 // MSFTNetFirewallHyperVPort is the MSFT_NetFirewallHyperVPort CIM class.
 type MSFTNetFirewallHyperVPort struct {
-	Caption       string `cim:"Caption"`
-	Constrained   uint16 `cim:"Constrained"`
-	Description   string `cim:"Description"`
-	ElementName   string `cim:"ElementName"`
-	InstanceID    string `cim:"InstanceID"`
-	InterfaceGuid string `cim:"InterfaceGuid"`
-	NetworkType   uint16 `cim:"NetworkType"`
-	PartitionGuid string `cim:"PartitionGuid"`
-	PortName      string `cim:"PortName"`
-	Profile       uint16 `cim:"Profile"`
-	SwitchName    string `cim:"SwitchName"`
-	VMCreatorId   string `cim:"VMCreatorId"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath       string                               `cim:"__PATH"`
+	Caption       string                               `cim:"Caption"`
+	Constrained   MSFTNetFirewallHyperVPortConstrained `cim:"Constrained"`
+	Description   string                               `cim:"Description"`
+	ElementName   string                               `cim:"ElementName"`
+	InstanceID    string                               `cim:"InstanceID"`
+	InterfaceGuid string                               `cim:"InterfaceGuid"`
+	NetworkType   MSFTNetFirewallHyperVPortNetworkType `cim:"NetworkType"`
+	PartitionGuid string                               `cim:"PartitionGuid"`
+	PortName      string                               `cim:"PortName"`
+	Profile       MSFTNetFirewallHyperVPortProfile     `cim:"Profile"`
+	SwitchName    string                               `cim:"SwitchName"`
+	VMCreatorId   string                               `cim:"VMCreatorId"`
 }
 
 // MSFTNetFirewallHyperVProfile is the MSFT_NetFirewallHyperVProfile CIM class.
 type MSFTNetFirewallHyperVProfile struct {
-	AllowLocalFirewallRules uint16 `cim:"AllowLocalFirewallRules"`
-	Caption                 string `cim:"Caption"`
-	DefaultInboundAction    uint16 `cim:"DefaultInboundAction"`
-	DefaultOutboundAction   uint16 `cim:"DefaultOutboundAction"`
-	Description             string `cim:"Description"`
-	ElementName             string `cim:"ElementName"`
-	Enabled                 uint16 `cim:"Enabled"`
-	InstanceID              string `cim:"InstanceID"`
-	Name                    string `cim:"Name"`
-	Profile                 uint16 `cim:"Profile"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                 string                                              `cim:"__PATH"`
+	AllowLocalFirewallRules MSFTNetFirewallHyperVProfileAllowLocalFirewallRules `cim:"AllowLocalFirewallRules"`
+	Caption                 string                                              `cim:"Caption"`
+	DefaultInboundAction    MSFTNetFirewallHyperVProfileDefaultInboundAction    `cim:"DefaultInboundAction"`
+	DefaultOutboundAction   MSFTNetFirewallHyperVProfileDefaultOutboundAction   `cim:"DefaultOutboundAction"`
+	Description             string                                              `cim:"Description"`
+	ElementName             string                                              `cim:"ElementName"`
+	Enabled                 MSFTNetFirewallHyperVProfileEnabled                 `cim:"Enabled"`
+	InstanceID              string                                              `cim:"InstanceID"`
+	Name                    string                                              `cim:"Name"`
+	Profile                 MSFTNetFirewallHyperVProfileProfile                 `cim:"Profile"`
 }
 
 // MSFTNetFirewallHyperVRule is the MSFT_NetFirewallHyperVRule CIM class.
 type MSFTNetFirewallHyperVRule struct {
-	Action                  uint16    `cim:"Action"`
-	Caption                 string    `cim:"Caption"`
-	CommonName              string    `cim:"CommonName"`
-	ConditionListType       uint16    `cim:"ConditionListType"`
-	CreationClassName       string    `cim:"CreationClassName"`
-	Description             string    `cim:"Description"`
-	Direction               uint16    `cim:"Direction"`
-	DisplayName             string    `cim:"DisplayName"`
-	ElementName             string    `cim:"ElementName"`
-	Enabled                 uint16    `cim:"Enabled"`
-	EnforcementStatus       uint16    `cim:"EnforcementStatus"`
-	ExecutionStrategy       uint16    `cim:"ExecutionStrategy"`
-	InstanceID              string    `cim:"InstanceID"`
-	LocalAddresses          []string  `cim:"LocalAddresses"`
-	LocalPorts              []string  `cim:"LocalPorts"`
-	Mandatory               bool      `cim:"Mandatory"`
-	PolicyDecisionStrategy  uint16    `cim:"PolicyDecisionStrategy"`
-	PolicyKeywords          []string  `cim:"PolicyKeywords"`
-	PolicyRoles             []string  `cim:"PolicyRoles"`
-	PolicyRuleName          string    `cim:"PolicyRuleName"`
-	PolicyStoreSourceType   uint16    `cim:"PolicyStoreSourceType"`
-	PortStatuses            []wmi.Row `cim:"PortStatuses"`
-	Priority                uint16    `cim:"Priority"`
-	Profiles                uint16    `cim:"Profiles"`
-	Protocol                string    `cim:"Protocol"`
-	RemoteAddresses         []string  `cim:"RemoteAddresses"`
-	RemotePorts             []string  `cim:"RemotePorts"`
-	RulePriority            uint16    `cim:"RulePriority"`
-	RuleUsage               string    `cim:"RuleUsage"`
-	SequencedActions        uint16    `cim:"SequencedActions"`
-	SystemCreationClassName string    `cim:"SystemCreationClassName"`
-	SystemName              string    `cim:"SystemName"`
-	VMCreatorId             string    `cim:"VMCreatorId"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                 string                                          `cim:"__PATH"`
+	Action                  MSFTNetFirewallHyperVRuleAction                 `cim:"Action"`
+	Caption                 string                                          `cim:"Caption"`
+	CommonName              string                                          `cim:"CommonName"`
+	ConditionListType       MSFTNetFirewallHyperVRuleConditionListType      `cim:"ConditionListType"`
+	CreationClassName       string                                          `cim:"CreationClassName"`
+	Description             string                                          `cim:"Description"`
+	Direction               MSFTNetFirewallHyperVRuleDirection              `cim:"Direction"`
+	DisplayName             string                                          `cim:"DisplayName"`
+	ElementName             string                                          `cim:"ElementName"`
+	Enabled                 MSFTNetFirewallHyperVRuleEnabled                `cim:"Enabled"`
+	EnforcementStatus       MSFTNetFirewallHyperVRuleEnforcementStatus      `cim:"EnforcementStatus"`
+	ExecutionStrategy       MSFTNetFirewallHyperVRuleExecutionStrategy      `cim:"ExecutionStrategy"`
+	InstanceID              string                                          `cim:"InstanceID"`
+	LocalAddresses          []string                                        `cim:"LocalAddresses"`
+	LocalPorts              []string                                        `cim:"LocalPorts"`
+	Mandatory               bool                                            `cim:"Mandatory"`
+	PolicyDecisionStrategy  MSFTNetFirewallHyperVRulePolicyDecisionStrategy `cim:"PolicyDecisionStrategy"`
+	PolicyKeywords          []string                                        `cim:"PolicyKeywords"`
+	PolicyRoles             []string                                        `cim:"PolicyRoles"`
+	PolicyRuleName          string                                          `cim:"PolicyRuleName"`
+	PolicyStoreSourceType   MSFTNetFirewallHyperVRulePolicyStoreSourceType  `cim:"PolicyStoreSourceType"`
+	PortStatuses            []wmi.Row                                       `cim:"PortStatuses"`
+	Priority                uint16                                          `cim:"Priority"`
+	Profiles                MSFTNetFirewallHyperVRuleProfiles               `cim:"Profiles"`
+	Protocol                string                                          `cim:"Protocol"`
+	RemoteAddresses         []string                                        `cim:"RemoteAddresses"`
+	RemotePorts             []string                                        `cim:"RemotePorts"`
+	RulePriority            uint16                                          `cim:"RulePriority"`
+	RuleUsage               string                                          `cim:"RuleUsage"`
+	SequencedActions        MSFTNetFirewallHyperVRuleSequencedActions       `cim:"SequencedActions"`
+	SystemCreationClassName string                                          `cim:"SystemCreationClassName"`
+	SystemName              string                                          `cim:"SystemName"`
+	VMCreatorId             string                                          `cim:"VMCreatorId"`
 }
 
 // MSFTNetFirewallHyperVRulePortStatus is the MSFT_NetFirewallHyperVRulePortStatus CIM class.
 type MSFTNetFirewallHyperVRulePortStatus struct {
-	Port   wmi.Row `cim:"Port"`
-	Status uint16  `cim:"Status"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath string                                    `cim:"__PATH"`
+	Port    wmi.Row                                   `cim:"Port"`
+	Status  MSFTNetFirewallHyperVRulePortStatusStatus `cim:"Status"`
 }
 
 // MSFTNetFirewallHyperVVMCreator is the MSFT_NetFirewallHyperVVMCreator CIM class.
 type MSFTNetFirewallHyperVVMCreator struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath      string `cim:"__PATH"`
 	Caption      string `cim:"Caption"`
 	Description  string `cim:"Description"`
 	ElementName  string `cim:"ElementName"`
@@ -3670,20 +4498,28 @@ type MSFTNetFirewallHyperVVMCreator struct {
 
 // MSFTNetFirewallHyperVVMSetting is the MSFT_NetFirewallHyperVVMSetting CIM class.
 type MSFTNetFirewallHyperVVMSetting struct {
-	AllowHostPolicyMerge  uint16 `cim:"AllowHostPolicyMerge"`
-	Caption               string `cim:"Caption"`
-	DefaultInboundAction  uint16 `cim:"DefaultInboundAction"`
-	DefaultOutboundAction uint16 `cim:"DefaultOutboundAction"`
-	Description           string `cim:"Description"`
-	ElementName           string `cim:"ElementName"`
-	Enabled               uint16 `cim:"Enabled"`
-	InstanceID            string `cim:"InstanceID"`
-	LoopbackEnabled       uint16 `cim:"LoopbackEnabled"`
-	Name                  string `cim:"Name"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath               string                                              `cim:"__PATH"`
+	AllowHostPolicyMerge  MSFTNetFirewallHyperVVMSettingAllowHostPolicyMerge  `cim:"AllowHostPolicyMerge"`
+	Caption               string                                              `cim:"Caption"`
+	DefaultInboundAction  MSFTNetFirewallHyperVVMSettingDefaultInboundAction  `cim:"DefaultInboundAction"`
+	DefaultOutboundAction MSFTNetFirewallHyperVVMSettingDefaultOutboundAction `cim:"DefaultOutboundAction"`
+	Description           string                                              `cim:"Description"`
+	ElementName           string                                              `cim:"ElementName"`
+	Enabled               MSFTNetFirewallHyperVVMSettingEnabled               `cim:"Enabled"`
+	InstanceID            string                                              `cim:"InstanceID"`
+	LoopbackEnabled       MSFTNetFirewallHyperVVMSettingLoopbackEnabled       `cim:"LoopbackEnabled"`
+	Name                  string                                              `cim:"Name"`
 }
 
 // MSFTNetFirewallProfile is the MSFT_NetFirewallProfile CIM class.
 type MSFTNetFirewallProfile struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                         string   `cim:"__PATH"`
 	AllowInboundRules               uint16   `cim:"AllowInboundRules"`
 	AllowLocalFirewallRules         uint16   `cim:"AllowLocalFirewallRules"`
 	AllowLocalIPsecRules            uint16   `cim:"AllowLocalIPsecRules"`
@@ -3710,97 +4546,137 @@ type MSFTNetFirewallProfile struct {
 
 // MSFTNetFirewallRule is the MSFT_NetFirewallRule CIM class.
 type MSFTNetFirewallRule struct {
-	Action                        uint16   `cim:"Action"`
-	Caption                       string   `cim:"Caption"`
-	CommonName                    string   `cim:"CommonName"`
-	ConditionListType             uint16   `cim:"ConditionListType"`
-	CreationClassName             string   `cim:"CreationClassName"`
-	Description                   string   `cim:"Description"`
-	Direction                     uint16   `cim:"Direction"`
-	DisplayGroup                  string   `cim:"DisplayGroup"`
-	DisplayName                   string   `cim:"DisplayName"`
-	EdgeTraversalPolicy           uint16   `cim:"EdgeTraversalPolicy"`
-	ElementName                   string   `cim:"ElementName"`
-	Enabled                       uint16   `cim:"Enabled"`
-	EnforcementStatus             []uint16 `cim:"EnforcementStatus"`
-	ExecutionStrategy             uint16   `cim:"ExecutionStrategy"`
-	InstanceID                    string   `cim:"InstanceID"`
-	LocalOnlyMapping              bool     `cim:"LocalOnlyMapping"`
-	LooseSourceMapping            bool     `cim:"LooseSourceMapping"`
-	Mandatory                     bool     `cim:"Mandatory"`
-	Owner                         string   `cim:"Owner"`
-	PackageFamilyName             string   `cim:"PackageFamilyName"`
-	Platforms                     []string `cim:"Platforms"`
-	PolicyAppId                   string   `cim:"PolicyAppId"`
-	PolicyDecisionStrategy        uint16   `cim:"PolicyDecisionStrategy"`
-	PolicyKeywords                []string `cim:"PolicyKeywords"`
-	PolicyRoles                   []string `cim:"PolicyRoles"`
-	PolicyRuleName                string   `cim:"PolicyRuleName"`
-	PolicyStoreSource             string   `cim:"PolicyStoreSource"`
-	PolicyStoreSourceType         uint16   `cim:"PolicyStoreSourceType"`
-	PrimaryStatus                 uint16   `cim:"PrimaryStatus"`
-	Priority                      uint16   `cim:"Priority"`
-	Profiles                      uint16   `cim:"Profiles"`
-	RemoteDynamicKeywordAddresses []string `cim:"RemoteDynamicKeywordAddresses"`
-	RuleGroup                     string   `cim:"RuleGroup"`
-	RuleUsage                     string   `cim:"RuleUsage"`
-	SequencedActions              uint16   `cim:"SequencedActions"`
-	Status                        string   `cim:"Status"`
-	StatusCode                    uint32   `cim:"StatusCode"`
-	SystemCreationClassName       string   `cim:"SystemCreationClassName"`
-	SystemName                    string   `cim:"SystemName"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                       string                                    `cim:"__PATH"`
+	Action                        MSFTNetFirewallRuleAction                 `cim:"Action"`
+	Caption                       string                                    `cim:"Caption"`
+	CommonName                    string                                    `cim:"CommonName"`
+	ConditionListType             MSFTNetFirewallRuleConditionListType      `cim:"ConditionListType"`
+	CreationClassName             string                                    `cim:"CreationClassName"`
+	Description                   string                                    `cim:"Description"`
+	Direction                     MSFTNetFirewallRuleDirection              `cim:"Direction"`
+	DisplayGroup                  string                                    `cim:"DisplayGroup"`
+	DisplayName                   string                                    `cim:"DisplayName"`
+	EdgeTraversalPolicy           MSFTNetFirewallRuleEdgeTraversalPolicy    `cim:"EdgeTraversalPolicy"`
+	ElementName                   string                                    `cim:"ElementName"`
+	Enabled                       MSFTNetFirewallRuleEnabled                `cim:"Enabled"`
+	EnforcementStatus             []uint16                                  `cim:"EnforcementStatus"`
+	ExecutionStrategy             MSFTNetFirewallRuleExecutionStrategy      `cim:"ExecutionStrategy"`
+	InstanceID                    string                                    `cim:"InstanceID"`
+	LocalOnlyMapping              bool                                      `cim:"LocalOnlyMapping"`
+	LooseSourceMapping            bool                                      `cim:"LooseSourceMapping"`
+	Mandatory                     bool                                      `cim:"Mandatory"`
+	Owner                         string                                    `cim:"Owner"`
+	PackageFamilyName             string                                    `cim:"PackageFamilyName"`
+	Platforms                     []string                                  `cim:"Platforms"`
+	PolicyAppId                   string                                    `cim:"PolicyAppId"`
+	PolicyDecisionStrategy        MSFTNetFirewallRulePolicyDecisionStrategy `cim:"PolicyDecisionStrategy"`
+	PolicyKeywords                []string                                  `cim:"PolicyKeywords"`
+	PolicyRoles                   []string                                  `cim:"PolicyRoles"`
+	PolicyRuleName                string                                    `cim:"PolicyRuleName"`
+	PolicyStoreSource             string                                    `cim:"PolicyStoreSource"`
+	PolicyStoreSourceType         uint16                                    `cim:"PolicyStoreSourceType"`
+	PrimaryStatus                 MSFTNetFirewallRulePrimaryStatus          `cim:"PrimaryStatus"`
+	Priority                      uint16                                    `cim:"Priority"`
+	Profiles                      MSFTNetFirewallRuleProfiles               `cim:"Profiles"`
+	RemoteDynamicKeywordAddresses []string                                  `cim:"RemoteDynamicKeywordAddresses"`
+	RuleGroup                     string                                    `cim:"RuleGroup"`
+	RuleUsage                     string                                    `cim:"RuleUsage"`
+	SequencedActions              MSFTNetFirewallRuleSequencedActions       `cim:"SequencedActions"`
+	Status                        string                                    `cim:"Status"`
+	StatusCode                    uint32                                    `cim:"StatusCode"`
+	SystemCreationClassName       string                                    `cim:"SystemCreationClassName"`
+	SystemName                    string                                    `cim:"SystemName"`
 }
 
 // MSFTNetFirewallRuleFilterByAddress is the MSFT_NetFirewallRuleFilterByAddress CIM class.
 type MSFTNetFirewallRuleFilterByAddress struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string `cim:"__PATH"`
 	GroupComponent string `cim:"GroupComponent"`
 	PartComponent  string `cim:"PartComponent"`
 }
 
 // MSFTNetFirewallRuleFilterByApplication is the MSFT_NetFirewallRuleFilterByApplication CIM class.
 type MSFTNetFirewallRuleFilterByApplication struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string `cim:"__PATH"`
 	GroupComponent string `cim:"GroupComponent"`
 	PartComponent  string `cim:"PartComponent"`
 }
 
 // MSFTNetFirewallRuleFilterByInterface is the MSFT_NetFirewallRuleFilterByInterface CIM class.
 type MSFTNetFirewallRuleFilterByInterface struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string `cim:"__PATH"`
 	GroupComponent string `cim:"GroupComponent"`
 	PartComponent  string `cim:"PartComponent"`
 }
 
 // MSFTNetFirewallRuleFilterByInterfaceType is the MSFT_NetFirewallRuleFilterByInterfaceType CIM class.
 type MSFTNetFirewallRuleFilterByInterfaceType struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string `cim:"__PATH"`
 	GroupComponent string `cim:"GroupComponent"`
 	PartComponent  string `cim:"PartComponent"`
 }
 
 // MSFTNetFirewallRuleFilterByProtocolPort is the MSFT_NetFirewallRuleFilterByProtocolPort CIM class.
 type MSFTNetFirewallRuleFilterByProtocolPort struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string `cim:"__PATH"`
 	GroupComponent string `cim:"GroupComponent"`
 	PartComponent  string `cim:"PartComponent"`
 }
 
 // MSFTNetFirewallRuleFilterBySecurity is the MSFT_NetFirewallRuleFilterBySecurity CIM class.
 type MSFTNetFirewallRuleFilterBySecurity struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string `cim:"__PATH"`
 	GroupComponent string `cim:"GroupComponent"`
 	PartComponent  string `cim:"PartComponent"`
 }
 
 // MSFTNetFirewallRuleFilterByService is the MSFT_NetFirewallRuleFilterByService CIM class.
 type MSFTNetFirewallRuleFilterByService struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string `cim:"__PATH"`
 	GroupComponent string `cim:"GroupComponent"`
 	PartComponent  string `cim:"PartComponent"`
 }
 
 // MSFTNetFirewallRuleFilters is the MSFT_NetFirewallRuleFilters CIM class.
 type MSFTNetFirewallRuleFilters struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string `cim:"__PATH"`
 	GroupComponent string `cim:"GroupComponent"`
 	PartComponent  string `cim:"PartComponent"`
 }
 
 // MSFTNetFirewallRuleInProfile is the MSFT_NetFirewallRuleInProfile CIM class.
 type MSFTNetFirewallRuleInProfile struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string `cim:"__PATH"`
 	GroupComponent string `cim:"GroupComponent"`
 	PartComponent  string `cim:"PartComponent"`
 	Priority       uint16 `cim:"Priority"`
@@ -3808,6 +4684,10 @@ type MSFTNetFirewallRuleInProfile struct {
 
 // MSFTNetGPO is the MSFT_NetGPO CIM class.
 type MSFTNetGPO struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath     string `cim:"__PATH"`
 	Caption     string `cim:"Caption"`
 	Description string `cim:"Description"`
 	ElementName string `cim:"ElementName"`
@@ -3816,754 +4696,874 @@ type MSFTNetGPO struct {
 
 // MSFTNetIKEAuthProposal is the MSFT_NetIKEAuthProposal CIM class.
 type MSFTNetIKEAuthProposal struct {
-	AuthenticationMethod      uint16 `cim:"AuthenticationMethod"`
-	Caption                   string `cim:"Caption"`
-	CipherAlgorithm           uint16 `cim:"CipherAlgorithm"`
-	Description               string `cim:"Description"`
-	ElementName               string `cim:"ElementName"`
-	GroupId                   uint16 `cim:"GroupId"`
-	HashAlgorithm             uint16 `cim:"HashAlgorithm"`
-	InstanceID                string `cim:"InstanceID"`
-	MaxLifetimeKilobytes      uint64 `cim:"MaxLifetimeKilobytes"`
-	MaxLifetimeSeconds        uint64 `cim:"MaxLifetimeSeconds"`
-	OtherAuthenticationMethod string `cim:"OtherAuthenticationMethod"`
-	OtherCipherAlgorithm      string `cim:"OtherCipherAlgorithm"`
-	OtherHashAlgorithm        string `cim:"OtherHashAlgorithm"`
-	VendorID                  string `cim:"VendorID"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                   string                                     `cim:"__PATH"`
+	AuthenticationMethod      MSFTNetIKEAuthProposalAuthenticationMethod `cim:"AuthenticationMethod"`
+	Caption                   string                                     `cim:"Caption"`
+	CipherAlgorithm           MSFTNetIKEAuthProposalCipherAlgorithm      `cim:"CipherAlgorithm"`
+	Description               string                                     `cim:"Description"`
+	ElementName               string                                     `cim:"ElementName"`
+	GroupId                   MSFTNetIKEAuthProposalGroupId              `cim:"GroupId"`
+	HashAlgorithm             MSFTNetIKEAuthProposalHashAlgorithm        `cim:"HashAlgorithm"`
+	InstanceID                string                                     `cim:"InstanceID"`
+	MaxLifetimeKilobytes      uint64                                     `cim:"MaxLifetimeKilobytes"`
+	MaxLifetimeSeconds        uint64                                     `cim:"MaxLifetimeSeconds"`
+	OtherAuthenticationMethod string                                     `cim:"OtherAuthenticationMethod"`
+	OtherCipherAlgorithm      string                                     `cim:"OtherCipherAlgorithm"`
+	OtherHashAlgorithm        string                                     `cim:"OtherHashAlgorithm"`
+	VendorID                  string                                     `cim:"VendorID"`
 }
 
 // MSFTNetIKEAuthSet is the MSFT_NetIKEAuthSet CIM class.
 type MSFTNetIKEAuthSet struct {
-	AggressiveModeGroupID       uint16    `cim:"AggressiveModeGroupID"`
-	Caption                     string    `cim:"Caption"`
-	CommonName                  string    `cim:"CommonName"`
-	CreationClassName           string    `cim:"CreationClassName"`
-	Description                 string    `cim:"Description"`
-	DisplayGroup                string    `cim:"DisplayGroup"`
-	DisplayName                 string    `cim:"DisplayName"`
-	DoActionLogging             bool      `cim:"DoActionLogging"`
-	DoPacketLogging             bool      `cim:"DoPacketLogging"`
-	ElementName                 string    `cim:"ElementName"`
-	EnforcementStatus           []uint16  `cim:"EnforcementStatus"`
-	ExchangeMode                uint16    `cim:"ExchangeMode"`
-	IdleDurationSeconds         uint64    `cim:"IdleDurationSeconds"`
-	InstanceID                  string    `cim:"InstanceID"`
-	MinLifetimeKilobytes        uint64    `cim:"MinLifetimeKilobytes"`
-	MinLifetimeSeconds          uint64    `cim:"MinLifetimeSeconds"`
-	PolicyActionName            string    `cim:"PolicyActionName"`
-	PolicyKeywords              []string  `cim:"PolicyKeywords"`
-	PolicyRuleCreationClassName string    `cim:"PolicyRuleCreationClassName"`
-	PolicyRuleName              string    `cim:"PolicyRuleName"`
-	PolicyStoreSource           string    `cim:"PolicyStoreSource"`
-	PolicyStoreSourceType       uint16    `cim:"PolicyStoreSourceType"`
-	PrimaryStatus               uint16    `cim:"PrimaryStatus"`
-	Proposals                   []wmi.Row `cim:"Proposals"`
-	RuleGroup                   string    `cim:"RuleGroup"`
-	Status                      string    `cim:"Status"`
-	StatusCode                  uint32    `cim:"StatusCode"`
-	SystemCreationClassName     string    `cim:"SystemCreationClassName"`
-	SystemName                  string    `cim:"SystemName"`
-	UseIKEIdentityType          uint16    `cim:"UseIKEIdentityType"`
-	VendorID                    string    `cim:"VendorID"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                     string                                 `cim:"__PATH"`
+	AggressiveModeGroupID       MSFTNetIKEAuthSetAggressiveModeGroupID `cim:"AggressiveModeGroupID"`
+	Caption                     string                                 `cim:"Caption"`
+	CommonName                  string                                 `cim:"CommonName"`
+	CreationClassName           string                                 `cim:"CreationClassName"`
+	Description                 string                                 `cim:"Description"`
+	DisplayGroup                string                                 `cim:"DisplayGroup"`
+	DisplayName                 string                                 `cim:"DisplayName"`
+	DoActionLogging             bool                                   `cim:"DoActionLogging"`
+	DoPacketLogging             bool                                   `cim:"DoPacketLogging"`
+	ElementName                 string                                 `cim:"ElementName"`
+	EnforcementStatus           []uint16                               `cim:"EnforcementStatus"`
+	ExchangeMode                MSFTNetIKEAuthSetExchangeMode          `cim:"ExchangeMode"`
+	IdleDurationSeconds         uint64                                 `cim:"IdleDurationSeconds"`
+	InstanceID                  string                                 `cim:"InstanceID"`
+	MinLifetimeKilobytes        uint64                                 `cim:"MinLifetimeKilobytes"`
+	MinLifetimeSeconds          uint64                                 `cim:"MinLifetimeSeconds"`
+	PolicyActionName            string                                 `cim:"PolicyActionName"`
+	PolicyKeywords              []string                               `cim:"PolicyKeywords"`
+	PolicyRuleCreationClassName string                                 `cim:"PolicyRuleCreationClassName"`
+	PolicyRuleName              string                                 `cim:"PolicyRuleName"`
+	PolicyStoreSource           string                                 `cim:"PolicyStoreSource"`
+	PolicyStoreSourceType       uint16                                 `cim:"PolicyStoreSourceType"`
+	PrimaryStatus               MSFTNetIKEAuthSetPrimaryStatus         `cim:"PrimaryStatus"`
+	Proposals                   []wmi.Row                              `cim:"Proposals"`
+	RuleGroup                   string                                 `cim:"RuleGroup"`
+	Status                      string                                 `cim:"Status"`
+	StatusCode                  uint32                                 `cim:"StatusCode"`
+	SystemCreationClassName     string                                 `cim:"SystemCreationClassName"`
+	SystemName                  string                                 `cim:"SystemName"`
+	UseIKEIdentityType          MSFTNetIKEAuthSetUseIKEIdentityType    `cim:"UseIKEIdentityType"`
+	VendorID                    string                                 `cim:"VendorID"`
 }
 
 // MSFTNetIKEBasicAuthProposal is the MSFT_NetIKEBasicAuthProposal CIM class.
 type MSFTNetIKEBasicAuthProposal struct {
-	AuthenticationMethod      uint16 `cim:"AuthenticationMethod"`
-	Caption                   string `cim:"Caption"`
-	CipherAlgorithm           uint16 `cim:"CipherAlgorithm"`
-	Description               string `cim:"Description"`
-	ElementName               string `cim:"ElementName"`
-	GroupId                   uint16 `cim:"GroupId"`
-	HashAlgorithm             uint16 `cim:"HashAlgorithm"`
-	InstanceID                string `cim:"InstanceID"`
-	MaxLifetimeKilobytes      uint64 `cim:"MaxLifetimeKilobytes"`
-	MaxLifetimeSeconds        uint64 `cim:"MaxLifetimeSeconds"`
-	OtherAuthenticationMethod string `cim:"OtherAuthenticationMethod"`
-	OtherCipherAlgorithm      string `cim:"OtherCipherAlgorithm"`
-	OtherHashAlgorithm        string `cim:"OtherHashAlgorithm"`
-	VendorID                  string `cim:"VendorID"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                   string                                          `cim:"__PATH"`
+	AuthenticationMethod      MSFTNetIKEBasicAuthProposalAuthenticationMethod `cim:"AuthenticationMethod"`
+	Caption                   string                                          `cim:"Caption"`
+	CipherAlgorithm           MSFTNetIKEBasicAuthProposalCipherAlgorithm      `cim:"CipherAlgorithm"`
+	Description               string                                          `cim:"Description"`
+	ElementName               string                                          `cim:"ElementName"`
+	GroupId                   MSFTNetIKEBasicAuthProposalGroupId              `cim:"GroupId"`
+	HashAlgorithm             MSFTNetIKEBasicAuthProposalHashAlgorithm        `cim:"HashAlgorithm"`
+	InstanceID                string                                          `cim:"InstanceID"`
+	MaxLifetimeKilobytes      uint64                                          `cim:"MaxLifetimeKilobytes"`
+	MaxLifetimeSeconds        uint64                                          `cim:"MaxLifetimeSeconds"`
+	OtherAuthenticationMethod string                                          `cim:"OtherAuthenticationMethod"`
+	OtherCipherAlgorithm      string                                          `cim:"OtherCipherAlgorithm"`
+	OtherHashAlgorithm        string                                          `cim:"OtherHashAlgorithm"`
+	VendorID                  string                                          `cim:"VendorID"`
 }
 
 // MSFTNetIKECertAuthProposal is the MSFT_NetIKECertAuthProposal CIM class.
 type MSFTNetIKECertAuthProposal struct {
-	AuthenticationMethod      uint16   `cim:"AuthenticationMethod"`
-	Caption                   string   `cim:"Caption"`
-	CertName                  string   `cim:"CertName"`
-	CertNameType              uint16   `cim:"CertNameType"`
-	CipherAlgorithm           uint16   `cim:"CipherAlgorithm"`
-	Description               string   `cim:"Description"`
-	EKUs                      []string `cim:"EKUs"`
-	ElementName               string   `cim:"ElementName"`
-	ExcludeCAName             bool     `cim:"ExcludeCAName"`
-	FollowRenewal             bool     `cim:"FollowRenewal"`
-	GroupId                   uint16   `cim:"GroupId"`
-	HashAlgorithm             uint16   `cim:"HashAlgorithm"`
-	InstanceID                string   `cim:"InstanceID"`
-	MapToAccount              bool     `cim:"MapToAccount"`
-	MaxLifetimeKilobytes      uint64   `cim:"MaxLifetimeKilobytes"`
-	MaxLifetimeSeconds        uint64   `cim:"MaxLifetimeSeconds"`
-	OtherAuthenticationMethod string   `cim:"OtherAuthenticationMethod"`
-	OtherCipherAlgorithm      string   `cim:"OtherCipherAlgorithm"`
-	OtherHashAlgorithm        string   `cim:"OtherHashAlgorithm"`
-	SelectionCriteria         bool     `cim:"SelectionCriteria"`
-	SigningAlgorithm          uint16   `cim:"SigningAlgorithm"`
-	Thumbprint                string   `cim:"Thumbprint"`
-	TrustedCA                 string   `cim:"TrustedCA"`
-	TrustedCAType             uint16   `cim:"TrustedCAType"`
-	ValidationCriteria        bool     `cim:"ValidationCriteria"`
-	VendorID                  string   `cim:"VendorID"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                   string                                         `cim:"__PATH"`
+	AuthenticationMethod      MSFTNetIKECertAuthProposalAuthenticationMethod `cim:"AuthenticationMethod"`
+	Caption                   string                                         `cim:"Caption"`
+	CertName                  string                                         `cim:"CertName"`
+	CertNameType              MSFTNetIKECertAuthProposalCertNameType         `cim:"CertNameType"`
+	CipherAlgorithm           MSFTNetIKECertAuthProposalCipherAlgorithm      `cim:"CipherAlgorithm"`
+	Description               string                                         `cim:"Description"`
+	EKUs                      []string                                       `cim:"EKUs"`
+	ElementName               string                                         `cim:"ElementName"`
+	ExcludeCAName             bool                                           `cim:"ExcludeCAName"`
+	FollowRenewal             bool                                           `cim:"FollowRenewal"`
+	GroupId                   MSFTNetIKECertAuthProposalGroupId              `cim:"GroupId"`
+	HashAlgorithm             MSFTNetIKECertAuthProposalHashAlgorithm        `cim:"HashAlgorithm"`
+	InstanceID                string                                         `cim:"InstanceID"`
+	MapToAccount              bool                                           `cim:"MapToAccount"`
+	MaxLifetimeKilobytes      uint64                                         `cim:"MaxLifetimeKilobytes"`
+	MaxLifetimeSeconds        uint64                                         `cim:"MaxLifetimeSeconds"`
+	OtherAuthenticationMethod string                                         `cim:"OtherAuthenticationMethod"`
+	OtherCipherAlgorithm      string                                         `cim:"OtherCipherAlgorithm"`
+	OtherHashAlgorithm        string                                         `cim:"OtherHashAlgorithm"`
+	SelectionCriteria         bool                                           `cim:"SelectionCriteria"`
+	SigningAlgorithm          MSFTNetIKECertAuthProposalSigningAlgorithm     `cim:"SigningAlgorithm"`
+	Thumbprint                string                                         `cim:"Thumbprint"`
+	TrustedCA                 string                                         `cim:"TrustedCA"`
+	TrustedCAType             MSFTNetIKECertAuthProposalTrustedCAType        `cim:"TrustedCAType"`
+	ValidationCriteria        bool                                           `cim:"ValidationCriteria"`
+	VendorID                  string                                         `cim:"VendorID"`
 }
 
 // MSFTNetIKECryptoProposal is the MSFT_NetIKECryptoProposal CIM class.
 type MSFTNetIKECryptoProposal struct {
-	AuthenticationMethod      uint16 `cim:"AuthenticationMethod"`
-	Caption                   string `cim:"Caption"`
-	CipherAlgorithm           uint16 `cim:"CipherAlgorithm"`
-	Description               string `cim:"Description"`
-	ElementName               string `cim:"ElementName"`
-	GroupId                   uint16 `cim:"GroupId"`
-	HashAlgorithm             uint16 `cim:"HashAlgorithm"`
-	InstanceID                string `cim:"InstanceID"`
-	MaxLifetimeKilobytes      uint64 `cim:"MaxLifetimeKilobytes"`
-	MaxLifetimeSeconds        uint64 `cim:"MaxLifetimeSeconds"`
-	OtherAuthenticationMethod string `cim:"OtherAuthenticationMethod"`
-	OtherCipherAlgorithm      string `cim:"OtherCipherAlgorithm"`
-	OtherHashAlgorithm        string `cim:"OtherHashAlgorithm"`
-	VendorID                  string `cim:"VendorID"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                   string                                       `cim:"__PATH"`
+	AuthenticationMethod      MSFTNetIKECryptoProposalAuthenticationMethod `cim:"AuthenticationMethod"`
+	Caption                   string                                       `cim:"Caption"`
+	CipherAlgorithm           MSFTNetIKECryptoProposalCipherAlgorithm      `cim:"CipherAlgorithm"`
+	Description               string                                       `cim:"Description"`
+	ElementName               string                                       `cim:"ElementName"`
+	GroupId                   MSFTNetIKECryptoProposalGroupId              `cim:"GroupId"`
+	HashAlgorithm             MSFTNetIKECryptoProposalHashAlgorithm        `cim:"HashAlgorithm"`
+	InstanceID                string                                       `cim:"InstanceID"`
+	MaxLifetimeKilobytes      uint64                                       `cim:"MaxLifetimeKilobytes"`
+	MaxLifetimeSeconds        uint64                                       `cim:"MaxLifetimeSeconds"`
+	OtherAuthenticationMethod string                                       `cim:"OtherAuthenticationMethod"`
+	OtherCipherAlgorithm      string                                       `cim:"OtherCipherAlgorithm"`
+	OtherHashAlgorithm        string                                       `cim:"OtherHashAlgorithm"`
+	VendorID                  string                                       `cim:"VendorID"`
 }
 
 // MSFTNetIKECryptoSet is the MSFT_NetIKECryptoSet CIM class.
 type MSFTNetIKECryptoSet struct {
-	AggressiveModeGroupID       uint16    `cim:"AggressiveModeGroupID"`
-	Caption                     string    `cim:"Caption"`
-	CommonName                  string    `cim:"CommonName"`
-	CreationClassName           string    `cim:"CreationClassName"`
-	Description                 string    `cim:"Description"`
-	DisplayGroup                string    `cim:"DisplayGroup"`
-	DisplayName                 string    `cim:"DisplayName"`
-	DoActionLogging             bool      `cim:"DoActionLogging"`
-	DoPacketLogging             bool      `cim:"DoPacketLogging"`
-	ElementName                 string    `cim:"ElementName"`
-	EnforcementStatus           []uint16  `cim:"EnforcementStatus"`
-	ExchangeMode                uint16    `cim:"ExchangeMode"`
-	IdleDurationSeconds         uint64    `cim:"IdleDurationSeconds"`
-	InstanceID                  string    `cim:"InstanceID"`
-	MinLifetimeKilobytes        uint64    `cim:"MinLifetimeKilobytes"`
-	MinLifetimeSeconds          uint64    `cim:"MinLifetimeSeconds"`
-	PolicyActionName            string    `cim:"PolicyActionName"`
-	PolicyKeywords              []string  `cim:"PolicyKeywords"`
-	PolicyRuleCreationClassName string    `cim:"PolicyRuleCreationClassName"`
-	PolicyRuleName              string    `cim:"PolicyRuleName"`
-	PolicyStoreSource           string    `cim:"PolicyStoreSource"`
-	PolicyStoreSourceType       uint16    `cim:"PolicyStoreSourceType"`
-	PrimaryStatus               uint16    `cim:"PrimaryStatus"`
-	Proposals                   []wmi.Row `cim:"Proposals"`
-	RuleGroup                   string    `cim:"RuleGroup"`
-	Status                      string    `cim:"Status"`
-	StatusCode                  uint32    `cim:"StatusCode"`
-	SystemCreationClassName     string    `cim:"SystemCreationClassName"`
-	SystemName                  string    `cim:"SystemName"`
-	UseIKEIdentityType          uint16    `cim:"UseIKEIdentityType"`
-	VendorID                    string    `cim:"VendorID"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                     string                                   `cim:"__PATH"`
+	AggressiveModeGroupID       MSFTNetIKECryptoSetAggressiveModeGroupID `cim:"AggressiveModeGroupID"`
+	Caption                     string                                   `cim:"Caption"`
+	CommonName                  string                                   `cim:"CommonName"`
+	CreationClassName           string                                   `cim:"CreationClassName"`
+	Description                 string                                   `cim:"Description"`
+	DisplayGroup                string                                   `cim:"DisplayGroup"`
+	DisplayName                 string                                   `cim:"DisplayName"`
+	DoActionLogging             bool                                     `cim:"DoActionLogging"`
+	DoPacketLogging             bool                                     `cim:"DoPacketLogging"`
+	ElementName                 string                                   `cim:"ElementName"`
+	EnforcementStatus           []uint16                                 `cim:"EnforcementStatus"`
+	ExchangeMode                MSFTNetIKECryptoSetExchangeMode          `cim:"ExchangeMode"`
+	IdleDurationSeconds         uint64                                   `cim:"IdleDurationSeconds"`
+	InstanceID                  string                                   `cim:"InstanceID"`
+	MinLifetimeKilobytes        uint64                                   `cim:"MinLifetimeKilobytes"`
+	MinLifetimeSeconds          uint64                                   `cim:"MinLifetimeSeconds"`
+	PolicyActionName            string                                   `cim:"PolicyActionName"`
+	PolicyKeywords              []string                                 `cim:"PolicyKeywords"`
+	PolicyRuleCreationClassName string                                   `cim:"PolicyRuleCreationClassName"`
+	PolicyRuleName              string                                   `cim:"PolicyRuleName"`
+	PolicyStoreSource           string                                   `cim:"PolicyStoreSource"`
+	PolicyStoreSourceType       uint16                                   `cim:"PolicyStoreSourceType"`
+	PrimaryStatus               MSFTNetIKECryptoSetPrimaryStatus         `cim:"PrimaryStatus"`
+	Proposals                   []wmi.Row                                `cim:"Proposals"`
+	RuleGroup                   string                                   `cim:"RuleGroup"`
+	Status                      string                                   `cim:"Status"`
+	StatusCode                  uint32                                   `cim:"StatusCode"`
+	SystemCreationClassName     string                                   `cim:"SystemCreationClassName"`
+	SystemName                  string                                   `cim:"SystemName"`
+	UseIKEIdentityType          MSFTNetIKECryptoSetUseIKEIdentityType    `cim:"UseIKEIdentityType"`
+	VendorID                    string                                   `cim:"VendorID"`
 }
 
 // MSFTNetIKEKerbAuthProposal is the MSFT_NetIKEKerbAuthProposal CIM class.
 type MSFTNetIKEKerbAuthProposal struct {
-	AuthenticationMethod      uint16 `cim:"AuthenticationMethod"`
-	Caption                   string `cim:"Caption"`
-	CipherAlgorithm           uint16 `cim:"CipherAlgorithm"`
-	Description               string `cim:"Description"`
-	ElementName               string `cim:"ElementName"`
-	GroupId                   uint16 `cim:"GroupId"`
-	HashAlgorithm             uint16 `cim:"HashAlgorithm"`
-	InstanceID                string `cim:"InstanceID"`
-	KerbProxy                 string `cim:"KerbProxy"`
-	MaxLifetimeKilobytes      uint64 `cim:"MaxLifetimeKilobytes"`
-	MaxLifetimeSeconds        uint64 `cim:"MaxLifetimeSeconds"`
-	OtherAuthenticationMethod string `cim:"OtherAuthenticationMethod"`
-	OtherCipherAlgorithm      string `cim:"OtherCipherAlgorithm"`
-	OtherHashAlgorithm        string `cim:"OtherHashAlgorithm"`
-	VendorID                  string `cim:"VendorID"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                   string                                         `cim:"__PATH"`
+	AuthenticationMethod      MSFTNetIKEKerbAuthProposalAuthenticationMethod `cim:"AuthenticationMethod"`
+	Caption                   string                                         `cim:"Caption"`
+	CipherAlgorithm           MSFTNetIKEKerbAuthProposalCipherAlgorithm      `cim:"CipherAlgorithm"`
+	Description               string                                         `cim:"Description"`
+	ElementName               string                                         `cim:"ElementName"`
+	GroupId                   MSFTNetIKEKerbAuthProposalGroupId              `cim:"GroupId"`
+	HashAlgorithm             MSFTNetIKEKerbAuthProposalHashAlgorithm        `cim:"HashAlgorithm"`
+	InstanceID                string                                         `cim:"InstanceID"`
+	KerbProxy                 string                                         `cim:"KerbProxy"`
+	MaxLifetimeKilobytes      uint64                                         `cim:"MaxLifetimeKilobytes"`
+	MaxLifetimeSeconds        uint64                                         `cim:"MaxLifetimeSeconds"`
+	OtherAuthenticationMethod string                                         `cim:"OtherAuthenticationMethod"`
+	OtherCipherAlgorithm      string                                         `cim:"OtherCipherAlgorithm"`
+	OtherHashAlgorithm        string                                         `cim:"OtherHashAlgorithm"`
+	VendorID                  string                                         `cim:"VendorID"`
 }
 
 // MSFTNetIKEMMCryptoProposal is the MSFT_NetIKEMMCryptoProposal CIM class.
 type MSFTNetIKEMMCryptoProposal struct {
-	AuthenticationMethod      uint16 `cim:"AuthenticationMethod"`
-	Caption                   string `cim:"Caption"`
-	CipherAlgorithm           uint16 `cim:"CipherAlgorithm"`
-	Description               string `cim:"Description"`
-	ElementName               string `cim:"ElementName"`
-	GroupId                   uint16 `cim:"GroupId"`
-	HashAlgorithm             uint16 `cim:"HashAlgorithm"`
-	InstanceID                string `cim:"InstanceID"`
-	MaxLifetimeKilobytes      uint64 `cim:"MaxLifetimeKilobytes"`
-	MaxLifetimeSeconds        uint64 `cim:"MaxLifetimeSeconds"`
-	OtherAuthenticationMethod string `cim:"OtherAuthenticationMethod"`
-	OtherCipherAlgorithm      string `cim:"OtherCipherAlgorithm"`
-	OtherHashAlgorithm        string `cim:"OtherHashAlgorithm"`
-	VendorID                  string `cim:"VendorID"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                   string                                         `cim:"__PATH"`
+	AuthenticationMethod      MSFTNetIKEMMCryptoProposalAuthenticationMethod `cim:"AuthenticationMethod"`
+	Caption                   string                                         `cim:"Caption"`
+	CipherAlgorithm           MSFTNetIKEMMCryptoProposalCipherAlgorithm      `cim:"CipherAlgorithm"`
+	Description               string                                         `cim:"Description"`
+	ElementName               string                                         `cim:"ElementName"`
+	GroupId                   MSFTNetIKEMMCryptoProposalGroupId              `cim:"GroupId"`
+	HashAlgorithm             MSFTNetIKEMMCryptoProposalHashAlgorithm        `cim:"HashAlgorithm"`
+	InstanceID                string                                         `cim:"InstanceID"`
+	MaxLifetimeKilobytes      uint64                                         `cim:"MaxLifetimeKilobytes"`
+	MaxLifetimeSeconds        uint64                                         `cim:"MaxLifetimeSeconds"`
+	OtherAuthenticationMethod string                                         `cim:"OtherAuthenticationMethod"`
+	OtherCipherAlgorithm      string                                         `cim:"OtherCipherAlgorithm"`
+	OtherHashAlgorithm        string                                         `cim:"OtherHashAlgorithm"`
+	VendorID                  string                                         `cim:"VendorID"`
 }
 
 // MSFTNetIKEMMCryptoSet is the MSFT_NetIKEMMCryptoSet CIM class.
 type MSFTNetIKEMMCryptoSet struct {
-	AggressiveModeGroupID       uint16    `cim:"AggressiveModeGroupID"`
-	Caption                     string    `cim:"Caption"`
-	CommonName                  string    `cim:"CommonName"`
-	CreationClassName           string    `cim:"CreationClassName"`
-	Description                 string    `cim:"Description"`
-	DisplayGroup                string    `cim:"DisplayGroup"`
-	DisplayName                 string    `cim:"DisplayName"`
-	DoActionLogging             bool      `cim:"DoActionLogging"`
-	DoPacketLogging             bool      `cim:"DoPacketLogging"`
-	ElementName                 string    `cim:"ElementName"`
-	EnforcementStatus           []uint16  `cim:"EnforcementStatus"`
-	ExchangeMode                uint16    `cim:"ExchangeMode"`
-	ForceDiffieHellman          bool      `cim:"ForceDiffieHellman"`
-	IdleDurationSeconds         uint64    `cim:"IdleDurationSeconds"`
-	InstanceID                  string    `cim:"InstanceID"`
-	MaxLifetimeMinutes          uint32    `cim:"MaxLifetimeMinutes"`
-	MaxLifetimeSessions         uint32    `cim:"MaxLifetimeSessions"`
-	MinLifetimeKilobytes        uint64    `cim:"MinLifetimeKilobytes"`
-	MinLifetimeSeconds          uint64    `cim:"MinLifetimeSeconds"`
-	PolicyActionName            string    `cim:"PolicyActionName"`
-	PolicyKeywords              []string  `cim:"PolicyKeywords"`
-	PolicyRuleCreationClassName string    `cim:"PolicyRuleCreationClassName"`
-	PolicyRuleName              string    `cim:"PolicyRuleName"`
-	PolicyStoreSource           string    `cim:"PolicyStoreSource"`
-	PolicyStoreSourceType       uint16    `cim:"PolicyStoreSourceType"`
-	PrimaryStatus               uint16    `cim:"PrimaryStatus"`
-	Proposals                   []wmi.Row `cim:"Proposals"`
-	RuleGroup                   string    `cim:"RuleGroup"`
-	Status                      string    `cim:"Status"`
-	StatusCode                  uint32    `cim:"StatusCode"`
-	SystemCreationClassName     string    `cim:"SystemCreationClassName"`
-	SystemName                  string    `cim:"SystemName"`
-	UseIKEIdentityType          uint16    `cim:"UseIKEIdentityType"`
-	VendorID                    string    `cim:"VendorID"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                     string                                     `cim:"__PATH"`
+	AggressiveModeGroupID       MSFTNetIKEMMCryptoSetAggressiveModeGroupID `cim:"AggressiveModeGroupID"`
+	Caption                     string                                     `cim:"Caption"`
+	CommonName                  string                                     `cim:"CommonName"`
+	CreationClassName           string                                     `cim:"CreationClassName"`
+	Description                 string                                     `cim:"Description"`
+	DisplayGroup                string                                     `cim:"DisplayGroup"`
+	DisplayName                 string                                     `cim:"DisplayName"`
+	DoActionLogging             bool                                       `cim:"DoActionLogging"`
+	DoPacketLogging             bool                                       `cim:"DoPacketLogging"`
+	ElementName                 string                                     `cim:"ElementName"`
+	EnforcementStatus           []uint16                                   `cim:"EnforcementStatus"`
+	ExchangeMode                MSFTNetIKEMMCryptoSetExchangeMode          `cim:"ExchangeMode"`
+	ForceDiffieHellman          bool                                       `cim:"ForceDiffieHellman"`
+	IdleDurationSeconds         uint64                                     `cim:"IdleDurationSeconds"`
+	InstanceID                  string                                     `cim:"InstanceID"`
+	MaxLifetimeMinutes          uint32                                     `cim:"MaxLifetimeMinutes"`
+	MaxLifetimeSessions         uint32                                     `cim:"MaxLifetimeSessions"`
+	MinLifetimeKilobytes        uint64                                     `cim:"MinLifetimeKilobytes"`
+	MinLifetimeSeconds          uint64                                     `cim:"MinLifetimeSeconds"`
+	PolicyActionName            string                                     `cim:"PolicyActionName"`
+	PolicyKeywords              []string                                   `cim:"PolicyKeywords"`
+	PolicyRuleCreationClassName string                                     `cim:"PolicyRuleCreationClassName"`
+	PolicyRuleName              string                                     `cim:"PolicyRuleName"`
+	PolicyStoreSource           string                                     `cim:"PolicyStoreSource"`
+	PolicyStoreSourceType       uint16                                     `cim:"PolicyStoreSourceType"`
+	PrimaryStatus               MSFTNetIKEMMCryptoSetPrimaryStatus         `cim:"PrimaryStatus"`
+	Proposals                   []wmi.Row                                  `cim:"Proposals"`
+	RuleGroup                   string                                     `cim:"RuleGroup"`
+	Status                      string                                     `cim:"Status"`
+	StatusCode                  uint32                                     `cim:"StatusCode"`
+	SystemCreationClassName     string                                     `cim:"SystemCreationClassName"`
+	SystemName                  string                                     `cim:"SystemName"`
+	UseIKEIdentityType          MSFTNetIKEMMCryptoSetUseIKEIdentityType    `cim:"UseIKEIdentityType"`
+	VendorID                    string                                     `cim:"VendorID"`
 }
 
 // MSFTNetIKEP1AuthSet is the MSFT_NetIKEP1AuthSet CIM class.
 type MSFTNetIKEP1AuthSet struct {
-	AggressiveModeGroupID       uint16    `cim:"AggressiveModeGroupID"`
-	Caption                     string    `cim:"Caption"`
-	CommonName                  string    `cim:"CommonName"`
-	CreationClassName           string    `cim:"CreationClassName"`
-	Description                 string    `cim:"Description"`
-	DisplayGroup                string    `cim:"DisplayGroup"`
-	DisplayName                 string    `cim:"DisplayName"`
-	DoActionLogging             bool      `cim:"DoActionLogging"`
-	DoPacketLogging             bool      `cim:"DoPacketLogging"`
-	ElementName                 string    `cim:"ElementName"`
-	EnforcementStatus           []uint16  `cim:"EnforcementStatus"`
-	ExchangeMode                uint16    `cim:"ExchangeMode"`
-	IdleDurationSeconds         uint64    `cim:"IdleDurationSeconds"`
-	InstanceID                  string    `cim:"InstanceID"`
-	MinLifetimeKilobytes        uint64    `cim:"MinLifetimeKilobytes"`
-	MinLifetimeSeconds          uint64    `cim:"MinLifetimeSeconds"`
-	PolicyActionName            string    `cim:"PolicyActionName"`
-	PolicyKeywords              []string  `cim:"PolicyKeywords"`
-	PolicyRuleCreationClassName string    `cim:"PolicyRuleCreationClassName"`
-	PolicyRuleName              string    `cim:"PolicyRuleName"`
-	PolicyStoreSource           string    `cim:"PolicyStoreSource"`
-	PolicyStoreSourceType       uint16    `cim:"PolicyStoreSourceType"`
-	PrimaryStatus               uint16    `cim:"PrimaryStatus"`
-	Proposals                   []wmi.Row `cim:"Proposals"`
-	RuleGroup                   string    `cim:"RuleGroup"`
-	Status                      string    `cim:"Status"`
-	StatusCode                  uint32    `cim:"StatusCode"`
-	SystemCreationClassName     string    `cim:"SystemCreationClassName"`
-	SystemName                  string    `cim:"SystemName"`
-	UseIKEIdentityType          uint16    `cim:"UseIKEIdentityType"`
-	VendorID                    string    `cim:"VendorID"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                     string                                   `cim:"__PATH"`
+	AggressiveModeGroupID       MSFTNetIKEP1AuthSetAggressiveModeGroupID `cim:"AggressiveModeGroupID"`
+	Caption                     string                                   `cim:"Caption"`
+	CommonName                  string                                   `cim:"CommonName"`
+	CreationClassName           string                                   `cim:"CreationClassName"`
+	Description                 string                                   `cim:"Description"`
+	DisplayGroup                string                                   `cim:"DisplayGroup"`
+	DisplayName                 string                                   `cim:"DisplayName"`
+	DoActionLogging             bool                                     `cim:"DoActionLogging"`
+	DoPacketLogging             bool                                     `cim:"DoPacketLogging"`
+	ElementName                 string                                   `cim:"ElementName"`
+	EnforcementStatus           []uint16                                 `cim:"EnforcementStatus"`
+	ExchangeMode                MSFTNetIKEP1AuthSetExchangeMode          `cim:"ExchangeMode"`
+	IdleDurationSeconds         uint64                                   `cim:"IdleDurationSeconds"`
+	InstanceID                  string                                   `cim:"InstanceID"`
+	MinLifetimeKilobytes        uint64                                   `cim:"MinLifetimeKilobytes"`
+	MinLifetimeSeconds          uint64                                   `cim:"MinLifetimeSeconds"`
+	PolicyActionName            string                                   `cim:"PolicyActionName"`
+	PolicyKeywords              []string                                 `cim:"PolicyKeywords"`
+	PolicyRuleCreationClassName string                                   `cim:"PolicyRuleCreationClassName"`
+	PolicyRuleName              string                                   `cim:"PolicyRuleName"`
+	PolicyStoreSource           string                                   `cim:"PolicyStoreSource"`
+	PolicyStoreSourceType       uint16                                   `cim:"PolicyStoreSourceType"`
+	PrimaryStatus               MSFTNetIKEP1AuthSetPrimaryStatus         `cim:"PrimaryStatus"`
+	Proposals                   []wmi.Row                                `cim:"Proposals"`
+	RuleGroup                   string                                   `cim:"RuleGroup"`
+	Status                      string                                   `cim:"Status"`
+	StatusCode                  uint32                                   `cim:"StatusCode"`
+	SystemCreationClassName     string                                   `cim:"SystemCreationClassName"`
+	SystemName                  string                                   `cim:"SystemName"`
+	UseIKEIdentityType          MSFTNetIKEP1AuthSetUseIKEIdentityType    `cim:"UseIKEIdentityType"`
+	VendorID                    string                                   `cim:"VendorID"`
 }
 
 // MSFTNetIKEP2AuthSet is the MSFT_NetIKEP2AuthSet CIM class.
 type MSFTNetIKEP2AuthSet struct {
-	AggressiveModeGroupID       uint16    `cim:"AggressiveModeGroupID"`
-	Caption                     string    `cim:"Caption"`
-	CommonName                  string    `cim:"CommonName"`
-	CreationClassName           string    `cim:"CreationClassName"`
-	Description                 string    `cim:"Description"`
-	DisplayGroup                string    `cim:"DisplayGroup"`
-	DisplayName                 string    `cim:"DisplayName"`
-	DoActionLogging             bool      `cim:"DoActionLogging"`
-	DoPacketLogging             bool      `cim:"DoPacketLogging"`
-	ElementName                 string    `cim:"ElementName"`
-	EnforcementStatus           []uint16  `cim:"EnforcementStatus"`
-	ExchangeMode                uint16    `cim:"ExchangeMode"`
-	IdleDurationSeconds         uint64    `cim:"IdleDurationSeconds"`
-	InstanceID                  string    `cim:"InstanceID"`
-	MinLifetimeKilobytes        uint64    `cim:"MinLifetimeKilobytes"`
-	MinLifetimeSeconds          uint64    `cim:"MinLifetimeSeconds"`
-	PolicyActionName            string    `cim:"PolicyActionName"`
-	PolicyKeywords              []string  `cim:"PolicyKeywords"`
-	PolicyRuleCreationClassName string    `cim:"PolicyRuleCreationClassName"`
-	PolicyRuleName              string    `cim:"PolicyRuleName"`
-	PolicyStoreSource           string    `cim:"PolicyStoreSource"`
-	PolicyStoreSourceType       uint16    `cim:"PolicyStoreSourceType"`
-	PrimaryStatus               uint16    `cim:"PrimaryStatus"`
-	Proposals                   []wmi.Row `cim:"Proposals"`
-	RuleGroup                   string    `cim:"RuleGroup"`
-	Status                      string    `cim:"Status"`
-	StatusCode                  uint32    `cim:"StatusCode"`
-	SystemCreationClassName     string    `cim:"SystemCreationClassName"`
-	SystemName                  string    `cim:"SystemName"`
-	UseIKEIdentityType          uint16    `cim:"UseIKEIdentityType"`
-	VendorID                    string    `cim:"VendorID"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                     string                                   `cim:"__PATH"`
+	AggressiveModeGroupID       MSFTNetIKEP2AuthSetAggressiveModeGroupID `cim:"AggressiveModeGroupID"`
+	Caption                     string                                   `cim:"Caption"`
+	CommonName                  string                                   `cim:"CommonName"`
+	CreationClassName           string                                   `cim:"CreationClassName"`
+	Description                 string                                   `cim:"Description"`
+	DisplayGroup                string                                   `cim:"DisplayGroup"`
+	DisplayName                 string                                   `cim:"DisplayName"`
+	DoActionLogging             bool                                     `cim:"DoActionLogging"`
+	DoPacketLogging             bool                                     `cim:"DoPacketLogging"`
+	ElementName                 string                                   `cim:"ElementName"`
+	EnforcementStatus           []uint16                                 `cim:"EnforcementStatus"`
+	ExchangeMode                MSFTNetIKEP2AuthSetExchangeMode          `cim:"ExchangeMode"`
+	IdleDurationSeconds         uint64                                   `cim:"IdleDurationSeconds"`
+	InstanceID                  string                                   `cim:"InstanceID"`
+	MinLifetimeKilobytes        uint64                                   `cim:"MinLifetimeKilobytes"`
+	MinLifetimeSeconds          uint64                                   `cim:"MinLifetimeSeconds"`
+	PolicyActionName            string                                   `cim:"PolicyActionName"`
+	PolicyKeywords              []string                                 `cim:"PolicyKeywords"`
+	PolicyRuleCreationClassName string                                   `cim:"PolicyRuleCreationClassName"`
+	PolicyRuleName              string                                   `cim:"PolicyRuleName"`
+	PolicyStoreSource           string                                   `cim:"PolicyStoreSource"`
+	PolicyStoreSourceType       uint16                                   `cim:"PolicyStoreSourceType"`
+	PrimaryStatus               MSFTNetIKEP2AuthSetPrimaryStatus         `cim:"PrimaryStatus"`
+	Proposals                   []wmi.Row                                `cim:"Proposals"`
+	RuleGroup                   string                                   `cim:"RuleGroup"`
+	Status                      string                                   `cim:"Status"`
+	StatusCode                  uint32                                   `cim:"StatusCode"`
+	SystemCreationClassName     string                                   `cim:"SystemCreationClassName"`
+	SystemName                  string                                   `cim:"SystemName"`
+	UseIKEIdentityType          MSFTNetIKEP2AuthSetUseIKEIdentityType    `cim:"UseIKEIdentityType"`
+	VendorID                    string                                   `cim:"VendorID"`
 }
 
 // MSFTNetIKEPSKAuthProposal is the MSFT_NetIKEPSKAuthProposal CIM class.
 type MSFTNetIKEPSKAuthProposal struct {
-	AuthenticationMethod      uint16 `cim:"AuthenticationMethod"`
-	Caption                   string `cim:"Caption"`
-	CipherAlgorithm           uint16 `cim:"CipherAlgorithm"`
-	Description               string `cim:"Description"`
-	ElementName               string `cim:"ElementName"`
-	GroupId                   uint16 `cim:"GroupId"`
-	HashAlgorithm             uint16 `cim:"HashAlgorithm"`
-	InstanceID                string `cim:"InstanceID"`
-	MaxLifetimeKilobytes      uint64 `cim:"MaxLifetimeKilobytes"`
-	MaxLifetimeSeconds        uint64 `cim:"MaxLifetimeSeconds"`
-	OtherAuthenticationMethod string `cim:"OtherAuthenticationMethod"`
-	OtherCipherAlgorithm      string `cim:"OtherCipherAlgorithm"`
-	OtherHashAlgorithm        string `cim:"OtherHashAlgorithm"`
-	PreSharedKey              string `cim:"PreSharedKey"`
-	VendorID                  string `cim:"VendorID"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                   string                                        `cim:"__PATH"`
+	AuthenticationMethod      MSFTNetIKEPSKAuthProposalAuthenticationMethod `cim:"AuthenticationMethod"`
+	Caption                   string                                        `cim:"Caption"`
+	CipherAlgorithm           MSFTNetIKEPSKAuthProposalCipherAlgorithm      `cim:"CipherAlgorithm"`
+	Description               string                                        `cim:"Description"`
+	ElementName               string                                        `cim:"ElementName"`
+	GroupId                   MSFTNetIKEPSKAuthProposalGroupId              `cim:"GroupId"`
+	HashAlgorithm             MSFTNetIKEPSKAuthProposalHashAlgorithm        `cim:"HashAlgorithm"`
+	InstanceID                string                                        `cim:"InstanceID"`
+	MaxLifetimeKilobytes      uint64                                        `cim:"MaxLifetimeKilobytes"`
+	MaxLifetimeSeconds        uint64                                        `cim:"MaxLifetimeSeconds"`
+	OtherAuthenticationMethod string                                        `cim:"OtherAuthenticationMethod"`
+	OtherCipherAlgorithm      string                                        `cim:"OtherCipherAlgorithm"`
+	OtherHashAlgorithm        string                                        `cim:"OtherHashAlgorithm"`
+	PreSharedKey              string                                        `cim:"PreSharedKey"`
+	VendorID                  string                                        `cim:"VendorID"`
 }
 
 // MSFTNetIKEQMCryptoProposal is the MSFT_NetIKEQMCryptoProposal CIM class.
 type MSFTNetIKEQMCryptoProposal struct {
-	AuthenticationMethod      uint16 `cim:"AuthenticationMethod"`
-	Caption                   string `cim:"Caption"`
-	CipherAlgorithm           uint16 `cim:"CipherAlgorithm"`
-	Description               string `cim:"Description"`
-	ElementName               string `cim:"ElementName"`
-	Encapsulation             uint16 `cim:"Encapsulation"`
-	GroupId                   uint16 `cim:"GroupId"`
-	HashAlgorithm             uint16 `cim:"HashAlgorithm"`
-	HashAlgorithmAH           uint16 `cim:"HashAlgorithmAH"`
-	HashAlgorithmESP          uint16 `cim:"HashAlgorithmESP"`
-	InstanceID                string `cim:"InstanceID"`
-	MaxLifetimeKilobytes      uint64 `cim:"MaxLifetimeKilobytes"`
-	MaxLifetimeMinutes        uint32 `cim:"MaxLifetimeMinutes"`
-	MaxLifetimeSeconds        uint64 `cim:"MaxLifetimeSeconds"`
-	OtherAuthenticationMethod string `cim:"OtherAuthenticationMethod"`
-	OtherCipherAlgorithm      string `cim:"OtherCipherAlgorithm"`
-	OtherHashAlgorithm        string `cim:"OtherHashAlgorithm"`
-	VendorID                  string `cim:"VendorID"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                   string                                         `cim:"__PATH"`
+	AuthenticationMethod      MSFTNetIKEQMCryptoProposalAuthenticationMethod `cim:"AuthenticationMethod"`
+	Caption                   string                                         `cim:"Caption"`
+	CipherAlgorithm           MSFTNetIKEQMCryptoProposalCipherAlgorithm      `cim:"CipherAlgorithm"`
+	Description               string                                         `cim:"Description"`
+	ElementName               string                                         `cim:"ElementName"`
+	Encapsulation             MSFTNetIKEQMCryptoProposalEncapsulation        `cim:"Encapsulation"`
+	GroupId                   MSFTNetIKEQMCryptoProposalGroupId              `cim:"GroupId"`
+	HashAlgorithm             MSFTNetIKEQMCryptoProposalHashAlgorithm        `cim:"HashAlgorithm"`
+	HashAlgorithmAH           MSFTNetIKEQMCryptoProposalHashAlgorithmAH      `cim:"HashAlgorithmAH"`
+	HashAlgorithmESP          MSFTNetIKEQMCryptoProposalHashAlgorithmESP     `cim:"HashAlgorithmESP"`
+	InstanceID                string                                         `cim:"InstanceID"`
+	MaxLifetimeKilobytes      uint64                                         `cim:"MaxLifetimeKilobytes"`
+	MaxLifetimeMinutes        uint32                                         `cim:"MaxLifetimeMinutes"`
+	MaxLifetimeSeconds        uint64                                         `cim:"MaxLifetimeSeconds"`
+	OtherAuthenticationMethod string                                         `cim:"OtherAuthenticationMethod"`
+	OtherCipherAlgorithm      string                                         `cim:"OtherCipherAlgorithm"`
+	OtherHashAlgorithm        string                                         `cim:"OtherHashAlgorithm"`
+	VendorID                  string                                         `cim:"VendorID"`
 }
 
 // MSFTNetIKEQMCryptoSet is the MSFT_NetIKEQMCryptoSet CIM class.
 type MSFTNetIKEQMCryptoSet struct {
-	AggressiveModeGroupID       uint16    `cim:"AggressiveModeGroupID"`
-	Caption                     string    `cim:"Caption"`
-	CommonName                  string    `cim:"CommonName"`
-	CreationClassName           string    `cim:"CreationClassName"`
-	Description                 string    `cim:"Description"`
-	DisplayGroup                string    `cim:"DisplayGroup"`
-	DisplayName                 string    `cim:"DisplayName"`
-	DoActionLogging             bool      `cim:"DoActionLogging"`
-	DoPacketLogging             bool      `cim:"DoPacketLogging"`
-	ElementName                 string    `cim:"ElementName"`
-	EnforcementStatus           []uint16  `cim:"EnforcementStatus"`
-	ExchangeMode                uint16    `cim:"ExchangeMode"`
-	IdleDurationSeconds         uint64    `cim:"IdleDurationSeconds"`
-	InstanceID                  string    `cim:"InstanceID"`
-	MinLifetimeKilobytes        uint64    `cim:"MinLifetimeKilobytes"`
-	MinLifetimeSeconds          uint64    `cim:"MinLifetimeSeconds"`
-	PfsGroupID                  uint16    `cim:"PfsGroupID"`
-	PolicyActionName            string    `cim:"PolicyActionName"`
-	PolicyKeywords              []string  `cim:"PolicyKeywords"`
-	PolicyRuleCreationClassName string    `cim:"PolicyRuleCreationClassName"`
-	PolicyRuleName              string    `cim:"PolicyRuleName"`
-	PolicyStoreSource           string    `cim:"PolicyStoreSource"`
-	PolicyStoreSourceType       uint16    `cim:"PolicyStoreSourceType"`
-	PrimaryStatus               uint16    `cim:"PrimaryStatus"`
-	Proposals                   []wmi.Row `cim:"Proposals"`
-	RuleGroup                   string    `cim:"RuleGroup"`
-	Status                      string    `cim:"Status"`
-	StatusCode                  uint32    `cim:"StatusCode"`
-	SystemCreationClassName     string    `cim:"SystemCreationClassName"`
-	SystemName                  string    `cim:"SystemName"`
-	UseIKEIdentityType          uint16    `cim:"UseIKEIdentityType"`
-	VendorID                    string    `cim:"VendorID"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                     string                                     `cim:"__PATH"`
+	AggressiveModeGroupID       MSFTNetIKEQMCryptoSetAggressiveModeGroupID `cim:"AggressiveModeGroupID"`
+	Caption                     string                                     `cim:"Caption"`
+	CommonName                  string                                     `cim:"CommonName"`
+	CreationClassName           string                                     `cim:"CreationClassName"`
+	Description                 string                                     `cim:"Description"`
+	DisplayGroup                string                                     `cim:"DisplayGroup"`
+	DisplayName                 string                                     `cim:"DisplayName"`
+	DoActionLogging             bool                                       `cim:"DoActionLogging"`
+	DoPacketLogging             bool                                       `cim:"DoPacketLogging"`
+	ElementName                 string                                     `cim:"ElementName"`
+	EnforcementStatus           []uint16                                   `cim:"EnforcementStatus"`
+	ExchangeMode                MSFTNetIKEQMCryptoSetExchangeMode          `cim:"ExchangeMode"`
+	IdleDurationSeconds         uint64                                     `cim:"IdleDurationSeconds"`
+	InstanceID                  string                                     `cim:"InstanceID"`
+	MinLifetimeKilobytes        uint64                                     `cim:"MinLifetimeKilobytes"`
+	MinLifetimeSeconds          uint64                                     `cim:"MinLifetimeSeconds"`
+	PfsGroupID                  MSFTNetIKEQMCryptoSetPfsGroupID            `cim:"PfsGroupID"`
+	PolicyActionName            string                                     `cim:"PolicyActionName"`
+	PolicyKeywords              []string                                   `cim:"PolicyKeywords"`
+	PolicyRuleCreationClassName string                                     `cim:"PolicyRuleCreationClassName"`
+	PolicyRuleName              string                                     `cim:"PolicyRuleName"`
+	PolicyStoreSource           string                                     `cim:"PolicyStoreSource"`
+	PolicyStoreSourceType       uint16                                     `cim:"PolicyStoreSourceType"`
+	PrimaryStatus               MSFTNetIKEQMCryptoSetPrimaryStatus         `cim:"PrimaryStatus"`
+	Proposals                   []wmi.Row                                  `cim:"Proposals"`
+	RuleGroup                   string                                     `cim:"RuleGroup"`
+	Status                      string                                     `cim:"Status"`
+	StatusCode                  uint32                                     `cim:"StatusCode"`
+	SystemCreationClassName     string                                     `cim:"SystemCreationClassName"`
+	SystemName                  string                                     `cim:"SystemName"`
+	UseIKEIdentityType          MSFTNetIKEQMCryptoSetUseIKEIdentityType    `cim:"UseIKEIdentityType"`
+	VendorID                    string                                     `cim:"VendorID"`
 }
 
 // MSFTNetIPAddress is the MSFT_NetIPAddress CIM class.
 type MSFTNetIPAddress struct {
-	Address                  string   `cim:"Address"`
-	AddressFamily            uint16   `cim:"AddressFamily"`
-	AddressOrigin            uint16   `cim:"AddressOrigin"`
-	AddressState             uint16   `cim:"AddressState"`
-	AddressType              uint16   `cim:"AddressType"`
-	AvailableRequestedStates []uint16 `cim:"AvailableRequestedStates"`
-	Caption                  string   `cim:"Caption"`
-	CommunicationStatus      uint16   `cim:"CommunicationStatus"`
-	CreationClassName        string   `cim:"CreationClassName"`
-	Description              string   `cim:"Description"`
-	DetailedStatus           uint16   `cim:"DetailedStatus"`
-	ElementName              string   `cim:"ElementName"`
-	EnabledDefault           uint16   `cim:"EnabledDefault"`
-	EnabledState             uint16   `cim:"EnabledState"`
-	HealthState              uint16   `cim:"HealthState"`
-	IPAddress                string   `cim:"IPAddress"`
-	IPVersionSupport         uint16   `cim:"IPVersionSupport"`
-	IPv4Address              string   `cim:"IPv4Address"`
-	IPv6Address              string   `cim:"IPv6Address"`
-	InstallDate              string   `cim:"InstallDate"`
-	InstanceID               string   `cim:"InstanceID"`
-	InterfaceAlias           string   `cim:"InterfaceAlias"`
-	InterfaceIndex           uint32   `cim:"InterfaceIndex"`
-	Name                     string   `cim:"Name"`
-	NameFormat               string   `cim:"NameFormat"`
-	OperatingStatus          uint16   `cim:"OperatingStatus"`
-	OperationalStatus        []uint16 `cim:"OperationalStatus"`
-	OtherEnabledState        string   `cim:"OtherEnabledState"`
-	OtherTypeDescription     string   `cim:"OtherTypeDescription"`
-	PreferredLifetime        string   `cim:"PreferredLifetime"`
-	PrefixLength             uint8    `cim:"PrefixLength"`
-	PrefixOrigin             uint16   `cim:"PrefixOrigin"`
-	PrimaryStatus            uint16   `cim:"PrimaryStatus"`
-	ProtocolIFType           uint16   `cim:"ProtocolIFType"`
-	ProtocolType             uint16   `cim:"ProtocolType"`
-	RequestedState           uint16   `cim:"RequestedState"`
-	SkipAsSource             bool     `cim:"SkipAsSource"`
-	Status                   string   `cim:"Status"`
-	StatusDescriptions       []string `cim:"StatusDescriptions"`
-	Store                    uint8    `cim:"Store"`
-	SubnetMask               string   `cim:"SubnetMask"`
-	SuffixOrigin             uint16   `cim:"SuffixOrigin"`
-	SystemCreationClassName  string   `cim:"SystemCreationClassName"`
-	SystemName               string   `cim:"SystemName"`
-	TimeOfLastStateChange    string   `cim:"TimeOfLastStateChange"`
-	TransitioningToState     uint16   `cim:"TransitioningToState"`
-	Type                     uint8    `cim:"Type"`
-	ValidLifetime            string   `cim:"ValidLifetime"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                  string                               `cim:"__PATH"`
+	Address                  string                               `cim:"Address"`
+	AddressFamily            MSFTNetIPAddressAddressFamily        `cim:"AddressFamily"`
+	AddressOrigin            MSFTNetIPAddressAddressOrigin        `cim:"AddressOrigin"`
+	AddressState             MSFTNetIPAddressAddressState         `cim:"AddressState"`
+	AddressType              MSFTNetIPAddressAddressType          `cim:"AddressType"`
+	AvailableRequestedStates []uint16                             `cim:"AvailableRequestedStates"`
+	Caption                  string                               `cim:"Caption"`
+	CommunicationStatus      MSFTNetIPAddressCommunicationStatus  `cim:"CommunicationStatus"`
+	CreationClassName        string                               `cim:"CreationClassName"`
+	Description              string                               `cim:"Description"`
+	DetailedStatus           MSFTNetIPAddressDetailedStatus       `cim:"DetailedStatus"`
+	ElementName              string                               `cim:"ElementName"`
+	EnabledDefault           MSFTNetIPAddressEnabledDefault       `cim:"EnabledDefault"`
+	EnabledState             MSFTNetIPAddressEnabledState         `cim:"EnabledState"`
+	HealthState              MSFTNetIPAddressHealthState          `cim:"HealthState"`
+	IPAddress                string                               `cim:"IPAddress"`
+	IPVersionSupport         MSFTNetIPAddressIPVersionSupport     `cim:"IPVersionSupport"`
+	IPv4Address              string                               `cim:"IPv4Address"`
+	IPv6Address              string                               `cim:"IPv6Address"`
+	InstallDate              string                               `cim:"InstallDate"`
+	InstanceID               string                               `cim:"InstanceID"`
+	InterfaceAlias           string                               `cim:"InterfaceAlias"`
+	InterfaceIndex           uint32                               `cim:"InterfaceIndex"`
+	Name                     string                               `cim:"Name"`
+	NameFormat               string                               `cim:"NameFormat"`
+	OperatingStatus          MSFTNetIPAddressOperatingStatus      `cim:"OperatingStatus"`
+	OperationalStatus        []uint16                             `cim:"OperationalStatus"`
+	OtherEnabledState        string                               `cim:"OtherEnabledState"`
+	OtherTypeDescription     string                               `cim:"OtherTypeDescription"`
+	PreferredLifetime        string                               `cim:"PreferredLifetime"`
+	PrefixLength             uint8                                `cim:"PrefixLength"`
+	PrefixOrigin             MSFTNetIPAddressPrefixOrigin         `cim:"PrefixOrigin"`
+	PrimaryStatus            MSFTNetIPAddressPrimaryStatus        `cim:"PrimaryStatus"`
+	ProtocolIFType           MSFTNetIPAddressProtocolIFType       `cim:"ProtocolIFType"`
+	ProtocolType             MSFTNetIPAddressProtocolType         `cim:"ProtocolType"`
+	RequestedState           MSFTNetIPAddressRequestedState       `cim:"RequestedState"`
+	SkipAsSource             bool                                 `cim:"SkipAsSource"`
+	Status                   MSFTNetIPAddressStatus               `cim:"Status"`
+	StatusDescriptions       []string                             `cim:"StatusDescriptions"`
+	Store                    MSFTNetIPAddressStore                `cim:"Store"`
+	SubnetMask               string                               `cim:"SubnetMask"`
+	SuffixOrigin             MSFTNetIPAddressSuffixOrigin         `cim:"SuffixOrigin"`
+	SystemCreationClassName  string                               `cim:"SystemCreationClassName"`
+	SystemName               string                               `cim:"SystemName"`
+	TimeOfLastStateChange    string                               `cim:"TimeOfLastStateChange"`
+	TransitioningToState     MSFTNetIPAddressTransitioningToState `cim:"TransitioningToState"`
+	Type                     MSFTNetIPAddressType                 `cim:"Type"`
+	ValidLifetime            string                               `cim:"ValidLifetime"`
 }
 
 // MSFTNetIPHttpsConfiguration is the MSFT_NetIPHttpsConfiguration CIM class.
 type MSFTNetIPHttpsConfiguration struct {
-	AuthMode          uint32 `cim:"AuthMode"`
-	Caption           string `cim:"Caption"`
-	ConfigurationType uint32 `cim:"ConfigurationType"`
-	Description       string `cim:"Description"`
-	ElementName       string `cim:"ElementName"`
-	InstanceID        string `cim:"InstanceID"`
-	PolicyStore       string `cim:"PolicyStore"`
-	Profile           string `cim:"Profile"`
-	ProfileActivated  bool   `cim:"ProfileActivated"`
-	ServerURL         string `cim:"ServerURL"`
-	State             uint32 `cim:"State"`
-	StrongCRLRequired bool   `cim:"StrongCRLRequired"`
-	Type              uint32 `cim:"Type"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath           string                                       `cim:"__PATH"`
+	AuthMode          MSFTNetIPHttpsConfigurationAuthMode          `cim:"AuthMode"`
+	Caption           string                                       `cim:"Caption"`
+	ConfigurationType MSFTNetIPHttpsConfigurationConfigurationType `cim:"ConfigurationType"`
+	Description       string                                       `cim:"Description"`
+	ElementName       string                                       `cim:"ElementName"`
+	InstanceID        string                                       `cim:"InstanceID"`
+	PolicyStore       string                                       `cim:"PolicyStore"`
+	Profile           string                                       `cim:"Profile"`
+	ProfileActivated  bool                                         `cim:"ProfileActivated"`
+	ServerURL         string                                       `cim:"ServerURL"`
+	State             MSFTNetIPHttpsConfigurationState             `cim:"State"`
+	StrongCRLRequired bool                                         `cim:"StrongCRLRequired"`
+	Type              MSFTNetIPHttpsConfigurationType              `cim:"Type"`
 }
 
 // MSFTNetIPHttpsState is the MSFT_NetIPHttpsState CIM class.
 type MSFTNetIPHttpsState struct {
-	InterfaceStatus string `cim:"InterfaceStatus"`
-	IsCurrent       uint16 `cim:"IsCurrent"`
-	IsDefault       uint16 `cim:"IsDefault"`
-	IsNext          uint16 `cim:"IsNext"`
-	LastErrorCode   uint32 `cim:"LastErrorCode"`
-	ManagedElement  string `cim:"ManagedElement"`
-	SettingData     string `cim:"SettingData"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath         string                       `cim:"__PATH"`
+	InterfaceStatus string                       `cim:"InterfaceStatus"`
+	IsCurrent       MSFTNetIPHttpsStateIsCurrent `cim:"IsCurrent"`
+	IsDefault       MSFTNetIPHttpsStateIsDefault `cim:"IsDefault"`
+	IsNext          MSFTNetIPHttpsStateIsNext    `cim:"IsNext"`
+	LastErrorCode   uint32                       `cim:"LastErrorCode"`
+	ManagedElement  string                       `cim:"ManagedElement"`
+	SettingData     string                       `cim:"SettingData"`
 }
 
 // MSFTNetIPInterface is the MSFT_NetIPInterface CIM class.
 type MSFTNetIPInterface struct {
-	AddressFamily                   uint16   `cim:"AddressFamily"`
-	AdvertiseDefaultRoute           uint8    `cim:"AdvertiseDefaultRoute"`
-	AdvertisedRouterLifetime        string   `cim:"AdvertisedRouterLifetime"`
-	Advertising                     uint8    `cim:"Advertising"`
-	AliasAddresses                  []string `cim:"AliasAddresses"`
-	AutomaticMetric                 uint8    `cim:"AutomaticMetric"`
-	AvailableRequestedStates        []uint16 `cim:"AvailableRequestedStates"`
-	BaseReachableTime               uint32   `cim:"BaseReachableTime"`
-	Caption                         string   `cim:"Caption"`
-	ClampMss                        uint8    `cim:"ClampMss"`
-	CommunicationStatus             uint16   `cim:"CommunicationStatus"`
-	CompartmentId                   uint32   `cim:"CompartmentId"`
-	ConnectionState                 uint8    `cim:"ConnectionState"`
-	CreationClassName               string   `cim:"CreationClassName"`
-	CurrentHopLimit                 uint32   `cim:"CurrentHopLimit"`
-	DadRetransmitTime               uint32   `cim:"DadRetransmitTime"`
-	DadTransmits                    uint32   `cim:"DadTransmits"`
-	Description                     string   `cim:"Description"`
-	DetailedStatus                  uint16   `cim:"DetailedStatus"`
-	Dhcp                            uint8    `cim:"Dhcp"`
-	DirectedMacWolPattern           uint8    `cim:"DirectedMacWolPattern"`
-	EcnMarking                      uint8    `cim:"EcnMarking"`
-	ElementName                     string   `cim:"ElementName"`
-	EnabledDefault                  uint16   `cim:"EnabledDefault"`
-	EnabledState                    uint16   `cim:"EnabledState"`
-	ForceArpNdWolPattern            uint8    `cim:"ForceArpNdWolPattern"`
-	Forwarding                      uint8    `cim:"Forwarding"`
-	GroupAddresses                  []string `cim:"GroupAddresses"`
-	HealthState                     uint16   `cim:"HealthState"`
-	IgnoreDefaultRoutes             uint8    `cim:"IgnoreDefaultRoutes"`
-	InstallDate                     string   `cim:"InstallDate"`
-	InstanceID                      string   `cim:"InstanceID"`
-	InterfaceAlias                  string   `cim:"InterfaceAlias"`
-	InterfaceIndex                  uint32   `cim:"InterfaceIndex"`
-	InterfaceMetric                 uint32   `cim:"InterfaceMetric"`
-	IsolationId                     uint32   `cim:"IsolationId"`
-	LANID                           string   `cim:"LANID"`
-	LANType                         uint16   `cim:"LANType"`
-	LowestIfNetLuid                 uint64   `cim:"LowestIfNetLuid"`
-	MACAddress                      string   `cim:"MACAddress"`
-	ManagedAddressConfiguration     uint8    `cim:"ManagedAddressConfiguration"`
-	MaxDataSize                     uint32   `cim:"MaxDataSize"`
-	Name                            string   `cim:"Name"`
-	NameFormat                      string   `cim:"NameFormat"`
-	NeighborDiscoverySupported      uint8    `cim:"NeighborDiscoverySupported"`
-	NeighborUnreachabilityDetection uint8    `cim:"NeighborUnreachabilityDetection"`
-	NlMtu                           uint32   `cim:"NlMtu"`
-	OperatingStatus                 uint16   `cim:"OperatingStatus"`
-	OperationalStatus               []uint16 `cim:"OperationalStatus"`
-	OtherEnabledState               string   `cim:"OtherEnabledState"`
-	OtherLANType                    string   `cim:"OtherLANType"`
-	OtherStatefulConfiguration      uint8    `cim:"OtherStatefulConfiguration"`
-	OtherTypeDescription            string   `cim:"OtherTypeDescription"`
-	PrimaryStatus                   uint16   `cim:"PrimaryStatus"`
-	ProtocolIFType                  uint16   `cim:"ProtocolIFType"`
-	ProtocolType                    uint16   `cim:"ProtocolType"`
-	ReachableTime                   uint32   `cim:"ReachableTime"`
-	RequestedState                  uint16   `cim:"RequestedState"`
-	RetransmitTime                  uint32   `cim:"RetransmitTime"`
-	RouterDiscovery                 uint8    `cim:"RouterDiscovery"`
-	Status                          string   `cim:"Status"`
-	StatusDescriptions              []string `cim:"StatusDescriptions"`
-	Store                           uint8    `cim:"Store"`
-	SystemCreationClassName         string   `cim:"SystemCreationClassName"`
-	SystemName                      string   `cim:"SystemName"`
-	TimeOfLastStateChange           string   `cim:"TimeOfLastStateChange"`
-	TransitioningToState            uint16   `cim:"TransitioningToState"`
-	WeakHostReceive                 uint8    `cim:"WeakHostReceive"`
-	WeakHostSend                    uint8    `cim:"WeakHostSend"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                         string                                            `cim:"__PATH"`
+	AddressFamily                   MSFTNetIPInterfaceAddressFamily                   `cim:"AddressFamily"`
+	AdvertiseDefaultRoute           MSFTNetIPInterfaceAdvertiseDefaultRoute           `cim:"AdvertiseDefaultRoute"`
+	AdvertisedRouterLifetime        string                                            `cim:"AdvertisedRouterLifetime"`
+	Advertising                     MSFTNetIPInterfaceAdvertising                     `cim:"Advertising"`
+	AliasAddresses                  []string                                          `cim:"AliasAddresses"`
+	AutomaticMetric                 MSFTNetIPInterfaceAutomaticMetric                 `cim:"AutomaticMetric"`
+	AvailableRequestedStates        []uint16                                          `cim:"AvailableRequestedStates"`
+	BaseReachableTime               uint32                                            `cim:"BaseReachableTime"`
+	Caption                         string                                            `cim:"Caption"`
+	ClampMss                        MSFTNetIPInterfaceClampMss                        `cim:"ClampMss"`
+	CommunicationStatus             MSFTNetIPInterfaceCommunicationStatus             `cim:"CommunicationStatus"`
+	CompartmentId                   uint32                                            `cim:"CompartmentId"`
+	ConnectionState                 MSFTNetIPInterfaceConnectionState                 `cim:"ConnectionState"`
+	CreationClassName               string                                            `cim:"CreationClassName"`
+	CurrentHopLimit                 uint32                                            `cim:"CurrentHopLimit"`
+	DadRetransmitTime               uint32                                            `cim:"DadRetransmitTime"`
+	DadTransmits                    uint32                                            `cim:"DadTransmits"`
+	Description                     string                                            `cim:"Description"`
+	DetailedStatus                  MSFTNetIPInterfaceDetailedStatus                  `cim:"DetailedStatus"`
+	Dhcp                            MSFTNetIPInterfaceDhcp                            `cim:"Dhcp"`
+	DirectedMacWolPattern           MSFTNetIPInterfaceDirectedMacWolPattern           `cim:"DirectedMacWolPattern"`
+	EcnMarking                      MSFTNetIPInterfaceEcnMarking                      `cim:"EcnMarking"`
+	ElementName                     string                                            `cim:"ElementName"`
+	EnabledDefault                  MSFTNetIPInterfaceEnabledDefault                  `cim:"EnabledDefault"`
+	EnabledState                    MSFTNetIPInterfaceEnabledState                    `cim:"EnabledState"`
+	ForceArpNdWolPattern            MSFTNetIPInterfaceForceArpNdWolPattern            `cim:"ForceArpNdWolPattern"`
+	Forwarding                      MSFTNetIPInterfaceForwarding                      `cim:"Forwarding"`
+	GroupAddresses                  []string                                          `cim:"GroupAddresses"`
+	HealthState                     MSFTNetIPInterfaceHealthState                     `cim:"HealthState"`
+	IgnoreDefaultRoutes             MSFTNetIPInterfaceIgnoreDefaultRoutes             `cim:"IgnoreDefaultRoutes"`
+	InstallDate                     string                                            `cim:"InstallDate"`
+	InstanceID                      string                                            `cim:"InstanceID"`
+	InterfaceAlias                  string                                            `cim:"InterfaceAlias"`
+	InterfaceIndex                  uint32                                            `cim:"InterfaceIndex"`
+	InterfaceMetric                 uint32                                            `cim:"InterfaceMetric"`
+	IsolationId                     uint32                                            `cim:"IsolationId"`
+	LANID                           string                                            `cim:"LANID"`
+	LANType                         MSFTNetIPInterfaceLANType                         `cim:"LANType"`
+	LowestIfNetLuid                 uint64                                            `cim:"LowestIfNetLuid"`
+	MACAddress                      string                                            `cim:"MACAddress"`
+	ManagedAddressConfiguration     MSFTNetIPInterfaceManagedAddressConfiguration     `cim:"ManagedAddressConfiguration"`
+	MaxDataSize                     uint32                                            `cim:"MaxDataSize"`
+	Name                            string                                            `cim:"Name"`
+	NameFormat                      string                                            `cim:"NameFormat"`
+	NeighborDiscoverySupported      MSFTNetIPInterfaceNeighborDiscoverySupported      `cim:"NeighborDiscoverySupported"`
+	NeighborUnreachabilityDetection MSFTNetIPInterfaceNeighborUnreachabilityDetection `cim:"NeighborUnreachabilityDetection"`
+	NlMtu                           uint32                                            `cim:"NlMtu"`
+	OperatingStatus                 MSFTNetIPInterfaceOperatingStatus                 `cim:"OperatingStatus"`
+	OperationalStatus               []uint16                                          `cim:"OperationalStatus"`
+	OtherEnabledState               string                                            `cim:"OtherEnabledState"`
+	OtherLANType                    string                                            `cim:"OtherLANType"`
+	OtherStatefulConfiguration      MSFTNetIPInterfaceOtherStatefulConfiguration      `cim:"OtherStatefulConfiguration"`
+	OtherTypeDescription            string                                            `cim:"OtherTypeDescription"`
+	PrimaryStatus                   MSFTNetIPInterfacePrimaryStatus                   `cim:"PrimaryStatus"`
+	ProtocolIFType                  MSFTNetIPInterfaceProtocolIFType                  `cim:"ProtocolIFType"`
+	ProtocolType                    MSFTNetIPInterfaceProtocolType                    `cim:"ProtocolType"`
+	ReachableTime                   uint32                                            `cim:"ReachableTime"`
+	RequestedState                  MSFTNetIPInterfaceRequestedState                  `cim:"RequestedState"`
+	RetransmitTime                  uint32                                            `cim:"RetransmitTime"`
+	RouterDiscovery                 MSFTNetIPInterfaceRouterDiscovery                 `cim:"RouterDiscovery"`
+	Status                          MSFTNetIPInterfaceStatus                          `cim:"Status"`
+	StatusDescriptions              []string                                          `cim:"StatusDescriptions"`
+	Store                           MSFTNetIPInterfaceStore                           `cim:"Store"`
+	SystemCreationClassName         string                                            `cim:"SystemCreationClassName"`
+	SystemName                      string                                            `cim:"SystemName"`
+	TimeOfLastStateChange           string                                            `cim:"TimeOfLastStateChange"`
+	TransitioningToState            MSFTNetIPInterfaceTransitioningToState            `cim:"TransitioningToState"`
+	WeakHostReceive                 MSFTNetIPInterfaceWeakHostReceive                 `cim:"WeakHostReceive"`
+	WeakHostSend                    MSFTNetIPInterfaceWeakHostSend                    `cim:"WeakHostSend"`
 }
 
 // MSFTNetIPInterfaceAdapter is the MSFT_NetIPInterfaceAdapter CIM class.
 type MSFTNetIPInterfaceAdapter struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath    string `cim:"__PATH"`
 	Antecedent string `cim:"Antecedent"`
 	Dependent  string `cim:"Dependent"`
 }
 
 // MSFTNetIPInterfaceIPAddress is the MSFT_NetIPInterfaceIPAddress CIM class.
 type MSFTNetIPInterfaceIPAddress struct {
-	Antecedent string `cim:"Antecedent"`
-	Dependent  string `cim:"Dependent"`
-	FrameType  uint16 `cim:"FrameType"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath    string                               `cim:"__PATH"`
+	Antecedent string                               `cim:"Antecedent"`
+	Dependent  string                               `cim:"Dependent"`
+	FrameType  MSFTNetIPInterfaceIPAddressFrameType `cim:"FrameType"`
 }
 
 // MSFTNetIPInterfaceNeighbor is the MSFT_NetIPInterfaceNeighbor CIM class.
 type MSFTNetIPInterfaceNeighbor struct {
-	Antecedent string `cim:"Antecedent"`
-	Dependent  string `cim:"Dependent"`
-	FrameType  uint16 `cim:"FrameType"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath    string                              `cim:"__PATH"`
+	Antecedent string                              `cim:"Antecedent"`
+	Dependent  string                              `cim:"Dependent"`
+	FrameType  MSFTNetIPInterfaceNeighborFrameType `cim:"FrameType"`
 }
 
 // MSFTNetIPInterfaceRoute is the MSFT_NetIPInterfaceRoute CIM class.
 type MSFTNetIPInterfaceRoute struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath    string `cim:"__PATH"`
 	Antecedent string `cim:"Antecedent"`
 	Dependent  string `cim:"Dependent"`
 }
 
 // MSFTNetIPsecDoSPSetting is the MSFT_NetIPsecDoSPSetting CIM class.
 type MSFTNetIPsecDoSPSetting struct {
-	Caption                                  string   `cim:"Caption"`
-	DefBlockExemptDscp                       uint16   `cim:"DefBlockExemptDscp"`
-	DefBlockExemptRateLimitBytesPerSec       uint32   `cim:"DefBlockExemptRateLimitBytesPerSec"`
-	Description                              string   `cim:"Description"`
-	EffectiveAddressFamily                   uint16   `cim:"EffectiveAddressFamily"`
-	ElementName                              string   `cim:"ElementName"`
-	EnabledKeyingModules                     uint32   `cim:"EnabledKeyingModules"`
-	FilteringFlags                           uint32   `cim:"FilteringFlags"`
-	IcmpV6Dscp                               uint16   `cim:"IcmpV6Dscp"`
-	IcmpV6RateLimitBytesPerSec               uint32   `cim:"IcmpV6RateLimitBytesPerSec"`
-	InstanceID                               string   `cim:"InstanceID"`
-	IpV6FilterExemptDscp                     uint32   `cim:"IpV6FilterExemptDscp"`
-	IpV6FilterExemptRateLimitBytesPerSec     uint32   `cim:"IpV6FilterExemptRateLimitBytesPerSec"`
-	IpV6IPsecAuthDscp                        uint16   `cim:"IpV6IPsecAuthDscp"`
-	IpV6IPsecAuthRateLimitBytesPerSec        uint32   `cim:"IpV6IPsecAuthRateLimitBytesPerSec"`
-	IpV6IPsecUnauthDscp                      uint32   `cim:"IpV6IPsecUnauthDscp"`
-	IpV6IPsecUnauthPerIPRateLimitBytesPerSec uint32   `cim:"IpV6IPsecUnauthPerIPRateLimitBytesPerSec"`
-	IpV6IPsecUnauthRateLimitBytesPerSec      uint32   `cim:"IpV6IPsecUnauthRateLimitBytesPerSec"`
-	MaxPerIPRateLimitQueues                  uint32   `cim:"MaxPerIPRateLimitQueues"`
-	MaxStateEntries                          uint32   `cim:"MaxStateEntries"`
-	PerIPRateLimitQueueIdleTimeoutSeconds    uint32   `cim:"PerIPRateLimitQueueIdleTimeoutSeconds"`
-	PrivateInterfaceAliases                  []string `cim:"PrivateInterfaceAliases"`
-	PrivateV6Address                         string   `cim:"PrivateV6Address"`
-	PublicInterfaceAliases                   []string `cim:"PublicInterfaceAliases"`
-	PublicV6Address                          string   `cim:"PublicV6Address"`
-	StateIdleTimeoutSeconds                  uint32   `cim:"StateIdleTimeoutSeconds"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                  string                                        `cim:"__PATH"`
+	Caption                                  string                                        `cim:"Caption"`
+	DefBlockExemptDscp                       uint16                                        `cim:"DefBlockExemptDscp"`
+	DefBlockExemptRateLimitBytesPerSec       uint32                                        `cim:"DefBlockExemptRateLimitBytesPerSec"`
+	Description                              string                                        `cim:"Description"`
+	EffectiveAddressFamily                   MSFTNetIPsecDoSPSettingEffectiveAddressFamily `cim:"EffectiveAddressFamily"`
+	ElementName                              string                                        `cim:"ElementName"`
+	EnabledKeyingModules                     MSFTNetIPsecDoSPSettingEnabledKeyingModules   `cim:"EnabledKeyingModules"`
+	FilteringFlags                           MSFTNetIPsecDoSPSettingFilteringFlags         `cim:"FilteringFlags"`
+	IcmpV6Dscp                               uint16                                        `cim:"IcmpV6Dscp"`
+	IcmpV6RateLimitBytesPerSec               uint32                                        `cim:"IcmpV6RateLimitBytesPerSec"`
+	InstanceID                               string                                        `cim:"InstanceID"`
+	IpV6FilterExemptDscp                     uint32                                        `cim:"IpV6FilterExemptDscp"`
+	IpV6FilterExemptRateLimitBytesPerSec     uint32                                        `cim:"IpV6FilterExemptRateLimitBytesPerSec"`
+	IpV6IPsecAuthDscp                        uint16                                        `cim:"IpV6IPsecAuthDscp"`
+	IpV6IPsecAuthRateLimitBytesPerSec        uint32                                        `cim:"IpV6IPsecAuthRateLimitBytesPerSec"`
+	IpV6IPsecUnauthDscp                      uint32                                        `cim:"IpV6IPsecUnauthDscp"`
+	IpV6IPsecUnauthPerIPRateLimitBytesPerSec uint32                                        `cim:"IpV6IPsecUnauthPerIPRateLimitBytesPerSec"`
+	IpV6IPsecUnauthRateLimitBytesPerSec      uint32                                        `cim:"IpV6IPsecUnauthRateLimitBytesPerSec"`
+	MaxPerIPRateLimitQueues                  uint32                                        `cim:"MaxPerIPRateLimitQueues"`
+	MaxStateEntries                          uint32                                        `cim:"MaxStateEntries"`
+	PerIPRateLimitQueueIdleTimeoutSeconds    uint32                                        `cim:"PerIPRateLimitQueueIdleTimeoutSeconds"`
+	PrivateInterfaceAliases                  []string                                      `cim:"PrivateInterfaceAliases"`
+	PrivateV6Address                         string                                        `cim:"PrivateV6Address"`
+	PublicInterfaceAliases                   []string                                      `cim:"PublicInterfaceAliases"`
+	PublicV6Address                          string                                        `cim:"PublicV6Address"`
+	StateIdleTimeoutSeconds                  uint32                                        `cim:"StateIdleTimeoutSeconds"`
 }
 
 // MSFTNetIPsecIdentity is the MSFT_NetIPsecIdentity CIM class.
 type MSFTNetIPsecIdentity struct {
-	AuthenticationMethod uint32 `cim:"AuthenticationMethod"`
-	Flags                uint32 `cim:"Flags"`
-	Identity             string `cim:"Identity"`
-	ImpersonationType    uint32 `cim:"ImpersonationType"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath              string                                   `cim:"__PATH"`
+	AuthenticationMethod MSFTNetIPsecIdentityAuthenticationMethod `cim:"AuthenticationMethod"`
+	Flags                MSFTNetIPsecIdentityFlags                `cim:"Flags"`
+	Identity             string                                   `cim:"Identity"`
+	ImpersonationType    MSFTNetIPsecIdentityImpersonationType    `cim:"ImpersonationType"`
 }
 
 // MSFTNetIPv4Protocol is the MSFT_NetIPv4Protocol CIM class.
 type MSFTNetIPv4Protocol struct {
-	AddressMaskReply         uint8    `cim:"AddressMaskReply"`
-	AvailableRequestedStates []uint16 `cim:"AvailableRequestedStates"`
-	Caption                  string   `cim:"Caption"`
-	CommunicationStatus      uint16   `cim:"CommunicationStatus"`
-	CreationClassName        string   `cim:"CreationClassName"`
-	DeadGatewayDetection     uint8    `cim:"DeadGatewayDetection"`
-	DefaultHopLimit          uint32   `cim:"DefaultHopLimit"`
-	Description              string   `cim:"Description"`
-	DetailedStatus           uint16   `cim:"DetailedStatus"`
-	DhcpMediaSense           uint8    `cim:"DhcpMediaSense"`
-	ElementName              string   `cim:"ElementName"`
-	EnabledDefault           uint16   `cim:"EnabledDefault"`
-	EnabledState             uint16   `cim:"EnabledState"`
-	GroupForwardedFragments  uint8    `cim:"GroupForwardedFragments"`
-	HealthState              uint16   `cim:"HealthState"`
-	IcmpRedirects            uint8    `cim:"IcmpRedirects"`
-	InstallDate              string   `cim:"InstallDate"`
-	InstanceID               string   `cim:"InstanceID"`
-	MediaSenseEventLog       uint8    `cim:"MediaSenseEventLog"`
-	MinimumMtu               uint32   `cim:"MinimumMtu"`
-	MldLevel                 uint32   `cim:"MldLevel"`
-	MldVersion               uint32   `cim:"MldVersion"`
-	MulticastForwarding      uint8    `cim:"MulticastForwarding"`
-	MultipleArpAnnouncements uint8    `cim:"MultipleArpAnnouncements"`
-	Name                     string   `cim:"Name"`
-	NameFormat               string   `cim:"NameFormat"`
-	NeighborCacheLimit       uint32   `cim:"NeighborCacheLimit"`
-	OperatingStatus          uint16   `cim:"OperatingStatus"`
-	OperationalStatus        []uint16 `cim:"OperationalStatus"`
-	OtherEnabledState        string   `cim:"OtherEnabledState"`
-	OtherTypeDescription     string   `cim:"OtherTypeDescription"`
-	PrimaryStatus            uint16   `cim:"PrimaryStatus"`
-	ProtocolIFType           uint16   `cim:"ProtocolIFType"`
-	ProtocolType             uint16   `cim:"ProtocolType"`
-	RandomizeIdentifiers     uint8    `cim:"RandomizeIdentifiers"`
-	ReassemblyLimit          uint32   `cim:"ReassemblyLimit"`
-	RequestedState           uint16   `cim:"RequestedState"`
-	RouteCacheLimit          uint32   `cim:"RouteCacheLimit"`
-	SourceRoutingBehavior    uint32   `cim:"SourceRoutingBehavior"`
-	Status                   string   `cim:"Status"`
-	StatusDescriptions       []string `cim:"StatusDescriptions"`
-	SystemCreationClassName  string   `cim:"SystemCreationClassName"`
-	SystemName               string   `cim:"SystemName"`
-	TimeOfLastStateChange    string   `cim:"TimeOfLastStateChange"`
-	TransitioningToState     uint16   `cim:"TransitioningToState"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                  string                                      `cim:"__PATH"`
+	AddressMaskReply         MSFTNetIPv4ProtocolAddressMaskReply         `cim:"AddressMaskReply"`
+	AvailableRequestedStates []uint16                                    `cim:"AvailableRequestedStates"`
+	Caption                  string                                      `cim:"Caption"`
+	CommunicationStatus      MSFTNetIPv4ProtocolCommunicationStatus      `cim:"CommunicationStatus"`
+	CreationClassName        string                                      `cim:"CreationClassName"`
+	DeadGatewayDetection     MSFTNetIPv4ProtocolDeadGatewayDetection     `cim:"DeadGatewayDetection"`
+	DefaultHopLimit          uint32                                      `cim:"DefaultHopLimit"`
+	Description              string                                      `cim:"Description"`
+	DetailedStatus           MSFTNetIPv4ProtocolDetailedStatus           `cim:"DetailedStatus"`
+	DhcpMediaSense           MSFTNetIPv4ProtocolDhcpMediaSense           `cim:"DhcpMediaSense"`
+	ElementName              string                                      `cim:"ElementName"`
+	EnabledDefault           MSFTNetIPv4ProtocolEnabledDefault           `cim:"EnabledDefault"`
+	EnabledState             MSFTNetIPv4ProtocolEnabledState             `cim:"EnabledState"`
+	GroupForwardedFragments  MSFTNetIPv4ProtocolGroupForwardedFragments  `cim:"GroupForwardedFragments"`
+	HealthState              MSFTNetIPv4ProtocolHealthState              `cim:"HealthState"`
+	IcmpRedirects            MSFTNetIPv4ProtocolIcmpRedirects            `cim:"IcmpRedirects"`
+	InstallDate              string                                      `cim:"InstallDate"`
+	InstanceID               string                                      `cim:"InstanceID"`
+	MediaSenseEventLog       MSFTNetIPv4ProtocolMediaSenseEventLog       `cim:"MediaSenseEventLog"`
+	MinimumMtu               uint32                                      `cim:"MinimumMtu"`
+	MldLevel                 MSFTNetIPv4ProtocolMldLevel                 `cim:"MldLevel"`
+	MldVersion               MSFTNetIPv4ProtocolMldVersion               `cim:"MldVersion"`
+	MulticastForwarding      MSFTNetIPv4ProtocolMulticastForwarding      `cim:"MulticastForwarding"`
+	MultipleArpAnnouncements MSFTNetIPv4ProtocolMultipleArpAnnouncements `cim:"MultipleArpAnnouncements"`
+	Name                     string                                      `cim:"Name"`
+	NameFormat               string                                      `cim:"NameFormat"`
+	NeighborCacheLimit       uint32                                      `cim:"NeighborCacheLimit"`
+	OperatingStatus          MSFTNetIPv4ProtocolOperatingStatus          `cim:"OperatingStatus"`
+	OperationalStatus        []uint16                                    `cim:"OperationalStatus"`
+	OtherEnabledState        string                                      `cim:"OtherEnabledState"`
+	OtherTypeDescription     string                                      `cim:"OtherTypeDescription"`
+	PrimaryStatus            MSFTNetIPv4ProtocolPrimaryStatus            `cim:"PrimaryStatus"`
+	ProtocolIFType           MSFTNetIPv4ProtocolProtocolIFType           `cim:"ProtocolIFType"`
+	ProtocolType             MSFTNetIPv4ProtocolProtocolType             `cim:"ProtocolType"`
+	RandomizeIdentifiers     MSFTNetIPv4ProtocolRandomizeIdentifiers     `cim:"RandomizeIdentifiers"`
+	ReassemblyLimit          uint32                                      `cim:"ReassemblyLimit"`
+	RequestedState           MSFTNetIPv4ProtocolRequestedState           `cim:"RequestedState"`
+	RouteCacheLimit          uint32                                      `cim:"RouteCacheLimit"`
+	SourceRoutingBehavior    MSFTNetIPv4ProtocolSourceRoutingBehavior    `cim:"SourceRoutingBehavior"`
+	Status                   MSFTNetIPv4ProtocolStatus                   `cim:"Status"`
+	StatusDescriptions       []string                                    `cim:"StatusDescriptions"`
+	SystemCreationClassName  string                                      `cim:"SystemCreationClassName"`
+	SystemName               string                                      `cim:"SystemName"`
+	TimeOfLastStateChange    string                                      `cim:"TimeOfLastStateChange"`
+	TransitioningToState     MSFTNetIPv4ProtocolTransitioningToState     `cim:"TransitioningToState"`
 }
 
 // MSFTNetIPv6Protocol is the MSFT_NetIPv6Protocol CIM class.
 type MSFTNetIPv6Protocol struct {
-	AddressMaskReply         uint8    `cim:"AddressMaskReply"`
-	AvailableRequestedStates []uint16 `cim:"AvailableRequestedStates"`
-	Caption                  string   `cim:"Caption"`
-	CommunicationStatus      uint16   `cim:"CommunicationStatus"`
-	CreationClassName        string   `cim:"CreationClassName"`
-	DeadGatewayDetection     uint8    `cim:"DeadGatewayDetection"`
-	DefaultHopLimit          uint32   `cim:"DefaultHopLimit"`
-	Description              string   `cim:"Description"`
-	DetailedStatus           uint16   `cim:"DetailedStatus"`
-	DhcpMediaSense           uint8    `cim:"DhcpMediaSense"`
-	ElementName              string   `cim:"ElementName"`
-	EnabledDefault           uint16   `cim:"EnabledDefault"`
-	EnabledState             uint16   `cim:"EnabledState"`
-	GroupForwardedFragments  uint8    `cim:"GroupForwardedFragments"`
-	HealthState              uint16   `cim:"HealthState"`
-	IcmpRedirects            uint8    `cim:"IcmpRedirects"`
-	InstallDate              string   `cim:"InstallDate"`
-	InstanceID               string   `cim:"InstanceID"`
-	MaxDadAttempts           uint32   `cim:"MaxDadAttempts"`
-	MaxPreferredLifetime     string   `cim:"MaxPreferredLifetime"`
-	MaxRandomTime            string   `cim:"MaxRandomTime"`
-	MaxValidLifetime         string   `cim:"MaxValidLifetime"`
-	MediaSenseEventLog       uint8    `cim:"MediaSenseEventLog"`
-	MldLevel                 uint32   `cim:"MldLevel"`
-	MldVersion               uint32   `cim:"MldVersion"`
-	MulticastForwarding      uint8    `cim:"MulticastForwarding"`
-	Name                     string   `cim:"Name"`
-	NameFormat               string   `cim:"NameFormat"`
-	NeighborCacheLimit       uint32   `cim:"NeighborCacheLimit"`
-	OperatingStatus          uint16   `cim:"OperatingStatus"`
-	OperationalStatus        []uint16 `cim:"OperationalStatus"`
-	OtherEnabledState        string   `cim:"OtherEnabledState"`
-	OtherTypeDescription     string   `cim:"OtherTypeDescription"`
-	PrimaryStatus            uint16   `cim:"PrimaryStatus"`
-	ProtocolIFType           uint16   `cim:"ProtocolIFType"`
-	ProtocolType             uint16   `cim:"ProtocolType"`
-	RandomizeIdentifiers     uint8    `cim:"RandomizeIdentifiers"`
-	ReassemblyLimit          uint32   `cim:"ReassemblyLimit"`
-	RegenerateTime           string   `cim:"RegenerateTime"`
-	RequestedState           uint16   `cim:"RequestedState"`
-	RouteCacheLimit          uint32   `cim:"RouteCacheLimit"`
-	SourceRoutingBehavior    uint32   `cim:"SourceRoutingBehavior"`
-	Status                   string   `cim:"Status"`
-	StatusDescriptions       []string `cim:"StatusDescriptions"`
-	SystemCreationClassName  string   `cim:"SystemCreationClassName"`
-	SystemName               string   `cim:"SystemName"`
-	TimeOfLastStateChange    string   `cim:"TimeOfLastStateChange"`
-	TransitioningToState     uint16   `cim:"TransitioningToState"`
-	UseTemporaryAddresses    uint32   `cim:"UseTemporaryAddresses"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                  string                                     `cim:"__PATH"`
+	AddressMaskReply         MSFTNetIPv6ProtocolAddressMaskReply        `cim:"AddressMaskReply"`
+	AvailableRequestedStates []uint16                                   `cim:"AvailableRequestedStates"`
+	Caption                  string                                     `cim:"Caption"`
+	CommunicationStatus      MSFTNetIPv6ProtocolCommunicationStatus     `cim:"CommunicationStatus"`
+	CreationClassName        string                                     `cim:"CreationClassName"`
+	DeadGatewayDetection     MSFTNetIPv6ProtocolDeadGatewayDetection    `cim:"DeadGatewayDetection"`
+	DefaultHopLimit          uint32                                     `cim:"DefaultHopLimit"`
+	Description              string                                     `cim:"Description"`
+	DetailedStatus           MSFTNetIPv6ProtocolDetailedStatus          `cim:"DetailedStatus"`
+	DhcpMediaSense           MSFTNetIPv6ProtocolDhcpMediaSense          `cim:"DhcpMediaSense"`
+	ElementName              string                                     `cim:"ElementName"`
+	EnabledDefault           MSFTNetIPv6ProtocolEnabledDefault          `cim:"EnabledDefault"`
+	EnabledState             MSFTNetIPv6ProtocolEnabledState            `cim:"EnabledState"`
+	GroupForwardedFragments  MSFTNetIPv6ProtocolGroupForwardedFragments `cim:"GroupForwardedFragments"`
+	HealthState              MSFTNetIPv6ProtocolHealthState             `cim:"HealthState"`
+	IcmpRedirects            MSFTNetIPv6ProtocolIcmpRedirects           `cim:"IcmpRedirects"`
+	InstallDate              string                                     `cim:"InstallDate"`
+	InstanceID               string                                     `cim:"InstanceID"`
+	MaxDadAttempts           uint32                                     `cim:"MaxDadAttempts"`
+	MaxPreferredLifetime     string                                     `cim:"MaxPreferredLifetime"`
+	MaxRandomTime            string                                     `cim:"MaxRandomTime"`
+	MaxValidLifetime         string                                     `cim:"MaxValidLifetime"`
+	MediaSenseEventLog       MSFTNetIPv6ProtocolMediaSenseEventLog      `cim:"MediaSenseEventLog"`
+	MldLevel                 MSFTNetIPv6ProtocolMldLevel                `cim:"MldLevel"`
+	MldVersion               MSFTNetIPv6ProtocolMldVersion              `cim:"MldVersion"`
+	MulticastForwarding      MSFTNetIPv6ProtocolMulticastForwarding     `cim:"MulticastForwarding"`
+	Name                     string                                     `cim:"Name"`
+	NameFormat               string                                     `cim:"NameFormat"`
+	NeighborCacheLimit       uint32                                     `cim:"NeighborCacheLimit"`
+	OperatingStatus          MSFTNetIPv6ProtocolOperatingStatus         `cim:"OperatingStatus"`
+	OperationalStatus        []uint16                                   `cim:"OperationalStatus"`
+	OtherEnabledState        string                                     `cim:"OtherEnabledState"`
+	OtherTypeDescription     string                                     `cim:"OtherTypeDescription"`
+	PrimaryStatus            MSFTNetIPv6ProtocolPrimaryStatus           `cim:"PrimaryStatus"`
+	ProtocolIFType           MSFTNetIPv6ProtocolProtocolIFType          `cim:"ProtocolIFType"`
+	ProtocolType             MSFTNetIPv6ProtocolProtocolType            `cim:"ProtocolType"`
+	RandomizeIdentifiers     MSFTNetIPv6ProtocolRandomizeIdentifiers    `cim:"RandomizeIdentifiers"`
+	ReassemblyLimit          uint32                                     `cim:"ReassemblyLimit"`
+	RegenerateTime           string                                     `cim:"RegenerateTime"`
+	RequestedState           MSFTNetIPv6ProtocolRequestedState          `cim:"RequestedState"`
+	RouteCacheLimit          uint32                                     `cim:"RouteCacheLimit"`
+	SourceRoutingBehavior    MSFTNetIPv6ProtocolSourceRoutingBehavior   `cim:"SourceRoutingBehavior"`
+	Status                   MSFTNetIPv6ProtocolStatus                  `cim:"Status"`
+	StatusDescriptions       []string                                   `cim:"StatusDescriptions"`
+	SystemCreationClassName  string                                     `cim:"SystemCreationClassName"`
+	SystemName               string                                     `cim:"SystemName"`
+	TimeOfLastStateChange    string                                     `cim:"TimeOfLastStateChange"`
+	TransitioningToState     MSFTNetIPv6ProtocolTransitioningToState    `cim:"TransitioningToState"`
+	UseTemporaryAddresses    MSFTNetIPv6ProtocolUseTemporaryAddresses   `cim:"UseTemporaryAddresses"`
 }
 
 // MSFTNetISATAPConfiguration is the MSFT_NetISATAPConfiguration CIM class.
 type MSFTNetISATAPConfiguration struct {
-	Caption            string `cim:"Caption"`
-	Description        string `cim:"Description"`
-	ElementName        string `cim:"ElementName"`
-	InstanceID         string `cim:"InstanceID"`
-	PolicyStore        string `cim:"PolicyStore"`
-	ResolutionInterval uint32 `cim:"ResolutionInterval"`
-	ResolutionState    uint32 `cim:"ResolutionState"`
-	Router             string `cim:"Router"`
-	State              uint32 `cim:"State"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath            string                                    `cim:"__PATH"`
+	Caption            string                                    `cim:"Caption"`
+	Description        string                                    `cim:"Description"`
+	ElementName        string                                    `cim:"ElementName"`
+	InstanceID         string                                    `cim:"InstanceID"`
+	PolicyStore        string                                    `cim:"PolicyStore"`
+	ResolutionInterval uint32                                    `cim:"ResolutionInterval"`
+	ResolutionState    MSFTNetISATAPConfigurationResolutionState `cim:"ResolutionState"`
+	Router             string                                    `cim:"Router"`
+	State              MSFTNetISATAPConfigurationState           `cim:"State"`
 }
 
 // MSFTNetISATAPState is the MSFT_NetISATAPState CIM class.
 type MSFTNetISATAPState struct {
-	IsCurrent      uint16 `cim:"IsCurrent"`
-	IsDefault      uint16 `cim:"IsDefault"`
-	IsNext         uint16 `cim:"IsNext"`
-	ManagedElement string `cim:"ManagedElement"`
-	SettingData    string `cim:"SettingData"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string                      `cim:"__PATH"`
+	IsCurrent      MSFTNetISATAPStateIsCurrent `cim:"IsCurrent"`
+	IsDefault      MSFTNetISATAPStateIsDefault `cim:"IsDefault"`
+	IsNext         MSFTNetISATAPStateIsNext    `cim:"IsNext"`
+	ManagedElement string                      `cim:"ManagedElement"`
+	SettingData    string                      `cim:"SettingData"`
 }
 
 // MSFTNetImPlatAdapter is the MSFT_NetImPlatAdapter CIM class.
 type MSFTNetImPlatAdapter struct {
-	AvailableRequestedStates []uint16 `cim:"AvailableRequestedStates"`
-	Caption                  string   `cim:"Caption"`
-	CommunicationStatus      uint16   `cim:"CommunicationStatus"`
-	Description              string   `cim:"Description"`
-	DetailedStatus           uint16   `cim:"DetailedStatus"`
-	ElementName              string   `cim:"ElementName"`
-	EnabledDefault           uint16   `cim:"EnabledDefault"`
-	EnabledState             uint16   `cim:"EnabledState"`
-	FailureReason            uint32   `cim:"FailureReason"`
-	HealthState              uint16   `cim:"HealthState"`
-	InstallDate              string   `cim:"InstallDate"`
-	InstanceID               string   `cim:"InstanceID"`
-	InterfaceDescription     string   `cim:"InterfaceDescription"`
-	Name                     string   `cim:"Name"`
-	NumberOfFailures         uint32   `cim:"NumberOfFailures"`
-	OperatingStatus          uint16   `cim:"OperatingStatus"`
-	OperationalStatus        []uint16 `cim:"OperationalStatus"`
-	OtherEnabledState        string   `cim:"OtherEnabledState"`
-	PrimaryStatus            uint16   `cim:"PrimaryStatus"`
-	ReceiveLinkSpeed         uint64   `cim:"ReceiveLinkSpeed"`
-	RequestedState           uint16   `cim:"RequestedState"`
-	Status                   string   `cim:"Status"`
-	StatusDescriptions       []string `cim:"StatusDescriptions"`
-	Team                     string   `cim:"Team"`
-	TimeOfLastStateChange    string   `cim:"TimeOfLastStateChange"`
-	TransitioningToState     uint16   `cim:"TransitioningToState"`
-	TransmitLinkSpeed        uint64   `cim:"TransmitLinkSpeed"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                  string                                   `cim:"__PATH"`
+	AvailableRequestedStates []uint16                                 `cim:"AvailableRequestedStates"`
+	Caption                  string                                   `cim:"Caption"`
+	CommunicationStatus      MSFTNetImPlatAdapterCommunicationStatus  `cim:"CommunicationStatus"`
+	Description              string                                   `cim:"Description"`
+	DetailedStatus           MSFTNetImPlatAdapterDetailedStatus       `cim:"DetailedStatus"`
+	ElementName              string                                   `cim:"ElementName"`
+	EnabledDefault           MSFTNetImPlatAdapterEnabledDefault       `cim:"EnabledDefault"`
+	EnabledState             MSFTNetImPlatAdapterEnabledState         `cim:"EnabledState"`
+	FailureReason            uint32                                   `cim:"FailureReason"`
+	HealthState              MSFTNetImPlatAdapterHealthState          `cim:"HealthState"`
+	InstallDate              string                                   `cim:"InstallDate"`
+	InstanceID               string                                   `cim:"InstanceID"`
+	InterfaceDescription     string                                   `cim:"InterfaceDescription"`
+	Name                     string                                   `cim:"Name"`
+	NumberOfFailures         uint32                                   `cim:"NumberOfFailures"`
+	OperatingStatus          MSFTNetImPlatAdapterOperatingStatus      `cim:"OperatingStatus"`
+	OperationalStatus        []uint16                                 `cim:"OperationalStatus"`
+	OtherEnabledState        string                                   `cim:"OtherEnabledState"`
+	PrimaryStatus            MSFTNetImPlatAdapterPrimaryStatus        `cim:"PrimaryStatus"`
+	ReceiveLinkSpeed         uint64                                   `cim:"ReceiveLinkSpeed"`
+	RequestedState           MSFTNetImPlatAdapterRequestedState       `cim:"RequestedState"`
+	Status                   MSFTNetImPlatAdapterStatus               `cim:"Status"`
+	StatusDescriptions       []string                                 `cim:"StatusDescriptions"`
+	Team                     string                                   `cim:"Team"`
+	TimeOfLastStateChange    string                                   `cim:"TimeOfLastStateChange"`
+	TransitioningToState     MSFTNetImPlatAdapterTransitioningToState `cim:"TransitioningToState"`
+	TransmitLinkSpeed        uint64                                   `cim:"TransmitLinkSpeed"`
 }
 
 // MSFTNetImPlatProvider is the MSFT_NetImPlatProvider CIM class.
 type MSFTNetImPlatProvider struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath     string `cim:"__PATH"`
 	Caption     string `cim:"Caption"`
 	Description string `cim:"Description"`
 	ElementName string `cim:"ElementName"`
@@ -4573,6 +5573,10 @@ type MSFTNetImPlatProvider struct {
 
 // MSFTNetImPlatTeam is the MSFT_NetImPlatTeam CIM class.
 type MSFTNetImPlatTeam struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath     string `cim:"__PATH"`
 	Caption     string `cim:"Caption"`
 	Description string `cim:"Description"`
 	ElementName string `cim:"ElementName"`
@@ -4582,52 +5586,64 @@ type MSFTNetImPlatTeam struct {
 
 // MSFTNetInterfaceFilter is the MSFT_NetInterfaceFilter CIM class.
 type MSFTNetInterfaceFilter struct {
-	Caption                 string   `cim:"Caption"`
-	CommunicationStatus     uint16   `cim:"CommunicationStatus"`
-	CreationClassName       string   `cim:"CreationClassName"`
-	Description             string   `cim:"Description"`
-	DetailedStatus          uint16   `cim:"DetailedStatus"`
-	ElementName             string   `cim:"ElementName"`
-	HealthState             uint16   `cim:"HealthState"`
-	InstallDate             string   `cim:"InstallDate"`
-	InstanceID              string   `cim:"InstanceID"`
-	InterfaceAlias          []string `cim:"InterfaceAlias"`
-	IsNegated               bool     `cim:"IsNegated"`
-	Name                    string   `cim:"Name"`
-	OperatingStatus         uint16   `cim:"OperatingStatus"`
-	OperationalStatus       []uint16 `cim:"OperationalStatus"`
-	PrimaryStatus           uint16   `cim:"PrimaryStatus"`
-	Status                  string   `cim:"Status"`
-	StatusDescriptions      []string `cim:"StatusDescriptions"`
-	SystemCreationClassName string   `cim:"SystemCreationClassName"`
-	SystemName              string   `cim:"SystemName"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                 string                                    `cim:"__PATH"`
+	Caption                 string                                    `cim:"Caption"`
+	CommunicationStatus     MSFTNetInterfaceFilterCommunicationStatus `cim:"CommunicationStatus"`
+	CreationClassName       string                                    `cim:"CreationClassName"`
+	Description             string                                    `cim:"Description"`
+	DetailedStatus          MSFTNetInterfaceFilterDetailedStatus      `cim:"DetailedStatus"`
+	ElementName             string                                    `cim:"ElementName"`
+	HealthState             MSFTNetInterfaceFilterHealthState         `cim:"HealthState"`
+	InstallDate             string                                    `cim:"InstallDate"`
+	InstanceID              string                                    `cim:"InstanceID"`
+	InterfaceAlias          []string                                  `cim:"InterfaceAlias"`
+	IsNegated               bool                                      `cim:"IsNegated"`
+	Name                    string                                    `cim:"Name"`
+	OperatingStatus         MSFTNetInterfaceFilterOperatingStatus     `cim:"OperatingStatus"`
+	OperationalStatus       []uint16                                  `cim:"OperationalStatus"`
+	PrimaryStatus           MSFTNetInterfaceFilterPrimaryStatus       `cim:"PrimaryStatus"`
+	Status                  MSFTNetInterfaceFilterStatus              `cim:"Status"`
+	StatusDescriptions      []string                                  `cim:"StatusDescriptions"`
+	SystemCreationClassName string                                    `cim:"SystemCreationClassName"`
+	SystemName              string                                    `cim:"SystemName"`
 }
 
 // MSFTNetInterfaceTypeFilter is the MSFT_NetInterfaceTypeFilter CIM class.
 type MSFTNetInterfaceTypeFilter struct {
-	Caption                 string   `cim:"Caption"`
-	CommunicationStatus     uint16   `cim:"CommunicationStatus"`
-	CreationClassName       string   `cim:"CreationClassName"`
-	Description             string   `cim:"Description"`
-	DetailedStatus          uint16   `cim:"DetailedStatus"`
-	ElementName             string   `cim:"ElementName"`
-	HealthState             uint16   `cim:"HealthState"`
-	InstallDate             string   `cim:"InstallDate"`
-	InstanceID              string   `cim:"InstanceID"`
-	InterfaceType           uint32   `cim:"InterfaceType"`
-	IsNegated               bool     `cim:"IsNegated"`
-	Name                    string   `cim:"Name"`
-	OperatingStatus         uint16   `cim:"OperatingStatus"`
-	OperationalStatus       []uint16 `cim:"OperationalStatus"`
-	PrimaryStatus           uint16   `cim:"PrimaryStatus"`
-	Status                  string   `cim:"Status"`
-	StatusDescriptions      []string `cim:"StatusDescriptions"`
-	SystemCreationClassName string   `cim:"SystemCreationClassName"`
-	SystemName              string   `cim:"SystemName"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                 string                                        `cim:"__PATH"`
+	Caption                 string                                        `cim:"Caption"`
+	CommunicationStatus     MSFTNetInterfaceTypeFilterCommunicationStatus `cim:"CommunicationStatus"`
+	CreationClassName       string                                        `cim:"CreationClassName"`
+	Description             string                                        `cim:"Description"`
+	DetailedStatus          MSFTNetInterfaceTypeFilterDetailedStatus      `cim:"DetailedStatus"`
+	ElementName             string                                        `cim:"ElementName"`
+	HealthState             MSFTNetInterfaceTypeFilterHealthState         `cim:"HealthState"`
+	InstallDate             string                                        `cim:"InstallDate"`
+	InstanceID              string                                        `cim:"InstanceID"`
+	InterfaceType           MSFTNetInterfaceTypeFilterInterfaceType       `cim:"InterfaceType"`
+	IsNegated               bool                                          `cim:"IsNegated"`
+	Name                    string                                        `cim:"Name"`
+	OperatingStatus         MSFTNetInterfaceTypeFilterOperatingStatus     `cim:"OperatingStatus"`
+	OperationalStatus       []uint16                                      `cim:"OperationalStatus"`
+	PrimaryStatus           MSFTNetInterfaceTypeFilterPrimaryStatus       `cim:"PrimaryStatus"`
+	Status                  MSFTNetInterfaceTypeFilterStatus              `cim:"Status"`
+	StatusDescriptions      []string                                      `cim:"StatusDescriptions"`
+	SystemCreationClassName string                                        `cim:"SystemCreationClassName"`
+	SystemName              string                                        `cim:"SystemName"`
 }
 
 // MSFTNetLbfoProvider is the MSFT_NetLbfoProvider CIM class.
 type MSFTNetLbfoProvider struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath     string `cim:"__PATH"`
 	Caption     string `cim:"Caption"`
 	Description string `cim:"Description"`
 	ElementName string `cim:"ElementName"`
@@ -4637,6 +5653,10 @@ type MSFTNetLbfoProvider struct {
 
 // MSFTNetLbfoTeam is the MSFT_NetLbfoTeam CIM class.
 type MSFTNetLbfoTeam struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                string `cim:"__PATH"`
 	Caption                string `cim:"Caption"`
 	Description            string `cim:"Description"`
 	ElementName            string `cim:"ElementName"`
@@ -4650,142 +5670,178 @@ type MSFTNetLbfoTeam struct {
 
 // MSFTNetLbfoTeamMember is the MSFT_NetLbfoTeamMember CIM class.
 type MSFTNetLbfoTeamMember struct {
-	AdministrativeMode       uint32   `cim:"AdministrativeMode"`
-	AvailableRequestedStates []uint16 `cim:"AvailableRequestedStates"`
-	Caption                  string   `cim:"Caption"`
-	CommunicationStatus      uint16   `cim:"CommunicationStatus"`
-	Description              string   `cim:"Description"`
-	DetailedStatus           uint16   `cim:"DetailedStatus"`
-	ElementName              string   `cim:"ElementName"`
-	EnabledDefault           uint16   `cim:"EnabledDefault"`
-	EnabledState             uint16   `cim:"EnabledState"`
-	FailureReason            uint32   `cim:"FailureReason"`
-	HealthState              uint16   `cim:"HealthState"`
-	InstallDate              string   `cim:"InstallDate"`
-	InstanceID               string   `cim:"InstanceID"`
-	InterfaceDescription     string   `cim:"InterfaceDescription"`
-	Name                     string   `cim:"Name"`
-	NumberOfFailures         uint32   `cim:"NumberOfFailures"`
-	OperatingStatus          uint16   `cim:"OperatingStatus"`
-	OperationalMode          uint32   `cim:"OperationalMode"`
-	OperationalStatus        []uint16 `cim:"OperationalStatus"`
-	OtherEnabledState        string   `cim:"OtherEnabledState"`
-	PrimaryStatus            uint16   `cim:"PrimaryStatus"`
-	ReceiveLinkSpeed         uint64   `cim:"ReceiveLinkSpeed"`
-	RequestedState           uint16   `cim:"RequestedState"`
-	Status                   string   `cim:"Status"`
-	StatusDescriptions       []string `cim:"StatusDescriptions"`
-	Team                     string   `cim:"Team"`
-	TimeOfLastStateChange    string   `cim:"TimeOfLastStateChange"`
-	TransitioningToState     uint16   `cim:"TransitioningToState"`
-	TransmitLinkSpeed        uint64   `cim:"TransmitLinkSpeed"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                  string                                    `cim:"__PATH"`
+	AdministrativeMode       uint32                                    `cim:"AdministrativeMode"`
+	AvailableRequestedStates []uint16                                  `cim:"AvailableRequestedStates"`
+	Caption                  string                                    `cim:"Caption"`
+	CommunicationStatus      MSFTNetLbfoTeamMemberCommunicationStatus  `cim:"CommunicationStatus"`
+	Description              string                                    `cim:"Description"`
+	DetailedStatus           MSFTNetLbfoTeamMemberDetailedStatus       `cim:"DetailedStatus"`
+	ElementName              string                                    `cim:"ElementName"`
+	EnabledDefault           MSFTNetLbfoTeamMemberEnabledDefault       `cim:"EnabledDefault"`
+	EnabledState             MSFTNetLbfoTeamMemberEnabledState         `cim:"EnabledState"`
+	FailureReason            uint32                                    `cim:"FailureReason"`
+	HealthState              MSFTNetLbfoTeamMemberHealthState          `cim:"HealthState"`
+	InstallDate              string                                    `cim:"InstallDate"`
+	InstanceID               string                                    `cim:"InstanceID"`
+	InterfaceDescription     string                                    `cim:"InterfaceDescription"`
+	Name                     string                                    `cim:"Name"`
+	NumberOfFailures         uint32                                    `cim:"NumberOfFailures"`
+	OperatingStatus          MSFTNetLbfoTeamMemberOperatingStatus      `cim:"OperatingStatus"`
+	OperationalMode          uint32                                    `cim:"OperationalMode"`
+	OperationalStatus        []uint16                                  `cim:"OperationalStatus"`
+	OtherEnabledState        string                                    `cim:"OtherEnabledState"`
+	PrimaryStatus            MSFTNetLbfoTeamMemberPrimaryStatus        `cim:"PrimaryStatus"`
+	ReceiveLinkSpeed         uint64                                    `cim:"ReceiveLinkSpeed"`
+	RequestedState           MSFTNetLbfoTeamMemberRequestedState       `cim:"RequestedState"`
+	Status                   MSFTNetLbfoTeamMemberStatus               `cim:"Status"`
+	StatusDescriptions       []string                                  `cim:"StatusDescriptions"`
+	Team                     string                                    `cim:"Team"`
+	TimeOfLastStateChange    string                                    `cim:"TimeOfLastStateChange"`
+	TransitioningToState     MSFTNetLbfoTeamMemberTransitioningToState `cim:"TransitioningToState"`
+	TransmitLinkSpeed        uint64                                    `cim:"TransmitLinkSpeed"`
 }
 
 // MSFTNetLbfoTeamNic is the MSFT_NetLbfoTeamNic CIM class.
 type MSFTNetLbfoTeamNic struct {
-	AvailableRequestedStates []uint16 `cim:"AvailableRequestedStates"`
-	Caption                  string   `cim:"Caption"`
-	CommunicationStatus      uint16   `cim:"CommunicationStatus"`
-	Default                  bool     `cim:"Default"`
-	Description              string   `cim:"Description"`
-	DetailedStatus           uint16   `cim:"DetailedStatus"`
-	ElementName              string   `cim:"ElementName"`
-	EnabledDefault           uint16   `cim:"EnabledDefault"`
-	EnabledState             uint16   `cim:"EnabledState"`
-	FailureReason            uint32   `cim:"FailureReason"`
-	HealthState              uint16   `cim:"HealthState"`
-	InstallDate              string   `cim:"InstallDate"`
-	InstanceID               string   `cim:"InstanceID"`
-	InterfaceDescription     string   `cim:"InterfaceDescription"`
-	Name                     string   `cim:"Name"`
-	NumberOfFailures         uint32   `cim:"NumberOfFailures"`
-	OperatingStatus          uint16   `cim:"OperatingStatus"`
-	OperationalStatus        []uint16 `cim:"OperationalStatus"`
-	OtherEnabledState        string   `cim:"OtherEnabledState"`
-	Primary                  bool     `cim:"Primary"`
-	PrimaryStatus            uint16   `cim:"PrimaryStatus"`
-	ReceiveLinkSpeed         uint64   `cim:"ReceiveLinkSpeed"`
-	RequestedState           uint16   `cim:"RequestedState"`
-	Status                   string   `cim:"Status"`
-	StatusDescriptions       []string `cim:"StatusDescriptions"`
-	Team                     string   `cim:"Team"`
-	TimeOfLastStateChange    string   `cim:"TimeOfLastStateChange"`
-	TransitioningToState     uint16   `cim:"TransitioningToState"`
-	TransmitLinkSpeed        uint64   `cim:"TransmitLinkSpeed"`
-	VlanID                   uint32   `cim:"VlanID"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                  string                                 `cim:"__PATH"`
+	AvailableRequestedStates []uint16                               `cim:"AvailableRequestedStates"`
+	Caption                  string                                 `cim:"Caption"`
+	CommunicationStatus      MSFTNetLbfoTeamNicCommunicationStatus  `cim:"CommunicationStatus"`
+	Default                  bool                                   `cim:"Default"`
+	Description              string                                 `cim:"Description"`
+	DetailedStatus           MSFTNetLbfoTeamNicDetailedStatus       `cim:"DetailedStatus"`
+	ElementName              string                                 `cim:"ElementName"`
+	EnabledDefault           MSFTNetLbfoTeamNicEnabledDefault       `cim:"EnabledDefault"`
+	EnabledState             MSFTNetLbfoTeamNicEnabledState         `cim:"EnabledState"`
+	FailureReason            uint32                                 `cim:"FailureReason"`
+	HealthState              MSFTNetLbfoTeamNicHealthState          `cim:"HealthState"`
+	InstallDate              string                                 `cim:"InstallDate"`
+	InstanceID               string                                 `cim:"InstanceID"`
+	InterfaceDescription     string                                 `cim:"InterfaceDescription"`
+	Name                     string                                 `cim:"Name"`
+	NumberOfFailures         uint32                                 `cim:"NumberOfFailures"`
+	OperatingStatus          MSFTNetLbfoTeamNicOperatingStatus      `cim:"OperatingStatus"`
+	OperationalStatus        []uint16                               `cim:"OperationalStatus"`
+	OtherEnabledState        string                                 `cim:"OtherEnabledState"`
+	Primary                  bool                                   `cim:"Primary"`
+	PrimaryStatus            MSFTNetLbfoTeamNicPrimaryStatus        `cim:"PrimaryStatus"`
+	ReceiveLinkSpeed         uint64                                 `cim:"ReceiveLinkSpeed"`
+	RequestedState           MSFTNetLbfoTeamNicRequestedState       `cim:"RequestedState"`
+	Status                   MSFTNetLbfoTeamNicStatus               `cim:"Status"`
+	StatusDescriptions       []string                               `cim:"StatusDescriptions"`
+	Team                     string                                 `cim:"Team"`
+	TimeOfLastStateChange    string                                 `cim:"TimeOfLastStateChange"`
+	TransitioningToState     MSFTNetLbfoTeamNicTransitioningToState `cim:"TransitioningToState"`
+	TransmitLinkSpeed        uint64                                 `cim:"TransmitLinkSpeed"`
+	VlanID                   uint32                                 `cim:"VlanID"`
 }
 
 // MSFTNetLbfoTeamProvider is the MSFT_NetLbfoTeam_Provider CIM class.
 type MSFTNetLbfoTeamProvider struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string `cim:"__PATH"`
 	GroupComponent string `cim:"GroupComponent"`
 	PartComponent  string `cim:"PartComponent"`
 }
 
 // MSFTNetLbfoTeamTeamMember is the MSFT_NetLbfoTeam_TeamMember CIM class.
 type MSFTNetLbfoTeamTeamMember struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string `cim:"__PATH"`
 	GroupComponent string `cim:"GroupComponent"`
 	PartComponent  string `cim:"PartComponent"`
 }
 
 // MSFTNetLbfoTeamTeamNic is the MSFT_NetLbfoTeam_TeamNic CIM class.
 type MSFTNetLbfoTeamTeamNic struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string `cim:"__PATH"`
 	GroupComponent string `cim:"GroupComponent"`
 	PartComponent  string `cim:"PartComponent"`
 }
 
 // MSFTNetMainModeRule is the MSFT_NetMainModeRule CIM class.
 type MSFTNetMainModeRule struct {
-	Caption                 string   `cim:"Caption"`
-	CommonName              string   `cim:"CommonName"`
-	ConditionListType       uint16   `cim:"ConditionListType"`
-	CreationClassName       string   `cim:"CreationClassName"`
-	Description             string   `cim:"Description"`
-	DisplayGroup            string   `cim:"DisplayGroup"`
-	DisplayName             string   `cim:"DisplayName"`
-	ElementName             string   `cim:"ElementName"`
-	Enabled                 uint16   `cim:"Enabled"`
-	EnforcementStatus       []uint16 `cim:"EnforcementStatus"`
-	ExecutionStrategy       uint16   `cim:"ExecutionStrategy"`
-	InstanceID              string   `cim:"InstanceID"`
-	LimitNegotiation        uint16   `cim:"LimitNegotiation"`
-	MainModeCryptoSet       string   `cim:"MainModeCryptoSet"`
-	Mandatory               bool     `cim:"Mandatory"`
-	Phase1AuthSet           string   `cim:"Phase1AuthSet"`
-	Phase2AuthSet           string   `cim:"Phase2AuthSet"`
-	Platforms               []string `cim:"Platforms"`
-	PolicyDecisionStrategy  uint16   `cim:"PolicyDecisionStrategy"`
-	PolicyKeywords          []string `cim:"PolicyKeywords"`
-	PolicyRoles             []string `cim:"PolicyRoles"`
-	PolicyRuleName          string   `cim:"PolicyRuleName"`
-	PolicyStoreSource       string   `cim:"PolicyStoreSource"`
-	PolicyStoreSourceType   uint16   `cim:"PolicyStoreSourceType"`
-	PrimaryStatus           uint16   `cim:"PrimaryStatus"`
-	Priority                uint16   `cim:"Priority"`
-	Profiles                uint16   `cim:"Profiles"`
-	QuickModeCryptoSet      string   `cim:"QuickModeCryptoSet"`
-	RuleGroup               string   `cim:"RuleGroup"`
-	RuleUsage               string   `cim:"RuleUsage"`
-	SequencedActions        uint16   `cim:"SequencedActions"`
-	Status                  string   `cim:"Status"`
-	StatusCode              uint32   `cim:"StatusCode"`
-	SystemCreationClassName string   `cim:"SystemCreationClassName"`
-	SystemName              string   `cim:"SystemName"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                 string                                    `cim:"__PATH"`
+	Caption                 string                                    `cim:"Caption"`
+	CommonName              string                                    `cim:"CommonName"`
+	ConditionListType       MSFTNetMainModeRuleConditionListType      `cim:"ConditionListType"`
+	CreationClassName       string                                    `cim:"CreationClassName"`
+	Description             string                                    `cim:"Description"`
+	DisplayGroup            string                                    `cim:"DisplayGroup"`
+	DisplayName             string                                    `cim:"DisplayName"`
+	ElementName             string                                    `cim:"ElementName"`
+	Enabled                 MSFTNetMainModeRuleEnabled                `cim:"Enabled"`
+	EnforcementStatus       []uint16                                  `cim:"EnforcementStatus"`
+	ExecutionStrategy       MSFTNetMainModeRuleExecutionStrategy      `cim:"ExecutionStrategy"`
+	InstanceID              string                                    `cim:"InstanceID"`
+	LimitNegotiation        MSFTNetMainModeRuleLimitNegotiation       `cim:"LimitNegotiation"`
+	MainModeCryptoSet       string                                    `cim:"MainModeCryptoSet"`
+	Mandatory               bool                                      `cim:"Mandatory"`
+	Phase1AuthSet           string                                    `cim:"Phase1AuthSet"`
+	Phase2AuthSet           string                                    `cim:"Phase2AuthSet"`
+	Platforms               []string                                  `cim:"Platforms"`
+	PolicyDecisionStrategy  MSFTNetMainModeRulePolicyDecisionStrategy `cim:"PolicyDecisionStrategy"`
+	PolicyKeywords          []string                                  `cim:"PolicyKeywords"`
+	PolicyRoles             []string                                  `cim:"PolicyRoles"`
+	PolicyRuleName          string                                    `cim:"PolicyRuleName"`
+	PolicyStoreSource       string                                    `cim:"PolicyStoreSource"`
+	PolicyStoreSourceType   uint16                                    `cim:"PolicyStoreSourceType"`
+	PrimaryStatus           MSFTNetMainModeRulePrimaryStatus          `cim:"PrimaryStatus"`
+	Priority                uint16                                    `cim:"Priority"`
+	Profiles                MSFTNetMainModeRuleProfiles               `cim:"Profiles"`
+	QuickModeCryptoSet      string                                    `cim:"QuickModeCryptoSet"`
+	RuleGroup               string                                    `cim:"RuleGroup"`
+	RuleUsage               string                                    `cim:"RuleUsage"`
+	SequencedActions        MSFTNetMainModeRuleSequencedActions       `cim:"SequencedActions"`
+	Status                  string                                    `cim:"Status"`
+	StatusCode              uint32                                    `cim:"StatusCode"`
+	SystemCreationClassName string                                    `cim:"SystemCreationClassName"`
+	SystemName              string                                    `cim:"SystemName"`
 }
 
 // MSFTNetMainModeRuleFilterByAddress is the MSFT_NetMainModeRuleFilterByAddress CIM class.
 type MSFTNetMainModeRuleFilterByAddress struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string `cim:"__PATH"`
 	GroupComponent string `cim:"GroupComponent"`
 	PartComponent  string `cim:"PartComponent"`
 }
 
 // MSFTNetMainModeRuleFilters is the MSFT_NetMainModeRuleFilters CIM class.
 type MSFTNetMainModeRuleFilters struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string `cim:"__PATH"`
 	GroupComponent string `cim:"GroupComponent"`
 	PartComponent  string `cim:"PartComponent"`
 }
 
 // MSFTNetMainModeRuleInProfile is the MSFT_NetMainModeRuleInProfile CIM class.
 type MSFTNetMainModeRuleInProfile struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string `cim:"__PATH"`
 	GroupComponent string `cim:"GroupComponent"`
 	PartComponent  string `cim:"PartComponent"`
 	Priority       uint16 `cim:"Priority"`
@@ -4793,6 +5849,10 @@ type MSFTNetMainModeRuleInProfile struct {
 
 // MSFTNetMainModeRuleMMAuthSet is the MSFT_NetMainModeRuleMMAuthSet CIM class.
 type MSFTNetMainModeRuleMMAuthSet struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string `cim:"__PATH"`
 	ActionOrder    uint16 `cim:"ActionOrder"`
 	GroupComponent string `cim:"GroupComponent"`
 	PartComponent  string `cim:"PartComponent"`
@@ -4800,6 +5860,10 @@ type MSFTNetMainModeRuleMMAuthSet struct {
 
 // MSFTNetMainModeRuleMMCryptoSet is the MSFT_NetMainModeRuleMMCryptoSet CIM class.
 type MSFTNetMainModeRuleMMCryptoSet struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string `cim:"__PATH"`
 	ActionOrder    uint16 `cim:"ActionOrder"`
 	GroupComponent string `cim:"GroupComponent"`
 	PartComponent  string `cim:"PartComponent"`
@@ -4807,89 +5871,101 @@ type MSFTNetMainModeRuleMMCryptoSet struct {
 
 // MSFTNetMainModeSA is the MSFT_NetMainModeSA CIM class.
 type MSFTNetMainModeSA struct {
-	AuthenticationMethod              uint16   `cim:"AuthenticationMethod"`
-	AvailableRequestedStates          []uint16 `cim:"AvailableRequestedStates"`
-	Caption                           string   `cim:"Caption"`
-	CipherAlgorithm                   uint16   `cim:"CipherAlgorithm"`
-	CommunicationStatus               uint16   `cim:"CommunicationStatus"`
-	CreationClassName                 string   `cim:"CreationClassName"`
-	Description                       string   `cim:"Description"`
-	DetailedStatus                    uint16   `cim:"DetailedStatus"`
-	ElementName                       string   `cim:"ElementName"`
-	EnabledDefault                    uint16   `cim:"EnabledDefault"`
-	EnabledState                      uint16   `cim:"EnabledState"`
-	ExtendedFilterId                  uint64   `cim:"ExtendedFilterId"`
-	GroupId                           uint16   `cim:"GroupId"`
-	HashAlgorithm                     uint16   `cim:"HashAlgorithm"`
-	HealthState                       uint16   `cim:"HealthState"`
-	IdleDurationSeconds               uint64   `cim:"IdleDurationSeconds"`
-	IkePolicyKey                      string   `cim:"IkePolicyKey"`
-	InitiatorCookie                   uint64   `cim:"InitiatorCookie"`
-	InstallDate                       string   `cim:"InstallDate"`
-	InstanceID                        string   `cim:"InstanceID"`
-	KeyModule                         uint16   `cim:"KeyModule"`
-	LifetimeKilobytes                 uint64   `cim:"LifetimeKilobytes"`
-	LifetimeSeconds                   uint64   `cim:"LifetimeSeconds"`
-	LocalEndpoint                     string   `cim:"LocalEndpoint"`
-	LocalFirstId                      wmi.Row  `cim:"LocalFirstId"`
-	LocalSecondId                     wmi.Row  `cim:"LocalSecondId"`
-	LocalUdpEncapsulationPort         uint16   `cim:"LocalUdpEncapsulationPort"`
-	MaxQMSAs                          uint32   `cim:"MaxQMSAs"`
-	Name                              string   `cim:"Name"`
-	NameFormat                        string   `cim:"NameFormat"`
-	OperatingStatus                   uint16   `cim:"OperatingStatus"`
-	OperationalStatus                 []uint16 `cim:"OperationalStatus"`
-	OtherAuthenticationMethod         string   `cim:"OtherAuthenticationMethod"`
-	OtherCipherAlgorithm              string   `cim:"OtherCipherAlgorithm"`
-	OtherEnabledState                 string   `cim:"OtherEnabledState"`
-	OtherGroupId                      string   `cim:"OtherGroupId"`
-	OtherHashAlgorithm                string   `cim:"OtherHashAlgorithm"`
-	OtherTypeDescription              string   `cim:"OtherTypeDescription"`
-	PacketLoggingActive               bool     `cim:"PacketLoggingActive"`
-	PrimaryStatus                     uint16   `cim:"PrimaryStatus"`
-	ProtocolIFType                    uint16   `cim:"ProtocolIFType"`
-	ProtocolType                      uint16   `cim:"ProtocolType"`
-	RefreshThresholdKbytesPercentage  uint8    `cim:"RefreshThresholdKbytesPercentage"`
-	RefreshThresholdSecondsPercentage uint8    `cim:"RefreshThresholdSecondsPercentage"`
-	RemoteEndpoint                    string   `cim:"RemoteEndpoint"`
-	RemoteFirstId                     wmi.Row  `cim:"RemoteFirstId"`
-	RemoteSecondId                    wmi.Row  `cim:"RemoteSecondId"`
-	RemoteUdpEncapsulationPort        uint16   `cim:"RemoteUdpEncapsulationPort"`
-	RequestedState                    uint16   `cim:"RequestedState"`
-	ResponderCookie                   uint64   `cim:"ResponderCookie"`
-	Status                            string   `cim:"Status"`
-	StatusDescriptions                []string `cim:"StatusDescriptions"`
-	SystemCreationClassName           string   `cim:"SystemCreationClassName"`
-	SystemName                        string   `cim:"SystemName"`
-	TimeOfLastStateChange             string   `cim:"TimeOfLastStateChange"`
-	TransitioningToState              uint16   `cim:"TransitioningToState"`
-	VendorID                          string   `cim:"VendorID"`
-	VirtualIfTunnelId                 uint64   `cim:"VirtualIfTunnelId"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                           string                                `cim:"__PATH"`
+	AuthenticationMethod              MSFTNetMainModeSAAuthenticationMethod `cim:"AuthenticationMethod"`
+	AvailableRequestedStates          []uint16                              `cim:"AvailableRequestedStates"`
+	Caption                           string                                `cim:"Caption"`
+	CipherAlgorithm                   MSFTNetMainModeSACipherAlgorithm      `cim:"CipherAlgorithm"`
+	CommunicationStatus               MSFTNetMainModeSACommunicationStatus  `cim:"CommunicationStatus"`
+	CreationClassName                 string                                `cim:"CreationClassName"`
+	Description                       string                                `cim:"Description"`
+	DetailedStatus                    MSFTNetMainModeSADetailedStatus       `cim:"DetailedStatus"`
+	ElementName                       string                                `cim:"ElementName"`
+	EnabledDefault                    MSFTNetMainModeSAEnabledDefault       `cim:"EnabledDefault"`
+	EnabledState                      MSFTNetMainModeSAEnabledState         `cim:"EnabledState"`
+	ExtendedFilterId                  uint64                                `cim:"ExtendedFilterId"`
+	GroupId                           MSFTNetMainModeSAGroupId              `cim:"GroupId"`
+	HashAlgorithm                     MSFTNetMainModeSAHashAlgorithm        `cim:"HashAlgorithm"`
+	HealthState                       MSFTNetMainModeSAHealthState          `cim:"HealthState"`
+	IdleDurationSeconds               uint64                                `cim:"IdleDurationSeconds"`
+	IkePolicyKey                      string                                `cim:"IkePolicyKey"`
+	InitiatorCookie                   uint64                                `cim:"InitiatorCookie"`
+	InstallDate                       string                                `cim:"InstallDate"`
+	InstanceID                        string                                `cim:"InstanceID"`
+	KeyModule                         MSFTNetMainModeSAKeyModule            `cim:"KeyModule"`
+	LifetimeKilobytes                 uint64                                `cim:"LifetimeKilobytes"`
+	LifetimeSeconds                   uint64                                `cim:"LifetimeSeconds"`
+	LocalEndpoint                     string                                `cim:"LocalEndpoint"`
+	LocalFirstId                      wmi.Row                               `cim:"LocalFirstId"`
+	LocalSecondId                     wmi.Row                               `cim:"LocalSecondId"`
+	LocalUdpEncapsulationPort         uint16                                `cim:"LocalUdpEncapsulationPort"`
+	MaxQMSAs                          uint32                                `cim:"MaxQMSAs"`
+	Name                              string                                `cim:"Name"`
+	NameFormat                        string                                `cim:"NameFormat"`
+	OperatingStatus                   MSFTNetMainModeSAOperatingStatus      `cim:"OperatingStatus"`
+	OperationalStatus                 []uint16                              `cim:"OperationalStatus"`
+	OtherAuthenticationMethod         string                                `cim:"OtherAuthenticationMethod"`
+	OtherCipherAlgorithm              string                                `cim:"OtherCipherAlgorithm"`
+	OtherEnabledState                 string                                `cim:"OtherEnabledState"`
+	OtherGroupId                      string                                `cim:"OtherGroupId"`
+	OtherHashAlgorithm                string                                `cim:"OtherHashAlgorithm"`
+	OtherTypeDescription              string                                `cim:"OtherTypeDescription"`
+	PacketLoggingActive               bool                                  `cim:"PacketLoggingActive"`
+	PrimaryStatus                     MSFTNetMainModeSAPrimaryStatus        `cim:"PrimaryStatus"`
+	ProtocolIFType                    MSFTNetMainModeSAProtocolIFType       `cim:"ProtocolIFType"`
+	ProtocolType                      MSFTNetMainModeSAProtocolType         `cim:"ProtocolType"`
+	RefreshThresholdKbytesPercentage  uint8                                 `cim:"RefreshThresholdKbytesPercentage"`
+	RefreshThresholdSecondsPercentage uint8                                 `cim:"RefreshThresholdSecondsPercentage"`
+	RemoteEndpoint                    string                                `cim:"RemoteEndpoint"`
+	RemoteFirstId                     wmi.Row                               `cim:"RemoteFirstId"`
+	RemoteSecondId                    wmi.Row                               `cim:"RemoteSecondId"`
+	RemoteUdpEncapsulationPort        uint16                                `cim:"RemoteUdpEncapsulationPort"`
+	RequestedState                    MSFTNetMainModeSARequestedState       `cim:"RequestedState"`
+	ResponderCookie                   uint64                                `cim:"ResponderCookie"`
+	Status                            MSFTNetMainModeSAStatus               `cim:"Status"`
+	StatusDescriptions                []string                              `cim:"StatusDescriptions"`
+	SystemCreationClassName           string                                `cim:"SystemCreationClassName"`
+	SystemName                        string                                `cim:"SystemName"`
+	TimeOfLastStateChange             string                                `cim:"TimeOfLastStateChange"`
+	TransitioningToState              MSFTNetMainModeSATransitioningToState `cim:"TransitioningToState"`
+	VendorID                          string                                `cim:"VendorID"`
+	VirtualIfTunnelId                 uint64                                `cim:"VirtualIfTunnelId"`
 }
 
 // MSFTNetNat is the MSFT_NetNat CIM class.
 type MSFTNetNat struct {
-	Active                           uint8  `cim:"Active"`
-	Caption                          string `cim:"Caption"`
-	Description                      string `cim:"Description"`
-	ElementName                      string `cim:"ElementName"`
-	ExternalIPInterfaceAddressPrefix string `cim:"ExternalIPInterfaceAddressPrefix"`
-	IcmpQueryTimeout                 uint32 `cim:"IcmpQueryTimeout"`
-	InstanceID                       string `cim:"InstanceID"`
-	InternalIPInterfaceAddressPrefix string `cim:"InternalIPInterfaceAddressPrefix"`
-	InternalRoutingDomainId          string `cim:"InternalRoutingDomainId"`
-	Name                             string `cim:"Name"`
-	Store                            uint32 `cim:"Store"`
-	TcpEstablishedConnectionTimeout  uint32 `cim:"TcpEstablishedConnectionTimeout"`
-	TcpFilteringBehavior             uint8  `cim:"TcpFilteringBehavior"`
-	TcpTransientConnectionTimeout    uint32 `cim:"TcpTransientConnectionTimeout"`
-	UdpFilteringBehavior             uint8  `cim:"UdpFilteringBehavior"`
-	UdpIdleSessionTimeout            uint32 `cim:"UdpIdleSessionTimeout"`
-	UdpInboundRefresh                uint8  `cim:"UdpInboundRefresh"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                          string                         `cim:"__PATH"`
+	Active                           uint8                          `cim:"Active"`
+	Caption                          string                         `cim:"Caption"`
+	Description                      string                         `cim:"Description"`
+	ElementName                      string                         `cim:"ElementName"`
+	ExternalIPInterfaceAddressPrefix string                         `cim:"ExternalIPInterfaceAddressPrefix"`
+	IcmpQueryTimeout                 uint32                         `cim:"IcmpQueryTimeout"`
+	InstanceID                       string                         `cim:"InstanceID"`
+	InternalIPInterfaceAddressPrefix string                         `cim:"InternalIPInterfaceAddressPrefix"`
+	InternalRoutingDomainId          string                         `cim:"InternalRoutingDomainId"`
+	Name                             string                         `cim:"Name"`
+	Store                            MSFTNetNatStore                `cim:"Store"`
+	TcpEstablishedConnectionTimeout  uint32                         `cim:"TcpEstablishedConnectionTimeout"`
+	TcpFilteringBehavior             MSFTNetNatTcpFilteringBehavior `cim:"TcpFilteringBehavior"`
+	TcpTransientConnectionTimeout    uint32                         `cim:"TcpTransientConnectionTimeout"`
+	UdpFilteringBehavior             MSFTNetNatUdpFilteringBehavior `cim:"UdpFilteringBehavior"`
+	UdpIdleSessionTimeout            uint32                         `cim:"UdpIdleSessionTimeout"`
+	UdpInboundRefresh                uint8                          `cim:"UdpInboundRefresh"`
 }
 
 // MSFTNetNatExternalAddress is the MSFT_NetNatExternalAddress CIM class.
 type MSFTNetNatExternalAddress struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath           string `cim:"__PATH"`
 	Active            uint8  `cim:"Active"`
 	Caption           string `cim:"Caption"`
 	Description       string `cim:"Description"`
@@ -4904,78 +5980,102 @@ type MSFTNetNatExternalAddress struct {
 
 // MSFTNetNatGlobal is the MSFT_NetNatGlobal CIM class.
 type MSFTNetNatGlobal struct {
-	Caption                           string `cim:"Caption"`
-	Description                       string `cim:"Description"`
-	ElementName                       string `cim:"ElementName"`
-	InstanceID                        string `cim:"InstanceID"`
-	InterRoutingDomainHairpinningMode uint32 `cim:"InterRoutingDomainHairpinningMode"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                           string                                            `cim:"__PATH"`
+	Caption                           string                                            `cim:"Caption"`
+	Description                       string                                            `cim:"Description"`
+	ElementName                       string                                            `cim:"ElementName"`
+	InstanceID                        string                                            `cim:"InstanceID"`
+	InterRoutingDomainHairpinningMode MSFTNetNatGlobalInterRoutingDomainHairpinningMode `cim:"InterRoutingDomainHairpinningMode"`
 }
 
 // MSFTNetNatSession is the MSFT_NetNatSession CIM class.
 type MSFTNetNatSession struct {
-	Caption                    string `cim:"Caption"`
-	CreationTime               string `cim:"CreationTime"`
-	Description                string `cim:"Description"`
-	ElementName                string `cim:"ElementName"`
-	ExternalDestinationAddress string `cim:"ExternalDestinationAddress"`
-	ExternalDestinationPort    uint16 `cim:"ExternalDestinationPort"`
-	ExternalSourceAddress      string `cim:"ExternalSourceAddress"`
-	ExternalSourcePort         uint16 `cim:"ExternalSourcePort"`
-	InstanceID                 string `cim:"InstanceID"`
-	InternalDestinationAddress string `cim:"InternalDestinationAddress"`
-	InternalDestinationPort    uint16 `cim:"InternalDestinationPort"`
-	InternalRoutingDomainId    string `cim:"InternalRoutingDomainId"`
-	InternalSourceAddress      string `cim:"InternalSourceAddress"`
-	InternalSourcePort         uint16 `cim:"InternalSourcePort"`
-	NatName                    string `cim:"NatName"`
-	Protocol                   uint32 `cim:"Protocol"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                    string                    `cim:"__PATH"`
+	Caption                    string                    `cim:"Caption"`
+	CreationTime               string                    `cim:"CreationTime"`
+	Description                string                    `cim:"Description"`
+	ElementName                string                    `cim:"ElementName"`
+	ExternalDestinationAddress string                    `cim:"ExternalDestinationAddress"`
+	ExternalDestinationPort    uint16                    `cim:"ExternalDestinationPort"`
+	ExternalSourceAddress      string                    `cim:"ExternalSourceAddress"`
+	ExternalSourcePort         uint16                    `cim:"ExternalSourcePort"`
+	InstanceID                 string                    `cim:"InstanceID"`
+	InternalDestinationAddress string                    `cim:"InternalDestinationAddress"`
+	InternalDestinationPort    uint16                    `cim:"InternalDestinationPort"`
+	InternalRoutingDomainId    string                    `cim:"InternalRoutingDomainId"`
+	InternalSourceAddress      string                    `cim:"InternalSourceAddress"`
+	InternalSourcePort         uint16                    `cim:"InternalSourcePort"`
+	NatName                    string                    `cim:"NatName"`
+	Protocol                   MSFTNetNatSessionProtocol `cim:"Protocol"`
 }
 
 // MSFTNetNatStaticMapping is the MSFT_NetNatStaticMapping CIM class.
 type MSFTNetNatStaticMapping struct {
-	Active                        uint8  `cim:"Active"`
-	Caption                       string `cim:"Caption"`
-	Description                   string `cim:"Description"`
-	ElementName                   string `cim:"ElementName"`
-	ExternalIPAddress             string `cim:"ExternalIPAddress"`
-	ExternalPort                  uint16 `cim:"ExternalPort"`
-	InstanceID                    string `cim:"InstanceID"`
-	InternalIPAddress             string `cim:"InternalIPAddress"`
-	InternalPort                  uint16 `cim:"InternalPort"`
-	InternalRoutingDomainId       string `cim:"InternalRoutingDomainId"`
-	NatName                       string `cim:"NatName"`
-	Protocol                      uint32 `cim:"Protocol"`
-	RemoteExternalIPAddressPrefix string `cim:"RemoteExternalIPAddressPrefix"`
-	StaticMappingID               uint32 `cim:"StaticMappingID"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                       string                          `cim:"__PATH"`
+	Active                        uint8                           `cim:"Active"`
+	Caption                       string                          `cim:"Caption"`
+	Description                   string                          `cim:"Description"`
+	ElementName                   string                          `cim:"ElementName"`
+	ExternalIPAddress             string                          `cim:"ExternalIPAddress"`
+	ExternalPort                  uint16                          `cim:"ExternalPort"`
+	InstanceID                    string                          `cim:"InstanceID"`
+	InternalIPAddress             string                          `cim:"InternalIPAddress"`
+	InternalPort                  uint16                          `cim:"InternalPort"`
+	InternalRoutingDomainId       string                          `cim:"InternalRoutingDomainId"`
+	NatName                       string                          `cim:"NatName"`
+	Protocol                      MSFTNetNatStaticMappingProtocol `cim:"Protocol"`
+	RemoteExternalIPAddressPrefix string                          `cim:"RemoteExternalIPAddressPrefix"`
+	StaticMappingID               uint32                          `cim:"StaticMappingID"`
 }
 
 // MSFTNetNatTransitionConfiguration is the MSFT_NetNatTransitionConfiguration CIM class.
 type MSFTNetNatTransitionConfiguration struct {
-	Caption             string   `cim:"Caption"`
-	Description         string   `cim:"Description"`
-	ElementName         string   `cim:"ElementName"`
-	IPv4AddressPortPool []string `cim:"IPv4AddressPortPool"`
-	InboundInterface    []string `cim:"InboundInterface"`
-	InstanceID          string   `cim:"InstanceID"`
-	InstanceName        string   `cim:"InstanceName"`
-	OutboundInterface   []string `cim:"OutboundInterface"`
-	PolicyStore         uint32   `cim:"PolicyStore"`
-	PrefixMapping       []string `cim:"PrefixMapping"`
-	State               uint32   `cim:"State"`
-	TcpMappingTimeout   uint32   `cim:"TcpMappingTimeout"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath             string                                       `cim:"__PATH"`
+	Caption             string                                       `cim:"Caption"`
+	Description         string                                       `cim:"Description"`
+	ElementName         string                                       `cim:"ElementName"`
+	IPv4AddressPortPool []string                                     `cim:"IPv4AddressPortPool"`
+	InboundInterface    []string                                     `cim:"InboundInterface"`
+	InstanceID          string                                       `cim:"InstanceID"`
+	InstanceName        string                                       `cim:"InstanceName"`
+	OutboundInterface   []string                                     `cim:"OutboundInterface"`
+	PolicyStore         MSFTNetNatTransitionConfigurationPolicyStore `cim:"PolicyStore"`
+	PrefixMapping       []string                                     `cim:"PrefixMapping"`
+	State               MSFTNetNatTransitionConfigurationState       `cim:"State"`
+	TcpMappingTimeout   uint32                                       `cim:"TcpMappingTimeout"`
 }
 
 // MSFTNetNatTransitionInterfaceAssociation is the MSFT_NetNatTransitionInterfaceAssociation CIM class.
 type MSFTNetNatTransitionInterfaceAssociation struct {
-	IsCurrent      uint16 `cim:"IsCurrent"`
-	IsDefault      uint16 `cim:"IsDefault"`
-	IsNext         uint16 `cim:"IsNext"`
-	ManagedElement string `cim:"ManagedElement"`
-	SettingData    string `cim:"SettingData"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string                                            `cim:"__PATH"`
+	IsCurrent      MSFTNetNatTransitionInterfaceAssociationIsCurrent `cim:"IsCurrent"`
+	IsDefault      MSFTNetNatTransitionInterfaceAssociationIsDefault `cim:"IsDefault"`
+	IsNext         MSFTNetNatTransitionInterfaceAssociationIsNext    `cim:"IsNext"`
+	ManagedElement string                                            `cim:"ManagedElement"`
+	SettingData    string                                            `cim:"SettingData"`
 }
 
 // MSFTNetNatTransitionMonitoring is the MSFT_NetNatTransitionMonitoring CIM class.
 type MSFTNetNatTransitionMonitoring struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath            string `cim:"__PATH"`
 	Caption            string `cim:"Caption"`
 	Description        string `cim:"Description"`
 	ElementName        string `cim:"ElementName"`
@@ -4988,267 +6088,307 @@ type MSFTNetNatTransitionMonitoring struct {
 
 // MSFTNetNeighbor is the MSFT_NetNeighbor CIM class.
 type MSFTNetNeighbor struct {
-	AccessContext              uint16   `cim:"AccessContext"`
-	AccessInfo                 string   `cim:"AccessInfo"`
-	AddressFamily              uint16   `cim:"AddressFamily"`
-	AvailableRequestedStates   []uint16 `cim:"AvailableRequestedStates"`
-	Caption                    string   `cim:"Caption"`
-	CommunicationStatus        uint16   `cim:"CommunicationStatus"`
-	CreationClassName          string   `cim:"CreationClassName"`
-	Description                string   `cim:"Description"`
-	DetailedStatus             uint16   `cim:"DetailedStatus"`
-	ElementName                string   `cim:"ElementName"`
-	EnabledDefault             uint16   `cim:"EnabledDefault"`
-	EnabledState               uint16   `cim:"EnabledState"`
-	HealthState                uint16   `cim:"HealthState"`
-	IPAddress                  string   `cim:"IPAddress"`
-	InfoFormat                 uint16   `cim:"InfoFormat"`
-	InstallDate                string   `cim:"InstallDate"`
-	InstanceID                 string   `cim:"InstanceID"`
-	InterfaceAlias             string   `cim:"InterfaceAlias"`
-	InterfaceIndex             uint32   `cim:"InterfaceIndex"`
-	LinkLayerAddress           string   `cim:"LinkLayerAddress"`
-	Name                       string   `cim:"Name"`
-	OperatingStatus            uint16   `cim:"OperatingStatus"`
-	OperationalStatus          []uint16 `cim:"OperationalStatus"`
-	OtherAccessContext         string   `cim:"OtherAccessContext"`
-	OtherEnabledState          string   `cim:"OtherEnabledState"`
-	OtherInfoFormatDescription string   `cim:"OtherInfoFormatDescription"`
-	PrimaryStatus              uint16   `cim:"PrimaryStatus"`
-	RequestedState             uint16   `cim:"RequestedState"`
-	State                      uint8    `cim:"State"`
-	Status                     string   `cim:"Status"`
-	StatusDescriptions         []string `cim:"StatusDescriptions"`
-	Store                      uint8    `cim:"Store"`
-	SystemCreationClassName    string   `cim:"SystemCreationClassName"`
-	SystemName                 string   `cim:"SystemName"`
-	TimeOfLastStateChange      string   `cim:"TimeOfLastStateChange"`
-	TransitioningToState       uint16   `cim:"TransitioningToState"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                    string                              `cim:"__PATH"`
+	AccessContext              MSFTNetNeighborAccessContext        `cim:"AccessContext"`
+	AccessInfo                 string                              `cim:"AccessInfo"`
+	AddressFamily              MSFTNetNeighborAddressFamily        `cim:"AddressFamily"`
+	AvailableRequestedStates   []uint16                            `cim:"AvailableRequestedStates"`
+	Caption                    string                              `cim:"Caption"`
+	CommunicationStatus        MSFTNetNeighborCommunicationStatus  `cim:"CommunicationStatus"`
+	CreationClassName          string                              `cim:"CreationClassName"`
+	Description                string                              `cim:"Description"`
+	DetailedStatus             MSFTNetNeighborDetailedStatus       `cim:"DetailedStatus"`
+	ElementName                string                              `cim:"ElementName"`
+	EnabledDefault             MSFTNetNeighborEnabledDefault       `cim:"EnabledDefault"`
+	EnabledState               MSFTNetNeighborEnabledState         `cim:"EnabledState"`
+	HealthState                MSFTNetNeighborHealthState          `cim:"HealthState"`
+	IPAddress                  string                              `cim:"IPAddress"`
+	InfoFormat                 MSFTNetNeighborInfoFormat           `cim:"InfoFormat"`
+	InstallDate                string                              `cim:"InstallDate"`
+	InstanceID                 string                              `cim:"InstanceID"`
+	InterfaceAlias             string                              `cim:"InterfaceAlias"`
+	InterfaceIndex             uint32                              `cim:"InterfaceIndex"`
+	LinkLayerAddress           string                              `cim:"LinkLayerAddress"`
+	Name                       string                              `cim:"Name"`
+	OperatingStatus            MSFTNetNeighborOperatingStatus      `cim:"OperatingStatus"`
+	OperationalStatus          []uint16                            `cim:"OperationalStatus"`
+	OtherAccessContext         string                              `cim:"OtherAccessContext"`
+	OtherEnabledState          string                              `cim:"OtherEnabledState"`
+	OtherInfoFormatDescription string                              `cim:"OtherInfoFormatDescription"`
+	PrimaryStatus              MSFTNetNeighborPrimaryStatus        `cim:"PrimaryStatus"`
+	RequestedState             MSFTNetNeighborRequestedState       `cim:"RequestedState"`
+	State                      MSFTNetNeighborState                `cim:"State"`
+	Status                     MSFTNetNeighborStatus               `cim:"Status"`
+	StatusDescriptions         []string                            `cim:"StatusDescriptions"`
+	Store                      MSFTNetNeighborStore                `cim:"Store"`
+	SystemCreationClassName    string                              `cim:"SystemCreationClassName"`
+	SystemName                 string                              `cim:"SystemName"`
+	TimeOfLastStateChange      string                              `cim:"TimeOfLastStateChange"`
+	TransitioningToState       MSFTNetNeighborTransitioningToState `cim:"TransitioningToState"`
 }
 
 // MSFTNetNetworkLayerSecurityFilter is the MSFT_NetNetworkLayerSecurityFilter CIM class.
 type MSFTNetNetworkLayerSecurityFilter struct {
-	Authentication          uint16   `cim:"Authentication"`
-	Caption                 string   `cim:"Caption"`
-	CommunicationStatus     uint16   `cim:"CommunicationStatus"`
-	CreationClassName       string   `cim:"CreationClassName"`
-	Description             string   `cim:"Description"`
-	DetailedStatus          uint16   `cim:"DetailedStatus"`
-	ElementName             string   `cim:"ElementName"`
-	Encryption              uint16   `cim:"Encryption"`
-	HealthState             uint16   `cim:"HealthState"`
-	InstallDate             string   `cim:"InstallDate"`
-	InstanceID              string   `cim:"InstanceID"`
-	IsNegated               bool     `cim:"IsNegated"`
-	LocalUsers              string   `cim:"LocalUsers"`
-	Name                    string   `cim:"Name"`
-	OperatingStatus         uint16   `cim:"OperatingStatus"`
-	OperationalStatus       []uint16 `cim:"OperationalStatus"`
-	OverrideBlockRules      bool     `cim:"OverrideBlockRules"`
-	PrimaryStatus           uint16   `cim:"PrimaryStatus"`
-	RemoteMachines          string   `cim:"RemoteMachines"`
-	RemoteUsers             string   `cim:"RemoteUsers"`
-	Status                  string   `cim:"Status"`
-	StatusDescriptions      []string `cim:"StatusDescriptions"`
-	SystemCreationClassName string   `cim:"SystemCreationClassName"`
-	SystemName              string   `cim:"SystemName"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                 string                                               `cim:"__PATH"`
+	Authentication          MSFTNetNetworkLayerSecurityFilterAuthentication      `cim:"Authentication"`
+	Caption                 string                                               `cim:"Caption"`
+	CommunicationStatus     MSFTNetNetworkLayerSecurityFilterCommunicationStatus `cim:"CommunicationStatus"`
+	CreationClassName       string                                               `cim:"CreationClassName"`
+	Description             string                                               `cim:"Description"`
+	DetailedStatus          MSFTNetNetworkLayerSecurityFilterDetailedStatus      `cim:"DetailedStatus"`
+	ElementName             string                                               `cim:"ElementName"`
+	Encryption              MSFTNetNetworkLayerSecurityFilterEncryption          `cim:"Encryption"`
+	HealthState             MSFTNetNetworkLayerSecurityFilterHealthState         `cim:"HealthState"`
+	InstallDate             string                                               `cim:"InstallDate"`
+	InstanceID              string                                               `cim:"InstanceID"`
+	IsNegated               bool                                                 `cim:"IsNegated"`
+	LocalUsers              string                                               `cim:"LocalUsers"`
+	Name                    string                                               `cim:"Name"`
+	OperatingStatus         MSFTNetNetworkLayerSecurityFilterOperatingStatus     `cim:"OperatingStatus"`
+	OperationalStatus       []uint16                                             `cim:"OperationalStatus"`
+	OverrideBlockRules      bool                                                 `cim:"OverrideBlockRules"`
+	PrimaryStatus           MSFTNetNetworkLayerSecurityFilterPrimaryStatus       `cim:"PrimaryStatus"`
+	RemoteMachines          string                                               `cim:"RemoteMachines"`
+	RemoteUsers             string                                               `cim:"RemoteUsers"`
+	Status                  MSFTNetNetworkLayerSecurityFilterStatus              `cim:"Status"`
+	StatusDescriptions      []string                                             `cim:"StatusDescriptions"`
+	SystemCreationClassName string                                               `cim:"SystemCreationClassName"`
+	SystemName              string                                               `cim:"SystemName"`
 }
 
 // MSFTNetOffloadGlobalSetting is the MSFT_NetOffloadGlobalSetting CIM class.
 type MSFTNetOffloadGlobalSetting struct {
-	Caption                      string `cim:"Caption"`
-	Chimney                      uint8  `cim:"Chimney"`
-	Description                  string `cim:"Description"`
-	ElementName                  string `cim:"ElementName"`
-	InstanceID                   string `cim:"InstanceID"`
-	NetworkDirect                uint8  `cim:"NetworkDirect"`
-	NetworkDirectAcrossIPSubnets uint8  `cim:"NetworkDirectAcrossIPSubnets"`
-	PacketCoalescingFilter       uint8  `cim:"PacketCoalescingFilter"`
-	ReceiveSegmentCoalescing     uint8  `cim:"ReceiveSegmentCoalescing"`
-	ReceiveSideScaling           uint8  `cim:"ReceiveSideScaling"`
-	TaskOffload                  uint8  `cim:"TaskOffload"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                      string                                                  `cim:"__PATH"`
+	Caption                      string                                                  `cim:"Caption"`
+	Chimney                      MSFTNetOffloadGlobalSettingChimney                      `cim:"Chimney"`
+	Description                  string                                                  `cim:"Description"`
+	ElementName                  string                                                  `cim:"ElementName"`
+	InstanceID                   string                                                  `cim:"InstanceID"`
+	NetworkDirect                MSFTNetOffloadGlobalSettingNetworkDirect                `cim:"NetworkDirect"`
+	NetworkDirectAcrossIPSubnets MSFTNetOffloadGlobalSettingNetworkDirectAcrossIPSubnets `cim:"NetworkDirectAcrossIPSubnets"`
+	PacketCoalescingFilter       MSFTNetOffloadGlobalSettingPacketCoalescingFilter       `cim:"PacketCoalescingFilter"`
+	ReceiveSegmentCoalescing     MSFTNetOffloadGlobalSettingReceiveSegmentCoalescing     `cim:"ReceiveSegmentCoalescing"`
+	ReceiveSideScaling           MSFTNetOffloadGlobalSettingReceiveSideScaling           `cim:"ReceiveSideScaling"`
+	TaskOffload                  MSFTNetOffloadGlobalSettingTaskOffload                  `cim:"TaskOffload"`
 }
 
 // MSFTNetPolicyRuleFilters is the MSFT_NetPolicyRuleFilters CIM class.
 type MSFTNetPolicyRuleFilters struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string `cim:"__PATH"`
 	GroupComponent string `cim:"GroupComponent"`
 	PartComponent  string `cim:"PartComponent"`
 }
 
 // MSFTNetPrefixPolicy is the MSFT_NetPrefixPolicy CIM class.
 type MSFTNetPrefixPolicy struct {
-	Caption     string `cim:"Caption"`
-	Description string `cim:"Description"`
-	ElementName string `cim:"ElementName"`
-	InstanceID  string `cim:"InstanceID"`
-	Label       uint32 `cim:"Label"`
-	Precedence  uint32 `cim:"Precedence"`
-	Prefix      string `cim:"Prefix"`
-	Store       uint8  `cim:"Store"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath     string                   `cim:"__PATH"`
+	Caption     string                   `cim:"Caption"`
+	Description string                   `cim:"Description"`
+	ElementName string                   `cim:"ElementName"`
+	InstanceID  string                   `cim:"InstanceID"`
+	Label       uint32                   `cim:"Label"`
+	Precedence  uint32                   `cim:"Precedence"`
+	Prefix      string                   `cim:"Prefix"`
+	Store       MSFTNetPrefixPolicyStore `cim:"Store"`
 }
 
 // MSFTNetProtocolPortFilter is the MSFT_NetProtocolPortFilter CIM class.
 type MSFTNetProtocolPortFilter struct {
-	Caption                 string   `cim:"Caption"`
-	CommunicationStatus     uint16   `cim:"CommunicationStatus"`
-	CreationClassName       string   `cim:"CreationClassName"`
-	Description             string   `cim:"Description"`
-	DetailedStatus          uint16   `cim:"DetailedStatus"`
-	DynamicTransport        uint32   `cim:"DynamicTransport"`
-	ElementName             string   `cim:"ElementName"`
-	HealthState             uint16   `cim:"HealthState"`
-	IcmpType                []string `cim:"IcmpType"`
-	InstallDate             string   `cim:"InstallDate"`
-	InstanceID              string   `cim:"InstanceID"`
-	IsNegated               bool     `cim:"IsNegated"`
-	LocalPort               []string `cim:"LocalPort"`
-	Name                    string   `cim:"Name"`
-	OperatingStatus         uint16   `cim:"OperatingStatus"`
-	OperationalStatus       []uint16 `cim:"OperationalStatus"`
-	PrimaryStatus           uint16   `cim:"PrimaryStatus"`
-	Protocol                string   `cim:"Protocol"`
-	RemotePort              []string `cim:"RemotePort"`
-	Status                  string   `cim:"Status"`
-	StatusDescriptions      []string `cim:"StatusDescriptions"`
-	SystemCreationClassName string   `cim:"SystemCreationClassName"`
-	SystemName              string   `cim:"SystemName"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                 string                                       `cim:"__PATH"`
+	Caption                 string                                       `cim:"Caption"`
+	CommunicationStatus     MSFTNetProtocolPortFilterCommunicationStatus `cim:"CommunicationStatus"`
+	CreationClassName       string                                       `cim:"CreationClassName"`
+	Description             string                                       `cim:"Description"`
+	DetailedStatus          MSFTNetProtocolPortFilterDetailedStatus      `cim:"DetailedStatus"`
+	DynamicTransport        MSFTNetProtocolPortFilterDynamicTransport    `cim:"DynamicTransport"`
+	ElementName             string                                       `cim:"ElementName"`
+	HealthState             MSFTNetProtocolPortFilterHealthState         `cim:"HealthState"`
+	IcmpType                []string                                     `cim:"IcmpType"`
+	InstallDate             string                                       `cim:"InstallDate"`
+	InstanceID              string                                       `cim:"InstanceID"`
+	IsNegated               bool                                         `cim:"IsNegated"`
+	LocalPort               []string                                     `cim:"LocalPort"`
+	Name                    string                                       `cim:"Name"`
+	OperatingStatus         MSFTNetProtocolPortFilterOperatingStatus     `cim:"OperatingStatus"`
+	OperationalStatus       []uint16                                     `cim:"OperationalStatus"`
+	PrimaryStatus           MSFTNetProtocolPortFilterPrimaryStatus       `cim:"PrimaryStatus"`
+	Protocol                string                                       `cim:"Protocol"`
+	RemotePort              []string                                     `cim:"RemotePort"`
+	Status                  MSFTNetProtocolPortFilterStatus              `cim:"Status"`
+	StatusDescriptions      []string                                     `cim:"StatusDescriptions"`
+	SystemCreationClassName string                                       `cim:"SystemCreationClassName"`
+	SystemName              string                                       `cim:"SystemName"`
 }
 
 // MSFTNetQosPolicySettingData is the MSFT_NetQosPolicySettingData CIM class.
 type MSFTNetQosPolicySettingData struct {
-	AppPathNameMatchCondition    string `cim:"AppPathNameMatchCondition"`
-	Caption                      string `cim:"Caption"`
-	DSCPAction                   int8   `cim:"DSCPAction"`
-	Description                  string `cim:"Description"`
-	ElementName                  string `cim:"ElementName"`
-	IPDstPortEndMatchCondition   uint16 `cim:"IPDstPortEndMatchCondition"`
-	IPDstPortStartMatchCondition uint16 `cim:"IPDstPortStartMatchCondition"`
-	IPDstPrefixMatchCondition    string `cim:"IPDstPrefixMatchCondition"`
-	IPPortMatchCondition         uint16 `cim:"IPPortMatchCondition"`
-	IPProtocolMatchCondition     uint32 `cim:"IPProtocolMatchCondition"`
-	IPSrcPortEndMatchCondition   uint16 `cim:"IPSrcPortEndMatchCondition"`
-	IPSrcPortStartMatchCondition uint16 `cim:"IPSrcPortStartMatchCondition"`
-	IPSrcPrefixMatchCondition    string `cim:"IPSrcPrefixMatchCondition"`
-	InstanceID                   string `cim:"InstanceID"`
-	JobObjectMatchCondition      string `cim:"JobObjectMatchCondition"`
-	MinBandwidthWeightAction     uint8  `cim:"MinBandwidthWeightAction"`
-	Name                         string `cim:"Name"`
-	NetDirectPortMatchCondition  uint16 `cim:"NetDirectPortMatchCondition"`
-	NetworkProfile               uint32 `cim:"NetworkProfile"`
-	Owner                        string `cim:"Owner"`
-	Precedence                   uint32 `cim:"Precedence"`
-	PriorityValue8021Action      int8   `cim:"PriorityValue8021Action"`
-	TemplateMatchCondition       uint32 `cim:"TemplateMatchCondition"`
-	ThrottleRateAction           uint64 `cim:"ThrottleRateAction"`
-	URIMatchCondition            string `cim:"URIMatchCondition"`
-	URIRecursiveMatchCondition   bool   `cim:"URIRecursiveMatchCondition"`
-	UserMatchCondition           string `cim:"UserMatchCondition"`
-	Version                      string `cim:"Version"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                      string                                              `cim:"__PATH"`
+	AppPathNameMatchCondition    string                                              `cim:"AppPathNameMatchCondition"`
+	Caption                      string                                              `cim:"Caption"`
+	DSCPAction                   int8                                                `cim:"DSCPAction"`
+	Description                  string                                              `cim:"Description"`
+	ElementName                  string                                              `cim:"ElementName"`
+	IPDstPortEndMatchCondition   uint16                                              `cim:"IPDstPortEndMatchCondition"`
+	IPDstPortStartMatchCondition uint16                                              `cim:"IPDstPortStartMatchCondition"`
+	IPDstPrefixMatchCondition    string                                              `cim:"IPDstPrefixMatchCondition"`
+	IPPortMatchCondition         uint16                                              `cim:"IPPortMatchCondition"`
+	IPProtocolMatchCondition     MSFTNetQosPolicySettingDataIPProtocolMatchCondition `cim:"IPProtocolMatchCondition"`
+	IPSrcPortEndMatchCondition   uint16                                              `cim:"IPSrcPortEndMatchCondition"`
+	IPSrcPortStartMatchCondition uint16                                              `cim:"IPSrcPortStartMatchCondition"`
+	IPSrcPrefixMatchCondition    string                                              `cim:"IPSrcPrefixMatchCondition"`
+	InstanceID                   string                                              `cim:"InstanceID"`
+	JobObjectMatchCondition      string                                              `cim:"JobObjectMatchCondition"`
+	MinBandwidthWeightAction     uint8                                               `cim:"MinBandwidthWeightAction"`
+	Name                         string                                              `cim:"Name"`
+	NetDirectPortMatchCondition  uint16                                              `cim:"NetDirectPortMatchCondition"`
+	NetworkProfile               MSFTNetQosPolicySettingDataNetworkProfile           `cim:"NetworkProfile"`
+	Owner                        string                                              `cim:"Owner"`
+	Precedence                   uint32                                              `cim:"Precedence"`
+	PriorityValue8021Action      int8                                                `cim:"PriorityValue8021Action"`
+	TemplateMatchCondition       MSFTNetQosPolicySettingDataTemplateMatchCondition   `cim:"TemplateMatchCondition"`
+	ThrottleRateAction           uint64                                              `cim:"ThrottleRateAction"`
+	URIMatchCondition            string                                              `cim:"URIMatchCondition"`
+	URIRecursiveMatchCondition   bool                                                `cim:"URIRecursiveMatchCondition"`
+	UserMatchCondition           string                                              `cim:"UserMatchCondition"`
+	Version                      string                                              `cim:"Version"`
 }
 
 // MSFTNetQuickModeSA is the MSFT_NetQuickModeSA CIM class.
 type MSFTNetQuickModeSA struct {
-	AvailableRequestedStates          []uint16 `cim:"AvailableRequestedStates"`
-	Caption                           string   `cim:"Caption"`
-	CommunicationStatus               uint16   `cim:"CommunicationStatus"`
-	CreationClassName                 string   `cim:"CreationClassName"`
-	DFHandling                        uint16   `cim:"DFHandling"`
-	Description                       string   `cim:"Description"`
-	DetailedStatus                    uint16   `cim:"DetailedStatus"`
-	ElementName                       string   `cim:"ElementName"`
-	EmTargetName                      string   `cim:"EmTargetName"`
-	EnabledDefault                    uint16   `cim:"EnabledDefault"`
-	EnabledState                      uint16   `cim:"EnabledState"`
-	EncapsulationMode                 uint16   `cim:"EncapsulationMode"`
-	ExplicitCredentials               uint64   `cim:"ExplicitCredentials"`
-	FirstCipherAlgorithm              uint32   `cim:"FirstCipherAlgorithm"`
-	FirstIntegrityAlgorithm           uint32   `cim:"FirstIntegrityAlgorithm"`
-	FirstTransformType                uint32   `cim:"FirstTransformType"`
-	Flags                             uint32   `cim:"Flags"`
-	HealthState                       uint16   `cim:"HealthState"`
-	IdleDurationSeconds               uint64   `cim:"IdleDurationSeconds"`
-	InboundDirection                  bool     `cim:"InboundDirection"`
-	InstallDate                       string   `cim:"InstallDate"`
-	InstanceID                        string   `cim:"InstanceID"`
-	InterfaceAlias                    string   `cim:"InterfaceAlias"`
-	IpProtocol                        uint8    `cim:"IpProtocol"`
-	LifetimeKilobytes                 uint64   `cim:"LifetimeKilobytes"`
-	LifetimePackets                   uint64   `cim:"LifetimePackets"`
-	LifetimeSeconds                   uint64   `cim:"LifetimeSeconds"`
-	LocalEndpoint                     string   `cim:"LocalEndpoint"`
-	LocalPort                         uint16   `cim:"LocalPort"`
-	LocalUdpEncapsulationPort         uint16   `cim:"LocalUdpEncapsulationPort"`
-	MmSaId                            uint64   `cim:"MmSaId"`
-	MmTargetName                      string   `cim:"MmTargetName"`
-	Name                              string   `cim:"Name"`
-	NameFormat                        string   `cim:"NameFormat"`
-	NapContext                        uint32   `cim:"NapContext"`
-	NdAllowClearTimeoutSeconds        uint32   `cim:"NdAllowClearTimeoutSeconds"`
-	OperatingStatus                   uint16   `cim:"OperatingStatus"`
-	OperationalStatus                 []uint16 `cim:"OperationalStatus"`
-	OtherEnabledState                 string   `cim:"OtherEnabledState"`
-	OtherTypeDescription              string   `cim:"OtherTypeDescription"`
-	PFSInUse                          bool     `cim:"PFSInUse"`
-	PacketLoggingActive               bool     `cim:"PacketLoggingActive"`
-	PeerV4PrivateAddress              string   `cim:"PeerV4PrivateAddress"`
-	PfsGroupId                        uint32   `cim:"PfsGroupId"`
-	PrimaryStatus                     uint16   `cim:"PrimaryStatus"`
-	ProtocolIFType                    uint16   `cim:"ProtocolIFType"`
-	ProtocolType                      uint16   `cim:"ProtocolType"`
-	QmSaId                            uint32   `cim:"QmSaId"`
-	QuickModeFilterId                 uint64   `cim:"QuickModeFilterId"`
-	RealIfProfileId                   uint64   `cim:"RealIfProfileId"`
-	RefreshThresholdKbytesPercentage  uint8    `cim:"RefreshThresholdKbytesPercentage"`
-	RefreshThresholdSecondsPercentage uint8    `cim:"RefreshThresholdSecondsPercentage"`
-	RemoteEndpoint                    string   `cim:"RemoteEndpoint"`
-	RemotePort                        uint16   `cim:"RemotePort"`
-	RemoteUdpEncapsulationPort        uint16   `cim:"RemoteUdpEncapsulationPort"`
-	RequestedState                    uint16   `cim:"RequestedState"`
-	SPI                               uint32   `cim:"SPI"`
-	SecondCipherAlgorithm             uint32   `cim:"SecondCipherAlgorithm"`
-	SecondIntegrityAlgorithm          uint32   `cim:"SecondIntegrityAlgorithm"`
-	SecondSPI                         uint32   `cim:"SecondSPI"`
-	SecondTransformType               uint32   `cim:"SecondTransformType"`
-	Status                            string   `cim:"Status"`
-	StatusDescriptions                []string `cim:"StatusDescriptions"`
-	SystemCreationClassName           string   `cim:"SystemCreationClassName"`
-	SystemName                        string   `cim:"SystemName"`
-	TimeOfLastStateChange             string   `cim:"TimeOfLastStateChange"`
-	TrafficLuid                       uint64   `cim:"TrafficLuid"`
-	TrafficSelectorId                 uint64   `cim:"TrafficSelectorId"`
-	TransitioningToState              uint16   `cim:"TransitioningToState"`
-	TransportLayerFilterName          string   `cim:"TransportLayerFilterName"`
-	VirtualIfTunnelId                 uint64   `cim:"VirtualIfTunnelId"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                           string                                     `cim:"__PATH"`
+	AvailableRequestedStates          []uint16                                   `cim:"AvailableRequestedStates"`
+	Caption                           string                                     `cim:"Caption"`
+	CommunicationStatus               MSFTNetQuickModeSACommunicationStatus      `cim:"CommunicationStatus"`
+	CreationClassName                 string                                     `cim:"CreationClassName"`
+	DFHandling                        MSFTNetQuickModeSADFHandling               `cim:"DFHandling"`
+	Description                       string                                     `cim:"Description"`
+	DetailedStatus                    MSFTNetQuickModeSADetailedStatus           `cim:"DetailedStatus"`
+	ElementName                       string                                     `cim:"ElementName"`
+	EmTargetName                      string                                     `cim:"EmTargetName"`
+	EnabledDefault                    MSFTNetQuickModeSAEnabledDefault           `cim:"EnabledDefault"`
+	EnabledState                      MSFTNetQuickModeSAEnabledState             `cim:"EnabledState"`
+	EncapsulationMode                 MSFTNetQuickModeSAEncapsulationMode        `cim:"EncapsulationMode"`
+	ExplicitCredentials               uint64                                     `cim:"ExplicitCredentials"`
+	FirstCipherAlgorithm              MSFTNetQuickModeSAFirstCipherAlgorithm     `cim:"FirstCipherAlgorithm"`
+	FirstIntegrityAlgorithm           MSFTNetQuickModeSAFirstIntegrityAlgorithm  `cim:"FirstIntegrityAlgorithm"`
+	FirstTransformType                MSFTNetQuickModeSAFirstTransformType       `cim:"FirstTransformType"`
+	Flags                             MSFTNetQuickModeSAFlags                    `cim:"Flags"`
+	HealthState                       MSFTNetQuickModeSAHealthState              `cim:"HealthState"`
+	IdleDurationSeconds               uint64                                     `cim:"IdleDurationSeconds"`
+	InboundDirection                  bool                                       `cim:"InboundDirection"`
+	InstallDate                       string                                     `cim:"InstallDate"`
+	InstanceID                        string                                     `cim:"InstanceID"`
+	InterfaceAlias                    string                                     `cim:"InterfaceAlias"`
+	IpProtocol                        uint8                                      `cim:"IpProtocol"`
+	LifetimeKilobytes                 uint64                                     `cim:"LifetimeKilobytes"`
+	LifetimePackets                   uint64                                     `cim:"LifetimePackets"`
+	LifetimeSeconds                   uint64                                     `cim:"LifetimeSeconds"`
+	LocalEndpoint                     string                                     `cim:"LocalEndpoint"`
+	LocalPort                         uint16                                     `cim:"LocalPort"`
+	LocalUdpEncapsulationPort         uint16                                     `cim:"LocalUdpEncapsulationPort"`
+	MmSaId                            uint64                                     `cim:"MmSaId"`
+	MmTargetName                      string                                     `cim:"MmTargetName"`
+	Name                              string                                     `cim:"Name"`
+	NameFormat                        string                                     `cim:"NameFormat"`
+	NapContext                        uint32                                     `cim:"NapContext"`
+	NdAllowClearTimeoutSeconds        uint32                                     `cim:"NdAllowClearTimeoutSeconds"`
+	OperatingStatus                   MSFTNetQuickModeSAOperatingStatus          `cim:"OperatingStatus"`
+	OperationalStatus                 []uint16                                   `cim:"OperationalStatus"`
+	OtherEnabledState                 string                                     `cim:"OtherEnabledState"`
+	OtherTypeDescription              string                                     `cim:"OtherTypeDescription"`
+	PFSInUse                          bool                                       `cim:"PFSInUse"`
+	PacketLoggingActive               bool                                       `cim:"PacketLoggingActive"`
+	PeerV4PrivateAddress              string                                     `cim:"PeerV4PrivateAddress"`
+	PfsGroupId                        MSFTNetQuickModeSAPfsGroupId               `cim:"PfsGroupId"`
+	PrimaryStatus                     MSFTNetQuickModeSAPrimaryStatus            `cim:"PrimaryStatus"`
+	ProtocolIFType                    MSFTNetQuickModeSAProtocolIFType           `cim:"ProtocolIFType"`
+	ProtocolType                      MSFTNetQuickModeSAProtocolType             `cim:"ProtocolType"`
+	QmSaId                            uint32                                     `cim:"QmSaId"`
+	QuickModeFilterId                 uint64                                     `cim:"QuickModeFilterId"`
+	RealIfProfileId                   uint64                                     `cim:"RealIfProfileId"`
+	RefreshThresholdKbytesPercentage  uint8                                      `cim:"RefreshThresholdKbytesPercentage"`
+	RefreshThresholdSecondsPercentage uint8                                      `cim:"RefreshThresholdSecondsPercentage"`
+	RemoteEndpoint                    string                                     `cim:"RemoteEndpoint"`
+	RemotePort                        uint16                                     `cim:"RemotePort"`
+	RemoteUdpEncapsulationPort        uint16                                     `cim:"RemoteUdpEncapsulationPort"`
+	RequestedState                    MSFTNetQuickModeSARequestedState           `cim:"RequestedState"`
+	SPI                               uint32                                     `cim:"SPI"`
+	SecondCipherAlgorithm             MSFTNetQuickModeSASecondCipherAlgorithm    `cim:"SecondCipherAlgorithm"`
+	SecondIntegrityAlgorithm          MSFTNetQuickModeSASecondIntegrityAlgorithm `cim:"SecondIntegrityAlgorithm"`
+	SecondSPI                         uint32                                     `cim:"SecondSPI"`
+	SecondTransformType               MSFTNetQuickModeSASecondTransformType      `cim:"SecondTransformType"`
+	Status                            MSFTNetQuickModeSAStatus                   `cim:"Status"`
+	StatusDescriptions                []string                                   `cim:"StatusDescriptions"`
+	SystemCreationClassName           string                                     `cim:"SystemCreationClassName"`
+	SystemName                        string                                     `cim:"SystemName"`
+	TimeOfLastStateChange             string                                     `cim:"TimeOfLastStateChange"`
+	TrafficLuid                       uint64                                     `cim:"TrafficLuid"`
+	TrafficSelectorId                 uint64                                     `cim:"TrafficSelectorId"`
+	TransitioningToState              MSFTNetQuickModeSATransitioningToState     `cim:"TransitioningToState"`
+	TransportLayerFilterName          string                                     `cim:"TransportLayerFilterName"`
+	VirtualIfTunnelId                 uint64                                     `cim:"VirtualIfTunnelId"`
 }
 
 // MSFTNetRoute is the MSFT_NetRoute CIM class.
 type MSFTNetRoute struct {
-	AddressFamily      uint16 `cim:"AddressFamily"`
-	AdminDistance      uint16 `cim:"AdminDistance"`
-	Caption            string `cim:"Caption"`
-	CompartmentId      uint32 `cim:"CompartmentId"`
-	Description        string `cim:"Description"`
-	DestinationAddress string `cim:"DestinationAddress"`
-	DestinationPrefix  string `cim:"DestinationPrefix"`
-	ElementName        string `cim:"ElementName"`
-	InstanceID         string `cim:"InstanceID"`
-	InterfaceAlias     string `cim:"InterfaceAlias"`
-	InterfaceIndex     uint32 `cim:"InterfaceIndex"`
-	InterfaceMetric    uint32 `cim:"InterfaceMetric"`
-	IsStatic           bool   `cim:"IsStatic"`
-	NextHop            string `cim:"NextHop"`
-	PreferredLifetime  string `cim:"PreferredLifetime"`
-	Protocol           uint16 `cim:"Protocol"`
-	Publish            uint8  `cim:"Publish"`
-	RouteMetric        uint16 `cim:"RouteMetric"`
-	State              uint8  `cim:"State"`
-	Store              uint8  `cim:"Store"`
-	TypeOfRoute        uint16 `cim:"TypeOfRoute"`
-	ValidLifetime      string `cim:"ValidLifetime"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath            string                    `cim:"__PATH"`
+	AddressFamily      MSFTNetRouteAddressFamily `cim:"AddressFamily"`
+	AdminDistance      uint16                    `cim:"AdminDistance"`
+	Caption            string                    `cim:"Caption"`
+	CompartmentId      uint32                    `cim:"CompartmentId"`
+	Description        string                    `cim:"Description"`
+	DestinationAddress string                    `cim:"DestinationAddress"`
+	DestinationPrefix  string                    `cim:"DestinationPrefix"`
+	ElementName        string                    `cim:"ElementName"`
+	InstanceID         string                    `cim:"InstanceID"`
+	InterfaceAlias     string                    `cim:"InterfaceAlias"`
+	InterfaceIndex     uint32                    `cim:"InterfaceIndex"`
+	InterfaceMetric    uint32                    `cim:"InterfaceMetric"`
+	IsStatic           bool                      `cim:"IsStatic"`
+	NextHop            string                    `cim:"NextHop"`
+	PreferredLifetime  string                    `cim:"PreferredLifetime"`
+	Protocol           MSFTNetRouteProtocol      `cim:"Protocol"`
+	Publish            MSFTNetRoutePublish       `cim:"Publish"`
+	RouteMetric        uint16                    `cim:"RouteMetric"`
+	State              MSFTNetRouteState         `cim:"State"`
+	Store              MSFTNetRouteStore         `cim:"Store"`
+	TypeOfRoute        MSFTNetRouteTypeOfRoute   `cim:"TypeOfRoute"`
+	ValidLifetime      string                    `cim:"ValidLifetime"`
 }
 
 // MSFTNetRuleInProfile is the MSFT_NetRuleInProfile CIM class.
 type MSFTNetRuleInProfile struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string `cim:"__PATH"`
 	GroupComponent string `cim:"GroupComponent"`
 	PartComponent  string `cim:"PartComponent"`
 	Priority       uint16 `cim:"Priority"`
@@ -5256,6 +6396,10 @@ type MSFTNetRuleInProfile struct {
 
 // MSFTNetSAActionInSARule is the MSFT_NetSAActionInSARule CIM class.
 type MSFTNetSAActionInSARule struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string `cim:"__PATH"`
 	ActionOrder    uint16 `cim:"ActionOrder"`
 	GroupComponent string `cim:"GroupComponent"`
 	PartComponent  string `cim:"PartComponent"`
@@ -5263,51 +6407,63 @@ type MSFTNetSAActionInSARule struct {
 
 // MSFTNetSAAssociation is the MSFT_NetSAAssociation CIM class.
 type MSFTNetSAAssociation struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath    string `cim:"__PATH"`
 	Antecedent string `cim:"Antecedent"`
 	Dependent  string `cim:"Dependent"`
 }
 
 // MSFTNetSARule is the MSFT_NetSARule CIM class.
 type MSFTNetSARule struct {
-	Caption                 string   `cim:"Caption"`
-	CommonName              string   `cim:"CommonName"`
-	ConditionListType       uint16   `cim:"ConditionListType"`
-	CreationClassName       string   `cim:"CreationClassName"`
-	Description             string   `cim:"Description"`
-	DisplayGroup            string   `cim:"DisplayGroup"`
-	DisplayName             string   `cim:"DisplayName"`
-	ElementName             string   `cim:"ElementName"`
-	Enabled                 uint16   `cim:"Enabled"`
-	EnforcementStatus       []uint16 `cim:"EnforcementStatus"`
-	ExecutionStrategy       uint16   `cim:"ExecutionStrategy"`
-	InstanceID              string   `cim:"InstanceID"`
-	LimitNegotiation        uint16   `cim:"LimitNegotiation"`
-	MainModeCryptoSet       string   `cim:"MainModeCryptoSet"`
-	Mandatory               bool     `cim:"Mandatory"`
-	Phase1AuthSet           string   `cim:"Phase1AuthSet"`
-	Phase2AuthSet           string   `cim:"Phase2AuthSet"`
-	Platforms               []string `cim:"Platforms"`
-	PolicyDecisionStrategy  uint16   `cim:"PolicyDecisionStrategy"`
-	PolicyKeywords          []string `cim:"PolicyKeywords"`
-	PolicyRoles             []string `cim:"PolicyRoles"`
-	PolicyRuleName          string   `cim:"PolicyRuleName"`
-	PolicyStoreSource       string   `cim:"PolicyStoreSource"`
-	PolicyStoreSourceType   uint16   `cim:"PolicyStoreSourceType"`
-	PrimaryStatus           uint16   `cim:"PrimaryStatus"`
-	Priority                uint16   `cim:"Priority"`
-	Profiles                uint16   `cim:"Profiles"`
-	QuickModeCryptoSet      string   `cim:"QuickModeCryptoSet"`
-	RuleGroup               string   `cim:"RuleGroup"`
-	RuleUsage               string   `cim:"RuleUsage"`
-	SequencedActions        uint16   `cim:"SequencedActions"`
-	Status                  string   `cim:"Status"`
-	StatusCode              uint32   `cim:"StatusCode"`
-	SystemCreationClassName string   `cim:"SystemCreationClassName"`
-	SystemName              string   `cim:"SystemName"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                 string                              `cim:"__PATH"`
+	Caption                 string                              `cim:"Caption"`
+	CommonName              string                              `cim:"CommonName"`
+	ConditionListType       MSFTNetSARuleConditionListType      `cim:"ConditionListType"`
+	CreationClassName       string                              `cim:"CreationClassName"`
+	Description             string                              `cim:"Description"`
+	DisplayGroup            string                              `cim:"DisplayGroup"`
+	DisplayName             string                              `cim:"DisplayName"`
+	ElementName             string                              `cim:"ElementName"`
+	Enabled                 MSFTNetSARuleEnabled                `cim:"Enabled"`
+	EnforcementStatus       []uint16                            `cim:"EnforcementStatus"`
+	ExecutionStrategy       MSFTNetSARuleExecutionStrategy      `cim:"ExecutionStrategy"`
+	InstanceID              string                              `cim:"InstanceID"`
+	LimitNegotiation        MSFTNetSARuleLimitNegotiation       `cim:"LimitNegotiation"`
+	MainModeCryptoSet       string                              `cim:"MainModeCryptoSet"`
+	Mandatory               bool                                `cim:"Mandatory"`
+	Phase1AuthSet           string                              `cim:"Phase1AuthSet"`
+	Phase2AuthSet           string                              `cim:"Phase2AuthSet"`
+	Platforms               []string                            `cim:"Platforms"`
+	PolicyDecisionStrategy  MSFTNetSARulePolicyDecisionStrategy `cim:"PolicyDecisionStrategy"`
+	PolicyKeywords          []string                            `cim:"PolicyKeywords"`
+	PolicyRoles             []string                            `cim:"PolicyRoles"`
+	PolicyRuleName          string                              `cim:"PolicyRuleName"`
+	PolicyStoreSource       string                              `cim:"PolicyStoreSource"`
+	PolicyStoreSourceType   uint16                              `cim:"PolicyStoreSourceType"`
+	PrimaryStatus           MSFTNetSARulePrimaryStatus          `cim:"PrimaryStatus"`
+	Priority                uint16                              `cim:"Priority"`
+	Profiles                MSFTNetSARuleProfiles               `cim:"Profiles"`
+	QuickModeCryptoSet      string                              `cim:"QuickModeCryptoSet"`
+	RuleGroup               string                              `cim:"RuleGroup"`
+	RuleUsage               string                              `cim:"RuleUsage"`
+	SequencedActions        MSFTNetSARuleSequencedActions       `cim:"SequencedActions"`
+	Status                  string                              `cim:"Status"`
+	StatusCode              uint32                              `cim:"StatusCode"`
+	SystemCreationClassName string                              `cim:"SystemCreationClassName"`
+	SystemName              string                              `cim:"SystemName"`
 }
 
 // MSFTNetSARuleEMAuth is the MSFT_NetSARuleEMAuth CIM class.
 type MSFTNetSARuleEMAuth struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string `cim:"__PATH"`
 	ActionOrder    uint16 `cim:"ActionOrder"`
 	GroupComponent string `cim:"GroupComponent"`
 	PartComponent  string `cim:"PartComponent"`
@@ -5315,6 +6471,10 @@ type MSFTNetSARuleEMAuth struct {
 
 // MSFTNetSARuleMMAuth is the MSFT_NetSARuleMMAuth CIM class.
 type MSFTNetSARuleMMAuth struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string `cim:"__PATH"`
 	ActionOrder    uint16 `cim:"ActionOrder"`
 	GroupComponent string `cim:"GroupComponent"`
 	PartComponent  string `cim:"PartComponent"`
@@ -5322,6 +6482,10 @@ type MSFTNetSARuleMMAuth struct {
 
 // MSFTNetSARuleMMCrypto is the MSFT_NetSARuleMMCrypto CIM class.
 type MSFTNetSARuleMMCrypto struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string `cim:"__PATH"`
 	ActionOrder    uint16 `cim:"ActionOrder"`
 	GroupComponent string `cim:"GroupComponent"`
 	PartComponent  string `cim:"PartComponent"`
@@ -5329,6 +6493,10 @@ type MSFTNetSARuleMMCrypto struct {
 
 // MSFTNetSARuleQMCrypto is the MSFT_NetSARuleQMCrypto CIM class.
 type MSFTNetSARuleQMCrypto struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string `cim:"__PATH"`
 	ActionOrder    uint16 `cim:"ActionOrder"`
 	GroupComponent string `cim:"GroupComponent"`
 	PartComponent  string `cim:"PartComponent"`
@@ -5336,67 +6504,83 @@ type MSFTNetSARuleQMCrypto struct {
 
 // MSFTNetSecDeltaCollection is the MSFT_NetSecDeltaCollection CIM class.
 type MSFTNetSecDeltaCollection struct {
-	Action                 uint16   `cim:"Action"`
-	Caption                string   `cim:"Caption"`
-	Description            string   `cim:"Description"`
-	ElementName            string   `cim:"ElementName"`
-	EndpointType           uint16   `cim:"EndpointType"`
-	IPsecRuleDisplayName   string   `cim:"IPsecRuleDisplayName"`
-	IPsecRuleName          string   `cim:"IPsecRuleName"`
-	IPv4Addresses          []string `cim:"IPv4Addresses"`
-	IPv6Addresses          []string `cim:"IPv6Addresses"`
-	InstanceID             string   `cim:"InstanceID"`
-	NameResolutionFailures []string `cim:"NameResolutionFailures"`
-	PolicyStore            string   `cim:"PolicyStore"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                string                                `cim:"__PATH"`
+	Action                 MSFTNetSecDeltaCollectionAction       `cim:"Action"`
+	Caption                string                                `cim:"Caption"`
+	Description            string                                `cim:"Description"`
+	ElementName            string                                `cim:"ElementName"`
+	EndpointType           MSFTNetSecDeltaCollectionEndpointType `cim:"EndpointType"`
+	IPsecRuleDisplayName   string                                `cim:"IPsecRuleDisplayName"`
+	IPsecRuleName          string                                `cim:"IPsecRuleName"`
+	IPv4Addresses          []string                              `cim:"IPv4Addresses"`
+	IPv6Addresses          []string                              `cim:"IPv6Addresses"`
+	InstanceID             string                                `cim:"InstanceID"`
+	NameResolutionFailures []string                              `cim:"NameResolutionFailures"`
+	PolicyStore            string                                `cim:"PolicyStore"`
 }
 
 // MSFTNetSecuritySettingData is the MSFT_NetSecuritySettingData CIM class.
 type MSFTNetSecuritySettingData struct {
-	AllowIPsecThroughNAT                    uint16 `cim:"AllowIPsecThroughNAT"`
-	Caption                                 string `cim:"Caption"`
-	CertValidationLevel                     uint16 `cim:"CertValidationLevel"`
-	Description                             string `cim:"Description"`
-	ElementName                             string `cim:"ElementName"`
-	EnablePacketQueuing                     uint16 `cim:"EnablePacketQueuing"`
-	EnableStatefulFtp                       uint16 `cim:"EnableStatefulFtp"`
-	EnableStatefulPptp                      uint16 `cim:"EnableStatefulPptp"`
-	Exemptions                              uint32 `cim:"Exemptions"`
-	InstanceID                              string `cim:"InstanceID"`
-	KeyEncoding                             uint16 `cim:"KeyEncoding"`
-	MaxSAIdleTimeSeconds                    uint32 `cim:"MaxSAIdleTimeSeconds"`
-	Profile                                 uint16 `cim:"Profile"`
-	RemoteMachineTransportAuthorizationList string `cim:"RemoteMachineTransportAuthorizationList"`
-	RemoteMachineTunnelAuthorizationList    string `cim:"RemoteMachineTunnelAuthorizationList"`
-	RemoteUserTransportAuthorizationList    string `cim:"RemoteUserTransportAuthorizationList"`
-	RemoteUserTunnelAuthorizationList       string `cim:"RemoteUserTunnelAuthorizationList"`
-	RequireFullAuthSupport                  uint16 `cim:"RequireFullAuthSupport"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                                 string                                           `cim:"__PATH"`
+	AllowIPsecThroughNAT                    MSFTNetSecuritySettingDataAllowIPsecThroughNAT   `cim:"AllowIPsecThroughNAT"`
+	Caption                                 string                                           `cim:"Caption"`
+	CertValidationLevel                     MSFTNetSecuritySettingDataCertValidationLevel    `cim:"CertValidationLevel"`
+	Description                             string                                           `cim:"Description"`
+	ElementName                             string                                           `cim:"ElementName"`
+	EnablePacketQueuing                     MSFTNetSecuritySettingDataEnablePacketQueuing    `cim:"EnablePacketQueuing"`
+	EnableStatefulFtp                       MSFTNetSecuritySettingDataEnableStatefulFtp      `cim:"EnableStatefulFtp"`
+	EnableStatefulPptp                      MSFTNetSecuritySettingDataEnableStatefulPptp     `cim:"EnableStatefulPptp"`
+	Exemptions                              MSFTNetSecuritySettingDataExemptions             `cim:"Exemptions"`
+	InstanceID                              string                                           `cim:"InstanceID"`
+	KeyEncoding                             MSFTNetSecuritySettingDataKeyEncoding            `cim:"KeyEncoding"`
+	MaxSAIdleTimeSeconds                    uint32                                           `cim:"MaxSAIdleTimeSeconds"`
+	Profile                                 MSFTNetSecuritySettingDataProfile                `cim:"Profile"`
+	RemoteMachineTransportAuthorizationList string                                           `cim:"RemoteMachineTransportAuthorizationList"`
+	RemoteMachineTunnelAuthorizationList    string                                           `cim:"RemoteMachineTunnelAuthorizationList"`
+	RemoteUserTransportAuthorizationList    string                                           `cim:"RemoteUserTransportAuthorizationList"`
+	RemoteUserTunnelAuthorizationList       string                                           `cim:"RemoteUserTunnelAuthorizationList"`
+	RequireFullAuthSupport                  MSFTNetSecuritySettingDataRequireFullAuthSupport `cim:"RequireFullAuthSupport"`
 }
 
 // MSFTNetServiceFilter is the MSFT_NetServiceFilter CIM class.
 type MSFTNetServiceFilter struct {
-	Caption                 string   `cim:"Caption"`
-	CommunicationStatus     uint16   `cim:"CommunicationStatus"`
-	CreationClassName       string   `cim:"CreationClassName"`
-	Description             string   `cim:"Description"`
-	DetailedStatus          uint16   `cim:"DetailedStatus"`
-	ElementName             string   `cim:"ElementName"`
-	HealthState             uint16   `cim:"HealthState"`
-	InstallDate             string   `cim:"InstallDate"`
-	InstanceID              string   `cim:"InstanceID"`
-	IsNegated               bool     `cim:"IsNegated"`
-	Name                    string   `cim:"Name"`
-	OperatingStatus         uint16   `cim:"OperatingStatus"`
-	OperationalStatus       []uint16 `cim:"OperationalStatus"`
-	PrimaryStatus           uint16   `cim:"PrimaryStatus"`
-	ServiceName             string   `cim:"ServiceName"`
-	Status                  string   `cim:"Status"`
-	StatusDescriptions      []string `cim:"StatusDescriptions"`
-	SystemCreationClassName string   `cim:"SystemCreationClassName"`
-	SystemName              string   `cim:"SystemName"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                 string                                  `cim:"__PATH"`
+	Caption                 string                                  `cim:"Caption"`
+	CommunicationStatus     MSFTNetServiceFilterCommunicationStatus `cim:"CommunicationStatus"`
+	CreationClassName       string                                  `cim:"CreationClassName"`
+	Description             string                                  `cim:"Description"`
+	DetailedStatus          MSFTNetServiceFilterDetailedStatus      `cim:"DetailedStatus"`
+	ElementName             string                                  `cim:"ElementName"`
+	HealthState             MSFTNetServiceFilterHealthState         `cim:"HealthState"`
+	InstallDate             string                                  `cim:"InstallDate"`
+	InstanceID              string                                  `cim:"InstanceID"`
+	IsNegated               bool                                    `cim:"IsNegated"`
+	Name                    string                                  `cim:"Name"`
+	OperatingStatus         MSFTNetServiceFilterOperatingStatus     `cim:"OperatingStatus"`
+	OperationalStatus       []uint16                                `cim:"OperationalStatus"`
+	PrimaryStatus           MSFTNetServiceFilterPrimaryStatus       `cim:"PrimaryStatus"`
+	ServiceName             string                                  `cim:"ServiceName"`
+	Status                  MSFTNetServiceFilterStatus              `cim:"Status"`
+	StatusDescriptions      []string                                `cim:"StatusDescriptions"`
+	SystemCreationClassName string                                  `cim:"SystemCreationClassName"`
+	SystemName              string                                  `cim:"SystemName"`
 }
 
 // MSFTNetSettingData is the MSFT_NetSettingData CIM class.
 type MSFTNetSettingData struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath     string `cim:"__PATH"`
 	Caption     string `cim:"Caption"`
 	Description string `cim:"Description"`
 	ElementName string `cim:"ElementName"`
@@ -5405,6 +6589,10 @@ type MSFTNetSettingData struct {
 
 // MSFTNetSwitchTeam is the MSFT_NetSwitchTeam CIM class.
 type MSFTNetSwitchTeam struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath     string `cim:"__PATH"`
 	Caption     string `cim:"Caption"`
 	Description string `cim:"Description"`
 	ElementName string `cim:"ElementName"`
@@ -5414,243 +6602,287 @@ type MSFTNetSwitchTeam struct {
 
 // MSFTNetSwitchTeamMember is the MSFT_NetSwitchTeamMember CIM class.
 type MSFTNetSwitchTeamMember struct {
-	AvailableRequestedStates []uint16 `cim:"AvailableRequestedStates"`
-	Caption                  string   `cim:"Caption"`
-	CommunicationStatus      uint16   `cim:"CommunicationStatus"`
-	Description              string   `cim:"Description"`
-	DetailedStatus           uint16   `cim:"DetailedStatus"`
-	ElementName              string   `cim:"ElementName"`
-	EnabledDefault           uint16   `cim:"EnabledDefault"`
-	EnabledState             uint16   `cim:"EnabledState"`
-	FailureReason            uint32   `cim:"FailureReason"`
-	HealthState              uint16   `cim:"HealthState"`
-	InstallDate              string   `cim:"InstallDate"`
-	InstanceID               string   `cim:"InstanceID"`
-	InterfaceDescription     string   `cim:"InterfaceDescription"`
-	Name                     string   `cim:"Name"`
-	NumberOfFailures         uint32   `cim:"NumberOfFailures"`
-	OperatingStatus          uint16   `cim:"OperatingStatus"`
-	OperationalStatus        []uint16 `cim:"OperationalStatus"`
-	OtherEnabledState        string   `cim:"OtherEnabledState"`
-	PrimaryStatus            uint16   `cim:"PrimaryStatus"`
-	ReceiveLinkSpeed         uint64   `cim:"ReceiveLinkSpeed"`
-	RequestedState           uint16   `cim:"RequestedState"`
-	Status                   string   `cim:"Status"`
-	StatusDescriptions       []string `cim:"StatusDescriptions"`
-	Team                     string   `cim:"Team"`
-	TimeOfLastStateChange    string   `cim:"TimeOfLastStateChange"`
-	TransitioningToState     uint16   `cim:"TransitioningToState"`
-	TransmitLinkSpeed        uint64   `cim:"TransmitLinkSpeed"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                  string                                      `cim:"__PATH"`
+	AvailableRequestedStates []uint16                                    `cim:"AvailableRequestedStates"`
+	Caption                  string                                      `cim:"Caption"`
+	CommunicationStatus      MSFTNetSwitchTeamMemberCommunicationStatus  `cim:"CommunicationStatus"`
+	Description              string                                      `cim:"Description"`
+	DetailedStatus           MSFTNetSwitchTeamMemberDetailedStatus       `cim:"DetailedStatus"`
+	ElementName              string                                      `cim:"ElementName"`
+	EnabledDefault           MSFTNetSwitchTeamMemberEnabledDefault       `cim:"EnabledDefault"`
+	EnabledState             MSFTNetSwitchTeamMemberEnabledState         `cim:"EnabledState"`
+	FailureReason            uint32                                      `cim:"FailureReason"`
+	HealthState              MSFTNetSwitchTeamMemberHealthState          `cim:"HealthState"`
+	InstallDate              string                                      `cim:"InstallDate"`
+	InstanceID               string                                      `cim:"InstanceID"`
+	InterfaceDescription     string                                      `cim:"InterfaceDescription"`
+	Name                     string                                      `cim:"Name"`
+	NumberOfFailures         uint32                                      `cim:"NumberOfFailures"`
+	OperatingStatus          MSFTNetSwitchTeamMemberOperatingStatus      `cim:"OperatingStatus"`
+	OperationalStatus        []uint16                                    `cim:"OperationalStatus"`
+	OtherEnabledState        string                                      `cim:"OtherEnabledState"`
+	PrimaryStatus            MSFTNetSwitchTeamMemberPrimaryStatus        `cim:"PrimaryStatus"`
+	ReceiveLinkSpeed         uint64                                      `cim:"ReceiveLinkSpeed"`
+	RequestedState           MSFTNetSwitchTeamMemberRequestedState       `cim:"RequestedState"`
+	Status                   MSFTNetSwitchTeamMemberStatus               `cim:"Status"`
+	StatusDescriptions       []string                                    `cim:"StatusDescriptions"`
+	Team                     string                                      `cim:"Team"`
+	TimeOfLastStateChange    string                                      `cim:"TimeOfLastStateChange"`
+	TransitioningToState     MSFTNetSwitchTeamMemberTransitioningToState `cim:"TransitioningToState"`
+	TransmitLinkSpeed        uint64                                      `cim:"TransmitLinkSpeed"`
 }
 
 // MSFTNetSwitchTeamTeamMember is the MSFT_NetSwitchTeam_TeamMember CIM class.
 type MSFTNetSwitchTeamTeamMember struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath         string `cim:"__PATH"`
 	MemberOfTheTeam string `cim:"MemberOfTheTeam"`
 	TeamOfTheMember string `cim:"TeamOfTheMember"`
 }
 
 // MSFTNetTCPConnection is the MSFT_NetTCPConnection CIM class.
 type MSFTNetTCPConnection struct {
-	AggregationBehavior      uint16   `cim:"AggregationBehavior"`
-	AppliedSetting           uint8    `cim:"AppliedSetting"`
-	AvailableRequestedStates []uint16 `cim:"AvailableRequestedStates"`
-	Caption                  string   `cim:"Caption"`
-	CommunicationStatus      uint16   `cim:"CommunicationStatus"`
-	CreationTime             string   `cim:"CreationTime"`
-	Description              string   `cim:"Description"`
-	DetailedStatus           uint16   `cim:"DetailedStatus"`
-	Directionality           uint16   `cim:"Directionality"`
-	ElementName              string   `cim:"ElementName"`
-	EnabledDefault           uint16   `cim:"EnabledDefault"`
-	EnabledState             uint16   `cim:"EnabledState"`
-	HealthState              uint16   `cim:"HealthState"`
-	InstallDate              string   `cim:"InstallDate"`
-	InstanceID               string   `cim:"InstanceID"`
-	LocalAddress             string   `cim:"LocalAddress"`
-	LocalPort                uint16   `cim:"LocalPort"`
-	Name                     string   `cim:"Name"`
-	OffloadState             uint8    `cim:"OffloadState"`
-	OperatingStatus          uint16   `cim:"OperatingStatus"`
-	OperationalStatus        []uint16 `cim:"OperationalStatus"`
-	OtherEnabledState        string   `cim:"OtherEnabledState"`
-	OwningProcess            uint32   `cim:"OwningProcess"`
-	PrimaryStatus            uint16   `cim:"PrimaryStatus"`
-	RemoteAddress            string   `cim:"RemoteAddress"`
-	RemotePort               uint16   `cim:"RemotePort"`
-	RequestedState           uint16   `cim:"RequestedState"`
-	State                    uint8    `cim:"State"`
-	Status                   string   `cim:"Status"`
-	StatusDescriptions       []string `cim:"StatusDescriptions"`
-	TimeOfLastStateChange    string   `cim:"TimeOfLastStateChange"`
-	TransitioningToState     uint16   `cim:"TransitioningToState"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                  string                                   `cim:"__PATH"`
+	AggregationBehavior      MSFTNetTCPConnectionAggregationBehavior  `cim:"AggregationBehavior"`
+	AppliedSetting           MSFTNetTCPConnectionAppliedSetting       `cim:"AppliedSetting"`
+	AvailableRequestedStates []uint16                                 `cim:"AvailableRequestedStates"`
+	Caption                  string                                   `cim:"Caption"`
+	CommunicationStatus      MSFTNetTCPConnectionCommunicationStatus  `cim:"CommunicationStatus"`
+	CreationTime             string                                   `cim:"CreationTime"`
+	Description              string                                   `cim:"Description"`
+	DetailedStatus           MSFTNetTCPConnectionDetailedStatus       `cim:"DetailedStatus"`
+	Directionality           MSFTNetTCPConnectionDirectionality       `cim:"Directionality"`
+	ElementName              string                                   `cim:"ElementName"`
+	EnabledDefault           MSFTNetTCPConnectionEnabledDefault       `cim:"EnabledDefault"`
+	EnabledState             MSFTNetTCPConnectionEnabledState         `cim:"EnabledState"`
+	HealthState              MSFTNetTCPConnectionHealthState          `cim:"HealthState"`
+	InstallDate              string                                   `cim:"InstallDate"`
+	InstanceID               string                                   `cim:"InstanceID"`
+	LocalAddress             string                                   `cim:"LocalAddress"`
+	LocalPort                uint16                                   `cim:"LocalPort"`
+	Name                     string                                   `cim:"Name"`
+	OffloadState             MSFTNetTCPConnectionOffloadState         `cim:"OffloadState"`
+	OperatingStatus          MSFTNetTCPConnectionOperatingStatus      `cim:"OperatingStatus"`
+	OperationalStatus        []uint16                                 `cim:"OperationalStatus"`
+	OtherEnabledState        string                                   `cim:"OtherEnabledState"`
+	OwningProcess            uint32                                   `cim:"OwningProcess"`
+	PrimaryStatus            MSFTNetTCPConnectionPrimaryStatus        `cim:"PrimaryStatus"`
+	RemoteAddress            string                                   `cim:"RemoteAddress"`
+	RemotePort               uint16                                   `cim:"RemotePort"`
+	RequestedState           MSFTNetTCPConnectionRequestedState       `cim:"RequestedState"`
+	State                    MSFTNetTCPConnectionState                `cim:"State"`
+	Status                   MSFTNetTCPConnectionStatus               `cim:"Status"`
+	StatusDescriptions       []string                                 `cim:"StatusDescriptions"`
+	TimeOfLastStateChange    string                                   `cim:"TimeOfLastStateChange"`
+	TransitioningToState     MSFTNetTCPConnectionTransitioningToState `cim:"TransitioningToState"`
 }
 
 // MSFTNetTCPSetting is the MSFT_NetTCPSetting CIM class.
 type MSFTNetTCPSetting struct {
-	AutoReusePortRangeNumberOfPorts uint16   `cim:"AutoReusePortRangeNumberOfPorts"`
-	AutoReusePortRangeStartPort     uint16   `cim:"AutoReusePortRangeStartPort"`
-	AutoTuningLevelEffective        uint8    `cim:"AutoTuningLevelEffective"`
-	AutoTuningLevelGroupPolicy      uint8    `cim:"AutoTuningLevelGroupPolicy"`
-	AutoTuningLevelLocal            uint8    `cim:"AutoTuningLevelLocal"`
-	AutomaticUseCustom              uint8    `cim:"AutomaticUseCustom"`
-	Caption                         string   `cim:"Caption"`
-	CommonName                      string   `cim:"CommonName"`
-	CongestionProvider              uint8    `cim:"CongestionProvider"`
-	CreationClassName               string   `cim:"CreationClassName"`
-	CwndRestart                     uint8    `cim:"CwndRestart"`
-	DelayedAckFrequency             uint8    `cim:"DelayedAckFrequency"`
-	DelayedAckTimeout               uint32   `cim:"DelayedAckTimeout"`
-	Description                     string   `cim:"Description"`
-	DoActionLogging                 bool     `cim:"DoActionLogging"`
-	DynamicPortRangeNumberOfPorts   uint16   `cim:"DynamicPortRangeNumberOfPorts"`
-	DynamicPortRangeStartPort       uint16   `cim:"DynamicPortRangeStartPort"`
-	EcnCapability                   uint8    `cim:"EcnCapability"`
-	ElementName                     string   `cim:"ElementName"`
-	ForceWS                         uint8    `cim:"ForceWS"`
-	InitialCongestionWindow         uint32   `cim:"InitialCongestionWindow"`
-	InitialRto                      uint32   `cim:"InitialRto"`
-	InstanceID                      string   `cim:"InstanceID"`
-	MaxSynRetransmissions           uint8    `cim:"MaxSynRetransmissions"`
-	MemoryPressureProtection        uint8    `cim:"MemoryPressureProtection"`
-	MinRto                          uint32   `cim:"MinRto"`
-	NonSackRttResiliency            uint8    `cim:"NonSackRttResiliency"`
-	PolicyActionName                string   `cim:"PolicyActionName"`
-	PolicyKeywords                  []string `cim:"PolicyKeywords"`
-	PolicyRuleCreationClassName     string   `cim:"PolicyRuleCreationClassName"`
-	PolicyRuleName                  string   `cim:"PolicyRuleName"`
-	ScalingHeuristics               uint8    `cim:"ScalingHeuristics"`
-	SettingName                     string   `cim:"SettingName"`
-	SystemCreationClassName         string   `cim:"SystemCreationClassName"`
-	SystemName                      string   `cim:"SystemName"`
-	Timestamps                      uint8    `cim:"Timestamps"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                         string                                      `cim:"__PATH"`
+	AutoReusePortRangeNumberOfPorts uint16                                      `cim:"AutoReusePortRangeNumberOfPorts"`
+	AutoReusePortRangeStartPort     uint16                                      `cim:"AutoReusePortRangeStartPort"`
+	AutoTuningLevelEffective        MSFTNetTCPSettingAutoTuningLevelEffective   `cim:"AutoTuningLevelEffective"`
+	AutoTuningLevelGroupPolicy      MSFTNetTCPSettingAutoTuningLevelGroupPolicy `cim:"AutoTuningLevelGroupPolicy"`
+	AutoTuningLevelLocal            MSFTNetTCPSettingAutoTuningLevelLocal       `cim:"AutoTuningLevelLocal"`
+	AutomaticUseCustom              MSFTNetTCPSettingAutomaticUseCustom         `cim:"AutomaticUseCustom"`
+	Caption                         string                                      `cim:"Caption"`
+	CommonName                      string                                      `cim:"CommonName"`
+	CongestionProvider              MSFTNetTCPSettingCongestionProvider         `cim:"CongestionProvider"`
+	CreationClassName               string                                      `cim:"CreationClassName"`
+	CwndRestart                     MSFTNetTCPSettingCwndRestart                `cim:"CwndRestart"`
+	DelayedAckFrequency             uint8                                       `cim:"DelayedAckFrequency"`
+	DelayedAckTimeout               uint32                                      `cim:"DelayedAckTimeout"`
+	Description                     string                                      `cim:"Description"`
+	DoActionLogging                 bool                                        `cim:"DoActionLogging"`
+	DynamicPortRangeNumberOfPorts   uint16                                      `cim:"DynamicPortRangeNumberOfPorts"`
+	DynamicPortRangeStartPort       uint16                                      `cim:"DynamicPortRangeStartPort"`
+	EcnCapability                   MSFTNetTCPSettingEcnCapability              `cim:"EcnCapability"`
+	ElementName                     string                                      `cim:"ElementName"`
+	ForceWS                         MSFTNetTCPSettingForceWS                    `cim:"ForceWS"`
+	InitialCongestionWindow         uint32                                      `cim:"InitialCongestionWindow"`
+	InitialRto                      uint32                                      `cim:"InitialRto"`
+	InstanceID                      string                                      `cim:"InstanceID"`
+	MaxSynRetransmissions           uint8                                       `cim:"MaxSynRetransmissions"`
+	MemoryPressureProtection        MSFTNetTCPSettingMemoryPressureProtection   `cim:"MemoryPressureProtection"`
+	MinRto                          uint32                                      `cim:"MinRto"`
+	NonSackRttResiliency            MSFTNetTCPSettingNonSackRttResiliency       `cim:"NonSackRttResiliency"`
+	PolicyActionName                string                                      `cim:"PolicyActionName"`
+	PolicyKeywords                  []string                                    `cim:"PolicyKeywords"`
+	PolicyRuleCreationClassName     string                                      `cim:"PolicyRuleCreationClassName"`
+	PolicyRuleName                  string                                      `cim:"PolicyRuleName"`
+	ScalingHeuristics               MSFTNetTCPSettingScalingHeuristics          `cim:"ScalingHeuristics"`
+	SettingName                     string                                      `cim:"SettingName"`
+	SystemCreationClassName         string                                      `cim:"SystemCreationClassName"`
+	SystemName                      string                                      `cim:"SystemName"`
+	Timestamps                      MSFTNetTCPSettingTimestamps                 `cim:"Timestamps"`
 }
 
 // MSFTNetTeredoConfiguration is the MSFT_NetTeredoConfiguration CIM class.
 type MSFTNetTeredoConfiguration struct {
-	Caption          string `cim:"Caption"`
-	ClientPort       uint32 `cim:"ClientPort"`
-	DefaultQualified bool   `cim:"DefaultQualified"`
-	Description      string `cim:"Description"`
-	ElementName      string `cim:"ElementName"`
-	InstanceID       string `cim:"InstanceID"`
-	PolicyStore      string `cim:"PolicyStore"`
-	RefreshInterval  uint32 `cim:"RefreshInterval"`
-	ServerName       string `cim:"ServerName"`
-	ServerShunt      bool   `cim:"ServerShunt"`
-	ServerVirtualIP  string `cim:"ServerVirtualIP"`
-	Type             uint32 `cim:"Type"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath          string                         `cim:"__PATH"`
+	Caption          string                         `cim:"Caption"`
+	ClientPort       uint32                         `cim:"ClientPort"`
+	DefaultQualified bool                           `cim:"DefaultQualified"`
+	Description      string                         `cim:"Description"`
+	ElementName      string                         `cim:"ElementName"`
+	InstanceID       string                         `cim:"InstanceID"`
+	PolicyStore      string                         `cim:"PolicyStore"`
+	RefreshInterval  uint32                         `cim:"RefreshInterval"`
+	ServerName       string                         `cim:"ServerName"`
+	ServerShunt      bool                           `cim:"ServerShunt"`
+	ServerVirtualIP  string                         `cim:"ServerVirtualIP"`
+	Type             MSFTNetTeredoConfigurationType `cim:"Type"`
 }
 
 // MSFTNetTeredoState is the MSFT_NetTeredoState CIM class.
 type MSFTNetTeredoState struct {
-	Error          string `cim:"Error"`
-	IsCurrent      uint16 `cim:"IsCurrent"`
-	IsDefault      uint16 `cim:"IsDefault"`
-	IsNext         uint16 `cim:"IsNext"`
-	ManagedElement string `cim:"ManagedElement"`
-	SettingData    string `cim:"SettingData"`
-	State          string `cim:"State"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string                      `cim:"__PATH"`
+	Error          string                      `cim:"Error"`
+	IsCurrent      MSFTNetTeredoStateIsCurrent `cim:"IsCurrent"`
+	IsDefault      MSFTNetTeredoStateIsDefault `cim:"IsDefault"`
+	IsNext         MSFTNetTeredoStateIsNext    `cim:"IsNext"`
+	ManagedElement string                      `cim:"ManagedElement"`
+	SettingData    string                      `cim:"SettingData"`
+	State          string                      `cim:"State"`
 }
 
 // MSFTNetTransportConnection is the MSFT_NetTransportConnection CIM class.
 type MSFTNetTransportConnection struct {
-	AggregationBehavior      uint16   `cim:"AggregationBehavior"`
-	AvailableRequestedStates []uint16 `cim:"AvailableRequestedStates"`
-	Caption                  string   `cim:"Caption"`
-	CommunicationStatus      uint16   `cim:"CommunicationStatus"`
-	CreationTime             string   `cim:"CreationTime"`
-	Description              string   `cim:"Description"`
-	DetailedStatus           uint16   `cim:"DetailedStatus"`
-	Directionality           uint16   `cim:"Directionality"`
-	ElementName              string   `cim:"ElementName"`
-	EnabledDefault           uint16   `cim:"EnabledDefault"`
-	EnabledState             uint16   `cim:"EnabledState"`
-	HealthState              uint16   `cim:"HealthState"`
-	InstallDate              string   `cim:"InstallDate"`
-	InstanceID               string   `cim:"InstanceID"`
-	LocalAddress             string   `cim:"LocalAddress"`
-	LocalPort                uint16   `cim:"LocalPort"`
-	Name                     string   `cim:"Name"`
-	OperatingStatus          uint16   `cim:"OperatingStatus"`
-	OperationalStatus        []uint16 `cim:"OperationalStatus"`
-	OtherEnabledState        string   `cim:"OtherEnabledState"`
-	OwningProcess            uint32   `cim:"OwningProcess"`
-	PrimaryStatus            uint16   `cim:"PrimaryStatus"`
-	RequestedState           uint16   `cim:"RequestedState"`
-	Status                   string   `cim:"Status"`
-	StatusDescriptions       []string `cim:"StatusDescriptions"`
-	TimeOfLastStateChange    string   `cim:"TimeOfLastStateChange"`
-	TransitioningToState     uint16   `cim:"TransitioningToState"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                  string                                         `cim:"__PATH"`
+	AggregationBehavior      MSFTNetTransportConnectionAggregationBehavior  `cim:"AggregationBehavior"`
+	AvailableRequestedStates []uint16                                       `cim:"AvailableRequestedStates"`
+	Caption                  string                                         `cim:"Caption"`
+	CommunicationStatus      MSFTNetTransportConnectionCommunicationStatus  `cim:"CommunicationStatus"`
+	CreationTime             string                                         `cim:"CreationTime"`
+	Description              string                                         `cim:"Description"`
+	DetailedStatus           MSFTNetTransportConnectionDetailedStatus       `cim:"DetailedStatus"`
+	Directionality           MSFTNetTransportConnectionDirectionality       `cim:"Directionality"`
+	ElementName              string                                         `cim:"ElementName"`
+	EnabledDefault           MSFTNetTransportConnectionEnabledDefault       `cim:"EnabledDefault"`
+	EnabledState             MSFTNetTransportConnectionEnabledState         `cim:"EnabledState"`
+	HealthState              MSFTNetTransportConnectionHealthState          `cim:"HealthState"`
+	InstallDate              string                                         `cim:"InstallDate"`
+	InstanceID               string                                         `cim:"InstanceID"`
+	LocalAddress             string                                         `cim:"LocalAddress"`
+	LocalPort                uint16                                         `cim:"LocalPort"`
+	Name                     string                                         `cim:"Name"`
+	OperatingStatus          MSFTNetTransportConnectionOperatingStatus      `cim:"OperatingStatus"`
+	OperationalStatus        []uint16                                       `cim:"OperationalStatus"`
+	OtherEnabledState        string                                         `cim:"OtherEnabledState"`
+	OwningProcess            uint32                                         `cim:"OwningProcess"`
+	PrimaryStatus            MSFTNetTransportConnectionPrimaryStatus        `cim:"PrimaryStatus"`
+	RequestedState           MSFTNetTransportConnectionRequestedState       `cim:"RequestedState"`
+	Status                   MSFTNetTransportConnectionStatus               `cim:"Status"`
+	StatusDescriptions       []string                                       `cim:"StatusDescriptions"`
+	TimeOfLastStateChange    string                                         `cim:"TimeOfLastStateChange"`
+	TransitioningToState     MSFTNetTransportConnectionTransitioningToState `cim:"TransitioningToState"`
 }
 
 // MSFTNetTransportFilter is the MSFT_NetTransportFilter CIM class.
 type MSFTNetTransportFilter struct {
-	Caption                 string   `cim:"Caption"`
-	CommunicationStatus     uint16   `cim:"CommunicationStatus"`
-	CreationClassName       string   `cim:"CreationClassName"`
-	Description             string   `cim:"Description"`
-	DestinationPrefix       string   `cim:"DestinationPrefix"`
-	DetailedStatus          uint16   `cim:"DetailedStatus"`
-	ElementName             string   `cim:"ElementName"`
-	HealthState             uint16   `cim:"HealthState"`
-	InstallDate             string   `cim:"InstallDate"`
-	InstanceID              string   `cim:"InstanceID"`
-	IsNegated               bool     `cim:"IsNegated"`
-	LocalPortEnd            uint16   `cim:"LocalPortEnd"`
-	LocalPortStart          uint16   `cim:"LocalPortStart"`
-	Name                    string   `cim:"Name"`
-	OperatingStatus         uint16   `cim:"OperatingStatus"`
-	OperationalStatus       []uint16 `cim:"OperationalStatus"`
-	PrimaryStatus           uint16   `cim:"PrimaryStatus"`
-	Protocol                uint16   `cim:"Protocol"`
-	RemotePortEnd           uint16   `cim:"RemotePortEnd"`
-	RemotePortStart         uint16   `cim:"RemotePortStart"`
-	SettingName             string   `cim:"SettingName"`
-	Status                  string   `cim:"Status"`
-	StatusDescriptions      []string `cim:"StatusDescriptions"`
-	SystemCreationClassName string   `cim:"SystemCreationClassName"`
-	SystemName              string   `cim:"SystemName"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                 string                                    `cim:"__PATH"`
+	Caption                 string                                    `cim:"Caption"`
+	CommunicationStatus     MSFTNetTransportFilterCommunicationStatus `cim:"CommunicationStatus"`
+	CreationClassName       string                                    `cim:"CreationClassName"`
+	Description             string                                    `cim:"Description"`
+	DestinationPrefix       string                                    `cim:"DestinationPrefix"`
+	DetailedStatus          MSFTNetTransportFilterDetailedStatus      `cim:"DetailedStatus"`
+	ElementName             string                                    `cim:"ElementName"`
+	HealthState             MSFTNetTransportFilterHealthState         `cim:"HealthState"`
+	InstallDate             string                                    `cim:"InstallDate"`
+	InstanceID              string                                    `cim:"InstanceID"`
+	IsNegated               bool                                      `cim:"IsNegated"`
+	LocalPortEnd            uint16                                    `cim:"LocalPortEnd"`
+	LocalPortStart          uint16                                    `cim:"LocalPortStart"`
+	Name                    string                                    `cim:"Name"`
+	OperatingStatus         MSFTNetTransportFilterOperatingStatus     `cim:"OperatingStatus"`
+	OperationalStatus       []uint16                                  `cim:"OperationalStatus"`
+	PrimaryStatus           MSFTNetTransportFilterPrimaryStatus       `cim:"PrimaryStatus"`
+	Protocol                MSFTNetTransportFilterProtocol            `cim:"Protocol"`
+	RemotePortEnd           uint16                                    `cim:"RemotePortEnd"`
+	RemotePortStart         uint16                                    `cim:"RemotePortStart"`
+	SettingName             string                                    `cim:"SettingName"`
+	Status                  MSFTNetTransportFilterStatus              `cim:"Status"`
+	StatusDescriptions      []string                                  `cim:"StatusDescriptions"`
+	SystemCreationClassName string                                    `cim:"SystemCreationClassName"`
+	SystemName              string                                    `cim:"SystemName"`
 }
 
 // MSFTNetTransportFilterTCPSetting is the MSFT_NetTransportFilterTCPSetting CIM class.
 type MSFTNetTransportFilterTCPSetting struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath    string `cim:"__PATH"`
 	Antecedent string `cim:"Antecedent"`
 	Dependent  string `cim:"Dependent"`
 }
 
 // MSFTNetUDPEndpoint is the MSFT_NetUDPEndpoint CIM class.
 type MSFTNetUDPEndpoint struct {
-	AggregationBehavior      uint16   `cim:"AggregationBehavior"`
-	AvailableRequestedStates []uint16 `cim:"AvailableRequestedStates"`
-	Caption                  string   `cim:"Caption"`
-	CommunicationStatus      uint16   `cim:"CommunicationStatus"`
-	CreationTime             string   `cim:"CreationTime"`
-	Description              string   `cim:"Description"`
-	DetailedStatus           uint16   `cim:"DetailedStatus"`
-	Directionality           uint16   `cim:"Directionality"`
-	ElementName              string   `cim:"ElementName"`
-	EnabledDefault           uint16   `cim:"EnabledDefault"`
-	EnabledState             uint16   `cim:"EnabledState"`
-	HealthState              uint16   `cim:"HealthState"`
-	InstallDate              string   `cim:"InstallDate"`
-	InstanceID               string   `cim:"InstanceID"`
-	LocalAddress             string   `cim:"LocalAddress"`
-	LocalPort                uint16   `cim:"LocalPort"`
-	Name                     string   `cim:"Name"`
-	OperatingStatus          uint16   `cim:"OperatingStatus"`
-	OperationalStatus        []uint16 `cim:"OperationalStatus"`
-	OtherEnabledState        string   `cim:"OtherEnabledState"`
-	OwningProcess            uint32   `cim:"OwningProcess"`
-	PrimaryStatus            uint16   `cim:"PrimaryStatus"`
-	RequestedState           uint16   `cim:"RequestedState"`
-	Status                   string   `cim:"Status"`
-	StatusDescriptions       []string `cim:"StatusDescriptions"`
-	TimeOfLastStateChange    string   `cim:"TimeOfLastStateChange"`
-	TransitioningToState     uint16   `cim:"TransitioningToState"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                  string                                 `cim:"__PATH"`
+	AggregationBehavior      MSFTNetUDPEndpointAggregationBehavior  `cim:"AggregationBehavior"`
+	AvailableRequestedStates []uint16                               `cim:"AvailableRequestedStates"`
+	Caption                  string                                 `cim:"Caption"`
+	CommunicationStatus      MSFTNetUDPEndpointCommunicationStatus  `cim:"CommunicationStatus"`
+	CreationTime             string                                 `cim:"CreationTime"`
+	Description              string                                 `cim:"Description"`
+	DetailedStatus           MSFTNetUDPEndpointDetailedStatus       `cim:"DetailedStatus"`
+	Directionality           MSFTNetUDPEndpointDirectionality       `cim:"Directionality"`
+	ElementName              string                                 `cim:"ElementName"`
+	EnabledDefault           MSFTNetUDPEndpointEnabledDefault       `cim:"EnabledDefault"`
+	EnabledState             MSFTNetUDPEndpointEnabledState         `cim:"EnabledState"`
+	HealthState              MSFTNetUDPEndpointHealthState          `cim:"HealthState"`
+	InstallDate              string                                 `cim:"InstallDate"`
+	InstanceID               string                                 `cim:"InstanceID"`
+	LocalAddress             string                                 `cim:"LocalAddress"`
+	LocalPort                uint16                                 `cim:"LocalPort"`
+	Name                     string                                 `cim:"Name"`
+	OperatingStatus          MSFTNetUDPEndpointOperatingStatus      `cim:"OperatingStatus"`
+	OperationalStatus        []uint16                               `cim:"OperationalStatus"`
+	OtherEnabledState        string                                 `cim:"OtherEnabledState"`
+	OwningProcess            uint32                                 `cim:"OwningProcess"`
+	PrimaryStatus            MSFTNetUDPEndpointPrimaryStatus        `cim:"PrimaryStatus"`
+	RequestedState           MSFTNetUDPEndpointRequestedState       `cim:"RequestedState"`
+	Status                   MSFTNetUDPEndpointStatus               `cim:"Status"`
+	StatusDescriptions       []string                               `cim:"StatusDescriptions"`
+	TimeOfLastStateChange    string                                 `cim:"TimeOfLastStateChange"`
+	TransitioningToState     MSFTNetUDPEndpointTransitioningToState `cim:"TransitioningToState"`
 }
 
 // MSFTNetUDPSetting is the MSFT_NetUDPSetting CIM class.
 type MSFTNetUDPSetting struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                       string   `cim:"__PATH"`
 	Caption                       string   `cim:"Caption"`
 	CommonName                    string   `cim:"CommonName"`
 	CreationClassName             string   `cim:"CreationClassName"`
@@ -5670,81 +6902,93 @@ type MSFTNetUDPSetting struct {
 
 // MSFTPrintJob is the MSFT_PrintJob CIM class.
 type MSFTPrintJob struct {
-	Caption             string   `cim:"Caption"`
-	CommunicationStatus uint16   `cim:"CommunicationStatus"`
-	ComputerName        string   `cim:"ComputerName"`
-	Datatype            string   `cim:"Datatype"`
-	Description         string   `cim:"Description"`
-	DetailedStatus      uint16   `cim:"DetailedStatus"`
-	DocumentName        string   `cim:"DocumentName"`
-	ElementName         string   `cim:"ElementName"`
-	HealthState         uint16   `cim:"HealthState"`
-	Id                  uint32   `cim:"Id"`
-	InstallDate         string   `cim:"InstallDate"`
-	InstanceID          string   `cim:"InstanceID"`
-	JobStatus           uint32   `cim:"JobStatus"`
-	JobTime             uint32   `cim:"JobTime"`
-	Name                string   `cim:"Name"`
-	OperatingStatus     uint16   `cim:"OperatingStatus"`
-	OperationalStatus   []uint16 `cim:"OperationalStatus"`
-	PagesPrinted        uint32   `cim:"PagesPrinted"`
-	Position            uint32   `cim:"Position"`
-	PrimaryStatus       uint16   `cim:"PrimaryStatus"`
-	PrinterName         string   `cim:"PrinterName"`
-	Priority            uint32   `cim:"Priority"`
-	Size                uint32   `cim:"Size"`
-	Status              string   `cim:"Status"`
-	StatusDescriptions  []string `cim:"StatusDescriptions"`
-	SubmittedTime       string   `cim:"SubmittedTime"`
-	TotalPages          uint32   `cim:"TotalPages"`
-	UserName            string   `cim:"UserName"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath             string                          `cim:"__PATH"`
+	Caption             string                          `cim:"Caption"`
+	CommunicationStatus MSFTPrintJobCommunicationStatus `cim:"CommunicationStatus"`
+	ComputerName        string                          `cim:"ComputerName"`
+	Datatype            string                          `cim:"Datatype"`
+	Description         string                          `cim:"Description"`
+	DetailedStatus      MSFTPrintJobDetailedStatus      `cim:"DetailedStatus"`
+	DocumentName        string                          `cim:"DocumentName"`
+	ElementName         string                          `cim:"ElementName"`
+	HealthState         MSFTPrintJobHealthState         `cim:"HealthState"`
+	Id                  uint32                          `cim:"Id"`
+	InstallDate         string                          `cim:"InstallDate"`
+	InstanceID          string                          `cim:"InstanceID"`
+	JobStatus           MSFTPrintJobJobStatus           `cim:"JobStatus"`
+	JobTime             uint32                          `cim:"JobTime"`
+	Name                string                          `cim:"Name"`
+	OperatingStatus     MSFTPrintJobOperatingStatus     `cim:"OperatingStatus"`
+	OperationalStatus   []uint16                        `cim:"OperationalStatus"`
+	PagesPrinted        uint32                          `cim:"PagesPrinted"`
+	Position            uint32                          `cim:"Position"`
+	PrimaryStatus       MSFTPrintJobPrimaryStatus       `cim:"PrimaryStatus"`
+	PrinterName         string                          `cim:"PrinterName"`
+	Priority            uint32                          `cim:"Priority"`
+	Size                uint32                          `cim:"Size"`
+	Status              MSFTPrintJobStatus              `cim:"Status"`
+	StatusDescriptions  []string                        `cim:"StatusDescriptions"`
+	SubmittedTime       string                          `cim:"SubmittedTime"`
+	TotalPages          uint32                          `cim:"TotalPages"`
+	UserName            string                          `cim:"UserName"`
 }
 
 // MSFTPrinter is the MSFT_Printer CIM class.
 type MSFTPrinter struct {
-	BranchOfficeOfflineLogSizeMB uint32   `cim:"BranchOfficeOfflineLogSizeMB"`
-	Caption                      string   `cim:"Caption"`
-	Comment                      string   `cim:"Comment"`
-	CommunicationStatus          uint16   `cim:"CommunicationStatus"`
-	ComputerName                 string   `cim:"ComputerName"`
-	Datatype                     string   `cim:"Datatype"`
-	DefaultJobPriority           uint32   `cim:"DefaultJobPriority"`
-	Description                  string   `cim:"Description"`
-	DetailedStatus               uint16   `cim:"DetailedStatus"`
-	DeviceType                   uint32   `cim:"DeviceType"`
-	DisableBranchOfficeLogging   bool     `cim:"DisableBranchOfficeLogging"`
-	DriverName                   string   `cim:"DriverName"`
-	ElementName                  string   `cim:"ElementName"`
-	HealthState                  uint16   `cim:"HealthState"`
-	InstallDate                  string   `cim:"InstallDate"`
-	InstanceID                   string   `cim:"InstanceID"`
-	JobCount                     uint32   `cim:"JobCount"`
-	KeepPrintedJobs              bool     `cim:"KeepPrintedJobs"`
-	Location                     string   `cim:"Location"`
-	Name                         string   `cim:"Name"`
-	OperatingStatus              uint16   `cim:"OperatingStatus"`
-	OperationalStatus            []uint16 `cim:"OperationalStatus"`
-	PermissionSDDL               string   `cim:"PermissionSDDL"`
-	PortName                     string   `cim:"PortName"`
-	PrimaryStatus                uint16   `cim:"PrimaryStatus"`
-	PrintProcessor               string   `cim:"PrintProcessor"`
-	PrinterStatus                uint32   `cim:"PrinterStatus"`
-	Priority                     uint32   `cim:"Priority"`
-	Published                    bool     `cim:"Published"`
-	RenderingMode                uint32   `cim:"RenderingMode"`
-	SeparatorPageFile            string   `cim:"SeparatorPageFile"`
-	ShareName                    string   `cim:"ShareName"`
-	Shared                       bool     `cim:"Shared"`
-	StartTime                    uint32   `cim:"StartTime"`
-	Status                       string   `cim:"Status"`
-	StatusDescriptions           []string `cim:"StatusDescriptions"`
-	Type                         uint32   `cim:"Type"`
-	UntilTime                    uint32   `cim:"UntilTime"`
-	WorkflowPolicy               uint32   `cim:"WorkflowPolicy"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                      string                         `cim:"__PATH"`
+	BranchOfficeOfflineLogSizeMB uint32                         `cim:"BranchOfficeOfflineLogSizeMB"`
+	Caption                      string                         `cim:"Caption"`
+	Comment                      string                         `cim:"Comment"`
+	CommunicationStatus          MSFTPrinterCommunicationStatus `cim:"CommunicationStatus"`
+	ComputerName                 string                         `cim:"ComputerName"`
+	Datatype                     string                         `cim:"Datatype"`
+	DefaultJobPriority           uint32                         `cim:"DefaultJobPriority"`
+	Description                  string                         `cim:"Description"`
+	DetailedStatus               MSFTPrinterDetailedStatus      `cim:"DetailedStatus"`
+	DeviceType                   uint32                         `cim:"DeviceType"`
+	DisableBranchOfficeLogging   bool                           `cim:"DisableBranchOfficeLogging"`
+	DriverName                   string                         `cim:"DriverName"`
+	ElementName                  string                         `cim:"ElementName"`
+	HealthState                  MSFTPrinterHealthState         `cim:"HealthState"`
+	InstallDate                  string                         `cim:"InstallDate"`
+	InstanceID                   string                         `cim:"InstanceID"`
+	JobCount                     uint32                         `cim:"JobCount"`
+	KeepPrintedJobs              bool                           `cim:"KeepPrintedJobs"`
+	Location                     string                         `cim:"Location"`
+	Name                         string                         `cim:"Name"`
+	OperatingStatus              MSFTPrinterOperatingStatus     `cim:"OperatingStatus"`
+	OperationalStatus            []uint16                       `cim:"OperationalStatus"`
+	PermissionSDDL               string                         `cim:"PermissionSDDL"`
+	PortName                     string                         `cim:"PortName"`
+	PrimaryStatus                MSFTPrinterPrimaryStatus       `cim:"PrimaryStatus"`
+	PrintProcessor               string                         `cim:"PrintProcessor"`
+	PrinterStatus                MSFTPrinterPrinterStatus       `cim:"PrinterStatus"`
+	Priority                     uint32                         `cim:"Priority"`
+	Published                    bool                           `cim:"Published"`
+	RenderingMode                uint32                         `cim:"RenderingMode"`
+	SeparatorPageFile            string                         `cim:"SeparatorPageFile"`
+	ShareName                    string                         `cim:"ShareName"`
+	Shared                       bool                           `cim:"Shared"`
+	StartTime                    uint32                         `cim:"StartTime"`
+	Status                       MSFTPrinterStatus              `cim:"Status"`
+	StatusDescriptions           []string                       `cim:"StatusDescriptions"`
+	Type                         uint32                         `cim:"Type"`
+	UntilTime                    uint32                         `cim:"UntilTime"`
+	WorkflowPolicy               uint32                         `cim:"WorkflowPolicy"`
 }
 
 // MSFTPrinterConfiguration is the MSFT_PrinterConfiguration CIM class.
 type MSFTPrinterConfiguration struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath              string `cim:"__PATH"`
 	Collate              bool   `cim:"Collate"`
 	Color                bool   `cim:"Color"`
 	ComputerName         string `cim:"ComputerName"`
@@ -5757,47 +7001,55 @@ type MSFTPrinterConfiguration struct {
 
 // MSFTPrinterDriver is the MSFT_PrinterDriver CIM class.
 type MSFTPrinterDriver struct {
-	Caption                 string   `cim:"Caption"`
-	ColorProfiles           []string `cim:"ColorProfiles"`
-	CommunicationStatus     uint16   `cim:"CommunicationStatus"`
-	ComputerName            string   `cim:"ComputerName"`
-	ConfigFile              string   `cim:"ConfigFile"`
-	CoreDriverDependencies  []string `cim:"CoreDriverDependencies"`
-	DataFile                string   `cim:"DataFile"`
-	Date                    string   `cim:"Date"`
-	DefaultDatatype         string   `cim:"DefaultDatatype"`
-	DependentFiles          []string `cim:"DependentFiles"`
-	Description             string   `cim:"Description"`
-	DetailedStatus          uint16   `cim:"DetailedStatus"`
-	DriverVersion           uint64   `cim:"DriverVersion"`
-	ElementName             string   `cim:"ElementName"`
-	HardwareID              string   `cim:"HardwareID"`
-	HealthState             uint16   `cim:"HealthState"`
-	HelpFile                string   `cim:"HelpFile"`
-	InfPath                 string   `cim:"InfPath"`
-	InstallDate             string   `cim:"InstallDate"`
-	InstanceID              string   `cim:"InstanceID"`
-	IsPackageAware          bool     `cim:"IsPackageAware"`
-	MajorVersion            uint32   `cim:"MajorVersion"`
-	Manufacturer            string   `cim:"Manufacturer"`
-	Monitor                 string   `cim:"Monitor"`
-	Name                    string   `cim:"Name"`
-	OEMUrl                  string   `cim:"OEMUrl"`
-	OperatingStatus         uint16   `cim:"OperatingStatus"`
-	OperationalStatus       []uint16 `cim:"OperationalStatus"`
-	Path                    string   `cim:"Path"`
-	PreviousCompatibleNames []string `cim:"PreviousCompatibleNames"`
-	PrimaryStatus           uint16   `cim:"PrimaryStatus"`
-	PrintProcessor          string   `cim:"PrintProcessor"`
-	PrinterEnvironment      string   `cim:"PrinterEnvironment"`
-	Status                  string   `cim:"Status"`
-	StatusDescriptions      []string `cim:"StatusDescriptions"`
-	VendorSetup             string   `cim:"VendorSetup"`
-	Provider                string   `cim:"provider"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                 string                               `cim:"__PATH"`
+	Caption                 string                               `cim:"Caption"`
+	ColorProfiles           []string                             `cim:"ColorProfiles"`
+	CommunicationStatus     MSFTPrinterDriverCommunicationStatus `cim:"CommunicationStatus"`
+	ComputerName            string                               `cim:"ComputerName"`
+	ConfigFile              string                               `cim:"ConfigFile"`
+	CoreDriverDependencies  []string                             `cim:"CoreDriverDependencies"`
+	DataFile                string                               `cim:"DataFile"`
+	Date                    string                               `cim:"Date"`
+	DefaultDatatype         string                               `cim:"DefaultDatatype"`
+	DependentFiles          []string                             `cim:"DependentFiles"`
+	Description             string                               `cim:"Description"`
+	DetailedStatus          MSFTPrinterDriverDetailedStatus      `cim:"DetailedStatus"`
+	DriverVersion           uint64                               `cim:"DriverVersion"`
+	ElementName             string                               `cim:"ElementName"`
+	HardwareID              string                               `cim:"HardwareID"`
+	HealthState             MSFTPrinterDriverHealthState         `cim:"HealthState"`
+	HelpFile                string                               `cim:"HelpFile"`
+	InfPath                 string                               `cim:"InfPath"`
+	InstallDate             string                               `cim:"InstallDate"`
+	InstanceID              string                               `cim:"InstanceID"`
+	IsPackageAware          bool                                 `cim:"IsPackageAware"`
+	MajorVersion            uint32                               `cim:"MajorVersion"`
+	Manufacturer            string                               `cim:"Manufacturer"`
+	Monitor                 string                               `cim:"Monitor"`
+	Name                    string                               `cim:"Name"`
+	OEMUrl                  string                               `cim:"OEMUrl"`
+	OperatingStatus         MSFTPrinterDriverOperatingStatus     `cim:"OperatingStatus"`
+	OperationalStatus       []uint16                             `cim:"OperationalStatus"`
+	Path                    string                               `cim:"Path"`
+	PreviousCompatibleNames []string                             `cim:"PreviousCompatibleNames"`
+	PrimaryStatus           MSFTPrinterDriverPrimaryStatus       `cim:"PrimaryStatus"`
+	PrintProcessor          string                               `cim:"PrintProcessor"`
+	PrinterEnvironment      string                               `cim:"PrinterEnvironment"`
+	Status                  MSFTPrinterDriverStatus              `cim:"Status"`
+	StatusDescriptions      []string                             `cim:"StatusDescriptions"`
+	VendorSetup             string                               `cim:"VendorSetup"`
+	Provider                string                               `cim:"provider"`
 }
 
 // MSFTPrinterNfcTag is the MSFT_PrinterNfcTag CIM class.
 type MSFTPrinterNfcTag struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath    string   `cim:"__PATH"`
 	Locked     bool     `cim:"Locked"`
 	SharePath  []string `cim:"SharePath"`
 	WsdAddress []string `cim:"WsdAddress"`
@@ -5805,34 +7057,50 @@ type MSFTPrinterNfcTag struct {
 
 // MSFTPrinterNfcTagTasks is the MSFT_PrinterNfcTagTasks CIM class.
 type MSFTPrinterNfcTagTasks struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath string `cim:"__PATH"`
 }
 
 // MSFTPrinterPort is the MSFT_PrinterPort CIM class.
 type MSFTPrinterPort struct {
-	Caption             string   `cim:"Caption"`
-	CommunicationStatus uint16   `cim:"CommunicationStatus"`
-	ComputerName        string   `cim:"ComputerName"`
-	Description         string   `cim:"Description"`
-	DetailedStatus      uint16   `cim:"DetailedStatus"`
-	ElementName         string   `cim:"ElementName"`
-	HealthState         uint16   `cim:"HealthState"`
-	InstallDate         string   `cim:"InstallDate"`
-	InstanceID          string   `cim:"InstanceID"`
-	Name                string   `cim:"Name"`
-	OperatingStatus     uint16   `cim:"OperatingStatus"`
-	OperationalStatus   []uint16 `cim:"OperationalStatus"`
-	PortMonitor         string   `cim:"PortMonitor"`
-	PrimaryStatus       uint16   `cim:"PrimaryStatus"`
-	Status              string   `cim:"Status"`
-	StatusDescriptions  []string `cim:"StatusDescriptions"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath             string                             `cim:"__PATH"`
+	Caption             string                             `cim:"Caption"`
+	CommunicationStatus MSFTPrinterPortCommunicationStatus `cim:"CommunicationStatus"`
+	ComputerName        string                             `cim:"ComputerName"`
+	Description         string                             `cim:"Description"`
+	DetailedStatus      MSFTPrinterPortDetailedStatus      `cim:"DetailedStatus"`
+	ElementName         string                             `cim:"ElementName"`
+	HealthState         MSFTPrinterPortHealthState         `cim:"HealthState"`
+	InstallDate         string                             `cim:"InstallDate"`
+	InstanceID          string                             `cim:"InstanceID"`
+	Name                string                             `cim:"Name"`
+	OperatingStatus     MSFTPrinterPortOperatingStatus     `cim:"OperatingStatus"`
+	OperationalStatus   []uint16                           `cim:"OperationalStatus"`
+	PortMonitor         string                             `cim:"PortMonitor"`
+	PrimaryStatus       MSFTPrinterPortPrimaryStatus       `cim:"PrimaryStatus"`
+	Status              MSFTPrinterPortStatus              `cim:"Status"`
+	StatusDescriptions  []string                           `cim:"StatusDescriptions"`
 }
 
 // MSFTPrinterPortTasks is the MSFT_PrinterPortTasks CIM class.
 type MSFTPrinterPortTasks struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath string `cim:"__PATH"`
 }
 
 // MSFTPrinterProperty is the MSFT_PrinterProperty CIM class.
 type MSFTPrinterProperty struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath      string `cim:"__PATH"`
 	Caption      string `cim:"Caption"`
 	ComputerName string `cim:"ComputerName"`
 	Description  string `cim:"Description"`
@@ -5846,57 +7114,69 @@ type MSFTPrinterProperty struct {
 
 // MSFTTcpIpPrinterPort is the MSFT_TcpIpPrinterPort CIM class.
 type MSFTTcpIpPrinterPort struct {
-	Caption             string   `cim:"Caption"`
-	CommunicationStatus uint16   `cim:"CommunicationStatus"`
-	ComputerName        string   `cim:"ComputerName"`
-	Description         string   `cim:"Description"`
-	DetailedStatus      uint16   `cim:"DetailedStatus"`
-	ElementName         string   `cim:"ElementName"`
-	HealthState         uint16   `cim:"HealthState"`
-	InstallDate         string   `cim:"InstallDate"`
-	InstanceID          string   `cim:"InstanceID"`
-	LprByteCounting     bool     `cim:"LprByteCounting"`
-	LprQueueName        string   `cim:"LprQueueName"`
-	Name                string   `cim:"Name"`
-	OperatingStatus     uint16   `cim:"OperatingStatus"`
-	OperationalStatus   []uint16 `cim:"OperationalStatus"`
-	PortMonitor         string   `cim:"PortMonitor"`
-	PortNumber          uint32   `cim:"PortNumber"`
-	PrimaryStatus       uint16   `cim:"PrimaryStatus"`
-	PrinterHostAddress  string   `cim:"PrinterHostAddress"`
-	PrinterHostIP       string   `cim:"PrinterHostIP"`
-	Protocol            uint32   `cim:"Protocol"`
-	SNMPCommunity       string   `cim:"SNMPCommunity"`
-	SNMPEnabled         bool     `cim:"SNMPEnabled"`
-	SNMPIndex           uint32   `cim:"SNMPIndex"`
-	Status              string   `cim:"Status"`
-	StatusDescriptions  []string `cim:"StatusDescriptions"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath             string                                  `cim:"__PATH"`
+	Caption             string                                  `cim:"Caption"`
+	CommunicationStatus MSFTTcpIpPrinterPortCommunicationStatus `cim:"CommunicationStatus"`
+	ComputerName        string                                  `cim:"ComputerName"`
+	Description         string                                  `cim:"Description"`
+	DetailedStatus      MSFTTcpIpPrinterPortDetailedStatus      `cim:"DetailedStatus"`
+	ElementName         string                                  `cim:"ElementName"`
+	HealthState         MSFTTcpIpPrinterPortHealthState         `cim:"HealthState"`
+	InstallDate         string                                  `cim:"InstallDate"`
+	InstanceID          string                                  `cim:"InstanceID"`
+	LprByteCounting     bool                                    `cim:"LprByteCounting"`
+	LprQueueName        string                                  `cim:"LprQueueName"`
+	Name                string                                  `cim:"Name"`
+	OperatingStatus     MSFTTcpIpPrinterPortOperatingStatus     `cim:"OperatingStatus"`
+	OperationalStatus   []uint16                                `cim:"OperationalStatus"`
+	PortMonitor         string                                  `cim:"PortMonitor"`
+	PortNumber          uint32                                  `cim:"PortNumber"`
+	PrimaryStatus       MSFTTcpIpPrinterPortPrimaryStatus       `cim:"PrimaryStatus"`
+	PrinterHostAddress  string                                  `cim:"PrinterHostAddress"`
+	PrinterHostIP       string                                  `cim:"PrinterHostIP"`
+	Protocol            uint32                                  `cim:"Protocol"`
+	SNMPCommunity       string                                  `cim:"SNMPCommunity"`
+	SNMPEnabled         bool                                    `cim:"SNMPEnabled"`
+	SNMPIndex           uint32                                  `cim:"SNMPIndex"`
+	Status              MSFTTcpIpPrinterPortStatus              `cim:"Status"`
+	StatusDescriptions  []string                                `cim:"StatusDescriptions"`
 }
 
 // MSFTWmiError is the MSFT_WmiError CIM class.
 type MSFTWmiError struct {
-	CIMStatusCode            uint32   `cim:"CIMStatusCode"`
-	CIMStatusCodeDescription string   `cim:"CIMStatusCodeDescription"`
-	ErrorSource              string   `cim:"ErrorSource"`
-	ErrorSourceFormat        uint16   `cim:"ErrorSourceFormat"`
-	ErrorType                uint16   `cim:"ErrorType"`
-	Message                  string   `cim:"Message"`
-	MessageArguments         []string `cim:"MessageArguments"`
-	MessageID                string   `cim:"MessageID"`
-	OtherErrorSourceFormat   string   `cim:"OtherErrorSourceFormat"`
-	OtherErrorType           string   `cim:"OtherErrorType"`
-	OwningEntity             string   `cim:"OwningEntity"`
-	PerceivedSeverity        uint16   `cim:"PerceivedSeverity"`
-	ProbableCause            uint16   `cim:"ProbableCause"`
-	ProbableCauseDescription string   `cim:"ProbableCauseDescription"`
-	RecommendedActions       []string `cim:"RecommendedActions"`
-	ErrorCategory            uint16   `cim:"error_Category"`
-	ErrorCode                uint32   `cim:"error_Code"`
-	ErrorWindowsErrorMessage string   `cim:"error_WindowsErrorMessage"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                  string                        `cim:"__PATH"`
+	CIMStatusCode            MSFTWmiErrorCIMStatusCode     `cim:"CIMStatusCode"`
+	CIMStatusCodeDescription string                        `cim:"CIMStatusCodeDescription"`
+	ErrorSource              string                        `cim:"ErrorSource"`
+	ErrorSourceFormat        MSFTWmiErrorErrorSourceFormat `cim:"ErrorSourceFormat"`
+	ErrorType                MSFTWmiErrorErrorType         `cim:"ErrorType"`
+	Message                  string                        `cim:"Message"`
+	MessageArguments         []string                      `cim:"MessageArguments"`
+	MessageID                string                        `cim:"MessageID"`
+	OtherErrorSourceFormat   string                        `cim:"OtherErrorSourceFormat"`
+	OtherErrorType           string                        `cim:"OtherErrorType"`
+	OwningEntity             string                        `cim:"OwningEntity"`
+	PerceivedSeverity        MSFTWmiErrorPerceivedSeverity `cim:"PerceivedSeverity"`
+	ProbableCause            MSFTWmiErrorProbableCause     `cim:"ProbableCause"`
+	ProbableCauseDescription string                        `cim:"ProbableCauseDescription"`
+	RecommendedActions       []string                      `cim:"RecommendedActions"`
+	ErrorCategory            uint16                        `cim:"error_Category"`
+	ErrorCode                uint32                        `cim:"error_Code"`
+	ErrorWindowsErrorMessage string                        `cim:"error_WindowsErrorMessage"`
 }
 
 // ACE is the __ACE CIM class.
 type ACE struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                 string  `cim:"__PATH"`
 	AccessMask              uint32  `cim:"AccessMask"`
 	AceFlags                uint32  `cim:"AceFlags"`
 	AceType                 uint32  `cim:"AceType"`
@@ -5908,6 +7188,10 @@ type ACE struct {
 
 // AbsoluteTimerInstruction is the __AbsoluteTimerInstruction CIM class.
 type AbsoluteTimerInstruction struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath       string `cim:"__PATH"`
 	EventDateTime string `cim:"EventDateTime"`
 	SkipIfPassed  bool   `cim:"SkipIfPassed"`
 	TimerId       string `cim:"TimerId"`
@@ -5915,12 +7199,20 @@ type AbsoluteTimerInstruction struct {
 
 // AggregateEvent is the __AggregateEvent CIM class.
 type AggregateEvent struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string  `cim:"__PATH"`
 	NumberOfEvents uint32  `cim:"NumberOfEvents"`
 	Representative wmi.Row `cim:"Representative"`
 }
 
 // ClassCreationEvent is the __ClassCreationEvent CIM class.
 type ClassCreationEvent struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath            string  `cim:"__PATH"`
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 	TIMECREATED        uint64  `cim:"TIME_CREATED"`
 	TargetClass        wmi.Row `cim:"TargetClass"`
@@ -5928,6 +7220,10 @@ type ClassCreationEvent struct {
 
 // ClassDeletionEvent is the __ClassDeletionEvent CIM class.
 type ClassDeletionEvent struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath            string  `cim:"__PATH"`
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 	TIMECREATED        uint64  `cim:"TIME_CREATED"`
 	TargetClass        wmi.Row `cim:"TargetClass"`
@@ -5935,6 +7231,10 @@ type ClassDeletionEvent struct {
 
 // ClassModificationEvent is the __ClassModificationEvent CIM class.
 type ClassModificationEvent struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath            string  `cim:"__PATH"`
 	PreviousClass      wmi.Row `cim:"PreviousClass"`
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 	TIMECREATED        uint64  `cim:"TIME_CREATED"`
@@ -5943,6 +7243,10 @@ type ClassModificationEvent struct {
 
 // ClassOperationEvent is the __ClassOperationEvent CIM class.
 type ClassOperationEvent struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath            string  `cim:"__PATH"`
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 	TIMECREATED        uint64  `cim:"TIME_CREATED"`
 	TargetClass        wmi.Row `cim:"TargetClass"`
@@ -5950,26 +7254,34 @@ type ClassOperationEvent struct {
 
 // ClassProviderRegistration is the __ClassProviderRegistration CIM class.
 type ClassProviderRegistration struct {
-	CacheRefreshInterval         string   `cim:"CacheRefreshInterval"`
-	InteractionType              int32    `cim:"InteractionType"`
-	PerUserSchema                bool     `cim:"PerUserSchema"`
-	QuerySupportLevels           []string `cim:"QuerySupportLevels"`
-	ReSynchroniseOnNamespaceOpen bool     `cim:"ReSynchroniseOnNamespaceOpen"`
-	ReferencedSetQueries         []string `cim:"ReferencedSetQueries"`
-	ResultSetQueries             []string `cim:"ResultSetQueries"`
-	SupportsBatching             bool     `cim:"SupportsBatching"`
-	SupportsDelete               bool     `cim:"SupportsDelete"`
-	SupportsEnumeration          bool     `cim:"SupportsEnumeration"`
-	SupportsGet                  bool     `cim:"SupportsGet"`
-	SupportsPut                  bool     `cim:"SupportsPut"`
-	SupportsTransactions         bool     `cim:"SupportsTransactions"`
-	UnsupportedQueries           []string `cim:"UnsupportedQueries"`
-	Version                      uint32   `cim:"Version"`
-	Provider                     string   `cim:"provider"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                      string                                   `cim:"__PATH"`
+	CacheRefreshInterval         string                                   `cim:"CacheRefreshInterval"`
+	InteractionType              ClassProviderRegistrationInteractionType `cim:"InteractionType"`
+	PerUserSchema                bool                                     `cim:"PerUserSchema"`
+	QuerySupportLevels           []string                                 `cim:"QuerySupportLevels"`
+	ReSynchroniseOnNamespaceOpen bool                                     `cim:"ReSynchroniseOnNamespaceOpen"`
+	ReferencedSetQueries         []string                                 `cim:"ReferencedSetQueries"`
+	ResultSetQueries             []string                                 `cim:"ResultSetQueries"`
+	SupportsBatching             bool                                     `cim:"SupportsBatching"`
+	SupportsDelete               bool                                     `cim:"SupportsDelete"`
+	SupportsEnumeration          bool                                     `cim:"SupportsEnumeration"`
+	SupportsGet                  bool                                     `cim:"SupportsGet"`
+	SupportsPut                  bool                                     `cim:"SupportsPut"`
+	SupportsTransactions         bool                                     `cim:"SupportsTransactions"`
+	UnsupportedQueries           []string                                 `cim:"UnsupportedQueries"`
+	Version                      uint32                                   `cim:"Version"`
+	Provider                     string                                   `cim:"provider"`
 }
 
 // ConsumerFailureEvent is the __ConsumerFailureEvent CIM class.
 type ConsumerFailureEvent struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath            string  `cim:"__PATH"`
 	ErrorCode          uint32  `cim:"ErrorCode"`
 	ErrorDescription   string  `cim:"ErrorDescription"`
 	ErrorObject        wmi.Row `cim:"ErrorObject"`
@@ -5981,12 +7293,20 @@ type ConsumerFailureEvent struct {
 
 // Event is the __Event CIM class.
 type Event struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath            string  `cim:"__PATH"`
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 	TIMECREATED        uint64  `cim:"TIME_CREATED"`
 }
 
 // EventConsumer is the __EventConsumer CIM class.
 type EventConsumer struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath          string  `cim:"__PATH"`
 	CreatorSID       []uint8 `cim:"CreatorSID"`
 	MachineName      string  `cim:"MachineName"`
 	MaximumQueueSize uint32  `cim:"MaximumQueueSize"`
@@ -5994,12 +7314,20 @@ type EventConsumer struct {
 
 // EventConsumerProviderRegistration is the __EventConsumerProviderRegistration CIM class.
 type EventConsumerProviderRegistration struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath            string   `cim:"__PATH"`
 	ConsumerClassNames []string `cim:"ConsumerClassNames"`
 	Provider           string   `cim:"provider"`
 }
 
 // EventDroppedEvent is the __EventDroppedEvent CIM class.
 type EventDroppedEvent struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath            string  `cim:"__PATH"`
 	Event              wmi.Row `cim:"Event"`
 	IntendedConsumer   string  `cim:"IntendedConsumer"`
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
@@ -6008,6 +7336,10 @@ type EventDroppedEvent struct {
 
 // EventFilter is the __EventFilter CIM class.
 type EventFilter struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string  `cim:"__PATH"`
 	CreatorSID     []uint8 `cim:"CreatorSID"`
 	EventAccess    string  `cim:"EventAccess"`
 	EventNamespace string  `cim:"EventNamespace"`
@@ -6018,16 +7350,28 @@ type EventFilter struct {
 
 // EventGenerator is the __EventGenerator CIM class.
 type EventGenerator struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath string `cim:"__PATH"`
 }
 
 // EventProviderRegistration is the __EventProviderRegistration CIM class.
 type EventProviderRegistration struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath        string   `cim:"__PATH"`
 	EventQueryList []string `cim:"EventQueryList"`
 	Provider       string   `cim:"provider"`
 }
 
 // EventQueueOverflowEvent is the __EventQueueOverflowEvent CIM class.
 type EventQueueOverflowEvent struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath            string  `cim:"__PATH"`
 	CurrentQueueSize   uint32  `cim:"CurrentQueueSize"`
 	Event              wmi.Row `cim:"Event"`
 	IntendedConsumer   string  `cim:"IntendedConsumer"`
@@ -6037,6 +7381,10 @@ type EventQueueOverflowEvent struct {
 
 // ExtendedStatus is the __ExtendedStatus CIM class.
 type ExtendedStatus struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath       string `cim:"__PATH"`
 	Description   string `cim:"Description"`
 	Operation     string `cim:"Operation"`
 	ParameterInfo string `cim:"ParameterInfo"`
@@ -6046,12 +7394,20 @@ type ExtendedStatus struct {
 
 // ExtrinsicEvent is the __ExtrinsicEvent CIM class.
 type ExtrinsicEvent struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath            string  `cim:"__PATH"`
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 	TIMECREATED        uint64  `cim:"TIME_CREATED"`
 }
 
 // FilterToConsumerBinding is the __FilterToConsumerBinding CIM class.
 type FilterToConsumerBinding struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                 string  `cim:"__PATH"`
 	Consumer                string  `cim:"Consumer"`
 	CreatorSID              []uint8 `cim:"CreatorSID"`
 	DeliverSynchronously    bool    `cim:"DeliverSynchronously"`
@@ -6063,10 +7419,18 @@ type FilterToConsumerBinding struct {
 
 // IndicationRelated is the __IndicationRelated CIM class.
 type IndicationRelated struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath string `cim:"__PATH"`
 }
 
 // InstanceCreationEvent is the __InstanceCreationEvent CIM class.
 type InstanceCreationEvent struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath            string  `cim:"__PATH"`
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 	TIMECREATED        uint64  `cim:"TIME_CREATED"`
 	TargetInstance     wmi.Row `cim:"TargetInstance"`
@@ -6074,6 +7438,10 @@ type InstanceCreationEvent struct {
 
 // InstanceDeletionEvent is the __InstanceDeletionEvent CIM class.
 type InstanceDeletionEvent struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath            string  `cim:"__PATH"`
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 	TIMECREATED        uint64  `cim:"TIME_CREATED"`
 	TargetInstance     wmi.Row `cim:"TargetInstance"`
@@ -6081,6 +7449,10 @@ type InstanceDeletionEvent struct {
 
 // InstanceModificationEvent is the __InstanceModificationEvent CIM class.
 type InstanceModificationEvent struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath            string  `cim:"__PATH"`
 	PreviousInstance   wmi.Row `cim:"PreviousInstance"`
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 	TIMECREATED        uint64  `cim:"TIME_CREATED"`
@@ -6089,6 +7461,10 @@ type InstanceModificationEvent struct {
 
 // InstanceOperationEvent is the __InstanceOperationEvent CIM class.
 type InstanceOperationEvent struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath            string  `cim:"__PATH"`
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 	TIMECREATED        uint64  `cim:"TIME_CREATED"`
 	TargetInstance     wmi.Row `cim:"TargetInstance"`
@@ -6096,19 +7472,27 @@ type InstanceOperationEvent struct {
 
 // InstanceProviderRegistration is the __InstanceProviderRegistration CIM class.
 type InstanceProviderRegistration struct {
-	InteractionType      int32    `cim:"InteractionType"`
-	QuerySupportLevels   []string `cim:"QuerySupportLevels"`
-	SupportsBatching     bool     `cim:"SupportsBatching"`
-	SupportsDelete       bool     `cim:"SupportsDelete"`
-	SupportsEnumeration  bool     `cim:"SupportsEnumeration"`
-	SupportsGet          bool     `cim:"SupportsGet"`
-	SupportsPut          bool     `cim:"SupportsPut"`
-	SupportsTransactions bool     `cim:"SupportsTransactions"`
-	Provider             string   `cim:"provider"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath              string                                      `cim:"__PATH"`
+	InteractionType      InstanceProviderRegistrationInteractionType `cim:"InteractionType"`
+	QuerySupportLevels   []string                                    `cim:"QuerySupportLevels"`
+	SupportsBatching     bool                                        `cim:"SupportsBatching"`
+	SupportsDelete       bool                                        `cim:"SupportsDelete"`
+	SupportsEnumeration  bool                                        `cim:"SupportsEnumeration"`
+	SupportsGet          bool                                        `cim:"SupportsGet"`
+	SupportsPut          bool                                        `cim:"SupportsPut"`
+	SupportsTransactions bool                                        `cim:"SupportsTransactions"`
+	Provider             string                                      `cim:"provider"`
 }
 
 // IntervalTimerInstruction is the __IntervalTimerInstruction CIM class.
 type IntervalTimerInstruction struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath               string `cim:"__PATH"`
 	IntervalBetweenEvents uint32 `cim:"IntervalBetweenEvents"`
 	SkipIfPassed          bool   `cim:"SkipIfPassed"`
 	TimerId               string `cim:"TimerId"`
@@ -6116,6 +7500,10 @@ type IntervalTimerInstruction struct {
 
 // MethodInvocationEvent is the __MethodInvocationEvent CIM class.
 type MethodInvocationEvent struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath            string  `cim:"__PATH"`
 	Method             string  `cim:"Method"`
 	Parameters         wmi.Row `cim:"Parameters"`
 	PreCall            bool    `cim:"PreCall"`
@@ -6126,16 +7514,28 @@ type MethodInvocationEvent struct {
 
 // MethodProviderRegistration is the __MethodProviderRegistration CIM class.
 type MethodProviderRegistration struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath  string `cim:"__PATH"`
 	Provider string `cim:"provider"`
 }
 
 // NAMESPACE is the __NAMESPACE CIM class.
 type NAMESPACE struct {
-	Name string `cim:"Name"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath string `cim:"__PATH"`
+	Name    string `cim:"Name"`
 }
 
 // NTLMUser9X is the __NTLMUser9X CIM class.
 type NTLMUser9X struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath   string `cim:"__PATH"`
 	Authority string `cim:"Authority"`
 	Flags     int32  `cim:"Flags"`
 	Mask      int32  `cim:"Mask"`
@@ -6145,6 +7545,10 @@ type NTLMUser9X struct {
 
 // NamespaceCreationEvent is the __NamespaceCreationEvent CIM class.
 type NamespaceCreationEvent struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath            string  `cim:"__PATH"`
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 	TIMECREATED        uint64  `cim:"TIME_CREATED"`
 	TargetNamespace    wmi.Row `cim:"TargetNamespace"`
@@ -6152,6 +7556,10 @@ type NamespaceCreationEvent struct {
 
 // NamespaceDeletionEvent is the __NamespaceDeletionEvent CIM class.
 type NamespaceDeletionEvent struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath            string  `cim:"__PATH"`
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 	TIMECREATED        uint64  `cim:"TIME_CREATED"`
 	TargetNamespace    wmi.Row `cim:"TargetNamespace"`
@@ -6159,6 +7567,10 @@ type NamespaceDeletionEvent struct {
 
 // NamespaceModificationEvent is the __NamespaceModificationEvent CIM class.
 type NamespaceModificationEvent struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath            string  `cim:"__PATH"`
 	PreviousNamespace  wmi.Row `cim:"PreviousNamespace"`
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 	TIMECREATED        uint64  `cim:"TIME_CREATED"`
@@ -6167,6 +7579,10 @@ type NamespaceModificationEvent struct {
 
 // NamespaceOperationEvent is the __NamespaceOperationEvent CIM class.
 type NamespaceOperationEvent struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath            string  `cim:"__PATH"`
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 	TIMECREATED        uint64  `cim:"TIME_CREATED"`
 	TargetNamespace    wmi.Row `cim:"TargetNamespace"`
@@ -6174,28 +7590,44 @@ type NamespaceOperationEvent struct {
 
 // NotifyStatus is the __NotifyStatus CIM class.
 type NotifyStatus struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath    string `cim:"__PATH"`
 	StatusCode uint32 `cim:"StatusCode"`
 }
 
 // ObjectProviderRegistration is the __ObjectProviderRegistration CIM class.
 type ObjectProviderRegistration struct {
-	InteractionType      int32    `cim:"InteractionType"`
-	QuerySupportLevels   []string `cim:"QuerySupportLevels"`
-	SupportsBatching     bool     `cim:"SupportsBatching"`
-	SupportsDelete       bool     `cim:"SupportsDelete"`
-	SupportsEnumeration  bool     `cim:"SupportsEnumeration"`
-	SupportsGet          bool     `cim:"SupportsGet"`
-	SupportsPut          bool     `cim:"SupportsPut"`
-	SupportsTransactions bool     `cim:"SupportsTransactions"`
-	Provider             string   `cim:"provider"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath              string                                    `cim:"__PATH"`
+	InteractionType      ObjectProviderRegistrationInteractionType `cim:"InteractionType"`
+	QuerySupportLevels   []string                                  `cim:"QuerySupportLevels"`
+	SupportsBatching     bool                                      `cim:"SupportsBatching"`
+	SupportsDelete       bool                                      `cim:"SupportsDelete"`
+	SupportsEnumeration  bool                                      `cim:"SupportsEnumeration"`
+	SupportsGet          bool                                      `cim:"SupportsGet"`
+	SupportsPut          bool                                      `cim:"SupportsPut"`
+	SupportsTransactions bool                                      `cim:"SupportsTransactions"`
+	Provider             string                                    `cim:"provider"`
 }
 
 // PARAMETERS is the __PARAMETERS CIM class.
 type PARAMETERS struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath string `cim:"__PATH"`
 }
 
 // PropertyProviderRegistration is the __PropertyProviderRegistration CIM class.
 type PropertyProviderRegistration struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath     string `cim:"__PATH"`
 	SupportsGet bool   `cim:"SupportsGet"`
 	SupportsPut bool   `cim:"SupportsPut"`
 	Provider    string `cim:"provider"`
@@ -6203,16 +7635,28 @@ type PropertyProviderRegistration struct {
 
 // Provider is the __Provider CIM class.
 type Provider struct {
-	Name string `cim:"Name"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath string `cim:"__PATH"`
+	Name    string `cim:"Name"`
 }
 
 // ProviderRegistration is the __ProviderRegistration CIM class.
 type ProviderRegistration struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath  string `cim:"__PATH"`
 	Provider string `cim:"provider"`
 }
 
 // QOSFailureEvent is the __QOSFailureEvent CIM class.
 type QOSFailureEvent struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath            string  `cim:"__PATH"`
 	ErrorCode          uint32  `cim:"ErrorCode"`
 	ErrorDescription   string  `cim:"ErrorDescription"`
 	Event              wmi.Row `cim:"Event"`
@@ -6223,6 +7667,10 @@ type QOSFailureEvent struct {
 
 // SecurityDescriptor is the __SecurityDescriptor CIM class.
 type SecurityDescriptor struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath      string    `cim:"__PATH"`
 	ControlFlags uint32    `cim:"ControlFlags"`
 	DACL         []wmi.Row `cim:"DACL"`
 	Group        wmi.Row   `cim:"Group"`
@@ -6233,24 +7681,44 @@ type SecurityDescriptor struct {
 
 // SecurityRelatedClass is the __SecurityRelatedClass CIM class.
 type SecurityRelatedClass struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath string `cim:"__PATH"`
 }
 
 // SystemClass is the __SystemClass CIM class.
 type SystemClass struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath string `cim:"__PATH"`
 }
 
 // SystemEvent is the __SystemEvent CIM class.
 type SystemEvent struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath            string  `cim:"__PATH"`
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 	TIMECREATED        uint64  `cim:"TIME_CREATED"`
 }
 
 // SystemSecurity is the __SystemSecurity CIM class.
 type SystemSecurity struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath string `cim:"__PATH"`
 }
 
 // TimerEvent is the __TimerEvent CIM class.
 type TimerEvent struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath            string  `cim:"__PATH"`
 	NumFirings         uint32  `cim:"NumFirings"`
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 	TIMECREATED        uint64  `cim:"TIME_CREATED"`
@@ -6259,18 +7727,30 @@ type TimerEvent struct {
 
 // TimerInstruction is the __TimerInstruction CIM class.
 type TimerInstruction struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath      string `cim:"__PATH"`
 	SkipIfPassed bool   `cim:"SkipIfPassed"`
 	TimerId      string `cim:"TimerId"`
 }
 
 // TimerNextFiring is the __TimerNextFiring CIM class.
 type TimerNextFiring struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath            string `cim:"__PATH"`
 	NextEvent64BitTime int64  `cim:"NextEvent64BitTime"`
 	TimerId            string `cim:"TimerId"`
 }
 
 // Trustee is the __Trustee CIM class.
 type Trustee struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath     string  `cim:"__PATH"`
 	Domain      string  `cim:"Domain"`
 	Name        string  `cim:"Name"`
 	SID         []uint8 `cim:"SID"`
@@ -6281,33 +7761,41 @@ type Trustee struct {
 
 // Win32Provider is the __Win32Provider CIM class.
 type Win32Provider struct {
-	CLSID                         string `cim:"CLSID"`
-	ClientLoadableCLSID           string `cim:"ClientLoadableCLSID"`
-	Concurrency                   int32  `cim:"Concurrency"`
-	DefaultMachineName            string `cim:"DefaultMachineName"`
-	Enabled                       bool   `cim:"Enabled"`
-	HostingModel                  string `cim:"HostingModel"`
-	ImpersonationLevel            int32  `cim:"ImpersonationLevel"`
-	InitializationReentrancy      int32  `cim:"InitializationReentrancy"`
-	InitializationTimeoutInterval string `cim:"InitializationTimeoutInterval"`
-	InitializeAsAdminFirst        bool   `cim:"InitializeAsAdminFirst"`
-	Name                          string `cim:"Name"`
-	OperationTimeoutInterval      string `cim:"OperationTimeoutInterval"`
-	PerLocaleInitialization       bool   `cim:"PerLocaleInitialization"`
-	PerUserInitialization         bool   `cim:"PerUserInitialization"`
-	Pure                          bool   `cim:"Pure"`
-	SecurityDescriptor            string `cim:"SecurityDescriptor"`
-	SupportsExplicitShutdown      bool   `cim:"SupportsExplicitShutdown"`
-	SupportsExtendedStatus        bool   `cim:"SupportsExtendedStatus"`
-	SupportsQuotas                bool   `cim:"SupportsQuotas"`
-	SupportsSendStatus            bool   `cim:"SupportsSendStatus"`
-	SupportsShutdown              bool   `cim:"SupportsShutdown"`
-	SupportsThrottling            bool   `cim:"SupportsThrottling"`
-	UnloadTimeout                 string `cim:"UnloadTimeout"`
-	Version                       uint32 `cim:"Version"`
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath                       string                                `cim:"__PATH"`
+	CLSID                         string                                `cim:"CLSID"`
+	ClientLoadableCLSID           string                                `cim:"ClientLoadableCLSID"`
+	Concurrency                   int32                                 `cim:"Concurrency"`
+	DefaultMachineName            string                                `cim:"DefaultMachineName"`
+	Enabled                       bool                                  `cim:"Enabled"`
+	HostingModel                  string                                `cim:"HostingModel"`
+	ImpersonationLevel            Win32ProviderImpersonationLevel       `cim:"ImpersonationLevel"`
+	InitializationReentrancy      Win32ProviderInitializationReentrancy `cim:"InitializationReentrancy"`
+	InitializationTimeoutInterval string                                `cim:"InitializationTimeoutInterval"`
+	InitializeAsAdminFirst        bool                                  `cim:"InitializeAsAdminFirst"`
+	Name                          string                                `cim:"Name"`
+	OperationTimeoutInterval      string                                `cim:"OperationTimeoutInterval"`
+	PerLocaleInitialization       bool                                  `cim:"PerLocaleInitialization"`
+	PerUserInitialization         bool                                  `cim:"PerUserInitialization"`
+	Pure                          bool                                  `cim:"Pure"`
+	SecurityDescriptor            string                                `cim:"SecurityDescriptor"`
+	SupportsExplicitShutdown      bool                                  `cim:"SupportsExplicitShutdown"`
+	SupportsExtendedStatus        bool                                  `cim:"SupportsExtendedStatus"`
+	SupportsQuotas                bool                                  `cim:"SupportsQuotas"`
+	SupportsSendStatus            bool                                  `cim:"SupportsSendStatus"`
+	SupportsShutdown              bool                                  `cim:"SupportsShutdown"`
+	SupportsThrottling            bool                                  `cim:"SupportsThrottling"`
+	UnloadTimeout                 string                                `cim:"UnloadTimeout"`
+	Version                       uint32                                `cim:"Version"`
 }
 
 // ThisNAMESPACE is the __thisNAMESPACE CIM class.
 type ThisNAMESPACE struct {
+	// WMIPath is the instance's __PATH — pass it to the method
+	// wrappers and instance APIs. Empty when the row lacks system
+	// properties.
+	WMIPath            string  `cim:"__PATH"`
 	SECURITYDESCRIPTOR []uint8 `cim:"SECURITY_DESCRIPTOR"`
 }

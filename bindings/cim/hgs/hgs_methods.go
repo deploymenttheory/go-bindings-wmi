@@ -12,8 +12,18 @@ type MSFTHgsClientConfigurationGetResult struct {
 	ReturnValue  uint32
 }
 
-// MSFTHgsClientConfigurationGet invokes the static MSFT_HgsClientConfiguration.Get method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTHgsClientConfigurationGetResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_HgsClientConfiguration.Get", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTHgsClientConfigurationGet invokes the static MSFT_HgsClientConfiguration.Get method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
 func MSFTHgsClientConfigurationGet(svc *wmi.Service) (*MSFTHgsClientConfigurationGetResult, error) {
 	row, err := svc.ExecMethod("MSFT_HgsClientConfiguration", "Get", nil)
 	if err != nil {
@@ -36,12 +46,22 @@ type MSFTHgsClientConfigurationIsHostTrustedResult struct {
 	ReturnValue              uint32
 }
 
-// MSFTHgsClientConfigurationIsHostTrusted invokes the static MSFT_HgsClientConfiguration.IsHostTrusted method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTHgsClientConfigurationIsHostTrusted(svc *wmi.Service, attestationServerUrl string) (*MSFTHgsClientConfigurationIsHostTrustedResult, error) {
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTHgsClientConfigurationIsHostTrustedResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_HgsClientConfiguration.IsHostTrusted", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTHgsClientConfigurationIsHostTrusted invokes the static MSFT_HgsClientConfiguration.IsHostTrusted method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTHgsClientConfigurationIsHostTrusted(svc *wmi.Service, attestationServerUrl *string) (*MSFTHgsClientConfigurationIsHostTrustedResult, error) {
 	in := map[string]any{}
-	if attestationServerUrl != "" {
-		in["AttestationServerUrl"] = attestationServerUrl
+	if attestationServerUrl != nil {
+		in["AttestationServerUrl"] = *attestationServerUrl
 	}
 	row, err := svc.ExecMethod("MSFT_HgsClientConfiguration", "IsHostTrusted", in)
 	if err != nil {
@@ -62,12 +82,22 @@ type MSFTHgsClientConfigurationSetByChangeToLocalModeResult struct {
 	ReturnValue  uint32
 }
 
-// MSFTHgsClientConfigurationSetByChangeToLocalMode invokes the static MSFT_HgsClientConfiguration.SetByChangeToLocalMode method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTHgsClientConfigurationSetByChangeToLocalMode(svc *wmi.Service, enableLocalMode bool) (*MSFTHgsClientConfigurationSetByChangeToLocalModeResult, error) {
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTHgsClientConfigurationSetByChangeToLocalModeResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_HgsClientConfiguration.SetByChangeToLocalMode", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTHgsClientConfigurationSetByChangeToLocalMode invokes the static MSFT_HgsClientConfiguration.SetByChangeToLocalMode method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTHgsClientConfigurationSetByChangeToLocalMode(svc *wmi.Service, enableLocalMode *bool) (*MSFTHgsClientConfigurationSetByChangeToLocalModeResult, error) {
 	in := map[string]any{}
-	if enableLocalMode {
-		in["EnableLocalMode"] = enableLocalMode
+	if enableLocalMode != nil {
+		in["EnableLocalMode"] = *enableLocalMode
 	}
 	row, err := svc.ExecMethod("MSFT_HgsClientConfiguration", "SetByChangeToLocalMode", in)
 	if err != nil {
@@ -87,15 +117,25 @@ type MSFTHgsClientConfigurationSetBySecureHostingServiceModeResult struct {
 	ReturnValue  uint32
 }
 
-// MSFTHgsClientConfigurationSetBySecureHostingServiceMode invokes the static MSFT_HgsClientConfiguration.SetBySecureHostingServiceMode method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTHgsClientConfigurationSetBySecureHostingServiceMode(svc *wmi.Service, keyProtectionServerUrl string, attestationServerUrl string, fallbackKeyProtectionServerUrl []string, fallbackAttestationServerUrl []string) (*MSFTHgsClientConfigurationSetBySecureHostingServiceModeResult, error) {
-	in := map[string]any{}
-	if keyProtectionServerUrl != "" {
-		in["KeyProtectionServerUrl"] = keyProtectionServerUrl
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTHgsClientConfigurationSetBySecureHostingServiceModeResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
 	}
-	if attestationServerUrl != "" {
-		in["AttestationServerUrl"] = attestationServerUrl
+	return &wmi.JobError{What: "MSFT_HgsClientConfiguration.SetBySecureHostingServiceMode", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTHgsClientConfigurationSetBySecureHostingServiceMode invokes the static MSFT_HgsClientConfiguration.SetBySecureHostingServiceMode method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTHgsClientConfigurationSetBySecureHostingServiceMode(svc *wmi.Service, keyProtectionServerUrl *string, attestationServerUrl *string, fallbackKeyProtectionServerUrl []string, fallbackAttestationServerUrl []string) (*MSFTHgsClientConfigurationSetBySecureHostingServiceModeResult, error) {
+	in := map[string]any{}
+	if keyProtectionServerUrl != nil {
+		in["KeyProtectionServerUrl"] = *keyProtectionServerUrl
+	}
+	if attestationServerUrl != nil {
+		in["AttestationServerUrl"] = *attestationServerUrl
 	}
 	if fallbackKeyProtectionServerUrl != nil {
 		in["FallbackKeyProtectionServerUrl"] = fallbackKeyProtectionServerUrl
@@ -120,12 +160,22 @@ type MSFTHgsGuardianExportResult struct {
 	ReturnValue uint32
 }
 
-// MSFTHgsGuardianExport invokes the static MSFT_HgsGuardian.Export method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTHgsGuardianExport(svc *wmi.Service, path string, inputObject wmi.Row) (*MSFTHgsGuardianExportResult, error) {
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTHgsGuardianExportResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_HgsGuardian.Export", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTHgsGuardianExport invokes the static MSFT_HgsGuardian.Export method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTHgsGuardianExport(svc *wmi.Service, path *string, inputObject wmi.Row) (*MSFTHgsGuardianExportResult, error) {
 	in := map[string]any{}
-	if path != "" {
-		in["Path"] = path
+	if path != nil {
+		in["Path"] = *path
 	}
 	if inputObject != nil {
 		in["InputObject"] = inputObject
@@ -145,21 +195,31 @@ type MSFTHgsGuardianImportResult struct {
 	ReturnValue  uint32
 }
 
-// MSFTHgsGuardianImport invokes the static MSFT_HgsGuardian.Import method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTHgsGuardianImport(svc *wmi.Service, path string, name string, allowExpired bool, allowUntrustedRoot bool) (*MSFTHgsGuardianImportResult, error) {
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTHgsGuardianImportResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_HgsGuardian.Import", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTHgsGuardianImport invokes the static MSFT_HgsGuardian.Import method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTHgsGuardianImport(svc *wmi.Service, path *string, name *string, allowExpired *bool, allowUntrustedRoot *bool) (*MSFTHgsGuardianImportResult, error) {
 	in := map[string]any{}
-	if path != "" {
-		in["Path"] = path
+	if path != nil {
+		in["Path"] = *path
 	}
-	if name != "" {
-		in["Name"] = name
+	if name != nil {
+		in["Name"] = *name
 	}
-	if allowExpired {
-		in["AllowExpired"] = allowExpired
+	if allowExpired != nil {
+		in["AllowExpired"] = *allowExpired
 	}
-	if allowUntrustedRoot {
-		in["AllowUntrustedRoot"] = allowUntrustedRoot
+	if allowUntrustedRoot != nil {
+		in["AllowUntrustedRoot"] = *allowUntrustedRoot
 	}
 	row, err := svc.ExecMethod("MSFT_HgsGuardian", "Import", in)
 	if err != nil {
@@ -179,30 +239,40 @@ type MSFTHgsGuardianNewByAcceptCertificatesResult struct {
 	ReturnValue  uint32
 }
 
-// MSFTHgsGuardianNewByAcceptCertificates invokes the static MSFT_HgsGuardian.NewByAcceptCertificates method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTHgsGuardianNewByAcceptCertificates(svc *wmi.Service, name string, encryptionCertificate string, signingCertificate string, signingCertificatePassword string, encryptionCertificatePassword string, allowExpired bool, allowUntrustedRoot bool) (*MSFTHgsGuardianNewByAcceptCertificatesResult, error) {
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTHgsGuardianNewByAcceptCertificatesResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_HgsGuardian.NewByAcceptCertificates", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTHgsGuardianNewByAcceptCertificates invokes the static MSFT_HgsGuardian.NewByAcceptCertificates method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTHgsGuardianNewByAcceptCertificates(svc *wmi.Service, name *string, encryptionCertificate *string, signingCertificate *string, signingCertificatePassword *string, encryptionCertificatePassword *string, allowExpired *bool, allowUntrustedRoot *bool) (*MSFTHgsGuardianNewByAcceptCertificatesResult, error) {
 	in := map[string]any{}
-	if name != "" {
-		in["Name"] = name
+	if name != nil {
+		in["Name"] = *name
 	}
-	if encryptionCertificate != "" {
-		in["EncryptionCertificate"] = encryptionCertificate
+	if encryptionCertificate != nil {
+		in["EncryptionCertificate"] = *encryptionCertificate
 	}
-	if signingCertificate != "" {
-		in["SigningCertificate"] = signingCertificate
+	if signingCertificate != nil {
+		in["SigningCertificate"] = *signingCertificate
 	}
-	if signingCertificatePassword != "" {
-		in["SigningCertificatePassword"] = signingCertificatePassword
+	if signingCertificatePassword != nil {
+		in["SigningCertificatePassword"] = *signingCertificatePassword
 	}
-	if encryptionCertificatePassword != "" {
-		in["EncryptionCertificatePassword"] = encryptionCertificatePassword
+	if encryptionCertificatePassword != nil {
+		in["EncryptionCertificatePassword"] = *encryptionCertificatePassword
 	}
-	if allowExpired {
-		in["AllowExpired"] = allowExpired
+	if allowExpired != nil {
+		in["AllowExpired"] = *allowExpired
 	}
-	if allowUntrustedRoot {
-		in["AllowUntrustedRoot"] = allowUntrustedRoot
+	if allowUntrustedRoot != nil {
+		in["AllowUntrustedRoot"] = *allowUntrustedRoot
 	}
 	row, err := svc.ExecMethod("MSFT_HgsGuardian", "NewByAcceptCertificates", in)
 	if err != nil {
@@ -222,24 +292,34 @@ type MSFTHgsGuardianNewByCertificateThumbprintsResult struct {
 	ReturnValue  uint32
 }
 
-// MSFTHgsGuardianNewByCertificateThumbprints invokes the static MSFT_HgsGuardian.NewByCertificateThumbprints method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTHgsGuardianNewByCertificateThumbprints(svc *wmi.Service, name string, signingCertificateThumbprint string, encryptionCertificateThumbprint string, allowExpired bool, allowUntrustedRoot bool) (*MSFTHgsGuardianNewByCertificateThumbprintsResult, error) {
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTHgsGuardianNewByCertificateThumbprintsResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_HgsGuardian.NewByCertificateThumbprints", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTHgsGuardianNewByCertificateThumbprints invokes the static MSFT_HgsGuardian.NewByCertificateThumbprints method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTHgsGuardianNewByCertificateThumbprints(svc *wmi.Service, name *string, signingCertificateThumbprint *string, encryptionCertificateThumbprint *string, allowExpired *bool, allowUntrustedRoot *bool) (*MSFTHgsGuardianNewByCertificateThumbprintsResult, error) {
 	in := map[string]any{}
-	if name != "" {
-		in["Name"] = name
+	if name != nil {
+		in["Name"] = *name
 	}
-	if signingCertificateThumbprint != "" {
-		in["SigningCertificateThumbprint"] = signingCertificateThumbprint
+	if signingCertificateThumbprint != nil {
+		in["SigningCertificateThumbprint"] = *signingCertificateThumbprint
 	}
-	if encryptionCertificateThumbprint != "" {
-		in["EncryptionCertificateThumbprint"] = encryptionCertificateThumbprint
+	if encryptionCertificateThumbprint != nil {
+		in["EncryptionCertificateThumbprint"] = *encryptionCertificateThumbprint
 	}
-	if allowExpired {
-		in["AllowExpired"] = allowExpired
+	if allowExpired != nil {
+		in["AllowExpired"] = *allowExpired
 	}
-	if allowUntrustedRoot {
-		in["AllowUntrustedRoot"] = allowUntrustedRoot
+	if allowUntrustedRoot != nil {
+		in["AllowUntrustedRoot"] = *allowUntrustedRoot
 	}
 	row, err := svc.ExecMethod("MSFT_HgsGuardian", "NewByCertificateThumbprints", in)
 	if err != nil {
@@ -259,15 +339,25 @@ type MSFTHgsGuardianNewByGenerateCertificatesResult struct {
 	ReturnValue  uint32
 }
 
-// MSFTHgsGuardianNewByGenerateCertificates invokes the static MSFT_HgsGuardian.NewByGenerateCertificates method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTHgsGuardianNewByGenerateCertificates(svc *wmi.Service, name string, generateCertificates bool) (*MSFTHgsGuardianNewByGenerateCertificatesResult, error) {
-	in := map[string]any{}
-	if name != "" {
-		in["Name"] = name
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTHgsGuardianNewByGenerateCertificatesResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
 	}
-	if generateCertificates {
-		in["GenerateCertificates"] = generateCertificates
+	return &wmi.JobError{What: "MSFT_HgsGuardian.NewByGenerateCertificates", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTHgsGuardianNewByGenerateCertificates invokes the static MSFT_HgsGuardian.NewByGenerateCertificates method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTHgsGuardianNewByGenerateCertificates(svc *wmi.Service, name *string, generateCertificates *bool) (*MSFTHgsGuardianNewByGenerateCertificatesResult, error) {
+	in := map[string]any{}
+	if name != nil {
+		in["Name"] = *name
+	}
+	if generateCertificates != nil {
+		in["GenerateCertificates"] = *generateCertificates
 	}
 	row, err := svc.ExecMethod("MSFT_HgsGuardian", "NewByGenerateCertificates", in)
 	if err != nil {
@@ -286,12 +376,22 @@ type MSFTHgsGuardianRemoveResult struct {
 	ReturnValue uint32
 }
 
-// MSFTHgsGuardianRemove invokes the static MSFT_HgsGuardian.Remove method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTHgsGuardianRemove(svc *wmi.Service, name string) (*MSFTHgsGuardianRemoveResult, error) {
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTHgsGuardianRemoveResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_HgsGuardian.Remove", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTHgsGuardianRemove invokes the static MSFT_HgsGuardian.Remove method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTHgsGuardianRemove(svc *wmi.Service, name *string) (*MSFTHgsGuardianRemoveResult, error) {
 	in := map[string]any{}
-	if name != "" {
-		in["Name"] = name
+	if name != nil {
+		in["Name"] = *name
 	}
 	row, err := svc.ExecMethod("MSFT_HgsGuardian", "Remove", in)
 	if err != nil {
@@ -308,8 +408,18 @@ type MSFTHgsKeyProtectorConvertToByRawBytesResult struct {
 	ReturnValue  uint32
 }
 
-// MSFTHgsKeyProtectorConvertToByRawBytes invokes the static MSFT_HgsKeyProtector.ConvertToByRawBytes method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTHgsKeyProtectorConvertToByRawBytesResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_HgsKeyProtector.ConvertToByRawBytes", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTHgsKeyProtectorConvertToByRawBytes invokes the static MSFT_HgsKeyProtector.ConvertToByRawBytes method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
 func MSFTHgsKeyProtectorConvertToByRawBytes(svc *wmi.Service, bytes []uint8) (*MSFTHgsKeyProtectorConvertToByRawBytesResult, error) {
 	in := map[string]any{}
 	if bytes != nil {
@@ -333,9 +443,19 @@ type MSFTHgsKeyProtectorGrantResult struct {
 	ReturnValue  uint32
 }
 
-// MSFTHgsKeyProtectorGrant invokes the static MSFT_HgsKeyProtector.Grant method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTHgsKeyProtectorGrant(svc *wmi.Service, keyProtector wmi.Row, guardian wmi.Row, allowExpired bool, allowUntrustedRoot bool) (*MSFTHgsKeyProtectorGrantResult, error) {
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTHgsKeyProtectorGrantResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_HgsKeyProtector.Grant", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTHgsKeyProtectorGrant invokes the static MSFT_HgsKeyProtector.Grant method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTHgsKeyProtectorGrant(svc *wmi.Service, keyProtector wmi.Row, guardian wmi.Row, allowExpired *bool, allowUntrustedRoot *bool) (*MSFTHgsKeyProtectorGrantResult, error) {
 	in := map[string]any{}
 	if keyProtector != nil {
 		in["KeyProtector"] = keyProtector
@@ -343,11 +463,11 @@ func MSFTHgsKeyProtectorGrant(svc *wmi.Service, keyProtector wmi.Row, guardian w
 	if guardian != nil {
 		in["Guardian"] = guardian
 	}
-	if allowExpired {
-		in["AllowExpired"] = allowExpired
+	if allowExpired != nil {
+		in["AllowExpired"] = *allowExpired
 	}
-	if allowUntrustedRoot {
-		in["AllowUntrustedRoot"] = allowUntrustedRoot
+	if allowUntrustedRoot != nil {
+		in["AllowUntrustedRoot"] = *allowUntrustedRoot
 	}
 	row, err := svc.ExecMethod("MSFT_HgsKeyProtector", "Grant", in)
 	if err != nil {
@@ -367,15 +487,25 @@ type MSFTHgsKeyProtectorNewByGuardiansResult struct {
 	ReturnValue  uint32
 }
 
-// MSFTHgsKeyProtectorNewByGuardians invokes the static MSFT_HgsKeyProtector.NewByGuardians method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTHgsKeyProtectorNewByGuardians(svc *wmi.Service, allowUntrustedRoot bool, allowExpired bool, owner wmi.Row, guardian []wmi.Row) (*MSFTHgsKeyProtectorNewByGuardiansResult, error) {
-	in := map[string]any{}
-	if allowUntrustedRoot {
-		in["AllowUntrustedRoot"] = allowUntrustedRoot
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTHgsKeyProtectorNewByGuardiansResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
 	}
-	if allowExpired {
-		in["AllowExpired"] = allowExpired
+	return &wmi.JobError{What: "MSFT_HgsKeyProtector.NewByGuardians", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTHgsKeyProtectorNewByGuardians invokes the static MSFT_HgsKeyProtector.NewByGuardians method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTHgsKeyProtectorNewByGuardians(svc *wmi.Service, allowUntrustedRoot *bool, allowExpired *bool, owner wmi.Row, guardian []wmi.Row) (*MSFTHgsKeyProtectorNewByGuardiansResult, error) {
+	in := map[string]any{}
+	if allowUntrustedRoot != nil {
+		in["AllowUntrustedRoot"] = *allowUntrustedRoot
+	}
+	if allowExpired != nil {
+		in["AllowExpired"] = *allowExpired
 	}
 	if owner != nil {
 		in["Owner"] = owner
@@ -401,8 +531,18 @@ type MSFTHgsKeyProtectorRevokeResult struct {
 	ReturnValue  uint32
 }
 
-// MSFTHgsKeyProtectorRevoke invokes the static MSFT_HgsKeyProtector.Revoke method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTHgsKeyProtectorRevokeResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_HgsKeyProtector.Revoke", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTHgsKeyProtectorRevoke invokes the static MSFT_HgsKeyProtector.Revoke method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
 func MSFTHgsKeyProtectorRevoke(svc *wmi.Service, keyProtector wmi.Row, guardian wmi.Row) (*MSFTHgsKeyProtectorRevokeResult, error) {
 	in := map[string]any{}
 	if keyProtector != nil {
@@ -432,8 +572,18 @@ type MSFTHgsKeyProtectorOperationsCreateKeyProtectorResult struct {
 	ReturnValue          uint32
 }
 
-// MSFTHgsKeyProtectorOperationsCreateKeyProtector invokes the static MSFT_HgsKeyProtectorOperations.CreateKeyProtector method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTHgsKeyProtectorOperationsCreateKeyProtectorResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_HgsKeyProtectorOperations.CreateKeyProtector", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTHgsKeyProtectorOperationsCreateKeyProtector invokes the static MSFT_HgsKeyProtectorOperations.CreateKeyProtector method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
 func MSFTHgsKeyProtectorOperationsCreateKeyProtector(svc *wmi.Service) (*MSFTHgsKeyProtectorOperationsCreateKeyProtectorResult, error) {
 	row, err := svc.ExecMethod("MSFT_HgsKeyProtectorOperations", "CreateKeyProtector", nil)
 	if err != nil {
@@ -454,8 +604,18 @@ type MSFTHgsKeyProtectorOperationsDecryptDataWithKeyProtectorResult struct {
 	ReturnValue   uint32
 }
 
-// MSFTHgsKeyProtectorOperationsDecryptDataWithKeyProtector invokes the static MSFT_HgsKeyProtectorOperations.DecryptDataWithKeyProtector method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTHgsKeyProtectorOperationsDecryptDataWithKeyProtectorResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_HgsKeyProtectorOperations.DecryptDataWithKeyProtector", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTHgsKeyProtectorOperationsDecryptDataWithKeyProtector invokes the static MSFT_HgsKeyProtectorOperations.DecryptDataWithKeyProtector method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
 func MSFTHgsKeyProtectorOperationsDecryptDataWithKeyProtector(svc *wmi.Service, baseKeyProtector []uint8, encryptedData []uint8) (*MSFTHgsKeyProtectorOperationsDecryptDataWithKeyProtectorResult, error) {
 	in := map[string]any{}
 	if baseKeyProtector != nil {
@@ -481,21 +641,31 @@ type MSFTHgsKeyProtectorOperationsEncryptDataWithKeyProtectorResult struct {
 	ReturnValue        uint32
 }
 
-// MSFTHgsKeyProtectorOperationsEncryptDataWithKeyProtector invokes the static MSFT_HgsKeyProtectorOperations.EncryptDataWithKeyProtector method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func MSFTHgsKeyProtectorOperationsEncryptDataWithKeyProtector(svc *wmi.Service, baseKeyProtector []uint8, uniqueEncryptionIdentifier uint32, plaintextData []uint8, rollKeyProtector bool) (*MSFTHgsKeyProtectorOperationsEncryptDataWithKeyProtectorResult, error) {
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTHgsKeyProtectorOperationsEncryptDataWithKeyProtectorResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_HgsKeyProtectorOperations.EncryptDataWithKeyProtector", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTHgsKeyProtectorOperationsEncryptDataWithKeyProtector invokes the static MSFT_HgsKeyProtectorOperations.EncryptDataWithKeyProtector method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func MSFTHgsKeyProtectorOperationsEncryptDataWithKeyProtector(svc *wmi.Service, baseKeyProtector []uint8, uniqueEncryptionIdentifier *uint32, plaintextData []uint8, rollKeyProtector *bool) (*MSFTHgsKeyProtectorOperationsEncryptDataWithKeyProtectorResult, error) {
 	in := map[string]any{}
 	if baseKeyProtector != nil {
 		in["BaseKeyProtector"] = baseKeyProtector
 	}
-	if uniqueEncryptionIdentifier != 0 {
-		in["UniqueEncryptionIdentifier"] = uniqueEncryptionIdentifier
+	if uniqueEncryptionIdentifier != nil {
+		in["UniqueEncryptionIdentifier"] = *uniqueEncryptionIdentifier
 	}
 	if plaintextData != nil {
 		in["PlaintextData"] = plaintextData
 	}
-	if rollKeyProtector {
-		in["RollKeyProtector"] = rollKeyProtector
+	if rollKeyProtector != nil {
+		in["RollKeyProtector"] = *rollKeyProtector
 	}
 	row, err := svc.ExecMethod("MSFT_HgsKeyProtectorOperations", "EncryptDataWithKeyProtector", in)
 	if err != nil {
@@ -517,8 +687,18 @@ type MSFTHgsKeyProtectorOperationsUnwrapKeyProtectorResult struct {
 	ReturnValue          uint32
 }
 
-// MSFTHgsKeyProtectorOperationsUnwrapKeyProtector invokes the static MSFT_HgsKeyProtectorOperations.UnwrapKeyProtector method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *MSFTHgsKeyProtectorOperationsUnwrapKeyProtectorResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "MSFT_HgsKeyProtectorOperations.UnwrapKeyProtector", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// MSFTHgsKeyProtectorOperationsUnwrapKeyProtector invokes the static MSFT_HgsKeyProtectorOperations.UnwrapKeyProtector method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
 func MSFTHgsKeyProtectorOperationsUnwrapKeyProtector(svc *wmi.Service, ingressKeyProtector []uint8) (*MSFTHgsKeyProtectorOperationsUnwrapKeyProtectorResult, error) {
 	in := map[string]any{}
 	if ingressKeyProtector != nil {
@@ -543,8 +723,18 @@ type SystemSecurityGet9XUserListResult struct {
 	ReturnValue uint32
 }
 
-// SystemSecurityGet9XUserList invokes the static __SystemSecurity.Get9XUserList method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *SystemSecurityGet9XUserListResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "__SystemSecurity.Get9XUserList", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// SystemSecurityGet9XUserList invokes the static __SystemSecurity.Get9XUserList method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
 func SystemSecurityGet9XUserList(svc *wmi.Service) (*SystemSecurityGet9XUserListResult, error) {
 	row, err := svc.ExecMethod("__SystemSecurity", "Get9XUserList", nil)
 	if err != nil {
@@ -562,8 +752,18 @@ type SystemSecurityGetCallerAccessRightsResult struct {
 	ReturnValue uint32
 }
 
-// SystemSecurityGetCallerAccessRights invokes the static __SystemSecurity.GetCallerAccessRights method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *SystemSecurityGetCallerAccessRightsResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "__SystemSecurity.GetCallerAccessRights", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// SystemSecurityGetCallerAccessRights invokes the static __SystemSecurity.GetCallerAccessRights method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
 func SystemSecurityGetCallerAccessRights(svc *wmi.Service) (*SystemSecurityGetCallerAccessRightsResult, error) {
 	row, err := svc.ExecMethod("__SystemSecurity", "GetCallerAccessRights", nil)
 	if err != nil {
@@ -581,8 +781,18 @@ type SystemSecurityGetSDResult struct {
 	ReturnValue uint32
 }
 
-// SystemSecurityGetSD invokes the static __SystemSecurity.GetSD method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *SystemSecurityGetSDResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "__SystemSecurity.GetSD", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// SystemSecurityGetSD invokes the static __SystemSecurity.GetSD method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
 func SystemSecurityGetSD(svc *wmi.Service) (*SystemSecurityGetSDResult, error) {
 	row, err := svc.ExecMethod("__SystemSecurity", "GetSD", nil)
 	if err != nil {
@@ -600,8 +810,18 @@ type SystemSecurityGetSecurityDescriptorResult struct {
 	ReturnValue uint32
 }
 
-// SystemSecurityGetSecurityDescriptor invokes the static __SystemSecurity.GetSecurityDescriptor method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *SystemSecurityGetSecurityDescriptorResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "__SystemSecurity.GetSecurityDescriptor", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// SystemSecurityGetSecurityDescriptor invokes the static __SystemSecurity.GetSecurityDescriptor method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
 func SystemSecurityGetSecurityDescriptor(svc *wmi.Service) (*SystemSecurityGetSecurityDescriptorResult, error) {
 	row, err := svc.ExecMethod("__SystemSecurity", "GetSecurityDescriptor", nil)
 	if err != nil {
@@ -620,8 +840,18 @@ type SystemSecuritySet9XUserListResult struct {
 	ReturnValue uint32
 }
 
-// SystemSecuritySet9XUserList invokes the static __SystemSecurity.Set9XUserList method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *SystemSecuritySet9XUserListResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "__SystemSecurity.Set9XUserList", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// SystemSecuritySet9XUserList invokes the static __SystemSecurity.Set9XUserList method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
 func SystemSecuritySet9XUserList(svc *wmi.Service, ul []wmi.Row) (*SystemSecuritySet9XUserListResult, error) {
 	in := map[string]any{}
 	if ul != nil {
@@ -641,8 +871,18 @@ type SystemSecuritySetSDResult struct {
 	ReturnValue uint32
 }
 
-// SystemSecuritySetSD invokes the static __SystemSecurity.SetSD method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *SystemSecuritySetSDResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "__SystemSecurity.SetSD", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// SystemSecuritySetSD invokes the static __SystemSecurity.SetSD method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
 func SystemSecuritySetSD(svc *wmi.Service, sD []uint8) (*SystemSecuritySetSDResult, error) {
 	in := map[string]any{}
 	if sD != nil {
@@ -662,8 +902,18 @@ type SystemSecuritySetSecurityDescriptorResult struct {
 	ReturnValue uint32
 }
 
-// SystemSecuritySetSecurityDescriptor invokes the static __SystemSecurity.SetSecurityDescriptor method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *SystemSecuritySetSecurityDescriptorResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "__SystemSecurity.SetSecurityDescriptor", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// SystemSecuritySetSecurityDescriptor invokes the static __SystemSecurity.SetSecurityDescriptor method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
 func SystemSecuritySetSecurityDescriptor(svc *wmi.Service, descriptor wmi.Row) (*SystemSecuritySetSecurityDescriptorResult, error) {
 	in := map[string]any{}
 	if descriptor != nil {

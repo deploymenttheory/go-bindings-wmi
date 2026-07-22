@@ -28,16 +28,32 @@ The generator maps CIM property types to Go field types:
 | (array of the above) | `[]T` |
 | unknown | `any` |
 
-## Enumeration constants
+## Enumeration types
 
 Properties carrying the CIM `Values`/`ValueMap` qualifiers (captured into the
-snapshot) generate named constants into `<ns>_constants.go`, one block per
-property: `cimv2.Win32LogicalDiskDriveTypeLocalDisk` (`uint32 = 3`),
-`cimv2.Win32ServiceStartModeAuto` (`"Auto"`), and so on. Integer enums take
-their value from the `ValueMap`; a negative map entry on an unsigned property
-is reinterpreted as its two's-complement bit pattern (matching how that value
-decodes from a VARIANT — `-1` on a `uint32` becomes `4294967295`). Range
-entries (`128..255`) and free-form text have no single value and are skipped.
+snapshot, including qualifiers inherited from base classes) generate named
+enum types into `<ns>_enums.go` — the struct field, the constants, and the
+query decoding all share the type, and integer enums carry a `String()`
+returning the schema display name:
+
+```go
+disk.DriveType == cimv2.Win32LogicalDiskDriveTypeLocalDisk  // typed uint32
+disk.DriveType.String()                                     // "Local Disk"
+svc.StartMode == cimv2.Win32ServiceStartModeAuto            // typed string
+```
+
+Method surfaces are typed the same way: enum-qualified in-parameters and
+`ReturnValue`s get method-qualified types (`<Class><Method><Param>`).
+ValueMap-only string enumerations (`Win32_Service.StartMode`) use the stored
+strings as their names; integer enums take their value from the `ValueMap`; a
+negative map entry on an unsigned property is reinterpreted as its
+two's-complement bit pattern (matching how that value decodes from a VARIANT
+— `-1` on a `uint32` becomes `4294967295`). Range entries (`128..255`) and
+free-form text have no single value and are skipped — the enum types are
+open, so out-of-enumeration values still decode and compare. `BitValues`/
+`BitMap` qualifiers generate bitmask types (`1 << position` constants,
+combined with `|`). Array enum properties and enums whose type name collides
+with a class keep flat constants in `<ns>_constants.go`.
 
 `datetime` is surfaced as its raw DMTF string (e.g.
 `20260714120000.000000+060`). The runtime provides parsers:

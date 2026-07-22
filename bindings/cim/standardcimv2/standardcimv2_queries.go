@@ -7,7 +7,8 @@ package standardcimv2
 import wmi "github.com/deploymenttheory/go-bindings-wmi/runtime/wmi"
 
 // QueryCIMBindsTo runs the WQL query against the class and decodes each
-// instance into a CIMBindsTo. Pass the WHERE clause (or "" for all).
+// instance into a CIMBindsTo. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryCIMBindsTo(svc *wmi.Service, where string) ([]CIMBindsTo, error) {
 	q := "SELECT * FROM CIM_BindsTo"
 	if where != "" {
@@ -19,17 +20,14 @@ func QueryCIMBindsTo(svc *wmi.Service, where string) ([]CIMBindsTo, error) {
 	}
 	out := make([]CIMBindsTo, len(rows))
 	for i, row := range rows {
-		out[i].Antecedent = wmi.AsString(row["Antecedent"])
-		out[i].Dependent = wmi.AsString(row["Dependent"])
+		out[i] = CIMBindsToFromRow(row)
 	}
 	return out, nil
 }
 
-// GetCIMBindsTo returns the CIM_BindsTo instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetCIMBindsTo(svc *wmi.Service, antecedent string, dependent string) (*CIMBindsTo, error) {
-	where := "Antecedent = " + wmi.WQLValue(antecedent) +
-		" AND " + "Dependent = " + wmi.WQLValue(dependent)
+// QueryOneCIMBindsTo returns the single CIM_BindsTo matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneCIMBindsTo(svc *wmi.Service, where string) (*CIMBindsTo, error) {
 	out, err := QueryCIMBindsTo(svc, where)
 	if err != nil {
 		return nil, err
@@ -40,8 +38,17 @@ func GetCIMBindsTo(svc *wmi.Service, antecedent string, dependent string) (*CIMB
 	return &out[0], nil
 }
 
+// GetCIMBindsTo returns the CIM_BindsTo instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetCIMBindsTo(svc *wmi.Service, antecedent string, dependent string) (*CIMBindsTo, error) {
+	where := "Antecedent = " + wmi.WQLValue(antecedent) +
+		" AND " + "Dependent = " + wmi.WQLValue(dependent)
+	return QueryOneCIMBindsTo(svc, where)
+}
+
 // QueryCIMBindsToLANEndpoint runs the WQL query against the class and decodes each
-// instance into a CIMBindsToLANEndpoint. Pass the WHERE clause (or "" for all).
+// instance into a CIMBindsToLANEndpoint. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryCIMBindsToLANEndpoint(svc *wmi.Service, where string) ([]CIMBindsToLANEndpoint, error) {
 	q := "SELECT * FROM CIM_BindsToLANEndpoint"
 	if where != "" {
@@ -53,18 +60,14 @@ func QueryCIMBindsToLANEndpoint(svc *wmi.Service, where string) ([]CIMBindsToLAN
 	}
 	out := make([]CIMBindsToLANEndpoint, len(rows))
 	for i, row := range rows {
-		out[i].Antecedent = wmi.AsString(row["Antecedent"])
-		out[i].Dependent = wmi.AsString(row["Dependent"])
-		out[i].FrameType = wmi.AsUint16(row["FrameType"])
+		out[i] = CIMBindsToLANEndpointFromRow(row)
 	}
 	return out, nil
 }
 
-// GetCIMBindsToLANEndpoint returns the CIM_BindsToLANEndpoint instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetCIMBindsToLANEndpoint(svc *wmi.Service, antecedent string, dependent string) (*CIMBindsToLANEndpoint, error) {
-	where := "Antecedent = " + wmi.WQLValue(antecedent) +
-		" AND " + "Dependent = " + wmi.WQLValue(dependent)
+// QueryOneCIMBindsToLANEndpoint returns the single CIM_BindsToLANEndpoint matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneCIMBindsToLANEndpoint(svc *wmi.Service, where string) (*CIMBindsToLANEndpoint, error) {
 	out, err := QueryCIMBindsToLANEndpoint(svc, where)
 	if err != nil {
 		return nil, err
@@ -75,8 +78,17 @@ func GetCIMBindsToLANEndpoint(svc *wmi.Service, antecedent string, dependent str
 	return &out[0], nil
 }
 
+// GetCIMBindsToLANEndpoint returns the CIM_BindsToLANEndpoint instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetCIMBindsToLANEndpoint(svc *wmi.Service, antecedent string, dependent string) (*CIMBindsToLANEndpoint, error) {
+	where := "Antecedent = " + wmi.WQLValue(antecedent) +
+		" AND " + "Dependent = " + wmi.WQLValue(dependent)
+	return QueryOneCIMBindsToLANEndpoint(svc, where)
+}
+
 // QueryCIMClassCreation runs the WQL query against the class and decodes each
-// instance into a CIMClassCreation. Pass the WHERE clause (or "" for all).
+// instance into a CIMClassCreation. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryCIMClassCreation(svc *wmi.Service, where string) ([]CIMClassCreation, error) {
 	q := "SELECT * FROM CIM_ClassCreation"
 	if where != "" {
@@ -88,23 +100,27 @@ func QueryCIMClassCreation(svc *wmi.Service, where string) ([]CIMClassCreation, 
 	}
 	out := make([]CIMClassCreation, len(rows))
 	for i, row := range rows {
-		if v, ok := row["ClassDefinition"].(wmi.Row); ok {
-			out[i].ClassDefinition = v
-		}
-		out[i].CorrelatedIndications = wmi.AsStringSlice(row["CorrelatedIndications"])
-		out[i].IndicationFilterName = wmi.AsString(row["IndicationFilterName"])
-		out[i].IndicationIdentifier = wmi.AsString(row["IndicationIdentifier"])
-		out[i].IndicationTime = wmi.AsString(row["IndicationTime"])
-		out[i].OtherSeverity = wmi.AsString(row["OtherSeverity"])
-		out[i].PerceivedSeverity = wmi.AsUint16(row["PerceivedSeverity"])
-		out[i].SequenceContext = wmi.AsString(row["SequenceContext"])
-		out[i].SequenceNumber = wmi.AsInt64(row["SequenceNumber"])
+		out[i] = CIMClassCreationFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneCIMClassCreation returns the single CIM_ClassCreation matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneCIMClassCreation(svc *wmi.Service, where string) (*CIMClassCreation, error) {
+	out, err := QueryCIMClassCreation(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryCIMClassDeletion runs the WQL query against the class and decodes each
-// instance into a CIMClassDeletion. Pass the WHERE clause (or "" for all).
+// instance into a CIMClassDeletion. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryCIMClassDeletion(svc *wmi.Service, where string) ([]CIMClassDeletion, error) {
 	q := "SELECT * FROM CIM_ClassDeletion"
 	if where != "" {
@@ -116,23 +132,27 @@ func QueryCIMClassDeletion(svc *wmi.Service, where string) ([]CIMClassDeletion, 
 	}
 	out := make([]CIMClassDeletion, len(rows))
 	for i, row := range rows {
-		if v, ok := row["ClassDefinition"].(wmi.Row); ok {
-			out[i].ClassDefinition = v
-		}
-		out[i].CorrelatedIndications = wmi.AsStringSlice(row["CorrelatedIndications"])
-		out[i].IndicationFilterName = wmi.AsString(row["IndicationFilterName"])
-		out[i].IndicationIdentifier = wmi.AsString(row["IndicationIdentifier"])
-		out[i].IndicationTime = wmi.AsString(row["IndicationTime"])
-		out[i].OtherSeverity = wmi.AsString(row["OtherSeverity"])
-		out[i].PerceivedSeverity = wmi.AsUint16(row["PerceivedSeverity"])
-		out[i].SequenceContext = wmi.AsString(row["SequenceContext"])
-		out[i].SequenceNumber = wmi.AsInt64(row["SequenceNumber"])
+		out[i] = CIMClassDeletionFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneCIMClassDeletion returns the single CIM_ClassDeletion matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneCIMClassDeletion(svc *wmi.Service, where string) (*CIMClassDeletion, error) {
+	out, err := QueryCIMClassDeletion(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryCIMClassIndication runs the WQL query against the class and decodes each
-// instance into a CIMClassIndication. Pass the WHERE clause (or "" for all).
+// instance into a CIMClassIndication. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryCIMClassIndication(svc *wmi.Service, where string) ([]CIMClassIndication, error) {
 	q := "SELECT * FROM CIM_ClassIndication"
 	if where != "" {
@@ -144,23 +164,27 @@ func QueryCIMClassIndication(svc *wmi.Service, where string) ([]CIMClassIndicati
 	}
 	out := make([]CIMClassIndication, len(rows))
 	for i, row := range rows {
-		if v, ok := row["ClassDefinition"].(wmi.Row); ok {
-			out[i].ClassDefinition = v
-		}
-		out[i].CorrelatedIndications = wmi.AsStringSlice(row["CorrelatedIndications"])
-		out[i].IndicationFilterName = wmi.AsString(row["IndicationFilterName"])
-		out[i].IndicationIdentifier = wmi.AsString(row["IndicationIdentifier"])
-		out[i].IndicationTime = wmi.AsString(row["IndicationTime"])
-		out[i].OtherSeverity = wmi.AsString(row["OtherSeverity"])
-		out[i].PerceivedSeverity = wmi.AsUint16(row["PerceivedSeverity"])
-		out[i].SequenceContext = wmi.AsString(row["SequenceContext"])
-		out[i].SequenceNumber = wmi.AsInt64(row["SequenceNumber"])
+		out[i] = CIMClassIndicationFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneCIMClassIndication returns the single CIM_ClassIndication matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneCIMClassIndication(svc *wmi.Service, where string) (*CIMClassIndication, error) {
+	out, err := QueryCIMClassIndication(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryCIMClassModification runs the WQL query against the class and decodes each
-// instance into a CIMClassModification. Pass the WHERE clause (or "" for all).
+// instance into a CIMClassModification. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryCIMClassModification(svc *wmi.Service, where string) ([]CIMClassModification, error) {
 	q := "SELECT * FROM CIM_ClassModification"
 	if where != "" {
@@ -172,26 +196,27 @@ func QueryCIMClassModification(svc *wmi.Service, where string) ([]CIMClassModifi
 	}
 	out := make([]CIMClassModification, len(rows))
 	for i, row := range rows {
-		if v, ok := row["ClassDefinition"].(wmi.Row); ok {
-			out[i].ClassDefinition = v
-		}
-		out[i].CorrelatedIndications = wmi.AsStringSlice(row["CorrelatedIndications"])
-		out[i].IndicationFilterName = wmi.AsString(row["IndicationFilterName"])
-		out[i].IndicationIdentifier = wmi.AsString(row["IndicationIdentifier"])
-		out[i].IndicationTime = wmi.AsString(row["IndicationTime"])
-		out[i].OtherSeverity = wmi.AsString(row["OtherSeverity"])
-		out[i].PerceivedSeverity = wmi.AsUint16(row["PerceivedSeverity"])
-		if v, ok := row["PreviousClassDefinition"].(wmi.Row); ok {
-			out[i].PreviousClassDefinition = v
-		}
-		out[i].SequenceContext = wmi.AsString(row["SequenceContext"])
-		out[i].SequenceNumber = wmi.AsInt64(row["SequenceNumber"])
+		out[i] = CIMClassModificationFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneCIMClassModification returns the single CIM_ClassModification matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneCIMClassModification(svc *wmi.Service, where string) (*CIMClassModification, error) {
+	out, err := QueryCIMClassModification(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryCIMComponent runs the WQL query against the class and decodes each
-// instance into a CIMComponent. Pass the WHERE clause (or "" for all).
+// instance into a CIMComponent. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryCIMComponent(svc *wmi.Service, where string) ([]CIMComponent, error) {
 	q := "SELECT * FROM CIM_Component"
 	if where != "" {
@@ -203,17 +228,14 @@ func QueryCIMComponent(svc *wmi.Service, where string) ([]CIMComponent, error) {
 	}
 	out := make([]CIMComponent, len(rows))
 	for i, row := range rows {
-		out[i].GroupComponent = wmi.AsString(row["GroupComponent"])
-		out[i].PartComponent = wmi.AsString(row["PartComponent"])
+		out[i] = CIMComponentFromRow(row)
 	}
 	return out, nil
 }
 
-// GetCIMComponent returns the CIM_Component instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetCIMComponent(svc *wmi.Service, groupComponent string, partComponent string) (*CIMComponent, error) {
-	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
-		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+// QueryOneCIMComponent returns the single CIM_Component matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneCIMComponent(svc *wmi.Service, where string) (*CIMComponent, error) {
 	out, err := QueryCIMComponent(svc, where)
 	if err != nil {
 		return nil, err
@@ -224,8 +246,17 @@ func GetCIMComponent(svc *wmi.Service, groupComponent string, partComponent stri
 	return &out[0], nil
 }
 
+// GetCIMComponent returns the CIM_Component instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetCIMComponent(svc *wmi.Service, groupComponent string, partComponent string) (*CIMComponent, error) {
+	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
+		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+	return QueryOneCIMComponent(svc, where)
+}
+
 // QueryCIMConcreteJob runs the WQL query against the class and decodes each
-// instance into a CIMConcreteJob. Pass the WHERE clause (or "" for all).
+// instance into a CIMConcreteJob. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryCIMConcreteJob(svc *wmi.Service, where string) ([]CIMConcreteJob, error) {
 	q := "SELECT * FROM CIM_ConcreteJob"
 	if where != "" {
@@ -237,52 +268,14 @@ func QueryCIMConcreteJob(svc *wmi.Service, where string) ([]CIMConcreteJob, erro
 	}
 	out := make([]CIMConcreteJob, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CommunicationStatus = wmi.AsUint16(row["CommunicationStatus"])
-		out[i].DeleteOnCompletion = wmi.AsBool(row["DeleteOnCompletion"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DetailedStatus = wmi.AsUint16(row["DetailedStatus"])
-		out[i].ElapsedTime = wmi.AsString(row["ElapsedTime"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].ErrorCode = wmi.AsUint16(row["ErrorCode"])
-		out[i].ErrorDescription = wmi.AsString(row["ErrorDescription"])
-		out[i].HealthState = wmi.AsUint16(row["HealthState"])
-		out[i].InstallDate = wmi.AsString(row["InstallDate"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].JobRunTimes = wmi.AsUint32(row["JobRunTimes"])
-		out[i].JobState = wmi.AsUint16(row["JobState"])
-		out[i].JobStatus = wmi.AsString(row["JobStatus"])
-		out[i].LocalOrUtcTime = wmi.AsUint16(row["LocalOrUtcTime"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].Notify = wmi.AsString(row["Notify"])
-		out[i].OperatingStatus = wmi.AsUint16(row["OperatingStatus"])
-		out[i].OperationalStatus = wmi.AsUint16Slice(row["OperationalStatus"])
-		out[i].OtherRecoveryAction = wmi.AsString(row["OtherRecoveryAction"])
-		out[i].Owner = wmi.AsString(row["Owner"])
-		out[i].PercentComplete = wmi.AsUint16(row["PercentComplete"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].Priority = wmi.AsUint32(row["Priority"])
-		out[i].RecoveryAction = wmi.AsUint16(row["RecoveryAction"])
-		out[i].RunDay = wmi.AsInt8(row["RunDay"])
-		out[i].RunDayOfWeek = wmi.AsInt8(row["RunDayOfWeek"])
-		out[i].RunMonth = wmi.AsUint8(row["RunMonth"])
-		out[i].RunStartInterval = wmi.AsString(row["RunStartInterval"])
-		out[i].ScheduledStartTime = wmi.AsString(row["ScheduledStartTime"])
-		out[i].StartTime = wmi.AsString(row["StartTime"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusDescriptions = wmi.AsStringSlice(row["StatusDescriptions"])
-		out[i].TimeBeforeRemoval = wmi.AsString(row["TimeBeforeRemoval"])
-		out[i].TimeOfLastStateChange = wmi.AsString(row["TimeOfLastStateChange"])
-		out[i].TimeSubmitted = wmi.AsString(row["TimeSubmitted"])
-		out[i].UntilTime = wmi.AsString(row["UntilTime"])
+		out[i] = CIMConcreteJobFromRow(row)
 	}
 	return out, nil
 }
 
-// GetCIMConcreteJob returns the CIM_ConcreteJob instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetCIMConcreteJob(svc *wmi.Service, instanceID string) (*CIMConcreteJob, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneCIMConcreteJob returns the single CIM_ConcreteJob matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneCIMConcreteJob(svc *wmi.Service, where string) (*CIMConcreteJob, error) {
 	out, err := QueryCIMConcreteJob(svc, where)
 	if err != nil {
 		return nil, err
@@ -293,8 +286,16 @@ func GetCIMConcreteJob(svc *wmi.Service, instanceID string) (*CIMConcreteJob, er
 	return &out[0], nil
 }
 
+// GetCIMConcreteJob returns the CIM_ConcreteJob instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetCIMConcreteJob(svc *wmi.Service, instanceID string) (*CIMConcreteJob, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneCIMConcreteJob(svc, where)
+}
+
 // QueryCIMDNSGeneralSettingData runs the WQL query against the class and decodes each
-// instance into a CIMDNSGeneralSettingData. Pass the WHERE clause (or "" for all).
+// instance into a CIMDNSGeneralSettingData. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryCIMDNSGeneralSettingData(svc *wmi.Service, where string) ([]CIMDNSGeneralSettingData, error) {
 	q := "SELECT * FROM CIM_DNSGeneralSettingData"
 	if where != "" {
@@ -306,23 +307,14 @@ func QueryCIMDNSGeneralSettingData(svc *wmi.Service, where string) ([]CIMDNSGene
 	}
 	out := make([]CIMDNSGeneralSettingData, len(rows))
 	for i, row := range rows {
-		out[i].AddressOrigin = wmi.AsUint16(row["AddressOrigin"])
-		out[i].AppendParentSuffixes = wmi.AsBool(row["AppendParentSuffixes"])
-		out[i].AppendPrimarySuffixes = wmi.AsBool(row["AppendPrimarySuffixes"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].DNSSuffixesToAppend = wmi.AsStringSlice(row["DNSSuffixesToAppend"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].ProtocolIFType = wmi.AsUint16(row["ProtocolIFType"])
+		out[i] = CIMDNSGeneralSettingDataFromRow(row)
 	}
 	return out, nil
 }
 
-// GetCIMDNSGeneralSettingData returns the CIM_DNSGeneralSettingData instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetCIMDNSGeneralSettingData(svc *wmi.Service, instanceID string) (*CIMDNSGeneralSettingData, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneCIMDNSGeneralSettingData returns the single CIM_DNSGeneralSettingData matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneCIMDNSGeneralSettingData(svc *wmi.Service, where string) (*CIMDNSGeneralSettingData, error) {
 	out, err := QueryCIMDNSGeneralSettingData(svc, where)
 	if err != nil {
 		return nil, err
@@ -333,8 +325,16 @@ func GetCIMDNSGeneralSettingData(svc *wmi.Service, instanceID string) (*CIMDNSGe
 	return &out[0], nil
 }
 
+// GetCIMDNSGeneralSettingData returns the CIM_DNSGeneralSettingData instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetCIMDNSGeneralSettingData(svc *wmi.Service, instanceID string) (*CIMDNSGeneralSettingData, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneCIMDNSGeneralSettingData(svc, where)
+}
+
 // QueryCIMDNSProtocolEndpoint runs the WQL query against the class and decodes each
-// instance into a CIMDNSProtocolEndpoint. Pass the WHERE clause (or "" for all).
+// instance into a CIMDNSProtocolEndpoint. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryCIMDNSProtocolEndpoint(svc *wmi.Service, where string) ([]CIMDNSProtocolEndpoint, error) {
 	q := "SELECT * FROM CIM_DNSProtocolEndpoint"
 	if where != "" {
@@ -346,47 +346,14 @@ func QueryCIMDNSProtocolEndpoint(svc *wmi.Service, where string) ([]CIMDNSProtoc
 	}
 	out := make([]CIMDNSProtocolEndpoint, len(rows))
 	for i, row := range rows {
-		out[i].AvailableRequestedStates = wmi.AsUint16Slice(row["AvailableRequestedStates"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CommunicationStatus = wmi.AsUint16(row["CommunicationStatus"])
-		out[i].CreationClassName = wmi.AsString(row["CreationClassName"])
-		out[i].DHCPOptionsToUse = wmi.AsUint16Slice(row["DHCPOptionsToUse"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DetailedStatus = wmi.AsUint16(row["DetailedStatus"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].EnabledDefault = wmi.AsUint16(row["EnabledDefault"])
-		out[i].EnabledState = wmi.AsUint16(row["EnabledState"])
-		out[i].HealthState = wmi.AsUint16(row["HealthState"])
-		out[i].Hostname = wmi.AsString(row["Hostname"])
-		out[i].InstallDate = wmi.AsString(row["InstallDate"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].NameFormat = wmi.AsString(row["NameFormat"])
-		out[i].OperatingStatus = wmi.AsUint16(row["OperatingStatus"])
-		out[i].OperationalStatus = wmi.AsUint16Slice(row["OperationalStatus"])
-		out[i].OtherEnabledState = wmi.AsString(row["OtherEnabledState"])
-		out[i].OtherTypeDescription = wmi.AsString(row["OtherTypeDescription"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].ProtocolIFType = wmi.AsUint16(row["ProtocolIFType"])
-		out[i].ProtocolType = wmi.AsUint16(row["ProtocolType"])
-		out[i].RequestedState = wmi.AsUint16(row["RequestedState"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusDescriptions = wmi.AsStringSlice(row["StatusDescriptions"])
-		out[i].SystemCreationClassName = wmi.AsString(row["SystemCreationClassName"])
-		out[i].SystemName = wmi.AsString(row["SystemName"])
-		out[i].TimeOfLastStateChange = wmi.AsString(row["TimeOfLastStateChange"])
-		out[i].TransitioningToState = wmi.AsUint16(row["TransitioningToState"])
+		out[i] = CIMDNSProtocolEndpointFromRow(row)
 	}
 	return out, nil
 }
 
-// GetCIMDNSProtocolEndpoint returns the CIM_DNSProtocolEndpoint instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetCIMDNSProtocolEndpoint(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*CIMDNSProtocolEndpoint, error) {
-	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
-		" AND " + "Name = " + wmi.WQLValue(name) +
-		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
-		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+// QueryOneCIMDNSProtocolEndpoint returns the single CIM_DNSProtocolEndpoint matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneCIMDNSProtocolEndpoint(svc *wmi.Service, where string) (*CIMDNSProtocolEndpoint, error) {
 	out, err := QueryCIMDNSProtocolEndpoint(svc, where)
 	if err != nil {
 		return nil, err
@@ -397,8 +364,19 @@ func GetCIMDNSProtocolEndpoint(svc *wmi.Service, creationClassName string, name 
 	return &out[0], nil
 }
 
+// GetCIMDNSProtocolEndpoint returns the CIM_DNSProtocolEndpoint instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetCIMDNSProtocolEndpoint(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*CIMDNSProtocolEndpoint, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "Name = " + wmi.WQLValue(name) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	return QueryOneCIMDNSProtocolEndpoint(svc, where)
+}
+
 // QueryCIMDependency runs the WQL query against the class and decodes each
-// instance into a CIMDependency. Pass the WHERE clause (or "" for all).
+// instance into a CIMDependency. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryCIMDependency(svc *wmi.Service, where string) ([]CIMDependency, error) {
 	q := "SELECT * FROM CIM_Dependency"
 	if where != "" {
@@ -410,17 +388,14 @@ func QueryCIMDependency(svc *wmi.Service, where string) ([]CIMDependency, error)
 	}
 	out := make([]CIMDependency, len(rows))
 	for i, row := range rows {
-		out[i].Antecedent = wmi.AsString(row["Antecedent"])
-		out[i].Dependent = wmi.AsString(row["Dependent"])
+		out[i] = CIMDependencyFromRow(row)
 	}
 	return out, nil
 }
 
-// GetCIMDependency returns the CIM_Dependency instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetCIMDependency(svc *wmi.Service, antecedent string, dependent string) (*CIMDependency, error) {
-	where := "Antecedent = " + wmi.WQLValue(antecedent) +
-		" AND " + "Dependent = " + wmi.WQLValue(dependent)
+// QueryOneCIMDependency returns the single CIM_Dependency matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneCIMDependency(svc *wmi.Service, where string) (*CIMDependency, error) {
 	out, err := QueryCIMDependency(svc, where)
 	if err != nil {
 		return nil, err
@@ -431,8 +406,17 @@ func GetCIMDependency(svc *wmi.Service, antecedent string, dependent string) (*C
 	return &out[0], nil
 }
 
+// GetCIMDependency returns the CIM_Dependency instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetCIMDependency(svc *wmi.Service, antecedent string, dependent string) (*CIMDependency, error) {
+	where := "Antecedent = " + wmi.WQLValue(antecedent) +
+		" AND " + "Dependent = " + wmi.WQLValue(dependent)
+	return QueryOneCIMDependency(svc, where)
+}
+
 // QueryCIMDeviceSAPImplementation runs the WQL query against the class and decodes each
-// instance into a CIMDeviceSAPImplementation. Pass the WHERE clause (or "" for all).
+// instance into a CIMDeviceSAPImplementation. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryCIMDeviceSAPImplementation(svc *wmi.Service, where string) ([]CIMDeviceSAPImplementation, error) {
 	q := "SELECT * FROM CIM_DeviceSAPImplementation"
 	if where != "" {
@@ -444,17 +428,14 @@ func QueryCIMDeviceSAPImplementation(svc *wmi.Service, where string) ([]CIMDevic
 	}
 	out := make([]CIMDeviceSAPImplementation, len(rows))
 	for i, row := range rows {
-		out[i].Antecedent = wmi.AsString(row["Antecedent"])
-		out[i].Dependent = wmi.AsString(row["Dependent"])
+		out[i] = CIMDeviceSAPImplementationFromRow(row)
 	}
 	return out, nil
 }
 
-// GetCIMDeviceSAPImplementation returns the CIM_DeviceSAPImplementation instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetCIMDeviceSAPImplementation(svc *wmi.Service, antecedent string, dependent string) (*CIMDeviceSAPImplementation, error) {
-	where := "Antecedent = " + wmi.WQLValue(antecedent) +
-		" AND " + "Dependent = " + wmi.WQLValue(dependent)
+// QueryOneCIMDeviceSAPImplementation returns the single CIM_DeviceSAPImplementation matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneCIMDeviceSAPImplementation(svc *wmi.Service, where string) (*CIMDeviceSAPImplementation, error) {
 	out, err := QueryCIMDeviceSAPImplementation(svc, where)
 	if err != nil {
 		return nil, err
@@ -465,8 +446,17 @@ func GetCIMDeviceSAPImplementation(svc *wmi.Service, antecedent string, dependen
 	return &out[0], nil
 }
 
+// GetCIMDeviceSAPImplementation returns the CIM_DeviceSAPImplementation instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetCIMDeviceSAPImplementation(svc *wmi.Service, antecedent string, dependent string) (*CIMDeviceSAPImplementation, error) {
+	where := "Antecedent = " + wmi.WQLValue(antecedent) +
+		" AND " + "Dependent = " + wmi.WQLValue(dependent)
+	return QueryOneCIMDeviceSAPImplementation(svc, where)
+}
+
 // QueryCIMElementSettingData runs the WQL query against the class and decodes each
-// instance into a CIMElementSettingData. Pass the WHERE clause (or "" for all).
+// instance into a CIMElementSettingData. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryCIMElementSettingData(svc *wmi.Service, where string) ([]CIMElementSettingData, error) {
 	q := "SELECT * FROM CIM_ElementSettingData"
 	if where != "" {
@@ -478,20 +468,14 @@ func QueryCIMElementSettingData(svc *wmi.Service, where string) ([]CIMElementSet
 	}
 	out := make([]CIMElementSettingData, len(rows))
 	for i, row := range rows {
-		out[i].IsCurrent = wmi.AsUint16(row["IsCurrent"])
-		out[i].IsDefault = wmi.AsUint16(row["IsDefault"])
-		out[i].IsNext = wmi.AsUint16(row["IsNext"])
-		out[i].ManagedElement = wmi.AsString(row["ManagedElement"])
-		out[i].SettingData = wmi.AsString(row["SettingData"])
+		out[i] = CIMElementSettingDataFromRow(row)
 	}
 	return out, nil
 }
 
-// GetCIMElementSettingData returns the CIM_ElementSettingData instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetCIMElementSettingData(svc *wmi.Service, managedElement string, settingData string) (*CIMElementSettingData, error) {
-	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
-		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+// QueryOneCIMElementSettingData returns the single CIM_ElementSettingData matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneCIMElementSettingData(svc *wmi.Service, where string) (*CIMElementSettingData, error) {
 	out, err := QueryCIMElementSettingData(svc, where)
 	if err != nil {
 		return nil, err
@@ -502,8 +486,17 @@ func GetCIMElementSettingData(svc *wmi.Service, managedElement string, settingDa
 	return &out[0], nil
 }
 
+// GetCIMElementSettingData returns the CIM_ElementSettingData instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetCIMElementSettingData(svc *wmi.Service, managedElement string, settingData string) (*CIMElementSettingData, error) {
+	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
+		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+	return QueryOneCIMElementSettingData(svc, where)
+}
+
 // QueryCIMEnabledLogicalElement runs the WQL query against the class and decodes each
-// instance into a CIMEnabledLogicalElement. Pass the WHERE clause (or "" for all).
+// instance into a CIMEnabledLogicalElement. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryCIMEnabledLogicalElement(svc *wmi.Service, where string) ([]CIMEnabledLogicalElement, error) {
 	q := "SELECT * FROM CIM_EnabledLogicalElement"
 	if where != "" {
@@ -515,33 +508,27 @@ func QueryCIMEnabledLogicalElement(svc *wmi.Service, where string) ([]CIMEnabled
 	}
 	out := make([]CIMEnabledLogicalElement, len(rows))
 	for i, row := range rows {
-		out[i].AvailableRequestedStates = wmi.AsUint16Slice(row["AvailableRequestedStates"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CommunicationStatus = wmi.AsUint16(row["CommunicationStatus"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DetailedStatus = wmi.AsUint16(row["DetailedStatus"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].EnabledDefault = wmi.AsUint16(row["EnabledDefault"])
-		out[i].EnabledState = wmi.AsUint16(row["EnabledState"])
-		out[i].HealthState = wmi.AsUint16(row["HealthState"])
-		out[i].InstallDate = wmi.AsString(row["InstallDate"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].OperatingStatus = wmi.AsUint16(row["OperatingStatus"])
-		out[i].OperationalStatus = wmi.AsUint16Slice(row["OperationalStatus"])
-		out[i].OtherEnabledState = wmi.AsString(row["OtherEnabledState"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].RequestedState = wmi.AsUint16(row["RequestedState"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusDescriptions = wmi.AsStringSlice(row["StatusDescriptions"])
-		out[i].TimeOfLastStateChange = wmi.AsString(row["TimeOfLastStateChange"])
-		out[i].TransitioningToState = wmi.AsUint16(row["TransitioningToState"])
+		out[i] = CIMEnabledLogicalElementFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneCIMEnabledLogicalElement returns the single CIM_EnabledLogicalElement matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneCIMEnabledLogicalElement(svc *wmi.Service, where string) (*CIMEnabledLogicalElement, error) {
+	out, err := QueryCIMEnabledLogicalElement(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryCIMError runs the WQL query against the class and decodes each
-// instance into a CIMError. Pass the WHERE clause (or "" for all).
+// instance into a CIMError. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryCIMError(svc *wmi.Service, where string) ([]CIMError, error) {
 	q := "SELECT * FROM CIM_Error"
 	if where != "" {
@@ -553,27 +540,27 @@ func QueryCIMError(svc *wmi.Service, where string) ([]CIMError, error) {
 	}
 	out := make([]CIMError, len(rows))
 	for i, row := range rows {
-		out[i].CIMStatusCode = wmi.AsUint32(row["CIMStatusCode"])
-		out[i].CIMStatusCodeDescription = wmi.AsString(row["CIMStatusCodeDescription"])
-		out[i].ErrorSource = wmi.AsString(row["ErrorSource"])
-		out[i].ErrorSourceFormat = wmi.AsUint16(row["ErrorSourceFormat"])
-		out[i].ErrorType = wmi.AsUint16(row["ErrorType"])
-		out[i].Message = wmi.AsString(row["Message"])
-		out[i].MessageArguments = wmi.AsStringSlice(row["MessageArguments"])
-		out[i].MessageID = wmi.AsString(row["MessageID"])
-		out[i].OtherErrorSourceFormat = wmi.AsString(row["OtherErrorSourceFormat"])
-		out[i].OtherErrorType = wmi.AsString(row["OtherErrorType"])
-		out[i].OwningEntity = wmi.AsString(row["OwningEntity"])
-		out[i].PerceivedSeverity = wmi.AsUint16(row["PerceivedSeverity"])
-		out[i].ProbableCause = wmi.AsUint16(row["ProbableCause"])
-		out[i].ProbableCauseDescription = wmi.AsString(row["ProbableCauseDescription"])
-		out[i].RecommendedActions = wmi.AsStringSlice(row["RecommendedActions"])
+		out[i] = CIMErrorFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneCIMError returns the single CIM_Error matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneCIMError(svc *wmi.Service, where string) (*CIMError, error) {
+	out, err := QueryCIMError(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryCIMFilterEntryBase runs the WQL query against the class and decodes each
-// instance into a CIMFilterEntryBase. Pass the WHERE clause (or "" for all).
+// instance into a CIMFilterEntryBase. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryCIMFilterEntryBase(svc *wmi.Service, where string) ([]CIMFilterEntryBase, error) {
 	q := "SELECT * FROM CIM_FilterEntryBase"
 	if where != "" {
@@ -585,35 +572,14 @@ func QueryCIMFilterEntryBase(svc *wmi.Service, where string) ([]CIMFilterEntryBa
 	}
 	out := make([]CIMFilterEntryBase, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CommunicationStatus = wmi.AsUint16(row["CommunicationStatus"])
-		out[i].CreationClassName = wmi.AsString(row["CreationClassName"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DetailedStatus = wmi.AsUint16(row["DetailedStatus"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].HealthState = wmi.AsUint16(row["HealthState"])
-		out[i].InstallDate = wmi.AsString(row["InstallDate"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].IsNegated = wmi.AsBool(row["IsNegated"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].OperatingStatus = wmi.AsUint16(row["OperatingStatus"])
-		out[i].OperationalStatus = wmi.AsUint16Slice(row["OperationalStatus"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusDescriptions = wmi.AsStringSlice(row["StatusDescriptions"])
-		out[i].SystemCreationClassName = wmi.AsString(row["SystemCreationClassName"])
-		out[i].SystemName = wmi.AsString(row["SystemName"])
+		out[i] = CIMFilterEntryBaseFromRow(row)
 	}
 	return out, nil
 }
 
-// GetCIMFilterEntryBase returns the CIM_FilterEntryBase instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetCIMFilterEntryBase(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*CIMFilterEntryBase, error) {
-	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
-		" AND " + "Name = " + wmi.WQLValue(name) +
-		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
-		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+// QueryOneCIMFilterEntryBase returns the single CIM_FilterEntryBase matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneCIMFilterEntryBase(svc *wmi.Service, where string) (*CIMFilterEntryBase, error) {
 	out, err := QueryCIMFilterEntryBase(svc, where)
 	if err != nil {
 		return nil, err
@@ -624,8 +590,19 @@ func GetCIMFilterEntryBase(svc *wmi.Service, creationClassName string, name stri
 	return &out[0], nil
 }
 
+// GetCIMFilterEntryBase returns the CIM_FilterEntryBase instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetCIMFilterEntryBase(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*CIMFilterEntryBase, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "Name = " + wmi.WQLValue(name) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	return QueryOneCIMFilterEntryBase(svc, where)
+}
+
 // QueryCIMIKEAction runs the WQL query against the class and decodes each
-// instance into a CIMIKEAction. Pass the WHERE clause (or "" for all).
+// instance into a CIMIKEAction. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryCIMIKEAction(svc *wmi.Service, where string) ([]CIMIKEAction, error) {
 	q := "SELECT * FROM CIM_IKEAction"
 	if where != "" {
@@ -637,29 +614,22 @@ func QueryCIMIKEAction(svc *wmi.Service, where string) ([]CIMIKEAction, error) {
 	}
 	out := make([]CIMIKEAction, len(rows))
 	for i, row := range rows {
-		out[i].AggressiveModeGroupID = wmi.AsUint16(row["AggressiveModeGroupID"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CommonName = wmi.AsString(row["CommonName"])
-		out[i].CreationClassName = wmi.AsString(row["CreationClassName"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DoActionLogging = wmi.AsBool(row["DoActionLogging"])
-		out[i].DoPacketLogging = wmi.AsBool(row["DoPacketLogging"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].ExchangeMode = wmi.AsUint16(row["ExchangeMode"])
-		out[i].IdleDurationSeconds = wmi.AsUint64(row["IdleDurationSeconds"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].MinLifetimeKilobytes = wmi.AsUint64(row["MinLifetimeKilobytes"])
-		out[i].MinLifetimeSeconds = wmi.AsUint64(row["MinLifetimeSeconds"])
-		out[i].PolicyActionName = wmi.AsString(row["PolicyActionName"])
-		out[i].PolicyKeywords = wmi.AsStringSlice(row["PolicyKeywords"])
-		out[i].PolicyRuleCreationClassName = wmi.AsString(row["PolicyRuleCreationClassName"])
-		out[i].PolicyRuleName = wmi.AsString(row["PolicyRuleName"])
-		out[i].SystemCreationClassName = wmi.AsString(row["SystemCreationClassName"])
-		out[i].SystemName = wmi.AsString(row["SystemName"])
-		out[i].UseIKEIdentityType = wmi.AsUint16(row["UseIKEIdentityType"])
-		out[i].VendorID = wmi.AsString(row["VendorID"])
+		out[i] = CIMIKEActionFromRow(row)
 	}
 	return out, nil
+}
+
+// QueryOneCIMIKEAction returns the single CIM_IKEAction matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneCIMIKEAction(svc *wmi.Service, where string) (*CIMIKEAction, error) {
+	out, err := QueryCIMIKEAction(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // GetCIMIKEAction returns the CIM_IKEAction instance identified by its key
@@ -671,18 +641,12 @@ func GetCIMIKEAction(svc *wmi.Service, creationClassName string, policyActionNam
 		" AND " + "PolicyRuleName = " + wmi.WQLValue(policyRuleName) +
 		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
 		" AND " + "SystemName = " + wmi.WQLValue(systemName)
-	out, err := QueryCIMIKEAction(svc, where)
-	if err != nil {
-		return nil, err
-	}
-	if len(out) == 0 {
-		return nil, wmi.ErrNotFound
-	}
-	return &out[0], nil
+	return QueryOneCIMIKEAction(svc, where)
 }
 
 // QueryCIMIKEProposal runs the WQL query against the class and decodes each
-// instance into a CIMIKEProposal. Pass the WHERE clause (or "" for all).
+// instance into a CIMIKEProposal. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryCIMIKEProposal(svc *wmi.Service, where string) ([]CIMIKEProposal, error) {
 	q := "SELECT * FROM CIM_IKEProposal"
 	if where != "" {
@@ -694,28 +658,14 @@ func QueryCIMIKEProposal(svc *wmi.Service, where string) ([]CIMIKEProposal, erro
 	}
 	out := make([]CIMIKEProposal, len(rows))
 	for i, row := range rows {
-		out[i].AuthenticationMethod = wmi.AsUint16(row["AuthenticationMethod"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CipherAlgorithm = wmi.AsUint16(row["CipherAlgorithm"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].GroupId = wmi.AsUint16(row["GroupId"])
-		out[i].HashAlgorithm = wmi.AsUint16(row["HashAlgorithm"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].MaxLifetimeKilobytes = wmi.AsUint64(row["MaxLifetimeKilobytes"])
-		out[i].MaxLifetimeSeconds = wmi.AsUint64(row["MaxLifetimeSeconds"])
-		out[i].OtherAuthenticationMethod = wmi.AsString(row["OtherAuthenticationMethod"])
-		out[i].OtherCipherAlgorithm = wmi.AsString(row["OtherCipherAlgorithm"])
-		out[i].OtherHashAlgorithm = wmi.AsString(row["OtherHashAlgorithm"])
-		out[i].VendorID = wmi.AsString(row["VendorID"])
+		out[i] = CIMIKEProposalFromRow(row)
 	}
 	return out, nil
 }
 
-// GetCIMIKEProposal returns the CIM_IKEProposal instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetCIMIKEProposal(svc *wmi.Service, instanceID string) (*CIMIKEProposal, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneCIMIKEProposal returns the single CIM_IKEProposal matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneCIMIKEProposal(svc *wmi.Service, where string) (*CIMIKEProposal, error) {
 	out, err := QueryCIMIKEProposal(svc, where)
 	if err != nil {
 		return nil, err
@@ -726,8 +676,16 @@ func GetCIMIKEProposal(svc *wmi.Service, instanceID string) (*CIMIKEProposal, er
 	return &out[0], nil
 }
 
+// GetCIMIKEProposal returns the CIM_IKEProposal instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetCIMIKEProposal(svc *wmi.Service, instanceID string) (*CIMIKEProposal, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneCIMIKEProposal(svc, where)
+}
+
 // QueryCIMIKESAEndpoint runs the WQL query against the class and decodes each
-// instance into a CIMIKESAEndpoint. Pass the WHERE clause (or "" for all).
+// instance into a CIMIKESAEndpoint. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryCIMIKESAEndpoint(svc *wmi.Service, where string) ([]CIMIKESAEndpoint, error) {
 	q := "SELECT * FROM CIM_IKESAEndpoint"
 	if where != "" {
@@ -739,61 +697,14 @@ func QueryCIMIKESAEndpoint(svc *wmi.Service, where string) ([]CIMIKESAEndpoint, 
 	}
 	out := make([]CIMIKESAEndpoint, len(rows))
 	for i, row := range rows {
-		out[i].AuthenticationMethod = wmi.AsUint16(row["AuthenticationMethod"])
-		out[i].AvailableRequestedStates = wmi.AsUint16Slice(row["AvailableRequestedStates"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CipherAlgorithm = wmi.AsUint16(row["CipherAlgorithm"])
-		out[i].CommunicationStatus = wmi.AsUint16(row["CommunicationStatus"])
-		out[i].CreationClassName = wmi.AsString(row["CreationClassName"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DetailedStatus = wmi.AsUint16(row["DetailedStatus"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].EnabledDefault = wmi.AsUint16(row["EnabledDefault"])
-		out[i].EnabledState = wmi.AsUint16(row["EnabledState"])
-		out[i].GroupId = wmi.AsUint16(row["GroupId"])
-		out[i].HashAlgorithm = wmi.AsUint16(row["HashAlgorithm"])
-		out[i].HealthState = wmi.AsUint16(row["HealthState"])
-		out[i].IdleDurationSeconds = wmi.AsUint64(row["IdleDurationSeconds"])
-		out[i].InitiatorCookie = wmi.AsUint64(row["InitiatorCookie"])
-		out[i].InstallDate = wmi.AsString(row["InstallDate"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].LifetimeKilobytes = wmi.AsUint64(row["LifetimeKilobytes"])
-		out[i].LifetimeSeconds = wmi.AsUint64(row["LifetimeSeconds"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].NameFormat = wmi.AsString(row["NameFormat"])
-		out[i].OperatingStatus = wmi.AsUint16(row["OperatingStatus"])
-		out[i].OperationalStatus = wmi.AsUint16Slice(row["OperationalStatus"])
-		out[i].OtherAuthenticationMethod = wmi.AsString(row["OtherAuthenticationMethod"])
-		out[i].OtherCipherAlgorithm = wmi.AsString(row["OtherCipherAlgorithm"])
-		out[i].OtherEnabledState = wmi.AsString(row["OtherEnabledState"])
-		out[i].OtherHashAlgorithm = wmi.AsString(row["OtherHashAlgorithm"])
-		out[i].OtherTypeDescription = wmi.AsString(row["OtherTypeDescription"])
-		out[i].PacketLoggingActive = wmi.AsBool(row["PacketLoggingActive"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].ProtocolIFType = wmi.AsUint16(row["ProtocolIFType"])
-		out[i].ProtocolType = wmi.AsUint16(row["ProtocolType"])
-		out[i].RefreshThresholdKbytesPercentage = wmi.AsUint8(row["RefreshThresholdKbytesPercentage"])
-		out[i].RefreshThresholdSecondsPercentage = wmi.AsUint8(row["RefreshThresholdSecondsPercentage"])
-		out[i].RequestedState = wmi.AsUint16(row["RequestedState"])
-		out[i].ResponderCookie = wmi.AsUint64(row["ResponderCookie"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusDescriptions = wmi.AsStringSlice(row["StatusDescriptions"])
-		out[i].SystemCreationClassName = wmi.AsString(row["SystemCreationClassName"])
-		out[i].SystemName = wmi.AsString(row["SystemName"])
-		out[i].TimeOfLastStateChange = wmi.AsString(row["TimeOfLastStateChange"])
-		out[i].TransitioningToState = wmi.AsUint16(row["TransitioningToState"])
-		out[i].VendorID = wmi.AsString(row["VendorID"])
+		out[i] = CIMIKESAEndpointFromRow(row)
 	}
 	return out, nil
 }
 
-// GetCIMIKESAEndpoint returns the CIM_IKESAEndpoint instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetCIMIKESAEndpoint(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*CIMIKESAEndpoint, error) {
-	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
-		" AND " + "Name = " + wmi.WQLValue(name) +
-		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
-		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+// QueryOneCIMIKESAEndpoint returns the single CIM_IKESAEndpoint matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneCIMIKESAEndpoint(svc *wmi.Service, where string) (*CIMIKESAEndpoint, error) {
 	out, err := QueryCIMIKESAEndpoint(svc, where)
 	if err != nil {
 		return nil, err
@@ -804,8 +715,19 @@ func GetCIMIKESAEndpoint(svc *wmi.Service, creationClassName string, name string
 	return &out[0], nil
 }
 
+// GetCIMIKESAEndpoint returns the CIM_IKESAEndpoint instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetCIMIKESAEndpoint(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*CIMIKESAEndpoint, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "Name = " + wmi.WQLValue(name) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	return QueryOneCIMIKESAEndpoint(svc, where)
+}
+
 // QueryCIMIPAssignmentSettingData runs the WQL query against the class and decodes each
-// instance into a CIMIPAssignmentSettingData. Pass the WHERE clause (or "" for all).
+// instance into a CIMIPAssignmentSettingData. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryCIMIPAssignmentSettingData(svc *wmi.Service, where string) ([]CIMIPAssignmentSettingData, error) {
 	q := "SELECT * FROM CIM_IPAssignmentSettingData"
 	if where != "" {
@@ -817,20 +739,14 @@ func QueryCIMIPAssignmentSettingData(svc *wmi.Service, where string) ([]CIMIPAss
 	}
 	out := make([]CIMIPAssignmentSettingData, len(rows))
 	for i, row := range rows {
-		out[i].AddressOrigin = wmi.AsUint16(row["AddressOrigin"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].ProtocolIFType = wmi.AsUint16(row["ProtocolIFType"])
+		out[i] = CIMIPAssignmentSettingDataFromRow(row)
 	}
 	return out, nil
 }
 
-// GetCIMIPAssignmentSettingData returns the CIM_IPAssignmentSettingData instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetCIMIPAssignmentSettingData(svc *wmi.Service, instanceID string) (*CIMIPAssignmentSettingData, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneCIMIPAssignmentSettingData returns the single CIM_IPAssignmentSettingData matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneCIMIPAssignmentSettingData(svc *wmi.Service, where string) (*CIMIPAssignmentSettingData, error) {
 	out, err := QueryCIMIPAssignmentSettingData(svc, where)
 	if err != nil {
 		return nil, err
@@ -841,8 +757,16 @@ func GetCIMIPAssignmentSettingData(svc *wmi.Service, instanceID string) (*CIMIPA
 	return &out[0], nil
 }
 
+// GetCIMIPAssignmentSettingData returns the CIM_IPAssignmentSettingData instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetCIMIPAssignmentSettingData(svc *wmi.Service, instanceID string) (*CIMIPAssignmentSettingData, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneCIMIPAssignmentSettingData(svc, where)
+}
+
 // QueryCIMIPProtocolEndpoint runs the WQL query against the class and decodes each
-// instance into a CIMIPProtocolEndpoint. Pass the WHERE clause (or "" for all).
+// instance into a CIMIPProtocolEndpoint. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryCIMIPProtocolEndpoint(svc *wmi.Service, where string) ([]CIMIPProtocolEndpoint, error) {
 	q := "SELECT * FROM CIM_IPProtocolEndpoint"
 	if where != "" {
@@ -854,53 +778,14 @@ func QueryCIMIPProtocolEndpoint(svc *wmi.Service, where string) ([]CIMIPProtocol
 	}
 	out := make([]CIMIPProtocolEndpoint, len(rows))
 	for i, row := range rows {
-		out[i].Address = wmi.AsString(row["Address"])
-		out[i].AddressOrigin = wmi.AsUint16(row["AddressOrigin"])
-		out[i].AddressType = wmi.AsUint16(row["AddressType"])
-		out[i].AvailableRequestedStates = wmi.AsUint16Slice(row["AvailableRequestedStates"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CommunicationStatus = wmi.AsUint16(row["CommunicationStatus"])
-		out[i].CreationClassName = wmi.AsString(row["CreationClassName"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DetailedStatus = wmi.AsUint16(row["DetailedStatus"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].EnabledDefault = wmi.AsUint16(row["EnabledDefault"])
-		out[i].EnabledState = wmi.AsUint16(row["EnabledState"])
-		out[i].HealthState = wmi.AsUint16(row["HealthState"])
-		out[i].IPVersionSupport = wmi.AsUint16(row["IPVersionSupport"])
-		out[i].IPv4Address = wmi.AsString(row["IPv4Address"])
-		out[i].IPv6Address = wmi.AsString(row["IPv6Address"])
-		out[i].InstallDate = wmi.AsString(row["InstallDate"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].NameFormat = wmi.AsString(row["NameFormat"])
-		out[i].OperatingStatus = wmi.AsUint16(row["OperatingStatus"])
-		out[i].OperationalStatus = wmi.AsUint16Slice(row["OperationalStatus"])
-		out[i].OtherEnabledState = wmi.AsString(row["OtherEnabledState"])
-		out[i].OtherTypeDescription = wmi.AsString(row["OtherTypeDescription"])
-		out[i].PrefixLength = wmi.AsUint8(row["PrefixLength"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].ProtocolIFType = wmi.AsUint16(row["ProtocolIFType"])
-		out[i].ProtocolType = wmi.AsUint16(row["ProtocolType"])
-		out[i].RequestedState = wmi.AsUint16(row["RequestedState"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusDescriptions = wmi.AsStringSlice(row["StatusDescriptions"])
-		out[i].SubnetMask = wmi.AsString(row["SubnetMask"])
-		out[i].SystemCreationClassName = wmi.AsString(row["SystemCreationClassName"])
-		out[i].SystemName = wmi.AsString(row["SystemName"])
-		out[i].TimeOfLastStateChange = wmi.AsString(row["TimeOfLastStateChange"])
-		out[i].TransitioningToState = wmi.AsUint16(row["TransitioningToState"])
+		out[i] = CIMIPProtocolEndpointFromRow(row)
 	}
 	return out, nil
 }
 
-// GetCIMIPProtocolEndpoint returns the CIM_IPProtocolEndpoint instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetCIMIPProtocolEndpoint(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*CIMIPProtocolEndpoint, error) {
-	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
-		" AND " + "Name = " + wmi.WQLValue(name) +
-		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
-		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+// QueryOneCIMIPProtocolEndpoint returns the single CIM_IPProtocolEndpoint matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneCIMIPProtocolEndpoint(svc *wmi.Service, where string) (*CIMIPProtocolEndpoint, error) {
 	out, err := QueryCIMIPProtocolEndpoint(svc, where)
 	if err != nil {
 		return nil, err
@@ -911,8 +796,19 @@ func GetCIMIPProtocolEndpoint(svc *wmi.Service, creationClassName string, name s
 	return &out[0], nil
 }
 
+// GetCIMIPProtocolEndpoint returns the CIM_IPProtocolEndpoint instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetCIMIPProtocolEndpoint(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*CIMIPProtocolEndpoint, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "Name = " + wmi.WQLValue(name) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	return QueryOneCIMIPProtocolEndpoint(svc, where)
+}
+
 // QueryCIMIPsecSAEndpoint runs the WQL query against the class and decodes each
-// instance into a CIMIPsecSAEndpoint. Pass the WHERE clause (or "" for all).
+// instance into a CIMIPsecSAEndpoint. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryCIMIPsecSAEndpoint(svc *wmi.Service, where string) ([]CIMIPsecSAEndpoint, error) {
 	q := "SELECT * FROM CIM_IPsecSAEndpoint"
 	if where != "" {
@@ -924,56 +820,14 @@ func QueryCIMIPsecSAEndpoint(svc *wmi.Service, where string) ([]CIMIPsecSAEndpoi
 	}
 	out := make([]CIMIPsecSAEndpoint, len(rows))
 	for i, row := range rows {
-		out[i].AvailableRequestedStates = wmi.AsUint16Slice(row["AvailableRequestedStates"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CommunicationStatus = wmi.AsUint16(row["CommunicationStatus"])
-		out[i].CreationClassName = wmi.AsString(row["CreationClassName"])
-		out[i].DFHandling = wmi.AsUint16(row["DFHandling"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DetailedStatus = wmi.AsUint16(row["DetailedStatus"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].EnabledDefault = wmi.AsUint16(row["EnabledDefault"])
-		out[i].EnabledState = wmi.AsUint16(row["EnabledState"])
-		out[i].EncapsulationMode = wmi.AsUint16(row["EncapsulationMode"])
-		out[i].HealthState = wmi.AsUint16(row["HealthState"])
-		out[i].IdleDurationSeconds = wmi.AsUint64(row["IdleDurationSeconds"])
-		out[i].InboundDirection = wmi.AsBool(row["InboundDirection"])
-		out[i].InstallDate = wmi.AsString(row["InstallDate"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].LifetimeKilobytes = wmi.AsUint64(row["LifetimeKilobytes"])
-		out[i].LifetimeSeconds = wmi.AsUint64(row["LifetimeSeconds"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].NameFormat = wmi.AsString(row["NameFormat"])
-		out[i].OperatingStatus = wmi.AsUint16(row["OperatingStatus"])
-		out[i].OperationalStatus = wmi.AsUint16Slice(row["OperationalStatus"])
-		out[i].OtherEnabledState = wmi.AsString(row["OtherEnabledState"])
-		out[i].OtherTypeDescription = wmi.AsString(row["OtherTypeDescription"])
-		out[i].PFSInUse = wmi.AsBool(row["PFSInUse"])
-		out[i].PacketLoggingActive = wmi.AsBool(row["PacketLoggingActive"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].ProtocolIFType = wmi.AsUint16(row["ProtocolIFType"])
-		out[i].ProtocolType = wmi.AsUint16(row["ProtocolType"])
-		out[i].RefreshThresholdKbytesPercentage = wmi.AsUint8(row["RefreshThresholdKbytesPercentage"])
-		out[i].RefreshThresholdSecondsPercentage = wmi.AsUint8(row["RefreshThresholdSecondsPercentage"])
-		out[i].RequestedState = wmi.AsUint16(row["RequestedState"])
-		out[i].SPI = wmi.AsUint32(row["SPI"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusDescriptions = wmi.AsStringSlice(row["StatusDescriptions"])
-		out[i].SystemCreationClassName = wmi.AsString(row["SystemCreationClassName"])
-		out[i].SystemName = wmi.AsString(row["SystemName"])
-		out[i].TimeOfLastStateChange = wmi.AsString(row["TimeOfLastStateChange"])
-		out[i].TransitioningToState = wmi.AsUint16(row["TransitioningToState"])
+		out[i] = CIMIPsecSAEndpointFromRow(row)
 	}
 	return out, nil
 }
 
-// GetCIMIPsecSAEndpoint returns the CIM_IPsecSAEndpoint instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetCIMIPsecSAEndpoint(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*CIMIPsecSAEndpoint, error) {
-	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
-		" AND " + "Name = " + wmi.WQLValue(name) +
-		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
-		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+// QueryOneCIMIPsecSAEndpoint returns the single CIM_IPsecSAEndpoint matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneCIMIPsecSAEndpoint(svc *wmi.Service, where string) (*CIMIPsecSAEndpoint, error) {
 	out, err := QueryCIMIPsecSAEndpoint(svc, where)
 	if err != nil {
 		return nil, err
@@ -984,8 +838,19 @@ func GetCIMIPsecSAEndpoint(svc *wmi.Service, creationClassName string, name stri
 	return &out[0], nil
 }
 
+// GetCIMIPsecSAEndpoint returns the CIM_IPsecSAEndpoint instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetCIMIPsecSAEndpoint(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*CIMIPsecSAEndpoint, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "Name = " + wmi.WQLValue(name) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	return QueryOneCIMIPsecSAEndpoint(svc, where)
+}
+
 // QueryCIMIndication runs the WQL query against the class and decodes each
-// instance into a CIMIndication. Pass the WHERE clause (or "" for all).
+// instance into a CIMIndication. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryCIMIndication(svc *wmi.Service, where string) ([]CIMIndication, error) {
 	q := "SELECT * FROM CIM_Indication"
 	if where != "" {
@@ -997,20 +862,27 @@ func QueryCIMIndication(svc *wmi.Service, where string) ([]CIMIndication, error)
 	}
 	out := make([]CIMIndication, len(rows))
 	for i, row := range rows {
-		out[i].CorrelatedIndications = wmi.AsStringSlice(row["CorrelatedIndications"])
-		out[i].IndicationFilterName = wmi.AsString(row["IndicationFilterName"])
-		out[i].IndicationIdentifier = wmi.AsString(row["IndicationIdentifier"])
-		out[i].IndicationTime = wmi.AsString(row["IndicationTime"])
-		out[i].OtherSeverity = wmi.AsString(row["OtherSeverity"])
-		out[i].PerceivedSeverity = wmi.AsUint16(row["PerceivedSeverity"])
-		out[i].SequenceContext = wmi.AsString(row["SequenceContext"])
-		out[i].SequenceNumber = wmi.AsInt64(row["SequenceNumber"])
+		out[i] = CIMIndicationFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneCIMIndication returns the single CIM_Indication matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneCIMIndication(svc *wmi.Service, where string) (*CIMIndication, error) {
+	out, err := QueryCIMIndication(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryCIMInstCreation runs the WQL query against the class and decodes each
-// instance into a CIMInstCreation. Pass the WHERE clause (or "" for all).
+// instance into a CIMInstCreation. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryCIMInstCreation(svc *wmi.Service, where string) ([]CIMInstCreation, error) {
 	q := "SELECT * FROM CIM_InstCreation"
 	if where != "" {
@@ -1022,25 +894,27 @@ func QueryCIMInstCreation(svc *wmi.Service, where string) ([]CIMInstCreation, er
 	}
 	out := make([]CIMInstCreation, len(rows))
 	for i, row := range rows {
-		out[i].CorrelatedIndications = wmi.AsStringSlice(row["CorrelatedIndications"])
-		out[i].IndicationFilterName = wmi.AsString(row["IndicationFilterName"])
-		out[i].IndicationIdentifier = wmi.AsString(row["IndicationIdentifier"])
-		out[i].IndicationTime = wmi.AsString(row["IndicationTime"])
-		out[i].OtherSeverity = wmi.AsString(row["OtherSeverity"])
-		out[i].PerceivedSeverity = wmi.AsUint16(row["PerceivedSeverity"])
-		out[i].SequenceContext = wmi.AsString(row["SequenceContext"])
-		out[i].SequenceNumber = wmi.AsInt64(row["SequenceNumber"])
-		if v, ok := row["SourceInstance"].(wmi.Row); ok {
-			out[i].SourceInstance = v
-		}
-		out[i].SourceInstanceHost = wmi.AsString(row["SourceInstanceHost"])
-		out[i].SourceInstanceModelPath = wmi.AsString(row["SourceInstanceModelPath"])
+		out[i] = CIMInstCreationFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneCIMInstCreation returns the single CIM_InstCreation matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneCIMInstCreation(svc *wmi.Service, where string) (*CIMInstCreation, error) {
+	out, err := QueryCIMInstCreation(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryCIMInstDeletion runs the WQL query against the class and decodes each
-// instance into a CIMInstDeletion. Pass the WHERE clause (or "" for all).
+// instance into a CIMInstDeletion. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryCIMInstDeletion(svc *wmi.Service, where string) ([]CIMInstDeletion, error) {
 	q := "SELECT * FROM CIM_InstDeletion"
 	if where != "" {
@@ -1052,25 +926,27 @@ func QueryCIMInstDeletion(svc *wmi.Service, where string) ([]CIMInstDeletion, er
 	}
 	out := make([]CIMInstDeletion, len(rows))
 	for i, row := range rows {
-		out[i].CorrelatedIndications = wmi.AsStringSlice(row["CorrelatedIndications"])
-		out[i].IndicationFilterName = wmi.AsString(row["IndicationFilterName"])
-		out[i].IndicationIdentifier = wmi.AsString(row["IndicationIdentifier"])
-		out[i].IndicationTime = wmi.AsString(row["IndicationTime"])
-		out[i].OtherSeverity = wmi.AsString(row["OtherSeverity"])
-		out[i].PerceivedSeverity = wmi.AsUint16(row["PerceivedSeverity"])
-		out[i].SequenceContext = wmi.AsString(row["SequenceContext"])
-		out[i].SequenceNumber = wmi.AsInt64(row["SequenceNumber"])
-		if v, ok := row["SourceInstance"].(wmi.Row); ok {
-			out[i].SourceInstance = v
-		}
-		out[i].SourceInstanceHost = wmi.AsString(row["SourceInstanceHost"])
-		out[i].SourceInstanceModelPath = wmi.AsString(row["SourceInstanceModelPath"])
+		out[i] = CIMInstDeletionFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneCIMInstDeletion returns the single CIM_InstDeletion matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneCIMInstDeletion(svc *wmi.Service, where string) (*CIMInstDeletion, error) {
+	out, err := QueryCIMInstDeletion(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryCIMInstIndication runs the WQL query against the class and decodes each
-// instance into a CIMInstIndication. Pass the WHERE clause (or "" for all).
+// instance into a CIMInstIndication. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryCIMInstIndication(svc *wmi.Service, where string) ([]CIMInstIndication, error) {
 	q := "SELECT * FROM CIM_InstIndication"
 	if where != "" {
@@ -1082,25 +958,27 @@ func QueryCIMInstIndication(svc *wmi.Service, where string) ([]CIMInstIndication
 	}
 	out := make([]CIMInstIndication, len(rows))
 	for i, row := range rows {
-		out[i].CorrelatedIndications = wmi.AsStringSlice(row["CorrelatedIndications"])
-		out[i].IndicationFilterName = wmi.AsString(row["IndicationFilterName"])
-		out[i].IndicationIdentifier = wmi.AsString(row["IndicationIdentifier"])
-		out[i].IndicationTime = wmi.AsString(row["IndicationTime"])
-		out[i].OtherSeverity = wmi.AsString(row["OtherSeverity"])
-		out[i].PerceivedSeverity = wmi.AsUint16(row["PerceivedSeverity"])
-		out[i].SequenceContext = wmi.AsString(row["SequenceContext"])
-		out[i].SequenceNumber = wmi.AsInt64(row["SequenceNumber"])
-		if v, ok := row["SourceInstance"].(wmi.Row); ok {
-			out[i].SourceInstance = v
-		}
-		out[i].SourceInstanceHost = wmi.AsString(row["SourceInstanceHost"])
-		out[i].SourceInstanceModelPath = wmi.AsString(row["SourceInstanceModelPath"])
+		out[i] = CIMInstIndicationFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneCIMInstIndication returns the single CIM_InstIndication matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneCIMInstIndication(svc *wmi.Service, where string) (*CIMInstIndication, error) {
+	out, err := QueryCIMInstIndication(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryCIMInstModification runs the WQL query against the class and decodes each
-// instance into a CIMInstModification. Pass the WHERE clause (or "" for all).
+// instance into a CIMInstModification. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryCIMInstModification(svc *wmi.Service, where string) ([]CIMInstModification, error) {
 	q := "SELECT * FROM CIM_InstModification"
 	if where != "" {
@@ -1112,28 +990,27 @@ func QueryCIMInstModification(svc *wmi.Service, where string) ([]CIMInstModifica
 	}
 	out := make([]CIMInstModification, len(rows))
 	for i, row := range rows {
-		out[i].CorrelatedIndications = wmi.AsStringSlice(row["CorrelatedIndications"])
-		out[i].IndicationFilterName = wmi.AsString(row["IndicationFilterName"])
-		out[i].IndicationIdentifier = wmi.AsString(row["IndicationIdentifier"])
-		out[i].IndicationTime = wmi.AsString(row["IndicationTime"])
-		out[i].OtherSeverity = wmi.AsString(row["OtherSeverity"])
-		out[i].PerceivedSeverity = wmi.AsUint16(row["PerceivedSeverity"])
-		if v, ok := row["PreviousInstance"].(wmi.Row); ok {
-			out[i].PreviousInstance = v
-		}
-		out[i].SequenceContext = wmi.AsString(row["SequenceContext"])
-		out[i].SequenceNumber = wmi.AsInt64(row["SequenceNumber"])
-		if v, ok := row["SourceInstance"].(wmi.Row); ok {
-			out[i].SourceInstance = v
-		}
-		out[i].SourceInstanceHost = wmi.AsString(row["SourceInstanceHost"])
-		out[i].SourceInstanceModelPath = wmi.AsString(row["SourceInstanceModelPath"])
+		out[i] = CIMInstModificationFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneCIMInstModification returns the single CIM_InstModification matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneCIMInstModification(svc *wmi.Service, where string) (*CIMInstModification, error) {
+	out, err := QueryCIMInstModification(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryCIMJob runs the WQL query against the class and decodes each
-// instance into a CIMJob. Pass the WHERE clause (or "" for all).
+// instance into a CIMJob. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryCIMJob(svc *wmi.Service, where string) ([]CIMJob, error) {
 	q := "SELECT * FROM CIM_Job"
 	if where != "" {
@@ -1145,47 +1022,27 @@ func QueryCIMJob(svc *wmi.Service, where string) ([]CIMJob, error) {
 	}
 	out := make([]CIMJob, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CommunicationStatus = wmi.AsUint16(row["CommunicationStatus"])
-		out[i].DeleteOnCompletion = wmi.AsBool(row["DeleteOnCompletion"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DetailedStatus = wmi.AsUint16(row["DetailedStatus"])
-		out[i].ElapsedTime = wmi.AsString(row["ElapsedTime"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].ErrorCode = wmi.AsUint16(row["ErrorCode"])
-		out[i].ErrorDescription = wmi.AsString(row["ErrorDescription"])
-		out[i].HealthState = wmi.AsUint16(row["HealthState"])
-		out[i].InstallDate = wmi.AsString(row["InstallDate"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].JobRunTimes = wmi.AsUint32(row["JobRunTimes"])
-		out[i].JobStatus = wmi.AsString(row["JobStatus"])
-		out[i].LocalOrUtcTime = wmi.AsUint16(row["LocalOrUtcTime"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].Notify = wmi.AsString(row["Notify"])
-		out[i].OperatingStatus = wmi.AsUint16(row["OperatingStatus"])
-		out[i].OperationalStatus = wmi.AsUint16Slice(row["OperationalStatus"])
-		out[i].OtherRecoveryAction = wmi.AsString(row["OtherRecoveryAction"])
-		out[i].Owner = wmi.AsString(row["Owner"])
-		out[i].PercentComplete = wmi.AsUint16(row["PercentComplete"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].Priority = wmi.AsUint32(row["Priority"])
-		out[i].RecoveryAction = wmi.AsUint16(row["RecoveryAction"])
-		out[i].RunDay = wmi.AsInt8(row["RunDay"])
-		out[i].RunDayOfWeek = wmi.AsInt8(row["RunDayOfWeek"])
-		out[i].RunMonth = wmi.AsUint8(row["RunMonth"])
-		out[i].RunStartInterval = wmi.AsString(row["RunStartInterval"])
-		out[i].ScheduledStartTime = wmi.AsString(row["ScheduledStartTime"])
-		out[i].StartTime = wmi.AsString(row["StartTime"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusDescriptions = wmi.AsStringSlice(row["StatusDescriptions"])
-		out[i].TimeSubmitted = wmi.AsString(row["TimeSubmitted"])
-		out[i].UntilTime = wmi.AsString(row["UntilTime"])
+		out[i] = CIMJobFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneCIMJob returns the single CIM_Job matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneCIMJob(svc *wmi.Service, where string) (*CIMJob, error) {
+	out, err := QueryCIMJob(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryCIMLANEndpoint runs the WQL query against the class and decodes each
-// instance into a CIMLANEndpoint. Pass the WHERE clause (or "" for all).
+// instance into a CIMLANEndpoint. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryCIMLANEndpoint(svc *wmi.Service, where string) ([]CIMLANEndpoint, error) {
 	q := "SELECT * FROM CIM_LANEndpoint"
 	if where != "" {
@@ -1197,52 +1054,14 @@ func QueryCIMLANEndpoint(svc *wmi.Service, where string) ([]CIMLANEndpoint, erro
 	}
 	out := make([]CIMLANEndpoint, len(rows))
 	for i, row := range rows {
-		out[i].AliasAddresses = wmi.AsStringSlice(row["AliasAddresses"])
-		out[i].AvailableRequestedStates = wmi.AsUint16Slice(row["AvailableRequestedStates"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CommunicationStatus = wmi.AsUint16(row["CommunicationStatus"])
-		out[i].CreationClassName = wmi.AsString(row["CreationClassName"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DetailedStatus = wmi.AsUint16(row["DetailedStatus"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].EnabledDefault = wmi.AsUint16(row["EnabledDefault"])
-		out[i].EnabledState = wmi.AsUint16(row["EnabledState"])
-		out[i].GroupAddresses = wmi.AsStringSlice(row["GroupAddresses"])
-		out[i].HealthState = wmi.AsUint16(row["HealthState"])
-		out[i].InstallDate = wmi.AsString(row["InstallDate"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].LANID = wmi.AsString(row["LANID"])
-		out[i].LANType = wmi.AsUint16(row["LANType"])
-		out[i].MACAddress = wmi.AsString(row["MACAddress"])
-		out[i].MaxDataSize = wmi.AsUint32(row["MaxDataSize"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].NameFormat = wmi.AsString(row["NameFormat"])
-		out[i].OperatingStatus = wmi.AsUint16(row["OperatingStatus"])
-		out[i].OperationalStatus = wmi.AsUint16Slice(row["OperationalStatus"])
-		out[i].OtherEnabledState = wmi.AsString(row["OtherEnabledState"])
-		out[i].OtherLANType = wmi.AsString(row["OtherLANType"])
-		out[i].OtherTypeDescription = wmi.AsString(row["OtherTypeDescription"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].ProtocolIFType = wmi.AsUint16(row["ProtocolIFType"])
-		out[i].ProtocolType = wmi.AsUint16(row["ProtocolType"])
-		out[i].RequestedState = wmi.AsUint16(row["RequestedState"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusDescriptions = wmi.AsStringSlice(row["StatusDescriptions"])
-		out[i].SystemCreationClassName = wmi.AsString(row["SystemCreationClassName"])
-		out[i].SystemName = wmi.AsString(row["SystemName"])
-		out[i].TimeOfLastStateChange = wmi.AsString(row["TimeOfLastStateChange"])
-		out[i].TransitioningToState = wmi.AsUint16(row["TransitioningToState"])
+		out[i] = CIMLANEndpointFromRow(row)
 	}
 	return out, nil
 }
 
-// GetCIMLANEndpoint returns the CIM_LANEndpoint instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetCIMLANEndpoint(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*CIMLANEndpoint, error) {
-	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
-		" AND " + "Name = " + wmi.WQLValue(name) +
-		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
-		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+// QueryOneCIMLANEndpoint returns the single CIM_LANEndpoint matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneCIMLANEndpoint(svc *wmi.Service, where string) (*CIMLANEndpoint, error) {
 	out, err := QueryCIMLANEndpoint(svc, where)
 	if err != nil {
 		return nil, err
@@ -1253,8 +1072,19 @@ func GetCIMLANEndpoint(svc *wmi.Service, creationClassName string, name string, 
 	return &out[0], nil
 }
 
+// GetCIMLANEndpoint returns the CIM_LANEndpoint instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetCIMLANEndpoint(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*CIMLANEndpoint, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "Name = " + wmi.WQLValue(name) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	return QueryOneCIMLANEndpoint(svc, where)
+}
+
 // QueryCIMLogicalDevice runs the WQL query against the class and decodes each
-// instance into a CIMLogicalDevice. Pass the WHERE clause (or "" for all).
+// instance into a CIMLogicalDevice. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryCIMLogicalDevice(svc *wmi.Service, where string) ([]CIMLogicalDevice, error) {
 	q := "SELECT * FROM CIM_LogicalDevice"
 	if where != "" {
@@ -1266,55 +1096,14 @@ func QueryCIMLogicalDevice(svc *wmi.Service, where string) ([]CIMLogicalDevice, 
 	}
 	out := make([]CIMLogicalDevice, len(rows))
 	for i, row := range rows {
-		out[i].AdditionalAvailability = wmi.AsUint16Slice(row["AdditionalAvailability"])
-		out[i].Availability = wmi.AsUint16(row["Availability"])
-		out[i].AvailableRequestedStates = wmi.AsUint16Slice(row["AvailableRequestedStates"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CommunicationStatus = wmi.AsUint16(row["CommunicationStatus"])
-		out[i].CreationClassName = wmi.AsString(row["CreationClassName"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DetailedStatus = wmi.AsUint16(row["DetailedStatus"])
-		out[i].DeviceID = wmi.AsString(row["DeviceID"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].EnabledDefault = wmi.AsUint16(row["EnabledDefault"])
-		out[i].EnabledState = wmi.AsUint16(row["EnabledState"])
-		out[i].ErrorCleared = wmi.AsBool(row["ErrorCleared"])
-		out[i].ErrorDescription = wmi.AsString(row["ErrorDescription"])
-		out[i].HealthState = wmi.AsUint16(row["HealthState"])
-		out[i].IdentifyingDescriptions = wmi.AsStringSlice(row["IdentifyingDescriptions"])
-		out[i].InstallDate = wmi.AsString(row["InstallDate"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].LastErrorCode = wmi.AsUint32(row["LastErrorCode"])
-		out[i].MaxQuiesceTime = wmi.AsUint64(row["MaxQuiesceTime"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].OperatingStatus = wmi.AsUint16(row["OperatingStatus"])
-		out[i].OperationalStatus = wmi.AsUint16Slice(row["OperationalStatus"])
-		out[i].OtherEnabledState = wmi.AsString(row["OtherEnabledState"])
-		out[i].OtherIdentifyingInfo = wmi.AsStringSlice(row["OtherIdentifyingInfo"])
-		out[i].PowerManagementCapabilities = wmi.AsUint16Slice(row["PowerManagementCapabilities"])
-		out[i].PowerManagementSupported = wmi.AsBool(row["PowerManagementSupported"])
-		out[i].PowerOnHours = wmi.AsUint64(row["PowerOnHours"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].RequestedState = wmi.AsUint16(row["RequestedState"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusDescriptions = wmi.AsStringSlice(row["StatusDescriptions"])
-		out[i].StatusInfo = wmi.AsUint16(row["StatusInfo"])
-		out[i].SystemCreationClassName = wmi.AsString(row["SystemCreationClassName"])
-		out[i].SystemName = wmi.AsString(row["SystemName"])
-		out[i].TimeOfLastStateChange = wmi.AsString(row["TimeOfLastStateChange"])
-		out[i].TotalPowerOnHours = wmi.AsUint64(row["TotalPowerOnHours"])
-		out[i].TransitioningToState = wmi.AsUint16(row["TransitioningToState"])
+		out[i] = CIMLogicalDeviceFromRow(row)
 	}
 	return out, nil
 }
 
-// GetCIMLogicalDevice returns the CIM_LogicalDevice instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetCIMLogicalDevice(svc *wmi.Service, creationClassName string, deviceID string, systemCreationClassName string, systemName string) (*CIMLogicalDevice, error) {
-	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
-		" AND " + "DeviceID = " + wmi.WQLValue(deviceID) +
-		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
-		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+// QueryOneCIMLogicalDevice returns the single CIM_LogicalDevice matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneCIMLogicalDevice(svc *wmi.Service, where string) (*CIMLogicalDevice, error) {
 	out, err := QueryCIMLogicalDevice(svc, where)
 	if err != nil {
 		return nil, err
@@ -1325,8 +1114,19 @@ func GetCIMLogicalDevice(svc *wmi.Service, creationClassName string, deviceID st
 	return &out[0], nil
 }
 
+// GetCIMLogicalDevice returns the CIM_LogicalDevice instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetCIMLogicalDevice(svc *wmi.Service, creationClassName string, deviceID string, systemCreationClassName string, systemName string) (*CIMLogicalDevice, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "DeviceID = " + wmi.WQLValue(deviceID) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	return QueryOneCIMLogicalDevice(svc, where)
+}
+
 // QueryCIMLogicalElement runs the WQL query against the class and decodes each
-// instance into a CIMLogicalElement. Pass the WHERE clause (or "" for all).
+// instance into a CIMLogicalElement. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryCIMLogicalElement(svc *wmi.Service, where string) ([]CIMLogicalElement, error) {
 	q := "SELECT * FROM CIM_LogicalElement"
 	if where != "" {
@@ -1338,26 +1138,27 @@ func QueryCIMLogicalElement(svc *wmi.Service, where string) ([]CIMLogicalElement
 	}
 	out := make([]CIMLogicalElement, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CommunicationStatus = wmi.AsUint16(row["CommunicationStatus"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DetailedStatus = wmi.AsUint16(row["DetailedStatus"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].HealthState = wmi.AsUint16(row["HealthState"])
-		out[i].InstallDate = wmi.AsString(row["InstallDate"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].OperatingStatus = wmi.AsUint16(row["OperatingStatus"])
-		out[i].OperationalStatus = wmi.AsUint16Slice(row["OperationalStatus"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusDescriptions = wmi.AsStringSlice(row["StatusDescriptions"])
+		out[i] = CIMLogicalElementFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneCIMLogicalElement returns the single CIM_LogicalElement matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneCIMLogicalElement(svc *wmi.Service, where string) (*CIMLogicalElement, error) {
+	out, err := QueryCIMLogicalElement(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryCIMLogicalPort runs the WQL query against the class and decodes each
-// instance into a CIMLogicalPort. Pass the WHERE clause (or "" for all).
+// instance into a CIMLogicalPort. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryCIMLogicalPort(svc *wmi.Service, where string) ([]CIMLogicalPort, error) {
 	q := "SELECT * FROM CIM_LogicalPort"
 	if where != "" {
@@ -1369,61 +1170,14 @@ func QueryCIMLogicalPort(svc *wmi.Service, where string) ([]CIMLogicalPort, erro
 	}
 	out := make([]CIMLogicalPort, len(rows))
 	for i, row := range rows {
-		out[i].AdditionalAvailability = wmi.AsUint16Slice(row["AdditionalAvailability"])
-		out[i].Availability = wmi.AsUint16(row["Availability"])
-		out[i].AvailableRequestedStates = wmi.AsUint16Slice(row["AvailableRequestedStates"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CommunicationStatus = wmi.AsUint16(row["CommunicationStatus"])
-		out[i].CreationClassName = wmi.AsString(row["CreationClassName"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DetailedStatus = wmi.AsUint16(row["DetailedStatus"])
-		out[i].DeviceID = wmi.AsString(row["DeviceID"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].EnabledDefault = wmi.AsUint16(row["EnabledDefault"])
-		out[i].EnabledState = wmi.AsUint16(row["EnabledState"])
-		out[i].ErrorCleared = wmi.AsBool(row["ErrorCleared"])
-		out[i].ErrorDescription = wmi.AsString(row["ErrorDescription"])
-		out[i].HealthState = wmi.AsUint16(row["HealthState"])
-		out[i].IdentifyingDescriptions = wmi.AsStringSlice(row["IdentifyingDescriptions"])
-		out[i].InstallDate = wmi.AsString(row["InstallDate"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].LastErrorCode = wmi.AsUint32(row["LastErrorCode"])
-		out[i].MaxQuiesceTime = wmi.AsUint64(row["MaxQuiesceTime"])
-		out[i].MaxSpeed = wmi.AsUint64(row["MaxSpeed"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].OperatingStatus = wmi.AsUint16(row["OperatingStatus"])
-		out[i].OperationalStatus = wmi.AsUint16Slice(row["OperationalStatus"])
-		out[i].OtherEnabledState = wmi.AsString(row["OtherEnabledState"])
-		out[i].OtherIdentifyingInfo = wmi.AsStringSlice(row["OtherIdentifyingInfo"])
-		out[i].OtherPortType = wmi.AsString(row["OtherPortType"])
-		out[i].PortType = wmi.AsUint16(row["PortType"])
-		out[i].PowerManagementCapabilities = wmi.AsUint16Slice(row["PowerManagementCapabilities"])
-		out[i].PowerManagementSupported = wmi.AsBool(row["PowerManagementSupported"])
-		out[i].PowerOnHours = wmi.AsUint64(row["PowerOnHours"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].RequestedSpeed = wmi.AsUint64(row["RequestedSpeed"])
-		out[i].RequestedState = wmi.AsUint16(row["RequestedState"])
-		out[i].Speed = wmi.AsUint64(row["Speed"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusDescriptions = wmi.AsStringSlice(row["StatusDescriptions"])
-		out[i].StatusInfo = wmi.AsUint16(row["StatusInfo"])
-		out[i].SystemCreationClassName = wmi.AsString(row["SystemCreationClassName"])
-		out[i].SystemName = wmi.AsString(row["SystemName"])
-		out[i].TimeOfLastStateChange = wmi.AsString(row["TimeOfLastStateChange"])
-		out[i].TotalPowerOnHours = wmi.AsUint64(row["TotalPowerOnHours"])
-		out[i].TransitioningToState = wmi.AsUint16(row["TransitioningToState"])
-		out[i].UsageRestriction = wmi.AsUint16(row["UsageRestriction"])
+		out[i] = CIMLogicalPortFromRow(row)
 	}
 	return out, nil
 }
 
-// GetCIMLogicalPort returns the CIM_LogicalPort instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetCIMLogicalPort(svc *wmi.Service, creationClassName string, deviceID string, systemCreationClassName string, systemName string) (*CIMLogicalPort, error) {
-	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
-		" AND " + "DeviceID = " + wmi.WQLValue(deviceID) +
-		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
-		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+// QueryOneCIMLogicalPort returns the single CIM_LogicalPort matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneCIMLogicalPort(svc *wmi.Service, where string) (*CIMLogicalPort, error) {
 	out, err := QueryCIMLogicalPort(svc, where)
 	if err != nil {
 		return nil, err
@@ -1434,8 +1188,19 @@ func GetCIMLogicalPort(svc *wmi.Service, creationClassName string, deviceID stri
 	return &out[0], nil
 }
 
+// GetCIMLogicalPort returns the CIM_LogicalPort instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetCIMLogicalPort(svc *wmi.Service, creationClassName string, deviceID string, systemCreationClassName string, systemName string) (*CIMLogicalPort, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "DeviceID = " + wmi.WQLValue(deviceID) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	return QueryOneCIMLogicalPort(svc, where)
+}
+
 // QueryCIMManagedElement runs the WQL query against the class and decodes each
-// instance into a CIMManagedElement. Pass the WHERE clause (or "" for all).
+// instance into a CIMManagedElement. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryCIMManagedElement(svc *wmi.Service, where string) ([]CIMManagedElement, error) {
 	q := "SELECT * FROM CIM_ManagedElement"
 	if where != "" {
@@ -1447,16 +1212,27 @@ func QueryCIMManagedElement(svc *wmi.Service, where string) ([]CIMManagedElement
 	}
 	out := make([]CIMManagedElement, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
+		out[i] = CIMManagedElementFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneCIMManagedElement returns the single CIM_ManagedElement matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneCIMManagedElement(svc *wmi.Service, where string) (*CIMManagedElement, error) {
+	out, err := QueryCIMManagedElement(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryCIMManagedSystemElement runs the WQL query against the class and decodes each
-// instance into a CIMManagedSystemElement. Pass the WHERE clause (or "" for all).
+// instance into a CIMManagedSystemElement. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryCIMManagedSystemElement(svc *wmi.Service, where string) ([]CIMManagedSystemElement, error) {
 	q := "SELECT * FROM CIM_ManagedSystemElement"
 	if where != "" {
@@ -1468,26 +1244,27 @@ func QueryCIMManagedSystemElement(svc *wmi.Service, where string) ([]CIMManagedS
 	}
 	out := make([]CIMManagedSystemElement, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CommunicationStatus = wmi.AsUint16(row["CommunicationStatus"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DetailedStatus = wmi.AsUint16(row["DetailedStatus"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].HealthState = wmi.AsUint16(row["HealthState"])
-		out[i].InstallDate = wmi.AsString(row["InstallDate"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].OperatingStatus = wmi.AsUint16(row["OperatingStatus"])
-		out[i].OperationalStatus = wmi.AsUint16Slice(row["OperationalStatus"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusDescriptions = wmi.AsStringSlice(row["StatusDescriptions"])
+		out[i] = CIMManagedSystemElementFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneCIMManagedSystemElement returns the single CIM_ManagedSystemElement matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneCIMManagedSystemElement(svc *wmi.Service, where string) (*CIMManagedSystemElement, error) {
+	out, err := QueryCIMManagedSystemElement(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryCIMNetworkPipe runs the WQL query against the class and decodes each
-// instance into a CIMNetworkPipe. Pass the WHERE clause (or "" for all).
+// instance into a CIMNetworkPipe. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryCIMNetworkPipe(svc *wmi.Service, where string) ([]CIMNetworkPipe, error) {
 	q := "SELECT * FROM CIM_NetworkPipe"
 	if where != "" {
@@ -1499,37 +1276,14 @@ func QueryCIMNetworkPipe(svc *wmi.Service, where string) ([]CIMNetworkPipe, erro
 	}
 	out := make([]CIMNetworkPipe, len(rows))
 	for i, row := range rows {
-		out[i].AggregationBehavior = wmi.AsUint16(row["AggregationBehavior"])
-		out[i].AvailableRequestedStates = wmi.AsUint16Slice(row["AvailableRequestedStates"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CommunicationStatus = wmi.AsUint16(row["CommunicationStatus"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DetailedStatus = wmi.AsUint16(row["DetailedStatus"])
-		out[i].Directionality = wmi.AsUint16(row["Directionality"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].EnabledDefault = wmi.AsUint16(row["EnabledDefault"])
-		out[i].EnabledState = wmi.AsUint16(row["EnabledState"])
-		out[i].HealthState = wmi.AsUint16(row["HealthState"])
-		out[i].InstallDate = wmi.AsString(row["InstallDate"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].OperatingStatus = wmi.AsUint16(row["OperatingStatus"])
-		out[i].OperationalStatus = wmi.AsUint16Slice(row["OperationalStatus"])
-		out[i].OtherEnabledState = wmi.AsString(row["OtherEnabledState"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].RequestedState = wmi.AsUint16(row["RequestedState"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusDescriptions = wmi.AsStringSlice(row["StatusDescriptions"])
-		out[i].TimeOfLastStateChange = wmi.AsString(row["TimeOfLastStateChange"])
-		out[i].TransitioningToState = wmi.AsUint16(row["TransitioningToState"])
+		out[i] = CIMNetworkPipeFromRow(row)
 	}
 	return out, nil
 }
 
-// GetCIMNetworkPipe returns the CIM_NetworkPipe instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetCIMNetworkPipe(svc *wmi.Service, instanceID string) (*CIMNetworkPipe, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneCIMNetworkPipe returns the single CIM_NetworkPipe matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneCIMNetworkPipe(svc *wmi.Service, where string) (*CIMNetworkPipe, error) {
 	out, err := QueryCIMNetworkPipe(svc, where)
 	if err != nil {
 		return nil, err
@@ -1540,8 +1294,16 @@ func GetCIMNetworkPipe(svc *wmi.Service, instanceID string) (*CIMNetworkPipe, er
 	return &out[0], nil
 }
 
+// GetCIMNetworkPipe returns the CIM_NetworkPipe instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetCIMNetworkPipe(svc *wmi.Service, instanceID string) (*CIMNetworkPipe, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneCIMNetworkPipe(svc, where)
+}
+
 // QueryCIMNetworkPort runs the WQL query against the class and decodes each
-// instance into a CIMNetworkPort. Pass the WHERE clause (or "" for all).
+// instance into a CIMNetworkPort. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryCIMNetworkPort(svc *wmi.Service, where string) ([]CIMNetworkPort, error) {
 	q := "SELECT * FROM CIM_NetworkPort"
 	if where != "" {
@@ -1553,71 +1315,14 @@ func QueryCIMNetworkPort(svc *wmi.Service, where string) ([]CIMNetworkPort, erro
 	}
 	out := make([]CIMNetworkPort, len(rows))
 	for i, row := range rows {
-		out[i].ActiveMaximumTransmissionUnit = wmi.AsUint64(row["ActiveMaximumTransmissionUnit"])
-		out[i].AdditionalAvailability = wmi.AsUint16Slice(row["AdditionalAvailability"])
-		out[i].AutoSense = wmi.AsBool(row["AutoSense"])
-		out[i].Availability = wmi.AsUint16(row["Availability"])
-		out[i].AvailableRequestedStates = wmi.AsUint16Slice(row["AvailableRequestedStates"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CommunicationStatus = wmi.AsUint16(row["CommunicationStatus"])
-		out[i].CreationClassName = wmi.AsString(row["CreationClassName"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DetailedStatus = wmi.AsUint16(row["DetailedStatus"])
-		out[i].DeviceID = wmi.AsString(row["DeviceID"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].EnabledDefault = wmi.AsUint16(row["EnabledDefault"])
-		out[i].EnabledState = wmi.AsUint16(row["EnabledState"])
-		out[i].ErrorCleared = wmi.AsBool(row["ErrorCleared"])
-		out[i].ErrorDescription = wmi.AsString(row["ErrorDescription"])
-		out[i].FullDuplex = wmi.AsBool(row["FullDuplex"])
-		out[i].HealthState = wmi.AsUint16(row["HealthState"])
-		out[i].IdentifyingDescriptions = wmi.AsStringSlice(row["IdentifyingDescriptions"])
-		out[i].InstallDate = wmi.AsString(row["InstallDate"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].LastErrorCode = wmi.AsUint32(row["LastErrorCode"])
-		out[i].LinkTechnology = wmi.AsUint16(row["LinkTechnology"])
-		out[i].MaxQuiesceTime = wmi.AsUint64(row["MaxQuiesceTime"])
-		out[i].MaxSpeed = wmi.AsUint64(row["MaxSpeed"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].NetworkAddresses = wmi.AsStringSlice(row["NetworkAddresses"])
-		out[i].OperatingStatus = wmi.AsUint16(row["OperatingStatus"])
-		out[i].OperationalStatus = wmi.AsUint16Slice(row["OperationalStatus"])
-		out[i].OtherEnabledState = wmi.AsString(row["OtherEnabledState"])
-		out[i].OtherIdentifyingInfo = wmi.AsStringSlice(row["OtherIdentifyingInfo"])
-		out[i].OtherLinkTechnology = wmi.AsString(row["OtherLinkTechnology"])
-		out[i].OtherNetworkPortType = wmi.AsString(row["OtherNetworkPortType"])
-		out[i].OtherPortType = wmi.AsString(row["OtherPortType"])
-		out[i].PermanentAddress = wmi.AsString(row["PermanentAddress"])
-		out[i].PortNumber = wmi.AsUint16(row["PortNumber"])
-		out[i].PortType = wmi.AsUint16(row["PortType"])
-		out[i].PowerManagementCapabilities = wmi.AsUint16Slice(row["PowerManagementCapabilities"])
-		out[i].PowerManagementSupported = wmi.AsBool(row["PowerManagementSupported"])
-		out[i].PowerOnHours = wmi.AsUint64(row["PowerOnHours"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].RequestedSpeed = wmi.AsUint64(row["RequestedSpeed"])
-		out[i].RequestedState = wmi.AsUint16(row["RequestedState"])
-		out[i].Speed = wmi.AsUint64(row["Speed"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusDescriptions = wmi.AsStringSlice(row["StatusDescriptions"])
-		out[i].StatusInfo = wmi.AsUint16(row["StatusInfo"])
-		out[i].SupportedMaximumTransmissionUnit = wmi.AsUint64(row["SupportedMaximumTransmissionUnit"])
-		out[i].SystemCreationClassName = wmi.AsString(row["SystemCreationClassName"])
-		out[i].SystemName = wmi.AsString(row["SystemName"])
-		out[i].TimeOfLastStateChange = wmi.AsString(row["TimeOfLastStateChange"])
-		out[i].TotalPowerOnHours = wmi.AsUint64(row["TotalPowerOnHours"])
-		out[i].TransitioningToState = wmi.AsUint16(row["TransitioningToState"])
-		out[i].UsageRestriction = wmi.AsUint16(row["UsageRestriction"])
+		out[i] = CIMNetworkPortFromRow(row)
 	}
 	return out, nil
 }
 
-// GetCIMNetworkPort returns the CIM_NetworkPort instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetCIMNetworkPort(svc *wmi.Service, creationClassName string, deviceID string, systemCreationClassName string, systemName string) (*CIMNetworkPort, error) {
-	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
-		" AND " + "DeviceID = " + wmi.WQLValue(deviceID) +
-		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
-		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+// QueryOneCIMNetworkPort returns the single CIM_NetworkPort matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneCIMNetworkPort(svc *wmi.Service, where string) (*CIMNetworkPort, error) {
 	out, err := QueryCIMNetworkPort(svc, where)
 	if err != nil {
 		return nil, err
@@ -1628,8 +1333,19 @@ func GetCIMNetworkPort(svc *wmi.Service, creationClassName string, deviceID stri
 	return &out[0], nil
 }
 
+// GetCIMNetworkPort returns the CIM_NetworkPort instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetCIMNetworkPort(svc *wmi.Service, creationClassName string, deviceID string, systemCreationClassName string, systemName string) (*CIMNetworkPort, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "DeviceID = " + wmi.WQLValue(deviceID) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	return QueryOneCIMNetworkPort(svc, where)
+}
+
 // QueryCIMNextHopRoute runs the WQL query against the class and decodes each
-// instance into a CIMNextHopRoute. Pass the WHERE clause (or "" for all).
+// instance into a CIMNextHopRoute. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryCIMNextHopRoute(svc *wmi.Service, where string) ([]CIMNextHopRoute, error) {
 	q := "SELECT * FROM CIM_NextHopRoute"
 	if where != "" {
@@ -1641,23 +1357,14 @@ func QueryCIMNextHopRoute(svc *wmi.Service, where string) ([]CIMNextHopRoute, er
 	}
 	out := make([]CIMNextHopRoute, len(rows))
 	for i, row := range rows {
-		out[i].AdminDistance = wmi.AsUint16(row["AdminDistance"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DestinationAddress = wmi.AsString(row["DestinationAddress"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].IsStatic = wmi.AsBool(row["IsStatic"])
-		out[i].RouteMetric = wmi.AsUint16(row["RouteMetric"])
-		out[i].TypeOfRoute = wmi.AsUint16(row["TypeOfRoute"])
+		out[i] = CIMNextHopRouteFromRow(row)
 	}
 	return out, nil
 }
 
-// GetCIMNextHopRoute returns the CIM_NextHopRoute instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetCIMNextHopRoute(svc *wmi.Service, instanceID string) (*CIMNextHopRoute, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneCIMNextHopRoute returns the single CIM_NextHopRoute matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneCIMNextHopRoute(svc *wmi.Service, where string) (*CIMNextHopRoute, error) {
 	out, err := QueryCIMNextHopRoute(svc, where)
 	if err != nil {
 		return nil, err
@@ -1668,8 +1375,16 @@ func GetCIMNextHopRoute(svc *wmi.Service, instanceID string) (*CIMNextHopRoute, 
 	return &out[0], nil
 }
 
+// GetCIMNextHopRoute returns the CIM_NextHopRoute instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetCIMNextHopRoute(svc *wmi.Service, instanceID string) (*CIMNextHopRoute, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneCIMNextHopRoute(svc, where)
+}
+
 // QueryCIMPhase1SAUsedForPhase2 runs the WQL query against the class and decodes each
-// instance into a CIMPhase1SAUsedForPhase2. Pass the WHERE clause (or "" for all).
+// instance into a CIMPhase1SAUsedForPhase2. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryCIMPhase1SAUsedForPhase2(svc *wmi.Service, where string) ([]CIMPhase1SAUsedForPhase2, error) {
 	q := "SELECT * FROM CIM_Phase1SAUsedForPhase2"
 	if where != "" {
@@ -1681,17 +1396,14 @@ func QueryCIMPhase1SAUsedForPhase2(svc *wmi.Service, where string) ([]CIMPhase1S
 	}
 	out := make([]CIMPhase1SAUsedForPhase2, len(rows))
 	for i, row := range rows {
-		out[i].Antecedent = wmi.AsString(row["Antecedent"])
-		out[i].Dependent = wmi.AsString(row["Dependent"])
+		out[i] = CIMPhase1SAUsedForPhase2FromRow(row)
 	}
 	return out, nil
 }
 
-// GetCIMPhase1SAUsedForPhase2 returns the CIM_Phase1SAUsedForPhase2 instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetCIMPhase1SAUsedForPhase2(svc *wmi.Service, antecedent string, dependent string) (*CIMPhase1SAUsedForPhase2, error) {
-	where := "Antecedent = " + wmi.WQLValue(antecedent) +
-		" AND " + "Dependent = " + wmi.WQLValue(dependent)
+// QueryOneCIMPhase1SAUsedForPhase2 returns the single CIM_Phase1SAUsedForPhase2 matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneCIMPhase1SAUsedForPhase2(svc *wmi.Service, where string) (*CIMPhase1SAUsedForPhase2, error) {
 	out, err := QueryCIMPhase1SAUsedForPhase2(svc, where)
 	if err != nil {
 		return nil, err
@@ -1702,8 +1414,17 @@ func GetCIMPhase1SAUsedForPhase2(svc *wmi.Service, antecedent string, dependent 
 	return &out[0], nil
 }
 
+// GetCIMPhase1SAUsedForPhase2 returns the CIM_Phase1SAUsedForPhase2 instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetCIMPhase1SAUsedForPhase2(svc *wmi.Service, antecedent string, dependent string) (*CIMPhase1SAUsedForPhase2, error) {
+	where := "Antecedent = " + wmi.WQLValue(antecedent) +
+		" AND " + "Dependent = " + wmi.WQLValue(dependent)
+	return QueryOneCIMPhase1SAUsedForPhase2(svc, where)
+}
+
 // QueryCIMPolicy runs the WQL query against the class and decodes each
-// instance into a CIMPolicy. Pass the WHERE clause (or "" for all).
+// instance into a CIMPolicy. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryCIMPolicy(svc *wmi.Service, where string) ([]CIMPolicy, error) {
 	q := "SELECT * FROM CIM_Policy"
 	if where != "" {
@@ -1715,18 +1436,27 @@ func QueryCIMPolicy(svc *wmi.Service, where string) ([]CIMPolicy, error) {
 	}
 	out := make([]CIMPolicy, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CommonName = wmi.AsString(row["CommonName"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].PolicyKeywords = wmi.AsStringSlice(row["PolicyKeywords"])
+		out[i] = CIMPolicyFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneCIMPolicy returns the single CIM_Policy matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneCIMPolicy(svc *wmi.Service, where string) (*CIMPolicy, error) {
+	out, err := QueryCIMPolicy(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryCIMPolicyAction runs the WQL query against the class and decodes each
-// instance into a CIMPolicyAction. Pass the WHERE clause (or "" for all).
+// instance into a CIMPolicyAction. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryCIMPolicyAction(svc *wmi.Service, where string) ([]CIMPolicyAction, error) {
 	q := "SELECT * FROM CIM_PolicyAction"
 	if where != "" {
@@ -1738,21 +1468,22 @@ func QueryCIMPolicyAction(svc *wmi.Service, where string) ([]CIMPolicyAction, er
 	}
 	out := make([]CIMPolicyAction, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CommonName = wmi.AsString(row["CommonName"])
-		out[i].CreationClassName = wmi.AsString(row["CreationClassName"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DoActionLogging = wmi.AsBool(row["DoActionLogging"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].PolicyActionName = wmi.AsString(row["PolicyActionName"])
-		out[i].PolicyKeywords = wmi.AsStringSlice(row["PolicyKeywords"])
-		out[i].PolicyRuleCreationClassName = wmi.AsString(row["PolicyRuleCreationClassName"])
-		out[i].PolicyRuleName = wmi.AsString(row["PolicyRuleName"])
-		out[i].SystemCreationClassName = wmi.AsString(row["SystemCreationClassName"])
-		out[i].SystemName = wmi.AsString(row["SystemName"])
+		out[i] = CIMPolicyActionFromRow(row)
 	}
 	return out, nil
+}
+
+// QueryOneCIMPolicyAction returns the single CIM_PolicyAction matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneCIMPolicyAction(svc *wmi.Service, where string) (*CIMPolicyAction, error) {
+	out, err := QueryCIMPolicyAction(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // GetCIMPolicyAction returns the CIM_PolicyAction instance identified by its key
@@ -1764,18 +1495,12 @@ func GetCIMPolicyAction(svc *wmi.Service, creationClassName string, policyAction
 		" AND " + "PolicyRuleName = " + wmi.WQLValue(policyRuleName) +
 		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
 		" AND " + "SystemName = " + wmi.WQLValue(systemName)
-	out, err := QueryCIMPolicyAction(svc, where)
-	if err != nil {
-		return nil, err
-	}
-	if len(out) == 0 {
-		return nil, wmi.ErrNotFound
-	}
-	return &out[0], nil
+	return QueryOneCIMPolicyAction(svc, where)
 }
 
 // QueryCIMPolicyActionInPolicyRule runs the WQL query against the class and decodes each
-// instance into a CIMPolicyActionInPolicyRule. Pass the WHERE clause (or "" for all).
+// instance into a CIMPolicyActionInPolicyRule. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryCIMPolicyActionInPolicyRule(svc *wmi.Service, where string) ([]CIMPolicyActionInPolicyRule, error) {
 	q := "SELECT * FROM CIM_PolicyActionInPolicyRule"
 	if where != "" {
@@ -1787,18 +1512,14 @@ func QueryCIMPolicyActionInPolicyRule(svc *wmi.Service, where string) ([]CIMPoli
 	}
 	out := make([]CIMPolicyActionInPolicyRule, len(rows))
 	for i, row := range rows {
-		out[i].ActionOrder = wmi.AsUint16(row["ActionOrder"])
-		out[i].GroupComponent = wmi.AsString(row["GroupComponent"])
-		out[i].PartComponent = wmi.AsString(row["PartComponent"])
+		out[i] = CIMPolicyActionInPolicyRuleFromRow(row)
 	}
 	return out, nil
 }
 
-// GetCIMPolicyActionInPolicyRule returns the CIM_PolicyActionInPolicyRule instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetCIMPolicyActionInPolicyRule(svc *wmi.Service, groupComponent string, partComponent string) (*CIMPolicyActionInPolicyRule, error) {
-	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
-		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+// QueryOneCIMPolicyActionInPolicyRule returns the single CIM_PolicyActionInPolicyRule matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneCIMPolicyActionInPolicyRule(svc *wmi.Service, where string) (*CIMPolicyActionInPolicyRule, error) {
 	out, err := QueryCIMPolicyActionInPolicyRule(svc, where)
 	if err != nil {
 		return nil, err
@@ -1809,8 +1530,17 @@ func GetCIMPolicyActionInPolicyRule(svc *wmi.Service, groupComponent string, par
 	return &out[0], nil
 }
 
+// GetCIMPolicyActionInPolicyRule returns the CIM_PolicyActionInPolicyRule instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetCIMPolicyActionInPolicyRule(svc *wmi.Service, groupComponent string, partComponent string) (*CIMPolicyActionInPolicyRule, error) {
+	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
+		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+	return QueryOneCIMPolicyActionInPolicyRule(svc, where)
+}
+
 // QueryCIMPolicyActionStructure runs the WQL query against the class and decodes each
-// instance into a CIMPolicyActionStructure. Pass the WHERE clause (or "" for all).
+// instance into a CIMPolicyActionStructure. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryCIMPolicyActionStructure(svc *wmi.Service, where string) ([]CIMPolicyActionStructure, error) {
 	q := "SELECT * FROM CIM_PolicyActionStructure"
 	if where != "" {
@@ -1822,18 +1552,14 @@ func QueryCIMPolicyActionStructure(svc *wmi.Service, where string) ([]CIMPolicyA
 	}
 	out := make([]CIMPolicyActionStructure, len(rows))
 	for i, row := range rows {
-		out[i].ActionOrder = wmi.AsUint16(row["ActionOrder"])
-		out[i].GroupComponent = wmi.AsString(row["GroupComponent"])
-		out[i].PartComponent = wmi.AsString(row["PartComponent"])
+		out[i] = CIMPolicyActionStructureFromRow(row)
 	}
 	return out, nil
 }
 
-// GetCIMPolicyActionStructure returns the CIM_PolicyActionStructure instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetCIMPolicyActionStructure(svc *wmi.Service, groupComponent string, partComponent string) (*CIMPolicyActionStructure, error) {
-	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
-		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+// QueryOneCIMPolicyActionStructure returns the single CIM_PolicyActionStructure matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneCIMPolicyActionStructure(svc *wmi.Service, where string) (*CIMPolicyActionStructure, error) {
 	out, err := QueryCIMPolicyActionStructure(svc, where)
 	if err != nil {
 		return nil, err
@@ -1844,8 +1570,17 @@ func GetCIMPolicyActionStructure(svc *wmi.Service, groupComponent string, partCo
 	return &out[0], nil
 }
 
+// GetCIMPolicyActionStructure returns the CIM_PolicyActionStructure instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetCIMPolicyActionStructure(svc *wmi.Service, groupComponent string, partComponent string) (*CIMPolicyActionStructure, error) {
+	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
+		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+	return QueryOneCIMPolicyActionStructure(svc, where)
+}
+
 // QueryCIMPolicyComponent runs the WQL query against the class and decodes each
-// instance into a CIMPolicyComponent. Pass the WHERE clause (or "" for all).
+// instance into a CIMPolicyComponent. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryCIMPolicyComponent(svc *wmi.Service, where string) ([]CIMPolicyComponent, error) {
 	q := "SELECT * FROM CIM_PolicyComponent"
 	if where != "" {
@@ -1857,17 +1592,14 @@ func QueryCIMPolicyComponent(svc *wmi.Service, where string) ([]CIMPolicyCompone
 	}
 	out := make([]CIMPolicyComponent, len(rows))
 	for i, row := range rows {
-		out[i].GroupComponent = wmi.AsString(row["GroupComponent"])
-		out[i].PartComponent = wmi.AsString(row["PartComponent"])
+		out[i] = CIMPolicyComponentFromRow(row)
 	}
 	return out, nil
 }
 
-// GetCIMPolicyComponent returns the CIM_PolicyComponent instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetCIMPolicyComponent(svc *wmi.Service, groupComponent string, partComponent string) (*CIMPolicyComponent, error) {
-	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
-		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+// QueryOneCIMPolicyComponent returns the single CIM_PolicyComponent matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneCIMPolicyComponent(svc *wmi.Service, where string) (*CIMPolicyComponent, error) {
 	out, err := QueryCIMPolicyComponent(svc, where)
 	if err != nil {
 		return nil, err
@@ -1878,8 +1610,17 @@ func GetCIMPolicyComponent(svc *wmi.Service, groupComponent string, partComponen
 	return &out[0], nil
 }
 
+// GetCIMPolicyComponent returns the CIM_PolicyComponent instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetCIMPolicyComponent(svc *wmi.Service, groupComponent string, partComponent string) (*CIMPolicyComponent, error) {
+	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
+		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+	return QueryOneCIMPolicyComponent(svc, where)
+}
+
 // QueryCIMPolicyRule runs the WQL query against the class and decodes each
-// instance into a CIMPolicyRule. Pass the WHERE clause (or "" for all).
+// instance into a CIMPolicyRule. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryCIMPolicyRule(svc *wmi.Service, where string) ([]CIMPolicyRule, error) {
 	q := "SELECT * FROM CIM_PolicyRule"
 	if where != "" {
@@ -1891,36 +1632,14 @@ func QueryCIMPolicyRule(svc *wmi.Service, where string) ([]CIMPolicyRule, error)
 	}
 	out := make([]CIMPolicyRule, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CommonName = wmi.AsString(row["CommonName"])
-		out[i].ConditionListType = wmi.AsUint16(row["ConditionListType"])
-		out[i].CreationClassName = wmi.AsString(row["CreationClassName"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].Enabled = wmi.AsUint16(row["Enabled"])
-		out[i].ExecutionStrategy = wmi.AsUint16(row["ExecutionStrategy"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].Mandatory = wmi.AsBool(row["Mandatory"])
-		out[i].PolicyDecisionStrategy = wmi.AsUint16(row["PolicyDecisionStrategy"])
-		out[i].PolicyKeywords = wmi.AsStringSlice(row["PolicyKeywords"])
-		out[i].PolicyRoles = wmi.AsStringSlice(row["PolicyRoles"])
-		out[i].PolicyRuleName = wmi.AsString(row["PolicyRuleName"])
-		out[i].Priority = wmi.AsUint16(row["Priority"])
-		out[i].RuleUsage = wmi.AsString(row["RuleUsage"])
-		out[i].SequencedActions = wmi.AsUint16(row["SequencedActions"])
-		out[i].SystemCreationClassName = wmi.AsString(row["SystemCreationClassName"])
-		out[i].SystemName = wmi.AsString(row["SystemName"])
+		out[i] = CIMPolicyRuleFromRow(row)
 	}
 	return out, nil
 }
 
-// GetCIMPolicyRule returns the CIM_PolicyRule instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetCIMPolicyRule(svc *wmi.Service, creationClassName string, policyRuleName string, systemCreationClassName string, systemName string) (*CIMPolicyRule, error) {
-	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
-		" AND " + "PolicyRuleName = " + wmi.WQLValue(policyRuleName) +
-		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
-		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+// QueryOneCIMPolicyRule returns the single CIM_PolicyRule matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneCIMPolicyRule(svc *wmi.Service, where string) (*CIMPolicyRule, error) {
 	out, err := QueryCIMPolicyRule(svc, where)
 	if err != nil {
 		return nil, err
@@ -1931,8 +1650,19 @@ func GetCIMPolicyRule(svc *wmi.Service, creationClassName string, policyRuleName
 	return &out[0], nil
 }
 
+// GetCIMPolicyRule returns the CIM_PolicyRule instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetCIMPolicyRule(svc *wmi.Service, creationClassName string, policyRuleName string, systemCreationClassName string, systemName string) (*CIMPolicyRule, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "PolicyRuleName = " + wmi.WQLValue(policyRuleName) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	return QueryOneCIMPolicyRule(svc, where)
+}
+
 // QueryCIMPolicySet runs the WQL query against the class and decodes each
-// instance into a CIMPolicySet. Pass the WHERE clause (or "" for all).
+// instance into a CIMPolicySet. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryCIMPolicySet(svc *wmi.Service, where string) ([]CIMPolicySet, error) {
 	q := "SELECT * FROM CIM_PolicySet"
 	if where != "" {
@@ -1944,21 +1674,27 @@ func QueryCIMPolicySet(svc *wmi.Service, where string) ([]CIMPolicySet, error) {
 	}
 	out := make([]CIMPolicySet, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CommonName = wmi.AsString(row["CommonName"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].Enabled = wmi.AsUint16(row["Enabled"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].PolicyDecisionStrategy = wmi.AsUint16(row["PolicyDecisionStrategy"])
-		out[i].PolicyKeywords = wmi.AsStringSlice(row["PolicyKeywords"])
-		out[i].PolicyRoles = wmi.AsStringSlice(row["PolicyRoles"])
+		out[i] = CIMPolicySetFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneCIMPolicySet returns the single CIM_PolicySet matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneCIMPolicySet(svc *wmi.Service, where string) (*CIMPolicySet, error) {
+	out, err := QueryCIMPolicySet(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryCIMPolicySetComponent runs the WQL query against the class and decodes each
-// instance into a CIMPolicySetComponent. Pass the WHERE clause (or "" for all).
+// instance into a CIMPolicySetComponent. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryCIMPolicySetComponent(svc *wmi.Service, where string) ([]CIMPolicySetComponent, error) {
 	q := "SELECT * FROM CIM_PolicySetComponent"
 	if where != "" {
@@ -1970,18 +1706,14 @@ func QueryCIMPolicySetComponent(svc *wmi.Service, where string) ([]CIMPolicySetC
 	}
 	out := make([]CIMPolicySetComponent, len(rows))
 	for i, row := range rows {
-		out[i].GroupComponent = wmi.AsString(row["GroupComponent"])
-		out[i].PartComponent = wmi.AsString(row["PartComponent"])
-		out[i].Priority = wmi.AsUint16(row["Priority"])
+		out[i] = CIMPolicySetComponentFromRow(row)
 	}
 	return out, nil
 }
 
-// GetCIMPolicySetComponent returns the CIM_PolicySetComponent instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetCIMPolicySetComponent(svc *wmi.Service, groupComponent string, partComponent string) (*CIMPolicySetComponent, error) {
-	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
-		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+// QueryOneCIMPolicySetComponent returns the single CIM_PolicySetComponent matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneCIMPolicySetComponent(svc *wmi.Service, where string) (*CIMPolicySetComponent, error) {
 	out, err := QueryCIMPolicySetComponent(svc, where)
 	if err != nil {
 		return nil, err
@@ -1992,8 +1724,17 @@ func GetCIMPolicySetComponent(svc *wmi.Service, groupComponent string, partCompo
 	return &out[0], nil
 }
 
+// GetCIMPolicySetComponent returns the CIM_PolicySetComponent instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetCIMPolicySetComponent(svc *wmi.Service, groupComponent string, partComponent string) (*CIMPolicySetComponent, error) {
+	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
+		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+	return QueryOneCIMPolicySetComponent(svc, where)
+}
+
 // QueryCIMPortImplementsEndpoint runs the WQL query against the class and decodes each
-// instance into a CIMPortImplementsEndpoint. Pass the WHERE clause (or "" for all).
+// instance into a CIMPortImplementsEndpoint. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryCIMPortImplementsEndpoint(svc *wmi.Service, where string) ([]CIMPortImplementsEndpoint, error) {
 	q := "SELECT * FROM CIM_PortImplementsEndpoint"
 	if where != "" {
@@ -2005,17 +1746,14 @@ func QueryCIMPortImplementsEndpoint(svc *wmi.Service, where string) ([]CIMPortIm
 	}
 	out := make([]CIMPortImplementsEndpoint, len(rows))
 	for i, row := range rows {
-		out[i].Antecedent = wmi.AsString(row["Antecedent"])
-		out[i].Dependent = wmi.AsString(row["Dependent"])
+		out[i] = CIMPortImplementsEndpointFromRow(row)
 	}
 	return out, nil
 }
 
-// GetCIMPortImplementsEndpoint returns the CIM_PortImplementsEndpoint instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetCIMPortImplementsEndpoint(svc *wmi.Service, antecedent string, dependent string) (*CIMPortImplementsEndpoint, error) {
-	where := "Antecedent = " + wmi.WQLValue(antecedent) +
-		" AND " + "Dependent = " + wmi.WQLValue(dependent)
+// QueryOneCIMPortImplementsEndpoint returns the single CIM_PortImplementsEndpoint matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneCIMPortImplementsEndpoint(svc *wmi.Service, where string) (*CIMPortImplementsEndpoint, error) {
 	out, err := QueryCIMPortImplementsEndpoint(svc, where)
 	if err != nil {
 		return nil, err
@@ -2026,8 +1764,17 @@ func GetCIMPortImplementsEndpoint(svc *wmi.Service, antecedent string, dependent
 	return &out[0], nil
 }
 
+// GetCIMPortImplementsEndpoint returns the CIM_PortImplementsEndpoint instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetCIMPortImplementsEndpoint(svc *wmi.Service, antecedent string, dependent string) (*CIMPortImplementsEndpoint, error) {
+	where := "Antecedent = " + wmi.WQLValue(antecedent) +
+		" AND " + "Dependent = " + wmi.WQLValue(dependent)
+	return QueryOneCIMPortImplementsEndpoint(svc, where)
+}
+
 // QueryCIMProtocolEndpoint runs the WQL query against the class and decodes each
-// instance into a CIMProtocolEndpoint. Pass the WHERE clause (or "" for all).
+// instance into a CIMProtocolEndpoint. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryCIMProtocolEndpoint(svc *wmi.Service, where string) ([]CIMProtocolEndpoint, error) {
 	q := "SELECT * FROM CIM_ProtocolEndpoint"
 	if where != "" {
@@ -2039,45 +1786,14 @@ func QueryCIMProtocolEndpoint(svc *wmi.Service, where string) ([]CIMProtocolEndp
 	}
 	out := make([]CIMProtocolEndpoint, len(rows))
 	for i, row := range rows {
-		out[i].AvailableRequestedStates = wmi.AsUint16Slice(row["AvailableRequestedStates"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CommunicationStatus = wmi.AsUint16(row["CommunicationStatus"])
-		out[i].CreationClassName = wmi.AsString(row["CreationClassName"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DetailedStatus = wmi.AsUint16(row["DetailedStatus"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].EnabledDefault = wmi.AsUint16(row["EnabledDefault"])
-		out[i].EnabledState = wmi.AsUint16(row["EnabledState"])
-		out[i].HealthState = wmi.AsUint16(row["HealthState"])
-		out[i].InstallDate = wmi.AsString(row["InstallDate"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].NameFormat = wmi.AsString(row["NameFormat"])
-		out[i].OperatingStatus = wmi.AsUint16(row["OperatingStatus"])
-		out[i].OperationalStatus = wmi.AsUint16Slice(row["OperationalStatus"])
-		out[i].OtherEnabledState = wmi.AsString(row["OtherEnabledState"])
-		out[i].OtherTypeDescription = wmi.AsString(row["OtherTypeDescription"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].ProtocolIFType = wmi.AsUint16(row["ProtocolIFType"])
-		out[i].ProtocolType = wmi.AsUint16(row["ProtocolType"])
-		out[i].RequestedState = wmi.AsUint16(row["RequestedState"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusDescriptions = wmi.AsStringSlice(row["StatusDescriptions"])
-		out[i].SystemCreationClassName = wmi.AsString(row["SystemCreationClassName"])
-		out[i].SystemName = wmi.AsString(row["SystemName"])
-		out[i].TimeOfLastStateChange = wmi.AsString(row["TimeOfLastStateChange"])
-		out[i].TransitioningToState = wmi.AsUint16(row["TransitioningToState"])
+		out[i] = CIMProtocolEndpointFromRow(row)
 	}
 	return out, nil
 }
 
-// GetCIMProtocolEndpoint returns the CIM_ProtocolEndpoint instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetCIMProtocolEndpoint(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*CIMProtocolEndpoint, error) {
-	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
-		" AND " + "Name = " + wmi.WQLValue(name) +
-		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
-		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+// QueryOneCIMProtocolEndpoint returns the single CIM_ProtocolEndpoint matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneCIMProtocolEndpoint(svc *wmi.Service, where string) (*CIMProtocolEndpoint, error) {
 	out, err := QueryCIMProtocolEndpoint(svc, where)
 	if err != nil {
 		return nil, err
@@ -2088,8 +1804,19 @@ func GetCIMProtocolEndpoint(svc *wmi.Service, creationClassName string, name str
 	return &out[0], nil
 }
 
+// GetCIMProtocolEndpoint returns the CIM_ProtocolEndpoint instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetCIMProtocolEndpoint(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*CIMProtocolEndpoint, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "Name = " + wmi.WQLValue(name) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	return QueryOneCIMProtocolEndpoint(svc, where)
+}
+
 // QueryCIMRemoteServiceAccessPoint runs the WQL query against the class and decodes each
-// instance into a CIMRemoteServiceAccessPoint. Pass the WHERE clause (or "" for all).
+// instance into a CIMRemoteServiceAccessPoint. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryCIMRemoteServiceAccessPoint(svc *wmi.Service, where string) ([]CIMRemoteServiceAccessPoint, error) {
 	q := "SELECT * FROM CIM_RemoteServiceAccessPoint"
 	if where != "" {
@@ -2101,46 +1828,14 @@ func QueryCIMRemoteServiceAccessPoint(svc *wmi.Service, where string) ([]CIMRemo
 	}
 	out := make([]CIMRemoteServiceAccessPoint, len(rows))
 	for i, row := range rows {
-		out[i].AccessContext = wmi.AsUint16(row["AccessContext"])
-		out[i].AccessInfo = wmi.AsString(row["AccessInfo"])
-		out[i].AvailableRequestedStates = wmi.AsUint16Slice(row["AvailableRequestedStates"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CommunicationStatus = wmi.AsUint16(row["CommunicationStatus"])
-		out[i].CreationClassName = wmi.AsString(row["CreationClassName"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DetailedStatus = wmi.AsUint16(row["DetailedStatus"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].EnabledDefault = wmi.AsUint16(row["EnabledDefault"])
-		out[i].EnabledState = wmi.AsUint16(row["EnabledState"])
-		out[i].HealthState = wmi.AsUint16(row["HealthState"])
-		out[i].InfoFormat = wmi.AsUint16(row["InfoFormat"])
-		out[i].InstallDate = wmi.AsString(row["InstallDate"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].OperatingStatus = wmi.AsUint16(row["OperatingStatus"])
-		out[i].OperationalStatus = wmi.AsUint16Slice(row["OperationalStatus"])
-		out[i].OtherAccessContext = wmi.AsString(row["OtherAccessContext"])
-		out[i].OtherEnabledState = wmi.AsString(row["OtherEnabledState"])
-		out[i].OtherInfoFormatDescription = wmi.AsString(row["OtherInfoFormatDescription"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].RequestedState = wmi.AsUint16(row["RequestedState"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusDescriptions = wmi.AsStringSlice(row["StatusDescriptions"])
-		out[i].SystemCreationClassName = wmi.AsString(row["SystemCreationClassName"])
-		out[i].SystemName = wmi.AsString(row["SystemName"])
-		out[i].TimeOfLastStateChange = wmi.AsString(row["TimeOfLastStateChange"])
-		out[i].TransitioningToState = wmi.AsUint16(row["TransitioningToState"])
+		out[i] = CIMRemoteServiceAccessPointFromRow(row)
 	}
 	return out, nil
 }
 
-// GetCIMRemoteServiceAccessPoint returns the CIM_RemoteServiceAccessPoint instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetCIMRemoteServiceAccessPoint(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*CIMRemoteServiceAccessPoint, error) {
-	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
-		" AND " + "Name = " + wmi.WQLValue(name) +
-		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
-		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+// QueryOneCIMRemoteServiceAccessPoint returns the single CIM_RemoteServiceAccessPoint matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneCIMRemoteServiceAccessPoint(svc *wmi.Service, where string) (*CIMRemoteServiceAccessPoint, error) {
 	out, err := QueryCIMRemoteServiceAccessPoint(svc, where)
 	if err != nil {
 		return nil, err
@@ -2151,8 +1846,19 @@ func GetCIMRemoteServiceAccessPoint(svc *wmi.Service, creationClassName string, 
 	return &out[0], nil
 }
 
+// GetCIMRemoteServiceAccessPoint returns the CIM_RemoteServiceAccessPoint instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetCIMRemoteServiceAccessPoint(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*CIMRemoteServiceAccessPoint, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "Name = " + wmi.WQLValue(name) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	return QueryOneCIMRemoteServiceAccessPoint(svc, where)
+}
+
 // QueryCIMRouteUsesEndpoint runs the WQL query against the class and decodes each
-// instance into a CIMRouteUsesEndpoint. Pass the WHERE clause (or "" for all).
+// instance into a CIMRouteUsesEndpoint. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryCIMRouteUsesEndpoint(svc *wmi.Service, where string) ([]CIMRouteUsesEndpoint, error) {
 	q := "SELECT * FROM CIM_RouteUsesEndpoint"
 	if where != "" {
@@ -2164,17 +1870,14 @@ func QueryCIMRouteUsesEndpoint(svc *wmi.Service, where string) ([]CIMRouteUsesEn
 	}
 	out := make([]CIMRouteUsesEndpoint, len(rows))
 	for i, row := range rows {
-		out[i].Antecedent = wmi.AsString(row["Antecedent"])
-		out[i].Dependent = wmi.AsString(row["Dependent"])
+		out[i] = CIMRouteUsesEndpointFromRow(row)
 	}
 	return out, nil
 }
 
-// GetCIMRouteUsesEndpoint returns the CIM_RouteUsesEndpoint instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetCIMRouteUsesEndpoint(svc *wmi.Service, antecedent string, dependent string) (*CIMRouteUsesEndpoint, error) {
-	where := "Antecedent = " + wmi.WQLValue(antecedent) +
-		" AND " + "Dependent = " + wmi.WQLValue(dependent)
+// QueryOneCIMRouteUsesEndpoint returns the single CIM_RouteUsesEndpoint matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneCIMRouteUsesEndpoint(svc *wmi.Service, where string) (*CIMRouteUsesEndpoint, error) {
 	out, err := QueryCIMRouteUsesEndpoint(svc, where)
 	if err != nil {
 		return nil, err
@@ -2185,8 +1888,17 @@ func GetCIMRouteUsesEndpoint(svc *wmi.Service, antecedent string, dependent stri
 	return &out[0], nil
 }
 
+// GetCIMRouteUsesEndpoint returns the CIM_RouteUsesEndpoint instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetCIMRouteUsesEndpoint(svc *wmi.Service, antecedent string, dependent string) (*CIMRouteUsesEndpoint, error) {
+	where := "Antecedent = " + wmi.WQLValue(antecedent) +
+		" AND " + "Dependent = " + wmi.WQLValue(dependent)
+	return QueryOneCIMRouteUsesEndpoint(svc, where)
+}
+
 // QueryCIMSAAction runs the WQL query against the class and decodes each
-// instance into a CIMSAAction. Pass the WHERE clause (or "" for all).
+// instance into a CIMSAAction. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryCIMSAAction(svc *wmi.Service, where string) ([]CIMSAAction, error) {
 	q := "SELECT * FROM CIM_SAAction"
 	if where != "" {
@@ -2198,22 +1910,22 @@ func QueryCIMSAAction(svc *wmi.Service, where string) ([]CIMSAAction, error) {
 	}
 	out := make([]CIMSAAction, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CommonName = wmi.AsString(row["CommonName"])
-		out[i].CreationClassName = wmi.AsString(row["CreationClassName"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DoActionLogging = wmi.AsBool(row["DoActionLogging"])
-		out[i].DoPacketLogging = wmi.AsBool(row["DoPacketLogging"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].PolicyActionName = wmi.AsString(row["PolicyActionName"])
-		out[i].PolicyKeywords = wmi.AsStringSlice(row["PolicyKeywords"])
-		out[i].PolicyRuleCreationClassName = wmi.AsString(row["PolicyRuleCreationClassName"])
-		out[i].PolicyRuleName = wmi.AsString(row["PolicyRuleName"])
-		out[i].SystemCreationClassName = wmi.AsString(row["SystemCreationClassName"])
-		out[i].SystemName = wmi.AsString(row["SystemName"])
+		out[i] = CIMSAActionFromRow(row)
 	}
 	return out, nil
+}
+
+// QueryOneCIMSAAction returns the single CIM_SAAction matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneCIMSAAction(svc *wmi.Service, where string) (*CIMSAAction, error) {
+	out, err := QueryCIMSAAction(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // GetCIMSAAction returns the CIM_SAAction instance identified by its key
@@ -2225,18 +1937,12 @@ func GetCIMSAAction(svc *wmi.Service, creationClassName string, policyActionName
 		" AND " + "PolicyRuleName = " + wmi.WQLValue(policyRuleName) +
 		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
 		" AND " + "SystemName = " + wmi.WQLValue(systemName)
-	out, err := QueryCIMSAAction(svc, where)
-	if err != nil {
-		return nil, err
-	}
-	if len(out) == 0 {
-		return nil, wmi.ErrNotFound
-	}
-	return &out[0], nil
+	return QueryOneCIMSAAction(svc, where)
 }
 
 // QueryCIMSANegotiationAction runs the WQL query against the class and decodes each
-// instance into a CIMSANegotiationAction. Pass the WHERE clause (or "" for all).
+// instance into a CIMSANegotiationAction. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryCIMSANegotiationAction(svc *wmi.Service, where string) ([]CIMSANegotiationAction, error) {
 	q := "SELECT * FROM CIM_SANegotiationAction"
 	if where != "" {
@@ -2248,25 +1954,22 @@ func QueryCIMSANegotiationAction(svc *wmi.Service, where string) ([]CIMSANegotia
 	}
 	out := make([]CIMSANegotiationAction, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CommonName = wmi.AsString(row["CommonName"])
-		out[i].CreationClassName = wmi.AsString(row["CreationClassName"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DoActionLogging = wmi.AsBool(row["DoActionLogging"])
-		out[i].DoPacketLogging = wmi.AsBool(row["DoPacketLogging"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].IdleDurationSeconds = wmi.AsUint64(row["IdleDurationSeconds"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].MinLifetimeKilobytes = wmi.AsUint64(row["MinLifetimeKilobytes"])
-		out[i].MinLifetimeSeconds = wmi.AsUint64(row["MinLifetimeSeconds"])
-		out[i].PolicyActionName = wmi.AsString(row["PolicyActionName"])
-		out[i].PolicyKeywords = wmi.AsStringSlice(row["PolicyKeywords"])
-		out[i].PolicyRuleCreationClassName = wmi.AsString(row["PolicyRuleCreationClassName"])
-		out[i].PolicyRuleName = wmi.AsString(row["PolicyRuleName"])
-		out[i].SystemCreationClassName = wmi.AsString(row["SystemCreationClassName"])
-		out[i].SystemName = wmi.AsString(row["SystemName"])
+		out[i] = CIMSANegotiationActionFromRow(row)
 	}
 	return out, nil
+}
+
+// QueryOneCIMSANegotiationAction returns the single CIM_SANegotiationAction matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneCIMSANegotiationAction(svc *wmi.Service, where string) (*CIMSANegotiationAction, error) {
+	out, err := QueryCIMSANegotiationAction(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // GetCIMSANegotiationAction returns the CIM_SANegotiationAction instance identified by its key
@@ -2278,18 +1981,12 @@ func GetCIMSANegotiationAction(svc *wmi.Service, creationClassName string, polic
 		" AND " + "PolicyRuleName = " + wmi.WQLValue(policyRuleName) +
 		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
 		" AND " + "SystemName = " + wmi.WQLValue(systemName)
-	out, err := QueryCIMSANegotiationAction(svc, where)
-	if err != nil {
-		return nil, err
-	}
-	if len(out) == 0 {
-		return nil, wmi.ErrNotFound
-	}
-	return &out[0], nil
+	return QueryOneCIMSANegotiationAction(svc, where)
 }
 
 // QueryCIMSAPSAPDependency runs the WQL query against the class and decodes each
-// instance into a CIMSAPSAPDependency. Pass the WHERE clause (or "" for all).
+// instance into a CIMSAPSAPDependency. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryCIMSAPSAPDependency(svc *wmi.Service, where string) ([]CIMSAPSAPDependency, error) {
 	q := "SELECT * FROM CIM_SAPSAPDependency"
 	if where != "" {
@@ -2301,17 +1998,14 @@ func QueryCIMSAPSAPDependency(svc *wmi.Service, where string) ([]CIMSAPSAPDepend
 	}
 	out := make([]CIMSAPSAPDependency, len(rows))
 	for i, row := range rows {
-		out[i].Antecedent = wmi.AsString(row["Antecedent"])
-		out[i].Dependent = wmi.AsString(row["Dependent"])
+		out[i] = CIMSAPSAPDependencyFromRow(row)
 	}
 	return out, nil
 }
 
-// GetCIMSAPSAPDependency returns the CIM_SAPSAPDependency instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetCIMSAPSAPDependency(svc *wmi.Service, antecedent string, dependent string) (*CIMSAPSAPDependency, error) {
-	where := "Antecedent = " + wmi.WQLValue(antecedent) +
-		" AND " + "Dependent = " + wmi.WQLValue(dependent)
+// QueryOneCIMSAPSAPDependency returns the single CIM_SAPSAPDependency matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneCIMSAPSAPDependency(svc *wmi.Service, where string) (*CIMSAPSAPDependency, error) {
 	out, err := QueryCIMSAPSAPDependency(svc, where)
 	if err != nil {
 		return nil, err
@@ -2322,8 +2016,17 @@ func GetCIMSAPSAPDependency(svc *wmi.Service, antecedent string, dependent strin
 	return &out[0], nil
 }
 
+// GetCIMSAPSAPDependency returns the CIM_SAPSAPDependency instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetCIMSAPSAPDependency(svc *wmi.Service, antecedent string, dependent string) (*CIMSAPSAPDependency, error) {
+	where := "Antecedent = " + wmi.WQLValue(antecedent) +
+		" AND " + "Dependent = " + wmi.WQLValue(dependent)
+	return QueryOneCIMSAPSAPDependency(svc, where)
+}
+
 // QueryCIMSAProposal runs the WQL query against the class and decodes each
-// instance into a CIMSAProposal. Pass the WHERE clause (or "" for all).
+// instance into a CIMSAProposal. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryCIMSAProposal(svc *wmi.Service, where string) ([]CIMSAProposal, error) {
 	q := "SELECT * FROM CIM_SAProposal"
 	if where != "" {
@@ -2335,18 +2038,14 @@ func QueryCIMSAProposal(svc *wmi.Service, where string) ([]CIMSAProposal, error)
 	}
 	out := make([]CIMSAProposal, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
+		out[i] = CIMSAProposalFromRow(row)
 	}
 	return out, nil
 }
 
-// GetCIMSAProposal returns the CIM_SAProposal instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetCIMSAProposal(svc *wmi.Service, instanceID string) (*CIMSAProposal, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneCIMSAProposal returns the single CIM_SAProposal matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneCIMSAProposal(svc *wmi.Service, where string) (*CIMSAProposal, error) {
 	out, err := QueryCIMSAProposal(svc, where)
 	if err != nil {
 		return nil, err
@@ -2357,8 +2056,16 @@ func GetCIMSAProposal(svc *wmi.Service, instanceID string) (*CIMSAProposal, erro
 	return &out[0], nil
 }
 
+// GetCIMSAProposal returns the CIM_SAProposal instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetCIMSAProposal(svc *wmi.Service, instanceID string) (*CIMSAProposal, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneCIMSAProposal(svc, where)
+}
+
 // QueryCIMSARule runs the WQL query against the class and decodes each
-// instance into a CIMSARule. Pass the WHERE clause (or "" for all).
+// instance into a CIMSARule. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryCIMSARule(svc *wmi.Service, where string) ([]CIMSARule, error) {
 	q := "SELECT * FROM CIM_SARule"
 	if where != "" {
@@ -2370,37 +2077,14 @@ func QueryCIMSARule(svc *wmi.Service, where string) ([]CIMSARule, error) {
 	}
 	out := make([]CIMSARule, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CommonName = wmi.AsString(row["CommonName"])
-		out[i].ConditionListType = wmi.AsUint16(row["ConditionListType"])
-		out[i].CreationClassName = wmi.AsString(row["CreationClassName"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].Enabled = wmi.AsUint16(row["Enabled"])
-		out[i].ExecutionStrategy = wmi.AsUint16(row["ExecutionStrategy"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].LimitNegotiation = wmi.AsUint16(row["LimitNegotiation"])
-		out[i].Mandatory = wmi.AsBool(row["Mandatory"])
-		out[i].PolicyDecisionStrategy = wmi.AsUint16(row["PolicyDecisionStrategy"])
-		out[i].PolicyKeywords = wmi.AsStringSlice(row["PolicyKeywords"])
-		out[i].PolicyRoles = wmi.AsStringSlice(row["PolicyRoles"])
-		out[i].PolicyRuleName = wmi.AsString(row["PolicyRuleName"])
-		out[i].Priority = wmi.AsUint16(row["Priority"])
-		out[i].RuleUsage = wmi.AsString(row["RuleUsage"])
-		out[i].SequencedActions = wmi.AsUint16(row["SequencedActions"])
-		out[i].SystemCreationClassName = wmi.AsString(row["SystemCreationClassName"])
-		out[i].SystemName = wmi.AsString(row["SystemName"])
+		out[i] = CIMSARuleFromRow(row)
 	}
 	return out, nil
 }
 
-// GetCIMSARule returns the CIM_SARule instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetCIMSARule(svc *wmi.Service, creationClassName string, policyRuleName string, systemCreationClassName string, systemName string) (*CIMSARule, error) {
-	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
-		" AND " + "PolicyRuleName = " + wmi.WQLValue(policyRuleName) +
-		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
-		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+// QueryOneCIMSARule returns the single CIM_SARule matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneCIMSARule(svc *wmi.Service, where string) (*CIMSARule, error) {
 	out, err := QueryCIMSARule(svc, where)
 	if err != nil {
 		return nil, err
@@ -2411,8 +2095,19 @@ func GetCIMSARule(svc *wmi.Service, creationClassName string, policyRuleName str
 	return &out[0], nil
 }
 
+// GetCIMSARule returns the CIM_SARule instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetCIMSARule(svc *wmi.Service, creationClassName string, policyRuleName string, systemCreationClassName string, systemName string) (*CIMSARule, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "PolicyRuleName = " + wmi.WQLValue(policyRuleName) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	return QueryOneCIMSARule(svc, where)
+}
+
 // QueryCIMScopedSettingData runs the WQL query against the class and decodes each
-// instance into a CIMScopedSettingData. Pass the WHERE clause (or "" for all).
+// instance into a CIMScopedSettingData. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryCIMScopedSettingData(svc *wmi.Service, where string) ([]CIMScopedSettingData, error) {
 	q := "SELECT * FROM CIM_ScopedSettingData"
 	if where != "" {
@@ -2424,18 +2119,14 @@ func QueryCIMScopedSettingData(svc *wmi.Service, where string) ([]CIMScopedSetti
 	}
 	out := make([]CIMScopedSettingData, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
+		out[i] = CIMScopedSettingDataFromRow(row)
 	}
 	return out, nil
 }
 
-// GetCIMScopedSettingData returns the CIM_ScopedSettingData instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetCIMScopedSettingData(svc *wmi.Service, instanceID string) (*CIMScopedSettingData, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneCIMScopedSettingData returns the single CIM_ScopedSettingData matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneCIMScopedSettingData(svc *wmi.Service, where string) (*CIMScopedSettingData, error) {
 	out, err := QueryCIMScopedSettingData(svc, where)
 	if err != nil {
 		return nil, err
@@ -2446,8 +2137,16 @@ func GetCIMScopedSettingData(svc *wmi.Service, instanceID string) (*CIMScopedSet
 	return &out[0], nil
 }
 
+// GetCIMScopedSettingData returns the CIM_ScopedSettingData instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetCIMScopedSettingData(svc *wmi.Service, instanceID string) (*CIMScopedSettingData, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneCIMScopedSettingData(svc, where)
+}
+
 // QueryCIMSecurityAssociationEndpoint runs the WQL query against the class and decodes each
-// instance into a CIMSecurityAssociationEndpoint. Pass the WHERE clause (or "" for all).
+// instance into a CIMSecurityAssociationEndpoint. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryCIMSecurityAssociationEndpoint(svc *wmi.Service, where string) ([]CIMSecurityAssociationEndpoint, error) {
 	q := "SELECT * FROM CIM_SecurityAssociationEndpoint"
 	if where != "" {
@@ -2459,51 +2158,14 @@ func QueryCIMSecurityAssociationEndpoint(svc *wmi.Service, where string) ([]CIMS
 	}
 	out := make([]CIMSecurityAssociationEndpoint, len(rows))
 	for i, row := range rows {
-		out[i].AvailableRequestedStates = wmi.AsUint16Slice(row["AvailableRequestedStates"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CommunicationStatus = wmi.AsUint16(row["CommunicationStatus"])
-		out[i].CreationClassName = wmi.AsString(row["CreationClassName"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DetailedStatus = wmi.AsUint16(row["DetailedStatus"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].EnabledDefault = wmi.AsUint16(row["EnabledDefault"])
-		out[i].EnabledState = wmi.AsUint16(row["EnabledState"])
-		out[i].HealthState = wmi.AsUint16(row["HealthState"])
-		out[i].IdleDurationSeconds = wmi.AsUint64(row["IdleDurationSeconds"])
-		out[i].InstallDate = wmi.AsString(row["InstallDate"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].LifetimeKilobytes = wmi.AsUint64(row["LifetimeKilobytes"])
-		out[i].LifetimeSeconds = wmi.AsUint64(row["LifetimeSeconds"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].NameFormat = wmi.AsString(row["NameFormat"])
-		out[i].OperatingStatus = wmi.AsUint16(row["OperatingStatus"])
-		out[i].OperationalStatus = wmi.AsUint16Slice(row["OperationalStatus"])
-		out[i].OtherEnabledState = wmi.AsString(row["OtherEnabledState"])
-		out[i].OtherTypeDescription = wmi.AsString(row["OtherTypeDescription"])
-		out[i].PacketLoggingActive = wmi.AsBool(row["PacketLoggingActive"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].ProtocolIFType = wmi.AsUint16(row["ProtocolIFType"])
-		out[i].ProtocolType = wmi.AsUint16(row["ProtocolType"])
-		out[i].RefreshThresholdKbytesPercentage = wmi.AsUint8(row["RefreshThresholdKbytesPercentage"])
-		out[i].RefreshThresholdSecondsPercentage = wmi.AsUint8(row["RefreshThresholdSecondsPercentage"])
-		out[i].RequestedState = wmi.AsUint16(row["RequestedState"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusDescriptions = wmi.AsStringSlice(row["StatusDescriptions"])
-		out[i].SystemCreationClassName = wmi.AsString(row["SystemCreationClassName"])
-		out[i].SystemName = wmi.AsString(row["SystemName"])
-		out[i].TimeOfLastStateChange = wmi.AsString(row["TimeOfLastStateChange"])
-		out[i].TransitioningToState = wmi.AsUint16(row["TransitioningToState"])
+		out[i] = CIMSecurityAssociationEndpointFromRow(row)
 	}
 	return out, nil
 }
 
-// GetCIMSecurityAssociationEndpoint returns the CIM_SecurityAssociationEndpoint instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetCIMSecurityAssociationEndpoint(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*CIMSecurityAssociationEndpoint, error) {
-	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
-		" AND " + "Name = " + wmi.WQLValue(name) +
-		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
-		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+// QueryOneCIMSecurityAssociationEndpoint returns the single CIM_SecurityAssociationEndpoint matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneCIMSecurityAssociationEndpoint(svc *wmi.Service, where string) (*CIMSecurityAssociationEndpoint, error) {
 	out, err := QueryCIMSecurityAssociationEndpoint(svc, where)
 	if err != nil {
 		return nil, err
@@ -2514,8 +2176,19 @@ func GetCIMSecurityAssociationEndpoint(svc *wmi.Service, creationClassName strin
 	return &out[0], nil
 }
 
+// GetCIMSecurityAssociationEndpoint returns the CIM_SecurityAssociationEndpoint instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetCIMSecurityAssociationEndpoint(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*CIMSecurityAssociationEndpoint, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "Name = " + wmi.WQLValue(name) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	return QueryOneCIMSecurityAssociationEndpoint(svc, where)
+}
+
 // QueryCIMServiceAccessPoint runs the WQL query against the class and decodes each
-// instance into a CIMServiceAccessPoint. Pass the WHERE clause (or "" for all).
+// instance into a CIMServiceAccessPoint. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryCIMServiceAccessPoint(svc *wmi.Service, where string) ([]CIMServiceAccessPoint, error) {
 	q := "SELECT * FROM CIM_ServiceAccessPoint"
 	if where != "" {
@@ -2527,41 +2200,14 @@ func QueryCIMServiceAccessPoint(svc *wmi.Service, where string) ([]CIMServiceAcc
 	}
 	out := make([]CIMServiceAccessPoint, len(rows))
 	for i, row := range rows {
-		out[i].AvailableRequestedStates = wmi.AsUint16Slice(row["AvailableRequestedStates"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CommunicationStatus = wmi.AsUint16(row["CommunicationStatus"])
-		out[i].CreationClassName = wmi.AsString(row["CreationClassName"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DetailedStatus = wmi.AsUint16(row["DetailedStatus"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].EnabledDefault = wmi.AsUint16(row["EnabledDefault"])
-		out[i].EnabledState = wmi.AsUint16(row["EnabledState"])
-		out[i].HealthState = wmi.AsUint16(row["HealthState"])
-		out[i].InstallDate = wmi.AsString(row["InstallDate"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].OperatingStatus = wmi.AsUint16(row["OperatingStatus"])
-		out[i].OperationalStatus = wmi.AsUint16Slice(row["OperationalStatus"])
-		out[i].OtherEnabledState = wmi.AsString(row["OtherEnabledState"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].RequestedState = wmi.AsUint16(row["RequestedState"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusDescriptions = wmi.AsStringSlice(row["StatusDescriptions"])
-		out[i].SystemCreationClassName = wmi.AsString(row["SystemCreationClassName"])
-		out[i].SystemName = wmi.AsString(row["SystemName"])
-		out[i].TimeOfLastStateChange = wmi.AsString(row["TimeOfLastStateChange"])
-		out[i].TransitioningToState = wmi.AsUint16(row["TransitioningToState"])
+		out[i] = CIMServiceAccessPointFromRow(row)
 	}
 	return out, nil
 }
 
-// GetCIMServiceAccessPoint returns the CIM_ServiceAccessPoint instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetCIMServiceAccessPoint(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*CIMServiceAccessPoint, error) {
-	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
-		" AND " + "Name = " + wmi.WQLValue(name) +
-		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
-		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+// QueryOneCIMServiceAccessPoint returns the single CIM_ServiceAccessPoint matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneCIMServiceAccessPoint(svc *wmi.Service, where string) (*CIMServiceAccessPoint, error) {
 	out, err := QueryCIMServiceAccessPoint(svc, where)
 	if err != nil {
 		return nil, err
@@ -2572,8 +2218,19 @@ func GetCIMServiceAccessPoint(svc *wmi.Service, creationClassName string, name s
 	return &out[0], nil
 }
 
+// GetCIMServiceAccessPoint returns the CIM_ServiceAccessPoint instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetCIMServiceAccessPoint(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*CIMServiceAccessPoint, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "Name = " + wmi.WQLValue(name) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	return QueryOneCIMServiceAccessPoint(svc, where)
+}
+
 // QueryCIMSettingData runs the WQL query against the class and decodes each
-// instance into a CIMSettingData. Pass the WHERE clause (or "" for all).
+// instance into a CIMSettingData. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryCIMSettingData(svc *wmi.Service, where string) ([]CIMSettingData, error) {
 	q := "SELECT * FROM CIM_SettingData"
 	if where != "" {
@@ -2585,18 +2242,14 @@ func QueryCIMSettingData(svc *wmi.Service, where string) ([]CIMSettingData, erro
 	}
 	out := make([]CIMSettingData, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
+		out[i] = CIMSettingDataFromRow(row)
 	}
 	return out, nil
 }
 
-// GetCIMSettingData returns the CIM_SettingData instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetCIMSettingData(svc *wmi.Service, instanceID string) (*CIMSettingData, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneCIMSettingData returns the single CIM_SettingData matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneCIMSettingData(svc *wmi.Service, where string) (*CIMSettingData, error) {
 	out, err := QueryCIMSettingData(svc, where)
 	if err != nil {
 		return nil, err
@@ -2607,8 +2260,16 @@ func GetCIMSettingData(svc *wmi.Service, instanceID string) (*CIMSettingData, er
 	return &out[0], nil
 }
 
+// GetCIMSettingData returns the CIM_SettingData instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetCIMSettingData(svc *wmi.Service, instanceID string) (*CIMSettingData, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneCIMSettingData(svc, where)
+}
+
 // QueryMSFT3DPrinter runs the WQL query against the class and decodes each
-// instance into a MSFT3DPrinter. Pass the WHERE clause (or "" for all).
+// instance into a MSFT3DPrinter. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFT3DPrinter(svc *wmi.Service, where string) ([]MSFT3DPrinter, error) {
 	q := "SELECT * FROM MSFT_3DPrinter"
 	if where != "" {
@@ -2620,56 +2281,14 @@ func QueryMSFT3DPrinter(svc *wmi.Service, where string) ([]MSFT3DPrinter, error)
 	}
 	out := make([]MSFT3DPrinter, len(rows))
 	for i, row := range rows {
-		out[i].BranchOfficeOfflineLogSizeMB = wmi.AsUint32(row["BranchOfficeOfflineLogSizeMB"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].Comment = wmi.AsString(row["Comment"])
-		out[i].CommunicationStatus = wmi.AsUint16(row["CommunicationStatus"])
-		out[i].ComputerName = wmi.AsString(row["ComputerName"])
-		out[i].Datatype = wmi.AsString(row["Datatype"])
-		out[i].DefaultJobPriority = wmi.AsUint32(row["DefaultJobPriority"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DetailedStatus = wmi.AsUint16(row["DetailedStatus"])
-		out[i].DeviceType = wmi.AsUint32(row["DeviceType"])
-		out[i].DisableBranchOfficeLogging = wmi.AsBool(row["DisableBranchOfficeLogging"])
-		out[i].DriverName = wmi.AsString(row["DriverName"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].HealthState = wmi.AsUint16(row["HealthState"])
-		out[i].InstallDate = wmi.AsString(row["InstallDate"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].JobCount = wmi.AsUint32(row["JobCount"])
-		out[i].KeepPrintedJobs = wmi.AsBool(row["KeepPrintedJobs"])
-		out[i].Location = wmi.AsString(row["Location"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].OperatingStatus = wmi.AsUint16(row["OperatingStatus"])
-		out[i].OperationalStatus = wmi.AsUint16Slice(row["OperationalStatus"])
-		out[i].PermissionSDDL = wmi.AsString(row["PermissionSDDL"])
-		out[i].PortName = wmi.AsString(row["PortName"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].PrintProcessor = wmi.AsString(row["PrintProcessor"])
-		out[i].PrinterStatus = wmi.AsUint32(row["PrinterStatus"])
-		out[i].Priority = wmi.AsUint32(row["Priority"])
-		out[i].Published = wmi.AsBool(row["Published"])
-		out[i].RenderingMode = wmi.AsUint32(row["RenderingMode"])
-		out[i].SeparatorPageFile = wmi.AsString(row["SeparatorPageFile"])
-		out[i].ShareName = wmi.AsString(row["ShareName"])
-		out[i].Shared = wmi.AsBool(row["Shared"])
-		out[i].StartTime = wmi.AsUint32(row["StartTime"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusDescriptions = wmi.AsStringSlice(row["StatusDescriptions"])
-		out[i].Type = wmi.AsUint32(row["Type"])
-		out[i].UntilTime = wmi.AsUint32(row["UntilTime"])
-		out[i].WorkflowPolicy = wmi.AsUint32(row["WorkflowPolicy"])
+		out[i] = MSFT3DPrinterFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFT3DPrinter returns the MSFT_3DPrinter instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFT3DPrinter(svc *wmi.Service, computerName string, deviceType uint32, name string, typeArg uint32) (*MSFT3DPrinter, error) {
-	where := "ComputerName = " + wmi.WQLValue(computerName) +
-		" AND " + "DeviceType = " + wmi.WQLValue(deviceType) +
-		" AND " + "Name = " + wmi.WQLValue(name) +
-		" AND " + "Type = " + wmi.WQLValue(typeArg)
+// QueryOneMSFT3DPrinter returns the single MSFT_3DPrinter matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFT3DPrinter(svc *wmi.Service, where string) (*MSFT3DPrinter, error) {
 	out, err := QueryMSFT3DPrinter(svc, where)
 	if err != nil {
 		return nil, err
@@ -2680,8 +2299,19 @@ func GetMSFT3DPrinter(svc *wmi.Service, computerName string, deviceType uint32, 
 	return &out[0], nil
 }
 
+// GetMSFT3DPrinter returns the MSFT_3DPrinter instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFT3DPrinter(svc *wmi.Service, computerName string, deviceType uint32, name string, typeArg uint32) (*MSFT3DPrinter, error) {
+	where := "ComputerName = " + wmi.WQLValue(computerName) +
+		" AND " + "DeviceType = " + wmi.WQLValue(deviceType) +
+		" AND " + "Name = " + wmi.WQLValue(name) +
+		" AND " + "Type = " + wmi.WQLValue(typeArg)
+	return QueryOneMSFT3DPrinter(svc, where)
+}
+
 // QueryMSFTAdaptivePrinterPort runs the WQL query against the class and decodes each
-// instance into a MSFTAdaptivePrinterPort. Pass the WHERE clause (or "" for all).
+// instance into a MSFTAdaptivePrinterPort. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTAdaptivePrinterPort(svc *wmi.Service, where string) ([]MSFTAdaptivePrinterPort, error) {
 	q := "SELECT * FROM MSFT_AdaptivePrinterPort"
 	if where != "" {
@@ -2693,36 +2323,14 @@ func QueryMSFTAdaptivePrinterPort(svc *wmi.Service, where string) ([]MSFTAdaptiv
 	}
 	out := make([]MSFTAdaptivePrinterPort, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CommunicationStatus = wmi.AsUint16(row["CommunicationStatus"])
-		out[i].ComputerName = wmi.AsString(row["ComputerName"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DetailedStatus = wmi.AsUint16(row["DetailedStatus"])
-		out[i].DeviceURL = wmi.AsString(row["DeviceURL"])
-		out[i].DeviceUUID = wmi.AsString(row["DeviceUUID"])
-		out[i].DiscoveryMethod = wmi.AsUint32(row["DiscoveryMethod"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].HealthState = wmi.AsUint16(row["HealthState"])
-		out[i].InstallDate = wmi.AsString(row["InstallDate"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].IppUrl = wmi.AsString(row["IppUrl"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].OperatingStatus = wmi.AsUint16(row["OperatingStatus"])
-		out[i].OperationalStatus = wmi.AsUint16Slice(row["OperationalStatus"])
-		out[i].PortMonitor = wmi.AsString(row["PortMonitor"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusDescriptions = wmi.AsStringSlice(row["StatusDescriptions"])
+		out[i] = MSFTAdaptivePrinterPortFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTAdaptivePrinterPort returns the MSFT_AdaptivePrinterPort instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTAdaptivePrinterPort(svc *wmi.Service, computerName string, name string, portMonitor string) (*MSFTAdaptivePrinterPort, error) {
-	where := "ComputerName = " + wmi.WQLValue(computerName) +
-		" AND " + "Name = " + wmi.WQLValue(name) +
-		" AND " + "PortMonitor = " + wmi.WQLValue(portMonitor)
+// QueryOneMSFTAdaptivePrinterPort returns the single MSFT_AdaptivePrinterPort matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTAdaptivePrinterPort(svc *wmi.Service, where string) (*MSFTAdaptivePrinterPort, error) {
 	out, err := QueryMSFTAdaptivePrinterPort(svc, where)
 	if err != nil {
 		return nil, err
@@ -2733,8 +2341,18 @@ func GetMSFTAdaptivePrinterPort(svc *wmi.Service, computerName string, name stri
 	return &out[0], nil
 }
 
+// GetMSFTAdaptivePrinterPort returns the MSFT_AdaptivePrinterPort instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTAdaptivePrinterPort(svc *wmi.Service, computerName string, name string, portMonitor string) (*MSFTAdaptivePrinterPort, error) {
+	where := "ComputerName = " + wmi.WQLValue(computerName) +
+		" AND " + "Name = " + wmi.WQLValue(name) +
+		" AND " + "PortMonitor = " + wmi.WQLValue(portMonitor)
+	return QueryOneMSFTAdaptivePrinterPort(svc, where)
+}
+
 // QueryMSFTDAClientExperienceConfiguration runs the WQL query against the class and decodes each
-// instance into a MSFTDAClientExperienceConfiguration. Pass the WHERE clause (or "" for all).
+// instance into a MSFTDAClientExperienceConfiguration. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTDAClientExperienceConfiguration(svc *wmi.Service, where string) ([]MSFTDAClientExperienceConfiguration, error) {
 	q := "SELECT * FROM MSFT_DAClientExperienceConfiguration"
 	if where != "" {
@@ -2746,30 +2364,14 @@ func QueryMSFTDAClientExperienceConfiguration(svc *wmi.Service, where string) ([
 	}
 	out := make([]MSFTDAClientExperienceConfiguration, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CorporateResources = wmi.AsStringSlice(row["CorporateResources"])
-		out[i].CustomCommands = wmi.AsStringSlice(row["CustomCommands"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].ForceTunneling = wmi.AsUint32(row["ForceTunneling"])
-		out[i].FriendlyName = wmi.AsString(row["FriendlyName"])
-		out[i].GslbFqdn = wmi.AsString(row["GslbFqdn"])
-		out[i].IPsecTunnelEndpoints = wmi.AsStringSlice(row["IPsecTunnelEndpoints"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].ManualEntryPointSelectionAllowed = wmi.AsBool(row["ManualEntryPointSelectionAllowed"])
-		out[i].PassiveMode = wmi.AsBool(row["PassiveMode"])
-		out[i].PolicyStore = wmi.AsString(row["PolicyStore"])
-		out[i].PreferLocalNamesAllowed = wmi.AsBool(row["PreferLocalNamesAllowed"])
-		out[i].SupportEmail = wmi.AsString(row["SupportEmail"])
-		out[i].UserInterface = wmi.AsBool(row["UserInterface"])
+		out[i] = MSFTDAClientExperienceConfigurationFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTDAClientExperienceConfiguration returns the MSFT_DAClientExperienceConfiguration instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTDAClientExperienceConfiguration(svc *wmi.Service, instanceID string) (*MSFTDAClientExperienceConfiguration, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTDAClientExperienceConfiguration returns the single MSFT_DAClientExperienceConfiguration matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTDAClientExperienceConfiguration(svc *wmi.Service, where string) (*MSFTDAClientExperienceConfiguration, error) {
 	out, err := QueryMSFTDAClientExperienceConfiguration(svc, where)
 	if err != nil {
 		return nil, err
@@ -2780,8 +2382,16 @@ func GetMSFTDAClientExperienceConfiguration(svc *wmi.Service, instanceID string)
 	return &out[0], nil
 }
 
+// GetMSFTDAClientExperienceConfiguration returns the MSFT_DAClientExperienceConfiguration instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTDAClientExperienceConfiguration(svc *wmi.Service, instanceID string) (*MSFTDAClientExperienceConfiguration, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTDAClientExperienceConfiguration(svc, where)
+}
+
 // QueryMSFTDAConnectionStatus runs the WQL query against the class and decodes each
-// instance into a MSFTDAConnectionStatus. Pass the WHERE clause (or "" for all).
+// instance into a MSFTDAConnectionStatus. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTDAConnectionStatus(svc *wmi.Service, where string) ([]MSFTDAConnectionStatus, error) {
 	q := "SELECT * FROM MSFT_DAConnectionStatus"
 	if where != "" {
@@ -2793,20 +2403,14 @@ func QueryMSFTDAConnectionStatus(svc *wmi.Service, where string) ([]MSFTDAConnec
 	}
 	out := make([]MSFTDAConnectionStatus, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].Status = wmi.AsUint32(row["Status"])
-		out[i].Substatus = wmi.AsUint32(row["Substatus"])
+		out[i] = MSFTDAConnectionStatusFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTDAConnectionStatus returns the MSFT_DAConnectionStatus instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTDAConnectionStatus(svc *wmi.Service, instanceID string) (*MSFTDAConnectionStatus, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTDAConnectionStatus returns the single MSFT_DAConnectionStatus matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTDAConnectionStatus(svc *wmi.Service, where string) (*MSFTDAConnectionStatus, error) {
 	out, err := QueryMSFTDAConnectionStatus(svc, where)
 	if err != nil {
 		return nil, err
@@ -2817,8 +2421,16 @@ func GetMSFTDAConnectionStatus(svc *wmi.Service, instanceID string) (*MSFTDAConn
 	return &out[0], nil
 }
 
+// GetMSFTDAConnectionStatus returns the MSFT_DAConnectionStatus instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTDAConnectionStatus(svc *wmi.Service, instanceID string) (*MSFTDAConnectionStatus, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTDAConnectionStatus(svc, where)
+}
+
 // QueryMSFTDASettingsIndication runs the WQL query against the class and decodes each
-// instance into a MSFTDASettingsIndication. Pass the WHERE clause (or "" for all).
+// instance into a MSFTDASettingsIndication. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTDASettingsIndication(svc *wmi.Service, where string) ([]MSFTDASettingsIndication, error) {
 	q := "SELECT * FROM MSFT_DASettingsIndication"
 	if where != "" {
@@ -2829,11 +2441,28 @@ func QueryMSFTDASettingsIndication(svc *wmi.Service, where string) ([]MSFTDASett
 		return nil, err
 	}
 	out := make([]MSFTDASettingsIndication, len(rows))
+	for i, row := range rows {
+		out[i] = MSFTDASettingsIndicationFromRow(row)
+	}
 	return out, nil
 }
 
+// QueryOneMSFTDASettingsIndication returns the single MSFT_DASettingsIndication matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTDASettingsIndication(svc *wmi.Service, where string) (*MSFTDASettingsIndication, error) {
+	out, err := QueryMSFTDASettingsIndication(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryMSFTDASiteTableEntry runs the WQL query against the class and decodes each
-// instance into a MSFTDASiteTableEntry. Pass the WHERE clause (or "" for all).
+// instance into a MSFTDASiteTableEntry. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTDASiteTableEntry(svc *wmi.Service, where string) ([]MSFTDASiteTableEntry, error) {
 	q := "SELECT * FROM MSFT_DASiteTableEntry"
 	if where != "" {
@@ -2845,27 +2474,14 @@ func QueryMSFTDASiteTableEntry(svc *wmi.Service, where string) ([]MSFTDASiteTabl
 	}
 	out := make([]MSFTDASiteTableEntry, len(rows))
 	for i, row := range rows {
-		out[i].ADSite = wmi.AsString(row["ADSite"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].EntryPointIPAddress = wmi.AsString(row["EntryPointIPAddress"])
-		out[i].EntryPointName = wmi.AsString(row["EntryPointName"])
-		out[i].EntryPointRange = wmi.AsStringSlice(row["EntryPointRange"])
-		out[i].GslbIP = wmi.AsString(row["GslbIP"])
-		out[i].IPHttpsProfile = wmi.AsString(row["IPHttpsProfile"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].PolicyStore = wmi.AsString(row["PolicyStore"])
-		out[i].State = wmi.AsUint32(row["State"])
-		out[i].TeredoServerIP = wmi.AsString(row["TeredoServerIP"])
+		out[i] = MSFTDASiteTableEntryFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTDASiteTableEntry returns the MSFT_DASiteTableEntry instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTDASiteTableEntry(svc *wmi.Service, instanceID string) (*MSFTDASiteTableEntry, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTDASiteTableEntry returns the single MSFT_DASiteTableEntry matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTDASiteTableEntry(svc *wmi.Service, where string) (*MSFTDASiteTableEntry, error) {
 	out, err := QueryMSFTDASiteTableEntry(svc, where)
 	if err != nil {
 		return nil, err
@@ -2876,8 +2492,16 @@ func GetMSFTDASiteTableEntry(svc *wmi.Service, instanceID string) (*MSFTDASiteTa
 	return &out[0], nil
 }
 
+// GetMSFTDASiteTableEntry returns the MSFT_DASiteTableEntry instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTDASiteTableEntry(svc *wmi.Service, instanceID string) (*MSFTDASiteTableEntry, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTDASiteTableEntry(svc, where)
+}
+
 // QueryMSFTDNSClient runs the WQL query against the class and decodes each
-// instance into a MSFTDNSClient. Pass the WHERE clause (or "" for all).
+// instance into a MSFTDNSClient. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTDNSClient(svc *wmi.Service, where string) ([]MSFTDNSClient, error) {
 	q := "SELECT * FROM MSFT_DNSClient"
 	if where != "" {
@@ -2889,53 +2513,14 @@ func QueryMSFTDNSClient(svc *wmi.Service, where string) ([]MSFTDNSClient, error)
 	}
 	out := make([]MSFTDNSClient, len(rows))
 	for i, row := range rows {
-		out[i].AvailableRequestedStates = wmi.AsUint16Slice(row["AvailableRequestedStates"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CommunicationStatus = wmi.AsUint16(row["CommunicationStatus"])
-		out[i].ConnectionSpecificSuffix = wmi.AsString(row["ConnectionSpecificSuffix"])
-		out[i].ConnectionSpecificSuffixSearchList = wmi.AsStringSlice(row["ConnectionSpecificSuffixSearchList"])
-		out[i].CreationClassName = wmi.AsString(row["CreationClassName"])
-		out[i].DHCPOptionsToUse = wmi.AsUint16Slice(row["DHCPOptionsToUse"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DetailedStatus = wmi.AsUint16(row["DetailedStatus"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].EnabledDefault = wmi.AsUint16(row["EnabledDefault"])
-		out[i].EnabledState = wmi.AsUint16(row["EnabledState"])
-		out[i].HealthState = wmi.AsUint16(row["HealthState"])
-		out[i].Hostname = wmi.AsString(row["Hostname"])
-		out[i].InstallDate = wmi.AsString(row["InstallDate"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].InterfaceAlias = wmi.AsString(row["InterfaceAlias"])
-		out[i].InterfaceIndex = wmi.AsUint32(row["InterfaceIndex"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].NameFormat = wmi.AsString(row["NameFormat"])
-		out[i].OperatingStatus = wmi.AsUint16(row["OperatingStatus"])
-		out[i].OperationalStatus = wmi.AsUint16Slice(row["OperationalStatus"])
-		out[i].OtherEnabledState = wmi.AsString(row["OtherEnabledState"])
-		out[i].OtherTypeDescription = wmi.AsString(row["OtherTypeDescription"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].ProtocolIFType = wmi.AsUint16(row["ProtocolIFType"])
-		out[i].ProtocolType = wmi.AsUint16(row["ProtocolType"])
-		out[i].RegisterThisConnectionsAddress = wmi.AsBool(row["RegisterThisConnectionsAddress"])
-		out[i].RequestedState = wmi.AsUint16(row["RequestedState"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusDescriptions = wmi.AsStringSlice(row["StatusDescriptions"])
-		out[i].SystemCreationClassName = wmi.AsString(row["SystemCreationClassName"])
-		out[i].SystemName = wmi.AsString(row["SystemName"])
-		out[i].TimeOfLastStateChange = wmi.AsString(row["TimeOfLastStateChange"])
-		out[i].TransitioningToState = wmi.AsUint16(row["TransitioningToState"])
-		out[i].UseSuffixWhenRegistering = wmi.AsBool(row["UseSuffixWhenRegistering"])
+		out[i] = MSFTDNSClientFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTDNSClient returns the MSFT_DNSClient instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTDNSClient(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*MSFTDNSClient, error) {
-	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
-		" AND " + "Name = " + wmi.WQLValue(name) +
-		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
-		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+// QueryOneMSFTDNSClient returns the single MSFT_DNSClient matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTDNSClient(svc *wmi.Service, where string) (*MSFTDNSClient, error) {
 	out, err := QueryMSFTDNSClient(svc, where)
 	if err != nil {
 		return nil, err
@@ -2946,8 +2531,19 @@ func GetMSFTDNSClient(svc *wmi.Service, creationClassName string, name string, s
 	return &out[0], nil
 }
 
+// GetMSFTDNSClient returns the MSFT_DNSClient instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTDNSClient(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*MSFTDNSClient, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "Name = " + wmi.WQLValue(name) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	return QueryOneMSFTDNSClient(svc, where)
+}
+
 // QueryMSFTDNSClientCache runs the WQL query against the class and decodes each
-// instance into a MSFTDNSClientCache. Pass the WHERE clause (or "" for all).
+// instance into a MSFTDNSClientCache. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTDNSClientCache(svc *wmi.Service, where string) ([]MSFTDNSClientCache, error) {
 	q := "SELECT * FROM MSFT_DNSClientCache"
 	if where != "" {
@@ -2959,27 +2555,14 @@ func QueryMSFTDNSClientCache(svc *wmi.Service, where string) ([]MSFTDNSClientCac
 	}
 	out := make([]MSFTDNSClientCache, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].Data = wmi.AsString(row["Data"])
-		out[i].DataLength = wmi.AsUint16(row["DataLength"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].Entry = wmi.AsString(row["Entry"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].Section = wmi.AsUint8(row["Section"])
-		out[i].Status = wmi.AsUint32(row["Status"])
-		out[i].TimeToLive = wmi.AsUint32(row["TimeToLive"])
-		out[i].Type = wmi.AsUint16(row["Type"])
+		out[i] = MSFTDNSClientCacheFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTDNSClientCache returns the MSFT_DNSClientCache instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTDNSClientCache(svc *wmi.Service, entry string, name string) (*MSFTDNSClientCache, error) {
-	where := "Entry = " + wmi.WQLValue(entry) +
-		" AND " + "Name = " + wmi.WQLValue(name)
+// QueryOneMSFTDNSClientCache returns the single MSFT_DNSClientCache matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTDNSClientCache(svc *wmi.Service, where string) (*MSFTDNSClientCache, error) {
 	out, err := QueryMSFTDNSClientCache(svc, where)
 	if err != nil {
 		return nil, err
@@ -2990,8 +2573,17 @@ func GetMSFTDNSClientCache(svc *wmi.Service, entry string, name string) (*MSFTDN
 	return &out[0], nil
 }
 
+// GetMSFTDNSClientCache returns the MSFT_DNSClientCache instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTDNSClientCache(svc *wmi.Service, entry string, name string) (*MSFTDNSClientCache, error) {
+	where := "Entry = " + wmi.WQLValue(entry) +
+		" AND " + "Name = " + wmi.WQLValue(name)
+	return QueryOneMSFTDNSClientCache(svc, where)
+}
+
 // QueryMSFTDNSClientDohServerAddress runs the WQL query against the class and decodes each
-// instance into a MSFTDNSClientDohServerAddress. Pass the WHERE clause (or "" for all).
+// instance into a MSFTDNSClientDohServerAddress. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTDNSClientDohServerAddress(svc *wmi.Service, where string) ([]MSFTDNSClientDohServerAddress, error) {
 	q := "SELECT * FROM MSFT_DNSClientDohServerAddress"
 	if where != "" {
@@ -3003,50 +2595,14 @@ func QueryMSFTDNSClientDohServerAddress(svc *wmi.Service, where string) ([]MSFTD
 	}
 	out := make([]MSFTDNSClientDohServerAddress, len(rows))
 	for i, row := range rows {
-		out[i].AccessContext = wmi.AsUint16(row["AccessContext"])
-		out[i].AccessInfo = wmi.AsString(row["AccessInfo"])
-		out[i].AllowFallbackToUdp = wmi.AsBool(row["AllowFallbackToUdp"])
-		out[i].AutoUpgrade = wmi.AsBool(row["AutoUpgrade"])
-		out[i].AvailableRequestedStates = wmi.AsUint16Slice(row["AvailableRequestedStates"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CommunicationStatus = wmi.AsUint16(row["CommunicationStatus"])
-		out[i].CreationClassName = wmi.AsString(row["CreationClassName"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DetailedStatus = wmi.AsUint16(row["DetailedStatus"])
-		out[i].DohTemplate = wmi.AsString(row["DohTemplate"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].EnabledDefault = wmi.AsUint16(row["EnabledDefault"])
-		out[i].EnabledState = wmi.AsUint16(row["EnabledState"])
-		out[i].HealthState = wmi.AsUint16(row["HealthState"])
-		out[i].InfoFormat = wmi.AsUint16(row["InfoFormat"])
-		out[i].InstallDate = wmi.AsString(row["InstallDate"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].OperatingStatus = wmi.AsUint16(row["OperatingStatus"])
-		out[i].OperationalStatus = wmi.AsUint16Slice(row["OperationalStatus"])
-		out[i].OtherAccessContext = wmi.AsString(row["OtherAccessContext"])
-		out[i].OtherEnabledState = wmi.AsString(row["OtherEnabledState"])
-		out[i].OtherInfoFormatDescription = wmi.AsString(row["OtherInfoFormatDescription"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].RequestedState = wmi.AsUint16(row["RequestedState"])
-		out[i].ServerAddress = wmi.AsString(row["ServerAddress"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusDescriptions = wmi.AsStringSlice(row["StatusDescriptions"])
-		out[i].SystemCreationClassName = wmi.AsString(row["SystemCreationClassName"])
-		out[i].SystemName = wmi.AsString(row["SystemName"])
-		out[i].TimeOfLastStateChange = wmi.AsString(row["TimeOfLastStateChange"])
-		out[i].TransitioningToState = wmi.AsUint16(row["TransitioningToState"])
+		out[i] = MSFTDNSClientDohServerAddressFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTDNSClientDohServerAddress returns the MSFT_DNSClientDohServerAddress instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTDNSClientDohServerAddress(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*MSFTDNSClientDohServerAddress, error) {
-	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
-		" AND " + "Name = " + wmi.WQLValue(name) +
-		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
-		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+// QueryOneMSFTDNSClientDohServerAddress returns the single MSFT_DNSClientDohServerAddress matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTDNSClientDohServerAddress(svc *wmi.Service, where string) (*MSFTDNSClientDohServerAddress, error) {
 	out, err := QueryMSFTDNSClientDohServerAddress(svc, where)
 	if err != nil {
 		return nil, err
@@ -3057,8 +2613,19 @@ func GetMSFTDNSClientDohServerAddress(svc *wmi.Service, creationClassName string
 	return &out[0], nil
 }
 
+// GetMSFTDNSClientDohServerAddress returns the MSFT_DNSClientDohServerAddress instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTDNSClientDohServerAddress(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*MSFTDNSClientDohServerAddress, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "Name = " + wmi.WQLValue(name) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	return QueryOneMSFTDNSClientDohServerAddress(svc, where)
+}
+
 // QueryMSFTDNSClientGlobalSetting runs the WQL query against the class and decodes each
-// instance into a MSFTDNSClientGlobalSetting. Pass the WHERE clause (or "" for all).
+// instance into a MSFTDNSClientGlobalSetting. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTDNSClientGlobalSetting(svc *wmi.Service, where string) ([]MSFTDNSClientGlobalSetting, error) {
 	q := "SELECT * FROM MSFT_DNSClientGlobalSetting"
 	if where != "" {
@@ -3070,27 +2637,14 @@ func QueryMSFTDNSClientGlobalSetting(svc *wmi.Service, where string) ([]MSFTDNSC
 	}
 	out := make([]MSFTDNSClientGlobalSetting, len(rows))
 	for i, row := range rows {
-		out[i].AddressOrigin = wmi.AsUint16(row["AddressOrigin"])
-		out[i].AppendParentSuffixes = wmi.AsBool(row["AppendParentSuffixes"])
-		out[i].AppendPrimarySuffixes = wmi.AsBool(row["AppendPrimarySuffixes"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].DNSSuffixesToAppend = wmi.AsStringSlice(row["DNSSuffixesToAppend"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DevolutionLevel = wmi.AsUint32(row["DevolutionLevel"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].ProtocolIFType = wmi.AsUint16(row["ProtocolIFType"])
-		out[i].SuffixSearchList = wmi.AsStringSlice(row["SuffixSearchList"])
-		out[i].UseDevolution = wmi.AsBool(row["UseDevolution"])
-		out[i].UseSuffixSearchList = wmi.AsBool(row["UseSuffixSearchList"])
+		out[i] = MSFTDNSClientGlobalSettingFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTDNSClientGlobalSetting returns the MSFT_DNSClientGlobalSetting instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTDNSClientGlobalSetting(svc *wmi.Service, instanceID string) (*MSFTDNSClientGlobalSetting, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTDNSClientGlobalSetting returns the single MSFT_DNSClientGlobalSetting matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTDNSClientGlobalSetting(svc *wmi.Service, where string) (*MSFTDNSClientGlobalSetting, error) {
 	out, err := QueryMSFTDNSClientGlobalSetting(svc, where)
 	if err != nil {
 		return nil, err
@@ -3101,8 +2655,16 @@ func GetMSFTDNSClientGlobalSetting(svc *wmi.Service, instanceID string) (*MSFTDN
 	return &out[0], nil
 }
 
+// GetMSFTDNSClientGlobalSetting returns the MSFT_DNSClientGlobalSetting instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTDNSClientGlobalSetting(svc *wmi.Service, instanceID string) (*MSFTDNSClientGlobalSetting, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTDNSClientGlobalSetting(svc, where)
+}
+
 // QueryMSFTDNSClientServerAddress runs the WQL query against the class and decodes each
-// instance into a MSFTDNSClientServerAddress. Pass the WHERE clause (or "" for all).
+// instance into a MSFTDNSClientServerAddress. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTDNSClientServerAddress(svc *wmi.Service, where string) ([]MSFTDNSClientServerAddress, error) {
 	q := "SELECT * FROM MSFT_DNSClientServerAddress"
 	if where != "" {
@@ -3114,50 +2676,14 @@ func QueryMSFTDNSClientServerAddress(svc *wmi.Service, where string) ([]MSFTDNSC
 	}
 	out := make([]MSFTDNSClientServerAddress, len(rows))
 	for i, row := range rows {
-		out[i].AccessContext = wmi.AsUint16(row["AccessContext"])
-		out[i].AccessInfo = wmi.AsString(row["AccessInfo"])
-		out[i].AddressFamily = wmi.AsUint16(row["AddressFamily"])
-		out[i].AvailableRequestedStates = wmi.AsUint16Slice(row["AvailableRequestedStates"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CommunicationStatus = wmi.AsUint16(row["CommunicationStatus"])
-		out[i].CreationClassName = wmi.AsString(row["CreationClassName"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DetailedStatus = wmi.AsUint16(row["DetailedStatus"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].EnabledDefault = wmi.AsUint16(row["EnabledDefault"])
-		out[i].EnabledState = wmi.AsUint16(row["EnabledState"])
-		out[i].HealthState = wmi.AsUint16(row["HealthState"])
-		out[i].InfoFormat = wmi.AsUint16(row["InfoFormat"])
-		out[i].InstallDate = wmi.AsString(row["InstallDate"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].InterfaceAlias = wmi.AsString(row["InterfaceAlias"])
-		out[i].InterfaceIndex = wmi.AsUint32(row["InterfaceIndex"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].OperatingStatus = wmi.AsUint16(row["OperatingStatus"])
-		out[i].OperationalStatus = wmi.AsUint16Slice(row["OperationalStatus"])
-		out[i].OtherAccessContext = wmi.AsString(row["OtherAccessContext"])
-		out[i].OtherEnabledState = wmi.AsString(row["OtherEnabledState"])
-		out[i].OtherInfoFormatDescription = wmi.AsString(row["OtherInfoFormatDescription"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].RequestedState = wmi.AsUint16(row["RequestedState"])
-		out[i].ServerAddresses = wmi.AsStringSlice(row["ServerAddresses"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusDescriptions = wmi.AsStringSlice(row["StatusDescriptions"])
-		out[i].SystemCreationClassName = wmi.AsString(row["SystemCreationClassName"])
-		out[i].SystemName = wmi.AsString(row["SystemName"])
-		out[i].TimeOfLastStateChange = wmi.AsString(row["TimeOfLastStateChange"])
-		out[i].TransitioningToState = wmi.AsUint16(row["TransitioningToState"])
+		out[i] = MSFTDNSClientServerAddressFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTDNSClientServerAddress returns the MSFT_DNSClientServerAddress instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTDNSClientServerAddress(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*MSFTDNSClientServerAddress, error) {
-	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
-		" AND " + "Name = " + wmi.WQLValue(name) +
-		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
-		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+// QueryOneMSFTDNSClientServerAddress returns the single MSFT_DNSClientServerAddress matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTDNSClientServerAddress(svc *wmi.Service, where string) (*MSFTDNSClientServerAddress, error) {
 	out, err := QueryMSFTDNSClientServerAddress(svc, where)
 	if err != nil {
 		return nil, err
@@ -3168,8 +2694,19 @@ func GetMSFTDNSClientServerAddress(svc *wmi.Service, creationClassName string, n
 	return &out[0], nil
 }
 
+// GetMSFTDNSClientServerAddress returns the MSFT_DNSClientServerAddress instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTDNSClientServerAddress(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*MSFTDNSClientServerAddress, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "Name = " + wmi.WQLValue(name) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	return QueryOneMSFTDNSClientServerAddress(svc, where)
+}
+
 // QueryMSFTExtendedStatus runs the WQL query against the class and decodes each
-// instance into a MSFTExtendedStatus. Pass the WHERE clause (or "" for all).
+// instance into a MSFTExtendedStatus. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTExtendedStatus(svc *wmi.Service, where string) ([]MSFTExtendedStatus, error) {
 	q := "SELECT * FROM MSFT_ExtendedStatus"
 	if where != "" {
@@ -3181,33 +2718,27 @@ func QueryMSFTExtendedStatus(svc *wmi.Service, where string) ([]MSFTExtendedStat
 	}
 	out := make([]MSFTExtendedStatus, len(rows))
 	for i, row := range rows {
-		out[i].CIMStatusCode = wmi.AsUint32(row["CIMStatusCode"])
-		out[i].CIMStatusCodeDescription = wmi.AsString(row["CIMStatusCodeDescription"])
-		out[i].ErrorSource = wmi.AsString(row["ErrorSource"])
-		out[i].ErrorSourceFormat = wmi.AsUint16(row["ErrorSourceFormat"])
-		out[i].ErrorType = wmi.AsUint16(row["ErrorType"])
-		out[i].Message = wmi.AsString(row["Message"])
-		out[i].MessageArguments = wmi.AsStringSlice(row["MessageArguments"])
-		out[i].MessageID = wmi.AsString(row["MessageID"])
-		out[i].OtherErrorSourceFormat = wmi.AsString(row["OtherErrorSourceFormat"])
-		out[i].OtherErrorType = wmi.AsString(row["OtherErrorType"])
-		out[i].OwningEntity = wmi.AsString(row["OwningEntity"])
-		out[i].PerceivedSeverity = wmi.AsUint16(row["PerceivedSeverity"])
-		out[i].ProbableCause = wmi.AsUint16(row["ProbableCause"])
-		out[i].ProbableCauseDescription = wmi.AsString(row["ProbableCauseDescription"])
-		out[i].RecommendedActions = wmi.AsStringSlice(row["RecommendedActions"])
-		out[i].ErrorCategory = wmi.AsUint16(row["error_Category"])
-		out[i].ErrorCode = wmi.AsUint32(row["error_Code"])
-		out[i].ErrorWindowsErrorMessage = wmi.AsString(row["error_WindowsErrorMessage"])
-		if v, ok := row["original_error"].(wmi.Row); ok {
-			out[i].OriginalError = v
-		}
+		out[i] = MSFTExtendedStatusFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneMSFTExtendedStatus returns the single MSFT_ExtendedStatus matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTExtendedStatus(svc *wmi.Service, where string) (*MSFTExtendedStatus, error) {
+	out, err := QueryMSFTExtendedStatus(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryMSFTLocalPrinterPort runs the WQL query against the class and decodes each
-// instance into a MSFTLocalPrinterPort. Pass the WHERE clause (or "" for all).
+// instance into a MSFTLocalPrinterPort. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTLocalPrinterPort(svc *wmi.Service, where string) ([]MSFTLocalPrinterPort, error) {
 	q := "SELECT * FROM MSFT_LocalPrinterPort"
 	if where != "" {
@@ -3219,32 +2750,14 @@ func QueryMSFTLocalPrinterPort(svc *wmi.Service, where string) ([]MSFTLocalPrint
 	}
 	out := make([]MSFTLocalPrinterPort, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CommunicationStatus = wmi.AsUint16(row["CommunicationStatus"])
-		out[i].ComputerName = wmi.AsString(row["ComputerName"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DetailedStatus = wmi.AsUint16(row["DetailedStatus"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].HealthState = wmi.AsUint16(row["HealthState"])
-		out[i].InstallDate = wmi.AsString(row["InstallDate"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].OperatingStatus = wmi.AsUint16(row["OperatingStatus"])
-		out[i].OperationalStatus = wmi.AsUint16Slice(row["OperationalStatus"])
-		out[i].PortMonitor = wmi.AsString(row["PortMonitor"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusDescriptions = wmi.AsStringSlice(row["StatusDescriptions"])
+		out[i] = MSFTLocalPrinterPortFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTLocalPrinterPort returns the MSFT_LocalPrinterPort instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTLocalPrinterPort(svc *wmi.Service, computerName string, name string, portMonitor string) (*MSFTLocalPrinterPort, error) {
-	where := "ComputerName = " + wmi.WQLValue(computerName) +
-		" AND " + "Name = " + wmi.WQLValue(name) +
-		" AND " + "PortMonitor = " + wmi.WQLValue(portMonitor)
+// QueryOneMSFTLocalPrinterPort returns the single MSFT_LocalPrinterPort matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTLocalPrinterPort(svc *wmi.Service, where string) (*MSFTLocalPrinterPort, error) {
 	out, err := QueryMSFTLocalPrinterPort(svc, where)
 	if err != nil {
 		return nil, err
@@ -3255,8 +2768,18 @@ func GetMSFTLocalPrinterPort(svc *wmi.Service, computerName string, name string,
 	return &out[0], nil
 }
 
+// GetMSFTLocalPrinterPort returns the MSFT_LocalPrinterPort instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTLocalPrinterPort(svc *wmi.Service, computerName string, name string, portMonitor string) (*MSFTLocalPrinterPort, error) {
+	where := "ComputerName = " + wmi.WQLValue(computerName) +
+		" AND " + "Name = " + wmi.WQLValue(name) +
+		" AND " + "PortMonitor = " + wmi.WQLValue(portMonitor)
+	return QueryOneMSFTLocalPrinterPort(svc, where)
+}
+
 // QueryMSFTLprPrinterPort runs the WQL query against the class and decodes each
-// instance into a MSFTLprPrinterPort. Pass the WHERE clause (or "" for all).
+// instance into a MSFTLprPrinterPort. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTLprPrinterPort(svc *wmi.Service, where string) ([]MSFTLprPrinterPort, error) {
 	q := "SELECT * FROM MSFT_LprPrinterPort"
 	if where != "" {
@@ -3268,34 +2791,14 @@ func QueryMSFTLprPrinterPort(svc *wmi.Service, where string) ([]MSFTLprPrinterPo
 	}
 	out := make([]MSFTLprPrinterPort, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CommunicationStatus = wmi.AsUint16(row["CommunicationStatus"])
-		out[i].ComputerName = wmi.AsString(row["ComputerName"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DetailedStatus = wmi.AsUint16(row["DetailedStatus"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].HealthState = wmi.AsUint16(row["HealthState"])
-		out[i].HostName = wmi.AsString(row["HostName"])
-		out[i].InstallDate = wmi.AsString(row["InstallDate"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].OperatingStatus = wmi.AsUint16(row["OperatingStatus"])
-		out[i].OperationalStatus = wmi.AsUint16Slice(row["OperationalStatus"])
-		out[i].PortMonitor = wmi.AsString(row["PortMonitor"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].PrinterName = wmi.AsString(row["PrinterName"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusDescriptions = wmi.AsStringSlice(row["StatusDescriptions"])
+		out[i] = MSFTLprPrinterPortFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTLprPrinterPort returns the MSFT_LprPrinterPort instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTLprPrinterPort(svc *wmi.Service, computerName string, name string, portMonitor string) (*MSFTLprPrinterPort, error) {
-	where := "ComputerName = " + wmi.WQLValue(computerName) +
-		" AND " + "Name = " + wmi.WQLValue(name) +
-		" AND " + "PortMonitor = " + wmi.WQLValue(portMonitor)
+// QueryOneMSFTLprPrinterPort returns the single MSFT_LprPrinterPort matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTLprPrinterPort(svc *wmi.Service, where string) (*MSFTLprPrinterPort, error) {
 	out, err := QueryMSFTLprPrinterPort(svc, where)
 	if err != nil {
 		return nil, err
@@ -3306,8 +2809,18 @@ func GetMSFTLprPrinterPort(svc *wmi.Service, computerName string, name string, p
 	return &out[0], nil
 }
 
+// GetMSFTLprPrinterPort returns the MSFT_LprPrinterPort instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTLprPrinterPort(svc *wmi.Service, computerName string, name string, portMonitor string) (*MSFTLprPrinterPort, error) {
+	where := "ComputerName = " + wmi.WQLValue(computerName) +
+		" AND " + "Name = " + wmi.WQLValue(name) +
+		" AND " + "PortMonitor = " + wmi.WQLValue(portMonitor)
+	return QueryOneMSFTLprPrinterPort(svc, where)
+}
+
 // QueryMSFTNCSIPolicyConfiguration runs the WQL query against the class and decodes each
-// instance into a MSFTNCSIPolicyConfiguration. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNCSIPolicyConfiguration. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNCSIPolicyConfiguration(svc *wmi.Service, where string) ([]MSFTNCSIPolicyConfiguration, error) {
 	q := "SELECT * FROM MSFT_NCSIPolicyConfiguration"
 	if where != "" {
@@ -3319,24 +2832,14 @@ func QueryMSFTNCSIPolicyConfiguration(svc *wmi.Service, where string) ([]MSFTNCS
 	}
 	out := make([]MSFTNCSIPolicyConfiguration, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CorporateDNSProbeHostAddress = wmi.AsString(row["CorporateDNSProbeHostAddress"])
-		out[i].CorporateDNSProbeHostName = wmi.AsString(row["CorporateDNSProbeHostName"])
-		out[i].CorporateSitePrefixList = wmi.AsStringSlice(row["CorporateSitePrefixList"])
-		out[i].CorporateWebsiteProbeURL = wmi.AsString(row["CorporateWebsiteProbeURL"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DomainLocationDeterminationURL = wmi.AsString(row["DomainLocationDeterminationURL"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].PolicyStore = wmi.AsString(row["PolicyStore"])
+		out[i] = MSFTNCSIPolicyConfigurationFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNCSIPolicyConfiguration returns the MSFT_NCSIPolicyConfiguration instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNCSIPolicyConfiguration(svc *wmi.Service, instanceID string) (*MSFTNCSIPolicyConfiguration, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNCSIPolicyConfiguration returns the single MSFT_NCSIPolicyConfiguration matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNCSIPolicyConfiguration(svc *wmi.Service, where string) (*MSFTNCSIPolicyConfiguration, error) {
 	out, err := QueryMSFTNCSIPolicyConfiguration(svc, where)
 	if err != nil {
 		return nil, err
@@ -3347,8 +2850,16 @@ func GetMSFTNCSIPolicyConfiguration(svc *wmi.Service, instanceID string) (*MSFTN
 	return &out[0], nil
 }
 
+// GetMSFTNCSIPolicyConfiguration returns the MSFT_NCSIPolicyConfiguration instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNCSIPolicyConfiguration(svc *wmi.Service, instanceID string) (*MSFTNCSIPolicyConfiguration, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNCSIPolicyConfiguration(svc, where)
+}
+
 // QueryMSFTNet6to4Configuration runs the WQL query against the class and decodes each
-// instance into a MSFTNet6to4Configuration. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNet6to4Configuration. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNet6to4Configuration(svc *wmi.Service, where string) ([]MSFTNet6to4Configuration, error) {
 	q := "SELECT * FROM MSFT_Net6to4Configuration"
 	if where != "" {
@@ -3360,24 +2871,14 @@ func QueryMSFTNet6to4Configuration(svc *wmi.Service, where string) ([]MSFTNet6to
 	}
 	out := make([]MSFTNet6to4Configuration, len(rows))
 	for i, row := range rows {
-		out[i].AutoSharing = wmi.AsUint32(row["AutoSharing"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].PolicyStore = wmi.AsString(row["PolicyStore"])
-		out[i].RelayName = wmi.AsString(row["RelayName"])
-		out[i].RelayState = wmi.AsUint32(row["RelayState"])
-		out[i].ResolutionInterval = wmi.AsUint32(row["ResolutionInterval"])
-		out[i].State = wmi.AsUint32(row["State"])
+		out[i] = MSFTNet6to4ConfigurationFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNet6to4Configuration returns the MSFT_Net6to4Configuration instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNet6to4Configuration(svc *wmi.Service, instanceID string) (*MSFTNet6to4Configuration, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNet6to4Configuration returns the single MSFT_Net6to4Configuration matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNet6to4Configuration(svc *wmi.Service, where string) (*MSFTNet6to4Configuration, error) {
 	out, err := QueryMSFTNet6to4Configuration(svc, where)
 	if err != nil {
 		return nil, err
@@ -3388,8 +2889,16 @@ func GetMSFTNet6to4Configuration(svc *wmi.Service, instanceID string) (*MSFTNet6
 	return &out[0], nil
 }
 
+// GetMSFTNet6to4Configuration returns the MSFT_Net6to4Configuration instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNet6to4Configuration(svc *wmi.Service, instanceID string) (*MSFTNet6to4Configuration, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNet6to4Configuration(svc, where)
+}
+
 // QueryMSFTNet6to4State runs the WQL query against the class and decodes each
-// instance into a MSFTNet6to4State. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNet6to4State. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNet6to4State(svc *wmi.Service, where string) ([]MSFTNet6to4State, error) {
 	q := "SELECT * FROM MSFT_Net6to4State"
 	if where != "" {
@@ -3401,20 +2910,14 @@ func QueryMSFTNet6to4State(svc *wmi.Service, where string) ([]MSFTNet6to4State, 
 	}
 	out := make([]MSFTNet6to4State, len(rows))
 	for i, row := range rows {
-		out[i].IsCurrent = wmi.AsUint16(row["IsCurrent"])
-		out[i].IsDefault = wmi.AsUint16(row["IsDefault"])
-		out[i].IsNext = wmi.AsUint16(row["IsNext"])
-		out[i].ManagedElement = wmi.AsString(row["ManagedElement"])
-		out[i].SettingData = wmi.AsString(row["SettingData"])
+		out[i] = MSFTNet6to4StateFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNet6to4State returns the MSFT_Net6to4State instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNet6to4State(svc *wmi.Service, managedElement string, settingData string) (*MSFTNet6to4State, error) {
-	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
-		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+// QueryOneMSFTNet6to4State returns the single MSFT_Net6to4State matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNet6to4State(svc *wmi.Service, where string) (*MSFTNet6to4State, error) {
 	out, err := QueryMSFTNet6to4State(svc, where)
 	if err != nil {
 		return nil, err
@@ -3425,8 +2928,17 @@ func GetMSFTNet6to4State(svc *wmi.Service, managedElement string, settingData st
 	return &out[0], nil
 }
 
+// GetMSFTNet6to4State returns the MSFT_Net6to4State instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNet6to4State(svc *wmi.Service, managedElement string, settingData string) (*MSFTNet6to4State, error) {
+	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
+		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+	return QueryOneMSFTNet6to4State(svc, where)
+}
+
 // QueryMSFTNetAdapter runs the WQL query against the class and decodes each
-// instance into a MSFTNetAdapter. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetAdapter. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetAdapter(svc *wmi.Service, where string) ([]MSFTNetAdapter, error) {
 	q := "SELECT * FROM MSFT_NetAdapter"
 	if where != "" {
@@ -3438,120 +2950,14 @@ func QueryMSFTNetAdapter(svc *wmi.Service, where string) ([]MSFTNetAdapter, erro
 	}
 	out := make([]MSFTNetAdapter, len(rows))
 	for i, row := range rows {
-		out[i].ActiveMaximumTransmissionUnit = wmi.AsUint64(row["ActiveMaximumTransmissionUnit"])
-		out[i].AdditionalAvailability = wmi.AsUint16Slice(row["AdditionalAvailability"])
-		out[i].AdminLocked = wmi.AsBool(row["AdminLocked"])
-		out[i].AutoSense = wmi.AsBool(row["AutoSense"])
-		out[i].Availability = wmi.AsUint16(row["Availability"])
-		out[i].AvailableRequestedStates = wmi.AsUint16Slice(row["AvailableRequestedStates"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CommunicationStatus = wmi.AsUint16(row["CommunicationStatus"])
-		out[i].ComponentID = wmi.AsString(row["ComponentID"])
-		out[i].ConnectorPresent = wmi.AsBool(row["ConnectorPresent"])
-		out[i].CreationClassName = wmi.AsString(row["CreationClassName"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DetailedStatus = wmi.AsUint16(row["DetailedStatus"])
-		out[i].DeviceID = wmi.AsString(row["DeviceID"])
-		out[i].DeviceName = wmi.AsString(row["DeviceName"])
-		out[i].DeviceWakeUpEnable = wmi.AsBool(row["DeviceWakeUpEnable"])
-		out[i].DriverDate = wmi.AsString(row["DriverDate"])
-		out[i].DriverDateData = wmi.AsUint64(row["DriverDateData"])
-		out[i].DriverDescription = wmi.AsString(row["DriverDescription"])
-		out[i].DriverMajorNdisVersion = wmi.AsUint8(row["DriverMajorNdisVersion"])
-		out[i].DriverMinorNdisVersion = wmi.AsUint8(row["DriverMinorNdisVersion"])
-		out[i].DriverName = wmi.AsString(row["DriverName"])
-		out[i].DriverProvider = wmi.AsString(row["DriverProvider"])
-		out[i].DriverVersionString = wmi.AsString(row["DriverVersionString"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].EnabledDefault = wmi.AsUint16(row["EnabledDefault"])
-		out[i].EnabledState = wmi.AsUint16(row["EnabledState"])
-		out[i].EndPointInterface = wmi.AsBool(row["EndPointInterface"])
-		out[i].ErrorCleared = wmi.AsBool(row["ErrorCleared"])
-		out[i].ErrorDescription = wmi.AsString(row["ErrorDescription"])
-		out[i].FullDuplex = wmi.AsBool(row["FullDuplex"])
-		out[i].HardwareInterface = wmi.AsBool(row["HardwareInterface"])
-		out[i].HealthState = wmi.AsUint16(row["HealthState"])
-		out[i].Hidden = wmi.AsBool(row["Hidden"])
-		out[i].HigherLayerInterfaceIndices = wmi.AsUint32Slice(row["HigherLayerInterfaceIndices"])
-		out[i].IMFilter = wmi.AsBool(row["IMFilter"])
-		out[i].IdentifyingDescriptions = wmi.AsStringSlice(row["IdentifyingDescriptions"])
-		out[i].InstallDate = wmi.AsString(row["InstallDate"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].InterfaceAdminStatus = wmi.AsUint32(row["InterfaceAdminStatus"])
-		out[i].InterfaceDescription = wmi.AsString(row["InterfaceDescription"])
-		out[i].InterfaceGuid = wmi.AsString(row["InterfaceGuid"])
-		out[i].InterfaceIndex = wmi.AsUint32(row["InterfaceIndex"])
-		out[i].InterfaceName = wmi.AsString(row["InterfaceName"])
-		out[i].InterfaceOperationalStatus = wmi.AsUint32(row["InterfaceOperationalStatus"])
-		out[i].InterfaceType = wmi.AsUint32(row["InterfaceType"])
-		out[i].LastErrorCode = wmi.AsUint32(row["LastErrorCode"])
-		out[i].LinkTechnology = wmi.AsUint16(row["LinkTechnology"])
-		out[i].LowerLayerInterfaceIndices = wmi.AsUint32Slice(row["LowerLayerInterfaceIndices"])
-		out[i].MajorDriverVersion = wmi.AsUint16(row["MajorDriverVersion"])
-		out[i].MaxQuiesceTime = wmi.AsUint64(row["MaxQuiesceTime"])
-		out[i].MaxSpeed = wmi.AsUint64(row["MaxSpeed"])
-		out[i].MediaConnectState = wmi.AsUint32(row["MediaConnectState"])
-		out[i].MediaDuplexState = wmi.AsUint32(row["MediaDuplexState"])
-		out[i].MinorDriverVersion = wmi.AsUint16(row["MinorDriverVersion"])
-		out[i].MtuSize = wmi.AsUint32(row["MtuSize"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].NdisMedium = wmi.AsUint32(row["NdisMedium"])
-		out[i].NdisPhysicalMedium = wmi.AsUint32(row["NdisPhysicalMedium"])
-		out[i].NetLuid = wmi.AsUint64(row["NetLuid"])
-		out[i].NetLuidIndex = wmi.AsUint32(row["NetLuidIndex"])
-		out[i].NetworkAddresses = wmi.AsStringSlice(row["NetworkAddresses"])
-		out[i].NotUserRemovable = wmi.AsBool(row["NotUserRemovable"])
-		out[i].OperatingStatus = wmi.AsUint16(row["OperatingStatus"])
-		out[i].OperationalStatus = wmi.AsUint16Slice(row["OperationalStatus"])
-		out[i].OperationalStatusDownDefaultPortNotAuthenticated = wmi.AsBool(row["OperationalStatusDownDefaultPortNotAuthenticated"])
-		out[i].OperationalStatusDownInterfacePaused = wmi.AsBool(row["OperationalStatusDownInterfacePaused"])
-		out[i].OperationalStatusDownLowPowerState = wmi.AsBool(row["OperationalStatusDownLowPowerState"])
-		out[i].OperationalStatusDownMediaDisconnected = wmi.AsBool(row["OperationalStatusDownMediaDisconnected"])
-		out[i].OtherEnabledState = wmi.AsString(row["OtherEnabledState"])
-		out[i].OtherIdentifyingInfo = wmi.AsStringSlice(row["OtherIdentifyingInfo"])
-		out[i].OtherLinkTechnology = wmi.AsString(row["OtherLinkTechnology"])
-		out[i].OtherNetworkPortType = wmi.AsString(row["OtherNetworkPortType"])
-		out[i].OtherPortType = wmi.AsString(row["OtherPortType"])
-		out[i].PermanentAddress = wmi.AsString(row["PermanentAddress"])
-		out[i].PnPDeviceID = wmi.AsString(row["PnPDeviceID"])
-		out[i].PortNumber = wmi.AsUint16(row["PortNumber"])
-		out[i].PortType = wmi.AsUint16(row["PortType"])
-		out[i].PowerManagementCapabilities = wmi.AsUint16Slice(row["PowerManagementCapabilities"])
-		out[i].PowerManagementSupported = wmi.AsBool(row["PowerManagementSupported"])
-		out[i].PowerOnHours = wmi.AsUint64(row["PowerOnHours"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].PromiscuousMode = wmi.AsBool(row["PromiscuousMode"])
-		out[i].ReceiveLinkSpeed = wmi.AsUint64(row["ReceiveLinkSpeed"])
-		out[i].RequestedSpeed = wmi.AsUint64(row["RequestedSpeed"])
-		out[i].RequestedState = wmi.AsUint16(row["RequestedState"])
-		out[i].Speed = wmi.AsUint64(row["Speed"])
-		out[i].State = wmi.AsUint32(row["State"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusDescriptions = wmi.AsStringSlice(row["StatusDescriptions"])
-		out[i].StatusInfo = wmi.AsUint16(row["StatusInfo"])
-		out[i].SupportedMaximumTransmissionUnit = wmi.AsUint64(row["SupportedMaximumTransmissionUnit"])
-		out[i].SystemCreationClassName = wmi.AsString(row["SystemCreationClassName"])
-		out[i].SystemName = wmi.AsString(row["SystemName"])
-		out[i].TimeOfLastStateChange = wmi.AsString(row["TimeOfLastStateChange"])
-		out[i].TotalPowerOnHours = wmi.AsUint64(row["TotalPowerOnHours"])
-		out[i].TransitioningToState = wmi.AsUint16(row["TransitioningToState"])
-		out[i].TransmitLinkSpeed = wmi.AsUint64(row["TransmitLinkSpeed"])
-		out[i].UsageRestriction = wmi.AsUint16(row["UsageRestriction"])
-		out[i].Virtual = wmi.AsBool(row["Virtual"])
-		out[i].VlanID = wmi.AsUint16(row["VlanID"])
-		out[i].WdmInterface = wmi.AsBool(row["WdmInterface"])
-		out[i].ISCSIInterface = wmi.AsBool(row["iSCSIInterface"])
+		out[i] = MSFTNetAdapterFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetAdapter returns the MSFT_NetAdapter instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetAdapter(svc *wmi.Service, creationClassName string, deviceID string, systemCreationClassName string, systemName string) (*MSFTNetAdapter, error) {
-	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
-		" AND " + "DeviceID = " + wmi.WQLValue(deviceID) +
-		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
-		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+// QueryOneMSFTNetAdapter returns the single MSFT_NetAdapter matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetAdapter(svc *wmi.Service, where string) (*MSFTNetAdapter, error) {
 	out, err := QueryMSFTNetAdapter(svc, where)
 	if err != nil {
 		return nil, err
@@ -3562,8 +2968,19 @@ func GetMSFTNetAdapter(svc *wmi.Service, creationClassName string, deviceID stri
 	return &out[0], nil
 }
 
+// GetMSFTNetAdapter returns the MSFT_NetAdapter instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapter(svc *wmi.Service, creationClassName string, deviceID string, systemCreationClassName string, systemName string) (*MSFTNetAdapter, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "DeviceID = " + wmi.WQLValue(deviceID) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	return QueryOneMSFTNetAdapter(svc, where)
+}
+
 // QueryMSFTNetAdapterAdvancedPropertyElementSetting runs the WQL query against the class and decodes each
-// instance into a MSFTNetAdapterAdvancedPropertyElementSetting. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetAdapterAdvancedPropertyElementSetting. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetAdapterAdvancedPropertyElementSetting(svc *wmi.Service, where string) ([]MSFTNetAdapterAdvancedPropertyElementSetting, error) {
 	q := "SELECT * FROM MSFT_NetAdapterAdvancedPropertyElementSetting"
 	if where != "" {
@@ -3575,20 +2992,14 @@ func QueryMSFTNetAdapterAdvancedPropertyElementSetting(svc *wmi.Service, where s
 	}
 	out := make([]MSFTNetAdapterAdvancedPropertyElementSetting, len(rows))
 	for i, row := range rows {
-		out[i].IsCurrent = wmi.AsUint16(row["IsCurrent"])
-		out[i].IsDefault = wmi.AsUint16(row["IsDefault"])
-		out[i].IsNext = wmi.AsUint16(row["IsNext"])
-		out[i].ManagedElement = wmi.AsString(row["ManagedElement"])
-		out[i].SettingData = wmi.AsString(row["SettingData"])
+		out[i] = MSFTNetAdapterAdvancedPropertyElementSettingFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetAdapterAdvancedPropertyElementSetting returns the MSFT_NetAdapterAdvancedPropertyElementSetting instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetAdapterAdvancedPropertyElementSetting(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetAdapterAdvancedPropertyElementSetting, error) {
-	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
-		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+// QueryOneMSFTNetAdapterAdvancedPropertyElementSetting returns the single MSFT_NetAdapterAdvancedPropertyElementSetting matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetAdapterAdvancedPropertyElementSetting(svc *wmi.Service, where string) (*MSFTNetAdapterAdvancedPropertyElementSetting, error) {
 	out, err := QueryMSFTNetAdapterAdvancedPropertyElementSetting(svc, where)
 	if err != nil {
 		return nil, err
@@ -3599,8 +3010,17 @@ func GetMSFTNetAdapterAdvancedPropertyElementSetting(svc *wmi.Service, managedEl
 	return &out[0], nil
 }
 
+// GetMSFTNetAdapterAdvancedPropertyElementSetting returns the MSFT_NetAdapterAdvancedPropertyElementSetting instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterAdvancedPropertyElementSetting(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetAdapterAdvancedPropertyElementSetting, error) {
+	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
+		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+	return QueryOneMSFTNetAdapterAdvancedPropertyElementSetting(svc, where)
+}
+
 // QueryMSFTNetAdapterAdvancedPropertySettingData runs the WQL query against the class and decodes each
-// instance into a MSFTNetAdapterAdvancedPropertySettingData. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetAdapterAdvancedPropertySettingData. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetAdapterAdvancedPropertySettingData(svc *wmi.Service, where string) ([]MSFTNetAdapterAdvancedPropertySettingData, error) {
 	q := "SELECT * FROM MSFT_NetAdapterAdvancedPropertySettingData"
 	if where != "" {
@@ -3612,37 +3032,14 @@ func QueryMSFTNetAdapterAdvancedPropertySettingData(svc *wmi.Service, where stri
 	}
 	out := make([]MSFTNetAdapterAdvancedPropertySettingData, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].DefaultDisplayValue = wmi.AsString(row["DefaultDisplayValue"])
-		out[i].DefaultRegistryValue = wmi.AsString(row["DefaultRegistryValue"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DisplayName = wmi.AsString(row["DisplayName"])
-		out[i].DisplayParameterType = wmi.AsUint32(row["DisplayParameterType"])
-		out[i].DisplayValue = wmi.AsString(row["DisplayValue"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].InterfaceDescription = wmi.AsString(row["InterfaceDescription"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].NumericParameterBaseValue = wmi.AsString(row["NumericParameterBaseValue"])
-		out[i].NumericParameterMaxValue = wmi.AsString(row["NumericParameterMaxValue"])
-		out[i].NumericParameterMinValue = wmi.AsString(row["NumericParameterMinValue"])
-		out[i].NumericParameterStepValue = wmi.AsString(row["NumericParameterStepValue"])
-		out[i].Optional = wmi.AsBool(row["Optional"])
-		out[i].RegistryDataType = wmi.AsUint32(row["RegistryDataType"])
-		out[i].RegistryKeyword = wmi.AsString(row["RegistryKeyword"])
-		out[i].RegistryValue = wmi.AsStringSlice(row["RegistryValue"])
-		out[i].Source = wmi.AsUint32(row["Source"])
-		out[i].SystemName = wmi.AsString(row["SystemName"])
-		out[i].ValidDisplayValues = wmi.AsStringSlice(row["ValidDisplayValues"])
-		out[i].ValidRegistryValues = wmi.AsStringSlice(row["ValidRegistryValues"])
+		out[i] = MSFTNetAdapterAdvancedPropertySettingDataFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetAdapterAdvancedPropertySettingData returns the MSFT_NetAdapterAdvancedPropertySettingData instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetAdapterAdvancedPropertySettingData(svc *wmi.Service, instanceID string) (*MSFTNetAdapterAdvancedPropertySettingData, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetAdapterAdvancedPropertySettingData returns the single MSFT_NetAdapterAdvancedPropertySettingData matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetAdapterAdvancedPropertySettingData(svc *wmi.Service, where string) (*MSFTNetAdapterAdvancedPropertySettingData, error) {
 	out, err := QueryMSFTNetAdapterAdvancedPropertySettingData(svc, where)
 	if err != nil {
 		return nil, err
@@ -3653,8 +3050,16 @@ func GetMSFTNetAdapterAdvancedPropertySettingData(svc *wmi.Service, instanceID s
 	return &out[0], nil
 }
 
+// GetMSFTNetAdapterAdvancedPropertySettingData returns the MSFT_NetAdapterAdvancedPropertySettingData instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterAdvancedPropertySettingData(svc *wmi.Service, instanceID string) (*MSFTNetAdapterAdvancedPropertySettingData, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetAdapterAdvancedPropertySettingData(svc, where)
+}
+
 // QueryMSFTNetAdapterBindingElementSetting runs the WQL query against the class and decodes each
-// instance into a MSFTNetAdapterBindingElementSetting. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetAdapterBindingElementSetting. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetAdapterBindingElementSetting(svc *wmi.Service, where string) ([]MSFTNetAdapterBindingElementSetting, error) {
 	q := "SELECT * FROM MSFT_NetAdapterBindingElementSetting"
 	if where != "" {
@@ -3666,20 +3071,14 @@ func QueryMSFTNetAdapterBindingElementSetting(svc *wmi.Service, where string) ([
 	}
 	out := make([]MSFTNetAdapterBindingElementSetting, len(rows))
 	for i, row := range rows {
-		out[i].IsCurrent = wmi.AsUint16(row["IsCurrent"])
-		out[i].IsDefault = wmi.AsUint16(row["IsDefault"])
-		out[i].IsNext = wmi.AsUint16(row["IsNext"])
-		out[i].ManagedElement = wmi.AsString(row["ManagedElement"])
-		out[i].SettingData = wmi.AsString(row["SettingData"])
+		out[i] = MSFTNetAdapterBindingElementSettingFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetAdapterBindingElementSetting returns the MSFT_NetAdapterBindingElementSetting instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetAdapterBindingElementSetting(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetAdapterBindingElementSetting, error) {
-	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
-		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+// QueryOneMSFTNetAdapterBindingElementSetting returns the single MSFT_NetAdapterBindingElementSetting matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetAdapterBindingElementSetting(svc *wmi.Service, where string) (*MSFTNetAdapterBindingElementSetting, error) {
 	out, err := QueryMSFTNetAdapterBindingElementSetting(svc, where)
 	if err != nil {
 		return nil, err
@@ -3690,8 +3089,17 @@ func GetMSFTNetAdapterBindingElementSetting(svc *wmi.Service, managedElement str
 	return &out[0], nil
 }
 
+// GetMSFTNetAdapterBindingElementSetting returns the MSFT_NetAdapterBindingElementSetting instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterBindingElementSetting(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetAdapterBindingElementSetting, error) {
+	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
+		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+	return QueryOneMSFTNetAdapterBindingElementSetting(svc, where)
+}
+
 // QueryMSFTNetAdapterBindingSettingData runs the WQL query against the class and decodes each
-// instance into a MSFTNetAdapterBindingSettingData. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetAdapterBindingSettingData. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetAdapterBindingSettingData(svc *wmi.Service, where string) ([]MSFTNetAdapterBindingSettingData, error) {
 	q := "SELECT * FROM MSFT_NetAdapterBindingSettingData"
 	if where != "" {
@@ -3703,29 +3111,14 @@ func QueryMSFTNetAdapterBindingSettingData(svc *wmi.Service, where string) ([]MS
 	}
 	out := make([]MSFTNetAdapterBindingSettingData, len(rows))
 	for i, row := range rows {
-		out[i].BindName = wmi.AsString(row["BindName"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].Characteristics = wmi.AsUint32(row["Characteristics"])
-		out[i].ComponentClassGuid = wmi.AsString(row["ComponentClassGuid"])
-		out[i].ComponentClassName = wmi.AsString(row["ComponentClassName"])
-		out[i].ComponentID = wmi.AsString(row["ComponentID"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DisplayName = wmi.AsString(row["DisplayName"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].Enabled = wmi.AsBool(row["Enabled"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].InterfaceDescription = wmi.AsString(row["InterfaceDescription"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].Source = wmi.AsUint32(row["Source"])
-		out[i].SystemName = wmi.AsString(row["SystemName"])
+		out[i] = MSFTNetAdapterBindingSettingDataFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetAdapterBindingSettingData returns the MSFT_NetAdapterBindingSettingData instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetAdapterBindingSettingData(svc *wmi.Service, instanceID string) (*MSFTNetAdapterBindingSettingData, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetAdapterBindingSettingData returns the single MSFT_NetAdapterBindingSettingData matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetAdapterBindingSettingData(svc *wmi.Service, where string) (*MSFTNetAdapterBindingSettingData, error) {
 	out, err := QueryMSFTNetAdapterBindingSettingData(svc, where)
 	if err != nil {
 		return nil, err
@@ -3736,8 +3129,16 @@ func GetMSFTNetAdapterBindingSettingData(svc *wmi.Service, instanceID string) (*
 	return &out[0], nil
 }
 
+// GetMSFTNetAdapterBindingSettingData returns the MSFT_NetAdapterBindingSettingData instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterBindingSettingData(svc *wmi.Service, instanceID string) (*MSFTNetAdapterBindingSettingData, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetAdapterBindingSettingData(svc, where)
+}
+
 // QueryMSFTNetAdapterChecksumOffloadCapabilities runs the WQL query against the class and decodes each
-// instance into a MSFTNetAdapterChecksumOffloadCapabilities. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetAdapterChecksumOffloadCapabilities. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetAdapterChecksumOffloadCapabilities(svc *wmi.Service, where string) ([]MSFTNetAdapterChecksumOffloadCapabilities, error) {
 	q := "SELECT * FROM MSFT_NetAdapterChecksumOffloadCapabilities"
 	if where != "" {
@@ -3749,42 +3150,27 @@ func QueryMSFTNetAdapterChecksumOffloadCapabilities(svc *wmi.Service, where stri
 	}
 	out := make([]MSFTNetAdapterChecksumOffloadCapabilities, len(rows))
 	for i, row := range rows {
-		if v, ok := row["IPv4ReceiveEncapsulation"].(wmi.Row); ok {
-			out[i].IPv4ReceiveEncapsulation = v
-		}
-		out[i].IPv4ReceiveIpChecksumSupported = wmi.AsBool(row["IPv4ReceiveIpChecksumSupported"])
-		out[i].IPv4ReceiveIpOptionsSupported = wmi.AsBool(row["IPv4ReceiveIpOptionsSupported"])
-		out[i].IPv4ReceiveTcpChecksumSupported = wmi.AsBool(row["IPv4ReceiveTcpChecksumSupported"])
-		out[i].IPv4ReceiveTcpOptionsSupported = wmi.AsBool(row["IPv4ReceiveTcpOptionsSupported"])
-		out[i].IPv4ReceiveUdpChecksumSupported = wmi.AsBool(row["IPv4ReceiveUdpChecksumSupported"])
-		if v, ok := row["IPv4TransmitEncapsulation"].(wmi.Row); ok {
-			out[i].IPv4TransmitEncapsulation = v
-		}
-		out[i].IPv4TransmitIpChecksumSupported = wmi.AsBool(row["IPv4TransmitIpChecksumSupported"])
-		out[i].IPv4TransmitIpOptionsSupported = wmi.AsBool(row["IPv4TransmitIpOptionsSupported"])
-		out[i].IPv4TransmitTcpChecksumSupported = wmi.AsBool(row["IPv4TransmitTcpChecksumSupported"])
-		out[i].IPv4TransmitTcpOptionsSupported = wmi.AsBool(row["IPv4TransmitTcpOptionsSupported"])
-		out[i].IPv4TransmitUdpChecksumSupported = wmi.AsBool(row["IPv4TransmitUdpChecksumSupported"])
-		if v, ok := row["IPv6ReceiveEncapsulation"].(wmi.Row); ok {
-			out[i].IPv6ReceiveEncapsulation = v
-		}
-		out[i].IPv6ReceiveIpExtensionHeadersSupported = wmi.AsBool(row["IPv6ReceiveIpExtensionHeadersSupported"])
-		out[i].IPv6ReceiveTcpChecksumSupported = wmi.AsBool(row["IPv6ReceiveTcpChecksumSupported"])
-		out[i].IPv6ReceiveTcpOptionsSupported = wmi.AsBool(row["IPv6ReceiveTcpOptionsSupported"])
-		out[i].IPv6ReceiveUdpChecksumSupported = wmi.AsBool(row["IPv6ReceiveUdpChecksumSupported"])
-		if v, ok := row["IPv6TransmitEncapsulation"].(wmi.Row); ok {
-			out[i].IPv6TransmitEncapsulation = v
-		}
-		out[i].IPv6TransmitIpExtensionHeadersSupported = wmi.AsBool(row["IPv6TransmitIpExtensionHeadersSupported"])
-		out[i].IPv6TransmitTcpChecksumSupported = wmi.AsBool(row["IPv6TransmitTcpChecksumSupported"])
-		out[i].IPv6TransmitTcpOptionsSupported = wmi.AsBool(row["IPv6TransmitTcpOptionsSupported"])
-		out[i].IPv6TransmitUdpChecksumSupported = wmi.AsBool(row["IPv6TransmitUdpChecksumSupported"])
+		out[i] = MSFTNetAdapterChecksumOffloadCapabilitiesFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneMSFTNetAdapterChecksumOffloadCapabilities returns the single MSFT_NetAdapterChecksumOffloadCapabilities matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetAdapterChecksumOffloadCapabilities(svc *wmi.Service, where string) (*MSFTNetAdapterChecksumOffloadCapabilities, error) {
+	out, err := QueryMSFTNetAdapterChecksumOffloadCapabilities(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryMSFTNetAdapterChecksumOffloadElementSetting runs the WQL query against the class and decodes each
-// instance into a MSFTNetAdapterChecksumOffloadElementSetting. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetAdapterChecksumOffloadElementSetting. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetAdapterChecksumOffloadElementSetting(svc *wmi.Service, where string) ([]MSFTNetAdapterChecksumOffloadElementSetting, error) {
 	q := "SELECT * FROM MSFT_NetAdapterChecksumOffloadElementSetting"
 	if where != "" {
@@ -3796,20 +3182,14 @@ func QueryMSFTNetAdapterChecksumOffloadElementSetting(svc *wmi.Service, where st
 	}
 	out := make([]MSFTNetAdapterChecksumOffloadElementSetting, len(rows))
 	for i, row := range rows {
-		out[i].IsCurrent = wmi.AsUint16(row["IsCurrent"])
-		out[i].IsDefault = wmi.AsUint16(row["IsDefault"])
-		out[i].IsNext = wmi.AsUint16(row["IsNext"])
-		out[i].ManagedElement = wmi.AsString(row["ManagedElement"])
-		out[i].SettingData = wmi.AsString(row["SettingData"])
+		out[i] = MSFTNetAdapterChecksumOffloadElementSettingFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetAdapterChecksumOffloadElementSetting returns the MSFT_NetAdapterChecksumOffloadElementSetting instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetAdapterChecksumOffloadElementSetting(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetAdapterChecksumOffloadElementSetting, error) {
-	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
-		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+// QueryOneMSFTNetAdapterChecksumOffloadElementSetting returns the single MSFT_NetAdapterChecksumOffloadElementSetting matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetAdapterChecksumOffloadElementSetting(svc *wmi.Service, where string) (*MSFTNetAdapterChecksumOffloadElementSetting, error) {
 	out, err := QueryMSFTNetAdapterChecksumOffloadElementSetting(svc, where)
 	if err != nil {
 		return nil, err
@@ -3820,8 +3200,17 @@ func GetMSFTNetAdapterChecksumOffloadElementSetting(svc *wmi.Service, managedEle
 	return &out[0], nil
 }
 
+// GetMSFTNetAdapterChecksumOffloadElementSetting returns the MSFT_NetAdapterChecksumOffloadElementSetting instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterChecksumOffloadElementSetting(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetAdapterChecksumOffloadElementSetting, error) {
+	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
+		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+	return QueryOneMSFTNetAdapterChecksumOffloadElementSetting(svc, where)
+}
+
 // QueryMSFTNetAdapterChecksumOffloadEncapsulationTypes runs the WQL query against the class and decodes each
-// instance into a MSFTNetAdapterChecksumOffloadEncapsulationTypes. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetAdapterChecksumOffloadEncapsulationTypes. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetAdapterChecksumOffloadEncapsulationTypes(svc *wmi.Service, where string) ([]MSFTNetAdapterChecksumOffloadEncapsulationTypes, error) {
 	q := "SELECT * FROM MSFT_NetAdapterChecksumOffloadEncapsulationTypes"
 	if where != "" {
@@ -3833,18 +3222,27 @@ func QueryMSFTNetAdapterChecksumOffloadEncapsulationTypes(svc *wmi.Service, wher
 	}
 	out := make([]MSFTNetAdapterChecksumOffloadEncapsulationTypes, len(rows))
 	for i, row := range rows {
-		out[i].NdisEncapsulationIeeLlcSnapRouted = wmi.AsBool(row["NdisEncapsulationIeeLlcSnapRouted"])
-		out[i].NdisEncapsulationIeee8023 = wmi.AsBool(row["NdisEncapsulationIeee802_3"])
-		out[i].NdisEncapsulationIeee8023PAndQInOob = wmi.AsBool(row["NdisEncapsulationIeee802_3PAndQInOob"])
-		out[i].NdisEncapsulationIeee8023pAndq = wmi.AsBool(row["NdisEncapsulationIeee802_3pAndq"])
-		out[i].NdisEncapsulationNotNull = wmi.AsBool(row["NdisEncapsulationNotNull"])
-		out[i].NdisEncapsulationNotSupported = wmi.AsBool(row["NdisEncapsulationNotSupported"])
+		out[i] = MSFTNetAdapterChecksumOffloadEncapsulationTypesFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneMSFTNetAdapterChecksumOffloadEncapsulationTypes returns the single MSFT_NetAdapterChecksumOffloadEncapsulationTypes matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetAdapterChecksumOffloadEncapsulationTypes(svc *wmi.Service, where string) (*MSFTNetAdapterChecksumOffloadEncapsulationTypes, error) {
+	out, err := QueryMSFTNetAdapterChecksumOffloadEncapsulationTypes(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryMSFTNetAdapterChecksumOffloadSettingData runs the WQL query against the class and decodes each
-// instance into a MSFTNetAdapterChecksumOffloadSettingData. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetAdapterChecksumOffloadSettingData. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetAdapterChecksumOffloadSettingData(svc *wmi.Service, where string) ([]MSFTNetAdapterChecksumOffloadSettingData, error) {
 	q := "SELECT * FROM MSFT_NetAdapterChecksumOffloadSettingData"
 	if where != "" {
@@ -3856,30 +3254,14 @@ func QueryMSFTNetAdapterChecksumOffloadSettingData(svc *wmi.Service, where strin
 	}
 	out := make([]MSFTNetAdapterChecksumOffloadSettingData, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		if v, ok := row["ChecksumOffloadHardwareCapabilities"].(wmi.Row); ok {
-			out[i].ChecksumOffloadHardwareCapabilities = v
-		}
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].InterfaceDescription = wmi.AsString(row["InterfaceDescription"])
-		out[i].IpIPv4Enabled = wmi.AsUint32(row["IpIPv4Enabled"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].Source = wmi.AsUint32(row["Source"])
-		out[i].SystemName = wmi.AsString(row["SystemName"])
-		out[i].TcpIPv4Enabled = wmi.AsUint32(row["TcpIPv4Enabled"])
-		out[i].TcpIPv6Enabled = wmi.AsUint32(row["TcpIPv6Enabled"])
-		out[i].UdpIPv4Enabled = wmi.AsUint32(row["UdpIPv4Enabled"])
-		out[i].UdpIPv6Enabled = wmi.AsUint32(row["UdpIPv6Enabled"])
+		out[i] = MSFTNetAdapterChecksumOffloadSettingDataFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetAdapterChecksumOffloadSettingData returns the MSFT_NetAdapterChecksumOffloadSettingData instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetAdapterChecksumOffloadSettingData(svc *wmi.Service, instanceID string) (*MSFTNetAdapterChecksumOffloadSettingData, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetAdapterChecksumOffloadSettingData returns the single MSFT_NetAdapterChecksumOffloadSettingData matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetAdapterChecksumOffloadSettingData(svc *wmi.Service, where string) (*MSFTNetAdapterChecksumOffloadSettingData, error) {
 	out, err := QueryMSFTNetAdapterChecksumOffloadSettingData(svc, where)
 	if err != nil {
 		return nil, err
@@ -3890,8 +3272,16 @@ func GetMSFTNetAdapterChecksumOffloadSettingData(svc *wmi.Service, instanceID st
 	return &out[0], nil
 }
 
+// GetMSFTNetAdapterChecksumOffloadSettingData returns the MSFT_NetAdapterChecksumOffloadSettingData instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterChecksumOffloadSettingData(svc *wmi.Service, instanceID string) (*MSFTNetAdapterChecksumOffloadSettingData, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetAdapterChecksumOffloadSettingData(svc, where)
+}
+
 // QueryMSFTNetAdapterDataPathConfigurationElementSetting runs the WQL query against the class and decodes each
-// instance into a MSFTNetAdapterDataPathConfigurationElementSetting. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetAdapterDataPathConfigurationElementSetting. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetAdapterDataPathConfigurationElementSetting(svc *wmi.Service, where string) ([]MSFTNetAdapterDataPathConfigurationElementSetting, error) {
 	q := "SELECT * FROM MSFT_NetAdapterDataPathConfigurationElementSetting"
 	if where != "" {
@@ -3903,20 +3293,14 @@ func QueryMSFTNetAdapterDataPathConfigurationElementSetting(svc *wmi.Service, wh
 	}
 	out := make([]MSFTNetAdapterDataPathConfigurationElementSetting, len(rows))
 	for i, row := range rows {
-		out[i].IsCurrent = wmi.AsUint16(row["IsCurrent"])
-		out[i].IsDefault = wmi.AsUint16(row["IsDefault"])
-		out[i].IsNext = wmi.AsUint16(row["IsNext"])
-		out[i].ManagedElement = wmi.AsString(row["ManagedElement"])
-		out[i].SettingData = wmi.AsString(row["SettingData"])
+		out[i] = MSFTNetAdapterDataPathConfigurationElementSettingFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetAdapterDataPathConfigurationElementSetting returns the MSFT_NetAdapterDataPathConfigurationElementSetting instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetAdapterDataPathConfigurationElementSetting(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetAdapterDataPathConfigurationElementSetting, error) {
-	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
-		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+// QueryOneMSFTNetAdapterDataPathConfigurationElementSetting returns the single MSFT_NetAdapterDataPathConfigurationElementSetting matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetAdapterDataPathConfigurationElementSetting(svc *wmi.Service, where string) (*MSFTNetAdapterDataPathConfigurationElementSetting, error) {
 	out, err := QueryMSFTNetAdapterDataPathConfigurationElementSetting(svc, where)
 	if err != nil {
 		return nil, err
@@ -3927,8 +3311,17 @@ func GetMSFTNetAdapterDataPathConfigurationElementSetting(svc *wmi.Service, mana
 	return &out[0], nil
 }
 
+// GetMSFTNetAdapterDataPathConfigurationElementSetting returns the MSFT_NetAdapterDataPathConfigurationElementSetting instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterDataPathConfigurationElementSetting(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetAdapterDataPathConfigurationElementSetting, error) {
+	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
+		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+	return QueryOneMSFTNetAdapterDataPathConfigurationElementSetting(svc, where)
+}
+
 // QueryMSFTNetAdapterDataPathConfigurationSettingData runs the WQL query against the class and decodes each
-// instance into a MSFTNetAdapterDataPathConfigurationSettingData. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetAdapterDataPathConfigurationSettingData. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetAdapterDataPathConfigurationSettingData(svc *wmi.Service, where string) ([]MSFTNetAdapterDataPathConfigurationSettingData, error) {
 	q := "SELECT * FROM MSFT_NetAdapterDataPathConfigurationSettingData"
 	if where != "" {
@@ -3940,24 +3333,14 @@ func QueryMSFTNetAdapterDataPathConfigurationSettingData(svc *wmi.Service, where
 	}
 	out := make([]MSFTNetAdapterDataPathConfigurationSettingData, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].InterfaceDescription = wmi.AsString(row["InterfaceDescription"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].Profile = wmi.AsString(row["Profile"])
-		out[i].ProfileSource = wmi.AsUint32(row["ProfileSource"])
-		out[i].Source = wmi.AsUint32(row["Source"])
-		out[i].SystemName = wmi.AsString(row["SystemName"])
+		out[i] = MSFTNetAdapterDataPathConfigurationSettingDataFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetAdapterDataPathConfigurationSettingData returns the MSFT_NetAdapterDataPathConfigurationSettingData instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetAdapterDataPathConfigurationSettingData(svc *wmi.Service, instanceID string) (*MSFTNetAdapterDataPathConfigurationSettingData, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetAdapterDataPathConfigurationSettingData returns the single MSFT_NetAdapterDataPathConfigurationSettingData matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetAdapterDataPathConfigurationSettingData(svc *wmi.Service, where string) (*MSFTNetAdapterDataPathConfigurationSettingData, error) {
 	out, err := QueryMSFTNetAdapterDataPathConfigurationSettingData(svc, where)
 	if err != nil {
 		return nil, err
@@ -3968,8 +3351,16 @@ func GetMSFTNetAdapterDataPathConfigurationSettingData(svc *wmi.Service, instanc
 	return &out[0], nil
 }
 
+// GetMSFTNetAdapterDataPathConfigurationSettingData returns the MSFT_NetAdapterDataPathConfigurationSettingData instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterDataPathConfigurationSettingData(svc *wmi.Service, instanceID string) (*MSFTNetAdapterDataPathConfigurationSettingData, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetAdapterDataPathConfigurationSettingData(svc, where)
+}
+
 // QueryMSFTNetAdapterElementSettingData runs the WQL query against the class and decodes each
-// instance into a MSFTNetAdapterElementSettingData. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetAdapterElementSettingData. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetAdapterElementSettingData(svc *wmi.Service, where string) ([]MSFTNetAdapterElementSettingData, error) {
 	q := "SELECT * FROM MSFT_NetAdapterElementSettingData"
 	if where != "" {
@@ -3981,20 +3372,14 @@ func QueryMSFTNetAdapterElementSettingData(svc *wmi.Service, where string) ([]MS
 	}
 	out := make([]MSFTNetAdapterElementSettingData, len(rows))
 	for i, row := range rows {
-		out[i].IsCurrent = wmi.AsUint16(row["IsCurrent"])
-		out[i].IsDefault = wmi.AsUint16(row["IsDefault"])
-		out[i].IsNext = wmi.AsUint16(row["IsNext"])
-		out[i].ManagedElement = wmi.AsString(row["ManagedElement"])
-		out[i].SettingData = wmi.AsString(row["SettingData"])
+		out[i] = MSFTNetAdapterElementSettingDataFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetAdapterElementSettingData returns the MSFT_NetAdapterElementSettingData instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetAdapterElementSettingData(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetAdapterElementSettingData, error) {
-	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
-		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+// QueryOneMSFTNetAdapterElementSettingData returns the single MSFT_NetAdapterElementSettingData matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetAdapterElementSettingData(svc *wmi.Service, where string) (*MSFTNetAdapterElementSettingData, error) {
 	out, err := QueryMSFTNetAdapterElementSettingData(svc, where)
 	if err != nil {
 		return nil, err
@@ -4005,8 +3390,17 @@ func GetMSFTNetAdapterElementSettingData(svc *wmi.Service, managedElement string
 	return &out[0], nil
 }
 
+// GetMSFTNetAdapterElementSettingData returns the MSFT_NetAdapterElementSettingData instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterElementSettingData(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetAdapterElementSettingData, error) {
+	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
+		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+	return QueryOneMSFTNetAdapterElementSettingData(svc, where)
+}
+
 // QueryMSFTNetAdapterEncapsulatedPacketTaskOffloadCapabilities runs the WQL query against the class and decodes each
-// instance into a MSFTNetAdapterEncapsulatedPacketTaskOffloadCapabilities. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetAdapterEncapsulatedPacketTaskOffloadCapabilities. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetAdapterEncapsulatedPacketTaskOffloadCapabilities(svc *wmi.Service, where string) ([]MSFTNetAdapterEncapsulatedPacketTaskOffloadCapabilities, error) {
 	q := "SELECT * FROM MSFT_NetAdapterEncapsulatedPacketTaskOffloadCapabilities"
 	if where != "" {
@@ -4018,17 +3412,27 @@ func QueryMSFTNetAdapterEncapsulatedPacketTaskOffloadCapabilities(svc *wmi.Servi
 	}
 	out := make([]MSFTNetAdapterEncapsulatedPacketTaskOffloadCapabilities, len(rows))
 	for i, row := range rows {
-		out[i].LsoV2Supported = wmi.AsUint32(row["LsoV2Supported"])
-		out[i].ReceiveChecksumOffloadSupported = wmi.AsUint32(row["ReceiveChecksumOffloadSupported"])
-		out[i].RssSupported = wmi.AsUint32(row["RssSupported"])
-		out[i].TransmitChecksumOffloadSupported = wmi.AsUint32(row["TransmitChecksumOffloadSupported"])
-		out[i].VmqSupported = wmi.AsUint32(row["VmqSupported"])
+		out[i] = MSFTNetAdapterEncapsulatedPacketTaskOffloadCapabilitiesFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneMSFTNetAdapterEncapsulatedPacketTaskOffloadCapabilities returns the single MSFT_NetAdapterEncapsulatedPacketTaskOffloadCapabilities matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetAdapterEncapsulatedPacketTaskOffloadCapabilities(svc *wmi.Service, where string) (*MSFTNetAdapterEncapsulatedPacketTaskOffloadCapabilities, error) {
+	out, err := QueryMSFTNetAdapterEncapsulatedPacketTaskOffloadCapabilities(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryMSFTNetAdapterEncapsulatedPacketTaskOffloadCapabilitiesEx runs the WQL query against the class and decodes each
-// instance into a MSFTNetAdapterEncapsulatedPacketTaskOffloadCapabilitiesEx. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetAdapterEncapsulatedPacketTaskOffloadCapabilitiesEx. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetAdapterEncapsulatedPacketTaskOffloadCapabilitiesEx(svc *wmi.Service, where string) ([]MSFTNetAdapterEncapsulatedPacketTaskOffloadCapabilitiesEx, error) {
 	q := "SELECT * FROM MSFT_NetAdapterEncapsulatedPacketTaskOffloadCapabilitiesEx"
 	if where != "" {
@@ -4040,19 +3444,27 @@ func QueryMSFTNetAdapterEncapsulatedPacketTaskOffloadCapabilitiesEx(svc *wmi.Ser
 	}
 	out := make([]MSFTNetAdapterEncapsulatedPacketTaskOffloadCapabilitiesEx, len(rows))
 	for i, row := range rows {
-		out[i].IsVxlanUDPPortConfigurable = wmi.AsBool(row["IsVxlanUDPPortConfigurable"])
-		out[i].LsoV2Supported = wmi.AsUint32(row["LsoV2Supported"])
-		out[i].ReceiveChecksumOffloadSupported = wmi.AsUint32(row["ReceiveChecksumOffloadSupported"])
-		out[i].RssSupported = wmi.AsUint32(row["RssSupported"])
-		out[i].TransmitChecksumOffloadSupported = wmi.AsUint32(row["TransmitChecksumOffloadSupported"])
-		out[i].VmqSupported = wmi.AsUint32(row["VmqSupported"])
-		out[i].VxlanUDPPortNumber = wmi.AsUint16(row["VxlanUDPPortNumber"])
+		out[i] = MSFTNetAdapterEncapsulatedPacketTaskOffloadCapabilitiesExFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneMSFTNetAdapterEncapsulatedPacketTaskOffloadCapabilitiesEx returns the single MSFT_NetAdapterEncapsulatedPacketTaskOffloadCapabilitiesEx matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetAdapterEncapsulatedPacketTaskOffloadCapabilitiesEx(svc *wmi.Service, where string) (*MSFTNetAdapterEncapsulatedPacketTaskOffloadCapabilitiesEx, error) {
+	out, err := QueryMSFTNetAdapterEncapsulatedPacketTaskOffloadCapabilitiesEx(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryMSFTNetAdapterEncapsulatedPacketTaskOffloadElementSetting runs the WQL query against the class and decodes each
-// instance into a MSFTNetAdapterEncapsulatedPacketTaskOffloadElementSetting. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetAdapterEncapsulatedPacketTaskOffloadElementSetting. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetAdapterEncapsulatedPacketTaskOffloadElementSetting(svc *wmi.Service, where string) ([]MSFTNetAdapterEncapsulatedPacketTaskOffloadElementSetting, error) {
 	q := "SELECT * FROM MSFT_NetAdapterEncapsulatedPacketTaskOffloadElementSetting"
 	if where != "" {
@@ -4064,20 +3476,14 @@ func QueryMSFTNetAdapterEncapsulatedPacketTaskOffloadElementSetting(svc *wmi.Ser
 	}
 	out := make([]MSFTNetAdapterEncapsulatedPacketTaskOffloadElementSetting, len(rows))
 	for i, row := range rows {
-		out[i].IsCurrent = wmi.AsUint16(row["IsCurrent"])
-		out[i].IsDefault = wmi.AsUint16(row["IsDefault"])
-		out[i].IsNext = wmi.AsUint16(row["IsNext"])
-		out[i].ManagedElement = wmi.AsString(row["ManagedElement"])
-		out[i].SettingData = wmi.AsString(row["SettingData"])
+		out[i] = MSFTNetAdapterEncapsulatedPacketTaskOffloadElementSettingFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetAdapterEncapsulatedPacketTaskOffloadElementSetting returns the MSFT_NetAdapterEncapsulatedPacketTaskOffloadElementSetting instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetAdapterEncapsulatedPacketTaskOffloadElementSetting(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetAdapterEncapsulatedPacketTaskOffloadElementSetting, error) {
-	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
-		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+// QueryOneMSFTNetAdapterEncapsulatedPacketTaskOffloadElementSetting returns the single MSFT_NetAdapterEncapsulatedPacketTaskOffloadElementSetting matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetAdapterEncapsulatedPacketTaskOffloadElementSetting(svc *wmi.Service, where string) (*MSFTNetAdapterEncapsulatedPacketTaskOffloadElementSetting, error) {
 	out, err := QueryMSFTNetAdapterEncapsulatedPacketTaskOffloadElementSetting(svc, where)
 	if err != nil {
 		return nil, err
@@ -4088,8 +3494,17 @@ func GetMSFTNetAdapterEncapsulatedPacketTaskOffloadElementSetting(svc *wmi.Servi
 	return &out[0], nil
 }
 
+// GetMSFTNetAdapterEncapsulatedPacketTaskOffloadElementSetting returns the MSFT_NetAdapterEncapsulatedPacketTaskOffloadElementSetting instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterEncapsulatedPacketTaskOffloadElementSetting(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetAdapterEncapsulatedPacketTaskOffloadElementSetting, error) {
+	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
+		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+	return QueryOneMSFTNetAdapterEncapsulatedPacketTaskOffloadElementSetting(svc, where)
+}
+
 // QueryMSFTNetAdapterEncapsulatedPacketTaskOffloadSettingData runs the WQL query against the class and decodes each
-// instance into a MSFTNetAdapterEncapsulatedPacketTaskOffloadSettingData. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetAdapterEncapsulatedPacketTaskOffloadSettingData. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetAdapterEncapsulatedPacketTaskOffloadSettingData(svc *wmi.Service, where string) ([]MSFTNetAdapterEncapsulatedPacketTaskOffloadSettingData, error) {
 	q := "SELECT * FROM MSFT_NetAdapterEncapsulatedPacketTaskOffloadSettingData"
 	if where != "" {
@@ -4101,33 +3516,14 @@ func QueryMSFTNetAdapterEncapsulatedPacketTaskOffloadSettingData(svc *wmi.Servic
 	}
 	out := make([]MSFTNetAdapterEncapsulatedPacketTaskOffloadSettingData, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		if v, ok := row["EncapsulatedPacketTaskOffloadHardwareCapabilitiesNvgre"].(wmi.Row); ok {
-			out[i].EncapsulatedPacketTaskOffloadHardwareCapabilitiesNvgre = v
-		}
-		if v, ok := row["EncapsulatedPacketTaskOffloadHardwareCapabilitiesVxlan"].(wmi.Row); ok {
-			out[i].EncapsulatedPacketTaskOffloadHardwareCapabilitiesVxlan = v
-		}
-		out[i].EncapsulationType = wmi.AsUint16(row["EncapsulationType"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].InterfaceDescription = wmi.AsString(row["InterfaceDescription"])
-		out[i].IsVxlanUDPPortConfigurable = wmi.AsBool(row["IsVxlanUDPPortConfigurable"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].NvgreEncapsulatedPacketTaskOffloadEnabled = wmi.AsBool(row["NvgreEncapsulatedPacketTaskOffloadEnabled"])
-		out[i].Source = wmi.AsUint32(row["Source"])
-		out[i].SystemName = wmi.AsString(row["SystemName"])
-		out[i].VxlanEncapsulatedPacketTaskOffloadEnabled = wmi.AsBool(row["VxlanEncapsulatedPacketTaskOffloadEnabled"])
-		out[i].VxlanUDPPortNumber = wmi.AsUint16(row["VxlanUDPPortNumber"])
+		out[i] = MSFTNetAdapterEncapsulatedPacketTaskOffloadSettingDataFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetAdapterEncapsulatedPacketTaskOffloadSettingData returns the MSFT_NetAdapterEncapsulatedPacketTaskOffloadSettingData instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetAdapterEncapsulatedPacketTaskOffloadSettingData(svc *wmi.Service, instanceID string) (*MSFTNetAdapterEncapsulatedPacketTaskOffloadSettingData, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetAdapterEncapsulatedPacketTaskOffloadSettingData returns the single MSFT_NetAdapterEncapsulatedPacketTaskOffloadSettingData matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetAdapterEncapsulatedPacketTaskOffloadSettingData(svc *wmi.Service, where string) (*MSFTNetAdapterEncapsulatedPacketTaskOffloadSettingData, error) {
 	out, err := QueryMSFTNetAdapterEncapsulatedPacketTaskOffloadSettingData(svc, where)
 	if err != nil {
 		return nil, err
@@ -4138,8 +3534,16 @@ func GetMSFTNetAdapterEncapsulatedPacketTaskOffloadSettingData(svc *wmi.Service,
 	return &out[0], nil
 }
 
+// GetMSFTNetAdapterEncapsulatedPacketTaskOffloadSettingData returns the MSFT_NetAdapterEncapsulatedPacketTaskOffloadSettingData instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterEncapsulatedPacketTaskOffloadSettingData(svc *wmi.Service, instanceID string) (*MSFTNetAdapterEncapsulatedPacketTaskOffloadSettingData, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetAdapterEncapsulatedPacketTaskOffloadSettingData(svc, where)
+}
+
 // QueryMSFTNetAdapterHardwareInfoElementSetting runs the WQL query against the class and decodes each
-// instance into a MSFTNetAdapterHardwareInfoElementSetting. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetAdapterHardwareInfoElementSetting. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetAdapterHardwareInfoElementSetting(svc *wmi.Service, where string) ([]MSFTNetAdapterHardwareInfoElementSetting, error) {
 	q := "SELECT * FROM MSFT_NetAdapterHardwareInfoElementSetting"
 	if where != "" {
@@ -4151,20 +3555,14 @@ func QueryMSFTNetAdapterHardwareInfoElementSetting(svc *wmi.Service, where strin
 	}
 	out := make([]MSFTNetAdapterHardwareInfoElementSetting, len(rows))
 	for i, row := range rows {
-		out[i].IsCurrent = wmi.AsUint16(row["IsCurrent"])
-		out[i].IsDefault = wmi.AsUint16(row["IsDefault"])
-		out[i].IsNext = wmi.AsUint16(row["IsNext"])
-		out[i].ManagedElement = wmi.AsString(row["ManagedElement"])
-		out[i].SettingData = wmi.AsString(row["SettingData"])
+		out[i] = MSFTNetAdapterHardwareInfoElementSettingFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetAdapterHardwareInfoElementSetting returns the MSFT_NetAdapterHardwareInfoElementSetting instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetAdapterHardwareInfoElementSetting(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetAdapterHardwareInfoElementSetting, error) {
-	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
-		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+// QueryOneMSFTNetAdapterHardwareInfoElementSetting returns the single MSFT_NetAdapterHardwareInfoElementSetting matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetAdapterHardwareInfoElementSetting(svc *wmi.Service, where string) (*MSFTNetAdapterHardwareInfoElementSetting, error) {
 	out, err := QueryMSFTNetAdapterHardwareInfoElementSetting(svc, where)
 	if err != nil {
 		return nil, err
@@ -4175,8 +3573,17 @@ func GetMSFTNetAdapterHardwareInfoElementSetting(svc *wmi.Service, managedElemen
 	return &out[0], nil
 }
 
+// GetMSFTNetAdapterHardwareInfoElementSetting returns the MSFT_NetAdapterHardwareInfoElementSetting instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterHardwareInfoElementSetting(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetAdapterHardwareInfoElementSetting, error) {
+	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
+		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+	return QueryOneMSFTNetAdapterHardwareInfoElementSetting(svc, where)
+}
+
 // QueryMSFTNetAdapterHardwareInfoSettingData runs the WQL query against the class and decodes each
-// instance into a MSFTNetAdapterHardwareInfoSettingData. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetAdapterHardwareInfoSettingData. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetAdapterHardwareInfoSettingData(svc *wmi.Service, where string) ([]MSFTNetAdapterHardwareInfoSettingData, error) {
 	q := "SELECT * FROM MSFT_NetAdapterHardwareInfoSettingData"
 	if where != "" {
@@ -4188,58 +3595,14 @@ func QueryMSFTNetAdapterHardwareInfoSettingData(svc *wmi.Service, where string) 
 	}
 	out := make([]MSFTNetAdapterHardwareInfoSettingData, len(rows))
 	for i, row := range rows {
-		out[i].BusNumber = wmi.AsUint32(row["BusNumber"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DeviceNumber = wmi.AsUint32(row["DeviceNumber"])
-		out[i].Dma64BitSupported = wmi.AsBool(row["Dma64BitSupported"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].FunctionNumber = wmi.AsUint32(row["FunctionNumber"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].InterfaceDescription = wmi.AsString(row["InterfaceDescription"])
-		out[i].LineBasedInterruptSupported = wmi.AsBool(row["LineBasedInterruptSupported"])
-		out[i].LineBasedInterrupts = wmi.AsBool(row["LineBasedInterrupts"])
-		out[i].LocationInformationString = wmi.AsString(row["LocationInformationString"])
-		out[i].MaxInterruptMessages = wmi.AsUint32(row["MaxInterruptMessages"])
-		out[i].MsiEnabled = wmi.AsBool(row["MsiEnabled"])
-		out[i].MsiInterruptSupported = wmi.AsBool(row["MsiInterruptSupported"])
-		out[i].MsiSupported = wmi.AsBool(row["MsiSupported"])
-		out[i].MsiXEnabled = wmi.AsBool(row["MsiXEnabled"])
-		out[i].MsiXInterruptSupported = wmi.AsBool(row["MsiXInterruptSupported"])
-		out[i].MsiXSupported = wmi.AsBool(row["MsiXSupported"])
-		out[i].MsixMessageAffinityArray = wmi.AsRowSlice(row["MsixMessageAffinityArray"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].NoInterrupt = wmi.AsBool(row["NoInterrupt"])
-		out[i].NumMsiMessages = wmi.AsUint32(row["NumMsiMessages"])
-		out[i].NumMsixTableEntries = wmi.AsUint32(row["NumMsixTableEntries"])
-		out[i].NumaNode = wmi.AsUint16(row["NumaNode"])
-		out[i].PciCurrentSpeedAndMode = wmi.AsUint32(row["PciCurrentSpeedAndMode"])
-		out[i].PciDeviceLabelID = wmi.AsUint32(row["PciDeviceLabelID"])
-		out[i].PciDeviceLabelString = wmi.AsString(row["PciDeviceLabelString"])
-		out[i].PciDeviceType = wmi.AsUint32(row["PciDeviceType"])
-		out[i].PciExpressCurrentLinkSpeedEncoded = wmi.AsUint32(row["PciExpressCurrentLinkSpeedEncoded"])
-		out[i].PciExpressCurrentLinkWidth = wmi.AsUint32(row["PciExpressCurrentLinkWidth"])
-		out[i].PciExpressCurrentPayloadSize = wmi.AsUint32(row["PciExpressCurrentPayloadSize"])
-		out[i].PciExpressMaxLinkSpeedEncoded = wmi.AsUint32(row["PciExpressMaxLinkSpeedEncoded"])
-		out[i].PciExpressMaxLinkWidth = wmi.AsUint32(row["PciExpressMaxLinkWidth"])
-		out[i].PciExpressMaxPayloadSize = wmi.AsUint32(row["PciExpressMaxPayloadSize"])
-		out[i].PciExpressMaxReadRequestSize = wmi.AsUint32(row["PciExpressMaxReadRequestSize"])
-		out[i].PciExpressVersion = wmi.AsUint32(row["PciExpressVersion"])
-		out[i].PciXCurrentSpeedAndMode = wmi.AsUint32(row["PciXCurrentSpeedAndMode"])
-		out[i].S0WakeupSupported = wmi.AsBool(row["S0WakeupSupported"])
-		out[i].SegmentNumber = wmi.AsUint32(row["SegmentNumber"])
-		out[i].SlotNumber = wmi.AsUint32(row["SlotNumber"])
-		out[i].Source = wmi.AsUint32(row["Source"])
-		out[i].SriovSupport = wmi.AsUint32(row["SriovSupport"])
-		out[i].SystemName = wmi.AsString(row["SystemName"])
+		out[i] = MSFTNetAdapterHardwareInfoSettingDataFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetAdapterHardwareInfoSettingData returns the MSFT_NetAdapterHardwareInfoSettingData instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetAdapterHardwareInfoSettingData(svc *wmi.Service, instanceID string) (*MSFTNetAdapterHardwareInfoSettingData, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetAdapterHardwareInfoSettingData returns the single MSFT_NetAdapterHardwareInfoSettingData matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetAdapterHardwareInfoSettingData(svc *wmi.Service, where string) (*MSFTNetAdapterHardwareInfoSettingData, error) {
 	out, err := QueryMSFTNetAdapterHardwareInfoSettingData(svc, where)
 	if err != nil {
 		return nil, err
@@ -4250,8 +3613,16 @@ func GetMSFTNetAdapterHardwareInfoSettingData(svc *wmi.Service, instanceID strin
 	return &out[0], nil
 }
 
+// GetMSFTNetAdapterHardwareInfoSettingData returns the MSFT_NetAdapterHardwareInfoSettingData instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterHardwareInfoSettingData(svc *wmi.Service, instanceID string) (*MSFTNetAdapterHardwareInfoSettingData, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetAdapterHardwareInfoSettingData(svc, where)
+}
+
 // QueryMSFTNetAdapterIPsecOffloadV2ElementSetting runs the WQL query against the class and decodes each
-// instance into a MSFTNetAdapterIPsecOffloadV2ElementSetting. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetAdapterIPsecOffloadV2ElementSetting. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetAdapterIPsecOffloadV2ElementSetting(svc *wmi.Service, where string) ([]MSFTNetAdapterIPsecOffloadV2ElementSetting, error) {
 	q := "SELECT * FROM MSFT_NetAdapterIPsecOffloadV2ElementSetting"
 	if where != "" {
@@ -4263,20 +3634,14 @@ func QueryMSFTNetAdapterIPsecOffloadV2ElementSetting(svc *wmi.Service, where str
 	}
 	out := make([]MSFTNetAdapterIPsecOffloadV2ElementSetting, len(rows))
 	for i, row := range rows {
-		out[i].IsCurrent = wmi.AsUint16(row["IsCurrent"])
-		out[i].IsDefault = wmi.AsUint16(row["IsDefault"])
-		out[i].IsNext = wmi.AsUint16(row["IsNext"])
-		out[i].ManagedElement = wmi.AsString(row["ManagedElement"])
-		out[i].SettingData = wmi.AsString(row["SettingData"])
+		out[i] = MSFTNetAdapterIPsecOffloadV2ElementSettingFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetAdapterIPsecOffloadV2ElementSetting returns the MSFT_NetAdapterIPsecOffloadV2ElementSetting instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetAdapterIPsecOffloadV2ElementSetting(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetAdapterIPsecOffloadV2ElementSetting, error) {
-	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
-		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+// QueryOneMSFTNetAdapterIPsecOffloadV2ElementSetting returns the single MSFT_NetAdapterIPsecOffloadV2ElementSetting matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetAdapterIPsecOffloadV2ElementSetting(svc *wmi.Service, where string) (*MSFTNetAdapterIPsecOffloadV2ElementSetting, error) {
 	out, err := QueryMSFTNetAdapterIPsecOffloadV2ElementSetting(svc, where)
 	if err != nil {
 		return nil, err
@@ -4287,8 +3652,17 @@ func GetMSFTNetAdapterIPsecOffloadV2ElementSetting(svc *wmi.Service, managedElem
 	return &out[0], nil
 }
 
+// GetMSFTNetAdapterIPsecOffloadV2ElementSetting returns the MSFT_NetAdapterIPsecOffloadV2ElementSetting instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterIPsecOffloadV2ElementSetting(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetAdapterIPsecOffloadV2ElementSetting, error) {
+	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
+		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+	return QueryOneMSFTNetAdapterIPsecOffloadV2ElementSetting(svc, where)
+}
+
 // QueryMSFTNetAdapterIPsecOffloadV2SettingData runs the WQL query against the class and decodes each
-// instance into a MSFTNetAdapterIPsecOffloadV2SettingData. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetAdapterIPsecOffloadV2SettingData. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetAdapterIPsecOffloadV2SettingData(svc *wmi.Service, where string) ([]MSFTNetAdapterIPsecOffloadV2SettingData, error) {
 	q := "SELECT * FROM MSFT_NetAdapterIPsecOffloadV2SettingData"
 	if where != "" {
@@ -4300,49 +3674,14 @@ func QueryMSFTNetAdapterIPsecOffloadV2SettingData(svc *wmi.Service, where string
 	}
 	out := make([]MSFTNetAdapterIPsecOffloadV2SettingData, len(rows))
 	for i, row := range rows {
-		out[i].AhEnabled = wmi.AsBool(row["AhEnabled"])
-		out[i].AhEspCombinedEnabled = wmi.AsBool(row["AhEspCombinedEnabled"])
-		out[i].AhEspCombinedSupported = wmi.AsBool(row["AhEspCombinedSupported"])
-		out[i].AhSupported = wmi.AsBool(row["AhSupported"])
-		out[i].AuthenticationAlgorithmsEnabled = wmi.AsUint32(row["AuthenticationAlgorithmsEnabled"])
-		out[i].AuthenticationAlgorithmsSupported = wmi.AsUint32(row["AuthenticationAlgorithmsSupported"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].Enabled = wmi.AsBool(row["Enabled"])
-		out[i].EncryptionAlgorithmsEnabled = wmi.AsUint32(row["EncryptionAlgorithmsEnabled"])
-		out[i].EncryptionAlgorithmsSupported = wmi.AsUint32(row["EncryptionAlgorithmsSupported"])
-		out[i].EspEnabled = wmi.AsBool(row["EspEnabled"])
-		out[i].EspSupported = wmi.AsBool(row["EspSupported"])
-		out[i].IPv4OptionsEnabled = wmi.AsBool(row["IPv4OptionsEnabled"])
-		out[i].IPv4OptionsSupported = wmi.AsBool(row["IPv4OptionsSupported"])
-		out[i].IPv6Enabled = wmi.AsBool(row["IPv6Enabled"])
-		out[i].IPv6NonIPsecExtensionHeadersEnabled = wmi.AsBool(row["IPv6NonIPsecExtensionHeadersEnabled"])
-		out[i].IPv6NonIPsecExtensionHeadersSupported = wmi.AsBool(row["IPv6NonIPsecExtensionHeadersSupported"])
-		out[i].IPv6Supported = wmi.AsBool(row["IPv6Supported"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].InterfaceDescription = wmi.AsString(row["InterfaceDescription"])
-		out[i].LsoEnabled = wmi.AsBool(row["LsoEnabled"])
-		out[i].LsoSupported = wmi.AsBool(row["LsoSupported"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].SaOffloadCapacityEnabled = wmi.AsUint32(row["SaOffloadCapacityEnabled"])
-		out[i].SaOffloadCapacitySupported = wmi.AsUint32(row["SaOffloadCapacitySupported"])
-		out[i].Source = wmi.AsUint32(row["Source"])
-		out[i].SystemName = wmi.AsString(row["SystemName"])
-		out[i].TransportEnabled = wmi.AsBool(row["TransportEnabled"])
-		out[i].TransportSupported = wmi.AsBool(row["TransportSupported"])
-		out[i].TunnelEnabled = wmi.AsBool(row["TunnelEnabled"])
-		out[i].TunnelSupported = wmi.AsBool(row["TunnelSupported"])
-		out[i].UdpEspEnabled = wmi.AsUint32(row["UdpEspEnabled"])
-		out[i].UdpEspSupported = wmi.AsUint32(row["UdpEspSupported"])
+		out[i] = MSFTNetAdapterIPsecOffloadV2SettingDataFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetAdapterIPsecOffloadV2SettingData returns the MSFT_NetAdapterIPsecOffloadV2SettingData instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetAdapterIPsecOffloadV2SettingData(svc *wmi.Service, instanceID string) (*MSFTNetAdapterIPsecOffloadV2SettingData, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetAdapterIPsecOffloadV2SettingData returns the single MSFT_NetAdapterIPsecOffloadV2SettingData matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetAdapterIPsecOffloadV2SettingData(svc *wmi.Service, where string) (*MSFTNetAdapterIPsecOffloadV2SettingData, error) {
 	out, err := QueryMSFTNetAdapterIPsecOffloadV2SettingData(svc, where)
 	if err != nil {
 		return nil, err
@@ -4353,8 +3692,16 @@ func GetMSFTNetAdapterIPsecOffloadV2SettingData(svc *wmi.Service, instanceID str
 	return &out[0], nil
 }
 
+// GetMSFTNetAdapterIPsecOffloadV2SettingData returns the MSFT_NetAdapterIPsecOffloadV2SettingData instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterIPsecOffloadV2SettingData(svc *wmi.Service, instanceID string) (*MSFTNetAdapterIPsecOffloadV2SettingData, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetAdapterIPsecOffloadV2SettingData(svc, where)
+}
+
 // QueryMSFTNetAdapterLargeSendOffloadV1Capabilities runs the WQL query against the class and decodes each
-// instance into a MSFTNetAdapterLargeSendOffloadV1Capabilities. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetAdapterLargeSendOffloadV1Capabilities. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetAdapterLargeSendOffloadV1Capabilities(svc *wmi.Service, where string) ([]MSFTNetAdapterLargeSendOffloadV1Capabilities, error) {
 	q := "SELECT * FROM MSFT_NetAdapterLargeSendOffloadV1Capabilities"
 	if where != "" {
@@ -4366,19 +3713,27 @@ func QueryMSFTNetAdapterLargeSendOffloadV1Capabilities(svc *wmi.Service, where s
 	}
 	out := make([]MSFTNetAdapterLargeSendOffloadV1Capabilities, len(rows))
 	for i, row := range rows {
-		if v, ok := row["IPv4Encapsulation"].(wmi.Row); ok {
-			out[i].IPv4Encapsulation = v
-		}
-		out[i].IPv4IpOptionsSupported = wmi.AsBool(row["IPv4IpOptionsSupported"])
-		out[i].IPv4MaxOffloadSizeSupported = wmi.AsUint32(row["IPv4MaxOffloadSizeSupported"])
-		out[i].IPv4MinSegmentCountSupported = wmi.AsUint32(row["IPv4MinSegmentCountSupported"])
-		out[i].IPv4TcpOptionsSupported = wmi.AsBool(row["IPv4TcpOptionsSupported"])
+		out[i] = MSFTNetAdapterLargeSendOffloadV1CapabilitiesFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneMSFTNetAdapterLargeSendOffloadV1Capabilities returns the single MSFT_NetAdapterLargeSendOffloadV1Capabilities matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetAdapterLargeSendOffloadV1Capabilities(svc *wmi.Service, where string) (*MSFTNetAdapterLargeSendOffloadV1Capabilities, error) {
+	out, err := QueryMSFTNetAdapterLargeSendOffloadV1Capabilities(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryMSFTNetAdapterLargeSendOffloadV2Capabilities runs the WQL query against the class and decodes each
-// instance into a MSFTNetAdapterLargeSendOffloadV2Capabilities. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetAdapterLargeSendOffloadV2Capabilities. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetAdapterLargeSendOffloadV2Capabilities(svc *wmi.Service, where string) ([]MSFTNetAdapterLargeSendOffloadV2Capabilities, error) {
 	q := "SELECT * FROM MSFT_NetAdapterLargeSendOffloadV2Capabilities"
 	if where != "" {
@@ -4390,24 +3745,27 @@ func QueryMSFTNetAdapterLargeSendOffloadV2Capabilities(svc *wmi.Service, where s
 	}
 	out := make([]MSFTNetAdapterLargeSendOffloadV2Capabilities, len(rows))
 	for i, row := range rows {
-		if v, ok := row["IPv4Encapsulation"].(wmi.Row); ok {
-			out[i].IPv4Encapsulation = v
-		}
-		out[i].IPv4MaxOffloadSizeSupported = wmi.AsUint32(row["IPv4MaxOffloadSizeSupported"])
-		out[i].IPv4MinSegmentCountSupported = wmi.AsUint32(row["IPv4MinSegmentCountSupported"])
-		if v, ok := row["IPv6Encapsulation"].(wmi.Row); ok {
-			out[i].IPv6Encapsulation = v
-		}
-		out[i].IPv6IpExtensionHeadersSupported = wmi.AsBool(row["IPv6IpExtensionHeadersSupported"])
-		out[i].IPv6MaxOffLoadSizeSupported = wmi.AsUint32(row["IPv6MaxOffLoadSizeSupported"])
-		out[i].IPv6MinSegmentCountSupported = wmi.AsUint32(row["IPv6MinSegmentCountSupported"])
-		out[i].IPv6TcpOptionsSupported = wmi.AsBool(row["IPv6TcpOptionsSupported"])
+		out[i] = MSFTNetAdapterLargeSendOffloadV2CapabilitiesFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneMSFTNetAdapterLargeSendOffloadV2Capabilities returns the single MSFT_NetAdapterLargeSendOffloadV2Capabilities matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetAdapterLargeSendOffloadV2Capabilities(svc *wmi.Service, where string) (*MSFTNetAdapterLargeSendOffloadV2Capabilities, error) {
+	out, err := QueryMSFTNetAdapterLargeSendOffloadV2Capabilities(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryMSFTNetAdapterLsoElementSetting runs the WQL query against the class and decodes each
-// instance into a MSFTNetAdapterLsoElementSetting. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetAdapterLsoElementSetting. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetAdapterLsoElementSetting(svc *wmi.Service, where string) ([]MSFTNetAdapterLsoElementSetting, error) {
 	q := "SELECT * FROM MSFT_NetAdapterLsoElementSetting"
 	if where != "" {
@@ -4419,20 +3777,14 @@ func QueryMSFTNetAdapterLsoElementSetting(svc *wmi.Service, where string) ([]MSF
 	}
 	out := make([]MSFTNetAdapterLsoElementSetting, len(rows))
 	for i, row := range rows {
-		out[i].IsCurrent = wmi.AsUint16(row["IsCurrent"])
-		out[i].IsDefault = wmi.AsUint16(row["IsDefault"])
-		out[i].IsNext = wmi.AsUint16(row["IsNext"])
-		out[i].ManagedElement = wmi.AsString(row["ManagedElement"])
-		out[i].SettingData = wmi.AsString(row["SettingData"])
+		out[i] = MSFTNetAdapterLsoElementSettingFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetAdapterLsoElementSetting returns the MSFT_NetAdapterLsoElementSetting instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetAdapterLsoElementSetting(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetAdapterLsoElementSetting, error) {
-	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
-		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+// QueryOneMSFTNetAdapterLsoElementSetting returns the single MSFT_NetAdapterLsoElementSetting matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetAdapterLsoElementSetting(svc *wmi.Service, where string) (*MSFTNetAdapterLsoElementSetting, error) {
 	out, err := QueryMSFTNetAdapterLsoElementSetting(svc, where)
 	if err != nil {
 		return nil, err
@@ -4443,8 +3795,17 @@ func GetMSFTNetAdapterLsoElementSetting(svc *wmi.Service, managedElement string,
 	return &out[0], nil
 }
 
+// GetMSFTNetAdapterLsoElementSetting returns the MSFT_NetAdapterLsoElementSetting instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterLsoElementSetting(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetAdapterLsoElementSetting, error) {
+	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
+		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+	return QueryOneMSFTNetAdapterLsoElementSetting(svc, where)
+}
+
 // QueryMSFTNetAdapterLsoEncapsulationTypes runs the WQL query against the class and decodes each
-// instance into a MSFTNetAdapterLsoEncapsulationTypes. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetAdapterLsoEncapsulationTypes. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetAdapterLsoEncapsulationTypes(svc *wmi.Service, where string) ([]MSFTNetAdapterLsoEncapsulationTypes, error) {
 	q := "SELECT * FROM MSFT_NetAdapterLsoEncapsulationTypes"
 	if where != "" {
@@ -4456,18 +3817,27 @@ func QueryMSFTNetAdapterLsoEncapsulationTypes(svc *wmi.Service, where string) ([
 	}
 	out := make([]MSFTNetAdapterLsoEncapsulationTypes, len(rows))
 	for i, row := range rows {
-		out[i].NdisEncapsulationIeeLlcSnapRouted = wmi.AsBool(row["NdisEncapsulationIeeLlcSnapRouted"])
-		out[i].NdisEncapsulationIeee8023 = wmi.AsBool(row["NdisEncapsulationIeee802_3"])
-		out[i].NdisEncapsulationIeee8023PAndQInOob = wmi.AsBool(row["NdisEncapsulationIeee802_3PAndQInOob"])
-		out[i].NdisEncapsulationIeee8023pAndq = wmi.AsBool(row["NdisEncapsulationIeee802_3pAndq"])
-		out[i].NdisEncapsulationNotNull = wmi.AsBool(row["NdisEncapsulationNotNull"])
-		out[i].NdisEncapsulationNotSupported = wmi.AsBool(row["NdisEncapsulationNotSupported"])
+		out[i] = MSFTNetAdapterLsoEncapsulationTypesFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneMSFTNetAdapterLsoEncapsulationTypes returns the single MSFT_NetAdapterLsoEncapsulationTypes matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetAdapterLsoEncapsulationTypes(svc *wmi.Service, where string) (*MSFTNetAdapterLsoEncapsulationTypes, error) {
+	out, err := QueryMSFTNetAdapterLsoEncapsulationTypes(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryMSFTNetAdapterLsoSettingData runs the WQL query against the class and decodes each
-// instance into a MSFTNetAdapterLsoSettingData. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetAdapterLsoSettingData. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetAdapterLsoSettingData(svc *wmi.Service, where string) ([]MSFTNetAdapterLsoSettingData, error) {
 	q := "SELECT * FROM MSFT_NetAdapterLsoSettingData"
 	if where != "" {
@@ -4479,32 +3849,14 @@ func QueryMSFTNetAdapterLsoSettingData(svc *wmi.Service, where string) ([]MSFTNe
 	}
 	out := make([]MSFTNetAdapterLsoSettingData, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].IPv4Enabled = wmi.AsBool(row["IPv4Enabled"])
-		out[i].IPv6Enabled = wmi.AsBool(row["IPv6Enabled"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].InterfaceDescription = wmi.AsString(row["InterfaceDescription"])
-		if v, ok := row["LargeSendOffloadV1HardwareCapabilities"].(wmi.Row); ok {
-			out[i].LargeSendOffloadV1HardwareCapabilities = v
-		}
-		if v, ok := row["LargeSendOffloadV2HardwareCapabilities"].(wmi.Row); ok {
-			out[i].LargeSendOffloadV2HardwareCapabilities = v
-		}
-		out[i].MaximumLsoVersionSupported = wmi.AsUint32(row["MaximumLsoVersionSupported"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].Source = wmi.AsUint32(row["Source"])
-		out[i].SystemName = wmi.AsString(row["SystemName"])
-		out[i].V1IPv4Enabled = wmi.AsBool(row["V1IPv4Enabled"])
+		out[i] = MSFTNetAdapterLsoSettingDataFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetAdapterLsoSettingData returns the MSFT_NetAdapterLsoSettingData instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetAdapterLsoSettingData(svc *wmi.Service, instanceID string) (*MSFTNetAdapterLsoSettingData, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetAdapterLsoSettingData returns the single MSFT_NetAdapterLsoSettingData matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetAdapterLsoSettingData(svc *wmi.Service, where string) (*MSFTNetAdapterLsoSettingData, error) {
 	out, err := QueryMSFTNetAdapterLsoSettingData(svc, where)
 	if err != nil {
 		return nil, err
@@ -4515,8 +3867,16 @@ func GetMSFTNetAdapterLsoSettingData(svc *wmi.Service, instanceID string) (*MSFT
 	return &out[0], nil
 }
 
+// GetMSFTNetAdapterLsoSettingData returns the MSFT_NetAdapterLsoSettingData instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterLsoSettingData(svc *wmi.Service, instanceID string) (*MSFTNetAdapterLsoSettingData, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetAdapterLsoSettingData(svc, where)
+}
+
 // QueryMSFTNetAdapterPacketDirectElementSetting runs the WQL query against the class and decodes each
-// instance into a MSFTNetAdapterPacketDirectElementSetting. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetAdapterPacketDirectElementSetting. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetAdapterPacketDirectElementSetting(svc *wmi.Service, where string) ([]MSFTNetAdapterPacketDirectElementSetting, error) {
 	q := "SELECT * FROM MSFT_NetAdapterPacketDirectElementSetting"
 	if where != "" {
@@ -4528,20 +3888,14 @@ func QueryMSFTNetAdapterPacketDirectElementSetting(svc *wmi.Service, where strin
 	}
 	out := make([]MSFTNetAdapterPacketDirectElementSetting, len(rows))
 	for i, row := range rows {
-		out[i].IsCurrent = wmi.AsUint16(row["IsCurrent"])
-		out[i].IsDefault = wmi.AsUint16(row["IsDefault"])
-		out[i].IsNext = wmi.AsUint16(row["IsNext"])
-		out[i].ManagedElement = wmi.AsString(row["ManagedElement"])
-		out[i].SettingData = wmi.AsString(row["SettingData"])
+		out[i] = MSFTNetAdapterPacketDirectElementSettingFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetAdapterPacketDirectElementSetting returns the MSFT_NetAdapterPacketDirectElementSetting instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetAdapterPacketDirectElementSetting(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetAdapterPacketDirectElementSetting, error) {
-	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
-		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+// QueryOneMSFTNetAdapterPacketDirectElementSetting returns the single MSFT_NetAdapterPacketDirectElementSetting matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetAdapterPacketDirectElementSetting(svc *wmi.Service, where string) (*MSFTNetAdapterPacketDirectElementSetting, error) {
 	out, err := QueryMSFTNetAdapterPacketDirectElementSetting(svc, where)
 	if err != nil {
 		return nil, err
@@ -4552,8 +3906,17 @@ func GetMSFTNetAdapterPacketDirectElementSetting(svc *wmi.Service, managedElemen
 	return &out[0], nil
 }
 
+// GetMSFTNetAdapterPacketDirectElementSetting returns the MSFT_NetAdapterPacketDirectElementSetting instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterPacketDirectElementSetting(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetAdapterPacketDirectElementSetting, error) {
+	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
+		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+	return QueryOneMSFTNetAdapterPacketDirectElementSetting(svc, where)
+}
+
 // QueryMSFTNetAdapterPacketDirectSettingData runs the WQL query against the class and decodes each
-// instance into a MSFTNetAdapterPacketDirectSettingData. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetAdapterPacketDirectSettingData. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetAdapterPacketDirectSettingData(svc *wmi.Service, where string) ([]MSFTNetAdapterPacketDirectSettingData, error) {
 	q := "SELECT * FROM MSFT_NetAdapterPacketDirectSettingData"
 	if where != "" {
@@ -4565,30 +3928,14 @@ func QueryMSFTNetAdapterPacketDirectSettingData(svc *wmi.Service, where string) 
 	}
 	out := make([]MSFTNetAdapterPacketDirectSettingData, len(rows))
 	for i, row := range rows {
-		if v, ok := row["Capabilities"].(wmi.Row); ok {
-			out[i].Capabilities = v
-		}
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DiagnosticCode = wmi.AsUint32(row["DiagnosticCode"])
-		out[i].DmaAddressWidth = wmi.AsUint8(row["DmaAddressWidth"])
-		out[i].DomainId = wmi.AsUint32(row["DomainId"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].Enabled = wmi.AsBool(row["Enabled"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].InterfaceDescription = wmi.AsString(row["InterfaceDescription"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].Operational = wmi.AsBool(row["Operational"])
-		out[i].Source = wmi.AsUint32(row["Source"])
-		out[i].SystemName = wmi.AsString(row["SystemName"])
+		out[i] = MSFTNetAdapterPacketDirectSettingDataFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetAdapterPacketDirectSettingData returns the MSFT_NetAdapterPacketDirectSettingData instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetAdapterPacketDirectSettingData(svc *wmi.Service, instanceID string) (*MSFTNetAdapterPacketDirectSettingData, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetAdapterPacketDirectSettingData returns the single MSFT_NetAdapterPacketDirectSettingData matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetAdapterPacketDirectSettingData(svc *wmi.Service, where string) (*MSFTNetAdapterPacketDirectSettingData, error) {
 	out, err := QueryMSFTNetAdapterPacketDirectSettingData(svc, where)
 	if err != nil {
 		return nil, err
@@ -4599,8 +3946,16 @@ func GetMSFTNetAdapterPacketDirectSettingData(svc *wmi.Service, instanceID strin
 	return &out[0], nil
 }
 
+// GetMSFTNetAdapterPacketDirectSettingData returns the MSFT_NetAdapterPacketDirectSettingData instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterPacketDirectSettingData(svc *wmi.Service, instanceID string) (*MSFTNetAdapterPacketDirectSettingData, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetAdapterPacketDirectSettingData(svc, where)
+}
+
 // QueryMSFTNetAdapterPowerManagementElementSetting runs the WQL query against the class and decodes each
-// instance into a MSFTNetAdapterPowerManagementElementSetting. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetAdapterPowerManagementElementSetting. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetAdapterPowerManagementElementSetting(svc *wmi.Service, where string) ([]MSFTNetAdapterPowerManagementElementSetting, error) {
 	q := "SELECT * FROM MSFT_NetAdapterPowerManagementElementSetting"
 	if where != "" {
@@ -4612,20 +3967,14 @@ func QueryMSFTNetAdapterPowerManagementElementSetting(svc *wmi.Service, where st
 	}
 	out := make([]MSFTNetAdapterPowerManagementElementSetting, len(rows))
 	for i, row := range rows {
-		out[i].IsCurrent = wmi.AsUint16(row["IsCurrent"])
-		out[i].IsDefault = wmi.AsUint16(row["IsDefault"])
-		out[i].IsNext = wmi.AsUint16(row["IsNext"])
-		out[i].ManagedElement = wmi.AsString(row["ManagedElement"])
-		out[i].SettingData = wmi.AsString(row["SettingData"])
+		out[i] = MSFTNetAdapterPowerManagementElementSettingFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetAdapterPowerManagementElementSetting returns the MSFT_NetAdapterPowerManagementElementSetting instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetAdapterPowerManagementElementSetting(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetAdapterPowerManagementElementSetting, error) {
-	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
-		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+// QueryOneMSFTNetAdapterPowerManagementElementSetting returns the single MSFT_NetAdapterPowerManagementElementSetting matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetAdapterPowerManagementElementSetting(svc *wmi.Service, where string) (*MSFTNetAdapterPowerManagementElementSetting, error) {
 	out, err := QueryMSFTNetAdapterPowerManagementElementSetting(svc, where)
 	if err != nil {
 		return nil, err
@@ -4636,8 +3985,17 @@ func GetMSFTNetAdapterPowerManagementElementSetting(svc *wmi.Service, managedEle
 	return &out[0], nil
 }
 
+// GetMSFTNetAdapterPowerManagementElementSetting returns the MSFT_NetAdapterPowerManagementElementSetting instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterPowerManagementElementSetting(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetAdapterPowerManagementElementSetting, error) {
+	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
+		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+	return QueryOneMSFTNetAdapterPowerManagementElementSetting(svc, where)
+}
+
 // QueryMSFTNetAdapterPowerManagementSettingData runs the WQL query against the class and decodes each
-// instance into a MSFTNetAdapterPowerManagementSettingData. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetAdapterPowerManagementSettingData. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetAdapterPowerManagementSettingData(svc *wmi.Service, where string) ([]MSFTNetAdapterPowerManagementSettingData, error) {
 	q := "SELECT * FROM MSFT_NetAdapterPowerManagementSettingData"
 	if where != "" {
@@ -4649,33 +4007,14 @@ func QueryMSFTNetAdapterPowerManagementSettingData(svc *wmi.Service, where strin
 	}
 	out := make([]MSFTNetAdapterPowerManagementSettingData, len(rows))
 	for i, row := range rows {
-		out[i].AllowComputerToTurnOffDevice = wmi.AsUint32(row["AllowComputerToTurnOffDevice"])
-		out[i].ArpOffload = wmi.AsUint32(row["ArpOffload"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].D0PacketCoalescing = wmi.AsUint32(row["D0PacketCoalescing"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DeviceSleepOnDisconnect = wmi.AsUint32(row["DeviceSleepOnDisconnect"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].InterfaceDescription = wmi.AsString(row["InterfaceDescription"])
-		out[i].NSOffload = wmi.AsUint32(row["NSOffload"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].OffloadParameters = wmi.AsRowSlice(row["OffloadParameters"])
-		out[i].RsnRekeyOffload = wmi.AsUint32(row["RsnRekeyOffload"])
-		out[i].SelectiveSuspend = wmi.AsUint32(row["SelectiveSuspend"])
-		out[i].Source = wmi.AsUint32(row["Source"])
-		out[i].SystemName = wmi.AsString(row["SystemName"])
-		out[i].WakeOnMagicPacket = wmi.AsUint32(row["WakeOnMagicPacket"])
-		out[i].WakeOnPattern = wmi.AsUint32(row["WakeOnPattern"])
-		out[i].WakePatterns = wmi.AsRowSlice(row["WakePatterns"])
+		out[i] = MSFTNetAdapterPowerManagementSettingDataFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetAdapterPowerManagementSettingData returns the MSFT_NetAdapterPowerManagementSettingData instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetAdapterPowerManagementSettingData(svc *wmi.Service, instanceID string) (*MSFTNetAdapterPowerManagementSettingData, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetAdapterPowerManagementSettingData returns the single MSFT_NetAdapterPowerManagementSettingData matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetAdapterPowerManagementSettingData(svc *wmi.Service, where string) (*MSFTNetAdapterPowerManagementSettingData, error) {
 	out, err := QueryMSFTNetAdapterPowerManagementSettingData(svc, where)
 	if err != nil {
 		return nil, err
@@ -4686,8 +4025,16 @@ func GetMSFTNetAdapterPowerManagementSettingData(svc *wmi.Service, instanceID st
 	return &out[0], nil
 }
 
+// GetMSFTNetAdapterPowerManagementSettingData returns the MSFT_NetAdapterPowerManagementSettingData instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterPowerManagementSettingData(svc *wmi.Service, instanceID string) (*MSFTNetAdapterPowerManagementSettingData, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetAdapterPowerManagementSettingData(svc, where)
+}
+
 // QueryMSFTNetAdapterPowerManagementOffload runs the WQL query against the class and decodes each
-// instance into a MSFTNetAdapterPowerManagementOffload. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetAdapterPowerManagementOffload. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetAdapterPowerManagementOffload(svc *wmi.Service, where string) ([]MSFTNetAdapterPowerManagementOffload, error) {
 	q := "SELECT * FROM MSFT_NetAdapterPowerManagement_Offload"
 	if where != "" {
@@ -4699,16 +4046,27 @@ func QueryMSFTNetAdapterPowerManagementOffload(svc *wmi.Service, where string) (
 	}
 	out := make([]MSFTNetAdapterPowerManagementOffload, len(rows))
 	for i, row := range rows {
-		out[i].FriendlyName = wmi.AsString(row["FriendlyName"])
-		out[i].ID = wmi.AsUint32(row["ID"])
-		out[i].OffloadType = wmi.AsUint32(row["OffloadType"])
-		out[i].Priority = wmi.AsUint32(row["Priority"])
+		out[i] = MSFTNetAdapterPowerManagementOffloadFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneMSFTNetAdapterPowerManagementOffload returns the single MSFT_NetAdapterPowerManagement_Offload matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetAdapterPowerManagementOffload(svc *wmi.Service, where string) (*MSFTNetAdapterPowerManagementOffload, error) {
+	out, err := QueryMSFTNetAdapterPowerManagementOffload(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryMSFTNetAdapterPowerManagementOffloadArp runs the WQL query against the class and decodes each
-// instance into a MSFTNetAdapterPowerManagementOffloadArp. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetAdapterPowerManagementOffloadArp. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetAdapterPowerManagementOffloadArp(svc *wmi.Service, where string) ([]MSFTNetAdapterPowerManagementOffloadArp, error) {
 	q := "SELECT * FROM MSFT_NetAdapterPowerManagement_Offload_Arp"
 	if where != "" {
@@ -4720,19 +4078,27 @@ func QueryMSFTNetAdapterPowerManagementOffloadArp(svc *wmi.Service, where string
 	}
 	out := make([]MSFTNetAdapterPowerManagementOffloadArp, len(rows))
 	for i, row := range rows {
-		out[i].FriendlyName = wmi.AsString(row["FriendlyName"])
-		out[i].HostIPv4Address = wmi.AsString(row["HostIPv4Address"])
-		out[i].ID = wmi.AsUint32(row["ID"])
-		out[i].MACAddress = wmi.AsString(row["MACAddress"])
-		out[i].OffloadType = wmi.AsUint32(row["OffloadType"])
-		out[i].Priority = wmi.AsUint32(row["Priority"])
-		out[i].RemoteIPv4Address = wmi.AsString(row["RemoteIPv4Address"])
+		out[i] = MSFTNetAdapterPowerManagementOffloadArpFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneMSFTNetAdapterPowerManagementOffloadArp returns the single MSFT_NetAdapterPowerManagement_Offload_Arp matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetAdapterPowerManagementOffloadArp(svc *wmi.Service, where string) (*MSFTNetAdapterPowerManagementOffloadArp, error) {
+	out, err := QueryMSFTNetAdapterPowerManagementOffloadArp(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryMSFTNetAdapterPowerManagementOffloadNS runs the WQL query against the class and decodes each
-// instance into a MSFTNetAdapterPowerManagementOffloadNS. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetAdapterPowerManagementOffloadNS. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetAdapterPowerManagementOffloadNS(svc *wmi.Service, where string) ([]MSFTNetAdapterPowerManagementOffloadNS, error) {
 	q := "SELECT * FROM MSFT_NetAdapterPowerManagement_Offload_NS"
 	if where != "" {
@@ -4744,20 +4110,27 @@ func QueryMSFTNetAdapterPowerManagementOffloadNS(svc *wmi.Service, where string)
 	}
 	out := make([]MSFTNetAdapterPowerManagementOffloadNS, len(rows))
 	for i, row := range rows {
-		out[i].FriendlyName = wmi.AsString(row["FriendlyName"])
-		out[i].ID = wmi.AsUint32(row["ID"])
-		out[i].MacAddress = wmi.AsString(row["MacAddress"])
-		out[i].OffloadType = wmi.AsUint32(row["OffloadType"])
-		out[i].Priority = wmi.AsUint32(row["Priority"])
-		out[i].RemoteIPv6Address = wmi.AsString(row["RemoteIPv6Address"])
-		out[i].SolicitedNodeIPv6Address = wmi.AsString(row["SolicitedNodeIPv6Address"])
-		out[i].TargetIPv6Addresses = wmi.AsStringSlice(row["TargetIPv6Addresses"])
+		out[i] = MSFTNetAdapterPowerManagementOffloadNSFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneMSFTNetAdapterPowerManagementOffloadNS returns the single MSFT_NetAdapterPowerManagement_Offload_NS matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetAdapterPowerManagementOffloadNS(svc *wmi.Service, where string) (*MSFTNetAdapterPowerManagementOffloadNS, error) {
+	out, err := QueryMSFTNetAdapterPowerManagementOffloadNS(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryMSFTNetAdapterPowerManagementOffloadRsnRekey runs the WQL query against the class and decodes each
-// instance into a MSFTNetAdapterPowerManagementOffloadRsnRekey. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetAdapterPowerManagementOffloadRsnRekey. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetAdapterPowerManagementOffloadRsnRekey(svc *wmi.Service, where string) ([]MSFTNetAdapterPowerManagementOffloadRsnRekey, error) {
 	q := "SELECT * FROM MSFT_NetAdapterPowerManagement_Offload_RsnRekey"
 	if where != "" {
@@ -4769,19 +4142,27 @@ func QueryMSFTNetAdapterPowerManagementOffloadRsnRekey(svc *wmi.Service, where s
 	}
 	out := make([]MSFTNetAdapterPowerManagementOffloadRsnRekey, len(rows))
 	for i, row := range rows {
-		out[i].FriendlyName = wmi.AsString(row["FriendlyName"])
-		out[i].ID = wmi.AsUint32(row["ID"])
-		out[i].KCK = wmi.AsUint8Slice(row["KCK"])
-		out[i].KEK = wmi.AsUint8Slice(row["KEK"])
-		out[i].OffloadType = wmi.AsUint32(row["OffloadType"])
-		out[i].Priority = wmi.AsUint32(row["Priority"])
-		out[i].ReplayCounter = wmi.AsUint64(row["ReplayCounter"])
+		out[i] = MSFTNetAdapterPowerManagementOffloadRsnRekeyFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneMSFTNetAdapterPowerManagementOffloadRsnRekey returns the single MSFT_NetAdapterPowerManagement_Offload_RsnRekey matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetAdapterPowerManagementOffloadRsnRekey(svc *wmi.Service, where string) (*MSFTNetAdapterPowerManagementOffloadRsnRekey, error) {
+	out, err := QueryMSFTNetAdapterPowerManagementOffloadRsnRekey(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryMSFTNetAdapterPowerManagementWakePattern runs the WQL query against the class and decodes each
-// instance into a MSFTNetAdapterPowerManagementWakePattern. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetAdapterPowerManagementWakePattern. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetAdapterPowerManagementWakePattern(svc *wmi.Service, where string) ([]MSFTNetAdapterPowerManagementWakePattern, error) {
 	q := "SELECT * FROM MSFT_NetAdapterPowerManagement_WakePattern"
 	if where != "" {
@@ -4793,16 +4174,27 @@ func QueryMSFTNetAdapterPowerManagementWakePattern(svc *wmi.Service, where strin
 	}
 	out := make([]MSFTNetAdapterPowerManagementWakePattern, len(rows))
 	for i, row := range rows {
-		out[i].FriendlyName = wmi.AsString(row["FriendlyName"])
-		out[i].ID = wmi.AsUint32(row["ID"])
-		out[i].Priority = wmi.AsUint32(row["Priority"])
-		out[i].WakePacketType = wmi.AsUint32(row["WakePacketType"])
+		out[i] = MSFTNetAdapterPowerManagementWakePatternFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneMSFTNetAdapterPowerManagementWakePattern returns the single MSFT_NetAdapterPowerManagement_WakePattern matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetAdapterPowerManagementWakePattern(svc *wmi.Service, where string) (*MSFTNetAdapterPowerManagementWakePattern, error) {
+	out, err := QueryMSFTNetAdapterPowerManagementWakePattern(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryMSFTNetAdapterPowerManagementWakePatternBitmap runs the WQL query against the class and decodes each
-// instance into a MSFTNetAdapterPowerManagementWakePatternBitmap. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetAdapterPowerManagementWakePatternBitmap. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetAdapterPowerManagementWakePatternBitmap(svc *wmi.Service, where string) ([]MSFTNetAdapterPowerManagementWakePatternBitmap, error) {
 	q := "SELECT * FROM MSFT_NetAdapterPowerManagement_WakePattern_Bitmap"
 	if where != "" {
@@ -4814,18 +4206,27 @@ func QueryMSFTNetAdapterPowerManagementWakePatternBitmap(svc *wmi.Service, where
 	}
 	out := make([]MSFTNetAdapterPowerManagementWakePatternBitmap, len(rows))
 	for i, row := range rows {
-		out[i].FriendlyName = wmi.AsString(row["FriendlyName"])
-		out[i].ID = wmi.AsUint32(row["ID"])
-		out[i].Mask = wmi.AsUint8Slice(row["Mask"])
-		out[i].Pattern = wmi.AsUint8Slice(row["Pattern"])
-		out[i].Priority = wmi.AsUint32(row["Priority"])
-		out[i].WakePacketType = wmi.AsUint32(row["WakePacketType"])
+		out[i] = MSFTNetAdapterPowerManagementWakePatternBitmapFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneMSFTNetAdapterPowerManagementWakePatternBitmap returns the single MSFT_NetAdapterPowerManagement_WakePattern_Bitmap matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetAdapterPowerManagementWakePatternBitmap(svc *wmi.Service, where string) (*MSFTNetAdapterPowerManagementWakePatternBitmap, error) {
+	out, err := QueryMSFTNetAdapterPowerManagementWakePatternBitmap(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryMSFTNetAdapterPowerManagementWakePatternEapolRequestId runs the WQL query against the class and decodes each
-// instance into a MSFTNetAdapterPowerManagementWakePatternEapolRequestId. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetAdapterPowerManagementWakePatternEapolRequestId. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetAdapterPowerManagementWakePatternEapolRequestId(svc *wmi.Service, where string) ([]MSFTNetAdapterPowerManagementWakePatternEapolRequestId, error) {
 	q := "SELECT * FROM MSFT_NetAdapterPowerManagement_WakePattern_EapolRequestId"
 	if where != "" {
@@ -4837,16 +4238,27 @@ func QueryMSFTNetAdapterPowerManagementWakePatternEapolRequestId(svc *wmi.Servic
 	}
 	out := make([]MSFTNetAdapterPowerManagementWakePatternEapolRequestId, len(rows))
 	for i, row := range rows {
-		out[i].FriendlyName = wmi.AsString(row["FriendlyName"])
-		out[i].ID = wmi.AsUint32(row["ID"])
-		out[i].Priority = wmi.AsUint32(row["Priority"])
-		out[i].WakePacketType = wmi.AsUint32(row["WakePacketType"])
+		out[i] = MSFTNetAdapterPowerManagementWakePatternEapolRequestIdFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneMSFTNetAdapterPowerManagementWakePatternEapolRequestId returns the single MSFT_NetAdapterPowerManagement_WakePattern_EapolRequestId matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetAdapterPowerManagementWakePatternEapolRequestId(svc *wmi.Service, where string) (*MSFTNetAdapterPowerManagementWakePatternEapolRequestId, error) {
+	out, err := QueryMSFTNetAdapterPowerManagementWakePatternEapolRequestId(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryMSFTNetAdapterPowerManagementWakePatternMagicPacket runs the WQL query against the class and decodes each
-// instance into a MSFTNetAdapterPowerManagementWakePatternMagicPacket. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetAdapterPowerManagementWakePatternMagicPacket. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetAdapterPowerManagementWakePatternMagicPacket(svc *wmi.Service, where string) ([]MSFTNetAdapterPowerManagementWakePatternMagicPacket, error) {
 	q := "SELECT * FROM MSFT_NetAdapterPowerManagement_WakePattern_MagicPacket"
 	if where != "" {
@@ -4858,16 +4270,27 @@ func QueryMSFTNetAdapterPowerManagementWakePatternMagicPacket(svc *wmi.Service, 
 	}
 	out := make([]MSFTNetAdapterPowerManagementWakePatternMagicPacket, len(rows))
 	for i, row := range rows {
-		out[i].FriendlyName = wmi.AsString(row["FriendlyName"])
-		out[i].ID = wmi.AsUint32(row["ID"])
-		out[i].Priority = wmi.AsUint32(row["Priority"])
-		out[i].WakePacketType = wmi.AsUint32(row["WakePacketType"])
+		out[i] = MSFTNetAdapterPowerManagementWakePatternMagicPacketFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneMSFTNetAdapterPowerManagementWakePatternMagicPacket returns the single MSFT_NetAdapterPowerManagement_WakePattern_MagicPacket matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetAdapterPowerManagementWakePatternMagicPacket(svc *wmi.Service, where string) (*MSFTNetAdapterPowerManagementWakePatternMagicPacket, error) {
+	out, err := QueryMSFTNetAdapterPowerManagementWakePatternMagicPacket(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryMSFTNetAdapterPowerManagementWakePatternTcpSyn runs the WQL query against the class and decodes each
-// instance into a MSFTNetAdapterPowerManagementWakePatternTcpSyn. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetAdapterPowerManagementWakePatternTcpSyn. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetAdapterPowerManagementWakePatternTcpSyn(svc *wmi.Service, where string) ([]MSFTNetAdapterPowerManagementWakePatternTcpSyn, error) {
 	q := "SELECT * FROM MSFT_NetAdapterPowerManagement_WakePattern_TcpSyn"
 	if where != "" {
@@ -4879,20 +4302,27 @@ func QueryMSFTNetAdapterPowerManagementWakePatternTcpSyn(svc *wmi.Service, where
 	}
 	out := make([]MSFTNetAdapterPowerManagementWakePatternTcpSyn, len(rows))
 	for i, row := range rows {
-		out[i].DestinationAddress = wmi.AsString(row["DestinationAddress"])
-		out[i].DestinationPort = wmi.AsUint16(row["DestinationPort"])
-		out[i].FriendlyName = wmi.AsString(row["FriendlyName"])
-		out[i].ID = wmi.AsUint32(row["ID"])
-		out[i].Priority = wmi.AsUint32(row["Priority"])
-		out[i].SourceAddress = wmi.AsString(row["SourceAddress"])
-		out[i].SourcePort = wmi.AsUint16(row["SourcePort"])
-		out[i].WakePacketType = wmi.AsUint32(row["WakePacketType"])
+		out[i] = MSFTNetAdapterPowerManagementWakePatternTcpSynFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneMSFTNetAdapterPowerManagementWakePatternTcpSyn returns the single MSFT_NetAdapterPowerManagement_WakePattern_TcpSyn matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetAdapterPowerManagementWakePatternTcpSyn(svc *wmi.Service, where string) (*MSFTNetAdapterPowerManagementWakePatternTcpSyn, error) {
+	out, err := QueryMSFTNetAdapterPowerManagementWakePatternTcpSyn(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryMSFTNetAdapterPowerManagementWakePatternWildCard runs the WQL query against the class and decodes each
-// instance into a MSFTNetAdapterPowerManagementWakePatternWildCard. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetAdapterPowerManagementWakePatternWildCard. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetAdapterPowerManagementWakePatternWildCard(svc *wmi.Service, where string) ([]MSFTNetAdapterPowerManagementWakePatternWildCard, error) {
 	q := "SELECT * FROM MSFT_NetAdapterPowerManagement_WakePattern_WildCard"
 	if where != "" {
@@ -4904,16 +4334,27 @@ func QueryMSFTNetAdapterPowerManagementWakePatternWildCard(svc *wmi.Service, whe
 	}
 	out := make([]MSFTNetAdapterPowerManagementWakePatternWildCard, len(rows))
 	for i, row := range rows {
-		out[i].FriendlyName = wmi.AsString(row["FriendlyName"])
-		out[i].ID = wmi.AsUint32(row["ID"])
-		out[i].Priority = wmi.AsUint32(row["Priority"])
-		out[i].WakePacketType = wmi.AsUint32(row["WakePacketType"])
+		out[i] = MSFTNetAdapterPowerManagementWakePatternWildCardFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneMSFTNetAdapterPowerManagementWakePatternWildCard returns the single MSFT_NetAdapterPowerManagement_WakePattern_WildCard matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetAdapterPowerManagementWakePatternWildCard(svc *wmi.Service, where string) (*MSFTNetAdapterPowerManagementWakePatternWildCard, error) {
+	out, err := QueryMSFTNetAdapterPowerManagementWakePatternWildCard(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryMSFTNetAdapterQosElementSetting runs the WQL query against the class and decodes each
-// instance into a MSFTNetAdapterQosElementSetting. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetAdapterQosElementSetting. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetAdapterQosElementSetting(svc *wmi.Service, where string) ([]MSFTNetAdapterQosElementSetting, error) {
 	q := "SELECT * FROM MSFT_NetAdapterQosElementSetting"
 	if where != "" {
@@ -4925,20 +4366,14 @@ func QueryMSFTNetAdapterQosElementSetting(svc *wmi.Service, where string) ([]MSF
 	}
 	out := make([]MSFTNetAdapterQosElementSetting, len(rows))
 	for i, row := range rows {
-		out[i].IsCurrent = wmi.AsUint16(row["IsCurrent"])
-		out[i].IsDefault = wmi.AsUint16(row["IsDefault"])
-		out[i].IsNext = wmi.AsUint16(row["IsNext"])
-		out[i].ManagedElement = wmi.AsString(row["ManagedElement"])
-		out[i].SettingData = wmi.AsString(row["SettingData"])
+		out[i] = MSFTNetAdapterQosElementSettingFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetAdapterQosElementSetting returns the MSFT_NetAdapterQosElementSetting instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetAdapterQosElementSetting(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetAdapterQosElementSetting, error) {
-	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
-		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+// QueryOneMSFTNetAdapterQosElementSetting returns the single MSFT_NetAdapterQosElementSetting matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetAdapterQosElementSetting(svc *wmi.Service, where string) (*MSFTNetAdapterQosElementSetting, error) {
 	out, err := QueryMSFTNetAdapterQosElementSetting(svc, where)
 	if err != nil {
 		return nil, err
@@ -4949,8 +4384,17 @@ func GetMSFTNetAdapterQosElementSetting(svc *wmi.Service, managedElement string,
 	return &out[0], nil
 }
 
+// GetMSFTNetAdapterQosElementSetting returns the MSFT_NetAdapterQosElementSetting instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterQosElementSetting(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetAdapterQosElementSetting, error) {
+	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
+		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+	return QueryOneMSFTNetAdapterQosElementSetting(svc, where)
+}
+
 // QueryMSFTNetAdapterQosSettingData runs the WQL query against the class and decodes each
-// instance into a MSFTNetAdapterQosSettingData. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetAdapterQosSettingData. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetAdapterQosSettingData(svc *wmi.Service, where string) ([]MSFTNetAdapterQosSettingData, error) {
 	q := "SELECT * FROM MSFT_NetAdapterQosSettingData"
 	if where != "" {
@@ -4962,35 +4406,14 @@ func QueryMSFTNetAdapterQosSettingData(svc *wmi.Service, where string) ([]MSFTNe
 	}
 	out := make([]MSFTNetAdapterQosSettingData, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		if v, ok := row["CurrentCapabilities"].(wmi.Row); ok {
-			out[i].CurrentCapabilities = v
-		}
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].Enabled = wmi.AsBool(row["Enabled"])
-		if v, ok := row["HardwareCapabilities"].(wmi.Row); ok {
-			out[i].HardwareCapabilities = v
-		}
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].InterfaceDescription = wmi.AsString(row["InterfaceDescription"])
-		out[i].Name = wmi.AsString(row["Name"])
-		if v, ok := row["OperationalSettings"].(wmi.Row); ok {
-			out[i].OperationalSettings = v
-		}
-		if v, ok := row["RemoteSettings"].(wmi.Row); ok {
-			out[i].RemoteSettings = v
-		}
-		out[i].Source = wmi.AsUint32(row["Source"])
-		out[i].SystemName = wmi.AsString(row["SystemName"])
+		out[i] = MSFTNetAdapterQosSettingDataFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetAdapterQosSettingData returns the MSFT_NetAdapterQosSettingData instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetAdapterQosSettingData(svc *wmi.Service, instanceID string) (*MSFTNetAdapterQosSettingData, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetAdapterQosSettingData returns the single MSFT_NetAdapterQosSettingData matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetAdapterQosSettingData(svc *wmi.Service, where string) (*MSFTNetAdapterQosSettingData, error) {
 	out, err := QueryMSFTNetAdapterQosSettingData(svc, where)
 	if err != nil {
 		return nil, err
@@ -5001,8 +4424,16 @@ func GetMSFTNetAdapterQosSettingData(svc *wmi.Service, instanceID string) (*MSFT
 	return &out[0], nil
 }
 
+// GetMSFTNetAdapterQosSettingData returns the MSFT_NetAdapterQosSettingData instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterQosSettingData(svc *wmi.Service, instanceID string) (*MSFTNetAdapterQosSettingData, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetAdapterQosSettingData(svc, where)
+}
+
 // QueryMSFTNetAdapterRdmaElementSetting runs the WQL query against the class and decodes each
-// instance into a MSFTNetAdapterRdmaElementSetting. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetAdapterRdmaElementSetting. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetAdapterRdmaElementSetting(svc *wmi.Service, where string) ([]MSFTNetAdapterRdmaElementSetting, error) {
 	q := "SELECT * FROM MSFT_NetAdapterRdmaElementSetting"
 	if where != "" {
@@ -5014,20 +4445,14 @@ func QueryMSFTNetAdapterRdmaElementSetting(svc *wmi.Service, where string) ([]MS
 	}
 	out := make([]MSFTNetAdapterRdmaElementSetting, len(rows))
 	for i, row := range rows {
-		out[i].IsCurrent = wmi.AsUint16(row["IsCurrent"])
-		out[i].IsDefault = wmi.AsUint16(row["IsDefault"])
-		out[i].IsNext = wmi.AsUint16(row["IsNext"])
-		out[i].ManagedElement = wmi.AsString(row["ManagedElement"])
-		out[i].SettingData = wmi.AsString(row["SettingData"])
+		out[i] = MSFTNetAdapterRdmaElementSettingFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetAdapterRdmaElementSetting returns the MSFT_NetAdapterRdmaElementSetting instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetAdapterRdmaElementSetting(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetAdapterRdmaElementSetting, error) {
-	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
-		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+// QueryOneMSFTNetAdapterRdmaElementSetting returns the single MSFT_NetAdapterRdmaElementSetting matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetAdapterRdmaElementSetting(svc *wmi.Service, where string) (*MSFTNetAdapterRdmaElementSetting, error) {
 	out, err := QueryMSFTNetAdapterRdmaElementSetting(svc, where)
 	if err != nil {
 		return nil, err
@@ -5038,8 +4463,17 @@ func GetMSFTNetAdapterRdmaElementSetting(svc *wmi.Service, managedElement string
 	return &out[0], nil
 }
 
+// GetMSFTNetAdapterRdmaElementSetting returns the MSFT_NetAdapterRdmaElementSetting instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterRdmaElementSetting(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetAdapterRdmaElementSetting, error) {
+	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
+		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+	return QueryOneMSFTNetAdapterRdmaElementSetting(svc, where)
+}
+
 // QueryMSFTNetAdapterRdmaSettingData runs the WQL query against the class and decodes each
-// instance into a MSFTNetAdapterRdmaSettingData. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetAdapterRdmaSettingData. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetAdapterRdmaSettingData(svc *wmi.Service, where string) ([]MSFTNetAdapterRdmaSettingData, error) {
 	q := "SELECT * FROM MSFT_NetAdapterRdmaSettingData"
 	if where != "" {
@@ -5051,40 +4485,14 @@ func QueryMSFTNetAdapterRdmaSettingData(svc *wmi.Service, where string) ([]MSFTN
 	}
 	out := make([]MSFTNetAdapterRdmaSettingData, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].ETS = wmi.AsUint32(row["ETS"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].Enabled = wmi.AsBool(row["Enabled"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].InterfaceDescription = wmi.AsString(row["InterfaceDescription"])
-		out[i].MaxCompletionQueueCount = wmi.AsUint32(row["MaxCompletionQueueCount"])
-		out[i].MaxInboundReadLimit = wmi.AsUint32(row["MaxInboundReadLimit"])
-		out[i].MaxMemoryRegionCount = wmi.AsUint32(row["MaxMemoryRegionCount"])
-		out[i].MaxMemoryWindowCount = wmi.AsUint32(row["MaxMemoryWindowCount"])
-		out[i].MaxOutboundReadLimit = wmi.AsUint32(row["MaxOutboundReadLimit"])
-		out[i].MaxProtectionDomainCount = wmi.AsUint32(row["MaxProtectionDomainCount"])
-		out[i].MaxQueuePairCount = wmi.AsUint32(row["MaxQueuePairCount"])
-		out[i].MaxSharedReceiveQueueCount = wmi.AsUint32(row["MaxSharedReceiveQueueCount"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].OperationalState = wmi.AsBool(row["OperationalState"])
-		out[i].PFC = wmi.AsUint32(row["PFC"])
-		if v, ok := row["RdmaAdapterInfo"].(wmi.Row); ok {
-			out[i].RdmaAdapterInfo = v
-		}
-		if v, ok := row["RdmaMissingCounterInfo"].(wmi.Row); ok {
-			out[i].RdmaMissingCounterInfo = v
-		}
-		out[i].Source = wmi.AsUint32(row["Source"])
-		out[i].SystemName = wmi.AsString(row["SystemName"])
+		out[i] = MSFTNetAdapterRdmaSettingDataFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetAdapterRdmaSettingData returns the MSFT_NetAdapterRdmaSettingData instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetAdapterRdmaSettingData(svc *wmi.Service, instanceID string) (*MSFTNetAdapterRdmaSettingData, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetAdapterRdmaSettingData returns the single MSFT_NetAdapterRdmaSettingData matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetAdapterRdmaSettingData(svc *wmi.Service, where string) (*MSFTNetAdapterRdmaSettingData, error) {
 	out, err := QueryMSFTNetAdapterRdmaSettingData(svc, where)
 	if err != nil {
 		return nil, err
@@ -5095,8 +4503,16 @@ func GetMSFTNetAdapterRdmaSettingData(svc *wmi.Service, instanceID string) (*MSF
 	return &out[0], nil
 }
 
+// GetMSFTNetAdapterRdmaSettingData returns the MSFT_NetAdapterRdmaSettingData instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterRdmaSettingData(svc *wmi.Service, instanceID string) (*MSFTNetAdapterRdmaSettingData, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetAdapterRdmaSettingData(svc, where)
+}
+
 // QueryMSFTNetAdapterRscCapabilities runs the WQL query against the class and decodes each
-// instance into a MSFTNetAdapterRscCapabilities. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetAdapterRscCapabilities. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetAdapterRscCapabilities(svc *wmi.Service, where string) ([]MSFTNetAdapterRscCapabilities, error) {
 	q := "SELECT * FROM MSFT_NetAdapterRscCapabilities"
 	if where != "" {
@@ -5108,14 +4524,27 @@ func QueryMSFTNetAdapterRscCapabilities(svc *wmi.Service, where string) ([]MSFTN
 	}
 	out := make([]MSFTNetAdapterRscCapabilities, len(rows))
 	for i, row := range rows {
-		out[i].IPv4Supported = wmi.AsBool(row["IPv4Supported"])
-		out[i].IPv6Supported = wmi.AsBool(row["IPv6Supported"])
+		out[i] = MSFTNetAdapterRscCapabilitiesFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneMSFTNetAdapterRscCapabilities returns the single MSFT_NetAdapterRscCapabilities matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetAdapterRscCapabilities(svc *wmi.Service, where string) (*MSFTNetAdapterRscCapabilities, error) {
+	out, err := QueryMSFTNetAdapterRscCapabilities(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryMSFTNetAdapterRscElementSetting runs the WQL query against the class and decodes each
-// instance into a MSFTNetAdapterRscElementSetting. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetAdapterRscElementSetting. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetAdapterRscElementSetting(svc *wmi.Service, where string) ([]MSFTNetAdapterRscElementSetting, error) {
 	q := "SELECT * FROM MSFT_NetAdapterRscElementSetting"
 	if where != "" {
@@ -5127,20 +4556,14 @@ func QueryMSFTNetAdapterRscElementSetting(svc *wmi.Service, where string) ([]MSF
 	}
 	out := make([]MSFTNetAdapterRscElementSetting, len(rows))
 	for i, row := range rows {
-		out[i].IsCurrent = wmi.AsUint16(row["IsCurrent"])
-		out[i].IsDefault = wmi.AsUint16(row["IsDefault"])
-		out[i].IsNext = wmi.AsUint16(row["IsNext"])
-		out[i].ManagedElement = wmi.AsString(row["ManagedElement"])
-		out[i].SettingData = wmi.AsString(row["SettingData"])
+		out[i] = MSFTNetAdapterRscElementSettingFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetAdapterRscElementSetting returns the MSFT_NetAdapterRscElementSetting instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetAdapterRscElementSetting(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetAdapterRscElementSetting, error) {
-	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
-		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+// QueryOneMSFTNetAdapterRscElementSetting returns the single MSFT_NetAdapterRscElementSetting matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetAdapterRscElementSetting(svc *wmi.Service, where string) (*MSFTNetAdapterRscElementSetting, error) {
 	out, err := QueryMSFTNetAdapterRscElementSetting(svc, where)
 	if err != nil {
 		return nil, err
@@ -5151,8 +4574,17 @@ func GetMSFTNetAdapterRscElementSetting(svc *wmi.Service, managedElement string,
 	return &out[0], nil
 }
 
+// GetMSFTNetAdapterRscElementSetting returns the MSFT_NetAdapterRscElementSetting instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterRscElementSetting(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetAdapterRscElementSetting, error) {
+	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
+		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+	return QueryOneMSFTNetAdapterRscElementSetting(svc, where)
+}
+
 // QueryMSFTNetAdapterRscSettingData runs the WQL query against the class and decodes each
-// instance into a MSFTNetAdapterRscSettingData. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetAdapterRscSettingData. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetAdapterRscSettingData(svc *wmi.Service, where string) ([]MSFTNetAdapterRscSettingData, error) {
 	q := "SELECT * FROM MSFT_NetAdapterRscSettingData"
 	if where != "" {
@@ -5164,31 +4596,14 @@ func QueryMSFTNetAdapterRscSettingData(svc *wmi.Service, where string) ([]MSFTNe
 	}
 	out := make([]MSFTNetAdapterRscSettingData, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].IPv4Enabled = wmi.AsBool(row["IPv4Enabled"])
-		out[i].IPv4FailureReason = wmi.AsUint32(row["IPv4FailureReason"])
-		out[i].IPv4OperationalState = wmi.AsBool(row["IPv4OperationalState"])
-		out[i].IPv6Enabled = wmi.AsBool(row["IPv6Enabled"])
-		out[i].IPv6FailureReason = wmi.AsUint32(row["IPv6FailureReason"])
-		out[i].IPv6OperationalState = wmi.AsBool(row["IPv6OperationalState"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].InterfaceDescription = wmi.AsString(row["InterfaceDescription"])
-		out[i].Name = wmi.AsString(row["Name"])
-		if v, ok := row["RscHardwareCapabilities"].(wmi.Row); ok {
-			out[i].RscHardwareCapabilities = v
-		}
-		out[i].Source = wmi.AsUint32(row["Source"])
-		out[i].SystemName = wmi.AsString(row["SystemName"])
+		out[i] = MSFTNetAdapterRscSettingDataFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetAdapterRscSettingData returns the MSFT_NetAdapterRscSettingData instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetAdapterRscSettingData(svc *wmi.Service, instanceID string) (*MSFTNetAdapterRscSettingData, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetAdapterRscSettingData returns the single MSFT_NetAdapterRscSettingData matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetAdapterRscSettingData(svc *wmi.Service, where string) (*MSFTNetAdapterRscSettingData, error) {
 	out, err := QueryMSFTNetAdapterRscSettingData(svc, where)
 	if err != nil {
 		return nil, err
@@ -5199,8 +4614,16 @@ func GetMSFTNetAdapterRscSettingData(svc *wmi.Service, instanceID string) (*MSFT
 	return &out[0], nil
 }
 
+// GetMSFTNetAdapterRscSettingData returns the MSFT_NetAdapterRscSettingData instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterRscSettingData(svc *wmi.Service, instanceID string) (*MSFTNetAdapterRscSettingData, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetAdapterRscSettingData(svc, where)
+}
+
 // QueryMSFTNetAdapterRssElementSetting runs the WQL query against the class and decodes each
-// instance into a MSFTNetAdapterRssElementSetting. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetAdapterRssElementSetting. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetAdapterRssElementSetting(svc *wmi.Service, where string) ([]MSFTNetAdapterRssElementSetting, error) {
 	q := "SELECT * FROM MSFT_NetAdapterRssElementSetting"
 	if where != "" {
@@ -5212,20 +4635,14 @@ func QueryMSFTNetAdapterRssElementSetting(svc *wmi.Service, where string) ([]MSF
 	}
 	out := make([]MSFTNetAdapterRssElementSetting, len(rows))
 	for i, row := range rows {
-		out[i].IsCurrent = wmi.AsUint16(row["IsCurrent"])
-		out[i].IsDefault = wmi.AsUint16(row["IsDefault"])
-		out[i].IsNext = wmi.AsUint16(row["IsNext"])
-		out[i].ManagedElement = wmi.AsString(row["ManagedElement"])
-		out[i].SettingData = wmi.AsString(row["SettingData"])
+		out[i] = MSFTNetAdapterRssElementSettingFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetAdapterRssElementSetting returns the MSFT_NetAdapterRssElementSetting instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetAdapterRssElementSetting(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetAdapterRssElementSetting, error) {
-	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
-		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+// QueryOneMSFTNetAdapterRssElementSetting returns the single MSFT_NetAdapterRssElementSetting matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetAdapterRssElementSetting(svc *wmi.Service, where string) (*MSFTNetAdapterRssElementSetting, error) {
 	out, err := QueryMSFTNetAdapterRssElementSetting(svc, where)
 	if err != nil {
 		return nil, err
@@ -5236,8 +4653,17 @@ func GetMSFTNetAdapterRssElementSetting(svc *wmi.Service, managedElement string,
 	return &out[0], nil
 }
 
+// GetMSFTNetAdapterRssElementSetting returns the MSFT_NetAdapterRssElementSetting instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterRssElementSetting(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetAdapterRssElementSetting, error) {
+	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
+		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+	return QueryOneMSFTNetAdapterRssElementSetting(svc, where)
+}
+
 // QueryMSFTNetAdapterRssSettingData runs the WQL query against the class and decodes each
-// instance into a MSFTNetAdapterRssSettingData. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetAdapterRssSettingData. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetAdapterRssSettingData(svc *wmi.Service, where string) ([]MSFTNetAdapterRssSettingData, error) {
 	q := "SELECT * FROM MSFT_NetAdapterRssSettingData"
 	if where != "" {
@@ -5249,60 +4675,14 @@ func QueryMSFTNetAdapterRssSettingData(svc *wmi.Service, where string) ([]MSFTNe
 	}
 	out := make([]MSFTNetAdapterRssSettingData, len(rows))
 	for i, row := range rows {
-		out[i].BaseProcessorGroup = wmi.AsUint16(row["BaseProcessorGroup"])
-		out[i].BaseProcessorNumber = wmi.AsUint8(row["BaseProcessorNumber"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].ClassificationAtDpcSupported = wmi.AsBool(row["ClassificationAtDpcSupported"])
-		out[i].ClassificationAtIsrSupported = wmi.AsBool(row["ClassificationAtIsrSupported"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].Enabled = wmi.AsBool(row["Enabled"])
-		out[i].HashKeySize = wmi.AsUint16(row["HashKeySize"])
-		out[i].IPv4HashEnabled = wmi.AsBool(row["IPv4HashEnabled"])
-		out[i].IPv6ExtensionHashEnabled = wmi.AsBool(row["IPv6ExtensionHashEnabled"])
-		out[i].IPv6HashEnabled = wmi.AsBool(row["IPv6HashEnabled"])
-		out[i].IndirectionTable = wmi.AsRowSlice(row["IndirectionTable"])
-		out[i].IndirectionTableEntryCount = wmi.AsUint16(row["IndirectionTableEntryCount"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].InterfaceDescription = wmi.AsString(row["InterfaceDescription"])
-		out[i].MaxProcessorGroup = wmi.AsUint16(row["MaxProcessorGroup"])
-		out[i].MaxProcessorNumber = wmi.AsUint8(row["MaxProcessorNumber"])
-		out[i].MaxProcessors = wmi.AsUint32(row["MaxProcessors"])
-		out[i].MsiSupported = wmi.AsBool(row["MsiSupported"])
-		out[i].MsiXEnabled = wmi.AsBool(row["MsiXEnabled"])
-		out[i].MsiXSupported = wmi.AsBool(row["MsiXSupported"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].NumaNode = wmi.AsUint16(row["NumaNode"])
-		out[i].NumberOfInterruptMessages = wmi.AsUint32(row["NumberOfInterruptMessages"])
-		out[i].NumberOfReceiveQueues = wmi.AsUint32(row["NumberOfReceiveQueues"])
-		out[i].Profile = wmi.AsUint32(row["Profile"])
-		out[i].RssOnPortsSupported = wmi.AsBool(row["RssOnPortsSupported"])
-		out[i].RssProcessorArray = wmi.AsRowSlice(row["RssProcessorArray"])
-		out[i].RssProcessorArraySize = wmi.AsUint32(row["RssProcessorArraySize"])
-		out[i].Source = wmi.AsUint32(row["Source"])
-		out[i].SystemName = wmi.AsString(row["SystemName"])
-		out[i].TcpIPv4HashEnabled = wmi.AsBool(row["TcpIPv4HashEnabled"])
-		out[i].TcpIPv4HashSupported = wmi.AsBool(row["TcpIPv4HashSupported"])
-		out[i].TcpIPv6ExtensionHashEnabled = wmi.AsBool(row["TcpIPv6ExtensionHashEnabled"])
-		out[i].TcpIPv6ExtensionHashSupported = wmi.AsBool(row["TcpIPv6ExtensionHashSupported"])
-		out[i].TcpIPv6HashEnabled = wmi.AsBool(row["TcpIPv6HashEnabled"])
-		out[i].TcpIPv6HashSupported = wmi.AsBool(row["TcpIPv6HashSupported"])
-		out[i].ToeplitzHashFunctionEnabled = wmi.AsBool(row["ToeplitzHashFunctionEnabled"])
-		out[i].ToeplitzHashFunctionSupported = wmi.AsBool(row["ToeplitzHashFunctionSupported"])
-		out[i].UdpIPv4HashEnabled = wmi.AsBool(row["UdpIPv4HashEnabled"])
-		out[i].UdpIPv4HashSupported = wmi.AsBool(row["UdpIPv4HashSupported"])
-		out[i].UdpIPv6ExtensionHashEnabled = wmi.AsBool(row["UdpIPv6ExtensionHashEnabled"])
-		out[i].UdpIPv6ExtensionHashSupported = wmi.AsBool(row["UdpIPv6ExtensionHashSupported"])
-		out[i].UdpIPv6HashEnabled = wmi.AsBool(row["UdpIPv6HashEnabled"])
-		out[i].UdpIPv6HashSupported = wmi.AsBool(row["UdpIPv6HashSupported"])
+		out[i] = MSFTNetAdapterRssSettingDataFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetAdapterRssSettingData returns the MSFT_NetAdapterRssSettingData instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetAdapterRssSettingData(svc *wmi.Service, instanceID string) (*MSFTNetAdapterRssSettingData, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetAdapterRssSettingData returns the single MSFT_NetAdapterRssSettingData matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetAdapterRssSettingData(svc *wmi.Service, where string) (*MSFTNetAdapterRssSettingData, error) {
 	out, err := QueryMSFTNetAdapterRssSettingData(svc, where)
 	if err != nil {
 		return nil, err
@@ -5313,8 +4693,16 @@ func GetMSFTNetAdapterRssSettingData(svc *wmi.Service, instanceID string) (*MSFT
 	return &out[0], nil
 }
 
+// GetMSFTNetAdapterRssSettingData returns the MSFT_NetAdapterRssSettingData instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterRssSettingData(svc *wmi.Service, instanceID string) (*MSFTNetAdapterRssSettingData, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetAdapterRssSettingData(svc, where)
+}
+
 // QueryMSFTNetAdapterSettingData runs the WQL query against the class and decodes each
-// instance into a MSFTNetAdapterSettingData. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetAdapterSettingData. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetAdapterSettingData(svc *wmi.Service, where string) ([]MSFTNetAdapterSettingData, error) {
 	q := "SELECT * FROM MSFT_NetAdapterSettingData"
 	if where != "" {
@@ -5326,22 +4714,14 @@ func QueryMSFTNetAdapterSettingData(svc *wmi.Service, where string) ([]MSFTNetAd
 	}
 	out := make([]MSFTNetAdapterSettingData, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].InterfaceDescription = wmi.AsString(row["InterfaceDescription"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].Source = wmi.AsUint32(row["Source"])
-		out[i].SystemName = wmi.AsString(row["SystemName"])
+		out[i] = MSFTNetAdapterSettingDataFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetAdapterSettingData returns the MSFT_NetAdapterSettingData instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetAdapterSettingData(svc *wmi.Service, instanceID string) (*MSFTNetAdapterSettingData, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetAdapterSettingData returns the single MSFT_NetAdapterSettingData matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetAdapterSettingData(svc *wmi.Service, where string) (*MSFTNetAdapterSettingData, error) {
 	out, err := QueryMSFTNetAdapterSettingData(svc, where)
 	if err != nil {
 		return nil, err
@@ -5352,8 +4732,16 @@ func GetMSFTNetAdapterSettingData(svc *wmi.Service, instanceID string) (*MSFTNet
 	return &out[0], nil
 }
 
+// GetMSFTNetAdapterSettingData returns the MSFT_NetAdapterSettingData instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterSettingData(svc *wmi.Service, instanceID string) (*MSFTNetAdapterSettingData, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetAdapterSettingData(svc, where)
+}
+
 // QueryMSFTNetAdapterSriovCapabilities runs the WQL query against the class and decodes each
-// instance into a MSFTNetAdapterSriovCapabilities. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetAdapterSriovCapabilities. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetAdapterSriovCapabilities(svc *wmi.Service, where string) ([]MSFTNetAdapterSriovCapabilities, error) {
 	q := "SELECT * FROM MSFT_NetAdapterSriovCapabilities"
 	if where != "" {
@@ -5365,23 +4753,27 @@ func QueryMSFTNetAdapterSriovCapabilities(svc *wmi.Service, where string) ([]MSF
 	}
 	out := make([]MSFTNetAdapterSriovCapabilities, len(rows))
 	for i, row := range rows {
-		out[i].AsymmetricQueuePairsForNonDefaultVPortsSupported = wmi.AsBool(row["AsymmetricQueuePairsForNonDefaultVPortsSupported"])
-		out[i].MaxNumMacAddresses = wmi.AsUint32(row["MaxNumMacAddresses"])
-		out[i].MaxNumQueuePairs = wmi.AsUint32(row["MaxNumQueuePairs"])
-		out[i].MaxNumQueuePairsPerNonDefaultVPort = wmi.AsUint32(row["MaxNumQueuePairsPerNonDefaultVPort"])
-		out[i].MaxNumSwitches = wmi.AsUint32(row["MaxNumSwitches"])
-		out[i].MaxNumVFs = wmi.AsUint32(row["MaxNumVFs"])
-		out[i].MaxNumVPorts = wmi.AsUint32(row["MaxNumVPorts"])
-		out[i].PerVportInterruptModerationSupported = wmi.AsBool(row["PerVportInterruptModerationSupported"])
-		out[i].SingleVportPoolSupported = wmi.AsBool(row["SingleVportPoolSupported"])
-		out[i].VfRssSupported = wmi.AsBool(row["VfRssSupported"])
-		out[i].VlanSupported = wmi.AsBool(row["VlanSupported"])
+		out[i] = MSFTNetAdapterSriovCapabilitiesFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneMSFTNetAdapterSriovCapabilities returns the single MSFT_NetAdapterSriovCapabilities matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetAdapterSriovCapabilities(svc *wmi.Service, where string) (*MSFTNetAdapterSriovCapabilities, error) {
+	out, err := QueryMSFTNetAdapterSriovCapabilities(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryMSFTNetAdapterSriovElementSetting runs the WQL query against the class and decodes each
-// instance into a MSFTNetAdapterSriovElementSetting. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetAdapterSriovElementSetting. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetAdapterSriovElementSetting(svc *wmi.Service, where string) ([]MSFTNetAdapterSriovElementSetting, error) {
 	q := "SELECT * FROM MSFT_NetAdapterSriovElementSetting"
 	if where != "" {
@@ -5393,20 +4785,14 @@ func QueryMSFTNetAdapterSriovElementSetting(svc *wmi.Service, where string) ([]M
 	}
 	out := make([]MSFTNetAdapterSriovElementSetting, len(rows))
 	for i, row := range rows {
-		out[i].IsCurrent = wmi.AsUint16(row["IsCurrent"])
-		out[i].IsDefault = wmi.AsUint16(row["IsDefault"])
-		out[i].IsNext = wmi.AsUint16(row["IsNext"])
-		out[i].ManagedElement = wmi.AsString(row["ManagedElement"])
-		out[i].SettingData = wmi.AsString(row["SettingData"])
+		out[i] = MSFTNetAdapterSriovElementSettingFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetAdapterSriovElementSetting returns the MSFT_NetAdapterSriovElementSetting instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetAdapterSriovElementSetting(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetAdapterSriovElementSetting, error) {
-	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
-		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+// QueryOneMSFTNetAdapterSriovElementSetting returns the single MSFT_NetAdapterSriovElementSetting matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetAdapterSriovElementSetting(svc *wmi.Service, where string) (*MSFTNetAdapterSriovElementSetting, error) {
 	out, err := QueryMSFTNetAdapterSriovElementSetting(svc, where)
 	if err != nil {
 		return nil, err
@@ -5417,8 +4803,17 @@ func GetMSFTNetAdapterSriovElementSetting(svc *wmi.Service, managedElement strin
 	return &out[0], nil
 }
 
+// GetMSFTNetAdapterSriovElementSetting returns the MSFT_NetAdapterSriovElementSetting instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterSriovElementSetting(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetAdapterSriovElementSetting, error) {
+	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
+		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+	return QueryOneMSFTNetAdapterSriovElementSetting(svc, where)
+}
+
 // QueryMSFTNetAdapterSriovSettingData runs the WQL query against the class and decodes each
-// instance into a MSFTNetAdapterSriovSettingData. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetAdapterSriovSettingData. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetAdapterSriovSettingData(svc *wmi.Service, where string) ([]MSFTNetAdapterSriovSettingData, error) {
 	q := "SELECT * FROM MSFT_NetAdapterSriovSettingData"
 	if where != "" {
@@ -5430,42 +4825,14 @@ func QueryMSFTNetAdapterSriovSettingData(svc *wmi.Service, where string) ([]MSFT
 	}
 	out := make([]MSFTNetAdapterSriovSettingData, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		if v, ok := row["CurrentCapabilities"].(wmi.Row); ok {
-			out[i].CurrentCapabilities = v
-		}
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].Enabled = wmi.AsBool(row["Enabled"])
-		if v, ok := row["HardwareCapabilities"].(wmi.Row); ok {
-			out[i].HardwareCapabilities = v
-		}
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].InterfaceDescription = wmi.AsString(row["InterfaceDescription"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].NumActiveDefaultVPortMacAddresses = wmi.AsUint32(row["NumActiveDefaultVPortMacAddresses"])
-		out[i].NumActiveDefaultVPortVlanIds = wmi.AsUint32(row["NumActiveDefaultVPortVlanIds"])
-		out[i].NumActiveNonDefaultVPortMacAddresses = wmi.AsUint32(row["NumActiveNonDefaultVPortMacAddresses"])
-		out[i].NumActiveNonDefaultVPortVlanIds = wmi.AsUint32(row["NumActiveNonDefaultVPortVlanIds"])
-		out[i].NumActiveVPorts = wmi.AsUint32(row["NumActiveVPorts"])
-		out[i].NumAllocatedVFs = wmi.AsUint32(row["NumAllocatedVFs"])
-		out[i].NumQueuePairsForDefaultVPort = wmi.AsUint32(row["NumQueuePairsForDefaultVPort"])
-		out[i].NumQueuePairsForNonDefaultVPorts = wmi.AsUint32(row["NumQueuePairsForNonDefaultVPorts"])
-		out[i].NumVFs = wmi.AsUint32(row["NumVFs"])
-		out[i].NumVPorts = wmi.AsUint32(row["NumVPorts"])
-		out[i].Source = wmi.AsUint32(row["Source"])
-		out[i].SriovSupport = wmi.AsUint32(row["SriovSupport"])
-		out[i].SwitchName = wmi.AsString(row["SwitchName"])
-		out[i].SwitchType = wmi.AsUint16(row["SwitchType"])
-		out[i].SystemName = wmi.AsString(row["SystemName"])
+		out[i] = MSFTNetAdapterSriovSettingDataFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetAdapterSriovSettingData returns the MSFT_NetAdapterSriovSettingData instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetAdapterSriovSettingData(svc *wmi.Service, instanceID string) (*MSFTNetAdapterSriovSettingData, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetAdapterSriovSettingData returns the single MSFT_NetAdapterSriovSettingData matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetAdapterSriovSettingData(svc *wmi.Service, where string) (*MSFTNetAdapterSriovSettingData, error) {
 	out, err := QueryMSFTNetAdapterSriovSettingData(svc, where)
 	if err != nil {
 		return nil, err
@@ -5476,8 +4843,16 @@ func GetMSFTNetAdapterSriovSettingData(svc *wmi.Service, instanceID string) (*MS
 	return &out[0], nil
 }
 
+// GetMSFTNetAdapterSriovSettingData returns the MSFT_NetAdapterSriovSettingData instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterSriovSettingData(svc *wmi.Service, instanceID string) (*MSFTNetAdapterSriovSettingData, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetAdapterSriovSettingData(svc, where)
+}
+
 // QueryMSFTNetAdapterSriovVfElementSetting runs the WQL query against the class and decodes each
-// instance into a MSFTNetAdapterSriovVfElementSetting. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetAdapterSriovVfElementSetting. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetAdapterSriovVfElementSetting(svc *wmi.Service, where string) ([]MSFTNetAdapterSriovVfElementSetting, error) {
 	q := "SELECT * FROM MSFT_NetAdapterSriovVfElementSetting"
 	if where != "" {
@@ -5489,20 +4864,14 @@ func QueryMSFTNetAdapterSriovVfElementSetting(svc *wmi.Service, where string) ([
 	}
 	out := make([]MSFTNetAdapterSriovVfElementSetting, len(rows))
 	for i, row := range rows {
-		out[i].IsCurrent = wmi.AsUint16(row["IsCurrent"])
-		out[i].IsDefault = wmi.AsUint16(row["IsDefault"])
-		out[i].IsNext = wmi.AsUint16(row["IsNext"])
-		out[i].ManagedElement = wmi.AsString(row["ManagedElement"])
-		out[i].SettingData = wmi.AsString(row["SettingData"])
+		out[i] = MSFTNetAdapterSriovVfElementSettingFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetAdapterSriovVfElementSetting returns the MSFT_NetAdapterSriovVfElementSetting instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetAdapterSriovVfElementSetting(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetAdapterSriovVfElementSetting, error) {
-	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
-		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+// QueryOneMSFTNetAdapterSriovVfElementSetting returns the single MSFT_NetAdapterSriovVfElementSetting matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetAdapterSriovVfElementSetting(svc *wmi.Service, where string) (*MSFTNetAdapterSriovVfElementSetting, error) {
 	out, err := QueryMSFTNetAdapterSriovVfElementSetting(svc, where)
 	if err != nil {
 		return nil, err
@@ -5513,8 +4882,17 @@ func GetMSFTNetAdapterSriovVfElementSetting(svc *wmi.Service, managedElement str
 	return &out[0], nil
 }
 
+// GetMSFTNetAdapterSriovVfElementSetting returns the MSFT_NetAdapterSriovVfElementSetting instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterSriovVfElementSetting(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetAdapterSriovVfElementSetting, error) {
+	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
+		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+	return QueryOneMSFTNetAdapterSriovVfElementSetting(svc, where)
+}
+
 // QueryMSFTNetAdapterSriovVfSettingData runs the WQL query against the class and decodes each
-// instance into a MSFTNetAdapterSriovVfSettingData. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetAdapterSriovVfSettingData. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetAdapterSriovVfSettingData(svc *wmi.Service, where string) ([]MSFTNetAdapterSriovVfSettingData, error) {
 	q := "SELECT * FROM MSFT_NetAdapterSriovVfSettingData"
 	if where != "" {
@@ -5526,30 +4904,14 @@ func QueryMSFTNetAdapterSriovVfSettingData(svc *wmi.Service, where string) ([]MS
 	}
 	out := make([]MSFTNetAdapterSriovVfSettingData, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CurrentMacAddress = wmi.AsString(row["CurrentMacAddress"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].FunctionID = wmi.AsUint16(row["FunctionID"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].InterfaceDescription = wmi.AsString(row["InterfaceDescription"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].PermanentMacAddress = wmi.AsString(row["PermanentMacAddress"])
-		out[i].Source = wmi.AsUint32(row["Source"])
-		out[i].SwitchID = wmi.AsUint32(row["SwitchID"])
-		out[i].SystemName = wmi.AsString(row["SystemName"])
-		out[i].VPortID = wmi.AsUint32Slice(row["VPortID"])
-		out[i].VmFriendlyName = wmi.AsString(row["VmFriendlyName"])
-		out[i].VmID = wmi.AsString(row["VmID"])
-		out[i].VmNicID = wmi.AsString(row["VmNicID"])
+		out[i] = MSFTNetAdapterSriovVfSettingDataFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetAdapterSriovVfSettingData returns the MSFT_NetAdapterSriovVfSettingData instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetAdapterSriovVfSettingData(svc *wmi.Service, instanceID string) (*MSFTNetAdapterSriovVfSettingData, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetAdapterSriovVfSettingData returns the single MSFT_NetAdapterSriovVfSettingData matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetAdapterSriovVfSettingData(svc *wmi.Service, where string) (*MSFTNetAdapterSriovVfSettingData, error) {
 	out, err := QueryMSFTNetAdapterSriovVfSettingData(svc, where)
 	if err != nil {
 		return nil, err
@@ -5560,8 +4922,16 @@ func GetMSFTNetAdapterSriovVfSettingData(svc *wmi.Service, instanceID string) (*
 	return &out[0], nil
 }
 
+// GetMSFTNetAdapterSriovVfSettingData returns the MSFT_NetAdapterSriovVfSettingData instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterSriovVfSettingData(svc *wmi.Service, instanceID string) (*MSFTNetAdapterSriovVfSettingData, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetAdapterSriovVfSettingData(svc, where)
+}
+
 // QueryMSFTNetAdapterStatisticsElementSetting runs the WQL query against the class and decodes each
-// instance into a MSFTNetAdapterStatisticsElementSetting. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetAdapterStatisticsElementSetting. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetAdapterStatisticsElementSetting(svc *wmi.Service, where string) ([]MSFTNetAdapterStatisticsElementSetting, error) {
 	q := "SELECT * FROM MSFT_NetAdapterStatisticsElementSetting"
 	if where != "" {
@@ -5573,20 +4943,14 @@ func QueryMSFTNetAdapterStatisticsElementSetting(svc *wmi.Service, where string)
 	}
 	out := make([]MSFTNetAdapterStatisticsElementSetting, len(rows))
 	for i, row := range rows {
-		out[i].IsCurrent = wmi.AsUint16(row["IsCurrent"])
-		out[i].IsDefault = wmi.AsUint16(row["IsDefault"])
-		out[i].IsNext = wmi.AsUint16(row["IsNext"])
-		out[i].ManagedElement = wmi.AsString(row["ManagedElement"])
-		out[i].SettingData = wmi.AsString(row["SettingData"])
+		out[i] = MSFTNetAdapterStatisticsElementSettingFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetAdapterStatisticsElementSetting returns the MSFT_NetAdapterStatisticsElementSetting instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetAdapterStatisticsElementSetting(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetAdapterStatisticsElementSetting, error) {
-	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
-		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+// QueryOneMSFTNetAdapterStatisticsElementSetting returns the single MSFT_NetAdapterStatisticsElementSetting matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetAdapterStatisticsElementSetting(svc *wmi.Service, where string) (*MSFTNetAdapterStatisticsElementSetting, error) {
 	out, err := QueryMSFTNetAdapterStatisticsElementSetting(svc, where)
 	if err != nil {
 		return nil, err
@@ -5597,8 +4961,17 @@ func GetMSFTNetAdapterStatisticsElementSetting(svc *wmi.Service, managedElement 
 	return &out[0], nil
 }
 
+// GetMSFTNetAdapterStatisticsElementSetting returns the MSFT_NetAdapterStatisticsElementSetting instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterStatisticsElementSetting(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetAdapterStatisticsElementSetting, error) {
+	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
+		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+	return QueryOneMSFTNetAdapterStatisticsElementSetting(svc, where)
+}
+
 // QueryMSFTNetAdapterStatisticsSettingData runs the WQL query against the class and decodes each
-// instance into a MSFTNetAdapterStatisticsSettingData. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetAdapterStatisticsSettingData. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetAdapterStatisticsSettingData(svc *wmi.Service, where string) ([]MSFTNetAdapterStatisticsSettingData, error) {
 	q := "SELECT * FROM MSFT_NetAdapterStatisticsSettingData"
 	if where != "" {
@@ -5610,47 +4983,14 @@ func QueryMSFTNetAdapterStatisticsSettingData(svc *wmi.Service, where string) ([
 	}
 	out := make([]MSFTNetAdapterStatisticsSettingData, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].InterfaceDescription = wmi.AsString(row["InterfaceDescription"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].OutboundDiscardedPackets = wmi.AsUint64(row["OutboundDiscardedPackets"])
-		out[i].OutboundPacketErrors = wmi.AsUint64(row["OutboundPacketErrors"])
-		if v, ok := row["RdmaStatistics"].(wmi.Row); ok {
-			out[i].RdmaStatistics = v
-		}
-		out[i].ReceivedBroadcastBytes = wmi.AsUint64(row["ReceivedBroadcastBytes"])
-		out[i].ReceivedBroadcastPackets = wmi.AsUint64(row["ReceivedBroadcastPackets"])
-		out[i].ReceivedBytes = wmi.AsUint64(row["ReceivedBytes"])
-		out[i].ReceivedDiscardedPackets = wmi.AsUint64(row["ReceivedDiscardedPackets"])
-		out[i].ReceivedMulticastBytes = wmi.AsUint64(row["ReceivedMulticastBytes"])
-		out[i].ReceivedMulticastPackets = wmi.AsUint64(row["ReceivedMulticastPackets"])
-		out[i].ReceivedPacketErrors = wmi.AsUint64(row["ReceivedPacketErrors"])
-		out[i].ReceivedUnicastBytes = wmi.AsUint64(row["ReceivedUnicastBytes"])
-		out[i].ReceivedUnicastPackets = wmi.AsUint64(row["ReceivedUnicastPackets"])
-		if v, ok := row["RscStatistics"].(wmi.Row); ok {
-			out[i].RscStatistics = v
-		}
-		out[i].SentBroadcastBytes = wmi.AsUint64(row["SentBroadcastBytes"])
-		out[i].SentBroadcastPackets = wmi.AsUint64(row["SentBroadcastPackets"])
-		out[i].SentBytes = wmi.AsUint64(row["SentBytes"])
-		out[i].SentMulticastBytes = wmi.AsUint64(row["SentMulticastBytes"])
-		out[i].SentMulticastPackets = wmi.AsUint64(row["SentMulticastPackets"])
-		out[i].SentUnicastBytes = wmi.AsUint64(row["SentUnicastBytes"])
-		out[i].SentUnicastPackets = wmi.AsUint64(row["SentUnicastPackets"])
-		out[i].Source = wmi.AsUint32(row["Source"])
-		out[i].SupportedStatistics = wmi.AsUint32(row["SupportedStatistics"])
-		out[i].SystemName = wmi.AsString(row["SystemName"])
+		out[i] = MSFTNetAdapterStatisticsSettingDataFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetAdapterStatisticsSettingData returns the MSFT_NetAdapterStatisticsSettingData instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetAdapterStatisticsSettingData(svc *wmi.Service, instanceID string) (*MSFTNetAdapterStatisticsSettingData, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetAdapterStatisticsSettingData returns the single MSFT_NetAdapterStatisticsSettingData matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetAdapterStatisticsSettingData(svc *wmi.Service, where string) (*MSFTNetAdapterStatisticsSettingData, error) {
 	out, err := QueryMSFTNetAdapterStatisticsSettingData(svc, where)
 	if err != nil {
 		return nil, err
@@ -5661,8 +5001,16 @@ func GetMSFTNetAdapterStatisticsSettingData(svc *wmi.Service, instanceID string)
 	return &out[0], nil
 }
 
+// GetMSFTNetAdapterStatisticsSettingData returns the MSFT_NetAdapterStatisticsSettingData instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterStatisticsSettingData(svc *wmi.Service, instanceID string) (*MSFTNetAdapterStatisticsSettingData, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetAdapterStatisticsSettingData(svc, where)
+}
+
 // QueryMSFTNetAdapterUdpSegmentationOffloadCapabilities runs the WQL query against the class and decodes each
-// instance into a MSFTNetAdapterUdpSegmentationOffloadCapabilities. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetAdapterUdpSegmentationOffloadCapabilities. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetAdapterUdpSegmentationOffloadCapabilities(svc *wmi.Service, where string) ([]MSFTNetAdapterUdpSegmentationOffloadCapabilities, error) {
 	q := "SELECT * FROM MSFT_NetAdapterUdpSegmentationOffloadCapabilities"
 	if where != "" {
@@ -5674,23 +5022,27 @@ func QueryMSFTNetAdapterUdpSegmentationOffloadCapabilities(svc *wmi.Service, whe
 	}
 	out := make([]MSFTNetAdapterUdpSegmentationOffloadCapabilities, len(rows))
 	for i, row := range rows {
-		if v, ok := row["IPv4Encapsulation"].(wmi.Row); ok {
-			out[i].IPv4Encapsulation = v
-		}
-		out[i].IPv4MaxOffloadSizeSupported = wmi.AsUint32(row["IPv4MaxOffloadSizeSupported"])
-		out[i].IPv4MinSegmentCountSupported = wmi.AsUint32(row["IPv4MinSegmentCountSupported"])
-		if v, ok := row["IPv6Encapsulation"].(wmi.Row); ok {
-			out[i].IPv6Encapsulation = v
-		}
-		out[i].IPv6IpExtensionHeadersSupported = wmi.AsBool(row["IPv6IpExtensionHeadersSupported"])
-		out[i].IPv6MaxOffLoadSizeSupported = wmi.AsUint32(row["IPv6MaxOffLoadSizeSupported"])
-		out[i].IPv6MinSegmentCountSupported = wmi.AsUint32(row["IPv6MinSegmentCountSupported"])
+		out[i] = MSFTNetAdapterUdpSegmentationOffloadCapabilitiesFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneMSFTNetAdapterUdpSegmentationOffloadCapabilities returns the single MSFT_NetAdapterUdpSegmentationOffloadCapabilities matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetAdapterUdpSegmentationOffloadCapabilities(svc *wmi.Service, where string) (*MSFTNetAdapterUdpSegmentationOffloadCapabilities, error) {
+	out, err := QueryMSFTNetAdapterUdpSegmentationOffloadCapabilities(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryMSFTNetAdapterUroCapabilities runs the WQL query against the class and decodes each
-// instance into a MSFTNetAdapterUroCapabilities. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetAdapterUroCapabilities. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetAdapterUroCapabilities(svc *wmi.Service, where string) ([]MSFTNetAdapterUroCapabilities, error) {
 	q := "SELECT * FROM MSFT_NetAdapterUroCapabilities"
 	if where != "" {
@@ -5702,13 +5054,27 @@ func QueryMSFTNetAdapterUroCapabilities(svc *wmi.Service, where string) ([]MSFTN
 	}
 	out := make([]MSFTNetAdapterUroCapabilities, len(rows))
 	for i, row := range rows {
-		out[i].Supported = wmi.AsBool(row["Supported"])
+		out[i] = MSFTNetAdapterUroCapabilitiesFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneMSFTNetAdapterUroCapabilities returns the single MSFT_NetAdapterUroCapabilities matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetAdapterUroCapabilities(svc *wmi.Service, where string) (*MSFTNetAdapterUroCapabilities, error) {
+	out, err := QueryMSFTNetAdapterUroCapabilities(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryMSFTNetAdapterUroElementSetting runs the WQL query against the class and decodes each
-// instance into a MSFTNetAdapterUroElementSetting. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetAdapterUroElementSetting. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetAdapterUroElementSetting(svc *wmi.Service, where string) ([]MSFTNetAdapterUroElementSetting, error) {
 	q := "SELECT * FROM MSFT_NetAdapterUroElementSetting"
 	if where != "" {
@@ -5720,20 +5086,14 @@ func QueryMSFTNetAdapterUroElementSetting(svc *wmi.Service, where string) ([]MSF
 	}
 	out := make([]MSFTNetAdapterUroElementSetting, len(rows))
 	for i, row := range rows {
-		out[i].IsCurrent = wmi.AsUint16(row["IsCurrent"])
-		out[i].IsDefault = wmi.AsUint16(row["IsDefault"])
-		out[i].IsNext = wmi.AsUint16(row["IsNext"])
-		out[i].ManagedElement = wmi.AsString(row["ManagedElement"])
-		out[i].SettingData = wmi.AsString(row["SettingData"])
+		out[i] = MSFTNetAdapterUroElementSettingFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetAdapterUroElementSetting returns the MSFT_NetAdapterUroElementSetting instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetAdapterUroElementSetting(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetAdapterUroElementSetting, error) {
-	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
-		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+// QueryOneMSFTNetAdapterUroElementSetting returns the single MSFT_NetAdapterUroElementSetting matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetAdapterUroElementSetting(svc *wmi.Service, where string) (*MSFTNetAdapterUroElementSetting, error) {
 	out, err := QueryMSFTNetAdapterUroElementSetting(svc, where)
 	if err != nil {
 		return nil, err
@@ -5744,8 +5104,17 @@ func GetMSFTNetAdapterUroElementSetting(svc *wmi.Service, managedElement string,
 	return &out[0], nil
 }
 
+// GetMSFTNetAdapterUroElementSetting returns the MSFT_NetAdapterUroElementSetting instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterUroElementSetting(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetAdapterUroElementSetting, error) {
+	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
+		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+	return QueryOneMSFTNetAdapterUroElementSetting(svc, where)
+}
+
 // QueryMSFTNetAdapterUroSettingData runs the WQL query against the class and decodes each
-// instance into a MSFTNetAdapterUroSettingData. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetAdapterUroSettingData. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetAdapterUroSettingData(svc *wmi.Service, where string) ([]MSFTNetAdapterUroSettingData, error) {
 	q := "SELECT * FROM MSFT_NetAdapterUroSettingData"
 	if where != "" {
@@ -5757,28 +5126,14 @@ func QueryMSFTNetAdapterUroSettingData(svc *wmi.Service, where string) ([]MSFTNe
 	}
 	out := make([]MSFTNetAdapterUroSettingData, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].Enabled = wmi.AsBool(row["Enabled"])
-		out[i].FailureReason = wmi.AsUint32(row["FailureReason"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].InterfaceDescription = wmi.AsString(row["InterfaceDescription"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].Operational = wmi.AsBool(row["Operational"])
-		out[i].Source = wmi.AsUint32(row["Source"])
-		out[i].SystemName = wmi.AsString(row["SystemName"])
-		if v, ok := row["UroHardwareCapabilities"].(wmi.Row); ok {
-			out[i].UroHardwareCapabilities = v
-		}
+		out[i] = MSFTNetAdapterUroSettingDataFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetAdapterUroSettingData returns the MSFT_NetAdapterUroSettingData instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetAdapterUroSettingData(svc *wmi.Service, instanceID string) (*MSFTNetAdapterUroSettingData, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetAdapterUroSettingData returns the single MSFT_NetAdapterUroSettingData matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetAdapterUroSettingData(svc *wmi.Service, where string) (*MSFTNetAdapterUroSettingData, error) {
 	out, err := QueryMSFTNetAdapterUroSettingData(svc, where)
 	if err != nil {
 		return nil, err
@@ -5789,8 +5144,16 @@ func GetMSFTNetAdapterUroSettingData(svc *wmi.Service, instanceID string) (*MSFT
 	return &out[0], nil
 }
 
+// GetMSFTNetAdapterUroSettingData returns the MSFT_NetAdapterUroSettingData instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterUroSettingData(svc *wmi.Service, instanceID string) (*MSFTNetAdapterUroSettingData, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetAdapterUroSettingData(svc, where)
+}
+
 // QueryMSFTNetAdapterUsoElementSetting runs the WQL query against the class and decodes each
-// instance into a MSFTNetAdapterUsoElementSetting. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetAdapterUsoElementSetting. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetAdapterUsoElementSetting(svc *wmi.Service, where string) ([]MSFTNetAdapterUsoElementSetting, error) {
 	q := "SELECT * FROM MSFT_NetAdapterUsoElementSetting"
 	if where != "" {
@@ -5802,20 +5165,14 @@ func QueryMSFTNetAdapterUsoElementSetting(svc *wmi.Service, where string) ([]MSF
 	}
 	out := make([]MSFTNetAdapterUsoElementSetting, len(rows))
 	for i, row := range rows {
-		out[i].IsCurrent = wmi.AsUint16(row["IsCurrent"])
-		out[i].IsDefault = wmi.AsUint16(row["IsDefault"])
-		out[i].IsNext = wmi.AsUint16(row["IsNext"])
-		out[i].ManagedElement = wmi.AsString(row["ManagedElement"])
-		out[i].SettingData = wmi.AsString(row["SettingData"])
+		out[i] = MSFTNetAdapterUsoElementSettingFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetAdapterUsoElementSetting returns the MSFT_NetAdapterUsoElementSetting instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetAdapterUsoElementSetting(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetAdapterUsoElementSetting, error) {
-	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
-		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+// QueryOneMSFTNetAdapterUsoElementSetting returns the single MSFT_NetAdapterUsoElementSetting matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetAdapterUsoElementSetting(svc *wmi.Service, where string) (*MSFTNetAdapterUsoElementSetting, error) {
 	out, err := QueryMSFTNetAdapterUsoElementSetting(svc, where)
 	if err != nil {
 		return nil, err
@@ -5826,8 +5183,17 @@ func GetMSFTNetAdapterUsoElementSetting(svc *wmi.Service, managedElement string,
 	return &out[0], nil
 }
 
+// GetMSFTNetAdapterUsoElementSetting returns the MSFT_NetAdapterUsoElementSetting instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterUsoElementSetting(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetAdapterUsoElementSetting, error) {
+	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
+		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+	return QueryOneMSFTNetAdapterUsoElementSetting(svc, where)
+}
+
 // QueryMSFTNetAdapterUsoEncapsulationTypes runs the WQL query against the class and decodes each
-// instance into a MSFTNetAdapterUsoEncapsulationTypes. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetAdapterUsoEncapsulationTypes. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetAdapterUsoEncapsulationTypes(svc *wmi.Service, where string) ([]MSFTNetAdapterUsoEncapsulationTypes, error) {
 	q := "SELECT * FROM MSFT_NetAdapterUsoEncapsulationTypes"
 	if where != "" {
@@ -5839,18 +5205,27 @@ func QueryMSFTNetAdapterUsoEncapsulationTypes(svc *wmi.Service, where string) ([
 	}
 	out := make([]MSFTNetAdapterUsoEncapsulationTypes, len(rows))
 	for i, row := range rows {
-		out[i].NdisEncapsulationIeeLlcSnapRouted = wmi.AsBool(row["NdisEncapsulationIeeLlcSnapRouted"])
-		out[i].NdisEncapsulationIeee8023 = wmi.AsBool(row["NdisEncapsulationIeee802_3"])
-		out[i].NdisEncapsulationIeee8023PAndQInOob = wmi.AsBool(row["NdisEncapsulationIeee802_3PAndQInOob"])
-		out[i].NdisEncapsulationIeee8023pAndq = wmi.AsBool(row["NdisEncapsulationIeee802_3pAndq"])
-		out[i].NdisEncapsulationNotNull = wmi.AsBool(row["NdisEncapsulationNotNull"])
-		out[i].NdisEncapsulationNotSupported = wmi.AsBool(row["NdisEncapsulationNotSupported"])
+		out[i] = MSFTNetAdapterUsoEncapsulationTypesFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneMSFTNetAdapterUsoEncapsulationTypes returns the single MSFT_NetAdapterUsoEncapsulationTypes matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetAdapterUsoEncapsulationTypes(svc *wmi.Service, where string) (*MSFTNetAdapterUsoEncapsulationTypes, error) {
+	out, err := QueryMSFTNetAdapterUsoEncapsulationTypes(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryMSFTNetAdapterUsoSettingData runs the WQL query against the class and decodes each
-// instance into a MSFTNetAdapterUsoSettingData. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetAdapterUsoSettingData. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetAdapterUsoSettingData(svc *wmi.Service, where string) ([]MSFTNetAdapterUsoSettingData, error) {
 	q := "SELECT * FROM MSFT_NetAdapterUsoSettingData"
 	if where != "" {
@@ -5862,27 +5237,14 @@ func QueryMSFTNetAdapterUsoSettingData(svc *wmi.Service, where string) ([]MSFTNe
 	}
 	out := make([]MSFTNetAdapterUsoSettingData, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].IPv4Enabled = wmi.AsBool(row["IPv4Enabled"])
-		out[i].IPv6Enabled = wmi.AsBool(row["IPv6Enabled"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].InterfaceDescription = wmi.AsString(row["InterfaceDescription"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].Source = wmi.AsUint32(row["Source"])
-		out[i].SystemName = wmi.AsString(row["SystemName"])
-		if v, ok := row["UdpSegmentationOffloadHardwareCapabilities"].(wmi.Row); ok {
-			out[i].UdpSegmentationOffloadHardwareCapabilities = v
-		}
+		out[i] = MSFTNetAdapterUsoSettingDataFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetAdapterUsoSettingData returns the MSFT_NetAdapterUsoSettingData instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetAdapterUsoSettingData(svc *wmi.Service, instanceID string) (*MSFTNetAdapterUsoSettingData, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetAdapterUsoSettingData returns the single MSFT_NetAdapterUsoSettingData matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetAdapterUsoSettingData(svc *wmi.Service, where string) (*MSFTNetAdapterUsoSettingData, error) {
 	out, err := QueryMSFTNetAdapterUsoSettingData(svc, where)
 	if err != nil {
 		return nil, err
@@ -5893,8 +5255,16 @@ func GetMSFTNetAdapterUsoSettingData(svc *wmi.Service, instanceID string) (*MSFT
 	return &out[0], nil
 }
 
+// GetMSFTNetAdapterUsoSettingData returns the MSFT_NetAdapterUsoSettingData instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterUsoSettingData(svc *wmi.Service, instanceID string) (*MSFTNetAdapterUsoSettingData, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetAdapterUsoSettingData(svc, where)
+}
+
 // QueryMSFTNetAdapterVPortElementSetting runs the WQL query against the class and decodes each
-// instance into a MSFTNetAdapterVPortElementSetting. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetAdapterVPortElementSetting. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetAdapterVPortElementSetting(svc *wmi.Service, where string) ([]MSFTNetAdapterVPortElementSetting, error) {
 	q := "SELECT * FROM MSFT_NetAdapterVPortElementSetting"
 	if where != "" {
@@ -5906,20 +5276,14 @@ func QueryMSFTNetAdapterVPortElementSetting(svc *wmi.Service, where string) ([]M
 	}
 	out := make([]MSFTNetAdapterVPortElementSetting, len(rows))
 	for i, row := range rows {
-		out[i].IsCurrent = wmi.AsUint16(row["IsCurrent"])
-		out[i].IsDefault = wmi.AsUint16(row["IsDefault"])
-		out[i].IsNext = wmi.AsUint16(row["IsNext"])
-		out[i].ManagedElement = wmi.AsString(row["ManagedElement"])
-		out[i].SettingData = wmi.AsString(row["SettingData"])
+		out[i] = MSFTNetAdapterVPortElementSettingFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetAdapterVPortElementSetting returns the MSFT_NetAdapterVPortElementSetting instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetAdapterVPortElementSetting(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetAdapterVPortElementSetting, error) {
-	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
-		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+// QueryOneMSFTNetAdapterVPortElementSetting returns the single MSFT_NetAdapterVPortElementSetting matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetAdapterVPortElementSetting(svc *wmi.Service, where string) (*MSFTNetAdapterVPortElementSetting, error) {
 	out, err := QueryMSFTNetAdapterVPortElementSetting(svc, where)
 	if err != nil {
 		return nil, err
@@ -5930,8 +5294,17 @@ func GetMSFTNetAdapterVPortElementSetting(svc *wmi.Service, managedElement strin
 	return &out[0], nil
 }
 
+// GetMSFTNetAdapterVPortElementSetting returns the MSFT_NetAdapterVPortElementSetting instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterVPortElementSetting(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetAdapterVPortElementSetting, error) {
+	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
+		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+	return QueryOneMSFTNetAdapterVPortElementSetting(svc, where)
+}
+
 // QueryMSFTNetAdapterVPortSettingData runs the WQL query against the class and decodes each
-// instance into a MSFTNetAdapterVPortSettingData. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetAdapterVPortSettingData. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetAdapterVPortSettingData(svc *wmi.Service, where string) ([]MSFTNetAdapterVPortSettingData, error) {
 	q := "SELECT * FROM MSFT_NetAdapterVPortSettingData"
 	if where != "" {
@@ -5943,33 +5316,14 @@ func QueryMSFTNetAdapterVPortSettingData(svc *wmi.Service, where string) ([]MSFT
 	}
 	out := make([]MSFTNetAdapterVPortSettingData, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].FilterList = wmi.AsRowSlice(row["FilterList"])
-		out[i].FunctionID = wmi.AsUint16(row["FunctionID"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].InterfaceDescription = wmi.AsString(row["InterfaceDescription"])
-		out[i].InterruptModeration = wmi.AsUint32(row["InterruptModeration"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].NumFilters = wmi.AsUint32(row["NumFilters"])
-		out[i].NumQueuePairs = wmi.AsUint32(row["NumQueuePairs"])
-		out[i].ProcessorAffinityMask = wmi.AsUint64(row["ProcessorAffinityMask"])
-		out[i].ProcessorGroup = wmi.AsUint16(row["ProcessorGroup"])
-		out[i].Source = wmi.AsUint32(row["Source"])
-		out[i].SwitchID = wmi.AsUint32(row["SwitchID"])
-		out[i].SystemName = wmi.AsString(row["SystemName"])
-		out[i].VPortID = wmi.AsUint32(row["VPortID"])
-		out[i].VPortName = wmi.AsString(row["VPortName"])
-		out[i].VPortState = wmi.AsUint32(row["VPortState"])
+		out[i] = MSFTNetAdapterVPortSettingDataFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetAdapterVPortSettingData returns the MSFT_NetAdapterVPortSettingData instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetAdapterVPortSettingData(svc *wmi.Service, instanceID string) (*MSFTNetAdapterVPortSettingData, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetAdapterVPortSettingData returns the single MSFT_NetAdapterVPortSettingData matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetAdapterVPortSettingData(svc *wmi.Service, where string) (*MSFTNetAdapterVPortSettingData, error) {
 	out, err := QueryMSFTNetAdapterVPortSettingData(svc, where)
 	if err != nil {
 		return nil, err
@@ -5980,8 +5334,16 @@ func GetMSFTNetAdapterVPortSettingData(svc *wmi.Service, instanceID string) (*MS
 	return &out[0], nil
 }
 
+// GetMSFTNetAdapterVPortSettingData returns the MSFT_NetAdapterVPortSettingData instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterVPortSettingData(svc *wmi.Service, instanceID string) (*MSFTNetAdapterVPortSettingData, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetAdapterVPortSettingData(svc, where)
+}
+
 // QueryMSFTNetAdapterVmqElementSetting runs the WQL query against the class and decodes each
-// instance into a MSFTNetAdapterVmqElementSetting. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetAdapterVmqElementSetting. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetAdapterVmqElementSetting(svc *wmi.Service, where string) ([]MSFTNetAdapterVmqElementSetting, error) {
 	q := "SELECT * FROM MSFT_NetAdapterVmqElementSetting"
 	if where != "" {
@@ -5993,20 +5355,14 @@ func QueryMSFTNetAdapterVmqElementSetting(svc *wmi.Service, where string) ([]MSF
 	}
 	out := make([]MSFTNetAdapterVmqElementSetting, len(rows))
 	for i, row := range rows {
-		out[i].IsCurrent = wmi.AsUint16(row["IsCurrent"])
-		out[i].IsDefault = wmi.AsUint16(row["IsDefault"])
-		out[i].IsNext = wmi.AsUint16(row["IsNext"])
-		out[i].ManagedElement = wmi.AsString(row["ManagedElement"])
-		out[i].SettingData = wmi.AsString(row["SettingData"])
+		out[i] = MSFTNetAdapterVmqElementSettingFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetAdapterVmqElementSetting returns the MSFT_NetAdapterVmqElementSetting instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetAdapterVmqElementSetting(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetAdapterVmqElementSetting, error) {
-	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
-		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+// QueryOneMSFTNetAdapterVmqElementSetting returns the single MSFT_NetAdapterVmqElementSetting matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetAdapterVmqElementSetting(svc *wmi.Service, where string) (*MSFTNetAdapterVmqElementSetting, error) {
 	out, err := QueryMSFTNetAdapterVmqElementSetting(svc, where)
 	if err != nil {
 		return nil, err
@@ -6017,8 +5373,17 @@ func GetMSFTNetAdapterVmqElementSetting(svc *wmi.Service, managedElement string,
 	return &out[0], nil
 }
 
+// GetMSFTNetAdapterVmqElementSetting returns the MSFT_NetAdapterVmqElementSetting instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterVmqElementSetting(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetAdapterVmqElementSetting, error) {
+	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
+		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+	return QueryOneMSFTNetAdapterVmqElementSetting(svc, where)
+}
+
 // QueryMSFTNetAdapterVmqQueueElementSetting runs the WQL query against the class and decodes each
-// instance into a MSFTNetAdapterVmqQueueElementSetting. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetAdapterVmqQueueElementSetting. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetAdapterVmqQueueElementSetting(svc *wmi.Service, where string) ([]MSFTNetAdapterVmqQueueElementSetting, error) {
 	q := "SELECT * FROM MSFT_NetAdapterVmqQueueElementSetting"
 	if where != "" {
@@ -6030,20 +5395,14 @@ func QueryMSFTNetAdapterVmqQueueElementSetting(svc *wmi.Service, where string) (
 	}
 	out := make([]MSFTNetAdapterVmqQueueElementSetting, len(rows))
 	for i, row := range rows {
-		out[i].IsCurrent = wmi.AsUint16(row["IsCurrent"])
-		out[i].IsDefault = wmi.AsUint16(row["IsDefault"])
-		out[i].IsNext = wmi.AsUint16(row["IsNext"])
-		out[i].ManagedElement = wmi.AsString(row["ManagedElement"])
-		out[i].SettingData = wmi.AsString(row["SettingData"])
+		out[i] = MSFTNetAdapterVmqQueueElementSettingFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetAdapterVmqQueueElementSetting returns the MSFT_NetAdapterVmqQueueElementSetting instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetAdapterVmqQueueElementSetting(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetAdapterVmqQueueElementSetting, error) {
-	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
-		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+// QueryOneMSFTNetAdapterVmqQueueElementSetting returns the single MSFT_NetAdapterVmqQueueElementSetting matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetAdapterVmqQueueElementSetting(svc *wmi.Service, where string) (*MSFTNetAdapterVmqQueueElementSetting, error) {
 	out, err := QueryMSFTNetAdapterVmqQueueElementSetting(svc, where)
 	if err != nil {
 		return nil, err
@@ -6054,8 +5413,17 @@ func GetMSFTNetAdapterVmqQueueElementSetting(svc *wmi.Service, managedElement st
 	return &out[0], nil
 }
 
+// GetMSFTNetAdapterVmqQueueElementSetting returns the MSFT_NetAdapterVmqQueueElementSetting instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterVmqQueueElementSetting(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetAdapterVmqQueueElementSetting, error) {
+	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
+		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+	return QueryOneMSFTNetAdapterVmqQueueElementSetting(svc, where)
+}
+
 // QueryMSFTNetAdapterVmqQueueSettingData runs the WQL query against the class and decodes each
-// instance into a MSFTNetAdapterVmqQueueSettingData. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetAdapterVmqQueueSettingData. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetAdapterVmqQueueSettingData(svc *wmi.Service, where string) ([]MSFTNetAdapterVmqQueueSettingData, error) {
 	q := "SELECT * FROM MSFT_NetAdapterVmqQueueSettingData"
 	if where != "" {
@@ -6067,31 +5435,14 @@ func QueryMSFTNetAdapterVmqQueueSettingData(svc *wmi.Service, where string) ([]M
 	}
 	out := make([]MSFTNetAdapterVmqQueueSettingData, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].FilterList = wmi.AsRowSlice(row["FilterList"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].InterfaceDescription = wmi.AsString(row["InterfaceDescription"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].NumFilters = wmi.AsUint32(row["NumFilters"])
-		out[i].ProcessorAffinityMask = wmi.AsUint64(row["ProcessorAffinityMask"])
-		out[i].ProcessorGroup = wmi.AsUint16(row["ProcessorGroup"])
-		out[i].QueueID = wmi.AsUint32(row["QueueID"])
-		out[i].QueueName = wmi.AsString(row["QueueName"])
-		out[i].Source = wmi.AsUint32(row["Source"])
-		out[i].State = wmi.AsUint32(row["State"])
-		out[i].SystemName = wmi.AsString(row["SystemName"])
-		out[i].VmFriendlyName = wmi.AsString(row["VmFriendlyName"])
-		out[i].VmID = wmi.AsString(row["VmID"])
+		out[i] = MSFTNetAdapterVmqQueueSettingDataFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetAdapterVmqQueueSettingData returns the MSFT_NetAdapterVmqQueueSettingData instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetAdapterVmqQueueSettingData(svc *wmi.Service, instanceID string) (*MSFTNetAdapterVmqQueueSettingData, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetAdapterVmqQueueSettingData returns the single MSFT_NetAdapterVmqQueueSettingData matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetAdapterVmqQueueSettingData(svc *wmi.Service, where string) (*MSFTNetAdapterVmqQueueSettingData, error) {
 	out, err := QueryMSFTNetAdapterVmqQueueSettingData(svc, where)
 	if err != nil {
 		return nil, err
@@ -6102,8 +5453,16 @@ func GetMSFTNetAdapterVmqQueueSettingData(svc *wmi.Service, instanceID string) (
 	return &out[0], nil
 }
 
+// GetMSFTNetAdapterVmqQueueSettingData returns the MSFT_NetAdapterVmqQueueSettingData instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterVmqQueueSettingData(svc *wmi.Service, instanceID string) (*MSFTNetAdapterVmqQueueSettingData, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetAdapterVmqQueueSettingData(svc, where)
+}
+
 // QueryMSFTNetAdapterVmqSettingData runs the WQL query against the class and decodes each
-// instance into a MSFTNetAdapterVmqSettingData. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetAdapterVmqSettingData. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetAdapterVmqSettingData(svc *wmi.Service, where string) ([]MSFTNetAdapterVmqSettingData, error) {
 	q := "SELECT * FROM MSFT_NetAdapterVmqSettingData"
 	if where != "" {
@@ -6115,39 +5474,14 @@ func QueryMSFTNetAdapterVmqSettingData(svc *wmi.Service, where string) ([]MSFTNe
 	}
 	out := make([]MSFTNetAdapterVmqSettingData, len(rows))
 	for i, row := range rows {
-		out[i].AnyVlanSupported = wmi.AsBool(row["AnyVlanSupported"])
-		out[i].BaseProcessorGroup = wmi.AsUint16(row["BaseProcessorGroup"])
-		out[i].BaseProcessorNumber = wmi.AsUint8(row["BaseProcessorNumber"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DynamicProcessorAffinityChangeSupported = wmi.AsBool(row["DynamicProcessorAffinityChangeSupported"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].Enabled = wmi.AsBool(row["Enabled"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].InterfaceDescription = wmi.AsString(row["InterfaceDescription"])
-		out[i].InterruptVectorCoalescingSupported = wmi.AsBool(row["InterruptVectorCoalescingSupported"])
-		out[i].LookaheadSplitSupported = wmi.AsBool(row["LookaheadSplitSupported"])
-		out[i].MaxLookaheadSplitSize = wmi.AsUint32(row["MaxLookaheadSplitSize"])
-		out[i].MaxProcessorNumber = wmi.AsUint8(row["MaxProcessorNumber"])
-		out[i].MaxProcessors = wmi.AsUint32(row["MaxProcessors"])
-		out[i].MinLookaheadSplitSize = wmi.AsUint32(row["MinLookaheadSplitSize"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].NumMacAddressesPerPort = wmi.AsUint32(row["NumMacAddressesPerPort"])
-		out[i].NumVlansPerPort = wmi.AsUint32(row["NumVlansPerPort"])
-		out[i].NumaNode = wmi.AsUint16(row["NumaNode"])
-		out[i].NumberOfReceiveQueues = wmi.AsUint32(row["NumberOfReceiveQueues"])
-		out[i].Source = wmi.AsUint32(row["Source"])
-		out[i].SystemName = wmi.AsString(row["SystemName"])
-		out[i].TotalNumberOfMacAddresses = wmi.AsUint32(row["TotalNumberOfMacAddresses"])
-		out[i].VlanFilteringSupported = wmi.AsBool(row["VlanFilteringSupported"])
+		out[i] = MSFTNetAdapterVmqSettingDataFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetAdapterVmqSettingData returns the MSFT_NetAdapterVmqSettingData instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetAdapterVmqSettingData(svc *wmi.Service, instanceID string) (*MSFTNetAdapterVmqSettingData, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetAdapterVmqSettingData returns the single MSFT_NetAdapterVmqSettingData matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetAdapterVmqSettingData(svc *wmi.Service, where string) (*MSFTNetAdapterVmqSettingData, error) {
 	out, err := QueryMSFTNetAdapterVmqSettingData(svc, where)
 	if err != nil {
 		return nil, err
@@ -6158,8 +5492,16 @@ func GetMSFTNetAdapterVmqSettingData(svc *wmi.Service, instanceID string) (*MSFT
 	return &out[0], nil
 }
 
+// GetMSFTNetAdapterVmqSettingData returns the MSFT_NetAdapterVmqSettingData instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAdapterVmqSettingData(svc *wmi.Service, instanceID string) (*MSFTNetAdapterVmqSettingData, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetAdapterVmqSettingData(svc, where)
+}
+
 // QueryMSFTNetAdapterGroupAffinity runs the WQL query against the class and decodes each
-// instance into a MSFTNetAdapterGroupAffinity. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetAdapterGroupAffinity. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetAdapterGroupAffinity(svc *wmi.Service, where string) ([]MSFTNetAdapterGroupAffinity, error) {
 	q := "SELECT * FROM MSFT_NetAdapter_Group_Affinity"
 	if where != "" {
@@ -6171,14 +5513,27 @@ func QueryMSFTNetAdapterGroupAffinity(svc *wmi.Service, where string) ([]MSFTNet
 	}
 	out := make([]MSFTNetAdapterGroupAffinity, len(rows))
 	for i, row := range rows {
-		out[i].ProcessorAffinityMask = wmi.AsUint64(row["ProcessorAffinityMask"])
-		out[i].ProcessorGroup = wmi.AsUint16(row["ProcessorGroup"])
+		out[i] = MSFTNetAdapterGroupAffinityFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneMSFTNetAdapterGroupAffinity returns the single MSFT_NetAdapter_Group_Affinity matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetAdapterGroupAffinity(svc *wmi.Service, where string) (*MSFTNetAdapterGroupAffinity, error) {
+	out, err := QueryMSFTNetAdapterGroupAffinity(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryMSFTNetAdapterPacketDirectCapabilities runs the WQL query against the class and decodes each
-// instance into a MSFTNetAdapterPacketDirectCapabilities. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetAdapterPacketDirectCapabilities. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetAdapterPacketDirectCapabilities(svc *wmi.Service, where string) ([]MSFTNetAdapterPacketDirectCapabilities, error) {
 	q := "SELECT * FROM MSFT_NetAdapter_PacketDirectCapabilities"
 	if where != "" {
@@ -6190,28 +5545,27 @@ func QueryMSFTNetAdapterPacketDirectCapabilities(svc *wmi.Service, where string)
 	}
 	out := make([]MSFTNetAdapterPacketDirectCapabilities, len(rows))
 	for i, row := range rows {
-		out[i].DrainNotificationSupported = wmi.AsBool(row["DrainNotificationSupported"])
-		out[i].MaximumModerationInterval = wmi.AsUint32(row["MaximumModerationInterval"])
-		out[i].MaximumNumberOfRxQueues = wmi.AsUint32(row["MaximumNumberOfRxQueues"])
-		out[i].MaximumNumberOfRxQueuesForDefaultVPort = wmi.AsUint32(row["MaximumNumberOfRxQueuesForDefaultVPort"])
-		out[i].MaximumNumberOfRxQueuesPerNonDefaultVPort = wmi.AsUint32(row["MaximumNumberOfRxQueuesPerNonDefaultVPort"])
-		out[i].MaximumNumberOfTxQueues = wmi.AsUint32(row["MaximumNumberOfTxQueues"])
-		out[i].MaximumNumberOfTxQueuesForDefaultVPort = wmi.AsUint32(row["MaximumNumberOfTxQueuesForDefaultVPort"])
-		out[i].MaximumNumberOfTxQueuesPerNonDefaultVPort = wmi.AsUint32(row["MaximumNumberOfTxQueuesPerNonDefaultVPort"])
-		out[i].MaximumRxPartialBufferCount = wmi.AsUint32(row["MaximumRxPartialBufferCount"])
-		out[i].MaximumRxQueueSize = wmi.AsUint32(row["MaximumRxQueueSize"])
-		out[i].MaximumTxPartialBufferCount = wmi.AsUint32(row["MaximumTxPartialBufferCount"])
-		out[i].MaximumTxQueueSize = wmi.AsUint32(row["MaximumTxQueueSize"])
-		out[i].MinimumModerationInterval = wmi.AsUint32(row["MinimumModerationInterval"])
-		out[i].ModerationByCountSupported = wmi.AsBool(row["ModerationByCountSupported"])
-		out[i].ModerationByIntervalSupported = wmi.AsBool(row["ModerationByIntervalSupported"])
-		out[i].ModerationIntervalGranularity = wmi.AsUint32(row["ModerationIntervalGranularity"])
+		out[i] = MSFTNetAdapterPacketDirectCapabilitiesFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneMSFTNetAdapterPacketDirectCapabilities returns the single MSFT_NetAdapter_PacketDirectCapabilities matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetAdapterPacketDirectCapabilities(svc *wmi.Service, where string) (*MSFTNetAdapterPacketDirectCapabilities, error) {
+	out, err := QueryMSFTNetAdapterPacketDirectCapabilities(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryMSFTNetAdapterProcessorNumber runs the WQL query against the class and decodes each
-// instance into a MSFTNetAdapterProcessorNumber. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetAdapterProcessorNumber. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetAdapterProcessorNumber(svc *wmi.Service, where string) ([]MSFTNetAdapterProcessorNumber, error) {
 	q := "SELECT * FROM MSFT_NetAdapter_ProcessorNumber"
 	if where != "" {
@@ -6223,14 +5577,27 @@ func QueryMSFTNetAdapterProcessorNumber(svc *wmi.Service, where string) ([]MSFTN
 	}
 	out := make([]MSFTNetAdapterProcessorNumber, len(rows))
 	for i, row := range rows {
-		out[i].ProcessorGroup = wmi.AsUint16(row["ProcessorGroup"])
-		out[i].ProcessorNumber = wmi.AsUint8(row["ProcessorNumber"])
+		out[i] = MSFTNetAdapterProcessorNumberFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneMSFTNetAdapterProcessorNumber returns the single MSFT_NetAdapter_ProcessorNumber matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetAdapterProcessorNumber(svc *wmi.Service, where string) (*MSFTNetAdapterProcessorNumber, error) {
+	out, err := QueryMSFTNetAdapterProcessorNumber(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryMSFTNetAdapterQosCapabilities runs the WQL query against the class and decodes each
-// instance into a MSFTNetAdapterQosCapabilities. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetAdapterQosCapabilities. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetAdapterQosCapabilities(svc *wmi.Service, where string) ([]MSFTNetAdapterQosCapabilities, error) {
 	q := "SELECT * FROM MSFT_NetAdapter_QosCapabilities"
 	if where != "" {
@@ -6242,18 +5609,27 @@ func QueryMSFTNetAdapterQosCapabilities(svc *wmi.Service, where string) ([]MSFTN
 	}
 	out := make([]MSFTNetAdapterQosCapabilities, len(rows))
 	for i, row := range rows {
-		out[i].CeeDcbxSupported = wmi.AsBool(row["CeeDcbxSupported"])
-		out[i].IeeeDcbxSupported = wmi.AsBool(row["IeeeDcbxSupported"])
-		out[i].MacSecBypassSupported = wmi.AsBool(row["MacSecBypassSupported"])
-		out[i].NumberOfEtsCapableTrafficClasses = wmi.AsUint8(row["NumberOfEtsCapableTrafficClasses"])
-		out[i].NumberOfPfcEnabledTrafficClasses = wmi.AsUint8(row["NumberOfPfcEnabledTrafficClasses"])
-		out[i].NumberOfTrafficClasses = wmi.AsUint8(row["NumberOfTrafficClasses"])
+		out[i] = MSFTNetAdapterQosCapabilitiesFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneMSFTNetAdapterQosCapabilities returns the single MSFT_NetAdapter_QosCapabilities matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetAdapterQosCapabilities(svc *wmi.Service, where string) (*MSFTNetAdapterQosCapabilities, error) {
+	out, err := QueryMSFTNetAdapterQosCapabilities(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryMSFTNetAdapterQosClassificationElement runs the WQL query against the class and decodes each
-// instance into a MSFTNetAdapterQosClassificationElement. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetAdapterQosClassificationElement. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetAdapterQosClassificationElement(svc *wmi.Service, where string) ([]MSFTNetAdapterQosClassificationElement, error) {
 	q := "SELECT * FROM MSFT_NetAdapter_QosClassificationElement"
 	if where != "" {
@@ -6265,15 +5641,27 @@ func QueryMSFTNetAdapterQosClassificationElement(svc *wmi.Service, where string)
 	}
 	out := make([]MSFTNetAdapterQosClassificationElement, len(rows))
 	for i, row := range rows {
-		out[i].Priority = wmi.AsUint8(row["Priority"])
-		out[i].ProtocolSelector = wmi.AsUint16(row["ProtocolSelector"])
-		out[i].ProtocolSpecificValue = wmi.AsUint16(row["ProtocolSpecificValue"])
+		out[i] = MSFTNetAdapterQosClassificationElementFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneMSFTNetAdapterQosClassificationElement returns the single MSFT_NetAdapter_QosClassificationElement matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetAdapterQosClassificationElement(svc *wmi.Service, where string) (*MSFTNetAdapterQosClassificationElement, error) {
+	out, err := QueryMSFTNetAdapterQosClassificationElement(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryMSFTNetAdapterQosSettings runs the WQL query against the class and decodes each
-// instance into a MSFTNetAdapterQosSettings. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetAdapterQosSettings. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetAdapterQosSettings(svc *wmi.Service, where string) ([]MSFTNetAdapterQosSettings, error) {
 	q := "SELECT * FROM MSFT_NetAdapter_QosSettings"
 	if where != "" {
@@ -6285,21 +5673,27 @@ func QueryMSFTNetAdapterQosSettings(svc *wmi.Service, where string) ([]MSFTNetAd
 	}
 	out := make([]MSFTNetAdapterQosSettings, len(rows))
 	for i, row := range rows {
-		out[i].BandwidthAssignmentTable = wmi.AsUint8Slice(row["BandwidthAssignmentTable"])
-		out[i].ClassificationEnabled = wmi.AsBool(row["ClassificationEnabled"])
-		out[i].ClassificationTable = wmi.AsRowSlice(row["ClassificationTable"])
-		out[i].FlowControlEnabled = wmi.AsBool(row["FlowControlEnabled"])
-		out[i].NumberOfClassificationElements = wmi.AsUint32(row["NumberOfClassificationElements"])
-		out[i].PriorityAssignmentTable = wmi.AsUint8Slice(row["PriorityAssignmentTable"])
-		out[i].PriorityFlowControlEnableArray = wmi.AsBoolSlice(row["PriorityFlowControlEnableArray"])
-		out[i].TransmissionSelectionEnabled = wmi.AsBool(row["TransmissionSelectionEnabled"])
-		out[i].TsaAssignmentTable = wmi.AsUint8Slice(row["TsaAssignmentTable"])
+		out[i] = MSFTNetAdapterQosSettingsFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneMSFTNetAdapterQosSettings returns the single MSFT_NetAdapter_QosSettings matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetAdapterQosSettings(svc *wmi.Service, where string) (*MSFTNetAdapterQosSettings, error) {
+	out, err := QueryMSFTNetAdapterQosSettings(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryMSFTNetAdapterRdmaAdapterInfo runs the WQL query against the class and decodes each
-// instance into a MSFTNetAdapterRdmaAdapterInfo. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetAdapterRdmaAdapterInfo. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetAdapterRdmaAdapterInfo(svc *wmi.Service, where string) ([]MSFTNetAdapterRdmaAdapterInfo, error) {
 	q := "SELECT * FROM MSFT_NetAdapter_RdmaAdapterInfo"
 	if where != "" {
@@ -6311,40 +5705,27 @@ func QueryMSFTNetAdapterRdmaAdapterInfo(svc *wmi.Service, where string) ([]MSFTN
 	}
 	out := make([]MSFTNetAdapterRdmaAdapterInfo, len(rows))
 	for i, row := range rows {
-		out[i].DeviceId = wmi.AsUint32(row["DeviceId"])
-		out[i].FRMRPageCount = wmi.AsUint32(row["FRMRPageCount"])
-		out[i].InOrderDMA = wmi.AsBool(row["InOrderDMA"])
-		out[i].LargeRequestThreshold = wmi.AsUint32(row["LargeRequestThreshold"])
-		out[i].MajorVersionNumber = wmi.AsUint16(row["MajorVersionNumber"])
-		out[i].MaxCalleeData = wmi.AsUint32(row["MaxCalleeData"])
-		out[i].MaxCallerData = wmi.AsUint32(row["MaxCallerData"])
-		out[i].MaxCompletionQueueDepth = wmi.AsUint32(row["MaxCompletionQueueDepth"])
-		out[i].MaxInboundReadLimit = wmi.AsUint32(row["MaxInboundReadLimit"])
-		out[i].MaxInitiatorQueueDepth = wmi.AsUint32(row["MaxInitiatorQueueDepth"])
-		out[i].MaxInitiatorRequestSge = wmi.AsUint32(row["MaxInitiatorRequestSge"])
-		out[i].MaxInlineDataSize = wmi.AsUint32(row["MaxInlineDataSize"])
-		out[i].MaxOutboundReadLimit = wmi.AsUint32(row["MaxOutboundReadLimit"])
-		out[i].MaxReadRequestSge = wmi.AsUint32(row["MaxReadRequestSge"])
-		out[i].MaxReceiveQueueDepth = wmi.AsUint32(row["MaxReceiveQueueDepth"])
-		out[i].MaxReceiveRequestSge = wmi.AsUint32(row["MaxReceiveRequestSge"])
-		out[i].MaxRegistrationSize = wmi.AsUint64(row["MaxRegistrationSize"])
-		out[i].MaxSharedReceiveQueueDepth = wmi.AsUint32(row["MaxSharedReceiveQueueDepth"])
-		out[i].MaxTransferLength = wmi.AsUint32(row["MaxTransferLength"])
-		out[i].MaxWindowSize = wmi.AsUint64(row["MaxWindowSize"])
-		out[i].MinorVersionNumber = wmi.AsUint16(row["MinorVersionNumber"])
-		out[i].RdmaReadSinkFlagNotRequired = wmi.AsBool(row["RdmaReadSinkFlagNotRequired"])
-		out[i].RdmaTechnology = wmi.AsUint32(row["RdmaTechnology"])
-		out[i].SupportsCompletionQueueInterruptModeration = wmi.AsBool(row["SupportsCompletionQueueInterruptModeration"])
-		out[i].SupportsCompletionQueueResize = wmi.AsBool(row["SupportsCompletionQueueResize"])
-		out[i].SupportsLoopbackConnections = wmi.AsBool(row["SupportsLoopbackConnections"])
-		out[i].SupportsMultiEngine = wmi.AsBool(row["SupportsMultiEngine"])
-		out[i].VendorId = wmi.AsUint32(row["VendorId"])
+		out[i] = MSFTNetAdapterRdmaAdapterInfoFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneMSFTNetAdapterRdmaAdapterInfo returns the single MSFT_NetAdapter_RdmaAdapterInfo matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetAdapterRdmaAdapterInfo(svc *wmi.Service, where string) (*MSFTNetAdapterRdmaAdapterInfo, error) {
+	out, err := QueryMSFTNetAdapterRdmaAdapterInfo(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryMSFTNetAdapterRdmaMissingCounterInfo runs the WQL query against the class and decodes each
-// instance into a MSFTNetAdapterRdmaMissingCounterInfo. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetAdapterRdmaMissingCounterInfo. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetAdapterRdmaMissingCounterInfo(svc *wmi.Service, where string) ([]MSFTNetAdapterRdmaMissingCounterInfo, error) {
 	q := "SELECT * FROM MSFT_NetAdapter_RdmaMissingCounterInfo"
 	if where != "" {
@@ -6356,22 +5737,27 @@ func QueryMSFTNetAdapterRdmaMissingCounterInfo(svc *wmi.Service, where string) (
 	}
 	out := make([]MSFTNetAdapterRdmaMissingCounterInfo, len(rows))
 	for i, row := range rows {
-		out[i].AcceptPerformanceCounterMissing = wmi.AsBool(row["AcceptPerformanceCounterMissing"])
-		out[i].ActiveConnectionPerformanceCounterMissing = wmi.AsBool(row["ActiveConnectionPerformanceCounterMissing"])
-		out[i].CompletionQueueErrorPerformanceCounterMissing = wmi.AsBool(row["CompletionQueueErrorPerformanceCounterMissing"])
-		out[i].ConnectFailurePerformanceCounterMissing = wmi.AsBool(row["ConnectFailurePerformanceCounterMissing"])
-		out[i].ConnectPerformanceCounterMissing = wmi.AsBool(row["ConnectPerformanceCounterMissing"])
-		out[i].ConnectionErrorPerformanceCounterMissing = wmi.AsBool(row["ConnectionErrorPerformanceCounterMissing"])
-		out[i].RDMAInFramesPerformanceCounterMissing = wmi.AsBool(row["RDMAInFramesPerformanceCounterMissing"])
-		out[i].RDMAInOctetsPerformanceCounterMissing = wmi.AsBool(row["RDMAInOctetsPerformanceCounterMissing"])
-		out[i].RDMAOutFramesPerformanceCounterMissing = wmi.AsBool(row["RDMAOutFramesPerformanceCounterMissing"])
-		out[i].RDMAOutOctetsPerformanceCounterMissing = wmi.AsBool(row["RDMAOutOctetsPerformanceCounterMissing"])
+		out[i] = MSFTNetAdapterRdmaMissingCounterInfoFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneMSFTNetAdapterRdmaMissingCounterInfo returns the single MSFT_NetAdapter_RdmaMissingCounterInfo matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetAdapterRdmaMissingCounterInfo(svc *wmi.Service, where string) (*MSFTNetAdapterRdmaMissingCounterInfo, error) {
+	out, err := QueryMSFTNetAdapterRdmaMissingCounterInfo(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryMSFTNetAdapterRdmaStatistics runs the WQL query against the class and decodes each
-// instance into a MSFTNetAdapterRdmaStatistics. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetAdapterRdmaStatistics. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetAdapterRdmaStatistics(svc *wmi.Service, where string) ([]MSFTNetAdapterRdmaStatistics, error) {
 	q := "SELECT * FROM MSFT_NetAdapter_RdmaStatistics"
 	if where != "" {
@@ -6383,22 +5769,27 @@ func QueryMSFTNetAdapterRdmaStatistics(svc *wmi.Service, where string) ([]MSFTNe
 	}
 	out := make([]MSFTNetAdapterRdmaStatistics, len(rows))
 	for i, row := range rows {
-		out[i].AcceptedConnections = wmi.AsUint64(row["AcceptedConnections"])
-		out[i].ActiveConnections = wmi.AsUint64(row["ActiveConnections"])
-		out[i].CompletionQueueErrors = wmi.AsUint64(row["CompletionQueueErrors"])
-		out[i].ConnectionErrors = wmi.AsUint64(row["ConnectionErrors"])
-		out[i].FailedConnectionAttempts = wmi.AsUint64(row["FailedConnectionAttempts"])
-		out[i].InboundBytes = wmi.AsUint64(row["InboundBytes"])
-		out[i].InboundFrames = wmi.AsUint64(row["InboundFrames"])
-		out[i].InitiatedConnections = wmi.AsUint64(row["InitiatedConnections"])
-		out[i].OutboundBytes = wmi.AsUint64(row["OutboundBytes"])
-		out[i].OutboundFrames = wmi.AsUint64(row["OutboundFrames"])
+		out[i] = MSFTNetAdapterRdmaStatisticsFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneMSFTNetAdapterRdmaStatistics returns the single MSFT_NetAdapter_RdmaStatistics matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetAdapterRdmaStatistics(svc *wmi.Service, where string) (*MSFTNetAdapterRdmaStatistics, error) {
+	out, err := QueryMSFTNetAdapterRdmaStatistics(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryMSFTNetAdapterRscStatistics runs the WQL query against the class and decodes each
-// instance into a MSFTNetAdapterRscStatistics. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetAdapterRscStatistics. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetAdapterRscStatistics(svc *wmi.Service, where string) ([]MSFTNetAdapterRscStatistics, error) {
 	q := "SELECT * FROM MSFT_NetAdapter_RscStatistics"
 	if where != "" {
@@ -6410,16 +5801,27 @@ func QueryMSFTNetAdapterRscStatistics(svc *wmi.Service, where string) ([]MSFTNet
 	}
 	out := make([]MSFTNetAdapterRscStatistics, len(rows))
 	for i, row := range rows {
-		out[i].CoalescedBytes = wmi.AsUint64(row["CoalescedBytes"])
-		out[i].CoalescedPackets = wmi.AsUint64(row["CoalescedPackets"])
-		out[i].CoalescingEvents = wmi.AsUint64(row["CoalescingEvents"])
-		out[i].CoalescingExceptions = wmi.AsUint64(row["CoalescingExceptions"])
+		out[i] = MSFTNetAdapterRscStatisticsFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneMSFTNetAdapterRscStatistics returns the single MSFT_NetAdapter_RscStatistics matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetAdapterRscStatistics(svc *wmi.Service, where string) (*MSFTNetAdapterRscStatistics, error) {
+	out, err := QueryMSFTNetAdapterRscStatistics(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryMSFTNetAdapterRssProcessor runs the WQL query against the class and decodes each
-// instance into a MSFTNetAdapterRssProcessor. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetAdapterRssProcessor. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetAdapterRssProcessor(svc *wmi.Service, where string) ([]MSFTNetAdapterRssProcessor, error) {
 	q := "SELECT * FROM MSFT_NetAdapter_RssProcessor"
 	if where != "" {
@@ -6431,15 +5833,27 @@ func QueryMSFTNetAdapterRssProcessor(svc *wmi.Service, where string) ([]MSFTNetA
 	}
 	out := make([]MSFTNetAdapterRssProcessor, len(rows))
 	for i, row := range rows {
-		out[i].PreferenceIndex = wmi.AsUint16(row["PreferenceIndex"])
-		out[i].ProcessorGroup = wmi.AsUint16(row["ProcessorGroup"])
-		out[i].ProcessorNumber = wmi.AsUint8(row["ProcessorNumber"])
+		out[i] = MSFTNetAdapterRssProcessorFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneMSFTNetAdapterRssProcessor returns the single MSFT_NetAdapter_RssProcessor matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetAdapterRssProcessor(svc *wmi.Service, where string) (*MSFTNetAdapterRssProcessor, error) {
+	out, err := QueryMSFTNetAdapterRssProcessor(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryMSFTNetAdapterVmqFilter runs the WQL query against the class and decodes each
-// instance into a MSFTNetAdapterVmqFilter. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetAdapterVmqFilter. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetAdapterVmqFilter(svc *wmi.Service, where string) ([]MSFTNetAdapterVmqFilter, error) {
 	q := "SELECT * FROM MSFT_NetAdapter_VmqFilter"
 	if where != "" {
@@ -6451,15 +5865,27 @@ func QueryMSFTNetAdapterVmqFilter(svc *wmi.Service, where string) ([]MSFTNetAdap
 	}
 	out := make([]MSFTNetAdapterVmqFilter, len(rows))
 	for i, row := range rows {
-		out[i].FilterID = wmi.AsUint32(row["FilterID"])
-		out[i].MacAddress = wmi.AsString(row["MacAddress"])
-		out[i].VlanID = wmi.AsUint16(row["VlanID"])
+		out[i] = MSFTNetAdapterVmqFilterFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneMSFTNetAdapterVmqFilter returns the single MSFT_NetAdapter_VmqFilter matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetAdapterVmqFilter(svc *wmi.Service, where string) (*MSFTNetAdapterVmqFilter, error) {
+	out, err := QueryMSFTNetAdapterVmqFilter(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryMSFTNetAddressFilter runs the WQL query against the class and decodes each
-// instance into a MSFTNetAddressFilter. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetAddressFilter. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetAddressFilter(svc *wmi.Service, where string) ([]MSFTNetAddressFilter, error) {
 	q := "SELECT * FROM MSFT_NetAddressFilter"
 	if where != "" {
@@ -6471,37 +5897,14 @@ func QueryMSFTNetAddressFilter(svc *wmi.Service, where string) ([]MSFTNetAddress
 	}
 	out := make([]MSFTNetAddressFilter, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CommunicationStatus = wmi.AsUint16(row["CommunicationStatus"])
-		out[i].CreationClassName = wmi.AsString(row["CreationClassName"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DetailedStatus = wmi.AsUint16(row["DetailedStatus"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].HealthState = wmi.AsUint16(row["HealthState"])
-		out[i].InstallDate = wmi.AsString(row["InstallDate"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].IsNegated = wmi.AsBool(row["IsNegated"])
-		out[i].LocalAddress = wmi.AsStringSlice(row["LocalAddress"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].OperatingStatus = wmi.AsUint16(row["OperatingStatus"])
-		out[i].OperationalStatus = wmi.AsUint16Slice(row["OperationalStatus"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].RemoteAddress = wmi.AsStringSlice(row["RemoteAddress"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusDescriptions = wmi.AsStringSlice(row["StatusDescriptions"])
-		out[i].SystemCreationClassName = wmi.AsString(row["SystemCreationClassName"])
-		out[i].SystemName = wmi.AsString(row["SystemName"])
+		out[i] = MSFTNetAddressFilterFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetAddressFilter returns the MSFT_NetAddressFilter instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetAddressFilter(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*MSFTNetAddressFilter, error) {
-	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
-		" AND " + "Name = " + wmi.WQLValue(name) +
-		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
-		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+// QueryOneMSFTNetAddressFilter returns the single MSFT_NetAddressFilter matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetAddressFilter(svc *wmi.Service, where string) (*MSFTNetAddressFilter, error) {
 	out, err := QueryMSFTNetAddressFilter(svc, where)
 	if err != nil {
 		return nil, err
@@ -6512,8 +5915,19 @@ func GetMSFTNetAddressFilter(svc *wmi.Service, creationClassName string, name st
 	return &out[0], nil
 }
 
+// GetMSFTNetAddressFilter returns the MSFT_NetAddressFilter instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetAddressFilter(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*MSFTNetAddressFilter, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "Name = " + wmi.WQLValue(name) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	return QueryOneMSFTNetAddressFilter(svc, where)
+}
+
 // QueryMSFTNetApplicationFilter runs the WQL query against the class and decodes each
-// instance into a MSFTNetApplicationFilter. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetApplicationFilter. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetApplicationFilter(svc *wmi.Service, where string) ([]MSFTNetApplicationFilter, error) {
 	q := "SELECT * FROM MSFT_NetApplicationFilter"
 	if where != "" {
@@ -6525,37 +5939,14 @@ func QueryMSFTNetApplicationFilter(svc *wmi.Service, where string) ([]MSFTNetApp
 	}
 	out := make([]MSFTNetApplicationFilter, len(rows))
 	for i, row := range rows {
-		out[i].AppPath = wmi.AsString(row["AppPath"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CommunicationStatus = wmi.AsUint16(row["CommunicationStatus"])
-		out[i].CreationClassName = wmi.AsString(row["CreationClassName"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DetailedStatus = wmi.AsUint16(row["DetailedStatus"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].HealthState = wmi.AsUint16(row["HealthState"])
-		out[i].InstallDate = wmi.AsString(row["InstallDate"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].IsNegated = wmi.AsBool(row["IsNegated"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].OperatingStatus = wmi.AsUint16(row["OperatingStatus"])
-		out[i].OperationalStatus = wmi.AsUint16Slice(row["OperationalStatus"])
-		out[i].Package = wmi.AsString(row["Package"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusDescriptions = wmi.AsStringSlice(row["StatusDescriptions"])
-		out[i].SystemCreationClassName = wmi.AsString(row["SystemCreationClassName"])
-		out[i].SystemName = wmi.AsString(row["SystemName"])
+		out[i] = MSFTNetApplicationFilterFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetApplicationFilter returns the MSFT_NetApplicationFilter instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetApplicationFilter(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*MSFTNetApplicationFilter, error) {
-	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
-		" AND " + "Name = " + wmi.WQLValue(name) +
-		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
-		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+// QueryOneMSFTNetApplicationFilter returns the single MSFT_NetApplicationFilter matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetApplicationFilter(svc *wmi.Service, where string) (*MSFTNetApplicationFilter, error) {
 	out, err := QueryMSFTNetApplicationFilter(svc, where)
 	if err != nil {
 		return nil, err
@@ -6566,8 +5957,19 @@ func GetMSFTNetApplicationFilter(svc *wmi.Service, creationClassName string, nam
 	return &out[0], nil
 }
 
+// GetMSFTNetApplicationFilter returns the MSFT_NetApplicationFilter instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetApplicationFilter(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*MSFTNetApplicationFilter, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "Name = " + wmi.WQLValue(name) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	return QueryOneMSFTNetApplicationFilter(svc, where)
+}
+
 // QueryMSFTNetBaseIPProtocol runs the WQL query against the class and decodes each
-// instance into a MSFTNetBaseIPProtocol. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetBaseIPProtocol. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetBaseIPProtocol(svc *wmi.Service, where string) ([]MSFTNetBaseIPProtocol, error) {
 	q := "SELECT * FROM MSFT_NetBaseIPProtocol"
 	if where != "" {
@@ -6579,60 +5981,14 @@ func QueryMSFTNetBaseIPProtocol(svc *wmi.Service, where string) ([]MSFTNetBaseIP
 	}
 	out := make([]MSFTNetBaseIPProtocol, len(rows))
 	for i, row := range rows {
-		out[i].AddressMaskReply = wmi.AsUint8(row["AddressMaskReply"])
-		out[i].AvailableRequestedStates = wmi.AsUint16Slice(row["AvailableRequestedStates"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CommunicationStatus = wmi.AsUint16(row["CommunicationStatus"])
-		out[i].CreationClassName = wmi.AsString(row["CreationClassName"])
-		out[i].DeadGatewayDetection = wmi.AsUint8(row["DeadGatewayDetection"])
-		out[i].DefaultHopLimit = wmi.AsUint32(row["DefaultHopLimit"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DetailedStatus = wmi.AsUint16(row["DetailedStatus"])
-		out[i].DhcpMediaSense = wmi.AsUint8(row["DhcpMediaSense"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].EnabledDefault = wmi.AsUint16(row["EnabledDefault"])
-		out[i].EnabledState = wmi.AsUint16(row["EnabledState"])
-		out[i].GroupForwardedFragments = wmi.AsUint8(row["GroupForwardedFragments"])
-		out[i].HealthState = wmi.AsUint16(row["HealthState"])
-		out[i].IcmpRedirects = wmi.AsUint8(row["IcmpRedirects"])
-		out[i].InstallDate = wmi.AsString(row["InstallDate"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].MediaSenseEventLog = wmi.AsUint8(row["MediaSenseEventLog"])
-		out[i].MldLevel = wmi.AsUint32(row["MldLevel"])
-		out[i].MldVersion = wmi.AsUint32(row["MldVersion"])
-		out[i].MulticastForwarding = wmi.AsUint8(row["MulticastForwarding"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].NameFormat = wmi.AsString(row["NameFormat"])
-		out[i].NeighborCacheLimit = wmi.AsUint32(row["NeighborCacheLimit"])
-		out[i].OperatingStatus = wmi.AsUint16(row["OperatingStatus"])
-		out[i].OperationalStatus = wmi.AsUint16Slice(row["OperationalStatus"])
-		out[i].OtherEnabledState = wmi.AsString(row["OtherEnabledState"])
-		out[i].OtherTypeDescription = wmi.AsString(row["OtherTypeDescription"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].ProtocolIFType = wmi.AsUint16(row["ProtocolIFType"])
-		out[i].ProtocolType = wmi.AsUint16(row["ProtocolType"])
-		out[i].RandomizeIdentifiers = wmi.AsUint8(row["RandomizeIdentifiers"])
-		out[i].ReassemblyLimit = wmi.AsUint32(row["ReassemblyLimit"])
-		out[i].RequestedState = wmi.AsUint16(row["RequestedState"])
-		out[i].RouteCacheLimit = wmi.AsUint32(row["RouteCacheLimit"])
-		out[i].SourceRoutingBehavior = wmi.AsUint32(row["SourceRoutingBehavior"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusDescriptions = wmi.AsStringSlice(row["StatusDescriptions"])
-		out[i].SystemCreationClassName = wmi.AsString(row["SystemCreationClassName"])
-		out[i].SystemName = wmi.AsString(row["SystemName"])
-		out[i].TimeOfLastStateChange = wmi.AsString(row["TimeOfLastStateChange"])
-		out[i].TransitioningToState = wmi.AsUint16(row["TransitioningToState"])
+		out[i] = MSFTNetBaseIPProtocolFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetBaseIPProtocol returns the MSFT_NetBaseIPProtocol instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetBaseIPProtocol(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*MSFTNetBaseIPProtocol, error) {
-	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
-		" AND " + "Name = " + wmi.WQLValue(name) +
-		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
-		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+// QueryOneMSFTNetBaseIPProtocol returns the single MSFT_NetBaseIPProtocol matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetBaseIPProtocol(svc *wmi.Service, where string) (*MSFTNetBaseIPProtocol, error) {
 	out, err := QueryMSFTNetBaseIPProtocol(svc, where)
 	if err != nil {
 		return nil, err
@@ -6643,8 +5999,19 @@ func GetMSFTNetBaseIPProtocol(svc *wmi.Service, creationClassName string, name s
 	return &out[0], nil
 }
 
+// GetMSFTNetBaseIPProtocol returns the MSFT_NetBaseIPProtocol instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetBaseIPProtocol(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*MSFTNetBaseIPProtocol, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "Name = " + wmi.WQLValue(name) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	return QueryOneMSFTNetBaseIPProtocol(svc, where)
+}
+
 // QueryMSFTNetBranchCacheCache runs the WQL query against the class and decodes each
-// instance into a MSFTNetBranchCacheCache. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetBranchCacheCache. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetBranchCacheCache(svc *wmi.Service, where string) ([]MSFTNetBranchCacheCache, error) {
 	q := "SELECT * FROM MSFT_NetBranchCacheCache"
 	if where != "" {
@@ -6656,32 +6023,14 @@ func QueryMSFTNetBranchCacheCache(svc *wmi.Service, where string) ([]MSFTNetBran
 	}
 	out := make([]MSFTNetBranchCacheCache, len(rows))
 	for i, row := range rows {
-		out[i].CacheFileDirectoryPath = wmi.AsString(row["CacheFileDirectoryPath"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CommunicationStatus = wmi.AsUint16(row["CommunicationStatus"])
-		out[i].CurrentSizeOnDiskAsNumberOfBytes = wmi.AsUint64(row["CurrentSizeOnDiskAsNumberOfBytes"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DetailedStatus = wmi.AsUint16(row["DetailedStatus"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].HealthState = wmi.AsUint16(row["HealthState"])
-		out[i].InstallDate = wmi.AsString(row["InstallDate"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].MaxCacheSizeAsNumberOfBytes = wmi.AsUint64(row["MaxCacheSizeAsNumberOfBytes"])
-		out[i].MaxCacheSizeAsPercentageOfDiskVolume = wmi.AsUint32(row["MaxCacheSizeAsPercentageOfDiskVolume"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].OperatingStatus = wmi.AsUint16(row["OperatingStatus"])
-		out[i].OperationalStatus = wmi.AsUint16Slice(row["OperationalStatus"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusDescriptions = wmi.AsStringSlice(row["StatusDescriptions"])
+		out[i] = MSFTNetBranchCacheCacheFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetBranchCacheCache returns the MSFT_NetBranchCacheCache instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetBranchCacheCache(svc *wmi.Service, instanceID string) (*MSFTNetBranchCacheCache, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetBranchCacheCache returns the single MSFT_NetBranchCacheCache matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetBranchCacheCache(svc *wmi.Service, where string) (*MSFTNetBranchCacheCache, error) {
 	out, err := QueryMSFTNetBranchCacheCache(svc, where)
 	if err != nil {
 		return nil, err
@@ -6692,8 +6041,16 @@ func GetMSFTNetBranchCacheCache(svc *wmi.Service, instanceID string) (*MSFTNetBr
 	return &out[0], nil
 }
 
+// GetMSFTNetBranchCacheCache returns the MSFT_NetBranchCacheCache instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetBranchCacheCache(svc *wmi.Service, instanceID string) (*MSFTNetBranchCacheCache, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetBranchCacheCache(svc, where)
+}
+
 // QueryMSFTNetBranchCacheClientSettingData runs the WQL query against the class and decodes each
-// instance into a MSFTNetBranchCacheClientSettingData. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetBranchCacheClientSettingData. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetBranchCacheClientSettingData(svc *wmi.Service, where string) ([]MSFTNetBranchCacheClientSettingData, error) {
 	q := "SELECT * FROM MSFT_NetBranchCacheClientSettingData"
 	if where != "" {
@@ -6705,26 +6062,14 @@ func QueryMSFTNetBranchCacheClientSettingData(svc *wmi.Service, where string) ([
 	}
 	out := make([]MSFTNetBranchCacheClientSettingData, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CurrentClientMode = wmi.AsUint32(row["CurrentClientMode"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DistributedCachingIsEnabled = wmi.AsBool(row["DistributedCachingIsEnabled"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].HostedCacheDiscoveryEnabled = wmi.AsBool(row["HostedCacheDiscoveryEnabled"])
-		out[i].HostedCacheServerList = wmi.AsStringSlice(row["HostedCacheServerList"])
-		out[i].HostedCacheVersion = wmi.AsUint32(row["HostedCacheVersion"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].MinimumSmbLatencyInMilliseconds = wmi.AsUint32(row["MinimumSmbLatencyInMilliseconds"])
-		out[i].PreferredContentInformationVersion = wmi.AsUint32(row["PreferredContentInformationVersion"])
-		out[i].ServeDistributedCachingPeersOnBatteryPower = wmi.AsBool(row["ServeDistributedCachingPeersOnBatteryPower"])
+		out[i] = MSFTNetBranchCacheClientSettingDataFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetBranchCacheClientSettingData returns the MSFT_NetBranchCacheClientSettingData instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetBranchCacheClientSettingData(svc *wmi.Service, instanceID string) (*MSFTNetBranchCacheClientSettingData, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetBranchCacheClientSettingData returns the single MSFT_NetBranchCacheClientSettingData matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetBranchCacheClientSettingData(svc *wmi.Service, where string) (*MSFTNetBranchCacheClientSettingData, error) {
 	out, err := QueryMSFTNetBranchCacheClientSettingData(svc, where)
 	if err != nil {
 		return nil, err
@@ -6735,8 +6080,16 @@ func GetMSFTNetBranchCacheClientSettingData(svc *wmi.Service, instanceID string)
 	return &out[0], nil
 }
 
+// GetMSFTNetBranchCacheClientSettingData returns the MSFT_NetBranchCacheClientSettingData instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetBranchCacheClientSettingData(svc *wmi.Service, instanceID string) (*MSFTNetBranchCacheClientSettingData, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetBranchCacheClientSettingData(svc, where)
+}
+
 // QueryMSFTNetBranchCacheContentServerSettingData runs the WQL query against the class and decodes each
-// instance into a MSFTNetBranchCacheContentServerSettingData. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetBranchCacheContentServerSettingData. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetBranchCacheContentServerSettingData(svc *wmi.Service, where string) ([]MSFTNetBranchCacheContentServerSettingData, error) {
 	q := "SELECT * FROM MSFT_NetBranchCacheContentServerSettingData"
 	if where != "" {
@@ -6748,19 +6101,14 @@ func QueryMSFTNetBranchCacheContentServerSettingData(svc *wmi.Service, where str
 	}
 	out := make([]MSFTNetBranchCacheContentServerSettingData, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].ContentServerIsEnabled = wmi.AsBool(row["ContentServerIsEnabled"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
+		out[i] = MSFTNetBranchCacheContentServerSettingDataFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetBranchCacheContentServerSettingData returns the MSFT_NetBranchCacheContentServerSettingData instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetBranchCacheContentServerSettingData(svc *wmi.Service, instanceID string) (*MSFTNetBranchCacheContentServerSettingData, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetBranchCacheContentServerSettingData returns the single MSFT_NetBranchCacheContentServerSettingData matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetBranchCacheContentServerSettingData(svc *wmi.Service, where string) (*MSFTNetBranchCacheContentServerSettingData, error) {
 	out, err := QueryMSFTNetBranchCacheContentServerSettingData(svc, where)
 	if err != nil {
 		return nil, err
@@ -6771,8 +6119,16 @@ func GetMSFTNetBranchCacheContentServerSettingData(svc *wmi.Service, instanceID 
 	return &out[0], nil
 }
 
+// GetMSFTNetBranchCacheContentServerSettingData returns the MSFT_NetBranchCacheContentServerSettingData instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetBranchCacheContentServerSettingData(svc *wmi.Service, instanceID string) (*MSFTNetBranchCacheContentServerSettingData, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetBranchCacheContentServerSettingData(svc, where)
+}
+
 // QueryMSFTNetBranchCacheDataCache runs the WQL query against the class and decodes each
-// instance into a MSFTNetBranchCacheDataCache. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetBranchCacheDataCache. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetBranchCacheDataCache(svc *wmi.Service, where string) ([]MSFTNetBranchCacheDataCache, error) {
 	q := "SELECT * FROM MSFT_NetBranchCacheDataCache"
 	if where != "" {
@@ -6784,34 +6140,14 @@ func QueryMSFTNetBranchCacheDataCache(svc *wmi.Service, where string) ([]MSFTNet
 	}
 	out := make([]MSFTNetBranchCacheDataCache, len(rows))
 	for i, row := range rows {
-		out[i].CacheFileDirectoryPath = wmi.AsString(row["CacheFileDirectoryPath"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CommunicationStatus = wmi.AsUint16(row["CommunicationStatus"])
-		out[i].CurrentActiveCacheSize = wmi.AsUint64(row["CurrentActiveCacheSize"])
-		out[i].CurrentSizeOnDiskAsNumberOfBytes = wmi.AsUint64(row["CurrentSizeOnDiskAsNumberOfBytes"])
-		out[i].DataCacheExtensions = wmi.AsRowSlice(row["DataCacheExtensions"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DetailedStatus = wmi.AsUint16(row["DetailedStatus"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].HealthState = wmi.AsUint16(row["HealthState"])
-		out[i].InstallDate = wmi.AsString(row["InstallDate"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].MaxCacheSizeAsNumberOfBytes = wmi.AsUint64(row["MaxCacheSizeAsNumberOfBytes"])
-		out[i].MaxCacheSizeAsPercentageOfDiskVolume = wmi.AsUint32(row["MaxCacheSizeAsPercentageOfDiskVolume"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].OperatingStatus = wmi.AsUint16(row["OperatingStatus"])
-		out[i].OperationalStatus = wmi.AsUint16Slice(row["OperationalStatus"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusDescriptions = wmi.AsStringSlice(row["StatusDescriptions"])
+		out[i] = MSFTNetBranchCacheDataCacheFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetBranchCacheDataCache returns the MSFT_NetBranchCacheDataCache instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetBranchCacheDataCache(svc *wmi.Service, instanceID string) (*MSFTNetBranchCacheDataCache, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetBranchCacheDataCache returns the single MSFT_NetBranchCacheDataCache matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetBranchCacheDataCache(svc *wmi.Service, where string) (*MSFTNetBranchCacheDataCache, error) {
 	out, err := QueryMSFTNetBranchCacheDataCache(svc, where)
 	if err != nil {
 		return nil, err
@@ -6822,8 +6158,16 @@ func GetMSFTNetBranchCacheDataCache(svc *wmi.Service, instanceID string) (*MSFTN
 	return &out[0], nil
 }
 
+// GetMSFTNetBranchCacheDataCache returns the MSFT_NetBranchCacheDataCache instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetBranchCacheDataCache(svc *wmi.Service, instanceID string) (*MSFTNetBranchCacheDataCache, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetBranchCacheDataCache(svc, where)
+}
+
 // QueryMSFTNetBranchCacheDataCacheExtension runs the WQL query against the class and decodes each
-// instance into a MSFTNetBranchCacheDataCacheExtension. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetBranchCacheDataCacheExtension. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetBranchCacheDataCacheExtension(svc *wmi.Service, where string) ([]MSFTNetBranchCacheDataCacheExtension, error) {
 	q := "SELECT * FROM MSFT_NetBranchCacheDataCacheExtension"
 	if where != "" {
@@ -6835,32 +6179,14 @@ func QueryMSFTNetBranchCacheDataCacheExtension(svc *wmi.Service, where string) (
 	}
 	out := make([]MSFTNetBranchCacheDataCacheExtension, len(rows))
 	for i, row := range rows {
-		out[i].CacheFileDirectoryPath = wmi.AsString(row["CacheFileDirectoryPath"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CommunicationStatus = wmi.AsUint16(row["CommunicationStatus"])
-		out[i].CurrentSizeOnDiskAsNumberOfBytes = wmi.AsUint64(row["CurrentSizeOnDiskAsNumberOfBytes"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DetailedStatus = wmi.AsUint16(row["DetailedStatus"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].HealthState = wmi.AsUint16(row["HealthState"])
-		out[i].InstallDate = wmi.AsString(row["InstallDate"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].MaxCacheSizeAsNumberOfBytes = wmi.AsUint64(row["MaxCacheSizeAsNumberOfBytes"])
-		out[i].MaxCacheSizeAsPercentageOfDiskVolume = wmi.AsUint32(row["MaxCacheSizeAsPercentageOfDiskVolume"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].OperatingStatus = wmi.AsUint16(row["OperatingStatus"])
-		out[i].OperationalStatus = wmi.AsUint16Slice(row["OperationalStatus"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusDescriptions = wmi.AsStringSlice(row["StatusDescriptions"])
+		out[i] = MSFTNetBranchCacheDataCacheExtensionFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetBranchCacheDataCacheExtension returns the MSFT_NetBranchCacheDataCacheExtension instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetBranchCacheDataCacheExtension(svc *wmi.Service, instanceID string) (*MSFTNetBranchCacheDataCacheExtension, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetBranchCacheDataCacheExtension returns the single MSFT_NetBranchCacheDataCacheExtension matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetBranchCacheDataCacheExtension(svc *wmi.Service, where string) (*MSFTNetBranchCacheDataCacheExtension, error) {
 	out, err := QueryMSFTNetBranchCacheDataCacheExtension(svc, where)
 	if err != nil {
 		return nil, err
@@ -6871,8 +6197,16 @@ func GetMSFTNetBranchCacheDataCacheExtension(svc *wmi.Service, instanceID string
 	return &out[0], nil
 }
 
+// GetMSFTNetBranchCacheDataCacheExtension returns the MSFT_NetBranchCacheDataCacheExtension instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetBranchCacheDataCacheExtension(svc *wmi.Service, instanceID string) (*MSFTNetBranchCacheDataCacheExtension, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetBranchCacheDataCacheExtension(svc, where)
+}
+
 // QueryMSFTNetBranchCacheHashCache runs the WQL query against the class and decodes each
-// instance into a MSFTNetBranchCacheHashCache. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetBranchCacheHashCache. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetBranchCacheHashCache(svc *wmi.Service, where string) ([]MSFTNetBranchCacheHashCache, error) {
 	q := "SELECT * FROM MSFT_NetBranchCacheHashCache"
 	if where != "" {
@@ -6884,33 +6218,14 @@ func QueryMSFTNetBranchCacheHashCache(svc *wmi.Service, where string) ([]MSFTNet
 	}
 	out := make([]MSFTNetBranchCacheHashCache, len(rows))
 	for i, row := range rows {
-		out[i].CacheFileDirectoryPath = wmi.AsString(row["CacheFileDirectoryPath"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CommunicationStatus = wmi.AsUint16(row["CommunicationStatus"])
-		out[i].CurrentActiveCacheSize = wmi.AsUint64(row["CurrentActiveCacheSize"])
-		out[i].CurrentSizeOnDiskAsNumberOfBytes = wmi.AsUint64(row["CurrentSizeOnDiskAsNumberOfBytes"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DetailedStatus = wmi.AsUint16(row["DetailedStatus"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].HealthState = wmi.AsUint16(row["HealthState"])
-		out[i].InstallDate = wmi.AsString(row["InstallDate"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].MaxCacheSizeAsNumberOfBytes = wmi.AsUint64(row["MaxCacheSizeAsNumberOfBytes"])
-		out[i].MaxCacheSizeAsPercentageOfDiskVolume = wmi.AsUint32(row["MaxCacheSizeAsPercentageOfDiskVolume"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].OperatingStatus = wmi.AsUint16(row["OperatingStatus"])
-		out[i].OperationalStatus = wmi.AsUint16Slice(row["OperationalStatus"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusDescriptions = wmi.AsStringSlice(row["StatusDescriptions"])
+		out[i] = MSFTNetBranchCacheHashCacheFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetBranchCacheHashCache returns the MSFT_NetBranchCacheHashCache instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetBranchCacheHashCache(svc *wmi.Service, instanceID string) (*MSFTNetBranchCacheHashCache, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetBranchCacheHashCache returns the single MSFT_NetBranchCacheHashCache matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetBranchCacheHashCache(svc *wmi.Service, where string) (*MSFTNetBranchCacheHashCache, error) {
 	out, err := QueryMSFTNetBranchCacheHashCache(svc, where)
 	if err != nil {
 		return nil, err
@@ -6921,8 +6236,16 @@ func GetMSFTNetBranchCacheHashCache(svc *wmi.Service, instanceID string) (*MSFTN
 	return &out[0], nil
 }
 
+// GetMSFTNetBranchCacheHashCache returns the MSFT_NetBranchCacheHashCache instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetBranchCacheHashCache(svc *wmi.Service, instanceID string) (*MSFTNetBranchCacheHashCache, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetBranchCacheHashCache(svc, where)
+}
+
 // QueryMSFTNetBranchCacheHostedCacheServerSettingData runs the WQL query against the class and decodes each
-// instance into a MSFTNetBranchCacheHostedCacheServerSettingData. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetBranchCacheHostedCacheServerSettingData. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetBranchCacheHostedCacheServerSettingData(svc *wmi.Service, where string) ([]MSFTNetBranchCacheHostedCacheServerSettingData, error) {
 	q := "SELECT * FROM MSFT_NetBranchCacheHostedCacheServerSettingData"
 	if where != "" {
@@ -6934,21 +6257,14 @@ func QueryMSFTNetBranchCacheHostedCacheServerSettingData(svc *wmi.Service, where
 	}
 	out := make([]MSFTNetBranchCacheHostedCacheServerSettingData, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].ClientAuthenticationMode = wmi.AsUint32(row["ClientAuthenticationMode"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].HostedCacheScpRegistrationEnabled = wmi.AsBool(row["HostedCacheScpRegistrationEnabled"])
-		out[i].HostedCacheServerIsEnabled = wmi.AsBool(row["HostedCacheServerIsEnabled"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
+		out[i] = MSFTNetBranchCacheHostedCacheServerSettingDataFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetBranchCacheHostedCacheServerSettingData returns the MSFT_NetBranchCacheHostedCacheServerSettingData instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetBranchCacheHostedCacheServerSettingData(svc *wmi.Service, instanceID string) (*MSFTNetBranchCacheHostedCacheServerSettingData, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetBranchCacheHostedCacheServerSettingData returns the single MSFT_NetBranchCacheHostedCacheServerSettingData matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetBranchCacheHostedCacheServerSettingData(svc *wmi.Service, where string) (*MSFTNetBranchCacheHostedCacheServerSettingData, error) {
 	out, err := QueryMSFTNetBranchCacheHostedCacheServerSettingData(svc, where)
 	if err != nil {
 		return nil, err
@@ -6959,8 +6275,16 @@ func GetMSFTNetBranchCacheHostedCacheServerSettingData(svc *wmi.Service, instanc
 	return &out[0], nil
 }
 
+// GetMSFTNetBranchCacheHostedCacheServerSettingData returns the MSFT_NetBranchCacheHostedCacheServerSettingData instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetBranchCacheHostedCacheServerSettingData(svc *wmi.Service, instanceID string) (*MSFTNetBranchCacheHostedCacheServerSettingData, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetBranchCacheHostedCacheServerSettingData(svc, where)
+}
+
 // QueryMSFTNetBranchCacheNetworkSettingData runs the WQL query against the class and decodes each
-// instance into a MSFTNetBranchCacheNetworkSettingData. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetBranchCacheNetworkSettingData. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetBranchCacheNetworkSettingData(svc *wmi.Service, where string) ([]MSFTNetBranchCacheNetworkSettingData, error) {
 	q := "SELECT * FROM MSFT_NetBranchCacheNetworkSettingData"
 	if where != "" {
@@ -6972,31 +6296,14 @@ func QueryMSFTNetBranchCacheNetworkSettingData(svc *wmi.Service, where string) (
 	}
 	out := make([]MSFTNetBranchCacheNetworkSettingData, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].ContentDownloadConnectPort = wmi.AsUint16(row["ContentDownloadConnectPort"])
-		out[i].ContentDownloadListenPort = wmi.AsUint16(row["ContentDownloadListenPort"])
-		out[i].ContentRetrievalFirewallRulesEnabled = wmi.AsBool(row["ContentRetrievalFirewallRulesEnabled"])
-		out[i].ContentRetrievalUrlReservationEnabled = wmi.AsBool(row["ContentRetrievalUrlReservationEnabled"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].HostedCacheClientFirewallRulesEnabled = wmi.AsBool(row["HostedCacheClientFirewallRulesEnabled"])
-		out[i].HostedCacheHttpConnectPort = wmi.AsUint16(row["HostedCacheHttpConnectPort"])
-		out[i].HostedCacheHttpListenPort = wmi.AsUint16(row["HostedCacheHttpListenPort"])
-		out[i].HostedCacheHttpUrlReservationEnabled = wmi.AsBool(row["HostedCacheHttpUrlReservationEnabled"])
-		out[i].HostedCacheHttpsConnectPort = wmi.AsUint16(row["HostedCacheHttpsConnectPort"])
-		out[i].HostedCacheHttpsListenPort = wmi.AsUint16(row["HostedCacheHttpsListenPort"])
-		out[i].HostedCacheHttpsUrlReservationEnabled = wmi.AsBool(row["HostedCacheHttpsUrlReservationEnabled"])
-		out[i].HostedCacheServerFirewallRulesEnabled = wmi.AsBool(row["HostedCacheServerFirewallRulesEnabled"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].PeerDiscoveryFirewallRulesEnabled = wmi.AsBool(row["PeerDiscoveryFirewallRulesEnabled"])
+		out[i] = MSFTNetBranchCacheNetworkSettingDataFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetBranchCacheNetworkSettingData returns the MSFT_NetBranchCacheNetworkSettingData instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetBranchCacheNetworkSettingData(svc *wmi.Service, instanceID string) (*MSFTNetBranchCacheNetworkSettingData, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetBranchCacheNetworkSettingData returns the single MSFT_NetBranchCacheNetworkSettingData matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetBranchCacheNetworkSettingData(svc *wmi.Service, where string) (*MSFTNetBranchCacheNetworkSettingData, error) {
 	out, err := QueryMSFTNetBranchCacheNetworkSettingData(svc, where)
 	if err != nil {
 		return nil, err
@@ -7007,8 +6314,16 @@ func GetMSFTNetBranchCacheNetworkSettingData(svc *wmi.Service, instanceID string
 	return &out[0], nil
 }
 
+// GetMSFTNetBranchCacheNetworkSettingData returns the MSFT_NetBranchCacheNetworkSettingData instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetBranchCacheNetworkSettingData(svc *wmi.Service, instanceID string) (*MSFTNetBranchCacheNetworkSettingData, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetBranchCacheNetworkSettingData(svc, where)
+}
+
 // QueryMSFTNetBranchCacheOrchestrator runs the WQL query against the class and decodes each
-// instance into a MSFTNetBranchCacheOrchestrator. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetBranchCacheOrchestrator. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetBranchCacheOrchestrator(svc *wmi.Service, where string) ([]MSFTNetBranchCacheOrchestrator, error) {
 	q := "SELECT * FROM MSFT_NetBranchCacheOrchestrator"
 	if where != "" {
@@ -7020,16 +6335,27 @@ func QueryMSFTNetBranchCacheOrchestrator(svc *wmi.Service, where string) ([]MSFT
 	}
 	out := make([]MSFTNetBranchCacheOrchestrator, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
+		out[i] = MSFTNetBranchCacheOrchestratorFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneMSFTNetBranchCacheOrchestrator returns the single MSFT_NetBranchCacheOrchestrator matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetBranchCacheOrchestrator(svc *wmi.Service, where string) (*MSFTNetBranchCacheOrchestrator, error) {
+	out, err := QueryMSFTNetBranchCacheOrchestrator(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryMSFTNetBranchCachePrimaryCache runs the WQL query against the class and decodes each
-// instance into a MSFTNetBranchCachePrimaryCache. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetBranchCachePrimaryCache. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetBranchCachePrimaryCache(svc *wmi.Service, where string) ([]MSFTNetBranchCachePrimaryCache, error) {
 	q := "SELECT * FROM MSFT_NetBranchCachePrimaryCache"
 	if where != "" {
@@ -7041,33 +6367,14 @@ func QueryMSFTNetBranchCachePrimaryCache(svc *wmi.Service, where string) ([]MSFT
 	}
 	out := make([]MSFTNetBranchCachePrimaryCache, len(rows))
 	for i, row := range rows {
-		out[i].CacheFileDirectoryPath = wmi.AsString(row["CacheFileDirectoryPath"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CommunicationStatus = wmi.AsUint16(row["CommunicationStatus"])
-		out[i].CurrentActiveCacheSize = wmi.AsUint64(row["CurrentActiveCacheSize"])
-		out[i].CurrentSizeOnDiskAsNumberOfBytes = wmi.AsUint64(row["CurrentSizeOnDiskAsNumberOfBytes"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DetailedStatus = wmi.AsUint16(row["DetailedStatus"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].HealthState = wmi.AsUint16(row["HealthState"])
-		out[i].InstallDate = wmi.AsString(row["InstallDate"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].MaxCacheSizeAsNumberOfBytes = wmi.AsUint64(row["MaxCacheSizeAsNumberOfBytes"])
-		out[i].MaxCacheSizeAsPercentageOfDiskVolume = wmi.AsUint32(row["MaxCacheSizeAsPercentageOfDiskVolume"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].OperatingStatus = wmi.AsUint16(row["OperatingStatus"])
-		out[i].OperationalStatus = wmi.AsUint16Slice(row["OperationalStatus"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusDescriptions = wmi.AsStringSlice(row["StatusDescriptions"])
+		out[i] = MSFTNetBranchCachePrimaryCacheFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetBranchCachePrimaryCache returns the MSFT_NetBranchCachePrimaryCache instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetBranchCachePrimaryCache(svc *wmi.Service, instanceID string) (*MSFTNetBranchCachePrimaryCache, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetBranchCachePrimaryCache returns the single MSFT_NetBranchCachePrimaryCache matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetBranchCachePrimaryCache(svc *wmi.Service, where string) (*MSFTNetBranchCachePrimaryCache, error) {
 	out, err := QueryMSFTNetBranchCachePrimaryCache(svc, where)
 	if err != nil {
 		return nil, err
@@ -7078,8 +6385,16 @@ func GetMSFTNetBranchCachePrimaryCache(svc *wmi.Service, instanceID string) (*MS
 	return &out[0], nil
 }
 
+// GetMSFTNetBranchCachePrimaryCache returns the MSFT_NetBranchCachePrimaryCache instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetBranchCachePrimaryCache(svc *wmi.Service, instanceID string) (*MSFTNetBranchCachePrimaryCache, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetBranchCachePrimaryCache(svc, where)
+}
+
 // QueryMSFTNetBranchCacheSecondaryCache runs the WQL query against the class and decodes each
-// instance into a MSFTNetBranchCacheSecondaryCache. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetBranchCacheSecondaryCache. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetBranchCacheSecondaryCache(svc *wmi.Service, where string) ([]MSFTNetBranchCacheSecondaryCache, error) {
 	q := "SELECT * FROM MSFT_NetBranchCacheSecondaryCache"
 	if where != "" {
@@ -7091,32 +6406,14 @@ func QueryMSFTNetBranchCacheSecondaryCache(svc *wmi.Service, where string) ([]MS
 	}
 	out := make([]MSFTNetBranchCacheSecondaryCache, len(rows))
 	for i, row := range rows {
-		out[i].CacheFileDirectoryPath = wmi.AsString(row["CacheFileDirectoryPath"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CommunicationStatus = wmi.AsUint16(row["CommunicationStatus"])
-		out[i].CurrentSizeOnDiskAsNumberOfBytes = wmi.AsUint64(row["CurrentSizeOnDiskAsNumberOfBytes"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DetailedStatus = wmi.AsUint16(row["DetailedStatus"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].HealthState = wmi.AsUint16(row["HealthState"])
-		out[i].InstallDate = wmi.AsString(row["InstallDate"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].MaxCacheSizeAsNumberOfBytes = wmi.AsUint64(row["MaxCacheSizeAsNumberOfBytes"])
-		out[i].MaxCacheSizeAsPercentageOfDiskVolume = wmi.AsUint32(row["MaxCacheSizeAsPercentageOfDiskVolume"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].OperatingStatus = wmi.AsUint16(row["OperatingStatus"])
-		out[i].OperationalStatus = wmi.AsUint16Slice(row["OperationalStatus"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusDescriptions = wmi.AsStringSlice(row["StatusDescriptions"])
+		out[i] = MSFTNetBranchCacheSecondaryCacheFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetBranchCacheSecondaryCache returns the MSFT_NetBranchCacheSecondaryCache instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetBranchCacheSecondaryCache(svc *wmi.Service, instanceID string) (*MSFTNetBranchCacheSecondaryCache, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetBranchCacheSecondaryCache returns the single MSFT_NetBranchCacheSecondaryCache matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetBranchCacheSecondaryCache(svc *wmi.Service, where string) (*MSFTNetBranchCacheSecondaryCache, error) {
 	out, err := QueryMSFTNetBranchCacheSecondaryCache(svc, where)
 	if err != nil {
 		return nil, err
@@ -7127,8 +6424,16 @@ func GetMSFTNetBranchCacheSecondaryCache(svc *wmi.Service, instanceID string) (*
 	return &out[0], nil
 }
 
+// GetMSFTNetBranchCacheSecondaryCache returns the MSFT_NetBranchCacheSecondaryCache instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetBranchCacheSecondaryCache(svc *wmi.Service, instanceID string) (*MSFTNetBranchCacheSecondaryCache, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetBranchCacheSecondaryCache(svc, where)
+}
+
 // QueryMSFTNetBranchCacheSettingData runs the WQL query against the class and decodes each
-// instance into a MSFTNetBranchCacheSettingData. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetBranchCacheSettingData. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetBranchCacheSettingData(svc *wmi.Service, where string) ([]MSFTNetBranchCacheSettingData, error) {
 	q := "SELECT * FROM MSFT_NetBranchCacheSettingData"
 	if where != "" {
@@ -7140,18 +6445,14 @@ func QueryMSFTNetBranchCacheSettingData(svc *wmi.Service, where string) ([]MSFTN
 	}
 	out := make([]MSFTNetBranchCacheSettingData, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
+		out[i] = MSFTNetBranchCacheSettingDataFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetBranchCacheSettingData returns the MSFT_NetBranchCacheSettingData instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetBranchCacheSettingData(svc *wmi.Service, instanceID string) (*MSFTNetBranchCacheSettingData, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetBranchCacheSettingData returns the single MSFT_NetBranchCacheSettingData matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetBranchCacheSettingData(svc *wmi.Service, where string) (*MSFTNetBranchCacheSettingData, error) {
 	out, err := QueryMSFTNetBranchCacheSettingData(svc, where)
 	if err != nil {
 		return nil, err
@@ -7162,8 +6463,16 @@ func GetMSFTNetBranchCacheSettingData(svc *wmi.Service, instanceID string) (*MSF
 	return &out[0], nil
 }
 
+// GetMSFTNetBranchCacheSettingData returns the MSFT_NetBranchCacheSettingData instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetBranchCacheSettingData(svc *wmi.Service, instanceID string) (*MSFTNetBranchCacheSettingData, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetBranchCacheSettingData(svc, where)
+}
+
 // QueryMSFTNetBranchCacheStatus runs the WQL query against the class and decodes each
-// instance into a MSFTNetBranchCacheStatus. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetBranchCacheStatus. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetBranchCacheStatus(svc *wmi.Service, where string) ([]MSFTNetBranchCacheStatus, error) {
 	q := "SELECT * FROM MSFT_NetBranchCacheStatus"
 	if where != "" {
@@ -7175,49 +6484,14 @@ func QueryMSFTNetBranchCacheStatus(svc *wmi.Service, where string) ([]MSFTNetBra
 	}
 	out := make([]MSFTNetBranchCacheStatus, len(rows))
 	for i, row := range rows {
-		out[i].BranchCacheIsEnabled = wmi.AsBool(row["BranchCacheIsEnabled"])
-		out[i].BranchCacheServiceStartType = wmi.AsUint32(row["BranchCacheServiceStartType"])
-		out[i].BranchCacheServiceStatus = wmi.AsUint32(row["BranchCacheServiceStatus"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		if v, ok := row["ClientConfiguration"].(wmi.Row); ok {
-			out[i].ClientConfiguration = v
-		}
-		out[i].CommunicationStatus = wmi.AsUint16(row["CommunicationStatus"])
-		if v, ok := row["ContentServerConfiguration"].(wmi.Row); ok {
-			out[i].ContentServerConfiguration = v
-		}
-		if v, ok := row["DataCache"].(wmi.Row); ok {
-			out[i].DataCache = v
-		}
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DetailedStatus = wmi.AsUint16(row["DetailedStatus"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		if v, ok := row["HashCache"].(wmi.Row); ok {
-			out[i].HashCache = v
-		}
-		out[i].HealthState = wmi.AsUint16(row["HealthState"])
-		if v, ok := row["HostedCacheServerConfiguration"].(wmi.Row); ok {
-			out[i].HostedCacheServerConfiguration = v
-		}
-		out[i].InstallDate = wmi.AsString(row["InstallDate"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].Name = wmi.AsString(row["Name"])
-		if v, ok := row["NetworkConfiguration"].(wmi.Row); ok {
-			out[i].NetworkConfiguration = v
-		}
-		out[i].OperatingStatus = wmi.AsUint16(row["OperatingStatus"])
-		out[i].OperationalStatus = wmi.AsUint16Slice(row["OperationalStatus"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusDescriptions = wmi.AsStringSlice(row["StatusDescriptions"])
+		out[i] = MSFTNetBranchCacheStatusFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetBranchCacheStatus returns the MSFT_NetBranchCacheStatus instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetBranchCacheStatus(svc *wmi.Service, instanceID string) (*MSFTNetBranchCacheStatus, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetBranchCacheStatus returns the single MSFT_NetBranchCacheStatus matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetBranchCacheStatus(svc *wmi.Service, where string) (*MSFTNetBranchCacheStatus, error) {
 	out, err := QueryMSFTNetBranchCacheStatus(svc, where)
 	if err != nil {
 		return nil, err
@@ -7228,8 +6502,16 @@ func GetMSFTNetBranchCacheStatus(svc *wmi.Service, instanceID string) (*MSFTNetB
 	return &out[0], nil
 }
 
+// GetMSFTNetBranchCacheStatus returns the MSFT_NetBranchCacheStatus instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetBranchCacheStatus(svc *wmi.Service, instanceID string) (*MSFTNetBranchCacheStatus, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetBranchCacheStatus(svc, where)
+}
+
 // QueryMSFTNetCompartment runs the WQL query against the class and decodes each
-// instance into a MSFTNetCompartment. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetCompartment. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetCompartment(svc *wmi.Service, where string) ([]MSFTNetCompartment, error) {
 	q := "SELECT * FROM MSFT_NetCompartment"
 	if where != "" {
@@ -7241,22 +6523,14 @@ func QueryMSFTNetCompartment(svc *wmi.Service, where string) ([]MSFTNetCompartme
 	}
 	out := make([]MSFTNetCompartment, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CompartmentDescription = wmi.AsString(row["CompartmentDescription"])
-		out[i].CompartmentGuid = wmi.AsString(row["CompartmentGuid"])
-		out[i].CompartmentId = wmi.AsUint32(row["CompartmentId"])
-		out[i].CompartmentType = wmi.AsUint32(row["CompartmentType"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
+		out[i] = MSFTNetCompartmentFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetCompartment returns the MSFT_NetCompartment instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetCompartment(svc *wmi.Service, instanceID string) (*MSFTNetCompartment, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetCompartment returns the single MSFT_NetCompartment matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetCompartment(svc *wmi.Service, where string) (*MSFTNetCompartment, error) {
 	out, err := QueryMSFTNetCompartment(svc, where)
 	if err != nil {
 		return nil, err
@@ -7267,8 +6541,16 @@ func GetMSFTNetCompartment(svc *wmi.Service, instanceID string) (*MSFTNetCompart
 	return &out[0], nil
 }
 
+// GetMSFTNetCompartment returns the MSFT_NetCompartment instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetCompartment(svc *wmi.Service, instanceID string) (*MSFTNetCompartment, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetCompartment(svc, where)
+}
+
 // QueryMSFTNetConSecRule runs the WQL query against the class and decodes each
-// instance into a MSFTNetConSecRule. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetConSecRule. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetConSecRule(svc *wmi.Service, where string) ([]MSFTNetConSecRule, error) {
 	q := "SELECT * FROM MSFT_NetConSecRule"
 	if where != "" {
@@ -7280,69 +6562,14 @@ func QueryMSFTNetConSecRule(svc *wmi.Service, where string) ([]MSFTNetConSecRule
 	}
 	out := make([]MSFTNetConSecRule, len(rows))
 	for i, row := range rows {
-		out[i].AllowSetKey = wmi.AsBool(row["AllowSetKey"])
-		out[i].AllowWatchKey = wmi.AsBool(row["AllowWatchKey"])
-		out[i].BypassTunnelIfEncrypted = wmi.AsBool(row["BypassTunnelIfEncrypted"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CommonName = wmi.AsString(row["CommonName"])
-		out[i].ConditionListType = wmi.AsUint16(row["ConditionListType"])
-		out[i].CreationClassName = wmi.AsString(row["CreationClassName"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DisplayGroup = wmi.AsString(row["DisplayGroup"])
-		out[i].DisplayLocalAddress = wmi.AsStringSlice(row["DisplayLocalAddress"])
-		out[i].DisplayName = wmi.AsString(row["DisplayName"])
-		out[i].DisplayRemoteAddress = wmi.AsStringSlice(row["DisplayRemoteAddress"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].Enabled = wmi.AsUint16(row["Enabled"])
-		out[i].EnforcementStatus = wmi.AsUint16Slice(row["EnforcementStatus"])
-		out[i].ExecutionStrategy = wmi.AsUint16(row["ExecutionStrategy"])
-		out[i].InboundSecurity = wmi.AsUint16(row["InboundSecurity"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].KeyModule = wmi.AsUint16(row["KeyModule"])
-		out[i].LimitNegotiation = wmi.AsUint16(row["LimitNegotiation"])
-		out[i].LocalTunnelEndpoint = wmi.AsStringSlice(row["LocalTunnelEndpoint"])
-		out[i].Machines = wmi.AsString(row["Machines"])
-		out[i].MainModeCryptoSet = wmi.AsString(row["MainModeCryptoSet"])
-		out[i].Mandatory = wmi.AsBool(row["Mandatory"])
-		out[i].MaxReturnPathLifetimeSeconds = wmi.AsUint32(row["MaxReturnPathLifetimeSeconds"])
-		out[i].Mode = wmi.AsUint16(row["Mode"])
-		out[i].OutboundSecurity = wmi.AsUint16(row["OutboundSecurity"])
-		out[i].Phase1AuthSet = wmi.AsString(row["Phase1AuthSet"])
-		out[i].Phase2AuthSet = wmi.AsString(row["Phase2AuthSet"])
-		out[i].Platforms = wmi.AsStringSlice(row["Platforms"])
-		out[i].PolicyDecisionStrategy = wmi.AsUint16(row["PolicyDecisionStrategy"])
-		out[i].PolicyKeywords = wmi.AsStringSlice(row["PolicyKeywords"])
-		out[i].PolicyRoles = wmi.AsStringSlice(row["PolicyRoles"])
-		out[i].PolicyRuleName = wmi.AsString(row["PolicyRuleName"])
-		out[i].PolicyStoreSource = wmi.AsString(row["PolicyStoreSource"])
-		out[i].PolicyStoreSourceType = wmi.AsUint16(row["PolicyStoreSourceType"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].Priority = wmi.AsUint16(row["Priority"])
-		out[i].Profiles = wmi.AsUint16(row["Profiles"])
-		out[i].QuickModeCryptoSet = wmi.AsString(row["QuickModeCryptoSet"])
-		out[i].RemoteTunnelEndpoint = wmi.AsStringSlice(row["RemoteTunnelEndpoint"])
-		out[i].RemoteTunnelEndpointDNSName = wmi.AsString(row["RemoteTunnelEndpointDNSName"])
-		out[i].RequireAuthorization = wmi.AsBool(row["RequireAuthorization"])
-		out[i].RuleGroup = wmi.AsString(row["RuleGroup"])
-		out[i].RuleUsage = wmi.AsString(row["RuleUsage"])
-		out[i].SequencedActions = wmi.AsUint16(row["SequencedActions"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusCode = wmi.AsUint32(row["StatusCode"])
-		out[i].SystemCreationClassName = wmi.AsString(row["SystemCreationClassName"])
-		out[i].SystemName = wmi.AsString(row["SystemName"])
-		out[i].TunnelType = wmi.AsUint16(row["TunnelType"])
-		out[i].Users = wmi.AsString(row["Users"])
+		out[i] = MSFTNetConSecRuleFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetConSecRule returns the MSFT_NetConSecRule instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetConSecRule(svc *wmi.Service, creationClassName string, policyRuleName string, systemCreationClassName string, systemName string) (*MSFTNetConSecRule, error) {
-	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
-		" AND " + "PolicyRuleName = " + wmi.WQLValue(policyRuleName) +
-		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
-		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+// QueryOneMSFTNetConSecRule returns the single MSFT_NetConSecRule matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetConSecRule(svc *wmi.Service, where string) (*MSFTNetConSecRule, error) {
 	out, err := QueryMSFTNetConSecRule(svc, where)
 	if err != nil {
 		return nil, err
@@ -7353,8 +6580,19 @@ func GetMSFTNetConSecRule(svc *wmi.Service, creationClassName string, policyRule
 	return &out[0], nil
 }
 
+// GetMSFTNetConSecRule returns the MSFT_NetConSecRule instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetConSecRule(svc *wmi.Service, creationClassName string, policyRuleName string, systemCreationClassName string, systemName string) (*MSFTNetConSecRule, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "PolicyRuleName = " + wmi.WQLValue(policyRuleName) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	return QueryOneMSFTNetConSecRule(svc, where)
+}
+
 // QueryMSFTNetConSecRuleEMAuthSet runs the WQL query against the class and decodes each
-// instance into a MSFTNetConSecRuleEMAuthSet. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetConSecRuleEMAuthSet. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetConSecRuleEMAuthSet(svc *wmi.Service, where string) ([]MSFTNetConSecRuleEMAuthSet, error) {
 	q := "SELECT * FROM MSFT_NetConSecRuleEMAuthSet"
 	if where != "" {
@@ -7366,18 +6604,14 @@ func QueryMSFTNetConSecRuleEMAuthSet(svc *wmi.Service, where string) ([]MSFTNetC
 	}
 	out := make([]MSFTNetConSecRuleEMAuthSet, len(rows))
 	for i, row := range rows {
-		out[i].ActionOrder = wmi.AsUint16(row["ActionOrder"])
-		out[i].GroupComponent = wmi.AsString(row["GroupComponent"])
-		out[i].PartComponent = wmi.AsString(row["PartComponent"])
+		out[i] = MSFTNetConSecRuleEMAuthSetFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetConSecRuleEMAuthSet returns the MSFT_NetConSecRuleEMAuthSet instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetConSecRuleEMAuthSet(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetConSecRuleEMAuthSet, error) {
-	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
-		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+// QueryOneMSFTNetConSecRuleEMAuthSet returns the single MSFT_NetConSecRuleEMAuthSet matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetConSecRuleEMAuthSet(svc *wmi.Service, where string) (*MSFTNetConSecRuleEMAuthSet, error) {
 	out, err := QueryMSFTNetConSecRuleEMAuthSet(svc, where)
 	if err != nil {
 		return nil, err
@@ -7388,8 +6622,17 @@ func GetMSFTNetConSecRuleEMAuthSet(svc *wmi.Service, groupComponent string, part
 	return &out[0], nil
 }
 
+// GetMSFTNetConSecRuleEMAuthSet returns the MSFT_NetConSecRuleEMAuthSet instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetConSecRuleEMAuthSet(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetConSecRuleEMAuthSet, error) {
+	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
+		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+	return QueryOneMSFTNetConSecRuleEMAuthSet(svc, where)
+}
+
 // QueryMSFTNetConSecRuleFilterByAddress runs the WQL query against the class and decodes each
-// instance into a MSFTNetConSecRuleFilterByAddress. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetConSecRuleFilterByAddress. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetConSecRuleFilterByAddress(svc *wmi.Service, where string) ([]MSFTNetConSecRuleFilterByAddress, error) {
 	q := "SELECT * FROM MSFT_NetConSecRuleFilterByAddress"
 	if where != "" {
@@ -7401,17 +6644,14 @@ func QueryMSFTNetConSecRuleFilterByAddress(svc *wmi.Service, where string) ([]MS
 	}
 	out := make([]MSFTNetConSecRuleFilterByAddress, len(rows))
 	for i, row := range rows {
-		out[i].GroupComponent = wmi.AsString(row["GroupComponent"])
-		out[i].PartComponent = wmi.AsString(row["PartComponent"])
+		out[i] = MSFTNetConSecRuleFilterByAddressFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetConSecRuleFilterByAddress returns the MSFT_NetConSecRuleFilterByAddress instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetConSecRuleFilterByAddress(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetConSecRuleFilterByAddress, error) {
-	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
-		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+// QueryOneMSFTNetConSecRuleFilterByAddress returns the single MSFT_NetConSecRuleFilterByAddress matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetConSecRuleFilterByAddress(svc *wmi.Service, where string) (*MSFTNetConSecRuleFilterByAddress, error) {
 	out, err := QueryMSFTNetConSecRuleFilterByAddress(svc, where)
 	if err != nil {
 		return nil, err
@@ -7422,8 +6662,17 @@ func GetMSFTNetConSecRuleFilterByAddress(svc *wmi.Service, groupComponent string
 	return &out[0], nil
 }
 
+// GetMSFTNetConSecRuleFilterByAddress returns the MSFT_NetConSecRuleFilterByAddress instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetConSecRuleFilterByAddress(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetConSecRuleFilterByAddress, error) {
+	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
+		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+	return QueryOneMSFTNetConSecRuleFilterByAddress(svc, where)
+}
+
 // QueryMSFTNetConSecRuleFilterByInterface runs the WQL query against the class and decodes each
-// instance into a MSFTNetConSecRuleFilterByInterface. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetConSecRuleFilterByInterface. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetConSecRuleFilterByInterface(svc *wmi.Service, where string) ([]MSFTNetConSecRuleFilterByInterface, error) {
 	q := "SELECT * FROM MSFT_NetConSecRuleFilterByInterface"
 	if where != "" {
@@ -7435,17 +6684,14 @@ func QueryMSFTNetConSecRuleFilterByInterface(svc *wmi.Service, where string) ([]
 	}
 	out := make([]MSFTNetConSecRuleFilterByInterface, len(rows))
 	for i, row := range rows {
-		out[i].GroupComponent = wmi.AsString(row["GroupComponent"])
-		out[i].PartComponent = wmi.AsString(row["PartComponent"])
+		out[i] = MSFTNetConSecRuleFilterByInterfaceFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetConSecRuleFilterByInterface returns the MSFT_NetConSecRuleFilterByInterface instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetConSecRuleFilterByInterface(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetConSecRuleFilterByInterface, error) {
-	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
-		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+// QueryOneMSFTNetConSecRuleFilterByInterface returns the single MSFT_NetConSecRuleFilterByInterface matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetConSecRuleFilterByInterface(svc *wmi.Service, where string) (*MSFTNetConSecRuleFilterByInterface, error) {
 	out, err := QueryMSFTNetConSecRuleFilterByInterface(svc, where)
 	if err != nil {
 		return nil, err
@@ -7456,8 +6702,17 @@ func GetMSFTNetConSecRuleFilterByInterface(svc *wmi.Service, groupComponent stri
 	return &out[0], nil
 }
 
+// GetMSFTNetConSecRuleFilterByInterface returns the MSFT_NetConSecRuleFilterByInterface instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetConSecRuleFilterByInterface(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetConSecRuleFilterByInterface, error) {
+	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
+		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+	return QueryOneMSFTNetConSecRuleFilterByInterface(svc, where)
+}
+
 // QueryMSFTNetConSecRuleFilterByInterfaceType runs the WQL query against the class and decodes each
-// instance into a MSFTNetConSecRuleFilterByInterfaceType. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetConSecRuleFilterByInterfaceType. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetConSecRuleFilterByInterfaceType(svc *wmi.Service, where string) ([]MSFTNetConSecRuleFilterByInterfaceType, error) {
 	q := "SELECT * FROM MSFT_NetConSecRuleFilterByInterfaceType"
 	if where != "" {
@@ -7469,17 +6724,14 @@ func QueryMSFTNetConSecRuleFilterByInterfaceType(svc *wmi.Service, where string)
 	}
 	out := make([]MSFTNetConSecRuleFilterByInterfaceType, len(rows))
 	for i, row := range rows {
-		out[i].GroupComponent = wmi.AsString(row["GroupComponent"])
-		out[i].PartComponent = wmi.AsString(row["PartComponent"])
+		out[i] = MSFTNetConSecRuleFilterByInterfaceTypeFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetConSecRuleFilterByInterfaceType returns the MSFT_NetConSecRuleFilterByInterfaceType instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetConSecRuleFilterByInterfaceType(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetConSecRuleFilterByInterfaceType, error) {
-	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
-		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+// QueryOneMSFTNetConSecRuleFilterByInterfaceType returns the single MSFT_NetConSecRuleFilterByInterfaceType matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetConSecRuleFilterByInterfaceType(svc *wmi.Service, where string) (*MSFTNetConSecRuleFilterByInterfaceType, error) {
 	out, err := QueryMSFTNetConSecRuleFilterByInterfaceType(svc, where)
 	if err != nil {
 		return nil, err
@@ -7490,8 +6742,17 @@ func GetMSFTNetConSecRuleFilterByInterfaceType(svc *wmi.Service, groupComponent 
 	return &out[0], nil
 }
 
+// GetMSFTNetConSecRuleFilterByInterfaceType returns the MSFT_NetConSecRuleFilterByInterfaceType instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetConSecRuleFilterByInterfaceType(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetConSecRuleFilterByInterfaceType, error) {
+	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
+		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+	return QueryOneMSFTNetConSecRuleFilterByInterfaceType(svc, where)
+}
+
 // QueryMSFTNetConSecRuleFilterByProtocolPort runs the WQL query against the class and decodes each
-// instance into a MSFTNetConSecRuleFilterByProtocolPort. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetConSecRuleFilterByProtocolPort. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetConSecRuleFilterByProtocolPort(svc *wmi.Service, where string) ([]MSFTNetConSecRuleFilterByProtocolPort, error) {
 	q := "SELECT * FROM MSFT_NetConSecRuleFilterByProtocolPort"
 	if where != "" {
@@ -7503,17 +6764,14 @@ func QueryMSFTNetConSecRuleFilterByProtocolPort(svc *wmi.Service, where string) 
 	}
 	out := make([]MSFTNetConSecRuleFilterByProtocolPort, len(rows))
 	for i, row := range rows {
-		out[i].GroupComponent = wmi.AsString(row["GroupComponent"])
-		out[i].PartComponent = wmi.AsString(row["PartComponent"])
+		out[i] = MSFTNetConSecRuleFilterByProtocolPortFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetConSecRuleFilterByProtocolPort returns the MSFT_NetConSecRuleFilterByProtocolPort instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetConSecRuleFilterByProtocolPort(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetConSecRuleFilterByProtocolPort, error) {
-	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
-		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+// QueryOneMSFTNetConSecRuleFilterByProtocolPort returns the single MSFT_NetConSecRuleFilterByProtocolPort matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetConSecRuleFilterByProtocolPort(svc *wmi.Service, where string) (*MSFTNetConSecRuleFilterByProtocolPort, error) {
 	out, err := QueryMSFTNetConSecRuleFilterByProtocolPort(svc, where)
 	if err != nil {
 		return nil, err
@@ -7524,8 +6782,17 @@ func GetMSFTNetConSecRuleFilterByProtocolPort(svc *wmi.Service, groupComponent s
 	return &out[0], nil
 }
 
+// GetMSFTNetConSecRuleFilterByProtocolPort returns the MSFT_NetConSecRuleFilterByProtocolPort instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetConSecRuleFilterByProtocolPort(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetConSecRuleFilterByProtocolPort, error) {
+	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
+		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+	return QueryOneMSFTNetConSecRuleFilterByProtocolPort(svc, where)
+}
+
 // QueryMSFTNetConSecRuleFilters runs the WQL query against the class and decodes each
-// instance into a MSFTNetConSecRuleFilters. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetConSecRuleFilters. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetConSecRuleFilters(svc *wmi.Service, where string) ([]MSFTNetConSecRuleFilters, error) {
 	q := "SELECT * FROM MSFT_NetConSecRuleFilters"
 	if where != "" {
@@ -7537,17 +6804,14 @@ func QueryMSFTNetConSecRuleFilters(svc *wmi.Service, where string) ([]MSFTNetCon
 	}
 	out := make([]MSFTNetConSecRuleFilters, len(rows))
 	for i, row := range rows {
-		out[i].GroupComponent = wmi.AsString(row["GroupComponent"])
-		out[i].PartComponent = wmi.AsString(row["PartComponent"])
+		out[i] = MSFTNetConSecRuleFiltersFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetConSecRuleFilters returns the MSFT_NetConSecRuleFilters instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetConSecRuleFilters(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetConSecRuleFilters, error) {
-	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
-		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+// QueryOneMSFTNetConSecRuleFilters returns the single MSFT_NetConSecRuleFilters matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetConSecRuleFilters(svc *wmi.Service, where string) (*MSFTNetConSecRuleFilters, error) {
 	out, err := QueryMSFTNetConSecRuleFilters(svc, where)
 	if err != nil {
 		return nil, err
@@ -7558,8 +6822,17 @@ func GetMSFTNetConSecRuleFilters(svc *wmi.Service, groupComponent string, partCo
 	return &out[0], nil
 }
 
+// GetMSFTNetConSecRuleFilters returns the MSFT_NetConSecRuleFilters instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetConSecRuleFilters(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetConSecRuleFilters, error) {
+	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
+		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+	return QueryOneMSFTNetConSecRuleFilters(svc, where)
+}
+
 // QueryMSFTNetConSecRuleInProfile runs the WQL query against the class and decodes each
-// instance into a MSFTNetConSecRuleInProfile. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetConSecRuleInProfile. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetConSecRuleInProfile(svc *wmi.Service, where string) ([]MSFTNetConSecRuleInProfile, error) {
 	q := "SELECT * FROM MSFT_NetConSecRuleInProfile"
 	if where != "" {
@@ -7571,18 +6844,14 @@ func QueryMSFTNetConSecRuleInProfile(svc *wmi.Service, where string) ([]MSFTNetC
 	}
 	out := make([]MSFTNetConSecRuleInProfile, len(rows))
 	for i, row := range rows {
-		out[i].GroupComponent = wmi.AsString(row["GroupComponent"])
-		out[i].PartComponent = wmi.AsString(row["PartComponent"])
-		out[i].Priority = wmi.AsUint16(row["Priority"])
+		out[i] = MSFTNetConSecRuleInProfileFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetConSecRuleInProfile returns the MSFT_NetConSecRuleInProfile instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetConSecRuleInProfile(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetConSecRuleInProfile, error) {
-	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
-		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+// QueryOneMSFTNetConSecRuleInProfile returns the single MSFT_NetConSecRuleInProfile matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetConSecRuleInProfile(svc *wmi.Service, where string) (*MSFTNetConSecRuleInProfile, error) {
 	out, err := QueryMSFTNetConSecRuleInProfile(svc, where)
 	if err != nil {
 		return nil, err
@@ -7593,8 +6862,17 @@ func GetMSFTNetConSecRuleInProfile(svc *wmi.Service, groupComponent string, part
 	return &out[0], nil
 }
 
+// GetMSFTNetConSecRuleInProfile returns the MSFT_NetConSecRuleInProfile instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetConSecRuleInProfile(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetConSecRuleInProfile, error) {
+	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
+		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+	return QueryOneMSFTNetConSecRuleInProfile(svc, where)
+}
+
 // QueryMSFTNetConSecRuleMMAuthSet runs the WQL query against the class and decodes each
-// instance into a MSFTNetConSecRuleMMAuthSet. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetConSecRuleMMAuthSet. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetConSecRuleMMAuthSet(svc *wmi.Service, where string) ([]MSFTNetConSecRuleMMAuthSet, error) {
 	q := "SELECT * FROM MSFT_NetConSecRuleMMAuthSet"
 	if where != "" {
@@ -7606,18 +6884,14 @@ func QueryMSFTNetConSecRuleMMAuthSet(svc *wmi.Service, where string) ([]MSFTNetC
 	}
 	out := make([]MSFTNetConSecRuleMMAuthSet, len(rows))
 	for i, row := range rows {
-		out[i].ActionOrder = wmi.AsUint16(row["ActionOrder"])
-		out[i].GroupComponent = wmi.AsString(row["GroupComponent"])
-		out[i].PartComponent = wmi.AsString(row["PartComponent"])
+		out[i] = MSFTNetConSecRuleMMAuthSetFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetConSecRuleMMAuthSet returns the MSFT_NetConSecRuleMMAuthSet instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetConSecRuleMMAuthSet(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetConSecRuleMMAuthSet, error) {
-	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
-		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+// QueryOneMSFTNetConSecRuleMMAuthSet returns the single MSFT_NetConSecRuleMMAuthSet matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetConSecRuleMMAuthSet(svc *wmi.Service, where string) (*MSFTNetConSecRuleMMAuthSet, error) {
 	out, err := QueryMSFTNetConSecRuleMMAuthSet(svc, where)
 	if err != nil {
 		return nil, err
@@ -7628,8 +6902,17 @@ func GetMSFTNetConSecRuleMMAuthSet(svc *wmi.Service, groupComponent string, part
 	return &out[0], nil
 }
 
+// GetMSFTNetConSecRuleMMAuthSet returns the MSFT_NetConSecRuleMMAuthSet instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetConSecRuleMMAuthSet(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetConSecRuleMMAuthSet, error) {
+	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
+		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+	return QueryOneMSFTNetConSecRuleMMAuthSet(svc, where)
+}
+
 // QueryMSFTNetConSecRuleQMCryptoSet runs the WQL query against the class and decodes each
-// instance into a MSFTNetConSecRuleQMCryptoSet. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetConSecRuleQMCryptoSet. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetConSecRuleQMCryptoSet(svc *wmi.Service, where string) ([]MSFTNetConSecRuleQMCryptoSet, error) {
 	q := "SELECT * FROM MSFT_NetConSecRuleQMCryptoSet"
 	if where != "" {
@@ -7641,18 +6924,14 @@ func QueryMSFTNetConSecRuleQMCryptoSet(svc *wmi.Service, where string) ([]MSFTNe
 	}
 	out := make([]MSFTNetConSecRuleQMCryptoSet, len(rows))
 	for i, row := range rows {
-		out[i].ActionOrder = wmi.AsUint16(row["ActionOrder"])
-		out[i].GroupComponent = wmi.AsString(row["GroupComponent"])
-		out[i].PartComponent = wmi.AsString(row["PartComponent"])
+		out[i] = MSFTNetConSecRuleQMCryptoSetFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetConSecRuleQMCryptoSet returns the MSFT_NetConSecRuleQMCryptoSet instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetConSecRuleQMCryptoSet(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetConSecRuleQMCryptoSet, error) {
-	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
-		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+// QueryOneMSFTNetConSecRuleQMCryptoSet returns the single MSFT_NetConSecRuleQMCryptoSet matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetConSecRuleQMCryptoSet(svc *wmi.Service, where string) (*MSFTNetConSecRuleQMCryptoSet, error) {
 	out, err := QueryMSFTNetConSecRuleQMCryptoSet(svc, where)
 	if err != nil {
 		return nil, err
@@ -7663,8 +6942,17 @@ func GetMSFTNetConSecRuleQMCryptoSet(svc *wmi.Service, groupComponent string, pa
 	return &out[0], nil
 }
 
+// GetMSFTNetConSecRuleQMCryptoSet returns the MSFT_NetConSecRuleQMCryptoSet instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetConSecRuleQMCryptoSet(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetConSecRuleQMCryptoSet, error) {
+	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
+		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+	return QueryOneMSFTNetConSecRuleQMCryptoSet(svc, where)
+}
+
 // QueryMSFTNetConnectionProfile runs the WQL query against the class and decodes each
-// instance into a MSFTNetConnectionProfile. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetConnectionProfile. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetConnectionProfile(svc *wmi.Service, where string) ([]MSFTNetConnectionProfile, error) {
 	q := "SELECT * FROM MSFT_NetConnectionProfile"
 	if where != "" {
@@ -7676,25 +6964,14 @@ func QueryMSFTNetConnectionProfile(svc *wmi.Service, where string) ([]MSFTNetCon
 	}
 	out := make([]MSFTNetConnectionProfile, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DomainAuthenticationKind = wmi.AsUint32(row["DomainAuthenticationKind"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].IPv4Connectivity = wmi.AsUint32(row["IPv4Connectivity"])
-		out[i].IPv6Connectivity = wmi.AsUint32(row["IPv6Connectivity"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].InterfaceAlias = wmi.AsString(row["InterfaceAlias"])
-		out[i].InterfaceIndex = wmi.AsUint32(row["InterfaceIndex"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].NetworkCategory = wmi.AsUint32(row["NetworkCategory"])
+		out[i] = MSFTNetConnectionProfileFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetConnectionProfile returns the MSFT_NetConnectionProfile instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetConnectionProfile(svc *wmi.Service, instanceID string) (*MSFTNetConnectionProfile, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetConnectionProfile returns the single MSFT_NetConnectionProfile matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetConnectionProfile(svc *wmi.Service, where string) (*MSFTNetConnectionProfile, error) {
 	out, err := QueryMSFTNetConnectionProfile(svc, where)
 	if err != nil {
 		return nil, err
@@ -7705,8 +6982,16 @@ func GetMSFTNetConnectionProfile(svc *wmi.Service, instanceID string) (*MSFTNetC
 	return &out[0], nil
 }
 
+// GetMSFTNetConnectionProfile returns the MSFT_NetConnectionProfile instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetConnectionProfile(svc *wmi.Service, instanceID string) (*MSFTNetConnectionProfile, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetConnectionProfile(svc, where)
+}
+
 // QueryMSFTNetDnsTransitionConfiguration runs the WQL query against the class and decodes each
-// instance into a MSFTNetDnsTransitionConfiguration. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetDnsTransitionConfiguration. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetDnsTransitionConfiguration(svc *wmi.Service, where string) ([]MSFTNetDnsTransitionConfiguration, error) {
 	q := "SELECT * FROM MSFT_NetDnsTransitionConfiguration"
 	if where != "" {
@@ -7718,26 +7003,14 @@ func QueryMSFTNetDnsTransitionConfiguration(svc *wmi.Service, where string) ([]M
 	}
 	out := make([]MSFTNetDnsTransitionConfiguration, len(rows))
 	for i, row := range rows {
-		out[i].AcceptInterface = wmi.AsStringSlice(row["AcceptInterface"])
-		out[i].AlwaysSynthesize = wmi.AsBool(row["AlwaysSynthesize"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].ExclusionList = wmi.AsStringSlice(row["ExclusionList"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].Latency = wmi.AsUint32(row["Latency"])
-		out[i].OnlySendAQuery = wmi.AsBool(row["OnlySendAQuery"])
-		out[i].PrefixMapping = wmi.AsStringSlice(row["PrefixMapping"])
-		out[i].SendInterface = wmi.AsStringSlice(row["SendInterface"])
-		out[i].State = wmi.AsUint32(row["State"])
+		out[i] = MSFTNetDnsTransitionConfigurationFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetDnsTransitionConfiguration returns the MSFT_NetDnsTransitionConfiguration instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetDnsTransitionConfiguration(svc *wmi.Service, instanceID string) (*MSFTNetDnsTransitionConfiguration, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetDnsTransitionConfiguration returns the single MSFT_NetDnsTransitionConfiguration matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetDnsTransitionConfiguration(svc *wmi.Service, where string) (*MSFTNetDnsTransitionConfiguration, error) {
 	out, err := QueryMSFTNetDnsTransitionConfiguration(svc, where)
 	if err != nil {
 		return nil, err
@@ -7748,8 +7021,16 @@ func GetMSFTNetDnsTransitionConfiguration(svc *wmi.Service, instanceID string) (
 	return &out[0], nil
 }
 
+// GetMSFTNetDnsTransitionConfiguration returns the MSFT_NetDnsTransitionConfiguration instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetDnsTransitionConfiguration(svc *wmi.Service, instanceID string) (*MSFTNetDnsTransitionConfiguration, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetDnsTransitionConfiguration(svc, where)
+}
+
 // QueryMSFTNetDnsTransitionInterfaceAssociation runs the WQL query against the class and decodes each
-// instance into a MSFTNetDnsTransitionInterfaceAssociation. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetDnsTransitionInterfaceAssociation. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetDnsTransitionInterfaceAssociation(svc *wmi.Service, where string) ([]MSFTNetDnsTransitionInterfaceAssociation, error) {
 	q := "SELECT * FROM MSFT_NetDnsTransitionInterfaceAssociation"
 	if where != "" {
@@ -7761,20 +7042,14 @@ func QueryMSFTNetDnsTransitionInterfaceAssociation(svc *wmi.Service, where strin
 	}
 	out := make([]MSFTNetDnsTransitionInterfaceAssociation, len(rows))
 	for i, row := range rows {
-		out[i].IsCurrent = wmi.AsUint16(row["IsCurrent"])
-		out[i].IsDefault = wmi.AsUint16(row["IsDefault"])
-		out[i].IsNext = wmi.AsUint16(row["IsNext"])
-		out[i].ManagedElement = wmi.AsString(row["ManagedElement"])
-		out[i].SettingData = wmi.AsString(row["SettingData"])
+		out[i] = MSFTNetDnsTransitionInterfaceAssociationFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetDnsTransitionInterfaceAssociation returns the MSFT_NetDnsTransitionInterfaceAssociation instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetDnsTransitionInterfaceAssociation(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetDnsTransitionInterfaceAssociation, error) {
-	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
-		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+// QueryOneMSFTNetDnsTransitionInterfaceAssociation returns the single MSFT_NetDnsTransitionInterfaceAssociation matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetDnsTransitionInterfaceAssociation(svc *wmi.Service, where string) (*MSFTNetDnsTransitionInterfaceAssociation, error) {
 	out, err := QueryMSFTNetDnsTransitionInterfaceAssociation(svc, where)
 	if err != nil {
 		return nil, err
@@ -7785,8 +7060,17 @@ func GetMSFTNetDnsTransitionInterfaceAssociation(svc *wmi.Service, managedElemen
 	return &out[0], nil
 }
 
+// GetMSFTNetDnsTransitionInterfaceAssociation returns the MSFT_NetDnsTransitionInterfaceAssociation instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetDnsTransitionInterfaceAssociation(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetDnsTransitionInterfaceAssociation, error) {
+	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
+		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+	return QueryOneMSFTNetDnsTransitionInterfaceAssociation(svc, where)
+}
+
 // QueryMSFTNetDnsTransitionMonitoring runs the WQL query against the class and decodes each
-// instance into a MSFTNetDnsTransitionMonitoring. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetDnsTransitionMonitoring. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetDnsTransitionMonitoring(svc *wmi.Service, where string) ([]MSFTNetDnsTransitionMonitoring, error) {
 	q := "SELECT * FROM MSFT_NetDnsTransitionMonitoring"
 	if where != "" {
@@ -7798,24 +7082,14 @@ func QueryMSFTNetDnsTransitionMonitoring(svc *wmi.Service, where string) ([]MSFT
 	}
 	out := make([]MSFTNetDnsTransitionMonitoring, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].NumAAAAQueriesFailed = wmi.AsUint32(row["NumAAAAQueriesFailed"])
-		out[i].NumAAAAQueriesIn6ArpaPtr = wmi.AsUint32(row["NumAAAAQueriesIn6ArpaPtr"])
-		out[i].NumAAAAQueriesSucceeded = wmi.AsUint32(row["NumAAAAQueriesSucceeded"])
-		out[i].NumAAAAQueriesSynthesized = wmi.AsUint32(row["NumAAAAQueriesSynthesized"])
-		out[i].NumOtherQueriesFailed = wmi.AsUint32(row["NumOtherQueriesFailed"])
-		out[i].NumOtherQueriesSucceeded = wmi.AsUint32(row["NumOtherQueriesSucceeded"])
+		out[i] = MSFTNetDnsTransitionMonitoringFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetDnsTransitionMonitoring returns the MSFT_NetDnsTransitionMonitoring instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetDnsTransitionMonitoring(svc *wmi.Service, instanceID string) (*MSFTNetDnsTransitionMonitoring, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetDnsTransitionMonitoring returns the single MSFT_NetDnsTransitionMonitoring matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetDnsTransitionMonitoring(svc *wmi.Service, where string) (*MSFTNetDnsTransitionMonitoring, error) {
 	out, err := QueryMSFTNetDnsTransitionMonitoring(svc, where)
 	if err != nil {
 		return nil, err
@@ -7826,8 +7100,16 @@ func GetMSFTNetDnsTransitionMonitoring(svc *wmi.Service, instanceID string) (*MS
 	return &out[0], nil
 }
 
+// GetMSFTNetDnsTransitionMonitoring returns the MSFT_NetDnsTransitionMonitoring instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetDnsTransitionMonitoring(svc *wmi.Service, instanceID string) (*MSFTNetDnsTransitionMonitoring, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetDnsTransitionMonitoring(svc, where)
+}
+
 // QueryMSFTNetEventCaptureTargetCaptureProvider runs the WQL query against the class and decodes each
-// instance into a MSFTNetEventCaptureTargetCaptureProvider. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetEventCaptureTargetCaptureProvider. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetEventCaptureTargetCaptureProvider(svc *wmi.Service, where string) ([]MSFTNetEventCaptureTargetCaptureProvider, error) {
 	q := "SELECT * FROM MSFT_NetEventCaptureTarget_CaptureProvider"
 	if where != "" {
@@ -7839,17 +7121,14 @@ func QueryMSFTNetEventCaptureTargetCaptureProvider(svc *wmi.Service, where strin
 	}
 	out := make([]MSFTNetEventCaptureTargetCaptureProvider, len(rows))
 	for i, row := range rows {
-		out[i].GroupComponent = wmi.AsString(row["GroupComponent"])
-		out[i].PartComponent = wmi.AsString(row["PartComponent"])
+		out[i] = MSFTNetEventCaptureTargetCaptureProviderFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetEventCaptureTargetCaptureProvider returns the MSFT_NetEventCaptureTarget_CaptureProvider instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetEventCaptureTargetCaptureProvider(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetEventCaptureTargetCaptureProvider, error) {
-	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
-		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+// QueryOneMSFTNetEventCaptureTargetCaptureProvider returns the single MSFT_NetEventCaptureTarget_CaptureProvider matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetEventCaptureTargetCaptureProvider(svc *wmi.Service, where string) (*MSFTNetEventCaptureTargetCaptureProvider, error) {
 	out, err := QueryMSFTNetEventCaptureTargetCaptureProvider(svc, where)
 	if err != nil {
 		return nil, err
@@ -7860,8 +7139,17 @@ func GetMSFTNetEventCaptureTargetCaptureProvider(svc *wmi.Service, groupComponen
 	return &out[0], nil
 }
 
+// GetMSFTNetEventCaptureTargetCaptureProvider returns the MSFT_NetEventCaptureTarget_CaptureProvider instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetEventCaptureTargetCaptureProvider(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetEventCaptureTargetCaptureProvider, error) {
+	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
+		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+	return QueryOneMSFTNetEventCaptureTargetCaptureProvider(svc, where)
+}
+
 // QueryMSFTNetEventNetworkAdapter runs the WQL query against the class and decodes each
-// instance into a MSFTNetEventNetworkAdapter. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetEventNetworkAdapter. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetEventNetworkAdapter(svc *wmi.Service, where string) ([]MSFTNetEventNetworkAdapter, error) {
 	q := "SELECT * FROM MSFT_NetEventNetworkAdapter"
 	if where != "" {
@@ -7873,33 +7161,14 @@ func QueryMSFTNetEventNetworkAdapter(svc *wmi.Service, where string) ([]MSFTNetE
 	}
 	out := make([]MSFTNetEventNetworkAdapter, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CaptureStatus = wmi.AsUint32(row["CaptureStatus"])
-		out[i].CommunicationStatus = wmi.AsUint16(row["CommunicationStatus"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DetailedStatus = wmi.AsUint16(row["DetailedStatus"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].HealthState = wmi.AsUint16(row["HealthState"])
-		out[i].Id = wmi.AsString(row["Id"])
-		out[i].InstallDate = wmi.AsString(row["InstallDate"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].InterfaceDescription = wmi.AsString(row["InterfaceDescription"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].OperatingStatus = wmi.AsUint16(row["OperatingStatus"])
-		out[i].OperationalStatus = wmi.AsUint16Slice(row["OperationalStatus"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].PromiscuousMode = wmi.AsBool(row["PromiscuousMode"])
-		out[i].ProviderName = wmi.AsString(row["ProviderName"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusDescriptions = wmi.AsStringSlice(row["StatusDescriptions"])
+		out[i] = MSFTNetEventNetworkAdapterFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetEventNetworkAdapter returns the MSFT_NetEventNetworkAdapter instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetEventNetworkAdapter(svc *wmi.Service, id string) (*MSFTNetEventNetworkAdapter, error) {
-	where := "Id = " + wmi.WQLValue(id)
+// QueryOneMSFTNetEventNetworkAdapter returns the single MSFT_NetEventNetworkAdapter matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetEventNetworkAdapter(svc *wmi.Service, where string) (*MSFTNetEventNetworkAdapter, error) {
 	out, err := QueryMSFTNetEventNetworkAdapter(svc, where)
 	if err != nil {
 		return nil, err
@@ -7910,8 +7179,16 @@ func GetMSFTNetEventNetworkAdapter(svc *wmi.Service, id string) (*MSFTNetEventNe
 	return &out[0], nil
 }
 
+// GetMSFTNetEventNetworkAdapter returns the MSFT_NetEventNetworkAdapter instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetEventNetworkAdapter(svc *wmi.Service, id string) (*MSFTNetEventNetworkAdapter, error) {
+	where := "Id = " + wmi.WQLValue(id)
+	return QueryOneMSFTNetEventNetworkAdapter(svc, where)
+}
+
 // QueryMSFTNetEventPacketCaptureProvider runs the WQL query against the class and decodes each
-// instance into a MSFTNetEventPacketCaptureProvider. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetEventPacketCaptureProvider. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetEventPacketCaptureProvider(svc *wmi.Service, where string) ([]MSFTNetEventPacketCaptureProvider, error) {
 	q := "SELECT * FROM MSFT_NetEventPacketCaptureProvider"
 	if where != "" {
@@ -7923,43 +7200,14 @@ func QueryMSFTNetEventPacketCaptureProvider(svc *wmi.Service, where string) ([]M
 	}
 	out := make([]MSFTNetEventPacketCaptureProvider, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CaptureType = wmi.AsUint8(row["CaptureType"])
-		out[i].CommunicationStatus = wmi.AsUint16(row["CommunicationStatus"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DetailedStatus = wmi.AsUint16(row["DetailedStatus"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].EtherType = wmi.AsUint16Slice(row["EtherType"])
-		out[i].Guid = wmi.AsString(row["Guid"])
-		out[i].HealthState = wmi.AsUint16(row["HealthState"])
-		out[i].IPAddresses = wmi.AsStringSlice(row["IPAddresses"])
-		out[i].IPProtocols = wmi.AsUint8Slice(row["IPProtocols"])
-		out[i].InstallDate = wmi.AsString(row["InstallDate"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].Level = wmi.AsUint8(row["Level"])
-		out[i].LinkLayerAddress = wmi.AsStringSlice(row["LinkLayerAddress"])
-		out[i].MatchAllKeyword = wmi.AsUint64(row["MatchAllKeyword"])
-		out[i].MatchAnyKeyword = wmi.AsUint64(row["MatchAnyKeyword"])
-		out[i].MultiLayer = wmi.AsBool(row["MultiLayer"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].OperatingStatus = wmi.AsUint16(row["OperatingStatus"])
-		out[i].OperationalStatus = wmi.AsUint16Slice(row["OperationalStatus"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].SessionGuid = wmi.AsString(row["SessionGuid"])
-		out[i].SessionName = wmi.AsString(row["SessionName"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusDescriptions = wmi.AsStringSlice(row["StatusDescriptions"])
-		out[i].TruncationLength = wmi.AsUint16(row["TruncationLength"])
-		out[i].VmCaptureDirection = wmi.AsUint8(row["VmCaptureDirection"])
+		out[i] = MSFTNetEventPacketCaptureProviderFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetEventPacketCaptureProvider returns the MSFT_NetEventPacketCaptureProvider instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetEventPacketCaptureProvider(svc *wmi.Service, guid string, sessionGuid string) (*MSFTNetEventPacketCaptureProvider, error) {
-	where := "Guid = " + wmi.WQLValue(guid) +
-		" AND " + "SessionGuid = " + wmi.WQLValue(sessionGuid)
+// QueryOneMSFTNetEventPacketCaptureProvider returns the single MSFT_NetEventPacketCaptureProvider matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetEventPacketCaptureProvider(svc *wmi.Service, where string) (*MSFTNetEventPacketCaptureProvider, error) {
 	out, err := QueryMSFTNetEventPacketCaptureProvider(svc, where)
 	if err != nil {
 		return nil, err
@@ -7970,8 +7218,17 @@ func GetMSFTNetEventPacketCaptureProvider(svc *wmi.Service, guid string, session
 	return &out[0], nil
 }
 
+// GetMSFTNetEventPacketCaptureProvider returns the MSFT_NetEventPacketCaptureProvider instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetEventPacketCaptureProvider(svc *wmi.Service, guid string, sessionGuid string) (*MSFTNetEventPacketCaptureProvider, error) {
+	where := "Guid = " + wmi.WQLValue(guid) +
+		" AND " + "SessionGuid = " + wmi.WQLValue(sessionGuid)
+	return QueryOneMSFTNetEventPacketCaptureProvider(svc, where)
+}
+
 // QueryMSFTNetEventPacketCaptureTarget runs the WQL query against the class and decodes each
-// instance into a MSFTNetEventPacketCaptureTarget. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetEventPacketCaptureTarget. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetEventPacketCaptureTarget(svc *wmi.Service, where string) ([]MSFTNetEventPacketCaptureTarget, error) {
 	q := "SELECT * FROM MSFT_NetEventPacketCaptureTarget"
 	if where != "" {
@@ -7983,31 +7240,14 @@ func QueryMSFTNetEventPacketCaptureTarget(svc *wmi.Service, where string) ([]MSF
 	}
 	out := make([]MSFTNetEventPacketCaptureTarget, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CaptureStatus = wmi.AsUint32(row["CaptureStatus"])
-		out[i].CommunicationStatus = wmi.AsUint16(row["CommunicationStatus"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DetailedStatus = wmi.AsUint16(row["DetailedStatus"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].HealthState = wmi.AsUint16(row["HealthState"])
-		out[i].Id = wmi.AsString(row["Id"])
-		out[i].InstallDate = wmi.AsString(row["InstallDate"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].OperatingStatus = wmi.AsUint16(row["OperatingStatus"])
-		out[i].OperationalStatus = wmi.AsUint16Slice(row["OperationalStatus"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].ProviderName = wmi.AsString(row["ProviderName"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusDescriptions = wmi.AsStringSlice(row["StatusDescriptions"])
+		out[i] = MSFTNetEventPacketCaptureTargetFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetEventPacketCaptureTarget returns the MSFT_NetEventPacketCaptureTarget instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetEventPacketCaptureTarget(svc *wmi.Service, id string) (*MSFTNetEventPacketCaptureTarget, error) {
-	where := "Id = " + wmi.WQLValue(id)
+// QueryOneMSFTNetEventPacketCaptureTarget returns the single MSFT_NetEventPacketCaptureTarget matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetEventPacketCaptureTarget(svc *wmi.Service, where string) (*MSFTNetEventPacketCaptureTarget, error) {
 	out, err := QueryMSFTNetEventPacketCaptureTarget(svc, where)
 	if err != nil {
 		return nil, err
@@ -8018,8 +7258,16 @@ func GetMSFTNetEventPacketCaptureTarget(svc *wmi.Service, id string) (*MSFTNetEv
 	return &out[0], nil
 }
 
+// GetMSFTNetEventPacketCaptureTarget returns the MSFT_NetEventPacketCaptureTarget instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetEventPacketCaptureTarget(svc *wmi.Service, id string) (*MSFTNetEventPacketCaptureTarget, error) {
+	where := "Id = " + wmi.WQLValue(id)
+	return QueryOneMSFTNetEventPacketCaptureTarget(svc, where)
+}
+
 // QueryMSFTNetEventProvider runs the WQL query against the class and decodes each
-// instance into a MSFTNetEventProvider. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetEventProvider. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetEventProvider(svc *wmi.Service, where string) ([]MSFTNetEventProvider, error) {
 	q := "SELECT * FROM MSFT_NetEventProvider"
 	if where != "" {
@@ -8031,35 +7279,14 @@ func QueryMSFTNetEventProvider(svc *wmi.Service, where string) ([]MSFTNetEventPr
 	}
 	out := make([]MSFTNetEventProvider, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CommunicationStatus = wmi.AsUint16(row["CommunicationStatus"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DetailedStatus = wmi.AsUint16(row["DetailedStatus"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].Guid = wmi.AsString(row["Guid"])
-		out[i].HealthState = wmi.AsUint16(row["HealthState"])
-		out[i].InstallDate = wmi.AsString(row["InstallDate"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].Level = wmi.AsUint8(row["Level"])
-		out[i].MatchAllKeyword = wmi.AsUint64(row["MatchAllKeyword"])
-		out[i].MatchAnyKeyword = wmi.AsUint64(row["MatchAnyKeyword"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].OperatingStatus = wmi.AsUint16(row["OperatingStatus"])
-		out[i].OperationalStatus = wmi.AsUint16Slice(row["OperationalStatus"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].SessionGuid = wmi.AsString(row["SessionGuid"])
-		out[i].SessionName = wmi.AsString(row["SessionName"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusDescriptions = wmi.AsStringSlice(row["StatusDescriptions"])
+		out[i] = MSFTNetEventProviderFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetEventProvider returns the MSFT_NetEventProvider instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetEventProvider(svc *wmi.Service, guid string, sessionGuid string) (*MSFTNetEventProvider, error) {
-	where := "Guid = " + wmi.WQLValue(guid) +
-		" AND " + "SessionGuid = " + wmi.WQLValue(sessionGuid)
+// QueryOneMSFTNetEventProvider returns the single MSFT_NetEventProvider matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetEventProvider(svc *wmi.Service, where string) (*MSFTNetEventProvider, error) {
 	out, err := QueryMSFTNetEventProvider(svc, where)
 	if err != nil {
 		return nil, err
@@ -8070,8 +7297,17 @@ func GetMSFTNetEventProvider(svc *wmi.Service, guid string, sessionGuid string) 
 	return &out[0], nil
 }
 
+// GetMSFTNetEventProvider returns the MSFT_NetEventProvider instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetEventProvider(svc *wmi.Service, guid string, sessionGuid string) (*MSFTNetEventProvider, error) {
+	where := "Guid = " + wmi.WQLValue(guid) +
+		" AND " + "SessionGuid = " + wmi.WQLValue(sessionGuid)
+	return QueryOneMSFTNetEventProvider(svc, where)
+}
+
 // QueryMSFTNetEventProviderBase runs the WQL query against the class and decodes each
-// instance into a MSFTNetEventProviderBase. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetEventProviderBase. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetEventProviderBase(svc *wmi.Service, where string) ([]MSFTNetEventProviderBase, error) {
 	q := "SELECT * FROM MSFT_NetEventProviderBase"
 	if where != "" {
@@ -8083,35 +7319,14 @@ func QueryMSFTNetEventProviderBase(svc *wmi.Service, where string) ([]MSFTNetEve
 	}
 	out := make([]MSFTNetEventProviderBase, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CommunicationStatus = wmi.AsUint16(row["CommunicationStatus"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DetailedStatus = wmi.AsUint16(row["DetailedStatus"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].Guid = wmi.AsString(row["Guid"])
-		out[i].HealthState = wmi.AsUint16(row["HealthState"])
-		out[i].InstallDate = wmi.AsString(row["InstallDate"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].Level = wmi.AsUint8(row["Level"])
-		out[i].MatchAllKeyword = wmi.AsUint64(row["MatchAllKeyword"])
-		out[i].MatchAnyKeyword = wmi.AsUint64(row["MatchAnyKeyword"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].OperatingStatus = wmi.AsUint16(row["OperatingStatus"])
-		out[i].OperationalStatus = wmi.AsUint16Slice(row["OperationalStatus"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].SessionGuid = wmi.AsString(row["SessionGuid"])
-		out[i].SessionName = wmi.AsString(row["SessionName"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusDescriptions = wmi.AsStringSlice(row["StatusDescriptions"])
+		out[i] = MSFTNetEventProviderBaseFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetEventProviderBase returns the MSFT_NetEventProviderBase instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetEventProviderBase(svc *wmi.Service, guid string, sessionGuid string) (*MSFTNetEventProviderBase, error) {
-	where := "Guid = " + wmi.WQLValue(guid) +
-		" AND " + "SessionGuid = " + wmi.WQLValue(sessionGuid)
+// QueryOneMSFTNetEventProviderBase returns the single MSFT_NetEventProviderBase matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetEventProviderBase(svc *wmi.Service, where string) (*MSFTNetEventProviderBase, error) {
 	out, err := QueryMSFTNetEventProviderBase(svc, where)
 	if err != nil {
 		return nil, err
@@ -8122,8 +7337,17 @@ func GetMSFTNetEventProviderBase(svc *wmi.Service, guid string, sessionGuid stri
 	return &out[0], nil
 }
 
+// GetMSFTNetEventProviderBase returns the MSFT_NetEventProviderBase instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetEventProviderBase(svc *wmi.Service, guid string, sessionGuid string) (*MSFTNetEventProviderBase, error) {
+	where := "Guid = " + wmi.WQLValue(guid) +
+		" AND " + "SessionGuid = " + wmi.WQLValue(sessionGuid)
+	return QueryOneMSFTNetEventProviderBase(svc, where)
+}
+
 // QueryMSFTNetEventSession runs the WQL query against the class and decodes each
-// instance into a MSFTNetEventSession. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetEventSession. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetEventSession(svc *wmi.Service, where string) ([]MSFTNetEventSession, error) {
 	q := "SELECT * FROM MSFT_NetEventSession"
 	if where != "" {
@@ -8135,35 +7359,14 @@ func QueryMSFTNetEventSession(svc *wmi.Service, where string) ([]MSFTNetEventSes
 	}
 	out := make([]MSFTNetEventSession, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CaptureMode = wmi.AsUint8(row["CaptureMode"])
-		out[i].CommunicationStatus = wmi.AsUint16(row["CommunicationStatus"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DetailedStatus = wmi.AsUint16(row["DetailedStatus"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].Guid = wmi.AsString(row["Guid"])
-		out[i].HealthState = wmi.AsUint16(row["HealthState"])
-		out[i].InstallDate = wmi.AsString(row["InstallDate"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].LocalFilePath = wmi.AsString(row["LocalFilePath"])
-		out[i].MaxFileSize = wmi.AsUint32(row["MaxFileSize"])
-		out[i].MaxNumberOfBuffers = wmi.AsUint8(row["MaxNumberOfBuffers"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].OperatingStatus = wmi.AsUint16(row["OperatingStatus"])
-		out[i].OperationalStatus = wmi.AsUint16Slice(row["OperationalStatus"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].SessionStatus = wmi.AsUint8(row["SessionStatus"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusDescriptions = wmi.AsStringSlice(row["StatusDescriptions"])
-		out[i].TraceBufferSize = wmi.AsUint32(row["TraceBufferSize"])
+		out[i] = MSFTNetEventSessionFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetEventSession returns the MSFT_NetEventSession instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetEventSession(svc *wmi.Service, guid string) (*MSFTNetEventSession, error) {
-	where := "Guid = " + wmi.WQLValue(guid)
+// QueryOneMSFTNetEventSession returns the single MSFT_NetEventSession matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetEventSession(svc *wmi.Service, where string) (*MSFTNetEventSession, error) {
 	out, err := QueryMSFTNetEventSession(svc, where)
 	if err != nil {
 		return nil, err
@@ -8174,8 +7377,16 @@ func GetMSFTNetEventSession(svc *wmi.Service, guid string) (*MSFTNetEventSession
 	return &out[0], nil
 }
 
+// GetMSFTNetEventSession returns the MSFT_NetEventSession instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetEventSession(svc *wmi.Service, guid string) (*MSFTNetEventSession, error) {
+	where := "Guid = " + wmi.WQLValue(guid)
+	return QueryOneMSFTNetEventSession(svc, where)
+}
+
 // QueryMSFTNetEventSessionProvider runs the WQL query against the class and decodes each
-// instance into a MSFTNetEventSessionProvider. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetEventSessionProvider. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetEventSessionProvider(svc *wmi.Service, where string) ([]MSFTNetEventSessionProvider, error) {
 	q := "SELECT * FROM MSFT_NetEventSession_Provider"
 	if where != "" {
@@ -8187,17 +7398,14 @@ func QueryMSFTNetEventSessionProvider(svc *wmi.Service, where string) ([]MSFTNet
 	}
 	out := make([]MSFTNetEventSessionProvider, len(rows))
 	for i, row := range rows {
-		out[i].GroupComponent = wmi.AsString(row["GroupComponent"])
-		out[i].PartComponent = wmi.AsString(row["PartComponent"])
+		out[i] = MSFTNetEventSessionProviderFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetEventSessionProvider returns the MSFT_NetEventSession_Provider instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetEventSessionProvider(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetEventSessionProvider, error) {
-	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
-		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+// QueryOneMSFTNetEventSessionProvider returns the single MSFT_NetEventSession_Provider matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetEventSessionProvider(svc *wmi.Service, where string) (*MSFTNetEventSessionProvider, error) {
 	out, err := QueryMSFTNetEventSessionProvider(svc, where)
 	if err != nil {
 		return nil, err
@@ -8208,8 +7416,17 @@ func GetMSFTNetEventSessionProvider(svc *wmi.Service, groupComponent string, par
 	return &out[0], nil
 }
 
+// GetMSFTNetEventSessionProvider returns the MSFT_NetEventSession_Provider instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetEventSessionProvider(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetEventSessionProvider, error) {
+	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
+		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+	return QueryOneMSFTNetEventSessionProvider(svc, where)
+}
+
 // QueryMSFTNetEventVFPProvider runs the WQL query against the class and decodes each
-// instance into a MSFTNetEventVFPProvider. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetEventVFPProvider. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetEventVFPProvider(svc *wmi.Service, where string) ([]MSFTNetEventVFPProvider, error) {
 	q := "SELECT * FROM MSFT_NetEventVFPProvider"
 	if where != "" {
@@ -8221,48 +7438,14 @@ func QueryMSFTNetEventVFPProvider(svc *wmi.Service, where string) ([]MSFTNetEven
 	}
 	out := make([]MSFTNetEventVFPProvider, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CommunicationStatus = wmi.AsUint16(row["CommunicationStatus"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DestinationIPAddresses = wmi.AsStringSlice(row["DestinationIPAddresses"])
-		out[i].DestinationMACAddresses = wmi.AsStringSlice(row["DestinationMACAddresses"])
-		out[i].DetailedStatus = wmi.AsUint16(row["DetailedStatus"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].GREKeys = wmi.AsUint32Slice(row["GREKeys"])
-		out[i].Guid = wmi.AsString(row["Guid"])
-		out[i].HealthState = wmi.AsUint16(row["HealthState"])
-		out[i].IPProtocols = wmi.AsUint8Slice(row["IPProtocols"])
-		out[i].InstallDate = wmi.AsString(row["InstallDate"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].Level = wmi.AsUint8(row["Level"])
-		out[i].MatchAllKeyword = wmi.AsUint64(row["MatchAllKeyword"])
-		out[i].MatchAnyKeyword = wmi.AsUint64(row["MatchAnyKeyword"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].OperatingStatus = wmi.AsUint16(row["OperatingStatus"])
-		out[i].OperationalStatus = wmi.AsUint16Slice(row["OperationalStatus"])
-		out[i].PortIds = wmi.AsUint32Slice(row["PortIds"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].SessionGuid = wmi.AsString(row["SessionGuid"])
-		out[i].SessionName = wmi.AsString(row["SessionName"])
-		out[i].SourceIPAddresses = wmi.AsStringSlice(row["SourceIPAddresses"])
-		out[i].SourceMACAddresses = wmi.AsStringSlice(row["SourceMACAddresses"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusDescriptions = wmi.AsStringSlice(row["StatusDescriptions"])
-		out[i].SwitchName = wmi.AsString(row["SwitchName"])
-		out[i].TCPPorts = wmi.AsUint16Slice(row["TCPPorts"])
-		out[i].TenantIds = wmi.AsUint32Slice(row["TenantIds"])
-		out[i].UDPPorts = wmi.AsUint16Slice(row["UDPPorts"])
-		out[i].VFPFlowDirection = wmi.AsUint32(row["VFPFlowDirection"])
-		out[i].VLANIds = wmi.AsUint16Slice(row["VLANIds"])
+		out[i] = MSFTNetEventVFPProviderFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetEventVFPProvider returns the MSFT_NetEventVFPProvider instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetEventVFPProvider(svc *wmi.Service, guid string, sessionGuid string) (*MSFTNetEventVFPProvider, error) {
-	where := "Guid = " + wmi.WQLValue(guid) +
-		" AND " + "SessionGuid = " + wmi.WQLValue(sessionGuid)
+// QueryOneMSFTNetEventVFPProvider returns the single MSFT_NetEventVFPProvider matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetEventVFPProvider(svc *wmi.Service, where string) (*MSFTNetEventVFPProvider, error) {
 	out, err := QueryMSFTNetEventVFPProvider(svc, where)
 	if err != nil {
 		return nil, err
@@ -8273,8 +7456,17 @@ func GetMSFTNetEventVFPProvider(svc *wmi.Service, guid string, sessionGuid strin
 	return &out[0], nil
 }
 
+// GetMSFTNetEventVFPProvider returns the MSFT_NetEventVFPProvider instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetEventVFPProvider(svc *wmi.Service, guid string, sessionGuid string) (*MSFTNetEventVFPProvider, error) {
+	where := "Guid = " + wmi.WQLValue(guid) +
+		" AND " + "SessionGuid = " + wmi.WQLValue(sessionGuid)
+	return QueryOneMSFTNetEventVFPProvider(svc, where)
+}
+
 // QueryMSFTNetEventVmNetworkAdapter runs the WQL query against the class and decodes each
-// instance into a MSFTNetEventVmNetworkAdapter. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetEventVmNetworkAdapter. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetEventVmNetworkAdapter(svc *wmi.Service, where string) ([]MSFTNetEventVmNetworkAdapter, error) {
 	q := "SELECT * FROM MSFT_NetEventVmNetworkAdapter"
 	if where != "" {
@@ -8286,36 +7478,14 @@ func QueryMSFTNetEventVmNetworkAdapter(svc *wmi.Service, where string) ([]MSFTNe
 	}
 	out := make([]MSFTNetEventVmNetworkAdapter, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CaptureStatus = wmi.AsUint32(row["CaptureStatus"])
-		out[i].CommunicationStatus = wmi.AsUint16(row["CommunicationStatus"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DetailedStatus = wmi.AsUint16(row["DetailedStatus"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].HealthState = wmi.AsUint16(row["HealthState"])
-		out[i].Id = wmi.AsString(row["Id"])
-		out[i].InstallDate = wmi.AsString(row["InstallDate"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].MacAddress = wmi.AsString(row["MacAddress"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].OperatingStatus = wmi.AsUint16(row["OperatingStatus"])
-		out[i].OperationalStatus = wmi.AsUint16Slice(row["OperationalStatus"])
-		out[i].PortName = wmi.AsString(row["PortName"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].ProviderName = wmi.AsString(row["ProviderName"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusDescriptions = wmi.AsStringSlice(row["StatusDescriptions"])
-		out[i].SwitchName = wmi.AsString(row["SwitchName"])
-		out[i].VMId = wmi.AsString(row["VMId"])
-		out[i].VMName = wmi.AsString(row["VMName"])
+		out[i] = MSFTNetEventVmNetworkAdapterFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetEventVmNetworkAdapter returns the MSFT_NetEventVmNetworkAdapter instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetEventVmNetworkAdapter(svc *wmi.Service, id string) (*MSFTNetEventVmNetworkAdapter, error) {
-	where := "Id = " + wmi.WQLValue(id)
+// QueryOneMSFTNetEventVmNetworkAdapter returns the single MSFT_NetEventVmNetworkAdapter matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetEventVmNetworkAdapter(svc *wmi.Service, where string) (*MSFTNetEventVmNetworkAdapter, error) {
 	out, err := QueryMSFTNetEventVmNetworkAdapter(svc, where)
 	if err != nil {
 		return nil, err
@@ -8326,8 +7496,16 @@ func GetMSFTNetEventVmNetworkAdapter(svc *wmi.Service, id string) (*MSFTNetEvent
 	return &out[0], nil
 }
 
+// GetMSFTNetEventVmNetworkAdapter returns the MSFT_NetEventVmNetworkAdapter instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetEventVmNetworkAdapter(svc *wmi.Service, id string) (*MSFTNetEventVmNetworkAdapter, error) {
+	where := "Id = " + wmi.WQLValue(id)
+	return QueryOneMSFTNetEventVmNetworkAdapter(svc, where)
+}
+
 // QueryMSFTNetEventVmSwitch runs the WQL query against the class and decodes each
-// instance into a MSFTNetEventVmSwitch. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetEventVmSwitch. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetEventVmSwitch(svc *wmi.Service, where string) ([]MSFTNetEventVmSwitch, error) {
 	q := "SELECT * FROM MSFT_NetEventVmSwitch"
 	if where != "" {
@@ -8339,31 +7517,14 @@ func QueryMSFTNetEventVmSwitch(svc *wmi.Service, where string) ([]MSFTNetEventVm
 	}
 	out := make([]MSFTNetEventVmSwitch, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CaptureStatus = wmi.AsUint32(row["CaptureStatus"])
-		out[i].CommunicationStatus = wmi.AsUint16(row["CommunicationStatus"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DetailedStatus = wmi.AsUint16(row["DetailedStatus"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].HealthState = wmi.AsUint16(row["HealthState"])
-		out[i].Id = wmi.AsString(row["Id"])
-		out[i].InstallDate = wmi.AsString(row["InstallDate"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].OperatingStatus = wmi.AsUint16(row["OperatingStatus"])
-		out[i].OperationalStatus = wmi.AsUint16Slice(row["OperationalStatus"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].ProviderName = wmi.AsString(row["ProviderName"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusDescriptions = wmi.AsStringSlice(row["StatusDescriptions"])
+		out[i] = MSFTNetEventVmSwitchFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetEventVmSwitch returns the MSFT_NetEventVmSwitch instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetEventVmSwitch(svc *wmi.Service, id string) (*MSFTNetEventVmSwitch, error) {
-	where := "Id = " + wmi.WQLValue(id)
+// QueryOneMSFTNetEventVmSwitch returns the single MSFT_NetEventVmSwitch matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetEventVmSwitch(svc *wmi.Service, where string) (*MSFTNetEventVmSwitch, error) {
 	out, err := QueryMSFTNetEventVmSwitch(svc, where)
 	if err != nil {
 		return nil, err
@@ -8374,8 +7535,16 @@ func GetMSFTNetEventVmSwitch(svc *wmi.Service, id string) (*MSFTNetEventVmSwitch
 	return &out[0], nil
 }
 
+// GetMSFTNetEventVmSwitch returns the MSFT_NetEventVmSwitch instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetEventVmSwitch(svc *wmi.Service, id string) (*MSFTNetEventVmSwitch, error) {
+	where := "Id = " + wmi.WQLValue(id)
+	return QueryOneMSFTNetEventVmSwitch(svc, where)
+}
+
 // QueryMSFTNetEventVmSwitchProvider runs the WQL query against the class and decodes each
-// instance into a MSFTNetEventVmSwitchProvider. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetEventVmSwitchProvider. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetEventVmSwitchProvider(svc *wmi.Service, where string) ([]MSFTNetEventVmSwitchProvider, error) {
 	q := "SELECT * FROM MSFT_NetEventVmSwitchProvider"
 	if where != "" {
@@ -8387,37 +7556,14 @@ func QueryMSFTNetEventVmSwitchProvider(svc *wmi.Service, where string) ([]MSFTNe
 	}
 	out := make([]MSFTNetEventVmSwitchProvider, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CommunicationStatus = wmi.AsUint16(row["CommunicationStatus"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DetailedStatus = wmi.AsUint16(row["DetailedStatus"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].Guid = wmi.AsString(row["Guid"])
-		out[i].HealthState = wmi.AsUint16(row["HealthState"])
-		out[i].InstallDate = wmi.AsString(row["InstallDate"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].Level = wmi.AsUint8(row["Level"])
-		out[i].MatchAllKeyword = wmi.AsUint64(row["MatchAllKeyword"])
-		out[i].MatchAnyKeyword = wmi.AsUint64(row["MatchAnyKeyword"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].OperatingStatus = wmi.AsUint16(row["OperatingStatus"])
-		out[i].OperationalStatus = wmi.AsUint16Slice(row["OperationalStatus"])
-		out[i].PortIds = wmi.AsUint32Slice(row["PortIds"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].SessionGuid = wmi.AsString(row["SessionGuid"])
-		out[i].SessionName = wmi.AsString(row["SessionName"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusDescriptions = wmi.AsStringSlice(row["StatusDescriptions"])
-		out[i].SwitchName = wmi.AsString(row["SwitchName"])
+		out[i] = MSFTNetEventVmSwitchProviderFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetEventVmSwitchProvider returns the MSFT_NetEventVmSwitchProvider instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetEventVmSwitchProvider(svc *wmi.Service, guid string, sessionGuid string) (*MSFTNetEventVmSwitchProvider, error) {
-	where := "Guid = " + wmi.WQLValue(guid) +
-		" AND " + "SessionGuid = " + wmi.WQLValue(sessionGuid)
+// QueryOneMSFTNetEventVmSwitchProvider returns the single MSFT_NetEventVmSwitchProvider matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetEventVmSwitchProvider(svc *wmi.Service, where string) (*MSFTNetEventVmSwitchProvider, error) {
 	out, err := QueryMSFTNetEventVmSwitchProvider(svc, where)
 	if err != nil {
 		return nil, err
@@ -8428,8 +7574,17 @@ func GetMSFTNetEventVmSwitchProvider(svc *wmi.Service, guid string, sessionGuid 
 	return &out[0], nil
 }
 
+// GetMSFTNetEventVmSwitchProvider returns the MSFT_NetEventVmSwitchProvider instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetEventVmSwitchProvider(svc *wmi.Service, guid string, sessionGuid string) (*MSFTNetEventVmSwitchProvider, error) {
+	where := "Guid = " + wmi.WQLValue(guid) +
+		" AND " + "SessionGuid = " + wmi.WQLValue(sessionGuid)
+	return QueryOneMSFTNetEventVmSwitchProvider(svc, where)
+}
+
 // QueryMSFTNetEventWFPCaptureProvider runs the WQL query against the class and decodes each
-// instance into a MSFTNetEventWFPCaptureProvider. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetEventWFPCaptureProvider. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetEventWFPCaptureProvider(svc *wmi.Service, where string) ([]MSFTNetEventWFPCaptureProvider, error) {
 	q := "SELECT * FROM MSFT_NetEventWFPCaptureProvider"
 	if where != "" {
@@ -8441,40 +7596,14 @@ func QueryMSFTNetEventWFPCaptureProvider(svc *wmi.Service, where string) ([]MSFT
 	}
 	out := make([]MSFTNetEventWFPCaptureProvider, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CaptureLayerSet = wmi.AsUint64(row["CaptureLayerSet"])
-		out[i].CommunicationStatus = wmi.AsUint16(row["CommunicationStatus"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DetailedStatus = wmi.AsUint16(row["DetailedStatus"])
-		out[i].DiscardedEvents = wmi.AsBool(row["DiscardedEvents"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].Guid = wmi.AsString(row["Guid"])
-		out[i].HealthState = wmi.AsUint16(row["HealthState"])
-		out[i].IPAddresses = wmi.AsStringSlice(row["IPAddresses"])
-		out[i].InstallDate = wmi.AsString(row["InstallDate"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].Level = wmi.AsUint8(row["Level"])
-		out[i].MatchAllKeyword = wmi.AsUint64(row["MatchAllKeyword"])
-		out[i].MatchAnyKeyword = wmi.AsUint64(row["MatchAnyKeyword"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].OperatingStatus = wmi.AsUint16(row["OperatingStatus"])
-		out[i].OperationalStatus = wmi.AsUint16Slice(row["OperationalStatus"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].SessionGuid = wmi.AsString(row["SessionGuid"])
-		out[i].SessionName = wmi.AsString(row["SessionName"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusDescriptions = wmi.AsStringSlice(row["StatusDescriptions"])
-		out[i].TCPPorts = wmi.AsUint16Slice(row["TCPPorts"])
-		out[i].UDPPorts = wmi.AsUint16Slice(row["UDPPorts"])
+		out[i] = MSFTNetEventWFPCaptureProviderFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetEventWFPCaptureProvider returns the MSFT_NetEventWFPCaptureProvider instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetEventWFPCaptureProvider(svc *wmi.Service, guid string, sessionGuid string) (*MSFTNetEventWFPCaptureProvider, error) {
-	where := "Guid = " + wmi.WQLValue(guid) +
-		" AND " + "SessionGuid = " + wmi.WQLValue(sessionGuid)
+// QueryOneMSFTNetEventWFPCaptureProvider returns the single MSFT_NetEventWFPCaptureProvider matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetEventWFPCaptureProvider(svc *wmi.Service, where string) (*MSFTNetEventWFPCaptureProvider, error) {
 	out, err := QueryMSFTNetEventWFPCaptureProvider(svc, where)
 	if err != nil {
 		return nil, err
@@ -8485,8 +7614,17 @@ func GetMSFTNetEventWFPCaptureProvider(svc *wmi.Service, guid string, sessionGui
 	return &out[0], nil
 }
 
+// GetMSFTNetEventWFPCaptureProvider returns the MSFT_NetEventWFPCaptureProvider instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetEventWFPCaptureProvider(svc *wmi.Service, guid string, sessionGuid string) (*MSFTNetEventWFPCaptureProvider, error) {
+	where := "Guid = " + wmi.WQLValue(guid) +
+		" AND " + "SessionGuid = " + wmi.WQLValue(sessionGuid)
+	return QueryOneMSFTNetEventWFPCaptureProvider(svc, where)
+}
+
 // QueryMSFTNetFirewallDynamicKeywordAddress runs the WQL query against the class and decodes each
-// instance into a MSFTNetFirewallDynamicKeywordAddress. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetFirewallDynamicKeywordAddress. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetFirewallDynamicKeywordAddress(svc *wmi.Service, where string) ([]MSFTNetFirewallDynamicKeywordAddress, error) {
 	q := "SELECT * FROM MSFT_NetFirewallDynamicKeywordAddress"
 	if where != "" {
@@ -8498,25 +7636,14 @@ func QueryMSFTNetFirewallDynamicKeywordAddress(svc *wmi.Service, where string) (
 	}
 	out := make([]MSFTNetFirewallDynamicKeywordAddress, len(rows))
 	for i, row := range rows {
-		out[i].Addresses = wmi.AsString(row["Addresses"])
-		out[i].AutoResolve = wmi.AsBool(row["AutoResolve"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].Id = wmi.AsString(row["Id"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].Keyword = wmi.AsString(row["Keyword"])
-		out[i].PolicyStoreSource = wmi.AsString(row["PolicyStoreSource"])
-		out[i].PolicyStoreSourceType = wmi.AsUint16(row["PolicyStoreSourceType"])
+		out[i] = MSFTNetFirewallDynamicKeywordAddressFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetFirewallDynamicKeywordAddress returns the MSFT_NetFirewallDynamicKeywordAddress instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetFirewallDynamicKeywordAddress(svc *wmi.Service, id string, instanceID string) (*MSFTNetFirewallDynamicKeywordAddress, error) {
-	where := "Id = " + wmi.WQLValue(id) +
-		" AND " + "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetFirewallDynamicKeywordAddress returns the single MSFT_NetFirewallDynamicKeywordAddress matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetFirewallDynamicKeywordAddress(svc *wmi.Service, where string) (*MSFTNetFirewallDynamicKeywordAddress, error) {
 	out, err := QueryMSFTNetFirewallDynamicKeywordAddress(svc, where)
 	if err != nil {
 		return nil, err
@@ -8527,8 +7654,17 @@ func GetMSFTNetFirewallDynamicKeywordAddress(svc *wmi.Service, id string, instan
 	return &out[0], nil
 }
 
+// GetMSFTNetFirewallDynamicKeywordAddress returns the MSFT_NetFirewallDynamicKeywordAddress instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetFirewallDynamicKeywordAddress(svc *wmi.Service, id string, instanceID string) (*MSFTNetFirewallDynamicKeywordAddress, error) {
+	where := "Id = " + wmi.WQLValue(id) +
+		" AND " + "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetFirewallDynamicKeywordAddress(svc, where)
+}
+
 // QueryMSFTNetFirewallHyperVPort runs the WQL query against the class and decodes each
-// instance into a MSFTNetFirewallHyperVPort. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetFirewallHyperVPort. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetFirewallHyperVPort(svc *wmi.Service, where string) ([]MSFTNetFirewallHyperVPort, error) {
 	q := "SELECT * FROM MSFT_NetFirewallHyperVPort"
 	if where != "" {
@@ -8540,26 +7676,14 @@ func QueryMSFTNetFirewallHyperVPort(svc *wmi.Service, where string) ([]MSFTNetFi
 	}
 	out := make([]MSFTNetFirewallHyperVPort, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].Constrained = wmi.AsUint16(row["Constrained"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].InterfaceGuid = wmi.AsString(row["InterfaceGuid"])
-		out[i].NetworkType = wmi.AsUint16(row["NetworkType"])
-		out[i].PartitionGuid = wmi.AsString(row["PartitionGuid"])
-		out[i].PortName = wmi.AsString(row["PortName"])
-		out[i].Profile = wmi.AsUint16(row["Profile"])
-		out[i].SwitchName = wmi.AsString(row["SwitchName"])
-		out[i].VMCreatorId = wmi.AsString(row["VMCreatorId"])
+		out[i] = MSFTNetFirewallHyperVPortFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetFirewallHyperVPort returns the MSFT_NetFirewallHyperVPort instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetFirewallHyperVPort(svc *wmi.Service, instanceID string) (*MSFTNetFirewallHyperVPort, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetFirewallHyperVPort returns the single MSFT_NetFirewallHyperVPort matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetFirewallHyperVPort(svc *wmi.Service, where string) (*MSFTNetFirewallHyperVPort, error) {
 	out, err := QueryMSFTNetFirewallHyperVPort(svc, where)
 	if err != nil {
 		return nil, err
@@ -8570,8 +7694,16 @@ func GetMSFTNetFirewallHyperVPort(svc *wmi.Service, instanceID string) (*MSFTNet
 	return &out[0], nil
 }
 
+// GetMSFTNetFirewallHyperVPort returns the MSFT_NetFirewallHyperVPort instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetFirewallHyperVPort(svc *wmi.Service, instanceID string) (*MSFTNetFirewallHyperVPort, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetFirewallHyperVPort(svc, where)
+}
+
 // QueryMSFTNetFirewallHyperVProfile runs the WQL query against the class and decodes each
-// instance into a MSFTNetFirewallHyperVProfile. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetFirewallHyperVProfile. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetFirewallHyperVProfile(svc *wmi.Service, where string) ([]MSFTNetFirewallHyperVProfile, error) {
 	q := "SELECT * FROM MSFT_NetFirewallHyperVProfile"
 	if where != "" {
@@ -8583,24 +7715,14 @@ func QueryMSFTNetFirewallHyperVProfile(svc *wmi.Service, where string) ([]MSFTNe
 	}
 	out := make([]MSFTNetFirewallHyperVProfile, len(rows))
 	for i, row := range rows {
-		out[i].AllowLocalFirewallRules = wmi.AsUint16(row["AllowLocalFirewallRules"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].DefaultInboundAction = wmi.AsUint16(row["DefaultInboundAction"])
-		out[i].DefaultOutboundAction = wmi.AsUint16(row["DefaultOutboundAction"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].Enabled = wmi.AsUint16(row["Enabled"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].Profile = wmi.AsUint16(row["Profile"])
+		out[i] = MSFTNetFirewallHyperVProfileFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetFirewallHyperVProfile returns the MSFT_NetFirewallHyperVProfile instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetFirewallHyperVProfile(svc *wmi.Service, instanceID string) (*MSFTNetFirewallHyperVProfile, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetFirewallHyperVProfile returns the single MSFT_NetFirewallHyperVProfile matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetFirewallHyperVProfile(svc *wmi.Service, where string) (*MSFTNetFirewallHyperVProfile, error) {
 	out, err := QueryMSFTNetFirewallHyperVProfile(svc, where)
 	if err != nil {
 		return nil, err
@@ -8611,8 +7733,16 @@ func GetMSFTNetFirewallHyperVProfile(svc *wmi.Service, instanceID string) (*MSFT
 	return &out[0], nil
 }
 
+// GetMSFTNetFirewallHyperVProfile returns the MSFT_NetFirewallHyperVProfile instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetFirewallHyperVProfile(svc *wmi.Service, instanceID string) (*MSFTNetFirewallHyperVProfile, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetFirewallHyperVProfile(svc, where)
+}
+
 // QueryMSFTNetFirewallHyperVRule runs the WQL query against the class and decodes each
-// instance into a MSFTNetFirewallHyperVRule. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetFirewallHyperVRule. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetFirewallHyperVRule(svc *wmi.Service, where string) ([]MSFTNetFirewallHyperVRule, error) {
 	q := "SELECT * FROM MSFT_NetFirewallHyperVRule"
 	if where != "" {
@@ -8624,50 +7754,14 @@ func QueryMSFTNetFirewallHyperVRule(svc *wmi.Service, where string) ([]MSFTNetFi
 	}
 	out := make([]MSFTNetFirewallHyperVRule, len(rows))
 	for i, row := range rows {
-		out[i].Action = wmi.AsUint16(row["Action"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CommonName = wmi.AsString(row["CommonName"])
-		out[i].ConditionListType = wmi.AsUint16(row["ConditionListType"])
-		out[i].CreationClassName = wmi.AsString(row["CreationClassName"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].Direction = wmi.AsUint16(row["Direction"])
-		out[i].DisplayName = wmi.AsString(row["DisplayName"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].Enabled = wmi.AsUint16(row["Enabled"])
-		out[i].EnforcementStatus = wmi.AsUint16(row["EnforcementStatus"])
-		out[i].ExecutionStrategy = wmi.AsUint16(row["ExecutionStrategy"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].LocalAddresses = wmi.AsStringSlice(row["LocalAddresses"])
-		out[i].LocalPorts = wmi.AsStringSlice(row["LocalPorts"])
-		out[i].Mandatory = wmi.AsBool(row["Mandatory"])
-		out[i].PolicyDecisionStrategy = wmi.AsUint16(row["PolicyDecisionStrategy"])
-		out[i].PolicyKeywords = wmi.AsStringSlice(row["PolicyKeywords"])
-		out[i].PolicyRoles = wmi.AsStringSlice(row["PolicyRoles"])
-		out[i].PolicyRuleName = wmi.AsString(row["PolicyRuleName"])
-		out[i].PolicyStoreSourceType = wmi.AsUint16(row["PolicyStoreSourceType"])
-		out[i].PortStatuses = wmi.AsRowSlice(row["PortStatuses"])
-		out[i].Priority = wmi.AsUint16(row["Priority"])
-		out[i].Profiles = wmi.AsUint16(row["Profiles"])
-		out[i].Protocol = wmi.AsString(row["Protocol"])
-		out[i].RemoteAddresses = wmi.AsStringSlice(row["RemoteAddresses"])
-		out[i].RemotePorts = wmi.AsStringSlice(row["RemotePorts"])
-		out[i].RulePriority = wmi.AsUint16(row["RulePriority"])
-		out[i].RuleUsage = wmi.AsString(row["RuleUsage"])
-		out[i].SequencedActions = wmi.AsUint16(row["SequencedActions"])
-		out[i].SystemCreationClassName = wmi.AsString(row["SystemCreationClassName"])
-		out[i].SystemName = wmi.AsString(row["SystemName"])
-		out[i].VMCreatorId = wmi.AsString(row["VMCreatorId"])
+		out[i] = MSFTNetFirewallHyperVRuleFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetFirewallHyperVRule returns the MSFT_NetFirewallHyperVRule instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetFirewallHyperVRule(svc *wmi.Service, creationClassName string, policyRuleName string, systemCreationClassName string, systemName string) (*MSFTNetFirewallHyperVRule, error) {
-	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
-		" AND " + "PolicyRuleName = " + wmi.WQLValue(policyRuleName) +
-		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
-		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+// QueryOneMSFTNetFirewallHyperVRule returns the single MSFT_NetFirewallHyperVRule matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetFirewallHyperVRule(svc *wmi.Service, where string) (*MSFTNetFirewallHyperVRule, error) {
 	out, err := QueryMSFTNetFirewallHyperVRule(svc, where)
 	if err != nil {
 		return nil, err
@@ -8678,8 +7772,19 @@ func GetMSFTNetFirewallHyperVRule(svc *wmi.Service, creationClassName string, po
 	return &out[0], nil
 }
 
+// GetMSFTNetFirewallHyperVRule returns the MSFT_NetFirewallHyperVRule instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetFirewallHyperVRule(svc *wmi.Service, creationClassName string, policyRuleName string, systemCreationClassName string, systemName string) (*MSFTNetFirewallHyperVRule, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "PolicyRuleName = " + wmi.WQLValue(policyRuleName) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	return QueryOneMSFTNetFirewallHyperVRule(svc, where)
+}
+
 // QueryMSFTNetFirewallHyperVRulePortStatus runs the WQL query against the class and decodes each
-// instance into a MSFTNetFirewallHyperVRulePortStatus. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetFirewallHyperVRulePortStatus. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetFirewallHyperVRulePortStatus(svc *wmi.Service, where string) ([]MSFTNetFirewallHyperVRulePortStatus, error) {
 	q := "SELECT * FROM MSFT_NetFirewallHyperVRulePortStatus"
 	if where != "" {
@@ -8691,16 +7796,27 @@ func QueryMSFTNetFirewallHyperVRulePortStatus(svc *wmi.Service, where string) ([
 	}
 	out := make([]MSFTNetFirewallHyperVRulePortStatus, len(rows))
 	for i, row := range rows {
-		if v, ok := row["Port"].(wmi.Row); ok {
-			out[i].Port = v
-		}
-		out[i].Status = wmi.AsUint16(row["Status"])
+		out[i] = MSFTNetFirewallHyperVRulePortStatusFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneMSFTNetFirewallHyperVRulePortStatus returns the single MSFT_NetFirewallHyperVRulePortStatus matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetFirewallHyperVRulePortStatus(svc *wmi.Service, where string) (*MSFTNetFirewallHyperVRulePortStatus, error) {
+	out, err := QueryMSFTNetFirewallHyperVRulePortStatus(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryMSFTNetFirewallHyperVVMCreator runs the WQL query against the class and decodes each
-// instance into a MSFTNetFirewallHyperVVMCreator. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetFirewallHyperVVMCreator. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetFirewallHyperVVMCreator(svc *wmi.Service, where string) ([]MSFTNetFirewallHyperVVMCreator, error) {
 	q := "SELECT * FROM MSFT_NetFirewallHyperVVMCreator"
 	if where != "" {
@@ -8712,20 +7828,14 @@ func QueryMSFTNetFirewallHyperVVMCreator(svc *wmi.Service, where string) ([]MSFT
 	}
 	out := make([]MSFTNetFirewallHyperVVMCreator, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].FriendlyName = wmi.AsString(row["FriendlyName"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].VMCreatorId = wmi.AsString(row["VMCreatorId"])
+		out[i] = MSFTNetFirewallHyperVVMCreatorFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetFirewallHyperVVMCreator returns the MSFT_NetFirewallHyperVVMCreator instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetFirewallHyperVVMCreator(svc *wmi.Service, instanceID string) (*MSFTNetFirewallHyperVVMCreator, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetFirewallHyperVVMCreator returns the single MSFT_NetFirewallHyperVVMCreator matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetFirewallHyperVVMCreator(svc *wmi.Service, where string) (*MSFTNetFirewallHyperVVMCreator, error) {
 	out, err := QueryMSFTNetFirewallHyperVVMCreator(svc, where)
 	if err != nil {
 		return nil, err
@@ -8736,8 +7846,16 @@ func GetMSFTNetFirewallHyperVVMCreator(svc *wmi.Service, instanceID string) (*MS
 	return &out[0], nil
 }
 
+// GetMSFTNetFirewallHyperVVMCreator returns the MSFT_NetFirewallHyperVVMCreator instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetFirewallHyperVVMCreator(svc *wmi.Service, instanceID string) (*MSFTNetFirewallHyperVVMCreator, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetFirewallHyperVVMCreator(svc, where)
+}
+
 // QueryMSFTNetFirewallHyperVVMSetting runs the WQL query against the class and decodes each
-// instance into a MSFTNetFirewallHyperVVMSetting. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetFirewallHyperVVMSetting. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetFirewallHyperVVMSetting(svc *wmi.Service, where string) ([]MSFTNetFirewallHyperVVMSetting, error) {
 	q := "SELECT * FROM MSFT_NetFirewallHyperVVMSetting"
 	if where != "" {
@@ -8749,24 +7867,14 @@ func QueryMSFTNetFirewallHyperVVMSetting(svc *wmi.Service, where string) ([]MSFT
 	}
 	out := make([]MSFTNetFirewallHyperVVMSetting, len(rows))
 	for i, row := range rows {
-		out[i].AllowHostPolicyMerge = wmi.AsUint16(row["AllowHostPolicyMerge"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].DefaultInboundAction = wmi.AsUint16(row["DefaultInboundAction"])
-		out[i].DefaultOutboundAction = wmi.AsUint16(row["DefaultOutboundAction"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].Enabled = wmi.AsUint16(row["Enabled"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].LoopbackEnabled = wmi.AsUint16(row["LoopbackEnabled"])
-		out[i].Name = wmi.AsString(row["Name"])
+		out[i] = MSFTNetFirewallHyperVVMSettingFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetFirewallHyperVVMSetting returns the MSFT_NetFirewallHyperVVMSetting instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetFirewallHyperVVMSetting(svc *wmi.Service, instanceID string) (*MSFTNetFirewallHyperVVMSetting, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetFirewallHyperVVMSetting returns the single MSFT_NetFirewallHyperVVMSetting matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetFirewallHyperVVMSetting(svc *wmi.Service, where string) (*MSFTNetFirewallHyperVVMSetting, error) {
 	out, err := QueryMSFTNetFirewallHyperVVMSetting(svc, where)
 	if err != nil {
 		return nil, err
@@ -8777,8 +7885,16 @@ func GetMSFTNetFirewallHyperVVMSetting(svc *wmi.Service, instanceID string) (*MS
 	return &out[0], nil
 }
 
+// GetMSFTNetFirewallHyperVVMSetting returns the MSFT_NetFirewallHyperVVMSetting instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetFirewallHyperVVMSetting(svc *wmi.Service, instanceID string) (*MSFTNetFirewallHyperVVMSetting, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetFirewallHyperVVMSetting(svc, where)
+}
+
 // QueryMSFTNetFirewallProfile runs the WQL query against the class and decodes each
-// instance into a MSFTNetFirewallProfile. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetFirewallProfile. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetFirewallProfile(svc *wmi.Service, where string) ([]MSFTNetFirewallProfile, error) {
 	q := "SELECT * FROM MSFT_NetFirewallProfile"
 	if where != "" {
@@ -8790,36 +7906,14 @@ func QueryMSFTNetFirewallProfile(svc *wmi.Service, where string) ([]MSFTNetFirew
 	}
 	out := make([]MSFTNetFirewallProfile, len(rows))
 	for i, row := range rows {
-		out[i].AllowInboundRules = wmi.AsUint16(row["AllowInboundRules"])
-		out[i].AllowLocalFirewallRules = wmi.AsUint16(row["AllowLocalFirewallRules"])
-		out[i].AllowLocalIPsecRules = wmi.AsUint16(row["AllowLocalIPsecRules"])
-		out[i].AllowUnicastResponseToMulticast = wmi.AsUint16(row["AllowUnicastResponseToMulticast"])
-		out[i].AllowUserApps = wmi.AsUint16(row["AllowUserApps"])
-		out[i].AllowUserPorts = wmi.AsUint16(row["AllowUserPorts"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].DefaultInboundAction = wmi.AsUint16(row["DefaultInboundAction"])
-		out[i].DefaultOutboundAction = wmi.AsUint16(row["DefaultOutboundAction"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DisabledInterfaceAliases = wmi.AsStringSlice(row["DisabledInterfaceAliases"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].EnableStealthModeForIPsec = wmi.AsUint16(row["EnableStealthModeForIPsec"])
-		out[i].Enabled = wmi.AsUint16(row["Enabled"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].LogAllowed = wmi.AsUint16(row["LogAllowed"])
-		out[i].LogBlocked = wmi.AsUint16(row["LogBlocked"])
-		out[i].LogFileName = wmi.AsString(row["LogFileName"])
-		out[i].LogIgnored = wmi.AsUint16(row["LogIgnored"])
-		out[i].LogMaxSizeKilobytes = wmi.AsUint64(row["LogMaxSizeKilobytes"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].NotifyOnListen = wmi.AsUint16(row["NotifyOnListen"])
+		out[i] = MSFTNetFirewallProfileFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetFirewallProfile returns the MSFT_NetFirewallProfile instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetFirewallProfile(svc *wmi.Service, instanceID string) (*MSFTNetFirewallProfile, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetFirewallProfile returns the single MSFT_NetFirewallProfile matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetFirewallProfile(svc *wmi.Service, where string) (*MSFTNetFirewallProfile, error) {
 	out, err := QueryMSFTNetFirewallProfile(svc, where)
 	if err != nil {
 		return nil, err
@@ -8830,8 +7924,16 @@ func GetMSFTNetFirewallProfile(svc *wmi.Service, instanceID string) (*MSFTNetFir
 	return &out[0], nil
 }
 
+// GetMSFTNetFirewallProfile returns the MSFT_NetFirewallProfile instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetFirewallProfile(svc *wmi.Service, instanceID string) (*MSFTNetFirewallProfile, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetFirewallProfile(svc, where)
+}
+
 // QueryMSFTNetFirewallRule runs the WQL query against the class and decodes each
-// instance into a MSFTNetFirewallRule. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetFirewallRule. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetFirewallRule(svc *wmi.Service, where string) ([]MSFTNetFirewallRule, error) {
 	q := "SELECT * FROM MSFT_NetFirewallRule"
 	if where != "" {
@@ -8843,56 +7945,14 @@ func QueryMSFTNetFirewallRule(svc *wmi.Service, where string) ([]MSFTNetFirewall
 	}
 	out := make([]MSFTNetFirewallRule, len(rows))
 	for i, row := range rows {
-		out[i].Action = wmi.AsUint16(row["Action"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CommonName = wmi.AsString(row["CommonName"])
-		out[i].ConditionListType = wmi.AsUint16(row["ConditionListType"])
-		out[i].CreationClassName = wmi.AsString(row["CreationClassName"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].Direction = wmi.AsUint16(row["Direction"])
-		out[i].DisplayGroup = wmi.AsString(row["DisplayGroup"])
-		out[i].DisplayName = wmi.AsString(row["DisplayName"])
-		out[i].EdgeTraversalPolicy = wmi.AsUint16(row["EdgeTraversalPolicy"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].Enabled = wmi.AsUint16(row["Enabled"])
-		out[i].EnforcementStatus = wmi.AsUint16Slice(row["EnforcementStatus"])
-		out[i].ExecutionStrategy = wmi.AsUint16(row["ExecutionStrategy"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].LocalOnlyMapping = wmi.AsBool(row["LocalOnlyMapping"])
-		out[i].LooseSourceMapping = wmi.AsBool(row["LooseSourceMapping"])
-		out[i].Mandatory = wmi.AsBool(row["Mandatory"])
-		out[i].Owner = wmi.AsString(row["Owner"])
-		out[i].PackageFamilyName = wmi.AsString(row["PackageFamilyName"])
-		out[i].Platforms = wmi.AsStringSlice(row["Platforms"])
-		out[i].PolicyAppId = wmi.AsString(row["PolicyAppId"])
-		out[i].PolicyDecisionStrategy = wmi.AsUint16(row["PolicyDecisionStrategy"])
-		out[i].PolicyKeywords = wmi.AsStringSlice(row["PolicyKeywords"])
-		out[i].PolicyRoles = wmi.AsStringSlice(row["PolicyRoles"])
-		out[i].PolicyRuleName = wmi.AsString(row["PolicyRuleName"])
-		out[i].PolicyStoreSource = wmi.AsString(row["PolicyStoreSource"])
-		out[i].PolicyStoreSourceType = wmi.AsUint16(row["PolicyStoreSourceType"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].Priority = wmi.AsUint16(row["Priority"])
-		out[i].Profiles = wmi.AsUint16(row["Profiles"])
-		out[i].RemoteDynamicKeywordAddresses = wmi.AsStringSlice(row["RemoteDynamicKeywordAddresses"])
-		out[i].RuleGroup = wmi.AsString(row["RuleGroup"])
-		out[i].RuleUsage = wmi.AsString(row["RuleUsage"])
-		out[i].SequencedActions = wmi.AsUint16(row["SequencedActions"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusCode = wmi.AsUint32(row["StatusCode"])
-		out[i].SystemCreationClassName = wmi.AsString(row["SystemCreationClassName"])
-		out[i].SystemName = wmi.AsString(row["SystemName"])
+		out[i] = MSFTNetFirewallRuleFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetFirewallRule returns the MSFT_NetFirewallRule instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetFirewallRule(svc *wmi.Service, creationClassName string, policyRuleName string, systemCreationClassName string, systemName string) (*MSFTNetFirewallRule, error) {
-	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
-		" AND " + "PolicyRuleName = " + wmi.WQLValue(policyRuleName) +
-		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
-		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+// QueryOneMSFTNetFirewallRule returns the single MSFT_NetFirewallRule matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetFirewallRule(svc *wmi.Service, where string) (*MSFTNetFirewallRule, error) {
 	out, err := QueryMSFTNetFirewallRule(svc, where)
 	if err != nil {
 		return nil, err
@@ -8903,8 +7963,19 @@ func GetMSFTNetFirewallRule(svc *wmi.Service, creationClassName string, policyRu
 	return &out[0], nil
 }
 
+// GetMSFTNetFirewallRule returns the MSFT_NetFirewallRule instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetFirewallRule(svc *wmi.Service, creationClassName string, policyRuleName string, systemCreationClassName string, systemName string) (*MSFTNetFirewallRule, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "PolicyRuleName = " + wmi.WQLValue(policyRuleName) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	return QueryOneMSFTNetFirewallRule(svc, where)
+}
+
 // QueryMSFTNetFirewallRuleFilterByAddress runs the WQL query against the class and decodes each
-// instance into a MSFTNetFirewallRuleFilterByAddress. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetFirewallRuleFilterByAddress. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetFirewallRuleFilterByAddress(svc *wmi.Service, where string) ([]MSFTNetFirewallRuleFilterByAddress, error) {
 	q := "SELECT * FROM MSFT_NetFirewallRuleFilterByAddress"
 	if where != "" {
@@ -8916,17 +7987,14 @@ func QueryMSFTNetFirewallRuleFilterByAddress(svc *wmi.Service, where string) ([]
 	}
 	out := make([]MSFTNetFirewallRuleFilterByAddress, len(rows))
 	for i, row := range rows {
-		out[i].GroupComponent = wmi.AsString(row["GroupComponent"])
-		out[i].PartComponent = wmi.AsString(row["PartComponent"])
+		out[i] = MSFTNetFirewallRuleFilterByAddressFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetFirewallRuleFilterByAddress returns the MSFT_NetFirewallRuleFilterByAddress instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetFirewallRuleFilterByAddress(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetFirewallRuleFilterByAddress, error) {
-	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
-		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+// QueryOneMSFTNetFirewallRuleFilterByAddress returns the single MSFT_NetFirewallRuleFilterByAddress matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetFirewallRuleFilterByAddress(svc *wmi.Service, where string) (*MSFTNetFirewallRuleFilterByAddress, error) {
 	out, err := QueryMSFTNetFirewallRuleFilterByAddress(svc, where)
 	if err != nil {
 		return nil, err
@@ -8937,8 +8005,17 @@ func GetMSFTNetFirewallRuleFilterByAddress(svc *wmi.Service, groupComponent stri
 	return &out[0], nil
 }
 
+// GetMSFTNetFirewallRuleFilterByAddress returns the MSFT_NetFirewallRuleFilterByAddress instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetFirewallRuleFilterByAddress(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetFirewallRuleFilterByAddress, error) {
+	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
+		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+	return QueryOneMSFTNetFirewallRuleFilterByAddress(svc, where)
+}
+
 // QueryMSFTNetFirewallRuleFilterByApplication runs the WQL query against the class and decodes each
-// instance into a MSFTNetFirewallRuleFilterByApplication. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetFirewallRuleFilterByApplication. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetFirewallRuleFilterByApplication(svc *wmi.Service, where string) ([]MSFTNetFirewallRuleFilterByApplication, error) {
 	q := "SELECT * FROM MSFT_NetFirewallRuleFilterByApplication"
 	if where != "" {
@@ -8950,17 +8027,14 @@ func QueryMSFTNetFirewallRuleFilterByApplication(svc *wmi.Service, where string)
 	}
 	out := make([]MSFTNetFirewallRuleFilterByApplication, len(rows))
 	for i, row := range rows {
-		out[i].GroupComponent = wmi.AsString(row["GroupComponent"])
-		out[i].PartComponent = wmi.AsString(row["PartComponent"])
+		out[i] = MSFTNetFirewallRuleFilterByApplicationFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetFirewallRuleFilterByApplication returns the MSFT_NetFirewallRuleFilterByApplication instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetFirewallRuleFilterByApplication(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetFirewallRuleFilterByApplication, error) {
-	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
-		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+// QueryOneMSFTNetFirewallRuleFilterByApplication returns the single MSFT_NetFirewallRuleFilterByApplication matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetFirewallRuleFilterByApplication(svc *wmi.Service, where string) (*MSFTNetFirewallRuleFilterByApplication, error) {
 	out, err := QueryMSFTNetFirewallRuleFilterByApplication(svc, where)
 	if err != nil {
 		return nil, err
@@ -8971,8 +8045,17 @@ func GetMSFTNetFirewallRuleFilterByApplication(svc *wmi.Service, groupComponent 
 	return &out[0], nil
 }
 
+// GetMSFTNetFirewallRuleFilterByApplication returns the MSFT_NetFirewallRuleFilterByApplication instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetFirewallRuleFilterByApplication(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetFirewallRuleFilterByApplication, error) {
+	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
+		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+	return QueryOneMSFTNetFirewallRuleFilterByApplication(svc, where)
+}
+
 // QueryMSFTNetFirewallRuleFilterByInterface runs the WQL query against the class and decodes each
-// instance into a MSFTNetFirewallRuleFilterByInterface. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetFirewallRuleFilterByInterface. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetFirewallRuleFilterByInterface(svc *wmi.Service, where string) ([]MSFTNetFirewallRuleFilterByInterface, error) {
 	q := "SELECT * FROM MSFT_NetFirewallRuleFilterByInterface"
 	if where != "" {
@@ -8984,17 +8067,14 @@ func QueryMSFTNetFirewallRuleFilterByInterface(svc *wmi.Service, where string) (
 	}
 	out := make([]MSFTNetFirewallRuleFilterByInterface, len(rows))
 	for i, row := range rows {
-		out[i].GroupComponent = wmi.AsString(row["GroupComponent"])
-		out[i].PartComponent = wmi.AsString(row["PartComponent"])
+		out[i] = MSFTNetFirewallRuleFilterByInterfaceFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetFirewallRuleFilterByInterface returns the MSFT_NetFirewallRuleFilterByInterface instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetFirewallRuleFilterByInterface(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetFirewallRuleFilterByInterface, error) {
-	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
-		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+// QueryOneMSFTNetFirewallRuleFilterByInterface returns the single MSFT_NetFirewallRuleFilterByInterface matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetFirewallRuleFilterByInterface(svc *wmi.Service, where string) (*MSFTNetFirewallRuleFilterByInterface, error) {
 	out, err := QueryMSFTNetFirewallRuleFilterByInterface(svc, where)
 	if err != nil {
 		return nil, err
@@ -9005,8 +8085,17 @@ func GetMSFTNetFirewallRuleFilterByInterface(svc *wmi.Service, groupComponent st
 	return &out[0], nil
 }
 
+// GetMSFTNetFirewallRuleFilterByInterface returns the MSFT_NetFirewallRuleFilterByInterface instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetFirewallRuleFilterByInterface(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetFirewallRuleFilterByInterface, error) {
+	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
+		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+	return QueryOneMSFTNetFirewallRuleFilterByInterface(svc, where)
+}
+
 // QueryMSFTNetFirewallRuleFilterByInterfaceType runs the WQL query against the class and decodes each
-// instance into a MSFTNetFirewallRuleFilterByInterfaceType. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetFirewallRuleFilterByInterfaceType. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetFirewallRuleFilterByInterfaceType(svc *wmi.Service, where string) ([]MSFTNetFirewallRuleFilterByInterfaceType, error) {
 	q := "SELECT * FROM MSFT_NetFirewallRuleFilterByInterfaceType"
 	if where != "" {
@@ -9018,17 +8107,14 @@ func QueryMSFTNetFirewallRuleFilterByInterfaceType(svc *wmi.Service, where strin
 	}
 	out := make([]MSFTNetFirewallRuleFilterByInterfaceType, len(rows))
 	for i, row := range rows {
-		out[i].GroupComponent = wmi.AsString(row["GroupComponent"])
-		out[i].PartComponent = wmi.AsString(row["PartComponent"])
+		out[i] = MSFTNetFirewallRuleFilterByInterfaceTypeFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetFirewallRuleFilterByInterfaceType returns the MSFT_NetFirewallRuleFilterByInterfaceType instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetFirewallRuleFilterByInterfaceType(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetFirewallRuleFilterByInterfaceType, error) {
-	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
-		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+// QueryOneMSFTNetFirewallRuleFilterByInterfaceType returns the single MSFT_NetFirewallRuleFilterByInterfaceType matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetFirewallRuleFilterByInterfaceType(svc *wmi.Service, where string) (*MSFTNetFirewallRuleFilterByInterfaceType, error) {
 	out, err := QueryMSFTNetFirewallRuleFilterByInterfaceType(svc, where)
 	if err != nil {
 		return nil, err
@@ -9039,8 +8125,17 @@ func GetMSFTNetFirewallRuleFilterByInterfaceType(svc *wmi.Service, groupComponen
 	return &out[0], nil
 }
 
+// GetMSFTNetFirewallRuleFilterByInterfaceType returns the MSFT_NetFirewallRuleFilterByInterfaceType instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetFirewallRuleFilterByInterfaceType(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetFirewallRuleFilterByInterfaceType, error) {
+	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
+		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+	return QueryOneMSFTNetFirewallRuleFilterByInterfaceType(svc, where)
+}
+
 // QueryMSFTNetFirewallRuleFilterByProtocolPort runs the WQL query against the class and decodes each
-// instance into a MSFTNetFirewallRuleFilterByProtocolPort. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetFirewallRuleFilterByProtocolPort. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetFirewallRuleFilterByProtocolPort(svc *wmi.Service, where string) ([]MSFTNetFirewallRuleFilterByProtocolPort, error) {
 	q := "SELECT * FROM MSFT_NetFirewallRuleFilterByProtocolPort"
 	if where != "" {
@@ -9052,17 +8147,14 @@ func QueryMSFTNetFirewallRuleFilterByProtocolPort(svc *wmi.Service, where string
 	}
 	out := make([]MSFTNetFirewallRuleFilterByProtocolPort, len(rows))
 	for i, row := range rows {
-		out[i].GroupComponent = wmi.AsString(row["GroupComponent"])
-		out[i].PartComponent = wmi.AsString(row["PartComponent"])
+		out[i] = MSFTNetFirewallRuleFilterByProtocolPortFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetFirewallRuleFilterByProtocolPort returns the MSFT_NetFirewallRuleFilterByProtocolPort instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetFirewallRuleFilterByProtocolPort(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetFirewallRuleFilterByProtocolPort, error) {
-	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
-		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+// QueryOneMSFTNetFirewallRuleFilterByProtocolPort returns the single MSFT_NetFirewallRuleFilterByProtocolPort matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetFirewallRuleFilterByProtocolPort(svc *wmi.Service, where string) (*MSFTNetFirewallRuleFilterByProtocolPort, error) {
 	out, err := QueryMSFTNetFirewallRuleFilterByProtocolPort(svc, where)
 	if err != nil {
 		return nil, err
@@ -9073,8 +8165,17 @@ func GetMSFTNetFirewallRuleFilterByProtocolPort(svc *wmi.Service, groupComponent
 	return &out[0], nil
 }
 
+// GetMSFTNetFirewallRuleFilterByProtocolPort returns the MSFT_NetFirewallRuleFilterByProtocolPort instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetFirewallRuleFilterByProtocolPort(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetFirewallRuleFilterByProtocolPort, error) {
+	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
+		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+	return QueryOneMSFTNetFirewallRuleFilterByProtocolPort(svc, where)
+}
+
 // QueryMSFTNetFirewallRuleFilterBySecurity runs the WQL query against the class and decodes each
-// instance into a MSFTNetFirewallRuleFilterBySecurity. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetFirewallRuleFilterBySecurity. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetFirewallRuleFilterBySecurity(svc *wmi.Service, where string) ([]MSFTNetFirewallRuleFilterBySecurity, error) {
 	q := "SELECT * FROM MSFT_NetFirewallRuleFilterBySecurity"
 	if where != "" {
@@ -9086,17 +8187,14 @@ func QueryMSFTNetFirewallRuleFilterBySecurity(svc *wmi.Service, where string) ([
 	}
 	out := make([]MSFTNetFirewallRuleFilterBySecurity, len(rows))
 	for i, row := range rows {
-		out[i].GroupComponent = wmi.AsString(row["GroupComponent"])
-		out[i].PartComponent = wmi.AsString(row["PartComponent"])
+		out[i] = MSFTNetFirewallRuleFilterBySecurityFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetFirewallRuleFilterBySecurity returns the MSFT_NetFirewallRuleFilterBySecurity instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetFirewallRuleFilterBySecurity(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetFirewallRuleFilterBySecurity, error) {
-	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
-		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+// QueryOneMSFTNetFirewallRuleFilterBySecurity returns the single MSFT_NetFirewallRuleFilterBySecurity matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetFirewallRuleFilterBySecurity(svc *wmi.Service, where string) (*MSFTNetFirewallRuleFilterBySecurity, error) {
 	out, err := QueryMSFTNetFirewallRuleFilterBySecurity(svc, where)
 	if err != nil {
 		return nil, err
@@ -9107,8 +8205,17 @@ func GetMSFTNetFirewallRuleFilterBySecurity(svc *wmi.Service, groupComponent str
 	return &out[0], nil
 }
 
+// GetMSFTNetFirewallRuleFilterBySecurity returns the MSFT_NetFirewallRuleFilterBySecurity instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetFirewallRuleFilterBySecurity(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetFirewallRuleFilterBySecurity, error) {
+	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
+		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+	return QueryOneMSFTNetFirewallRuleFilterBySecurity(svc, where)
+}
+
 // QueryMSFTNetFirewallRuleFilterByService runs the WQL query against the class and decodes each
-// instance into a MSFTNetFirewallRuleFilterByService. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetFirewallRuleFilterByService. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetFirewallRuleFilterByService(svc *wmi.Service, where string) ([]MSFTNetFirewallRuleFilterByService, error) {
 	q := "SELECT * FROM MSFT_NetFirewallRuleFilterByService"
 	if where != "" {
@@ -9120,17 +8227,14 @@ func QueryMSFTNetFirewallRuleFilterByService(svc *wmi.Service, where string) ([]
 	}
 	out := make([]MSFTNetFirewallRuleFilterByService, len(rows))
 	for i, row := range rows {
-		out[i].GroupComponent = wmi.AsString(row["GroupComponent"])
-		out[i].PartComponent = wmi.AsString(row["PartComponent"])
+		out[i] = MSFTNetFirewallRuleFilterByServiceFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetFirewallRuleFilterByService returns the MSFT_NetFirewallRuleFilterByService instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetFirewallRuleFilterByService(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetFirewallRuleFilterByService, error) {
-	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
-		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+// QueryOneMSFTNetFirewallRuleFilterByService returns the single MSFT_NetFirewallRuleFilterByService matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetFirewallRuleFilterByService(svc *wmi.Service, where string) (*MSFTNetFirewallRuleFilterByService, error) {
 	out, err := QueryMSFTNetFirewallRuleFilterByService(svc, where)
 	if err != nil {
 		return nil, err
@@ -9141,8 +8245,17 @@ func GetMSFTNetFirewallRuleFilterByService(svc *wmi.Service, groupComponent stri
 	return &out[0], nil
 }
 
+// GetMSFTNetFirewallRuleFilterByService returns the MSFT_NetFirewallRuleFilterByService instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetFirewallRuleFilterByService(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetFirewallRuleFilterByService, error) {
+	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
+		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+	return QueryOneMSFTNetFirewallRuleFilterByService(svc, where)
+}
+
 // QueryMSFTNetFirewallRuleFilters runs the WQL query against the class and decodes each
-// instance into a MSFTNetFirewallRuleFilters. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetFirewallRuleFilters. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetFirewallRuleFilters(svc *wmi.Service, where string) ([]MSFTNetFirewallRuleFilters, error) {
 	q := "SELECT * FROM MSFT_NetFirewallRuleFilters"
 	if where != "" {
@@ -9154,17 +8267,14 @@ func QueryMSFTNetFirewallRuleFilters(svc *wmi.Service, where string) ([]MSFTNetF
 	}
 	out := make([]MSFTNetFirewallRuleFilters, len(rows))
 	for i, row := range rows {
-		out[i].GroupComponent = wmi.AsString(row["GroupComponent"])
-		out[i].PartComponent = wmi.AsString(row["PartComponent"])
+		out[i] = MSFTNetFirewallRuleFiltersFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetFirewallRuleFilters returns the MSFT_NetFirewallRuleFilters instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetFirewallRuleFilters(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetFirewallRuleFilters, error) {
-	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
-		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+// QueryOneMSFTNetFirewallRuleFilters returns the single MSFT_NetFirewallRuleFilters matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetFirewallRuleFilters(svc *wmi.Service, where string) (*MSFTNetFirewallRuleFilters, error) {
 	out, err := QueryMSFTNetFirewallRuleFilters(svc, where)
 	if err != nil {
 		return nil, err
@@ -9175,8 +8285,17 @@ func GetMSFTNetFirewallRuleFilters(svc *wmi.Service, groupComponent string, part
 	return &out[0], nil
 }
 
+// GetMSFTNetFirewallRuleFilters returns the MSFT_NetFirewallRuleFilters instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetFirewallRuleFilters(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetFirewallRuleFilters, error) {
+	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
+		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+	return QueryOneMSFTNetFirewallRuleFilters(svc, where)
+}
+
 // QueryMSFTNetFirewallRuleInProfile runs the WQL query against the class and decodes each
-// instance into a MSFTNetFirewallRuleInProfile. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetFirewallRuleInProfile. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetFirewallRuleInProfile(svc *wmi.Service, where string) ([]MSFTNetFirewallRuleInProfile, error) {
 	q := "SELECT * FROM MSFT_NetFirewallRuleInProfile"
 	if where != "" {
@@ -9188,18 +8307,14 @@ func QueryMSFTNetFirewallRuleInProfile(svc *wmi.Service, where string) ([]MSFTNe
 	}
 	out := make([]MSFTNetFirewallRuleInProfile, len(rows))
 	for i, row := range rows {
-		out[i].GroupComponent = wmi.AsString(row["GroupComponent"])
-		out[i].PartComponent = wmi.AsString(row["PartComponent"])
-		out[i].Priority = wmi.AsUint16(row["Priority"])
+		out[i] = MSFTNetFirewallRuleInProfileFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetFirewallRuleInProfile returns the MSFT_NetFirewallRuleInProfile instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetFirewallRuleInProfile(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetFirewallRuleInProfile, error) {
-	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
-		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+// QueryOneMSFTNetFirewallRuleInProfile returns the single MSFT_NetFirewallRuleInProfile matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetFirewallRuleInProfile(svc *wmi.Service, where string) (*MSFTNetFirewallRuleInProfile, error) {
 	out, err := QueryMSFTNetFirewallRuleInProfile(svc, where)
 	if err != nil {
 		return nil, err
@@ -9210,8 +8325,17 @@ func GetMSFTNetFirewallRuleInProfile(svc *wmi.Service, groupComponent string, pa
 	return &out[0], nil
 }
 
+// GetMSFTNetFirewallRuleInProfile returns the MSFT_NetFirewallRuleInProfile instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetFirewallRuleInProfile(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetFirewallRuleInProfile, error) {
+	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
+		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+	return QueryOneMSFTNetFirewallRuleInProfile(svc, where)
+}
+
 // QueryMSFTNetGPO runs the WQL query against the class and decodes each
-// instance into a MSFTNetGPO. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetGPO. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetGPO(svc *wmi.Service, where string) ([]MSFTNetGPO, error) {
 	q := "SELECT * FROM MSFT_NetGPO"
 	if where != "" {
@@ -9223,18 +8347,14 @@ func QueryMSFTNetGPO(svc *wmi.Service, where string) ([]MSFTNetGPO, error) {
 	}
 	out := make([]MSFTNetGPO, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
+		out[i] = MSFTNetGPOFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetGPO returns the MSFT_NetGPO instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetGPO(svc *wmi.Service, instanceID string) (*MSFTNetGPO, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetGPO returns the single MSFT_NetGPO matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetGPO(svc *wmi.Service, where string) (*MSFTNetGPO, error) {
 	out, err := QueryMSFTNetGPO(svc, where)
 	if err != nil {
 		return nil, err
@@ -9245,8 +8365,16 @@ func GetMSFTNetGPO(svc *wmi.Service, instanceID string) (*MSFTNetGPO, error) {
 	return &out[0], nil
 }
 
+// GetMSFTNetGPO returns the MSFT_NetGPO instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetGPO(svc *wmi.Service, instanceID string) (*MSFTNetGPO, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetGPO(svc, where)
+}
+
 // QueryMSFTNetIKEAuthProposal runs the WQL query against the class and decodes each
-// instance into a MSFTNetIKEAuthProposal. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetIKEAuthProposal. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetIKEAuthProposal(svc *wmi.Service, where string) ([]MSFTNetIKEAuthProposal, error) {
 	q := "SELECT * FROM MSFT_NetIKEAuthProposal"
 	if where != "" {
@@ -9258,28 +8386,14 @@ func QueryMSFTNetIKEAuthProposal(svc *wmi.Service, where string) ([]MSFTNetIKEAu
 	}
 	out := make([]MSFTNetIKEAuthProposal, len(rows))
 	for i, row := range rows {
-		out[i].AuthenticationMethod = wmi.AsUint16(row["AuthenticationMethod"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CipherAlgorithm = wmi.AsUint16(row["CipherAlgorithm"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].GroupId = wmi.AsUint16(row["GroupId"])
-		out[i].HashAlgorithm = wmi.AsUint16(row["HashAlgorithm"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].MaxLifetimeKilobytes = wmi.AsUint64(row["MaxLifetimeKilobytes"])
-		out[i].MaxLifetimeSeconds = wmi.AsUint64(row["MaxLifetimeSeconds"])
-		out[i].OtherAuthenticationMethod = wmi.AsString(row["OtherAuthenticationMethod"])
-		out[i].OtherCipherAlgorithm = wmi.AsString(row["OtherCipherAlgorithm"])
-		out[i].OtherHashAlgorithm = wmi.AsString(row["OtherHashAlgorithm"])
-		out[i].VendorID = wmi.AsString(row["VendorID"])
+		out[i] = MSFTNetIKEAuthProposalFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetIKEAuthProposal returns the MSFT_NetIKEAuthProposal instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetIKEAuthProposal(svc *wmi.Service, instanceID string) (*MSFTNetIKEAuthProposal, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetIKEAuthProposal returns the single MSFT_NetIKEAuthProposal matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetIKEAuthProposal(svc *wmi.Service, where string) (*MSFTNetIKEAuthProposal, error) {
 	out, err := QueryMSFTNetIKEAuthProposal(svc, where)
 	if err != nil {
 		return nil, err
@@ -9290,8 +8404,16 @@ func GetMSFTNetIKEAuthProposal(svc *wmi.Service, instanceID string) (*MSFTNetIKE
 	return &out[0], nil
 }
 
+// GetMSFTNetIKEAuthProposal returns the MSFT_NetIKEAuthProposal instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetIKEAuthProposal(svc *wmi.Service, instanceID string) (*MSFTNetIKEAuthProposal, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetIKEAuthProposal(svc, where)
+}
+
 // QueryMSFTNetIKEAuthSet runs the WQL query against the class and decodes each
-// instance into a MSFTNetIKEAuthSet. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetIKEAuthSet. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetIKEAuthSet(svc *wmi.Service, where string) ([]MSFTNetIKEAuthSet, error) {
 	q := "SELECT * FROM MSFT_NetIKEAuthSet"
 	if where != "" {
@@ -9303,39 +8425,22 @@ func QueryMSFTNetIKEAuthSet(svc *wmi.Service, where string) ([]MSFTNetIKEAuthSet
 	}
 	out := make([]MSFTNetIKEAuthSet, len(rows))
 	for i, row := range rows {
-		out[i].AggressiveModeGroupID = wmi.AsUint16(row["AggressiveModeGroupID"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CommonName = wmi.AsString(row["CommonName"])
-		out[i].CreationClassName = wmi.AsString(row["CreationClassName"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DisplayGroup = wmi.AsString(row["DisplayGroup"])
-		out[i].DisplayName = wmi.AsString(row["DisplayName"])
-		out[i].DoActionLogging = wmi.AsBool(row["DoActionLogging"])
-		out[i].DoPacketLogging = wmi.AsBool(row["DoPacketLogging"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].EnforcementStatus = wmi.AsUint16Slice(row["EnforcementStatus"])
-		out[i].ExchangeMode = wmi.AsUint16(row["ExchangeMode"])
-		out[i].IdleDurationSeconds = wmi.AsUint64(row["IdleDurationSeconds"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].MinLifetimeKilobytes = wmi.AsUint64(row["MinLifetimeKilobytes"])
-		out[i].MinLifetimeSeconds = wmi.AsUint64(row["MinLifetimeSeconds"])
-		out[i].PolicyActionName = wmi.AsString(row["PolicyActionName"])
-		out[i].PolicyKeywords = wmi.AsStringSlice(row["PolicyKeywords"])
-		out[i].PolicyRuleCreationClassName = wmi.AsString(row["PolicyRuleCreationClassName"])
-		out[i].PolicyRuleName = wmi.AsString(row["PolicyRuleName"])
-		out[i].PolicyStoreSource = wmi.AsString(row["PolicyStoreSource"])
-		out[i].PolicyStoreSourceType = wmi.AsUint16(row["PolicyStoreSourceType"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].Proposals = wmi.AsRowSlice(row["Proposals"])
-		out[i].RuleGroup = wmi.AsString(row["RuleGroup"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusCode = wmi.AsUint32(row["StatusCode"])
-		out[i].SystemCreationClassName = wmi.AsString(row["SystemCreationClassName"])
-		out[i].SystemName = wmi.AsString(row["SystemName"])
-		out[i].UseIKEIdentityType = wmi.AsUint16(row["UseIKEIdentityType"])
-		out[i].VendorID = wmi.AsString(row["VendorID"])
+		out[i] = MSFTNetIKEAuthSetFromRow(row)
 	}
 	return out, nil
+}
+
+// QueryOneMSFTNetIKEAuthSet returns the single MSFT_NetIKEAuthSet matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetIKEAuthSet(svc *wmi.Service, where string) (*MSFTNetIKEAuthSet, error) {
+	out, err := QueryMSFTNetIKEAuthSet(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // GetMSFTNetIKEAuthSet returns the MSFT_NetIKEAuthSet instance identified by its key
@@ -9347,18 +8452,12 @@ func GetMSFTNetIKEAuthSet(svc *wmi.Service, creationClassName string, policyActi
 		" AND " + "PolicyRuleName = " + wmi.WQLValue(policyRuleName) +
 		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
 		" AND " + "SystemName = " + wmi.WQLValue(systemName)
-	out, err := QueryMSFTNetIKEAuthSet(svc, where)
-	if err != nil {
-		return nil, err
-	}
-	if len(out) == 0 {
-		return nil, wmi.ErrNotFound
-	}
-	return &out[0], nil
+	return QueryOneMSFTNetIKEAuthSet(svc, where)
 }
 
 // QueryMSFTNetIKEBasicAuthProposal runs the WQL query against the class and decodes each
-// instance into a MSFTNetIKEBasicAuthProposal. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetIKEBasicAuthProposal. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetIKEBasicAuthProposal(svc *wmi.Service, where string) ([]MSFTNetIKEBasicAuthProposal, error) {
 	q := "SELECT * FROM MSFT_NetIKEBasicAuthProposal"
 	if where != "" {
@@ -9370,28 +8469,14 @@ func QueryMSFTNetIKEBasicAuthProposal(svc *wmi.Service, where string) ([]MSFTNet
 	}
 	out := make([]MSFTNetIKEBasicAuthProposal, len(rows))
 	for i, row := range rows {
-		out[i].AuthenticationMethod = wmi.AsUint16(row["AuthenticationMethod"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CipherAlgorithm = wmi.AsUint16(row["CipherAlgorithm"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].GroupId = wmi.AsUint16(row["GroupId"])
-		out[i].HashAlgorithm = wmi.AsUint16(row["HashAlgorithm"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].MaxLifetimeKilobytes = wmi.AsUint64(row["MaxLifetimeKilobytes"])
-		out[i].MaxLifetimeSeconds = wmi.AsUint64(row["MaxLifetimeSeconds"])
-		out[i].OtherAuthenticationMethod = wmi.AsString(row["OtherAuthenticationMethod"])
-		out[i].OtherCipherAlgorithm = wmi.AsString(row["OtherCipherAlgorithm"])
-		out[i].OtherHashAlgorithm = wmi.AsString(row["OtherHashAlgorithm"])
-		out[i].VendorID = wmi.AsString(row["VendorID"])
+		out[i] = MSFTNetIKEBasicAuthProposalFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetIKEBasicAuthProposal returns the MSFT_NetIKEBasicAuthProposal instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetIKEBasicAuthProposal(svc *wmi.Service, instanceID string) (*MSFTNetIKEBasicAuthProposal, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetIKEBasicAuthProposal returns the single MSFT_NetIKEBasicAuthProposal matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetIKEBasicAuthProposal(svc *wmi.Service, where string) (*MSFTNetIKEBasicAuthProposal, error) {
 	out, err := QueryMSFTNetIKEBasicAuthProposal(svc, where)
 	if err != nil {
 		return nil, err
@@ -9402,8 +8487,16 @@ func GetMSFTNetIKEBasicAuthProposal(svc *wmi.Service, instanceID string) (*MSFTN
 	return &out[0], nil
 }
 
+// GetMSFTNetIKEBasicAuthProposal returns the MSFT_NetIKEBasicAuthProposal instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetIKEBasicAuthProposal(svc *wmi.Service, instanceID string) (*MSFTNetIKEBasicAuthProposal, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetIKEBasicAuthProposal(svc, where)
+}
+
 // QueryMSFTNetIKECertAuthProposal runs the WQL query against the class and decodes each
-// instance into a MSFTNetIKECertAuthProposal. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetIKECertAuthProposal. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetIKECertAuthProposal(svc *wmi.Service, where string) ([]MSFTNetIKECertAuthProposal, error) {
 	q := "SELECT * FROM MSFT_NetIKECertAuthProposal"
 	if where != "" {
@@ -9415,40 +8508,14 @@ func QueryMSFTNetIKECertAuthProposal(svc *wmi.Service, where string) ([]MSFTNetI
 	}
 	out := make([]MSFTNetIKECertAuthProposal, len(rows))
 	for i, row := range rows {
-		out[i].AuthenticationMethod = wmi.AsUint16(row["AuthenticationMethod"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CertName = wmi.AsString(row["CertName"])
-		out[i].CertNameType = wmi.AsUint16(row["CertNameType"])
-		out[i].CipherAlgorithm = wmi.AsUint16(row["CipherAlgorithm"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].EKUs = wmi.AsStringSlice(row["EKUs"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].ExcludeCAName = wmi.AsBool(row["ExcludeCAName"])
-		out[i].FollowRenewal = wmi.AsBool(row["FollowRenewal"])
-		out[i].GroupId = wmi.AsUint16(row["GroupId"])
-		out[i].HashAlgorithm = wmi.AsUint16(row["HashAlgorithm"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].MapToAccount = wmi.AsBool(row["MapToAccount"])
-		out[i].MaxLifetimeKilobytes = wmi.AsUint64(row["MaxLifetimeKilobytes"])
-		out[i].MaxLifetimeSeconds = wmi.AsUint64(row["MaxLifetimeSeconds"])
-		out[i].OtherAuthenticationMethod = wmi.AsString(row["OtherAuthenticationMethod"])
-		out[i].OtherCipherAlgorithm = wmi.AsString(row["OtherCipherAlgorithm"])
-		out[i].OtherHashAlgorithm = wmi.AsString(row["OtherHashAlgorithm"])
-		out[i].SelectionCriteria = wmi.AsBool(row["SelectionCriteria"])
-		out[i].SigningAlgorithm = wmi.AsUint16(row["SigningAlgorithm"])
-		out[i].Thumbprint = wmi.AsString(row["Thumbprint"])
-		out[i].TrustedCA = wmi.AsString(row["TrustedCA"])
-		out[i].TrustedCAType = wmi.AsUint16(row["TrustedCAType"])
-		out[i].ValidationCriteria = wmi.AsBool(row["ValidationCriteria"])
-		out[i].VendorID = wmi.AsString(row["VendorID"])
+		out[i] = MSFTNetIKECertAuthProposalFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetIKECertAuthProposal returns the MSFT_NetIKECertAuthProposal instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetIKECertAuthProposal(svc *wmi.Service, instanceID string) (*MSFTNetIKECertAuthProposal, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetIKECertAuthProposal returns the single MSFT_NetIKECertAuthProposal matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetIKECertAuthProposal(svc *wmi.Service, where string) (*MSFTNetIKECertAuthProposal, error) {
 	out, err := QueryMSFTNetIKECertAuthProposal(svc, where)
 	if err != nil {
 		return nil, err
@@ -9459,8 +8526,16 @@ func GetMSFTNetIKECertAuthProposal(svc *wmi.Service, instanceID string) (*MSFTNe
 	return &out[0], nil
 }
 
+// GetMSFTNetIKECertAuthProposal returns the MSFT_NetIKECertAuthProposal instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetIKECertAuthProposal(svc *wmi.Service, instanceID string) (*MSFTNetIKECertAuthProposal, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetIKECertAuthProposal(svc, where)
+}
+
 // QueryMSFTNetIKECryptoProposal runs the WQL query against the class and decodes each
-// instance into a MSFTNetIKECryptoProposal. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetIKECryptoProposal. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetIKECryptoProposal(svc *wmi.Service, where string) ([]MSFTNetIKECryptoProposal, error) {
 	q := "SELECT * FROM MSFT_NetIKECryptoProposal"
 	if where != "" {
@@ -9472,28 +8547,14 @@ func QueryMSFTNetIKECryptoProposal(svc *wmi.Service, where string) ([]MSFTNetIKE
 	}
 	out := make([]MSFTNetIKECryptoProposal, len(rows))
 	for i, row := range rows {
-		out[i].AuthenticationMethod = wmi.AsUint16(row["AuthenticationMethod"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CipherAlgorithm = wmi.AsUint16(row["CipherAlgorithm"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].GroupId = wmi.AsUint16(row["GroupId"])
-		out[i].HashAlgorithm = wmi.AsUint16(row["HashAlgorithm"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].MaxLifetimeKilobytes = wmi.AsUint64(row["MaxLifetimeKilobytes"])
-		out[i].MaxLifetimeSeconds = wmi.AsUint64(row["MaxLifetimeSeconds"])
-		out[i].OtherAuthenticationMethod = wmi.AsString(row["OtherAuthenticationMethod"])
-		out[i].OtherCipherAlgorithm = wmi.AsString(row["OtherCipherAlgorithm"])
-		out[i].OtherHashAlgorithm = wmi.AsString(row["OtherHashAlgorithm"])
-		out[i].VendorID = wmi.AsString(row["VendorID"])
+		out[i] = MSFTNetIKECryptoProposalFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetIKECryptoProposal returns the MSFT_NetIKECryptoProposal instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetIKECryptoProposal(svc *wmi.Service, instanceID string) (*MSFTNetIKECryptoProposal, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetIKECryptoProposal returns the single MSFT_NetIKECryptoProposal matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetIKECryptoProposal(svc *wmi.Service, where string) (*MSFTNetIKECryptoProposal, error) {
 	out, err := QueryMSFTNetIKECryptoProposal(svc, where)
 	if err != nil {
 		return nil, err
@@ -9504,8 +8565,16 @@ func GetMSFTNetIKECryptoProposal(svc *wmi.Service, instanceID string) (*MSFTNetI
 	return &out[0], nil
 }
 
+// GetMSFTNetIKECryptoProposal returns the MSFT_NetIKECryptoProposal instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetIKECryptoProposal(svc *wmi.Service, instanceID string) (*MSFTNetIKECryptoProposal, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetIKECryptoProposal(svc, where)
+}
+
 // QueryMSFTNetIKECryptoSet runs the WQL query against the class and decodes each
-// instance into a MSFTNetIKECryptoSet. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetIKECryptoSet. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetIKECryptoSet(svc *wmi.Service, where string) ([]MSFTNetIKECryptoSet, error) {
 	q := "SELECT * FROM MSFT_NetIKECryptoSet"
 	if where != "" {
@@ -9517,39 +8586,22 @@ func QueryMSFTNetIKECryptoSet(svc *wmi.Service, where string) ([]MSFTNetIKECrypt
 	}
 	out := make([]MSFTNetIKECryptoSet, len(rows))
 	for i, row := range rows {
-		out[i].AggressiveModeGroupID = wmi.AsUint16(row["AggressiveModeGroupID"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CommonName = wmi.AsString(row["CommonName"])
-		out[i].CreationClassName = wmi.AsString(row["CreationClassName"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DisplayGroup = wmi.AsString(row["DisplayGroup"])
-		out[i].DisplayName = wmi.AsString(row["DisplayName"])
-		out[i].DoActionLogging = wmi.AsBool(row["DoActionLogging"])
-		out[i].DoPacketLogging = wmi.AsBool(row["DoPacketLogging"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].EnforcementStatus = wmi.AsUint16Slice(row["EnforcementStatus"])
-		out[i].ExchangeMode = wmi.AsUint16(row["ExchangeMode"])
-		out[i].IdleDurationSeconds = wmi.AsUint64(row["IdleDurationSeconds"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].MinLifetimeKilobytes = wmi.AsUint64(row["MinLifetimeKilobytes"])
-		out[i].MinLifetimeSeconds = wmi.AsUint64(row["MinLifetimeSeconds"])
-		out[i].PolicyActionName = wmi.AsString(row["PolicyActionName"])
-		out[i].PolicyKeywords = wmi.AsStringSlice(row["PolicyKeywords"])
-		out[i].PolicyRuleCreationClassName = wmi.AsString(row["PolicyRuleCreationClassName"])
-		out[i].PolicyRuleName = wmi.AsString(row["PolicyRuleName"])
-		out[i].PolicyStoreSource = wmi.AsString(row["PolicyStoreSource"])
-		out[i].PolicyStoreSourceType = wmi.AsUint16(row["PolicyStoreSourceType"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].Proposals = wmi.AsRowSlice(row["Proposals"])
-		out[i].RuleGroup = wmi.AsString(row["RuleGroup"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusCode = wmi.AsUint32(row["StatusCode"])
-		out[i].SystemCreationClassName = wmi.AsString(row["SystemCreationClassName"])
-		out[i].SystemName = wmi.AsString(row["SystemName"])
-		out[i].UseIKEIdentityType = wmi.AsUint16(row["UseIKEIdentityType"])
-		out[i].VendorID = wmi.AsString(row["VendorID"])
+		out[i] = MSFTNetIKECryptoSetFromRow(row)
 	}
 	return out, nil
+}
+
+// QueryOneMSFTNetIKECryptoSet returns the single MSFT_NetIKECryptoSet matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetIKECryptoSet(svc *wmi.Service, where string) (*MSFTNetIKECryptoSet, error) {
+	out, err := QueryMSFTNetIKECryptoSet(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // GetMSFTNetIKECryptoSet returns the MSFT_NetIKECryptoSet instance identified by its key
@@ -9561,18 +8613,12 @@ func GetMSFTNetIKECryptoSet(svc *wmi.Service, creationClassName string, policyAc
 		" AND " + "PolicyRuleName = " + wmi.WQLValue(policyRuleName) +
 		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
 		" AND " + "SystemName = " + wmi.WQLValue(systemName)
-	out, err := QueryMSFTNetIKECryptoSet(svc, where)
-	if err != nil {
-		return nil, err
-	}
-	if len(out) == 0 {
-		return nil, wmi.ErrNotFound
-	}
-	return &out[0], nil
+	return QueryOneMSFTNetIKECryptoSet(svc, where)
 }
 
 // QueryMSFTNetIKEKerbAuthProposal runs the WQL query against the class and decodes each
-// instance into a MSFTNetIKEKerbAuthProposal. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetIKEKerbAuthProposal. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetIKEKerbAuthProposal(svc *wmi.Service, where string) ([]MSFTNetIKEKerbAuthProposal, error) {
 	q := "SELECT * FROM MSFT_NetIKEKerbAuthProposal"
 	if where != "" {
@@ -9584,29 +8630,14 @@ func QueryMSFTNetIKEKerbAuthProposal(svc *wmi.Service, where string) ([]MSFTNetI
 	}
 	out := make([]MSFTNetIKEKerbAuthProposal, len(rows))
 	for i, row := range rows {
-		out[i].AuthenticationMethod = wmi.AsUint16(row["AuthenticationMethod"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CipherAlgorithm = wmi.AsUint16(row["CipherAlgorithm"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].GroupId = wmi.AsUint16(row["GroupId"])
-		out[i].HashAlgorithm = wmi.AsUint16(row["HashAlgorithm"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].KerbProxy = wmi.AsString(row["KerbProxy"])
-		out[i].MaxLifetimeKilobytes = wmi.AsUint64(row["MaxLifetimeKilobytes"])
-		out[i].MaxLifetimeSeconds = wmi.AsUint64(row["MaxLifetimeSeconds"])
-		out[i].OtherAuthenticationMethod = wmi.AsString(row["OtherAuthenticationMethod"])
-		out[i].OtherCipherAlgorithm = wmi.AsString(row["OtherCipherAlgorithm"])
-		out[i].OtherHashAlgorithm = wmi.AsString(row["OtherHashAlgorithm"])
-		out[i].VendorID = wmi.AsString(row["VendorID"])
+		out[i] = MSFTNetIKEKerbAuthProposalFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetIKEKerbAuthProposal returns the MSFT_NetIKEKerbAuthProposal instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetIKEKerbAuthProposal(svc *wmi.Service, instanceID string) (*MSFTNetIKEKerbAuthProposal, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetIKEKerbAuthProposal returns the single MSFT_NetIKEKerbAuthProposal matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetIKEKerbAuthProposal(svc *wmi.Service, where string) (*MSFTNetIKEKerbAuthProposal, error) {
 	out, err := QueryMSFTNetIKEKerbAuthProposal(svc, where)
 	if err != nil {
 		return nil, err
@@ -9617,8 +8648,16 @@ func GetMSFTNetIKEKerbAuthProposal(svc *wmi.Service, instanceID string) (*MSFTNe
 	return &out[0], nil
 }
 
+// GetMSFTNetIKEKerbAuthProposal returns the MSFT_NetIKEKerbAuthProposal instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetIKEKerbAuthProposal(svc *wmi.Service, instanceID string) (*MSFTNetIKEKerbAuthProposal, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetIKEKerbAuthProposal(svc, where)
+}
+
 // QueryMSFTNetIKEMMCryptoProposal runs the WQL query against the class and decodes each
-// instance into a MSFTNetIKEMMCryptoProposal. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetIKEMMCryptoProposal. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetIKEMMCryptoProposal(svc *wmi.Service, where string) ([]MSFTNetIKEMMCryptoProposal, error) {
 	q := "SELECT * FROM MSFT_NetIKEMMCryptoProposal"
 	if where != "" {
@@ -9630,28 +8669,14 @@ func QueryMSFTNetIKEMMCryptoProposal(svc *wmi.Service, where string) ([]MSFTNetI
 	}
 	out := make([]MSFTNetIKEMMCryptoProposal, len(rows))
 	for i, row := range rows {
-		out[i].AuthenticationMethod = wmi.AsUint16(row["AuthenticationMethod"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CipherAlgorithm = wmi.AsUint16(row["CipherAlgorithm"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].GroupId = wmi.AsUint16(row["GroupId"])
-		out[i].HashAlgorithm = wmi.AsUint16(row["HashAlgorithm"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].MaxLifetimeKilobytes = wmi.AsUint64(row["MaxLifetimeKilobytes"])
-		out[i].MaxLifetimeSeconds = wmi.AsUint64(row["MaxLifetimeSeconds"])
-		out[i].OtherAuthenticationMethod = wmi.AsString(row["OtherAuthenticationMethod"])
-		out[i].OtherCipherAlgorithm = wmi.AsString(row["OtherCipherAlgorithm"])
-		out[i].OtherHashAlgorithm = wmi.AsString(row["OtherHashAlgorithm"])
-		out[i].VendorID = wmi.AsString(row["VendorID"])
+		out[i] = MSFTNetIKEMMCryptoProposalFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetIKEMMCryptoProposal returns the MSFT_NetIKEMMCryptoProposal instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetIKEMMCryptoProposal(svc *wmi.Service, instanceID string) (*MSFTNetIKEMMCryptoProposal, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetIKEMMCryptoProposal returns the single MSFT_NetIKEMMCryptoProposal matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetIKEMMCryptoProposal(svc *wmi.Service, where string) (*MSFTNetIKEMMCryptoProposal, error) {
 	out, err := QueryMSFTNetIKEMMCryptoProposal(svc, where)
 	if err != nil {
 		return nil, err
@@ -9662,8 +8687,16 @@ func GetMSFTNetIKEMMCryptoProposal(svc *wmi.Service, instanceID string) (*MSFTNe
 	return &out[0], nil
 }
 
+// GetMSFTNetIKEMMCryptoProposal returns the MSFT_NetIKEMMCryptoProposal instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetIKEMMCryptoProposal(svc *wmi.Service, instanceID string) (*MSFTNetIKEMMCryptoProposal, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetIKEMMCryptoProposal(svc, where)
+}
+
 // QueryMSFTNetIKEMMCryptoSet runs the WQL query against the class and decodes each
-// instance into a MSFTNetIKEMMCryptoSet. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetIKEMMCryptoSet. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetIKEMMCryptoSet(svc *wmi.Service, where string) ([]MSFTNetIKEMMCryptoSet, error) {
 	q := "SELECT * FROM MSFT_NetIKEMMCryptoSet"
 	if where != "" {
@@ -9675,42 +8708,22 @@ func QueryMSFTNetIKEMMCryptoSet(svc *wmi.Service, where string) ([]MSFTNetIKEMMC
 	}
 	out := make([]MSFTNetIKEMMCryptoSet, len(rows))
 	for i, row := range rows {
-		out[i].AggressiveModeGroupID = wmi.AsUint16(row["AggressiveModeGroupID"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CommonName = wmi.AsString(row["CommonName"])
-		out[i].CreationClassName = wmi.AsString(row["CreationClassName"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DisplayGroup = wmi.AsString(row["DisplayGroup"])
-		out[i].DisplayName = wmi.AsString(row["DisplayName"])
-		out[i].DoActionLogging = wmi.AsBool(row["DoActionLogging"])
-		out[i].DoPacketLogging = wmi.AsBool(row["DoPacketLogging"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].EnforcementStatus = wmi.AsUint16Slice(row["EnforcementStatus"])
-		out[i].ExchangeMode = wmi.AsUint16(row["ExchangeMode"])
-		out[i].ForceDiffieHellman = wmi.AsBool(row["ForceDiffieHellman"])
-		out[i].IdleDurationSeconds = wmi.AsUint64(row["IdleDurationSeconds"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].MaxLifetimeMinutes = wmi.AsUint32(row["MaxLifetimeMinutes"])
-		out[i].MaxLifetimeSessions = wmi.AsUint32(row["MaxLifetimeSessions"])
-		out[i].MinLifetimeKilobytes = wmi.AsUint64(row["MinLifetimeKilobytes"])
-		out[i].MinLifetimeSeconds = wmi.AsUint64(row["MinLifetimeSeconds"])
-		out[i].PolicyActionName = wmi.AsString(row["PolicyActionName"])
-		out[i].PolicyKeywords = wmi.AsStringSlice(row["PolicyKeywords"])
-		out[i].PolicyRuleCreationClassName = wmi.AsString(row["PolicyRuleCreationClassName"])
-		out[i].PolicyRuleName = wmi.AsString(row["PolicyRuleName"])
-		out[i].PolicyStoreSource = wmi.AsString(row["PolicyStoreSource"])
-		out[i].PolicyStoreSourceType = wmi.AsUint16(row["PolicyStoreSourceType"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].Proposals = wmi.AsRowSlice(row["Proposals"])
-		out[i].RuleGroup = wmi.AsString(row["RuleGroup"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusCode = wmi.AsUint32(row["StatusCode"])
-		out[i].SystemCreationClassName = wmi.AsString(row["SystemCreationClassName"])
-		out[i].SystemName = wmi.AsString(row["SystemName"])
-		out[i].UseIKEIdentityType = wmi.AsUint16(row["UseIKEIdentityType"])
-		out[i].VendorID = wmi.AsString(row["VendorID"])
+		out[i] = MSFTNetIKEMMCryptoSetFromRow(row)
 	}
 	return out, nil
+}
+
+// QueryOneMSFTNetIKEMMCryptoSet returns the single MSFT_NetIKEMMCryptoSet matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetIKEMMCryptoSet(svc *wmi.Service, where string) (*MSFTNetIKEMMCryptoSet, error) {
+	out, err := QueryMSFTNetIKEMMCryptoSet(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // GetMSFTNetIKEMMCryptoSet returns the MSFT_NetIKEMMCryptoSet instance identified by its key
@@ -9722,18 +8735,12 @@ func GetMSFTNetIKEMMCryptoSet(svc *wmi.Service, creationClassName string, policy
 		" AND " + "PolicyRuleName = " + wmi.WQLValue(policyRuleName) +
 		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
 		" AND " + "SystemName = " + wmi.WQLValue(systemName)
-	out, err := QueryMSFTNetIKEMMCryptoSet(svc, where)
-	if err != nil {
-		return nil, err
-	}
-	if len(out) == 0 {
-		return nil, wmi.ErrNotFound
-	}
-	return &out[0], nil
+	return QueryOneMSFTNetIKEMMCryptoSet(svc, where)
 }
 
 // QueryMSFTNetIKEP1AuthSet runs the WQL query against the class and decodes each
-// instance into a MSFTNetIKEP1AuthSet. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetIKEP1AuthSet. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetIKEP1AuthSet(svc *wmi.Service, where string) ([]MSFTNetIKEP1AuthSet, error) {
 	q := "SELECT * FROM MSFT_NetIKEP1AuthSet"
 	if where != "" {
@@ -9745,39 +8752,22 @@ func QueryMSFTNetIKEP1AuthSet(svc *wmi.Service, where string) ([]MSFTNetIKEP1Aut
 	}
 	out := make([]MSFTNetIKEP1AuthSet, len(rows))
 	for i, row := range rows {
-		out[i].AggressiveModeGroupID = wmi.AsUint16(row["AggressiveModeGroupID"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CommonName = wmi.AsString(row["CommonName"])
-		out[i].CreationClassName = wmi.AsString(row["CreationClassName"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DisplayGroup = wmi.AsString(row["DisplayGroup"])
-		out[i].DisplayName = wmi.AsString(row["DisplayName"])
-		out[i].DoActionLogging = wmi.AsBool(row["DoActionLogging"])
-		out[i].DoPacketLogging = wmi.AsBool(row["DoPacketLogging"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].EnforcementStatus = wmi.AsUint16Slice(row["EnforcementStatus"])
-		out[i].ExchangeMode = wmi.AsUint16(row["ExchangeMode"])
-		out[i].IdleDurationSeconds = wmi.AsUint64(row["IdleDurationSeconds"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].MinLifetimeKilobytes = wmi.AsUint64(row["MinLifetimeKilobytes"])
-		out[i].MinLifetimeSeconds = wmi.AsUint64(row["MinLifetimeSeconds"])
-		out[i].PolicyActionName = wmi.AsString(row["PolicyActionName"])
-		out[i].PolicyKeywords = wmi.AsStringSlice(row["PolicyKeywords"])
-		out[i].PolicyRuleCreationClassName = wmi.AsString(row["PolicyRuleCreationClassName"])
-		out[i].PolicyRuleName = wmi.AsString(row["PolicyRuleName"])
-		out[i].PolicyStoreSource = wmi.AsString(row["PolicyStoreSource"])
-		out[i].PolicyStoreSourceType = wmi.AsUint16(row["PolicyStoreSourceType"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].Proposals = wmi.AsRowSlice(row["Proposals"])
-		out[i].RuleGroup = wmi.AsString(row["RuleGroup"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusCode = wmi.AsUint32(row["StatusCode"])
-		out[i].SystemCreationClassName = wmi.AsString(row["SystemCreationClassName"])
-		out[i].SystemName = wmi.AsString(row["SystemName"])
-		out[i].UseIKEIdentityType = wmi.AsUint16(row["UseIKEIdentityType"])
-		out[i].VendorID = wmi.AsString(row["VendorID"])
+		out[i] = MSFTNetIKEP1AuthSetFromRow(row)
 	}
 	return out, nil
+}
+
+// QueryOneMSFTNetIKEP1AuthSet returns the single MSFT_NetIKEP1AuthSet matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetIKEP1AuthSet(svc *wmi.Service, where string) (*MSFTNetIKEP1AuthSet, error) {
+	out, err := QueryMSFTNetIKEP1AuthSet(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // GetMSFTNetIKEP1AuthSet returns the MSFT_NetIKEP1AuthSet instance identified by its key
@@ -9789,18 +8779,12 @@ func GetMSFTNetIKEP1AuthSet(svc *wmi.Service, creationClassName string, policyAc
 		" AND " + "PolicyRuleName = " + wmi.WQLValue(policyRuleName) +
 		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
 		" AND " + "SystemName = " + wmi.WQLValue(systemName)
-	out, err := QueryMSFTNetIKEP1AuthSet(svc, where)
-	if err != nil {
-		return nil, err
-	}
-	if len(out) == 0 {
-		return nil, wmi.ErrNotFound
-	}
-	return &out[0], nil
+	return QueryOneMSFTNetIKEP1AuthSet(svc, where)
 }
 
 // QueryMSFTNetIKEP2AuthSet runs the WQL query against the class and decodes each
-// instance into a MSFTNetIKEP2AuthSet. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetIKEP2AuthSet. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetIKEP2AuthSet(svc *wmi.Service, where string) ([]MSFTNetIKEP2AuthSet, error) {
 	q := "SELECT * FROM MSFT_NetIKEP2AuthSet"
 	if where != "" {
@@ -9812,39 +8796,22 @@ func QueryMSFTNetIKEP2AuthSet(svc *wmi.Service, where string) ([]MSFTNetIKEP2Aut
 	}
 	out := make([]MSFTNetIKEP2AuthSet, len(rows))
 	for i, row := range rows {
-		out[i].AggressiveModeGroupID = wmi.AsUint16(row["AggressiveModeGroupID"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CommonName = wmi.AsString(row["CommonName"])
-		out[i].CreationClassName = wmi.AsString(row["CreationClassName"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DisplayGroup = wmi.AsString(row["DisplayGroup"])
-		out[i].DisplayName = wmi.AsString(row["DisplayName"])
-		out[i].DoActionLogging = wmi.AsBool(row["DoActionLogging"])
-		out[i].DoPacketLogging = wmi.AsBool(row["DoPacketLogging"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].EnforcementStatus = wmi.AsUint16Slice(row["EnforcementStatus"])
-		out[i].ExchangeMode = wmi.AsUint16(row["ExchangeMode"])
-		out[i].IdleDurationSeconds = wmi.AsUint64(row["IdleDurationSeconds"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].MinLifetimeKilobytes = wmi.AsUint64(row["MinLifetimeKilobytes"])
-		out[i].MinLifetimeSeconds = wmi.AsUint64(row["MinLifetimeSeconds"])
-		out[i].PolicyActionName = wmi.AsString(row["PolicyActionName"])
-		out[i].PolicyKeywords = wmi.AsStringSlice(row["PolicyKeywords"])
-		out[i].PolicyRuleCreationClassName = wmi.AsString(row["PolicyRuleCreationClassName"])
-		out[i].PolicyRuleName = wmi.AsString(row["PolicyRuleName"])
-		out[i].PolicyStoreSource = wmi.AsString(row["PolicyStoreSource"])
-		out[i].PolicyStoreSourceType = wmi.AsUint16(row["PolicyStoreSourceType"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].Proposals = wmi.AsRowSlice(row["Proposals"])
-		out[i].RuleGroup = wmi.AsString(row["RuleGroup"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusCode = wmi.AsUint32(row["StatusCode"])
-		out[i].SystemCreationClassName = wmi.AsString(row["SystemCreationClassName"])
-		out[i].SystemName = wmi.AsString(row["SystemName"])
-		out[i].UseIKEIdentityType = wmi.AsUint16(row["UseIKEIdentityType"])
-		out[i].VendorID = wmi.AsString(row["VendorID"])
+		out[i] = MSFTNetIKEP2AuthSetFromRow(row)
 	}
 	return out, nil
+}
+
+// QueryOneMSFTNetIKEP2AuthSet returns the single MSFT_NetIKEP2AuthSet matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetIKEP2AuthSet(svc *wmi.Service, where string) (*MSFTNetIKEP2AuthSet, error) {
+	out, err := QueryMSFTNetIKEP2AuthSet(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // GetMSFTNetIKEP2AuthSet returns the MSFT_NetIKEP2AuthSet instance identified by its key
@@ -9856,18 +8823,12 @@ func GetMSFTNetIKEP2AuthSet(svc *wmi.Service, creationClassName string, policyAc
 		" AND " + "PolicyRuleName = " + wmi.WQLValue(policyRuleName) +
 		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
 		" AND " + "SystemName = " + wmi.WQLValue(systemName)
-	out, err := QueryMSFTNetIKEP2AuthSet(svc, where)
-	if err != nil {
-		return nil, err
-	}
-	if len(out) == 0 {
-		return nil, wmi.ErrNotFound
-	}
-	return &out[0], nil
+	return QueryOneMSFTNetIKEP2AuthSet(svc, where)
 }
 
 // QueryMSFTNetIKEPSKAuthProposal runs the WQL query against the class and decodes each
-// instance into a MSFTNetIKEPSKAuthProposal. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetIKEPSKAuthProposal. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetIKEPSKAuthProposal(svc *wmi.Service, where string) ([]MSFTNetIKEPSKAuthProposal, error) {
 	q := "SELECT * FROM MSFT_NetIKEPSKAuthProposal"
 	if where != "" {
@@ -9879,29 +8840,14 @@ func QueryMSFTNetIKEPSKAuthProposal(svc *wmi.Service, where string) ([]MSFTNetIK
 	}
 	out := make([]MSFTNetIKEPSKAuthProposal, len(rows))
 	for i, row := range rows {
-		out[i].AuthenticationMethod = wmi.AsUint16(row["AuthenticationMethod"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CipherAlgorithm = wmi.AsUint16(row["CipherAlgorithm"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].GroupId = wmi.AsUint16(row["GroupId"])
-		out[i].HashAlgorithm = wmi.AsUint16(row["HashAlgorithm"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].MaxLifetimeKilobytes = wmi.AsUint64(row["MaxLifetimeKilobytes"])
-		out[i].MaxLifetimeSeconds = wmi.AsUint64(row["MaxLifetimeSeconds"])
-		out[i].OtherAuthenticationMethod = wmi.AsString(row["OtherAuthenticationMethod"])
-		out[i].OtherCipherAlgorithm = wmi.AsString(row["OtherCipherAlgorithm"])
-		out[i].OtherHashAlgorithm = wmi.AsString(row["OtherHashAlgorithm"])
-		out[i].PreSharedKey = wmi.AsString(row["PreSharedKey"])
-		out[i].VendorID = wmi.AsString(row["VendorID"])
+		out[i] = MSFTNetIKEPSKAuthProposalFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetIKEPSKAuthProposal returns the MSFT_NetIKEPSKAuthProposal instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetIKEPSKAuthProposal(svc *wmi.Service, instanceID string) (*MSFTNetIKEPSKAuthProposal, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetIKEPSKAuthProposal returns the single MSFT_NetIKEPSKAuthProposal matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetIKEPSKAuthProposal(svc *wmi.Service, where string) (*MSFTNetIKEPSKAuthProposal, error) {
 	out, err := QueryMSFTNetIKEPSKAuthProposal(svc, where)
 	if err != nil {
 		return nil, err
@@ -9912,8 +8858,16 @@ func GetMSFTNetIKEPSKAuthProposal(svc *wmi.Service, instanceID string) (*MSFTNet
 	return &out[0], nil
 }
 
+// GetMSFTNetIKEPSKAuthProposal returns the MSFT_NetIKEPSKAuthProposal instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetIKEPSKAuthProposal(svc *wmi.Service, instanceID string) (*MSFTNetIKEPSKAuthProposal, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetIKEPSKAuthProposal(svc, where)
+}
+
 // QueryMSFTNetIKEQMCryptoProposal runs the WQL query against the class and decodes each
-// instance into a MSFTNetIKEQMCryptoProposal. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetIKEQMCryptoProposal. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetIKEQMCryptoProposal(svc *wmi.Service, where string) ([]MSFTNetIKEQMCryptoProposal, error) {
 	q := "SELECT * FROM MSFT_NetIKEQMCryptoProposal"
 	if where != "" {
@@ -9925,32 +8879,14 @@ func QueryMSFTNetIKEQMCryptoProposal(svc *wmi.Service, where string) ([]MSFTNetI
 	}
 	out := make([]MSFTNetIKEQMCryptoProposal, len(rows))
 	for i, row := range rows {
-		out[i].AuthenticationMethod = wmi.AsUint16(row["AuthenticationMethod"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CipherAlgorithm = wmi.AsUint16(row["CipherAlgorithm"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].Encapsulation = wmi.AsUint16(row["Encapsulation"])
-		out[i].GroupId = wmi.AsUint16(row["GroupId"])
-		out[i].HashAlgorithm = wmi.AsUint16(row["HashAlgorithm"])
-		out[i].HashAlgorithmAH = wmi.AsUint16(row["HashAlgorithmAH"])
-		out[i].HashAlgorithmESP = wmi.AsUint16(row["HashAlgorithmESP"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].MaxLifetimeKilobytes = wmi.AsUint64(row["MaxLifetimeKilobytes"])
-		out[i].MaxLifetimeMinutes = wmi.AsUint32(row["MaxLifetimeMinutes"])
-		out[i].MaxLifetimeSeconds = wmi.AsUint64(row["MaxLifetimeSeconds"])
-		out[i].OtherAuthenticationMethod = wmi.AsString(row["OtherAuthenticationMethod"])
-		out[i].OtherCipherAlgorithm = wmi.AsString(row["OtherCipherAlgorithm"])
-		out[i].OtherHashAlgorithm = wmi.AsString(row["OtherHashAlgorithm"])
-		out[i].VendorID = wmi.AsString(row["VendorID"])
+		out[i] = MSFTNetIKEQMCryptoProposalFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetIKEQMCryptoProposal returns the MSFT_NetIKEQMCryptoProposal instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetIKEQMCryptoProposal(svc *wmi.Service, instanceID string) (*MSFTNetIKEQMCryptoProposal, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetIKEQMCryptoProposal returns the single MSFT_NetIKEQMCryptoProposal matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetIKEQMCryptoProposal(svc *wmi.Service, where string) (*MSFTNetIKEQMCryptoProposal, error) {
 	out, err := QueryMSFTNetIKEQMCryptoProposal(svc, where)
 	if err != nil {
 		return nil, err
@@ -9961,8 +8897,16 @@ func GetMSFTNetIKEQMCryptoProposal(svc *wmi.Service, instanceID string) (*MSFTNe
 	return &out[0], nil
 }
 
+// GetMSFTNetIKEQMCryptoProposal returns the MSFT_NetIKEQMCryptoProposal instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetIKEQMCryptoProposal(svc *wmi.Service, instanceID string) (*MSFTNetIKEQMCryptoProposal, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetIKEQMCryptoProposal(svc, where)
+}
+
 // QueryMSFTNetIKEQMCryptoSet runs the WQL query against the class and decodes each
-// instance into a MSFTNetIKEQMCryptoSet. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetIKEQMCryptoSet. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetIKEQMCryptoSet(svc *wmi.Service, where string) ([]MSFTNetIKEQMCryptoSet, error) {
 	q := "SELECT * FROM MSFT_NetIKEQMCryptoSet"
 	if where != "" {
@@ -9974,40 +8918,22 @@ func QueryMSFTNetIKEQMCryptoSet(svc *wmi.Service, where string) ([]MSFTNetIKEQMC
 	}
 	out := make([]MSFTNetIKEQMCryptoSet, len(rows))
 	for i, row := range rows {
-		out[i].AggressiveModeGroupID = wmi.AsUint16(row["AggressiveModeGroupID"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CommonName = wmi.AsString(row["CommonName"])
-		out[i].CreationClassName = wmi.AsString(row["CreationClassName"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DisplayGroup = wmi.AsString(row["DisplayGroup"])
-		out[i].DisplayName = wmi.AsString(row["DisplayName"])
-		out[i].DoActionLogging = wmi.AsBool(row["DoActionLogging"])
-		out[i].DoPacketLogging = wmi.AsBool(row["DoPacketLogging"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].EnforcementStatus = wmi.AsUint16Slice(row["EnforcementStatus"])
-		out[i].ExchangeMode = wmi.AsUint16(row["ExchangeMode"])
-		out[i].IdleDurationSeconds = wmi.AsUint64(row["IdleDurationSeconds"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].MinLifetimeKilobytes = wmi.AsUint64(row["MinLifetimeKilobytes"])
-		out[i].MinLifetimeSeconds = wmi.AsUint64(row["MinLifetimeSeconds"])
-		out[i].PfsGroupID = wmi.AsUint16(row["PfsGroupID"])
-		out[i].PolicyActionName = wmi.AsString(row["PolicyActionName"])
-		out[i].PolicyKeywords = wmi.AsStringSlice(row["PolicyKeywords"])
-		out[i].PolicyRuleCreationClassName = wmi.AsString(row["PolicyRuleCreationClassName"])
-		out[i].PolicyRuleName = wmi.AsString(row["PolicyRuleName"])
-		out[i].PolicyStoreSource = wmi.AsString(row["PolicyStoreSource"])
-		out[i].PolicyStoreSourceType = wmi.AsUint16(row["PolicyStoreSourceType"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].Proposals = wmi.AsRowSlice(row["Proposals"])
-		out[i].RuleGroup = wmi.AsString(row["RuleGroup"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusCode = wmi.AsUint32(row["StatusCode"])
-		out[i].SystemCreationClassName = wmi.AsString(row["SystemCreationClassName"])
-		out[i].SystemName = wmi.AsString(row["SystemName"])
-		out[i].UseIKEIdentityType = wmi.AsUint16(row["UseIKEIdentityType"])
-		out[i].VendorID = wmi.AsString(row["VendorID"])
+		out[i] = MSFTNetIKEQMCryptoSetFromRow(row)
 	}
 	return out, nil
+}
+
+// QueryOneMSFTNetIKEQMCryptoSet returns the single MSFT_NetIKEQMCryptoSet matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetIKEQMCryptoSet(svc *wmi.Service, where string) (*MSFTNetIKEQMCryptoSet, error) {
+	out, err := QueryMSFTNetIKEQMCryptoSet(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // GetMSFTNetIKEQMCryptoSet returns the MSFT_NetIKEQMCryptoSet instance identified by its key
@@ -10019,18 +8945,12 @@ func GetMSFTNetIKEQMCryptoSet(svc *wmi.Service, creationClassName string, policy
 		" AND " + "PolicyRuleName = " + wmi.WQLValue(policyRuleName) +
 		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
 		" AND " + "SystemName = " + wmi.WQLValue(systemName)
-	out, err := QueryMSFTNetIKEQMCryptoSet(svc, where)
-	if err != nil {
-		return nil, err
-	}
-	if len(out) == 0 {
-		return nil, wmi.ErrNotFound
-	}
-	return &out[0], nil
+	return QueryOneMSFTNetIKEQMCryptoSet(svc, where)
 }
 
 // QueryMSFTNetIPAddress runs the WQL query against the class and decodes each
-// instance into a MSFTNetIPAddress. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetIPAddress. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetIPAddress(svc *wmi.Service, where string) ([]MSFTNetIPAddress, error) {
 	q := "SELECT * FROM MSFT_NetIPAddress"
 	if where != "" {
@@ -10042,65 +8962,14 @@ func QueryMSFTNetIPAddress(svc *wmi.Service, where string) ([]MSFTNetIPAddress, 
 	}
 	out := make([]MSFTNetIPAddress, len(rows))
 	for i, row := range rows {
-		out[i].Address = wmi.AsString(row["Address"])
-		out[i].AddressFamily = wmi.AsUint16(row["AddressFamily"])
-		out[i].AddressOrigin = wmi.AsUint16(row["AddressOrigin"])
-		out[i].AddressState = wmi.AsUint16(row["AddressState"])
-		out[i].AddressType = wmi.AsUint16(row["AddressType"])
-		out[i].AvailableRequestedStates = wmi.AsUint16Slice(row["AvailableRequestedStates"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CommunicationStatus = wmi.AsUint16(row["CommunicationStatus"])
-		out[i].CreationClassName = wmi.AsString(row["CreationClassName"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DetailedStatus = wmi.AsUint16(row["DetailedStatus"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].EnabledDefault = wmi.AsUint16(row["EnabledDefault"])
-		out[i].EnabledState = wmi.AsUint16(row["EnabledState"])
-		out[i].HealthState = wmi.AsUint16(row["HealthState"])
-		out[i].IPAddress = wmi.AsString(row["IPAddress"])
-		out[i].IPVersionSupport = wmi.AsUint16(row["IPVersionSupport"])
-		out[i].IPv4Address = wmi.AsString(row["IPv4Address"])
-		out[i].IPv6Address = wmi.AsString(row["IPv6Address"])
-		out[i].InstallDate = wmi.AsString(row["InstallDate"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].InterfaceAlias = wmi.AsString(row["InterfaceAlias"])
-		out[i].InterfaceIndex = wmi.AsUint32(row["InterfaceIndex"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].NameFormat = wmi.AsString(row["NameFormat"])
-		out[i].OperatingStatus = wmi.AsUint16(row["OperatingStatus"])
-		out[i].OperationalStatus = wmi.AsUint16Slice(row["OperationalStatus"])
-		out[i].OtherEnabledState = wmi.AsString(row["OtherEnabledState"])
-		out[i].OtherTypeDescription = wmi.AsString(row["OtherTypeDescription"])
-		out[i].PreferredLifetime = wmi.AsString(row["PreferredLifetime"])
-		out[i].PrefixLength = wmi.AsUint8(row["PrefixLength"])
-		out[i].PrefixOrigin = wmi.AsUint16(row["PrefixOrigin"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].ProtocolIFType = wmi.AsUint16(row["ProtocolIFType"])
-		out[i].ProtocolType = wmi.AsUint16(row["ProtocolType"])
-		out[i].RequestedState = wmi.AsUint16(row["RequestedState"])
-		out[i].SkipAsSource = wmi.AsBool(row["SkipAsSource"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusDescriptions = wmi.AsStringSlice(row["StatusDescriptions"])
-		out[i].Store = wmi.AsUint8(row["Store"])
-		out[i].SubnetMask = wmi.AsString(row["SubnetMask"])
-		out[i].SuffixOrigin = wmi.AsUint16(row["SuffixOrigin"])
-		out[i].SystemCreationClassName = wmi.AsString(row["SystemCreationClassName"])
-		out[i].SystemName = wmi.AsString(row["SystemName"])
-		out[i].TimeOfLastStateChange = wmi.AsString(row["TimeOfLastStateChange"])
-		out[i].TransitioningToState = wmi.AsUint16(row["TransitioningToState"])
-		out[i].Type = wmi.AsUint8(row["Type"])
-		out[i].ValidLifetime = wmi.AsString(row["ValidLifetime"])
+		out[i] = MSFTNetIPAddressFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetIPAddress returns the MSFT_NetIPAddress instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetIPAddress(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*MSFTNetIPAddress, error) {
-	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
-		" AND " + "Name = " + wmi.WQLValue(name) +
-		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
-		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+// QueryOneMSFTNetIPAddress returns the single MSFT_NetIPAddress matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetIPAddress(svc *wmi.Service, where string) (*MSFTNetIPAddress, error) {
 	out, err := QueryMSFTNetIPAddress(svc, where)
 	if err != nil {
 		return nil, err
@@ -10111,8 +8980,19 @@ func GetMSFTNetIPAddress(svc *wmi.Service, creationClassName string, name string
 	return &out[0], nil
 }
 
+// GetMSFTNetIPAddress returns the MSFT_NetIPAddress instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetIPAddress(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*MSFTNetIPAddress, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "Name = " + wmi.WQLValue(name) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	return QueryOneMSFTNetIPAddress(svc, where)
+}
+
 // QueryMSFTNetIPHttpsConfiguration runs the WQL query against the class and decodes each
-// instance into a MSFTNetIPHttpsConfiguration. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetIPHttpsConfiguration. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetIPHttpsConfiguration(svc *wmi.Service, where string) ([]MSFTNetIPHttpsConfiguration, error) {
 	q := "SELECT * FROM MSFT_NetIPHttpsConfiguration"
 	if where != "" {
@@ -10124,27 +9004,14 @@ func QueryMSFTNetIPHttpsConfiguration(svc *wmi.Service, where string) ([]MSFTNet
 	}
 	out := make([]MSFTNetIPHttpsConfiguration, len(rows))
 	for i, row := range rows {
-		out[i].AuthMode = wmi.AsUint32(row["AuthMode"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].ConfigurationType = wmi.AsUint32(row["ConfigurationType"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].PolicyStore = wmi.AsString(row["PolicyStore"])
-		out[i].Profile = wmi.AsString(row["Profile"])
-		out[i].ProfileActivated = wmi.AsBool(row["ProfileActivated"])
-		out[i].ServerURL = wmi.AsString(row["ServerURL"])
-		out[i].State = wmi.AsUint32(row["State"])
-		out[i].StrongCRLRequired = wmi.AsBool(row["StrongCRLRequired"])
-		out[i].Type = wmi.AsUint32(row["Type"])
+		out[i] = MSFTNetIPHttpsConfigurationFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetIPHttpsConfiguration returns the MSFT_NetIPHttpsConfiguration instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetIPHttpsConfiguration(svc *wmi.Service, instanceID string) (*MSFTNetIPHttpsConfiguration, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetIPHttpsConfiguration returns the single MSFT_NetIPHttpsConfiguration matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetIPHttpsConfiguration(svc *wmi.Service, where string) (*MSFTNetIPHttpsConfiguration, error) {
 	out, err := QueryMSFTNetIPHttpsConfiguration(svc, where)
 	if err != nil {
 		return nil, err
@@ -10155,8 +9022,16 @@ func GetMSFTNetIPHttpsConfiguration(svc *wmi.Service, instanceID string) (*MSFTN
 	return &out[0], nil
 }
 
+// GetMSFTNetIPHttpsConfiguration returns the MSFT_NetIPHttpsConfiguration instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetIPHttpsConfiguration(svc *wmi.Service, instanceID string) (*MSFTNetIPHttpsConfiguration, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetIPHttpsConfiguration(svc, where)
+}
+
 // QueryMSFTNetIPHttpsState runs the WQL query against the class and decodes each
-// instance into a MSFTNetIPHttpsState. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetIPHttpsState. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetIPHttpsState(svc *wmi.Service, where string) ([]MSFTNetIPHttpsState, error) {
 	q := "SELECT * FROM MSFT_NetIPHttpsState"
 	if where != "" {
@@ -10168,22 +9043,14 @@ func QueryMSFTNetIPHttpsState(svc *wmi.Service, where string) ([]MSFTNetIPHttpsS
 	}
 	out := make([]MSFTNetIPHttpsState, len(rows))
 	for i, row := range rows {
-		out[i].InterfaceStatus = wmi.AsString(row["InterfaceStatus"])
-		out[i].IsCurrent = wmi.AsUint16(row["IsCurrent"])
-		out[i].IsDefault = wmi.AsUint16(row["IsDefault"])
-		out[i].IsNext = wmi.AsUint16(row["IsNext"])
-		out[i].LastErrorCode = wmi.AsUint32(row["LastErrorCode"])
-		out[i].ManagedElement = wmi.AsString(row["ManagedElement"])
-		out[i].SettingData = wmi.AsString(row["SettingData"])
+		out[i] = MSFTNetIPHttpsStateFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetIPHttpsState returns the MSFT_NetIPHttpsState instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetIPHttpsState(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetIPHttpsState, error) {
-	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
-		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+// QueryOneMSFTNetIPHttpsState returns the single MSFT_NetIPHttpsState matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetIPHttpsState(svc *wmi.Service, where string) (*MSFTNetIPHttpsState, error) {
 	out, err := QueryMSFTNetIPHttpsState(svc, where)
 	if err != nil {
 		return nil, err
@@ -10194,8 +9061,17 @@ func GetMSFTNetIPHttpsState(svc *wmi.Service, managedElement string, settingData
 	return &out[0], nil
 }
 
+// GetMSFTNetIPHttpsState returns the MSFT_NetIPHttpsState instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetIPHttpsState(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetIPHttpsState, error) {
+	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
+		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+	return QueryOneMSFTNetIPHttpsState(svc, where)
+}
+
 // QueryMSFTNetIPInterface runs the WQL query against the class and decodes each
-// instance into a MSFTNetIPInterface. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetIPInterface. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetIPInterface(svc *wmi.Service, where string) ([]MSFTNetIPInterface, error) {
 	q := "SELECT * FROM MSFT_NetIPInterface"
 	if where != "" {
@@ -10207,86 +9083,14 @@ func QueryMSFTNetIPInterface(svc *wmi.Service, where string) ([]MSFTNetIPInterfa
 	}
 	out := make([]MSFTNetIPInterface, len(rows))
 	for i, row := range rows {
-		out[i].AddressFamily = wmi.AsUint16(row["AddressFamily"])
-		out[i].AdvertiseDefaultRoute = wmi.AsUint8(row["AdvertiseDefaultRoute"])
-		out[i].AdvertisedRouterLifetime = wmi.AsString(row["AdvertisedRouterLifetime"])
-		out[i].Advertising = wmi.AsUint8(row["Advertising"])
-		out[i].AliasAddresses = wmi.AsStringSlice(row["AliasAddresses"])
-		out[i].AutomaticMetric = wmi.AsUint8(row["AutomaticMetric"])
-		out[i].AvailableRequestedStates = wmi.AsUint16Slice(row["AvailableRequestedStates"])
-		out[i].BaseReachableTime = wmi.AsUint32(row["BaseReachableTime"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].ClampMss = wmi.AsUint8(row["ClampMss"])
-		out[i].CommunicationStatus = wmi.AsUint16(row["CommunicationStatus"])
-		out[i].CompartmentId = wmi.AsUint32(row["CompartmentId"])
-		out[i].ConnectionState = wmi.AsUint8(row["ConnectionState"])
-		out[i].CreationClassName = wmi.AsString(row["CreationClassName"])
-		out[i].CurrentHopLimit = wmi.AsUint32(row["CurrentHopLimit"])
-		out[i].DadRetransmitTime = wmi.AsUint32(row["DadRetransmitTime"])
-		out[i].DadTransmits = wmi.AsUint32(row["DadTransmits"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DetailedStatus = wmi.AsUint16(row["DetailedStatus"])
-		out[i].Dhcp = wmi.AsUint8(row["Dhcp"])
-		out[i].DirectedMacWolPattern = wmi.AsUint8(row["DirectedMacWolPattern"])
-		out[i].EcnMarking = wmi.AsUint8(row["EcnMarking"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].EnabledDefault = wmi.AsUint16(row["EnabledDefault"])
-		out[i].EnabledState = wmi.AsUint16(row["EnabledState"])
-		out[i].ForceArpNdWolPattern = wmi.AsUint8(row["ForceArpNdWolPattern"])
-		out[i].Forwarding = wmi.AsUint8(row["Forwarding"])
-		out[i].GroupAddresses = wmi.AsStringSlice(row["GroupAddresses"])
-		out[i].HealthState = wmi.AsUint16(row["HealthState"])
-		out[i].IgnoreDefaultRoutes = wmi.AsUint8(row["IgnoreDefaultRoutes"])
-		out[i].InstallDate = wmi.AsString(row["InstallDate"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].InterfaceAlias = wmi.AsString(row["InterfaceAlias"])
-		out[i].InterfaceIndex = wmi.AsUint32(row["InterfaceIndex"])
-		out[i].InterfaceMetric = wmi.AsUint32(row["InterfaceMetric"])
-		out[i].IsolationId = wmi.AsUint32(row["IsolationId"])
-		out[i].LANID = wmi.AsString(row["LANID"])
-		out[i].LANType = wmi.AsUint16(row["LANType"])
-		out[i].LowestIfNetLuid = wmi.AsUint64(row["LowestIfNetLuid"])
-		out[i].MACAddress = wmi.AsString(row["MACAddress"])
-		out[i].ManagedAddressConfiguration = wmi.AsUint8(row["ManagedAddressConfiguration"])
-		out[i].MaxDataSize = wmi.AsUint32(row["MaxDataSize"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].NameFormat = wmi.AsString(row["NameFormat"])
-		out[i].NeighborDiscoverySupported = wmi.AsUint8(row["NeighborDiscoverySupported"])
-		out[i].NeighborUnreachabilityDetection = wmi.AsUint8(row["NeighborUnreachabilityDetection"])
-		out[i].NlMtu = wmi.AsUint32(row["NlMtu"])
-		out[i].OperatingStatus = wmi.AsUint16(row["OperatingStatus"])
-		out[i].OperationalStatus = wmi.AsUint16Slice(row["OperationalStatus"])
-		out[i].OtherEnabledState = wmi.AsString(row["OtherEnabledState"])
-		out[i].OtherLANType = wmi.AsString(row["OtherLANType"])
-		out[i].OtherStatefulConfiguration = wmi.AsUint8(row["OtherStatefulConfiguration"])
-		out[i].OtherTypeDescription = wmi.AsString(row["OtherTypeDescription"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].ProtocolIFType = wmi.AsUint16(row["ProtocolIFType"])
-		out[i].ProtocolType = wmi.AsUint16(row["ProtocolType"])
-		out[i].ReachableTime = wmi.AsUint32(row["ReachableTime"])
-		out[i].RequestedState = wmi.AsUint16(row["RequestedState"])
-		out[i].RetransmitTime = wmi.AsUint32(row["RetransmitTime"])
-		out[i].RouterDiscovery = wmi.AsUint8(row["RouterDiscovery"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusDescriptions = wmi.AsStringSlice(row["StatusDescriptions"])
-		out[i].Store = wmi.AsUint8(row["Store"])
-		out[i].SystemCreationClassName = wmi.AsString(row["SystemCreationClassName"])
-		out[i].SystemName = wmi.AsString(row["SystemName"])
-		out[i].TimeOfLastStateChange = wmi.AsString(row["TimeOfLastStateChange"])
-		out[i].TransitioningToState = wmi.AsUint16(row["TransitioningToState"])
-		out[i].WeakHostReceive = wmi.AsUint8(row["WeakHostReceive"])
-		out[i].WeakHostSend = wmi.AsUint8(row["WeakHostSend"])
+		out[i] = MSFTNetIPInterfaceFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetIPInterface returns the MSFT_NetIPInterface instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetIPInterface(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*MSFTNetIPInterface, error) {
-	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
-		" AND " + "Name = " + wmi.WQLValue(name) +
-		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
-		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+// QueryOneMSFTNetIPInterface returns the single MSFT_NetIPInterface matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetIPInterface(svc *wmi.Service, where string) (*MSFTNetIPInterface, error) {
 	out, err := QueryMSFTNetIPInterface(svc, where)
 	if err != nil {
 		return nil, err
@@ -10297,8 +9101,19 @@ func GetMSFTNetIPInterface(svc *wmi.Service, creationClassName string, name stri
 	return &out[0], nil
 }
 
+// GetMSFTNetIPInterface returns the MSFT_NetIPInterface instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetIPInterface(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*MSFTNetIPInterface, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "Name = " + wmi.WQLValue(name) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	return QueryOneMSFTNetIPInterface(svc, where)
+}
+
 // QueryMSFTNetIPInterfaceAdapter runs the WQL query against the class and decodes each
-// instance into a MSFTNetIPInterfaceAdapter. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetIPInterfaceAdapter. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetIPInterfaceAdapter(svc *wmi.Service, where string) ([]MSFTNetIPInterfaceAdapter, error) {
 	q := "SELECT * FROM MSFT_NetIPInterfaceAdapter"
 	if where != "" {
@@ -10310,17 +9125,14 @@ func QueryMSFTNetIPInterfaceAdapter(svc *wmi.Service, where string) ([]MSFTNetIP
 	}
 	out := make([]MSFTNetIPInterfaceAdapter, len(rows))
 	for i, row := range rows {
-		out[i].Antecedent = wmi.AsString(row["Antecedent"])
-		out[i].Dependent = wmi.AsString(row["Dependent"])
+		out[i] = MSFTNetIPInterfaceAdapterFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetIPInterfaceAdapter returns the MSFT_NetIPInterfaceAdapter instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetIPInterfaceAdapter(svc *wmi.Service, antecedent string, dependent string) (*MSFTNetIPInterfaceAdapter, error) {
-	where := "Antecedent = " + wmi.WQLValue(antecedent) +
-		" AND " + "Dependent = " + wmi.WQLValue(dependent)
+// QueryOneMSFTNetIPInterfaceAdapter returns the single MSFT_NetIPInterfaceAdapter matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetIPInterfaceAdapter(svc *wmi.Service, where string) (*MSFTNetIPInterfaceAdapter, error) {
 	out, err := QueryMSFTNetIPInterfaceAdapter(svc, where)
 	if err != nil {
 		return nil, err
@@ -10331,8 +9143,17 @@ func GetMSFTNetIPInterfaceAdapter(svc *wmi.Service, antecedent string, dependent
 	return &out[0], nil
 }
 
+// GetMSFTNetIPInterfaceAdapter returns the MSFT_NetIPInterfaceAdapter instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetIPInterfaceAdapter(svc *wmi.Service, antecedent string, dependent string) (*MSFTNetIPInterfaceAdapter, error) {
+	where := "Antecedent = " + wmi.WQLValue(antecedent) +
+		" AND " + "Dependent = " + wmi.WQLValue(dependent)
+	return QueryOneMSFTNetIPInterfaceAdapter(svc, where)
+}
+
 // QueryMSFTNetIPInterfaceIPAddress runs the WQL query against the class and decodes each
-// instance into a MSFTNetIPInterfaceIPAddress. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetIPInterfaceIPAddress. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetIPInterfaceIPAddress(svc *wmi.Service, where string) ([]MSFTNetIPInterfaceIPAddress, error) {
 	q := "SELECT * FROM MSFT_NetIPInterfaceIPAddress"
 	if where != "" {
@@ -10344,18 +9165,14 @@ func QueryMSFTNetIPInterfaceIPAddress(svc *wmi.Service, where string) ([]MSFTNet
 	}
 	out := make([]MSFTNetIPInterfaceIPAddress, len(rows))
 	for i, row := range rows {
-		out[i].Antecedent = wmi.AsString(row["Antecedent"])
-		out[i].Dependent = wmi.AsString(row["Dependent"])
-		out[i].FrameType = wmi.AsUint16(row["FrameType"])
+		out[i] = MSFTNetIPInterfaceIPAddressFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetIPInterfaceIPAddress returns the MSFT_NetIPInterfaceIPAddress instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetIPInterfaceIPAddress(svc *wmi.Service, antecedent string, dependent string) (*MSFTNetIPInterfaceIPAddress, error) {
-	where := "Antecedent = " + wmi.WQLValue(antecedent) +
-		" AND " + "Dependent = " + wmi.WQLValue(dependent)
+// QueryOneMSFTNetIPInterfaceIPAddress returns the single MSFT_NetIPInterfaceIPAddress matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetIPInterfaceIPAddress(svc *wmi.Service, where string) (*MSFTNetIPInterfaceIPAddress, error) {
 	out, err := QueryMSFTNetIPInterfaceIPAddress(svc, where)
 	if err != nil {
 		return nil, err
@@ -10366,8 +9183,17 @@ func GetMSFTNetIPInterfaceIPAddress(svc *wmi.Service, antecedent string, depende
 	return &out[0], nil
 }
 
+// GetMSFTNetIPInterfaceIPAddress returns the MSFT_NetIPInterfaceIPAddress instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetIPInterfaceIPAddress(svc *wmi.Service, antecedent string, dependent string) (*MSFTNetIPInterfaceIPAddress, error) {
+	where := "Antecedent = " + wmi.WQLValue(antecedent) +
+		" AND " + "Dependent = " + wmi.WQLValue(dependent)
+	return QueryOneMSFTNetIPInterfaceIPAddress(svc, where)
+}
+
 // QueryMSFTNetIPInterfaceNeighbor runs the WQL query against the class and decodes each
-// instance into a MSFTNetIPInterfaceNeighbor. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetIPInterfaceNeighbor. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetIPInterfaceNeighbor(svc *wmi.Service, where string) ([]MSFTNetIPInterfaceNeighbor, error) {
 	q := "SELECT * FROM MSFT_NetIPInterfaceNeighbor"
 	if where != "" {
@@ -10379,18 +9205,14 @@ func QueryMSFTNetIPInterfaceNeighbor(svc *wmi.Service, where string) ([]MSFTNetI
 	}
 	out := make([]MSFTNetIPInterfaceNeighbor, len(rows))
 	for i, row := range rows {
-		out[i].Antecedent = wmi.AsString(row["Antecedent"])
-		out[i].Dependent = wmi.AsString(row["Dependent"])
-		out[i].FrameType = wmi.AsUint16(row["FrameType"])
+		out[i] = MSFTNetIPInterfaceNeighborFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetIPInterfaceNeighbor returns the MSFT_NetIPInterfaceNeighbor instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetIPInterfaceNeighbor(svc *wmi.Service, antecedent string, dependent string) (*MSFTNetIPInterfaceNeighbor, error) {
-	where := "Antecedent = " + wmi.WQLValue(antecedent) +
-		" AND " + "Dependent = " + wmi.WQLValue(dependent)
+// QueryOneMSFTNetIPInterfaceNeighbor returns the single MSFT_NetIPInterfaceNeighbor matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetIPInterfaceNeighbor(svc *wmi.Service, where string) (*MSFTNetIPInterfaceNeighbor, error) {
 	out, err := QueryMSFTNetIPInterfaceNeighbor(svc, where)
 	if err != nil {
 		return nil, err
@@ -10401,8 +9223,17 @@ func GetMSFTNetIPInterfaceNeighbor(svc *wmi.Service, antecedent string, dependen
 	return &out[0], nil
 }
 
+// GetMSFTNetIPInterfaceNeighbor returns the MSFT_NetIPInterfaceNeighbor instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetIPInterfaceNeighbor(svc *wmi.Service, antecedent string, dependent string) (*MSFTNetIPInterfaceNeighbor, error) {
+	where := "Antecedent = " + wmi.WQLValue(antecedent) +
+		" AND " + "Dependent = " + wmi.WQLValue(dependent)
+	return QueryOneMSFTNetIPInterfaceNeighbor(svc, where)
+}
+
 // QueryMSFTNetIPInterfaceRoute runs the WQL query against the class and decodes each
-// instance into a MSFTNetIPInterfaceRoute. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetIPInterfaceRoute. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetIPInterfaceRoute(svc *wmi.Service, where string) ([]MSFTNetIPInterfaceRoute, error) {
 	q := "SELECT * FROM MSFT_NetIPInterfaceRoute"
 	if where != "" {
@@ -10414,17 +9245,14 @@ func QueryMSFTNetIPInterfaceRoute(svc *wmi.Service, where string) ([]MSFTNetIPIn
 	}
 	out := make([]MSFTNetIPInterfaceRoute, len(rows))
 	for i, row := range rows {
-		out[i].Antecedent = wmi.AsString(row["Antecedent"])
-		out[i].Dependent = wmi.AsString(row["Dependent"])
+		out[i] = MSFTNetIPInterfaceRouteFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetIPInterfaceRoute returns the MSFT_NetIPInterfaceRoute instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetIPInterfaceRoute(svc *wmi.Service, antecedent string, dependent string) (*MSFTNetIPInterfaceRoute, error) {
-	where := "Antecedent = " + wmi.WQLValue(antecedent) +
-		" AND " + "Dependent = " + wmi.WQLValue(dependent)
+// QueryOneMSFTNetIPInterfaceRoute returns the single MSFT_NetIPInterfaceRoute matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetIPInterfaceRoute(svc *wmi.Service, where string) (*MSFTNetIPInterfaceRoute, error) {
 	out, err := QueryMSFTNetIPInterfaceRoute(svc, where)
 	if err != nil {
 		return nil, err
@@ -10435,8 +9263,17 @@ func GetMSFTNetIPInterfaceRoute(svc *wmi.Service, antecedent string, dependent s
 	return &out[0], nil
 }
 
+// GetMSFTNetIPInterfaceRoute returns the MSFT_NetIPInterfaceRoute instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetIPInterfaceRoute(svc *wmi.Service, antecedent string, dependent string) (*MSFTNetIPInterfaceRoute, error) {
+	where := "Antecedent = " + wmi.WQLValue(antecedent) +
+		" AND " + "Dependent = " + wmi.WQLValue(dependent)
+	return QueryOneMSFTNetIPInterfaceRoute(svc, where)
+}
+
 // QueryMSFTNetIPsecDoSPSetting runs the WQL query against the class and decodes each
-// instance into a MSFTNetIPsecDoSPSetting. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetIPsecDoSPSetting. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetIPsecDoSPSetting(svc *wmi.Service, where string) ([]MSFTNetIPsecDoSPSetting, error) {
 	q := "SELECT * FROM MSFT_NetIPsecDoSPSetting"
 	if where != "" {
@@ -10448,40 +9285,14 @@ func QueryMSFTNetIPsecDoSPSetting(svc *wmi.Service, where string) ([]MSFTNetIPse
 	}
 	out := make([]MSFTNetIPsecDoSPSetting, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].DefBlockExemptDscp = wmi.AsUint16(row["DefBlockExemptDscp"])
-		out[i].DefBlockExemptRateLimitBytesPerSec = wmi.AsUint32(row["DefBlockExemptRateLimitBytesPerSec"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].EffectiveAddressFamily = wmi.AsUint16(row["EffectiveAddressFamily"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].EnabledKeyingModules = wmi.AsUint32(row["EnabledKeyingModules"])
-		out[i].FilteringFlags = wmi.AsUint32(row["FilteringFlags"])
-		out[i].IcmpV6Dscp = wmi.AsUint16(row["IcmpV6Dscp"])
-		out[i].IcmpV6RateLimitBytesPerSec = wmi.AsUint32(row["IcmpV6RateLimitBytesPerSec"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].IpV6FilterExemptDscp = wmi.AsUint32(row["IpV6FilterExemptDscp"])
-		out[i].IpV6FilterExemptRateLimitBytesPerSec = wmi.AsUint32(row["IpV6FilterExemptRateLimitBytesPerSec"])
-		out[i].IpV6IPsecAuthDscp = wmi.AsUint16(row["IpV6IPsecAuthDscp"])
-		out[i].IpV6IPsecAuthRateLimitBytesPerSec = wmi.AsUint32(row["IpV6IPsecAuthRateLimitBytesPerSec"])
-		out[i].IpV6IPsecUnauthDscp = wmi.AsUint32(row["IpV6IPsecUnauthDscp"])
-		out[i].IpV6IPsecUnauthPerIPRateLimitBytesPerSec = wmi.AsUint32(row["IpV6IPsecUnauthPerIPRateLimitBytesPerSec"])
-		out[i].IpV6IPsecUnauthRateLimitBytesPerSec = wmi.AsUint32(row["IpV6IPsecUnauthRateLimitBytesPerSec"])
-		out[i].MaxPerIPRateLimitQueues = wmi.AsUint32(row["MaxPerIPRateLimitQueues"])
-		out[i].MaxStateEntries = wmi.AsUint32(row["MaxStateEntries"])
-		out[i].PerIPRateLimitQueueIdleTimeoutSeconds = wmi.AsUint32(row["PerIPRateLimitQueueIdleTimeoutSeconds"])
-		out[i].PrivateInterfaceAliases = wmi.AsStringSlice(row["PrivateInterfaceAliases"])
-		out[i].PrivateV6Address = wmi.AsString(row["PrivateV6Address"])
-		out[i].PublicInterfaceAliases = wmi.AsStringSlice(row["PublicInterfaceAliases"])
-		out[i].PublicV6Address = wmi.AsString(row["PublicV6Address"])
-		out[i].StateIdleTimeoutSeconds = wmi.AsUint32(row["StateIdleTimeoutSeconds"])
+		out[i] = MSFTNetIPsecDoSPSettingFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetIPsecDoSPSetting returns the MSFT_NetIPsecDoSPSetting instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetIPsecDoSPSetting(svc *wmi.Service, instanceID string) (*MSFTNetIPsecDoSPSetting, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetIPsecDoSPSetting returns the single MSFT_NetIPsecDoSPSetting matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetIPsecDoSPSetting(svc *wmi.Service, where string) (*MSFTNetIPsecDoSPSetting, error) {
 	out, err := QueryMSFTNetIPsecDoSPSetting(svc, where)
 	if err != nil {
 		return nil, err
@@ -10492,8 +9303,16 @@ func GetMSFTNetIPsecDoSPSetting(svc *wmi.Service, instanceID string) (*MSFTNetIP
 	return &out[0], nil
 }
 
+// GetMSFTNetIPsecDoSPSetting returns the MSFT_NetIPsecDoSPSetting instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetIPsecDoSPSetting(svc *wmi.Service, instanceID string) (*MSFTNetIPsecDoSPSetting, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetIPsecDoSPSetting(svc, where)
+}
+
 // QueryMSFTNetIPsecIdentity runs the WQL query against the class and decodes each
-// instance into a MSFTNetIPsecIdentity. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetIPsecIdentity. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetIPsecIdentity(svc *wmi.Service, where string) ([]MSFTNetIPsecIdentity, error) {
 	q := "SELECT * FROM MSFT_NetIPsecIdentity"
 	if where != "" {
@@ -10505,16 +9324,27 @@ func QueryMSFTNetIPsecIdentity(svc *wmi.Service, where string) ([]MSFTNetIPsecId
 	}
 	out := make([]MSFTNetIPsecIdentity, len(rows))
 	for i, row := range rows {
-		out[i].AuthenticationMethod = wmi.AsUint32(row["AuthenticationMethod"])
-		out[i].Flags = wmi.AsUint32(row["Flags"])
-		out[i].Identity = wmi.AsString(row["Identity"])
-		out[i].ImpersonationType = wmi.AsUint32(row["ImpersonationType"])
+		out[i] = MSFTNetIPsecIdentityFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneMSFTNetIPsecIdentity returns the single MSFT_NetIPsecIdentity matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetIPsecIdentity(svc *wmi.Service, where string) (*MSFTNetIPsecIdentity, error) {
+	out, err := QueryMSFTNetIPsecIdentity(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryMSFTNetIPv4Protocol runs the WQL query against the class and decodes each
-// instance into a MSFTNetIPv4Protocol. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetIPv4Protocol. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetIPv4Protocol(svc *wmi.Service, where string) ([]MSFTNetIPv4Protocol, error) {
 	q := "SELECT * FROM MSFT_NetIPv4Protocol"
 	if where != "" {
@@ -10526,62 +9356,14 @@ func QueryMSFTNetIPv4Protocol(svc *wmi.Service, where string) ([]MSFTNetIPv4Prot
 	}
 	out := make([]MSFTNetIPv4Protocol, len(rows))
 	for i, row := range rows {
-		out[i].AddressMaskReply = wmi.AsUint8(row["AddressMaskReply"])
-		out[i].AvailableRequestedStates = wmi.AsUint16Slice(row["AvailableRequestedStates"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CommunicationStatus = wmi.AsUint16(row["CommunicationStatus"])
-		out[i].CreationClassName = wmi.AsString(row["CreationClassName"])
-		out[i].DeadGatewayDetection = wmi.AsUint8(row["DeadGatewayDetection"])
-		out[i].DefaultHopLimit = wmi.AsUint32(row["DefaultHopLimit"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DetailedStatus = wmi.AsUint16(row["DetailedStatus"])
-		out[i].DhcpMediaSense = wmi.AsUint8(row["DhcpMediaSense"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].EnabledDefault = wmi.AsUint16(row["EnabledDefault"])
-		out[i].EnabledState = wmi.AsUint16(row["EnabledState"])
-		out[i].GroupForwardedFragments = wmi.AsUint8(row["GroupForwardedFragments"])
-		out[i].HealthState = wmi.AsUint16(row["HealthState"])
-		out[i].IcmpRedirects = wmi.AsUint8(row["IcmpRedirects"])
-		out[i].InstallDate = wmi.AsString(row["InstallDate"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].MediaSenseEventLog = wmi.AsUint8(row["MediaSenseEventLog"])
-		out[i].MinimumMtu = wmi.AsUint32(row["MinimumMtu"])
-		out[i].MldLevel = wmi.AsUint32(row["MldLevel"])
-		out[i].MldVersion = wmi.AsUint32(row["MldVersion"])
-		out[i].MulticastForwarding = wmi.AsUint8(row["MulticastForwarding"])
-		out[i].MultipleArpAnnouncements = wmi.AsUint8(row["MultipleArpAnnouncements"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].NameFormat = wmi.AsString(row["NameFormat"])
-		out[i].NeighborCacheLimit = wmi.AsUint32(row["NeighborCacheLimit"])
-		out[i].OperatingStatus = wmi.AsUint16(row["OperatingStatus"])
-		out[i].OperationalStatus = wmi.AsUint16Slice(row["OperationalStatus"])
-		out[i].OtherEnabledState = wmi.AsString(row["OtherEnabledState"])
-		out[i].OtherTypeDescription = wmi.AsString(row["OtherTypeDescription"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].ProtocolIFType = wmi.AsUint16(row["ProtocolIFType"])
-		out[i].ProtocolType = wmi.AsUint16(row["ProtocolType"])
-		out[i].RandomizeIdentifiers = wmi.AsUint8(row["RandomizeIdentifiers"])
-		out[i].ReassemblyLimit = wmi.AsUint32(row["ReassemblyLimit"])
-		out[i].RequestedState = wmi.AsUint16(row["RequestedState"])
-		out[i].RouteCacheLimit = wmi.AsUint32(row["RouteCacheLimit"])
-		out[i].SourceRoutingBehavior = wmi.AsUint32(row["SourceRoutingBehavior"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusDescriptions = wmi.AsStringSlice(row["StatusDescriptions"])
-		out[i].SystemCreationClassName = wmi.AsString(row["SystemCreationClassName"])
-		out[i].SystemName = wmi.AsString(row["SystemName"])
-		out[i].TimeOfLastStateChange = wmi.AsString(row["TimeOfLastStateChange"])
-		out[i].TransitioningToState = wmi.AsUint16(row["TransitioningToState"])
+		out[i] = MSFTNetIPv4ProtocolFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetIPv4Protocol returns the MSFT_NetIPv4Protocol instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetIPv4Protocol(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*MSFTNetIPv4Protocol, error) {
-	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
-		" AND " + "Name = " + wmi.WQLValue(name) +
-		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
-		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+// QueryOneMSFTNetIPv4Protocol returns the single MSFT_NetIPv4Protocol matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetIPv4Protocol(svc *wmi.Service, where string) (*MSFTNetIPv4Protocol, error) {
 	out, err := QueryMSFTNetIPv4Protocol(svc, where)
 	if err != nil {
 		return nil, err
@@ -10592,8 +9374,19 @@ func GetMSFTNetIPv4Protocol(svc *wmi.Service, creationClassName string, name str
 	return &out[0], nil
 }
 
+// GetMSFTNetIPv4Protocol returns the MSFT_NetIPv4Protocol instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetIPv4Protocol(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*MSFTNetIPv4Protocol, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "Name = " + wmi.WQLValue(name) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	return QueryOneMSFTNetIPv4Protocol(svc, where)
+}
+
 // QueryMSFTNetIPv6Protocol runs the WQL query against the class and decodes each
-// instance into a MSFTNetIPv6Protocol. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetIPv6Protocol. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetIPv6Protocol(svc *wmi.Service, where string) ([]MSFTNetIPv6Protocol, error) {
 	q := "SELECT * FROM MSFT_NetIPv6Protocol"
 	if where != "" {
@@ -10605,66 +9398,14 @@ func QueryMSFTNetIPv6Protocol(svc *wmi.Service, where string) ([]MSFTNetIPv6Prot
 	}
 	out := make([]MSFTNetIPv6Protocol, len(rows))
 	for i, row := range rows {
-		out[i].AddressMaskReply = wmi.AsUint8(row["AddressMaskReply"])
-		out[i].AvailableRequestedStates = wmi.AsUint16Slice(row["AvailableRequestedStates"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CommunicationStatus = wmi.AsUint16(row["CommunicationStatus"])
-		out[i].CreationClassName = wmi.AsString(row["CreationClassName"])
-		out[i].DeadGatewayDetection = wmi.AsUint8(row["DeadGatewayDetection"])
-		out[i].DefaultHopLimit = wmi.AsUint32(row["DefaultHopLimit"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DetailedStatus = wmi.AsUint16(row["DetailedStatus"])
-		out[i].DhcpMediaSense = wmi.AsUint8(row["DhcpMediaSense"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].EnabledDefault = wmi.AsUint16(row["EnabledDefault"])
-		out[i].EnabledState = wmi.AsUint16(row["EnabledState"])
-		out[i].GroupForwardedFragments = wmi.AsUint8(row["GroupForwardedFragments"])
-		out[i].HealthState = wmi.AsUint16(row["HealthState"])
-		out[i].IcmpRedirects = wmi.AsUint8(row["IcmpRedirects"])
-		out[i].InstallDate = wmi.AsString(row["InstallDate"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].MaxDadAttempts = wmi.AsUint32(row["MaxDadAttempts"])
-		out[i].MaxPreferredLifetime = wmi.AsString(row["MaxPreferredLifetime"])
-		out[i].MaxRandomTime = wmi.AsString(row["MaxRandomTime"])
-		out[i].MaxValidLifetime = wmi.AsString(row["MaxValidLifetime"])
-		out[i].MediaSenseEventLog = wmi.AsUint8(row["MediaSenseEventLog"])
-		out[i].MldLevel = wmi.AsUint32(row["MldLevel"])
-		out[i].MldVersion = wmi.AsUint32(row["MldVersion"])
-		out[i].MulticastForwarding = wmi.AsUint8(row["MulticastForwarding"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].NameFormat = wmi.AsString(row["NameFormat"])
-		out[i].NeighborCacheLimit = wmi.AsUint32(row["NeighborCacheLimit"])
-		out[i].OperatingStatus = wmi.AsUint16(row["OperatingStatus"])
-		out[i].OperationalStatus = wmi.AsUint16Slice(row["OperationalStatus"])
-		out[i].OtherEnabledState = wmi.AsString(row["OtherEnabledState"])
-		out[i].OtherTypeDescription = wmi.AsString(row["OtherTypeDescription"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].ProtocolIFType = wmi.AsUint16(row["ProtocolIFType"])
-		out[i].ProtocolType = wmi.AsUint16(row["ProtocolType"])
-		out[i].RandomizeIdentifiers = wmi.AsUint8(row["RandomizeIdentifiers"])
-		out[i].ReassemblyLimit = wmi.AsUint32(row["ReassemblyLimit"])
-		out[i].RegenerateTime = wmi.AsString(row["RegenerateTime"])
-		out[i].RequestedState = wmi.AsUint16(row["RequestedState"])
-		out[i].RouteCacheLimit = wmi.AsUint32(row["RouteCacheLimit"])
-		out[i].SourceRoutingBehavior = wmi.AsUint32(row["SourceRoutingBehavior"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusDescriptions = wmi.AsStringSlice(row["StatusDescriptions"])
-		out[i].SystemCreationClassName = wmi.AsString(row["SystemCreationClassName"])
-		out[i].SystemName = wmi.AsString(row["SystemName"])
-		out[i].TimeOfLastStateChange = wmi.AsString(row["TimeOfLastStateChange"])
-		out[i].TransitioningToState = wmi.AsUint16(row["TransitioningToState"])
-		out[i].UseTemporaryAddresses = wmi.AsUint32(row["UseTemporaryAddresses"])
+		out[i] = MSFTNetIPv6ProtocolFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetIPv6Protocol returns the MSFT_NetIPv6Protocol instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetIPv6Protocol(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*MSFTNetIPv6Protocol, error) {
-	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
-		" AND " + "Name = " + wmi.WQLValue(name) +
-		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
-		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+// QueryOneMSFTNetIPv6Protocol returns the single MSFT_NetIPv6Protocol matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetIPv6Protocol(svc *wmi.Service, where string) (*MSFTNetIPv6Protocol, error) {
 	out, err := QueryMSFTNetIPv6Protocol(svc, where)
 	if err != nil {
 		return nil, err
@@ -10675,8 +9416,19 @@ func GetMSFTNetIPv6Protocol(svc *wmi.Service, creationClassName string, name str
 	return &out[0], nil
 }
 
+// GetMSFTNetIPv6Protocol returns the MSFT_NetIPv6Protocol instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetIPv6Protocol(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*MSFTNetIPv6Protocol, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "Name = " + wmi.WQLValue(name) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	return QueryOneMSFTNetIPv6Protocol(svc, where)
+}
+
 // QueryMSFTNetISATAPConfiguration runs the WQL query against the class and decodes each
-// instance into a MSFTNetISATAPConfiguration. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetISATAPConfiguration. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetISATAPConfiguration(svc *wmi.Service, where string) ([]MSFTNetISATAPConfiguration, error) {
 	q := "SELECT * FROM MSFT_NetISATAPConfiguration"
 	if where != "" {
@@ -10688,23 +9440,14 @@ func QueryMSFTNetISATAPConfiguration(svc *wmi.Service, where string) ([]MSFTNetI
 	}
 	out := make([]MSFTNetISATAPConfiguration, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].PolicyStore = wmi.AsString(row["PolicyStore"])
-		out[i].ResolutionInterval = wmi.AsUint32(row["ResolutionInterval"])
-		out[i].ResolutionState = wmi.AsUint32(row["ResolutionState"])
-		out[i].Router = wmi.AsString(row["Router"])
-		out[i].State = wmi.AsUint32(row["State"])
+		out[i] = MSFTNetISATAPConfigurationFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetISATAPConfiguration returns the MSFT_NetISATAPConfiguration instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetISATAPConfiguration(svc *wmi.Service, instanceID string) (*MSFTNetISATAPConfiguration, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetISATAPConfiguration returns the single MSFT_NetISATAPConfiguration matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetISATAPConfiguration(svc *wmi.Service, where string) (*MSFTNetISATAPConfiguration, error) {
 	out, err := QueryMSFTNetISATAPConfiguration(svc, where)
 	if err != nil {
 		return nil, err
@@ -10715,8 +9458,16 @@ func GetMSFTNetISATAPConfiguration(svc *wmi.Service, instanceID string) (*MSFTNe
 	return &out[0], nil
 }
 
+// GetMSFTNetISATAPConfiguration returns the MSFT_NetISATAPConfiguration instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetISATAPConfiguration(svc *wmi.Service, instanceID string) (*MSFTNetISATAPConfiguration, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetISATAPConfiguration(svc, where)
+}
+
 // QueryMSFTNetISATAPState runs the WQL query against the class and decodes each
-// instance into a MSFTNetISATAPState. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetISATAPState. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetISATAPState(svc *wmi.Service, where string) ([]MSFTNetISATAPState, error) {
 	q := "SELECT * FROM MSFT_NetISATAPState"
 	if where != "" {
@@ -10728,20 +9479,14 @@ func QueryMSFTNetISATAPState(svc *wmi.Service, where string) ([]MSFTNetISATAPSta
 	}
 	out := make([]MSFTNetISATAPState, len(rows))
 	for i, row := range rows {
-		out[i].IsCurrent = wmi.AsUint16(row["IsCurrent"])
-		out[i].IsDefault = wmi.AsUint16(row["IsDefault"])
-		out[i].IsNext = wmi.AsUint16(row["IsNext"])
-		out[i].ManagedElement = wmi.AsString(row["ManagedElement"])
-		out[i].SettingData = wmi.AsString(row["SettingData"])
+		out[i] = MSFTNetISATAPStateFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetISATAPState returns the MSFT_NetISATAPState instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetISATAPState(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetISATAPState, error) {
-	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
-		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+// QueryOneMSFTNetISATAPState returns the single MSFT_NetISATAPState matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetISATAPState(svc *wmi.Service, where string) (*MSFTNetISATAPState, error) {
 	out, err := QueryMSFTNetISATAPState(svc, where)
 	if err != nil {
 		return nil, err
@@ -10752,8 +9497,17 @@ func GetMSFTNetISATAPState(svc *wmi.Service, managedElement string, settingData 
 	return &out[0], nil
 }
 
+// GetMSFTNetISATAPState returns the MSFT_NetISATAPState instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetISATAPState(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetISATAPState, error) {
+	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
+		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+	return QueryOneMSFTNetISATAPState(svc, where)
+}
+
 // QueryMSFTNetImPlatAdapter runs the WQL query against the class and decodes each
-// instance into a MSFTNetImPlatAdapter. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetImPlatAdapter. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetImPlatAdapter(svc *wmi.Service, where string) ([]MSFTNetImPlatAdapter, error) {
 	q := "SELECT * FROM MSFT_NetImPlatAdapter"
 	if where != "" {
@@ -10765,41 +9519,14 @@ func QueryMSFTNetImPlatAdapter(svc *wmi.Service, where string) ([]MSFTNetImPlatA
 	}
 	out := make([]MSFTNetImPlatAdapter, len(rows))
 	for i, row := range rows {
-		out[i].AvailableRequestedStates = wmi.AsUint16Slice(row["AvailableRequestedStates"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CommunicationStatus = wmi.AsUint16(row["CommunicationStatus"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DetailedStatus = wmi.AsUint16(row["DetailedStatus"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].EnabledDefault = wmi.AsUint16(row["EnabledDefault"])
-		out[i].EnabledState = wmi.AsUint16(row["EnabledState"])
-		out[i].FailureReason = wmi.AsUint32(row["FailureReason"])
-		out[i].HealthState = wmi.AsUint16(row["HealthState"])
-		out[i].InstallDate = wmi.AsString(row["InstallDate"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].InterfaceDescription = wmi.AsString(row["InterfaceDescription"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].NumberOfFailures = wmi.AsUint32(row["NumberOfFailures"])
-		out[i].OperatingStatus = wmi.AsUint16(row["OperatingStatus"])
-		out[i].OperationalStatus = wmi.AsUint16Slice(row["OperationalStatus"])
-		out[i].OtherEnabledState = wmi.AsString(row["OtherEnabledState"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].ReceiveLinkSpeed = wmi.AsUint64(row["ReceiveLinkSpeed"])
-		out[i].RequestedState = wmi.AsUint16(row["RequestedState"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusDescriptions = wmi.AsStringSlice(row["StatusDescriptions"])
-		out[i].Team = wmi.AsString(row["Team"])
-		out[i].TimeOfLastStateChange = wmi.AsString(row["TimeOfLastStateChange"])
-		out[i].TransitioningToState = wmi.AsUint16(row["TransitioningToState"])
-		out[i].TransmitLinkSpeed = wmi.AsUint64(row["TransmitLinkSpeed"])
+		out[i] = MSFTNetImPlatAdapterFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetImPlatAdapter returns the MSFT_NetImPlatAdapter instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetImPlatAdapter(svc *wmi.Service, instanceID string) (*MSFTNetImPlatAdapter, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetImPlatAdapter returns the single MSFT_NetImPlatAdapter matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetImPlatAdapter(svc *wmi.Service, where string) (*MSFTNetImPlatAdapter, error) {
 	out, err := QueryMSFTNetImPlatAdapter(svc, where)
 	if err != nil {
 		return nil, err
@@ -10810,8 +9537,16 @@ func GetMSFTNetImPlatAdapter(svc *wmi.Service, instanceID string) (*MSFTNetImPla
 	return &out[0], nil
 }
 
+// GetMSFTNetImPlatAdapter returns the MSFT_NetImPlatAdapter instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetImPlatAdapter(svc *wmi.Service, instanceID string) (*MSFTNetImPlatAdapter, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetImPlatAdapter(svc, where)
+}
+
 // QueryMSFTNetImPlatProvider runs the WQL query against the class and decodes each
-// instance into a MSFTNetImPlatProvider. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetImPlatProvider. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetImPlatProvider(svc *wmi.Service, where string) ([]MSFTNetImPlatProvider, error) {
 	q := "SELECT * FROM MSFT_NetImPlatProvider"
 	if where != "" {
@@ -10823,19 +9558,14 @@ func QueryMSFTNetImPlatProvider(svc *wmi.Service, where string) ([]MSFTNetImPlat
 	}
 	out := make([]MSFTNetImPlatProvider, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].Name = wmi.AsString(row["Name"])
+		out[i] = MSFTNetImPlatProviderFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetImPlatProvider returns the MSFT_NetImPlatProvider instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetImPlatProvider(svc *wmi.Service, instanceID string) (*MSFTNetImPlatProvider, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetImPlatProvider returns the single MSFT_NetImPlatProvider matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetImPlatProvider(svc *wmi.Service, where string) (*MSFTNetImPlatProvider, error) {
 	out, err := QueryMSFTNetImPlatProvider(svc, where)
 	if err != nil {
 		return nil, err
@@ -10846,8 +9576,16 @@ func GetMSFTNetImPlatProvider(svc *wmi.Service, instanceID string) (*MSFTNetImPl
 	return &out[0], nil
 }
 
+// GetMSFTNetImPlatProvider returns the MSFT_NetImPlatProvider instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetImPlatProvider(svc *wmi.Service, instanceID string) (*MSFTNetImPlatProvider, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetImPlatProvider(svc, where)
+}
+
 // QueryMSFTNetImPlatTeam runs the WQL query against the class and decodes each
-// instance into a MSFTNetImPlatTeam. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetImPlatTeam. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetImPlatTeam(svc *wmi.Service, where string) ([]MSFTNetImPlatTeam, error) {
 	q := "SELECT * FROM MSFT_NetImPlatTeam"
 	if where != "" {
@@ -10859,19 +9597,14 @@ func QueryMSFTNetImPlatTeam(svc *wmi.Service, where string) ([]MSFTNetImPlatTeam
 	}
 	out := make([]MSFTNetImPlatTeam, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].Name = wmi.AsString(row["Name"])
+		out[i] = MSFTNetImPlatTeamFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetImPlatTeam returns the MSFT_NetImPlatTeam instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetImPlatTeam(svc *wmi.Service, instanceID string) (*MSFTNetImPlatTeam, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetImPlatTeam returns the single MSFT_NetImPlatTeam matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetImPlatTeam(svc *wmi.Service, where string) (*MSFTNetImPlatTeam, error) {
 	out, err := QueryMSFTNetImPlatTeam(svc, where)
 	if err != nil {
 		return nil, err
@@ -10882,8 +9615,16 @@ func GetMSFTNetImPlatTeam(svc *wmi.Service, instanceID string) (*MSFTNetImPlatTe
 	return &out[0], nil
 }
 
+// GetMSFTNetImPlatTeam returns the MSFT_NetImPlatTeam instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetImPlatTeam(svc *wmi.Service, instanceID string) (*MSFTNetImPlatTeam, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetImPlatTeam(svc, where)
+}
+
 // QueryMSFTNetInterfaceFilter runs the WQL query against the class and decodes each
-// instance into a MSFTNetInterfaceFilter. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetInterfaceFilter. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetInterfaceFilter(svc *wmi.Service, where string) ([]MSFTNetInterfaceFilter, error) {
 	q := "SELECT * FROM MSFT_NetInterfaceFilter"
 	if where != "" {
@@ -10895,36 +9636,14 @@ func QueryMSFTNetInterfaceFilter(svc *wmi.Service, where string) ([]MSFTNetInter
 	}
 	out := make([]MSFTNetInterfaceFilter, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CommunicationStatus = wmi.AsUint16(row["CommunicationStatus"])
-		out[i].CreationClassName = wmi.AsString(row["CreationClassName"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DetailedStatus = wmi.AsUint16(row["DetailedStatus"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].HealthState = wmi.AsUint16(row["HealthState"])
-		out[i].InstallDate = wmi.AsString(row["InstallDate"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].InterfaceAlias = wmi.AsStringSlice(row["InterfaceAlias"])
-		out[i].IsNegated = wmi.AsBool(row["IsNegated"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].OperatingStatus = wmi.AsUint16(row["OperatingStatus"])
-		out[i].OperationalStatus = wmi.AsUint16Slice(row["OperationalStatus"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusDescriptions = wmi.AsStringSlice(row["StatusDescriptions"])
-		out[i].SystemCreationClassName = wmi.AsString(row["SystemCreationClassName"])
-		out[i].SystemName = wmi.AsString(row["SystemName"])
+		out[i] = MSFTNetInterfaceFilterFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetInterfaceFilter returns the MSFT_NetInterfaceFilter instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetInterfaceFilter(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*MSFTNetInterfaceFilter, error) {
-	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
-		" AND " + "Name = " + wmi.WQLValue(name) +
-		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
-		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+// QueryOneMSFTNetInterfaceFilter returns the single MSFT_NetInterfaceFilter matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetInterfaceFilter(svc *wmi.Service, where string) (*MSFTNetInterfaceFilter, error) {
 	out, err := QueryMSFTNetInterfaceFilter(svc, where)
 	if err != nil {
 		return nil, err
@@ -10935,8 +9654,19 @@ func GetMSFTNetInterfaceFilter(svc *wmi.Service, creationClassName string, name 
 	return &out[0], nil
 }
 
+// GetMSFTNetInterfaceFilter returns the MSFT_NetInterfaceFilter instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetInterfaceFilter(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*MSFTNetInterfaceFilter, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "Name = " + wmi.WQLValue(name) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	return QueryOneMSFTNetInterfaceFilter(svc, where)
+}
+
 // QueryMSFTNetInterfaceTypeFilter runs the WQL query against the class and decodes each
-// instance into a MSFTNetInterfaceTypeFilter. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetInterfaceTypeFilter. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetInterfaceTypeFilter(svc *wmi.Service, where string) ([]MSFTNetInterfaceTypeFilter, error) {
 	q := "SELECT * FROM MSFT_NetInterfaceTypeFilter"
 	if where != "" {
@@ -10948,36 +9678,14 @@ func QueryMSFTNetInterfaceTypeFilter(svc *wmi.Service, where string) ([]MSFTNetI
 	}
 	out := make([]MSFTNetInterfaceTypeFilter, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CommunicationStatus = wmi.AsUint16(row["CommunicationStatus"])
-		out[i].CreationClassName = wmi.AsString(row["CreationClassName"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DetailedStatus = wmi.AsUint16(row["DetailedStatus"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].HealthState = wmi.AsUint16(row["HealthState"])
-		out[i].InstallDate = wmi.AsString(row["InstallDate"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].InterfaceType = wmi.AsUint32(row["InterfaceType"])
-		out[i].IsNegated = wmi.AsBool(row["IsNegated"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].OperatingStatus = wmi.AsUint16(row["OperatingStatus"])
-		out[i].OperationalStatus = wmi.AsUint16Slice(row["OperationalStatus"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusDescriptions = wmi.AsStringSlice(row["StatusDescriptions"])
-		out[i].SystemCreationClassName = wmi.AsString(row["SystemCreationClassName"])
-		out[i].SystemName = wmi.AsString(row["SystemName"])
+		out[i] = MSFTNetInterfaceTypeFilterFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetInterfaceTypeFilter returns the MSFT_NetInterfaceTypeFilter instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetInterfaceTypeFilter(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*MSFTNetInterfaceTypeFilter, error) {
-	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
-		" AND " + "Name = " + wmi.WQLValue(name) +
-		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
-		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+// QueryOneMSFTNetInterfaceTypeFilter returns the single MSFT_NetInterfaceTypeFilter matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetInterfaceTypeFilter(svc *wmi.Service, where string) (*MSFTNetInterfaceTypeFilter, error) {
 	out, err := QueryMSFTNetInterfaceTypeFilter(svc, where)
 	if err != nil {
 		return nil, err
@@ -10988,8 +9696,19 @@ func GetMSFTNetInterfaceTypeFilter(svc *wmi.Service, creationClassName string, n
 	return &out[0], nil
 }
 
+// GetMSFTNetInterfaceTypeFilter returns the MSFT_NetInterfaceTypeFilter instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetInterfaceTypeFilter(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*MSFTNetInterfaceTypeFilter, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "Name = " + wmi.WQLValue(name) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	return QueryOneMSFTNetInterfaceTypeFilter(svc, where)
+}
+
 // QueryMSFTNetLbfoProvider runs the WQL query against the class and decodes each
-// instance into a MSFTNetLbfoProvider. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetLbfoProvider. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetLbfoProvider(svc *wmi.Service, where string) ([]MSFTNetLbfoProvider, error) {
 	q := "SELECT * FROM MSFT_NetLbfoProvider"
 	if where != "" {
@@ -11001,19 +9720,14 @@ func QueryMSFTNetLbfoProvider(svc *wmi.Service, where string) ([]MSFTNetLbfoProv
 	}
 	out := make([]MSFTNetLbfoProvider, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].Name = wmi.AsString(row["Name"])
+		out[i] = MSFTNetLbfoProviderFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetLbfoProvider returns the MSFT_NetLbfoProvider instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetLbfoProvider(svc *wmi.Service, instanceID string) (*MSFTNetLbfoProvider, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetLbfoProvider returns the single MSFT_NetLbfoProvider matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetLbfoProvider(svc *wmi.Service, where string) (*MSFTNetLbfoProvider, error) {
 	out, err := QueryMSFTNetLbfoProvider(svc, where)
 	if err != nil {
 		return nil, err
@@ -11024,8 +9738,16 @@ func GetMSFTNetLbfoProvider(svc *wmi.Service, instanceID string) (*MSFTNetLbfoPr
 	return &out[0], nil
 }
 
+// GetMSFTNetLbfoProvider returns the MSFT_NetLbfoProvider instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetLbfoProvider(svc *wmi.Service, instanceID string) (*MSFTNetLbfoProvider, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetLbfoProvider(svc, where)
+}
+
 // QueryMSFTNetLbfoTeam runs the WQL query against the class and decodes each
-// instance into a MSFTNetLbfoTeam. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetLbfoTeam. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetLbfoTeam(svc *wmi.Service, where string) ([]MSFTNetLbfoTeam, error) {
 	q := "SELECT * FROM MSFT_NetLbfoTeam"
 	if where != "" {
@@ -11037,23 +9759,14 @@ func QueryMSFTNetLbfoTeam(svc *wmi.Service, where string) ([]MSFTNetLbfoTeam, er
 	}
 	out := make([]MSFTNetLbfoTeam, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].LacpTimer = wmi.AsUint32(row["LacpTimer"])
-		out[i].LoadBalancingAlgorithm = wmi.AsUint32(row["LoadBalancingAlgorithm"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].Status = wmi.AsUint32(row["Status"])
-		out[i].TeamingMode = wmi.AsUint32(row["TeamingMode"])
+		out[i] = MSFTNetLbfoTeamFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetLbfoTeam returns the MSFT_NetLbfoTeam instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetLbfoTeam(svc *wmi.Service, instanceID string) (*MSFTNetLbfoTeam, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetLbfoTeam returns the single MSFT_NetLbfoTeam matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetLbfoTeam(svc *wmi.Service, where string) (*MSFTNetLbfoTeam, error) {
 	out, err := QueryMSFTNetLbfoTeam(svc, where)
 	if err != nil {
 		return nil, err
@@ -11064,8 +9777,16 @@ func GetMSFTNetLbfoTeam(svc *wmi.Service, instanceID string) (*MSFTNetLbfoTeam, 
 	return &out[0], nil
 }
 
+// GetMSFTNetLbfoTeam returns the MSFT_NetLbfoTeam instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetLbfoTeam(svc *wmi.Service, instanceID string) (*MSFTNetLbfoTeam, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetLbfoTeam(svc, where)
+}
+
 // QueryMSFTNetLbfoTeamMember runs the WQL query against the class and decodes each
-// instance into a MSFTNetLbfoTeamMember. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetLbfoTeamMember. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetLbfoTeamMember(svc *wmi.Service, where string) ([]MSFTNetLbfoTeamMember, error) {
 	q := "SELECT * FROM MSFT_NetLbfoTeamMember"
 	if where != "" {
@@ -11077,43 +9798,14 @@ func QueryMSFTNetLbfoTeamMember(svc *wmi.Service, where string) ([]MSFTNetLbfoTe
 	}
 	out := make([]MSFTNetLbfoTeamMember, len(rows))
 	for i, row := range rows {
-		out[i].AdministrativeMode = wmi.AsUint32(row["AdministrativeMode"])
-		out[i].AvailableRequestedStates = wmi.AsUint16Slice(row["AvailableRequestedStates"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CommunicationStatus = wmi.AsUint16(row["CommunicationStatus"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DetailedStatus = wmi.AsUint16(row["DetailedStatus"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].EnabledDefault = wmi.AsUint16(row["EnabledDefault"])
-		out[i].EnabledState = wmi.AsUint16(row["EnabledState"])
-		out[i].FailureReason = wmi.AsUint32(row["FailureReason"])
-		out[i].HealthState = wmi.AsUint16(row["HealthState"])
-		out[i].InstallDate = wmi.AsString(row["InstallDate"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].InterfaceDescription = wmi.AsString(row["InterfaceDescription"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].NumberOfFailures = wmi.AsUint32(row["NumberOfFailures"])
-		out[i].OperatingStatus = wmi.AsUint16(row["OperatingStatus"])
-		out[i].OperationalMode = wmi.AsUint32(row["OperationalMode"])
-		out[i].OperationalStatus = wmi.AsUint16Slice(row["OperationalStatus"])
-		out[i].OtherEnabledState = wmi.AsString(row["OtherEnabledState"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].ReceiveLinkSpeed = wmi.AsUint64(row["ReceiveLinkSpeed"])
-		out[i].RequestedState = wmi.AsUint16(row["RequestedState"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusDescriptions = wmi.AsStringSlice(row["StatusDescriptions"])
-		out[i].Team = wmi.AsString(row["Team"])
-		out[i].TimeOfLastStateChange = wmi.AsString(row["TimeOfLastStateChange"])
-		out[i].TransitioningToState = wmi.AsUint16(row["TransitioningToState"])
-		out[i].TransmitLinkSpeed = wmi.AsUint64(row["TransmitLinkSpeed"])
+		out[i] = MSFTNetLbfoTeamMemberFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetLbfoTeamMember returns the MSFT_NetLbfoTeamMember instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetLbfoTeamMember(svc *wmi.Service, instanceID string) (*MSFTNetLbfoTeamMember, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetLbfoTeamMember returns the single MSFT_NetLbfoTeamMember matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetLbfoTeamMember(svc *wmi.Service, where string) (*MSFTNetLbfoTeamMember, error) {
 	out, err := QueryMSFTNetLbfoTeamMember(svc, where)
 	if err != nil {
 		return nil, err
@@ -11124,8 +9816,16 @@ func GetMSFTNetLbfoTeamMember(svc *wmi.Service, instanceID string) (*MSFTNetLbfo
 	return &out[0], nil
 }
 
+// GetMSFTNetLbfoTeamMember returns the MSFT_NetLbfoTeamMember instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetLbfoTeamMember(svc *wmi.Service, instanceID string) (*MSFTNetLbfoTeamMember, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetLbfoTeamMember(svc, where)
+}
+
 // QueryMSFTNetLbfoTeamNic runs the WQL query against the class and decodes each
-// instance into a MSFTNetLbfoTeamNic. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetLbfoTeamNic. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetLbfoTeamNic(svc *wmi.Service, where string) ([]MSFTNetLbfoTeamNic, error) {
 	q := "SELECT * FROM MSFT_NetLbfoTeamNic"
 	if where != "" {
@@ -11137,44 +9837,14 @@ func QueryMSFTNetLbfoTeamNic(svc *wmi.Service, where string) ([]MSFTNetLbfoTeamN
 	}
 	out := make([]MSFTNetLbfoTeamNic, len(rows))
 	for i, row := range rows {
-		out[i].AvailableRequestedStates = wmi.AsUint16Slice(row["AvailableRequestedStates"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CommunicationStatus = wmi.AsUint16(row["CommunicationStatus"])
-		out[i].Default = wmi.AsBool(row["Default"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DetailedStatus = wmi.AsUint16(row["DetailedStatus"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].EnabledDefault = wmi.AsUint16(row["EnabledDefault"])
-		out[i].EnabledState = wmi.AsUint16(row["EnabledState"])
-		out[i].FailureReason = wmi.AsUint32(row["FailureReason"])
-		out[i].HealthState = wmi.AsUint16(row["HealthState"])
-		out[i].InstallDate = wmi.AsString(row["InstallDate"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].InterfaceDescription = wmi.AsString(row["InterfaceDescription"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].NumberOfFailures = wmi.AsUint32(row["NumberOfFailures"])
-		out[i].OperatingStatus = wmi.AsUint16(row["OperatingStatus"])
-		out[i].OperationalStatus = wmi.AsUint16Slice(row["OperationalStatus"])
-		out[i].OtherEnabledState = wmi.AsString(row["OtherEnabledState"])
-		out[i].Primary = wmi.AsBool(row["Primary"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].ReceiveLinkSpeed = wmi.AsUint64(row["ReceiveLinkSpeed"])
-		out[i].RequestedState = wmi.AsUint16(row["RequestedState"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusDescriptions = wmi.AsStringSlice(row["StatusDescriptions"])
-		out[i].Team = wmi.AsString(row["Team"])
-		out[i].TimeOfLastStateChange = wmi.AsString(row["TimeOfLastStateChange"])
-		out[i].TransitioningToState = wmi.AsUint16(row["TransitioningToState"])
-		out[i].TransmitLinkSpeed = wmi.AsUint64(row["TransmitLinkSpeed"])
-		out[i].VlanID = wmi.AsUint32(row["VlanID"])
+		out[i] = MSFTNetLbfoTeamNicFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetLbfoTeamNic returns the MSFT_NetLbfoTeamNic instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetLbfoTeamNic(svc *wmi.Service, instanceID string) (*MSFTNetLbfoTeamNic, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetLbfoTeamNic returns the single MSFT_NetLbfoTeamNic matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetLbfoTeamNic(svc *wmi.Service, where string) (*MSFTNetLbfoTeamNic, error) {
 	out, err := QueryMSFTNetLbfoTeamNic(svc, where)
 	if err != nil {
 		return nil, err
@@ -11185,8 +9855,16 @@ func GetMSFTNetLbfoTeamNic(svc *wmi.Service, instanceID string) (*MSFTNetLbfoTea
 	return &out[0], nil
 }
 
+// GetMSFTNetLbfoTeamNic returns the MSFT_NetLbfoTeamNic instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetLbfoTeamNic(svc *wmi.Service, instanceID string) (*MSFTNetLbfoTeamNic, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetLbfoTeamNic(svc, where)
+}
+
 // QueryMSFTNetLbfoTeamProvider runs the WQL query against the class and decodes each
-// instance into a MSFTNetLbfoTeamProvider. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetLbfoTeamProvider. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetLbfoTeamProvider(svc *wmi.Service, where string) ([]MSFTNetLbfoTeamProvider, error) {
 	q := "SELECT * FROM MSFT_NetLbfoTeam_Provider"
 	if where != "" {
@@ -11198,17 +9876,14 @@ func QueryMSFTNetLbfoTeamProvider(svc *wmi.Service, where string) ([]MSFTNetLbfo
 	}
 	out := make([]MSFTNetLbfoTeamProvider, len(rows))
 	for i, row := range rows {
-		out[i].GroupComponent = wmi.AsString(row["GroupComponent"])
-		out[i].PartComponent = wmi.AsString(row["PartComponent"])
+		out[i] = MSFTNetLbfoTeamProviderFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetLbfoTeamProvider returns the MSFT_NetLbfoTeam_Provider instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetLbfoTeamProvider(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetLbfoTeamProvider, error) {
-	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
-		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+// QueryOneMSFTNetLbfoTeamProvider returns the single MSFT_NetLbfoTeam_Provider matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetLbfoTeamProvider(svc *wmi.Service, where string) (*MSFTNetLbfoTeamProvider, error) {
 	out, err := QueryMSFTNetLbfoTeamProvider(svc, where)
 	if err != nil {
 		return nil, err
@@ -11219,8 +9894,17 @@ func GetMSFTNetLbfoTeamProvider(svc *wmi.Service, groupComponent string, partCom
 	return &out[0], nil
 }
 
+// GetMSFTNetLbfoTeamProvider returns the MSFT_NetLbfoTeam_Provider instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetLbfoTeamProvider(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetLbfoTeamProvider, error) {
+	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
+		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+	return QueryOneMSFTNetLbfoTeamProvider(svc, where)
+}
+
 // QueryMSFTNetLbfoTeamTeamMember runs the WQL query against the class and decodes each
-// instance into a MSFTNetLbfoTeamTeamMember. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetLbfoTeamTeamMember. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetLbfoTeamTeamMember(svc *wmi.Service, where string) ([]MSFTNetLbfoTeamTeamMember, error) {
 	q := "SELECT * FROM MSFT_NetLbfoTeam_TeamMember"
 	if where != "" {
@@ -11232,17 +9916,14 @@ func QueryMSFTNetLbfoTeamTeamMember(svc *wmi.Service, where string) ([]MSFTNetLb
 	}
 	out := make([]MSFTNetLbfoTeamTeamMember, len(rows))
 	for i, row := range rows {
-		out[i].GroupComponent = wmi.AsString(row["GroupComponent"])
-		out[i].PartComponent = wmi.AsString(row["PartComponent"])
+		out[i] = MSFTNetLbfoTeamTeamMemberFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetLbfoTeamTeamMember returns the MSFT_NetLbfoTeam_TeamMember instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetLbfoTeamTeamMember(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetLbfoTeamTeamMember, error) {
-	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
-		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+// QueryOneMSFTNetLbfoTeamTeamMember returns the single MSFT_NetLbfoTeam_TeamMember matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetLbfoTeamTeamMember(svc *wmi.Service, where string) (*MSFTNetLbfoTeamTeamMember, error) {
 	out, err := QueryMSFTNetLbfoTeamTeamMember(svc, where)
 	if err != nil {
 		return nil, err
@@ -11253,8 +9934,17 @@ func GetMSFTNetLbfoTeamTeamMember(svc *wmi.Service, groupComponent string, partC
 	return &out[0], nil
 }
 
+// GetMSFTNetLbfoTeamTeamMember returns the MSFT_NetLbfoTeam_TeamMember instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetLbfoTeamTeamMember(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetLbfoTeamTeamMember, error) {
+	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
+		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+	return QueryOneMSFTNetLbfoTeamTeamMember(svc, where)
+}
+
 // QueryMSFTNetLbfoTeamTeamNic runs the WQL query against the class and decodes each
-// instance into a MSFTNetLbfoTeamTeamNic. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetLbfoTeamTeamNic. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetLbfoTeamTeamNic(svc *wmi.Service, where string) ([]MSFTNetLbfoTeamTeamNic, error) {
 	q := "SELECT * FROM MSFT_NetLbfoTeam_TeamNic"
 	if where != "" {
@@ -11266,17 +9956,14 @@ func QueryMSFTNetLbfoTeamTeamNic(svc *wmi.Service, where string) ([]MSFTNetLbfoT
 	}
 	out := make([]MSFTNetLbfoTeamTeamNic, len(rows))
 	for i, row := range rows {
-		out[i].GroupComponent = wmi.AsString(row["GroupComponent"])
-		out[i].PartComponent = wmi.AsString(row["PartComponent"])
+		out[i] = MSFTNetLbfoTeamTeamNicFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetLbfoTeamTeamNic returns the MSFT_NetLbfoTeam_TeamNic instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetLbfoTeamTeamNic(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetLbfoTeamTeamNic, error) {
-	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
-		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+// QueryOneMSFTNetLbfoTeamTeamNic returns the single MSFT_NetLbfoTeam_TeamNic matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetLbfoTeamTeamNic(svc *wmi.Service, where string) (*MSFTNetLbfoTeamTeamNic, error) {
 	out, err := QueryMSFTNetLbfoTeamTeamNic(svc, where)
 	if err != nil {
 		return nil, err
@@ -11287,8 +9974,17 @@ func GetMSFTNetLbfoTeamTeamNic(svc *wmi.Service, groupComponent string, partComp
 	return &out[0], nil
 }
 
+// GetMSFTNetLbfoTeamTeamNic returns the MSFT_NetLbfoTeam_TeamNic instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetLbfoTeamTeamNic(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetLbfoTeamTeamNic, error) {
+	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
+		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+	return QueryOneMSFTNetLbfoTeamTeamNic(svc, where)
+}
+
 // QueryMSFTNetMainModeRule runs the WQL query against the class and decodes each
-// instance into a MSFTNetMainModeRule. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetMainModeRule. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetMainModeRule(svc *wmi.Service, where string) ([]MSFTNetMainModeRule, error) {
 	q := "SELECT * FROM MSFT_NetMainModeRule"
 	if where != "" {
@@ -11300,52 +9996,14 @@ func QueryMSFTNetMainModeRule(svc *wmi.Service, where string) ([]MSFTNetMainMode
 	}
 	out := make([]MSFTNetMainModeRule, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CommonName = wmi.AsString(row["CommonName"])
-		out[i].ConditionListType = wmi.AsUint16(row["ConditionListType"])
-		out[i].CreationClassName = wmi.AsString(row["CreationClassName"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DisplayGroup = wmi.AsString(row["DisplayGroup"])
-		out[i].DisplayName = wmi.AsString(row["DisplayName"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].Enabled = wmi.AsUint16(row["Enabled"])
-		out[i].EnforcementStatus = wmi.AsUint16Slice(row["EnforcementStatus"])
-		out[i].ExecutionStrategy = wmi.AsUint16(row["ExecutionStrategy"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].LimitNegotiation = wmi.AsUint16(row["LimitNegotiation"])
-		out[i].MainModeCryptoSet = wmi.AsString(row["MainModeCryptoSet"])
-		out[i].Mandatory = wmi.AsBool(row["Mandatory"])
-		out[i].Phase1AuthSet = wmi.AsString(row["Phase1AuthSet"])
-		out[i].Phase2AuthSet = wmi.AsString(row["Phase2AuthSet"])
-		out[i].Platforms = wmi.AsStringSlice(row["Platforms"])
-		out[i].PolicyDecisionStrategy = wmi.AsUint16(row["PolicyDecisionStrategy"])
-		out[i].PolicyKeywords = wmi.AsStringSlice(row["PolicyKeywords"])
-		out[i].PolicyRoles = wmi.AsStringSlice(row["PolicyRoles"])
-		out[i].PolicyRuleName = wmi.AsString(row["PolicyRuleName"])
-		out[i].PolicyStoreSource = wmi.AsString(row["PolicyStoreSource"])
-		out[i].PolicyStoreSourceType = wmi.AsUint16(row["PolicyStoreSourceType"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].Priority = wmi.AsUint16(row["Priority"])
-		out[i].Profiles = wmi.AsUint16(row["Profiles"])
-		out[i].QuickModeCryptoSet = wmi.AsString(row["QuickModeCryptoSet"])
-		out[i].RuleGroup = wmi.AsString(row["RuleGroup"])
-		out[i].RuleUsage = wmi.AsString(row["RuleUsage"])
-		out[i].SequencedActions = wmi.AsUint16(row["SequencedActions"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusCode = wmi.AsUint32(row["StatusCode"])
-		out[i].SystemCreationClassName = wmi.AsString(row["SystemCreationClassName"])
-		out[i].SystemName = wmi.AsString(row["SystemName"])
+		out[i] = MSFTNetMainModeRuleFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetMainModeRule returns the MSFT_NetMainModeRule instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetMainModeRule(svc *wmi.Service, creationClassName string, policyRuleName string, systemCreationClassName string, systemName string) (*MSFTNetMainModeRule, error) {
-	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
-		" AND " + "PolicyRuleName = " + wmi.WQLValue(policyRuleName) +
-		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
-		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+// QueryOneMSFTNetMainModeRule returns the single MSFT_NetMainModeRule matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetMainModeRule(svc *wmi.Service, where string) (*MSFTNetMainModeRule, error) {
 	out, err := QueryMSFTNetMainModeRule(svc, where)
 	if err != nil {
 		return nil, err
@@ -11356,8 +10014,19 @@ func GetMSFTNetMainModeRule(svc *wmi.Service, creationClassName string, policyRu
 	return &out[0], nil
 }
 
+// GetMSFTNetMainModeRule returns the MSFT_NetMainModeRule instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetMainModeRule(svc *wmi.Service, creationClassName string, policyRuleName string, systemCreationClassName string, systemName string) (*MSFTNetMainModeRule, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "PolicyRuleName = " + wmi.WQLValue(policyRuleName) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	return QueryOneMSFTNetMainModeRule(svc, where)
+}
+
 // QueryMSFTNetMainModeRuleFilterByAddress runs the WQL query against the class and decodes each
-// instance into a MSFTNetMainModeRuleFilterByAddress. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetMainModeRuleFilterByAddress. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetMainModeRuleFilterByAddress(svc *wmi.Service, where string) ([]MSFTNetMainModeRuleFilterByAddress, error) {
 	q := "SELECT * FROM MSFT_NetMainModeRuleFilterByAddress"
 	if where != "" {
@@ -11369,17 +10038,14 @@ func QueryMSFTNetMainModeRuleFilterByAddress(svc *wmi.Service, where string) ([]
 	}
 	out := make([]MSFTNetMainModeRuleFilterByAddress, len(rows))
 	for i, row := range rows {
-		out[i].GroupComponent = wmi.AsString(row["GroupComponent"])
-		out[i].PartComponent = wmi.AsString(row["PartComponent"])
+		out[i] = MSFTNetMainModeRuleFilterByAddressFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetMainModeRuleFilterByAddress returns the MSFT_NetMainModeRuleFilterByAddress instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetMainModeRuleFilterByAddress(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetMainModeRuleFilterByAddress, error) {
-	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
-		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+// QueryOneMSFTNetMainModeRuleFilterByAddress returns the single MSFT_NetMainModeRuleFilterByAddress matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetMainModeRuleFilterByAddress(svc *wmi.Service, where string) (*MSFTNetMainModeRuleFilterByAddress, error) {
 	out, err := QueryMSFTNetMainModeRuleFilterByAddress(svc, where)
 	if err != nil {
 		return nil, err
@@ -11390,8 +10056,17 @@ func GetMSFTNetMainModeRuleFilterByAddress(svc *wmi.Service, groupComponent stri
 	return &out[0], nil
 }
 
+// GetMSFTNetMainModeRuleFilterByAddress returns the MSFT_NetMainModeRuleFilterByAddress instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetMainModeRuleFilterByAddress(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetMainModeRuleFilterByAddress, error) {
+	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
+		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+	return QueryOneMSFTNetMainModeRuleFilterByAddress(svc, where)
+}
+
 // QueryMSFTNetMainModeRuleFilters runs the WQL query against the class and decodes each
-// instance into a MSFTNetMainModeRuleFilters. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetMainModeRuleFilters. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetMainModeRuleFilters(svc *wmi.Service, where string) ([]MSFTNetMainModeRuleFilters, error) {
 	q := "SELECT * FROM MSFT_NetMainModeRuleFilters"
 	if where != "" {
@@ -11403,17 +10078,14 @@ func QueryMSFTNetMainModeRuleFilters(svc *wmi.Service, where string) ([]MSFTNetM
 	}
 	out := make([]MSFTNetMainModeRuleFilters, len(rows))
 	for i, row := range rows {
-		out[i].GroupComponent = wmi.AsString(row["GroupComponent"])
-		out[i].PartComponent = wmi.AsString(row["PartComponent"])
+		out[i] = MSFTNetMainModeRuleFiltersFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetMainModeRuleFilters returns the MSFT_NetMainModeRuleFilters instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetMainModeRuleFilters(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetMainModeRuleFilters, error) {
-	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
-		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+// QueryOneMSFTNetMainModeRuleFilters returns the single MSFT_NetMainModeRuleFilters matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetMainModeRuleFilters(svc *wmi.Service, where string) (*MSFTNetMainModeRuleFilters, error) {
 	out, err := QueryMSFTNetMainModeRuleFilters(svc, where)
 	if err != nil {
 		return nil, err
@@ -11424,8 +10096,17 @@ func GetMSFTNetMainModeRuleFilters(svc *wmi.Service, groupComponent string, part
 	return &out[0], nil
 }
 
+// GetMSFTNetMainModeRuleFilters returns the MSFT_NetMainModeRuleFilters instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetMainModeRuleFilters(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetMainModeRuleFilters, error) {
+	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
+		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+	return QueryOneMSFTNetMainModeRuleFilters(svc, where)
+}
+
 // QueryMSFTNetMainModeRuleInProfile runs the WQL query against the class and decodes each
-// instance into a MSFTNetMainModeRuleInProfile. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetMainModeRuleInProfile. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetMainModeRuleInProfile(svc *wmi.Service, where string) ([]MSFTNetMainModeRuleInProfile, error) {
 	q := "SELECT * FROM MSFT_NetMainModeRuleInProfile"
 	if where != "" {
@@ -11437,18 +10118,14 @@ func QueryMSFTNetMainModeRuleInProfile(svc *wmi.Service, where string) ([]MSFTNe
 	}
 	out := make([]MSFTNetMainModeRuleInProfile, len(rows))
 	for i, row := range rows {
-		out[i].GroupComponent = wmi.AsString(row["GroupComponent"])
-		out[i].PartComponent = wmi.AsString(row["PartComponent"])
-		out[i].Priority = wmi.AsUint16(row["Priority"])
+		out[i] = MSFTNetMainModeRuleInProfileFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetMainModeRuleInProfile returns the MSFT_NetMainModeRuleInProfile instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetMainModeRuleInProfile(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetMainModeRuleInProfile, error) {
-	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
-		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+// QueryOneMSFTNetMainModeRuleInProfile returns the single MSFT_NetMainModeRuleInProfile matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetMainModeRuleInProfile(svc *wmi.Service, where string) (*MSFTNetMainModeRuleInProfile, error) {
 	out, err := QueryMSFTNetMainModeRuleInProfile(svc, where)
 	if err != nil {
 		return nil, err
@@ -11459,8 +10136,17 @@ func GetMSFTNetMainModeRuleInProfile(svc *wmi.Service, groupComponent string, pa
 	return &out[0], nil
 }
 
+// GetMSFTNetMainModeRuleInProfile returns the MSFT_NetMainModeRuleInProfile instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetMainModeRuleInProfile(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetMainModeRuleInProfile, error) {
+	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
+		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+	return QueryOneMSFTNetMainModeRuleInProfile(svc, where)
+}
+
 // QueryMSFTNetMainModeRuleMMAuthSet runs the WQL query against the class and decodes each
-// instance into a MSFTNetMainModeRuleMMAuthSet. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetMainModeRuleMMAuthSet. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetMainModeRuleMMAuthSet(svc *wmi.Service, where string) ([]MSFTNetMainModeRuleMMAuthSet, error) {
 	q := "SELECT * FROM MSFT_NetMainModeRuleMMAuthSet"
 	if where != "" {
@@ -11472,18 +10158,14 @@ func QueryMSFTNetMainModeRuleMMAuthSet(svc *wmi.Service, where string) ([]MSFTNe
 	}
 	out := make([]MSFTNetMainModeRuleMMAuthSet, len(rows))
 	for i, row := range rows {
-		out[i].ActionOrder = wmi.AsUint16(row["ActionOrder"])
-		out[i].GroupComponent = wmi.AsString(row["GroupComponent"])
-		out[i].PartComponent = wmi.AsString(row["PartComponent"])
+		out[i] = MSFTNetMainModeRuleMMAuthSetFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetMainModeRuleMMAuthSet returns the MSFT_NetMainModeRuleMMAuthSet instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetMainModeRuleMMAuthSet(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetMainModeRuleMMAuthSet, error) {
-	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
-		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+// QueryOneMSFTNetMainModeRuleMMAuthSet returns the single MSFT_NetMainModeRuleMMAuthSet matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetMainModeRuleMMAuthSet(svc *wmi.Service, where string) (*MSFTNetMainModeRuleMMAuthSet, error) {
 	out, err := QueryMSFTNetMainModeRuleMMAuthSet(svc, where)
 	if err != nil {
 		return nil, err
@@ -11494,8 +10176,17 @@ func GetMSFTNetMainModeRuleMMAuthSet(svc *wmi.Service, groupComponent string, pa
 	return &out[0], nil
 }
 
+// GetMSFTNetMainModeRuleMMAuthSet returns the MSFT_NetMainModeRuleMMAuthSet instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetMainModeRuleMMAuthSet(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetMainModeRuleMMAuthSet, error) {
+	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
+		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+	return QueryOneMSFTNetMainModeRuleMMAuthSet(svc, where)
+}
+
 // QueryMSFTNetMainModeRuleMMCryptoSet runs the WQL query against the class and decodes each
-// instance into a MSFTNetMainModeRuleMMCryptoSet. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetMainModeRuleMMCryptoSet. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetMainModeRuleMMCryptoSet(svc *wmi.Service, where string) ([]MSFTNetMainModeRuleMMCryptoSet, error) {
 	q := "SELECT * FROM MSFT_NetMainModeRuleMMCryptoSet"
 	if where != "" {
@@ -11507,18 +10198,14 @@ func QueryMSFTNetMainModeRuleMMCryptoSet(svc *wmi.Service, where string) ([]MSFT
 	}
 	out := make([]MSFTNetMainModeRuleMMCryptoSet, len(rows))
 	for i, row := range rows {
-		out[i].ActionOrder = wmi.AsUint16(row["ActionOrder"])
-		out[i].GroupComponent = wmi.AsString(row["GroupComponent"])
-		out[i].PartComponent = wmi.AsString(row["PartComponent"])
+		out[i] = MSFTNetMainModeRuleMMCryptoSetFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetMainModeRuleMMCryptoSet returns the MSFT_NetMainModeRuleMMCryptoSet instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetMainModeRuleMMCryptoSet(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetMainModeRuleMMCryptoSet, error) {
-	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
-		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+// QueryOneMSFTNetMainModeRuleMMCryptoSet returns the single MSFT_NetMainModeRuleMMCryptoSet matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetMainModeRuleMMCryptoSet(svc *wmi.Service, where string) (*MSFTNetMainModeRuleMMCryptoSet, error) {
 	out, err := QueryMSFTNetMainModeRuleMMCryptoSet(svc, where)
 	if err != nil {
 		return nil, err
@@ -11529,8 +10216,17 @@ func GetMSFTNetMainModeRuleMMCryptoSet(svc *wmi.Service, groupComponent string, 
 	return &out[0], nil
 }
 
+// GetMSFTNetMainModeRuleMMCryptoSet returns the MSFT_NetMainModeRuleMMCryptoSet instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetMainModeRuleMMCryptoSet(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetMainModeRuleMMCryptoSet, error) {
+	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
+		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+	return QueryOneMSFTNetMainModeRuleMMCryptoSet(svc, where)
+}
+
 // QueryMSFTNetMainModeSA runs the WQL query against the class and decodes each
-// instance into a MSFTNetMainModeSA. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetMainModeSA. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetMainModeSA(svc *wmi.Service, where string) ([]MSFTNetMainModeSA, error) {
 	q := "SELECT * FROM MSFT_NetMainModeSA"
 	if where != "" {
@@ -11542,83 +10238,14 @@ func QueryMSFTNetMainModeSA(svc *wmi.Service, where string) ([]MSFTNetMainModeSA
 	}
 	out := make([]MSFTNetMainModeSA, len(rows))
 	for i, row := range rows {
-		out[i].AuthenticationMethod = wmi.AsUint16(row["AuthenticationMethod"])
-		out[i].AvailableRequestedStates = wmi.AsUint16Slice(row["AvailableRequestedStates"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CipherAlgorithm = wmi.AsUint16(row["CipherAlgorithm"])
-		out[i].CommunicationStatus = wmi.AsUint16(row["CommunicationStatus"])
-		out[i].CreationClassName = wmi.AsString(row["CreationClassName"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DetailedStatus = wmi.AsUint16(row["DetailedStatus"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].EnabledDefault = wmi.AsUint16(row["EnabledDefault"])
-		out[i].EnabledState = wmi.AsUint16(row["EnabledState"])
-		out[i].ExtendedFilterId = wmi.AsUint64(row["ExtendedFilterId"])
-		out[i].GroupId = wmi.AsUint16(row["GroupId"])
-		out[i].HashAlgorithm = wmi.AsUint16(row["HashAlgorithm"])
-		out[i].HealthState = wmi.AsUint16(row["HealthState"])
-		out[i].IdleDurationSeconds = wmi.AsUint64(row["IdleDurationSeconds"])
-		out[i].IkePolicyKey = wmi.AsString(row["IkePolicyKey"])
-		out[i].InitiatorCookie = wmi.AsUint64(row["InitiatorCookie"])
-		out[i].InstallDate = wmi.AsString(row["InstallDate"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].KeyModule = wmi.AsUint16(row["KeyModule"])
-		out[i].LifetimeKilobytes = wmi.AsUint64(row["LifetimeKilobytes"])
-		out[i].LifetimeSeconds = wmi.AsUint64(row["LifetimeSeconds"])
-		out[i].LocalEndpoint = wmi.AsString(row["LocalEndpoint"])
-		if v, ok := row["LocalFirstId"].(wmi.Row); ok {
-			out[i].LocalFirstId = v
-		}
-		if v, ok := row["LocalSecondId"].(wmi.Row); ok {
-			out[i].LocalSecondId = v
-		}
-		out[i].LocalUdpEncapsulationPort = wmi.AsUint16(row["LocalUdpEncapsulationPort"])
-		out[i].MaxQMSAs = wmi.AsUint32(row["MaxQMSAs"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].NameFormat = wmi.AsString(row["NameFormat"])
-		out[i].OperatingStatus = wmi.AsUint16(row["OperatingStatus"])
-		out[i].OperationalStatus = wmi.AsUint16Slice(row["OperationalStatus"])
-		out[i].OtherAuthenticationMethod = wmi.AsString(row["OtherAuthenticationMethod"])
-		out[i].OtherCipherAlgorithm = wmi.AsString(row["OtherCipherAlgorithm"])
-		out[i].OtherEnabledState = wmi.AsString(row["OtherEnabledState"])
-		out[i].OtherGroupId = wmi.AsString(row["OtherGroupId"])
-		out[i].OtherHashAlgorithm = wmi.AsString(row["OtherHashAlgorithm"])
-		out[i].OtherTypeDescription = wmi.AsString(row["OtherTypeDescription"])
-		out[i].PacketLoggingActive = wmi.AsBool(row["PacketLoggingActive"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].ProtocolIFType = wmi.AsUint16(row["ProtocolIFType"])
-		out[i].ProtocolType = wmi.AsUint16(row["ProtocolType"])
-		out[i].RefreshThresholdKbytesPercentage = wmi.AsUint8(row["RefreshThresholdKbytesPercentage"])
-		out[i].RefreshThresholdSecondsPercentage = wmi.AsUint8(row["RefreshThresholdSecondsPercentage"])
-		out[i].RemoteEndpoint = wmi.AsString(row["RemoteEndpoint"])
-		if v, ok := row["RemoteFirstId"].(wmi.Row); ok {
-			out[i].RemoteFirstId = v
-		}
-		if v, ok := row["RemoteSecondId"].(wmi.Row); ok {
-			out[i].RemoteSecondId = v
-		}
-		out[i].RemoteUdpEncapsulationPort = wmi.AsUint16(row["RemoteUdpEncapsulationPort"])
-		out[i].RequestedState = wmi.AsUint16(row["RequestedState"])
-		out[i].ResponderCookie = wmi.AsUint64(row["ResponderCookie"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusDescriptions = wmi.AsStringSlice(row["StatusDescriptions"])
-		out[i].SystemCreationClassName = wmi.AsString(row["SystemCreationClassName"])
-		out[i].SystemName = wmi.AsString(row["SystemName"])
-		out[i].TimeOfLastStateChange = wmi.AsString(row["TimeOfLastStateChange"])
-		out[i].TransitioningToState = wmi.AsUint16(row["TransitioningToState"])
-		out[i].VendorID = wmi.AsString(row["VendorID"])
-		out[i].VirtualIfTunnelId = wmi.AsUint64(row["VirtualIfTunnelId"])
+		out[i] = MSFTNetMainModeSAFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetMainModeSA returns the MSFT_NetMainModeSA instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetMainModeSA(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*MSFTNetMainModeSA, error) {
-	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
-		" AND " + "Name = " + wmi.WQLValue(name) +
-		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
-		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+// QueryOneMSFTNetMainModeSA returns the single MSFT_NetMainModeSA matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetMainModeSA(svc *wmi.Service, where string) (*MSFTNetMainModeSA, error) {
 	out, err := QueryMSFTNetMainModeSA(svc, where)
 	if err != nil {
 		return nil, err
@@ -11629,8 +10256,19 @@ func GetMSFTNetMainModeSA(svc *wmi.Service, creationClassName string, name strin
 	return &out[0], nil
 }
 
+// GetMSFTNetMainModeSA returns the MSFT_NetMainModeSA instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetMainModeSA(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*MSFTNetMainModeSA, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "Name = " + wmi.WQLValue(name) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	return QueryOneMSFTNetMainModeSA(svc, where)
+}
+
 // QueryMSFTNetNat runs the WQL query against the class and decodes each
-// instance into a MSFTNetNat. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetNat. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetNat(svc *wmi.Service, where string) ([]MSFTNetNat, error) {
 	q := "SELECT * FROM MSFT_NetNat"
 	if where != "" {
@@ -11642,31 +10280,14 @@ func QueryMSFTNetNat(svc *wmi.Service, where string) ([]MSFTNetNat, error) {
 	}
 	out := make([]MSFTNetNat, len(rows))
 	for i, row := range rows {
-		out[i].Active = wmi.AsUint8(row["Active"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].ExternalIPInterfaceAddressPrefix = wmi.AsString(row["ExternalIPInterfaceAddressPrefix"])
-		out[i].IcmpQueryTimeout = wmi.AsUint32(row["IcmpQueryTimeout"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].InternalIPInterfaceAddressPrefix = wmi.AsString(row["InternalIPInterfaceAddressPrefix"])
-		out[i].InternalRoutingDomainId = wmi.AsString(row["InternalRoutingDomainId"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].Store = wmi.AsUint32(row["Store"])
-		out[i].TcpEstablishedConnectionTimeout = wmi.AsUint32(row["TcpEstablishedConnectionTimeout"])
-		out[i].TcpFilteringBehavior = wmi.AsUint8(row["TcpFilteringBehavior"])
-		out[i].TcpTransientConnectionTimeout = wmi.AsUint32(row["TcpTransientConnectionTimeout"])
-		out[i].UdpFilteringBehavior = wmi.AsUint8(row["UdpFilteringBehavior"])
-		out[i].UdpIdleSessionTimeout = wmi.AsUint32(row["UdpIdleSessionTimeout"])
-		out[i].UdpInboundRefresh = wmi.AsUint8(row["UdpInboundRefresh"])
+		out[i] = MSFTNetNatFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetNat returns the MSFT_NetNat instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetNat(svc *wmi.Service, instanceID string) (*MSFTNetNat, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetNat returns the single MSFT_NetNat matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetNat(svc *wmi.Service, where string) (*MSFTNetNat, error) {
 	out, err := QueryMSFTNetNat(svc, where)
 	if err != nil {
 		return nil, err
@@ -11677,8 +10298,16 @@ func GetMSFTNetNat(svc *wmi.Service, instanceID string) (*MSFTNetNat, error) {
 	return &out[0], nil
 }
 
+// GetMSFTNetNat returns the MSFT_NetNat instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetNat(svc *wmi.Service, instanceID string) (*MSFTNetNat, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetNat(svc, where)
+}
+
 // QueryMSFTNetNatExternalAddress runs the WQL query against the class and decodes each
-// instance into a MSFTNetNatExternalAddress. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetNatExternalAddress. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetNatExternalAddress(svc *wmi.Service, where string) ([]MSFTNetNatExternalAddress, error) {
 	q := "SELECT * FROM MSFT_NetNatExternalAddress"
 	if where != "" {
@@ -11690,24 +10319,14 @@ func QueryMSFTNetNatExternalAddress(svc *wmi.Service, where string) ([]MSFTNetNa
 	}
 	out := make([]MSFTNetNatExternalAddress, len(rows))
 	for i, row := range rows {
-		out[i].Active = wmi.AsUint8(row["Active"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].ExternalAddressID = wmi.AsUint32(row["ExternalAddressID"])
-		out[i].IPAddress = wmi.AsString(row["IPAddress"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].NatName = wmi.AsString(row["NatName"])
-		out[i].PortEnd = wmi.AsUint16(row["PortEnd"])
-		out[i].PortStart = wmi.AsUint16(row["PortStart"])
+		out[i] = MSFTNetNatExternalAddressFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetNatExternalAddress returns the MSFT_NetNatExternalAddress instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetNatExternalAddress(svc *wmi.Service, instanceID string) (*MSFTNetNatExternalAddress, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetNatExternalAddress returns the single MSFT_NetNatExternalAddress matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetNatExternalAddress(svc *wmi.Service, where string) (*MSFTNetNatExternalAddress, error) {
 	out, err := QueryMSFTNetNatExternalAddress(svc, where)
 	if err != nil {
 		return nil, err
@@ -11718,8 +10337,16 @@ func GetMSFTNetNatExternalAddress(svc *wmi.Service, instanceID string) (*MSFTNet
 	return &out[0], nil
 }
 
+// GetMSFTNetNatExternalAddress returns the MSFT_NetNatExternalAddress instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetNatExternalAddress(svc *wmi.Service, instanceID string) (*MSFTNetNatExternalAddress, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetNatExternalAddress(svc, where)
+}
+
 // QueryMSFTNetNatGlobal runs the WQL query against the class and decodes each
-// instance into a MSFTNetNatGlobal. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetNatGlobal. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetNatGlobal(svc *wmi.Service, where string) ([]MSFTNetNatGlobal, error) {
 	q := "SELECT * FROM MSFT_NetNatGlobal"
 	if where != "" {
@@ -11731,19 +10358,14 @@ func QueryMSFTNetNatGlobal(svc *wmi.Service, where string) ([]MSFTNetNatGlobal, 
 	}
 	out := make([]MSFTNetNatGlobal, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].InterRoutingDomainHairpinningMode = wmi.AsUint32(row["InterRoutingDomainHairpinningMode"])
+		out[i] = MSFTNetNatGlobalFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetNatGlobal returns the MSFT_NetNatGlobal instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetNatGlobal(svc *wmi.Service, instanceID string) (*MSFTNetNatGlobal, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetNatGlobal returns the single MSFT_NetNatGlobal matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetNatGlobal(svc *wmi.Service, where string) (*MSFTNetNatGlobal, error) {
 	out, err := QueryMSFTNetNatGlobal(svc, where)
 	if err != nil {
 		return nil, err
@@ -11754,8 +10376,16 @@ func GetMSFTNetNatGlobal(svc *wmi.Service, instanceID string) (*MSFTNetNatGlobal
 	return &out[0], nil
 }
 
+// GetMSFTNetNatGlobal returns the MSFT_NetNatGlobal instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetNatGlobal(svc *wmi.Service, instanceID string) (*MSFTNetNatGlobal, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetNatGlobal(svc, where)
+}
+
 // QueryMSFTNetNatSession runs the WQL query against the class and decodes each
-// instance into a MSFTNetNatSession. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetNatSession. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetNatSession(svc *wmi.Service, where string) ([]MSFTNetNatSession, error) {
 	q := "SELECT * FROM MSFT_NetNatSession"
 	if where != "" {
@@ -11767,30 +10397,14 @@ func QueryMSFTNetNatSession(svc *wmi.Service, where string) ([]MSFTNetNatSession
 	}
 	out := make([]MSFTNetNatSession, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CreationTime = wmi.AsString(row["CreationTime"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].ExternalDestinationAddress = wmi.AsString(row["ExternalDestinationAddress"])
-		out[i].ExternalDestinationPort = wmi.AsUint16(row["ExternalDestinationPort"])
-		out[i].ExternalSourceAddress = wmi.AsString(row["ExternalSourceAddress"])
-		out[i].ExternalSourcePort = wmi.AsUint16(row["ExternalSourcePort"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].InternalDestinationAddress = wmi.AsString(row["InternalDestinationAddress"])
-		out[i].InternalDestinationPort = wmi.AsUint16(row["InternalDestinationPort"])
-		out[i].InternalRoutingDomainId = wmi.AsString(row["InternalRoutingDomainId"])
-		out[i].InternalSourceAddress = wmi.AsString(row["InternalSourceAddress"])
-		out[i].InternalSourcePort = wmi.AsUint16(row["InternalSourcePort"])
-		out[i].NatName = wmi.AsString(row["NatName"])
-		out[i].Protocol = wmi.AsUint32(row["Protocol"])
+		out[i] = MSFTNetNatSessionFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetNatSession returns the MSFT_NetNatSession instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetNatSession(svc *wmi.Service, instanceID string) (*MSFTNetNatSession, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetNatSession returns the single MSFT_NetNatSession matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetNatSession(svc *wmi.Service, where string) (*MSFTNetNatSession, error) {
 	out, err := QueryMSFTNetNatSession(svc, where)
 	if err != nil {
 		return nil, err
@@ -11801,8 +10415,16 @@ func GetMSFTNetNatSession(svc *wmi.Service, instanceID string) (*MSFTNetNatSessi
 	return &out[0], nil
 }
 
+// GetMSFTNetNatSession returns the MSFT_NetNatSession instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetNatSession(svc *wmi.Service, instanceID string) (*MSFTNetNatSession, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetNatSession(svc, where)
+}
+
 // QueryMSFTNetNatStaticMapping runs the WQL query against the class and decodes each
-// instance into a MSFTNetNatStaticMapping. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetNatStaticMapping. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetNatStaticMapping(svc *wmi.Service, where string) ([]MSFTNetNatStaticMapping, error) {
 	q := "SELECT * FROM MSFT_NetNatStaticMapping"
 	if where != "" {
@@ -11814,28 +10436,14 @@ func QueryMSFTNetNatStaticMapping(svc *wmi.Service, where string) ([]MSFTNetNatS
 	}
 	out := make([]MSFTNetNatStaticMapping, len(rows))
 	for i, row := range rows {
-		out[i].Active = wmi.AsUint8(row["Active"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].ExternalIPAddress = wmi.AsString(row["ExternalIPAddress"])
-		out[i].ExternalPort = wmi.AsUint16(row["ExternalPort"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].InternalIPAddress = wmi.AsString(row["InternalIPAddress"])
-		out[i].InternalPort = wmi.AsUint16(row["InternalPort"])
-		out[i].InternalRoutingDomainId = wmi.AsString(row["InternalRoutingDomainId"])
-		out[i].NatName = wmi.AsString(row["NatName"])
-		out[i].Protocol = wmi.AsUint32(row["Protocol"])
-		out[i].RemoteExternalIPAddressPrefix = wmi.AsString(row["RemoteExternalIPAddressPrefix"])
-		out[i].StaticMappingID = wmi.AsUint32(row["StaticMappingID"])
+		out[i] = MSFTNetNatStaticMappingFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetNatStaticMapping returns the MSFT_NetNatStaticMapping instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetNatStaticMapping(svc *wmi.Service, instanceID string) (*MSFTNetNatStaticMapping, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetNatStaticMapping returns the single MSFT_NetNatStaticMapping matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetNatStaticMapping(svc *wmi.Service, where string) (*MSFTNetNatStaticMapping, error) {
 	out, err := QueryMSFTNetNatStaticMapping(svc, where)
 	if err != nil {
 		return nil, err
@@ -11846,8 +10454,16 @@ func GetMSFTNetNatStaticMapping(svc *wmi.Service, instanceID string) (*MSFTNetNa
 	return &out[0], nil
 }
 
+// GetMSFTNetNatStaticMapping returns the MSFT_NetNatStaticMapping instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetNatStaticMapping(svc *wmi.Service, instanceID string) (*MSFTNetNatStaticMapping, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetNatStaticMapping(svc, where)
+}
+
 // QueryMSFTNetNatTransitionConfiguration runs the WQL query against the class and decodes each
-// instance into a MSFTNetNatTransitionConfiguration. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetNatTransitionConfiguration. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetNatTransitionConfiguration(svc *wmi.Service, where string) ([]MSFTNetNatTransitionConfiguration, error) {
 	q := "SELECT * FROM MSFT_NetNatTransitionConfiguration"
 	if where != "" {
@@ -11859,26 +10475,14 @@ func QueryMSFTNetNatTransitionConfiguration(svc *wmi.Service, where string) ([]M
 	}
 	out := make([]MSFTNetNatTransitionConfiguration, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].IPv4AddressPortPool = wmi.AsStringSlice(row["IPv4AddressPortPool"])
-		out[i].InboundInterface = wmi.AsStringSlice(row["InboundInterface"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].InstanceName = wmi.AsString(row["InstanceName"])
-		out[i].OutboundInterface = wmi.AsStringSlice(row["OutboundInterface"])
-		out[i].PolicyStore = wmi.AsUint32(row["PolicyStore"])
-		out[i].PrefixMapping = wmi.AsStringSlice(row["PrefixMapping"])
-		out[i].State = wmi.AsUint32(row["State"])
-		out[i].TcpMappingTimeout = wmi.AsUint32(row["TcpMappingTimeout"])
+		out[i] = MSFTNetNatTransitionConfigurationFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetNatTransitionConfiguration returns the MSFT_NetNatTransitionConfiguration instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetNatTransitionConfiguration(svc *wmi.Service, instanceID string) (*MSFTNetNatTransitionConfiguration, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetNatTransitionConfiguration returns the single MSFT_NetNatTransitionConfiguration matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetNatTransitionConfiguration(svc *wmi.Service, where string) (*MSFTNetNatTransitionConfiguration, error) {
 	out, err := QueryMSFTNetNatTransitionConfiguration(svc, where)
 	if err != nil {
 		return nil, err
@@ -11889,8 +10493,16 @@ func GetMSFTNetNatTransitionConfiguration(svc *wmi.Service, instanceID string) (
 	return &out[0], nil
 }
 
+// GetMSFTNetNatTransitionConfiguration returns the MSFT_NetNatTransitionConfiguration instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetNatTransitionConfiguration(svc *wmi.Service, instanceID string) (*MSFTNetNatTransitionConfiguration, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetNatTransitionConfiguration(svc, where)
+}
+
 // QueryMSFTNetNatTransitionInterfaceAssociation runs the WQL query against the class and decodes each
-// instance into a MSFTNetNatTransitionInterfaceAssociation. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetNatTransitionInterfaceAssociation. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetNatTransitionInterfaceAssociation(svc *wmi.Service, where string) ([]MSFTNetNatTransitionInterfaceAssociation, error) {
 	q := "SELECT * FROM MSFT_NetNatTransitionInterfaceAssociation"
 	if where != "" {
@@ -11902,20 +10514,14 @@ func QueryMSFTNetNatTransitionInterfaceAssociation(svc *wmi.Service, where strin
 	}
 	out := make([]MSFTNetNatTransitionInterfaceAssociation, len(rows))
 	for i, row := range rows {
-		out[i].IsCurrent = wmi.AsUint16(row["IsCurrent"])
-		out[i].IsDefault = wmi.AsUint16(row["IsDefault"])
-		out[i].IsNext = wmi.AsUint16(row["IsNext"])
-		out[i].ManagedElement = wmi.AsString(row["ManagedElement"])
-		out[i].SettingData = wmi.AsString(row["SettingData"])
+		out[i] = MSFTNetNatTransitionInterfaceAssociationFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetNatTransitionInterfaceAssociation returns the MSFT_NetNatTransitionInterfaceAssociation instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetNatTransitionInterfaceAssociation(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetNatTransitionInterfaceAssociation, error) {
-	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
-		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+// QueryOneMSFTNetNatTransitionInterfaceAssociation returns the single MSFT_NetNatTransitionInterfaceAssociation matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetNatTransitionInterfaceAssociation(svc *wmi.Service, where string) (*MSFTNetNatTransitionInterfaceAssociation, error) {
 	out, err := QueryMSFTNetNatTransitionInterfaceAssociation(svc, where)
 	if err != nil {
 		return nil, err
@@ -11926,8 +10532,17 @@ func GetMSFTNetNatTransitionInterfaceAssociation(svc *wmi.Service, managedElemen
 	return &out[0], nil
 }
 
+// GetMSFTNetNatTransitionInterfaceAssociation returns the MSFT_NetNatTransitionInterfaceAssociation instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetNatTransitionInterfaceAssociation(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetNatTransitionInterfaceAssociation, error) {
+	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
+		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+	return QueryOneMSFTNetNatTransitionInterfaceAssociation(svc, where)
+}
+
 // QueryMSFTNetNatTransitionMonitoring runs the WQL query against the class and decodes each
-// instance into a MSFTNetNatTransitionMonitoring. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetNatTransitionMonitoring. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetNatTransitionMonitoring(svc *wmi.Service, where string) ([]MSFTNetNatTransitionMonitoring, error) {
 	q := "SELECT * FROM MSFT_NetNatTransitionMonitoring"
 	if where != "" {
@@ -11939,22 +10554,14 @@ func QueryMSFTNetNatTransitionMonitoring(svc *wmi.Service, where string) ([]MSFT
 	}
 	out := make([]MSFTNetNatTransitionMonitoring, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].InboundAddress = wmi.AsString(row["InboundAddress"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].NatOutboundAddress = wmi.AsString(row["NatOutboundAddress"])
-		out[i].OutboundAddress = wmi.AsString(row["OutboundAddress"])
-		out[i].TransportProtocol = wmi.AsUint32(row["TransportProtocol"])
+		out[i] = MSFTNetNatTransitionMonitoringFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetNatTransitionMonitoring returns the MSFT_NetNatTransitionMonitoring instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetNatTransitionMonitoring(svc *wmi.Service, instanceID string) (*MSFTNetNatTransitionMonitoring, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetNatTransitionMonitoring returns the single MSFT_NetNatTransitionMonitoring matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetNatTransitionMonitoring(svc *wmi.Service, where string) (*MSFTNetNatTransitionMonitoring, error) {
 	out, err := QueryMSFTNetNatTransitionMonitoring(svc, where)
 	if err != nil {
 		return nil, err
@@ -11965,8 +10572,16 @@ func GetMSFTNetNatTransitionMonitoring(svc *wmi.Service, instanceID string) (*MS
 	return &out[0], nil
 }
 
+// GetMSFTNetNatTransitionMonitoring returns the MSFT_NetNatTransitionMonitoring instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetNatTransitionMonitoring(svc *wmi.Service, instanceID string) (*MSFTNetNatTransitionMonitoring, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetNatTransitionMonitoring(svc, where)
+}
+
 // QueryMSFTNetNeighbor runs the WQL query against the class and decodes each
-// instance into a MSFTNetNeighbor. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetNeighbor. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetNeighbor(svc *wmi.Service, where string) ([]MSFTNetNeighbor, error) {
 	q := "SELECT * FROM MSFT_NetNeighbor"
 	if where != "" {
@@ -11978,53 +10593,14 @@ func QueryMSFTNetNeighbor(svc *wmi.Service, where string) ([]MSFTNetNeighbor, er
 	}
 	out := make([]MSFTNetNeighbor, len(rows))
 	for i, row := range rows {
-		out[i].AccessContext = wmi.AsUint16(row["AccessContext"])
-		out[i].AccessInfo = wmi.AsString(row["AccessInfo"])
-		out[i].AddressFamily = wmi.AsUint16(row["AddressFamily"])
-		out[i].AvailableRequestedStates = wmi.AsUint16Slice(row["AvailableRequestedStates"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CommunicationStatus = wmi.AsUint16(row["CommunicationStatus"])
-		out[i].CreationClassName = wmi.AsString(row["CreationClassName"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DetailedStatus = wmi.AsUint16(row["DetailedStatus"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].EnabledDefault = wmi.AsUint16(row["EnabledDefault"])
-		out[i].EnabledState = wmi.AsUint16(row["EnabledState"])
-		out[i].HealthState = wmi.AsUint16(row["HealthState"])
-		out[i].IPAddress = wmi.AsString(row["IPAddress"])
-		out[i].InfoFormat = wmi.AsUint16(row["InfoFormat"])
-		out[i].InstallDate = wmi.AsString(row["InstallDate"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].InterfaceAlias = wmi.AsString(row["InterfaceAlias"])
-		out[i].InterfaceIndex = wmi.AsUint32(row["InterfaceIndex"])
-		out[i].LinkLayerAddress = wmi.AsString(row["LinkLayerAddress"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].OperatingStatus = wmi.AsUint16(row["OperatingStatus"])
-		out[i].OperationalStatus = wmi.AsUint16Slice(row["OperationalStatus"])
-		out[i].OtherAccessContext = wmi.AsString(row["OtherAccessContext"])
-		out[i].OtherEnabledState = wmi.AsString(row["OtherEnabledState"])
-		out[i].OtherInfoFormatDescription = wmi.AsString(row["OtherInfoFormatDescription"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].RequestedState = wmi.AsUint16(row["RequestedState"])
-		out[i].State = wmi.AsUint8(row["State"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusDescriptions = wmi.AsStringSlice(row["StatusDescriptions"])
-		out[i].Store = wmi.AsUint8(row["Store"])
-		out[i].SystemCreationClassName = wmi.AsString(row["SystemCreationClassName"])
-		out[i].SystemName = wmi.AsString(row["SystemName"])
-		out[i].TimeOfLastStateChange = wmi.AsString(row["TimeOfLastStateChange"])
-		out[i].TransitioningToState = wmi.AsUint16(row["TransitioningToState"])
+		out[i] = MSFTNetNeighborFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetNeighbor returns the MSFT_NetNeighbor instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetNeighbor(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*MSFTNetNeighbor, error) {
-	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
-		" AND " + "Name = " + wmi.WQLValue(name) +
-		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
-		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+// QueryOneMSFTNetNeighbor returns the single MSFT_NetNeighbor matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetNeighbor(svc *wmi.Service, where string) (*MSFTNetNeighbor, error) {
 	out, err := QueryMSFTNetNeighbor(svc, where)
 	if err != nil {
 		return nil, err
@@ -12035,8 +10611,19 @@ func GetMSFTNetNeighbor(svc *wmi.Service, creationClassName string, name string,
 	return &out[0], nil
 }
 
+// GetMSFTNetNeighbor returns the MSFT_NetNeighbor instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetNeighbor(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*MSFTNetNeighbor, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "Name = " + wmi.WQLValue(name) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	return QueryOneMSFTNetNeighbor(svc, where)
+}
+
 // QueryMSFTNetNetworkLayerSecurityFilter runs the WQL query against the class and decodes each
-// instance into a MSFTNetNetworkLayerSecurityFilter. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetNetworkLayerSecurityFilter. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetNetworkLayerSecurityFilter(svc *wmi.Service, where string) ([]MSFTNetNetworkLayerSecurityFilter, error) {
 	q := "SELECT * FROM MSFT_NetNetworkLayerSecurityFilter"
 	if where != "" {
@@ -12048,41 +10635,14 @@ func QueryMSFTNetNetworkLayerSecurityFilter(svc *wmi.Service, where string) ([]M
 	}
 	out := make([]MSFTNetNetworkLayerSecurityFilter, len(rows))
 	for i, row := range rows {
-		out[i].Authentication = wmi.AsUint16(row["Authentication"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CommunicationStatus = wmi.AsUint16(row["CommunicationStatus"])
-		out[i].CreationClassName = wmi.AsString(row["CreationClassName"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DetailedStatus = wmi.AsUint16(row["DetailedStatus"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].Encryption = wmi.AsUint16(row["Encryption"])
-		out[i].HealthState = wmi.AsUint16(row["HealthState"])
-		out[i].InstallDate = wmi.AsString(row["InstallDate"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].IsNegated = wmi.AsBool(row["IsNegated"])
-		out[i].LocalUsers = wmi.AsString(row["LocalUsers"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].OperatingStatus = wmi.AsUint16(row["OperatingStatus"])
-		out[i].OperationalStatus = wmi.AsUint16Slice(row["OperationalStatus"])
-		out[i].OverrideBlockRules = wmi.AsBool(row["OverrideBlockRules"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].RemoteMachines = wmi.AsString(row["RemoteMachines"])
-		out[i].RemoteUsers = wmi.AsString(row["RemoteUsers"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusDescriptions = wmi.AsStringSlice(row["StatusDescriptions"])
-		out[i].SystemCreationClassName = wmi.AsString(row["SystemCreationClassName"])
-		out[i].SystemName = wmi.AsString(row["SystemName"])
+		out[i] = MSFTNetNetworkLayerSecurityFilterFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetNetworkLayerSecurityFilter returns the MSFT_NetNetworkLayerSecurityFilter instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetNetworkLayerSecurityFilter(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*MSFTNetNetworkLayerSecurityFilter, error) {
-	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
-		" AND " + "Name = " + wmi.WQLValue(name) +
-		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
-		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+// QueryOneMSFTNetNetworkLayerSecurityFilter returns the single MSFT_NetNetworkLayerSecurityFilter matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetNetworkLayerSecurityFilter(svc *wmi.Service, where string) (*MSFTNetNetworkLayerSecurityFilter, error) {
 	out, err := QueryMSFTNetNetworkLayerSecurityFilter(svc, where)
 	if err != nil {
 		return nil, err
@@ -12093,8 +10653,19 @@ func GetMSFTNetNetworkLayerSecurityFilter(svc *wmi.Service, creationClassName st
 	return &out[0], nil
 }
 
+// GetMSFTNetNetworkLayerSecurityFilter returns the MSFT_NetNetworkLayerSecurityFilter instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetNetworkLayerSecurityFilter(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*MSFTNetNetworkLayerSecurityFilter, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "Name = " + wmi.WQLValue(name) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	return QueryOneMSFTNetNetworkLayerSecurityFilter(svc, where)
+}
+
 // QueryMSFTNetOffloadGlobalSetting runs the WQL query against the class and decodes each
-// instance into a MSFTNetOffloadGlobalSetting. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetOffloadGlobalSetting. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetOffloadGlobalSetting(svc *wmi.Service, where string) ([]MSFTNetOffloadGlobalSetting, error) {
 	q := "SELECT * FROM MSFT_NetOffloadGlobalSetting"
 	if where != "" {
@@ -12106,25 +10677,14 @@ func QueryMSFTNetOffloadGlobalSetting(svc *wmi.Service, where string) ([]MSFTNet
 	}
 	out := make([]MSFTNetOffloadGlobalSetting, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].Chimney = wmi.AsUint8(row["Chimney"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].NetworkDirect = wmi.AsUint8(row["NetworkDirect"])
-		out[i].NetworkDirectAcrossIPSubnets = wmi.AsUint8(row["NetworkDirectAcrossIPSubnets"])
-		out[i].PacketCoalescingFilter = wmi.AsUint8(row["PacketCoalescingFilter"])
-		out[i].ReceiveSegmentCoalescing = wmi.AsUint8(row["ReceiveSegmentCoalescing"])
-		out[i].ReceiveSideScaling = wmi.AsUint8(row["ReceiveSideScaling"])
-		out[i].TaskOffload = wmi.AsUint8(row["TaskOffload"])
+		out[i] = MSFTNetOffloadGlobalSettingFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetOffloadGlobalSetting returns the MSFT_NetOffloadGlobalSetting instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetOffloadGlobalSetting(svc *wmi.Service, instanceID string) (*MSFTNetOffloadGlobalSetting, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetOffloadGlobalSetting returns the single MSFT_NetOffloadGlobalSetting matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetOffloadGlobalSetting(svc *wmi.Service, where string) (*MSFTNetOffloadGlobalSetting, error) {
 	out, err := QueryMSFTNetOffloadGlobalSetting(svc, where)
 	if err != nil {
 		return nil, err
@@ -12135,8 +10695,16 @@ func GetMSFTNetOffloadGlobalSetting(svc *wmi.Service, instanceID string) (*MSFTN
 	return &out[0], nil
 }
 
+// GetMSFTNetOffloadGlobalSetting returns the MSFT_NetOffloadGlobalSetting instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetOffloadGlobalSetting(svc *wmi.Service, instanceID string) (*MSFTNetOffloadGlobalSetting, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetOffloadGlobalSetting(svc, where)
+}
+
 // QueryMSFTNetPolicyRuleFilters runs the WQL query against the class and decodes each
-// instance into a MSFTNetPolicyRuleFilters. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetPolicyRuleFilters. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetPolicyRuleFilters(svc *wmi.Service, where string) ([]MSFTNetPolicyRuleFilters, error) {
 	q := "SELECT * FROM MSFT_NetPolicyRuleFilters"
 	if where != "" {
@@ -12148,17 +10716,14 @@ func QueryMSFTNetPolicyRuleFilters(svc *wmi.Service, where string) ([]MSFTNetPol
 	}
 	out := make([]MSFTNetPolicyRuleFilters, len(rows))
 	for i, row := range rows {
-		out[i].GroupComponent = wmi.AsString(row["GroupComponent"])
-		out[i].PartComponent = wmi.AsString(row["PartComponent"])
+		out[i] = MSFTNetPolicyRuleFiltersFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetPolicyRuleFilters returns the MSFT_NetPolicyRuleFilters instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetPolicyRuleFilters(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetPolicyRuleFilters, error) {
-	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
-		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+// QueryOneMSFTNetPolicyRuleFilters returns the single MSFT_NetPolicyRuleFilters matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetPolicyRuleFilters(svc *wmi.Service, where string) (*MSFTNetPolicyRuleFilters, error) {
 	out, err := QueryMSFTNetPolicyRuleFilters(svc, where)
 	if err != nil {
 		return nil, err
@@ -12169,8 +10734,17 @@ func GetMSFTNetPolicyRuleFilters(svc *wmi.Service, groupComponent string, partCo
 	return &out[0], nil
 }
 
+// GetMSFTNetPolicyRuleFilters returns the MSFT_NetPolicyRuleFilters instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetPolicyRuleFilters(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetPolicyRuleFilters, error) {
+	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
+		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+	return QueryOneMSFTNetPolicyRuleFilters(svc, where)
+}
+
 // QueryMSFTNetPrefixPolicy runs the WQL query against the class and decodes each
-// instance into a MSFTNetPrefixPolicy. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetPrefixPolicy. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetPrefixPolicy(svc *wmi.Service, where string) ([]MSFTNetPrefixPolicy, error) {
 	q := "SELECT * FROM MSFT_NetPrefixPolicy"
 	if where != "" {
@@ -12182,23 +10756,14 @@ func QueryMSFTNetPrefixPolicy(svc *wmi.Service, where string) ([]MSFTNetPrefixPo
 	}
 	out := make([]MSFTNetPrefixPolicy, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].Label = wmi.AsUint32(row["Label"])
-		out[i].Precedence = wmi.AsUint32(row["Precedence"])
-		out[i].Prefix = wmi.AsString(row["Prefix"])
-		out[i].Store = wmi.AsUint8(row["Store"])
+		out[i] = MSFTNetPrefixPolicyFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetPrefixPolicy returns the MSFT_NetPrefixPolicy instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetPrefixPolicy(svc *wmi.Service, prefix string, store uint8) (*MSFTNetPrefixPolicy, error) {
-	where := "Prefix = " + wmi.WQLValue(prefix) +
-		" AND " + "Store = " + wmi.WQLValue(store)
+// QueryOneMSFTNetPrefixPolicy returns the single MSFT_NetPrefixPolicy matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetPrefixPolicy(svc *wmi.Service, where string) (*MSFTNetPrefixPolicy, error) {
 	out, err := QueryMSFTNetPrefixPolicy(svc, where)
 	if err != nil {
 		return nil, err
@@ -12209,8 +10774,17 @@ func GetMSFTNetPrefixPolicy(svc *wmi.Service, prefix string, store uint8) (*MSFT
 	return &out[0], nil
 }
 
+// GetMSFTNetPrefixPolicy returns the MSFT_NetPrefixPolicy instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetPrefixPolicy(svc *wmi.Service, prefix string, store MSFTNetPrefixPolicyStore) (*MSFTNetPrefixPolicy, error) {
+	where := "Prefix = " + wmi.WQLValue(prefix) +
+		" AND " + "Store = " + wmi.WQLValue(store)
+	return QueryOneMSFTNetPrefixPolicy(svc, where)
+}
+
 // QueryMSFTNetProtocolPortFilter runs the WQL query against the class and decodes each
-// instance into a MSFTNetProtocolPortFilter. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetProtocolPortFilter. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetProtocolPortFilter(svc *wmi.Service, where string) ([]MSFTNetProtocolPortFilter, error) {
 	q := "SELECT * FROM MSFT_NetProtocolPortFilter"
 	if where != "" {
@@ -12222,40 +10796,14 @@ func QueryMSFTNetProtocolPortFilter(svc *wmi.Service, where string) ([]MSFTNetPr
 	}
 	out := make([]MSFTNetProtocolPortFilter, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CommunicationStatus = wmi.AsUint16(row["CommunicationStatus"])
-		out[i].CreationClassName = wmi.AsString(row["CreationClassName"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DetailedStatus = wmi.AsUint16(row["DetailedStatus"])
-		out[i].DynamicTransport = wmi.AsUint32(row["DynamicTransport"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].HealthState = wmi.AsUint16(row["HealthState"])
-		out[i].IcmpType = wmi.AsStringSlice(row["IcmpType"])
-		out[i].InstallDate = wmi.AsString(row["InstallDate"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].IsNegated = wmi.AsBool(row["IsNegated"])
-		out[i].LocalPort = wmi.AsStringSlice(row["LocalPort"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].OperatingStatus = wmi.AsUint16(row["OperatingStatus"])
-		out[i].OperationalStatus = wmi.AsUint16Slice(row["OperationalStatus"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].Protocol = wmi.AsString(row["Protocol"])
-		out[i].RemotePort = wmi.AsStringSlice(row["RemotePort"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusDescriptions = wmi.AsStringSlice(row["StatusDescriptions"])
-		out[i].SystemCreationClassName = wmi.AsString(row["SystemCreationClassName"])
-		out[i].SystemName = wmi.AsString(row["SystemName"])
+		out[i] = MSFTNetProtocolPortFilterFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetProtocolPortFilter returns the MSFT_NetProtocolPortFilter instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetProtocolPortFilter(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*MSFTNetProtocolPortFilter, error) {
-	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
-		" AND " + "Name = " + wmi.WQLValue(name) +
-		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
-		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+// QueryOneMSFTNetProtocolPortFilter returns the single MSFT_NetProtocolPortFilter matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetProtocolPortFilter(svc *wmi.Service, where string) (*MSFTNetProtocolPortFilter, error) {
 	out, err := QueryMSFTNetProtocolPortFilter(svc, where)
 	if err != nil {
 		return nil, err
@@ -12266,8 +10814,19 @@ func GetMSFTNetProtocolPortFilter(svc *wmi.Service, creationClassName string, na
 	return &out[0], nil
 }
 
+// GetMSFTNetProtocolPortFilter returns the MSFT_NetProtocolPortFilter instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetProtocolPortFilter(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*MSFTNetProtocolPortFilter, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "Name = " + wmi.WQLValue(name) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	return QueryOneMSFTNetProtocolPortFilter(svc, where)
+}
+
 // QueryMSFTNetQosPolicySettingData runs the WQL query against the class and decodes each
-// instance into a MSFTNetQosPolicySettingData. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetQosPolicySettingData. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetQosPolicySettingData(svc *wmi.Service, where string) ([]MSFTNetQosPolicySettingData, error) {
 	q := "SELECT * FROM MSFT_NetQosPolicySettingData"
 	if where != "" {
@@ -12279,42 +10838,14 @@ func QueryMSFTNetQosPolicySettingData(svc *wmi.Service, where string) ([]MSFTNet
 	}
 	out := make([]MSFTNetQosPolicySettingData, len(rows))
 	for i, row := range rows {
-		out[i].AppPathNameMatchCondition = wmi.AsString(row["AppPathNameMatchCondition"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].DSCPAction = wmi.AsInt8(row["DSCPAction"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].IPDstPortEndMatchCondition = wmi.AsUint16(row["IPDstPortEndMatchCondition"])
-		out[i].IPDstPortStartMatchCondition = wmi.AsUint16(row["IPDstPortStartMatchCondition"])
-		out[i].IPDstPrefixMatchCondition = wmi.AsString(row["IPDstPrefixMatchCondition"])
-		out[i].IPPortMatchCondition = wmi.AsUint16(row["IPPortMatchCondition"])
-		out[i].IPProtocolMatchCondition = wmi.AsUint32(row["IPProtocolMatchCondition"])
-		out[i].IPSrcPortEndMatchCondition = wmi.AsUint16(row["IPSrcPortEndMatchCondition"])
-		out[i].IPSrcPortStartMatchCondition = wmi.AsUint16(row["IPSrcPortStartMatchCondition"])
-		out[i].IPSrcPrefixMatchCondition = wmi.AsString(row["IPSrcPrefixMatchCondition"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].JobObjectMatchCondition = wmi.AsString(row["JobObjectMatchCondition"])
-		out[i].MinBandwidthWeightAction = wmi.AsUint8(row["MinBandwidthWeightAction"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].NetDirectPortMatchCondition = wmi.AsUint16(row["NetDirectPortMatchCondition"])
-		out[i].NetworkProfile = wmi.AsUint32(row["NetworkProfile"])
-		out[i].Owner = wmi.AsString(row["Owner"])
-		out[i].Precedence = wmi.AsUint32(row["Precedence"])
-		out[i].PriorityValue8021Action = wmi.AsInt8(row["PriorityValue8021Action"])
-		out[i].TemplateMatchCondition = wmi.AsUint32(row["TemplateMatchCondition"])
-		out[i].ThrottleRateAction = wmi.AsUint64(row["ThrottleRateAction"])
-		out[i].URIMatchCondition = wmi.AsString(row["URIMatchCondition"])
-		out[i].URIRecursiveMatchCondition = wmi.AsBool(row["URIRecursiveMatchCondition"])
-		out[i].UserMatchCondition = wmi.AsString(row["UserMatchCondition"])
-		out[i].Version = wmi.AsString(row["Version"])
+		out[i] = MSFTNetQosPolicySettingDataFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetQosPolicySettingData returns the MSFT_NetQosPolicySettingData instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetQosPolicySettingData(svc *wmi.Service, instanceID string) (*MSFTNetQosPolicySettingData, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetQosPolicySettingData returns the single MSFT_NetQosPolicySettingData matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetQosPolicySettingData(svc *wmi.Service, where string) (*MSFTNetQosPolicySettingData, error) {
 	out, err := QueryMSFTNetQosPolicySettingData(svc, where)
 	if err != nil {
 		return nil, err
@@ -12325,8 +10856,16 @@ func GetMSFTNetQosPolicySettingData(svc *wmi.Service, instanceID string) (*MSFTN
 	return &out[0], nil
 }
 
+// GetMSFTNetQosPolicySettingData returns the MSFT_NetQosPolicySettingData instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetQosPolicySettingData(svc *wmi.Service, instanceID string) (*MSFTNetQosPolicySettingData, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetQosPolicySettingData(svc, where)
+}
+
 // QueryMSFTNetQuickModeSA runs the WQL query against the class and decodes each
-// instance into a MSFTNetQuickModeSA. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetQuickModeSA. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetQuickModeSA(svc *wmi.Service, where string) ([]MSFTNetQuickModeSA, error) {
 	q := "SELECT * FROM MSFT_NetQuickModeSA"
 	if where != "" {
@@ -12338,88 +10877,14 @@ func QueryMSFTNetQuickModeSA(svc *wmi.Service, where string) ([]MSFTNetQuickMode
 	}
 	out := make([]MSFTNetQuickModeSA, len(rows))
 	for i, row := range rows {
-		out[i].AvailableRequestedStates = wmi.AsUint16Slice(row["AvailableRequestedStates"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CommunicationStatus = wmi.AsUint16(row["CommunicationStatus"])
-		out[i].CreationClassName = wmi.AsString(row["CreationClassName"])
-		out[i].DFHandling = wmi.AsUint16(row["DFHandling"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DetailedStatus = wmi.AsUint16(row["DetailedStatus"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].EmTargetName = wmi.AsString(row["EmTargetName"])
-		out[i].EnabledDefault = wmi.AsUint16(row["EnabledDefault"])
-		out[i].EnabledState = wmi.AsUint16(row["EnabledState"])
-		out[i].EncapsulationMode = wmi.AsUint16(row["EncapsulationMode"])
-		out[i].ExplicitCredentials = wmi.AsUint64(row["ExplicitCredentials"])
-		out[i].FirstCipherAlgorithm = wmi.AsUint32(row["FirstCipherAlgorithm"])
-		out[i].FirstIntegrityAlgorithm = wmi.AsUint32(row["FirstIntegrityAlgorithm"])
-		out[i].FirstTransformType = wmi.AsUint32(row["FirstTransformType"])
-		out[i].Flags = wmi.AsUint32(row["Flags"])
-		out[i].HealthState = wmi.AsUint16(row["HealthState"])
-		out[i].IdleDurationSeconds = wmi.AsUint64(row["IdleDurationSeconds"])
-		out[i].InboundDirection = wmi.AsBool(row["InboundDirection"])
-		out[i].InstallDate = wmi.AsString(row["InstallDate"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].InterfaceAlias = wmi.AsString(row["InterfaceAlias"])
-		out[i].IpProtocol = wmi.AsUint8(row["IpProtocol"])
-		out[i].LifetimeKilobytes = wmi.AsUint64(row["LifetimeKilobytes"])
-		out[i].LifetimePackets = wmi.AsUint64(row["LifetimePackets"])
-		out[i].LifetimeSeconds = wmi.AsUint64(row["LifetimeSeconds"])
-		out[i].LocalEndpoint = wmi.AsString(row["LocalEndpoint"])
-		out[i].LocalPort = wmi.AsUint16(row["LocalPort"])
-		out[i].LocalUdpEncapsulationPort = wmi.AsUint16(row["LocalUdpEncapsulationPort"])
-		out[i].MmSaId = wmi.AsUint64(row["MmSaId"])
-		out[i].MmTargetName = wmi.AsString(row["MmTargetName"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].NameFormat = wmi.AsString(row["NameFormat"])
-		out[i].NapContext = wmi.AsUint32(row["NapContext"])
-		out[i].NdAllowClearTimeoutSeconds = wmi.AsUint32(row["NdAllowClearTimeoutSeconds"])
-		out[i].OperatingStatus = wmi.AsUint16(row["OperatingStatus"])
-		out[i].OperationalStatus = wmi.AsUint16Slice(row["OperationalStatus"])
-		out[i].OtherEnabledState = wmi.AsString(row["OtherEnabledState"])
-		out[i].OtherTypeDescription = wmi.AsString(row["OtherTypeDescription"])
-		out[i].PFSInUse = wmi.AsBool(row["PFSInUse"])
-		out[i].PacketLoggingActive = wmi.AsBool(row["PacketLoggingActive"])
-		out[i].PeerV4PrivateAddress = wmi.AsString(row["PeerV4PrivateAddress"])
-		out[i].PfsGroupId = wmi.AsUint32(row["PfsGroupId"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].ProtocolIFType = wmi.AsUint16(row["ProtocolIFType"])
-		out[i].ProtocolType = wmi.AsUint16(row["ProtocolType"])
-		out[i].QmSaId = wmi.AsUint32(row["QmSaId"])
-		out[i].QuickModeFilterId = wmi.AsUint64(row["QuickModeFilterId"])
-		out[i].RealIfProfileId = wmi.AsUint64(row["RealIfProfileId"])
-		out[i].RefreshThresholdKbytesPercentage = wmi.AsUint8(row["RefreshThresholdKbytesPercentage"])
-		out[i].RefreshThresholdSecondsPercentage = wmi.AsUint8(row["RefreshThresholdSecondsPercentage"])
-		out[i].RemoteEndpoint = wmi.AsString(row["RemoteEndpoint"])
-		out[i].RemotePort = wmi.AsUint16(row["RemotePort"])
-		out[i].RemoteUdpEncapsulationPort = wmi.AsUint16(row["RemoteUdpEncapsulationPort"])
-		out[i].RequestedState = wmi.AsUint16(row["RequestedState"])
-		out[i].SPI = wmi.AsUint32(row["SPI"])
-		out[i].SecondCipherAlgorithm = wmi.AsUint32(row["SecondCipherAlgorithm"])
-		out[i].SecondIntegrityAlgorithm = wmi.AsUint32(row["SecondIntegrityAlgorithm"])
-		out[i].SecondSPI = wmi.AsUint32(row["SecondSPI"])
-		out[i].SecondTransformType = wmi.AsUint32(row["SecondTransformType"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusDescriptions = wmi.AsStringSlice(row["StatusDescriptions"])
-		out[i].SystemCreationClassName = wmi.AsString(row["SystemCreationClassName"])
-		out[i].SystemName = wmi.AsString(row["SystemName"])
-		out[i].TimeOfLastStateChange = wmi.AsString(row["TimeOfLastStateChange"])
-		out[i].TrafficLuid = wmi.AsUint64(row["TrafficLuid"])
-		out[i].TrafficSelectorId = wmi.AsUint64(row["TrafficSelectorId"])
-		out[i].TransitioningToState = wmi.AsUint16(row["TransitioningToState"])
-		out[i].TransportLayerFilterName = wmi.AsString(row["TransportLayerFilterName"])
-		out[i].VirtualIfTunnelId = wmi.AsUint64(row["VirtualIfTunnelId"])
+		out[i] = MSFTNetQuickModeSAFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetQuickModeSA returns the MSFT_NetQuickModeSA instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetQuickModeSA(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*MSFTNetQuickModeSA, error) {
-	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
-		" AND " + "Name = " + wmi.WQLValue(name) +
-		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
-		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+// QueryOneMSFTNetQuickModeSA returns the single MSFT_NetQuickModeSA matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetQuickModeSA(svc *wmi.Service, where string) (*MSFTNetQuickModeSA, error) {
 	out, err := QueryMSFTNetQuickModeSA(svc, where)
 	if err != nil {
 		return nil, err
@@ -12430,8 +10895,19 @@ func GetMSFTNetQuickModeSA(svc *wmi.Service, creationClassName string, name stri
 	return &out[0], nil
 }
 
+// GetMSFTNetQuickModeSA returns the MSFT_NetQuickModeSA instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetQuickModeSA(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*MSFTNetQuickModeSA, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "Name = " + wmi.WQLValue(name) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	return QueryOneMSFTNetQuickModeSA(svc, where)
+}
+
 // QueryMSFTNetRoute runs the WQL query against the class and decodes each
-// instance into a MSFTNetRoute. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetRoute. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetRoute(svc *wmi.Service, where string) ([]MSFTNetRoute, error) {
 	q := "SELECT * FROM MSFT_NetRoute"
 	if where != "" {
@@ -12443,36 +10919,14 @@ func QueryMSFTNetRoute(svc *wmi.Service, where string) ([]MSFTNetRoute, error) {
 	}
 	out := make([]MSFTNetRoute, len(rows))
 	for i, row := range rows {
-		out[i].AddressFamily = wmi.AsUint16(row["AddressFamily"])
-		out[i].AdminDistance = wmi.AsUint16(row["AdminDistance"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CompartmentId = wmi.AsUint32(row["CompartmentId"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DestinationAddress = wmi.AsString(row["DestinationAddress"])
-		out[i].DestinationPrefix = wmi.AsString(row["DestinationPrefix"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].InterfaceAlias = wmi.AsString(row["InterfaceAlias"])
-		out[i].InterfaceIndex = wmi.AsUint32(row["InterfaceIndex"])
-		out[i].InterfaceMetric = wmi.AsUint32(row["InterfaceMetric"])
-		out[i].IsStatic = wmi.AsBool(row["IsStatic"])
-		out[i].NextHop = wmi.AsString(row["NextHop"])
-		out[i].PreferredLifetime = wmi.AsString(row["PreferredLifetime"])
-		out[i].Protocol = wmi.AsUint16(row["Protocol"])
-		out[i].Publish = wmi.AsUint8(row["Publish"])
-		out[i].RouteMetric = wmi.AsUint16(row["RouteMetric"])
-		out[i].State = wmi.AsUint8(row["State"])
-		out[i].Store = wmi.AsUint8(row["Store"])
-		out[i].TypeOfRoute = wmi.AsUint16(row["TypeOfRoute"])
-		out[i].ValidLifetime = wmi.AsString(row["ValidLifetime"])
+		out[i] = MSFTNetRouteFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetRoute returns the MSFT_NetRoute instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetRoute(svc *wmi.Service, instanceID string) (*MSFTNetRoute, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetRoute returns the single MSFT_NetRoute matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetRoute(svc *wmi.Service, where string) (*MSFTNetRoute, error) {
 	out, err := QueryMSFTNetRoute(svc, where)
 	if err != nil {
 		return nil, err
@@ -12483,8 +10937,16 @@ func GetMSFTNetRoute(svc *wmi.Service, instanceID string) (*MSFTNetRoute, error)
 	return &out[0], nil
 }
 
+// GetMSFTNetRoute returns the MSFT_NetRoute instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetRoute(svc *wmi.Service, instanceID string) (*MSFTNetRoute, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetRoute(svc, where)
+}
+
 // QueryMSFTNetRuleInProfile runs the WQL query against the class and decodes each
-// instance into a MSFTNetRuleInProfile. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetRuleInProfile. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetRuleInProfile(svc *wmi.Service, where string) ([]MSFTNetRuleInProfile, error) {
 	q := "SELECT * FROM MSFT_NetRuleInProfile"
 	if where != "" {
@@ -12496,18 +10958,14 @@ func QueryMSFTNetRuleInProfile(svc *wmi.Service, where string) ([]MSFTNetRuleInP
 	}
 	out := make([]MSFTNetRuleInProfile, len(rows))
 	for i, row := range rows {
-		out[i].GroupComponent = wmi.AsString(row["GroupComponent"])
-		out[i].PartComponent = wmi.AsString(row["PartComponent"])
-		out[i].Priority = wmi.AsUint16(row["Priority"])
+		out[i] = MSFTNetRuleInProfileFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetRuleInProfile returns the MSFT_NetRuleInProfile instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetRuleInProfile(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetRuleInProfile, error) {
-	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
-		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+// QueryOneMSFTNetRuleInProfile returns the single MSFT_NetRuleInProfile matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetRuleInProfile(svc *wmi.Service, where string) (*MSFTNetRuleInProfile, error) {
 	out, err := QueryMSFTNetRuleInProfile(svc, where)
 	if err != nil {
 		return nil, err
@@ -12518,8 +10976,17 @@ func GetMSFTNetRuleInProfile(svc *wmi.Service, groupComponent string, partCompon
 	return &out[0], nil
 }
 
+// GetMSFTNetRuleInProfile returns the MSFT_NetRuleInProfile instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetRuleInProfile(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetRuleInProfile, error) {
+	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
+		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+	return QueryOneMSFTNetRuleInProfile(svc, where)
+}
+
 // QueryMSFTNetSAActionInSARule runs the WQL query against the class and decodes each
-// instance into a MSFTNetSAActionInSARule. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetSAActionInSARule. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetSAActionInSARule(svc *wmi.Service, where string) ([]MSFTNetSAActionInSARule, error) {
 	q := "SELECT * FROM MSFT_NetSAActionInSARule"
 	if where != "" {
@@ -12531,18 +10998,14 @@ func QueryMSFTNetSAActionInSARule(svc *wmi.Service, where string) ([]MSFTNetSAAc
 	}
 	out := make([]MSFTNetSAActionInSARule, len(rows))
 	for i, row := range rows {
-		out[i].ActionOrder = wmi.AsUint16(row["ActionOrder"])
-		out[i].GroupComponent = wmi.AsString(row["GroupComponent"])
-		out[i].PartComponent = wmi.AsString(row["PartComponent"])
+		out[i] = MSFTNetSAActionInSARuleFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetSAActionInSARule returns the MSFT_NetSAActionInSARule instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetSAActionInSARule(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetSAActionInSARule, error) {
-	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
-		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+// QueryOneMSFTNetSAActionInSARule returns the single MSFT_NetSAActionInSARule matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetSAActionInSARule(svc *wmi.Service, where string) (*MSFTNetSAActionInSARule, error) {
 	out, err := QueryMSFTNetSAActionInSARule(svc, where)
 	if err != nil {
 		return nil, err
@@ -12553,8 +11016,17 @@ func GetMSFTNetSAActionInSARule(svc *wmi.Service, groupComponent string, partCom
 	return &out[0], nil
 }
 
+// GetMSFTNetSAActionInSARule returns the MSFT_NetSAActionInSARule instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetSAActionInSARule(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetSAActionInSARule, error) {
+	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
+		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+	return QueryOneMSFTNetSAActionInSARule(svc, where)
+}
+
 // QueryMSFTNetSAAssociation runs the WQL query against the class and decodes each
-// instance into a MSFTNetSAAssociation. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetSAAssociation. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetSAAssociation(svc *wmi.Service, where string) ([]MSFTNetSAAssociation, error) {
 	q := "SELECT * FROM MSFT_NetSAAssociation"
 	if where != "" {
@@ -12566,17 +11038,14 @@ func QueryMSFTNetSAAssociation(svc *wmi.Service, where string) ([]MSFTNetSAAssoc
 	}
 	out := make([]MSFTNetSAAssociation, len(rows))
 	for i, row := range rows {
-		out[i].Antecedent = wmi.AsString(row["Antecedent"])
-		out[i].Dependent = wmi.AsString(row["Dependent"])
+		out[i] = MSFTNetSAAssociationFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetSAAssociation returns the MSFT_NetSAAssociation instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetSAAssociation(svc *wmi.Service, antecedent string, dependent string) (*MSFTNetSAAssociation, error) {
-	where := "Antecedent = " + wmi.WQLValue(antecedent) +
-		" AND " + "Dependent = " + wmi.WQLValue(dependent)
+// QueryOneMSFTNetSAAssociation returns the single MSFT_NetSAAssociation matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetSAAssociation(svc *wmi.Service, where string) (*MSFTNetSAAssociation, error) {
 	out, err := QueryMSFTNetSAAssociation(svc, where)
 	if err != nil {
 		return nil, err
@@ -12587,8 +11056,17 @@ func GetMSFTNetSAAssociation(svc *wmi.Service, antecedent string, dependent stri
 	return &out[0], nil
 }
 
+// GetMSFTNetSAAssociation returns the MSFT_NetSAAssociation instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetSAAssociation(svc *wmi.Service, antecedent string, dependent string) (*MSFTNetSAAssociation, error) {
+	where := "Antecedent = " + wmi.WQLValue(antecedent) +
+		" AND " + "Dependent = " + wmi.WQLValue(dependent)
+	return QueryOneMSFTNetSAAssociation(svc, where)
+}
+
 // QueryMSFTNetSARule runs the WQL query against the class and decodes each
-// instance into a MSFTNetSARule. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetSARule. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetSARule(svc *wmi.Service, where string) ([]MSFTNetSARule, error) {
 	q := "SELECT * FROM MSFT_NetSARule"
 	if where != "" {
@@ -12600,52 +11078,14 @@ func QueryMSFTNetSARule(svc *wmi.Service, where string) ([]MSFTNetSARule, error)
 	}
 	out := make([]MSFTNetSARule, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CommonName = wmi.AsString(row["CommonName"])
-		out[i].ConditionListType = wmi.AsUint16(row["ConditionListType"])
-		out[i].CreationClassName = wmi.AsString(row["CreationClassName"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DisplayGroup = wmi.AsString(row["DisplayGroup"])
-		out[i].DisplayName = wmi.AsString(row["DisplayName"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].Enabled = wmi.AsUint16(row["Enabled"])
-		out[i].EnforcementStatus = wmi.AsUint16Slice(row["EnforcementStatus"])
-		out[i].ExecutionStrategy = wmi.AsUint16(row["ExecutionStrategy"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].LimitNegotiation = wmi.AsUint16(row["LimitNegotiation"])
-		out[i].MainModeCryptoSet = wmi.AsString(row["MainModeCryptoSet"])
-		out[i].Mandatory = wmi.AsBool(row["Mandatory"])
-		out[i].Phase1AuthSet = wmi.AsString(row["Phase1AuthSet"])
-		out[i].Phase2AuthSet = wmi.AsString(row["Phase2AuthSet"])
-		out[i].Platforms = wmi.AsStringSlice(row["Platforms"])
-		out[i].PolicyDecisionStrategy = wmi.AsUint16(row["PolicyDecisionStrategy"])
-		out[i].PolicyKeywords = wmi.AsStringSlice(row["PolicyKeywords"])
-		out[i].PolicyRoles = wmi.AsStringSlice(row["PolicyRoles"])
-		out[i].PolicyRuleName = wmi.AsString(row["PolicyRuleName"])
-		out[i].PolicyStoreSource = wmi.AsString(row["PolicyStoreSource"])
-		out[i].PolicyStoreSourceType = wmi.AsUint16(row["PolicyStoreSourceType"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].Priority = wmi.AsUint16(row["Priority"])
-		out[i].Profiles = wmi.AsUint16(row["Profiles"])
-		out[i].QuickModeCryptoSet = wmi.AsString(row["QuickModeCryptoSet"])
-		out[i].RuleGroup = wmi.AsString(row["RuleGroup"])
-		out[i].RuleUsage = wmi.AsString(row["RuleUsage"])
-		out[i].SequencedActions = wmi.AsUint16(row["SequencedActions"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusCode = wmi.AsUint32(row["StatusCode"])
-		out[i].SystemCreationClassName = wmi.AsString(row["SystemCreationClassName"])
-		out[i].SystemName = wmi.AsString(row["SystemName"])
+		out[i] = MSFTNetSARuleFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetSARule returns the MSFT_NetSARule instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetSARule(svc *wmi.Service, creationClassName string, policyRuleName string, systemCreationClassName string, systemName string) (*MSFTNetSARule, error) {
-	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
-		" AND " + "PolicyRuleName = " + wmi.WQLValue(policyRuleName) +
-		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
-		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+// QueryOneMSFTNetSARule returns the single MSFT_NetSARule matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetSARule(svc *wmi.Service, where string) (*MSFTNetSARule, error) {
 	out, err := QueryMSFTNetSARule(svc, where)
 	if err != nil {
 		return nil, err
@@ -12656,8 +11096,19 @@ func GetMSFTNetSARule(svc *wmi.Service, creationClassName string, policyRuleName
 	return &out[0], nil
 }
 
+// GetMSFTNetSARule returns the MSFT_NetSARule instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetSARule(svc *wmi.Service, creationClassName string, policyRuleName string, systemCreationClassName string, systemName string) (*MSFTNetSARule, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "PolicyRuleName = " + wmi.WQLValue(policyRuleName) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	return QueryOneMSFTNetSARule(svc, where)
+}
+
 // QueryMSFTNetSARuleEMAuth runs the WQL query against the class and decodes each
-// instance into a MSFTNetSARuleEMAuth. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetSARuleEMAuth. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetSARuleEMAuth(svc *wmi.Service, where string) ([]MSFTNetSARuleEMAuth, error) {
 	q := "SELECT * FROM MSFT_NetSARuleEMAuth"
 	if where != "" {
@@ -12669,18 +11120,14 @@ func QueryMSFTNetSARuleEMAuth(svc *wmi.Service, where string) ([]MSFTNetSARuleEM
 	}
 	out := make([]MSFTNetSARuleEMAuth, len(rows))
 	for i, row := range rows {
-		out[i].ActionOrder = wmi.AsUint16(row["ActionOrder"])
-		out[i].GroupComponent = wmi.AsString(row["GroupComponent"])
-		out[i].PartComponent = wmi.AsString(row["PartComponent"])
+		out[i] = MSFTNetSARuleEMAuthFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetSARuleEMAuth returns the MSFT_NetSARuleEMAuth instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetSARuleEMAuth(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetSARuleEMAuth, error) {
-	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
-		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+// QueryOneMSFTNetSARuleEMAuth returns the single MSFT_NetSARuleEMAuth matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetSARuleEMAuth(svc *wmi.Service, where string) (*MSFTNetSARuleEMAuth, error) {
 	out, err := QueryMSFTNetSARuleEMAuth(svc, where)
 	if err != nil {
 		return nil, err
@@ -12691,8 +11138,17 @@ func GetMSFTNetSARuleEMAuth(svc *wmi.Service, groupComponent string, partCompone
 	return &out[0], nil
 }
 
+// GetMSFTNetSARuleEMAuth returns the MSFT_NetSARuleEMAuth instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetSARuleEMAuth(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetSARuleEMAuth, error) {
+	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
+		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+	return QueryOneMSFTNetSARuleEMAuth(svc, where)
+}
+
 // QueryMSFTNetSARuleMMAuth runs the WQL query against the class and decodes each
-// instance into a MSFTNetSARuleMMAuth. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetSARuleMMAuth. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetSARuleMMAuth(svc *wmi.Service, where string) ([]MSFTNetSARuleMMAuth, error) {
 	q := "SELECT * FROM MSFT_NetSARuleMMAuth"
 	if where != "" {
@@ -12704,18 +11160,14 @@ func QueryMSFTNetSARuleMMAuth(svc *wmi.Service, where string) ([]MSFTNetSARuleMM
 	}
 	out := make([]MSFTNetSARuleMMAuth, len(rows))
 	for i, row := range rows {
-		out[i].ActionOrder = wmi.AsUint16(row["ActionOrder"])
-		out[i].GroupComponent = wmi.AsString(row["GroupComponent"])
-		out[i].PartComponent = wmi.AsString(row["PartComponent"])
+		out[i] = MSFTNetSARuleMMAuthFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetSARuleMMAuth returns the MSFT_NetSARuleMMAuth instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetSARuleMMAuth(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetSARuleMMAuth, error) {
-	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
-		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+// QueryOneMSFTNetSARuleMMAuth returns the single MSFT_NetSARuleMMAuth matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetSARuleMMAuth(svc *wmi.Service, where string) (*MSFTNetSARuleMMAuth, error) {
 	out, err := QueryMSFTNetSARuleMMAuth(svc, where)
 	if err != nil {
 		return nil, err
@@ -12726,8 +11178,17 @@ func GetMSFTNetSARuleMMAuth(svc *wmi.Service, groupComponent string, partCompone
 	return &out[0], nil
 }
 
+// GetMSFTNetSARuleMMAuth returns the MSFT_NetSARuleMMAuth instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetSARuleMMAuth(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetSARuleMMAuth, error) {
+	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
+		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+	return QueryOneMSFTNetSARuleMMAuth(svc, where)
+}
+
 // QueryMSFTNetSARuleMMCrypto runs the WQL query against the class and decodes each
-// instance into a MSFTNetSARuleMMCrypto. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetSARuleMMCrypto. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetSARuleMMCrypto(svc *wmi.Service, where string) ([]MSFTNetSARuleMMCrypto, error) {
 	q := "SELECT * FROM MSFT_NetSARuleMMCrypto"
 	if where != "" {
@@ -12739,18 +11200,14 @@ func QueryMSFTNetSARuleMMCrypto(svc *wmi.Service, where string) ([]MSFTNetSARule
 	}
 	out := make([]MSFTNetSARuleMMCrypto, len(rows))
 	for i, row := range rows {
-		out[i].ActionOrder = wmi.AsUint16(row["ActionOrder"])
-		out[i].GroupComponent = wmi.AsString(row["GroupComponent"])
-		out[i].PartComponent = wmi.AsString(row["PartComponent"])
+		out[i] = MSFTNetSARuleMMCryptoFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetSARuleMMCrypto returns the MSFT_NetSARuleMMCrypto instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetSARuleMMCrypto(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetSARuleMMCrypto, error) {
-	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
-		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+// QueryOneMSFTNetSARuleMMCrypto returns the single MSFT_NetSARuleMMCrypto matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetSARuleMMCrypto(svc *wmi.Service, where string) (*MSFTNetSARuleMMCrypto, error) {
 	out, err := QueryMSFTNetSARuleMMCrypto(svc, where)
 	if err != nil {
 		return nil, err
@@ -12761,8 +11218,17 @@ func GetMSFTNetSARuleMMCrypto(svc *wmi.Service, groupComponent string, partCompo
 	return &out[0], nil
 }
 
+// GetMSFTNetSARuleMMCrypto returns the MSFT_NetSARuleMMCrypto instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetSARuleMMCrypto(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetSARuleMMCrypto, error) {
+	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
+		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+	return QueryOneMSFTNetSARuleMMCrypto(svc, where)
+}
+
 // QueryMSFTNetSARuleQMCrypto runs the WQL query against the class and decodes each
-// instance into a MSFTNetSARuleQMCrypto. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetSARuleQMCrypto. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetSARuleQMCrypto(svc *wmi.Service, where string) ([]MSFTNetSARuleQMCrypto, error) {
 	q := "SELECT * FROM MSFT_NetSARuleQMCrypto"
 	if where != "" {
@@ -12774,18 +11240,14 @@ func QueryMSFTNetSARuleQMCrypto(svc *wmi.Service, where string) ([]MSFTNetSARule
 	}
 	out := make([]MSFTNetSARuleQMCrypto, len(rows))
 	for i, row := range rows {
-		out[i].ActionOrder = wmi.AsUint16(row["ActionOrder"])
-		out[i].GroupComponent = wmi.AsString(row["GroupComponent"])
-		out[i].PartComponent = wmi.AsString(row["PartComponent"])
+		out[i] = MSFTNetSARuleQMCryptoFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetSARuleQMCrypto returns the MSFT_NetSARuleQMCrypto instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetSARuleQMCrypto(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetSARuleQMCrypto, error) {
-	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
-		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+// QueryOneMSFTNetSARuleQMCrypto returns the single MSFT_NetSARuleQMCrypto matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetSARuleQMCrypto(svc *wmi.Service, where string) (*MSFTNetSARuleQMCrypto, error) {
 	out, err := QueryMSFTNetSARuleQMCrypto(svc, where)
 	if err != nil {
 		return nil, err
@@ -12796,8 +11258,17 @@ func GetMSFTNetSARuleQMCrypto(svc *wmi.Service, groupComponent string, partCompo
 	return &out[0], nil
 }
 
+// GetMSFTNetSARuleQMCrypto returns the MSFT_NetSARuleQMCrypto instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetSARuleQMCrypto(svc *wmi.Service, groupComponent string, partComponent string) (*MSFTNetSARuleQMCrypto, error) {
+	where := "GroupComponent = " + wmi.WQLValue(groupComponent) +
+		" AND " + "PartComponent = " + wmi.WQLValue(partComponent)
+	return QueryOneMSFTNetSARuleQMCrypto(svc, where)
+}
+
 // QueryMSFTNetSecDeltaCollection runs the WQL query against the class and decodes each
-// instance into a MSFTNetSecDeltaCollection. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetSecDeltaCollection. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetSecDeltaCollection(svc *wmi.Service, where string) ([]MSFTNetSecDeltaCollection, error) {
 	q := "SELECT * FROM MSFT_NetSecDeltaCollection"
 	if where != "" {
@@ -12809,26 +11280,14 @@ func QueryMSFTNetSecDeltaCollection(svc *wmi.Service, where string) ([]MSFTNetSe
 	}
 	out := make([]MSFTNetSecDeltaCollection, len(rows))
 	for i, row := range rows {
-		out[i].Action = wmi.AsUint16(row["Action"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].EndpointType = wmi.AsUint16(row["EndpointType"])
-		out[i].IPsecRuleDisplayName = wmi.AsString(row["IPsecRuleDisplayName"])
-		out[i].IPsecRuleName = wmi.AsString(row["IPsecRuleName"])
-		out[i].IPv4Addresses = wmi.AsStringSlice(row["IPv4Addresses"])
-		out[i].IPv6Addresses = wmi.AsStringSlice(row["IPv6Addresses"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].NameResolutionFailures = wmi.AsStringSlice(row["NameResolutionFailures"])
-		out[i].PolicyStore = wmi.AsString(row["PolicyStore"])
+		out[i] = MSFTNetSecDeltaCollectionFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetSecDeltaCollection returns the MSFT_NetSecDeltaCollection instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetSecDeltaCollection(svc *wmi.Service, instanceID string) (*MSFTNetSecDeltaCollection, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetSecDeltaCollection returns the single MSFT_NetSecDeltaCollection matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetSecDeltaCollection(svc *wmi.Service, where string) (*MSFTNetSecDeltaCollection, error) {
 	out, err := QueryMSFTNetSecDeltaCollection(svc, where)
 	if err != nil {
 		return nil, err
@@ -12839,8 +11298,16 @@ func GetMSFTNetSecDeltaCollection(svc *wmi.Service, instanceID string) (*MSFTNet
 	return &out[0], nil
 }
 
+// GetMSFTNetSecDeltaCollection returns the MSFT_NetSecDeltaCollection instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetSecDeltaCollection(svc *wmi.Service, instanceID string) (*MSFTNetSecDeltaCollection, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetSecDeltaCollection(svc, where)
+}
+
 // QueryMSFTNetSecuritySettingData runs the WQL query against the class and decodes each
-// instance into a MSFTNetSecuritySettingData. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetSecuritySettingData. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetSecuritySettingData(svc *wmi.Service, where string) ([]MSFTNetSecuritySettingData, error) {
 	q := "SELECT * FROM MSFT_NetSecuritySettingData"
 	if where != "" {
@@ -12852,32 +11319,14 @@ func QueryMSFTNetSecuritySettingData(svc *wmi.Service, where string) ([]MSFTNetS
 	}
 	out := make([]MSFTNetSecuritySettingData, len(rows))
 	for i, row := range rows {
-		out[i].AllowIPsecThroughNAT = wmi.AsUint16(row["AllowIPsecThroughNAT"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CertValidationLevel = wmi.AsUint16(row["CertValidationLevel"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].EnablePacketQueuing = wmi.AsUint16(row["EnablePacketQueuing"])
-		out[i].EnableStatefulFtp = wmi.AsUint16(row["EnableStatefulFtp"])
-		out[i].EnableStatefulPptp = wmi.AsUint16(row["EnableStatefulPptp"])
-		out[i].Exemptions = wmi.AsUint32(row["Exemptions"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].KeyEncoding = wmi.AsUint16(row["KeyEncoding"])
-		out[i].MaxSAIdleTimeSeconds = wmi.AsUint32(row["MaxSAIdleTimeSeconds"])
-		out[i].Profile = wmi.AsUint16(row["Profile"])
-		out[i].RemoteMachineTransportAuthorizationList = wmi.AsString(row["RemoteMachineTransportAuthorizationList"])
-		out[i].RemoteMachineTunnelAuthorizationList = wmi.AsString(row["RemoteMachineTunnelAuthorizationList"])
-		out[i].RemoteUserTransportAuthorizationList = wmi.AsString(row["RemoteUserTransportAuthorizationList"])
-		out[i].RemoteUserTunnelAuthorizationList = wmi.AsString(row["RemoteUserTunnelAuthorizationList"])
-		out[i].RequireFullAuthSupport = wmi.AsUint16(row["RequireFullAuthSupport"])
+		out[i] = MSFTNetSecuritySettingDataFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetSecuritySettingData returns the MSFT_NetSecuritySettingData instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetSecuritySettingData(svc *wmi.Service, instanceID string) (*MSFTNetSecuritySettingData, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetSecuritySettingData returns the single MSFT_NetSecuritySettingData matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetSecuritySettingData(svc *wmi.Service, where string) (*MSFTNetSecuritySettingData, error) {
 	out, err := QueryMSFTNetSecuritySettingData(svc, where)
 	if err != nil {
 		return nil, err
@@ -12888,8 +11337,16 @@ func GetMSFTNetSecuritySettingData(svc *wmi.Service, instanceID string) (*MSFTNe
 	return &out[0], nil
 }
 
+// GetMSFTNetSecuritySettingData returns the MSFT_NetSecuritySettingData instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetSecuritySettingData(svc *wmi.Service, instanceID string) (*MSFTNetSecuritySettingData, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetSecuritySettingData(svc, where)
+}
+
 // QueryMSFTNetServiceFilter runs the WQL query against the class and decodes each
-// instance into a MSFTNetServiceFilter. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetServiceFilter. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetServiceFilter(svc *wmi.Service, where string) ([]MSFTNetServiceFilter, error) {
 	q := "SELECT * FROM MSFT_NetServiceFilter"
 	if where != "" {
@@ -12901,36 +11358,14 @@ func QueryMSFTNetServiceFilter(svc *wmi.Service, where string) ([]MSFTNetService
 	}
 	out := make([]MSFTNetServiceFilter, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CommunicationStatus = wmi.AsUint16(row["CommunicationStatus"])
-		out[i].CreationClassName = wmi.AsString(row["CreationClassName"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DetailedStatus = wmi.AsUint16(row["DetailedStatus"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].HealthState = wmi.AsUint16(row["HealthState"])
-		out[i].InstallDate = wmi.AsString(row["InstallDate"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].IsNegated = wmi.AsBool(row["IsNegated"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].OperatingStatus = wmi.AsUint16(row["OperatingStatus"])
-		out[i].OperationalStatus = wmi.AsUint16Slice(row["OperationalStatus"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].ServiceName = wmi.AsString(row["ServiceName"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusDescriptions = wmi.AsStringSlice(row["StatusDescriptions"])
-		out[i].SystemCreationClassName = wmi.AsString(row["SystemCreationClassName"])
-		out[i].SystemName = wmi.AsString(row["SystemName"])
+		out[i] = MSFTNetServiceFilterFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetServiceFilter returns the MSFT_NetServiceFilter instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetServiceFilter(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*MSFTNetServiceFilter, error) {
-	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
-		" AND " + "Name = " + wmi.WQLValue(name) +
-		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
-		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+// QueryOneMSFTNetServiceFilter returns the single MSFT_NetServiceFilter matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetServiceFilter(svc *wmi.Service, where string) (*MSFTNetServiceFilter, error) {
 	out, err := QueryMSFTNetServiceFilter(svc, where)
 	if err != nil {
 		return nil, err
@@ -12941,8 +11376,19 @@ func GetMSFTNetServiceFilter(svc *wmi.Service, creationClassName string, name st
 	return &out[0], nil
 }
 
+// GetMSFTNetServiceFilter returns the MSFT_NetServiceFilter instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetServiceFilter(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*MSFTNetServiceFilter, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "Name = " + wmi.WQLValue(name) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	return QueryOneMSFTNetServiceFilter(svc, where)
+}
+
 // QueryMSFTNetSettingData runs the WQL query against the class and decodes each
-// instance into a MSFTNetSettingData. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetSettingData. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetSettingData(svc *wmi.Service, where string) ([]MSFTNetSettingData, error) {
 	q := "SELECT * FROM MSFT_NetSettingData"
 	if where != "" {
@@ -12954,18 +11400,14 @@ func QueryMSFTNetSettingData(svc *wmi.Service, where string) ([]MSFTNetSettingDa
 	}
 	out := make([]MSFTNetSettingData, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
+		out[i] = MSFTNetSettingDataFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetSettingData returns the MSFT_NetSettingData instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetSettingData(svc *wmi.Service, instanceID string) (*MSFTNetSettingData, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetSettingData returns the single MSFT_NetSettingData matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetSettingData(svc *wmi.Service, where string) (*MSFTNetSettingData, error) {
 	out, err := QueryMSFTNetSettingData(svc, where)
 	if err != nil {
 		return nil, err
@@ -12976,8 +11418,16 @@ func GetMSFTNetSettingData(svc *wmi.Service, instanceID string) (*MSFTNetSetting
 	return &out[0], nil
 }
 
+// GetMSFTNetSettingData returns the MSFT_NetSettingData instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetSettingData(svc *wmi.Service, instanceID string) (*MSFTNetSettingData, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetSettingData(svc, where)
+}
+
 // QueryMSFTNetSwitchTeam runs the WQL query against the class and decodes each
-// instance into a MSFTNetSwitchTeam. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetSwitchTeam. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetSwitchTeam(svc *wmi.Service, where string) ([]MSFTNetSwitchTeam, error) {
 	q := "SELECT * FROM MSFT_NetSwitchTeam"
 	if where != "" {
@@ -12989,19 +11439,14 @@ func QueryMSFTNetSwitchTeam(svc *wmi.Service, where string) ([]MSFTNetSwitchTeam
 	}
 	out := make([]MSFTNetSwitchTeam, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].Name = wmi.AsString(row["Name"])
+		out[i] = MSFTNetSwitchTeamFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetSwitchTeam returns the MSFT_NetSwitchTeam instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetSwitchTeam(svc *wmi.Service, instanceID string) (*MSFTNetSwitchTeam, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetSwitchTeam returns the single MSFT_NetSwitchTeam matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetSwitchTeam(svc *wmi.Service, where string) (*MSFTNetSwitchTeam, error) {
 	out, err := QueryMSFTNetSwitchTeam(svc, where)
 	if err != nil {
 		return nil, err
@@ -13012,8 +11457,16 @@ func GetMSFTNetSwitchTeam(svc *wmi.Service, instanceID string) (*MSFTNetSwitchTe
 	return &out[0], nil
 }
 
+// GetMSFTNetSwitchTeam returns the MSFT_NetSwitchTeam instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetSwitchTeam(svc *wmi.Service, instanceID string) (*MSFTNetSwitchTeam, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetSwitchTeam(svc, where)
+}
+
 // QueryMSFTNetSwitchTeamMember runs the WQL query against the class and decodes each
-// instance into a MSFTNetSwitchTeamMember. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetSwitchTeamMember. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetSwitchTeamMember(svc *wmi.Service, where string) ([]MSFTNetSwitchTeamMember, error) {
 	q := "SELECT * FROM MSFT_NetSwitchTeamMember"
 	if where != "" {
@@ -13025,41 +11478,14 @@ func QueryMSFTNetSwitchTeamMember(svc *wmi.Service, where string) ([]MSFTNetSwit
 	}
 	out := make([]MSFTNetSwitchTeamMember, len(rows))
 	for i, row := range rows {
-		out[i].AvailableRequestedStates = wmi.AsUint16Slice(row["AvailableRequestedStates"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CommunicationStatus = wmi.AsUint16(row["CommunicationStatus"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DetailedStatus = wmi.AsUint16(row["DetailedStatus"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].EnabledDefault = wmi.AsUint16(row["EnabledDefault"])
-		out[i].EnabledState = wmi.AsUint16(row["EnabledState"])
-		out[i].FailureReason = wmi.AsUint32(row["FailureReason"])
-		out[i].HealthState = wmi.AsUint16(row["HealthState"])
-		out[i].InstallDate = wmi.AsString(row["InstallDate"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].InterfaceDescription = wmi.AsString(row["InterfaceDescription"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].NumberOfFailures = wmi.AsUint32(row["NumberOfFailures"])
-		out[i].OperatingStatus = wmi.AsUint16(row["OperatingStatus"])
-		out[i].OperationalStatus = wmi.AsUint16Slice(row["OperationalStatus"])
-		out[i].OtherEnabledState = wmi.AsString(row["OtherEnabledState"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].ReceiveLinkSpeed = wmi.AsUint64(row["ReceiveLinkSpeed"])
-		out[i].RequestedState = wmi.AsUint16(row["RequestedState"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusDescriptions = wmi.AsStringSlice(row["StatusDescriptions"])
-		out[i].Team = wmi.AsString(row["Team"])
-		out[i].TimeOfLastStateChange = wmi.AsString(row["TimeOfLastStateChange"])
-		out[i].TransitioningToState = wmi.AsUint16(row["TransitioningToState"])
-		out[i].TransmitLinkSpeed = wmi.AsUint64(row["TransmitLinkSpeed"])
+		out[i] = MSFTNetSwitchTeamMemberFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetSwitchTeamMember returns the MSFT_NetSwitchTeamMember instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetSwitchTeamMember(svc *wmi.Service, instanceID string) (*MSFTNetSwitchTeamMember, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetSwitchTeamMember returns the single MSFT_NetSwitchTeamMember matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetSwitchTeamMember(svc *wmi.Service, where string) (*MSFTNetSwitchTeamMember, error) {
 	out, err := QueryMSFTNetSwitchTeamMember(svc, where)
 	if err != nil {
 		return nil, err
@@ -13070,8 +11496,16 @@ func GetMSFTNetSwitchTeamMember(svc *wmi.Service, instanceID string) (*MSFTNetSw
 	return &out[0], nil
 }
 
+// GetMSFTNetSwitchTeamMember returns the MSFT_NetSwitchTeamMember instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetSwitchTeamMember(svc *wmi.Service, instanceID string) (*MSFTNetSwitchTeamMember, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetSwitchTeamMember(svc, where)
+}
+
 // QueryMSFTNetSwitchTeamTeamMember runs the WQL query against the class and decodes each
-// instance into a MSFTNetSwitchTeamTeamMember. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetSwitchTeamTeamMember. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetSwitchTeamTeamMember(svc *wmi.Service, where string) ([]MSFTNetSwitchTeamTeamMember, error) {
 	q := "SELECT * FROM MSFT_NetSwitchTeam_TeamMember"
 	if where != "" {
@@ -13083,17 +11517,14 @@ func QueryMSFTNetSwitchTeamTeamMember(svc *wmi.Service, where string) ([]MSFTNet
 	}
 	out := make([]MSFTNetSwitchTeamTeamMember, len(rows))
 	for i, row := range rows {
-		out[i].MemberOfTheTeam = wmi.AsString(row["MemberOfTheTeam"])
-		out[i].TeamOfTheMember = wmi.AsString(row["TeamOfTheMember"])
+		out[i] = MSFTNetSwitchTeamTeamMemberFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetSwitchTeamTeamMember returns the MSFT_NetSwitchTeam_TeamMember instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetSwitchTeamTeamMember(svc *wmi.Service, memberOfTheTeam string, teamOfTheMember string) (*MSFTNetSwitchTeamTeamMember, error) {
-	where := "MemberOfTheTeam = " + wmi.WQLValue(memberOfTheTeam) +
-		" AND " + "TeamOfTheMember = " + wmi.WQLValue(teamOfTheMember)
+// QueryOneMSFTNetSwitchTeamTeamMember returns the single MSFT_NetSwitchTeam_TeamMember matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetSwitchTeamTeamMember(svc *wmi.Service, where string) (*MSFTNetSwitchTeamTeamMember, error) {
 	out, err := QueryMSFTNetSwitchTeamTeamMember(svc, where)
 	if err != nil {
 		return nil, err
@@ -13104,8 +11535,17 @@ func GetMSFTNetSwitchTeamTeamMember(svc *wmi.Service, memberOfTheTeam string, te
 	return &out[0], nil
 }
 
+// GetMSFTNetSwitchTeamTeamMember returns the MSFT_NetSwitchTeam_TeamMember instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetSwitchTeamTeamMember(svc *wmi.Service, memberOfTheTeam string, teamOfTheMember string) (*MSFTNetSwitchTeamTeamMember, error) {
+	where := "MemberOfTheTeam = " + wmi.WQLValue(memberOfTheTeam) +
+		" AND " + "TeamOfTheMember = " + wmi.WQLValue(teamOfTheMember)
+	return QueryOneMSFTNetSwitchTeamTeamMember(svc, where)
+}
+
 // QueryMSFTNetTCPConnection runs the WQL query against the class and decodes each
-// instance into a MSFTNetTCPConnection. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetTCPConnection. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetTCPConnection(svc *wmi.Service, where string) ([]MSFTNetTCPConnection, error) {
 	q := "SELECT * FROM MSFT_NetTCPConnection"
 	if where != "" {
@@ -13117,46 +11557,14 @@ func QueryMSFTNetTCPConnection(svc *wmi.Service, where string) ([]MSFTNetTCPConn
 	}
 	out := make([]MSFTNetTCPConnection, len(rows))
 	for i, row := range rows {
-		out[i].AggregationBehavior = wmi.AsUint16(row["AggregationBehavior"])
-		out[i].AppliedSetting = wmi.AsUint8(row["AppliedSetting"])
-		out[i].AvailableRequestedStates = wmi.AsUint16Slice(row["AvailableRequestedStates"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CommunicationStatus = wmi.AsUint16(row["CommunicationStatus"])
-		out[i].CreationTime = wmi.AsString(row["CreationTime"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DetailedStatus = wmi.AsUint16(row["DetailedStatus"])
-		out[i].Directionality = wmi.AsUint16(row["Directionality"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].EnabledDefault = wmi.AsUint16(row["EnabledDefault"])
-		out[i].EnabledState = wmi.AsUint16(row["EnabledState"])
-		out[i].HealthState = wmi.AsUint16(row["HealthState"])
-		out[i].InstallDate = wmi.AsString(row["InstallDate"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].LocalAddress = wmi.AsString(row["LocalAddress"])
-		out[i].LocalPort = wmi.AsUint16(row["LocalPort"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].OffloadState = wmi.AsUint8(row["OffloadState"])
-		out[i].OperatingStatus = wmi.AsUint16(row["OperatingStatus"])
-		out[i].OperationalStatus = wmi.AsUint16Slice(row["OperationalStatus"])
-		out[i].OtherEnabledState = wmi.AsString(row["OtherEnabledState"])
-		out[i].OwningProcess = wmi.AsUint32(row["OwningProcess"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].RemoteAddress = wmi.AsString(row["RemoteAddress"])
-		out[i].RemotePort = wmi.AsUint16(row["RemotePort"])
-		out[i].RequestedState = wmi.AsUint16(row["RequestedState"])
-		out[i].State = wmi.AsUint8(row["State"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusDescriptions = wmi.AsStringSlice(row["StatusDescriptions"])
-		out[i].TimeOfLastStateChange = wmi.AsString(row["TimeOfLastStateChange"])
-		out[i].TransitioningToState = wmi.AsUint16(row["TransitioningToState"])
+		out[i] = MSFTNetTCPConnectionFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetTCPConnection returns the MSFT_NetTCPConnection instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetTCPConnection(svc *wmi.Service, instanceID string) (*MSFTNetTCPConnection, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetTCPConnection returns the single MSFT_NetTCPConnection matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetTCPConnection(svc *wmi.Service, where string) (*MSFTNetTCPConnection, error) {
 	out, err := QueryMSFTNetTCPConnection(svc, where)
 	if err != nil {
 		return nil, err
@@ -13167,8 +11575,16 @@ func GetMSFTNetTCPConnection(svc *wmi.Service, instanceID string) (*MSFTNetTCPCo
 	return &out[0], nil
 }
 
+// GetMSFTNetTCPConnection returns the MSFT_NetTCPConnection instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetTCPConnection(svc *wmi.Service, instanceID string) (*MSFTNetTCPConnection, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetTCPConnection(svc, where)
+}
+
 // QueryMSFTNetTCPSetting runs the WQL query against the class and decodes each
-// instance into a MSFTNetTCPSetting. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetTCPSetting. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetTCPSetting(svc *wmi.Service, where string) ([]MSFTNetTCPSetting, error) {
 	q := "SELECT * FROM MSFT_NetTCPSetting"
 	if where != "" {
@@ -13180,44 +11596,22 @@ func QueryMSFTNetTCPSetting(svc *wmi.Service, where string) ([]MSFTNetTCPSetting
 	}
 	out := make([]MSFTNetTCPSetting, len(rows))
 	for i, row := range rows {
-		out[i].AutoReusePortRangeNumberOfPorts = wmi.AsUint16(row["AutoReusePortRangeNumberOfPorts"])
-		out[i].AutoReusePortRangeStartPort = wmi.AsUint16(row["AutoReusePortRangeStartPort"])
-		out[i].AutoTuningLevelEffective = wmi.AsUint8(row["AutoTuningLevelEffective"])
-		out[i].AutoTuningLevelGroupPolicy = wmi.AsUint8(row["AutoTuningLevelGroupPolicy"])
-		out[i].AutoTuningLevelLocal = wmi.AsUint8(row["AutoTuningLevelLocal"])
-		out[i].AutomaticUseCustom = wmi.AsUint8(row["AutomaticUseCustom"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CommonName = wmi.AsString(row["CommonName"])
-		out[i].CongestionProvider = wmi.AsUint8(row["CongestionProvider"])
-		out[i].CreationClassName = wmi.AsString(row["CreationClassName"])
-		out[i].CwndRestart = wmi.AsUint8(row["CwndRestart"])
-		out[i].DelayedAckFrequency = wmi.AsUint8(row["DelayedAckFrequency"])
-		out[i].DelayedAckTimeout = wmi.AsUint32(row["DelayedAckTimeout"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DoActionLogging = wmi.AsBool(row["DoActionLogging"])
-		out[i].DynamicPortRangeNumberOfPorts = wmi.AsUint16(row["DynamicPortRangeNumberOfPorts"])
-		out[i].DynamicPortRangeStartPort = wmi.AsUint16(row["DynamicPortRangeStartPort"])
-		out[i].EcnCapability = wmi.AsUint8(row["EcnCapability"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].ForceWS = wmi.AsUint8(row["ForceWS"])
-		out[i].InitialCongestionWindow = wmi.AsUint32(row["InitialCongestionWindow"])
-		out[i].InitialRto = wmi.AsUint32(row["InitialRto"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].MaxSynRetransmissions = wmi.AsUint8(row["MaxSynRetransmissions"])
-		out[i].MemoryPressureProtection = wmi.AsUint8(row["MemoryPressureProtection"])
-		out[i].MinRto = wmi.AsUint32(row["MinRto"])
-		out[i].NonSackRttResiliency = wmi.AsUint8(row["NonSackRttResiliency"])
-		out[i].PolicyActionName = wmi.AsString(row["PolicyActionName"])
-		out[i].PolicyKeywords = wmi.AsStringSlice(row["PolicyKeywords"])
-		out[i].PolicyRuleCreationClassName = wmi.AsString(row["PolicyRuleCreationClassName"])
-		out[i].PolicyRuleName = wmi.AsString(row["PolicyRuleName"])
-		out[i].ScalingHeuristics = wmi.AsUint8(row["ScalingHeuristics"])
-		out[i].SettingName = wmi.AsString(row["SettingName"])
-		out[i].SystemCreationClassName = wmi.AsString(row["SystemCreationClassName"])
-		out[i].SystemName = wmi.AsString(row["SystemName"])
-		out[i].Timestamps = wmi.AsUint8(row["Timestamps"])
+		out[i] = MSFTNetTCPSettingFromRow(row)
 	}
 	return out, nil
+}
+
+// QueryOneMSFTNetTCPSetting returns the single MSFT_NetTCPSetting matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetTCPSetting(svc *wmi.Service, where string) (*MSFTNetTCPSetting, error) {
+	out, err := QueryMSFTNetTCPSetting(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // GetMSFTNetTCPSetting returns the MSFT_NetTCPSetting instance identified by its key
@@ -13229,18 +11623,12 @@ func GetMSFTNetTCPSetting(svc *wmi.Service, creationClassName string, policyActi
 		" AND " + "PolicyRuleName = " + wmi.WQLValue(policyRuleName) +
 		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
 		" AND " + "SystemName = " + wmi.WQLValue(systemName)
-	out, err := QueryMSFTNetTCPSetting(svc, where)
-	if err != nil {
-		return nil, err
-	}
-	if len(out) == 0 {
-		return nil, wmi.ErrNotFound
-	}
-	return &out[0], nil
+	return QueryOneMSFTNetTCPSetting(svc, where)
 }
 
 // QueryMSFTNetTeredoConfiguration runs the WQL query against the class and decodes each
-// instance into a MSFTNetTeredoConfiguration. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetTeredoConfiguration. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetTeredoConfiguration(svc *wmi.Service, where string) ([]MSFTNetTeredoConfiguration, error) {
 	q := "SELECT * FROM MSFT_NetTeredoConfiguration"
 	if where != "" {
@@ -13252,26 +11640,14 @@ func QueryMSFTNetTeredoConfiguration(svc *wmi.Service, where string) ([]MSFTNetT
 	}
 	out := make([]MSFTNetTeredoConfiguration, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].ClientPort = wmi.AsUint32(row["ClientPort"])
-		out[i].DefaultQualified = wmi.AsBool(row["DefaultQualified"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].PolicyStore = wmi.AsString(row["PolicyStore"])
-		out[i].RefreshInterval = wmi.AsUint32(row["RefreshInterval"])
-		out[i].ServerName = wmi.AsString(row["ServerName"])
-		out[i].ServerShunt = wmi.AsBool(row["ServerShunt"])
-		out[i].ServerVirtualIP = wmi.AsString(row["ServerVirtualIP"])
-		out[i].Type = wmi.AsUint32(row["Type"])
+		out[i] = MSFTNetTeredoConfigurationFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetTeredoConfiguration returns the MSFT_NetTeredoConfiguration instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetTeredoConfiguration(svc *wmi.Service, instanceID string) (*MSFTNetTeredoConfiguration, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetTeredoConfiguration returns the single MSFT_NetTeredoConfiguration matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetTeredoConfiguration(svc *wmi.Service, where string) (*MSFTNetTeredoConfiguration, error) {
 	out, err := QueryMSFTNetTeredoConfiguration(svc, where)
 	if err != nil {
 		return nil, err
@@ -13282,8 +11658,16 @@ func GetMSFTNetTeredoConfiguration(svc *wmi.Service, instanceID string) (*MSFTNe
 	return &out[0], nil
 }
 
+// GetMSFTNetTeredoConfiguration returns the MSFT_NetTeredoConfiguration instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetTeredoConfiguration(svc *wmi.Service, instanceID string) (*MSFTNetTeredoConfiguration, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetTeredoConfiguration(svc, where)
+}
+
 // QueryMSFTNetTeredoState runs the WQL query against the class and decodes each
-// instance into a MSFTNetTeredoState. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetTeredoState. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetTeredoState(svc *wmi.Service, where string) ([]MSFTNetTeredoState, error) {
 	q := "SELECT * FROM MSFT_NetTeredoState"
 	if where != "" {
@@ -13295,22 +11679,14 @@ func QueryMSFTNetTeredoState(svc *wmi.Service, where string) ([]MSFTNetTeredoSta
 	}
 	out := make([]MSFTNetTeredoState, len(rows))
 	for i, row := range rows {
-		out[i].Error = wmi.AsString(row["Error"])
-		out[i].IsCurrent = wmi.AsUint16(row["IsCurrent"])
-		out[i].IsDefault = wmi.AsUint16(row["IsDefault"])
-		out[i].IsNext = wmi.AsUint16(row["IsNext"])
-		out[i].ManagedElement = wmi.AsString(row["ManagedElement"])
-		out[i].SettingData = wmi.AsString(row["SettingData"])
-		out[i].State = wmi.AsString(row["State"])
+		out[i] = MSFTNetTeredoStateFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetTeredoState returns the MSFT_NetTeredoState instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetTeredoState(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetTeredoState, error) {
-	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
-		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+// QueryOneMSFTNetTeredoState returns the single MSFT_NetTeredoState matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetTeredoState(svc *wmi.Service, where string) (*MSFTNetTeredoState, error) {
 	out, err := QueryMSFTNetTeredoState(svc, where)
 	if err != nil {
 		return nil, err
@@ -13321,8 +11697,17 @@ func GetMSFTNetTeredoState(svc *wmi.Service, managedElement string, settingData 
 	return &out[0], nil
 }
 
+// GetMSFTNetTeredoState returns the MSFT_NetTeredoState instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetTeredoState(svc *wmi.Service, managedElement string, settingData string) (*MSFTNetTeredoState, error) {
+	where := "ManagedElement = " + wmi.WQLValue(managedElement) +
+		" AND " + "SettingData = " + wmi.WQLValue(settingData)
+	return QueryOneMSFTNetTeredoState(svc, where)
+}
+
 // QueryMSFTNetTransportConnection runs the WQL query against the class and decodes each
-// instance into a MSFTNetTransportConnection. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetTransportConnection. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetTransportConnection(svc *wmi.Service, where string) ([]MSFTNetTransportConnection, error) {
 	q := "SELECT * FROM MSFT_NetTransportConnection"
 	if where != "" {
@@ -13334,41 +11719,14 @@ func QueryMSFTNetTransportConnection(svc *wmi.Service, where string) ([]MSFTNetT
 	}
 	out := make([]MSFTNetTransportConnection, len(rows))
 	for i, row := range rows {
-		out[i].AggregationBehavior = wmi.AsUint16(row["AggregationBehavior"])
-		out[i].AvailableRequestedStates = wmi.AsUint16Slice(row["AvailableRequestedStates"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CommunicationStatus = wmi.AsUint16(row["CommunicationStatus"])
-		out[i].CreationTime = wmi.AsString(row["CreationTime"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DetailedStatus = wmi.AsUint16(row["DetailedStatus"])
-		out[i].Directionality = wmi.AsUint16(row["Directionality"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].EnabledDefault = wmi.AsUint16(row["EnabledDefault"])
-		out[i].EnabledState = wmi.AsUint16(row["EnabledState"])
-		out[i].HealthState = wmi.AsUint16(row["HealthState"])
-		out[i].InstallDate = wmi.AsString(row["InstallDate"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].LocalAddress = wmi.AsString(row["LocalAddress"])
-		out[i].LocalPort = wmi.AsUint16(row["LocalPort"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].OperatingStatus = wmi.AsUint16(row["OperatingStatus"])
-		out[i].OperationalStatus = wmi.AsUint16Slice(row["OperationalStatus"])
-		out[i].OtherEnabledState = wmi.AsString(row["OtherEnabledState"])
-		out[i].OwningProcess = wmi.AsUint32(row["OwningProcess"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].RequestedState = wmi.AsUint16(row["RequestedState"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusDescriptions = wmi.AsStringSlice(row["StatusDescriptions"])
-		out[i].TimeOfLastStateChange = wmi.AsString(row["TimeOfLastStateChange"])
-		out[i].TransitioningToState = wmi.AsUint16(row["TransitioningToState"])
+		out[i] = MSFTNetTransportConnectionFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetTransportConnection returns the MSFT_NetTransportConnection instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetTransportConnection(svc *wmi.Service, instanceID string) (*MSFTNetTransportConnection, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetTransportConnection returns the single MSFT_NetTransportConnection matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetTransportConnection(svc *wmi.Service, where string) (*MSFTNetTransportConnection, error) {
 	out, err := QueryMSFTNetTransportConnection(svc, where)
 	if err != nil {
 		return nil, err
@@ -13379,8 +11737,16 @@ func GetMSFTNetTransportConnection(svc *wmi.Service, instanceID string) (*MSFTNe
 	return &out[0], nil
 }
 
+// GetMSFTNetTransportConnection returns the MSFT_NetTransportConnection instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetTransportConnection(svc *wmi.Service, instanceID string) (*MSFTNetTransportConnection, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetTransportConnection(svc, where)
+}
+
 // QueryMSFTNetTransportFilter runs the WQL query against the class and decodes each
-// instance into a MSFTNetTransportFilter. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetTransportFilter. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetTransportFilter(svc *wmi.Service, where string) ([]MSFTNetTransportFilter, error) {
 	q := "SELECT * FROM MSFT_NetTransportFilter"
 	if where != "" {
@@ -13392,42 +11758,14 @@ func QueryMSFTNetTransportFilter(svc *wmi.Service, where string) ([]MSFTNetTrans
 	}
 	out := make([]MSFTNetTransportFilter, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CommunicationStatus = wmi.AsUint16(row["CommunicationStatus"])
-		out[i].CreationClassName = wmi.AsString(row["CreationClassName"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DestinationPrefix = wmi.AsString(row["DestinationPrefix"])
-		out[i].DetailedStatus = wmi.AsUint16(row["DetailedStatus"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].HealthState = wmi.AsUint16(row["HealthState"])
-		out[i].InstallDate = wmi.AsString(row["InstallDate"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].IsNegated = wmi.AsBool(row["IsNegated"])
-		out[i].LocalPortEnd = wmi.AsUint16(row["LocalPortEnd"])
-		out[i].LocalPortStart = wmi.AsUint16(row["LocalPortStart"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].OperatingStatus = wmi.AsUint16(row["OperatingStatus"])
-		out[i].OperationalStatus = wmi.AsUint16Slice(row["OperationalStatus"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].Protocol = wmi.AsUint16(row["Protocol"])
-		out[i].RemotePortEnd = wmi.AsUint16(row["RemotePortEnd"])
-		out[i].RemotePortStart = wmi.AsUint16(row["RemotePortStart"])
-		out[i].SettingName = wmi.AsString(row["SettingName"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusDescriptions = wmi.AsStringSlice(row["StatusDescriptions"])
-		out[i].SystemCreationClassName = wmi.AsString(row["SystemCreationClassName"])
-		out[i].SystemName = wmi.AsString(row["SystemName"])
+		out[i] = MSFTNetTransportFilterFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetTransportFilter returns the MSFT_NetTransportFilter instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetTransportFilter(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*MSFTNetTransportFilter, error) {
-	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
-		" AND " + "Name = " + wmi.WQLValue(name) +
-		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
-		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+// QueryOneMSFTNetTransportFilter returns the single MSFT_NetTransportFilter matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetTransportFilter(svc *wmi.Service, where string) (*MSFTNetTransportFilter, error) {
 	out, err := QueryMSFTNetTransportFilter(svc, where)
 	if err != nil {
 		return nil, err
@@ -13438,8 +11776,19 @@ func GetMSFTNetTransportFilter(svc *wmi.Service, creationClassName string, name 
 	return &out[0], nil
 }
 
+// GetMSFTNetTransportFilter returns the MSFT_NetTransportFilter instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetTransportFilter(svc *wmi.Service, creationClassName string, name string, systemCreationClassName string, systemName string) (*MSFTNetTransportFilter, error) {
+	where := "CreationClassName = " + wmi.WQLValue(creationClassName) +
+		" AND " + "Name = " + wmi.WQLValue(name) +
+		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
+		" AND " + "SystemName = " + wmi.WQLValue(systemName)
+	return QueryOneMSFTNetTransportFilter(svc, where)
+}
+
 // QueryMSFTNetTransportFilterTCPSetting runs the WQL query against the class and decodes each
-// instance into a MSFTNetTransportFilterTCPSetting. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetTransportFilterTCPSetting. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetTransportFilterTCPSetting(svc *wmi.Service, where string) ([]MSFTNetTransportFilterTCPSetting, error) {
 	q := "SELECT * FROM MSFT_NetTransportFilterTCPSetting"
 	if where != "" {
@@ -13451,17 +11800,14 @@ func QueryMSFTNetTransportFilterTCPSetting(svc *wmi.Service, where string) ([]MS
 	}
 	out := make([]MSFTNetTransportFilterTCPSetting, len(rows))
 	for i, row := range rows {
-		out[i].Antecedent = wmi.AsString(row["Antecedent"])
-		out[i].Dependent = wmi.AsString(row["Dependent"])
+		out[i] = MSFTNetTransportFilterTCPSettingFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetTransportFilterTCPSetting returns the MSFT_NetTransportFilterTCPSetting instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetTransportFilterTCPSetting(svc *wmi.Service, antecedent string, dependent string) (*MSFTNetTransportFilterTCPSetting, error) {
-	where := "Antecedent = " + wmi.WQLValue(antecedent) +
-		" AND " + "Dependent = " + wmi.WQLValue(dependent)
+// QueryOneMSFTNetTransportFilterTCPSetting returns the single MSFT_NetTransportFilterTCPSetting matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetTransportFilterTCPSetting(svc *wmi.Service, where string) (*MSFTNetTransportFilterTCPSetting, error) {
 	out, err := QueryMSFTNetTransportFilterTCPSetting(svc, where)
 	if err != nil {
 		return nil, err
@@ -13472,8 +11818,17 @@ func GetMSFTNetTransportFilterTCPSetting(svc *wmi.Service, antecedent string, de
 	return &out[0], nil
 }
 
+// GetMSFTNetTransportFilterTCPSetting returns the MSFT_NetTransportFilterTCPSetting instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetTransportFilterTCPSetting(svc *wmi.Service, antecedent string, dependent string) (*MSFTNetTransportFilterTCPSetting, error) {
+	where := "Antecedent = " + wmi.WQLValue(antecedent) +
+		" AND " + "Dependent = " + wmi.WQLValue(dependent)
+	return QueryOneMSFTNetTransportFilterTCPSetting(svc, where)
+}
+
 // QueryMSFTNetUDPEndpoint runs the WQL query against the class and decodes each
-// instance into a MSFTNetUDPEndpoint. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetUDPEndpoint. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetUDPEndpoint(svc *wmi.Service, where string) ([]MSFTNetUDPEndpoint, error) {
 	q := "SELECT * FROM MSFT_NetUDPEndpoint"
 	if where != "" {
@@ -13485,41 +11840,14 @@ func QueryMSFTNetUDPEndpoint(svc *wmi.Service, where string) ([]MSFTNetUDPEndpoi
 	}
 	out := make([]MSFTNetUDPEndpoint, len(rows))
 	for i, row := range rows {
-		out[i].AggregationBehavior = wmi.AsUint16(row["AggregationBehavior"])
-		out[i].AvailableRequestedStates = wmi.AsUint16Slice(row["AvailableRequestedStates"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CommunicationStatus = wmi.AsUint16(row["CommunicationStatus"])
-		out[i].CreationTime = wmi.AsString(row["CreationTime"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DetailedStatus = wmi.AsUint16(row["DetailedStatus"])
-		out[i].Directionality = wmi.AsUint16(row["Directionality"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].EnabledDefault = wmi.AsUint16(row["EnabledDefault"])
-		out[i].EnabledState = wmi.AsUint16(row["EnabledState"])
-		out[i].HealthState = wmi.AsUint16(row["HealthState"])
-		out[i].InstallDate = wmi.AsString(row["InstallDate"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].LocalAddress = wmi.AsString(row["LocalAddress"])
-		out[i].LocalPort = wmi.AsUint16(row["LocalPort"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].OperatingStatus = wmi.AsUint16(row["OperatingStatus"])
-		out[i].OperationalStatus = wmi.AsUint16Slice(row["OperationalStatus"])
-		out[i].OtherEnabledState = wmi.AsString(row["OtherEnabledState"])
-		out[i].OwningProcess = wmi.AsUint32(row["OwningProcess"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].RequestedState = wmi.AsUint16(row["RequestedState"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusDescriptions = wmi.AsStringSlice(row["StatusDescriptions"])
-		out[i].TimeOfLastStateChange = wmi.AsString(row["TimeOfLastStateChange"])
-		out[i].TransitioningToState = wmi.AsUint16(row["TransitioningToState"])
+		out[i] = MSFTNetUDPEndpointFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTNetUDPEndpoint returns the MSFT_NetUDPEndpoint instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTNetUDPEndpoint(svc *wmi.Service, instanceID string) (*MSFTNetUDPEndpoint, error) {
-	where := "InstanceID = " + wmi.WQLValue(instanceID)
+// QueryOneMSFTNetUDPEndpoint returns the single MSFT_NetUDPEndpoint matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetUDPEndpoint(svc *wmi.Service, where string) (*MSFTNetUDPEndpoint, error) {
 	out, err := QueryMSFTNetUDPEndpoint(svc, where)
 	if err != nil {
 		return nil, err
@@ -13530,8 +11858,16 @@ func GetMSFTNetUDPEndpoint(svc *wmi.Service, instanceID string) (*MSFTNetUDPEndp
 	return &out[0], nil
 }
 
+// GetMSFTNetUDPEndpoint returns the MSFT_NetUDPEndpoint instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTNetUDPEndpoint(svc *wmi.Service, instanceID string) (*MSFTNetUDPEndpoint, error) {
+	where := "InstanceID = " + wmi.WQLValue(instanceID)
+	return QueryOneMSFTNetUDPEndpoint(svc, where)
+}
+
 // QueryMSFTNetUDPSetting runs the WQL query against the class and decodes each
-// instance into a MSFTNetUDPSetting. Pass the WHERE clause (or "" for all).
+// instance into a MSFTNetUDPSetting. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTNetUDPSetting(svc *wmi.Service, where string) ([]MSFTNetUDPSetting, error) {
 	q := "SELECT * FROM MSFT_NetUDPSetting"
 	if where != "" {
@@ -13543,23 +11879,22 @@ func QueryMSFTNetUDPSetting(svc *wmi.Service, where string) ([]MSFTNetUDPSetting
 	}
 	out := make([]MSFTNetUDPSetting, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CommonName = wmi.AsString(row["CommonName"])
-		out[i].CreationClassName = wmi.AsString(row["CreationClassName"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DoActionLogging = wmi.AsBool(row["DoActionLogging"])
-		out[i].DynamicPortRangeNumberOfPorts = wmi.AsUint16(row["DynamicPortRangeNumberOfPorts"])
-		out[i].DynamicPortRangeStartPort = wmi.AsUint16(row["DynamicPortRangeStartPort"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].PolicyActionName = wmi.AsString(row["PolicyActionName"])
-		out[i].PolicyKeywords = wmi.AsStringSlice(row["PolicyKeywords"])
-		out[i].PolicyRuleCreationClassName = wmi.AsString(row["PolicyRuleCreationClassName"])
-		out[i].PolicyRuleName = wmi.AsString(row["PolicyRuleName"])
-		out[i].SystemCreationClassName = wmi.AsString(row["SystemCreationClassName"])
-		out[i].SystemName = wmi.AsString(row["SystemName"])
+		out[i] = MSFTNetUDPSettingFromRow(row)
 	}
 	return out, nil
+}
+
+// QueryOneMSFTNetUDPSetting returns the single MSFT_NetUDPSetting matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTNetUDPSetting(svc *wmi.Service, where string) (*MSFTNetUDPSetting, error) {
+	out, err := QueryMSFTNetUDPSetting(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // GetMSFTNetUDPSetting returns the MSFT_NetUDPSetting instance identified by its key
@@ -13571,18 +11906,12 @@ func GetMSFTNetUDPSetting(svc *wmi.Service, creationClassName string, policyActi
 		" AND " + "PolicyRuleName = " + wmi.WQLValue(policyRuleName) +
 		" AND " + "SystemCreationClassName = " + wmi.WQLValue(systemCreationClassName) +
 		" AND " + "SystemName = " + wmi.WQLValue(systemName)
-	out, err := QueryMSFTNetUDPSetting(svc, where)
-	if err != nil {
-		return nil, err
-	}
-	if len(out) == 0 {
-		return nil, wmi.ErrNotFound
-	}
-	return &out[0], nil
+	return QueryOneMSFTNetUDPSetting(svc, where)
 }
 
 // QueryMSFTPrintJob runs the WQL query against the class and decodes each
-// instance into a MSFTPrintJob. Pass the WHERE clause (or "" for all).
+// instance into a MSFTPrintJob. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTPrintJob(svc *wmi.Service, where string) ([]MSFTPrintJob, error) {
 	q := "SELECT * FROM MSFT_PrintJob"
 	if where != "" {
@@ -13594,43 +11923,14 @@ func QueryMSFTPrintJob(svc *wmi.Service, where string) ([]MSFTPrintJob, error) {
 	}
 	out := make([]MSFTPrintJob, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CommunicationStatus = wmi.AsUint16(row["CommunicationStatus"])
-		out[i].ComputerName = wmi.AsString(row["ComputerName"])
-		out[i].Datatype = wmi.AsString(row["Datatype"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DetailedStatus = wmi.AsUint16(row["DetailedStatus"])
-		out[i].DocumentName = wmi.AsString(row["DocumentName"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].HealthState = wmi.AsUint16(row["HealthState"])
-		out[i].Id = wmi.AsUint32(row["Id"])
-		out[i].InstallDate = wmi.AsString(row["InstallDate"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].JobStatus = wmi.AsUint32(row["JobStatus"])
-		out[i].JobTime = wmi.AsUint32(row["JobTime"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].OperatingStatus = wmi.AsUint16(row["OperatingStatus"])
-		out[i].OperationalStatus = wmi.AsUint16Slice(row["OperationalStatus"])
-		out[i].PagesPrinted = wmi.AsUint32(row["PagesPrinted"])
-		out[i].Position = wmi.AsUint32(row["Position"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].PrinterName = wmi.AsString(row["PrinterName"])
-		out[i].Priority = wmi.AsUint32(row["Priority"])
-		out[i].Size = wmi.AsUint32(row["Size"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusDescriptions = wmi.AsStringSlice(row["StatusDescriptions"])
-		out[i].SubmittedTime = wmi.AsString(row["SubmittedTime"])
-		out[i].TotalPages = wmi.AsUint32(row["TotalPages"])
-		out[i].UserName = wmi.AsString(row["UserName"])
+		out[i] = MSFTPrintJobFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTPrintJob returns the MSFT_PrintJob instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTPrintJob(svc *wmi.Service, id uint32, printerName string) (*MSFTPrintJob, error) {
-	where := "Id = " + wmi.WQLValue(id) +
-		" AND " + "PrinterName = " + wmi.WQLValue(printerName)
+// QueryOneMSFTPrintJob returns the single MSFT_PrintJob matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTPrintJob(svc *wmi.Service, where string) (*MSFTPrintJob, error) {
 	out, err := QueryMSFTPrintJob(svc, where)
 	if err != nil {
 		return nil, err
@@ -13641,8 +11941,17 @@ func GetMSFTPrintJob(svc *wmi.Service, id uint32, printerName string) (*MSFTPrin
 	return &out[0], nil
 }
 
+// GetMSFTPrintJob returns the MSFT_PrintJob instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTPrintJob(svc *wmi.Service, id uint32, printerName string) (*MSFTPrintJob, error) {
+	where := "Id = " + wmi.WQLValue(id) +
+		" AND " + "PrinterName = " + wmi.WQLValue(printerName)
+	return QueryOneMSFTPrintJob(svc, where)
+}
+
 // QueryMSFTPrinter runs the WQL query against the class and decodes each
-// instance into a MSFTPrinter. Pass the WHERE clause (or "" for all).
+// instance into a MSFTPrinter. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTPrinter(svc *wmi.Service, where string) ([]MSFTPrinter, error) {
 	q := "SELECT * FROM MSFT_Printer"
 	if where != "" {
@@ -13654,56 +11963,14 @@ func QueryMSFTPrinter(svc *wmi.Service, where string) ([]MSFTPrinter, error) {
 	}
 	out := make([]MSFTPrinter, len(rows))
 	for i, row := range rows {
-		out[i].BranchOfficeOfflineLogSizeMB = wmi.AsUint32(row["BranchOfficeOfflineLogSizeMB"])
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].Comment = wmi.AsString(row["Comment"])
-		out[i].CommunicationStatus = wmi.AsUint16(row["CommunicationStatus"])
-		out[i].ComputerName = wmi.AsString(row["ComputerName"])
-		out[i].Datatype = wmi.AsString(row["Datatype"])
-		out[i].DefaultJobPriority = wmi.AsUint32(row["DefaultJobPriority"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DetailedStatus = wmi.AsUint16(row["DetailedStatus"])
-		out[i].DeviceType = wmi.AsUint32(row["DeviceType"])
-		out[i].DisableBranchOfficeLogging = wmi.AsBool(row["DisableBranchOfficeLogging"])
-		out[i].DriverName = wmi.AsString(row["DriverName"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].HealthState = wmi.AsUint16(row["HealthState"])
-		out[i].InstallDate = wmi.AsString(row["InstallDate"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].JobCount = wmi.AsUint32(row["JobCount"])
-		out[i].KeepPrintedJobs = wmi.AsBool(row["KeepPrintedJobs"])
-		out[i].Location = wmi.AsString(row["Location"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].OperatingStatus = wmi.AsUint16(row["OperatingStatus"])
-		out[i].OperationalStatus = wmi.AsUint16Slice(row["OperationalStatus"])
-		out[i].PermissionSDDL = wmi.AsString(row["PermissionSDDL"])
-		out[i].PortName = wmi.AsString(row["PortName"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].PrintProcessor = wmi.AsString(row["PrintProcessor"])
-		out[i].PrinterStatus = wmi.AsUint32(row["PrinterStatus"])
-		out[i].Priority = wmi.AsUint32(row["Priority"])
-		out[i].Published = wmi.AsBool(row["Published"])
-		out[i].RenderingMode = wmi.AsUint32(row["RenderingMode"])
-		out[i].SeparatorPageFile = wmi.AsString(row["SeparatorPageFile"])
-		out[i].ShareName = wmi.AsString(row["ShareName"])
-		out[i].Shared = wmi.AsBool(row["Shared"])
-		out[i].StartTime = wmi.AsUint32(row["StartTime"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusDescriptions = wmi.AsStringSlice(row["StatusDescriptions"])
-		out[i].Type = wmi.AsUint32(row["Type"])
-		out[i].UntilTime = wmi.AsUint32(row["UntilTime"])
-		out[i].WorkflowPolicy = wmi.AsUint32(row["WorkflowPolicy"])
+		out[i] = MSFTPrinterFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTPrinter returns the MSFT_Printer instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTPrinter(svc *wmi.Service, computerName string, deviceType uint32, name string, typeArg uint32) (*MSFTPrinter, error) {
-	where := "ComputerName = " + wmi.WQLValue(computerName) +
-		" AND " + "DeviceType = " + wmi.WQLValue(deviceType) +
-		" AND " + "Name = " + wmi.WQLValue(name) +
-		" AND " + "Type = " + wmi.WQLValue(typeArg)
+// QueryOneMSFTPrinter returns the single MSFT_Printer matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTPrinter(svc *wmi.Service, where string) (*MSFTPrinter, error) {
 	out, err := QueryMSFTPrinter(svc, where)
 	if err != nil {
 		return nil, err
@@ -13714,8 +11981,19 @@ func GetMSFTPrinter(svc *wmi.Service, computerName string, deviceType uint32, na
 	return &out[0], nil
 }
 
+// GetMSFTPrinter returns the MSFT_Printer instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTPrinter(svc *wmi.Service, computerName string, deviceType uint32, name string, typeArg uint32) (*MSFTPrinter, error) {
+	where := "ComputerName = " + wmi.WQLValue(computerName) +
+		" AND " + "DeviceType = " + wmi.WQLValue(deviceType) +
+		" AND " + "Name = " + wmi.WQLValue(name) +
+		" AND " + "Type = " + wmi.WQLValue(typeArg)
+	return QueryOneMSFTPrinter(svc, where)
+}
+
 // QueryMSFTPrinterConfiguration runs the WQL query against the class and decodes each
-// instance into a MSFTPrinterConfiguration. Pass the WHERE clause (or "" for all).
+// instance into a MSFTPrinterConfiguration. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTPrinterConfiguration(svc *wmi.Service, where string) ([]MSFTPrinterConfiguration, error) {
 	q := "SELECT * FROM MSFT_PrinterConfiguration"
 	if where != "" {
@@ -13727,23 +12005,14 @@ func QueryMSFTPrinterConfiguration(svc *wmi.Service, where string) ([]MSFTPrinte
 	}
 	out := make([]MSFTPrinterConfiguration, len(rows))
 	for i, row := range rows {
-		out[i].Collate = wmi.AsBool(row["Collate"])
-		out[i].Color = wmi.AsBool(row["Color"])
-		out[i].ComputerName = wmi.AsString(row["ComputerName"])
-		out[i].DuplexingMode = wmi.AsUint32(row["DuplexingMode"])
-		out[i].PaperSize = wmi.AsUint32(row["PaperSize"])
-		out[i].PrintCapabilitiesXML = wmi.AsString(row["PrintCapabilitiesXML"])
-		out[i].PrintTicketXML = wmi.AsString(row["PrintTicketXML"])
-		out[i].PrinterName = wmi.AsString(row["PrinterName"])
+		out[i] = MSFTPrinterConfigurationFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTPrinterConfiguration returns the MSFT_PrinterConfiguration instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTPrinterConfiguration(svc *wmi.Service, computerName string, printerName string) (*MSFTPrinterConfiguration, error) {
-	where := "ComputerName = " + wmi.WQLValue(computerName) +
-		" AND " + "PrinterName = " + wmi.WQLValue(printerName)
+// QueryOneMSFTPrinterConfiguration returns the single MSFT_PrinterConfiguration matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTPrinterConfiguration(svc *wmi.Service, where string) (*MSFTPrinterConfiguration, error) {
 	out, err := QueryMSFTPrinterConfiguration(svc, where)
 	if err != nil {
 		return nil, err
@@ -13754,8 +12023,17 @@ func GetMSFTPrinterConfiguration(svc *wmi.Service, computerName string, printerN
 	return &out[0], nil
 }
 
+// GetMSFTPrinterConfiguration returns the MSFT_PrinterConfiguration instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTPrinterConfiguration(svc *wmi.Service, computerName string, printerName string) (*MSFTPrinterConfiguration, error) {
+	where := "ComputerName = " + wmi.WQLValue(computerName) +
+		" AND " + "PrinterName = " + wmi.WQLValue(printerName)
+	return QueryOneMSFTPrinterConfiguration(svc, where)
+}
+
 // QueryMSFTPrinterDriver runs the WQL query against the class and decodes each
-// instance into a MSFTPrinterDriver. Pass the WHERE clause (or "" for all).
+// instance into a MSFTPrinterDriver. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTPrinterDriver(svc *wmi.Service, where string) ([]MSFTPrinterDriver, error) {
 	q := "SELECT * FROM MSFT_PrinterDriver"
 	if where != "" {
@@ -13767,54 +12045,14 @@ func QueryMSFTPrinterDriver(svc *wmi.Service, where string) ([]MSFTPrinterDriver
 	}
 	out := make([]MSFTPrinterDriver, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].ColorProfiles = wmi.AsStringSlice(row["ColorProfiles"])
-		out[i].CommunicationStatus = wmi.AsUint16(row["CommunicationStatus"])
-		out[i].ComputerName = wmi.AsString(row["ComputerName"])
-		out[i].ConfigFile = wmi.AsString(row["ConfigFile"])
-		out[i].CoreDriverDependencies = wmi.AsStringSlice(row["CoreDriverDependencies"])
-		out[i].DataFile = wmi.AsString(row["DataFile"])
-		out[i].Date = wmi.AsString(row["Date"])
-		out[i].DefaultDatatype = wmi.AsString(row["DefaultDatatype"])
-		out[i].DependentFiles = wmi.AsStringSlice(row["DependentFiles"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DetailedStatus = wmi.AsUint16(row["DetailedStatus"])
-		out[i].DriverVersion = wmi.AsUint64(row["DriverVersion"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].HardwareID = wmi.AsString(row["HardwareID"])
-		out[i].HealthState = wmi.AsUint16(row["HealthState"])
-		out[i].HelpFile = wmi.AsString(row["HelpFile"])
-		out[i].InfPath = wmi.AsString(row["InfPath"])
-		out[i].InstallDate = wmi.AsString(row["InstallDate"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].IsPackageAware = wmi.AsBool(row["IsPackageAware"])
-		out[i].MajorVersion = wmi.AsUint32(row["MajorVersion"])
-		out[i].Manufacturer = wmi.AsString(row["Manufacturer"])
-		out[i].Monitor = wmi.AsString(row["Monitor"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].OEMUrl = wmi.AsString(row["OEMUrl"])
-		out[i].OperatingStatus = wmi.AsUint16(row["OperatingStatus"])
-		out[i].OperationalStatus = wmi.AsUint16Slice(row["OperationalStatus"])
-		out[i].Path = wmi.AsString(row["Path"])
-		out[i].PreviousCompatibleNames = wmi.AsStringSlice(row["PreviousCompatibleNames"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].PrintProcessor = wmi.AsString(row["PrintProcessor"])
-		out[i].PrinterEnvironment = wmi.AsString(row["PrinterEnvironment"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusDescriptions = wmi.AsStringSlice(row["StatusDescriptions"])
-		out[i].VendorSetup = wmi.AsString(row["VendorSetup"])
-		out[i].Provider = wmi.AsString(row["provider"])
+		out[i] = MSFTPrinterDriverFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTPrinterDriver returns the MSFT_PrinterDriver instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTPrinterDriver(svc *wmi.Service, computerName string, infPath string, name string, printerEnvironment string) (*MSFTPrinterDriver, error) {
-	where := "ComputerName = " + wmi.WQLValue(computerName) +
-		" AND " + "InfPath = " + wmi.WQLValue(infPath) +
-		" AND " + "Name = " + wmi.WQLValue(name) +
-		" AND " + "PrinterEnvironment = " + wmi.WQLValue(printerEnvironment)
+// QueryOneMSFTPrinterDriver returns the single MSFT_PrinterDriver matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTPrinterDriver(svc *wmi.Service, where string) (*MSFTPrinterDriver, error) {
 	out, err := QueryMSFTPrinterDriver(svc, where)
 	if err != nil {
 		return nil, err
@@ -13825,8 +12063,19 @@ func GetMSFTPrinterDriver(svc *wmi.Service, computerName string, infPath string,
 	return &out[0], nil
 }
 
+// GetMSFTPrinterDriver returns the MSFT_PrinterDriver instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTPrinterDriver(svc *wmi.Service, computerName string, infPath string, name string, printerEnvironment string) (*MSFTPrinterDriver, error) {
+	where := "ComputerName = " + wmi.WQLValue(computerName) +
+		" AND " + "InfPath = " + wmi.WQLValue(infPath) +
+		" AND " + "Name = " + wmi.WQLValue(name) +
+		" AND " + "PrinterEnvironment = " + wmi.WQLValue(printerEnvironment)
+	return QueryOneMSFTPrinterDriver(svc, where)
+}
+
 // QueryMSFTPrinterNfcTag runs the WQL query against the class and decodes each
-// instance into a MSFTPrinterNfcTag. Pass the WHERE clause (or "" for all).
+// instance into a MSFTPrinterNfcTag. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTPrinterNfcTag(svc *wmi.Service, where string) ([]MSFTPrinterNfcTag, error) {
 	q := "SELECT * FROM MSFT_PrinterNfcTag"
 	if where != "" {
@@ -13838,15 +12087,27 @@ func QueryMSFTPrinterNfcTag(svc *wmi.Service, where string) ([]MSFTPrinterNfcTag
 	}
 	out := make([]MSFTPrinterNfcTag, len(rows))
 	for i, row := range rows {
-		out[i].Locked = wmi.AsBool(row["Locked"])
-		out[i].SharePath = wmi.AsStringSlice(row["SharePath"])
-		out[i].WsdAddress = wmi.AsStringSlice(row["WsdAddress"])
+		out[i] = MSFTPrinterNfcTagFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneMSFTPrinterNfcTag returns the single MSFT_PrinterNfcTag matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTPrinterNfcTag(svc *wmi.Service, where string) (*MSFTPrinterNfcTag, error) {
+	out, err := QueryMSFTPrinterNfcTag(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryMSFTPrinterNfcTagTasks runs the WQL query against the class and decodes each
-// instance into a MSFTPrinterNfcTagTasks. Pass the WHERE clause (or "" for all).
+// instance into a MSFTPrinterNfcTagTasks. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTPrinterNfcTagTasks(svc *wmi.Service, where string) ([]MSFTPrinterNfcTagTasks, error) {
 	q := "SELECT * FROM MSFT_PrinterNfcTagTasks"
 	if where != "" {
@@ -13857,11 +12118,28 @@ func QueryMSFTPrinterNfcTagTasks(svc *wmi.Service, where string) ([]MSFTPrinterN
 		return nil, err
 	}
 	out := make([]MSFTPrinterNfcTagTasks, len(rows))
+	for i, row := range rows {
+		out[i] = MSFTPrinterNfcTagTasksFromRow(row)
+	}
 	return out, nil
 }
 
+// QueryOneMSFTPrinterNfcTagTasks returns the single MSFT_PrinterNfcTagTasks matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTPrinterNfcTagTasks(svc *wmi.Service, where string) (*MSFTPrinterNfcTagTasks, error) {
+	out, err := QueryMSFTPrinterNfcTagTasks(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryMSFTPrinterPort runs the WQL query against the class and decodes each
-// instance into a MSFTPrinterPort. Pass the WHERE clause (or "" for all).
+// instance into a MSFTPrinterPort. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTPrinterPort(svc *wmi.Service, where string) ([]MSFTPrinterPort, error) {
 	q := "SELECT * FROM MSFT_PrinterPort"
 	if where != "" {
@@ -13873,32 +12151,14 @@ func QueryMSFTPrinterPort(svc *wmi.Service, where string) ([]MSFTPrinterPort, er
 	}
 	out := make([]MSFTPrinterPort, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CommunicationStatus = wmi.AsUint16(row["CommunicationStatus"])
-		out[i].ComputerName = wmi.AsString(row["ComputerName"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DetailedStatus = wmi.AsUint16(row["DetailedStatus"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].HealthState = wmi.AsUint16(row["HealthState"])
-		out[i].InstallDate = wmi.AsString(row["InstallDate"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].OperatingStatus = wmi.AsUint16(row["OperatingStatus"])
-		out[i].OperationalStatus = wmi.AsUint16Slice(row["OperationalStatus"])
-		out[i].PortMonitor = wmi.AsString(row["PortMonitor"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusDescriptions = wmi.AsStringSlice(row["StatusDescriptions"])
+		out[i] = MSFTPrinterPortFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTPrinterPort returns the MSFT_PrinterPort instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTPrinterPort(svc *wmi.Service, computerName string, name string, portMonitor string) (*MSFTPrinterPort, error) {
-	where := "ComputerName = " + wmi.WQLValue(computerName) +
-		" AND " + "Name = " + wmi.WQLValue(name) +
-		" AND " + "PortMonitor = " + wmi.WQLValue(portMonitor)
+// QueryOneMSFTPrinterPort returns the single MSFT_PrinterPort matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTPrinterPort(svc *wmi.Service, where string) (*MSFTPrinterPort, error) {
 	out, err := QueryMSFTPrinterPort(svc, where)
 	if err != nil {
 		return nil, err
@@ -13909,8 +12169,18 @@ func GetMSFTPrinterPort(svc *wmi.Service, computerName string, name string, port
 	return &out[0], nil
 }
 
+// GetMSFTPrinterPort returns the MSFT_PrinterPort instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTPrinterPort(svc *wmi.Service, computerName string, name string, portMonitor string) (*MSFTPrinterPort, error) {
+	where := "ComputerName = " + wmi.WQLValue(computerName) +
+		" AND " + "Name = " + wmi.WQLValue(name) +
+		" AND " + "PortMonitor = " + wmi.WQLValue(portMonitor)
+	return QueryOneMSFTPrinterPort(svc, where)
+}
+
 // QueryMSFTPrinterPortTasks runs the WQL query against the class and decodes each
-// instance into a MSFTPrinterPortTasks. Pass the WHERE clause (or "" for all).
+// instance into a MSFTPrinterPortTasks. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTPrinterPortTasks(svc *wmi.Service, where string) ([]MSFTPrinterPortTasks, error) {
 	q := "SELECT * FROM MSFT_PrinterPortTasks"
 	if where != "" {
@@ -13921,11 +12191,28 @@ func QueryMSFTPrinterPortTasks(svc *wmi.Service, where string) ([]MSFTPrinterPor
 		return nil, err
 	}
 	out := make([]MSFTPrinterPortTasks, len(rows))
+	for i, row := range rows {
+		out[i] = MSFTPrinterPortTasksFromRow(row)
+	}
 	return out, nil
 }
 
+// QueryOneMSFTPrinterPortTasks returns the single MSFT_PrinterPortTasks matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTPrinterPortTasks(svc *wmi.Service, where string) (*MSFTPrinterPortTasks, error) {
+	out, err := QueryMSFTPrinterPortTasks(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryMSFTPrinterProperty runs the WQL query against the class and decodes each
-// instance into a MSFTPrinterProperty. Pass the WHERE clause (or "" for all).
+// instance into a MSFTPrinterProperty. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTPrinterProperty(svc *wmi.Service, where string) ([]MSFTPrinterProperty, error) {
 	q := "SELECT * FROM MSFT_PrinterProperty"
 	if where != "" {
@@ -13937,26 +12224,14 @@ func QueryMSFTPrinterProperty(svc *wmi.Service, where string) ([]MSFTPrinterProp
 	}
 	out := make([]MSFTPrinterProperty, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].ComputerName = wmi.AsString(row["ComputerName"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].PrinterName = wmi.AsString(row["PrinterName"])
-		out[i].PropertyName = wmi.AsString(row["PropertyName"])
-		out[i].Type = wmi.AsUint32(row["Type"])
-		out[i].Value = wmi.AsString(row["Value"])
+		out[i] = MSFTPrinterPropertyFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTPrinterProperty returns the MSFT_PrinterProperty instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTPrinterProperty(svc *wmi.Service, computerName string, printerName string, propertyName string, typeArg uint32) (*MSFTPrinterProperty, error) {
-	where := "ComputerName = " + wmi.WQLValue(computerName) +
-		" AND " + "PrinterName = " + wmi.WQLValue(printerName) +
-		" AND " + "PropertyName = " + wmi.WQLValue(propertyName) +
-		" AND " + "Type = " + wmi.WQLValue(typeArg)
+// QueryOneMSFTPrinterProperty returns the single MSFT_PrinterProperty matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTPrinterProperty(svc *wmi.Service, where string) (*MSFTPrinterProperty, error) {
 	out, err := QueryMSFTPrinterProperty(svc, where)
 	if err != nil {
 		return nil, err
@@ -13967,8 +12242,19 @@ func GetMSFTPrinterProperty(svc *wmi.Service, computerName string, printerName s
 	return &out[0], nil
 }
 
+// GetMSFTPrinterProperty returns the MSFT_PrinterProperty instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTPrinterProperty(svc *wmi.Service, computerName string, printerName string, propertyName string, typeArg uint32) (*MSFTPrinterProperty, error) {
+	where := "ComputerName = " + wmi.WQLValue(computerName) +
+		" AND " + "PrinterName = " + wmi.WQLValue(printerName) +
+		" AND " + "PropertyName = " + wmi.WQLValue(propertyName) +
+		" AND " + "Type = " + wmi.WQLValue(typeArg)
+	return QueryOneMSFTPrinterProperty(svc, where)
+}
+
 // QueryMSFTTcpIpPrinterPort runs the WQL query against the class and decodes each
-// instance into a MSFTTcpIpPrinterPort. Pass the WHERE clause (or "" for all).
+// instance into a MSFTTcpIpPrinterPort. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTTcpIpPrinterPort(svc *wmi.Service, where string) ([]MSFTTcpIpPrinterPort, error) {
 	q := "SELECT * FROM MSFT_TcpIpPrinterPort"
 	if where != "" {
@@ -13980,41 +12266,14 @@ func QueryMSFTTcpIpPrinterPort(svc *wmi.Service, where string) ([]MSFTTcpIpPrint
 	}
 	out := make([]MSFTTcpIpPrinterPort, len(rows))
 	for i, row := range rows {
-		out[i].Caption = wmi.AsString(row["Caption"])
-		out[i].CommunicationStatus = wmi.AsUint16(row["CommunicationStatus"])
-		out[i].ComputerName = wmi.AsString(row["ComputerName"])
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].DetailedStatus = wmi.AsUint16(row["DetailedStatus"])
-		out[i].ElementName = wmi.AsString(row["ElementName"])
-		out[i].HealthState = wmi.AsUint16(row["HealthState"])
-		out[i].InstallDate = wmi.AsString(row["InstallDate"])
-		out[i].InstanceID = wmi.AsString(row["InstanceID"])
-		out[i].LprByteCounting = wmi.AsBool(row["LprByteCounting"])
-		out[i].LprQueueName = wmi.AsString(row["LprQueueName"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].OperatingStatus = wmi.AsUint16(row["OperatingStatus"])
-		out[i].OperationalStatus = wmi.AsUint16Slice(row["OperationalStatus"])
-		out[i].PortMonitor = wmi.AsString(row["PortMonitor"])
-		out[i].PortNumber = wmi.AsUint32(row["PortNumber"])
-		out[i].PrimaryStatus = wmi.AsUint16(row["PrimaryStatus"])
-		out[i].PrinterHostAddress = wmi.AsString(row["PrinterHostAddress"])
-		out[i].PrinterHostIP = wmi.AsString(row["PrinterHostIP"])
-		out[i].Protocol = wmi.AsUint32(row["Protocol"])
-		out[i].SNMPCommunity = wmi.AsString(row["SNMPCommunity"])
-		out[i].SNMPEnabled = wmi.AsBool(row["SNMPEnabled"])
-		out[i].SNMPIndex = wmi.AsUint32(row["SNMPIndex"])
-		out[i].Status = wmi.AsString(row["Status"])
-		out[i].StatusDescriptions = wmi.AsStringSlice(row["StatusDescriptions"])
+		out[i] = MSFTTcpIpPrinterPortFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMSFTTcpIpPrinterPort returns the MSFT_TcpIpPrinterPort instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMSFTTcpIpPrinterPort(svc *wmi.Service, computerName string, name string, portMonitor string) (*MSFTTcpIpPrinterPort, error) {
-	where := "ComputerName = " + wmi.WQLValue(computerName) +
-		" AND " + "Name = " + wmi.WQLValue(name) +
-		" AND " + "PortMonitor = " + wmi.WQLValue(portMonitor)
+// QueryOneMSFTTcpIpPrinterPort returns the single MSFT_TcpIpPrinterPort matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTTcpIpPrinterPort(svc *wmi.Service, where string) (*MSFTTcpIpPrinterPort, error) {
 	out, err := QueryMSFTTcpIpPrinterPort(svc, where)
 	if err != nil {
 		return nil, err
@@ -14025,8 +12284,18 @@ func GetMSFTTcpIpPrinterPort(svc *wmi.Service, computerName string, name string,
 	return &out[0], nil
 }
 
+// GetMSFTTcpIpPrinterPort returns the MSFT_TcpIpPrinterPort instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMSFTTcpIpPrinterPort(svc *wmi.Service, computerName string, name string, portMonitor string) (*MSFTTcpIpPrinterPort, error) {
+	where := "ComputerName = " + wmi.WQLValue(computerName) +
+		" AND " + "Name = " + wmi.WQLValue(name) +
+		" AND " + "PortMonitor = " + wmi.WQLValue(portMonitor)
+	return QueryOneMSFTTcpIpPrinterPort(svc, where)
+}
+
 // QueryMSFTWmiError runs the WQL query against the class and decodes each
-// instance into a MSFTWmiError. Pass the WHERE clause (or "" for all).
+// instance into a MSFTWmiError. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMSFTWmiError(svc *wmi.Service, where string) ([]MSFTWmiError, error) {
 	q := "SELECT * FROM MSFT_WmiError"
 	if where != "" {
@@ -14038,30 +12307,27 @@ func QueryMSFTWmiError(svc *wmi.Service, where string) ([]MSFTWmiError, error) {
 	}
 	out := make([]MSFTWmiError, len(rows))
 	for i, row := range rows {
-		out[i].CIMStatusCode = wmi.AsUint32(row["CIMStatusCode"])
-		out[i].CIMStatusCodeDescription = wmi.AsString(row["CIMStatusCodeDescription"])
-		out[i].ErrorSource = wmi.AsString(row["ErrorSource"])
-		out[i].ErrorSourceFormat = wmi.AsUint16(row["ErrorSourceFormat"])
-		out[i].ErrorType = wmi.AsUint16(row["ErrorType"])
-		out[i].Message = wmi.AsString(row["Message"])
-		out[i].MessageArguments = wmi.AsStringSlice(row["MessageArguments"])
-		out[i].MessageID = wmi.AsString(row["MessageID"])
-		out[i].OtherErrorSourceFormat = wmi.AsString(row["OtherErrorSourceFormat"])
-		out[i].OtherErrorType = wmi.AsString(row["OtherErrorType"])
-		out[i].OwningEntity = wmi.AsString(row["OwningEntity"])
-		out[i].PerceivedSeverity = wmi.AsUint16(row["PerceivedSeverity"])
-		out[i].ProbableCause = wmi.AsUint16(row["ProbableCause"])
-		out[i].ProbableCauseDescription = wmi.AsString(row["ProbableCauseDescription"])
-		out[i].RecommendedActions = wmi.AsStringSlice(row["RecommendedActions"])
-		out[i].ErrorCategory = wmi.AsUint16(row["error_Category"])
-		out[i].ErrorCode = wmi.AsUint32(row["error_Code"])
-		out[i].ErrorWindowsErrorMessage = wmi.AsString(row["error_WindowsErrorMessage"])
+		out[i] = MSFTWmiErrorFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneMSFTWmiError returns the single MSFT_WmiError matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMSFTWmiError(svc *wmi.Service, where string) (*MSFTWmiError, error) {
+	out, err := QueryMSFTWmiError(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryACE runs the WQL query against the class and decodes each
-// instance into a ACE. Pass the WHERE clause (or "" for all).
+// instance into a ACE. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryACE(svc *wmi.Service, where string) ([]ACE, error) {
 	q := "SELECT * FROM __ACE"
 	if where != "" {
@@ -14073,21 +12339,27 @@ func QueryACE(svc *wmi.Service, where string) ([]ACE, error) {
 	}
 	out := make([]ACE, len(rows))
 	for i, row := range rows {
-		out[i].AccessMask = wmi.AsUint32(row["AccessMask"])
-		out[i].AceFlags = wmi.AsUint32(row["AceFlags"])
-		out[i].AceType = wmi.AsUint32(row["AceType"])
-		out[i].GuidInheritedObjectType = wmi.AsString(row["GuidInheritedObjectType"])
-		out[i].GuidObjectType = wmi.AsString(row["GuidObjectType"])
-		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
-		if v, ok := row["Trustee"].(wmi.Row); ok {
-			out[i].Trustee = v
-		}
+		out[i] = ACEFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneACE returns the single __ACE matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneACE(svc *wmi.Service, where string) (*ACE, error) {
+	out, err := QueryACE(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryAbsoluteTimerInstruction runs the WQL query against the class and decodes each
-// instance into a AbsoluteTimerInstruction. Pass the WHERE clause (or "" for all).
+// instance into a AbsoluteTimerInstruction. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryAbsoluteTimerInstruction(svc *wmi.Service, where string) ([]AbsoluteTimerInstruction, error) {
 	q := "SELECT * FROM __AbsoluteTimerInstruction"
 	if where != "" {
@@ -14099,17 +12371,14 @@ func QueryAbsoluteTimerInstruction(svc *wmi.Service, where string) ([]AbsoluteTi
 	}
 	out := make([]AbsoluteTimerInstruction, len(rows))
 	for i, row := range rows {
-		out[i].EventDateTime = wmi.AsString(row["EventDateTime"])
-		out[i].SkipIfPassed = wmi.AsBool(row["SkipIfPassed"])
-		out[i].TimerId = wmi.AsString(row["TimerId"])
+		out[i] = AbsoluteTimerInstructionFromRow(row)
 	}
 	return out, nil
 }
 
-// GetAbsoluteTimerInstruction returns the __AbsoluteTimerInstruction instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetAbsoluteTimerInstruction(svc *wmi.Service, timerId string) (*AbsoluteTimerInstruction, error) {
-	where := "TimerId = " + wmi.WQLValue(timerId)
+// QueryOneAbsoluteTimerInstruction returns the single __AbsoluteTimerInstruction matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneAbsoluteTimerInstruction(svc *wmi.Service, where string) (*AbsoluteTimerInstruction, error) {
 	out, err := QueryAbsoluteTimerInstruction(svc, where)
 	if err != nil {
 		return nil, err
@@ -14120,8 +12389,16 @@ func GetAbsoluteTimerInstruction(svc *wmi.Service, timerId string) (*AbsoluteTim
 	return &out[0], nil
 }
 
+// GetAbsoluteTimerInstruction returns the __AbsoluteTimerInstruction instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetAbsoluteTimerInstruction(svc *wmi.Service, timerId string) (*AbsoluteTimerInstruction, error) {
+	where := "TimerId = " + wmi.WQLValue(timerId)
+	return QueryOneAbsoluteTimerInstruction(svc, where)
+}
+
 // QueryAggregateEvent runs the WQL query against the class and decodes each
-// instance into a AggregateEvent. Pass the WHERE clause (or "" for all).
+// instance into a AggregateEvent. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryAggregateEvent(svc *wmi.Service, where string) ([]AggregateEvent, error) {
 	q := "SELECT * FROM __AggregateEvent"
 	if where != "" {
@@ -14133,16 +12410,27 @@ func QueryAggregateEvent(svc *wmi.Service, where string) ([]AggregateEvent, erro
 	}
 	out := make([]AggregateEvent, len(rows))
 	for i, row := range rows {
-		out[i].NumberOfEvents = wmi.AsUint32(row["NumberOfEvents"])
-		if v, ok := row["Representative"].(wmi.Row); ok {
-			out[i].Representative = v
-		}
+		out[i] = AggregateEventFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneAggregateEvent returns the single __AggregateEvent matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneAggregateEvent(svc *wmi.Service, where string) (*AggregateEvent, error) {
+	out, err := QueryAggregateEvent(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryClassCreationEvent runs the WQL query against the class and decodes each
-// instance into a ClassCreationEvent. Pass the WHERE clause (or "" for all).
+// instance into a ClassCreationEvent. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryClassCreationEvent(svc *wmi.Service, where string) ([]ClassCreationEvent, error) {
 	q := "SELECT * FROM __ClassCreationEvent"
 	if where != "" {
@@ -14154,17 +12442,27 @@ func QueryClassCreationEvent(svc *wmi.Service, where string) ([]ClassCreationEve
 	}
 	out := make([]ClassCreationEvent, len(rows))
 	for i, row := range rows {
-		out[i].SECURITYDESCRIPTOR = wmi.AsUint8Slice(row["SECURITY_DESCRIPTOR"])
-		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
-		if v, ok := row["TargetClass"].(wmi.Row); ok {
-			out[i].TargetClass = v
-		}
+		out[i] = ClassCreationEventFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneClassCreationEvent returns the single __ClassCreationEvent matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneClassCreationEvent(svc *wmi.Service, where string) (*ClassCreationEvent, error) {
+	out, err := QueryClassCreationEvent(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryClassDeletionEvent runs the WQL query against the class and decodes each
-// instance into a ClassDeletionEvent. Pass the WHERE clause (or "" for all).
+// instance into a ClassDeletionEvent. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryClassDeletionEvent(svc *wmi.Service, where string) ([]ClassDeletionEvent, error) {
 	q := "SELECT * FROM __ClassDeletionEvent"
 	if where != "" {
@@ -14176,17 +12474,27 @@ func QueryClassDeletionEvent(svc *wmi.Service, where string) ([]ClassDeletionEve
 	}
 	out := make([]ClassDeletionEvent, len(rows))
 	for i, row := range rows {
-		out[i].SECURITYDESCRIPTOR = wmi.AsUint8Slice(row["SECURITY_DESCRIPTOR"])
-		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
-		if v, ok := row["TargetClass"].(wmi.Row); ok {
-			out[i].TargetClass = v
-		}
+		out[i] = ClassDeletionEventFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneClassDeletionEvent returns the single __ClassDeletionEvent matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneClassDeletionEvent(svc *wmi.Service, where string) (*ClassDeletionEvent, error) {
+	out, err := QueryClassDeletionEvent(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryClassModificationEvent runs the WQL query against the class and decodes each
-// instance into a ClassModificationEvent. Pass the WHERE clause (or "" for all).
+// instance into a ClassModificationEvent. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryClassModificationEvent(svc *wmi.Service, where string) ([]ClassModificationEvent, error) {
 	q := "SELECT * FROM __ClassModificationEvent"
 	if where != "" {
@@ -14198,20 +12506,27 @@ func QueryClassModificationEvent(svc *wmi.Service, where string) ([]ClassModific
 	}
 	out := make([]ClassModificationEvent, len(rows))
 	for i, row := range rows {
-		if v, ok := row["PreviousClass"].(wmi.Row); ok {
-			out[i].PreviousClass = v
-		}
-		out[i].SECURITYDESCRIPTOR = wmi.AsUint8Slice(row["SECURITY_DESCRIPTOR"])
-		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
-		if v, ok := row["TargetClass"].(wmi.Row); ok {
-			out[i].TargetClass = v
-		}
+		out[i] = ClassModificationEventFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneClassModificationEvent returns the single __ClassModificationEvent matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneClassModificationEvent(svc *wmi.Service, where string) (*ClassModificationEvent, error) {
+	out, err := QueryClassModificationEvent(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryClassOperationEvent runs the WQL query against the class and decodes each
-// instance into a ClassOperationEvent. Pass the WHERE clause (or "" for all).
+// instance into a ClassOperationEvent. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryClassOperationEvent(svc *wmi.Service, where string) ([]ClassOperationEvent, error) {
 	q := "SELECT * FROM __ClassOperationEvent"
 	if where != "" {
@@ -14223,17 +12538,27 @@ func QueryClassOperationEvent(svc *wmi.Service, where string) ([]ClassOperationE
 	}
 	out := make([]ClassOperationEvent, len(rows))
 	for i, row := range rows {
-		out[i].SECURITYDESCRIPTOR = wmi.AsUint8Slice(row["SECURITY_DESCRIPTOR"])
-		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
-		if v, ok := row["TargetClass"].(wmi.Row); ok {
-			out[i].TargetClass = v
-		}
+		out[i] = ClassOperationEventFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneClassOperationEvent returns the single __ClassOperationEvent matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneClassOperationEvent(svc *wmi.Service, where string) (*ClassOperationEvent, error) {
+	out, err := QueryClassOperationEvent(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryClassProviderRegistration runs the WQL query against the class and decodes each
-// instance into a ClassProviderRegistration. Pass the WHERE clause (or "" for all).
+// instance into a ClassProviderRegistration. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryClassProviderRegistration(svc *wmi.Service, where string) ([]ClassProviderRegistration, error) {
 	q := "SELECT * FROM __ClassProviderRegistration"
 	if where != "" {
@@ -14245,30 +12570,14 @@ func QueryClassProviderRegistration(svc *wmi.Service, where string) ([]ClassProv
 	}
 	out := make([]ClassProviderRegistration, len(rows))
 	for i, row := range rows {
-		out[i].CacheRefreshInterval = wmi.AsString(row["CacheRefreshInterval"])
-		out[i].InteractionType = wmi.AsInt32(row["InteractionType"])
-		out[i].PerUserSchema = wmi.AsBool(row["PerUserSchema"])
-		out[i].QuerySupportLevels = wmi.AsStringSlice(row["QuerySupportLevels"])
-		out[i].ReSynchroniseOnNamespaceOpen = wmi.AsBool(row["ReSynchroniseOnNamespaceOpen"])
-		out[i].ReferencedSetQueries = wmi.AsStringSlice(row["ReferencedSetQueries"])
-		out[i].ResultSetQueries = wmi.AsStringSlice(row["ResultSetQueries"])
-		out[i].SupportsBatching = wmi.AsBool(row["SupportsBatching"])
-		out[i].SupportsDelete = wmi.AsBool(row["SupportsDelete"])
-		out[i].SupportsEnumeration = wmi.AsBool(row["SupportsEnumeration"])
-		out[i].SupportsGet = wmi.AsBool(row["SupportsGet"])
-		out[i].SupportsPut = wmi.AsBool(row["SupportsPut"])
-		out[i].SupportsTransactions = wmi.AsBool(row["SupportsTransactions"])
-		out[i].UnsupportedQueries = wmi.AsStringSlice(row["UnsupportedQueries"])
-		out[i].Version = wmi.AsUint32(row["Version"])
-		out[i].Provider = wmi.AsString(row["provider"])
+		out[i] = ClassProviderRegistrationFromRow(row)
 	}
 	return out, nil
 }
 
-// GetClassProviderRegistration returns the __ClassProviderRegistration instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetClassProviderRegistration(svc *wmi.Service, provider string) (*ClassProviderRegistration, error) {
-	where := "provider = " + wmi.WQLValue(provider)
+// QueryOneClassProviderRegistration returns the single __ClassProviderRegistration matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneClassProviderRegistration(svc *wmi.Service, where string) (*ClassProviderRegistration, error) {
 	out, err := QueryClassProviderRegistration(svc, where)
 	if err != nil {
 		return nil, err
@@ -14279,8 +12588,16 @@ func GetClassProviderRegistration(svc *wmi.Service, provider string) (*ClassProv
 	return &out[0], nil
 }
 
+// GetClassProviderRegistration returns the __ClassProviderRegistration instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetClassProviderRegistration(svc *wmi.Service, provider string) (*ClassProviderRegistration, error) {
+	where := "provider = " + wmi.WQLValue(provider)
+	return QueryOneClassProviderRegistration(svc, where)
+}
+
 // QueryConsumerFailureEvent runs the WQL query against the class and decodes each
-// instance into a ConsumerFailureEvent. Pass the WHERE clause (or "" for all).
+// instance into a ConsumerFailureEvent. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryConsumerFailureEvent(svc *wmi.Service, where string) ([]ConsumerFailureEvent, error) {
 	q := "SELECT * FROM __ConsumerFailureEvent"
 	if where != "" {
@@ -14292,23 +12609,27 @@ func QueryConsumerFailureEvent(svc *wmi.Service, where string) ([]ConsumerFailur
 	}
 	out := make([]ConsumerFailureEvent, len(rows))
 	for i, row := range rows {
-		out[i].ErrorCode = wmi.AsUint32(row["ErrorCode"])
-		out[i].ErrorDescription = wmi.AsString(row["ErrorDescription"])
-		if v, ok := row["ErrorObject"].(wmi.Row); ok {
-			out[i].ErrorObject = v
-		}
-		if v, ok := row["Event"].(wmi.Row); ok {
-			out[i].Event = v
-		}
-		out[i].IntendedConsumer = wmi.AsString(row["IntendedConsumer"])
-		out[i].SECURITYDESCRIPTOR = wmi.AsUint8Slice(row["SECURITY_DESCRIPTOR"])
-		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
+		out[i] = ConsumerFailureEventFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneConsumerFailureEvent returns the single __ConsumerFailureEvent matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneConsumerFailureEvent(svc *wmi.Service, where string) (*ConsumerFailureEvent, error) {
+	out, err := QueryConsumerFailureEvent(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryEvent runs the WQL query against the class and decodes each
-// instance into a Event. Pass the WHERE clause (or "" for all).
+// instance into a Event. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryEvent(svc *wmi.Service, where string) ([]Event, error) {
 	q := "SELECT * FROM __Event"
 	if where != "" {
@@ -14320,14 +12641,27 @@ func QueryEvent(svc *wmi.Service, where string) ([]Event, error) {
 	}
 	out := make([]Event, len(rows))
 	for i, row := range rows {
-		out[i].SECURITYDESCRIPTOR = wmi.AsUint8Slice(row["SECURITY_DESCRIPTOR"])
-		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
+		out[i] = EventFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneEvent returns the single __Event matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneEvent(svc *wmi.Service, where string) (*Event, error) {
+	out, err := QueryEvent(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryEventConsumer runs the WQL query against the class and decodes each
-// instance into a EventConsumer. Pass the WHERE clause (or "" for all).
+// instance into a EventConsumer. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryEventConsumer(svc *wmi.Service, where string) ([]EventConsumer, error) {
 	q := "SELECT * FROM __EventConsumer"
 	if where != "" {
@@ -14339,15 +12673,27 @@ func QueryEventConsumer(svc *wmi.Service, where string) ([]EventConsumer, error)
 	}
 	out := make([]EventConsumer, len(rows))
 	for i, row := range rows {
-		out[i].CreatorSID = wmi.AsUint8Slice(row["CreatorSID"])
-		out[i].MachineName = wmi.AsString(row["MachineName"])
-		out[i].MaximumQueueSize = wmi.AsUint32(row["MaximumQueueSize"])
+		out[i] = EventConsumerFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneEventConsumer returns the single __EventConsumer matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneEventConsumer(svc *wmi.Service, where string) (*EventConsumer, error) {
+	out, err := QueryEventConsumer(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryEventConsumerProviderRegistration runs the WQL query against the class and decodes each
-// instance into a EventConsumerProviderRegistration. Pass the WHERE clause (or "" for all).
+// instance into a EventConsumerProviderRegistration. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryEventConsumerProviderRegistration(svc *wmi.Service, where string) ([]EventConsumerProviderRegistration, error) {
 	q := "SELECT * FROM __EventConsumerProviderRegistration"
 	if where != "" {
@@ -14359,16 +12705,14 @@ func QueryEventConsumerProviderRegistration(svc *wmi.Service, where string) ([]E
 	}
 	out := make([]EventConsumerProviderRegistration, len(rows))
 	for i, row := range rows {
-		out[i].ConsumerClassNames = wmi.AsStringSlice(row["ConsumerClassNames"])
-		out[i].Provider = wmi.AsString(row["provider"])
+		out[i] = EventConsumerProviderRegistrationFromRow(row)
 	}
 	return out, nil
 }
 
-// GetEventConsumerProviderRegistration returns the __EventConsumerProviderRegistration instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetEventConsumerProviderRegistration(svc *wmi.Service, provider string) (*EventConsumerProviderRegistration, error) {
-	where := "provider = " + wmi.WQLValue(provider)
+// QueryOneEventConsumerProviderRegistration returns the single __EventConsumerProviderRegistration matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneEventConsumerProviderRegistration(svc *wmi.Service, where string) (*EventConsumerProviderRegistration, error) {
 	out, err := QueryEventConsumerProviderRegistration(svc, where)
 	if err != nil {
 		return nil, err
@@ -14379,8 +12723,16 @@ func GetEventConsumerProviderRegistration(svc *wmi.Service, provider string) (*E
 	return &out[0], nil
 }
 
+// GetEventConsumerProviderRegistration returns the __EventConsumerProviderRegistration instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetEventConsumerProviderRegistration(svc *wmi.Service, provider string) (*EventConsumerProviderRegistration, error) {
+	where := "provider = " + wmi.WQLValue(provider)
+	return QueryOneEventConsumerProviderRegistration(svc, where)
+}
+
 // QueryEventDroppedEvent runs the WQL query against the class and decodes each
-// instance into a EventDroppedEvent. Pass the WHERE clause (or "" for all).
+// instance into a EventDroppedEvent. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryEventDroppedEvent(svc *wmi.Service, where string) ([]EventDroppedEvent, error) {
 	q := "SELECT * FROM __EventDroppedEvent"
 	if where != "" {
@@ -14392,18 +12744,27 @@ func QueryEventDroppedEvent(svc *wmi.Service, where string) ([]EventDroppedEvent
 	}
 	out := make([]EventDroppedEvent, len(rows))
 	for i, row := range rows {
-		if v, ok := row["Event"].(wmi.Row); ok {
-			out[i].Event = v
-		}
-		out[i].IntendedConsumer = wmi.AsString(row["IntendedConsumer"])
-		out[i].SECURITYDESCRIPTOR = wmi.AsUint8Slice(row["SECURITY_DESCRIPTOR"])
-		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
+		out[i] = EventDroppedEventFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneEventDroppedEvent returns the single __EventDroppedEvent matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneEventDroppedEvent(svc *wmi.Service, where string) (*EventDroppedEvent, error) {
+	out, err := QueryEventDroppedEvent(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryEventFilter runs the WQL query against the class and decodes each
-// instance into a EventFilter. Pass the WHERE clause (or "" for all).
+// instance into a EventFilter. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryEventFilter(svc *wmi.Service, where string) ([]EventFilter, error) {
 	q := "SELECT * FROM __EventFilter"
 	if where != "" {
@@ -14415,20 +12776,14 @@ func QueryEventFilter(svc *wmi.Service, where string) ([]EventFilter, error) {
 	}
 	out := make([]EventFilter, len(rows))
 	for i, row := range rows {
-		out[i].CreatorSID = wmi.AsUint8Slice(row["CreatorSID"])
-		out[i].EventAccess = wmi.AsString(row["EventAccess"])
-		out[i].EventNamespace = wmi.AsString(row["EventNamespace"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].Query = wmi.AsString(row["Query"])
-		out[i].QueryLanguage = wmi.AsString(row["QueryLanguage"])
+		out[i] = EventFilterFromRow(row)
 	}
 	return out, nil
 }
 
-// GetEventFilter returns the __EventFilter instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetEventFilter(svc *wmi.Service, name string) (*EventFilter, error) {
-	where := "Name = " + wmi.WQLValue(name)
+// QueryOneEventFilter returns the single __EventFilter matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneEventFilter(svc *wmi.Service, where string) (*EventFilter, error) {
 	out, err := QueryEventFilter(svc, where)
 	if err != nil {
 		return nil, err
@@ -14439,8 +12794,16 @@ func GetEventFilter(svc *wmi.Service, name string) (*EventFilter, error) {
 	return &out[0], nil
 }
 
+// GetEventFilter returns the __EventFilter instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetEventFilter(svc *wmi.Service, name string) (*EventFilter, error) {
+	where := "Name = " + wmi.WQLValue(name)
+	return QueryOneEventFilter(svc, where)
+}
+
 // QueryEventGenerator runs the WQL query against the class and decodes each
-// instance into a EventGenerator. Pass the WHERE clause (or "" for all).
+// instance into a EventGenerator. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryEventGenerator(svc *wmi.Service, where string) ([]EventGenerator, error) {
 	q := "SELECT * FROM __EventGenerator"
 	if where != "" {
@@ -14451,11 +12814,28 @@ func QueryEventGenerator(svc *wmi.Service, where string) ([]EventGenerator, erro
 		return nil, err
 	}
 	out := make([]EventGenerator, len(rows))
+	for i, row := range rows {
+		out[i] = EventGeneratorFromRow(row)
+	}
 	return out, nil
 }
 
+// QueryOneEventGenerator returns the single __EventGenerator matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneEventGenerator(svc *wmi.Service, where string) (*EventGenerator, error) {
+	out, err := QueryEventGenerator(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryEventProviderRegistration runs the WQL query against the class and decodes each
-// instance into a EventProviderRegistration. Pass the WHERE clause (or "" for all).
+// instance into a EventProviderRegistration. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryEventProviderRegistration(svc *wmi.Service, where string) ([]EventProviderRegistration, error) {
 	q := "SELECT * FROM __EventProviderRegistration"
 	if where != "" {
@@ -14467,16 +12847,14 @@ func QueryEventProviderRegistration(svc *wmi.Service, where string) ([]EventProv
 	}
 	out := make([]EventProviderRegistration, len(rows))
 	for i, row := range rows {
-		out[i].EventQueryList = wmi.AsStringSlice(row["EventQueryList"])
-		out[i].Provider = wmi.AsString(row["provider"])
+		out[i] = EventProviderRegistrationFromRow(row)
 	}
 	return out, nil
 }
 
-// GetEventProviderRegistration returns the __EventProviderRegistration instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetEventProviderRegistration(svc *wmi.Service, provider string) (*EventProviderRegistration, error) {
-	where := "provider = " + wmi.WQLValue(provider)
+// QueryOneEventProviderRegistration returns the single __EventProviderRegistration matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneEventProviderRegistration(svc *wmi.Service, where string) (*EventProviderRegistration, error) {
 	out, err := QueryEventProviderRegistration(svc, where)
 	if err != nil {
 		return nil, err
@@ -14487,8 +12865,16 @@ func GetEventProviderRegistration(svc *wmi.Service, provider string) (*EventProv
 	return &out[0], nil
 }
 
+// GetEventProviderRegistration returns the __EventProviderRegistration instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetEventProviderRegistration(svc *wmi.Service, provider string) (*EventProviderRegistration, error) {
+	where := "provider = " + wmi.WQLValue(provider)
+	return QueryOneEventProviderRegistration(svc, where)
+}
+
 // QueryEventQueueOverflowEvent runs the WQL query against the class and decodes each
-// instance into a EventQueueOverflowEvent. Pass the WHERE clause (or "" for all).
+// instance into a EventQueueOverflowEvent. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryEventQueueOverflowEvent(svc *wmi.Service, where string) ([]EventQueueOverflowEvent, error) {
 	q := "SELECT * FROM __EventQueueOverflowEvent"
 	if where != "" {
@@ -14500,19 +12886,27 @@ func QueryEventQueueOverflowEvent(svc *wmi.Service, where string) ([]EventQueueO
 	}
 	out := make([]EventQueueOverflowEvent, len(rows))
 	for i, row := range rows {
-		out[i].CurrentQueueSize = wmi.AsUint32(row["CurrentQueueSize"])
-		if v, ok := row["Event"].(wmi.Row); ok {
-			out[i].Event = v
-		}
-		out[i].IntendedConsumer = wmi.AsString(row["IntendedConsumer"])
-		out[i].SECURITYDESCRIPTOR = wmi.AsUint8Slice(row["SECURITY_DESCRIPTOR"])
-		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
+		out[i] = EventQueueOverflowEventFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneEventQueueOverflowEvent returns the single __EventQueueOverflowEvent matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneEventQueueOverflowEvent(svc *wmi.Service, where string) (*EventQueueOverflowEvent, error) {
+	out, err := QueryEventQueueOverflowEvent(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryExtendedStatus runs the WQL query against the class and decodes each
-// instance into a ExtendedStatus. Pass the WHERE clause (or "" for all).
+// instance into a ExtendedStatus. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryExtendedStatus(svc *wmi.Service, where string) ([]ExtendedStatus, error) {
 	q := "SELECT * FROM __ExtendedStatus"
 	if where != "" {
@@ -14524,17 +12918,27 @@ func QueryExtendedStatus(svc *wmi.Service, where string) ([]ExtendedStatus, erro
 	}
 	out := make([]ExtendedStatus, len(rows))
 	for i, row := range rows {
-		out[i].Description = wmi.AsString(row["Description"])
-		out[i].Operation = wmi.AsString(row["Operation"])
-		out[i].ParameterInfo = wmi.AsString(row["ParameterInfo"])
-		out[i].ProviderName = wmi.AsString(row["ProviderName"])
-		out[i].StatusCode = wmi.AsUint32(row["StatusCode"])
+		out[i] = ExtendedStatusFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneExtendedStatus returns the single __ExtendedStatus matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneExtendedStatus(svc *wmi.Service, where string) (*ExtendedStatus, error) {
+	out, err := QueryExtendedStatus(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryExtrinsicEvent runs the WQL query against the class and decodes each
-// instance into a ExtrinsicEvent. Pass the WHERE clause (or "" for all).
+// instance into a ExtrinsicEvent. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryExtrinsicEvent(svc *wmi.Service, where string) ([]ExtrinsicEvent, error) {
 	q := "SELECT * FROM __ExtrinsicEvent"
 	if where != "" {
@@ -14546,14 +12950,27 @@ func QueryExtrinsicEvent(svc *wmi.Service, where string) ([]ExtrinsicEvent, erro
 	}
 	out := make([]ExtrinsicEvent, len(rows))
 	for i, row := range rows {
-		out[i].SECURITYDESCRIPTOR = wmi.AsUint8Slice(row["SECURITY_DESCRIPTOR"])
-		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
+		out[i] = ExtrinsicEventFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneExtrinsicEvent returns the single __ExtrinsicEvent matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneExtrinsicEvent(svc *wmi.Service, where string) (*ExtrinsicEvent, error) {
+	out, err := QueryExtrinsicEvent(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryFilterToConsumerBinding runs the WQL query against the class and decodes each
-// instance into a FilterToConsumerBinding. Pass the WHERE clause (or "" for all).
+// instance into a FilterToConsumerBinding. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryFilterToConsumerBinding(svc *wmi.Service, where string) ([]FilterToConsumerBinding, error) {
 	q := "SELECT * FROM __FilterToConsumerBinding"
 	if where != "" {
@@ -14565,22 +12982,14 @@ func QueryFilterToConsumerBinding(svc *wmi.Service, where string) ([]FilterToCon
 	}
 	out := make([]FilterToConsumerBinding, len(rows))
 	for i, row := range rows {
-		out[i].Consumer = wmi.AsString(row["Consumer"])
-		out[i].CreatorSID = wmi.AsUint8Slice(row["CreatorSID"])
-		out[i].DeliverSynchronously = wmi.AsBool(row["DeliverSynchronously"])
-		out[i].DeliveryQoS = wmi.AsUint32(row["DeliveryQoS"])
-		out[i].Filter = wmi.AsString(row["Filter"])
-		out[i].MaintainSecurityContext = wmi.AsBool(row["MaintainSecurityContext"])
-		out[i].SlowDownProviders = wmi.AsBool(row["SlowDownProviders"])
+		out[i] = FilterToConsumerBindingFromRow(row)
 	}
 	return out, nil
 }
 
-// GetFilterToConsumerBinding returns the __FilterToConsumerBinding instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetFilterToConsumerBinding(svc *wmi.Service, consumer string, filter string) (*FilterToConsumerBinding, error) {
-	where := "Consumer = " + wmi.WQLValue(consumer) +
-		" AND " + "Filter = " + wmi.WQLValue(filter)
+// QueryOneFilterToConsumerBinding returns the single __FilterToConsumerBinding matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneFilterToConsumerBinding(svc *wmi.Service, where string) (*FilterToConsumerBinding, error) {
 	out, err := QueryFilterToConsumerBinding(svc, where)
 	if err != nil {
 		return nil, err
@@ -14591,8 +13000,17 @@ func GetFilterToConsumerBinding(svc *wmi.Service, consumer string, filter string
 	return &out[0], nil
 }
 
+// GetFilterToConsumerBinding returns the __FilterToConsumerBinding instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetFilterToConsumerBinding(svc *wmi.Service, consumer string, filter string) (*FilterToConsumerBinding, error) {
+	where := "Consumer = " + wmi.WQLValue(consumer) +
+		" AND " + "Filter = " + wmi.WQLValue(filter)
+	return QueryOneFilterToConsumerBinding(svc, where)
+}
+
 // QueryIndicationRelated runs the WQL query against the class and decodes each
-// instance into a IndicationRelated. Pass the WHERE clause (or "" for all).
+// instance into a IndicationRelated. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryIndicationRelated(svc *wmi.Service, where string) ([]IndicationRelated, error) {
 	q := "SELECT * FROM __IndicationRelated"
 	if where != "" {
@@ -14603,11 +13021,28 @@ func QueryIndicationRelated(svc *wmi.Service, where string) ([]IndicationRelated
 		return nil, err
 	}
 	out := make([]IndicationRelated, len(rows))
+	for i, row := range rows {
+		out[i] = IndicationRelatedFromRow(row)
+	}
 	return out, nil
 }
 
+// QueryOneIndicationRelated returns the single __IndicationRelated matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneIndicationRelated(svc *wmi.Service, where string) (*IndicationRelated, error) {
+	out, err := QueryIndicationRelated(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryInstanceCreationEvent runs the WQL query against the class and decodes each
-// instance into a InstanceCreationEvent. Pass the WHERE clause (or "" for all).
+// instance into a InstanceCreationEvent. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryInstanceCreationEvent(svc *wmi.Service, where string) ([]InstanceCreationEvent, error) {
 	q := "SELECT * FROM __InstanceCreationEvent"
 	if where != "" {
@@ -14619,17 +13054,27 @@ func QueryInstanceCreationEvent(svc *wmi.Service, where string) ([]InstanceCreat
 	}
 	out := make([]InstanceCreationEvent, len(rows))
 	for i, row := range rows {
-		out[i].SECURITYDESCRIPTOR = wmi.AsUint8Slice(row["SECURITY_DESCRIPTOR"])
-		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
-		if v, ok := row["TargetInstance"].(wmi.Row); ok {
-			out[i].TargetInstance = v
-		}
+		out[i] = InstanceCreationEventFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneInstanceCreationEvent returns the single __InstanceCreationEvent matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneInstanceCreationEvent(svc *wmi.Service, where string) (*InstanceCreationEvent, error) {
+	out, err := QueryInstanceCreationEvent(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryInstanceDeletionEvent runs the WQL query against the class and decodes each
-// instance into a InstanceDeletionEvent. Pass the WHERE clause (or "" for all).
+// instance into a InstanceDeletionEvent. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryInstanceDeletionEvent(svc *wmi.Service, where string) ([]InstanceDeletionEvent, error) {
 	q := "SELECT * FROM __InstanceDeletionEvent"
 	if where != "" {
@@ -14641,17 +13086,27 @@ func QueryInstanceDeletionEvent(svc *wmi.Service, where string) ([]InstanceDelet
 	}
 	out := make([]InstanceDeletionEvent, len(rows))
 	for i, row := range rows {
-		out[i].SECURITYDESCRIPTOR = wmi.AsUint8Slice(row["SECURITY_DESCRIPTOR"])
-		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
-		if v, ok := row["TargetInstance"].(wmi.Row); ok {
-			out[i].TargetInstance = v
-		}
+		out[i] = InstanceDeletionEventFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneInstanceDeletionEvent returns the single __InstanceDeletionEvent matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneInstanceDeletionEvent(svc *wmi.Service, where string) (*InstanceDeletionEvent, error) {
+	out, err := QueryInstanceDeletionEvent(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryInstanceModificationEvent runs the WQL query against the class and decodes each
-// instance into a InstanceModificationEvent. Pass the WHERE clause (or "" for all).
+// instance into a InstanceModificationEvent. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryInstanceModificationEvent(svc *wmi.Service, where string) ([]InstanceModificationEvent, error) {
 	q := "SELECT * FROM __InstanceModificationEvent"
 	if where != "" {
@@ -14663,20 +13118,27 @@ func QueryInstanceModificationEvent(svc *wmi.Service, where string) ([]InstanceM
 	}
 	out := make([]InstanceModificationEvent, len(rows))
 	for i, row := range rows {
-		if v, ok := row["PreviousInstance"].(wmi.Row); ok {
-			out[i].PreviousInstance = v
-		}
-		out[i].SECURITYDESCRIPTOR = wmi.AsUint8Slice(row["SECURITY_DESCRIPTOR"])
-		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
-		if v, ok := row["TargetInstance"].(wmi.Row); ok {
-			out[i].TargetInstance = v
-		}
+		out[i] = InstanceModificationEventFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneInstanceModificationEvent returns the single __InstanceModificationEvent matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneInstanceModificationEvent(svc *wmi.Service, where string) (*InstanceModificationEvent, error) {
+	out, err := QueryInstanceModificationEvent(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryInstanceOperationEvent runs the WQL query against the class and decodes each
-// instance into a InstanceOperationEvent. Pass the WHERE clause (or "" for all).
+// instance into a InstanceOperationEvent. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryInstanceOperationEvent(svc *wmi.Service, where string) ([]InstanceOperationEvent, error) {
 	q := "SELECT * FROM __InstanceOperationEvent"
 	if where != "" {
@@ -14688,17 +13150,27 @@ func QueryInstanceOperationEvent(svc *wmi.Service, where string) ([]InstanceOper
 	}
 	out := make([]InstanceOperationEvent, len(rows))
 	for i, row := range rows {
-		out[i].SECURITYDESCRIPTOR = wmi.AsUint8Slice(row["SECURITY_DESCRIPTOR"])
-		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
-		if v, ok := row["TargetInstance"].(wmi.Row); ok {
-			out[i].TargetInstance = v
-		}
+		out[i] = InstanceOperationEventFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneInstanceOperationEvent returns the single __InstanceOperationEvent matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneInstanceOperationEvent(svc *wmi.Service, where string) (*InstanceOperationEvent, error) {
+	out, err := QueryInstanceOperationEvent(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryInstanceProviderRegistration runs the WQL query against the class and decodes each
-// instance into a InstanceProviderRegistration. Pass the WHERE clause (or "" for all).
+// instance into a InstanceProviderRegistration. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryInstanceProviderRegistration(svc *wmi.Service, where string) ([]InstanceProviderRegistration, error) {
 	q := "SELECT * FROM __InstanceProviderRegistration"
 	if where != "" {
@@ -14710,23 +13182,14 @@ func QueryInstanceProviderRegistration(svc *wmi.Service, where string) ([]Instan
 	}
 	out := make([]InstanceProviderRegistration, len(rows))
 	for i, row := range rows {
-		out[i].InteractionType = wmi.AsInt32(row["InteractionType"])
-		out[i].QuerySupportLevels = wmi.AsStringSlice(row["QuerySupportLevels"])
-		out[i].SupportsBatching = wmi.AsBool(row["SupportsBatching"])
-		out[i].SupportsDelete = wmi.AsBool(row["SupportsDelete"])
-		out[i].SupportsEnumeration = wmi.AsBool(row["SupportsEnumeration"])
-		out[i].SupportsGet = wmi.AsBool(row["SupportsGet"])
-		out[i].SupportsPut = wmi.AsBool(row["SupportsPut"])
-		out[i].SupportsTransactions = wmi.AsBool(row["SupportsTransactions"])
-		out[i].Provider = wmi.AsString(row["provider"])
+		out[i] = InstanceProviderRegistrationFromRow(row)
 	}
 	return out, nil
 }
 
-// GetInstanceProviderRegistration returns the __InstanceProviderRegistration instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetInstanceProviderRegistration(svc *wmi.Service, provider string) (*InstanceProviderRegistration, error) {
-	where := "provider = " + wmi.WQLValue(provider)
+// QueryOneInstanceProviderRegistration returns the single __InstanceProviderRegistration matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneInstanceProviderRegistration(svc *wmi.Service, where string) (*InstanceProviderRegistration, error) {
 	out, err := QueryInstanceProviderRegistration(svc, where)
 	if err != nil {
 		return nil, err
@@ -14737,8 +13200,16 @@ func GetInstanceProviderRegistration(svc *wmi.Service, provider string) (*Instan
 	return &out[0], nil
 }
 
+// GetInstanceProviderRegistration returns the __InstanceProviderRegistration instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetInstanceProviderRegistration(svc *wmi.Service, provider string) (*InstanceProviderRegistration, error) {
+	where := "provider = " + wmi.WQLValue(provider)
+	return QueryOneInstanceProviderRegistration(svc, where)
+}
+
 // QueryIntervalTimerInstruction runs the WQL query against the class and decodes each
-// instance into a IntervalTimerInstruction. Pass the WHERE clause (or "" for all).
+// instance into a IntervalTimerInstruction. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryIntervalTimerInstruction(svc *wmi.Service, where string) ([]IntervalTimerInstruction, error) {
 	q := "SELECT * FROM __IntervalTimerInstruction"
 	if where != "" {
@@ -14750,17 +13221,14 @@ func QueryIntervalTimerInstruction(svc *wmi.Service, where string) ([]IntervalTi
 	}
 	out := make([]IntervalTimerInstruction, len(rows))
 	for i, row := range rows {
-		out[i].IntervalBetweenEvents = wmi.AsUint32(row["IntervalBetweenEvents"])
-		out[i].SkipIfPassed = wmi.AsBool(row["SkipIfPassed"])
-		out[i].TimerId = wmi.AsString(row["TimerId"])
+		out[i] = IntervalTimerInstructionFromRow(row)
 	}
 	return out, nil
 }
 
-// GetIntervalTimerInstruction returns the __IntervalTimerInstruction instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetIntervalTimerInstruction(svc *wmi.Service, timerId string) (*IntervalTimerInstruction, error) {
-	where := "TimerId = " + wmi.WQLValue(timerId)
+// QueryOneIntervalTimerInstruction returns the single __IntervalTimerInstruction matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneIntervalTimerInstruction(svc *wmi.Service, where string) (*IntervalTimerInstruction, error) {
 	out, err := QueryIntervalTimerInstruction(svc, where)
 	if err != nil {
 		return nil, err
@@ -14771,8 +13239,16 @@ func GetIntervalTimerInstruction(svc *wmi.Service, timerId string) (*IntervalTim
 	return &out[0], nil
 }
 
+// GetIntervalTimerInstruction returns the __IntervalTimerInstruction instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetIntervalTimerInstruction(svc *wmi.Service, timerId string) (*IntervalTimerInstruction, error) {
+	where := "TimerId = " + wmi.WQLValue(timerId)
+	return QueryOneIntervalTimerInstruction(svc, where)
+}
+
 // QueryMethodInvocationEvent runs the WQL query against the class and decodes each
-// instance into a MethodInvocationEvent. Pass the WHERE clause (or "" for all).
+// instance into a MethodInvocationEvent. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMethodInvocationEvent(svc *wmi.Service, where string) ([]MethodInvocationEvent, error) {
 	q := "SELECT * FROM __MethodInvocationEvent"
 	if where != "" {
@@ -14784,22 +13260,27 @@ func QueryMethodInvocationEvent(svc *wmi.Service, where string) ([]MethodInvocat
 	}
 	out := make([]MethodInvocationEvent, len(rows))
 	for i, row := range rows {
-		out[i].Method = wmi.AsString(row["Method"])
-		if v, ok := row["Parameters"].(wmi.Row); ok {
-			out[i].Parameters = v
-		}
-		out[i].PreCall = wmi.AsBool(row["PreCall"])
-		out[i].SECURITYDESCRIPTOR = wmi.AsUint8Slice(row["SECURITY_DESCRIPTOR"])
-		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
-		if v, ok := row["TargetInstance"].(wmi.Row); ok {
-			out[i].TargetInstance = v
-		}
+		out[i] = MethodInvocationEventFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneMethodInvocationEvent returns the single __MethodInvocationEvent matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMethodInvocationEvent(svc *wmi.Service, where string) (*MethodInvocationEvent, error) {
+	out, err := QueryMethodInvocationEvent(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryMethodProviderRegistration runs the WQL query against the class and decodes each
-// instance into a MethodProviderRegistration. Pass the WHERE clause (or "" for all).
+// instance into a MethodProviderRegistration. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryMethodProviderRegistration(svc *wmi.Service, where string) ([]MethodProviderRegistration, error) {
 	q := "SELECT * FROM __MethodProviderRegistration"
 	if where != "" {
@@ -14811,15 +13292,14 @@ func QueryMethodProviderRegistration(svc *wmi.Service, where string) ([]MethodPr
 	}
 	out := make([]MethodProviderRegistration, len(rows))
 	for i, row := range rows {
-		out[i].Provider = wmi.AsString(row["provider"])
+		out[i] = MethodProviderRegistrationFromRow(row)
 	}
 	return out, nil
 }
 
-// GetMethodProviderRegistration returns the __MethodProviderRegistration instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetMethodProviderRegistration(svc *wmi.Service, provider string) (*MethodProviderRegistration, error) {
-	where := "provider = " + wmi.WQLValue(provider)
+// QueryOneMethodProviderRegistration returns the single __MethodProviderRegistration matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneMethodProviderRegistration(svc *wmi.Service, where string) (*MethodProviderRegistration, error) {
 	out, err := QueryMethodProviderRegistration(svc, where)
 	if err != nil {
 		return nil, err
@@ -14830,8 +13310,16 @@ func GetMethodProviderRegistration(svc *wmi.Service, provider string) (*MethodPr
 	return &out[0], nil
 }
 
+// GetMethodProviderRegistration returns the __MethodProviderRegistration instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetMethodProviderRegistration(svc *wmi.Service, provider string) (*MethodProviderRegistration, error) {
+	where := "provider = " + wmi.WQLValue(provider)
+	return QueryOneMethodProviderRegistration(svc, where)
+}
+
 // QueryNAMESPACE runs the WQL query against the class and decodes each
-// instance into a NAMESPACE. Pass the WHERE clause (or "" for all).
+// instance into a NAMESPACE. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryNAMESPACE(svc *wmi.Service, where string) ([]NAMESPACE, error) {
 	q := "SELECT * FROM __NAMESPACE"
 	if where != "" {
@@ -14843,15 +13331,14 @@ func QueryNAMESPACE(svc *wmi.Service, where string) ([]NAMESPACE, error) {
 	}
 	out := make([]NAMESPACE, len(rows))
 	for i, row := range rows {
-		out[i].Name = wmi.AsString(row["Name"])
+		out[i] = NAMESPACEFromRow(row)
 	}
 	return out, nil
 }
 
-// GetNAMESPACE returns the __NAMESPACE instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetNAMESPACE(svc *wmi.Service, name string) (*NAMESPACE, error) {
-	where := "Name = " + wmi.WQLValue(name)
+// QueryOneNAMESPACE returns the single __NAMESPACE matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneNAMESPACE(svc *wmi.Service, where string) (*NAMESPACE, error) {
 	out, err := QueryNAMESPACE(svc, where)
 	if err != nil {
 		return nil, err
@@ -14862,8 +13349,16 @@ func GetNAMESPACE(svc *wmi.Service, name string) (*NAMESPACE, error) {
 	return &out[0], nil
 }
 
+// GetNAMESPACE returns the __NAMESPACE instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetNAMESPACE(svc *wmi.Service, name string) (*NAMESPACE, error) {
+	where := "Name = " + wmi.WQLValue(name)
+	return QueryOneNAMESPACE(svc, where)
+}
+
 // QueryNTLMUser9X runs the WQL query against the class and decodes each
-// instance into a NTLMUser9X. Pass the WHERE clause (or "" for all).
+// instance into a NTLMUser9X. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryNTLMUser9X(svc *wmi.Service, where string) ([]NTLMUser9X, error) {
 	q := "SELECT * FROM __NTLMUser9X"
 	if where != "" {
@@ -14875,17 +13370,27 @@ func QueryNTLMUser9X(svc *wmi.Service, where string) ([]NTLMUser9X, error) {
 	}
 	out := make([]NTLMUser9X, len(rows))
 	for i, row := range rows {
-		out[i].Authority = wmi.AsString(row["Authority"])
-		out[i].Flags = wmi.AsInt32(row["Flags"])
-		out[i].Mask = wmi.AsInt32(row["Mask"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].Type = wmi.AsInt32(row["Type"])
+		out[i] = NTLMUser9XFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneNTLMUser9X returns the single __NTLMUser9X matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneNTLMUser9X(svc *wmi.Service, where string) (*NTLMUser9X, error) {
+	out, err := QueryNTLMUser9X(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryNamespaceCreationEvent runs the WQL query against the class and decodes each
-// instance into a NamespaceCreationEvent. Pass the WHERE clause (or "" for all).
+// instance into a NamespaceCreationEvent. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryNamespaceCreationEvent(svc *wmi.Service, where string) ([]NamespaceCreationEvent, error) {
 	q := "SELECT * FROM __NamespaceCreationEvent"
 	if where != "" {
@@ -14897,17 +13402,27 @@ func QueryNamespaceCreationEvent(svc *wmi.Service, where string) ([]NamespaceCre
 	}
 	out := make([]NamespaceCreationEvent, len(rows))
 	for i, row := range rows {
-		out[i].SECURITYDESCRIPTOR = wmi.AsUint8Slice(row["SECURITY_DESCRIPTOR"])
-		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
-		if v, ok := row["TargetNamespace"].(wmi.Row); ok {
-			out[i].TargetNamespace = v
-		}
+		out[i] = NamespaceCreationEventFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneNamespaceCreationEvent returns the single __NamespaceCreationEvent matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneNamespaceCreationEvent(svc *wmi.Service, where string) (*NamespaceCreationEvent, error) {
+	out, err := QueryNamespaceCreationEvent(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryNamespaceDeletionEvent runs the WQL query against the class and decodes each
-// instance into a NamespaceDeletionEvent. Pass the WHERE clause (or "" for all).
+// instance into a NamespaceDeletionEvent. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryNamespaceDeletionEvent(svc *wmi.Service, where string) ([]NamespaceDeletionEvent, error) {
 	q := "SELECT * FROM __NamespaceDeletionEvent"
 	if where != "" {
@@ -14919,17 +13434,27 @@ func QueryNamespaceDeletionEvent(svc *wmi.Service, where string) ([]NamespaceDel
 	}
 	out := make([]NamespaceDeletionEvent, len(rows))
 	for i, row := range rows {
-		out[i].SECURITYDESCRIPTOR = wmi.AsUint8Slice(row["SECURITY_DESCRIPTOR"])
-		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
-		if v, ok := row["TargetNamespace"].(wmi.Row); ok {
-			out[i].TargetNamespace = v
-		}
+		out[i] = NamespaceDeletionEventFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneNamespaceDeletionEvent returns the single __NamespaceDeletionEvent matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneNamespaceDeletionEvent(svc *wmi.Service, where string) (*NamespaceDeletionEvent, error) {
+	out, err := QueryNamespaceDeletionEvent(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryNamespaceModificationEvent runs the WQL query against the class and decodes each
-// instance into a NamespaceModificationEvent. Pass the WHERE clause (or "" for all).
+// instance into a NamespaceModificationEvent. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryNamespaceModificationEvent(svc *wmi.Service, where string) ([]NamespaceModificationEvent, error) {
 	q := "SELECT * FROM __NamespaceModificationEvent"
 	if where != "" {
@@ -14941,20 +13466,27 @@ func QueryNamespaceModificationEvent(svc *wmi.Service, where string) ([]Namespac
 	}
 	out := make([]NamespaceModificationEvent, len(rows))
 	for i, row := range rows {
-		if v, ok := row["PreviousNamespace"].(wmi.Row); ok {
-			out[i].PreviousNamespace = v
-		}
-		out[i].SECURITYDESCRIPTOR = wmi.AsUint8Slice(row["SECURITY_DESCRIPTOR"])
-		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
-		if v, ok := row["TargetNamespace"].(wmi.Row); ok {
-			out[i].TargetNamespace = v
-		}
+		out[i] = NamespaceModificationEventFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneNamespaceModificationEvent returns the single __NamespaceModificationEvent matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneNamespaceModificationEvent(svc *wmi.Service, where string) (*NamespaceModificationEvent, error) {
+	out, err := QueryNamespaceModificationEvent(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryNamespaceOperationEvent runs the WQL query against the class and decodes each
-// instance into a NamespaceOperationEvent. Pass the WHERE clause (or "" for all).
+// instance into a NamespaceOperationEvent. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryNamespaceOperationEvent(svc *wmi.Service, where string) ([]NamespaceOperationEvent, error) {
 	q := "SELECT * FROM __NamespaceOperationEvent"
 	if where != "" {
@@ -14966,17 +13498,27 @@ func QueryNamespaceOperationEvent(svc *wmi.Service, where string) ([]NamespaceOp
 	}
 	out := make([]NamespaceOperationEvent, len(rows))
 	for i, row := range rows {
-		out[i].SECURITYDESCRIPTOR = wmi.AsUint8Slice(row["SECURITY_DESCRIPTOR"])
-		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
-		if v, ok := row["TargetNamespace"].(wmi.Row); ok {
-			out[i].TargetNamespace = v
-		}
+		out[i] = NamespaceOperationEventFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneNamespaceOperationEvent returns the single __NamespaceOperationEvent matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneNamespaceOperationEvent(svc *wmi.Service, where string) (*NamespaceOperationEvent, error) {
+	out, err := QueryNamespaceOperationEvent(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryNotifyStatus runs the WQL query against the class and decodes each
-// instance into a NotifyStatus. Pass the WHERE clause (or "" for all).
+// instance into a NotifyStatus. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryNotifyStatus(svc *wmi.Service, where string) ([]NotifyStatus, error) {
 	q := "SELECT * FROM __NotifyStatus"
 	if where != "" {
@@ -14988,13 +13530,27 @@ func QueryNotifyStatus(svc *wmi.Service, where string) ([]NotifyStatus, error) {
 	}
 	out := make([]NotifyStatus, len(rows))
 	for i, row := range rows {
-		out[i].StatusCode = wmi.AsUint32(row["StatusCode"])
+		out[i] = NotifyStatusFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneNotifyStatus returns the single __NotifyStatus matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneNotifyStatus(svc *wmi.Service, where string) (*NotifyStatus, error) {
+	out, err := QueryNotifyStatus(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryObjectProviderRegistration runs the WQL query against the class and decodes each
-// instance into a ObjectProviderRegistration. Pass the WHERE clause (or "" for all).
+// instance into a ObjectProviderRegistration. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryObjectProviderRegistration(svc *wmi.Service, where string) ([]ObjectProviderRegistration, error) {
 	q := "SELECT * FROM __ObjectProviderRegistration"
 	if where != "" {
@@ -15006,21 +13562,27 @@ func QueryObjectProviderRegistration(svc *wmi.Service, where string) ([]ObjectPr
 	}
 	out := make([]ObjectProviderRegistration, len(rows))
 	for i, row := range rows {
-		out[i].InteractionType = wmi.AsInt32(row["InteractionType"])
-		out[i].QuerySupportLevels = wmi.AsStringSlice(row["QuerySupportLevels"])
-		out[i].SupportsBatching = wmi.AsBool(row["SupportsBatching"])
-		out[i].SupportsDelete = wmi.AsBool(row["SupportsDelete"])
-		out[i].SupportsEnumeration = wmi.AsBool(row["SupportsEnumeration"])
-		out[i].SupportsGet = wmi.AsBool(row["SupportsGet"])
-		out[i].SupportsPut = wmi.AsBool(row["SupportsPut"])
-		out[i].SupportsTransactions = wmi.AsBool(row["SupportsTransactions"])
-		out[i].Provider = wmi.AsString(row["provider"])
+		out[i] = ObjectProviderRegistrationFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneObjectProviderRegistration returns the single __ObjectProviderRegistration matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneObjectProviderRegistration(svc *wmi.Service, where string) (*ObjectProviderRegistration, error) {
+	out, err := QueryObjectProviderRegistration(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryPARAMETERS runs the WQL query against the class and decodes each
-// instance into a PARAMETERS. Pass the WHERE clause (or "" for all).
+// instance into a PARAMETERS. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryPARAMETERS(svc *wmi.Service, where string) ([]PARAMETERS, error) {
 	q := "SELECT * FROM __PARAMETERS"
 	if where != "" {
@@ -15031,11 +13593,28 @@ func QueryPARAMETERS(svc *wmi.Service, where string) ([]PARAMETERS, error) {
 		return nil, err
 	}
 	out := make([]PARAMETERS, len(rows))
+	for i, row := range rows {
+		out[i] = PARAMETERSFromRow(row)
+	}
 	return out, nil
 }
 
+// QueryOnePARAMETERS returns the single __PARAMETERS matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOnePARAMETERS(svc *wmi.Service, where string) (*PARAMETERS, error) {
+	out, err := QueryPARAMETERS(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryPropertyProviderRegistration runs the WQL query against the class and decodes each
-// instance into a PropertyProviderRegistration. Pass the WHERE clause (or "" for all).
+// instance into a PropertyProviderRegistration. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryPropertyProviderRegistration(svc *wmi.Service, where string) ([]PropertyProviderRegistration, error) {
 	q := "SELECT * FROM __PropertyProviderRegistration"
 	if where != "" {
@@ -15047,17 +13626,14 @@ func QueryPropertyProviderRegistration(svc *wmi.Service, where string) ([]Proper
 	}
 	out := make([]PropertyProviderRegistration, len(rows))
 	for i, row := range rows {
-		out[i].SupportsGet = wmi.AsBool(row["SupportsGet"])
-		out[i].SupportsPut = wmi.AsBool(row["SupportsPut"])
-		out[i].Provider = wmi.AsString(row["provider"])
+		out[i] = PropertyProviderRegistrationFromRow(row)
 	}
 	return out, nil
 }
 
-// GetPropertyProviderRegistration returns the __PropertyProviderRegistration instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetPropertyProviderRegistration(svc *wmi.Service, provider string) (*PropertyProviderRegistration, error) {
-	where := "provider = " + wmi.WQLValue(provider)
+// QueryOnePropertyProviderRegistration returns the single __PropertyProviderRegistration matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOnePropertyProviderRegistration(svc *wmi.Service, where string) (*PropertyProviderRegistration, error) {
 	out, err := QueryPropertyProviderRegistration(svc, where)
 	if err != nil {
 		return nil, err
@@ -15068,8 +13644,16 @@ func GetPropertyProviderRegistration(svc *wmi.Service, provider string) (*Proper
 	return &out[0], nil
 }
 
+// GetPropertyProviderRegistration returns the __PropertyProviderRegistration instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetPropertyProviderRegistration(svc *wmi.Service, provider string) (*PropertyProviderRegistration, error) {
+	where := "provider = " + wmi.WQLValue(provider)
+	return QueryOnePropertyProviderRegistration(svc, where)
+}
+
 // QueryProvider runs the WQL query against the class and decodes each
-// instance into a Provider. Pass the WHERE clause (or "" for all).
+// instance into a Provider. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryProvider(svc *wmi.Service, where string) ([]Provider, error) {
 	q := "SELECT * FROM __Provider"
 	if where != "" {
@@ -15081,15 +13665,14 @@ func QueryProvider(svc *wmi.Service, where string) ([]Provider, error) {
 	}
 	out := make([]Provider, len(rows))
 	for i, row := range rows {
-		out[i].Name = wmi.AsString(row["Name"])
+		out[i] = ProviderFromRow(row)
 	}
 	return out, nil
 }
 
-// GetProvider returns the __Provider instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetProvider(svc *wmi.Service, name string) (*Provider, error) {
-	where := "Name = " + wmi.WQLValue(name)
+// QueryOneProvider returns the single __Provider matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneProvider(svc *wmi.Service, where string) (*Provider, error) {
 	out, err := QueryProvider(svc, where)
 	if err != nil {
 		return nil, err
@@ -15100,8 +13683,16 @@ func GetProvider(svc *wmi.Service, name string) (*Provider, error) {
 	return &out[0], nil
 }
 
+// GetProvider returns the __Provider instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetProvider(svc *wmi.Service, name string) (*Provider, error) {
+	where := "Name = " + wmi.WQLValue(name)
+	return QueryOneProvider(svc, where)
+}
+
 // QueryProviderRegistration runs the WQL query against the class and decodes each
-// instance into a ProviderRegistration. Pass the WHERE clause (or "" for all).
+// instance into a ProviderRegistration. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryProviderRegistration(svc *wmi.Service, where string) ([]ProviderRegistration, error) {
 	q := "SELECT * FROM __ProviderRegistration"
 	if where != "" {
@@ -15113,13 +13704,27 @@ func QueryProviderRegistration(svc *wmi.Service, where string) ([]ProviderRegist
 	}
 	out := make([]ProviderRegistration, len(rows))
 	for i, row := range rows {
-		out[i].Provider = wmi.AsString(row["provider"])
+		out[i] = ProviderRegistrationFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneProviderRegistration returns the single __ProviderRegistration matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneProviderRegistration(svc *wmi.Service, where string) (*ProviderRegistration, error) {
+	out, err := QueryProviderRegistration(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryQOSFailureEvent runs the WQL query against the class and decodes each
-// instance into a QOSFailureEvent. Pass the WHERE clause (or "" for all).
+// instance into a QOSFailureEvent. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryQOSFailureEvent(svc *wmi.Service, where string) ([]QOSFailureEvent, error) {
 	q := "SELECT * FROM __QOSFailureEvent"
 	if where != "" {
@@ -15131,20 +13736,27 @@ func QueryQOSFailureEvent(svc *wmi.Service, where string) ([]QOSFailureEvent, er
 	}
 	out := make([]QOSFailureEvent, len(rows))
 	for i, row := range rows {
-		out[i].ErrorCode = wmi.AsUint32(row["ErrorCode"])
-		out[i].ErrorDescription = wmi.AsString(row["ErrorDescription"])
-		if v, ok := row["Event"].(wmi.Row); ok {
-			out[i].Event = v
-		}
-		out[i].IntendedConsumer = wmi.AsString(row["IntendedConsumer"])
-		out[i].SECURITYDESCRIPTOR = wmi.AsUint8Slice(row["SECURITY_DESCRIPTOR"])
-		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
+		out[i] = QOSFailureEventFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneQOSFailureEvent returns the single __QOSFailureEvent matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneQOSFailureEvent(svc *wmi.Service, where string) (*QOSFailureEvent, error) {
+	out, err := QueryQOSFailureEvent(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QuerySecurityDescriptor runs the WQL query against the class and decodes each
-// instance into a SecurityDescriptor. Pass the WHERE clause (or "" for all).
+// instance into a SecurityDescriptor. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QuerySecurityDescriptor(svc *wmi.Service, where string) ([]SecurityDescriptor, error) {
 	q := "SELECT * FROM __SecurityDescriptor"
 	if where != "" {
@@ -15156,22 +13768,27 @@ func QuerySecurityDescriptor(svc *wmi.Service, where string) ([]SecurityDescript
 	}
 	out := make([]SecurityDescriptor, len(rows))
 	for i, row := range rows {
-		out[i].ControlFlags = wmi.AsUint32(row["ControlFlags"])
-		out[i].DACL = wmi.AsRowSlice(row["DACL"])
-		if v, ok := row["Group"].(wmi.Row); ok {
-			out[i].Group = v
-		}
-		if v, ok := row["Owner"].(wmi.Row); ok {
-			out[i].Owner = v
-		}
-		out[i].SACL = wmi.AsRowSlice(row["SACL"])
-		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
+		out[i] = SecurityDescriptorFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneSecurityDescriptor returns the single __SecurityDescriptor matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneSecurityDescriptor(svc *wmi.Service, where string) (*SecurityDescriptor, error) {
+	out, err := QuerySecurityDescriptor(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QuerySecurityRelatedClass runs the WQL query against the class and decodes each
-// instance into a SecurityRelatedClass. Pass the WHERE clause (or "" for all).
+// instance into a SecurityRelatedClass. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QuerySecurityRelatedClass(svc *wmi.Service, where string) ([]SecurityRelatedClass, error) {
 	q := "SELECT * FROM __SecurityRelatedClass"
 	if where != "" {
@@ -15182,11 +13799,28 @@ func QuerySecurityRelatedClass(svc *wmi.Service, where string) ([]SecurityRelate
 		return nil, err
 	}
 	out := make([]SecurityRelatedClass, len(rows))
+	for i, row := range rows {
+		out[i] = SecurityRelatedClassFromRow(row)
+	}
 	return out, nil
 }
 
+// QueryOneSecurityRelatedClass returns the single __SecurityRelatedClass matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneSecurityRelatedClass(svc *wmi.Service, where string) (*SecurityRelatedClass, error) {
+	out, err := QuerySecurityRelatedClass(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QuerySystemClass runs the WQL query against the class and decodes each
-// instance into a SystemClass. Pass the WHERE clause (or "" for all).
+// instance into a SystemClass. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QuerySystemClass(svc *wmi.Service, where string) ([]SystemClass, error) {
 	q := "SELECT * FROM __SystemClass"
 	if where != "" {
@@ -15197,11 +13831,28 @@ func QuerySystemClass(svc *wmi.Service, where string) ([]SystemClass, error) {
 		return nil, err
 	}
 	out := make([]SystemClass, len(rows))
+	for i, row := range rows {
+		out[i] = SystemClassFromRow(row)
+	}
 	return out, nil
 }
 
+// QueryOneSystemClass returns the single __SystemClass matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneSystemClass(svc *wmi.Service, where string) (*SystemClass, error) {
+	out, err := QuerySystemClass(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QuerySystemEvent runs the WQL query against the class and decodes each
-// instance into a SystemEvent. Pass the WHERE clause (or "" for all).
+// instance into a SystemEvent. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QuerySystemEvent(svc *wmi.Service, where string) ([]SystemEvent, error) {
 	q := "SELECT * FROM __SystemEvent"
 	if where != "" {
@@ -15213,14 +13864,27 @@ func QuerySystemEvent(svc *wmi.Service, where string) ([]SystemEvent, error) {
 	}
 	out := make([]SystemEvent, len(rows))
 	for i, row := range rows {
-		out[i].SECURITYDESCRIPTOR = wmi.AsUint8Slice(row["SECURITY_DESCRIPTOR"])
-		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
+		out[i] = SystemEventFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneSystemEvent returns the single __SystemEvent matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneSystemEvent(svc *wmi.Service, where string) (*SystemEvent, error) {
+	out, err := QuerySystemEvent(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QuerySystemSecurity runs the WQL query against the class and decodes each
-// instance into a SystemSecurity. Pass the WHERE clause (or "" for all).
+// instance into a SystemSecurity. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QuerySystemSecurity(svc *wmi.Service, where string) ([]SystemSecurity, error) {
 	q := "SELECT * FROM __SystemSecurity"
 	if where != "" {
@@ -15231,11 +13895,28 @@ func QuerySystemSecurity(svc *wmi.Service, where string) ([]SystemSecurity, erro
 		return nil, err
 	}
 	out := make([]SystemSecurity, len(rows))
+	for i, row := range rows {
+		out[i] = SystemSecurityFromRow(row)
+	}
 	return out, nil
 }
 
+// QueryOneSystemSecurity returns the single __SystemSecurity matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneSystemSecurity(svc *wmi.Service, where string) (*SystemSecurity, error) {
+	out, err := QuerySystemSecurity(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryTimerEvent runs the WQL query against the class and decodes each
-// instance into a TimerEvent. Pass the WHERE clause (or "" for all).
+// instance into a TimerEvent. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryTimerEvent(svc *wmi.Service, where string) ([]TimerEvent, error) {
 	q := "SELECT * FROM __TimerEvent"
 	if where != "" {
@@ -15247,16 +13928,27 @@ func QueryTimerEvent(svc *wmi.Service, where string) ([]TimerEvent, error) {
 	}
 	out := make([]TimerEvent, len(rows))
 	for i, row := range rows {
-		out[i].NumFirings = wmi.AsUint32(row["NumFirings"])
-		out[i].SECURITYDESCRIPTOR = wmi.AsUint8Slice(row["SECURITY_DESCRIPTOR"])
-		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
-		out[i].TimerId = wmi.AsString(row["TimerId"])
+		out[i] = TimerEventFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneTimerEvent returns the single __TimerEvent matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneTimerEvent(svc *wmi.Service, where string) (*TimerEvent, error) {
+	out, err := QueryTimerEvent(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryTimerInstruction runs the WQL query against the class and decodes each
-// instance into a TimerInstruction. Pass the WHERE clause (or "" for all).
+// instance into a TimerInstruction. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryTimerInstruction(svc *wmi.Service, where string) ([]TimerInstruction, error) {
 	q := "SELECT * FROM __TimerInstruction"
 	if where != "" {
@@ -15268,16 +13960,14 @@ func QueryTimerInstruction(svc *wmi.Service, where string) ([]TimerInstruction, 
 	}
 	out := make([]TimerInstruction, len(rows))
 	for i, row := range rows {
-		out[i].SkipIfPassed = wmi.AsBool(row["SkipIfPassed"])
-		out[i].TimerId = wmi.AsString(row["TimerId"])
+		out[i] = TimerInstructionFromRow(row)
 	}
 	return out, nil
 }
 
-// GetTimerInstruction returns the __TimerInstruction instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetTimerInstruction(svc *wmi.Service, timerId string) (*TimerInstruction, error) {
-	where := "TimerId = " + wmi.WQLValue(timerId)
+// QueryOneTimerInstruction returns the single __TimerInstruction matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneTimerInstruction(svc *wmi.Service, where string) (*TimerInstruction, error) {
 	out, err := QueryTimerInstruction(svc, where)
 	if err != nil {
 		return nil, err
@@ -15288,8 +13978,16 @@ func GetTimerInstruction(svc *wmi.Service, timerId string) (*TimerInstruction, e
 	return &out[0], nil
 }
 
+// GetTimerInstruction returns the __TimerInstruction instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetTimerInstruction(svc *wmi.Service, timerId string) (*TimerInstruction, error) {
+	where := "TimerId = " + wmi.WQLValue(timerId)
+	return QueryOneTimerInstruction(svc, where)
+}
+
 // QueryTimerNextFiring runs the WQL query against the class and decodes each
-// instance into a TimerNextFiring. Pass the WHERE clause (or "" for all).
+// instance into a TimerNextFiring. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryTimerNextFiring(svc *wmi.Service, where string) ([]TimerNextFiring, error) {
 	q := "SELECT * FROM __TimerNextFiring"
 	if where != "" {
@@ -15301,16 +13999,14 @@ func QueryTimerNextFiring(svc *wmi.Service, where string) ([]TimerNextFiring, er
 	}
 	out := make([]TimerNextFiring, len(rows))
 	for i, row := range rows {
-		out[i].NextEvent64BitTime = wmi.AsInt64(row["NextEvent64BitTime"])
-		out[i].TimerId = wmi.AsString(row["TimerId"])
+		out[i] = TimerNextFiringFromRow(row)
 	}
 	return out, nil
 }
 
-// GetTimerNextFiring returns the __TimerNextFiring instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetTimerNextFiring(svc *wmi.Service, timerId string) (*TimerNextFiring, error) {
-	where := "TimerId = " + wmi.WQLValue(timerId)
+// QueryOneTimerNextFiring returns the single __TimerNextFiring matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneTimerNextFiring(svc *wmi.Service, where string) (*TimerNextFiring, error) {
 	out, err := QueryTimerNextFiring(svc, where)
 	if err != nil {
 		return nil, err
@@ -15321,8 +14017,16 @@ func GetTimerNextFiring(svc *wmi.Service, timerId string) (*TimerNextFiring, err
 	return &out[0], nil
 }
 
+// GetTimerNextFiring returns the __TimerNextFiring instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetTimerNextFiring(svc *wmi.Service, timerId string) (*TimerNextFiring, error) {
+	where := "TimerId = " + wmi.WQLValue(timerId)
+	return QueryOneTimerNextFiring(svc, where)
+}
+
 // QueryTrustee runs the WQL query against the class and decodes each
-// instance into a Trustee. Pass the WHERE clause (or "" for all).
+// instance into a Trustee. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryTrustee(svc *wmi.Service, where string) ([]Trustee, error) {
 	q := "SELECT * FROM __Trustee"
 	if where != "" {
@@ -15334,18 +14038,27 @@ func QueryTrustee(svc *wmi.Service, where string) ([]Trustee, error) {
 	}
 	out := make([]Trustee, len(rows))
 	for i, row := range rows {
-		out[i].Domain = wmi.AsString(row["Domain"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].SID = wmi.AsUint8Slice(row["SID"])
-		out[i].SIDString = wmi.AsString(row["SIDString"])
-		out[i].SidLength = wmi.AsUint32(row["SidLength"])
-		out[i].TIMECREATED = wmi.AsUint64(row["TIME_CREATED"])
+		out[i] = TrusteeFromRow(row)
 	}
 	return out, nil
 }
 
+// QueryOneTrustee returns the single __Trustee matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneTrustee(svc *wmi.Service, where string) (*Trustee, error) {
+	out, err := QueryTrustee(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
 // QueryWin32Provider runs the WQL query against the class and decodes each
-// instance into a Win32Provider. Pass the WHERE clause (or "" for all).
+// instance into a Win32Provider. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryWin32Provider(svc *wmi.Service, where string) ([]Win32Provider, error) {
 	q := "SELECT * FROM __Win32Provider"
 	if where != "" {
@@ -15357,38 +14070,14 @@ func QueryWin32Provider(svc *wmi.Service, where string) ([]Win32Provider, error)
 	}
 	out := make([]Win32Provider, len(rows))
 	for i, row := range rows {
-		out[i].CLSID = wmi.AsString(row["CLSID"])
-		out[i].ClientLoadableCLSID = wmi.AsString(row["ClientLoadableCLSID"])
-		out[i].Concurrency = wmi.AsInt32(row["Concurrency"])
-		out[i].DefaultMachineName = wmi.AsString(row["DefaultMachineName"])
-		out[i].Enabled = wmi.AsBool(row["Enabled"])
-		out[i].HostingModel = wmi.AsString(row["HostingModel"])
-		out[i].ImpersonationLevel = wmi.AsInt32(row["ImpersonationLevel"])
-		out[i].InitializationReentrancy = wmi.AsInt32(row["InitializationReentrancy"])
-		out[i].InitializationTimeoutInterval = wmi.AsString(row["InitializationTimeoutInterval"])
-		out[i].InitializeAsAdminFirst = wmi.AsBool(row["InitializeAsAdminFirst"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].OperationTimeoutInterval = wmi.AsString(row["OperationTimeoutInterval"])
-		out[i].PerLocaleInitialization = wmi.AsBool(row["PerLocaleInitialization"])
-		out[i].PerUserInitialization = wmi.AsBool(row["PerUserInitialization"])
-		out[i].Pure = wmi.AsBool(row["Pure"])
-		out[i].SecurityDescriptor = wmi.AsString(row["SecurityDescriptor"])
-		out[i].SupportsExplicitShutdown = wmi.AsBool(row["SupportsExplicitShutdown"])
-		out[i].SupportsExtendedStatus = wmi.AsBool(row["SupportsExtendedStatus"])
-		out[i].SupportsQuotas = wmi.AsBool(row["SupportsQuotas"])
-		out[i].SupportsSendStatus = wmi.AsBool(row["SupportsSendStatus"])
-		out[i].SupportsShutdown = wmi.AsBool(row["SupportsShutdown"])
-		out[i].SupportsThrottling = wmi.AsBool(row["SupportsThrottling"])
-		out[i].UnloadTimeout = wmi.AsString(row["UnloadTimeout"])
-		out[i].Version = wmi.AsUint32(row["Version"])
+		out[i] = Win32ProviderFromRow(row)
 	}
 	return out, nil
 }
 
-// GetWin32Provider returns the __Win32Provider instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetWin32Provider(svc *wmi.Service, name string) (*Win32Provider, error) {
-	where := "Name = " + wmi.WQLValue(name)
+// QueryOneWin32Provider returns the single __Win32Provider matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneWin32Provider(svc *wmi.Service, where string) (*Win32Provider, error) {
 	out, err := QueryWin32Provider(svc, where)
 	if err != nil {
 		return nil, err
@@ -15399,8 +14088,16 @@ func GetWin32Provider(svc *wmi.Service, name string) (*Win32Provider, error) {
 	return &out[0], nil
 }
 
+// GetWin32Provider returns the __Win32Provider instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetWin32Provider(svc *wmi.Service, name string) (*Win32Provider, error) {
+	where := "Name = " + wmi.WQLValue(name)
+	return QueryOneWin32Provider(svc, where)
+}
+
 // QueryThisNAMESPACE runs the WQL query against the class and decodes each
-// instance into a ThisNAMESPACE. Pass the WHERE clause (or "" for all).
+// instance into a ThisNAMESPACE. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryThisNAMESPACE(svc *wmi.Service, where string) ([]ThisNAMESPACE, error) {
 	q := "SELECT * FROM __thisNAMESPACE"
 	if where != "" {
@@ -15412,7 +14109,20 @@ func QueryThisNAMESPACE(svc *wmi.Service, where string) ([]ThisNAMESPACE, error)
 	}
 	out := make([]ThisNAMESPACE, len(rows))
 	for i, row := range rows {
-		out[i].SECURITYDESCRIPTOR = wmi.AsUint8Slice(row["SECURITY_DESCRIPTOR"])
+		out[i] = ThisNAMESPACEFromRow(row)
 	}
 	return out, nil
+}
+
+// QueryOneThisNAMESPACE returns the single __thisNAMESPACE matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneThisNAMESPACE(svc *wmi.Service, where string) (*ThisNAMESPACE, error) {
+	out, err := QueryThisNAMESPACE(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }

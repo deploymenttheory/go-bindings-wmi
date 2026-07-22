@@ -4,26 +4,43 @@
 
 package demo
 
-import wmi "github.com/deploymenttheory/go-bindings-wmi/runtime/wmi"
+import (
+	"context"
+
+	wmi "github.com/deploymenttheory/go-bindings-wmi/runtime/wmi"
+)
 
 // DemoWidgetCreateResult holds the out-parameters of Demo_Widget.Create.
 type DemoWidgetCreateResult struct {
 	ProcessId   uint32
-	ReturnValue uint32
+	ReturnValue DemoWidgetCreateReturnValue
 }
 
-// DemoWidgetCreate invokes the static Demo_Widget.Create method. Zero-valued
-// in-parameters are omitted so the provider applies its defaults.
-func DemoWidgetCreate(svc *wmi.Service, commandLine string, timeout uint32, startupInformation wmi.Row) (*DemoWidgetCreateResult, error) {
-	in := map[string]any{}
-	if commandLine != "" {
-		in["CommandLine"] = commandLine
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *DemoWidgetCreateResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
 	}
-	if timeout != 0 {
-		in["Timeout"] = timeout
+	return &wmi.JobError{What: "Demo_Widget.Create", ReturnValue: uint32(r.ReturnValue)}
+}
+
+// DemoWidgetCreate invokes the static Demo_Widget.Create method. Nil in-parameters
+// are omitted so the provider applies its defaults; non-nil values are
+// always sent, including zeros (build them inline with wmi.Ptr).
+func DemoWidgetCreate(svc *wmi.Service, commandLine *string, timeout *uint32, startupInformation wmi.Row, priority *DemoWidgetCreatePriority) (*DemoWidgetCreateResult, error) {
+	in := map[string]any{}
+	if commandLine != nil {
+		in["CommandLine"] = *commandLine
+	}
+	if timeout != nil {
+		in["Timeout"] = *timeout
 	}
 	if startupInformation != nil {
 		in["StartupInformation"] = startupInformation
+	}
+	if priority != nil {
+		in["Priority"] = uint16(*priority)
 	}
 	row, err := svc.ExecMethod("Demo_Widget", "Create", in)
 	if err != nil {
@@ -31,6 +48,38 @@ func DemoWidgetCreate(svc *wmi.Service, commandLine string, timeout uint32, star
 	}
 	out := &DemoWidgetCreateResult{}
 	out.ProcessId = wmi.AsUint32(row["ProcessId"])
+	out.ReturnValue = DemoWidgetCreateReturnValue(wmi.AsUint32(row["ReturnValue"]))
+	return out, nil
+}
+
+// DemoWidgetStartResult holds the out-parameters of Demo_Widget.Start.
+type DemoWidgetStartResult struct {
+	Job         string
+	ReturnValue uint32
+}
+
+// Wait resolves the CIM async contract of this result: ReturnValue 0 is
+// done, 4096 polls the started job to a terminal state, and anything
+// else — or a failed job — is a *wmi.JobError.
+func (r *DemoWidgetStartResult) Wait(ctx context.Context, svc *wmi.Service) error {
+	return svc.WaitJob(ctx, "Demo_Widget.Start", uint32(r.ReturnValue), r.Job)
+}
+
+// DemoWidgetStart invokes Demo_Widget.Start on the instance at objectPath
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func DemoWidgetStart(svc *wmi.Service, objectPath string, timeoutPeriod *string) (*DemoWidgetStartResult, error) {
+	in := map[string]any{}
+	if timeoutPeriod != nil {
+		in["TimeoutPeriod"] = *timeoutPeriod
+	}
+	row, err := svc.ExecMethod(objectPath, "Start", in)
+	if err != nil {
+		return nil, err
+	}
+	out := &DemoWidgetStartResult{}
+	out.Job = wmi.AsString(row["Job"])
 	out.ReturnValue = wmi.AsUint32(row["ReturnValue"])
 	return out, nil
 }
@@ -40,13 +89,23 @@ type DemoWidgetStopResult struct {
 	ReturnValue uint32
 }
 
+// Err returns nil when ReturnValue is 0, else a *wmi.JobError carrying
+// the code.
+func (r *DemoWidgetStopResult) Err() error {
+	if r.ReturnValue == 0 {
+		return nil
+	}
+	return &wmi.JobError{What: "Demo_Widget.Stop", ReturnValue: uint32(r.ReturnValue)}
+}
+
 // DemoWidgetStop invokes Demo_Widget.Stop on the instance at objectPath
-// (the __PATH property of a queried row). Zero-valued in-parameters are
-// omitted so the provider applies its defaults.
-func DemoWidgetStop(svc *wmi.Service, objectPath string, force bool) (*DemoWidgetStopResult, error) {
+// (the WMIPath of a queried instance). Nil in-parameters are omitted so
+// the provider applies its defaults; non-nil values are always sent,
+// including zeros (build them inline with wmi.Ptr).
+func DemoWidgetStop(svc *wmi.Service, objectPath string, force *bool) (*DemoWidgetStopResult, error) {
 	in := map[string]any{}
-	if force {
-		in["Force"] = force
+	if force != nil {
+		in["Force"] = *force
 	}
 	row, err := svc.ExecMethod(objectPath, "Stop", in)
 	if err != nil {

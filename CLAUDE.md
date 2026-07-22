@@ -29,10 +29,16 @@ live CIM repository → committed snapshot → deterministic codegen → typed q
   (~1,300 for `root\cimv2`); `-classes a,b,c` narrows.
 - **`cmd/generate`** turns the snapshot into `bindings/cim/<ns>`, split by
   construct like the winmd sisters (`doc.go`, `<ns>_structs.go`,
-  `<ns>_queries.go`, `<ns>_methods.go`; empty files not written): one struct
-  per class (CIM types → Go types, arrays → slices), `Query<Class>`/
-  `Get<Class>` helpers that decode via the runtime's coercers, and typed
-  method wrappers. Self-cleaning, byte-deterministic —
+  `<ns>_enums.go`, `<ns>_constants.go`, `<ns>_rows.go`, `<ns>_queries.go`,
+  `<ns>_methods.go`; empty files not written): one struct per class (CIM
+  types → Go types, arrays → slices, `WMIPath` carrying `__PATH`), named enum/
+  bitmask types from the Values/ValueMap/BitValues/BitMap qualifiers (typed
+  struct fields, `String()` on integer enums; flat constants as the collision/
+  array fallback), `<Class>FromRow` decoders, `Query<Class>`/`QueryOne<Class>`/
+  `Get<Class>` helpers, and typed method wrappers (pointer scalar in-params —
+  nil omits, zero sends; enum-typed params/ReturnValue; `Wait(ctx, svc)` on
+  async `(ReturnValue, Job)` results, `Err()` on plain-ReturnValue results).
+  Self-cleaning, byte-deterministic —
   CI regenerates and diffs. It validates every snapshot before generating, and
   has two snapshot subcommands:
   - `go run ./cmd/generate validate [dir]` — structural invariants (sorted,
@@ -79,10 +85,18 @@ tracking.
   `QueryContext` → rows; instance CRUD (`GetInstance`/`CreateInstance`/
   `UpdateInstance`/`DeleteInstance`, `ErrNotFound`) and association traversal
   (`Associators`/`References`); `ExecMethod`/`ExecMethodContext` (typed by the
-  generated wrappers); `SubscribeEvents`; `ClassProperties`/`ClassNames`/`ClassMethods` for schema
-  introspection (used by capture); VARIANT decode (scalars, SAFEARRAYs, and
+  generated wrappers); `WaitJob`/`WaitJobEvery` (the CIM async 0/4096 +
+  `CIM_ConcreteJob` poll contract, backing the generated `result.Wait`;
+  failures are `*JobError`); `SubscribeEvents`; `ClassProperties`/`ClassNames`/`ClassMethods` for schema
+  introspection (used by capture; property qualifiers inherit through
+  `__DERIVATION`); VARIANT decode (scalars, SAFEARRAYs, and
   embedded objects → nested `Row`) and encode (method in-parameters,
-  including slices and embedded instances via `wmi.Instance`); DMTF datetime
+  including slices and embedded instances via `wmi.Instance`); object-path
+  build/parse (`ObjectPath`/`ParsePath`); WQL helpers (`QuoteWQL`,
+  reflect-based `WQLValue`, `Where` with `?` placeholders); CIM-XML
+  embedded-instance text parse (`ParseObjectText`, pure Go — Windows never
+  implemented the COM inverse of `ObjectText`); `Ptr` for the wrappers'
+  optional scalar in-params; DMTF datetime
   parsing. Uses
   go-bindings-win32's `IWbemLocator`/`IWbemServices`/`IEnumWbemClassObject`
   (the `(HRESULT, error)` shape detects end-of-enum/timeouts), `VARIANT`,

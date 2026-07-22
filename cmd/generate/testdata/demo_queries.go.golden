@@ -7,7 +7,8 @@ package demo
 import wmi "github.com/deploymenttheory/go-bindings-wmi/runtime/wmi"
 
 // QueryDemoBinding runs the WQL query against the class and decodes each
-// instance into a DemoBinding. Pass the WHERE clause (or "" for all).
+// instance into a DemoBinding. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryDemoBinding(svc *wmi.Service, where string) ([]DemoBinding, error) {
 	q := "SELECT * FROM Demo_Binding"
 	if where != "" {
@@ -19,18 +20,14 @@ func QueryDemoBinding(svc *wmi.Service, where string) ([]DemoBinding, error) {
 	}
 	out := make([]DemoBinding, len(rows))
 	for i, row := range rows {
-		out[i].Antecedent = wmi.AsString(row["Antecedent"])
-		out[i].Index = wmi.AsUint32(row["Index"])
-		out[i].Weight = wmi.AsFloat64(row["Weight"])
+		out[i] = DemoBindingFromRow(row)
 	}
 	return out, nil
 }
 
-// GetDemoBinding returns the Demo_Binding instance identified by its key
-// properties, or wmi.ErrNotFound.
-func GetDemoBinding(svc *wmi.Service, antecedent string, index uint32) (*DemoBinding, error) {
-	where := "Antecedent = " + wmi.WQLValue(antecedent) +
-		" AND " + "Index = " + wmi.WQLValue(index)
+// QueryOneDemoBinding returns the single Demo_Binding matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneDemoBinding(svc *wmi.Service, where string) (*DemoBinding, error) {
 	out, err := QueryDemoBinding(svc, where)
 	if err != nil {
 		return nil, err
@@ -41,8 +38,17 @@ func GetDemoBinding(svc *wmi.Service, antecedent string, index uint32) (*DemoBin
 	return &out[0], nil
 }
 
+// GetDemoBinding returns the Demo_Binding instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetDemoBinding(svc *wmi.Service, antecedent string, index uint32) (*DemoBinding, error) {
+	where := "Antecedent = " + wmi.WQLValue(antecedent) +
+		" AND " + "Index = " + wmi.WQLValue(index)
+	return QueryOneDemoBinding(svc, where)
+}
+
 // QueryDemoEmpty runs the WQL query against the class and decodes each
-// instance into a DemoEmpty. Pass the WHERE clause (or "" for all).
+// instance into a DemoEmpty. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryDemoEmpty(svc *wmi.Service, where string) ([]DemoEmpty, error) {
 	q := "SELECT * FROM Demo_Empty"
 	if where != "" {
@@ -53,11 +59,67 @@ func QueryDemoEmpty(svc *wmi.Service, where string) ([]DemoEmpty, error) {
 		return nil, err
 	}
 	out := make([]DemoEmpty, len(rows))
+	for i, row := range rows {
+		out[i] = DemoEmptyFromRow(row)
+	}
 	return out, nil
 }
 
+// QueryOneDemoEmpty returns the single Demo_Empty matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneDemoEmpty(svc *wmi.Service, where string) (*DemoEmpty, error) {
+	out, err := QueryDemoEmpty(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
+// QueryDemoProfile runs the WQL query against the class and decodes each
+// instance into a DemoProfile. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
+func QueryDemoProfile(svc *wmi.Service, where string) ([]DemoProfile, error) {
+	q := "SELECT * FROM Demo_Profile"
+	if where != "" {
+		q += " WHERE " + where
+	}
+	rows, err := svc.Query(q)
+	if err != nil {
+		return nil, err
+	}
+	out := make([]DemoProfile, len(rows))
+	for i, row := range rows {
+		out[i] = DemoProfileFromRow(row)
+	}
+	return out, nil
+}
+
+// QueryOneDemoProfile returns the single Demo_Profile matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneDemoProfile(svc *wmi.Service, where string) (*DemoProfile, error) {
+	out, err := QueryDemoProfile(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
+}
+
+// GetDemoProfile returns the Demo_Profile instance identified by its key
+// properties, or wmi.ErrNotFound.
+func GetDemoProfile(svc *wmi.Service, kind DemoProfileKind) (*DemoProfile, error) {
+	where := "Kind = " + wmi.WQLValue(kind)
+	return QueryOneDemoProfile(svc, where)
+}
+
 // QueryDemoWidget runs the WQL query against the class and decodes each
-// instance into a DemoWidget. Pass the WHERE clause (or "" for all).
+// instance into a DemoWidget. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
 func QueryDemoWidget(svc *wmi.Service, where string) ([]DemoWidget, error) {
 	q := "SELECT * FROM Demo_Widget"
 	if where != "" {
@@ -69,35 +131,54 @@ func QueryDemoWidget(svc *wmi.Service, where string) ([]DemoWidget, error) {
 	}
 	out := make([]DemoWidget, len(rows))
 	for i, row := range rows {
-		out[i].Caps = wmi.AsUint16Slice(row["Caps"])
-		out[i].DriveType = wmi.AsUint32(row["DriveType"])
-		out[i].Enabled = wmi.AsBool(row["Enabled"])
-		if v, ok := row["Exotic"].(any); ok {
-			out[i].Exotic = v
-		}
-		out[i].Family = wmi.AsUint32(row["Family"])
-		out[i].FooBar = wmi.AsInt32(row["FooBar"])
-		out[i].Installed = wmi.AsString(row["Installed"])
-		out[i].Name = wmi.AsString(row["Name"])
-		out[i].Owner = wmi.AsString(row["Owner"])
-		out[i].Parts = wmi.AsRowSlice(row["Parts"])
-		out[i].Phase = wmi.AsUint32(row["Phase"])
-		out[i].Ratio = wmi.AsFloat32(row["Ratio"])
-		out[i].Size = wmi.AsUint64(row["Size"])
-		out[i].StartMode = wmi.AsString(row["StartMode"])
-		if v, ok := row["Startup"].(wmi.Row); ok {
-			out[i].Startup = v
-		}
-		out[i].Tags = wmi.AsStringSlice(row["Tags"])
+		out[i] = DemoWidgetFromRow(row)
 	}
 	return out, nil
+}
+
+// QueryOneDemoWidget returns the single Demo_Widget matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneDemoWidget(svc *wmi.Service, where string) (*DemoWidget, error) {
+	out, err := QueryDemoWidget(svc, where)
+	if err != nil {
+		return nil, err
+	}
+	if len(out) == 0 {
+		return nil, wmi.ErrNotFound
+	}
+	return &out[0], nil
 }
 
 // GetDemoWidget returns the Demo_Widget instance identified by its key
 // properties, or wmi.ErrNotFound.
 func GetDemoWidget(svc *wmi.Service, name string) (*DemoWidget, error) {
 	where := "Name = " + wmi.WQLValue(name)
-	out, err := QueryDemoWidget(svc, where)
+	return QueryOneDemoWidget(svc, where)
+}
+
+// QueryDemoWidgetMode runs the WQL query against the class and decodes each
+// instance into a DemoWidgetMode. Pass the WHERE clause (or "" for all);
+// build safe clauses with wmi.Where.
+func QueryDemoWidgetMode(svc *wmi.Service, where string) ([]DemoWidgetMode, error) {
+	q := "SELECT * FROM Demo_WidgetMode"
+	if where != "" {
+		q += " WHERE " + where
+	}
+	rows, err := svc.Query(q)
+	if err != nil {
+		return nil, err
+	}
+	out := make([]DemoWidgetMode, len(rows))
+	for i, row := range rows {
+		out[i] = DemoWidgetModeFromRow(row)
+	}
+	return out, nil
+}
+
+// QueryOneDemoWidgetMode returns the single Demo_WidgetMode matching the WHERE
+// clause ("" when one instance exists), or wmi.ErrNotFound when none match.
+func QueryOneDemoWidgetMode(svc *wmi.Service, where string) (*DemoWidgetMode, error) {
+	out, err := QueryDemoWidgetMode(svc, where)
 	if err != nil {
 		return nil, err
 	}

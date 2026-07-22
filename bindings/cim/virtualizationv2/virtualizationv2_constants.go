@@ -4,190 +4,188 @@
 
 package virtualizationv2
 
-// Msvm_BootSourceSettingData.BootSourceType values.
+// Msvm_AllocationCapabilities.SupportedAddStates values.
 const (
-	MsvmBootSourceSettingDataBootSourceTypeUnknown uint32 = 0
-	MsvmBootSourceSettingDataBootSourceTypeDrive   uint32 = 1
-	MsvmBootSourceSettingDataBootSourceTypeNetwork uint32 = 2
-	MsvmBootSourceSettingDataBootSourceTypeFile    uint32 = 3
+	MsvmAllocationCapabilitiesSupportedAddStatesUnknown           uint16 = 0
+	MsvmAllocationCapabilitiesSupportedAddStatesEnabled           uint16 = 2
+	MsvmAllocationCapabilitiesSupportedAddStatesDisabled          uint16 = 3
+	MsvmAllocationCapabilitiesSupportedAddStatesShuttingDown      uint16 = 4
+	MsvmAllocationCapabilitiesSupportedAddStatesNotApplicable     uint16 = 5
+	MsvmAllocationCapabilitiesSupportedAddStatesEnabledButOffline uint16 = 6
+	MsvmAllocationCapabilitiesSupportedAddStatesInTest            uint16 = 7
+	MsvmAllocationCapabilitiesSupportedAddStatesDeferred          uint16 = 8
+	MsvmAllocationCapabilitiesSupportedAddStatesQuiesce           uint16 = 9
+	MsvmAllocationCapabilitiesSupportedAddStatesStarting          uint16 = 10
+	MsvmAllocationCapabilitiesSupportedAddStatesPaused            uint16 = 11
+	MsvmAllocationCapabilitiesSupportedAddStatesSuspended         uint16 = 12
 )
 
-// Msvm_ComputerSystem.EnhancedSessionModeState values.
+// Msvm_AllocationCapabilities.SupportedRemoveStates values.
 const (
-	MsvmComputerSystemEnhancedSessionModeStateAllowedAndAvailable    uint16 = 2
-	MsvmComputerSystemEnhancedSessionModeStateNotAllowed             uint16 = 3
-	MsvmComputerSystemEnhancedSessionModeStateAllowedButNotAvailable uint16 = 6
+	MsvmAllocationCapabilitiesSupportedRemoveStatesUnknown           uint16 = 0
+	MsvmAllocationCapabilitiesSupportedRemoveStatesEnabled           uint16 = 2
+	MsvmAllocationCapabilitiesSupportedRemoveStatesDisabled          uint16 = 3
+	MsvmAllocationCapabilitiesSupportedRemoveStatesShuttingDown      uint16 = 4
+	MsvmAllocationCapabilitiesSupportedRemoveStatesNotApplicable     uint16 = 5
+	MsvmAllocationCapabilitiesSupportedRemoveStatesEnabledButOffline uint16 = 6
+	MsvmAllocationCapabilitiesSupportedRemoveStatesInTest            uint16 = 7
+	MsvmAllocationCapabilitiesSupportedRemoveStatesDeferred          uint16 = 8
+	MsvmAllocationCapabilitiesSupportedRemoveStatesQuiesce           uint16 = 9
+	MsvmAllocationCapabilitiesSupportedRemoveStatesStarting          uint16 = 10
+	MsvmAllocationCapabilitiesSupportedRemoveStatesPaused            uint16 = 11
+	MsvmAllocationCapabilitiesSupportedRemoveStatesSuspended         uint16 = 12
 )
 
-// Msvm_ComputerSystem.FailedOverReplicationType values.
+// Msvm_ComputerSystem.AvailableRequestedStates values.
 const (
-	MsvmComputerSystemFailedOverReplicationTypeNone                  uint16 = 0
-	MsvmComputerSystemFailedOverReplicationTypeRegular               uint16 = 1
-	MsvmComputerSystemFailedOverReplicationTypeApplicationConsistent uint16 = 2
-	MsvmComputerSystemFailedOverReplicationTypePlanned               uint16 = 3
+	MsvmComputerSystemAvailableRequestedStatesEnabled  uint16 = 2
+	MsvmComputerSystemAvailableRequestedStatesDisabled uint16 = 3
+	MsvmComputerSystemAvailableRequestedStatesShutDown uint16 = 4
+	MsvmComputerSystemAvailableRequestedStatesOffline  uint16 = 6
+	MsvmComputerSystemAvailableRequestedStatesTest     uint16 = 7
+	MsvmComputerSystemAvailableRequestedStatesDefer    uint16 = 8
+	MsvmComputerSystemAvailableRequestedStatesQuiesce  uint16 = 9
+	MsvmComputerSystemAvailableRequestedStatesReboot   uint16 = 10
+	MsvmComputerSystemAvailableRequestedStatesReset    uint16 = 11
 )
 
-// Msvm_ComputerSystem.LastReplicationType values.
+// Msvm_ComputerSystem.Dedicated values.
 const (
-	MsvmComputerSystemLastReplicationTypeNone                  uint16 = 0
-	MsvmComputerSystemLastReplicationTypeRegular               uint16 = 1
-	MsvmComputerSystemLastReplicationTypeApplicationConsistent uint16 = 2
-	MsvmComputerSystemLastReplicationTypePlanned               uint16 = 3
+	MsvmComputerSystemDedicatedNotDedicated            uint16 = 0
+	MsvmComputerSystemDedicatedUnknown                 uint16 = 1
+	MsvmComputerSystemDedicatedOther                   uint16 = 2
+	MsvmComputerSystemDedicatedStorage                 uint16 = 3
+	MsvmComputerSystemDedicatedRouter                  uint16 = 4
+	MsvmComputerSystemDedicatedSwitch                  uint16 = 5
+	MsvmComputerSystemDedicatedLayer3Switch            uint16 = 6
+	MsvmComputerSystemDedicatedCentralOfficeSwitch     uint16 = 7
+	MsvmComputerSystemDedicatedHub                     uint16 = 8
+	MsvmComputerSystemDedicatedAccessServer            uint16 = 9
+	MsvmComputerSystemDedicatedFirewall                uint16 = 10
+	MsvmComputerSystemDedicatedPrint                   uint16 = 11
+	MsvmComputerSystemDedicatedIO                      uint16 = 12
+	MsvmComputerSystemDedicatedWebCaching              uint16 = 13
+	MsvmComputerSystemDedicatedManagement              uint16 = 14
+	MsvmComputerSystemDedicatedBlockServer             uint16 = 15
+	MsvmComputerSystemDedicatedFileServer              uint16 = 16
+	MsvmComputerSystemDedicatedMobileUserDevice        uint16 = 17
+	MsvmComputerSystemDedicatedRepeater                uint16 = 18
+	MsvmComputerSystemDedicatedBridgeExtender          uint16 = 19
+	MsvmComputerSystemDedicatedGateway                 uint16 = 20
+	MsvmComputerSystemDedicatedStorageVirtualizer      uint16 = 21
+	MsvmComputerSystemDedicatedMediaLibrary            uint16 = 22
+	MsvmComputerSystemDedicatedExtenderNode            uint16 = 23
+	MsvmComputerSystemDedicatedNASHead                 uint16 = 24
+	MsvmComputerSystemDedicatedSelfContainedNAS        uint16 = 25
+	MsvmComputerSystemDedicatedUPS                     uint16 = 26
+	MsvmComputerSystemDedicatedIPPhone                 uint16 = 27
+	MsvmComputerSystemDedicatedManagementController    uint16 = 28
+	MsvmComputerSystemDedicatedChassisManager          uint16 = 29
+	MsvmComputerSystemDedicatedHostBasedRAIDController uint16 = 30
+	MsvmComputerSystemDedicatedStorageDeviceEnclosure  uint16 = 31
+	MsvmComputerSystemDedicatedDesktop                 uint16 = 32
+	MsvmComputerSystemDedicatedLaptop                  uint16 = 33
+	MsvmComputerSystemDedicatedVirtualTapeLibrary      uint16 = 34
+	MsvmComputerSystemDedicatedVirtualLibrarySystem    uint16 = 35
+	MsvmComputerSystemDedicatedNetworkPCThinClient     uint16 = 36
+	MsvmComputerSystemDedicatedFCSwitch                uint16 = 37
+	MsvmComputerSystemDedicatedEthernetSwitch          uint16 = 38
 )
 
-// Msvm_ComputerSystem.ReplicationHealth values.
+// Msvm_ComputerSystem.OperationalStatus values.
 const (
-	MsvmComputerSystemReplicationHealthNotApplicable uint16 = 0
-	MsvmComputerSystemReplicationHealthOk            uint16 = 1
-	MsvmComputerSystemReplicationHealthWarning       uint16 = 2
-	MsvmComputerSystemReplicationHealthCritical      uint16 = 3
+	MsvmComputerSystemOperationalStatusUnknown                 uint16 = 0
+	MsvmComputerSystemOperationalStatusOther                   uint16 = 1
+	MsvmComputerSystemOperationalStatusOK                      uint16 = 2
+	MsvmComputerSystemOperationalStatusDegraded                uint16 = 3
+	MsvmComputerSystemOperationalStatusStressed                uint16 = 4
+	MsvmComputerSystemOperationalStatusPredictiveFailure       uint16 = 5
+	MsvmComputerSystemOperationalStatusError                   uint16 = 6
+	MsvmComputerSystemOperationalStatusNonRecoverableError     uint16 = 7
+	MsvmComputerSystemOperationalStatusStarting                uint16 = 8
+	MsvmComputerSystemOperationalStatusStopping                uint16 = 9
+	MsvmComputerSystemOperationalStatusStopped                 uint16 = 10
+	MsvmComputerSystemOperationalStatusInService               uint16 = 11
+	MsvmComputerSystemOperationalStatusNoContact               uint16 = 12
+	MsvmComputerSystemOperationalStatusLostCommunication       uint16 = 13
+	MsvmComputerSystemOperationalStatusAborted                 uint16 = 14
+	MsvmComputerSystemOperationalStatusDormant                 uint16 = 15
+	MsvmComputerSystemOperationalStatusSupportingEntityInError uint16 = 16
+	MsvmComputerSystemOperationalStatusCompleted               uint16 = 17
+	MsvmComputerSystemOperationalStatusPowerMode               uint16 = 18
 )
 
-// Msvm_ComputerSystem.ReplicationMode values.
+// Msvm_ComputerSystem.PowerManagementCapabilities values.
 const (
-	MsvmComputerSystemReplicationModeNone            uint16 = 0
-	MsvmComputerSystemReplicationModePrimary         uint16 = 1
-	MsvmComputerSystemReplicationModeReplica         uint16 = 2
-	MsvmComputerSystemReplicationModeTestReplica     uint16 = 3
-	MsvmComputerSystemReplicationModeExtendedReplica uint16 = 4
+	MsvmComputerSystemPowerManagementCapabilitiesUnknown                              uint16 = 0
+	MsvmComputerSystemPowerManagementCapabilitiesNotSupported                         uint16 = 1
+	MsvmComputerSystemPowerManagementCapabilitiesDisabled                             uint16 = 2
+	MsvmComputerSystemPowerManagementCapabilitiesEnabled                              uint16 = 3
+	MsvmComputerSystemPowerManagementCapabilitiesPowerSavingModesEnteredAutomatically uint16 = 4
+	MsvmComputerSystemPowerManagementCapabilitiesPowerStateSettable                   uint16 = 5
+	MsvmComputerSystemPowerManagementCapabilitiesPowerCyclingSupported                uint16 = 6
+	MsvmComputerSystemPowerManagementCapabilitiesTimedPowerOnSupported                uint16 = 7
 )
 
-// Msvm_ComputerSystem.ReplicationState values.
+// Msvm_ConcreteJob.OperationalStatus values.
 const (
-	MsvmComputerSystemReplicationStateDisabled                            uint16 = 0
-	MsvmComputerSystemReplicationStateReadyForReplication                 uint16 = 1
-	MsvmComputerSystemReplicationStateWaitingToCompleteInitialReplication uint16 = 2
-	MsvmComputerSystemReplicationStateReplicating                         uint16 = 3
-	MsvmComputerSystemReplicationStateSyncedReplicationComplete           uint16 = 4
-	MsvmComputerSystemReplicationStateRecovered                           uint16 = 5
-	MsvmComputerSystemReplicationStateCommitted                           uint16 = 6
-	MsvmComputerSystemReplicationStateSuspended                           uint16 = 7
-	MsvmComputerSystemReplicationStateCritical                            uint16 = 8
-	MsvmComputerSystemReplicationStateWaitingToStartResynchronization     uint16 = 9
-	MsvmComputerSystemReplicationStateResynchronizing                     uint16 = 10
-	MsvmComputerSystemReplicationStateResynchronizationSuspended          uint16 = 11
-	MsvmComputerSystemReplicationStateFailoverInProgress                  uint16 = 12
-	MsvmComputerSystemReplicationStateFailbackInProgress                  uint16 = 13
-	MsvmComputerSystemReplicationStateFailbackComplete                    uint16 = 14
+	MsvmConcreteJobOperationalStatusUnknown                 uint16 = 0
+	MsvmConcreteJobOperationalStatusOther                   uint16 = 1
+	MsvmConcreteJobOperationalStatusOK                      uint16 = 2
+	MsvmConcreteJobOperationalStatusDegraded                uint16 = 3
+	MsvmConcreteJobOperationalStatusStressed                uint16 = 4
+	MsvmConcreteJobOperationalStatusPredictiveFailure       uint16 = 5
+	MsvmConcreteJobOperationalStatusError                   uint16 = 6
+	MsvmConcreteJobOperationalStatusNonRecoverableError     uint16 = 7
+	MsvmConcreteJobOperationalStatusStarting                uint16 = 8
+	MsvmConcreteJobOperationalStatusStopping                uint16 = 9
+	MsvmConcreteJobOperationalStatusStopped                 uint16 = 10
+	MsvmConcreteJobOperationalStatusInService               uint16 = 11
+	MsvmConcreteJobOperationalStatusNoContact               uint16 = 12
+	MsvmConcreteJobOperationalStatusLostCommunication       uint16 = 13
+	MsvmConcreteJobOperationalStatusAborted                 uint16 = 14
+	MsvmConcreteJobOperationalStatusDormant                 uint16 = 15
+	MsvmConcreteJobOperationalStatusSupportingEntityInError uint16 = 16
+	MsvmConcreteJobOperationalStatusCompleted               uint16 = 17
+	MsvmConcreteJobOperationalStatusPowerMode               uint16 = 18
 )
 
-// Msvm_ConcreteJob.JobType values.
+// Msvm_HeartbeatComponent.AdditionalAvailability values.
 const (
-	MsvmConcreteJobJobTypeUnknown                                            uint16 = 0
-	MsvmConcreteJobJobTypeDefineVirtualMachine                               uint16 = 1
-	MsvmConcreteJobJobTypeModifyVirtualMachine                               uint16 = 2
-	MsvmConcreteJobJobTypeDestroyVirtualMachine                              uint16 = 3
-	MsvmConcreteJobJobTypeModifyManagementServiceSettings                    uint16 = 4
-	MsvmConcreteJobJobTypeInitializeVirtualMachine                           uint16 = 10
-	MsvmConcreteJobJobTypeWaitingToStartVirtualMachine                       uint16 = 11
-	MsvmConcreteJobJobTypeStartVirtualMachine                                uint16 = 12
-	MsvmConcreteJobJobTypePowerOffVirtualMachine                             uint16 = 13
-	MsvmConcreteJobJobTypeSaveVirtualMachine                                 uint16 = 14
-	MsvmConcreteJobJobTypeRestoreVirtualMachine                              uint16 = 15
-	MsvmConcreteJobJobTypeShutDownVirtualMachine                             uint16 = 16
-	MsvmConcreteJobJobTypePauseVirtualMachine                                uint16 = 26
-	MsvmConcreteJobJobTypeResumeVirtualMachine                               uint16 = 27
-	MsvmConcreteJobJobTypeResetVirtualMachine                                uint16 = 28
-	MsvmConcreteJobJobTypeRebootVirtualMachine                               uint16 = 29
-	MsvmConcreteJobJobTypeAddVirtualMachineResources                         uint16 = 30
-	MsvmConcreteJobJobTypeModifyVirtualMachineResources                      uint16 = 31
-	MsvmConcreteJobJobTypeRemoveVirtualMachineResources                      uint16 = 32
-	MsvmConcreteJobJobTypeRequestInitialVirtualMachineMemory                 uint16 = 40
-	MsvmConcreteJobJobTypeAddMemoryToVirtualMachine                          uint16 = 41
-	MsvmConcreteJobJobTypeRemoveMemoryFromVirtualMachine                     uint16 = 42
-	MsvmConcreteJobJobTypeMergingVHDDisks                                    uint16 = 50
-	MsvmConcreteJobJobTypeCreateVSSSnapshotInsideVirtualMachine              uint16 = 51
-	MsvmConcreteJobJobTypeGetImportSettingData                               uint16 = 60
-	MsvmConcreteJobJobTypeImportVirtualMachine                               uint16 = 61
-	MsvmConcreteJobJobTypeExportVirtualMachine                               uint16 = 62
-	MsvmConcreteJobJobTypeRegisterConfiguration                              uint16 = 63
-	MsvmConcreteJobJobTypeUnregisterConfiguration                            uint16 = 64
-	MsvmConcreteJobJobTypeSnapshotVirtualMachine                             uint16 = 70
-	MsvmConcreteJobJobTypeApplyVirtualMachineSnapshot                        uint16 = 71
-	MsvmConcreteJobJobTypeDeleteVirtualMachineSnapshot                       uint16 = 72
-	MsvmConcreteJobJobTypeClearVirtualMachineSnapshotState                   uint16 = 73
-	MsvmConcreteJobJobTypeAddResourcesToResourcePool                         uint16 = 80
-	MsvmConcreteJobJobTypeRemoveResourcesFromResourcePool                    uint16 = 81
-	MsvmConcreteJobJobTypeModifyReplicationServerSettings                    uint16 = 90
-	MsvmConcreteJobJobTypeCreateReplicationRelationship                      uint16 = 91
-	MsvmConcreteJobJobTypeModifyReplicationRelationshipSettings              uint16 = 92
-	MsvmConcreteJobJobTypeRemoveReplicationRelationship                      uint16 = 93
-	MsvmConcreteJobJobTypeStartInbandInitialReplication                      uint16 = 94
-	MsvmConcreteJobJobTypeImportReplication                                  uint16 = 95
-	MsvmConcreteJobJobTypeReplicateStateChange                               uint16 = 96
-	MsvmConcreteJobJobTypeInitiateFailover                                   uint16 = 97
-	MsvmConcreteJobJobTypeRevertFailover                                     uint16 = 98
-	MsvmConcreteJobJobTypeCommitFailover                                     uint16 = 99
-	MsvmConcreteJobJobTypeInititateSyncedReplication                         uint16 = 100
-	MsvmConcreteJobJobTypeCancelSyncedReplication                            uint16 = 101
-	MsvmConcreteJobJobTypeInitiateTestReplica                                uint16 = 102
-	MsvmConcreteJobJobTypeRemoveTestReplica                                  uint16 = 103
-	MsvmConcreteJobJobTypeReverseReplication                                 uint16 = 104
-	MsvmConcreteJobJobTypeReplicationSendingDelta                            uint16 = 105
-	MsvmConcreteJobJobTypeReplicationReceivingDelta                          uint16 = 106
-	MsvmConcreteJobJobTypeResynchronizing                                    uint16 = 107
-	MsvmConcreteJobJobTypeApplyChangeLog                                     uint16 = 108
-	MsvmConcreteJobJobTypeStopInitialReplication                             uint16 = 109
-	MsvmConcreteJobJobTypeStopResynchronizing                                uint16 = 110
-	MsvmConcreteJobJobTypeGetReplicaStatistics                               uint16 = 111
-	MsvmConcreteJobJobTypePrepareForConsistencyChecker                       uint16 = 112
-	MsvmConcreteJobJobTypeConsistencyChecker                                 uint16 = 113
-	MsvmConcreteJobJobTypeStopConsistencyChecker                             uint16 = 114
-	MsvmConcreteJobJobTypeTestReplicationConnection                          uint16 = 115
-	MsvmConcreteJobJobTypeSendingInitialReplica                              uint16 = 116
-	MsvmConcreteJobJobTypeStartResyncInitialReplication                      uint16 = 117
-	MsvmConcreteJobJobTypeStartExportInitialReplication                      uint16 = 118
-	MsvmConcreteJobJobTypeResetReplicaStatistics                             uint16 = 119
-	MsvmConcreteJobJobTypeApplyRegisteredDeltas                              uint16 = 120
-	MsvmConcreteJobJobTypeResynchronizingExtendedReplication                 uint16 = 121
-	MsvmConcreteJobJobTypeReadingTestReplicaConfiguration                    uint16 = 122
-	MsvmConcreteJobJobTypeChangeTheReplicationModeToPrimary                  uint16 = 123
-	MsvmConcreteJobJobTypeInitiateFailback                                   uint16 = 124
-	MsvmConcreteJobJobTypeUpdateDiskSet                                      uint16 = 125
-	MsvmConcreteJobJobTypeDefineEthernetSwitch                               uint16 = 130
-	MsvmConcreteJobJobTypeModifyEthernetSwitchSettings                       uint16 = 131
-	MsvmConcreteJobJobTypeDestroyEthernetSwitch                              uint16 = 132
-	MsvmConcreteJobJobTypeAddEthernetSwitchResources                         uint16 = 133
-	MsvmConcreteJobJobTypeModifyEthernetSwitchResources                      uint16 = 134
-	MsvmConcreteJobJobTypeRemoveEthernetSwitchResources                      uint16 = 135
-	MsvmConcreteJobJobTypeValidatePlannedVirtualMachine                      uint16 = 140
-	MsvmConcreteJobJobTypeRealizingVirtualMachine                            uint16 = 141
-	MsvmConcreteJobJobTypeCreatingAResourcePool                              uint16 = 150
-	MsvmConcreteJobJobTypeChangingTheParentResourcesOfAResourcePool          uint16 = 151
-	MsvmConcreteJobJobTypeChangingTheNonAlloctionSettingsOfAResourcePool     uint16 = 152
-	MsvmConcreteJobJobTypeDeletingAResourcePool                              uint16 = 153
-	MsvmConcreteJobJobTypeEnableRemoteFxGPU                                  uint16 = 160
-	MsvmConcreteJobJobTypeDisableRemoteFxGPU                                 uint16 = 161
-	MsvmConcreteJobJobTypeModify3DServiceSettings                            uint16 = 162
-	MsvmConcreteJobJobTypeBackupVirtualMachine                               uint16 = 170
-	MsvmConcreteJobJobTypeGuestServiceInterface                              uint16 = 180
-	MsvmConcreteJobJobTypeQueryGuestClusterInformation                       uint16 = 181
-	MsvmConcreteJobJobTypeDefineCollection                                   uint16 = 190
-	MsvmConcreteJobJobTypeDestroyCollection                                  uint16 = 191
-	MsvmConcreteJobJobTypeRenameCollection                                   uint16 = 192
-	MsvmConcreteJobJobTypeAddMemberToCollection                              uint16 = 193
-	MsvmConcreteJobJobTypeRemoveMemberFromCollection                         uint16 = 194
-	MsvmConcreteJobJobTypeAddSettingToCollection                             uint16 = 195
-	MsvmConcreteJobJobTypeRemoveSettingFromCollection                        uint16 = 196
-	MsvmConcreteJobJobTypeModifySettingOnCollection                          uint16 = 197
-	MsvmConcreteJobJobTypeSnapshotCollection                                 uint16 = 198
-	MsvmConcreteJobJobTypeConvertSnapshotToReferencePoint                    uint16 = 200
-	MsvmConcreteJobJobTypeCreateReferencePoint                               uint16 = 201
-	MsvmConcreteJobJobTypeDeleteReferencePoint                               uint16 = 202
-	MsvmConcreteJobJobTypeExportReferencePoint                               uint16 = 203
-	MsvmConcreteJobJobTypeRemoveAssociatedDataFromReferencePoint             uint16 = 204
-	MsvmConcreteJobJobTypeCreateReferencePointOnCollection                   uint16 = 205
-	MsvmConcreteJobJobTypeExportReferencePointOnCollection                   uint16 = 206
-	MsvmConcreteJobJobTypeRemoveAssociatedDataFromReferencePointOnCollection uint16 = 207
-	MsvmConcreteJobJobTypeDeleteReferencePointOnCollection                   uint16 = 208
-	MsvmConcreteJobJobTypeImportReferencePointMetadata                       uint16 = 209
-	MsvmConcreteJobJobTypeMountOrDismountAssignableDevice                    uint16 = 260
+	MsvmHeartbeatComponentAdditionalAvailabilityOther                 uint16 = 1
+	MsvmHeartbeatComponentAdditionalAvailabilityUnknown               uint16 = 2
+	MsvmHeartbeatComponentAdditionalAvailabilityRunningFullPower      uint16 = 3
+	MsvmHeartbeatComponentAdditionalAvailabilityWarning               uint16 = 4
+	MsvmHeartbeatComponentAdditionalAvailabilityInTest                uint16 = 5
+	MsvmHeartbeatComponentAdditionalAvailabilityNotApplicable         uint16 = 6
+	MsvmHeartbeatComponentAdditionalAvailabilityPowerOff              uint16 = 7
+	MsvmHeartbeatComponentAdditionalAvailabilityOffLine               uint16 = 8
+	MsvmHeartbeatComponentAdditionalAvailabilityOffDuty               uint16 = 9
+	MsvmHeartbeatComponentAdditionalAvailabilityDegraded              uint16 = 10
+	MsvmHeartbeatComponentAdditionalAvailabilityNotInstalled          uint16 = 11
+	MsvmHeartbeatComponentAdditionalAvailabilityInstallError          uint16 = 12
+	MsvmHeartbeatComponentAdditionalAvailabilityPowerSaveUnknown      uint16 = 13
+	MsvmHeartbeatComponentAdditionalAvailabilityPowerSaveLowPowerMode uint16 = 14
+	MsvmHeartbeatComponentAdditionalAvailabilityPowerSaveStandby      uint16 = 15
+	MsvmHeartbeatComponentAdditionalAvailabilityPowerCycle            uint16 = 16
+	MsvmHeartbeatComponentAdditionalAvailabilityPowerSaveWarning      uint16 = 17
+	MsvmHeartbeatComponentAdditionalAvailabilityPaused                uint16 = 18
+	MsvmHeartbeatComponentAdditionalAvailabilityNotReady              uint16 = 19
+	MsvmHeartbeatComponentAdditionalAvailabilityNotConfigured         uint16 = 20
+	MsvmHeartbeatComponentAdditionalAvailabilityQuiesced              uint16 = 21
 )
 
-// Msvm_EthernetPortAllocationSettingData.EnabledState values.
+// Msvm_HeartbeatComponent.AvailableRequestedStates values.
 const (
-	MsvmEthernetPortAllocationSettingDataEnabledStateEnabled  uint16 = 2
-	MsvmEthernetPortAllocationSettingDataEnabledStateDisabled uint16 = 3
+	MsvmHeartbeatComponentAvailableRequestedStatesEnabled  uint16 = 2
+	MsvmHeartbeatComponentAvailableRequestedStatesDisabled uint16 = 3
+	MsvmHeartbeatComponentAvailableRequestedStatesShutDown uint16 = 4
+	MsvmHeartbeatComponentAvailableRequestedStatesOffline  uint16 = 6
+	MsvmHeartbeatComponentAvailableRequestedStatesTest     uint16 = 7
+	MsvmHeartbeatComponentAvailableRequestedStatesDefer    uint16 = 8
+	MsvmHeartbeatComponentAvailableRequestedStatesQuiesce  uint16 = 9
+	MsvmHeartbeatComponentAvailableRequestedStatesReboot   uint16 = 10
+	MsvmHeartbeatComponentAvailableRequestedStatesReset    uint16 = 11
 )
 
 // Msvm_HeartbeatComponent.OperationalStatus values.
@@ -203,125 +201,307 @@ const (
 	MsvmHeartbeatComponentOperationalStatusCommunicationFailed      uint16 = 32784
 )
 
-// Msvm_MemorySettingData.BackingPageSize values.
+// Msvm_HeartbeatComponent.PowerManagementCapabilities values.
 const (
-	MsvmMemorySettingDataBackingPageSizeSmall uint8 = 0
-	MsvmMemorySettingDataBackingPageSizeLarge uint8 = 1
-	MsvmMemorySettingDataBackingPageSizeHuge  uint8 = 2
+	MsvmHeartbeatComponentPowerManagementCapabilitiesUnknown                              uint16 = 0
+	MsvmHeartbeatComponentPowerManagementCapabilitiesNotSupported                         uint16 = 1
+	MsvmHeartbeatComponentPowerManagementCapabilitiesDisabled                             uint16 = 2
+	MsvmHeartbeatComponentPowerManagementCapabilitiesEnabled                              uint16 = 3
+	MsvmHeartbeatComponentPowerManagementCapabilitiesPowerSavingModesEnteredAutomatically uint16 = 4
+	MsvmHeartbeatComponentPowerManagementCapabilitiesPowerStateSettable                   uint16 = 5
+	MsvmHeartbeatComponentPowerManagementCapabilitiesPowerCyclingSupported                uint16 = 6
+	MsvmHeartbeatComponentPowerManagementCapabilitiesTimedPowerOnSupported                uint16 = 7
 )
 
-// Msvm_MemorySettingData.BackingType values.
+// Msvm_ImageManagementService.AvailableRequestedStates values.
 const (
-	MsvmMemorySettingDataBackingTypePhysical uint8 = 0
-	MsvmMemorySettingDataBackingTypeVirtual  uint8 = 1
-	MsvmMemorySettingDataBackingTypeHybrid   uint8 = 2
+	MsvmImageManagementServiceAvailableRequestedStatesEnabled  uint16 = 2
+	MsvmImageManagementServiceAvailableRequestedStatesDisabled uint16 = 3
+	MsvmImageManagementServiceAvailableRequestedStatesShutDown uint16 = 4
+	MsvmImageManagementServiceAvailableRequestedStatesOffline  uint16 = 6
+	MsvmImageManagementServiceAvailableRequestedStatesTest     uint16 = 7
+	MsvmImageManagementServiceAvailableRequestedStatesDefer    uint16 = 8
+	MsvmImageManagementServiceAvailableRequestedStatesQuiesce  uint16 = 9
+	MsvmImageManagementServiceAvailableRequestedStatesReboot   uint16 = 10
+	MsvmImageManagementServiceAvailableRequestedStatesReset    uint16 = 11
 )
 
-// Msvm_MemorySettingData.MemoryAccessTrackingPolicy values.
+// Msvm_ImageManagementService.OperationalStatus values.
 const (
-	MsvmMemorySettingDataMemoryAccessTrackingPolicyGranularityBest uint8 = 0
-	MsvmMemorySettingDataMemoryAccessTrackingPolicyGranularity4KB  uint8 = 1
-	MsvmMemorySettingDataMemoryAccessTrackingPolicyGranularity2MB  uint8 = 2
-	MsvmMemorySettingDataMemoryAccessTrackingPolicyGranularity1GB  uint8 = 3
+	MsvmImageManagementServiceOperationalStatusUnknown                 uint16 = 0
+	MsvmImageManagementServiceOperationalStatusOther                   uint16 = 1
+	MsvmImageManagementServiceOperationalStatusOK                      uint16 = 2
+	MsvmImageManagementServiceOperationalStatusDegraded                uint16 = 3
+	MsvmImageManagementServiceOperationalStatusStressed                uint16 = 4
+	MsvmImageManagementServiceOperationalStatusPredictiveFailure       uint16 = 5
+	MsvmImageManagementServiceOperationalStatusError                   uint16 = 6
+	MsvmImageManagementServiceOperationalStatusNonRecoverableError     uint16 = 7
+	MsvmImageManagementServiceOperationalStatusStarting                uint16 = 8
+	MsvmImageManagementServiceOperationalStatusStopping                uint16 = 9
+	MsvmImageManagementServiceOperationalStatusStopped                 uint16 = 10
+	MsvmImageManagementServiceOperationalStatusInService               uint16 = 11
+	MsvmImageManagementServiceOperationalStatusNoContact               uint16 = 12
+	MsvmImageManagementServiceOperationalStatusLostCommunication       uint16 = 13
+	MsvmImageManagementServiceOperationalStatusAborted                 uint16 = 14
+	MsvmImageManagementServiceOperationalStatusDormant                 uint16 = 15
+	MsvmImageManagementServiceOperationalStatusSupportingEntityInError uint16 = 16
+	MsvmImageManagementServiceOperationalStatusCompleted               uint16 = 17
+	MsvmImageManagementServiceOperationalStatusPowerMode               uint16 = 18
 )
 
-// Msvm_MemorySettingData.MemoryAccessTrackingState values.
+// Msvm_Keyboard.AdditionalAvailability values.
 const (
-	MsvmMemorySettingDataMemoryAccessTrackingStateTrackingDisabled        uint8 = 0
-	MsvmMemorySettingDataMemoryAccessTrackingStateTrackingEnabled         uint8 = 1
-	MsvmMemorySettingDataMemoryAccessTrackingStateUsePerNUMAConfiguration uint8 = 2
+	MsvmKeyboardAdditionalAvailabilityOther                 uint16 = 1
+	MsvmKeyboardAdditionalAvailabilityUnknown               uint16 = 2
+	MsvmKeyboardAdditionalAvailabilityRunningFullPower      uint16 = 3
+	MsvmKeyboardAdditionalAvailabilityWarning               uint16 = 4
+	MsvmKeyboardAdditionalAvailabilityInTest                uint16 = 5
+	MsvmKeyboardAdditionalAvailabilityNotApplicable         uint16 = 6
+	MsvmKeyboardAdditionalAvailabilityPowerOff              uint16 = 7
+	MsvmKeyboardAdditionalAvailabilityOffLine               uint16 = 8
+	MsvmKeyboardAdditionalAvailabilityOffDuty               uint16 = 9
+	MsvmKeyboardAdditionalAvailabilityDegraded              uint16 = 10
+	MsvmKeyboardAdditionalAvailabilityNotInstalled          uint16 = 11
+	MsvmKeyboardAdditionalAvailabilityInstallError          uint16 = 12
+	MsvmKeyboardAdditionalAvailabilityPowerSaveUnknown      uint16 = 13
+	MsvmKeyboardAdditionalAvailabilityPowerSaveLowPowerMode uint16 = 14
+	MsvmKeyboardAdditionalAvailabilityPowerSaveStandby      uint16 = 15
+	MsvmKeyboardAdditionalAvailabilityPowerCycle            uint16 = 16
+	MsvmKeyboardAdditionalAvailabilityPowerSaveWarning      uint16 = 17
+	MsvmKeyboardAdditionalAvailabilityPaused                uint16 = 18
+	MsvmKeyboardAdditionalAvailabilityNotReady              uint16 = 19
+	MsvmKeyboardAdditionalAvailabilityNotConfigured         uint16 = 20
+	MsvmKeyboardAdditionalAvailabilityQuiesced              uint16 = 21
 )
 
-// Msvm_MemorySettingData.MemoryEncryptionPolicy values.
+// Msvm_Keyboard.AvailableRequestedStates values.
 const (
-	MsvmMemorySettingDataMemoryEncryptionPolicyDisabled           uint8 = 0
-	MsvmMemorySettingDataMemoryEncryptionPolicyEnabledIfSupported uint8 = 1
-	MsvmMemorySettingDataMemoryEncryptionPolicyAlwaysEnabled      uint8 = 2
+	MsvmKeyboardAvailableRequestedStatesEnabled  uint16 = 2
+	MsvmKeyboardAvailableRequestedStatesDisabled uint16 = 3
+	MsvmKeyboardAvailableRequestedStatesShutDown uint16 = 4
+	MsvmKeyboardAvailableRequestedStatesOffline  uint16 = 6
+	MsvmKeyboardAvailableRequestedStatesTest     uint16 = 7
+	MsvmKeyboardAvailableRequestedStatesDefer    uint16 = 8
+	MsvmKeyboardAvailableRequestedStatesQuiesce  uint16 = 9
+	MsvmKeyboardAvailableRequestedStatesReboot   uint16 = 10
+	MsvmKeyboardAvailableRequestedStatesReset    uint16 = 11
 )
 
-// Msvm_MemorySettingData.SgxLaunchControlMode values.
+// Msvm_Keyboard.OperationalStatus values.
 const (
-	MsvmMemorySettingDataSgxLaunchControlModeNoAccess  uint32 = 0
-	MsvmMemorySettingDataSgxLaunchControlModeReadOnly  uint32 = 1
-	MsvmMemorySettingDataSgxLaunchControlModeReadWrite uint32 = 2
+	MsvmKeyboardOperationalStatusUnknown                 uint16 = 0
+	MsvmKeyboardOperationalStatusOther                   uint16 = 1
+	MsvmKeyboardOperationalStatusOK                      uint16 = 2
+	MsvmKeyboardOperationalStatusDegraded                uint16 = 3
+	MsvmKeyboardOperationalStatusStressed                uint16 = 4
+	MsvmKeyboardOperationalStatusPredictiveFailure       uint16 = 5
+	MsvmKeyboardOperationalStatusError                   uint16 = 6
+	MsvmKeyboardOperationalStatusNonRecoverableError     uint16 = 7
+	MsvmKeyboardOperationalStatusStarting                uint16 = 8
+	MsvmKeyboardOperationalStatusStopping                uint16 = 9
+	MsvmKeyboardOperationalStatusStopped                 uint16 = 10
+	MsvmKeyboardOperationalStatusInService               uint16 = 11
+	MsvmKeyboardOperationalStatusNoContact               uint16 = 12
+	MsvmKeyboardOperationalStatusLostCommunication       uint16 = 13
+	MsvmKeyboardOperationalStatusAborted                 uint16 = 14
+	MsvmKeyboardOperationalStatusDormant                 uint16 = 15
+	MsvmKeyboardOperationalStatusSupportingEntityInError uint16 = 16
+	MsvmKeyboardOperationalStatusCompleted               uint16 = 17
+	MsvmKeyboardOperationalStatusPowerMode               uint16 = 18
 )
 
-// Msvm_ProcessorSettingData.ApicMode values.
+// Msvm_Keyboard.PowerManagementCapabilities values.
 const (
-	MsvmProcessorSettingDataApicModeDefault uint8 = 0
-	MsvmProcessorSettingDataApicModeLegacy  uint8 = 1
-	MsvmProcessorSettingDataApicModeX2Apic  uint8 = 2
-	MsvmProcessorSettingDataApicModeApic    uint8 = 3
+	MsvmKeyboardPowerManagementCapabilitiesUnknown                              uint16 = 0
+	MsvmKeyboardPowerManagementCapabilitiesNotSupported                         uint16 = 1
+	MsvmKeyboardPowerManagementCapabilitiesDisabled                             uint16 = 2
+	MsvmKeyboardPowerManagementCapabilitiesEnabled                              uint16 = 3
+	MsvmKeyboardPowerManagementCapabilitiesPowerSavingModesEnteredAutomatically uint16 = 4
+	MsvmKeyboardPowerManagementCapabilitiesPowerStateSettable                   uint16 = 5
+	MsvmKeyboardPowerManagementCapabilitiesPowerCyclingSupported                uint16 = 6
+	MsvmKeyboardPowerManagementCapabilitiesTimedPowerOnSupported                uint16 = 7
 )
 
-// Msvm_ProcessorSettingData.EnablePageShattering values.
+// Msvm_KvpExchangeComponent.AdditionalAvailability values.
 const (
-	MsvmProcessorSettingDataEnablePageShatteringDefault        uint8 = 0
-	MsvmProcessorSettingDataEnablePageShatteringAlwaysEnabled  uint8 = 1
-	MsvmProcessorSettingDataEnablePageShatteringAlwaysDisabled uint8 = 2
+	MsvmKvpExchangeComponentAdditionalAvailabilityOther                 uint16 = 1
+	MsvmKvpExchangeComponentAdditionalAvailabilityUnknown               uint16 = 2
+	MsvmKvpExchangeComponentAdditionalAvailabilityRunningFullPower      uint16 = 3
+	MsvmKvpExchangeComponentAdditionalAvailabilityWarning               uint16 = 4
+	MsvmKvpExchangeComponentAdditionalAvailabilityInTest                uint16 = 5
+	MsvmKvpExchangeComponentAdditionalAvailabilityNotApplicable         uint16 = 6
+	MsvmKvpExchangeComponentAdditionalAvailabilityPowerOff              uint16 = 7
+	MsvmKvpExchangeComponentAdditionalAvailabilityOffLine               uint16 = 8
+	MsvmKvpExchangeComponentAdditionalAvailabilityOffDuty               uint16 = 9
+	MsvmKvpExchangeComponentAdditionalAvailabilityDegraded              uint16 = 10
+	MsvmKvpExchangeComponentAdditionalAvailabilityNotInstalled          uint16 = 11
+	MsvmKvpExchangeComponentAdditionalAvailabilityInstallError          uint16 = 12
+	MsvmKvpExchangeComponentAdditionalAvailabilityPowerSaveUnknown      uint16 = 13
+	MsvmKvpExchangeComponentAdditionalAvailabilityPowerSaveLowPowerMode uint16 = 14
+	MsvmKvpExchangeComponentAdditionalAvailabilityPowerSaveStandby      uint16 = 15
+	MsvmKvpExchangeComponentAdditionalAvailabilityPowerCycle            uint16 = 16
+	MsvmKvpExchangeComponentAdditionalAvailabilityPowerSaveWarning      uint16 = 17
+	MsvmKvpExchangeComponentAdditionalAvailabilityPaused                uint16 = 18
+	MsvmKvpExchangeComponentAdditionalAvailabilityNotReady              uint16 = 19
+	MsvmKvpExchangeComponentAdditionalAvailabilityNotConfigured         uint16 = 20
+	MsvmKvpExchangeComponentAdditionalAvailabilityQuiesced              uint16 = 21
 )
 
-// Msvm_ProcessorSettingData.ExtendedVirtualizationExtensions values.
+// Msvm_KvpExchangeComponent.AvailableRequestedStates values.
 const (
-	MsvmProcessorSettingDataExtendedVirtualizationExtensionsHardwareIsolation uint32 = 1
+	MsvmKvpExchangeComponentAvailableRequestedStatesEnabled  uint16 = 2
+	MsvmKvpExchangeComponentAvailableRequestedStatesDisabled uint16 = 3
+	MsvmKvpExchangeComponentAvailableRequestedStatesShutDown uint16 = 4
+	MsvmKvpExchangeComponentAvailableRequestedStatesOffline  uint16 = 6
+	MsvmKvpExchangeComponentAvailableRequestedStatesTest     uint16 = 7
+	MsvmKvpExchangeComponentAvailableRequestedStatesDefer    uint16 = 8
+	MsvmKvpExchangeComponentAvailableRequestedStatesQuiesce  uint16 = 9
+	MsvmKvpExchangeComponentAvailableRequestedStatesReboot   uint16 = 10
+	MsvmKvpExchangeComponentAvailableRequestedStatesReset    uint16 = 11
 )
 
-// Msvm_ProcessorSettingData.L3ProcessorDistributionPolicy values.
+// Msvm_KvpExchangeComponent.OperationalStatus values.
 const (
-	MsvmProcessorSettingDataL3ProcessorDistributionPolicySmallToLargeDefault uint8 = 0
-	MsvmProcessorSettingDataL3ProcessorDistributionPolicyLargeToSmall        uint8 = 1
-	MsvmProcessorSettingDataL3ProcessorDistributionPolicyEvenSmallToLarge    uint8 = 2
-	MsvmProcessorSettingDataL3ProcessorDistributionPolicyEvenLargeToSmall    uint8 = 3
+	MsvmKvpExchangeComponentOperationalStatusUnknown                 uint16 = 0
+	MsvmKvpExchangeComponentOperationalStatusOther                   uint16 = 1
+	MsvmKvpExchangeComponentOperationalStatusOK                      uint16 = 2
+	MsvmKvpExchangeComponentOperationalStatusDegraded                uint16 = 3
+	MsvmKvpExchangeComponentOperationalStatusStressed                uint16 = 4
+	MsvmKvpExchangeComponentOperationalStatusPredictiveFailure       uint16 = 5
+	MsvmKvpExchangeComponentOperationalStatusError                   uint16 = 6
+	MsvmKvpExchangeComponentOperationalStatusNonRecoverableError     uint16 = 7
+	MsvmKvpExchangeComponentOperationalStatusStarting                uint16 = 8
+	MsvmKvpExchangeComponentOperationalStatusStopping                uint16 = 9
+	MsvmKvpExchangeComponentOperationalStatusStopped                 uint16 = 10
+	MsvmKvpExchangeComponentOperationalStatusInService               uint16 = 11
+	MsvmKvpExchangeComponentOperationalStatusNoContact               uint16 = 12
+	MsvmKvpExchangeComponentOperationalStatusLostCommunication       uint16 = 13
+	MsvmKvpExchangeComponentOperationalStatusAborted                 uint16 = 14
+	MsvmKvpExchangeComponentOperationalStatusDormant                 uint16 = 15
+	MsvmKvpExchangeComponentOperationalStatusSupportingEntityInError uint16 = 16
+	MsvmKvpExchangeComponentOperationalStatusCompleted               uint16 = 17
+	MsvmKvpExchangeComponentOperationalStatusPowerMode               uint16 = 18
 )
 
-// Msvm_ProcessorSettingData.LimitProcessorFeaturesMode values.
+// Msvm_KvpExchangeComponent.PowerManagementCapabilities values.
 const (
-	MsvmProcessorSettingDataLimitProcessorFeaturesModeDefaultMinimumFeatures    uint8 = 0
-	MsvmProcessorSettingDataLimitProcessorFeaturesModeClusterNodeCommonFeatures uint8 = 1
+	MsvmKvpExchangeComponentPowerManagementCapabilitiesUnknown                              uint16 = 0
+	MsvmKvpExchangeComponentPowerManagementCapabilitiesNotSupported                         uint16 = 1
+	MsvmKvpExchangeComponentPowerManagementCapabilitiesDisabled                             uint16 = 2
+	MsvmKvpExchangeComponentPowerManagementCapabilitiesEnabled                              uint16 = 3
+	MsvmKvpExchangeComponentPowerManagementCapabilitiesPowerSavingModesEnteredAutomatically uint16 = 4
+	MsvmKvpExchangeComponentPowerManagementCapabilitiesPowerStateSettable                   uint16 = 5
+	MsvmKvpExchangeComponentPowerManagementCapabilitiesPowerCyclingSupported                uint16 = 6
+	MsvmKvpExchangeComponentPowerManagementCapabilitiesTimedPowerOnSupported                uint16 = 7
 )
 
-// Msvm_SettingsDefineCapabilities.SupportStatement values.
+// Msvm_SecurityService.AvailableRequestedStates values.
 const (
-	MsvmSettingsDefineCapabilitiesSupportStatementProduction uint16 = 0
-	MsvmSettingsDefineCapabilitiesSupportStatementPrerelease uint16 = 1
+	MsvmSecurityServiceAvailableRequestedStatesEnabled  uint16 = 2
+	MsvmSecurityServiceAvailableRequestedStatesDisabled uint16 = 3
+	MsvmSecurityServiceAvailableRequestedStatesShutDown uint16 = 4
+	MsvmSecurityServiceAvailableRequestedStatesOffline  uint16 = 6
+	MsvmSecurityServiceAvailableRequestedStatesTest     uint16 = 7
+	MsvmSecurityServiceAvailableRequestedStatesDefer    uint16 = 8
+	MsvmSecurityServiceAvailableRequestedStatesQuiesce  uint16 = 9
+	MsvmSecurityServiceAvailableRequestedStatesReboot   uint16 = 10
+	MsvmSecurityServiceAvailableRequestedStatesReset    uint16 = 11
 )
 
-// Msvm_StorageAllocationSettingData.CachingMode values.
+// Msvm_SecurityService.OperationalStatus values.
 const (
-	MsvmStorageAllocationSettingDataCachingModeUnknown              uint16 = 0
-	MsvmStorageAllocationSettingDataCachingModeDefault              uint16 = 2
-	MsvmStorageAllocationSettingDataCachingModeNoCaching            uint16 = 3
-	MsvmStorageAllocationSettingDataCachingModeCacheSharableParents uint16 = 4
+	MsvmSecurityServiceOperationalStatusUnknown                 uint16 = 0
+	MsvmSecurityServiceOperationalStatusOther                   uint16 = 1
+	MsvmSecurityServiceOperationalStatusOK                      uint16 = 2
+	MsvmSecurityServiceOperationalStatusDegraded                uint16 = 3
+	MsvmSecurityServiceOperationalStatusStressed                uint16 = 4
+	MsvmSecurityServiceOperationalStatusPredictiveFailure       uint16 = 5
+	MsvmSecurityServiceOperationalStatusError                   uint16 = 6
+	MsvmSecurityServiceOperationalStatusNonRecoverableError     uint16 = 7
+	MsvmSecurityServiceOperationalStatusStarting                uint16 = 8
+	MsvmSecurityServiceOperationalStatusStopping                uint16 = 9
+	MsvmSecurityServiceOperationalStatusStopped                 uint16 = 10
+	MsvmSecurityServiceOperationalStatusInService               uint16 = 11
+	MsvmSecurityServiceOperationalStatusNoContact               uint16 = 12
+	MsvmSecurityServiceOperationalStatusLostCommunication       uint16 = 13
+	MsvmSecurityServiceOperationalStatusAborted                 uint16 = 14
+	MsvmSecurityServiceOperationalStatusDormant                 uint16 = 15
+	MsvmSecurityServiceOperationalStatusSupportingEntityInError uint16 = 16
+	MsvmSecurityServiceOperationalStatusCompleted               uint16 = 17
+	MsvmSecurityServiceOperationalStatusPowerMode               uint16 = 18
 )
 
-// Msvm_StorageAllocationSettingData.WriteHardeningMethod values.
+// Msvm_ShutdownComponent.AdditionalAvailability values.
 const (
-	MsvmStorageAllocationSettingDataWriteHardeningMethodDefault                 uint16 = 0
-	MsvmStorageAllocationSettingDataWriteHardeningMethodWriteCacheEnabled       uint16 = 1
-	MsvmStorageAllocationSettingDataWriteHardeningMethodWriteCacheandFUAEnabled uint16 = 2
-	MsvmStorageAllocationSettingDataWriteHardeningMethodWriteCacheDisabled      uint16 = 3
+	MsvmShutdownComponentAdditionalAvailabilityOther                 uint16 = 1
+	MsvmShutdownComponentAdditionalAvailabilityUnknown               uint16 = 2
+	MsvmShutdownComponentAdditionalAvailabilityRunningFullPower      uint16 = 3
+	MsvmShutdownComponentAdditionalAvailabilityWarning               uint16 = 4
+	MsvmShutdownComponentAdditionalAvailabilityInTest                uint16 = 5
+	MsvmShutdownComponentAdditionalAvailabilityNotApplicable         uint16 = 6
+	MsvmShutdownComponentAdditionalAvailabilityPowerOff              uint16 = 7
+	MsvmShutdownComponentAdditionalAvailabilityOffLine               uint16 = 8
+	MsvmShutdownComponentAdditionalAvailabilityOffDuty               uint16 = 9
+	MsvmShutdownComponentAdditionalAvailabilityDegraded              uint16 = 10
+	MsvmShutdownComponentAdditionalAvailabilityNotInstalled          uint16 = 11
+	MsvmShutdownComponentAdditionalAvailabilityInstallError          uint16 = 12
+	MsvmShutdownComponentAdditionalAvailabilityPowerSaveUnknown      uint16 = 13
+	MsvmShutdownComponentAdditionalAvailabilityPowerSaveLowPowerMode uint16 = 14
+	MsvmShutdownComponentAdditionalAvailabilityPowerSaveStandby      uint16 = 15
+	MsvmShutdownComponentAdditionalAvailabilityPowerCycle            uint16 = 16
+	MsvmShutdownComponentAdditionalAvailabilityPowerSaveWarning      uint16 = 17
+	MsvmShutdownComponentAdditionalAvailabilityPaused                uint16 = 18
+	MsvmShutdownComponentAdditionalAvailabilityNotReady              uint16 = 19
+	MsvmShutdownComponentAdditionalAvailabilityNotConfigured         uint16 = 20
+	MsvmShutdownComponentAdditionalAvailabilityQuiesced              uint16 = 21
 )
 
-// Msvm_SummaryInformation.ApplicationHealth values.
+// Msvm_ShutdownComponent.AvailableRequestedStates values.
 const (
-	MsvmSummaryInformationApplicationHealthOK                  uint16 = 2
-	MsvmSummaryInformationApplicationHealthApplicationCritical uint16 = 32782
-	MsvmSummaryInformationApplicationHealthDisabled            uint16 = 32896
+	MsvmShutdownComponentAvailableRequestedStatesEnabled  uint16 = 2
+	MsvmShutdownComponentAvailableRequestedStatesDisabled uint16 = 3
+	MsvmShutdownComponentAvailableRequestedStatesShutDown uint16 = 4
+	MsvmShutdownComponentAvailableRequestedStatesOffline  uint16 = 6
+	MsvmShutdownComponentAvailableRequestedStatesTest     uint16 = 7
+	MsvmShutdownComponentAvailableRequestedStatesDefer    uint16 = 8
+	MsvmShutdownComponentAvailableRequestedStatesQuiesce  uint16 = 9
+	MsvmShutdownComponentAvailableRequestedStatesReboot   uint16 = 10
+	MsvmShutdownComponentAvailableRequestedStatesReset    uint16 = 11
 )
 
-// Msvm_SummaryInformation.IntegrationServicesVersionState values.
+// Msvm_ShutdownComponent.OperationalStatus values.
 const (
-	MsvmSummaryInformationIntegrationServicesVersionStateUnknown  uint16 = 0
-	MsvmSummaryInformationIntegrationServicesVersionStateUpToDate uint16 = 1
-	MsvmSummaryInformationIntegrationServicesVersionStateMismatch uint16 = 2
+	MsvmShutdownComponentOperationalStatusUnknown                 uint16 = 0
+	MsvmShutdownComponentOperationalStatusOther                   uint16 = 1
+	MsvmShutdownComponentOperationalStatusOK                      uint16 = 2
+	MsvmShutdownComponentOperationalStatusDegraded                uint16 = 3
+	MsvmShutdownComponentOperationalStatusStressed                uint16 = 4
+	MsvmShutdownComponentOperationalStatusPredictiveFailure       uint16 = 5
+	MsvmShutdownComponentOperationalStatusError                   uint16 = 6
+	MsvmShutdownComponentOperationalStatusNonRecoverableError     uint16 = 7
+	MsvmShutdownComponentOperationalStatusStarting                uint16 = 8
+	MsvmShutdownComponentOperationalStatusStopping                uint16 = 9
+	MsvmShutdownComponentOperationalStatusStopped                 uint16 = 10
+	MsvmShutdownComponentOperationalStatusInService               uint16 = 11
+	MsvmShutdownComponentOperationalStatusNoContact               uint16 = 12
+	MsvmShutdownComponentOperationalStatusLostCommunication       uint16 = 13
+	MsvmShutdownComponentOperationalStatusAborted                 uint16 = 14
+	MsvmShutdownComponentOperationalStatusDormant                 uint16 = 15
+	MsvmShutdownComponentOperationalStatusSupportingEntityInError uint16 = 16
+	MsvmShutdownComponentOperationalStatusCompleted               uint16 = 17
+	MsvmShutdownComponentOperationalStatusPowerMode               uint16 = 18
 )
 
-// Msvm_SummaryInformation.ReplicationHealth values.
+// Msvm_ShutdownComponent.PowerManagementCapabilities values.
 const (
-	MsvmSummaryInformationReplicationHealthNotApplicable uint16 = 0
-	MsvmSummaryInformationReplicationHealthOk            uint16 = 1
-	MsvmSummaryInformationReplicationHealthWarning       uint16 = 2
-	MsvmSummaryInformationReplicationHealthCritical      uint16 = 3
+	MsvmShutdownComponentPowerManagementCapabilitiesUnknown                              uint16 = 0
+	MsvmShutdownComponentPowerManagementCapabilitiesNotSupported                         uint16 = 1
+	MsvmShutdownComponentPowerManagementCapabilitiesDisabled                             uint16 = 2
+	MsvmShutdownComponentPowerManagementCapabilitiesEnabled                              uint16 = 3
+	MsvmShutdownComponentPowerManagementCapabilitiesPowerSavingModesEnteredAutomatically uint16 = 4
+	MsvmShutdownComponentPowerManagementCapabilitiesPowerStateSettable                   uint16 = 5
+	MsvmShutdownComponentPowerManagementCapabilitiesPowerCyclingSupported                uint16 = 6
+	MsvmShutdownComponentPowerManagementCapabilitiesTimedPowerOnSupported                uint16 = 7
 )
 
 // Msvm_SummaryInformation.ReplicationHealthEx values.
@@ -330,32 +510,6 @@ const (
 	MsvmSummaryInformationReplicationHealthExOk            uint16 = 1
 	MsvmSummaryInformationReplicationHealthExWarning       uint16 = 2
 	MsvmSummaryInformationReplicationHealthExCritical      uint16 = 3
-)
-
-// Msvm_SummaryInformation.ReplicationMode values.
-const (
-	MsvmSummaryInformationReplicationModeNone            uint16 = 0
-	MsvmSummaryInformationReplicationModePrimary         uint16 = 1
-	MsvmSummaryInformationReplicationModeReplica         uint16 = 2
-	MsvmSummaryInformationReplicationModeTestReplica     uint16 = 3
-	MsvmSummaryInformationReplicationModeExtendedReplica uint16 = 4
-)
-
-// Msvm_SummaryInformation.ReplicationState values.
-const (
-	MsvmSummaryInformationReplicationStateDisabled                            uint16 = 0
-	MsvmSummaryInformationReplicationStateReadyForReplication                 uint16 = 1
-	MsvmSummaryInformationReplicationStateWaitingToCompleteInitialReplication uint16 = 2
-	MsvmSummaryInformationReplicationStateReplicating                         uint16 = 3
-	MsvmSummaryInformationReplicationStateSyncedReplicationComplete           uint16 = 4
-	MsvmSummaryInformationReplicationStateRecovered                           uint16 = 5
-	MsvmSummaryInformationReplicationStateCommitted                           uint16 = 6
-	MsvmSummaryInformationReplicationStateSuspended                           uint16 = 7
-	MsvmSummaryInformationReplicationStateCritical                            uint16 = 8
-	MsvmSummaryInformationReplicationStateWaitingToStartResynchronization     uint16 = 9
-	MsvmSummaryInformationReplicationStateResynchronizing                     uint16 = 10
-	MsvmSummaryInformationReplicationStateResynchronizationSuspended          uint16 = 11
-	MsvmSummaryInformationReplicationStateFailoverInProgress                  uint16 = 12
 )
 
 // Msvm_SummaryInformation.ReplicationStateEx values.
@@ -384,24 +538,167 @@ const (
 	MsvmSummaryInformationReplicationStateExFiredrillInProgress                 uint16 = 21
 )
 
-// Msvm_VirtualEthernetSwitchSettingData.BandwidthReservationMode values.
+// Msvm_VirtualEthernetSwitch.AvailableRequestedStates values.
 const (
-	MsvmVirtualEthernetSwitchSettingDataBandwidthReservationModeDefault  uint32 = 0
-	MsvmVirtualEthernetSwitchSettingDataBandwidthReservationModeWeight   uint32 = 1
-	MsvmVirtualEthernetSwitchSettingDataBandwidthReservationModeAbsolute uint32 = 2
-	MsvmVirtualEthernetSwitchSettingDataBandwidthReservationModeNone     uint32 = 3
+	MsvmVirtualEthernetSwitchAvailableRequestedStatesEnabled  uint16 = 2
+	MsvmVirtualEthernetSwitchAvailableRequestedStatesDisabled uint16 = 3
+	MsvmVirtualEthernetSwitchAvailableRequestedStatesShutDown uint16 = 4
+	MsvmVirtualEthernetSwitchAvailableRequestedStatesOffline  uint16 = 6
+	MsvmVirtualEthernetSwitchAvailableRequestedStatesTest     uint16 = 7
+	MsvmVirtualEthernetSwitchAvailableRequestedStatesDefer    uint16 = 8
+	MsvmVirtualEthernetSwitchAvailableRequestedStatesQuiesce  uint16 = 9
+	MsvmVirtualEthernetSwitchAvailableRequestedStatesReboot   uint16 = 10
+	MsvmVirtualEthernetSwitchAvailableRequestedStatesReset    uint16 = 11
 )
 
-// Msvm_VirtualSystemSettingData.Architecture values.
+// Msvm_VirtualEthernetSwitch.Dedicated values.
 const (
-	MsvmVirtualSystemSettingDataArchitectureX64   = "x64"
-	MsvmVirtualSystemSettingDataArchitectureArm64 = "arm64"
+	MsvmVirtualEthernetSwitchDedicatedNotDedicated            uint16 = 0
+	MsvmVirtualEthernetSwitchDedicatedUnknown                 uint16 = 1
+	MsvmVirtualEthernetSwitchDedicatedOther                   uint16 = 2
+	MsvmVirtualEthernetSwitchDedicatedStorage                 uint16 = 3
+	MsvmVirtualEthernetSwitchDedicatedRouter                  uint16 = 4
+	MsvmVirtualEthernetSwitchDedicatedSwitch                  uint16 = 5
+	MsvmVirtualEthernetSwitchDedicatedLayer3Switch            uint16 = 6
+	MsvmVirtualEthernetSwitchDedicatedCentralOfficeSwitch     uint16 = 7
+	MsvmVirtualEthernetSwitchDedicatedHub                     uint16 = 8
+	MsvmVirtualEthernetSwitchDedicatedAccessServer            uint16 = 9
+	MsvmVirtualEthernetSwitchDedicatedFirewall                uint16 = 10
+	MsvmVirtualEthernetSwitchDedicatedPrint                   uint16 = 11
+	MsvmVirtualEthernetSwitchDedicatedIO                      uint16 = 12
+	MsvmVirtualEthernetSwitchDedicatedWebCaching              uint16 = 13
+	MsvmVirtualEthernetSwitchDedicatedManagement              uint16 = 14
+	MsvmVirtualEthernetSwitchDedicatedBlockServer             uint16 = 15
+	MsvmVirtualEthernetSwitchDedicatedFileServer              uint16 = 16
+	MsvmVirtualEthernetSwitchDedicatedMobileUserDevice        uint16 = 17
+	MsvmVirtualEthernetSwitchDedicatedRepeater                uint16 = 18
+	MsvmVirtualEthernetSwitchDedicatedBridgeExtender          uint16 = 19
+	MsvmVirtualEthernetSwitchDedicatedGateway                 uint16 = 20
+	MsvmVirtualEthernetSwitchDedicatedStorageVirtualizer      uint16 = 21
+	MsvmVirtualEthernetSwitchDedicatedMediaLibrary            uint16 = 22
+	MsvmVirtualEthernetSwitchDedicatedExtenderNode            uint16 = 23
+	MsvmVirtualEthernetSwitchDedicatedNASHead                 uint16 = 24
+	MsvmVirtualEthernetSwitchDedicatedSelfContainedNAS        uint16 = 25
+	MsvmVirtualEthernetSwitchDedicatedUPS                     uint16 = 26
+	MsvmVirtualEthernetSwitchDedicatedIPPhone                 uint16 = 27
+	MsvmVirtualEthernetSwitchDedicatedManagementController    uint16 = 28
+	MsvmVirtualEthernetSwitchDedicatedChassisManager          uint16 = 29
+	MsvmVirtualEthernetSwitchDedicatedHostBasedRAIDController uint16 = 30
+	MsvmVirtualEthernetSwitchDedicatedStorageDeviceEnclosure  uint16 = 31
+	MsvmVirtualEthernetSwitchDedicatedDesktop                 uint16 = 32
+	MsvmVirtualEthernetSwitchDedicatedLaptop                  uint16 = 33
+	MsvmVirtualEthernetSwitchDedicatedVirtualTapeLibrary      uint16 = 34
+	MsvmVirtualEthernetSwitchDedicatedVirtualLibrarySystem    uint16 = 35
+	MsvmVirtualEthernetSwitchDedicatedNetworkPCThinClient     uint16 = 36
+	MsvmVirtualEthernetSwitchDedicatedFCSwitch                uint16 = 37
+	MsvmVirtualEthernetSwitchDedicatedEthernetSwitch          uint16 = 38
 )
 
-// Msvm_VirtualSystemSettingData.AutomaticCriticalErrorAction values.
+// Msvm_VirtualEthernetSwitch.OperationalStatus values.
 const (
-	MsvmVirtualSystemSettingDataAutomaticCriticalErrorActionNone        uint16 = 0
-	MsvmVirtualSystemSettingDataAutomaticCriticalErrorActionPauseResume uint16 = 1
+	MsvmVirtualEthernetSwitchOperationalStatusUnknown                 uint16 = 0
+	MsvmVirtualEthernetSwitchOperationalStatusOther                   uint16 = 1
+	MsvmVirtualEthernetSwitchOperationalStatusOK                      uint16 = 2
+	MsvmVirtualEthernetSwitchOperationalStatusDegraded                uint16 = 3
+	MsvmVirtualEthernetSwitchOperationalStatusStressed                uint16 = 4
+	MsvmVirtualEthernetSwitchOperationalStatusPredictiveFailure       uint16 = 5
+	MsvmVirtualEthernetSwitchOperationalStatusError                   uint16 = 6
+	MsvmVirtualEthernetSwitchOperationalStatusNonRecoverableError     uint16 = 7
+	MsvmVirtualEthernetSwitchOperationalStatusStarting                uint16 = 8
+	MsvmVirtualEthernetSwitchOperationalStatusStopping                uint16 = 9
+	MsvmVirtualEthernetSwitchOperationalStatusStopped                 uint16 = 10
+	MsvmVirtualEthernetSwitchOperationalStatusInService               uint16 = 11
+	MsvmVirtualEthernetSwitchOperationalStatusNoContact               uint16 = 12
+	MsvmVirtualEthernetSwitchOperationalStatusLostCommunication       uint16 = 13
+	MsvmVirtualEthernetSwitchOperationalStatusAborted                 uint16 = 14
+	MsvmVirtualEthernetSwitchOperationalStatusDormant                 uint16 = 15
+	MsvmVirtualEthernetSwitchOperationalStatusSupportingEntityInError uint16 = 16
+	MsvmVirtualEthernetSwitchOperationalStatusCompleted               uint16 = 17
+	MsvmVirtualEthernetSwitchOperationalStatusPowerMode               uint16 = 18
+)
+
+// Msvm_VirtualEthernetSwitch.PowerManagementCapabilities values.
+const (
+	MsvmVirtualEthernetSwitchPowerManagementCapabilitiesUnknown                              uint16 = 0
+	MsvmVirtualEthernetSwitchPowerManagementCapabilitiesNotSupported                         uint16 = 1
+	MsvmVirtualEthernetSwitchPowerManagementCapabilitiesDisabled                             uint16 = 2
+	MsvmVirtualEthernetSwitchPowerManagementCapabilitiesEnabled                              uint16 = 3
+	MsvmVirtualEthernetSwitchPowerManagementCapabilitiesPowerSavingModesEnteredAutomatically uint16 = 4
+	MsvmVirtualEthernetSwitchPowerManagementCapabilitiesPowerStateSettable                   uint16 = 5
+	MsvmVirtualEthernetSwitchPowerManagementCapabilitiesPowerCyclingSupported                uint16 = 6
+	MsvmVirtualEthernetSwitchPowerManagementCapabilitiesTimedPowerOnSupported                uint16 = 7
+)
+
+// Msvm_VirtualEthernetSwitchManagementService.AvailableRequestedStates values.
+const (
+	MsvmVirtualEthernetSwitchManagementServiceAvailableRequestedStatesEnabled  uint16 = 2
+	MsvmVirtualEthernetSwitchManagementServiceAvailableRequestedStatesDisabled uint16 = 3
+	MsvmVirtualEthernetSwitchManagementServiceAvailableRequestedStatesShutDown uint16 = 4
+	MsvmVirtualEthernetSwitchManagementServiceAvailableRequestedStatesOffline  uint16 = 6
+	MsvmVirtualEthernetSwitchManagementServiceAvailableRequestedStatesTest     uint16 = 7
+	MsvmVirtualEthernetSwitchManagementServiceAvailableRequestedStatesDefer    uint16 = 8
+	MsvmVirtualEthernetSwitchManagementServiceAvailableRequestedStatesQuiesce  uint16 = 9
+	MsvmVirtualEthernetSwitchManagementServiceAvailableRequestedStatesReboot   uint16 = 10
+	MsvmVirtualEthernetSwitchManagementServiceAvailableRequestedStatesReset    uint16 = 11
+)
+
+// Msvm_VirtualEthernetSwitchManagementService.OperationalStatus values.
+const (
+	MsvmVirtualEthernetSwitchManagementServiceOperationalStatusUnknown                 uint16 = 0
+	MsvmVirtualEthernetSwitchManagementServiceOperationalStatusOther                   uint16 = 1
+	MsvmVirtualEthernetSwitchManagementServiceOperationalStatusOK                      uint16 = 2
+	MsvmVirtualEthernetSwitchManagementServiceOperationalStatusDegraded                uint16 = 3
+	MsvmVirtualEthernetSwitchManagementServiceOperationalStatusStressed                uint16 = 4
+	MsvmVirtualEthernetSwitchManagementServiceOperationalStatusPredictiveFailure       uint16 = 5
+	MsvmVirtualEthernetSwitchManagementServiceOperationalStatusError                   uint16 = 6
+	MsvmVirtualEthernetSwitchManagementServiceOperationalStatusNonRecoverableError     uint16 = 7
+	MsvmVirtualEthernetSwitchManagementServiceOperationalStatusStarting                uint16 = 8
+	MsvmVirtualEthernetSwitchManagementServiceOperationalStatusStopping                uint16 = 9
+	MsvmVirtualEthernetSwitchManagementServiceOperationalStatusStopped                 uint16 = 10
+	MsvmVirtualEthernetSwitchManagementServiceOperationalStatusInService               uint16 = 11
+	MsvmVirtualEthernetSwitchManagementServiceOperationalStatusNoContact               uint16 = 12
+	MsvmVirtualEthernetSwitchManagementServiceOperationalStatusLostCommunication       uint16 = 13
+	MsvmVirtualEthernetSwitchManagementServiceOperationalStatusAborted                 uint16 = 14
+	MsvmVirtualEthernetSwitchManagementServiceOperationalStatusDormant                 uint16 = 15
+	MsvmVirtualEthernetSwitchManagementServiceOperationalStatusSupportingEntityInError uint16 = 16
+	MsvmVirtualEthernetSwitchManagementServiceOperationalStatusCompleted               uint16 = 17
+	MsvmVirtualEthernetSwitchManagementServiceOperationalStatusPowerMode               uint16 = 18
+)
+
+// Msvm_VirtualSystemManagementService.AvailableRequestedStates values.
+const (
+	MsvmVirtualSystemManagementServiceAvailableRequestedStatesEnabled  uint16 = 2
+	MsvmVirtualSystemManagementServiceAvailableRequestedStatesDisabled uint16 = 3
+	MsvmVirtualSystemManagementServiceAvailableRequestedStatesShutDown uint16 = 4
+	MsvmVirtualSystemManagementServiceAvailableRequestedStatesOffline  uint16 = 6
+	MsvmVirtualSystemManagementServiceAvailableRequestedStatesTest     uint16 = 7
+	MsvmVirtualSystemManagementServiceAvailableRequestedStatesDefer    uint16 = 8
+	MsvmVirtualSystemManagementServiceAvailableRequestedStatesQuiesce  uint16 = 9
+	MsvmVirtualSystemManagementServiceAvailableRequestedStatesReboot   uint16 = 10
+	MsvmVirtualSystemManagementServiceAvailableRequestedStatesReset    uint16 = 11
+)
+
+// Msvm_VirtualSystemManagementService.OperationalStatus values.
+const (
+	MsvmVirtualSystemManagementServiceOperationalStatusUnknown                 uint16 = 0
+	MsvmVirtualSystemManagementServiceOperationalStatusOther                   uint16 = 1
+	MsvmVirtualSystemManagementServiceOperationalStatusOK                      uint16 = 2
+	MsvmVirtualSystemManagementServiceOperationalStatusDegraded                uint16 = 3
+	MsvmVirtualSystemManagementServiceOperationalStatusStressed                uint16 = 4
+	MsvmVirtualSystemManagementServiceOperationalStatusPredictiveFailure       uint16 = 5
+	MsvmVirtualSystemManagementServiceOperationalStatusError                   uint16 = 6
+	MsvmVirtualSystemManagementServiceOperationalStatusNonRecoverableError     uint16 = 7
+	MsvmVirtualSystemManagementServiceOperationalStatusStarting                uint16 = 8
+	MsvmVirtualSystemManagementServiceOperationalStatusStopping                uint16 = 9
+	MsvmVirtualSystemManagementServiceOperationalStatusStopped                 uint16 = 10
+	MsvmVirtualSystemManagementServiceOperationalStatusInService               uint16 = 11
+	MsvmVirtualSystemManagementServiceOperationalStatusNoContact               uint16 = 12
+	MsvmVirtualSystemManagementServiceOperationalStatusLostCommunication       uint16 = 13
+	MsvmVirtualSystemManagementServiceOperationalStatusAborted                 uint16 = 14
+	MsvmVirtualSystemManagementServiceOperationalStatusDormant                 uint16 = 15
+	MsvmVirtualSystemManagementServiceOperationalStatusSupportingEntityInError uint16 = 16
+	MsvmVirtualSystemManagementServiceOperationalStatusCompleted               uint16 = 17
+	MsvmVirtualSystemManagementServiceOperationalStatusPowerMode               uint16 = 18
 )
 
 // Msvm_VirtualSystemSettingData.BootOrder values.
@@ -413,106 +710,38 @@ const (
 	MsvmVirtualSystemSettingDataBootOrderSCSIHardDrive uint16 = 4
 )
 
-// Msvm_VirtualSystemSettingData.ClusterWideNodeCapabilitiesValidationMode values.
+// Msvm_VirtualSystemSnapshotService.AvailableRequestedStates values.
 const (
-	MsvmVirtualSystemSettingDataClusterWideNodeCapabilitiesValidationModeDefault  uint16 = 0
-	MsvmVirtualSystemSettingDataClusterWideNodeCapabilitiesValidationModeOverride uint16 = 1
+	MsvmVirtualSystemSnapshotServiceAvailableRequestedStatesEnabled  uint16 = 2
+	MsvmVirtualSystemSnapshotServiceAvailableRequestedStatesDisabled uint16 = 3
+	MsvmVirtualSystemSnapshotServiceAvailableRequestedStatesShutDown uint16 = 4
+	MsvmVirtualSystemSnapshotServiceAvailableRequestedStatesOffline  uint16 = 6
+	MsvmVirtualSystemSnapshotServiceAvailableRequestedStatesTest     uint16 = 7
+	MsvmVirtualSystemSnapshotServiceAvailableRequestedStatesDefer    uint16 = 8
+	MsvmVirtualSystemSnapshotServiceAvailableRequestedStatesQuiesce  uint16 = 9
+	MsvmVirtualSystemSnapshotServiceAvailableRequestedStatesReboot   uint16 = 10
+	MsvmVirtualSystemSnapshotServiceAvailableRequestedStatesReset    uint16 = 11
 )
 
-// Msvm_VirtualSystemSettingData.ConsoleMode values.
+// Msvm_VirtualSystemSnapshotService.OperationalStatus values.
 const (
-	MsvmVirtualSystemSettingDataConsoleModeDefault uint16 = 0
-	MsvmVirtualSystemSettingDataConsoleModeCOM1    uint16 = 1
-	MsvmVirtualSystemSettingDataConsoleModeCOM2    uint16 = 2
-	MsvmVirtualSystemSettingDataConsoleModeNone    uint16 = 3
-)
-
-// Msvm_VirtualSystemSettingData.DebugPortEnabled values.
-const (
-	MsvmVirtualSystemSettingDataDebugPortEnabledOff            uint16 = 0
-	MsvmVirtualSystemSettingDataDebugPortEnabledOn             uint16 = 1
-	MsvmVirtualSystemSettingDataDebugPortEnabledOnAutoAssigned uint16 = 2
-)
-
-// Msvm_VirtualSystemSettingData.EnhancedSessionTransportType values.
-const (
-	MsvmVirtualSystemSettingDataEnhancedSessionTransportTypeVMBusPipe    uint16 = 0
-	MsvmVirtualSystemSettingDataEnhancedSessionTransportTypeHyperVSocket uint16 = 1
-)
-
-// Msvm_VirtualSystemSettingData.GuestStateIsolationMode values.
-const (
-	MsvmVirtualSystemSettingDataGuestStateIsolationModeDefault             uint16 = 0
-	MsvmVirtualSystemSettingDataGuestStateIsolationModeNoPersistentSecrets uint16 = 1
-	MsvmVirtualSystemSettingDataGuestStateIsolationModeNoManagementVtl     uint16 = 2
-)
-
-// Msvm_VirtualSystemSettingData.GuestStateIsolationType values.
-const (
-	MsvmVirtualSystemSettingDataGuestStateIsolationTypeTrustedLaunch uint16 = 0
-	MsvmVirtualSystemSettingDataGuestStateIsolationTypeReserved      uint16 = 1
-	MsvmVirtualSystemSettingDataGuestStateIsolationTypeSEVSNP        uint16 = 2
-	MsvmVirtualSystemSettingDataGuestStateIsolationTypeTDX           uint16 = 3
-	MsvmVirtualSystemSettingDataGuestStateIsolationTypeOpenHCL       uint16 = 16
-)
-
-// Msvm_VirtualSystemSettingData.ManagementVtlUpdatePolicy values.
-const (
-	MsvmVirtualSystemSettingDataManagementVtlUpdatePolicyDefault     uint16 = 0
-	MsvmVirtualSystemSettingDataManagementVtlUpdatePolicyOfflineOnly uint16 = 1
-)
-
-// Msvm_VirtualSystemSettingData.NetworkBootPreferredProtocol values.
-const (
-	MsvmVirtualSystemSettingDataNetworkBootPreferredProtocolIPv4 uint16 = 4096
-	MsvmVirtualSystemSettingDataNetworkBootPreferredProtocolIPv6 uint16 = 4097
-)
-
-// Msvm_VirtualSystemSettingData.UserSnapshotType values.
-const (
-	MsvmVirtualSystemSettingDataUserSnapshotTypeDisable                  uint16 = 2
-	MsvmVirtualSystemSettingDataUserSnapshotTypeProductionFallbackToTest uint16 = 3
-	MsvmVirtualSystemSettingDataUserSnapshotTypeProductionNoFallback     uint16 = 4
-	MsvmVirtualSystemSettingDataUserSnapshotTypeTest                     uint16 = 5
-)
-
-// Msvm_VirtualSystemSettingData.VMBusMessageRedirection values.
-const (
-	MsvmVirtualSystemSettingDataVMBusMessageRedirectionNone           uint16 = 0
-	MsvmVirtualSystemSettingDataVMBusMessageRedirectionRedirectToVtl2 uint16 = 1
-)
-
-// Msvm_VirtualSystemSettingData.VirtualSlitType values.
-const (
-	MsvmVirtualSystemSettingDataVirtualSlitTypeNone                     uint16 = 0
-	MsvmVirtualSystemSettingDataVirtualSlitTypeFirmware                 uint16 = 1
-	MsvmVirtualSystemSettingDataVirtualSlitTypeMeasured                 uint16 = 2
-	MsvmVirtualSystemSettingDataVirtualSlitTypeFirmwareFallbackMeasured uint16 = 3
-)
-
-// Msvm_VirtualSystemSettingData.VirtualSystemSubType values.
-const (
-	MsvmVirtualSystemSettingDataVirtualSystemSubTypeMicrosoftHyperVSubType1 = "Microsoft:Hyper-V:SubType:1"
-	MsvmVirtualSystemSettingDataVirtualSystemSubTypeMicrosoftHyperVSubType2 = "Microsoft:Hyper-V:SubType:2"
-)
-
-// Msvm_VirtualSystemSettingData.Vtl2AddressSpaceConfigurationMode values.
-const (
-	MsvmVirtualSystemSettingDataVtl2AddressSpaceConfigurationModeDefault                   uint16 = 0
-	MsvmVirtualSystemSettingDataVtl2AddressSpaceConfigurationModeConfigurableSizePlacement uint16 = 1
-	MsvmVirtualSystemSettingDataVtl2AddressSpaceConfigurationModeExplicitPlacement         uint16 = 2
-)
-
-// Msvm_VirtualSystemSnapshotSettingData.ConsistencyLevel values.
-const (
-	MsvmVirtualSystemSnapshotSettingDataConsistencyLevelUnknown               uint8 = 0
-	MsvmVirtualSystemSnapshotSettingDataConsistencyLevelApplicationConsistent uint8 = 1
-	MsvmVirtualSystemSnapshotSettingDataConsistencyLevelCrashConsistent       uint8 = 2
-)
-
-// Msvm_VirtualSystemSnapshotSettingData.GuestBackupType values.
-const (
-	MsvmVirtualSystemSnapshotSettingDataGuestBackupTypeUndefined uint8 = 0
-	MsvmVirtualSystemSnapshotSettingDataGuestBackupTypeFull      uint8 = 1
-	MsvmVirtualSystemSnapshotSettingDataGuestBackupTypeCopy      uint8 = 2
+	MsvmVirtualSystemSnapshotServiceOperationalStatusUnknown                 uint16 = 0
+	MsvmVirtualSystemSnapshotServiceOperationalStatusOther                   uint16 = 1
+	MsvmVirtualSystemSnapshotServiceOperationalStatusOK                      uint16 = 2
+	MsvmVirtualSystemSnapshotServiceOperationalStatusDegraded                uint16 = 3
+	MsvmVirtualSystemSnapshotServiceOperationalStatusStressed                uint16 = 4
+	MsvmVirtualSystemSnapshotServiceOperationalStatusPredictiveFailure       uint16 = 5
+	MsvmVirtualSystemSnapshotServiceOperationalStatusError                   uint16 = 6
+	MsvmVirtualSystemSnapshotServiceOperationalStatusNonRecoverableError     uint16 = 7
+	MsvmVirtualSystemSnapshotServiceOperationalStatusStarting                uint16 = 8
+	MsvmVirtualSystemSnapshotServiceOperationalStatusStopping                uint16 = 9
+	MsvmVirtualSystemSnapshotServiceOperationalStatusStopped                 uint16 = 10
+	MsvmVirtualSystemSnapshotServiceOperationalStatusInService               uint16 = 11
+	MsvmVirtualSystemSnapshotServiceOperationalStatusNoContact               uint16 = 12
+	MsvmVirtualSystemSnapshotServiceOperationalStatusLostCommunication       uint16 = 13
+	MsvmVirtualSystemSnapshotServiceOperationalStatusAborted                 uint16 = 14
+	MsvmVirtualSystemSnapshotServiceOperationalStatusDormant                 uint16 = 15
+	MsvmVirtualSystemSnapshotServiceOperationalStatusSupportingEntityInError uint16 = 16
+	MsvmVirtualSystemSnapshotServiceOperationalStatusCompleted               uint16 = 17
+	MsvmVirtualSystemSnapshotServiceOperationalStatusPowerMode               uint16 = 18
 )

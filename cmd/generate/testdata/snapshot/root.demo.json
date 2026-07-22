@@ -29,12 +29,29 @@
       "properties": null
     },
     {
+      "name": "Demo_Profile",
+      "properties": [
+        {
+          "name": "Kind",
+          "cimType": 8,
+          "key": true,
+          "values": ["User", "System"]
+        },
+        {
+          "name": "Note",
+          "cimType": 8
+        }
+      ]
+    },
+    {
       "name": "Demo_Widget",
       "properties": [
         {
           "name": "Caps",
           "cimType": 18,
-          "array": true
+          "array": true,
+          "values": ["None", "Basic", "Full"],
+          "valueMap": ["0", "1", "2"]
         },
         {
           "name": "DemoWidget",
@@ -61,6 +78,12 @@
           "valueMap": ["1", "2", "128..255"]
         },
         {
+          "name": "Flags",
+          "cimType": 19,
+          "bitValues": ["Readable", "Writable", "Executable"],
+          "bitMap": ["0", "1", "2"]
+        },
+        {
           "name": "FooBar",
           "cimType": 3
         },
@@ -69,8 +92,20 @@
           "cimType": 8
         },
         {
+          "name": "Health",
+          "cimType": 19,
+          "values": ["OK", "Good", "Degraded"],
+          "valueMap": ["5", "5", "10"]
+        },
+        {
           "name": "Installed",
           "cimType": 101
+        },
+        {
+          "name": "Mode",
+          "cimType": 18,
+          "values": ["On", "Off"],
+          "valueMap": ["1", "2"]
         },
         {
           "name": "Name",
@@ -130,12 +165,39 @@
             {
               "name": "StartupInformation",
               "cimType": 13
+            },
+            {
+              "name": "Priority",
+              "cimType": 18,
+              "values": ["Low", "Normal", "High"],
+              "valueMap": ["0", "1", "2"]
             }
           ],
           "out": [
             {
               "name": "ProcessId",
               "cimType": 19
+            },
+            {
+              "name": "ReturnValue",
+              "cimType": 19,
+              "values": ["Success", "Access Denied"],
+              "valueMap": ["0", "2"]
+            }
+          ]
+        },
+        {
+          "name": "Start",
+          "in": [
+            {
+              "name": "TimeoutPeriod",
+              "cimType": 101
+            }
+          ],
+          "out": [
+            {
+              "name": "Job",
+              "cimType": 102
             },
             {
               "name": "ReturnValue",
@@ -157,6 +219,15 @@
               "cimType": 19
             }
           ]
+        }
+      ]
+    },
+    {
+      "name": "Demo_WidgetMode",
+      "properties": [
+        {
+          "name": "Value",
+          "cimType": 8
         }
       ]
     },
