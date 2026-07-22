@@ -1,5 +1,24 @@
 # Changelog
 
+## [1.0.0](https://github.com/deploymenttheory/go-bindings-wmi/compare/v0.2.0...v1.0.0) (2026-07-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* method wrappers take pointer scalars (build them with wmi.Ptr), enum constants gained named types, and <ns>_constants.go split into <ns>_enums.go plus fallback constants.
+
+### Features
+
+* typed enum emission, async job Wait, path-aware bindings ([3a41eac](https://github.com/deploymenttheory/go-bindings-wmi/commit/3a41eacc99f7b1e5c0dadfebdd60246a854324a3))
+* typed enum emission, async job Wait, path-aware bindings ([569ac7d](https://github.com/deploymenttheory/go-bindings-wmi/commit/569ac7d5c4c447ca8b2e939307de6d011a22429c))
+* typed enum emission, async job Wait, path-aware bindings ([eefe124](https://github.com/deploymenttheory/go-bindings-wmi/commit/eefe124c61bbb60ca5e352c66a4b286a4137f229))
+
+
+### Bug Fixes
+
+* docs ([f8227ee](https://github.com/deploymenttheory/go-bindings-wmi/commit/f8227eeeea7db68fc6b38e114b89e3b6e4222c0d))
+* **docs:** document the typed-enum emission and new runtime surface ([2ca9065](https://github.com/deploymenttheory/go-bindings-wmi/commit/2ca90657fd4e9ddb5b39716de4fecb93874a5206))
+
 ## [0.2.0](https://github.com/deploymenttheory/go-bindings-wmi/compare/v0.1.0...v0.2.0) (2026-07-21)
 
 
