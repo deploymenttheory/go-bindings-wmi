@@ -1,8 +1,11 @@
 # go-bindings-wmi
 
-[![Go Reference](https://pkg.go.dev/badge/github.com/deploymenttheory/go-bindings-wmi.svg)](https://pkg.go.dev/github.com/deploymenttheory/go-bindings-wmi)
-[![CI](https://github.com/deploymenttheory/go-bindings-wmi/actions/workflows/ci.yml/badge.svg)](https://github.com/deploymenttheory/go-bindings-wmi/actions/workflows/ci.yml)
-[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![GoDoc](https://pkg.go.dev/badge/github.com/deploymenttheory/go-bindings-wmi)](https://pkg.go.dev/github.com/deploymenttheory/go-bindings-wmi)
+[![License](https://img.shields.io/github/license/deploymenttheory/go-bindings-wmi)](LICENSE)
+[![Go Version](https://img.shields.io/github/go-mod/go-version/deploymenttheory/go-bindings-wmi)](https://go.dev/)
+[![Release](https://img.shields.io/github/v/release/deploymenttheory/go-bindings-wmi)](https://github.com/deploymenttheory/go-bindings-wmi/releases)
+[![codecov](https://codecov.io/gh/deploymenttheory/go-bindings-wmi/graph/badge.svg)](https://codecov.io/gh/deploymenttheory/go-bindings-wmi)
+![Status: GA](https://img.shields.io/badge/status-GA-green)
 
 Typed Go bindings for **WMI / CIM classes**, generated from a committed
 schema snapshot and running on
