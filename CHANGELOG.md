@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/deploymenttheory/go-bindings-wmi/compare/v1.0.0...v1.0.1) (2026-10-08)
+
+
+### Bug Fixes
+
+* adapt WMI runtime to Win32 v0.5.0 string pointers ([#39](https://github.com/deploymenttheory/go-bindings-wmi/issues/39)) ([acd6f54](https://github.com/deploymenttheory/go-bindings-wmi/commit/acd6f5450dde354cae63a2ecf5ea03421c8359bb))
+
 ## [1.0.0](https://github.com/deploymenttheory/go-bindings-wmi/compare/v0.2.0...v1.0.0) (2026-07-22)
 
 
