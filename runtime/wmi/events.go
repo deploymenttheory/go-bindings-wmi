@@ -30,9 +30,9 @@ type EventSubscription struct {
 // Intrinsic events carry the instance in their TargetInstance property,
 // decoded to a nested Row; extrinsic events carry their own properties.
 func (s *Service) SubscribeEvents(wql string) (*EventSubscription, error) {
-	lang := foundation.SysAllocString("WQL")
+	lang := allocBSTR("WQL")
 	defer foundation.SysFreeString(lang)
-	query := foundation.SysAllocString(wql)
+	query := allocBSTR(wql)
 	defer foundation.SysFreeString(query)
 
 	var enum *wmi.IEnumWbemClassObject

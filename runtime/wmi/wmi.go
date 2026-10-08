@@ -34,11 +34,11 @@ var clsidWbemLocator = win32.GUID{
 }
 
 const (
-	rpcCAuthnLevelDefault    = 0
-	rpcCImpLevelImpersonate  = 3
-	eoacNone                 = 0
-	clsctxInprocServer       = 0x1
-	wbemFlagForwardOnly      = 0x20
+	rpcCAuthnLevelDefault     = 0
+	rpcCImpLevelImpersonate   = 3
+	eoacNone                  = 0
+	clsctxInprocServer        = 0x1
+	wbemFlagForwardOnly       = 0x20
 	wbemFlagReturnImmediately = 0x10
 )
 
@@ -123,7 +123,7 @@ func ConnectWith(namespace string, opts ConnectOptions) (*Service, error) {
 	if opts.Host != "" {
 		path = `\\` + opts.Host + `\` + namespace
 	}
-	ns := foundation.SysAllocString(path)
+	ns := allocBSTR(path)
 	defer foundation.SysFreeString(ns)
 	user := optionalBSTR(opts.User)
 	defer foundation.SysFreeString(user)
@@ -149,7 +149,7 @@ func ConnectWith(namespace string, opts ConnectOptions) (*Service, error) {
 	authIdentity, freeIdentity := authIdentityFor(opts)
 	defer freeIdentity()
 	if err := com.CoSetProxyBlanket((*com.IUnknown)(unsafe.Pointer(services)),
-		10 /*RPC_C_AUTHN_WINNT*/, 0 /*RPC_C_AUTHZ_NONE*/, "",
+		10 /*RPC_C_AUTHN_WINNT*/, 0 /*RPC_C_AUTHZ_NONE*/, nil,
 		rpcCAuthnLevelDefault, rpcCImpLevelImpersonate, authIdentity, eoacNone); err != nil {
 		// Non-fatal for local queries.
 	}
@@ -193,13 +193,19 @@ func authIdentityFor(opts ConnectOptions) (unsafe.Pointer, func()) {
 	}
 }
 
+// allocBSTR passes a non-nil string pointer to SysAllocString, preserving the
+// distinction between an empty BSTR and a NULL BSTR.
+func allocBSTR(s string) foundation.BSTR {
+	return foundation.SysAllocString(&s)
+}
+
 // optionalBSTR allocates a BSTR for non-empty strings; empty stays nil
 // (WMI's "use the default" convention). SysFreeString(nil) is a no-op.
 func optionalBSTR(s string) foundation.BSTR {
 	if s == "" {
 		return nil
 	}
-	return foundation.SysAllocString(s)
+	return allocBSTR(s)
 }
 
 // Close releases the session and uninitializes COM on this thread. It must
@@ -311,9 +317,9 @@ func (s *Service) QueryContext(ctx context.Context, wql string) ([]Row, error) {
 // execQuery issues the WQL and returns the (forward-only, semisynchronous)
 // enumerator.
 func (s *Service) execQuery(wql string) (*wmi.IEnumWbemClassObject, error) {
-	lang := foundation.SysAllocString("WQL")
+	lang := allocBSTR("WQL")
 	defer foundation.SysFreeString(lang)
-	query := foundation.SysAllocString(wql)
+	query := allocBSTR(wql)
 	defer foundation.SysFreeString(query)
 
 	var enum *wmi.IEnumWbemClassObject

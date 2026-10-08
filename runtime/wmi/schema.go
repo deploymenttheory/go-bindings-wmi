@@ -114,7 +114,7 @@ type classNameVariant struct {
 // ClassProperties returns the schema (property name + CIM type) of a class,
 // sorted by name for deterministic snapshots.
 func (s *Service) ClassProperties(className string) ([]PropertyInfo, error) {
-	name := foundation.SysAllocString(className)
+	name := allocBSTR(className)
 	defer foundation.SysFreeString(name)
 
 	var class *wmi.IWbemClassObject
@@ -196,7 +196,7 @@ func (s *Service) ancestorEnumQualifiers(className string) map[string]enumQuals 
 	quals := map[string]enumQuals{}
 	s.enumQualCache[className] = quals // even on failure: don't refetch
 
-	name := foundation.SysAllocString(className)
+	name := allocBSTR(className)
 	defer foundation.SysFreeString(name)
 	var class *wmi.IWbemClassObject
 	var callResult *wmi.IWbemCallResult
@@ -301,7 +301,7 @@ func enumerateProperties(class *wmi.IWbemClassObject) ([]PropertyInfo, error) {
 // keep their declaration order (the [ID] qualifier); ReturnValue, which has
 // no ID, sorts last among the out-parameters.
 func (s *Service) ClassMethods(className string) ([]MethodInfo, error) {
-	name := foundation.SysAllocString(className)
+	name := allocBSTR(className)
 	defer foundation.SysFreeString(name)
 
 	var class *wmi.IWbemClassObject
@@ -439,4 +439,3 @@ func methodIsStatic(class *wmi.IWbemClassObject, method string) bool {
 	static, ok := decodeVariant(&value).(bool)
 	return ok && static
 }
-

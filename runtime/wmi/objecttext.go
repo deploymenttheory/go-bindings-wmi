@@ -44,7 +44,7 @@ func (s *Service) ObjectText(row Row) (string, error) {
 // instance text. This is the read-modify-encode step providers like Hyper-V
 // expect for their Modify*Settings methods.
 func (s *Service) ObjectTextOfPath(objectPath string, overrides map[string]any) (string, error) {
-	path := foundation.SysAllocString(objectPath)
+	path := allocBSTR(objectPath)
 	defer foundation.SysFreeString(path)
 
 	var instance *wmi.IWbemClassObject

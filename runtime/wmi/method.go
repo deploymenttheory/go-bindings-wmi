@@ -35,9 +35,9 @@ func (s *Service) ExecMethod(objectPath, method string, in map[string]any) (Row,
 		inInstance = instance
 	}
 
-	path := foundation.SysAllocString(objectPath)
+	path := allocBSTR(objectPath)
 	defer foundation.SysFreeString(path)
-	name := foundation.SysAllocString(method)
+	name := allocBSTR(method)
 	defer foundation.SysFreeString(name)
 
 	var out *wmi.IWbemClassObject
@@ -66,9 +66,9 @@ func (s *Service) ExecMethodContext(ctx context.Context, objectPath, method stri
 		inInstance = instance
 	}
 
-	path := foundation.SysAllocString(objectPath)
+	path := allocBSTR(objectPath)
 	defer foundation.SysFreeString(path)
-	name := foundation.SysAllocString(method)
+	name := allocBSTR(method)
 	defer foundation.SysFreeString(name)
 
 	var callResult *wmi.IWbemCallResult
@@ -113,7 +113,7 @@ func (s *Service) ExecMethodContext(ctx context.Context, objectPath, method stri
 // spawnInParameters builds the method's in-parameters instance: the class's
 // method signature spawns an instance and each provided value is put on it.
 func (s *Service) spawnInParameters(className, method string, in map[string]any) (*wmi.IWbemClassObject, error) {
-	name := foundation.SysAllocString(className)
+	name := allocBSTR(className)
 	defer foundation.SysFreeString(name)
 
 	var class *wmi.IWbemClassObject
@@ -230,7 +230,7 @@ func (s *Service) embeddedInstance(row Row) (*wmi.IWbemClassObject, error) {
 		return nil, fmt.Errorf("wmi: embedded object row has no __CLASS (build it with wmi.Instance)")
 	}
 
-	name := foundation.SysAllocString(class)
+	name := allocBSTR(class)
 	defer foundation.SysFreeString(name)
 	var classObj *wmi.IWbemClassObject
 	var callResult *wmi.IWbemCallResult
