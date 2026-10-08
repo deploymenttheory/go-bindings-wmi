@@ -17,7 +17,7 @@ import (
 // a key-qualified path like `Win32_Service.Name="Spooler"`). A missing
 // instance returns ErrNotFound.
 func (s *Service) GetInstance(objectPath string) (Row, error) {
-	path := foundation.SysAllocString(objectPath)
+	path := allocBSTR(objectPath)
 	defer foundation.SysFreeString(path)
 
 	var instance *wmi.IWbemClassObject
@@ -71,7 +71,7 @@ func (s *Service) CreateInstance(class string, props map[string]any) (string, er
 // UpdateInstance sets properties on an existing instance. A nil value sets
 // the property to NULL.
 func (s *Service) UpdateInstance(objectPath string, props map[string]any) error {
-	path := foundation.SysAllocString(objectPath)
+	path := allocBSTR(objectPath)
 	defer foundation.SysFreeString(path)
 
 	var instance *wmi.IWbemClassObject
@@ -102,7 +102,7 @@ func (s *Service) UpdateInstance(objectPath string, props map[string]any) error 
 // DeleteInstance deletes the instance at the object path. A missing
 // instance returns ErrNotFound.
 func (s *Service) DeleteInstance(objectPath string) error {
-	path := foundation.SysAllocString(objectPath)
+	path := allocBSTR(objectPath)
 	defer foundation.SysFreeString(path)
 	if err := s.services.DeleteInstance(path, 0, nil, nil); err != nil {
 		return instanceError("DeleteInstance", objectPath, err)

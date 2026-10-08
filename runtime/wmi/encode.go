@@ -26,7 +26,7 @@ func encodeVariant(value any, v *variant.VARIANT) error {
 	switch t := value.(type) {
 	case string:
 		pointer.Vt = uint16(variant.VT_BSTR)
-		pointer.P = unsafe.Pointer(foundation.SysAllocString(t))
+		pointer.P = unsafe.Pointer(allocBSTR(t))
 	case bool:
 		scalar.Vt = uint16(variant.VT_BOOL)
 		if t {
@@ -108,7 +108,7 @@ func encodeInt(scalar *variantScalar, pointer *variantPtr, n int64) {
 		return
 	}
 	pointer.Vt = uint16(variant.VT_BSTR)
-	pointer.P = unsafe.Pointer(foundation.SysAllocString(strconv.FormatInt(n, 10)))
+	pointer.P = unsafe.Pointer(allocBSTR(strconv.FormatInt(n, 10)))
 }
 
 // encodeUint mirrors encodeInt: values fitting 32 bits travel as VT_I4 bit
@@ -120,7 +120,7 @@ func encodeUint(scalar *variantScalar, pointer *variantPtr, n uint64) {
 		return
 	}
 	pointer.Vt = uint16(variant.VT_BSTR)
-	pointer.P = unsafe.Pointer(foundation.SysAllocString(strconv.FormatUint(n, 10)))
+	pointer.P = unsafe.Pointer(allocBSTR(strconv.FormatUint(n, 10)))
 }
 
 // encodeArray builds a one-dimensional SAFEARRAY of vt from a Go slice and
@@ -163,6 +163,6 @@ func scalarElement[T, E any](conv func(T) E) func(T) (unsafe.Pointer, func()) {
 // putBSTRElement marshals one string element; SafeArrayPutElement copies
 // BSTRs, so ours is freed right after the put.
 func putBSTRElement(s string) (unsafe.Pointer, func()) {
-	b := foundation.SysAllocString(s)
+	b := allocBSTR(s)
 	return unsafe.Pointer(b), func() { foundation.SysFreeString(b) }
 }
